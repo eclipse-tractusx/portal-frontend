@@ -5,12 +5,14 @@ on:
     branches:
       - 'main'
     paths:
-      - 'src'
+      - 'cx-portal-shared-components/src'
+      - 'cx-portal/src'
   pull_request:
     branches:
       - 'main'
     paths:
-      - 'src'
+      - 'cx-portal-shared-components/src'
+      - 'cx-portal/src'
 
 jobs:
   build:
