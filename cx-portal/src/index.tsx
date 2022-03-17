@@ -11,6 +11,7 @@ import { SharedThemeProvider } from 'cx-portal-shared-components'
 I18nService.init()
 
 UserService.init((user) => {
+  console.log(user)
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
