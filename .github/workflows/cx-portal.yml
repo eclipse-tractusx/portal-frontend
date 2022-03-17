@@ -34,5 +34,6 @@ jobs:
           yarn lint
 
       - name: Build Portal Frontend
+        working-directory: ./cx-portal
         run: |
           yarn build
