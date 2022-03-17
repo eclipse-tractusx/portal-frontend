@@ -1,0 +1,8 @@
+.Logo {
+  display: inline-block;
+  width: 170px;
+  height: 40px;
+  background-image: url(../../../../../public/cx-logo-text.svg);
+  background-repeat: no-repeat;
+  background-size: 170px 40px;
+}

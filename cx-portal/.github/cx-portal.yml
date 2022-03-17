@@ -1,0 +1,42 @@
+name: cx-portal
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'src'
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - 'src'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          yarn
+
+      - name: Build Shared UI Library
+        working-directory: ./cx-portal-shared-components
+        run: |
+          yarn build:lib
+        
+      - name: Unit Tests
+        working-directory: ./cx-portal
+        run: |
+          yarn test
+    
+      - name: Linter Checks
+        working-directory: ./cx-portal
+        run: |
+          yarn lint
+
+      - name: Build Portal Frontend
+        run: |
+          yarn build

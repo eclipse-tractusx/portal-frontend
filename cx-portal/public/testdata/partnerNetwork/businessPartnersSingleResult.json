@@ -1,0 +1,158 @@
+{
+  "bpn": "BPNL0000000001YN",
+  "identifiers": [
+    {
+      "uuid": "fa59a765-d9c4-4d92-810f-e49bce3dd57c",
+      "value": "DE813155579",
+      "type": {
+        "technicalKey": "EU_VAT_ID_DE",
+        "name": "Umsatzsteuer-Identifikationsnummer",
+        "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+      },
+      "issuingBody": null,
+      "status": null
+    },
+    {
+      "uuid": "7854bfb0-1661-44e3-910c-1e775affa3e2",
+      "value": "BPNL0000000001YN",
+      "type": {
+        "technicalKey": "BPN",
+        "name": "Business Partner Number",
+        "url": ""
+      },
+      "issuingBody": {
+        "technicalKey": "CATENAX",
+        "name": "Catena-X",
+        "url": ""
+      },
+      "status": {
+        "technicalKey": "UNKNOWN",
+        "name": "Unknown"
+      }
+    },
+    {
+      "uuid": "c5794afe-8661-4b6a-a4cf-9dcb23262e07",
+      "value": "61c0969c780a205a1c6cafe7",
+      "type": {
+        "technicalKey": "CDQID",
+        "name": "CDQ Identifier",
+        "url": ""
+      },
+      "issuingBody": {
+        "technicalKey": "CDQ",
+        "name": "CDQ AG",
+        "url": ""
+      },
+      "status": {
+        "technicalKey": "CDQ_SYNCHRONIZED",
+        "name": "Synchronized with CDQ"
+      }
+    },
+    {
+      "uuid": "6602110a-7512-495a-941d-d4904966ccee",
+      "value": "316622612",
+      "type": {
+        "technicalKey": "DUNS_ID",
+        "name": "DUNS Number",
+        "url": "https://meta.cdq.com/D-U-N-S"
+      },
+      "issuingBody": null,
+      "status": null
+    }
+  ],
+  "names": [
+    {
+      "uuid": "97ec2b1a-0f9a-4e8f-b32a-82b79e6b5edf",
+      "value": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
+      "shortName": null,
+      "type": {
+        "technicalKey": "LOCAL",
+        "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
+        "url": ""
+      },
+      "language": {
+        "technicalKey": "undefined",
+        "name": "Undefined"
+      }
+    }
+  ],
+  "legalForm": null,
+  "status": null,
+  "addresses": [
+    {
+      "uuid": "bc51d6fe-38c0-4eaf-b687-7e573672963c",
+      "version": {
+        "characterSet": {
+          "technicalKey": "LATIN",
+          "name": "Latin"
+        },
+        "language": {
+          "technicalKey": "en",
+          "name": "English"
+        }
+      },
+      "careOf": null,
+      "contexts": [],
+      "country": {
+        "technicalKey": "DE",
+        "name": "Germany"
+      },
+      "administrativeAreas": [],
+      "postCodes": [
+        {
+          "uuid": "69b57366-876c-4af1-9770-39be8658fff7",
+          "value": "79650",
+          "type": {
+            "technicalKey": "OTHER",
+            "name": "Other type",
+            "url": ""
+          }
+        }
+      ],
+      "localities": [
+        {
+          "uuid": "32ff3582-9d3e-4ee2-9a66-72e452abcab2",
+          "value": "Schopfheim",
+          "shortName": null,
+          "type": {
+            "technicalKey": "OTHER",
+            "name": "Other",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "en",
+            "name": "English"
+          }
+        }
+      ],
+      "thoroughfares": [
+        {
+          "uuid": "1927935d-a966-4f21-b29d-7ad5cdf3bbbb",
+          "value": "An der Wiese 14",
+          "name": null,
+          "shortName": null,
+          "number": null,
+          "direction": null,
+          "type": {
+            "technicalKey": "OTHER",
+            "name": "Other type",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "en",
+            "name": "English"
+          }
+        }
+      ],
+      "premises": [],
+      "postalDeliveryPoints": [],
+      "geographicCoordinates": null,
+      "types": []
+    }
+  ],
+  "profileClassifications": [],
+  "types": [],
+  "bankAccounts": [],
+  "roles": [],
+  "relations": []
+}

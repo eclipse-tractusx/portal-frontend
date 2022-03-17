@@ -1,0 +1,28 @@
+.advance-search-fields-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.identifier-fields-container {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+  width: 600px;
+  min-width: 600px;
+}
+
+.or-span {
+  width: 100%;
+  text-align: center;
+}
+
+.search-button {
+  align-self: center;
+  margin-left: 50px;
+}

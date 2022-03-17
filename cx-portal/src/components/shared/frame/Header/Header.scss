@@ -1,0 +1,16 @@
+header {
+  position: relative;
+  padding: 22px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:after {
+    position: absolute;
+    content: '';
+    left: 30px;
+    right: 30px;
+    bottom: 0;
+    border-bottom: 1px solid #dcdcdc;
+  }
+}

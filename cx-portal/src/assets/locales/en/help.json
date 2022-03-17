@@ -1,0 +1,15 @@
+{
+  "title": "Help",
+  "message": "Helpful information",
+  "general": {
+    "title": "Catena-X in general",
+    "what": {
+      "question": "What does the Catena-X Automotive Network work on?",
+      "answer": "The Catena-X Automotive Network aims to create the conditions for the rapid and successful development of an open ecosystem for the efficient and secure exchange of information between companies in the automotive industry."
+    },
+    "goal": {
+      "question": "What is the goal of the Catena-X Automotive Network?",
+      "answer": "The aim of the Catena-X Automotive Network is to create standardized data and information flows along the entire automotive value chain. The focus here is on the benefits and added value for each participant in the network while maintaining data sovereignty in accordance with the standards of the European Union (GAIA-X)."
+    }
+  }
+}

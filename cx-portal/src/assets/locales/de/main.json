@@ -1,0 +1,107 @@
+{
+  "title": "Catena-X Portal",
+  "pages": {
+    "dashboard": "Übersicht",
+    "appstore": "App Store",
+    "datacatalog": "Datenkatalog",
+    "applications": "Anwendungen",
+    "semantichub": "Semantischer Hub",
+    "digitaltwin": "Digitaler Zwilling",
+    "developerhub": "Entwickler Hub",
+    "connector": "Konnektor",
+    "account": "Mein Account",
+    "notifications": "Benachrichtigungen",
+    "organization": "Organisation",
+    "partnernetwork": "Partner Netzwerk",
+    "usermanagement": "Benutzerverwaltung",
+    "settings": "Einstellungen",
+    "admin": "Verwaltung",
+    "developer": "Entwicklung",
+    "invite": "Geschäftspartner Einladen",
+    "help": "Hilfe",
+    "contact": "Kontakt",
+    "imprint": "Impressum",
+    "privacy": "Privatsphäre",
+    "terms": "Nutzungsbedingungen",
+    "cookiepolicy": "Cookie Richtline",
+    "3rdpartylicenses": "Third Party Lizenzen",
+    "logout": "Abmelden",
+    "notfound": "Seite nicht gefunden"
+  },
+  "content": {
+    "dashboard": {
+      "welcome": "Willkommen bei Catena-X - das automotive Netzwerk!"
+    },
+    "semantichub": {
+      "message": "Inhalte vom Semantischen Hub"
+    },
+    "digitaltwin": {
+      "message": "Inhalte vom Digitalen Zwilling"
+    },
+    "datacatalog": {
+      "message": "Inhalte vom Datenkatalog"
+    },
+    "devloperhub": {
+      "message": "Inhalte vom Entwickler Hub"
+    },
+    "connector": {
+      "message": "Inhalte vom Konnektor"
+    },
+    "partnernetwork": {
+      "message": "Inhalte vom Partner Netzwerk"
+    },
+    "invite": {
+      "title": "Laden Sie Geschäftspartner ein",
+      "send": "Einladung absenden",
+      "success": "Einladung erfolgreich",
+      "failure": "Die Verarbeitung Ihrer Anfrage ist fehlgeschlagen"
+    },
+    "usermanagement": {
+      "message": "Inhalte der Benutzerverwaltung"
+    },
+    "help": {
+      "message": "Fügen Sie hier Inhalte hinzu"
+    },
+    "contact": {
+      "message": "Fügen Sie hier Inhalte hinzu"
+    },
+    "imprint": {
+      "message": "Fügen Sie hier Inhalte hinzu"
+    },
+    "privacy": {
+      "message": "Fügen Sie hier Inhalte hinzu"
+    },
+    "terms": {
+      "message": "Fügen Sie hier Inhalte hinzu"
+    },
+    "cookiepolicy": {
+      "message": "Fügen Sie hier Inhalte hinzu"
+    },
+    "thirdpartylicenses": {
+      "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
+    },
+    "account": {
+      "token": "Aktuelles Authentisierungstoken"
+    },
+    "logout": {
+      "message": "Wir melden Sie nun ab... Wir freuen uns Sie bald wieder hier zu sehen!"
+    },
+    "notfound": {
+      "message": "Der Inhalt wurde nicht gefunden. Dies kann verschiedene Ursachen haben - entweder",
+      "reason": {
+        "nopermission": "Sie haben keine Berechtigung diesen Inhalt zu sehen oder",
+        "notexisting": "die Seite existiert im Catena-X Portal nicht oder",
+        "notimplemented": "sie wurde noch nicht implementiert."
+      },
+      "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
+    }
+  },
+  "global": {
+    "field": {
+      "first": "Vorname",
+      "last": "Nachname",
+      "email": "Email",
+      "company": "Firmenname"
+    }
+  }
+}

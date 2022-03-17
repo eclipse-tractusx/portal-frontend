@@ -1,0 +1,7 @@
+main.Translator textarea {
+  width: 48%;
+  height: 600px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+}

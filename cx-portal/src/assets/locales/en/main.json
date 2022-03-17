@@ -1,0 +1,107 @@
+{
+  "title": "Catena-X Portal",
+  "pages": {
+    "dashboard": "Dashboard",
+    "appstore": "Appstore",
+    "datacatalog": "Data Catalog",
+    "applications": "Applications",
+    "semantichub": "Semantic Hub",
+    "digitaltwin": "Digital Twin",
+    "developerhub": "Developer Hub",
+    "connector": "Connector",
+    "account": "My Account",
+    "notifications": "Notifications",
+    "organization": "Organization",
+    "partnernetwork": "Partner Network",
+    "usermanagement": "User Management",
+    "settings": "Settings",
+    "admin": "Administration",
+    "developer": "Development",
+    "invite": "Invite Business Partner",
+    "help": "Help",
+    "contact": "Contact",
+    "imprint": "Imprint",
+    "privacy": "Privacy",
+    "terms": "Terms of Service",
+    "cookiepolicy": "Cookie Policy",
+    "thirdpartylicenses": "Third Party Licenses",
+    "logout": "Sign Out",
+    "notfound": "Page not found"
+  },
+  "content": {
+    "dashboard": {
+      "welcome": "Welcome to Catena-X - the automotive network!"
+    },
+    "semantichub": {
+      "message": "Contents of Semantic Hub"
+    },
+    "digitaltwin": {
+      "message": "Contents of Digital Twin"
+    },
+    "datacatalog": {
+      "message": "Contents of Data Catalog"
+    },
+    "devloperhub": {
+      "message": "Contents of Developer Hub"
+    },
+    "connector": {
+      "message": "Contents of Connector"
+    },
+    "partnernetwork": {
+      "message": "Contents of Partner Network"
+    },
+    "invite": {
+      "title": "Invite a new Business Partner",
+      "send": "Send Invite",
+      "success": "Invitation successful",
+      "failure": "Processing your request failed"
+    },
+    "usermanagement": {
+      "message": "Contents of User Management"
+    },
+    "help": {
+      "message": "add content here"
+    },
+    "contact": {
+      "message": "add content here"
+    },
+    "imprint": {
+      "message": "add content here"
+    },
+    "privacy": {
+      "message": "add content here"
+    },
+    "terms": {
+      "message": "add content here"
+    },
+    "cookiepolicy": {
+      "message": "add content here"
+    },
+    "thirdpartylicenses": {
+      "message": "The Catena-X Portal is currently using these packages."
+    },
+    "account": {
+      "token": "Current authentication token"
+    },
+    "logout": {
+      "message": "We are logging you out now... Hope to see you again soon!"
+    },
+    "notfound": {
+      "message": "The content could not be found. This can happen because of various reasons - either",
+      "reason": {
+        "nopermission": "you have no permission to view this content or",
+        "notexisting": "the page doesn't exist in the Catena-X portal or",
+        "notimplemented": "hasn't been implemented yet."
+      },
+      "further": "If you think there should be content please contact your administrator."
+    }
+  },
+  "global": {
+    "field": {
+      "first": "First Name",
+      "last": "Last Name",
+      "email": "Email",
+      "company": "Company Name"
+    }
+  }
+}

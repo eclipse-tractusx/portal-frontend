@@ -1,0 +1,973 @@
+{
+  "totalElements": 6,
+  "totalPages": 1,
+  "page": 0,
+  "contentSize": 6,
+  "content": [
+    {
+      "bpn": "BPNL000000000001",
+      "identifiers": [
+        {
+          "uuid": "089e828d-01ed-4d3e-ab1e-cccca26814b3",
+          "value": "BPNL000000000001",
+          "type": {
+            "technicalKey": "BPN",
+            "name": "Business Partner Number",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CATENAX",
+            "name": "Catena-X",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "UNKNOWN",
+            "name": "Unknown"
+          }
+        }
+      ],
+      "names": [
+        {
+          "uuid": "de3f3db6-e337-436b-a4e0-fc7d17e8af89",
+          "value": "German Car Company",
+          "shortName": "GCC",
+          "type": {
+            "technicalKey": "REGISTERED",
+            "name": "The main name under which a business is officially registered in a country's business register.",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        },
+        {
+          "uuid": "defc3da4-92ef-44d9-9aee-dcedc2d72e0e",
+          "value": "German Car Company",
+          "shortName": "GCC",
+          "type": {
+            "technicalKey": "INTERNATIONAL",
+            "name": "The international version of the local name of a business partner",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        }
+      ],
+      "legalForm": {
+        "technicalKey": "DE_AG",
+        "name": "Aktiengesellschaft",
+        "url": "",
+        "mainAbbreviation": "AG",
+        "language": {
+          "technicalKey": "de",
+          "name": "German"
+        },
+        "categories": [
+          {
+            "name": "AG",
+            "url": ""
+          }
+        ]
+      },
+      "status": null,
+      "addresses": [
+        {
+          "uuid": "16701107-9559-4fdf-b1c1-8c98799d779d",
+          "version": {
+            "characterSet": {
+              "technicalKey": "WESTERN_LATIN_STANDARD",
+              "name": "Western Latin Standard (ISO 8859-1; Latin-1)"
+            },
+            "language": {
+              "technicalKey": "en",
+              "name": "English"
+            }
+          },
+          "careOf": null,
+          "contexts": [],
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "administrativeAreas": [
+            {
+              "uuid": "cc6de665-f8eb-45ed-b2bd-6caa28fa8368",
+              "value": "Bavaria",
+              "shortName": "BY",
+              "fipsCode": "GM02",
+              "type": {
+                "technicalKey": "REGION",
+                "name": "Region",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "postCodes": [
+            {
+              "uuid": "8a02b3d0-de1e-49a5-9528-cfde2d5273ed",
+              "value": "80807",
+              "type": {
+                "technicalKey": "REGULAR",
+                "name": "Regular",
+                "url": ""
+              }
+            }
+          ],
+          "localities": [
+            {
+              "uuid": "2cd18685-fac9-49f4-a63b-322b28f7dc9a",
+              "value": "Munich",
+              "shortName": "M",
+              "type": {
+                "technicalKey": "CITY",
+                "name": "City",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "thoroughfares": [
+            {
+              "uuid": "0c491424-b2bc-44cf-9d14-71cbe513423f",
+              "value": "Muenchner Straße 34",
+              "name": "Muenchner Straße",
+              "shortName": null,
+              "number": "34",
+              "direction": null,
+              "type": {
+                "technicalKey": "STREET",
+                "name": "Street",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "premises": [],
+          "postalDeliveryPoints": [],
+          "geographicCoordinates": null,
+          "types": [
+            {
+              "technicalKey": "HEADQUARTER",
+              "name": "Headquarter",
+              "url": ""
+            }
+          ]
+        }
+      ],
+      "profileClassifications": [],
+      "types": [
+        {
+          "technicalKey": "LEGAL_ENTITY",
+          "name": "Legal Entity",
+          "url": ""
+        }
+      ],
+      "bankAccounts": [],
+      "roles": [],
+      "relations": []
+    },
+    {
+      "bpn": "BPNL0000000001YN",
+      "identifiers": [
+        {
+          "uuid": "7854bfb0-1661-44e3-910c-1e775affa3e2",
+          "value": "BPNL0000000001YN",
+          "type": {
+            "technicalKey": "BPN",
+            "name": "Business Partner Number",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CATENAX",
+            "name": "Catena-X",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "UNKNOWN",
+            "name": "Unknown"
+          }
+        },
+        {
+          "uuid": "c5794afe-8661-4b6a-a4cf-9dcb23262e07",
+          "value": "61c0969c780a205a1c6cafe7",
+          "type": {
+            "technicalKey": "CDQID",
+            "name": "CDQ Identifier",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CDQ",
+            "name": "CDQ AG",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "CDQ_SYNCHRONIZED",
+            "name": "Synchronized with CDQ"
+          }
+        },
+        {
+          "uuid": "fa59a765-d9c4-4d92-810f-e49bce3dd57c",
+          "value": "DE813155579",
+          "type": {
+            "technicalKey": "EU_VAT_ID_DE",
+            "name": "Umsatzsteuer-Identifikationsnummer",
+            "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "6602110a-7512-495a-941d-d4904966ccee",
+          "value": "316622612",
+          "type": {
+            "technicalKey": "DUNS_ID",
+            "name": "DUNS Number",
+            "url": "https://meta.cdq.com/D-U-N-S"
+          },
+          "issuingBody": null,
+          "status": null
+        }
+      ],
+      "names": [
+        {
+          "uuid": "97ec2b1a-0f9a-4e8f-b32a-82b79e6b5edf",
+          "value": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
+          "shortName": null,
+          "type": {
+            "technicalKey": "LOCAL",
+            "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        }
+      ],
+      "legalForm": null,
+      "status": null,
+      "addresses": [
+        {
+          "uuid": "bc51d6fe-38c0-4eaf-b687-7e573672963c",
+          "version": {
+            "characterSet": {
+              "technicalKey": "LATIN",
+              "name": "Latin"
+            },
+            "language": {
+              "technicalKey": "en",
+              "name": "English"
+            }
+          },
+          "careOf": null,
+          "contexts": [],
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "administrativeAreas": [],
+          "postCodes": [
+            {
+              "uuid": "69b57366-876c-4af1-9770-39be8658fff7",
+              "value": "79650",
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              }
+            }
+          ],
+          "localities": [
+            {
+              "uuid": "32ff3582-9d3e-4ee2-9a66-72e452abcab2",
+              "value": "Schopfheim",
+              "shortName": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "thoroughfares": [
+            {
+              "uuid": "1927935d-a966-4f21-b29d-7ad5cdf3bbbb",
+              "value": "An der Wiese 14",
+              "name": null,
+              "shortName": null,
+              "number": null,
+              "direction": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "premises": [],
+          "postalDeliveryPoints": [],
+          "geographicCoordinates": null,
+          "types": []
+        }
+      ],
+      "profileClassifications": [],
+      "types": [],
+      "bankAccounts": [],
+      "roles": [],
+      "relations": []
+    },
+    {
+      "bpn": "BPNL0000000002XY",
+      "identifiers": [
+        {
+          "uuid": "6c49dc4c-87a7-4463-bb72-2fe0f77bd8f9",
+          "value": "315724724",
+          "type": {
+            "technicalKey": "DUNS_ID",
+            "name": "DUNS Number",
+            "url": "https://meta.cdq.com/D-U-N-S"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "50ca1d60-37a7-42b0-8436-17deb3b34b80",
+          "value": "BPNL0000000002XY",
+          "type": {
+            "technicalKey": "BPN",
+            "name": "Business Partner Number",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CATENAX",
+            "name": "Catena-X",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "UNKNOWN",
+            "name": "Unknown"
+          }
+        },
+        {
+          "uuid": "63e091da-6b1a-4ee8-b8fb-67c53c68d963",
+          "value": "61c0969c780a205a1c6cafe8",
+          "type": {
+            "technicalKey": "CDQID",
+            "name": "CDQ Identifier",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CDQ",
+            "name": "CDQ AG",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "CDQ_SYNCHRONIZED",
+            "name": "Synchronized with CDQ"
+          }
+        },
+        {
+          "uuid": "c1062a1a-134d-46e4-b02a-e1e7ebdabf27",
+          "value": "DE147174992",
+          "type": {
+            "technicalKey": "EU_VAT_ID_DE",
+            "name": "Umsatzsteuer-Identifikationsnummer",
+            "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+          },
+          "issuingBody": null,
+          "status": null
+        }
+      ],
+      "names": [
+        {
+          "uuid": "5c3720aa-e580-42cc-9d49-01b8a62a6568",
+          "value": "botek Präzisionsbohrtech. GmbH",
+          "shortName": null,
+          "type": {
+            "technicalKey": "LOCAL",
+            "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        }
+      ],
+      "legalForm": null,
+      "status": null,
+      "addresses": [
+        {
+          "uuid": "109cd39f-4afc-455b-b846-0bb8ef0dae00",
+          "version": {
+            "characterSet": {
+              "technicalKey": "LATIN",
+              "name": "Latin"
+            },
+            "language": {
+              "technicalKey": "en",
+              "name": "English"
+            }
+          },
+          "careOf": null,
+          "contexts": [],
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "administrativeAreas": [],
+          "postCodes": [
+            {
+              "uuid": "4059b42b-7759-43b9-9215-4c627986d363",
+              "value": "72585",
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              }
+            }
+          ],
+          "localities": [
+            {
+              "uuid": "8c9332ea-38b7-48dc-8238-f3d125b1f90a",
+              "value": "Riederich",
+              "shortName": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "thoroughfares": [
+            {
+              "uuid": "e35dbd3b-8bf5-4c1c-aa27-b04537e97d43",
+              "value": "Längenfeldstr. 4",
+              "name": null,
+              "shortName": null,
+              "number": null,
+              "direction": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "premises": [],
+          "postalDeliveryPoints": [],
+          "geographicCoordinates": null,
+          "types": []
+        }
+      ],
+      "profileClassifications": [],
+      "types": [],
+      "bankAccounts": [],
+      "roles": [],
+      "relations": []
+    },
+    {
+      "bpn": "BPNL0000000003X9",
+      "identifiers": [
+        {
+          "uuid": "102146f5-f653-468b-8e7c-7d0ee5df72e0",
+          "value": "333652613",
+          "type": {
+            "technicalKey": "DUNS_ID",
+            "name": "DUNS Number",
+            "url": "https://meta.cdq.com/D-U-N-S"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "d9892086-36b6-4db1-b4c3-78a21704fe56",
+          "value": "BPNL0000000003X9",
+          "type": {
+            "technicalKey": "BPN",
+            "name": "Business Partner Number",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CATENAX",
+            "name": "Catena-X",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "UNKNOWN",
+            "name": "Unknown"
+          }
+        },
+        {
+          "uuid": "f6e04242-3cfa-4daf-8570-b2461ed7ba95",
+          "value": "61c0969c780a205a1c6cafe9",
+          "type": {
+            "technicalKey": "CDQID",
+            "name": "CDQ Identifier",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CDQ",
+            "name": "CDQ AG",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "CDQ_SYNCHRONIZED",
+            "name": "Synchronized with CDQ"
+          }
+        },
+        {
+          "uuid": "b62bab31-0300-4898-af5b-67e2a6311af9",
+          "value": "DE141874584",
+          "type": {
+            "technicalKey": "EU_VAT_ID_DE",
+            "name": "Umsatzsteuer-Identifikationsnummer",
+            "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+          },
+          "issuingBody": null,
+          "status": null
+        }
+      ],
+      "names": [
+        {
+          "uuid": "a39ce653-c091-468e-8f14-b8629a288b8c",
+          "value": "BOLD GmbH & Co. KG BAUBETRIEBE",
+          "shortName": null,
+          "type": {
+            "technicalKey": "LOCAL",
+            "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        }
+      ],
+      "legalForm": null,
+      "status": null,
+      "addresses": [
+        {
+          "uuid": "7e763be3-a7ec-42dd-ab22-c4a3c5d32493",
+          "version": {
+            "characterSet": {
+              "technicalKey": "LATIN",
+              "name": "Latin"
+            },
+            "language": {
+              "technicalKey": "en",
+              "name": "English"
+            }
+          },
+          "careOf": null,
+          "contexts": [],
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "administrativeAreas": [],
+          "postCodes": [
+            {
+              "uuid": "edf61342-8188-4e6f-a187-b6b0c77b3a12",
+              "value": "77855",
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              }
+            }
+          ],
+          "localities": [
+            {
+              "uuid": "cacfceb4-3721-482a-aa46-6e469aac0ccd",
+              "value": "Achern",
+              "shortName": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "thoroughfares": [
+            {
+              "uuid": "8593843c-bfa1-4cca-9152-22c847355bcf",
+              "value": "Rennwiese 1",
+              "name": null,
+              "shortName": null,
+              "number": null,
+              "direction": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "premises": [],
+          "postalDeliveryPoints": [],
+          "geographicCoordinates": null,
+          "types": []
+        }
+      ],
+      "profileClassifications": [],
+      "types": [],
+      "bankAccounts": [],
+      "roles": [],
+      "relations": []
+    },
+    {
+      "bpn": "BPNL0000000004WK",
+      "identifiers": [
+        {
+          "uuid": "5f64c2b3-087a-48e6-ad7c-f68f980937b2",
+          "value": "61c0969c780a205a1c6cafea",
+          "type": {
+            "technicalKey": "CDQID",
+            "name": "CDQ Identifier",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CDQ",
+            "name": "CDQ AG",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "CDQ_SYNCHRONIZED",
+            "name": "Synchronized with CDQ"
+          }
+        },
+        {
+          "uuid": "cf56b91f-41a5-4c71-a34e-b4adb00ea65b",
+          "value": "333660046",
+          "type": {
+            "technicalKey": "DUNS_ID",
+            "name": "DUNS Number",
+            "url": "https://meta.cdq.com/D-U-N-S"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "0e007e81-e38d-41e7-b144-2f944aa99cbf",
+          "value": "DE814196859",
+          "type": {
+            "technicalKey": "EU_VAT_ID_DE",
+            "name": "Umsatzsteuer-Identifikationsnummer",
+            "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "6501c5ca-8343-47ba-af11-2fa7d1c11de5",
+          "value": "BPNL0000000004WK",
+          "type": {
+            "technicalKey": "BPN",
+            "name": "Business Partner Number",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CATENAX",
+            "name": "Catena-X",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "UNKNOWN",
+            "name": "Unknown"
+          }
+        }
+      ],
+      "names": [
+        {
+          "uuid": "ac2386b0-ab55-4c67-9695-239fd5e4cb4a",
+          "value": "Bütema AG",
+          "shortName": null,
+          "type": {
+            "technicalKey": "LOCAL",
+            "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        }
+      ],
+      "legalForm": null,
+      "status": null,
+      "addresses": [
+        {
+          "uuid": "630147c2-4238-457d-b4ad-77b9e74cfe4c",
+          "version": {
+            "characterSet": {
+              "technicalKey": "LATIN",
+              "name": "Latin"
+            },
+            "language": {
+              "technicalKey": "en",
+              "name": "English"
+            }
+          },
+          "careOf": null,
+          "contexts": [],
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "administrativeAreas": [],
+          "postCodes": [
+            {
+              "uuid": "7c873e6b-8052-47f5-9ae0-7d5757c2a5c8",
+              "value": "74321",
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              }
+            }
+          ],
+          "localities": [
+            {
+              "uuid": "8feae0cc-beec-49ca-afb2-be9fe01bba39",
+              "value": "Bietigheim-Bissingen",
+              "shortName": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "thoroughfares": [
+            {
+              "uuid": "9690c900-2459-4aaa-ac2b-40b7065bde72",
+              "value": "Steinbeisstr. 7",
+              "name": null,
+              "shortName": null,
+              "number": null,
+              "direction": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "premises": [],
+          "postalDeliveryPoints": [],
+          "geographicCoordinates": null,
+          "types": []
+        }
+      ],
+      "profileClassifications": [],
+      "types": [],
+      "bankAccounts": [],
+      "roles": [],
+      "relations": []
+    },
+    {
+      "bpn": "BPNL0000000005VV",
+      "identifiers": [
+        {
+          "uuid": "888e2684-3faa-4010-8428-dda457418b9b",
+          "value": "DE118699268",
+          "type": {
+            "technicalKey": "EU_VAT_ID_DE",
+            "name": "Umsatzsteuer-Identifikationsnummer",
+            "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "8341c2b2-9ede-42c8-a50d-881946ade853",
+          "value": "BPNL0000000005VV",
+          "type": {
+            "technicalKey": "BPN",
+            "name": "Business Partner Number",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CATENAX",
+            "name": "Catena-X",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "UNKNOWN",
+            "name": "Unknown"
+          }
+        },
+        {
+          "uuid": "619e3006-6203-4734-8549-ff02608f779e",
+          "value": "322337403",
+          "type": {
+            "technicalKey": "DUNS_ID",
+            "name": "DUNS Number",
+            "url": "https://meta.cdq.com/D-U-N-S"
+          },
+          "issuingBody": null,
+          "status": null
+        },
+        {
+          "uuid": "72c009f9-3b39-4a1d-a096-a7c42c011085",
+          "value": "61c0969c780a205a1c6cafeb",
+          "type": {
+            "technicalKey": "CDQID",
+            "name": "CDQ Identifier",
+            "url": ""
+          },
+          "issuingBody": {
+            "technicalKey": "CDQ",
+            "name": "CDQ AG",
+            "url": ""
+          },
+          "status": {
+            "technicalKey": "CDQ_SYNCHRONIZED",
+            "name": "Synchronized with CDQ"
+          }
+        }
+      ],
+      "names": [
+        {
+          "uuid": "7f6c0d85-f814-4284-922b-53de3dc9b547",
+          "value": "Bothmann + Vogler GmbH",
+          "shortName": null,
+          "type": {
+            "technicalKey": "LOCAL",
+            "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
+            "url": ""
+          },
+          "language": {
+            "technicalKey": "undefined",
+            "name": "Undefined"
+          }
+        }
+      ],
+      "legalForm": null,
+      "status": null,
+      "addresses": [
+        {
+          "uuid": "bf2306b7-784e-42e1-945f-5712e52e1c6d",
+          "version": {
+            "characterSet": {
+              "technicalKey": "LATIN",
+              "name": "Latin"
+            },
+            "language": {
+              "technicalKey": "en",
+              "name": "English"
+            }
+          },
+          "careOf": null,
+          "contexts": [],
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "administrativeAreas": [],
+          "postCodes": [
+            {
+              "uuid": "1232ab8c-14d0-4727-90f6-af926de0595b",
+              "value": "22119",
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              }
+            }
+          ],
+          "localities": [
+            {
+              "uuid": "dc4e3709-3827-4261-b9bd-fd731f73db10",
+              "value": "Hamburg",
+              "shortName": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "thoroughfares": [
+            {
+              "uuid": "362d7e91-4608-4523-b63e-17fba80d07b8",
+              "value": "Hermannstal 119 k",
+              "name": null,
+              "shortName": null,
+              "number": null,
+              "direction": null,
+              "type": {
+                "technicalKey": "OTHER",
+                "name": "Other type",
+                "url": ""
+              },
+              "language": {
+                "technicalKey": "en",
+                "name": "English"
+              }
+            }
+          ],
+          "premises": [],
+          "postalDeliveryPoints": [],
+          "geographicCoordinates": null,
+          "types": []
+        }
+      ],
+      "profileClassifications": [],
+      "types": [],
+      "bankAccounts": [],
+      "roles": [],
+      "relations": []
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+.InviteForm,
+.InviteFormOverlay {
+  background-color: white;
+  width: 440px;
+  height: 400px;
+  padding: 40px;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%) translateY(-50%);
+  border: 0px solid gray;
+  box-shadow: 0 0 1em gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.InviteForm {
+  z-index: 2;
+}
+
+.InviteFormOverlay {
+  opacity: 0.95;
+  font-size: 32px;
+  line-height: 42px;
+}
+
+.input {
+  visibility: hidden;
+}
+
+.busy,
+.success,
+.failure {
+  z-index: 3;
+}
+
+.failure {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%) translateY(-50%);
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  border: 24px solid #b3cb2d;
+}
+.loader:after {
+  content: ' ';
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: 0;
+  border-radius: 0;
+  border: 24px solid #ffa600;
+  animation: loader 3s linear infinite;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

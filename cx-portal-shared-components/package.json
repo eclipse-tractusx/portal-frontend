@@ -1,0 +1,103 @@
+{
+  "name": "cx-portal-shared-components",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
+  "scripts": {
+    "start": "yarn storybook",
+    "build:lib": "rollup -c",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "clean": "rm -rf ./build ./dist",
+    "pretty": "prettier --write \"./src/**/*.{ts,tsx,js,jsx,json}\"",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "dist": "yarn run build && rm -rf build/storybook && yarn build-storybook && cp -R storybook-static build/storybook && mkdir -p dist && cd build && 7z u ../dist/build.zip .",
+    "deploy": "export CX_ENV=${CX_ENV:-dev003} && az webapp deployment source config-zip --resource-group catenax-${CX_ENV}-rg --name catenax-${CX_ENV}-app-portal-2 --src ./dist/build.zip",
+    "all": "yarn clean && yarn pretty && yarn dist && yarn deploy"
+  },
+  "dependencies": {
+    "@mui/x-data-grid": "^5.6.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "rollup-plugin-dts": "^4.2.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.4.4",
+    "@mui/material": "^5.4.4",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.4.4",
+    "@mui/material": "^5.4.4",
+    "@reduxjs/toolkit": "^1.7.2",
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/node-logger": "^6.4.19",
+    "@storybook/preset-create-react-app": "^4.0.1",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/lodash": "^4.14.179",
+    "@types/node": "^12.20.46",
+    "@types/react": "^16.14.23",
+    "@types/react-dom": "^16.9.14",
+    "@types/react-redux": "^7.1.22",
+    "classnames": "^2.3.1",
+    "cross-env": "5.0.5",
+    "prettier": "^2.5.1",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2",
+    "react-scripts": "5.0.0",
+    "rollup": "^2.70.0",
+    "rollup-plugin-dts": "^4.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "3",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.49.9",
+    "typescript": "^4.1.6",
+    "webpack": "^5.69.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
