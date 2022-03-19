@@ -27,8 +27,8 @@ export class UserAdministrationApi extends HttpClient {
       JSON.stringify(invite),
       {
         headers: {
-          'content-type': 'application/json'
-        }
+          'content-type': 'application/json',
+        },
       }
     )
   }

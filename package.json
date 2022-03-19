@@ -1,10 +1,15 @@
 {
+  "version": "0.0.0",
   "private": "true",
   "workspaces": [
     "cx-portal",
     "cx-portal-shared-components"
   ],
   "scripts": {
+    "release": "yarn version --patch && git tag \"$npm_package_version\" && git push && git push --tags",
+    "lint": "eslint cx-portal cx-portal-shared-components",
+    "lint:fix": "eslint cx-portal cx-portal-shared-components --fix",
+    "pretty": "prettier --write \"./cx-portal*/src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
     "licenses": "find node_modules -name package.json -exec jq -r '.|\"\\(.name),\\(.version),\\(.license)\"' {} \\; | sort | uniq > cx-portal/public/third-party-licenses.txt"
   }
 }
