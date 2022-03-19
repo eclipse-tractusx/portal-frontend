@@ -1,12 +1,12 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": "true",
   "workspaces": [
     "cx-portal",
     "cx-portal-shared-components"
   ],
   "scripts": {
-    "release": "yarn version --patch && git tag -a \"$npm_package_version\" && git push && git push --tags",
+    "release": "yarn version --patch && git tag -a \"$npm_package_version\" -m \"version $npm_package_version\" && git push && git push --tags",
     "lint": "eslint cx-portal cx-portal-shared-components",
     "lint:fix": "eslint cx-portal cx-portal-shared-components --fix",
     "pretty": "prettier --write \"./cx-portal*/src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
