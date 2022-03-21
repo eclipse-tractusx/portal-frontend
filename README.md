@@ -2,28 +2,25 @@
 
 Catena-X frontend webapp and components
 
-steps
+minimum steps to run on localhost
 
-	# install dependencies
-	yarn
+    # install dependencies and create license file
+    yarn
+    yarn build:licenses
 
-	# build component library and storybook
-	cd cx-portal-shared-components
-	yarn build:lib
-	yarn build-storybook
+    # build component library
+    cd cx-portal-shared-components
+    yarn build:lib
 
-	# build portal
-	cd cx-portal
-	yarn build
-	yarn dist
-	yarn deploy
+    # run portal on localhost
+    cd cx-portal
+    yarn start
 
-	# formatting and testing
-	yarn pretty
-	yarn test
-	yarn lint --fix
 
-	# running a local webserver
-	yarn start
-	open http://localhost:3000/
+docker build
+
+    yarn build:docker
+    yarn start:docker
+    open http://localhost:3000/
+    yarn publish:docker
 

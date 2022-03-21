@@ -12,13 +12,14 @@ export default {
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args}>
     <UserNav
+      divider
       items={[
         { href: '/account', title: 'My Account' },
         { href: '/notification', title: 'Notification Center' },
         { href: '/organisation', title: 'Organisation' },
+        { href: '/logout', title: 'Logout' },
       ]}
     />
-    <UserNav items={[{ href: '/logout', title: 'Logout' }]} />
     <LanguageSwitch
       current="de"
       languages={[{ key: 'de' }, { key: 'en' }]}

@@ -1,16 +1,16 @@
-import { Box, SxProps, useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 
 export type AppCardImageSize = 'normal' | 'small'
 
 export type AppCardImageShape = 'round' | 'square'
 
-export interface AppCardImage {
+export interface IAppCardImage {
   src: string
   alt?: string
 }
 
 export interface AppCardImageProps {
-  image: AppCardImage
+  image: IAppCardImage
   imageSize?: AppCardImageSize
   imageShape?: AppCardImageShape
   preview?: boolean

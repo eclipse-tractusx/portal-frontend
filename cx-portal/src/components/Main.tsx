@@ -9,7 +9,10 @@ export default function Main() {
   document.title = useTranslation().t('title')
   return (
     <>
-      <Header pages={AccessService.mainMenu()} />
+      <Header
+        pages={AccessService.mainMenu()}
+        userPages={AccessService.userMenu()}
+      />
       <Outlet />
       <Footer pages={AccessService.footerMenu()} />
     </>

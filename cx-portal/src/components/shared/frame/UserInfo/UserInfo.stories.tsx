@@ -18,11 +18,20 @@ export default {
   styles: ['./components/App.css'],
 } as ComponentMeta<typeof UserInfo>
 
-const Template: ComponentStory<typeof UserInfo> = () => (
+const Template: ComponentStory<typeof UserInfo> = (args) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-    <UserInfo />
+    <UserInfo {...args} />
   </div>
 )
 
 export const Standard = Template.bind({})
-Standard.args = {}
+Standard.args = {
+  pages: [
+    'account',
+    'notifications',
+    'organization',
+    'partner_network',
+    'user_management',
+    'logout',
+  ],
+}

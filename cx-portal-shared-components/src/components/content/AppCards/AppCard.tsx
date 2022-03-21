@@ -51,7 +51,7 @@ export const AppCard = ({
       default:
         setContent({ title, subtitle })
     }
-  }, [variant])
+  }, [variant, description, price, rating, subtitle, title])
 
   useEffect(() => {
     setShowButton(['expanded', 'preview'].includes(variant))

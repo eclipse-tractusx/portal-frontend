@@ -10,6 +10,6 @@ export function AuthProvider(props: {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setLoggedUser(props.user))
-  }, [dispatch])
+  }, [dispatch, props.user])
   return <>{props.children}</>
 }

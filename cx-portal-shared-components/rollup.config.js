@@ -9,7 +9,7 @@ import dts from 'rollup-plugin-dts'
 
 import packageJson from "./package.json";
 
-export default [
+const config = [
     {
         input: "src/index.ts",
         output: [
@@ -44,3 +44,5 @@ export default [
     },
 
 ];
+
+export default config;

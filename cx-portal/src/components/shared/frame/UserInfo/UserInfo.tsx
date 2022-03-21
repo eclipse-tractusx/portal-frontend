@@ -8,15 +8,19 @@ import {
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
-import AccessService from 'services/AccessService'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import './UserInfo.scss'
 
-export const UserInfo = () => {
+export const UserInfo = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
+
+  const menu = pages.map((link) => ({
+    to: link,
+    title: t(`pages.${link}`),
+  }))
 
   const openMenu = () => setMenuOpen(true)
   const onClickAway = (e: MouseEvent | TouchEvent) => {
@@ -37,13 +41,7 @@ export const UserInfo = () => {
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
-        <UserNav
-          component={Link}
-          items={AccessService.userMenu().map((link) => ({
-            to: link,
-            title: t(`pages.${link}`),
-          }))}
-        />
+        <UserNav component={Link} divider items={menu} />
         <LanguageSwitch
           current={i18next.language}
           languages={I18nService.supportedLanguages.map((key) => ({ key }))}

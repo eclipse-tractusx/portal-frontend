@@ -1,19 +1,14 @@
 .Footer {
   display: relative;
   font-size: 12px;
-  line-height: 26px;
   text-align: center;
-}
 
-.Footer > div {
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  a {
-    font-size: 12px;
-    line-height: 16px;
-    margin: 8px;
+  nav {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
   }
 }

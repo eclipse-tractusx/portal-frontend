@@ -53,6 +53,7 @@ describe('testSuite', () => {
         </SharedThemeProvider>
       </Provider>
     )
+
     expect(container.querySelector('header')).toBeInTheDocument()
     expect(container.querySelector('.Dashboard')).toBeInTheDocument()
     expect(container.querySelector('.Footer')).toBeInTheDocument()

@@ -31,4 +31,12 @@ Standard.args = {
     'semantichub',
     'developerhub',
   ],
+  userPages: [
+    'account',
+    'notifications',
+    'organization',
+    'partner_network',
+    'user_management',
+    'logout',
+  ],
 }

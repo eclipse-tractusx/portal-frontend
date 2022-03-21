@@ -23,25 +23,22 @@ export const useApiGet = (url: string): TApiResponse => {
   const [error, setError] = useState<unknown>()
   const [loading, setLoading] = useState<boolean>(false)
 
-  const getAPIData = async () => {
-    setLoading(true)
-    try {
-      // Note that we are not using the Redux store intentionally,
-      // because this is not a Catena-X core data set.
-      const apiResponse = await fetch(url)
-      const text = await apiResponse.text()
-      setStatus(apiResponse.status)
-      setStatusText(apiResponse.statusText)
-      setData(text)
-    } catch (error) {
-      setError(error)
-    }
-    setLoading(false)
-  }
-
   useEffect(() => {
+    const getAPIData = async () => {
+      setLoading(true)
+      try {
+        const apiResponse = await fetch(url)
+        const text = await apiResponse.text()
+        setStatus(apiResponse.status)
+        setStatusText(apiResponse.statusText)
+        setData(text)
+      } catch (error) {
+        setError(error)
+      }
+      setLoading(false)
+    }
     getAPIData()
-  }, [])
+  }, [url])
 
   return { status, statusText, data, error, loading }
 }

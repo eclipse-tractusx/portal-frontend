@@ -13,6 +13,7 @@
 /dist
 /storybook-static
 /public/_storybook
+/public/third-party-licenses.txt
 /src/ignore
 
 # misc

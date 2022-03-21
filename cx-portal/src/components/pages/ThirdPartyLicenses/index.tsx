@@ -1,5 +1,5 @@
 import { SearchInput } from 'cx-portal-shared-components'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import debounce from 'lodash.debounce'
 import { useApiGet } from 'utils/useApiGet'
@@ -9,14 +9,22 @@ export default function ThirdPartyLicenses() {
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [filter, setFilter] = useState<RegExp>(/./)
   const { data } = useApiGet('third-party-licenses.txt')
-  const debouncedFilter = useCallback(
-    debounce((expr: string) => setFilter(new RegExp(expr, 'i')), 300),
-    []
+
+  const debouncedFilter = useMemo(
+    () =>
+      debounce((expr: string) => {
+        setFilter(new RegExp(expr, 'i'))
+      }, 300),
+    [setFilter]
   )
-  const doFilter = function (expr: string) {
-    setFilterExpr(expr)
-    debouncedFilter(expr)
-  }
+
+  const doFilter = useCallback(
+    (expr: string) => {
+      setFilterExpr(expr)
+      debouncedFilter(expr)
+    },
+    [debouncedFilter]
+  )
 
   return (
     <main>

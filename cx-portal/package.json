@@ -1,16 +1,13 @@
 {
   "name": "cx-portal",
   "version": "0.1.0",
-  "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix",
     "clean": "rm -rf ./build ./dist ./storybook-static ./public/storybook",
-    "pretty": "prettier --write \"./src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "dist": "yarn run build && mkdir -p dist && cd build && 7z u ../dist/build.zip .",
