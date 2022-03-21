@@ -23,16 +23,16 @@ jobs:
         run: |
           yarn build:lib
         
-      - name: Unit Tests
-        working-directory: ./cx-portal
-        run: |
-          yarn test
-    
       - name: Linter Checks
-        working-directory: ./cx-portal
+        working-directory: .
         run: |
           yarn lint
 
+      - name: Unit Tests
+        working-directory: .
+        run: |
+          yarn test
+    
       - name: Build Portal Frontend
         working-directory: ./cx-portal
         run: |
