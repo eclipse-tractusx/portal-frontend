@@ -9,9 +9,9 @@
     "build:lib": "rollup -c",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "clean": "rm -rf ./build ./dist",
+    "clean": "rm -rf ./build ./dist ./storybook-static",
     "storybook": "start-storybook -p 6006 -s public",
-    "build:storybook": "build-storybook -s public"
+    "build:storybook": "build-storybook -s public && rm -rf ../cx-portal/public/_storybook && mv ./storybook-static ../cx-portal/public/_storybook"
   },
   "dependencies": {
     "@mui/x-data-grid": "^5.6.0",

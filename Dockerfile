@@ -18,12 +18,6 @@ COPY cx-portal-shared-components/public /app/cx-portal-shared-components/public
 COPY cx-portal-shared-components/.storybook /app/cx-portal-shared-components/.storybook
 WORKDIR /app
 RUN yarn
-RUN yarn build:licenses
-WORKDIR /app/cx-portal-shared-components
-RUN yarn build:lib
-RUN yarn build:storybook
-RUN mv storybook-static ../cx-portal/public/_storybook
-WORKDIR /app/cx-portal
 RUN yarn build
 
 # Stage 2
