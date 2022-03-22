@@ -3,18 +3,15 @@
   "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "yarn storybook",
     "build:lib": "rollup -c",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "clean": "rm -rf ./build ./dist",
-    "pretty": "prettier --write \"./src/**/*.{ts,tsx,js,jsx,json}\"",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "dist": "yarn run build && rm -rf build/storybook && yarn build-storybook && cp -R storybook-static build/storybook && mkdir -p dist && cd build && 7z u ../dist/build.zip .",
-    "deploy": "export CX_ENV=${CX_ENV:-dev003} && az webapp deployment source config-zip --resource-group catenax-${CX_ENV}-rg --name catenax-${CX_ENV}-app-portal-2 --src ./dist/build.zip",
-    "all": "yarn clean && yarn pretty && yarn dist && yarn deploy"
+    "build:storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@mui/x-data-grid": "^5.6.0",
