@@ -24,7 +24,6 @@ jobs:
           yarn build:lib
         
       - name: Linter Checks
-        working-directory: .
         run: |
           yarn lint
 
@@ -32,8 +31,12 @@ jobs:
         working-directory: ./cx-portal
         run: |
           yarn test
-    
+
       - name: Build Portal Frontend
         working-directory: ./cx-portal
         run: |
           yarn build
+
+      - name: Docker Build
+        run: |
+          yarn build:docker
