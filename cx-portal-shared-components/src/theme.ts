@@ -139,7 +139,7 @@ const typography = createTypography(palette, {
     letterSpacing: 0,
   },
   h4: {
-    fontFamily: getFontFamily('LibreFranklin-Medium'),
+    fontFamily: getFontFamily('LibreFranklin-SemiBold'),
     fontSize: 24,
     lineHeight: 36 / 24,
     letterSpacing: 0,
@@ -465,6 +465,35 @@ export const theme = createTheme({
         root: {
           fontFamily: typography.label3.fontFamily,
           fontSize: typography.label3.fontSize,
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          width: 930,
+          maxWidth: 930,
+          borderRadius: 40,
+        },
+      },
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          fontFamily: typography.h4.fontFamily,
+          fontSize: typography.h4.fontSize,
+          padding: 0,
+        },
+      },
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          justifyContent: 'center',
+          '& .MuiButton-root:not(:first-of-type)': {
+            marginLeft: 24,
+          },
         },
       },
     },

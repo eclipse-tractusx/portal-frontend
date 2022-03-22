@@ -19,6 +19,7 @@ export const Menu = ({ items, divider, component, ...props }: MenuProps) => {
             {...item}
             component={component}
             menuProps={props}
+            Menu={Menu}
             key={uniqueId('Menu')}
           />
         ))}
@@ -27,3 +28,5 @@ export const Menu = ({ items, divider, component, ...props }: MenuProps) => {
     </Box>
   )
 }
+
+export type MenuType = typeof Menu

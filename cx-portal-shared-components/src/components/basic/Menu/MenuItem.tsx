@@ -1,7 +1,7 @@
 import { ArrowForward } from '@mui/icons-material'
 import { BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
 import { useState } from 'react'
-import { Menu } from '.'
+import { MenuType } from '.'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -11,6 +11,7 @@ export interface MenuItemProps extends LinkItem {
   component?: React.ElementType
   divider?: boolean
   menuProps?: BoxProps
+  Menu?: MenuType
 }
 
 export const MenuItem = ({
@@ -19,6 +20,7 @@ export const MenuItem = ({
   divider,
   component = Link,
   menuProps,
+  Menu,
   ...props
 }: MenuItemProps) => {
   const { spacing } = useTheme()
@@ -64,7 +66,7 @@ export const MenuItem = ({
           <ArrowForward fontSize="small" sx={{ color: 'icon.icon02' }} />
         )}
       </Link>
-      {children && open && <Menu items={children} {...menuProps} />}
+      {Menu && children && open && <Menu items={children} {...menuProps} />}
       {divider && <Divider />}
     </ListItem>
   )
