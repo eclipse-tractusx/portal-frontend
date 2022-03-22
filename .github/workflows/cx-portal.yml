@@ -15,25 +15,19 @@ jobs:
         run: |
           yarn
 
-      - name: Build Shared UI Library
-        working-directory: ./cx-portal-shared-components
-        run: |
-          yarn build:lib
-        
-      - name: Linter Checks
+      - name: Linter checks
         run: |
           yarn lint
 
+      - name: Build library and portal
+        run: |
+          yarn build
+        
       - name: Unit Tests
         working-directory: ./cx-portal
         run: |
           yarn test
 
-      - name: Build Portal Frontend
-        working-directory: ./cx-portal
+      - name: Docker Build 
         run: |
-          yarn build
-
-      - name: Docker Build
-        run: |
-          yarn build:docker
+          yarn build:docker:prebuilt
