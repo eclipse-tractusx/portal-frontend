@@ -24,7 +24,12 @@ jobs:
         working-directory: ./cx-portal
         run: yarn test
 
-      - name: 'Login to Docker Registry'
+      - name: Publish Shared Components to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
+
+      - name: Login to Docker Registry
         uses: azure/docker-login@v1
         with:
           login-server: catenaxacr.azurecr.io
