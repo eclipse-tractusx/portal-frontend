@@ -1,6 +1,6 @@
 {
-  "name": "cx-portal-shared-components",
-  "version": "0.0.1",
+  "name": "catena-x-shared-components",
+  "version": "0.0.3",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/catenax-ng/product-portal-frontend.git"
   },
-  "author": "Catena-X NG <rohrmeier@web.de> (https://github.com/catena-ng/)",
+  "author": "Catena-X NG <julia.jeroch@bmw.de> (https://github.com/catena-ng/)",
 
   "scripts": {
     "start": "yarn storybook",

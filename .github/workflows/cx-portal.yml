@@ -9,7 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Sources
+        uses: actions/checkout@v2
 
       - name: Install Dependencies
         run: yarn
@@ -25,7 +26,8 @@ jobs:
         run: yarn test
 
       - name: Publish Shared Components to npm
-        run: npm publish --access public
+        working-directory: ./cx-portal-shared-components
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
 
