@@ -24,13 +24,15 @@ jobs:
         working-directory: ./cx-portal
         run: yarn test
 
-      - name: Build Docker Image
-        run: yarn build:docker
-
-      - name: 'Push Docker Image'
+      - name: 'Login to Docker Registry'
         uses: azure/docker-login@v1
         with:
           login-server: catenaxacr.azurecr.io
           username: catenaxacr
           password: ${{secrets.AZURE_REGISTRY_PASSWORD}}
+
+      - name: Build Docker Image
+        run: yarn build:docker
+
+      - name: Publish Docker Image
         run: yarn publish:docker

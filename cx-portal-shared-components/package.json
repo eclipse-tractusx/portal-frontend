@@ -4,6 +4,13 @@
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",
+  "homepage": "https://catena-x.net/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catenax-ng/product-portal-frontend.git"
+  },
+  "author": "Catena-X NG <rohrmeier@web.de> (https://github.com/catena-ng/)",
+
   "scripts": {
     "start": "yarn storybook",
     "build:lib": "rollup -c",
