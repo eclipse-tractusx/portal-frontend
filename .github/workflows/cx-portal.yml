@@ -11,23 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          yarn
+      - name: Install Dependencies
+        run: yarn
 
-      - name: Linter checks
-        run: |
-          yarn lint
+      - name: Linter Checks
+        run: yarn lint
 
-      - name: Build library and portal
-        run: |
-          yarn build
+      - name: Build Library and Portal
+        run: yarn build
         
       - name: Unit Tests
         working-directory: ./cx-portal
-        run: |
-          yarn test
+        run: yarn test
 
-      - name: Docker Build 
-        run: |
-          yarn build:docker:prebuilt
+      - name: Build Docker Image
+        run: yarn build:docker
+
+      - name: 'Push Docker Image'
+        uses: azure/docker-login@v1
+        with:
+          login-server: catenaxacr.azurecr.io
+          username: catenaxacr
+          password: ${{secrets.AZURE_REGISTRY_PASSWORD}}
+        run: yarn publish:docker

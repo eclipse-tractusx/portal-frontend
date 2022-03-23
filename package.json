@@ -10,6 +10,7 @@
     "release": "yarn version --patch && git push --tags",
     "lint": "eslint cx-portal cx-portal-shared-components",
     "pretty": "prettier --write \"./cx-portal*/src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
+    "build:docker": "if [ -d \"./cx-portal/public/_storybook\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
     "build:docker:full": "IMAGE=\"catenaxacr.azurecr.io/frontend/portal\" && docker build -t $IMAGE -f Dockerfile.full --build-arg \"http_proxy=${http_proxy}\" --build-arg \"https_proxy=${https_proxy}\" --build-arg \"no_proxy=${no_proxy}\" . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
     "build:docker:prebuilt": "IMAGE=\"catenaxacr.azurecr.io/frontend/portal\" && docker build -t $IMAGE -f Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
     "start:docker": "IMAGE=\"catenaxacr.azurecr.io/frontend/portal\" && docker run --rm -d -p 3000:8080 --name cx-portal $IMAGE",
