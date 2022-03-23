@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "workspaces": [
     "cx-portal",
     "cx-portal-shared-components"
