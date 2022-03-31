@@ -27,8 +27,14 @@ export const Header = ({
     <header>
       <Logo />
       <Navigation items={menu} component={NavLink} />
-      <div className='d-flex'>
-        <Button size="small" color='secondary' variant='contained' onClick={onButtonClick} sx={{backgroundColor: 'white', marginRight: '16px'}}>
+      <div className="d-flex">
+        <Button
+          size="small"
+          color="secondary"
+          variant="contained"
+          onClick={onButtonClick}
+          sx={{ backgroundColor: 'white', marginRight: '16px' }}
+        >
           {t('pages.help')}
         </Button>
         <UserInfo pages={userPages} />

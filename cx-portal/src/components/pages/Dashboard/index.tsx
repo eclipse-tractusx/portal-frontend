@@ -4,7 +4,7 @@ import './dashboard.scss'
 
 export default function Dashboard() {
   return (
-    <main className='dashboard'>
+    <main className="dashboard">
       <StageSection />
       <SearchSection />
     </main>

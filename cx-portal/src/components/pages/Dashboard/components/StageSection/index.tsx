@@ -6,8 +6,8 @@ export default function SearchSection() {
 
   return (
     <div className="stage-section">
-        <h2>{t('pages.dashboard')}</h2>
-        <p>{t('content.dashboard.welcome')}</p>
+      <h2>{t('pages.dashboard')}</h2>
+      <p>{t('content.dashboard.welcome')}</p>
     </div>
   )
 }

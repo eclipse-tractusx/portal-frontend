@@ -1,22 +1,22 @@
 import { ComponentStory } from '@storybook/react'
 
-import { CategoryDivider as Component } from "."
+import { CategoryDivider as Component } from '.'
 
 export default {
-    title: 'CategoryDivider',
-    component: Component,
-    argTypes: {},
+  title: 'CategoryDivider',
+  component: Component,
+  argTypes: {},
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-    <>
-        <Component {...args} />
-    </>
+  <>
+    <Component {...args} />
+  </>
 )
 
 export const CategoryDivider = Template.bind({})
 CategoryDivider.args = {
-    categoryName: 'Favorites',
-    categoryItemsLength: 128,
-    buttonText: 'More'
+  categoryName: 'Favorites',
+  categoryItemsLength: 128,
+  buttonText: 'More',
 }

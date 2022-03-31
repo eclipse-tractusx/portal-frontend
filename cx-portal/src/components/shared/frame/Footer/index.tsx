@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import { Navigation, IconButton } from 'cx-portal-shared-components'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import './Footer.scss'
@@ -14,29 +14,37 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
-    });
-  };
+      behavior: 'smooth',
+    })
+  }
 
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false)
 
   const toggleVisibility = () => {
     setShowScrollToTop(window.pageYOffset > 350)
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
-  }, []);
+    window.addEventListener('scroll', toggleVisibility)
+  }, [])
 
   return (
     <div className="Footer">
-      {showScrollToTop && 
-        <IconButton color="primary" onClick={scrollToTop} sx={{position: 'absolute', right: '40px', top: '2px'}}>
+      {showScrollToTop && (
+        <IconButton
+          color="primary"
+          onClick={scrollToTop}
+          sx={{ position: 'absolute', right: '40px', top: '2px' }}
+        >
           <ArrowUpwardIcon />
         </IconButton>
-      }
-      <img className='footer-head' src="/orange-background-head.svg" alt="orange background" />
-      <div className='footer-content'>
+      )}
+      <img
+        className="footer-head"
+        src="/orange-background-head.svg"
+        alt="orange background"
+      />
+      <div className="footer-content">
         <Navigation unstyled items={items} component={NavLink} />
         <span className="copyright">{`${t('content.footer.copyright')}`}</span>
       </div>
