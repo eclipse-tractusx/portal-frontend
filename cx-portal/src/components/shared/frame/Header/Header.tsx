@@ -1,7 +1,7 @@
 import { UserInfo } from '../UserInfo/UserInfo'
 import { Logo } from '../Logo/Logo'
 import { NavLink } from 'react-router-dom'
-import { Navigation } from 'cx-portal-shared-components'
+import { Navigation, Button } from 'cx-portal-shared-components'
 import './Header.scss'
 import { useTranslation } from 'react-i18next'
 
@@ -19,11 +19,20 @@ export const Header = ({
     title: t(`pages.${page}`),
   }))
 
+  const onButtonClick = () => {
+    console.log('click')
+  }
+
   return (
     <header>
       <Logo />
       <Navigation items={menu} component={NavLink} />
-      <UserInfo pages={userPages} />
+      <div className='d-flex'>
+        <Button size="small" color='secondary' variant='contained' onClick={onButtonClick} sx={{backgroundColor: 'white', marginRight: '16px'}}>
+          {t('pages.help')}
+        </Button>
+        <UserInfo pages={userPages} />
+      </div>
     </header>
   )
 }

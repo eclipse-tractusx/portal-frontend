@@ -1,0 +1,2 @@
+host: "catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com"
+tlsSecretName: "certificate-secret"

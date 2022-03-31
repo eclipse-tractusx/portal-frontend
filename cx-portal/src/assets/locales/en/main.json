@@ -3,6 +3,7 @@
   "pages": {
     "dashboard": "Dashboard",
     "appstore": "Appstore",
+    "appmarketplace": "App Marketplace",
     "datacatalog": "Data Catalog",
     "applications": "Applications",
     "semantichub": "Semantic Hub",
@@ -30,7 +31,10 @@
   },
   "content": {
     "dashboard": {
-      "welcome": "Welcome to Catena-X - the automotive network!"
+      "welcome": "Welcome to Catena-X - the automotive network!",
+      "searchSection": {
+        "inputPlaceholder": "Search for Apps"
+      }
     },
     "semantichub": {
       "message": "Contents of Semantic Hub"
@@ -56,8 +60,29 @@
       "success": "Invitation successful",
       "failure": "Processing your request failed"
     },
+    "provisionIdp": {
+      "title": "Setup your company IDP",
+      "send": "Submit IDP request",
+      "field": {
+        "organization": "Your Organization",
+        "metadata": "IDP well known metadata URL",
+        "clientId": "IDP client ID",
+        "clientSecret": "IDP client secret",
+        "clientAuthMethod": "IDP client authentication method"
+      },
+      "success": "Your identity provider was provisioned successfully",
+      "failure": "Processing your request failed"
+    },
     "usermanagement": {
-      "message": "Contents of User Management"
+      "apparea": {
+        "headline": "App Access Management"
+      },
+      "table": {
+        "headline": "Identity Management",
+        "title": "User List",
+        "details": "Details",
+        "add": "Add user"
+      }
     },
     "help": {
       "message": "add content here"
@@ -83,6 +108,9 @@
     "account": {
       "token": "Current authentication token"
     },
+    "footer": {
+      "copyright": "Copyright © Catena-X Automotive Network"
+    },
     "logout": {
       "message": "We are logging you out now... Hope to see you again soon!"
     },
@@ -101,7 +129,11 @@
       "first": "First Name",
       "last": "Last Name",
       "email": "Email",
-      "company": "Company Name"
+      "company": "Company Name",
+      "status": "Status",
+      "role": "Rollen",
+      "active": "Active",
+      "inactive": "Inactive"
     }
   }
 }

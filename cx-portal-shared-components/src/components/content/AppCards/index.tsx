@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material'
+import { Box } from '@mui/material'
 import { AppCard, AppCardProps } from './AppCard'
 import uniqueId from 'lodash/uniqueId'
 
@@ -13,6 +13,7 @@ interface AppCardsProps {
   variant?: AppCardProps['variant']
   imageSize?: AppCardProps['imageSize']
   imageShape?: AppCardProps['imageShape']
+  columns?: number
 }
 
 export const AppCards = ({
@@ -21,8 +22,8 @@ export const AppCards = ({
   variant,
   imageSize,
   imageShape,
+  columns = 6,
 }: AppCardsProps) => {
-  const { breakpoints } = useTheme()
   const settings = {
     variant,
     buttonText,
@@ -35,10 +36,7 @@ export const AppCards = ({
       sx={{
         display: 'grid',
         gap: 4,
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        [breakpoints.up('lg')]: {
-          gridTemplateColumns: 'repeat(6, 1fr)',
-        },
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
       }}
     >
       {items?.map((item) => (

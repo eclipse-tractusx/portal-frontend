@@ -1,11 +1,15 @@
-import { useTranslation } from 'react-i18next'
+import { ActiveUserTable } from './ActiveUserTable'
+import { AppArea } from './AppArea'
 
 export default function UserManagement() {
-  const { t } = useTranslation()
+  const onAddUserButtonClick = () => {
+    console.log('add new user')
+  }
+
   return (
     <main>
-      <h2>{t('pages.usermanagement')}</h2>
-      <p>content of the page</p>
+      <AppArea />
+      <ActiveUserTable onAddUserButtonClick={onAddUserButtonClick} />
     </main>
   )
 }

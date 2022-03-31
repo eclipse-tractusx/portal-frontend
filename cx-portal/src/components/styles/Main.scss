@@ -1,0 +1,50 @@
+@import 'fonts';
+@import 'breakpoints';
+@import 'colors';
+
+body {
+  margin: 0;
+  font-family: 'LibreFranklin', 'Libre Franklin', 'Franklin Gothic Medium',
+    'Arial Narrow', Arial, sans-serif !important;
+  color: color(text-primary) !important;
+  font-weight: 300 !important;
+}
+
+main {
+  padding: 20px;
+  min-height: 78vh;
+}
+
+section {
+  padding: 120px 0;
+
+  .section-title {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 80px;
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 70px;
+      border-bottom: 2px solid;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+a {
+  color: color(primary);
+  &:hover {
+    color: color(primary-hover);
+  }
+  &:active {
+    color: color(text-primary);
+  }
+  &:disabled {
+    color: color(disabled);
+  }
+}

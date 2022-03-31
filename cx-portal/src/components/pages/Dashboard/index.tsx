@@ -1,12 +1,12 @@
-import { useTranslation } from 'react-i18next'
-import './Dashboard.scss'
+import SearchSection from './components/SearchSection'
+import StageSection from './components/StageSection'
+import './dashboard.scss'
 
 export default function Dashboard() {
-  const { t } = useTranslation()
   return (
-    <main className="Dashboard">
-      <h2>{t('pages.dashboard')}</h2>
-      <p>{t('content.dashboard.welcome')}</p>
+    <main className='dashboard'>
+      <StageSection />
+      <SearchSection />
     </main>
   )
 }

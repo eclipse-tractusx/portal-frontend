@@ -6,13 +6,13 @@ import AddIcon from '@mui/icons-material/Add'
 export interface AppCardButtonsProps {
   buttonText: string
   onButtonClick: React.MouseEventHandler
-  onSecondaryButtonClick: React.MouseEventHandler
+  onSecondaryButtonClick?: React.MouseEventHandler
 }
 
 export const AppCardButtons = ({
   buttonText,
   onButtonClick = () => {},
-  onSecondaryButtonClick = () => {},
+  onSecondaryButtonClick,
 }: AppCardButtonsProps) => {
   return (
     <Box
@@ -26,9 +26,11 @@ export const AppCardButtons = ({
       <Button size="small" onClick={onButtonClick}>
         {buttonText}
       </Button>
-      <IconButton color="secondary" onClick={onSecondaryButtonClick}>
-        <AddIcon />
-      </IconButton>
+      {onSecondaryButtonClick && (
+        <IconButton color="secondary" onClick={onSecondaryButtonClick}>
+          <AddIcon />
+        </IconButton>
+      )}
     </Box>
   )
 }

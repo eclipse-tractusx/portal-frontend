@@ -5,7 +5,9 @@
     "subtitle": "Catena-X",
     "description": "CX App Part Chain Details",
     "price": "free of charge",
-    "rating": 4.1
+    "rating": 4.1,
+    "useCases": [ "Traceability" ],
+    "leadPicture": ""
   },
   {
     "id": "c7b217c5-1002-46bc-bcd2-57df0e9e46d6",
@@ -13,7 +15,9 @@
     "subtitle": "SAP",
     "description": "SAP App Dismantler App Details",
     "price": "free of charge",
-    "rating": 4.1
+    "rating": 4.1,
+    "useCases": [ "Circular Economy" ],
+    "leadPicture": ""
   },
   {
     "id": "2ae9b45c-8d0b-48da-8a46-5d8f03de0ecc",
@@ -21,7 +25,9 @@
     "subtitle": "SAP",
     "description": "SAP App CE Marketplace Details",
     "price": "free of charge",
-    "rating": 4.1
+    "rating": 4.1,
+    "useCases": [ "Circular Economy" ],
+    "leadPicture": ""
   },
   {
     "id": "7da9ce41-689f-4ac8-9065-244c75c71f57",
@@ -29,7 +35,9 @@
     "subtitle": "Catena-X",
     "description": "SAP App Material Traceability Details",
     "price": "free of charge",
-    "rating": 4.1
+    "rating": 4.1,
+    "useCases": [ "Traceability" ],
+    "leadPicture": ""
   },
   {
     "id": "1a4ac107-2b6e-4190-89df-4b8442b12f04",
@@ -37,7 +45,9 @@
     "subtitle": "Catena-X",
     "description": "BMW App Component Performance Monitor Details",
     "price": "free of charge",
-    "rating": 4.1
+    "rating": 4.1,
+    "useCases": [ "Quality & Demand Management" ],
+    "leadPicture": ""
   },
   {
     "id": "1a4ac107-2b6e-4190-89df-4b8442b12f05",
@@ -45,7 +55,18 @@
     "subtitle": "BOSCH",
     "description": "Automatic monitoring (Early Warning System) of diagnostic data",
     "price": "free of charge",
-    "rating": 4.1
+    "rating": 4.1,
+    "useCases": [ "Quality & Demand Management" ],
+    "leadPicture": ""
+  },
+  {
+    "id": "1a4ac107-2b6e-4190-89df-4b8442b12f05",
+    "title": "MultiApp",
+    "subtitle": "Catena-X",
+    "description": "Works with multiple use cases",
+    "price": "free of charge",
+    "rating": 4.1,
+    "useCases": [ "Traceability", "Quality & Demand Management" ],
+    "leadPicture": ""
   }
 ]
-  

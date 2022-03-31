@@ -1,6 +1,6 @@
 import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button'
 
-interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
+export interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
   color?: 'primary' | 'secondary'
 }
 

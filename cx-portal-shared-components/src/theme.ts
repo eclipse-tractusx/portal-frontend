@@ -59,6 +59,10 @@ const palette = createPalette({
     dangerHover: '#E5231D',
     dangerBadge: '#FB6540',
   },
+  support: {
+    success: '#00AA55',
+    error: '#D91E18',
+  },
   icon: {
     icon01: '#939393',
     icon02: '#B6B6B6',
@@ -111,6 +115,22 @@ const palette = createPalette({
     hover: 'rgba(15, 113, 203, 0.05)',
     focus: 'rgba(15, 113, 203, 0.15)',
     active: 'rgba(15, 113, 203, 0.2)',
+  },
+  pending: {
+    main: '#FFECBD',
+    contrastText: '#975B27',
+  },
+  confirmed: {
+    main: '#E2F6C7',
+    contrastText: '#5C8D45',
+  },
+  declined: {
+    main: '#FEE7E2',
+    contrastText: '#FF532F',
+  },
+  label: {
+    main: '#F2F3FB',
+    contrastText: '#676BC6',
   },
 })
 
@@ -432,22 +452,77 @@ export const theme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          borderRadius: 25,
+          border: 'none',
+          borderRadius: 0,
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          overflow: 'hidden',
         },
         columnHeaders: {
-          backgroundColor: `${palette.background.background03}`,
           fontFamily: getFontFamily('LibreFranklin-SemiBold'),
+          backgroundColor: palette.background.background03,
+        },
+        columnHeader: {
+          padding: '0 32px',
         },
         columnSeparator: {
           display: 'none',
         },
-        main: {
-          borderRadius: 25,
+        row: {
+          '&.MuiDataGrid-row--lastVisible .MuiDataGrid-cell': {
+            borderColor: palette.border.border01,
+          },
         },
         cell: {
-          padding: '20px 5px',
+          padding: '16px 32px',
+          borderColor: palette.border.border01,
         },
       },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: 6,
+        },
+      },
+      variants: [
+        {
+          props: {
+            color: 'pending',
+          },
+          style: {
+            backgroundColor: palette.pending.main,
+            color: palette.pending.contrastText,
+          },
+        },
+        {
+          props: {
+            color: 'confirmed',
+          },
+          style: {
+            backgroundColor: palette.confirmed.main,
+            color: palette.confirmed.contrastText,
+          },
+        },
+        {
+          props: {
+            color: 'declined',
+          },
+          style: {
+            backgroundColor: palette.declined.main,
+            color: palette.declined.contrastText,
+          },
+        },
+        {
+          props: {
+            color: 'label',
+          },
+          style: {
+            backgroundColor: palette.label.main,
+            color: palette.label.contrastText,
+          },
+        },
+      ],
     },
     MuiLink: {
       styleOverrides: {
@@ -493,6 +568,17 @@ export const theme = createTheme({
           justifyContent: 'center',
           '& .MuiButton-root:not(:first-of-type)': {
             marginLeft: 24,
+          },
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          justifyContent: 'start',
+          color: 'text.primary',
+          '&:active, &:focus': {
+            boxShadow: 'none',
           },
         },
       },

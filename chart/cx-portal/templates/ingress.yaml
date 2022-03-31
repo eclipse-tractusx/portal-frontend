@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.name }}
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-{{ .Values.name }}
+    acme.cert-manager.io/http01-ingress-class: {{ .Values.name }}
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "false"
+spec:
+  ingressClassName: {{ .Values.name }}
+  tls:
+  - hosts:
+    - {{ .Values.host }}
+    secretName: {{ .Values.tlsSecretName }}
+  rules:
+  - host: {{ .Values.host }}
+    http:
+      paths:
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.name }}
+            port:
+              number: {{ .Values.portService }}

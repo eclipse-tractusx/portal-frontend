@@ -3,6 +3,7 @@ export interface IUser {
   name: string
   email: string
   company: string
+  tenant: string
   roles: Array<string>
   isAdmin: boolean
   token: string

@@ -13,8 +13,10 @@ import {
 } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.css'
 import { RootState } from 'state/store'
+import { useTranslation } from 'react-i18next'
 
 const PartnerNetwork = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [bpnValue, setBpnValue] = useState<string>('')
   const [companyName, setCompanyName] = useState<string>('')
@@ -80,6 +82,7 @@ const PartnerNetwork = () => {
       </div>
       <SharedThemeProvider>
         <Table
+          title={t('content.partnernetwork.message')}
           rows={mappedPartnerList}
           columns={columns}
           {...{

@@ -1,0 +1,42 @@
+@mixin use-font(
+  $font-family,
+  $filename,
+  $font-weight: normal,
+  $font-display: block
+) {
+  @font-face {
+    font-family: '#{$font-family}';
+    font-display: $font-display;
+    src:
+      // url('#{$filename}.eot') format('eot'),
+      // url('#{$filename}.woff2') format('woff2'),
+      // url('#{$filename}.woff') format('woff'),
+      // url('#{$filename}.svg') format('svg'),
+      url('#{$filename}.ttf') format('truetype');
+    font-weight: $font-weight;
+  }
+}
+
+@include use-font(
+  'LibreFranklin-SemiBold',
+  '../../assets/fonts/LibreFranklin-VariableFont_wght',
+  600
+);
+
+@include use-font(
+  'LibreFranklin-Medium',
+  '../../assets/fonts/LibreFranklin-VariableFont_wght',
+  500
+);
+
+@include use-font(
+  'LibreFranklin',
+  '../../assets/fonts/LibreFranklin-VariableFont_wght',
+  400
+);
+
+@include use-font(
+  'LibreFranklin-Light',
+  '../../assets/fonts/LibreFranklin-VariableFont_wght',
+  300
+);

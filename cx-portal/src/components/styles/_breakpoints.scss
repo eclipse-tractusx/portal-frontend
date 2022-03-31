@@ -1,0 +1,19 @@
+$breakpoints: (
+  xs: 320px,
+  sm: 375px,
+  md: 627px,
+  lg: 1056px,
+  xl: 1312px,
+  xxl: 1584px,
+);
+
+@mixin media-breakpoint-up($name) {
+  $min: map-get($breakpoints, $name);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

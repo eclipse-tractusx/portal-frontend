@@ -1,0 +1,33 @@
+ul.RawItemView {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  li {
+    width: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    padding: 0;
+    margin: 10px;
+    box-shadow: 0 0 5px gray;
+    border-radius: 20px;
+    border: 0px solid #ccc;
+    background-color: #f8f8f8;
+
+    &:hover {
+      border: 0px solid #aaa;
+    }
+  }
+
+  pre {
+    margin: 0;
+    font-size: 10px;
+    line-height: 20px;
+    color: #ccc;
+  }
+}

@@ -1,0 +1,7 @@
+image: "catenaxacr.azurecr.io/frontend/portal:latest"
+portContainer: 8080
+portService: 8080
+replicaCount: 1
+name: "portal"
+host: "catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com"
+tlsSecretName: "certificate-secret"

@@ -1,0 +1,21 @@
+$colors: (
+  // common
+  black: #000000,
+  white: #ffffff,
+  // primary
+  primary: #0f71cb,
+  primary-hover: #017ab0,
+  // action
+  active: #939393,
+  disabled: #adadad,
+  disabledBackground: #202020,
+  // text
+  text-primary: #111111,
+  text-secondary: #252525,
+  text-tertiary: #888888,
+  text-quaternary: #a2a2a2,
+);
+
+@function color($key) {
+  @return map-get($colors, $key);
+}

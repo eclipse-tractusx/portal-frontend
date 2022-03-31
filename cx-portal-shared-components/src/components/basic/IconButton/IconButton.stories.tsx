@@ -2,6 +2,7 @@ import { ComponentStory } from '@storybook/react'
 
 import { IconButton as Component } from '.'
 import AddIcon from '@mui/icons-material/Add'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export default {
   title: 'Buttons',
@@ -23,4 +24,12 @@ IconButton.args = {
   size: 'medium',
   disabled: false,
   children: <AddIcon />,
+}
+
+export const ArrowButton = Template.bind({})
+ArrowButton.args = {
+  color: 'secondary',
+  size: 'medium',
+  disabled: false,
+  children: <ArrowForwardIcon />,
 }

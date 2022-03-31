@@ -2,6 +2,8 @@
 
 Catena-X frontend webapp and components
 
+* Dev Install: https://catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com/
+* Components: https://catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com/_storybook/
 
 local build & run
 

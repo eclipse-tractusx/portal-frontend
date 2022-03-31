@@ -1,14 +1,38 @@
 .Footer {
-  display: relative;
-  font-size: 12px;
-  text-align: center;
-
-  nav {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  @media screen and (min-width: 1200px) {
+    padding-top: 36px;
+  }
+  .footer-head {
+    margin-bottom: -4px;
+    @media screen and (min-width: 1400px) {
+      width: 100%;
+    }
+  }
+  .footer-content {
+    display: relative;
+    min-height: 200px;
+    font-size: 12px;
+    text-align: center;
+    background-image: url(../../../../../public/orange-background-full.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    @media screen and (min-width: 1400px) {
+      background-size: cover;
+    }
+    nav {
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      padding-top: 75px;
+      a.MuiTypography-root {
+        color: black;
+        text-decoration: underline;
+      }
+    }
   }
 }

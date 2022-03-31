@@ -61,6 +61,8 @@ const getEmail = () => KC.tokenParsed?.email
 
 const getCompany = () => KC.tokenParsed?.organisation
 
+const getTenant = () => KC.tokenParsed?.tenant
+
 const getRoles = () =>
   KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles
 
@@ -75,6 +77,7 @@ const getLoggedUser = () => ({
   name: getName(),
   email: getEmail(),
   company: getCompany(),
+  tenant: getTenant(),
   roles: getRoles(),
   isAdmin: isAdmin(),
   token: getToken(),
@@ -90,6 +93,7 @@ const UserService = {
   getUsername,
   getName,
   getCompany,
+  getTenant,
   getRoles,
   hasRole,
   init,

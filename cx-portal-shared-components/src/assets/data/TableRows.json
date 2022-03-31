@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Fatih Ayyildiz",
+    "company": "Mercedes-Benz AG",
+    "email": "fatih_hikmet.ayyildiz@mercedes-benz.com",
+    "note": "Lorep ipsum Dolores",
+    "role": "Admin"
+  },
+  {
+    "id": 2,
+    "name": "Julia Jeroch",
+    "company": "BMW",
+    "email": "julia.jeroch@bmw.de",
+    "note": "Lorep ipsum Dolores",
+    "role": "Admin"
+  },
+  {
+    "id": 3,
+    "name": "Dutton John",
+    "company": "SAP",
+    "email": "john.dutton@sap.de",
+    "note": "Lorep ipsum Dolores",
+    "role": "Editor"
+  },
+  {
+    "id": 4,
+    "name": "Mueller Rudolf",
+    "company": "Bosch",
+    "email": "mueller.rudi@bosch.de",
+    "note": "Lorep ipsum Dolores mia dela culpa",
+    "role": "Admin"
+  },
+  {
+    "id": 5,
+    "name": "Dampf Hans",
+    "company": "Henkel",
+    "email": "dampf.hans@henkel.de",
+    "note": "Lorep ipsum Dolores mia dela culpa",
+    "role": "Editor"
+  },
+  {
+    "id": 6,
+    "name": "Braun Heinrich",
+    "company": "BMW",
+    "email": "heinrich.braun@bmw.de",
+    "note": "Lorep ipsum Dolores mi gela dio",
+    "role": "Manager"
+  },
+  {
+    "id": 7,
+    "name": "Mueller Rudolf",
+    "company": "Bosch",
+    "email": "mueller.rudi@bosch.de",
+    "note": "Lorep ipsum Dolores mia dela culpa",
+    "role": "Admin"
+  },
+  {
+    "id": 8,
+    "name": "Schlarb Hans",
+    "company": "Catena-X",
+    "email": "hans.schlarb@catena-x.com",
+    "note": "Lorep ipsum Dolores megari",
+    "role": "User"
+  }
+]

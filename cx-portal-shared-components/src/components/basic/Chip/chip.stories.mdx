@@ -1,0 +1,36 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Chip as Component } from '.'
+
+<Meta title="Chip" component={Component} />
+
+# Chip Component Examples
+
+Chip component used the same way as described in the
+[MUI Chip](https://mui.com/components/chips/)
+   documentation with
+[MUI Chip API](https://mui.com/api/chips/)
+
+# Examples
+
+Currently Chip component has two different type and you can see the usage of those two different type below. Chip types has different icons and difference appears when users hover on those Chips.
+
+<Canvas>
+  <Story name="Examples" >
+    <Component {...{
+                  color: 'secondary',
+                  variant: 'filled',
+                  label: 'decline',
+                  type: 'decline',
+                  onClick: () => console.log('Decline clicked event'),
+                  withIcon: true,
+                }} />
+        <Component {...{
+                color: 'secondary',
+                variant: 'filled',
+                label: 'confirm',
+                type: 'confirm',
+                onClick: () => console.log('Confirm clicked event'),
+                withIcon: true,
+              }} />
+  </Story>
+</Canvas>

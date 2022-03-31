@@ -7,74 +7,9 @@ import {
   GridRenderCellParams,
 } from '@mui/x-data-grid'
 import Link from '@mui/material/Link'
-import RoleChip from './components/RoleChip'
+import TestRows from '../../../assets/data/TableRows.json'
 
-const rows: GridRowsProp = [
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Fatih Ayyildiz',
-    company: 'Mercedes-Benz AG',
-    email: 'fatih_hikmet.ayyildiz@mercedes-benz.com',
-    note: 'Lorep ipsum Dolores',
-    role: 'Admin',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Julia Jeroch',
-    company: 'BMW',
-    email: 'julia.jeroch@bmw.de',
-    note: 'Lorep ipsum Dolores',
-    role: 'Admin',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Dutton John',
-    company: 'SAP',
-    email: 'john.dutton@sap.de',
-    note: 'Lorep ipsum Dolores',
-    role: 'Editor',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Mueller Rudolf',
-    company: 'Bosch',
-    email: 'mueller.rudi@bosch.de',
-    note: 'Lorep ipsum Dolores mia dela culpa',
-    role: 'Admin',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Dampf Hans',
-    company: 'Henkel',
-    email: 'dampf.hans@henkel.de',
-    note: 'Lorep ipsum Dolores mia dela culpa',
-    role: 'Editor',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Braun Heinrich',
-    company: 'BMW',
-    email: 'heinrich.braun@bmw.de',
-    note: 'Lorep ipsum Dolores mi gela dio',
-    role: 'Manager',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Mueller Rudolf',
-    company: 'Bosch',
-    email: 'mueller.rudi@bosch.de',
-    note: 'Lorep ipsum Dolores mia dela culpa',
-    role: 'Admin',
-  },
-  {
-    id: Math.floor(Math.random() * 100),
-    name: 'Schlarb Hans',
-    company: 'Catena-X',
-    email: 'hans.schlarb@catena-x.com',
-    note: 'Lorep ipsum Dolores megari',
-    role: 'User',
-  },
-]
+const rows: GridRowsProp = TestRows
 
 const columns: GridColDef[] = [
   { field: 'id', hide: true },
@@ -93,16 +28,14 @@ const columns: GridColDef[] = [
         <Link href="#">{params.value}</Link>
       </div>
     ),
-    flex: 5,
+    flex: 4,
   },
   { field: 'note', headerName: 'Note', flex: 5 },
   {
     field: 'role',
     headerName: 'Role',
     flex: 1,
-    renderCell: (params: GridRenderCellParams<string>) => (
-      <RoleChip role={params.value} />
-    ),
+    renderCell: (params: GridRenderCellParams<string>) => <>{params.value}</>,
   },
 ]
 
@@ -116,8 +49,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />
 )
 
-export const Table = Template.bind({})
-Table.args = {
+const basicArgs = {
   autoHeight: true,
   headerHeight: 76,
   rowHeight: 76,
@@ -130,4 +62,33 @@ Table.args = {
   loading: false,
   rows,
   columns,
+}
+
+export const Table = Template.bind({})
+Table.args = {
+  ...basicArgs,
+  title: 'Basic table',
+}
+
+export const TableToolbar = Template.bind({})
+TableToolbar.args = {
+  ...basicArgs,
+  title: 'Table with toolbar',
+  numberOfColumns: rows.length,
+  toolbar: {
+    buttonLabel: 'Add user',
+    onButtonClick: () => console.log('on button click'),
+    onSearch: (value) => console.log(`search: "${value}"`),
+    onFilter: (selectedFilter) => console.log('filter:', selectedFilter),
+    filter: [
+      {
+        name: 'role',
+        values: [
+          { value: 'admin', label: 'Admin' },
+          { value: 'editor', label: 'Editor' },
+          { value: 'manager', label: 'Manager' },
+        ],
+      },
+    ],
+  },
 }

@@ -19,7 +19,7 @@ export const Base = () => (
       reprehenderit?
     </Typography>
     <Typography variant="body2">
-      Body 1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis
+      Body 2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis
       maiores quod saepe quos officiis. Fugiat mollitia sunt, praesentium
       possimus iusto soluta error placeat veniam nisi cum itaque voluptas sequi
       reprehenderit?

@@ -19,4 +19,5 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const Radio = Template.bind({})
 Radio.args = {
   disabled: false,
+  label: 'Some Radio label',
 }

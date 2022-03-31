@@ -1,0 +1,31 @@
+ul.GroupItemView {
+  padding: 10px;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  > li {
+    margin-top: 10px;
+
+    > p {
+      color: #888;
+      background: #000;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) calc(50% - 2px),
+        rgba(128, 128, 128, 1) calc(50%),
+        rgba(0, 0, 0, 0) calc(50% + 2px)
+      );
+
+      > span {
+        background: #fff;
+        position: relative;
+        margin: 0 12px;
+        padding: 0 6px;
+      }
+    }
+  }
+}

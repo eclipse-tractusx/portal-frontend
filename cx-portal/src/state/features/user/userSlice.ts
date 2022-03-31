@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from 'state/store'
 import { IUser } from 'types/user/UserTypes'
 
 const initialState: IUser = {
@@ -6,6 +7,7 @@ const initialState: IUser = {
   name: '',
   email: '',
   company: '',
+  tenant: '',
   roles: [],
   isAdmin: false,
   token: '',
@@ -23,5 +25,6 @@ const userSlice = createSlice({
 })
 
 export const { setLoggedUser } = userSlice.actions
+export const selectorUser = (state: RootState): IUser => state.user
 
 export default userSlice.reducer

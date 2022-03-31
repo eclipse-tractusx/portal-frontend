@@ -1,5 +1,5 @@
 import { Box, useTheme } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AppCardButtons, AppCardButtonsProps } from './AppCardButtons'
 import { AppCardContent, AppCardContentProps } from './AppCardContent'
 import { AppCardImage, AppCardImageProps } from './AppCardImage'
@@ -33,7 +33,9 @@ export const AppCard = ({
     title,
     subtitle,
   } as AppCardContentProps)
+  const boxRef = useRef<HTMLDivElement>(null)
   const [showButton, setShowButton] = useState(false)
+  const [boxHeight, setBoxHeight] = useState<number | undefined>()
 
   useEffect(() => {
     setVariant(variantProp)
@@ -57,12 +59,21 @@ export const AppCard = ({
     setShowButton(['expanded', 'preview'].includes(variant))
   }, [variant])
 
+  useEffect(() => {
+    // Set initial box height to prevent flicker on hover
+    setBoxHeight(boxRef.current?.getBoundingClientRect().height)
+  }, [])
+
   const onMouseEnter = () => setVariant('preview')
   const onMouseLeave = () => setVariant(variantProp)
 
   return (
     <div
-      style={{ position: 'relative' }}
+      ref={boxRef}
+      style={{
+        position: 'relative',
+        height: boxHeight ? `${boxHeight}px` : '',
+      }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

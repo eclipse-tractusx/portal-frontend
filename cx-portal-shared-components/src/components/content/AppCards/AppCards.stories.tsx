@@ -33,4 +33,5 @@ AppCards.args = {
   items: [item, item],
   variant: 'minimal',
   buttonText: 'Details',
+  columns: 6,
 }
