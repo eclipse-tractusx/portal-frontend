@@ -26,12 +26,16 @@ const item = {
   description: 'Lorem Ipsum is simply dummy text of the printing.',
   onButtonClick: () => {},
   onSecondaryButtonClick: () => {},
+  readMoreText: 'Read more',
+  readMoreLink: '#',
 }
 
 export const AppCards = Template.bind({})
 AppCards.args = {
   items: [item, item],
   variant: 'minimal',
+  expandOnHover: false,
   buttonText: 'Details',
   columns: 6,
+  filledBackground: true,
 }

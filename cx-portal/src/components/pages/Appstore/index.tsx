@@ -34,7 +34,7 @@ const Appstore = () => {
           items={apps
             .filter(
               (app: AppCardItems) =>
-                filter.test(app.title) || filter.test(app.subtitle)
+                filter.test(app.title) || filter.test(app.subtitle || '')
             )
             .map((app: AppCardItems) => {
               const item: AppCardItems = { ...app }

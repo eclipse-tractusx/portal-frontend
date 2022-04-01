@@ -1,6 +1,6 @@
 import { Box, useTheme } from '@mui/material'
 
-export type AppCardImageSize = 'normal' | 'small'
+export type AppCardImageSize = 'normal' | 'medium' | 'small'
 
 export type AppCardImageShape = 'round' | 'square'
 
@@ -28,10 +28,12 @@ export const AppCardImage = ({
   const sx = {
     container: {
       normal: {},
+      medium: { paddingTop: 3, textAlign: 'center' },
       small: { paddingTop: 3, textAlign: 'center' },
     },
     image: {
       normal: { width: '100%', height: withPreview(144) },
+      medium: { width: withPreview(156), height: withPreview(156) },
       small: { width: withPreview(80), height: withPreview(80) },
       round: { borderRadius: '50%' },
       square: { borderRadius: 6 },
@@ -51,6 +53,7 @@ export const AppCardImage = ({
           }),
           ...sx.image[imageSize],
           ...(imageSize === 'small' && sx.image[imageShape]),
+          ...(imageSize === 'medium' && sx.image[imageShape]),
         }}
       />
     </Box>

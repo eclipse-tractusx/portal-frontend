@@ -27,6 +27,7 @@ export const AppArea = () => {
         buttonText="Details"
         imageSize="small"
         imageShape="round"
+        filledBackground={true}
       />
     </section>
   )

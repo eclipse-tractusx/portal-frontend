@@ -4,7 +4,7 @@ import { AppCardRating, AppCardRatingProps } from './AppCardRating'
 
 export interface AppCardContentProps extends Partial<AppCardRatingProps> {
   title: string
-  subtitle: string
+  subtitle?: string
   price?: string
   description?: string
 }
@@ -18,9 +18,11 @@ export const AppCardContent = ({
 }: AppCardContentProps) => {
   return (
     <Box>
-      <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
-        {subtitle}
-      </Typography>
+      {subtitle && (
+        <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
+          {subtitle}
+        </Typography>
+      )}
       <Typography variant="h5" sx={{ marginTop: 0.5 }}>
         {title}
       </Typography>
