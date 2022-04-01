@@ -52,5 +52,5 @@ jobs:
           push: true
           context: .
           file: ./conf/Dockerfile.prebuilt
-          tags: ${{ github.actor }}/portal-frontend:latest
+          tags: ghcr.io/${{ github.actor }}/portal-frontend:latest
 
