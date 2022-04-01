@@ -1,5 +1,36 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+### JetBrains ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Visual Studio Code ###
+.vscode/
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### Log files ###
+log/
+
+### Secrets ###
+**/secrets.*
+
 # dependencies
 **/node_modules
 /.pnp
