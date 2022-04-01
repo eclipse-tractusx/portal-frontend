@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import { Typography } from '../Typography'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -21,7 +20,7 @@ export const TabPanel = (props: TabPanelProps) => {
     >
       {value === index && (
         <Box sx={{ pt: 2 }}>
-          <Typography variant={'body2'}>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>

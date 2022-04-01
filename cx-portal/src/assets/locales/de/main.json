@@ -31,9 +31,26 @@
   },
   "content": {
     "dashboard": {
-      "welcome": "Willkommen bei Catena-X - das automotive Netzwerk!",
+      "stage": {
+        "title": "Catena-X",
+        "subtitle": "der Eintritt in das digital automobile <1></1> Netzwerk",
+        "cxButton": "Mein CX",
+        "appButton": "Meine Apps"
+      },
       "searchSection": {
         "inputPlaceholder": "Suche nach Apps"
+      },
+      "businessApplications": {
+        "title": "Meine Applications"
+      },
+      "fromAppStoreSection": {
+        "title": "Aus dem App Store"
+      }
+    },
+    "appstore": {
+      "stage": {
+        "title": "Catena-X App Store",
+        "subtitle": "A scalable & expandable <1></1> ecosystem"
       }
     },
     "semantichub": {
@@ -84,6 +101,39 @@
         "add": "User hinzufügen"
       }
     },
+    "addUser": {
+      "headline": "Erstelle einen neuen User",
+      "subheadline": "tbd",
+      "singleUser": "Einzel-Upload",
+      "multipleUser": "Massen-Upload",
+      "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
+      "multipleUserSubheadline": "Bitte verwenden Sie diese <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
+      "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
+      "helperText": "Please enter all required information before proceeding.",
+      "userUpload": {
+        "title": "Drag & drop your files here",
+        "subtitle": "or browse files on your computer.",
+        "uploadStatus": {
+          "rejected_file_type": "rejected (file type)",
+          "rejected_max_files": "rejected (max files)",
+          "preparing": "preparing",
+          "error_file_size": "error (file_size)",
+          "error_validation": "error (validation)",
+          "ready": "ready",
+          "started": "started",
+          "getting_upload_params": "getting (upload_params)",
+          "error_upload_params": "error (upload_params)",
+          "uploading": "uploading",
+          "exception_upload": "exception_upload",
+          "aborted": "aborted",
+          "restarted": "restarted",
+          "removed": "removed",
+          "error_upload": "upload error",
+          "headers_received": "headers received",
+          "done": "done"
+        }
+      }
+    },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
     },
@@ -126,14 +176,26 @@
   },
   "global": {
     "field": {
-      "first": "Vorname",
+      "first": "Name",
       "last": "Nachname",
-      "email": "Email",
+      "email": "E-mail",
       "company": "Firmenname",
       "status": "Status",
       "role": "Role",
       "active": "Aktiv",
       "inactive": "Inaktiv"
+    },
+    "actions": {
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen"
+    },
+    "userRoles": {
+      "itAdmin": "IT Admin",
+      "businessAdmin": "Business Admin",
+      "cxUser": "CX User",
+      "dataSpecialist": "Data Specialist",
+      "appDeveloper": "App Developer",
+      "appAdmin": "App Developer"
     }
   }
 }

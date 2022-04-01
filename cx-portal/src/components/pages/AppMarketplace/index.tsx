@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchApps } from 'state/features/appMarketplace/appMarketplaceActions'
 import { selectorAppMarketplace } from 'state/features/appMarketplace/appMarketplaceSlice'
 import { selectorUser } from 'state/features/user/userSlice'
+import StageSection from './components/StageSection'
 import './AppMarketplace.scss'
 
 export default function AppMarketplace() {
@@ -26,7 +27,8 @@ export default function AppMarketplace() {
   }
 
   return (
-    <main>
+    <main className="app-store">
+      <StageSection />
       <Typography variant="h4">{t('pages.appmarketplace')}</Typography>
       <div className="GroupSelect">
         <input

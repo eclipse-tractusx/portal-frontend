@@ -5,5 +5,5 @@ interface CategoryDividerProps {
     categoryName: string;
     onButtonClick: React.MouseEventHandler;
 }
-export declare const CategoryDivider: ({ buttonText, categoryItemsLength, categoryName, onButtonClick }: CategoryDividerProps) => JSX.Element;
+export declare const CategoryDivider: ({ buttonText, categoryItemsLength, categoryName, onButtonClick, }: CategoryDividerProps) => JSX.Element;
 export {};

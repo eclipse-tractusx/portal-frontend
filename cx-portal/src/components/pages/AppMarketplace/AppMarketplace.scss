@@ -1,11 +1,16 @@
-input[type='radio'] {
-  margin-left: 12px;
-}
+.app-store {
+  width: 100%;
+  padding: 0;
 
-.GroupSelect {
-  float: right;
-}
+  input[type='radio'] {
+    margin-left: 12px;
+  }
 
-ul {
-  clear: both;
+  .GroupSelect {
+    float: right;
+  }
+
+  ul {
+    clear: both;
+  }
 }

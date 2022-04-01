@@ -1,0 +1,37 @@
+// Center an image on x or y axis
+// Used as fallback for browsers that don't support object-fit
+
+@mixin image-center($direction, $scale: 1) {
+  @if $direction == x {
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale($scale);
+  } @else if $direction == x-left-40 {
+    height: 100%;
+    left: 40%;
+    transform: translateX(-40%) scale($scale);
+  }
+  @else if $direction == y {
+    top: 50%;
+    transform: translateY(-50%) scale($scale);
+    width: 100%;
+  }
+}
+
+// Center an image using object-fit
+@mixin image-object-fit() {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+// Image wrapper for specific ratio
+@mixin image-ratio-wrapper($width, $height) {
+  overflow: hidden;
+  padding-bottom: percentage($height / $width);
+  position: relative;
+}

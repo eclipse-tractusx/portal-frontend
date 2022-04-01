@@ -18,5 +18,5 @@ export const CategoryDivider = Template.bind({})
 CategoryDivider.args = {
   categoryName: 'Favorites',
   categoryItemsLength: 128,
-  buttonText: 'More',
+  buttonText: 'More'
 }

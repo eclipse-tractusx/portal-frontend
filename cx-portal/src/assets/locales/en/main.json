@@ -31,9 +31,26 @@
   },
   "content": {
     "dashboard": {
-      "welcome": "Welcome to Catena-X - the automotive network!",
+      "stage": {
+        "title": "Catena-X",
+        "subtitle": "the gateway to the automotive digital <1></1> network",
+        "cxButton": "My CX",
+        "appButton": "My Apps"
+      },
       "searchSection": {
         "inputPlaceholder": "Search for Apps"
+      },
+      "businessApplicationsSection": {
+        "title": "My Business Applications"
+      },
+      "fromAppStoreSection": {
+        "title": "From the App Store – Aus dem App Store"
+      }
+    },
+    "appstore": {
+      "stage": {
+        "title": "Catena-X App Store",
+        "subtitle": "A scalable & expandable <1></1> ecosystem"
       }
     },
     "semantichub": {
@@ -82,6 +99,39 @@
         "title": "User List",
         "details": "Details",
         "add": "Add user"
+      }
+    },
+    "addUser": {
+      "headline": "Add User Account",
+      "subheadline": "tbd",
+      "singleUser": "Single User",
+      "multipleUser": "Multiple User",
+      "multipleUserHeadline": "Add multiple users by file upload:",
+      "multipleUserSubheadline": "Please use this <1>upload template</1>, to add multiple users by file",
+      "chooseUserRole": "Select CX Portal User Role",
+      "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
+      "userUpload": {
+        "title": "Drag & drop your files here",
+        "subtitle": "or browse files on your computer.",
+        "uploadStatus": {
+          "rejected_file_type": "rejected (file type)",
+          "rejected_max_files": "rejected (max files)",
+          "preparing": "preparing",
+          "error_file_size": "error (file_size)",
+          "error_validation": "error (validation)",
+          "ready": "ready",
+          "started": "started",
+          "getting_upload_params": "getting (upload_params)",
+          "error_upload_params": "error (upload_params)",
+          "uploading": "uploading",
+          "exception_upload": "exception_upload",
+          "aborted": "aborted",
+          "restarted": "restarted",
+          "removed": "removed",
+          "error_upload": "upload error",
+          "headers_received": "headers received",
+          "done": "done"
+        }
       }
     },
     "help": {
@@ -134,6 +184,18 @@
       "role": "Rollen",
       "active": "Active",
       "inactive": "Inactive"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "userRoles": {
+      "itAdmin": "IT Admin",
+      "businessAdmin": "Business Admin",
+      "cxUser": "CX User",
+      "dataSpecialist": "Data Specialist",
+      "appDeveloper": "App Developer",
+      "appAdmin": "App Developer"
     }
   }
 }

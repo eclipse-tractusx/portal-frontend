@@ -7,12 +7,12 @@ import { DialogContentProps as DialogContentProps$1 } from '@mui/material/Dialog
 import { IconButtonProps as IconButtonProps$1 } from '@mui/material/IconButton';
 import { TextFieldProps, BoxProps, AvatarProps } from '@mui/material';
 import { RadioProps as RadioProps$1 } from '@mui/material/Radio';
-import { TabProps as TabProps$1 } from '@mui/material/Tab';
+import { TabProps } from '@mui/material/Tab';
 import React$1 from 'react';
 import { DataGridProps } from '@mui/x-data-grid';
 import { TabsProps as TabsProps$1 } from '@mui/material/Tabs';
 import { TypographyProps } from '@mui/material/Typography';
-import { StatusValue, IDropzoneProps } from 'react-dropzone-uploader';
+import { IPreviewProps, StatusValue, IDropzoneProps, ILayoutProps } from 'react-dropzone-uploader';
 import { ChipProps } from '@mui/material/Chip';
 import * as _mui_material_styles from '@mui/material/styles';
 
@@ -27,7 +27,7 @@ interface CheckboxProps extends Omit<CheckboxProps$1, 'size'> {
 }
 declare const Checkbox: ({ size, label, ...props }: CheckboxProps) => JSX.Element;
 
-declare type DialogProps = Pick<DialogProps$1, 'open' | 'scroll'>;
+declare type DialogProps = Pick<DialogProps$1, 'children' | 'open' | 'scroll'>;
 declare const Dialog: ({ scroll, ...props }: DialogProps) => JSX.Element;
 
 interface DialogActionProps extends DialogActionsProps {
@@ -107,8 +107,6 @@ interface SharedThemeProviderProps {
 }
 declare const SharedThemeProvider: ({ children }: SharedThemeProviderProps) => JSX.Element;
 
-interface TabProps extends TabProps$1 {
-}
 declare const Tab: ({ ...props }: TabProps) => JSX.Element;
 
 interface TabPanelProps {
@@ -173,6 +171,9 @@ interface previewProps {
     errorStatus: String[];
     statusText: Partial<statusText>;
 }
+interface allPreviewProps extends IPreviewProps, previewProps {
+}
+declare const Preview: ({ meta, statusText, fileWithMeta, canCancel, canRemove, canRestart, errorStatus, }: allPreviewProps) => JSX.Element;
 
 interface DropzoneProps extends IDropzoneProps, previewProps {
     fileTypes: string;
@@ -181,6 +182,14 @@ interface DropzoneProps extends IDropzoneProps, previewProps {
     maxFilesCount: number;
 }
 declare const Dropzone: ({ title, subTitle, fileTypes, maxFilesCount, getUploadParams, onSubmit, onChangeStatus, statusText, errorStatus, }: DropzoneProps) => JSX.Element;
+
+declare const Layout: ({ input, previews, dropzoneProps, files, extra: { maxFiles }, }: ILayoutProps) => JSX.Element;
+
+interface InputContentProps {
+    title: string;
+    subTitle: string;
+}
+declare const InputContent: ({ title, subTitle }: InputContentProps) => JSX.Element;
 
 interface ChipCustomProps extends ChipProps {
     type?: 'decline' | 'confirm';
@@ -255,4 +264,4 @@ declare const UserNav: (props: UserNavProps) => JSX.Element;
 
 declare const theme: _mui_material_styles.Theme;
 
-export { AppCardItems, AppCards, Button, Checkbox, Chip, Dialog, DialogActions, DialogContent, DialogHeader, Dropzone, IconButton, Input, LanguageSwitch, Logo, Menu, Navigation, NavigationProps, Radio, SearchInput, SharedThemeProvider, StatusTag, Tab, TabPanel, Table, TableProps, Tabs, Typography, UserAvatar, UserMenu, UserNav, theme };
+export { AppCardItems, AppCards, Button, Checkbox, Chip, Dialog, DialogActions, DialogContent, DialogHeader, Dropzone, InputContent as DropzoneInputContent, Layout as DropzoneLayout, Preview as DropzonePreview, IconButton, Input, LanguageSwitch, Logo, Menu, Navigation, NavigationProps, Radio, SearchInput, SharedThemeProvider, StatusTag, Tab, TabPanel, Table, TableProps, Tabs, Typography, UserAvatar, UserMenu, UserNav, theme };

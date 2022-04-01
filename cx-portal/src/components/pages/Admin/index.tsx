@@ -7,6 +7,7 @@ import { ProvisionIdentityProviderData } from 'types/provisioning/ProvisioningTy
 import './Admin.scss'
 
 export default function Admin() {
+
   const [processing, setProcessing] = useState<string>('input')
 
   const doSubmit = (data: ProvisionIdentityProviderData) => {
@@ -35,4 +36,5 @@ export default function Admin() {
       <ProvisionIdentityProviderForm onSubmit={doSubmit} state={processing} />
     </main>
   )
+
 }
