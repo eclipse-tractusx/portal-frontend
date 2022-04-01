@@ -1,0 +1,117 @@
+[
+  {
+    "application_id": "12732",
+    "changed_date": "17/03/2022",
+    "Company_name": "Bosch AG",
+    "user_email": "julia.jeroch@bmw.de",
+    "BPN": "BPNL078843209186",
+    "contracts": [
+      {
+        "name": "contract1",
+        "document": "document1"
+      },
+      {
+        "name": "contract2",
+        "document": "document2"
+      }
+    ],
+    "street": "Munich Street",
+    "house_number": "3",
+    "plz": "80808",
+    "city": "Munich",
+    "country": "Germany",
+    "status": "pending"
+  },
+  {
+    "application_id": "12733",
+    "changed_date": "18/03/2022",
+    "Company_name": "Siemens",
+    "user_email": "julia.jeroch@bmw.de",
+    "BPN": "BPNL0788432091ZZ",
+    "contracts": [
+      {
+        "name": "contract1",
+        "document": "document1"
+      },
+      {
+        "name": "contract2",
+        "document": "document2"
+      }
+    ],
+    "street": "Siemens Street",
+    "house_number": "265",
+    "plz": "01109",
+    "city": "Stuttgart",
+    "country": "Germany",
+    "status": "pending"
+  },
+  {
+    "application_id": "12734",
+    "changed_date": "18/03/2022",
+    "Company_name": "Cloud Data Share",
+    "user_email": "julia.jeroch@bmw.de",
+    "BPN": "BPNL0001535T86ZZ",
+    "contracts": [
+      {
+        "name": "contract1",
+        "document": "document1"
+      },
+      {
+        "name": "contract2",
+        "document": "document2"
+      }
+    ],
+    "street": "Alexanderplatz",
+    "house_number": "01",
+    "plz": "67331",
+    "city": "Berlin",
+    "country": "Germany",
+    "status": "pending"
+  },
+  {
+    "application_id": "12731",
+    "changed_date": "15/03/2022",
+    "Company_name": "Car Company 1",
+    "user_email": "julia.jeroch@bmw.de",
+    "BPN": "BPNL01011398TZZZ",
+    "contracts": [
+      {
+        "name": "contract1",
+        "document": "document1"
+      },
+      {
+        "name": "contract2",
+        "document": "document2"
+      }
+    ],
+    "street": "Straße der Jugend",
+    "house_number": "71",
+    "plz": "32221",
+    "city": "Cottbus",
+    "country": "Germany",
+    "status": "declined"
+  },
+  {
+    "application_id": "12730",
+    "changed_date": "15/03/2022",
+    "Company_name": "Car Company 1",
+    "user_email": "julia.jeroch@bmw.de",
+    "BPN": "BPNL01011358TZZZ",
+    "contracts": [
+      {
+        "name": "contract1",
+        "document": "document1"
+      },
+      {
+        "name": "contract2",
+        "document": "document2"
+      }
+    ],
+    "street": "Alexanderplatz",
+    "house_number": "01",
+    "plz": "67331",
+    "city": "Berlin",
+    "country": "Germany",
+    "status": "confirmed"
+  }
+]

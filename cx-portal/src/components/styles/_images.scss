@@ -10,8 +10,7 @@
     height: 100%;
     left: 40%;
     transform: translateX(-40%) scale($scale);
-  }
-  @else if $direction == y {
+  } @else if $direction == y {
     top: 50%;
     transform: translateY(-50%) scale($scale);
     width: 100%;

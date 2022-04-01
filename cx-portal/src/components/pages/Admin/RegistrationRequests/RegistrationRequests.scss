@@ -1,0 +1,63 @@
+@import 'src/components/styles/_colors';
+
+.page-main-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+
+  a {
+    color: color('text-secondary');
+    font-weight: 400;
+  }
+}
+
+.page-header {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+
+  img {
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+.page-header-title-container {
+  padding: 60px 0 0 60px;
+
+  span {
+    font-weight: 300;
+    font-size: 24px;
+  }
+}
+
+.table-container {
+  margin: 0 30px;
+}
+
+.document-cell-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+
+  .document-cell-line {
+    display: flex;
+
+    svg {
+      color: color('active');
+      fill: color('active');
+    }
+
+    a {
+      padding-left: 5px;
+    }
+  }
+}
+
+.state-cell-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

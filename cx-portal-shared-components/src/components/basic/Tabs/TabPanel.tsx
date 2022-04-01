@@ -18,11 +18,7 @@ export const TabPanel = (props: TabPanelProps) => {
       aria-labelledby={`basic-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ pt: 2 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
     </div>
   )
 }

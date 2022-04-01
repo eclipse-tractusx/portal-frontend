@@ -4,6 +4,11 @@ import {
   PartnerNetworkDataGrid,
 } from 'types/partnerNetwork/PartnerNetworkTypes'
 
+import {
+  RegistrationRequestAPIResponse,
+  RegistrationRequestDataGrid,
+} from 'types/userAdministration/UserAdministrationTypes'
+
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
   bpResponse: BusinessPartnerResponse
@@ -51,4 +56,31 @@ const mapSingleBusinessPartnerToDataGrid = (
   } as PartnerNetworkDataGrid
 }
 
-export { mapBusinessPartnerToDataGrid, mapSingleBusinessPartnerToDataGrid }
+const mapRegistrationRequestResponseToDataGrid = (
+  requestsResponse: Array<RegistrationRequestAPIResponse>
+): Array<RegistrationRequestDataGrid> => {
+  return requestsResponse?.map((request: RegistrationRequestAPIResponse) => {
+    return {
+      applicationId: request.application_id,
+      changedDate: request.changed_date,
+      companyInfo: {
+        companyName: request.Company_name,
+        userEmail: request.user_email,
+        bpn: request.BPN,
+      },
+      contracts: request.contracts,
+      street: request.street,
+      houseNumber: request.house_number,
+      plz: request.plz,
+      city: request.city,
+      country: request.country,
+      status: request.status,
+    } as RegistrationRequestDataGrid
+  })
+}
+
+export {
+  mapBusinessPartnerToDataGrid,
+  mapSingleBusinessPartnerToDataGrid,
+  mapRegistrationRequestResponseToDataGrid,
+}

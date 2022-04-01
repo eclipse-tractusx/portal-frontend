@@ -30,6 +30,26 @@
     "notfound": "Seite nicht gefunden"
   },
   "content": {
+    "admin": {
+      "registration-requests": {
+        "columns": {
+          "request": "Anfrage",
+          "requestDescription": "ID der Benutzeranfrage",
+          "date": "Datum",
+          "companyinfo": "Bewerbungsinformationen des Unternehmens",
+          "documents": "Unterlagen",
+          "details": "Einzelheiten",
+          "state": "Zustand"
+        },
+        "headertitle": "Anfragen zur Benutzerregistrierung",
+        "tabletitle": "Registrierungsanfragen",
+        "pending": "anstehend",
+        "buttonconfirm": "bestätigen",
+        "buttondecline": "ablehnen",
+        "cellconfirmed": "bestätigt",
+        "celldeclined": "abgelehnt"
+      }
+    },
     "dashboard": {
       "stage": {
         "title": "Catena-X",

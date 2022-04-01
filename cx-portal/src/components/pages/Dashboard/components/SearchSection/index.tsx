@@ -7,8 +7,10 @@ export default function SearchSection() {
 
   return (
     <div className="search-section">
-      <div className='search-input-wrapper'>
-        <SearchInput placeholder={t('content.dashboard.searchSection.inputPlaceholder')} />
+      <div className="search-input-wrapper">
+        <SearchInput
+          placeholder={t('content.dashboard.searchSection.inputPlaceholder')}
+        />
       </div>
     </div>
   )

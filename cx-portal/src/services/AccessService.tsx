@@ -1,3 +1,4 @@
+import React from 'react'
 import Admin from 'components/pages/Admin'
 import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
@@ -70,7 +71,6 @@ const ALL_PAGES: IPage[] = [
     role: ROLES.SEMANTICHUB_VIEW,
     element: <SemanticHub />,
   },
-  { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
     name: PAGES.DEVELOPERHUB,
     role: ROLES.DEVELOPER,

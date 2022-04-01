@@ -452,10 +452,8 @@ export const theme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          border: 'none',
-          borderRadius: 0,
-          borderTopLeftRadius: 25,
-          borderTopRightRadius: 25,
+          border: `1px solid ${palette.border.border01}`,
+          borderRadius: 24,
           overflow: 'hidden',
         },
         columnHeaders: {
