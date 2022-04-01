@@ -24,7 +24,6 @@ export const multiMapBy = <T>(
     collection,
     (result: Record<string, T[]>, value: any) => {
       const keys = iteratee(value as T)
-
       forEach(
         // mind that '== null' is true for null and undefined
         keys == null || Array.isArray(keys) ? keys : [keys],
