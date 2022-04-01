@@ -54,8 +54,3 @@ jobs:
           file: ./conf/Dockerfile.prebuilt
           tags: ${{ github.actor }}/portal-frontend:latest
 
-#      - name: Build Docker Image
-#        run: yarn build:docker
-
-#      - name: Publish Docker Image
-#        run: yarn publish:docker
