@@ -9,16 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Info
-        run: echo user ${{ github.actor }}
 
       - name: Checkout Sources
         uses: actions/checkout@v2
-
-      - name: Setup Node 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
 
       - name: Install Dependencies
         run: yarn
@@ -28,16 +21,15 @@ jobs:
 
       - name: Build Library and Portal
         run: yarn build
-        
+
       - name: Unit Tests
-        working-directory: ./cx-portal
-        run: yarn test
+        run: yarn test:ci
 
       - name: Publish Shared Components to npm
         working-directory: ./cx-portal-shared-components
         run: echo yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -51,6 +43,5 @@ jobs:
         with:
           push: true
           context: .
-          file: ./conf/Dockerfile.prebuilt
-          tags: ghcr.io/${{ github.actor }}/portal-frontend:latest
-
+          file: ./.conf/Dockerfile.prebuilt
+          tags: ghcr.io/${{ github.actor }}/cx-portal-frontend:latest

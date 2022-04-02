@@ -1,4 +1,4 @@
-image: "catenaxacr.azurecr.io/frontend/portal:latest"
+image: "ghcr.io/oyo/cx-portal-frontend:latest"
 portContainer: 8080
 portService: 8080
 replicaCount: 1

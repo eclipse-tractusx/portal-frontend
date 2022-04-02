@@ -1,0 +1,2 @@
+host: "portal.demo.catena-x.net"
+tlsSecretName: "tls-secret"

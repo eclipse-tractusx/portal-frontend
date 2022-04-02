@@ -3,4 +3,4 @@
 
 yarn pretty
 yarn lint --fix
-yarn test:staged
+yarn test:ci
