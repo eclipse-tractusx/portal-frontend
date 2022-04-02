@@ -1,4 +1,4 @@
-image: "ghcr.io/oyo/cx-portal-frontend:latest"
+image: "ghcr.io/catenax-ng/product-portal-frontend:main"
 portContainer: 8080
 portService: 8080
 replicaCount: 1
