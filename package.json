@@ -6,7 +6,7 @@
     "cx-portal-shared-components"
   ],
   "config": {
-    "image": "ghrc.io/catenax-ng/portal-frontend"
+    "image": "ghcr.io/catenax-ng/product-portal-frontend"
   },
   "scripts": {
     "prepare": "husky install",

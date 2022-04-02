@@ -25,7 +25,7 @@ Here are three ways to run the application on your machine on http://localhost:3
 
 ### Running the image from GitHub container registry
 
-    export IMAGE=ghcr.io/catenax-ng/product-portal-hello-helm:main
+    export IMAGE=ghcr.io/catenax-ng/product-portal-frontend:main
     docker pull $IMAGE
     docker run --rm -d -p 3000:8080 --name cx-portal $IMAGE
 
