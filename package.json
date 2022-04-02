@@ -9,6 +9,7 @@
     "image": "ghrc.io/catenax-ng/portal-frontend"
   },
   "scripts": {
+    "prepare": "husky install",
     "clean": "cd cx-portal-shared-components && yarn clean && cd ../cx-portal && yarn clean",
     "release": "yarn version --patch && git push --tags",
     "lint": "eslint cx-portal cx-portal-shared-components",
