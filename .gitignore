@@ -49,6 +49,7 @@ log/
 
 # misc
 **/.DS_Store
+**/.npmrc
 
 npm-debug.log*
 yarn-debug.log*
