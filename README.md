@@ -12,7 +12,6 @@ Here are three ways to run the application on your machine on http://localhost:3
 
     yarn
     yarn build
-    cd cx-portal
     yarn start
 
 
