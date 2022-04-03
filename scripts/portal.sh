@@ -40,3 +40,16 @@ cx-acr-tags() {
     REPO=${1:-$FRONTEND}
     az acr repository show-tags --repository $REPO --name $ACR
 }
+
+cx-docker-dev() {
+	docker run \
+		-it \
+		--rm \
+		--name node \
+		-p 3000:3000 \
+		-v $(pwd):/portal \
+		-e "http_proxy=$http_proxy" \
+		-e "https_proxy=$https_proxy" \
+		-e "no_proxy=$no_proxy" \
+		node bash
+}
