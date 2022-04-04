@@ -1,8 +1,8 @@
 import { ComponentStory } from '@storybook/react'
-import { FilterSelector as Component, filterView } from '.'
+import { ViewSelector as Component, view } from '.'
 
 export default {
-  title: 'FilterSelector',
+  title: 'ViewSelector',
   component: Component,
   argTypes: {},
 }
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   </>
 )
 
-const views: filterView[] = [
+const views: view[] = [
   {
     buttonText: 'All',
     onButtonClick: () => {
@@ -21,15 +21,15 @@ const views: filterView[] = [
     },
   },
   {
-    buttonText: 'By Categories',
+    buttonText: 'Use Cases',
     onButtonClick: () => {
       console.log('Switch view')
     },
   },
 ]
 
-export const FilterSelector = Template.bind({})
-FilterSelector.args = {
-  filterViews: views,
-  activeFilter: 'bycategories',
+export const ViewSelector = Template.bind({})
+ViewSelector.args = {
+  views: views,
+  activeView: 'usecases',
 }

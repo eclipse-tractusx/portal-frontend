@@ -2,27 +2,24 @@ import { Box } from '@mui/material'
 import { Button } from '../Button'
 import React from 'react'
 
-export interface filterView {
+export interface view {
   buttonText: string
   onButtonClick?: React.MouseEventHandler
 }
 
-export interface FilterSelectorProps {
-  filterViews: filterView[]
-  activeFilter: string
+export interface ViewSelectorProps {
+  views: view[]
+  activeView: string
 }
 
-export const FilterSelector = ({
-  filterViews,
-  activeFilter,
-}: FilterSelectorProps) => {
+export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
   return (
     <Box sx={{ textAlign: 'right' }}>
-      {filterViews?.map(({ buttonText, onButtonClick }) => (
+      {views?.map(({ buttonText, onButtonClick }) => (
         <Button
           color={'secondary'}
           variant={
-            activeFilter.toLowerCase() ===
+            activeView.toLowerCase() ===
             buttonText.toLowerCase().replace(/\s+/g, '')
               ? 'contained'
               : 'text'
