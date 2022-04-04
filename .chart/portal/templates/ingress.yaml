@@ -13,7 +13,9 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "false"
 spec:
+  {{ if eq .Values.tlsSecretName "certificate-secret" }}
   ingressClassName: {{ .Values.name }}
+  {{ end }}
   tls:
   - hosts:
     - {{ .Values.host }}
