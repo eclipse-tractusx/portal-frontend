@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: {{ .Values.name }}
   annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.issuer }}
     {{ if eq .Values.tlsSecretName "certificate-secret" }}
-    cert-manager.io/cluster-issuer: letsencrypt-{{ .Values.name }}
     acme.cert-manager.io/http01-ingress-class: {{ .Values.name }}
     {{ else }}
     kubernetes.io/ingress.class: nginx

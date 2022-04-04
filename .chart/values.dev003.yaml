@@ -1,3 +1,4 @@
 image: "catenaxacr.azurecr.io/frontend/portal:latest"
 host: "catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com"
+issuer: "letsencrypt-portal"
 tlsSecretName: "certificate-secret"
