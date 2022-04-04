@@ -4,4 +4,4 @@ portService: 8080
 replicaCount: 1
 name: "portal"
 host: "portal.demo.catena-x.net"
-tlsSecretName: "portal.demo.catena-x.net-tls"
+tlsSecretName: "tls-secret"
