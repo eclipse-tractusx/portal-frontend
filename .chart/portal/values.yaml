@@ -1,7 +1,7 @@
 image: "ghcr.io/catenax-ng/product-portal-frontend:main"
 portContainer: 8080
-portService: 443
+portService: 8080
 replicaCount: 1
 name: "portal"
 host: "portal.demo.catena-x.net"
-tlsSecretName: "tls-secret"
+tlsSecretName: "portal.demo.catena-x.net-tls"
