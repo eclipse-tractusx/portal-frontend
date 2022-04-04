@@ -18,7 +18,9 @@ main {
 }
 
 section {
-  padding: 120px 0;
+  max-width: 1200px;
+  margin: auto;
+  padding: 120px 20px;
 
   .section-title {
     text-align: center;
@@ -49,4 +51,13 @@ a {
   &:disabled {
     color: color(disabled);
   }
+}
+
+.orange-background {
+  background-image: linear-gradient(to right,
+            #ffb326,
+            #ffa524,
+            #ff9625,
+            #ff8728,
+            #ff782c);
 }

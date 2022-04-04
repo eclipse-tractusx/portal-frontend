@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add'
 
 export interface AppCardButtonsProps {
   buttonText: string
-  onButtonClick: React.MouseEventHandler
+  onButtonClick?: React.MouseEventHandler
   onSecondaryButtonClick?: React.MouseEventHandler
 }
 

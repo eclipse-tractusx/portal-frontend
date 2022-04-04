@@ -1,20 +1,26 @@
-import { Box, useTheme } from '@mui/material'
+import { Box, Link, useTheme } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { AppCardButtons, AppCardButtonsProps } from './AppCardButtons'
 import { AppCardContent, AppCardContentProps } from './AppCardContent'
 import { AppCardImage, AppCardImageProps } from './AppCardImage'
 
-type Variants = 'minimal' | 'compact' | 'expanded' | 'preview'
+type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only'
 
 export interface AppCardProps
   extends AppCardContentProps,
     AppCardButtonsProps,
     AppCardImageProps {
   variant?: Exclude<Variants, 'preview'>
+  filledBackground?: boolean
+  expandOnHover?: boolean
+  readMoreText?: string
+  readMoreLink?: string
 }
 
 export const AppCard = ({
   variant: variantProp = 'minimal',
+  expandOnHover = false,
+  filledBackground,
   title,
   subtitle,
   rating,
@@ -26,8 +32,10 @@ export const AppCard = ({
   buttonText,
   onButtonClick,
   onSecondaryButtonClick,
+  readMoreText,
+  readMoreLink,
 }: AppCardProps) => {
-  const { shape, shadows } = useTheme()
+  const { shape, shadows, spacing } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
   const [content, setContent] = useState({
     title,
@@ -45,6 +53,9 @@ export const AppCard = ({
     switch (variant) {
       case 'compact':
         setContent({ title, subtitle, rating, price })
+        break
+      case 'text-only':
+        setContent({ title, description })
         break
       case 'expanded':
       case 'preview':
@@ -64,7 +75,9 @@ export const AppCard = ({
     setBoxHeight(boxRef.current?.getBoundingClientRect().height)
   }, [])
 
-  const onMouseEnter = () => setVariant('preview')
+  const onMouseEnter = () => {
+    if (expandOnHover) setVariant('preview')
+  }
   const onMouseLeave = () => setVariant(variantProp)
 
   return (
@@ -84,13 +97,26 @@ export const AppCard = ({
           border: '1px solid',
           borderColor: 'border.border01',
           overflow: 'hidden',
+          ':hover': {
+            boxShadow: shadows['20'],
+          },
+          ...(filledBackground === true && {
+            backgroundColor: 'background.background02',
+            border: 'none',
+          }),
           ...(variant === 'preview' && {
             position: 'absolute',
             width: 'calc(100% - 2px)',
             zIndex: 100,
-            boxShadow: shadows['20'],
+          }),
+          ...(variant === 'text-only' && {
+            border: 'none',
+            ':hover': {
+              boxShadow: 'none',
+            },
           }),
         }}
+        className="app-card"
       >
         <AppCardImage
           image={image}
@@ -98,7 +124,14 @@ export const AppCard = ({
           imageShape={imageShape}
           preview={variant === 'preview'}
         />
-        <Box sx={{ padding: 3 }}>
+        <Box
+          sx={{
+            padding: 3,
+            ...(variant === 'text-only' && {
+              padding: spacing(3, 0),
+            }),
+          }}
+        >
           <AppCardContent {...content} />
           {showButton && (
             <AppCardButtons
@@ -106,6 +139,19 @@ export const AppCard = ({
               onButtonClick={onButtonClick}
               onSecondaryButtonClick={onSecondaryButtonClick}
             />
+          )}
+          {variant === 'text-only' && readMoreLink && readMoreText && (
+            <Link
+              sx={{
+                display: 'block',
+                marginTop: '10px',
+                textDecoration: 'underline',
+                fontSize: 'typography.h4.fontSize',
+              }}
+              href={readMoreLink}
+            >
+              {readMoreText}
+            </Link>
           )}
         </Box>
       </Box>
