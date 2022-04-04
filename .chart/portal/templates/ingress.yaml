@@ -3,25 +3,27 @@ kind: Ingress
 metadata:
   name: {{ .Values.name }}
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-{{ .Values.name }}
-    acme.cert-manager.io/http01-ingress-class: {{ .Values.name }}
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/enable-cors: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # If you encounter a redirect loop or are getting a 307 response code
+    # then you need to force the nginx ingress to connect to the backend using HTTPS.
+    #
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: {{ .Values.name }}
-  tls:
-  - hosts:
-    - {{ .Values.host }}
-    secretName: {{ .Values.tlsSecretName }}
   rules:
-  - host: {{ .Values.host }}
-    http:
-      paths:
-      - path: /(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Values.name }}
-            port:
-              number: {{ .Values.portService }}
+    - host: {{ .Values.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.name }}
+                port:
+                  number: {{ .Values.portService }}
+  tls:
+    - hosts:
+        - {{ .Values.name }}
+      secretName: {{ .Values.tlsSecretName }}
+
