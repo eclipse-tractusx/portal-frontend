@@ -26,6 +26,7 @@
     "terms": "Nutzungsbedingungen",
     "cookiepolicy": "Cookie Richtline",
     "3rdpartylicenses": "Third Party Lizenzen",
+    "registration-requests": "Registrierungsanfragen",
     "logout": "Abmelden",
     "notfound": "Seite nicht gefunden"
   },
@@ -42,6 +43,7 @@
           "state": "Zustand"
         },
         "headertitle": "Anfragen zur Benutzerregistrierung",
+        "pagetitle": "Übersicht über Anfragen",
         "tabletitle": "Registrierungsanfragen",
         "pending": "anstehend",
         "buttonconfirm": "bestätigen",

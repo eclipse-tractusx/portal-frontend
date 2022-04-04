@@ -74,7 +74,6 @@ export const TableToolbar = Template.bind({})
 TableToolbar.args = {
   ...basicArgs,
   title: 'Table with toolbar',
-  numberOfColumns: rows.length,
   toolbar: {
     buttonLabel: 'Add user',
     onButtonClick: () => console.log('on button click'),

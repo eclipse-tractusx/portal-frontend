@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'state/store'
 import {
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
@@ -25,16 +24,19 @@ const userAdministrationSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchTenantUsers.pending, (state) => {
       state.tenantUsers = []
+      state.registrationRequests = []
       state.loading = true
       state.error = ''
     })
     builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => {
       state.tenantUsers = payload || []
+      state.registrationRequests = []
       state.loading = false
       state.error = ''
     })
     builder.addCase(fetchTenantUsers.rejected, (state, action) => {
       state.tenantUsers = []
+      state.registrationRequests = []
       state.loading = false
       state.error = action.error.message as string
     })
@@ -46,10 +48,13 @@ const userAdministrationSlice = createSlice({
     builder.addCase(
       fetchRegistrationRequests.fulfilled,
       (state, { payload }) => {
+        debugger
         const payloadList = payload as Array<RegistrationRequestAPIResponse>
-        state.registrationRequests = mapRegistrationRequestResponseToDataGrid(
-          payloadList
-        ) as Array<RegistrationRequestDataGrid>
+        state.registrationRequests =
+          (mapRegistrationRequestResponseToDataGrid(
+            payloadList
+          ) as Array<RegistrationRequestDataGrid>) || []
+
         state.loading = false
         state.error = ''
       }
@@ -63,6 +68,6 @@ const userAdministrationSlice = createSlice({
 })
 
 export const selectorUserAdministration = (
-  state: RootState
+  state: any
 ): UserAdministrationInitialState => state.userAdministration
 export default userAdministrationSlice

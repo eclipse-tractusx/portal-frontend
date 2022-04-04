@@ -25,7 +25,7 @@ export type SelectedFilter = {
 
 export interface ToolbarProps {
   title?: string
-  numberOfColumns?: number
+  rowCount?: number
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   onSearch?: (value: string) => void
@@ -35,7 +35,7 @@ export interface ToolbarProps {
 
 export const Toolbar = ({
   title,
-  numberOfColumns,
+  rowCount,
   buttonLabel,
   onButtonClick,
   onSearch,
@@ -89,18 +89,16 @@ export const Toolbar = ({
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant="h5">
             {title}
-            {numberOfColumns !== void 0 && (
-              <Box
-                component="span"
-                sx={{
-                  typography: 'body1',
-                  color: 'text.tertiary',
-                  marginLeft: 0.5,
-                }}
-              >
-                ({numberOfColumns})
-              </Box>
-            )}
+            <Box
+              component="span"
+              sx={{
+                typography: 'body1',
+                color: 'text.tertiary',
+                marginLeft: 0.5,
+              }}
+            >
+              ({rowCount})
+            </Box>
           </Typography>
           {buttonLabel && onButtonClick && (
             <Button size="small" onClick={onButtonClick} sx={{ marginLeft: 3 }}>
@@ -119,14 +117,20 @@ export const Toolbar = ({
             />
           ) : (
             onSearch && (
-              <IconButton onClick={() => setOpenSearch(true)}>
+              <IconButton
+                sx={{ color: 'text.tertiary' }}
+                onClick={() => setOpenSearch(true)}
+              >
                 <SearchIcon />
               </IconButton>
             )
           )}
           {onFilter && (
             <IconButton
-              sx={{ alignSelf: 'center' }}
+              sx={{
+                alignSelf: 'center',
+                color: openFilter ? 'primary' : 'text.tertiary',
+              }}
               onClick={() => setOpenFilter(!openFilter)}
             >
               <FilterIcon />

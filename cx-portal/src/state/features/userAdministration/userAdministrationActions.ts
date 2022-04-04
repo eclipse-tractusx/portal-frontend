@@ -28,6 +28,7 @@ const fetchRegistrationRequests = createAsyncThunk(
   async () => {
     try {
       // Call axios instance to get values
+      debugger
       if (store.getState().user?.token) {
         // Currently implementation uses mock data
         // This action will change when API endpoint get ready
