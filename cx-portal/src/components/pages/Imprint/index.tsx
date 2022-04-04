@@ -34,7 +34,7 @@ export default function Imprint() {
       <Typography variant="body2">
         {t('content.imprint.privacyDesc')}
       </Typography>
-      <a href="#">xxx.xxx.xxx</a>
+      <a href=".">xxx.xxx.xxx</a>
     </main>
   )
 }
