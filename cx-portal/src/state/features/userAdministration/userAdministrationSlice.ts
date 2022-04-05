@@ -48,7 +48,6 @@ const userAdministrationSlice = createSlice({
     builder.addCase(
       fetchRegistrationRequests.fulfilled,
       (state, { payload }) => {
-        debugger
         const payloadList = payload as Array<RegistrationRequestAPIResponse>
         state.registrationRequests =
           (mapRegistrationRequestResponseToDataGrid(
