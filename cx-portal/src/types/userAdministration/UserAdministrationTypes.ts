@@ -3,7 +3,7 @@ export type InviteData = {
   firstName: string
   lastName: string
   email: string
-  organizationName: string
+  organisationName: string
 }
 
 export type TenantUser = {

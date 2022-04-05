@@ -4,24 +4,17 @@ metadata:
   name: {{ .Values.name }}
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.issuer }}
-    {{ if eq .Values.tlsSecretName "certificate-secret" }}
-    acme.cert-manager.io/http01-ingress-class: {{ .Values.name }}
-    {{ else }}
     kubernetes.io/ingress.class: nginx
-    {{ end }}
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "false"
 spec:
-  {{ if eq .Values.tlsSecretName "certificate-secret" }}
-  ingressClassName: {{ .Values.name }}
-  {{ end }}
   tls:
   - hosts:
-    - {{ .Values.host }}
-    secretName: {{ .Values.tlsSecretName }}
+    - {{ .Values.name }}.{{ .Values.domain }}
+    secretName: {{ .Values.name }}.{{ .Values.domain }}-tls
   rules:
-  - host: {{ .Values.host }}
+  - host: {{ .Values.name }}.{{ .Values.domain }}
     http:
       paths:
       - path: /(.*)
