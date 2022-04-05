@@ -1,7 +1,7 @@
 name: "portal"
 domain: "demo.catena-x.net"
 issuer: "letsencrypt-prod"
-image: "ghcr.io/catenax-ng/product-portal-frontend:main"
+image: "ghcr.io/catenax-ng/product-portal-frontend:int"
 portContainer: 8080
 portService: 443
 replicaCount: 1
