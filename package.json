@@ -29,7 +29,7 @@
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
     "build": "yarn clean && yarn build:licenses && yarn build:lib && yarn build:storybook && yarn build:portal",
     "start": "yarn start:portal",
-    "deploy:helm": "helm install -f .chart/portal/values-$1.yaml portal .chart/portal --namespace portal",
+    "deploy:helm": "helm install portal .chart/portal --namespace portal",
     "undeploy:helm": "helm uninstall portal --namespace portal"
   },
   "lint:staged": {
