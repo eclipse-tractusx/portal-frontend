@@ -5,12 +5,15 @@ import partnerNetworkSlice from 'state/features/partnerNetwork/partnerNetworkSli
 import userAdministrationSlice from 'state/features/userAdministration/userAdministrationSlice'
 import appMarketplaceSlice from 'state/features/appMarketplace/appMarketplaceSlice'
 
-const rootReducer = combineReducers({
+// Reducers need separate export for testing library
+export const reducers = {
   apps: appsSlice.reducer,
   user: userSlice,
   partnerNetwork: partnerNetworkSlice.reducer,
-  userAdministration: userAdministrationSlice.reducer,
   appMarketplace: appMarketplaceSlice.reducer,
-})
+  userAdministration: userAdministrationSlice.reducer,
+}
+
+const rootReducer = combineReducers(reducers)
 
 export default rootReducer

@@ -20,7 +20,9 @@ const RegistrationRequests = () => {
   )
 
   useEffect(() => {
-    if (token) dispatch(fetchRegistrationRequests())
+    if (token) {
+      dispatch(fetchRegistrationRequests(token))
+    }
   }, [dispatch, token])
 
   return (
