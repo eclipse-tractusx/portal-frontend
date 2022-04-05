@@ -27,11 +27,10 @@
     "build:docker:prebuilt": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
     "start:docker": "IMAGE=$npm_package_config_image  && docker run --rm -d -p 3000:8080 --name cx-portal $IMAGE",
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
-    "publish:docker:dev003": "IMAGE=$npm_package_config_image && IMAGE_DEV003=catenaxacr.azurecr.io/frontend/portal && docker tag $IMAGE:latest $IMAGE_DEV003:latest && docker tag $IMAGE:latest $IMAGE_DEV003:$npm_package_version && docker push $IMAGE_DEV003:$npm_package_version && docker push $IMAGE_DEV003:latest",
     "build": "yarn clean && yarn build:licenses && yarn build:lib && yarn build:storybook && yarn build:portal",
     "start": "yarn start:portal",
-    "deploy:helm:dev003": "helm install -f .chart/values.dev003.yaml portal .chart/portal --namespace portal",
-    "undeploy:helm:dev003": "helm uninstall portal --namespace portal"
+    "deploy:helm": "helm install portal .chart/portal --namespace portal",
+    "undeploy:helm": "helm uninstall portal --namespace portal"
   },
   "lint:staged": {
     "**/src/**/*.{js,jsx,ts,tsx}": [
@@ -39,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "yarn": "^1.22.18"
   }
 }

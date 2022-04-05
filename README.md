@@ -2,8 +2,8 @@
 
 Frontend web application and shared UI components for the Catena-X Portal written in React and Typescript.
 
-* Dev Install: https://catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com/
-* Components: https://catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com/_storybook/
+* Dev Install: https://portal.demo.catena-x.net/
+* Components: https://portal.demo.catena-x.net/_storybook/
 
 
 Here are three ways to run the application on your machine on http://localhost:3000/

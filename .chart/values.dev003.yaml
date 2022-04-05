@@ -1,3 +1,0 @@
-image: "catenaxacr.azurecr.io/frontend/portal:latest"
-host: "catenaxdev003aksportal.germanywestcentral.cloudapp.azure.com"
-tlsSecretName: "certificate-secret"

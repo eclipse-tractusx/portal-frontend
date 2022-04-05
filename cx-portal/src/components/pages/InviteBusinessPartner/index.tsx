@@ -16,11 +16,11 @@ export default function InviteBusinessPartner() {
       .inviteBusinessPartner(data)
       .then(() => {
         setProcessing('success')
-        info(`onboarding for company ${data.organizationName} started`)
+        info(`onboarding for company ${data.organisationName} started`)
       })
       .catch((error: unknown) => {
         setProcessing('failure')
-        info(`onboarding for company ${data.organizationName} failed`)
+        info(`onboarding for company ${data.organisationName} failed`)
         info(JSON.stringify(error))
       })
       .finally(() => {

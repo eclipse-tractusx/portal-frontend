@@ -56,7 +56,7 @@ export const InviteForm = ({
       firstName: inpExpr[2].trim(),
       lastName: inpExpr[3].trim(),
       email: inpExpr[0].trim(),
-      organizationName: inpExpr[1].trim(),
+      organisationName: inpExpr[1].trim(),
     })
 
   return (
