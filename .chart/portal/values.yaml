@@ -4,7 +4,7 @@ issuer: "letsencrypt-prod"
 
 frontendPortal:
   path: "/(.*)"
-  name: "frontend-portal"
+  name: "frontend"
   image: "ghcr.io/catenax-ng/product-portal-frontend:main"
   portContainer: 8080
   portService: 5000
