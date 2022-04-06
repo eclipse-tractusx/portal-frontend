@@ -20,7 +20,8 @@
     "outDir": "dist",
     "declaration": true,
     "declarationDir": "types",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "types": ["node", "jest"]
   },
   "include": ["src"],
   "exclude": [
