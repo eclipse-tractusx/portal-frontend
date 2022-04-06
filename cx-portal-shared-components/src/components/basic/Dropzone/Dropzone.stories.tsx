@@ -23,11 +23,7 @@ Dropzone.args = {
   fileTypes: 'image/*,audio/*,video/*',
   maxFilesCount: 3,
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
-  onSubmit: (files, allFiles) => {
-    console.log(files.map((f) => f.meta))
-    allFiles.forEach((f) => f.remove())
-  },
-  onChangeStatus: ({ meta }, status) => {
+  onChangeStatus: ({ meta }: { [name: string]: any }, status: string) => {
     if (status === 'headers_received') {
       console.log(`${meta.name} uploaded`)
     } else if (status === 'aborted') {

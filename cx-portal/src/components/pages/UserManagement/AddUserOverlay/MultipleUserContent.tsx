@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import { Dropzone } from './Dropzone'
+import { Dropzone as Drop } from 'cx-portal-shared-components'
 
 export const MultipleUserContent = () => {
   const { t } = useTranslation()
@@ -79,7 +79,7 @@ export const MultipleUserContent = () => {
           by file
         </Trans>
       </Typography>
-      <Dropzone
+      <Drop
         title={dropzoneProps.title}
         subTitle={dropzoneProps.subTitle}
         fileTypes={'image/*,audio/*,video/*'}
