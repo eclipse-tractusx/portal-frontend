@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { AppCards, Button, Typography } from 'cx-portal-shared-components'
+import { Cards, Button, Typography } from 'cx-portal-shared-components'
 import './app-store-section.scss'
 
 export default function AppStoreSection() {
@@ -28,7 +28,7 @@ export default function AppStoreSection() {
       >
         {t('content.dashboard.appStoreSection.title')}
       </Typography>
-      <AppCards
+      <Cards
         items={[item, item, item, item, item, item, item, item]} // TODO: Replace from api
         columns={4}
         buttonText="Details"

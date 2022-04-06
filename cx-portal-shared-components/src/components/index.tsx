@@ -24,11 +24,11 @@ export { Layout as DropzoneLayout } from './basic/Dropzone/components/Layout'
 export { InputContent as DropzoneInputContent } from './basic/Dropzone/components/InputContent'
 export { Chip } from './basic/Chip'
 
-export { AppCards } from './content/AppCards'
+export { Cards } from './content/Cards'
 export { Navigation } from './content/Navigation'
 export { UserMenu } from './content/UserMenu'
 export { UserNav } from './content/UserNav'
 
 export type { TableProps } from './basic/Table'
-export type { AppCardItems } from './content/AppCards'
+export type { CardItems } from './content/Cards'
 export type { NavigationProps } from './content/Navigation'
