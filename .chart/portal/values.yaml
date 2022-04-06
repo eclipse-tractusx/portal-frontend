@@ -12,9 +12,9 @@ frontendPortal:
 
 frontendRegistration:
   path: "/(landing|registration)"
-  name: "frontend-portal-registration"
+  name: "frontend-registration"
   image: "ghcr.io/catenax-ng/product-portal-frontend-registration:main"
   portContainer: 8080
-  portService: 5010
+  portService: 5000
   replicaCount: 1
 
