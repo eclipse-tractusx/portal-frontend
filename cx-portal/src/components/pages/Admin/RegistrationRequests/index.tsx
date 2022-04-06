@@ -27,7 +27,7 @@ const RegistrationRequests = () => {
 
   return (
     <main className="page-main-container">
-      <div className="header-section-2">
+      <div className="header-section">
         <div className="header-content">
           <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
             {t('content.admin.registration-requests.headertitle')}

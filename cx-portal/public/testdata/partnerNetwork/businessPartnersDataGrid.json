@@ -1,6 +1,6 @@
 [
   {
-    "id": "BPNL000000000001",
+    "bpn": "BPNL000000000001",
     "name": "German Car Company",
     "country": "Germany",
     "street": "Muenchner Straße 34",
@@ -9,7 +9,7 @@
     "taxId": ""
   },
   {
-    "id": "BPNL0000000001YN",
+    "bpn": "BPNL0000000001YN",
     "name": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
     "country": "Germany",
     "street": "An der Wiese 14",
@@ -18,7 +18,7 @@
     "taxId": "DE813155579"
   },
   {
-    "id": "BPNL0000000002XY",
+    "bpn": "BPNL0000000002XY",
     "name": "botek Präzisionsbohrtech. GmbH",
     "country": "Germany",
     "street": "Längenfeldstr. 4",
@@ -27,7 +27,7 @@
     "taxId": "DE147174992"
   },
   {
-    "id": "BPNL0000000003X9",
+    "bpn": "BPNL0000000003X9",
     "name": "BOLD GmbH & Co. KG BAUBETRIEBE",
     "country": "Germany",
     "street": "Rennwiese 1",
@@ -36,7 +36,7 @@
     "taxId": "DE141874584"
   },
   {
-    "id": "BPNL0000000004WK",
+    "bpn": "BPNL0000000004WK",
     "name": "Bütema AG",
     "country": "Germany",
     "street": "Steinbeisstr. 7",
@@ -45,7 +45,7 @@
     "taxId": "DE814196859"
   },
   {
-    "id": "BPNL0000000005VV",
+    "bpn": "BPNL0000000005VV",
     "name": "Bothmann + Vogler GmbH",
     "country": "Germany",
     "street": "Hermannstal 119 k",

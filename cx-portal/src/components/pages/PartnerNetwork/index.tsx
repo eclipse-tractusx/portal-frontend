@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectorPartnerNetwork } from 'state/features/partnerNetwork/partnerNetworkSlice'
 import {
@@ -7,21 +7,24 @@ import {
 } from 'state/features/partnerNetwork/partnerNetworkActions'
 import {
   Table,
-  SharedThemeProvider,
   Input,
   Button,
+  Typography,
 } from 'cx-portal-shared-components'
-import 'components/pages/PartnerNetwork/PartnerNetwork.css'
+import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { RootState } from 'state/store'
 import { useTranslation } from 'react-i18next'
+import RegistrationRequestHeaderBgImage from 'assets/images/registration-requests-header-background.png'
+import {PartnerNetworksTableColumns} from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
+  const columns = PartnerNetworksTableColumns(useTranslation)
   const dispatch = useDispatch()
   const [bpnValue, setBpnValue] = useState<string>('')
   const [companyName, setCompanyName] = useState<string>('')
   const token = useSelector((state: RootState) => state.user.token)
-  const { mappedPartnerList, loading, columns } = useSelector(
+  const { mappedPartnerList, loading } = useSelector(
     selectorPartnerNetwork
   )
 
@@ -60,7 +63,19 @@ const PartnerNetwork = () => {
   }
 
   return (
-    <main className="Appstore">
+    <main className="partner-network-page-container">
+      <div className="header-section">
+        <div className="header-content">
+          <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
+            {t('content.partnernetwork.headertitle')}
+          </Typography>
+        </div>
+        <img
+          src={RegistrationRequestHeaderBgImage}
+          alt="Partner Network Background"
+          className="object-fit x-left-40"
+        />
+      </div>
       <div className="advance-search-fields-container">
         <div className="identifier-fields-container">
           <Input
@@ -87,22 +102,42 @@ const PartnerNetwork = () => {
           </Button>
         </div>
       </div>
-      <SharedThemeProvider>
+      <div className="partner-network-table-container">
         <Table
-          title={t('content.partnernetwork.message')}
-          rows={mappedPartnerList}
-          columns={columns}
           {...{
+            rows: mappedPartnerList,
+            columns: columns,
+            title:t('content.partnernetwork.tabletitle'),
+            rowHeight: 100,
             hideFooter: true,
             disableColumnFilter: true,
             disableColumnMenu: true,
             disableColumnSelector: true,
             disableDensitySelector: true,
             disableSelectionOnClick: true,
+            toolbar: {
+              onFilter: () => {},
+              filter: [
+                {
+                  name: 'country',
+                  values: [
+                    {
+                      value: 'DE',
+                      label: t('content.partnernetwork.filters.germany')
+                    },
+                    {
+                      value: 'Others',
+                      label: t('content.partnernetwork.filters.others')
+                    }
+                  ],
+                },
+              ],
+            },
             loading,
           }}
+          getRowId={(row) => row.bpn}
         />
-      </SharedThemeProvider>
+      </div>
     </main>
   )
 }

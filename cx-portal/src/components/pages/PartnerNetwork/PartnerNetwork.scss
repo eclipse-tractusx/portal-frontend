@@ -1,3 +1,10 @@
+.partner-network-page-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+}
+
 .advance-search-fields-container {
   display: flex;
   flex: 1;
@@ -5,7 +12,7 @@
   flex-direction: row;
   justify-content: center;
   align-content: flex-start;
-  margin-bottom: 50px;
+  margin:50px auto;
 }
 
 .identifier-fields-container {
@@ -25,4 +32,8 @@
 .search-button {
   align-self: center;
   margin-left: 50px;
+}
+
+.partner-network-table-container{
+  margin: 0 10% 70px;
 }

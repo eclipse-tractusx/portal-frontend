@@ -127,12 +127,11 @@ export interface PartnerNetworkInitialState {
   businessPartners: BusinessPartnerResponse
   mappedPartnerList: Array<PartnerNetworkDataGrid>
   loading: boolean
-  columns: GridColDef[]
   error: string
 }
 
 export interface PartnerNetworkDataGrid {
-  id: string
+  bpn: string
   name: string
   country: string
   street: string
