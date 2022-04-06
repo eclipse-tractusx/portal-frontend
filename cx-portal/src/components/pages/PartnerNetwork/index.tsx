@@ -5,17 +5,12 @@ import {
   fetchBusinessPartners,
   getOneBusinessPartner,
 } from 'state/features/partnerNetwork/partnerNetworkActions'
-import {
-  Table,
-  Input,
-  Button,
-  Typography,
-} from 'cx-portal-shared-components'
+import { Table, Input, Button, Typography } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { RootState } from 'state/store'
 import { useTranslation } from 'react-i18next'
 import RegistrationRequestHeaderBgImage from 'assets/images/registration-requests-header-background.png'
-import {PartnerNetworksTableColumns} from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
+import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -24,9 +19,7 @@ const PartnerNetwork = () => {
   const [bpnValue, setBpnValue] = useState<string>('')
   const [companyName, setCompanyName] = useState<string>('')
   const token = useSelector((state: RootState) => state.user.token)
-  const { mappedPartnerList, loading } = useSelector(
-    selectorPartnerNetwork
-  )
+  const { mappedPartnerList, loading } = useSelector(selectorPartnerNetwork)
 
   useEffect(() => {
     if (token) {
@@ -107,7 +100,7 @@ const PartnerNetwork = () => {
           {...{
             rows: mappedPartnerList,
             columns: columns,
-            title:t('content.partnernetwork.tabletitle'),
+            title: t('content.partnernetwork.tabletitle'),
             rowHeight: 100,
             hideFooter: true,
             disableColumnFilter: true,
@@ -123,12 +116,12 @@ const PartnerNetwork = () => {
                   values: [
                     {
                       value: 'DE',
-                      label: t('content.partnernetwork.filters.germany')
+                      label: t('content.partnernetwork.filters.germany'),
                     },
                     {
                       value: 'Others',
-                      label: t('content.partnernetwork.filters.others')
-                    }
+                      label: t('content.partnernetwork.filters.others'),
+                    },
                   ],
                 },
               ],
