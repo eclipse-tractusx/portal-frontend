@@ -1,3 +1,5 @@
+@import 'src/components/styles/_colors';
+
 .app-store {
   width: 100%;
   padding: 0;
@@ -13,4 +15,12 @@
   ul {
     clear: both;
   }
+
+  .overview-section {
+    background-color: color('background01');
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+
 }

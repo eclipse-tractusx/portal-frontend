@@ -63,7 +63,7 @@
       "businessApplicationsSection": {
         "title": "My Business Applications"
       },
-      "appStoreSection": {
+      "fromAppStoreSection": {
         "title": "From the App Store – Aus dem App Store"
       }
     },
@@ -72,11 +72,12 @@
         "title": "Catena-X App Store",
         "subtitle": "A scalable & expandable <1></1> ecosystem"
       },
-      "favoriteSection": {
-        "title": "Meine Favoriten"
-      },
-      "appListSection": {
-        "title": "App Übersicht"
+      "appOverviewSection": {
+        "title": "App Overview",
+        "viewCategories": {
+          "all": "All",
+          "useCases": "Use Cases"
+        }
       }
     },
     "semantichub": {
@@ -167,15 +168,7 @@
       "message": "add content here"
     },
     "imprint": {
-      "directors": "Board of Directors",
-      "ceo": "CEO",
-      "deputyCeo": "Deputy CEO",
-      "treasurer": "Treasurer",
-      "address": "Address",
-      "contact&support": "Contact & Support",
-      "contact&supportDesc": "You can find answers to many questions on our support page. If your question is not answered, please use our contact form. Alternatively, you can also contact us by email at info@catena-x.net.",
-      "privacy": "Privacy",
-      "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
+      "message": "add content here"
     },
     "privacy": {
       "message": "add content here"
@@ -221,7 +214,8 @@
     },
     "actions": {
       "cancel": "Cancel",
-      "confirm": "Confirm"
+      "confirm": "Confirm",
+      "more": "More"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
