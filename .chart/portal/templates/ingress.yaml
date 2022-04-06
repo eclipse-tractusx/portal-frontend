@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "false"
+
 spec:
   tls:
   - hosts:
@@ -17,11 +18,20 @@ spec:
   - host: {{ .Values.name }}.{{ .Values.domain }}
     http:
       paths:
+
+      - path: /(landing|registration)
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.name }}-frontend-registration
+            port:
+              number: {{ .Values.frontendRegistration.portService }}
+
       - path: /(.*)
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.name }}
+            name: {{ .Values.name }}-frontend
             port:
-              number: {{ .Values.portService }}
+              number: {{ .Values.frontendPortal.portService }}
 
