@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.name }}-{{ .Values.frontendRegistration.name }}
+            name: {{ .Values.frontendRegistration.name }}
             port:
               number: {{ .Values.frontendRegistration.portService }}
 
@@ -31,7 +31,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.name }}-{{ .Values.frontendPortal.name }}
+            name: {{ .Values.frontendPortal.name }}
             port:
               number: {{ .Values.frontendPortal.portService }}
 
