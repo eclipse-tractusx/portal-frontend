@@ -4,7 +4,7 @@ import {
   Typography,
   ViewSelector,
 } from 'cx-portal-shared-components'
-import { GroupItemView } from 'components/shared/basic/GroupItemView'
+import { AppListGroupView } from 'components/shared/basic/GroupItemView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchApps } from 'state/features/appMarketplace/appMarketplaceActions'
@@ -64,7 +64,7 @@ export default function AppListSection() {
             placeholder={t('content.dashboard.searchSection.inputPlaceholder')}
           />
         </Box>
-        <GroupItemView items={apps} groupKey={group} />
+        <AppListGroupView items={apps} groupKey={group} />
       </section>
     </Box>
   )
