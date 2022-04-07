@@ -1,27 +1,27 @@
 import { Box, useTheme } from '@mui/material'
 
-export type AppCardImageSize = 'normal' | 'medium' | 'small'
+export type CardImageSize = 'normal' | 'medium' | 'small'
 
-export type AppCardImageShape = 'round' | 'square'
+export type CardImageShape = 'round' | 'square'
 
-export interface IAppCardImage {
+export interface ICardImage {
   src: string
   alt?: string
 }
 
-export interface AppCardImageProps {
-  image: IAppCardImage
-  imageSize?: AppCardImageSize
-  imageShape?: AppCardImageShape
+export interface CardImageProps {
+  image: ICardImage
+  imageSize?: CardImageSize
+  imageShape?: CardImageShape
   preview?: boolean
 }
 
-export const AppCardImage = ({
+export const CardImage = ({
   image,
   imageSize = 'normal',
   imageShape = 'round',
   preview = false,
-}: AppCardImageProps) => {
+}: CardImageProps) => {
   const { transitions } = useTheme()
   const withPreview = (size: number) => (preview ? size + 18 : size)
 
