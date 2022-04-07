@@ -21,43 +21,43 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-#      - name: Install Dependencies
-#        run: yarn
-#
-#      - name: Linter Checks
-#        run: yarn lint
-#
-#      - name: Build Library and Portal
-#        run: yarn build
-#
-#      - name: Unit Tests
-#        run: yarn test:ci
-#
-#      - name: Publish Shared Components to npm
-#        working-directory: ./cx-portal-shared-components
-#        run: echo yarn publish
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-#
-#      - name: Login to GitHub Container Registry
-#        uses: docker/login-action@v1
-#        with:
-#          registry: ${{ env.REGISTRY }}
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: Extract Metadata (tags, labels) for Docker
-#        id: meta
-#        uses: docker/metadata-action@v3
-#        with:
-#          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-#
-#      - name: Build and push Docker image
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: .
-#          file: .conf/Dockerfile.prebuilt
-#          push: true
-#          tags: ${{ steps.meta.outputs.tags }}
-#          labels: ${{ steps.meta.outputs.labels }}
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Linter Checks
+        run: yarn lint
+
+      - name: Build Library and Portal
+        run: yarn build
+
+      - name: Unit Tests
+        run: yarn test:ci
+
+      - name: Publish Shared Components to npm
+        working-directory: ./cx-portal-shared-components
+        run: echo yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: .conf/Dockerfile.prebuilt
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
