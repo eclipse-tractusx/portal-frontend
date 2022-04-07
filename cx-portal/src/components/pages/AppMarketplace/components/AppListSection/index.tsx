@@ -4,7 +4,7 @@ import {
   Typography,
   ViewSelector,
 } from 'cx-portal-shared-components'
-import { AppListGroupView } from 'components/shared/basic/GroupItemView'
+import { AppListGroupView } from '../AppListGroupView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchApps } from 'state/features/appMarketplace/appMarketplaceActions'

@@ -1,9 +1,9 @@
 import './AppListGroupView.scss'
-import { Cards } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import { CategoryDivider } from 'cx-portal-shared-components'
+import { Cards } from 'cx-portal-shared-components'
 import { multiMapBy } from 'utils/multiMapBy'
 import { useTranslation } from 'react-i18next'
+import { AppListGroup } from '../AppListGroup'
 
 export const AppListGroupView = ({
   items,
@@ -15,15 +15,14 @@ export const AppListGroupView = ({
   const { t } = useTranslation()
 
   if (!groupKey || groupKey === '') {
-    // return <RawItemView items={items} />
     return (
       <Box sx={{ marginTop: '52px' }}>
         <Cards
-          items={items}
-          columns={4}
-          imageSize={'small'}
-          imageShape={'round'}
           buttonText={t('global.actions.details')}
+          columns={4}
+          imageShape={'round'}
+          imageSize={'small'}
+          items={items}
           variant={'compact'}
         />
       </Box>
@@ -34,25 +33,10 @@ export const AppListGroupView = ({
 
   return (
     <>
-      <ul className="GroupItemView">
+      <ul className="AppListGroupView">
         {Object.entries(group).map((v) => (
           <li key={v[0]}>
-            <CategoryDivider
-              buttonText={t('global.actions.more')}
-              categoryItemsLength={v[1].length}
-              categoryName={v[0]}
-              onButtonClick={() => {
-                console.log('Category divider')
-              }}
-            />
-            <Cards
-              items={v[1]}
-              columns={4}
-              imageSize={'small'}
-              imageShape={'round'}
-              buttonText={t('global.actions.details')}
-              variant={'compact'}
-            />
+            <AppListGroup category={v[0]} items={v[1]} />
           </li>
         ))}
       </ul>
