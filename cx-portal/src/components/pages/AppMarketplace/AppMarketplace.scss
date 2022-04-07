@@ -3,6 +3,7 @@
 .app-store {
   width: 100%;
   padding: 0;
+  margin-bottom: -230px;
 
   input[type='radio'] {
     margin-left: 12px;
@@ -18,9 +19,11 @@
 
   .overview-section {
     background-color: color('background01');
-    padding-left: 100px;
-    padding-right: 100px;
+
+    &-content {
+      padding-left: 100px;
+      padding-right: 100px;
+      padding-bottom: 270px;
+    }
   }
-
-
 }

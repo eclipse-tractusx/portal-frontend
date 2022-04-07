@@ -1,7 +1,8 @@
-import { multiMapBy } from 'utils/multiMapBy'
-import { RawItemView } from '../RawItemView'
 import './GroupItemView.scss'
+import { AppCards } from 'cx-portal-shared-components'
+import { Box } from '@mui/material'
 import { CategoryDivider } from 'cx-portal-shared-components'
+import { multiMapBy } from 'utils/multiMapBy'
 import { useTranslation } from 'react-i18next'
 
 export const GroupItemView = ({
@@ -14,29 +15,44 @@ export const GroupItemView = ({
   const { t } = useTranslation()
 
   if (!groupKey || groupKey === '') {
-    return <RawItemView items={items} />
+    // return <RawItemView items={items} />
+    return (
+      <Box sx={{ marginTop: '52px' }}>
+        <AppCards
+          items={items}
+          columns={4}
+          imageSize={'small'}
+          imageShape={'round'}
+          buttonText={t('global.actions.details')}
+          variant={'compact'}
+        />
+      </Box>
+    )
   }
 
   const group = multiMapBy(items, (item) => item[groupKey])
 
   return (
     <>
-      <CategoryDivider
-        buttonText={t('global.actions.more')}
-        categoryItemsLength={128}
-        categoryName="Favorites"
-        onButtonClick={() => {
-          console.log('Category divider')
-        }}
-      />
-      <div>Apps by use case</div>
       <ul className="GroupItemView">
         {Object.entries(group).map((v) => (
           <li key={v[0]}>
-            <p>
-              <span>{v[0]}</span>
-            </p>
-            <RawItemView items={v[1]} />
+            <CategoryDivider
+              buttonText={t('global.actions.more')}
+              categoryItemsLength={v[1].length}
+              categoryName={v[0]}
+              onButtonClick={() => {
+                console.log('Category divider')
+              }}
+            />
+            <AppCards
+              items={v[1]}
+              columns={4}
+              imageSize={'small'}
+              imageShape={'round'}
+              buttonText={t('global.actions.details')}
+              variant={'compact'}
+            />
           </li>
         ))}
       </ul>

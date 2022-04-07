@@ -63,7 +63,7 @@
       "businessApplications": {
         "title": "Meine Applications"
       },
-      "fromAppStoreSection": {
+      "appStoreSection": {
         "title": "Aus dem App Store"
       }
     },
@@ -71,6 +71,9 @@
       "stage": {
         "title": "Catena-X App Store",
         "subtitle": "A scalable & expandable <1></1> ecosystem"
+      },
+      "favoriteSection": {
+        "title": "Meine Favoriten"
       },
       "appOverviewSection": {
         "title": "App Übersicht",
@@ -215,7 +218,8 @@
     "actions": {
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
-      "more": "Mehr"
+      "more": "Mehr",
+      "details": "Details"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

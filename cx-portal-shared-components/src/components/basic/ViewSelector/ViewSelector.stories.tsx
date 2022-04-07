@@ -16,12 +16,14 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 const views: view[] = [
   {
     buttonText: 'All',
+    buttonValue: '',
     onButtonClick: () => {
       console.log('Switch view')
     },
   },
   {
     buttonText: 'Use Cases',
+    buttonValue: 'usecases',
     onButtonClick: () => {
       console.log('Switch view')
     },

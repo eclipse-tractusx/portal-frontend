@@ -63,7 +63,7 @@
       "businessApplicationsSection": {
         "title": "My Business Applications"
       },
-      "fromAppStoreSection": {
+      "appStoreSection": {
         "title": "From the App Store – Aus dem App Store"
       }
     },
@@ -71,6 +71,9 @@
       "stage": {
         "title": "Catena-X App Store",
         "subtitle": "A scalable & expandable <1></1> ecosystem"
+      },
+      "favoriteSection": {
+        "title": "My Favorit Applications"
       },
       "appOverviewSection": {
         "title": "App Overview",
