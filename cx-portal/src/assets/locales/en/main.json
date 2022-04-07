@@ -224,7 +224,8 @@
     "actions": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "more": "More"
+      "more": "More",
+      "details": "Details"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
