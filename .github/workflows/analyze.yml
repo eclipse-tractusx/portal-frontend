@@ -1,10 +1,7 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name:  Static Code Analysis
 
-on:
-  push:
-    branches:
-      - 'main'
+on: workflow_dispatch
     
 jobs:
   static_analysis:
