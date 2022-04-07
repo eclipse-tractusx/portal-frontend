@@ -7,12 +7,14 @@ import UserService from 'services/UserService'
 import { AuthProvider } from 'components/AuthProvider'
 import AuthorizingRouter from 'components/AuthorizingRouter'
 import { SharedThemeProvider } from 'cx-portal-shared-components'
+import { SharedCssBaseline } from 'cx-portal-shared-components'
 
 I18nService.init()
 
 UserService.init((user) => {
   ReactDOM.render(
     <React.StrictMode>
+      <SharedCssBaseline />
       <Provider store={store}>
         <SharedThemeProvider>
           <AuthProvider user={user}>

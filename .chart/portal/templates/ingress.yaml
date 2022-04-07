@@ -19,19 +19,19 @@ spec:
     http:
       paths:
 
-      - path: /(landing|registration)
+      - path: {{ .Values.frontendRegistration.path }}
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.name }}-frontend-registration
+            name: {{ .Values.frontendRegistration.name }}
             port:
               number: {{ .Values.frontendRegistration.portService }}
 
-      - path: /(.*)
+      - path: {{ .Values.frontendPortal.path }}
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.name }}-frontend
+            name: {{ .Values.frontendPortal.name }}
             port:
               number: {{ .Values.frontendPortal.portService }}
 

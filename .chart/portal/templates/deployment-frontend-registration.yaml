@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}-frontend-registration
+  name: {{ .Values.frontendRegistration.name }}
 spec:
   replicas: {{ .Values.frontendRegistration.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.name }}-frontend-registration
+      app: {{ .Values.frontendRegistration.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}-frontend-registration
+        app: {{ .Values.frontendRegistration.name }}
     spec:
       containers:
-      - name: {{ .Values.name }}-frontend-registration
+      - name: {{ .Values.frontendRegistration.name }}
         image: {{ .Values.frontendRegistration.image }}
         imagePullPolicy: "Always"
         ports:

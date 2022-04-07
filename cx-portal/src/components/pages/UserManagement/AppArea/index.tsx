@@ -1,4 +1,4 @@
-import { AppCards, Typography } from 'cx-portal-shared-components'
+import { Cards, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export const AppArea = () => {
@@ -21,7 +21,7 @@ export const AppArea = () => {
       <Typography variant="h3" className="section-title">
         {t('content.usermanagement.apparea.headline')}
       </Typography>
-      <AppCards
+      <Cards
         items={[item, item, item, item]} // TODO: Replace from api
         columns={4}
         buttonText="Details"

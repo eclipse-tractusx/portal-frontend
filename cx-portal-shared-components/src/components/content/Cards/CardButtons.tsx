@@ -3,17 +3,17 @@ import { Button } from '../../basic/Button'
 import { IconButton } from '../../basic/IconButton'
 import AddIcon from '@mui/icons-material/Add'
 
-export interface AppCardButtonsProps {
+export interface CardButtonsProps {
   buttonText: string
   onButtonClick?: React.MouseEventHandler
   onSecondaryButtonClick?: React.MouseEventHandler
 }
 
-export const AppCardButtons = ({
+export const CardButtons = ({
   buttonText,
   onButtonClick = () => {},
   onSecondaryButtonClick,
-}: AppCardButtonsProps) => {
+}: CardButtonsProps) => {
   return (
     <Box
       sx={{

@@ -1,26 +1,26 @@
 import { Box, useTheme } from '@mui/material'
-import { AppCard, AppCardProps } from './AppCard'
+import { Card, CardProps } from './Card'
 import uniqueId from 'lodash/uniqueId'
 
-export type AppCardItems = Omit<
-  AppCardProps,
+export type CardItems = Omit<
+  CardProps,
   'variant' | 'imageSize' | 'imageShape' | 'buttonText'
 >
 
-interface AppCardsProps {
-  items: AppCardItems[]
-  buttonText: AppCardProps['buttonText']
-  variant?: AppCardProps['variant']
-  expandOnHover?: AppCardProps['expandOnHover']
-  filledBackground?: AppCardProps['filledBackground']
-  imageSize?: AppCardProps['imageSize']
-  imageShape?: AppCardProps['imageShape']
+interface CardsProps {
+  items: CardItems[]
+  buttonText: CardProps['buttonText']
+  variant?: CardProps['variant']
+  expandOnHover?: CardProps['expandOnHover']
+  filledBackground?: CardProps['filledBackground']
+  imageSize?: CardProps['imageSize']
+  imageShape?: CardProps['imageShape']
   columns?: number
-  readMoreText?: AppCardProps['readMoreText']
-  readMoreLink?: AppCardProps['readMoreLink']
+  readMoreText?: CardProps['readMoreText']
+  readMoreLink?: CardProps['readMoreLink']
 }
 
-export const AppCards = ({
+export const Cards = ({
   items,
   buttonText,
   readMoreText,
@@ -31,7 +31,7 @@ export const AppCards = ({
   columns = 6,
   expandOnHover,
   filledBackground,
-}: AppCardsProps) => {
+}: CardsProps) => {
   const settings = {
     variant,
     buttonText,
@@ -53,7 +53,7 @@ export const AppCards = ({
       }}
     >
       {items?.map((item) => (
-        <AppCard {...settings} {...item} key={uniqueId('AppCards')} />
+        <Card {...settings} {...item} key={uniqueId('Cards')} />
       ))}
     </Box>
   )
