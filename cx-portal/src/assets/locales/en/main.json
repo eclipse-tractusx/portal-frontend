@@ -80,6 +80,12 @@
         "viewCategories": {
           "all": "All",
           "useCases": "Use Cases"
+        },
+        "categories": {
+          "businesspartnerdatamanagement": "Business Partner Data Management",
+          "circulareconomy": "Circular Economy",
+          "quality&demandmanagement": "Demand & Quality Management",
+          "traceability": "Traceability"
         }
       }
     },

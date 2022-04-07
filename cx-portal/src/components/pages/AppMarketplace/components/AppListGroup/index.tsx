@@ -25,7 +25,10 @@ export const AppListGroup = ({
       <CategoryDivider
         buttonText={t('global.actions.more')}
         categoryItemsLength={items.length}
-        categoryName={category}
+        categoryName={t(
+          'content.appstore.appOverviewSection.categories.' +
+            category.replace(/\s+/g, '').toLowerCase()
+        )}
         disabled={itemsToShow.length >= items.length}
         onButtonClick={increaseItemsShown}
       />

@@ -80,6 +80,12 @@
         "viewCategories": {
           "all": "Alle",
           "useCases": "Anwendungsbereiche"
+        },
+        "categories": {
+          "businesspartnerdatamanagement": "Geschäftspartner Datenmanagement",
+          "circulareconomy": "Kreislaufwirtschaft",
+          "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
+          "traceability": "Rückverfolgbarkeit"
         }
       }
     },
