@@ -2,11 +2,11 @@ import { Box, useTheme } from '@mui/material'
 import { Typography } from '../../basic/Typography'
 import StarRateIcon from '@mui/icons-material/StarRate'
 
-export interface AppCardRatingProps {
+export interface CardRatingProps {
   rating: number
 }
 
-export const AppCardRating = ({ rating }: AppCardRatingProps) => {
+export const CardRating = ({ rating }: CardRatingProps) => {
   const { palette } = useTheme()
 
   return (

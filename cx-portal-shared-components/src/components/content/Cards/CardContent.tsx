@@ -1,21 +1,21 @@
 import { Box } from '@mui/material'
 import { Typography } from '../../basic/Typography'
-import { AppCardRating, AppCardRatingProps } from './AppCardRating'
+import { CardRating, CardRatingProps } from './CardRating'
 
-export interface AppCardContentProps extends Partial<AppCardRatingProps> {
+export interface CardContentProps extends Partial<CardRatingProps> {
   title: string
   subtitle?: string
   price?: string
   description?: string
 }
 
-export const AppCardContent = ({
+export const CardContent = ({
   title,
   subtitle,
   rating,
   price,
   description,
-}: AppCardContentProps) => {
+}: CardContentProps) => {
   return (
     <Box>
       {subtitle && (
@@ -35,7 +35,7 @@ export const AppCardContent = ({
             marginTop: 1,
           }}
         >
-          <AppCardRating rating={rating} />
+          <CardRating rating={rating} />
           <Typography variant="caption3">{price}</Typography>
         </Box>
       )}

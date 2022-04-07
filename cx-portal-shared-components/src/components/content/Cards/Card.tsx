@@ -1,15 +1,15 @@
 import { Box, Link, useTheme } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
-import { AppCardButtons, AppCardButtonsProps } from './AppCardButtons'
-import { AppCardContent, AppCardContentProps } from './AppCardContent'
-import { AppCardImage, AppCardImageProps } from './AppCardImage'
+import { CardButtons, CardButtonsProps } from './CardButtons'
+import { CardContent, CardContentProps } from './CardContent'
+import { CardImage, CardImageProps } from './CardImage'
 
 type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only'
 
-export interface AppCardProps
-  extends AppCardContentProps,
-    AppCardButtonsProps,
-    AppCardImageProps {
+export interface CardProps
+  extends CardContentProps,
+    CardButtonsProps,
+    CardImageProps {
   variant?: Exclude<Variants, 'preview'>
   filledBackground?: boolean
   expandOnHover?: boolean
@@ -17,7 +17,7 @@ export interface AppCardProps
   readMoreLink?: string
 }
 
-export const AppCard = ({
+export const Card = ({
   variant: variantProp = 'minimal',
   expandOnHover = false,
   filledBackground,
@@ -34,13 +34,13 @@ export const AppCard = ({
   onSecondaryButtonClick,
   readMoreText,
   readMoreLink,
-}: AppCardProps) => {
+}: CardProps) => {
   const { shape, shadows, spacing } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
   const [content, setContent] = useState({
     title,
     subtitle,
-  } as AppCardContentProps)
+  } as CardContentProps)
   const boxRef = useRef<HTMLDivElement>(null)
   const [showButton, setShowButton] = useState(false)
   const [boxHeight, setBoxHeight] = useState<number | undefined>()
@@ -116,9 +116,9 @@ export const AppCard = ({
             },
           }),
         }}
-        className="app-card"
+        className="card"
       >
-        <AppCardImage
+        <CardImage
           image={image}
           imageSize={imageSize}
           imageShape={imageShape}
@@ -132,9 +132,9 @@ export const AppCard = ({
             }),
           }}
         >
-          <AppCardContent {...content} />
+          <CardContent {...content} />
           {showButton && (
-            <AppCardButtons
+            <CardButtons
               buttonText={buttonText}
               onButtonClick={onButtonClick}
               onSecondaryButtonClick={onSecondaryButtonClick}
