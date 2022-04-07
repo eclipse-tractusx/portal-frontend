@@ -77,7 +77,7 @@
       },
       "appOverviewSection": {
         "title": "App Übersicht",
-        "viewCategories": {
+        "categoryViews": {
           "all": "Alle",
           "useCases": "Anwendungsbereiche"
         },
@@ -177,7 +177,15 @@
       "message": "Fügen Sie hier Inhalte hinzu"
     },
     "imprint": {
-      "message": "Fügen Sie hier Inhalte hinzu"
+      "directors": "Vertretungsberechtigter Vorstand",
+      "ceo": "Vorstandsvorsitzender",
+      "deputyCeo": "Stellvertretender Vorstandsvorsitzender",
+      "treasurer": "Schatzmeister",
+      "address": "Anschrift",
+      "contact&support": "Kontakt & Support",
+      "contact&supportDesc": "Auf unserer Supportseite finden Sie Antworten zu vielen Fragen. Sollte Ihre Frage nicht beantwortet werden, verwenden Sie bitte unsere Kontaktformular. Alternativ können Sie uns auch per E-Mail an info@catena-x.net kontaktieren.",
+      "privacy": "Datenschutz",
+      "privacyDesc": "Für Fragen zum Thema Datenschutz und der Information, welche Daten von Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:"
     },
     "privacy": {
       "message": "Fügen Sie hier Inhalte hinzu"

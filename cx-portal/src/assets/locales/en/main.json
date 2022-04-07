@@ -77,7 +77,7 @@
       },
       "appOverviewSection": {
         "title": "App Overview",
-        "viewCategories": {
+        "categoryViews": {
           "all": "All",
           "useCases": "Use Cases"
         },
@@ -177,7 +177,15 @@
       "message": "add content here"
     },
     "imprint": {
-      "message": "add content here"
+      "directors": "Board of Directors",
+      "ceo": "CEO",
+      "deputyCeo": "Deputy CEO",
+      "treasurer": "Treasurer",
+      "address": "Address",
+      "contact&support": "Contact & Support",
+      "contact&supportDesc": "You can find answers to many questions on our support page. If your question is not answered, please use our contact form. Alternatively, you can also contact us by email at info@catena-x.net.",
+      "privacy": "Privacy",
+      "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
     },
     "privacy": {
       "message": "add content here"

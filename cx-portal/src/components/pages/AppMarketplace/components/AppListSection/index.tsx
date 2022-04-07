@@ -23,15 +23,15 @@ export default function AppListSection() {
     setGroup(e.currentTarget.value)
   }
 
-  const viewCategories = [
+  const categoryViews = [
     {
-      buttonText: t('content.appstore.appOverviewSection.viewCategories.all'),
+      buttonText: t('content.appstore.appOverviewSection.categoryViews.all'),
       buttonValue: '',
       onButtonClick: setView,
     },
     {
       buttonText: t(
-        'content.appstore.appOverviewSection.viewCategories.useCases'
+        'content.appstore.appOverviewSection.categoryViews.useCases'
       ),
       buttonValue: 'useCases',
       onButtonClick: setView,
@@ -55,7 +55,7 @@ export default function AppListSection() {
           {t('content.appstore.appOverviewSection.title')}
         </Typography>
 
-        <ViewSelector activeView={group} views={viewCategories} />
+        <ViewSelector activeView={group} views={categoryViews} />
 
         <Box sx={{ textAlign: 'center' }}>
           <SearchInput
