@@ -15,7 +15,7 @@
     "release": "yarn version --patch && git push --tags",
     "lint": "eslint cx-portal cx-portal-shared-components",
     "pretty": "prettier --write \"./cx-portal*/src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
-    "test:ci": "cd cx-portal && yarn test:ci",
+    "test:ci": "cd cx-portal-shared-components && yarn test:ci && cd ../cx-portal && yarn test:ci",
     "build:lib": "cd cx-portal-shared-components && yarn build:lib",
     "build:storybook": "cd cx-portal-shared-components && yarn build:storybook",
     "start:storybook": "cd cx-portal-shared-components && yarn start",
