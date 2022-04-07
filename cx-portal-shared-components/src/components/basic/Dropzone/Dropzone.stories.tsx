@@ -21,15 +21,7 @@ Dropzone.args = {
   title: 'Drag & drop your files here',
   subTitle: 'or browse files on your computer.',
   fileTypes: 'image/*,audio/*,video/*',
-  maxFilesCount: 3,
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
-  onChangeStatus: ({ meta }: { [name: string]: any }, status: string) => {
-    if (status === 'headers_received') {
-      console.log(`${meta.name} uploaded`)
-    } else if (status === 'aborted') {
-      console.log(`${meta.name}, upload failed...`)
-    }
-  },
   statusText: {
     rejected_file_type: 'new rejected_file_type',
     rejected_max_files: 'new rejected_max_files',
