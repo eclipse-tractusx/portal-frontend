@@ -1,5 +1,5 @@
 import './GroupItemView.scss'
-import { AppCards } from 'cx-portal-shared-components'
+import { Cards } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { CategoryDivider } from 'cx-portal-shared-components'
 import { multiMapBy } from 'utils/multiMapBy'
@@ -18,7 +18,7 @@ export const GroupItemView = ({
     // return <RawItemView items={items} />
     return (
       <Box sx={{ marginTop: '52px' }}>
-        <AppCards
+        <Cards
           items={items}
           columns={4}
           imageSize={'small'}
@@ -45,7 +45,7 @@ export const GroupItemView = ({
                 console.log('Category divider')
               }}
             />
-            <AppCards
+            <Cards
               items={v[1]}
               columns={4}
               imageSize={'small'}
