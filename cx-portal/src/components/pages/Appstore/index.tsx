@@ -2,11 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useSearchParams } from 'react-router-dom'
 import { api } from 'state/api'
-import {
-  AppCardItems,
-  AppCards,
-  SearchInput,
-} from 'cx-portal-shared-components'
+import { CardItems, Cards, SearchInput } from 'cx-portal-shared-components'
 import { RootState } from 'state/store'
 
 const Appstore = () => {
@@ -30,14 +26,14 @@ const Appstore = () => {
         }
       />
       <nav>
-        <AppCards
+        <Cards
           items={apps
             .filter(
-              (app: AppCardItems) =>
+              (app: CardItems) =>
                 filter.test(app.title) || filter.test(app.subtitle || '')
             )
-            .map((app: AppCardItems) => {
-              const item: AppCardItems = { ...app }
+            .map((app: CardItems) => {
+              const item: CardItems = { ...app }
               item.image = {
                 src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
                 alt: 'Catena-X AppCard',

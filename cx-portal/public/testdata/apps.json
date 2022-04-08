@@ -3,11 +3,11 @@
     "id": "876de3be-3e96-4897-a8fa-7c26cbbcf3b8",
     "title": "Part Chain",
     "subtitle": "Catena-X",
-    "description": "CX App Part Chain Details",
+    "shortDescription": "CX App Part Chain Details",
     "price": "free of charge",
     "rating": 4.1,
     "useCases": [ "Traceability" ],
-    "leadPicture": ""
+    "leadPictureURI": "/jdsfkljlds/jksdfjdls.jpg"
   },
   {
     "id": "c7b217c5-1002-46bc-bcd2-57df0e9e46d6",
@@ -59,6 +59,16 @@
     "useCases": [ "Quality & Demand Management" ],
     "leadPicture": ""
   },
+  {
+    "id": "876de3be-3e96-4897-a8fa-7c26cbbcf300",
+    "title": "smart MOM",
+    "subtitle": "German Edge Cloud GmbH & Co. KG",
+    "description": "Smart MOM includes various services and enables a holistic production management.",
+    "price": "free of charge",
+    "rating": 4.1,
+    "useCases": [ "Traceability" ],
+    "leadPicture": ""
+   },
   {
     "id": "1a4ac107-2b6e-4190-89df-4b8442b12f05",
     "title": "MultiApp",

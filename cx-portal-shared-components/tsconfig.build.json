@@ -21,7 +21,7 @@
     "declaration": true,
     "declarationDir": "types",
     "emitDeclarationOnly": true,
-    "types": ["jest", "node"]
+    "types": ["node", "jest"]
   },
   "include": ["src"],
   "exclude": [

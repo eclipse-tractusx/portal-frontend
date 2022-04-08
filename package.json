@@ -22,6 +22,7 @@
     "build:portal": "cd cx-portal && yarn build",
     "start:portal": "cd cx-portal && yarn start",
     "build:licenses": "find node_modules -name package.json -exec jq -r '.|\"\\(.name),\\(.version),\\(.license)\"' {} \\; | sort | uniq > cx-portal/public/third-party-licenses.txt",
+    "build:sources": "zip -r portal-frontend.zip cx-portal*/src package.json **/package.json yarn.lock -x '*.stories.*' -x '*.test.*' -x '*.ttf' -x '*.svg' -x '*.png'",
     "build:docker": "if [ -d \"./cx-portal/build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
     "build:docker:full": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.full --build-arg \"http_proxy=${http_proxy}\" --build-arg \"https_proxy=${https_proxy}\" --build-arg \"no_proxy=${no_proxy}\" .",
     "build:docker:prebuilt": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
