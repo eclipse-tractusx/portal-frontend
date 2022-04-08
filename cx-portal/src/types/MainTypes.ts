@@ -32,6 +32,7 @@ export enum PAGES {
   DEVELOPER = 'developer',
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
+  REGISTRATION_REQUESTS = 'registration-requests',
   LOGOUT = 'logout',
 }
 

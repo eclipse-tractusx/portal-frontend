@@ -26,6 +26,7 @@
     "terms": "Terms of Service",
     "cookiepolicy": "Cookie Policy",
     "thirdpartylicenses": "Third Party Licenses",
+    "registration-requests": "Registration Requests",
     "logout": "Sign Out",
     "notfound": "Page not found"
   },
@@ -42,6 +43,7 @@
           "state": "State"
         },
         "headertitle": "User Registration Requests",
+        "pagetitle": "Requests Overview",
         "tabletitle": "Registration requests",
         "pending": "pending",
         "buttonconfirm": "confirm",

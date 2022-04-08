@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { GroupItemView } from 'components/shared/basic/GroupItemView'
@@ -16,7 +17,7 @@ export default function AppListSection() {
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchApps())
+      dispatch(fetchApps(token))
     }
   }, [token, dispatch])
 

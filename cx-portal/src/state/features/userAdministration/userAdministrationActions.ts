@@ -1,19 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { store } from 'state/store'
 import { api } from 'state/api'
 import RegistrationRequests from 'utils/mockDataSet/registrationRequests.json'
 import { RegistrationRequestAPIResponse } from 'types/userAdministration/UserAdministrationTypes'
 
+// Token needs to pass from outside to avoid store object circular dependency issue at unit test
+// https://github.com/reduxjs/redux-toolkit/issues/1609#issuecomment-941126991
 const fetchTenantUsers = createAsyncThunk(
   'userAdministration/fetchTenantUsers',
-  async () => {
+  async ({ token, tenant }: { token: string; tenant: string }) => {
     try {
       // Call axios instance to get values
-      if (store.getState().user?.token) {
-        const tenant = store.getState().user?.tenant
-        const userAdministrationApi = api.UserAdministrationApi.getInstance(
-          store.getState().user?.token
-        )
+      if (token) {
+        const userAdministrationApi =
+          api.UserAdministrationApi.getInstance(token)
         return await userAdministrationApi.getTenantUsers(tenant)
       }
     } catch (error: unknown) {
@@ -25,10 +24,10 @@ const fetchTenantUsers = createAsyncThunk(
 
 const fetchRegistrationRequests = createAsyncThunk(
   'userAdministration/fetchRegistrationRequests',
-  async () => {
+  async (token: string) => {
     try {
       // Call axios instance to get values
-      if (store.getState().user?.token) {
+      if (token) {
         // Currently implementation uses mock data
         // This action will change when API endpoint get ready
         return RegistrationRequests as unknown as Array<RegistrationRequestAPIResponse>
