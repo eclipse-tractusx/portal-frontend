@@ -13,7 +13,7 @@ export default function AppMarketplace() {
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchApps())
+      dispatch(fetchApps(token))
     }
   }, [token, dispatch])
 
