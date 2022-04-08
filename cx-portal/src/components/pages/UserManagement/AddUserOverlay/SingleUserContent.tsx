@@ -1,9 +1,26 @@
 import { useTranslation } from 'react-i18next'
 import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
+import { useFormValidation } from 'hooks/useFormValidation'
 
 export const SingleUserContent = () => {
   const { t } = useTranslation()
+  const { handleChange, errors } = useFormValidation({
+    firstname: {
+      required: true,
+      pattern: /^.([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
+    },
+    lastname: {
+      required: true,
+      pattern: /^.([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
+    },
+    email: {
+      required: true,
+      pattern:
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    },
+  })
+
   const userInputs = [
     {
       key: 'firstname',
@@ -33,6 +50,8 @@ export const SingleUserContent = () => {
           label={label}
           placeholder={placeholder}
           helperText={helperText}
+          error={errors[key]}
+          onChange={handleChange(key)}
           key={key}
         />
       ))}
