@@ -1,10 +1,7 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name:  Static Code Analysis
 
-on:
-  push:
-    branches:
-      - 'main'
+on: workflow_dispatch
     
 jobs:
   static_analysis:
@@ -25,4 +22,4 @@ jobs:
           createprofile: false
           filepath: 'portal-frontend.zip'
           vid: '${{ secrets.VERACODE_API_ID }}'
-          vkey: '${{ secrets.VERACODE_API_KEY }}'
+          vkey: '${{ secrets.VERACODE_API_KEY }}' 

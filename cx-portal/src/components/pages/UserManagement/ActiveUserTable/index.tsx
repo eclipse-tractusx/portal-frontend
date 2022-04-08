@@ -11,6 +11,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/userAdministration/userAdministrationActions'
 import { selectorUserAdministration } from 'state/features/userAdministration/userAdministrationSlice'
 import { TenantUser } from 'types/userAdministration/UserAdministrationTypes'
+import { selectorUser } from 'state/features/user/userSlice'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -21,6 +22,7 @@ export const ActiveUserTable = ({
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { token, tenant } = useSelector(selectorUser)
   const { tenantUsers } = useSelector(selectorUserAdministration)
 
   const onUserDetailsClick = (userId: string) => {
@@ -28,8 +30,8 @@ export const ActiveUserTable = ({
   }
 
   useEffect(() => {
-    dispatch(fetchTenantUsers())
-  }, [dispatch])
+    dispatch(fetchTenantUsers({ token, tenant }))
+  }, [dispatch, token, tenant])
 
   return (
     <section>
@@ -74,7 +76,6 @@ export const ActiveUserTable = ({
         ]}
         rows={tenantUsers}
         getRowId={(row: { [key: string]: string }) => row.userId}
-        numberOfColumns={tenantUsers.length}
         hideFooter
       />
     </section>

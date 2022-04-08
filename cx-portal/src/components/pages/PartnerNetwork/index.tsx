@@ -27,7 +27,7 @@ const PartnerNetwork = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchBusinessPartners({ size: 100 }))
+      dispatch(fetchBusinessPartners({ params: { size: 100 }, token }))
     }
   }, [token, dispatch])
 
@@ -44,8 +44,15 @@ const PartnerNetwork = () => {
   const onSearchClick = () => {
     // There is two different endpoint for BPN search and for the field search
     // Detect which api call to make a request
-    if (bpnValue !== '') dispatch(getOneBusinessPartner(bpnValue))
-    else dispatch(fetchBusinessPartners({ size: 100, name: companyName }))
+    if (bpnValue !== '')
+      dispatch(getOneBusinessPartner({ bpn: bpnValue, token }))
+    else
+      dispatch(
+        fetchBusinessPartners({
+          params: { size: 100, name: companyName },
+          token,
+        })
+      )
 
     // Reset state for next search
     setBpnValue('')

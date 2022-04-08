@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   SearchInput,
@@ -40,7 +41,7 @@ export default function AppListSection() {
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchApps())
+      dispatch(fetchApps(token))
     }
   }, [token, dispatch])
 

@@ -26,7 +26,7 @@ export const RegistrationRequestsTableColumns = (
     {
       field: 'changedDate',
       headerName: `${t('content.admin.registration-requests.columns.date')}`,
-      flex: 2,
+      flex: 1,
     },
     {
       field: 'companyInfo',
@@ -37,11 +37,7 @@ export const RegistrationRequestsTableColumns = (
       renderCell: (params: GridRenderCellParams<CompanyApplicationInfo>) => (
         <div>
           <p style={{ margin: '3px 0' }}>{params?.value?.companyName}</p>
-          <p style={{ margin: '3px 0' }}>
-            <a href={`mailto:${params?.value?.userEmail}`} rel="noreferrer">
-              {params?.value?.userEmail}
-            </a>
-          </p>
+          <p style={{ margin: '3px 0' }}>{params?.value?.userEmail}</p>
           <span>{params?.value?.bpn}</span>
         </div>
       ),
