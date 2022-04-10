@@ -62,7 +62,7 @@
   {
     "id": "876de3be-3e96-4897-a8fa-7c26cbbcf300",
     "title": "smart MOM",
-    "subtitle": "German Edge Cloud GmbH & Co. KG",
+    "subtitle": "German Edge Cloud",
     "description": "Smart MOM includes various services and enables a holistic production management.",
     "price": "free of charge",
     "rating": 4.1,
@@ -75,7 +75,6 @@
     "subtitle": "Catena-X",
     "description": "Works with multiple use cases",
     "price": "free of charge",
-    "rating": 4.1,
     "useCases": [ "Traceability", "Quality & Demand Management" ],
     "leadPicture": ""
   }
