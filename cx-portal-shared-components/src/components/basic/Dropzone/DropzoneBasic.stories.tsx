@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react'
 
-import { Dropzone as Component } from '.'
+import { DropzoneBasic as Component } from '.'
 
 export default {
   title: 'Dropzone',
@@ -18,9 +18,9 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const Dropzone = Template.bind({})
 Dropzone.args = {
-  title: 'Drag & drop your files here',
-  subTitle: 'or browse files on your computer.',
-  fileTypes: 'image/*,audio/*,video/*',
+  inputContentTitle: 'Drag & drop your files here',
+  inputContentSubTitle: 'or browse files on your computer.',
+  accept: 'image/*,audio/*,video/*',
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
   statusText: {
     rejected_file_type: 'new rejected_file_type',

@@ -1,15 +1,14 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import { Dropzone as Drop } from 'cx-portal-shared-components'
+import { DropzoneBasic } from 'cx-portal-shared-components'
 
 export const MultipleUserContent = () => {
   const { t } = useTranslation()
   const dropzoneProps = {
-    title: t('content.addUser.userUpload.title'),
-    subTitle: t('content.addUser.userUpload.subtitle'),
-    fileTypes: 'image/*,audio/*,video/*',
-    maxFilesCount: 3,
+    inputContentTitle: t('content.addUser.userUpload.title'),
+    inputContentSubTitle: t('content.addUser.userUpload.subtitle'),
+    accept: 'image/*,audio/*,video/*',
     getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
     onChangeStatus: ({ meta }: { [name: string]: any }, status: string) => {
       if (status === 'headers_received') {
@@ -79,14 +78,12 @@ export const MultipleUserContent = () => {
           by file
         </Trans>
       </Typography>
-      <Drop
-        title={dropzoneProps.title}
-        subTitle={dropzoneProps.subTitle}
-        fileTypes={'image/*,audio/*,video/*'}
-        maxFilesCount={3}
+      <DropzoneBasic
+        inputContentTitle={dropzoneProps.inputContentTitle}
+        inputContentSubTitle={dropzoneProps.inputContentSubTitle}
+        accept={dropzoneProps.accept}
         statusText={dropzoneProps.statusText}
         errorStatus={dropzoneProps.errorStatus}
-        onChangeStatus={dropzoneProps.onChangeStatus}
         getUploadParams={dropzoneProps.getUploadParams}
       />
     </Box>

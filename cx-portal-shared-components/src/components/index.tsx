@@ -19,7 +19,7 @@ export { Table, StatusTag } from './basic/Table'
 export { Tabs } from './basic/Tabs/Tabs'
 export { Typography } from './basic/Typography'
 export { UserAvatar } from './basic/UserAvatar'
-export { Dropzone } from './basic/Dropzone'
+export { DropzoneBasic } from './basic/Dropzone'
 export { Chip } from './basic/Chip'
 
 export { Cards } from './content/Cards'
