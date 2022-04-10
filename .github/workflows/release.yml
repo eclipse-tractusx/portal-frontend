@@ -25,7 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: v${{ steps.git-tag.outputs.git-version }}
+          ref: ${{ steps.git-tag.outputs.git-version }}
 
       - name: Get npm version
         id: npm-tag
