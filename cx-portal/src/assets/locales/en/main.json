@@ -26,6 +26,7 @@
     "terms": "Terms of Service",
     "cookiepolicy": "Cookie Policy",
     "thirdpartylicenses": "Third Party Licenses",
+    "registration-requests": "Registration Requests",
     "logout": "Sign Out",
     "notfound": "Page not found"
   },
@@ -42,6 +43,7 @@
           "state": "State"
         },
         "headertitle": "User Registration Requests",
+        "pagetitle": "Requests Overview",
         "tabletitle": "Registration requests",
         "pending": "pending",
         "buttonconfirm": "confirm",
@@ -73,10 +75,20 @@
         "subtitle": "A scalable & expandable <1></1> ecosystem"
       },
       "favoriteSection": {
-        "title": "Meine Favoriten"
+        "title": "My Favorit Applications"
       },
-      "appListSection": {
-        "title": "App Übersicht"
+      "appOverviewSection": {
+        "title": "App Overview",
+        "categoryViews": {
+          "all": "All",
+          "useCases": "Use Cases"
+        },
+        "categories": {
+          "businesspartnerdatamanagement": "Business Partner Data Management",
+          "circulareconomy": "Circular Economy",
+          "quality&demandmanagement": "Demand & Quality Management",
+          "traceability": "Traceability"
+        }
       }
     },
     "semantichub": {
@@ -221,7 +233,9 @@
     },
     "actions": {
       "cancel": "Cancel",
-      "confirm": "Confirm"
+      "confirm": "Confirm",
+      "more": "More",
+      "details": "Details"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
