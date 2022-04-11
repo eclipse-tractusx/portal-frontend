@@ -50,26 +50,22 @@
   padding-right: 0;
   margin-bottom: 430px;
   font-weight: 500;
-  .cookie-section {
-    height: 78vh;
-    max-height: 890px;
-    margin-top: -84px;
-  }
-  .cookie-content {
-    position: relative;
-    padding: 150px 100px;
-    max-width: 100%;
-    h3 {
-      margin-top: -87px;
-      margin-left: -100px;
-      height: 140px;
-      width: 100vw !important;
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      padding-left: 100px;
-      background-image: linear-gradient(#b3becc, #dee5ee);
-    }
+  height: 78vh;
+  max-height: 890px;
+  margin-top: -84px;
+  position: relative;
+  padding: 150px 100px;
+  max-width: 100%;
+  h3 {
+    margin-top: -66px;
+    margin-left: -100px;
+    height: 140px;
+    width: 100vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 100px;
+    background-image: linear-gradient(#b3becc, #dee5ee);
   }
 
   .cookie-description {
