@@ -1,4 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid'
+import { IconButton } from 'cx-portal-shared-components'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksTableColumns = (
@@ -41,6 +43,21 @@ export const PartnerNetworksTableColumns = (
       field: 'taxId',
       headerName: t('content.partnernetwork.columns.taxid'),
       flex: 1,
+    },
+    {
+      field: '',
+      headerName: `Detail`,
+      flex: 1,
+      align: 'center',
+      renderCell: () => (
+        <IconButton
+          color="secondary"
+          size="small"
+          style={{ alignSelf: 'center' }}
+        >
+          <ArrowForwardIcon />
+        </IconButton>
+      ),
     },
   ]
 }

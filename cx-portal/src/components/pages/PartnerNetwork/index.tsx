@@ -69,6 +69,16 @@ const PartnerNetwork = () => {
           className="object-fit x-left-40"
         />
       </div>
+
+      <div className="page-title-container">
+        <Typography
+          sx={{ fontFamily: 'LibreFranklin-Light' }}
+          variant="h3"
+          className="page-title"
+        >
+          Business Partner
+        </Typography>
+      </div>
       <div className="advance-search-fields-container">
         <div className="identifier-fields-container">
           <Input
