@@ -1,0 +1,87 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: release
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Get tag name
+        id: git-tag
+        run: echo ::set-output name=git-version::${GITHUB_REF/refs\/tags\//}
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.git-tag.outputs.git-version }}
+
+      - name: Get npm version
+        id: npm-tag
+        uses: martinbeentjes/npm-get-version-action@master
+
+      - name: Output versions
+        run: |
+          echo git ${{ steps.git-tag.outputs.git-version }}
+          echo npm ${{ steps.npm-tag.outputs.current-version }}
+
+      - name: Versions not matching
+        if: steps.git-tag.outputs.git-version != steps.npm-tag.outputs.current-version
+        run: |
+          echo git and npm versions not equal - refusing to build release
+          exit 1
+
+      - name: Versions match
+        run: |
+          echo versions equal - building release ${{ steps.git-tag.outputs.git-version }}
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Linter Checks
+        run: yarn lint
+
+      - name: Build Library and Portal
+        run: yarn build
+
+      - name: Unit Tests
+        run: yarn test:ci
+
+      - name: Publish Shared Components to npm
+        working-directory: ./cx-portal-shared-components
+        run: echo yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: .conf/Dockerfile.prebuilt
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.git-tag.outputs.git-version }}
+          labels: ${{ steps.meta.outputs.labels }}
