@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Layout from './components/Layout'
 import Preview from './components/Preview'
 import Input from './components/Input'
@@ -501,39 +500,6 @@ DropzoneBasic.defaultProps = {
     headers_received: 'new headers_received',
     done: 'new done',
   },
-}
-
-// @ts-ignore
-DropzoneBasic.propTypes = {
-  onChangeStatus: PropTypes.func,
-  getUploadParams: PropTypes.func,
-
-  getFilesFromEvent: PropTypes.func,
-  getDataTransferItemsFromEvent: PropTypes.func,
-
-  accept: PropTypes.string,
-  multiple: PropTypes.bool,
-  minSizeBytes: PropTypes.number.isRequired,
-  maxSizeBytes: PropTypes.number.isRequired,
-  maxFiles: PropTypes.number.isRequired,
-
-  validate: PropTypes.func,
-
-  autoUpload: PropTypes.bool,
-  timeout: PropTypes.number,
-
-  initialFiles: PropTypes.arrayOf(PropTypes.any),
-
-  /* component customization */
-  disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-
-  classNames: PropTypes.object.isRequired,
-  styles: PropTypes.object.isRequired,
-  addClassNames: PropTypes.object.isRequired,
-
-  /* component injection */
-  InputComponent: PropTypes.func,
-  PreviewComponent: PropTypes.func,
 }
 
 export {

@@ -55,8 +55,7 @@ class Input extends React.PureComponent<IInputProps> {
             const target = e.target
             const chosenFiles = await getFilesFromEvent(e)
             onFiles(chosenFiles)
-            //@ts-ignore
-            target.value = null
+            target.value = ''
           }}
         />
       </Box>
