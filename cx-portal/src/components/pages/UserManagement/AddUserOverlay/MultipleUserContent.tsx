@@ -6,9 +6,9 @@ import { Dropzone } from 'cx-portal-shared-components'
 export const MultipleUserContent = () => {
   const { t } = useTranslation()
   const dropzoneProps = {
-    inputContentTitle: t('content.addUser.userUpload.title'),
-    inputContentSubTitle: t('content.addUser.userUpload.subtitle'),
-    accept: 'image/*,audio/*,video/*',
+    title: t('content.addUser.userUpload.title'),
+    subtitle: t('content.addUser.userUpload.subtitle'),
+    accept: '*', // TODO: add the correct info, as soon as it is known
     getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
     onChangeStatus: ({ meta }: { [name: string]: any }, status: string) => {
       if (status === 'headers_received') {
@@ -79,14 +79,15 @@ export const MultipleUserContent = () => {
         </Trans>
       </Typography>
       <Dropzone
-        inputContentTitle={dropzoneProps.inputContentTitle}
-        inputContentSubTitle={dropzoneProps.inputContentSubTitle}
+        inputContentTitle={dropzoneProps.title}
+        inputContentSubTitle={dropzoneProps.subtitle}
         accept={dropzoneProps.accept}
         statusText={dropzoneProps.statusText}
         errorStatus={dropzoneProps.errorStatus}
         getUploadParams={dropzoneProps.getUploadParams}
         onChangeStatus={dropzoneProps.onChangeStatus}
         multiple={false}
+        maxFiles={1}
       />
     </Box>
   )
