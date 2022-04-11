@@ -3,47 +3,51 @@ import debounce from 'lodash.debounce'
 
 type Errors = Record<string, boolean>
 
-interface Validation {
+type Valids = Record<string, boolean>
+
+interface FormField {
+  key: string
   pattern?: RegExp
-  required?: boolean
 }
 
-type FormValidationProps = Record<string, Validation>
+export const useFormValidation = (formFields: FormField[]) => {
+  const validate = (
+    field: FormField | undefined,
+    value: string = ''
+  ): boolean => {
+    const pattern = field?.pattern
+    return !pattern || pattern.test(value)
+  }
 
-const getRequiredKeys = (validation: FormValidationProps): string[] => {
-  return Object.entries(validation).reduce((values, [key, { required }]) => {
-    return [...values, ...(required ? [key] : [])]
-  }, [] as string[])
-}
-
-export const useFormValidation = (validation: FormValidationProps) => {
   const [errors, setErrors] = useState<Errors>({})
-  const [required, setRequired] = useState<string[]>(
-    getRequiredKeys(validation)
+  const [valids, setValids] = useState<Valids>(
+    formFields.reduce((values, field) => {
+      return {
+        ...values,
+        [field.key]: validate(field),
+      }
+    }, {} as Valids)
   )
 
   const handleChange = (key: string) => {
     return debounce((e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target
-      const isRequired = validation[key]?.required
-      const pattern = validation[key]?.pattern
+      const field = formFields.find((item) => item.key === key)
+      const isValid = validate(field, value)
 
-      setRequired(required.filter((value) => value !== key))
+      setValids({
+        ...valids,
+        [key]: isValid,
+      })
 
-      if (isRequired && !value) {
-        setRequired([...required, key])
-      }
       setErrors({
         ...errors,
-        [key]: Boolean(
-          (isRequired && !value) || (pattern && !pattern.test(value))
-        ),
+        [key]: !isValid,
       })
     }, 300)
   }
 
-  const valid =
-    !required.length && Object.values(errors).every((hasError) => !hasError)
+  const valid = Object.values(valids).every((value) => value)
 
-  return { handleChange, errors, required, valid }
+  return { handleChange, errors, valid }
 }

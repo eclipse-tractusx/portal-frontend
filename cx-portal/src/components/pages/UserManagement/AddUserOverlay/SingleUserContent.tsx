@@ -5,21 +5,6 @@ import { useFormValidation } from 'hooks/useFormValidation'
 
 export const SingleUserContent = () => {
   const { t } = useTranslation()
-  const { handleChange, errors } = useFormValidation({
-    firstname: {
-      required: true,
-      pattern: /^.([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
-    },
-    lastname: {
-      required: true,
-      pattern: /^.([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
-    },
-    email: {
-      required: true,
-      pattern:
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    },
-  })
 
   const userInputs = [
     {
@@ -27,20 +12,26 @@ export const SingleUserContent = () => {
       label: t('global.field.first'),
       placeholder: t('global.field.first'),
       helperText: '',
+      pattern: /^([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
     },
     {
       key: 'lastname',
       label: t('global.field.last'),
       placeholder: t('global.field.last'),
       helperText: '',
+      pattern: /^([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
     },
     {
       key: 'email',
       label: t('global.field.email'),
       placeholder: t('global.field.email'),
       helperText: '',
+      pattern:
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     },
   ]
+
+  const { handleChange, errors } = useFormValidation(userInputs)
 
   return (
     <Box sx={{ marginTop: '30px' }}>

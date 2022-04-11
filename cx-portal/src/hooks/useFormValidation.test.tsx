@@ -1,15 +1,12 @@
 import { render } from '@testing-library/react'
 import { useFormValidation } from './useFormValidation'
 
-const validation = {
-  email: {
-    required: true,
-  },
-  firstname: {
-    required: true,
-  },
-  lastname: {},
-}
+const formFields = [{ key: 'firstname' }, { key: 'lastname' }]
+
+const formFieldsPattern = [
+  { key: 'firstname', pattern: /^([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i },
+  { key: 'lastname' },
+]
 
 describe('useFormValidation hook', () => {
   const renderHook = (hook: Function, args: any) => {
@@ -22,16 +19,17 @@ describe('useFormValidation hook', () => {
     return values
   }
 
-  let result: any
-  beforeEach(() => {
-    result = renderHook(useFormValidation, validation)
-  })
-
   it('initializes the state', () => {
-    const { errors, required, valid } = result
+    const { errors, valid } = renderHook(useFormValidation, formFields)
 
     expect(errors).toEqual({})
-    expect(required).toEqual(['email', 'firstname'])
+    expect(valid).toEqual(true)
+  })
+
+  it('initializes the state with patterns', () => {
+    const { errors, valid } = renderHook(useFormValidation, formFieldsPattern)
+
+    expect(errors).toEqual({})
     expect(valid).toEqual(false)
   })
 })
