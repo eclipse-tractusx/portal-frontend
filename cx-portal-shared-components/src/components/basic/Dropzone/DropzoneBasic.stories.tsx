@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react'
 
-import { DropzoneBasic as Component } from '.'
+import { Dropzone as Component } from '.'
 
 export default {
   title: 'Dropzone',

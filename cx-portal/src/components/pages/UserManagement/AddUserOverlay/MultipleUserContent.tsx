@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import { DropzoneBasic } from 'cx-portal-shared-components'
+import { Dropzone } from 'cx-portal-shared-components'
 
 export const MultipleUserContent = () => {
   const { t } = useTranslation()
@@ -78,13 +78,15 @@ export const MultipleUserContent = () => {
           by file
         </Trans>
       </Typography>
-      <DropzoneBasic
+      <Dropzone
         inputContentTitle={dropzoneProps.inputContentTitle}
         inputContentSubTitle={dropzoneProps.inputContentSubTitle}
         accept={dropzoneProps.accept}
         statusText={dropzoneProps.statusText}
         errorStatus={dropzoneProps.errorStatus}
         getUploadParams={dropzoneProps.getUploadParams}
+        onChangeStatus={dropzoneProps.onChangeStatus}
+        multiple={false}
       />
     </Box>
   )

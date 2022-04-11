@@ -22,7 +22,7 @@ import {
   IUploadParams,
 } from './DropzoneTypes'
 
-class DropzoneBasic extends React.Component<
+class Dropzone extends React.Component<
   IDropzoneProps,
   { active: boolean; dragged: (File | DataTransferItem)[] }
 > {
@@ -461,7 +461,7 @@ class DropzoneBasic extends React.Component<
   }
 }
 
-DropzoneBasic.defaultProps = {
+Dropzone.defaultProps = {
   accept: '*',
   multiple: true,
   minSizeBytes: 0,
@@ -503,7 +503,7 @@ DropzoneBasic.defaultProps = {
 }
 
 export {
-  DropzoneBasic,
+  Dropzone,
   formatBytes,
   formatDuration,
   accepts,
