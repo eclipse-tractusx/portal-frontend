@@ -4,12 +4,10 @@ import { Button, Typography } from 'cx-portal-shared-components'
 export default function CookiePolicy() {
   const { t } = useTranslation()
   return (
-    <main className='cookies-page'>
+    <main className="cookies-page">
       <div className="cookie-section">
         <div className="cookie-content">
-          <Typography variant="h3">
-            {t('pages.cookiepolicy')}
-          </Typography>
+          <Typography variant="h3">{t('pages.cookiepolicy')}</Typography>
           <div className="cookie-description">
             <Typography variant="body2">
               {t('content.cookiepolicy.description1')}
@@ -32,7 +30,7 @@ export default function CookiePolicy() {
             <ul>
               <li>{t('content.cookiepolicy.description3_first')}</li>
             </ul>
-            <table className='cookie-table'>
+            <table className="cookie-table">
               <thead>
                 <tr>
                   <th>XXX</th>
@@ -44,7 +42,7 @@ export default function CookiePolicy() {
             <ul>
               <li>{t('content.cookiepolicy.description3_second')}</li>
             </ul>
-            <table className='cookie-table'>
+            <table className="cookie-table">
               <thead>
                 <tr>
                   <th>XXX</th>
@@ -56,7 +54,7 @@ export default function CookiePolicy() {
             <ul>
               <li>{t('content.cookiepolicy.description3_third')}</li>
             </ul>
-            <table className='cookie-table'>
+            <table className="cookie-table">
               <thead>
                 <tr>
                   <th>XXX</th>
