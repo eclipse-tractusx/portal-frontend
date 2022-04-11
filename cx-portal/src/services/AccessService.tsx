@@ -115,7 +115,7 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.TRANSLATOR,
-    role: ROLES.FE_DEVELOPER,
+    role: ROLES.CX_ADMIN,
     element: <Translator />,
   },
   { name: PAGES.HELP, element: <Help /> },
