@@ -35,14 +35,17 @@ jobs:
         run: |
           echo git ${{ steps.git-tag.outputs.git-version }}
           echo npm ${{ steps.npm-tag.outputs.current-version }}
+
       - name: Versions not matching
         if: steps.git-tag.outputs.git-version != steps.npm-tag.outputs.current-version
         run: |
           echo git and npm versions not equal - refusing to build release
           exit 1
+
       - name: Versions match
         run: |
           echo versions equal - building release ${{ steps.git-tag.outputs.git-version }}
+
       - name: Install Dependencies
         run: yarn
 
