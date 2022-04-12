@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { Cards, Button, Typography } from 'cx-portal-shared-components'
-//import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import './app-store-section.scss'
 
 export default function AppStoreSection() {
   const { t } = useTranslation()
-  //const history = useHistory();
+  const navigate = useNavigate()
 
   // TODO: Replace from api
   const items = [
@@ -80,7 +80,7 @@ export default function AppStoreSection() {
       />
       <Button
         sx={{ margin: '100px auto 60px', display: 'block' }}
-        onClick={() => console.log('click') /*history.push("/appmarketplace")*/}
+        onClick={() => navigate('/appmarketplace')}
       >
         {t('pages.appmarketplace')}
       </Button>
