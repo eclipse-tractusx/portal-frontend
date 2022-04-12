@@ -97,8 +97,6 @@ export const Card = ({
           borderRadius: shape.borderRadius,
           border: '1px solid',
           borderColor: 'border.border01',
-          height: '100%',
-          overflow: 'hidden',
           ':hover': {
             boxShadow: shadows['20'],
           },
