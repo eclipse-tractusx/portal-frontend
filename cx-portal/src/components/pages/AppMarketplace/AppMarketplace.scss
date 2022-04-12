@@ -1,6 +1,9 @@
+@import 'src/components/styles/_colors';
+
 .app-store {
   width: 100%;
   padding: 0;
+  margin-bottom: -230px;
 
   input[type='radio'] {
     margin-left: 12px;
@@ -12,5 +15,15 @@
 
   ul {
     clear: both;
+  }
+
+  .overview-section {
+    background-color: color('background01');
+
+    &-content {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 270px;
+    }
   }
 }

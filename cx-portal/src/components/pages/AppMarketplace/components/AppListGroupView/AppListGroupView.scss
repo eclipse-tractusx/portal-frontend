@@ -1,0 +1,10 @@
+ul.AppListGroupView {
+  list-style-type: none;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+
+  > li {
+    margin-top: 52px;
+  }
+}

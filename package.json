@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.3.4",
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
@@ -12,17 +12,17 @@
   "scripts": {
     "prepare": "husky install",
     "clean": "cd cx-portal-shared-components && yarn clean && cd ../cx-portal && yarn clean",
-    "release": "yarn version --patch && git push --tags",
+    "version": "yarn config set version-git-tag false && yarn workspace cx-portal-shared-components version --new-version $npm_package_version && yarn workspace cx-portal version --new-version $npm_package_version && yarn workspace cx-portal add cx-portal-shared-components@$npm_package_version && git tag $npm_package_version",
     "lint": "eslint cx-portal cx-portal-shared-components",
     "pretty": "prettier --write \"./cx-portal*/src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
-    "test:ci": "cd cx-portal && yarn test:ci",
+    "test:ci": "cd cx-portal-shared-components && yarn test:ci && cd ../cx-portal && yarn test:ci",
     "build:lib": "cd cx-portal-shared-components && yarn build:lib",
     "build:storybook": "cd cx-portal-shared-components && yarn build:storybook",
     "start:storybook": "cd cx-portal-shared-components && yarn start",
     "build:portal": "cd cx-portal && yarn build",
     "start:portal": "cd cx-portal && yarn start",
     "build:licenses": "find node_modules -name package.json -exec jq -r '.|\"\\(.name),\\(.version),\\(.license)\"' {} \\; | sort | uniq > cx-portal/public/third-party-licenses.txt",
-    "build:sources": "zip -r portal-frontend.zip cx-portal*/src package.json **/package.json yarn.lock -x '*.stories.*' -x '*.test.*' -x '*.ttf' -x '*.svg' -x '*.png'",
+    "build:sources": "zip -r portal-frontend.zip cx-portal*/src package.json **/package.json yarn.lock -x '*.stories.*' -x '*.test.*' -x '*mock*' -x '*.ttf' -x '*.svg' -x '*.png'",
     "build:docker": "if [ -d \"./cx-portal/build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
     "build:docker:full": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.full --build-arg \"http_proxy=${http_proxy}\" --build-arg \"https_proxy=${https_proxy}\" --build-arg \"no_proxy=${no_proxy}\" .",
     "build:docker:prebuilt": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",

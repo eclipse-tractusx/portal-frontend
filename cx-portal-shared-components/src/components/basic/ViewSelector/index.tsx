@@ -4,6 +4,7 @@ import React from 'react'
 
 export interface view {
   buttonText: string
+  buttonValue: string
   onButtonClick?: React.MouseEventHandler
 }
 
@@ -15,15 +16,15 @@ export interface ViewSelectorProps {
 export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
   return (
     <Box sx={{ textAlign: 'right' }}>
-      {views?.map(({ buttonText, onButtonClick }) => (
+      {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
         <Button
           color={'secondary'}
           variant={
-            activeView.toLowerCase() ===
-            buttonText.toLowerCase().replace(/\s+/g, '')
+            activeView.toLowerCase() === buttonValue.toLowerCase()
               ? 'contained'
               : 'text'
           }
+          value={buttonValue}
           key={buttonText}
           sx={{ marginRight: '16px' }}
           size={'small'}

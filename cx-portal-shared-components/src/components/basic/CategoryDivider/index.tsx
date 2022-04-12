@@ -6,6 +6,7 @@ interface CategoryDividerProps {
   buttonText: string
   categoryItemsLength: number
   categoryName: string
+  disabled: boolean
   onButtonClick: React.MouseEventHandler
 }
 
@@ -13,6 +14,7 @@ export const CategoryDivider = ({
   buttonText,
   categoryItemsLength,
   categoryName,
+  disabled = false,
   onButtonClick = () => {},
 }: CategoryDividerProps) => {
   return (
@@ -47,6 +49,7 @@ export const CategoryDivider = ({
       <Box sx={{ paddingLeft: '15px' }}>
         <Button
           color="secondary"
+          disabled={disabled}
           variant="contained"
           size="small"
           onClick={onButtonClick}

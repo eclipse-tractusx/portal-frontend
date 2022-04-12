@@ -23,7 +23,10 @@ export const CardContent = ({
           {subtitle}
         </Typography>
       )}
-      <Typography variant="h5" sx={{ marginTop: 0.5 }}>
+      <Typography
+        variant="h5"
+        sx={{ marginTop: 0.5, maxHeight: '56px', overflow: 'hidden' }}
+      >
         {title}
       </Typography>
       {rating && price && (

@@ -2,7 +2,8 @@
 
 Frontend web application and shared UI components for the Catena-X Portal written in React and Typescript.
 
-* Dev Install: https://portal.demo.catena-x.net/
+* INT: https://portal.demo.catena-x.net/
+* DEV: https://portal-dev.demo.catena-x.net/
 * Components: https://portal.demo.catena-x.net/_storybook/
 
 

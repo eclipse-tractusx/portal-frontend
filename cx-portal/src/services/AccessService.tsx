@@ -1,5 +1,6 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
+import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
 import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
 import Dashboard from 'components/pages/Dashboard'
@@ -108,8 +109,13 @@ const ALL_PAGES: IPage[] = [
   },
   { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
+    name: PAGES.REGISTRATION_REQUESTS,
+    role: ROLES.CX_ADMIN,
+    element: <RegistrationRequests />,
+  },
+  {
     name: PAGES.TRANSLATOR,
-    role: ROLES.FE_DEVELOPER,
+    role: ROLES.CX_ADMIN,
     element: <Translator />,
   },
   { name: PAGES.HELP, element: <Help /> },
@@ -152,6 +158,7 @@ const userMenuFull = [
   PAGES.USER_MANAGEMENT,
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
+  PAGES.REGISTRATION_REQUESTS,
   PAGES.LOGOUT,
 ]
 

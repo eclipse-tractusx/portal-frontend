@@ -1,66 +1,72 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
-import { GroupItemView } from 'components/shared/basic/GroupItemView'
+import {
+  SearchInput,
+  Typography,
+  ViewSelector,
+} from 'cx-portal-shared-components'
+import { AppListGroupView } from '../AppListGroupView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchApps } from 'state/features/appMarketplace/appMarketplaceActions'
 import { selectorAppMarketplace } from 'state/features/appMarketplace/appMarketplaceSlice'
 import { selectorUser } from 'state/features/user/userSlice'
+import { Box } from '@mui/material'
 
 export default function AppListSection() {
-  const { t } = useTranslation()
+  const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
   const { apps } = useSelector(selectorAppMarketplace)
+  const { t } = useTranslation()
   const { token } = useSelector(selectorUser)
-  const [group, setGroup] = useState<string>('')
 
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchApps())
-    }
-  }, [token, dispatch])
-
-  const doGroup = (e: React.FormEvent<HTMLInputElement>) => {
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
   }
 
-  return (
-    <section className="business-applications-section">
-      <Typography
-        sx={{ fontFamily: 'LibreFranklin-Light' }}
-        variant="h3"
-        className="section-title"
-      >
-        {t('content.appstore.appListSection.title')}
-      </Typography>
+  const categoryViews = [
+    {
+      buttonText: t('content.appstore.appOverviewSection.categoryViews.all'),
+      buttonValue: '',
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t(
+        'content.appstore.appOverviewSection.categoryViews.useCases'
+      ),
+      buttonValue: 'useCases',
+      onButtonClick: setView,
+    },
+  ]
 
-      <div className="GroupSelect">
-        <input
-          type="radio"
-          name="group"
-          value=""
-          checked={group === ''}
-          onChange={doGroup}
-        />
-        none
-        <input
-          type="radio"
-          name="group"
-          value="useCases"
-          checked={group === 'useCases'}
-          onChange={doGroup}
-        />
-        use cases
-        <input
-          type="radio"
-          name="group"
-          value="subtitle"
-          checked={group === 'subtitle'}
-          onChange={doGroup}
-        />
-        vendor
-      </div>
-      <GroupItemView items={apps} groupKey={group} />
-    </section>
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchApps(token))
+    }
+  }, [token, dispatch])
+
+  return (
+    <Box className="overview-section">
+      <section className="overview-section-content">
+        <Typography
+          sx={{ fontFamily: 'LibreFranklin-Light' }}
+          variant="h3"
+          className="section-title"
+        >
+          {t('content.appstore.appOverviewSection.title')}
+        </Typography>
+
+        <ViewSelector activeView={group} views={categoryViews} />
+
+        <Box sx={{ textAlign: 'center' }}>
+          <SearchInput
+            sx={{ minWidth: '544px' }}
+            margin={'normal'}
+            placeholder={t('content.dashboard.searchSection.inputPlaceholder')}
+          />
+        </Box>
+        <AppListGroupView items={apps} groupKey={group} />
+      </section>
+    </Box>
   )
 }

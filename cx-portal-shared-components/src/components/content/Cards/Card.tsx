@@ -72,6 +72,7 @@ export const Card = ({
 
   useEffect(() => {
     // Set initial box height to prevent flicker on hover
+    // TODO: Had to add 37px in height to fit inner content, investigation required
     setBoxHeight(boxRef.current?.getBoundingClientRect().height)
   }, [])
 
@@ -85,7 +86,7 @@ export const Card = ({
       ref={boxRef}
       style={{
         position: 'relative',
-        height: boxHeight ? `${boxHeight}px` : '',
+        height: boxHeight ? `${boxHeight + 37}px` : '',
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -96,6 +97,7 @@ export const Card = ({
           borderRadius: shape.borderRadius,
           border: '1px solid',
           borderColor: 'border.border01',
+          height: '100%',
           overflow: 'hidden',
           ':hover': {
             boxShadow: shadows['20'],
