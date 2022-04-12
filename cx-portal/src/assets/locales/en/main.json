@@ -24,7 +24,7 @@
     "imprint": "Imprint",
     "privacy": "Privacy",
     "terms": "Terms of Service",
-    "cookiepolicy": "Cookie Policy",
+    "cookiepolicy": "Cookies",
     "thirdpartylicenses": "Third Party Licenses",
     "registration-requests": "Registration Requests",
     "logout": "Sign Out",
@@ -171,35 +171,6 @@
           "done": "done"
         }
       }
-    },
-    "help": {
-      "message": "add content here"
-    },
-    "contact": {
-      "message": "add content here"
-    },
-    "imprint": {
-      "directors": "Board of Directors",
-      "ceo": "CEO",
-      "deputyCeo": "Deputy CEO",
-      "treasurer": "Treasurer",
-      "address": "Address",
-      "contact&support": "Contact & Support",
-      "contact&supportDesc": "You can find answers to many questions on our support page. If your question is not answered, please use our contact form. Alternatively, you can also contact us by email at info@catena-x.net.",
-      "privacy": "Privacy",
-      "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
-    },
-    "privacy": {
-      "message": "add content here"
-    },
-    "terms": {
-      "message": "add content here"
-    },
-    "cookiepolicy": {
-      "message": "add content here"
-    },
-    "thirdpartylicenses": {
-      "message": "The Catena-X Portal is currently using these packages."
     },
     "account": {
       "token": "Current authentication token"

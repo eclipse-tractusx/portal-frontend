@@ -22,17 +22,17 @@ export default {
 }
 
 const Template: ComponentStory<typeof ReactComponent> = () => {
-  const [value, setValue] = React.useState(0)
+  const [activeTab, setActiveTab] = React.useState(0)
 
   const handleChange = (event: any, newValue: number) => {
-    setValue(newValue)
+    setActiveTab(newValue)
   }
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'border.border02' }}>
         <Tabs
-          value={value}
+          value={activeTab}
           onChange={handleChange}
           aria-label="basic tabs usage"
         >
@@ -50,10 +50,10 @@ const Template: ComponentStory<typeof ReactComponent> = () => {
           />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={activeTab} index={0}>
         Content Single User
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={activeTab} index={1}>
         Content Multiple User
       </TabPanel>
     </Box>

@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce'
 import { useApiGet } from 'utils/useApiGet'
 
 export default function ThirdPartyLicenses() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('footer', { keyPrefix: 'licenses' })
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [filter, setFilter] = useState<RegExp>(/./)
   const { data } = useApiGet('third-party-licenses.txt')
@@ -28,8 +28,8 @@ export default function ThirdPartyLicenses() {
 
   return (
     <main>
-      <h2>{t('pages.thirdpartylicenses')}</h2>
-      <p>{t('content.thirdpartylicenses.message')}</p>
+      <h2>{t('title')}</h2>
+      <p>{t('message')}</p>
       <SearchInput
         margin="normal"
         autoFocus={true}
