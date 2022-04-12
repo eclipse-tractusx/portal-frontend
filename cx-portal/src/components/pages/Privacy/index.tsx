@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 
 export default function Privacy() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('footer', { keyPrefix: 'privacy' })
   return (
     <main>
-      <h2>{t('pages.privacy')}</h2>
-      <p>{t('content.privacy.message')}</p>
+      <h2>{t('title')}</h2>
+      <p>{t('message')}</p>
     </main>
   )
 }

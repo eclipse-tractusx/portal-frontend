@@ -172,45 +172,6 @@
         }
       }
     },
-    "help": {
-      "message": "add content here"
-    },
-    "contact": {
-      "message": "add content here"
-    },
-    "imprint": {
-      "directors": "Board of Directors",
-      "ceo": "CEO",
-      "deputyCeo": "Deputy CEO",
-      "treasurer": "Treasurer",
-      "address": "Address",
-      "contact&support": "Contact & Support",
-      "contact&supportDesc": "You can find answers to many questions on our support page. If your question is not answered, please use our contact form. Alternatively, you can also contact us by email at info@catena-x.net.",
-      "privacy": "Privacy",
-      "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
-    },
-    "privacy": {
-      "message": "add content here"
-    },
-    "terms": {
-      "message": "add content here"
-    },
-    "cookiepolicy": {
-      "description1": "A cookie is a small piece of data (text file) that a website - when visited by a user - asks your browser to store on your device in order to remember information about you, such as your language preference or login information.",
-      "description2": "More specially, we use cookies for the following purposes:",
-      "description2_first": "Assisting you in navigation;",
-      "description2_second": "Assisting in login;",
-      "description2_third": "Remember your preferences and settings;",
-      "description2_fourth": "Detect the size of your screen;",
-      "description2_fifth": "Showing you personlised products / services;",
-      "description3": "Below is a detailed list of the cookies we use on our Website.",
-      "description3_first": "Strictly Necessary Cookies",
-      "description3_second": "Functional Cookies",
-      "description3_third": "Targetting Cookies"
-    },
-    "thirdpartylicenses": {
-      "message": "The Catena-X Portal is currently using these packages."
-    },
     "account": {
       "token": "Current authentication token"
     },

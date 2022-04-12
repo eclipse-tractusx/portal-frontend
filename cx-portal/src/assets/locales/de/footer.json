@@ -1,45 +1,65 @@
 {
-  "title": "Hilfe",
-  "pages": {
-    "imprint": "Impressum",
-    "cookiepolicy": "Cookies"
-  },
-  "message": "Hilfreiche Informationen",
-  "general": {
-    "title": "Catena-X allgemein",
-    "what": {
-      "question": "Woran arbeitet das Catena-X Automotive Network?",
-      "answer": "Das Catena-X Automotive Network hat als Ziel die Voraussetzungen für die schnelle und erfolgreiche Entwicklung eines offenen Ökosystems für den effizienten und sicheren Austausch von Informationen zwischen Unternehmen der Automobilindustrie zu schaffen."
-    },
-    "goal": {
-      "question": "Welches Ziel verfolgt das Catena-X Automotive Network?",
-      "answer": "Ziel des Catena-X Automotive Networks ist es, standardisierte Daten- und Informationsflüsse entlang der gesamten automobilen Wertschöpfungskette zu schaffen. Im Vordergrund steht hierbei der Nutzen und die Wertschöpfung für jeden Teilnehmer im Netzwerk unter Wahrung der Datensouveränität entsprechend den Standards der europäischen Union (GAIA-X)."
+  "help": {
+    "title": "Hilfe",
+    "message": "Hilfreiche Informationen",
+    "general": {
+      "title": "Catena-X allgemein",
+      "what": {
+        "question": "Woran arbeitet das Catena-X Automotive Network?",
+        "answer": "Das Catena-X Automotive Network zielt darauf ab, die Voraussetzungen für die schnelle und erfolgreiche Entwicklung eines offenen Ökosystems für den effizienten und sicheren Informationsaustausch zwischen Unternehmen der Automobilindustrie zu schaffen."
+      },
+      "goal": {
+        "question": "Was ist das Ziel des Catena-X Automotive Network?",
+        "answer": "Ziel des Catena-X Automotive Network ist es, standardisierte Daten- und Informationsflüsse entlang der gesamten automobilen Wertschöpfungskette zu schaffen. Der Fokus liegt dabei auf dem Nutzen und Mehrwert für jeden Teilnehmer am Netzwerk unter Wahrung der Datenhoheit nach den Standards der Europäischen Union (GAIA-X)."
+      }
     }
   },
-  "content": {
-    "imprint": {
-      "directors": "Vertretungsberechtigter Vorstand",
-      "ceo": "Vorstandsvorsitzender",
-      "deputyCeo": "Stellvertretender Vorstandsvorsitzender",
-      "treasurer": "Schatzmeister",
-      "address": "Anschrift",
-      "contact&support": "Kontakt & Support",
-      "contact&supportDesc": "Auf unserer Supportseite finden Sie Antworten zu vielen Fragen. Sollte Ihre Frage nicht beantwortet werden, verwenden Sie bitte unsere Kontaktformular. Alternativ können Sie uns auch per E-Mail an info@catena-x.net kontaktieren.",
-      "privacy": "Datenschutz",
-      "privacyDesc": "Für Fragen zum Thema Datenschutz und der Information, welche Daten von Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:"
+  "contact": {
+    "title": "Kontakt",
+    "message": "Fügen Sie hier Inhalte hinzu"
+  },
+  "imprint": {
+    "title": "Abdruck",
+    "directors": "Verwaltungsrat",
+    "ceo": "HAUPTGESCHÄFTSFÜHRER",
+    "deputyCeo": "Stellvertretender Geschäftsführer",
+    "treasurer": "Schatzmeister",
+    "address": "Adresse",
+    "contact&support": "Kontakt & Support",
+    "contact&supportDesc": "Antworten auf viele Fragen finden Sie auf unserer Support-Seite. Sollte Ihre Frage nicht beantwortet werden, nutzen Sie bitte unser Kontaktformular. Alternativ können Sie uns auch per E-Mail unter info@catena-x.net kontaktieren.",
+    "privacy": "Privatsphäre",
+    "privacyDesc": "Für Fragen zum Datenschutz und Informationen darüber, welche Daten bei Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:"
+  },
+  "privacy": {
+    "title": "Privatsphäre",
+    "message": "Fügen Sie hier Inhalte hinzu"
+  },
+  "terms": {
+    "title": "Allgemeine Geschäftsbedingungen (AGB)",
+    "message": "Fügen Sie hier Inhalte hinzu"
+  },
+  "cookies": {
+    "title": "Cookie-Richtlinie",
+    "what": "Ein Cookie ist ein kleines Datenelement (Textdatei), das eine Website - wenn sie von einem Benutzer besucht wird - Ihren Browser auffordert, auf Ihrem Gerät zu speichern, um Informationen über Sie zu speichern, wie z. B. Ihre Spracheinstellung oder Anmeldeinformationen.",
+    "purposes": {
+      "why": "Insbesondere verwenden wir Cookies für folgende Zwecke:",
+      "reason": [
+        "Unterstützung bei der Navigation;",
+        "Unterstützung bei der Anmeldung;",
+        "Merken Sie sich Ihre Präferenzen und Einstellungen;",
+        "Erkennen Sie die Größe Ihres Bildschirms;",
+        "Ihnen personalisierte Produkte / Dienstleistungen zu zeigen;"
+      ]
     },
-    "cookiepolicy": {
-      "description1": "A cookie is a small piece of data (text file) that a website - when visited by a user - asks your browser to store on your device in order to remember information about you, such as your language preference or login information.",
-      "description2": "More specially, we use cookies for the following purposes:",
-      "description2_first": "Assisting you in navigation;",
-      "description2_second": "Assisting in login;",
-      "description2_third": "Remember your preferences and settings;",
-      "description2_fourth": "Detect the size of your screen;",
-      "description2_fifth": "Showing you personlised products / services;",
-      "description3": "Below is a detailed list of the cookies we use on our Website.",
-      "description3_first": "Strictly Necessary Cookies",
-      "description3_second": "Functional Cookies",
-      "description3_third": "Targetting Cookies"
+    "types": {
+      "message": "Nachfolgend finden Sie eine detaillierte Liste der Cookies, die wir auf unserer Website verwenden.",
+      "strict": "Unbedingt erforderliche Cookies",
+      "function": "Funktionale Cookies",
+      "target": "Abrufen von Cookies"
     }
+  },
+  "licenses": {
+    "title": "Lizenzen von Drittanbietern",
+    "message": "Das Catena-X Portal verwendet derzeit diese Pakete."
   }
 }
