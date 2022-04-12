@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "News from BMW",
+    "subtitle": "Catena-X",
+    "description": "BMW reveals incredible new cool stuff. You won't believe what is their most recent creation.",
+    "readMoreText": "Read more",
+    "readMoreLink": "#",
+    "image": {
+      "src": "https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420'",
+      "alt": "BMW New Stuff"
+    }
+  },
+  {
+    "id": "1",
+    "title": "News from BMW",
+    "subtitle": "Catena-X",
+    "description": "BMW reveals incredible new cool stuff. You won't believe what is their most recent creation.",
+    "readMoreText": "Read more",
+    "readMoreLink": "#",
+    "image": {
+      "src": "https://contenthub.bmwgroup.net/documents/4394084/4396027/2016_corporatearchitecture_100jahre_large.jpg/f5f387af-fc73-55c5-f43a-76e91d494cd5?t=1456998450595",
+      "alt": "BMW New Stuff"
+    }
+  },
+  {
+    "id": "1",
+    "title": "News from BMW",
+    "subtitle": "Catena-X",
+    "description": "BMW reveals incredible new cool stuff. You won't believe what is their most recent creation.",
+    "readMoreText": "Read more",
+    "readMoreLink": "#",
+    "image": {
+      "src": "https://contenthub.bmwgroup.net/documents/4394084/0/dirico%201.jpg%20(21db4b7e-6b62-4dcd-a410-8d94af5083bf)/2d5b145b-02f9-2568-14c6-ff44cc8c1c20",
+      "alt": "BMW New Stuff"
+    }
+  }
+]

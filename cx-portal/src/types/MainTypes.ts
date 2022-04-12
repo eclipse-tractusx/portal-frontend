@@ -4,6 +4,13 @@ export interface GeographicCoordinate {
   altitude?: number
 }
 
+export interface CardImage {
+  src: string
+  alt?: string
+}
+
+export type MouseEventHandler = (e: MouseEvent) => void
+
 export enum PAGES {
   ROOT = '',
   DASHBOARD = 'dashboard',
