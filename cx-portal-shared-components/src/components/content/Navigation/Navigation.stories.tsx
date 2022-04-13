@@ -14,20 +14,20 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 const items = [
   {
-    href: '/dashboard',
-    title: 'Dashboard',
+    href: '/home',
+    title: 'home',
     children: [
-      { href: '/dashboard-1', title: 'Dashboard 1' },
+      { href: '/home-1', title: 'home 1' },
       {
-        href: '/dashboard-2',
-        title: 'Dashboard 2',
+        href: '/home-2',
+        title: 'home 2',
         children: [
           {
-            href: '/dashboard-2/1',
+            href: '/home-2/1',
             title: 'Submenu 1 ',
             children: [{ href: '/', title: 'Sub-Submenu' }],
           },
-          { href: '/dashboard-2/2', title: 'Submenu 2 ' },
+          { href: '/home-2/2', title: 'Submenu 2 ' },
         ],
       },
     ],
@@ -41,18 +41,18 @@ const itemsFirstLevel = items.map(({ href, title }) => ({ href, title }))
 export const Unstyled = Template.bind({})
 Unstyled.args = {
   items: itemsFirstLevel,
-  active: '/dashboard',
+  active: '/home',
   unstyled: true,
 }
 
 export const Simple = Template.bind({})
 Simple.args = {
   items: itemsFirstLevel,
-  active: '/dashboard',
+  active: '/home',
 }
 
 export const WithDropdown = Template.bind({})
 WithDropdown.args = {
   items,
-  active: '/dashboard',
+  active: '/home',
 }

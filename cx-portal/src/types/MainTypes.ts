@@ -13,7 +13,8 @@ export type MouseEventHandler = (e: MouseEvent) => void
 
 export enum PAGES {
   ROOT = '',
-  DASHBOARD = 'dashboard',
+  HOME = 'home',
+  REGISTRATION = 'registration',
   APPSTORE = 'appstore',
   APP_MARKETPLACE = 'appmarketplace',
   DATACATALOG = 'datacatalog',

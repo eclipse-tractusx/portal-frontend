@@ -62,7 +62,7 @@ export default function AppListSection() {
           <SearchInput
             sx={{ minWidth: '544px' }}
             margin={'normal'}
-            placeholder={t('content.dashboard.searchSection.inputPlaceholder')}
+            placeholder={t('content.home.searchSection.inputPlaceholder')}
           />
         </Box>
         <AppListGroupView items={apps} groupKey={group} />

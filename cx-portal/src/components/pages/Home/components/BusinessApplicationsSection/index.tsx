@@ -63,7 +63,7 @@ export default function BusinessApplicationsSection() {
           variant="h3"
           className="section-title"
         >
-          {t('content.dashboard.businessApplicationsSection.title')}
+          {t('content.home.businessApplicationsSection.title')}
         </Typography>
 
         <Cards

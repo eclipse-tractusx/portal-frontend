@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof Footer> = (args) => <Footer {...args} />
 export const Standard = Template.bind({})
 Standard.args = {
   pages: [
-    'dashboard',
+    'home',
     'appstore',
     'datacatalog',
     'digitaltwins',

@@ -3,11 +3,11 @@ import NewsSection from './components/NewsSection'
 import BusinessApplicationsSection from './components/BusinessApplicationsSection'
 import StageSection from './components/StageSection'
 import AppStoreSection from './components/AppStoreSection'
-import './Dashboard.scss'
+import './Home.scss'
 
-export default function Dashboard() {
+export default function Home() {
   return (
-    <main className="dashboard">
+    <main className="home">
       <StageSection />
       <SearchSection />
       <NewsSection />

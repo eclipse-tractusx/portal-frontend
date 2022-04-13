@@ -66,7 +66,7 @@ export default function AppStoreSection() {
         variant="h3"
         className="section-title"
       >
-        {t('content.dashboard.appStoreSection.title')}
+        {t('content.home.appStoreSection.title')}
       </Typography>
       <Cards
         items={items} // TODO: Replace from api
