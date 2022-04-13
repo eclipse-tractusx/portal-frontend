@@ -13,12 +13,6 @@ export default function SearchSection() {
             The gateway to  <br /> a Digital Economy
           </Trans>
         </Typography>
-        <Button sx={{ margin: '40px 10px 0 0' }}>
-          {t('content.home.stage.appButton')}
-        </Button>
-        <Button sx={{ margin: '40px 0 0 10px' }} variant="outlined">
-          {t('content.home.stage.cxButton')}
-        </Button>
       </div>
       <div className="stage-background">
         <div className="image-wrapper image-ratio-parent">
