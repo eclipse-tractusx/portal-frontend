@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AddUserOverlay } from './AddUserOverlay'
 import { ActiveUserTable } from './ActiveUserTable'
-import StageSection from './components/StageSection'
+import StageSection from './StageSection'
 import { AppArea } from './AppArea'
 
 export default function UserManagement() {
