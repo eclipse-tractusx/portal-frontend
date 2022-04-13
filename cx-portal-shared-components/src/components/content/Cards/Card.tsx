@@ -15,6 +15,7 @@ export interface CardProps
   expandOnHover?: boolean
   readMoreText?: string
   readMoreLink?: string
+  onClick?: React.MouseEventHandler
 }
 
 export const Card = ({
@@ -30,6 +31,7 @@ export const Card = ({
   imageSize,
   imageShape,
   buttonText,
+  onClick,
   onButtonClick,
   onSecondaryButtonClick,
   readMoreText,
@@ -90,6 +92,7 @@ export const Card = ({
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
     >
       <Box
         sx={{
@@ -115,6 +118,7 @@ export const Card = ({
               boxShadow: 'none',
             },
           }),
+          ...(onClick && { cursor: 'pointer' }),
         }}
         className="card"
       >

@@ -6,52 +6,62 @@ export default function BusinessApplicationsSection() {
 
   const items = [
     {
-      title: 'Digital Twin Aspect Debugger',
+      title: 'Fraud Prevention',
       subtitle: 'Catena-X',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://americourses.com/wp-content/uploads/2020/07/fraud-prevention.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      description: 'Fraud Detection App to report Fraud Cases.',
+      onClick: () => {
+        document.location.href = 'https://apps.cdq.com/signin/catenax'
+      },
     },
     {
-      title: 'Digital Twin Aspect Debugger',
-      subtitle: 'Catena-X',
+      title: 'Dismantler App',
+      subtitle: 'SAP',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      description: 'Quick and transparent overview of reusable car components.',
+      onClick: () => {
+        document.location.href =
+          'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
+      },
     },
     {
-      title: 'Digital Twin Aspect Debugger',
-      subtitle: 'Catena-X',
+      title: 'Covanto - AFQM',
+      subtitle: 'BOSCH',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      description: 'Quality Traceability.',
+      onClick: () => {
+        document.location.href = 'https://portal-staging.afqm-services.com/'
+      },
     },
     {
-      title: 'Digital Twin Aspect Debugger',
+      title: 'Component Performance',
       subtitle: 'Catena-X',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      description: 'Component Performance validation.',
+      onClick: () => {
+        document.location.href =
+          'https://impact.bmw.cloud/workspace/carbon/ri.carbon.main.workspace.7d7f6c71-3981-4b78-b731-1b4c8f243c97/ri.workshop.main.module.c9beba25-4387-40dd-9e59-8c4e3b3df3ff'
+      },
     },
   ]
 
