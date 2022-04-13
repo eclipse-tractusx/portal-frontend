@@ -66,7 +66,6 @@ const PartnerNetwork = () => {
         <img
           src={RegistrationRequestHeaderBgImage}
           alt="Partner Network Background"
-          className="object-fit x-left-40"
         />
       </div>
 

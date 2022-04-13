@@ -3,6 +3,20 @@
   padding: 0;
   width: 100%;
   display: grid;
+
+  .header-section {
+    .header-content {
+      position: absolute;
+      padding: 7vh 10%;
+    }
+
+    img {
+      display: block;
+      overflow: auto;
+      width: 100%;
+    }
+  }
+
 }
 
 .advance-search-fields-container {
