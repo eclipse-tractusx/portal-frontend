@@ -9,7 +9,6 @@ import { Table, Input, Button, Typography } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { RootState } from 'state/store'
 import { useTranslation } from 'react-i18next'
-import RegistrationRequestHeaderBgImage from 'assets/images/registration-requests-header-background.png'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 
 const PartnerNetwork = () => {
@@ -64,7 +63,7 @@ const PartnerNetwork = () => {
           </Typography>
         </div>
         <img
-          src={RegistrationRequestHeaderBgImage}
+          src="./stage-header-background.png"
           alt="Partner Network Background"
         />
       </div>
