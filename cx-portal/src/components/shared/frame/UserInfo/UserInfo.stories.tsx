@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
-import { UserInfo } from './UserInfo'
+import { UserInfo } from '.'
 
 export default {
   title: 'frame/UserInfo',

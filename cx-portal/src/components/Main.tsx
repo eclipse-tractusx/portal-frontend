@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Header } from './shared/frame/Header/Header'
+import { Header } from './shared/frame/Header'
 import { Footer } from './shared/frame/Footer'
 import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'

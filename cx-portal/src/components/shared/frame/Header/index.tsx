@@ -1,9 +1,9 @@
-import { UserInfo } from '../UserInfo/UserInfo'
-import { Logo } from '../Logo/Logo'
-import { NavLink } from 'react-router-dom'
+import { UserInfo } from '../UserInfo'
+import { Logo } from '../Logo'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Navigation, Button } from 'cx-portal-shared-components'
-import './Header.scss'
 import { useTranslation } from 'react-i18next'
+import './Header.scss'
 
 export const Header = ({
   pages,
@@ -13,15 +13,12 @@ export const Header = ({
   userPages: string[]
 }) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const menu = pages.map((page) => ({
     to: page,
     title: t(`pages.${page}`),
   }))
-
-  const onButtonClick = () => {
-    console.log('click')
-  }
 
   return (
     <header>
@@ -32,7 +29,7 @@ export const Header = ({
           size="small"
           color="secondary"
           variant="contained"
-          onClick={onButtonClick}
+          onClick={() => navigate('/help')}
           sx={{ backgroundColor: 'white', marginRight: '16px' }}
         >
           {t('pages.help')}
