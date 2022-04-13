@@ -1,5 +1,4 @@
 import { GeographicCoordinate } from 'types/MainTypes'
-import { GridColDef } from '@mui/x-data-grid'
 
 //region Common Key Value pairs type
 interface BpdmTypeNameObject {
