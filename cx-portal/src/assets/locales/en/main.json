@@ -107,6 +107,21 @@
       "message": "Contents of Connector"
     },
     "partnernetwork": {
+      "headertitle": "Partners Network",
+      "tabletitle": "Business Partner Data",
+      "columns": {
+        "bpn": "BPN",
+        "name": "Name",
+        "country": "Country",
+        "street": "Street",
+        "zipcode": "Zip Code",
+        "city": "City",
+        "taxid": "Tax ID"
+      },
+      "filters": {
+        "germany": "Germany",
+        "others": "Others"
+      },
       "message": "Contents of Partner Network"
     },
     "invite": {

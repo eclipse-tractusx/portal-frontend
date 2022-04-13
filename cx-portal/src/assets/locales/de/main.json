@@ -107,6 +107,21 @@
       "message": "Inhalte vom Konnektor"
     },
     "partnernetwork": {
+      "headertitle": "Partnernetzwerk",
+      "tabletitle": "Geschäftspartnerdaten",
+      "columns": {
+        "bpn": "BPN",
+        "name": "Name",
+        "country": "Land",
+        "street": "Straße",
+        "zipcode": "Postleitzahl",
+        "city": "Stadt",
+        "taxid": "Steuer ID"
+      },
+      "filters": {
+        "germany": "Deutschland",
+        "others": "Andere"
+      },
       "message": "Inhalte vom Partner Netzwerk"
     },
     "invite": {
