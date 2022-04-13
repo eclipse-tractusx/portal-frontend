@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchRegistrationRequests } from 'state/features/userAdministration/userAdministrationActions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/RegistrationRequests/registrationTableColumns'
 import { RootState } from 'state/store'
-import RegistrationRequestHeaderBgImage from 'assets/images/registration-requests-header-background.png'
 
 const RegistrationRequests = () => {
   const { t } = useTranslation()
@@ -34,9 +33,8 @@ const RegistrationRequests = () => {
           </Typography>
         </div>
         <img
-          src={RegistrationRequestHeaderBgImage}
+          src="./stage-header-background.png"
           alt="Registration Requests Background"
-          className="object-fit x-left-40"
         />
       </div>
       <div className="page-title-container">
