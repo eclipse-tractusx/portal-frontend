@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AddUserOverlay } from './AddUserOverlay'
 import { ActiveUserTable } from './ActiveUserTable'
+import StageSection from './components/StageSection'
 import { AppArea } from './AppArea'
 
 export default function UserManagement() {
@@ -25,6 +26,7 @@ export default function UserManagement() {
         handleClose={closeAddUserLayout}
         handleConfirm={confirmNewUser}
       />
+      <StageSection />
       <AppArea />
       <ActiveUserTable onAddUserButtonClick={openAddUserLayout} />
     </main>

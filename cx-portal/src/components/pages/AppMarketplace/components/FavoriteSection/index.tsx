@@ -21,7 +21,7 @@ export default function FavoriteSection() {
       title: 'BPDM - Manage Customers',
       subtitle: 'Catena-X',
       image: {
-        src: '',
+        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
@@ -33,7 +33,7 @@ export default function FavoriteSection() {
       title: 'Material Traceability',
       subtitle: 'Catena-X',
       image: {
-        src: 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Traceability.png',
+        src: 'https://www.visiott.com/wp-content/uploads/2022/01/Traceability-EN-Banner.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
@@ -45,7 +45,7 @@ export default function FavoriteSection() {
       title: 'CE Marketplace',
       subtitle: 'SAP',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
