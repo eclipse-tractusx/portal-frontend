@@ -10,7 +10,7 @@ export default function SearchSection() {
         <Typography variant="h2">{t('content.home.stage.title')}</Typography>
         <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h2">
           <Trans i18nKey="content.home.stage.subtitle">
-            xxx  <br /> xxx
+            xxx <br /> xxx
           </Trans>
         </Typography>
         <Button sx={{ margin: '40px 10px 0 0' }}>
