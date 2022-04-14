@@ -17,7 +17,7 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Fraud Detection App to report Fraud Cases.',
       onClick: () => {
-        document.location.href = 'https://apps.cdq.com/signin/catenax'
+        console.log('click')
       },
     },
     {
@@ -31,8 +31,7 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Quick and transparent overview of reusable car components.',
       onClick: () => {
-        document.location.href =
-          'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
+        console.log('click')
       },
     },
     {
@@ -46,7 +45,7 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Quality Traceability.',
       onClick: () => {
-        document.location.href = 'https://portal-staging.afqm-services.com/'
+        console.log('click')
       },
     },
     {
@@ -60,8 +59,7 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Component Performance validation.',
       onClick: () => {
-        document.location.href =
-          'https://impact.bmw.cloud/workspace/carbon/ri.carbon.main.workspace.7d7f6c71-3981-4b78-b731-1b4c8f243c97/ri.workshop.main.module.c9beba25-4387-40dd-9e59-8c4e3b3df3ff'
+        console.log('click')
       },
     },
   ]
