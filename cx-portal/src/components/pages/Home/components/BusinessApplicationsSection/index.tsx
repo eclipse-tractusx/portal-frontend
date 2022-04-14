@@ -60,7 +60,7 @@ export default function BusinessApplicationsSection() {
       price: 'free to use',
       description: 'Fraud Dashboard.',
       onClick: () => {
-        document.location.href = 'https://apps.cdq.com/signin/catenax'
+        document.location.href = 'https://dash.catenax-cdq.com/'
       },
     },
   ]
