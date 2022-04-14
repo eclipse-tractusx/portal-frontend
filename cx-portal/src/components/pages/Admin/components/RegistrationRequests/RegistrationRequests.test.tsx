@@ -1,6 +1,6 @@
 import React from 'react'
 import { screen, RenderResult, waitFor } from '@testing-library/react'
-import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
+import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import I18nService from 'services/I18nService'
 import { MockReduxStoreInitialState } from 'utils/mockDataSet/mockReduxStore'
 import { renderWithStore } from 'utils/renderWithStore'
