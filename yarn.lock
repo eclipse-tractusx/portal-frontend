@@ -6295,6 +6295,18 @@ csstype@^3.0.11, csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.11.tgz#d66700c5eacfac1940deb4e3ee5642792d85cd33"
   integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
 
+cx-portal-shared-components@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/cx-portal-shared-components/-/cx-portal-shared-components-0.3.4.tgz#f48ad105c46203b00d310bad86da5921df482e6f"
+  integrity sha512-n+vBTRhgT6D+OP8Wl+/2ug5jX9dqmv0XF3qApL2gRsKRI1TosLh+jAV5YMVp5YCPnxCy3eRYnq9xqQqc1me/9w==
+  dependencies:
+    "@mui/x-data-grid" "^5.6.0"
+    react-dropzone "^11.5.1"
+    react-dropzone-uploader "^2.11.0"
+    react-redux "^7.2.6"
+    react-router-dom "^6.2.1"
+    rollup-plugin-dts "^4.2.0"
+
 cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
