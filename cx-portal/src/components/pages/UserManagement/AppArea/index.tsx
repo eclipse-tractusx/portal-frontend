@@ -72,7 +72,7 @@ export const AppArea = () => {
         {t('content.usermanagement.apparea.headline')}
       </Typography>
       <Cards
-        items={[items]} // TODO: Replace from api
+        items={items} // TODO: Replace from api
         columns={4}
         buttonText="Details"
         imageSize="small"

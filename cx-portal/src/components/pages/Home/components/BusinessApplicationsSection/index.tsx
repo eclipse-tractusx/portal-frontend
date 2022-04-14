@@ -16,7 +16,7 @@ export default function BusinessApplicationsSection() {
       price: 'free to use',
       description: 'Fraud Detection App to report Fraud Cases.',
       onClick: () => {
-        document.location.href = 'https://apps.cdq.com/signin/catenax'
+        document.location.href = 'https://apps.cdq.com/signin/00c9f5bf?redirectUri=https://apps.cdq.com/dashboard/fraud/report-fraud'
       },
     },
     {
