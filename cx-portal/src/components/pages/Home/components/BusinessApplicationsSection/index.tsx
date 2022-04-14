@@ -6,7 +6,7 @@ export default function BusinessApplicationsSection() {
 
   const items = [
     {
-      title: 'Fraud Prevention',
+      title: 'Fraud Prevention Report',
       subtitle: 'Catena-X',
       image: {
         src: 'https://americourses.com/wp-content/uploads/2020/07/fraud-prevention.jpg',
@@ -49,7 +49,7 @@ export default function BusinessApplicationsSection() {
       },
     },
     {
-      title: 'Component Performance',
+      title: 'Fraud Dashboard',
       subtitle: 'Catena-X',
       image: {
         src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
@@ -57,10 +57,10 @@ export default function BusinessApplicationsSection() {
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Component Performance validation.',
+      description: 'Fraud Dashboard.',
       onClick: () => {
         document.location.href =
-          'https://impact.bmw.cloud/workspace/carbon/ri.carbon.main.workspace.7d7f6c71-3981-4b78-b731-1b4c8f243c97/ri.workshop.main.module.c9beba25-4387-40dd-9e59-8c4e3b3df3ff'
+          'dash.catenax-cdq.com'
       },
     },
   ]
