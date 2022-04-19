@@ -188,7 +188,8 @@
       }
     },
     "account": {
-      "token": "Current authentication token"
+      "token": "Current authentication token",
+      "copy_to_clipboard": "copy token to clipboard"
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"
