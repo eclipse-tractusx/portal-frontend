@@ -29,6 +29,7 @@ import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
 import AppMarketplace from 'components/pages/AppMarketplace'
 import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
+import AppDetail from 'components/pages/AppDetail'
 
 /**
  * ALL_PAGES
@@ -58,6 +59,11 @@ const ALL_PAGES: IPage[] = [
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
+  },
+  {
+    name: PAGES.APP_DETAIL,
+    role: ROLES.APPSTORE_VIEW,
+    element: <AppDetail />,
   },
   {
     name: PAGES.DATACATALOG,

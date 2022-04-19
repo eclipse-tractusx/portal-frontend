@@ -17,6 +17,7 @@ export enum PAGES {
   REGISTRATION = 'registration',
   APPSTORE = 'appstore',
   APP_MARKETPLACE = 'appmarketplace',
+  APP_DETAIL = 'appdetail',
   DATACATALOG = 'datacatalog',
   DIGITALTWIN = 'digitaltwin',
   SEMANTICHUB = 'semantichub',

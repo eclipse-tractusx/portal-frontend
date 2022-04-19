@@ -4,6 +4,7 @@
     "home": "Home",
     "appstore": "Appstore",
     "appmarketplace": "App Marketplace",
+    "appdetails": "",
     "datacatalog": "Data Catalog",
     "applications": "Applications",
     "semantichub": "Semantic Hub",
@@ -189,6 +190,11 @@
         "notimplemented": "hasn't been implemented yet."
       },
       "further": "If you think there should be content please contact your administrator."
+    },
+    "appdetail": {
+      "usecase": "Use Case",
+      "language": "Language",
+      "subscribe": "Subscribe"
     }
   },
   "global": {
