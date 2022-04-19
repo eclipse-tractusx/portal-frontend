@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: pr checks
+
+on: [pull_request, pull_request_review]
+
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Unit Tests
+        run: yarn test:ci
