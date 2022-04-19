@@ -10,14 +10,11 @@ export default function SearchSection() {
         <Typography variant="h2">{t('content.home.stage.title')}</Typography>
         <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h2">
           <Trans i18nKey="content.home.stage.subtitle">
-            The gateway to <br /> a Digital Economy
+            xxx <br /> xxx
           </Trans>
         </Typography>
         <Button sx={{ margin: '40px 10px 0 0' }}>
-          {t('content.home.stage.appButton')}
-        </Button>
-        <Button sx={{ margin: '40px 0 0 10px' }} variant="outlined">
-          {t('content.home.stage.cxButton')}
+          {t('content.usermanagement.table.add')}
         </Button>
       </div>
       <div className="stage-background">

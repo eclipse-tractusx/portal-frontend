@@ -1,5 +1,4 @@
 import { GeographicCoordinate } from 'types/MainTypes'
-import { GridColDef } from '@mui/x-data-grid'
 
 //region Common Key Value pairs type
 interface BpdmTypeNameObject {
@@ -127,12 +126,11 @@ export interface PartnerNetworkInitialState {
   businessPartners: BusinessPartnerResponse
   mappedPartnerList: Array<PartnerNetworkDataGrid>
   loading: boolean
-  columns: GridColDef[]
   error: string
 }
 
 export interface PartnerNetworkDataGrid {
-  id: string
+  bpn: string
   name: string
   country: string
   street: string

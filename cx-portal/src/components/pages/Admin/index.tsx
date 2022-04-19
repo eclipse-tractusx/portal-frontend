@@ -1,4 +1,4 @@
-import { ProvisionIdentityProviderForm } from 'components/shared/content/ProvisionIdentityProviderForm'
+import { ProvisionIdentityProviderForm } from 'components/pages/Admin/components/ProvisionIdentityProviderForm'
 import { useState } from 'react'
 import { info } from 'services/LogService'
 import UserService from 'services/UserService'

@@ -19,7 +19,7 @@ const mapBusinessPartnerToDataGrid = (
       (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
     )
     return {
-      id: bp.bpn,
+      bpn: bp.bpn,
       name: bp.names.filter(
         (name) =>
           name.type.technicalKey === 'INTERNATIONAL' ||
@@ -42,7 +42,7 @@ const mapSingleBusinessPartnerToDataGrid = (
     (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
   )
   return {
-    id: bp.bpn,
+    bpn: bp.bpn,
     name: bp.names.filter(
       (name) =>
         name.type.technicalKey === 'INTERNATIONAL' ||

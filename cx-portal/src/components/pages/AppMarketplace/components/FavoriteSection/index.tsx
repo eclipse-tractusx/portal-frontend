@@ -6,7 +6,7 @@ export default function FavoriteSection() {
 
   const items = [
     {
-      title: 'Digital Twin Aspect Debugger',
+      title: 'smart MOM',
       subtitle: 'Catena-X',
       image: {
         src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
@@ -18,10 +18,10 @@ export default function FavoriteSection() {
       onButtonClick: () => {},
     },
     {
-      title: 'Digital Twin Aspect Debugger',
+      title: 'BPDM - Manage Customers',
       subtitle: 'Catena-X',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
@@ -30,10 +30,10 @@ export default function FavoriteSection() {
       onButtonClick: () => {},
     },
     {
-      title: 'Digital Twin Aspect Debugger',
+      title: 'Material Traceability',
       subtitle: 'Catena-X',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://www.visiott.com/wp-content/uploads/2022/01/Traceability-EN-Banner.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
@@ -42,10 +42,10 @@ export default function FavoriteSection() {
       onButtonClick: () => {},
     },
     {
-      title: 'Digital Twin Aspect Debugger',
-      subtitle: 'Catena-X',
+      title: 'CE Marketplace',
+      subtitle: 'SAP',
       image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
+        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,

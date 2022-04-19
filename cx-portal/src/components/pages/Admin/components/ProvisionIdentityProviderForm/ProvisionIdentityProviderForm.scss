@@ -1,8 +1,8 @@
-.InviteForm,
-.InviteFormOverlay {
+.ProvisionIdentityProviderForm,
+.ProvisionIdentityProviderFormOverlay {
   background-color: white;
   width: 440px;
-  height: 400px;
+  height: 540px;
   padding: 40px;
   font-size: 12px;
   line-height: 26px;
@@ -10,7 +10,7 @@
   position: absolute;
   left: 50%;
   top: 46%;
-  transform: translate(-50%) translateY(-50%);
+  transform: translate(-50%) translateY(-30%);
   border: 0px solid gray;
   box-shadow: 0 0 1em gray;
   display: flex;
@@ -18,11 +18,23 @@
   justify-content: space-between;
 }
 
-.InviteForm {
+.ProvisionIdentityProviderForm {
   z-index: 2;
 }
 
-.InviteFormOverlay {
+.ProvisionIdentityProviderForm > * {
+  margin: 8px 0;
+}
+
+.ProvisionIdentityProviderForm > h4 {
+  margin-bottom: 12px;
+}
+
+.ProvisionIdentityProviderForm > button {
+  margin-top: 12px;
+}
+
+.ProvisionIdentityProviderFormOverlay {
   opacity: 0.95;
   font-size: 32px;
   line-height: 42px;
