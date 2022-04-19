@@ -1,7 +1,7 @@
 {
   "title": "Catena-X Portal",
   "pages": {
-    "dashboard": "Übersicht",
+    "home": "Startseite",
     "appstore": "App Store",
     "appmarketplace": "App Marketplace",
     "datacatalog": "Datenkatalog",
@@ -52,7 +52,7 @@
         "celldeclined": "abgelehnt"
       }
     },
-    "dashboard": {
+    "home": {
       "stage": {
         "title": "Catena-X",
         "subtitle": "der Eintritt in das digital automobile <1></1> Netzwerk",
@@ -66,7 +66,7 @@
         "title": "Meine Applications"
       },
       "appStoreSection": {
-        "title": "Aus dem App Store"
+        "title": "Neue Apps"
       }
     },
     "appstore": {
@@ -107,6 +107,21 @@
       "message": "Inhalte vom Konnektor"
     },
     "partnernetwork": {
+      "headertitle": "Partnernetzwerk",
+      "tabletitle": "Geschäftspartnerdaten",
+      "columns": {
+        "bpn": "BPN",
+        "name": "Name",
+        "country": "Land",
+        "street": "Straße",
+        "zipcode": "Postleitzahl",
+        "city": "Stadt",
+        "taxid": "Steuer ID"
+      },
+      "filters": {
+        "germany": "Deutschland",
+        "others": "Andere"
+      },
       "message": "Inhalte vom Partner Netzwerk"
     },
     "invite": {

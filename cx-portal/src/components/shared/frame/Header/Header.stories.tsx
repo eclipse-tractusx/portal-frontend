@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />
 export const Standard = Template.bind({})
 Standard.args = {
   pages: [
-    'dashboard',
+    'home',
     'appstore',
     'datacatalog',
     'digitaltwins',

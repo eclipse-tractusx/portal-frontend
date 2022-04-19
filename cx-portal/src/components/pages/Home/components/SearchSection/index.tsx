@@ -9,7 +9,7 @@ export default function SearchSection() {
     <div className="search-section">
       <div className="search-input-wrapper">
         <SearchInput
-          placeholder={t('content.dashboard.searchSection.inputPlaceholder')}
+          placeholder={t('content.home.searchSection.inputPlaceholder')}
         />
       </div>
     </div>

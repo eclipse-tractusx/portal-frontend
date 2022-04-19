@@ -19,20 +19,6 @@ const initialState: PartnerNetworkInitialState = {
   businessPartners: {} as BusinessPartnerResponse,
   mappedPartnerList: [],
   loading: true,
-  columns: [
-    { field: 'id', headerName: 'BPN', hide: false, flex: 2 },
-    {
-      field: 'name',
-      headerName: 'Name',
-      description: 'Name of the Company',
-      flex: 4,
-    },
-    { field: 'country', headerName: 'Country', flex: 1 },
-    { field: 'street', headerName: 'Street Address', flex: 2 },
-    { field: 'zipCode', headerName: 'Zip Code', flex: 1 },
-    { field: 'city', headerName: 'City', flex: 1 },
-    { field: 'taxId', headerName: 'Tax ID', flex: 1 },
-  ],
   error: '',
 }
 

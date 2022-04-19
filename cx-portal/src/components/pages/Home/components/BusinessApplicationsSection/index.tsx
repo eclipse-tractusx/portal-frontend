@@ -1,13 +1,12 @@
-import { Cards, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { Cards, Typography } from 'cx-portal-shared-components'
 
-export const AppArea = () => {
+export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
 
-  // TODO: Replace from api
   const items = [
     {
-      title: 'Fraud Prevention',
+      title: 'Fraud Prevention Report',
       subtitle: 'Catena-X',
       image: {
         src: 'https://americourses.com/wp-content/uploads/2020/07/fraud-prevention.jpg',
@@ -17,7 +16,8 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Fraud Detection App to report Fraud Cases.',
       onClick: () => {
-        console.log('click')
+        document.location.href =
+          'https://apps.cdq.com/signin/00c9f5bf?redirectUri=https://apps.cdq.com/dashboard/fraud/report-fraud'
       },
     },
     {
@@ -31,7 +31,8 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Quick and transparent overview of reusable car components.',
       onClick: () => {
-        console.log('click')
+        document.location.href =
+          'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
       },
     },
     {
@@ -45,11 +46,11 @@ export const AppArea = () => {
       price: 'free to use',
       description: 'Quality Traceability.',
       onClick: () => {
-        console.log('click')
+        document.location.href = 'https://portal-staging.afqm-services.com/'
       },
     },
     {
-      title: 'Component Performance',
+      title: 'Fraud Dashboard',
       subtitle: 'Catena-X',
       image: {
         src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
@@ -57,26 +58,35 @@ export const AppArea = () => {
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Component Performance validation.',
+      description: 'Fraud Dashboard.',
       onClick: () => {
-        console.log('click')
+        document.location.href = 'https://dash.catenax-cdq.com/'
       },
     },
   ]
 
   return (
-    <section>
-      <Typography variant="h3" className="section-title">
-        {t('content.usermanagement.apparea.headline')}
-      </Typography>
-      <Cards
-        items={items} // TODO: Replace from api
-        columns={4}
-        buttonText="Details"
-        imageSize="small"
-        imageShape="round"
-        filledBackground={true}
-      />
-    </section>
+    <div className="orange-background">
+      <section className="business-applications-section">
+        <Typography
+          sx={{ fontFamily: 'LibreFranklin-Light' }}
+          variant="h3"
+          className="section-title"
+        >
+          {t('content.home.businessApplicationsSection.title')}
+        </Typography>
+
+        <Cards
+          items={items} // TODO: Replace from api
+          columns={4}
+          buttonText="Details"
+          imageSize="small"
+          imageShape="round"
+          variant="minimal"
+          expandOnHover={false}
+          filledBackground={true}
+        />
+      </section>
+    </div>
   )
 }

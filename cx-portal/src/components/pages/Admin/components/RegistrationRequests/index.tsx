@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import 'components/pages/Admin/RegistrationRequests/RegistrationRequests.scss'
 import { Table, Typography } from 'cx-portal-shared-components'
 import { selectorUserAdministration } from 'state/features/userAdministration/userAdministrationSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRegistrationRequests } from 'state/features/userAdministration/userAdministrationActions'
-import { RegistrationRequestsTableColumns } from 'components/pages/Admin/RegistrationRequests/registrationTableColumns'
+import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import { RootState } from 'state/store'
-import RegistrationRequestHeaderBgImage from 'assets/images/registration-requests-header-background.png'
+import './RegistrationRequests.scss'
 
 const RegistrationRequests = () => {
   const { t } = useTranslation()
@@ -27,16 +26,15 @@ const RegistrationRequests = () => {
 
   return (
     <main className="page-main-container">
-      <div className="header-section-2">
+      <div className="header-section">
         <div className="header-content">
           <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
             {t('content.admin.registration-requests.headertitle')}
           </Typography>
         </div>
         <img
-          src={RegistrationRequestHeaderBgImage}
+          src="./stage-header-background.png"
           alt="Registration Requests Background"
-          className="object-fit x-left-40"
         />
       </div>
       <div className="page-title-container">
