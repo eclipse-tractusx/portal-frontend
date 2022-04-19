@@ -111,7 +111,7 @@
       "tabletitle": "Business Partner Data",
       "columns": {
         "bpn": "BPN",
-        "name": "Name",
+        "name": "Company Name",
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
@@ -122,7 +122,8 @@
         "germany": "Germany",
         "others": "Others"
       },
-      "message": "Contents of Partner Network"
+      "message": "Contents of Partner Network",
+      "loadmore": "Load More"
     },
     "invite": {
       "title": "Invite a new Business Partner",

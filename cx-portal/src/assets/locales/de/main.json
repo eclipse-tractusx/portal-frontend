@@ -111,7 +111,7 @@
       "tabletitle": "Geschäftspartnerdaten",
       "columns": {
         "bpn": "BPN",
-        "name": "Name",
+        "name": "Name der Firma",
         "country": "Land",
         "street": "Straße",
         "zipcode": "Postleitzahl",
@@ -122,7 +122,8 @@
         "germany": "Deutschland",
         "others": "Andere"
       },
-      "message": "Inhalte vom Partner Netzwerk"
+      "message": "Inhalte vom Partner Netzwerk",
+      "loadmore": "Mehr Laden"
     },
     "invite": {
       "title": "Laden Sie Geschäftspartner ein",
