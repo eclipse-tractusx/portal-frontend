@@ -1,6 +1,8 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import partnerNetworkSlice, { selectorPartnerNetwork } from 'state/features/partnerNetwork/partnerNetworkSlice'
+import partnerNetworkSlice, {
+  selectorPartnerNetwork,
+} from 'state/features/partnerNetwork/partnerNetworkSlice'
 import {
   fetchBusinessPartners,
   getOneBusinessPartner,
@@ -21,13 +23,15 @@ const PartnerNetwork = () => {
   const [pageSize] = useState<number>(20)
 
   const token = useSelector((state: RootState) => state.user.token)
-  const { mappedPartnerList, loading, businessPartners } = useSelector(selectorPartnerNetwork)
+  const { mappedPartnerList, loading, businessPartners } = useSelector(
+    selectorPartnerNetwork
+  )
 
   useEffect(() => {
     if (token) {
       const params = {
         ...{ size: pageSize, page: currentPage },
-        ...(companyName !== '') && { name: companyName },
+        ...(companyName !== '' && { name: companyName }),
       }
 
       dispatch(fetchBusinessPartners({ params, token }))
@@ -51,7 +55,6 @@ const PartnerNetwork = () => {
   }
 
   const onSearchClick = () => {
-
     // Reset previous data set before loading search results
     dispatch(partnerNetworkSlice.actions.resetPartnerNetworkState())
 
@@ -59,67 +62,66 @@ const PartnerNetwork = () => {
     // Detect which api call to make a request
     if (bpnValue !== '')
       dispatch(getOneBusinessPartner({ bpn: bpnValue, token }))
+    // Reset current page to default everytime user search some term
     else
-      // Reset current page to default everytime user search some term
       dispatch(
         fetchBusinessPartners({
           params: { size: pageSize, page: 0, name: companyName },
           token,
-        }),
+        })
       )
   }
 
-
   return (
-    <main className='partner-network-page-container'>
-      <div className='header-section'>
-        <div className='header-content'>
-          <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant='h4'>
+    <main className="partner-network-page-container">
+      <div className="header-section">
+        <div className="header-content">
+          <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
             {t('content.partnernetwork.headertitle')}
           </Typography>
         </div>
         <img
-          src='./stage-header-background.png'
-          alt='Partner Network Background'
+          src="./stage-header-background.png"
+          alt="Partner Network Background"
         />
       </div>
 
-      <div className='page-title-container'>
+      <div className="page-title-container">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant='h3'
-          className='page-title'
+          variant="h3"
+          className="page-title"
         >
           Business Partner
         </Typography>
       </div>
-      <div className='advance-search-fields-container'>
-        <div className='identifier-fields-container'>
+      <div className="advance-search-fields-container">
+        <div className="identifier-fields-container">
           <Input
-            label='BPN Number'
-            variant='filled'
-            placeholder='Please type BPN number of company'
-            margin='dense'
+            label="BPN Number"
+            variant="filled"
+            placeholder="Please type BPN number of company"
+            margin="dense"
             onChange={(e) => onBpnFieldChange(e)}
             value={bpnValue}
           />
-          <span className='or-span'>OR</span>
+          <span className="or-span">OR</span>
           <Input
-            label='Company Name'
-            variant='filled'
-            placeholder='Please type company name'
-            margin='dense'
+            label="Company Name"
+            variant="filled"
+            placeholder="Please type company name"
+            margin="dense"
             onChange={(e) => onCompanyNameChange(e)}
             value={companyName}
           />
         </div>
-        <div className='search-button'>
-          <Button size='medium' onClick={() => onSearchClick()}>
+        <div className="search-button">
+          <Button size="medium" onClick={() => onSearchClick()}>
             Search
           </Button>
         </div>
       </div>
-      <div className='partner-network-table-container'>
+      <div className="partner-network-table-container">
         <Table
           {...{
             rows: mappedPartnerList,
@@ -133,8 +135,7 @@ const PartnerNetwork = () => {
             disableDensitySelector: true,
             disableSelectionOnClick: true,
             toolbar: {
-              onFilter: () => {
-              },
+              onFilter: () => {},
               filter: [
                 {
                   name: 'country',
@@ -155,20 +156,20 @@ const PartnerNetwork = () => {
           }}
           getRowId={(row) => row.bpn}
         />
-
       </div>
-      <div className='load-more-button-container'>
-        {
-          businessPartners.totalElements > (pageSize * currentPage) &&
-          (
-            <Button size='medium' onClick={() => setCurrentPage(prevState => {
-              return prevState + 1
-            })}>
-              {t('content.partnernetwork.loadmore')}
-            </Button>
-          )
-        }
-
+      <div className="load-more-button-container">
+        {businessPartners.totalElements > pageSize * currentPage && (
+          <Button
+            size="medium"
+            onClick={() =>
+              setCurrentPage((prevState) => {
+                return prevState + 1
+              })
+            }
+          >
+            {t('content.partnernetwork.loadmore')}
+          </Button>
+        )}
       </div>
     </main>
   )

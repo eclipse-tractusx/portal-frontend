@@ -26,9 +26,9 @@ const partnerNetworkSlice = createSlice({
   name: 'partnerNetwork',
   initialState,
   reducers: {
-    resetPartnerNetworkState: (state)=>{
+    resetPartnerNetworkState: (state) => {
       state.mappedPartnerList = []
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getOneBusinessPartner.pending, (state) => {
@@ -71,9 +71,9 @@ const partnerNetworkSlice = createSlice({
       try {
         state.mappedPartnerList = [
           ...state.mappedPartnerList,
-          ...mapBusinessPartnerToDataGrid(
+          ...(mapBusinessPartnerToDataGrid(
             payloadList
-          ) as Array<PartnerNetworkDataGrid>
+          ) as Array<PartnerNetworkDataGrid>),
         ]
         state.loading = false
         state.businessPartners = payloadList
@@ -93,6 +93,6 @@ const partnerNetworkSlice = createSlice({
 })
 
 export const selectorPartnerNetwork = (
-  state: RootState,
+  state: RootState
 ): PartnerNetworkInitialState => state.partnerNetwork
 export default partnerNetworkSlice
