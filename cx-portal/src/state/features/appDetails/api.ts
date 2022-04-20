@@ -17,10 +17,13 @@ export class AppDetailsApi extends HttpClient {
   }
 
   public getItem = (appId: string) => {
-    return this.instance.get<AppDetails>(`/testdata/appDetails.json?id=${appId}`, {
-      headers: {
-        Authorization: `Bearer ${UserService.getToken()}`,
-      },
-    })
+    return this.instance.get<AppDetails>(
+      `/testdata/appDetails.json?id=${appId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
+    )
   }
 }

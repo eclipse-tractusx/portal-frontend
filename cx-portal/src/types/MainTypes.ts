@@ -1,7 +1,7 @@
 export type Nullable<T> = T | null
 
 export interface IHashMap<T> {
-  [item: string] : T;
+  [item: string]: T
 }
 
 export interface GeographicCoordinate {

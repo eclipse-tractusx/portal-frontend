@@ -32,6 +32,7 @@ const appDetailsSlice = createSlice({
   },
 })
 
-export const appDetailsSelector = (state: RootState): AppDetailsState => state.appDetails
+export const appDetailsSelector = (state: RootState): AppDetailsState =>
+  state.appDetails
 
 export default appDetailsSlice

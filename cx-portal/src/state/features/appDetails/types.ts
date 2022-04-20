@@ -1,4 +1,4 @@
-import { Nullable } from "types/MainTypes"
+import { Nullable } from 'types/MainTypes'
 
 export type AppDetails = {
   id: string
