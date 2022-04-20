@@ -26,6 +26,7 @@ export { Layout as DropzoneLayout } from './basic/Dropzone/components/Layout'
 export { InputContent as DropzoneInputContent } from './basic/Dropzone/components/InputContent'
 export { Chip } from './basic/Chip'
 export { ViewSelector } from './basic/ViewSelector'
+export { Carousel } from './basic/Carousel'
 
 export { Cards } from './content/Cards'
 export { Navigation } from './content/Navigation'
