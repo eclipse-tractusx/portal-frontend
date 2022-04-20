@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Build Library and Portal
+      - name: Build Library
         run: yarn build:lib
 
       - name: Unit Tests
