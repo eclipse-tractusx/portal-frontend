@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next'
+import TwinTable from './TwinTable'
+import Header from './Header'
 
 export default function DigitalTwins() {
-  const { t } = useTranslation()
   return (
-    <main>
-      <h2>{t('pages.digitaltwin')}</h2>
-      <p>{t('content.digitaltwin.message')}</p>
+    <main className="page-main-container">
+      <Header />
+      <TwinTable />
     </main>
   )
 }
