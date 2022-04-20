@@ -1,4 +1,4 @@
-import { Nullable, TableType } from "types/MainTypes"
+import { Nullable, TableType } from 'types/MainTypes'
 
 export type LicenseType = {
   type: string

@@ -32,6 +32,7 @@ const licensesSlice = createSlice({
   },
 })
 
-export const licensesSelector = (state: RootState): LicensesState => state.licenses
+export const licensesSelector = (state: RootState): LicensesState =>
+  state.licenses
 
 export default licensesSlice
