@@ -41,5 +41,8 @@
   "devDependencies": {
     "husky": "^7.0.4",
     "yarn": "^1.22.18"
+  },
+  "dependencies": {
+    "slick-carousel": "^1.8.1"
   }
 }
