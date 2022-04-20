@@ -1,6 +1,7 @@
 import { ComponentStory } from '@storybook/react'
 import { Carousel as Component } from '.'
 import { Box } from '@mui/material'
+import uniqueId from 'lodash/uniqueId'
 
 export default {
   title: 'Carousel',
@@ -16,7 +17,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args}>
       { itemsArray.map((item: string) =>{
           return (
-            <Box sx={{padding: '28px'}}>
+            <Box sx={{padding: '28px'}} key={uniqueId('carousel-item')}>
               {item}
             </Box>
           )

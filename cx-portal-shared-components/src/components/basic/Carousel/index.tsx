@@ -6,6 +6,7 @@ import { Box } from '@mui/material'
 import { Typography } from '../Typography'
 import { useState, Children } from 'react'
 import { theme } from '../../../theme'
+import uniqueId from 'lodash/uniqueId'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -152,7 +153,7 @@ export const Carousel = ({
         <Slider {...settings}>
         {Children.map(arrayChildren, (child) => {
           return (
-            <div>
+            <div key={uniqueId('cax-carousel')}>
               <Box
                 sx={{
                   width: `${itemWidth}px`,
