@@ -13,7 +13,6 @@ export default function ThirdPartyLicenses() {
   const { token } = useSelector(selectorUser)
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [filter, setFilter] = useState<RegExp>(/./)
-  //const { data } = useApiGet('third-party-licenses.json')
   const { items } = useSelector(licensesSelector)
 
   useEffect(() => {
@@ -52,7 +51,7 @@ export default function ThirdPartyLicenses() {
         {items?.data.body
           .filter(
             (pkg: string[]) =>
-              filter.test(pkg[0]) || filter.test(pkg[2]) || filter.test(pkg[4])
+              filter.test(pkg[0]) || filter.test(pkg[2]) || filter.test(pkg[5])
           )
           .map((pkg: string[], i: number) => (
             <li key={i}>
