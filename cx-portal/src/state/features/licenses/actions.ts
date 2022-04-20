@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { NewsApi } from './api'
+import { LicensesApi } from './api'
 
-const fetchItems = createAsyncThunk('news/fetchItems', async () => {
+const fetchItems = createAsyncThunk('licenses/fetchItems', async () => {
   try {
-    return await NewsApi.getInstance().getItems()
+    return await LicensesApi.getInstance().getItems()
   } catch (error: unknown) {
     console.error('api call error:', error)
     throw Error('fetchItems api call error')
