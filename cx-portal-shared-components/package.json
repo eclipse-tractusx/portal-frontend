@@ -16,9 +16,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
-    "clean": "rm -rf ./build ./dist ./storybook-static",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build:storybook": "mkdir -p ./public && build-storybook -s public && rm -rf ../cx-portal/public/_storybook && mv ./storybook-static ../cx-portal/public/_storybook"
+    "clean": "rimraf ./build ./dist ./storybook-static",
+    "start:storybook": "start-storybook -p 6006 -s public",
+    "build:storybook": "mkdirp public && build-storybook -s public && rimraf ../cx-portal/public/_storybook && mv-cli ./storybook-static ../cx-portal/public/_storybook"
   },
   "dependencies": {
     "@mui/x-data-grid": "^5.6.0",
