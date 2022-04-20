@@ -1,24 +1,34 @@
 import { Button, Rating } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { AppDetails } from 'state/features/appDetails/types'
 import './AppDetailHeader.scss'
 
-export default function AppDetailHeader() {
+export interface AppDetailHeaderProps {
+  item: AppDetails
+}
+
+export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
 
   return (
     <div className="appdetail-header">
-      <img src="https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Dismantler.png" alt="" />
-      {/* The below content needs to get replaced as soon as API is available. */}
+      <img src={item.leadPictureURI} alt={item.name} />
       <div className="content">
-        <p className="provider">Catena-X</p>
-        <h2 className="heading">Digital Twin Debugger</h2>
-        <Rating defaultRating={4} />
-        <p className="provider">free for use</p>
+        <p className="provider">{item.provider}</p>
+        <h2 className="heading">{item.name}</h2>
+        <Rating defaultRating={item.rating} />
+        <p className="price">{item.price}</p>
         <p className="usecase">
-          <b>{t('content.appdetail.usecase')}:</b> Digital Debuggers
+          <b>{t('content.appdetail.usecase')}:</b>{' '}
+          {item.useCases.map((useCase) => (
+            <span key={useCase}> {useCase} </span>
+          ))}
         </p>
         <p className="language">
-          <b>{t('content.appdetail.language')}:</b> DE, EN
+          <b>{t('content.appdetail.language')}:</b>{' '}
+          {item.languages.map((lang) => (
+            <span key={lang}> {lang} </span>
+          ))}
         </p>
         <Button>{t('content.appdetail.subscribe')}</Button>
       </div>
