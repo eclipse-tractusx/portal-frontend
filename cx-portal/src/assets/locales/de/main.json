@@ -95,7 +95,14 @@
       "message": "Inhalte vom Semantischen Hub"
     },
     "digitaltwin": {
-      "message": "Inhalte vom Digitalen Zwilling"
+      "table": {
+        "title": "Datenübersicht der Digitalen Zwillinge",
+        "columns": {
+          "name": "Name",
+          "type": "Typ",
+          "prov": "Anbieter"
+        }
+      }
     },
     "datacatalog": {
       "message": "Inhalte vom Datenkatalog"

@@ -5,12 +5,14 @@ import partnerNetworkSlice from 'state/features/partnerNetwork/partnerNetworkSli
 import userAdministrationSlice from 'state/features/userAdministration/userAdministrationSlice'
 import appMarketplaceSlice from 'state/features/appMarketplace/appMarketplaceSlice'
 import newsSlice from './news/slice'
+import twinsSlice from './digitalTwins/slice'
 
 // Reducers need separate export for testing library
 export const reducers = {
   apps: appsSlice.reducer,
   user: userSlice,
   news: newsSlice.reducer,
+  twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
   appMarketplace: appMarketplaceSlice.reducer,
   userAdministration: userAdministrationSlice.reducer,
