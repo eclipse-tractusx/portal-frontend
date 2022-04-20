@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: pr checks
 
-on: [pull_request, pull_request_review]
+on: pull_request
 
 jobs:
   run-unit-tests:
