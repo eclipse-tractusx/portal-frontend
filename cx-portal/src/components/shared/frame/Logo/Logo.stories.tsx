@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
-import { Logo } from './Logo'
+import { Logo } from '.'
 
 export default {
   title: 'frame/Logo',

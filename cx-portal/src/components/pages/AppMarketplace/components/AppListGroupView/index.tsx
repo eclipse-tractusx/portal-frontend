@@ -24,6 +24,7 @@ export const AppListGroupView = ({
           imageSize={'small'}
           items={items}
           variant={'compact'}
+          expandOnHover={true}
         />
       </Box>
     )

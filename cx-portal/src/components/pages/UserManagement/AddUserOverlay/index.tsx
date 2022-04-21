@@ -28,13 +28,12 @@ export const AddUserOverlay = ({
   handleConfirm,
 }: AddUserOverlayProps) => {
   const { t } = useTranslation()
-
-  const [value, setValue] = useState(0)
+  const [activeTab, setActiveTab] = useState(0)
   const handleChange = (
     event: React.ChangeEvent<unknown>,
     newValue: number
   ) => {
-    setValue(newValue)
+    setActiveTab(newValue)
   }
 
   return (
@@ -47,7 +46,7 @@ export const AddUserOverlay = ({
 
         <DialogContent className="w-100">
           <Tabs
-            value={value}
+            value={activeTab}
             onChange={handleChange}
             aria-label="basic tabs usage"
           >
@@ -64,10 +63,10 @@ export const AddUserOverlay = ({
               iconPosition="start"
             />
           </Tabs>
-          <TabPanel value={value} index={0}>
+          <TabPanel value={activeTab} index={0}>
             <SingleUserContent />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />
           </TabPanel>
           <UserRoles />

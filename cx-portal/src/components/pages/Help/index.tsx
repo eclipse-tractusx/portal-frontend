@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 export default function Help() {
-  const { t } = useTranslation('help')
+  const { t } = useTranslation('footer', { keyPrefix: 'help' })
 
   const general = () => (
     <>

@@ -3,17 +3,17 @@ import { initReactI18next, useTranslation } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import mainDE from '../assets/locales/de/main.json'
 import mainEN from '../assets/locales/en/main.json'
-import helpDE from '../assets/locales/de/help.json'
-import helpEN from '../assets/locales/en/help.json'
+import footerDE from '../assets/locales/de/footer.json'
+import footerEN from '../assets/locales/en/footer.json'
 
 const resources = {
   de: {
     translation: mainDE,
-    help: helpDE,
+    footer: footerDE,
   },
   en: {
     translation: mainEN,
-    help: helpEN,
+    footer: footerEN,
   },
 }
 

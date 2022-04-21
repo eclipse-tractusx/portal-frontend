@@ -1,9 +1,8 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
-import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
+import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
-import Dashboard from 'components/pages/Dashboard'
 import DataCatalog from 'components/pages/DataCatalog'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
@@ -28,6 +27,8 @@ import CookiePolicy from 'components/pages/CookiePolicy'
 import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
 import AppMarketplace from 'components/pages/AppMarketplace'
+import Home from 'components/pages/Home'
+import Registration from 'components/pages/Registration'
 
 /**
  * ALL_PAGES
@@ -39,8 +40,9 @@ import AppMarketplace from 'components/pages/AppMarketplace'
  * route? - (optional) a custom router setup for this page. By default it will create a simple route name -> element
  */
 const ALL_PAGES: IPage[] = [
-  { name: PAGES.ROOT, element: <Dashboard /> },
-  { name: PAGES.DASHBOARD, element: <Dashboard /> },
+  { name: PAGES.ROOT, element: <Home /> },
+  { name: PAGES.HOME, element: <Home /> },
+  { name: PAGES.REGISTRATION, element: <Registration /> },
   {
     name: PAGES.APPSTORE,
     role: ROLES.APPSTORE_VIEW,
@@ -115,7 +117,7 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.TRANSLATOR,
-    role: ROLES.FE_DEVELOPER,
+    role: ROLES.CX_ADMIN,
     element: <Translator />,
   },
   { name: PAGES.HELP, element: <Help /> },
@@ -135,7 +137,7 @@ const ALL_PAGES: IPage[] = [
  * it will be restricted by personal user permissions
  */
 const mainMenuFull = [
-  PAGES.DASHBOARD,
+  PAGES.HOME,
   PAGES.APP_MARKETPLACE,
   PAGES.DATACATALOG,
   PAGES.DIGITALTWIN,

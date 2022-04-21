@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Header } from './Header'
+import { Header } from '.'
 import { MemoryRouter } from 'react-router-dom'
 
 export default {
@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />
 export const Standard = Template.bind({})
 Standard.args = {
   pages: [
-    'dashboard',
+    'home',
     'appstore',
     'datacatalog',
     'digitaltwins',

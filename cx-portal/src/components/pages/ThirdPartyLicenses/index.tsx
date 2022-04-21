@@ -1,14 +1,25 @@
 import { SearchInput } from 'cx-portal-shared-components'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchItems } from 'state/features/licenses/actions'
+import { licensesSelector } from 'state/features/licenses/slice'
+import { selectorUser } from 'state/features/user/userSlice'
 import debounce from 'lodash.debounce'
-import { useApiGet } from 'utils/useApiGet'
 
 export default function ThirdPartyLicenses() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('footer', { keyPrefix: 'licenses' })
+  const dispatch = useDispatch()
+  const { token } = useSelector(selectorUser)
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [filter, setFilter] = useState<RegExp>(/./)
-  const { data } = useApiGet('third-party-licenses.txt')
+  const { items } = useSelector(licensesSelector)
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchItems())
+    }
+  }, [token, dispatch])
 
   const debouncedFilter = useMemo(
     () =>
@@ -28,8 +39,8 @@ export default function ThirdPartyLicenses() {
 
   return (
     <main>
-      <h2>{t('pages.thirdpartylicenses')}</h2>
-      <p>{t('content.thirdpartylicenses.message')}</p>
+      <h2>{t('title')}</h2>
+      <p>{t('message')}</p>
       <SearchInput
         margin="normal"
         autoFocus={true}
@@ -37,20 +48,16 @@ export default function ThirdPartyLicenses() {
         onChange={(event) => doFilter(event.target.value)}
       />
       <ul>
-        {data
-          .split('\n')
-          .filter((pkg: string) => filter.test(pkg))
-          .map((pkg, i) => (
+        {items?.data.body
+          .filter(
+            (pkg: string[]) =>
+              filter.test(pkg[0]) || filter.test(pkg[2]) || filter.test(pkg[5])
+          )
+          .map((pkg: string[], i: number) => (
             <li key={i}>
-              {pkg.split(',').map((value, i) =>
-                i === 0 ? (
-                  <a key={i} href={`https://www.npmjs.com/package/${value}`}>
-                    {value}
-                  </a>
-                ) : (
-                  <span key={i}> {value} </span>
-                )
-              )}
+              <a href={`https://www.npmjs.com/package/${pkg[0]}`}>{pkg[0]}</a>
+              <span> {pkg[1]} </span>
+              <span> {pkg[2]} </span>
             </li>
           ))}
       </ul>

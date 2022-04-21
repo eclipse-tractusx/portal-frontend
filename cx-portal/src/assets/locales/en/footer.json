@@ -1,0 +1,65 @@
+{
+  "help": {
+    "title": "Help",
+    "message": "Helpful information",
+    "general": {
+      "title": "Catena-X in general",
+      "what": {
+        "question": "What does the Catena-X Automotive Network work on?",
+        "answer": "The Catena-X Automotive Network aims to create the conditions for the rapid and successful development of an open ecosystem for the efficient and secure exchange of information between companies in the automotive industry."
+      },
+      "goal": {
+        "question": "What is the goal of the Catena-X Automotive Network?",
+        "answer": "The aim of the Catena-X Automotive Network is to create standardized data and information flows along the entire automotive value chain. The focus here is on the benefits and added value for each participant in the network while maintaining data sovereignty in accordance with the standards of the European Union (GAIA-X)."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "message": "add content here"
+  },
+  "imprint": {
+    "title": "Imprint",
+    "directors": "Board of Directors",
+    "ceo": "CEO",
+    "deputyCeo": "Deputy CEO",
+    "treasurer": "Treasurer",
+    "address": "Address",
+    "contact&support": "Contact & Support",
+    "contact&supportDesc": "You can find answers to many questions on our support page. If your question is not answered, please use our contact form. Alternatively, you can also contact us by email at info@catena-x.net.",
+    "privacy": "Privacy",
+    "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
+  },
+  "privacy": {
+    "title": "Privacy",
+    "message": "add content here"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "message": "add content here"
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "what": "A cookie is a small piece of data (text file) that a website - when visited by a user - asks your browser to store on your device in order to remember information about you, such as your language preference or login information.",
+    "purposes": {
+      "why": "More specially, we use cookies for the following purposes:",
+      "reason": [
+        "Assisting you in navigation;",
+        "Assisting in login;",
+        "Remember your preferences and settings;",
+        "Detect the size of your screen;",
+        "Showing you personlised products / services;"
+      ]
+    },
+    "types": {
+      "message": "Below is a detailed list of the cookies we use on our Website.",
+      "strict": "Strictly Necessary Cookies",
+      "function": "Functional Cookies",
+      "target": "Targetting Cookies"
+    }
+  },
+  "licenses": {
+    "title": "Third party licenses",
+    "message": "The Catena-X Portal is currently using these packages."
+  }
+}
