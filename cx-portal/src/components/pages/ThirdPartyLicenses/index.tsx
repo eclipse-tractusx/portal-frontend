@@ -14,7 +14,7 @@ export default function ThirdPartyLicenses() {
   const { items } = useSelector(licensesSelector)
 
   useEffect(() => {
-      dispatch(fetchItems())
+    dispatch(fetchItems())
   }, [dispatch])
 
   const debouncedFilter = useMemo(
