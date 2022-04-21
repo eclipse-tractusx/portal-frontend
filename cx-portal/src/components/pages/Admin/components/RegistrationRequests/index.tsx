@@ -7,7 +7,7 @@ import { fetchRegistrationRequests } from 'state/features/userAdministration/act
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
 
-const RegistrationRequests = () => {
+export default function RegistrationRequests() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const columns = RegistrationRequestsTableColumns(useTranslation)
@@ -96,5 +96,3 @@ const RegistrationRequests = () => {
     </main>
   )
 }
-
-export default RegistrationRequests

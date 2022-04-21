@@ -1,12 +1,12 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import partnerNetworkSlice, {
-  selectorPartnerNetwork,
-} from 'state/features/partnerNetwork/partnerNetworkSlice'
+  partnerNetworkSelector,
+} from 'state/features/partnerNetwork/slice'
 import {
   fetchBusinessPartners,
   getOneBusinessPartner,
-} from 'state/features/partnerNetwork/partnerNetworkActions'
+} from 'state/features/partnerNetwork/actions'
 import { Table, Button } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { RootState } from 'state/store'
@@ -26,7 +26,7 @@ const PartnerNetwork = () => {
 
   const token = useSelector((state: RootState) => state.user.token)
   const { mappedPartnerList, loading, businessPartners } = useSelector(
-    selectorPartnerNetwork
+    partnerNetworkSelector
   )
 
   useEffect(() => {

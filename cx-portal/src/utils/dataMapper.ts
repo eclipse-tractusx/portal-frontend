@@ -3,7 +3,7 @@ import {
   BusinessPartnerResponse,
   BusinessPartnerSearchResponse,
   PartnerNetworkDataGrid,
-} from 'types/partnerNetwork/PartnerNetworkTypes'
+} from 'state/features/partnerNetwork/types'
 
 import {
   RegistrationRequestAPIResponse,
