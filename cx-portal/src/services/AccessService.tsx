@@ -1,7 +1,6 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
-import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
 import DataCatalog from 'components/pages/DataCatalog'
 import DeveloperHub from 'components/pages/DeveloperHub'
@@ -17,7 +16,6 @@ import UserManagement from 'components/pages/UserManagement'
 import { IPage, PAGES, ROLES } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
-import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
 import Help from 'components/pages/Help'
 import Contact from 'components/pages/Contact'
 import Imprint from 'components/pages/Imprint'
@@ -44,16 +42,6 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Registration /> },
-  {
-    name: PAGES.APPSTORE,
-    role: ROLES.APPSTORE_VIEW,
-    element: (
-      <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
-        <Route index element={<></>} />
-        <Route path=":appId" element={<AppstoreDetail />} />
-      </Route>
-    ),
-  },
   {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,

@@ -3,4 +3,3 @@
 
 npm run pretty
 npm run lint --fix
-# npm run test:ci # TODO: only run tests for staged files

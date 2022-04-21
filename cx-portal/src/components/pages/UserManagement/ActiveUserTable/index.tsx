@@ -8,10 +8,9 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { fetchTenantUsers } from 'state/features/userAdministration/userAdministrationActions'
-import { selectorUserAdministration } from 'state/features/userAdministration/userAdministrationSlice'
-import { TenantUser } from 'types/userAdministration/UserAdministrationTypes'
-import { selectorUser } from 'state/features/user/userSlice'
+import { fetchTenantUsers } from 'state/features/userAdministration/actions'
+import { userAdministrationSelector } from 'state/features/userAdministration/slice'
+import { TenantUser } from 'state/features/userAdministration/types'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -22,16 +21,15 @@ export const ActiveUserTable = ({
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { token, tenant } = useSelector(selectorUser)
-  const { tenantUsers } = useSelector(selectorUserAdministration)
+  const { tenantUsers } = useSelector(userAdministrationSelector)
 
   const onUserDetailsClick = (userId: string) => {
     console.log('show details', userId)
   }
 
   useEffect(() => {
-    dispatch(fetchTenantUsers({ token, tenant }))
-  }, [dispatch, token, tenant])
+    dispatch(fetchTenantUsers())
+  }, [dispatch])
 
   return (
     <section>

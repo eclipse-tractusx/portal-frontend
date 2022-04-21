@@ -2,15 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
-  UserAdministrationInitialState,
-} from 'types/userAdministration/UserAdministrationTypes'
-import {
-  fetchTenantUsers,
-  fetchRegistrationRequests,
-} from './userAdministrationActions'
+  UserAdministrationState,
+} from './types'
+import { fetchTenantUsers, fetchRegistrationRequests } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 
-const initialState: UserAdministrationInitialState = {
+const initialState: UserAdministrationState = {
   tenantUsers: [],
   registrationRequests: [],
   loading: true,
@@ -66,7 +63,7 @@ const userAdministrationSlice = createSlice({
   },
 })
 
-export const selectorUserAdministration = (
+export const userAdministrationSelector = (
   state: any
-): UserAdministrationInitialState => state.userAdministration
+): UserAdministrationState => state.userAdministration
 export default userAdministrationSlice
