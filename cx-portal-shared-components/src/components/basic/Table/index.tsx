@@ -25,7 +25,7 @@ export const Table = ({
     <DataGrid
       components={{
         Toolbar: () => (
-          <Toolbar title={title} {...toolbar} {...{rowsCount}} />
+          <Toolbar title={title} {...toolbar} {...{ rowsCount }} />
         ),
       }}
       {...{

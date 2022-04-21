@@ -3,14 +3,24 @@ import { Button, Input } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 type SearchFormProps = {
-  onBpnFieldChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
-  onCompanyNameChange: (event:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
-  onSearchClick: () => void,
-  bpnValue: string,
+  onBpnFieldChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void
+  onCompanyNameChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void
+  onSearchClick: () => void
+  bpnValue: string
   companyName: string
 }
 
-const PartnerNetworkSearchForm = ({onBpnFieldChange,onCompanyNameChange,onSearchClick,bpnValue,companyName}: SearchFormProps) => {
+const PartnerNetworkSearchForm = ({
+  onBpnFieldChange,
+  onCompanyNameChange,
+  onSearchClick,
+  bpnValue,
+  companyName,
+}: SearchFormProps) => {
   const { t } = useTranslation()
 
   return (
@@ -39,7 +49,8 @@ const PartnerNetworkSearchForm = ({onBpnFieldChange,onCompanyNameChange,onSearch
           {t('content.partnernetwork.searchbuttonlabel')}
         </Button>
       </div>
-    </div>)
+    </div>
+  )
 }
 
 export default PartnerNetworkSearchForm

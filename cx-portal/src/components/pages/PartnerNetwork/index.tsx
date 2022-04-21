@@ -65,7 +65,7 @@ const PartnerNetwork = () => {
     if (bpnValue !== '')
       dispatch(getOneBusinessPartner({ bpn: bpnValue, token }))
     // Reset current page to default everytime user search some term
-    else{
+    else {
       const params = {
         ...{ size: pageSize, page: currentPage },
         ...(companyName !== '' && { name: companyName }),
@@ -77,7 +77,6 @@ const PartnerNetwork = () => {
         })
       )
     }
-
   }
 
   return (
@@ -89,8 +88,9 @@ const PartnerNetwork = () => {
           onCompanyNameChange,
           onSearchClick,
           bpnValue,
-          companyName
-        }}/>
+          companyName,
+        }}
+      />
       <div className="partner-network-table-container">
         <Table
           {...{
@@ -132,9 +132,7 @@ const PartnerNetwork = () => {
         {businessPartners.totalElements > pageSize * currentPage && (
           <Button
             size="medium"
-            onClick={() =>
-              setCurrentPage((prevState) => prevState + 1)
-            }
+            onClick={() => setCurrentPage((prevState) => prevState + 1)}
           >
             {t('content.partnernetwork.loadmore')}
           </Button>
