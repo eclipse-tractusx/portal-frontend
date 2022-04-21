@@ -233,7 +233,8 @@
       "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
     },
     "account": {
-      "token": "Aktuelles Authentisierungstoken"
+      "token": "Aktuelles Authentisierungstoken",
+      "copy_to_clipboard": "Token in die Zwischenablage kopieren"
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"

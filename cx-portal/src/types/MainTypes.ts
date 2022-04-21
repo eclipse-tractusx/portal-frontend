@@ -1,3 +1,9 @@
+export type Nullable<T> = T | null
+
+export type TableType = {
+  head: string[]
+  body: string[][]
+}
 export interface GeographicCoordinate {
   longitude: number
   latitude: number

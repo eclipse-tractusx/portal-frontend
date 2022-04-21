@@ -55,7 +55,7 @@
     "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "the gateway to the automotive digital <1></1> network",
+        "subtitle": "the gateway to the automotive <1></1> digital network",
         "cxButton": "My CX",
         "appButton": "My Apps"
       },
@@ -194,7 +194,8 @@
       }
     },
     "account": {
-      "token": "Current authentication token"
+      "token": "Current authentication token",
+      "copy_to_clipboard": "copy token to clipboard"
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import 'components/pages/Admin/RegistrationRequests/RegistrationRequests.scss'
 import { Table, Typography } from 'cx-portal-shared-components'
 import { selectorUserAdministration } from 'state/features/userAdministration/userAdministrationSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRegistrationRequests } from 'state/features/userAdministration/userAdministrationActions'
-import { RegistrationRequestsTableColumns } from 'components/pages/Admin/RegistrationRequests/registrationTableColumns'
+import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import { RootState } from 'state/store'
+import './RegistrationRequests.scss'
 
 const RegistrationRequests = () => {
   const { t } = useTranslation()

@@ -1,6 +1,6 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
-import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
+import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
 import DataCatalog from 'components/pages/DataCatalog'
