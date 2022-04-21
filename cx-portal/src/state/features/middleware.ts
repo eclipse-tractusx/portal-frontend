@@ -1,4 +1,4 @@
-import appsMW from './apps/appsMW'
+import appsMW from '../deprecated/apps/appsMW'
 
 const rootMiddleware = (getDefaultMiddleware: any) => [
   ...getDefaultMiddleware(),

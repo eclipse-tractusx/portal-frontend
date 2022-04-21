@@ -8,17 +8,15 @@ import {
 import { AppListGroupView } from '../AppListGroupView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchApps } from 'state/features/appMarketplace/appMarketplaceActions'
-import { selectorAppMarketplace } from 'state/features/appMarketplace/appMarketplaceSlice'
-import { selectorUser } from 'state/features/user/userSlice'
+import { fetchItems } from 'state/features/appMarketplace/actions'
+import { appMarketplaceSelector } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 
 export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
-  const { apps } = useSelector(selectorAppMarketplace)
+  const { items } = useSelector(appMarketplaceSelector)
   const { t } = useTranslation()
-  const { token } = useSelector(selectorUser)
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
@@ -40,10 +38,8 @@ export default function AppListSection() {
   ]
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchApps(token))
-    }
-  }, [token, dispatch])
+      dispatch(fetchItems())
+  }, [dispatch])
 
   return (
     <Box className="overview-section">
@@ -65,7 +61,7 @@ export default function AppListSection() {
             placeholder={t('content.home.searchSection.inputPlaceholder')}
           />
         </Box>
-        <AppListGroupView items={apps} groupKey={group} />
+        <AppListGroupView items={items} groupKey={group} />
       </section>
     </Box>
   )
