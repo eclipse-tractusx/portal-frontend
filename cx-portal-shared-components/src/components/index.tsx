@@ -29,6 +29,7 @@ export { ViewSelector } from './basic/ViewSelector'
 export { Carousel } from './basic/Carousel'
 
 export { Cards } from './content/Cards'
+export { Card } from './content/Cards/Card'
 export { Navigation } from './content/Navigation'
 export { UserMenu } from './content/UserMenu'
 export { UserNav } from './content/UserNav'
