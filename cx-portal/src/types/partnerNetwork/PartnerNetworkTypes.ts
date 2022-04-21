@@ -114,12 +114,17 @@ export interface BusinessPartner {
   relations: Array<BpdmTypeRelation>
 }
 
+export interface BusinessPartnerSearchResponse {
+  score: number
+  businessPartner: BusinessPartner
+}
+
 export interface BusinessPartnerResponse {
   totalElements: number
   totalPages: number
   page: number
   contentSize: number
-  content: Array<BusinessPartner>
+  content: Array<BusinessPartnerSearchResponse>
 }
 
 export interface PartnerNetworkInitialState {
@@ -141,5 +146,6 @@ export interface PartnerNetworkDataGrid {
 
 export type SearchParams = {
   readonly name?: string
+  readonly page: number
   readonly size: number
 }
