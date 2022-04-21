@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react'
 import { Carousel as Component } from '.'
-import { Box } from '@mui/material'
+import { theme } from '../../../theme'
 import uniqueId from 'lodash/uniqueId'
 
 export default {
@@ -15,11 +15,21 @@ const itemsArray = ['Element 1', 'Element 2', 'Element 3', 'Element 4', 'Element
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args}>
-    { itemsArray.map((item: string) =>{
+    { itemsArray.map((item: string) => {
         return (
-          <Box sx={{padding: '28px'}} key={uniqueId('carousel-item')}>
+          <div
+            style={{
+              padding: '28px',
+              borderRadius: '20px',
+              height: '220px',
+              width: '200px',
+              border: '1px',
+              borderStyle: 'solid',
+              borderColor: theme.palette.border.border01,
+            }}
+            key={uniqueId('carousel-item')}>
             {item}
-          </Box>
+          </div>
         )
       })
     }
@@ -34,5 +44,4 @@ Carousel.args = {
   slidesToShow: 3,
   itemWidth: 256,
   itemHeight: 240,
-  border: true,
 }

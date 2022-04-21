@@ -7,18 +7,17 @@ import { Typography } from '../Typography'
 import { useState, Children } from 'react'
 import { theme } from '../../../theme'
 import uniqueId from 'lodash/uniqueId'
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 export interface CarouselProps {
   children?: React.ReactNode,
-  title: string,
+  title?: string,
   dots?: boolean,
   infinite?: boolean,
   slidesToShow?: number, 
   itemWidth?: number,
   itemHeight?: number,
-  border?: boolean,
 }
 
 function NavArrows(props: any) {
@@ -55,7 +54,6 @@ export const Carousel = ({
   slidesToShow,
   itemWidth,
   itemHeight,
-  border,
 }: CarouselProps) => {
   const [showArrows, setShowArrows] = useState(false)
   const onMouseEnter = () => setShowArrows(true)
@@ -94,11 +92,11 @@ export const Carousel = ({
       }
     ],
   };
-  const arrowTop = itemHeight ? `${itemHeight / 2}px` : '50%'
+
   return (
     <div>
       { title && 
-        <Box sx={{ marginBottom: '60px' }}>
+        <Box>
           <Typography
             sx={{
               marginLeft: 'auto',
@@ -123,7 +121,6 @@ export const Carousel = ({
 
       <Box
         sx={{ 
-          padding: '0px 25px 25px 25px',
           li: {
             margin: 0,
             button: {
@@ -142,42 +139,42 @@ export const Carousel = ({
             }
           },
           '.slick-prev': {
-            top: arrowTop,
             ':before': {
               content: 'none',
             },
           },
           '.slick-next': {
-            top: arrowTop,
             ':before': {
               content: 'none',
             },
           },
+          'img': {
+            display: 'initial',
+          }
         }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         <Slider {...settings}>
-        {Children.map(arrayChildren, (child) => {
-          return (
-            <div key={uniqueId('cax-carousel')}>
-              <Box
-                sx={{
-                  width: `${itemWidth}px`,
-                  height: `${itemHeight}px`,
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  marginBottom: '30px',
-                  borderRadius: '20px',
-                  border: border ? `1px solid ${theme.palette.border.border01}` : 'none',
-                }}
-              >
-                {child}
-              </Box>
-            </div>
-          )
-        })
-        }
+          {Children.map(arrayChildren, (child) => {
+            return (
+              <div key={uniqueId('cax-carousel')}>
+                <Box
+                  sx={{
+                    width: `${itemWidth}px`,
+                    height: `${itemHeight}px`,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginTop: '50px',
+                    marginBottom: '50px',
+                  }}
+                >
+                  {child}
+                </Box>
+              </div>
+            )
+          })
+          }
         </Slider>
       </Box>
     </div>
