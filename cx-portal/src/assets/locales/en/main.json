@@ -111,7 +111,7 @@
       "tabletitle": "Business Partner Data",
       "columns": {
         "bpn": "BPN",
-        "name": "Name",
+        "name": "Company Name",
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
@@ -122,7 +122,13 @@
         "germany": "Germany",
         "others": "Others"
       },
-      "message": "Contents of Partner Network"
+      "message": "Contents of Partner Network",
+      "loadmore": "Load More",
+      "bpnsearchplaceholder": "Please type BPN number of company",
+      "bpnsearchlabel": "BPN Nummer",
+      "companynamesearchplaceholder": "Please type company name",
+      "companynamesearchlabel": "Name der Firma",
+      "searchbuttonlabel": "Search"
     },
     "invite": {
       "title": "Invite a new Business Partner",
