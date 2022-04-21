@@ -5,7 +5,7 @@ import { UserAdministrationApi } from './userAdministration/userAdministrationAP
 const api = {
   loadApps: loadApps,
   PartnerNetworkApi,
-  UserAdministrationApi
+  UserAdministrationApi,
 }
 
 export { api }

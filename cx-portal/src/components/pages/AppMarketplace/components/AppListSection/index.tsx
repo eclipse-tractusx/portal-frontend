@@ -38,7 +38,7 @@ export default function AppListSection() {
   ]
 
   useEffect(() => {
-      dispatch(fetchItems())
+    dispatch(fetchItems())
   }, [dispatch])
 
   return (
