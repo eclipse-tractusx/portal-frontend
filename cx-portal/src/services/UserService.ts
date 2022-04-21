@@ -1,5 +1,5 @@
 import Keycloak from 'keycloak-js'
-import { IUser } from 'types/user/UserTypes'
+import { IUser } from 'state/features/user/types'
 import { ROLES } from 'types/MainTypes'
 import AccessService from './AccessService'
 import { error, info } from './LogService'

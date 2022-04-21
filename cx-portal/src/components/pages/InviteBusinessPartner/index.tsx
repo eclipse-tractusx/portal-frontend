@@ -1,9 +1,8 @@
 import { InviteForm } from 'components/pages/InviteBusinessPartner/components/InviteForm'
 import { useState } from 'react'
 import { info } from 'services/LogService'
-import UserService from 'services/UserService'
-import { UserAdministrationApi } from 'state/api/userAdministration/userAdministrationAPI'
-import { InviteData } from 'types/userAdministration/UserAdministrationTypes'
+import { UserAdministrationApi } from 'state/features/userAdministration/api'
+import { InviteData } from 'state/features/userAdministration/types'
 import './InviteBusinessPartner.scss'
 
 export default function InviteBusinessPartner() {
@@ -12,7 +11,7 @@ export default function InviteBusinessPartner() {
   const doSubmitInvite = (data: InviteData) => {
     setProcessing('busy')
 
-    new UserAdministrationApi(UserService.getToken())
+    new UserAdministrationApi()
       .inviteBusinessPartner(data)
       .then(() => {
         setProcessing('success')

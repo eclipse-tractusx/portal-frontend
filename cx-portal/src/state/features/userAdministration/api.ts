@@ -1,24 +1,17 @@
+import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
-import {
-  TenantUser,
-  InviteData,
-} from 'types/userAdministration/UserAdministrationTypes'
+import { TenantUser, InviteData } from './types'
 
-// Instance of UserAdministration API endpoint
 export class UserAdministrationApi extends HttpClient {
   private static classInstance?: UserAdministrationApi
 
-  // TODO: Token needs to read from Redux store
-  public constructor(token: string) {
-    super(`${process.env.REACT_APP_BASE_API}`, {
-      Authorization: `Bearer ${token}`,
-    })
+  public constructor() {
+    super(process.env.REACT_APP_BASE_API || '')
   }
 
-  // To avoid create an instance everytime, pointed to Singleton of static value
-  public static getInstance(token: string) {
+  public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new UserAdministrationApi(token)
+      this.classInstance = new UserAdministrationApi()
     }
 
     return this.classInstance
@@ -30,15 +23,21 @@ export class UserAdministrationApi extends HttpClient {
       JSON.stringify(invite),
       {
         headers: {
+          authorization: `Bearer ${UserService.getToken()}`,
           'content-type': 'application/json',
         },
       }
     )
   }
 
-  public getTenantUsers = (tenant: string) => {
+  public getTenantUsers = () => {
     return this.instance.get<TenantUser[]>(
-      `/api/useradministration/tenant/${tenant}/users`
+      `/api/useradministration/tenant/${UserService.getTenant()}/users`,
+      {
+        headers: {
+          authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
     )
   }
 }

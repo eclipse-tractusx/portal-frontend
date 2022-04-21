@@ -2,7 +2,7 @@ import { Button, Input, Typography } from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { InviteData } from 'types/userAdministration/UserAdministrationTypes'
+import { InviteData } from 'state/features/userAdministration/types'
 import './InviteForm.scss'
 
 export const InviteForm = ({
