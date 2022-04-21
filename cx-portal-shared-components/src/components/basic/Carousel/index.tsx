@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export interface CarouselProps {
-  children: ChildNode,
+  children?: React.ReactNode,
   title: string,
   dots?: boolean,
   infinite?: boolean,
@@ -104,7 +104,8 @@ export const Carousel = ({
               marginLeft: 'auto',
               marginRight: 'auto',
               marginBottom: '20px',
-              width: 'max-content'
+              width: 'max-content',
+              fontFamily: 'LibreFranklin-Light'
             }}
             variant="h3">
             {title}
@@ -141,10 +142,16 @@ export const Carousel = ({
             }
           },
           '.slick-prev': {
-            top: arrowTop
+            top: arrowTop,
+            ':before': {
+              content: 'none',
+            },
           },
           '.slick-next': {
-            top: arrowTop
+            top: arrowTop,
+            ':before': {
+              content: 'none',
+            },
           },
         }}
         onMouseEnter={onMouseEnter}
@@ -173,6 +180,6 @@ export const Carousel = ({
         }
         </Slider>
       </Box>
-  </div>
+    </div>
   )
 }

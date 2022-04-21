@@ -15,14 +15,14 @@ const itemsArray = ['Element 1', 'Element 2', 'Element 3', 'Element 4', 'Element
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args}>
-      { itemsArray.map((item: string) =>{
-          return (
-            <Box sx={{padding: '28px'}} key={uniqueId('carousel-item')}>
-              {item}
-            </Box>
-          )
-        })
-      }
+    { itemsArray.map((item: string) =>{
+        return (
+          <Box sx={{padding: '28px'}} key={uniqueId('carousel-item')}>
+            {item}
+          </Box>
+        )
+      })
+    }
   </Component>
 )
 
