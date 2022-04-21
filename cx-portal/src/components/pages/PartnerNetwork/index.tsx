@@ -7,11 +7,13 @@ import {
   fetchBusinessPartners,
   getOneBusinessPartner,
 } from 'state/features/partnerNetwork/partnerNetworkActions'
-import { Table, Input, Button, Typography } from 'cx-portal-shared-components'
+import { Table, Button } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { RootState } from 'state/store'
 import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
+import PartnerNetworkHeader from './components/PartnerNetworkHeader'
+import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -63,68 +65,37 @@ const PartnerNetwork = () => {
     if (bpnValue !== '')
       dispatch(getOneBusinessPartner({ bpn: bpnValue, token }))
     // Reset current page to default everytime user search some term
-    else
+    else{
+      const params = {
+        ...{ size: pageSize, page: currentPage },
+        ...(companyName !== '' && { name: companyName }),
+      }
       dispatch(
         fetchBusinessPartners({
-          params: { size: pageSize, page: 0, name: companyName },
+          params,
           token,
         })
       )
+    }
+
   }
 
   return (
     <main className="partner-network-page-container">
-      <div className="header-section">
-        <div className="header-content">
-          <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
-            {t('content.partnernetwork.headertitle')}
-          </Typography>
-        </div>
-        <img
-          src="./stage-header-background.png"
-          alt="Partner Network Background"
-        />
-      </div>
-
-      <div className="page-title-container">
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h3"
-          className="page-title"
-        >
-          Business Partner
-        </Typography>
-      </div>
-      <div className="advance-search-fields-container">
-        <div className="identifier-fields-container">
-          <Input
-            label="BPN Number"
-            variant="filled"
-            placeholder="Please type BPN number of company"
-            margin="dense"
-            onChange={(e) => onBpnFieldChange(e)}
-            value={bpnValue}
-          />
-          <span className="or-span">OR</span>
-          <Input
-            label="Company Name"
-            variant="filled"
-            placeholder="Please type company name"
-            margin="dense"
-            onChange={(e) => onCompanyNameChange(e)}
-            value={companyName}
-          />
-        </div>
-        <div className="search-button">
-          <Button size="medium" onClick={() => onSearchClick()}>
-            Search
-          </Button>
-        </div>
-      </div>
+      <PartnerNetworkHeader />
+      <PartnerNetworkSearchForm
+        {...{
+          onBpnFieldChange,
+          onCompanyNameChange,
+          onSearchClick,
+          bpnValue,
+          companyName
+        }}/>
       <div className="partner-network-table-container">
         <Table
           {...{
             rows: mappedPartnerList,
+            rowsCount: businessPartners.totalElements,
             columns: columns,
             title: t('content.partnernetwork.tabletitle'),
             rowHeight: 100,
@@ -162,9 +133,7 @@ const PartnerNetwork = () => {
           <Button
             size="medium"
             onClick={() =>
-              setCurrentPage((prevState) => {
-                return prevState + 1
-              })
+              setCurrentPage((prevState) => prevState + 1)
             }
           >
             {t('content.partnernetwork.loadmore')}
