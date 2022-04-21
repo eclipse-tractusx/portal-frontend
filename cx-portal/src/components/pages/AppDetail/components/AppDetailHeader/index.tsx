@@ -7,7 +7,10 @@ export default function AppDetailHeader() {
 
   return (
     <div className="appdetail-header">
-      <img src="https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Dismantler.png" alt="" />
+      <img
+        src="https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Dismantler.png"
+        alt=""
+      />
       {/* The below content needs to get replaced as soon as API is available. */}
       <div className="content">
         <p className="provider">Catena-X</p>
