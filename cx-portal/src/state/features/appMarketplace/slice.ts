@@ -1,7 +1,9 @@
+import { CardItems } from 'cx-portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'state/store'
 import { fetchItems } from './actions'
 import { AppMarketplaceState } from './types'
+import { appToCard } from './mapper'
 
 const initialState: AppMarketplaceState = {
   items: [],
@@ -34,5 +36,8 @@ const appMarketplaceSlice = createSlice({
 
 export const appMarketplaceSelector = (state: RootState): AppMarketplaceState =>
   state.appMarketplace
+
+export const appMarketplaceSelectCards = (state: RootState): CardItems[] =>
+  state.appMarketplace.items.map((app) => appToCard(app))
 
 export default appMarketplaceSlice

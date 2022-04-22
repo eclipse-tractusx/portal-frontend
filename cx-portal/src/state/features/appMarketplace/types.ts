@@ -1,12 +1,12 @@
 export type AppMarketplaceApp = {
   id: string
   title: string
-  subtitle: string
-  description: string
+  provider: string
+  shortDescription: string
   price: string
   rating?: number
-  useCase: string
-  leadPicture: string
+  useCase: string[]
+  leadPictureUri: string
 }
 
 export type AppMarketplaceState = {

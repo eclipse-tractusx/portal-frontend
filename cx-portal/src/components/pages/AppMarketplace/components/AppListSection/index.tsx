@@ -9,13 +9,15 @@ import { AppListGroupView } from '../AppListGroupView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/appMarketplace/actions'
-import { appMarketplaceSelector } from 'state/features/appMarketplace/slice'
+import { appMarketplaceSelectCards } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
-  const { items } = useSelector(appMarketplaceSelector)
+  const navigate = useNavigate()
+  const cards = useSelector(appMarketplaceSelectCards)
   const { t } = useTranslation()
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -61,7 +63,13 @@ export default function AppListSection() {
             placeholder={t('content.home.searchSection.inputPlaceholder')}
           />
         </Box>
-        <AppListGroupView items={items} groupKey={group} />
+        <AppListGroupView
+          items={cards.map((card) => ({
+            ...card,
+            onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+          }))}
+          groupKey={group}
+        />
       </section>
     </Box>
   )

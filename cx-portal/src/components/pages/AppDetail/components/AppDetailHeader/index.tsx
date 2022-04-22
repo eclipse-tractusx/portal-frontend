@@ -12,7 +12,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
 
   return (
     <div className="appdetail-header">
-      <img src={item.leadPictureURI} alt={item.name} />
+      <img src={item.leadPictureUri} alt={item.name} />
       <div className="content">
         <p className="provider">{item.provider}</p>
         <h2 className="heading">{item.name}</h2>
