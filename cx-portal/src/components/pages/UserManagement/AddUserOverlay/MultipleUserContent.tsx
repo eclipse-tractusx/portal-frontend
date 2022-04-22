@@ -4,10 +4,10 @@ import { Box } from '@mui/material'
 import { Dropzone } from 'cx-portal-shared-components'
 
 export const MultipleUserContent = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('', { keyPrefix: 'content.addUser' })
   const dropzoneProps = {
-    title: t('content.addUser.userUpload.title'),
-    subtitle: t('content.addUser.userUpload.subtitle'),
+    title: t('userUpload.title'),
+    subtitle: t('userUpload.subtitle'),
     accept: '*', // TODO: add the correct info, as soon as it is known
     getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
     onChangeStatus: ({ meta }: { [name: string]: any }, status: string) => {
@@ -18,39 +18,23 @@ export const MultipleUserContent = () => {
       }
     },
     statusText: {
-      rejected_file_type: t(
-        'content.addUser.userUpload.uploadStatus.rejected_file_type'
-      ),
-      rejected_max_files: t(
-        'content.addUser.userUpload.uploadStatus.rejected_max_files'
-      ),
-      preparing: t('content.addUser.userUpload.uploadStatus.preparing'),
-      error_file_size: t(
-        'content.addUser.userUpload.uploadStatus.error_file_size'
-      ),
-      error_validation: t(
-        'content.addUser.userUpload.uploadStatus.error_validation'
-      ),
-      ready: t('content.addUser.userUpload.uploadStatus.ready'),
-      started: t('content.addUser.userUpload.uploadStatus.started'),
-      getting_upload_params: t(
-        'content.addUser.userUpload.uploadStatus.getting_upload_params'
-      ),
-      error_upload_params: t(
-        'content.addUser.userUpload.uploadStatus.error_upload_params'
-      ),
-      uploading: t('content.addUser.userUpload.uploadStatus.uploading'),
-      exception_upload: t(
-        'content.addUser.userUpload.uploadStatus.exception_upload'
-      ),
-      aborted: t('content.addUser.userUpload.uploadStatus.aborted'),
-      restarted: t('content.addUser.userUpload.uploadStatus.restarted'),
-      removed: t('content.addUser.userUpload.uploadStatus.removed'),
-      error_upload: t('content.addUser.userUpload.uploadStatus.error_upload'),
-      headers_received: t(
-        'content.addUser.userUpload.uploadStatus.headers_received'
-      ),
-      done: t('content.addUser.userUpload.uploadStatus.done'),
+      rejected_file_type: t('userUpload.uploadStatus.rejected_file_type'),
+      rejected_max_files: t('userUpload.uploadStatus.rejected_max_files'),
+      preparing: t('userUpload.uploadStatus.preparing'),
+      error_file_size: t('userUpload.uploadStatus.error_file_size'),
+      error_validation: t('userUpload.uploadStatus.error_validation'),
+      ready: t('userUpload.uploadStatus.ready'),
+      started: t('userUpload.uploadStatus.started'),
+      getting_upload_params: t('userUpload.uploadStatus.getting_upload_params'),
+      error_upload_params: t('userUpload.uploadStatus.error_upload_params'),
+      uploading: t('userUpload.uploadStatus.uploading'),
+      exception_upload: t('userUpload.uploadStatus.exception_upload'),
+      aborted: t('userUpload.uploadStatus.aborted'),
+      restarted: t('userUpload.uploadStatus.restarted'),
+      removed: t('userUpload.uploadStatus.removed'),
+      error_upload: t('userUpload.uploadStatus.error_upload'),
+      headers_received: t('userUpload.uploadStatus.headers_received'),
+      done: t('userUpload.uploadStatus.done'),
     },
     errorStatus: [
       'error_upload_params',
@@ -67,13 +51,13 @@ export const MultipleUserContent = () => {
         sx={{ margin: '30px 0 10px', textAlign: 'center' }}
         variant="h5"
       >
-        {t('content.addUser.multipleUserHeadline')}
+        {t('multipleUserHeadline')}
       </Typography>
       <Typography
         sx={{ marginBottom: '30px', textAlign: 'center' }}
         variant="body2"
       >
-        <Trans i18nKey="content.addUser.multipleUserSubheadline">
+        <Trans i18nKey="multipleUserSubheadline">
           Please use this <a href="/">upload Template</a> to add multiple users
           by file
         </Trans>
