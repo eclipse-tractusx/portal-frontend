@@ -1,21 +1,17 @@
 import { HttpClient } from 'utils/HttpClient'
-import { ProvisionIdentityProviderData } from 'types/provisioning/ProvisioningTypes'
+import { ProvisionIdentityProviderData } from './types'
+import UserService from 'services/UserService'
 
-// Instance of Provisioning API endpoint
 export class ProvisioningApi extends HttpClient {
   private static classInstance?: ProvisioningApi
 
-  // TODO: Token needs to read from Redux store
-  public constructor(token: string) {
-    super(`${process.env.REACT_APP_BASE_API}`, {
-      Authorization: `Bearer ${token}`,
-    })
+  public constructor() {
+    super(process.env.REACT_APP_BASE_API || '')
   }
 
-  // To avoid create an instance everytime, pointed to Singleton of static value
-  public static getInstance(token: string) {
+  public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new ProvisioningApi(token)
+      this.classInstance = new ProvisioningApi()
     }
 
     return this.classInstance
@@ -27,6 +23,7 @@ export class ProvisioningApi extends HttpClient {
       JSON.stringify(provisionIdp),
       {
         headers: {
+          authorization: `Bearer ${UserService.getToken()}`,
           'content-type': 'application/json',
         },
       }

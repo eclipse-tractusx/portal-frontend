@@ -4,12 +4,9 @@ import {
   BusinessPartnerResponse,
   PartnerNetworkDataGrid,
   PartnerNetworkInitialState,
-} from 'types/partnerNetwork/PartnerNetworkTypes'
+} from './types'
 import { RootState } from 'state/store'
-import {
-  getOneBusinessPartner,
-  fetchBusinessPartners,
-} from 'state/features/partnerNetwork/partnerNetworkActions'
+import { getOneBusinessPartner, fetchBusinessPartners } from './actions'
 import {
   mapSingleBusinessPartnerToDataGrid,
   mapBusinessPartnerToDataGrid,
@@ -92,7 +89,8 @@ const partnerNetworkSlice = createSlice({
   },
 })
 
-export const selectorPartnerNetwork = (
+export const partnerNetworkSelector = (
   state: RootState
 ): PartnerNetworkInitialState => state.partnerNetwork
+
 export default partnerNetworkSlice
