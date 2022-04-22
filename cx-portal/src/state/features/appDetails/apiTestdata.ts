@@ -1,4 +1,3 @@
-import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
 import { AppDetails } from './types'
 
@@ -6,7 +5,7 @@ export class AppDetailsApi extends HttpClient {
   private static classInstance?: AppDetailsApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_API || '')
+    super(process.env.REACT_APP_BASE_ASSETS || '')
   }
 
   public static getInstance() {
@@ -17,10 +16,6 @@ export class AppDetailsApi extends HttpClient {
   }
 
   public getItem = (appId: string) => {
-    return this.instance.get<AppDetails>(`/api/apps/${appId}/details.json`, {
-      headers: {
-        authorization: `Bearer ${UserService.getToken()}`,
-      },
-    })
+    return this.instance.get<AppDetails>(`/api/apps/${appId}/details.json`)
   }
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AppDetailsApi } from './api'
+import { AppDetailsApi } from './apiTestdata'
 
 const fetchItem = createAsyncThunk(
   'appDetails/fetchItem',
