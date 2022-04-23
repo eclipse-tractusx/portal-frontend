@@ -52,10 +52,13 @@ const ALL_PAGES: IPage[] = [
     role: ROLES.APPSTORE_VIEW,
     element: (
       <Route
-        key={`${PAGES.APP_DETAIL}/:appId`}
-        path={`${PAGES.APP_DETAIL}/:appId`}
+        key={PAGES.APP_DETAIL}
+        path={PAGES.APP_DETAIL}
         element={<AppDetail />}
-      />
+      >
+        <Route index element={<></>} />
+        <Route path=":appId" element={<AppDetail />} />
+      </Route>
     ),
   },
   {
