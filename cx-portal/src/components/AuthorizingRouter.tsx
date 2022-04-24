@@ -4,9 +4,7 @@ import AccessService from 'services/AccessService'
 import ScrollToTop from '../utils/ScrollToTop'
 
 const AuthorizingRouter = () => {
-  const routes = AccessService.permittedRoutes()
-  console.log(routes)
-  routes.map((route) => console.log(route))
+  console.log(AccessService.permittedRoutes())
   return (
     <BrowserRouter>
       <ScrollToTop />

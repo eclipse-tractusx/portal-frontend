@@ -30,7 +30,7 @@ jobs:
       - name: Build Library and Portal
         run: |
           yarn build:lib
-          yarn build
+          yarn build:portal
 
 #      - name: Unit Tests
 #        run: yarn test:ci

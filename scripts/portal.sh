@@ -18,7 +18,6 @@ ghcr-tags() {
         https://ghcr.io/v2/$IMAGE/tags/list
 }
 
-
 cx-docker-login() {
     echo '''
     az login

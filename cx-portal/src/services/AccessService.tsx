@@ -224,6 +224,8 @@ function init() {
       page.element = (
         <Route key={page.name} path={page.name} element={page.element} />
       )
+    } else {
+      console.log(`found Route for ${page.name}`)
     }
     return map
   }, {})
