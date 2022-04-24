@@ -46,6 +46,9 @@ jobs:
         run: |
           echo versions equal - building release ${{ steps.git-tag.outputs.git-version }}
 
+      - name: Remove Default Environment Variables
+        run: rm cx-portal/.env
+
       - name: Install Dependencies
         run: yarn
 

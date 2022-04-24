@@ -21,6 +21,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Remove Default Environment Variables
+        run: rm cx-portal/.env
+
       - name: Install Dependencies
         run: yarn
 

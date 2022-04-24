@@ -9,7 +9,7 @@ export class PartnerNetworkApi extends HttpClient {
 
   // TODO: Token needs to read from Redux store
   public constructor() {
-    super(process.env.REACT_APP_BPDM_API_BASE_URL || '')
+    super(process.env.REACT_APP_BASE_API_BPDM || '')
   }
 
   // To avoid create an instance everytime, pointed to Singleton of static value

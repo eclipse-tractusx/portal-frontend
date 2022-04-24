@@ -11,7 +11,9 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
         alt: app.title,
       }
     : {
-        src: `${process.env.REACT_APP_BASE_ASSETS}/images/apps/default/lead.png`,
+        src: `${
+          process.env.REACT_APP_BASE_ASSETS || ''
+        }/images/apps/default/lead.png`,
         alt: app.title,
       },
 })
