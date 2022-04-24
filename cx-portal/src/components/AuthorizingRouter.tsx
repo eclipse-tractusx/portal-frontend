@@ -6,7 +6,7 @@ import ScrollToTop from '../utils/ScrollToTop'
 const AuthorizingRouter = () => {
   const routes = AccessService.permittedRoutes()
   console.log(routes)
-  routes.map(route => console.log(route))
+  routes.map((route) => console.log(route))
   return (
     <BrowserRouter>
       <ScrollToTop />
