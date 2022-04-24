@@ -28,10 +28,12 @@ jobs:
         run: yarn lint
 
       - name: Build Library and Portal
-        run: yarn build
+        run: |
+          yarn build:lib
+          yarn build
 
-      - name: Unit Tests
-        run: yarn test:ci
+#      - name: Unit Tests
+#        run: yarn test:ci
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
