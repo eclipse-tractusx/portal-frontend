@@ -13,7 +13,6 @@ ARG no_proxy=$no_proxy
 RUN apk add jq
 COPY . /app
 WORKDIR /app
-RUN rm /app/cx-portal/.env
 RUN yarn
 RUN yarn build
 
