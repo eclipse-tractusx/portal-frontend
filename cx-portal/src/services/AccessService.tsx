@@ -47,6 +47,7 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APPSTORE,
     role: ROLES.APPSTORE_VIEW,
+    isRoute: true,
     element: (
       <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
         <Route index element={<></>} />
@@ -62,6 +63,7 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APP_DETAIL,
     role: ROLES.APPSTORE_VIEW,
+    isRoute: true,
     element: (
       <Route
         key={PAGES.APP_DETAIL}
@@ -220,12 +222,10 @@ function init() {
   // from the list of pages set up a map for easier access and create default routes
   pageMap = ALL_PAGES.reduce((map: { [page: string]: IPage }, page: IPage) => {
     map[page.name] = page
-    if (page.element.type.name !== 'Route') {
+    if (!page.isRoute) {
       page.element = (
         <Route key={page.name} path={page.name} element={page.element} />
       )
-    } else {
-      console.log(`found Route for ${page.name}`)
     }
     return map
   }, {})
