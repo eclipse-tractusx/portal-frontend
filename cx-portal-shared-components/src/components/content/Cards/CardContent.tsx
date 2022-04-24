@@ -25,7 +25,16 @@ export const CardContent = ({
       )}
       <Typography
         variant="h5"
-        sx={{ marginTop: 0.5, maxHeight: '56px', overflow: 'hidden' }}
+        sx={{
+          marginTop: 0.5,
+          height: '56px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'normal',
+          display: '-webkit-box',
+          '-webkitLineClamp': '2',
+          '-webkitBoxOrient': 'vertical',
+        }}
       >
         {title}
       </Typography>

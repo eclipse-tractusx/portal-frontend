@@ -1,4 +1,4 @@
-import { InviteForm } from 'components/shared/content/InviteForm'
+import { InviteForm } from 'components/pages/InviteBusinessPartner/components/InviteForm'
 import { useState } from 'react'
 import { info } from 'services/LogService'
 import UserService from 'services/UserService'

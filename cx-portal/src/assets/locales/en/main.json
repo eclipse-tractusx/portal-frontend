@@ -1,7 +1,7 @@
 {
   "title": "Catena-X Portal",
   "pages": {
-    "dashboard": "Dashboard",
+    "home": "Home",
     "appstore": "Appstore",
     "appmarketplace": "App Marketplace",
     "datacatalog": "Data Catalog",
@@ -24,7 +24,7 @@
     "imprint": "Imprint",
     "privacy": "Privacy",
     "terms": "Terms of Service",
-    "cookiepolicy": "Cookie Policy",
+    "cookiepolicy": "Cookies",
     "thirdpartylicenses": "Third Party Licenses",
     "registration-requests": "Registration Requests",
     "logout": "Sign Out",
@@ -52,10 +52,10 @@
         "celldeclined": "declined"
       }
     },
-    "dashboard": {
+    "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "the gateway to the automotive digital <1></1> network",
+        "subtitle": "the gateway to the automotive <1></1> digital network",
         "cxButton": "My CX",
         "appButton": "My Apps"
       },
@@ -66,7 +66,7 @@
         "title": "My Business Applications"
       },
       "appStoreSection": {
-        "title": "From the App Store – Aus dem App Store"
+        "title": "New Apps"
       }
     },
     "appstore": {
@@ -75,7 +75,7 @@
         "subtitle": "A scalable & expandable <1></1> ecosystem"
       },
       "favoriteSection": {
-        "title": "My Favorit Applications"
+        "title": "My Favorite Applications"
       },
       "appOverviewSection": {
         "title": "App Overview",
@@ -107,7 +107,28 @@
       "message": "Contents of Connector"
     },
     "partnernetwork": {
-      "message": "Contents of Partner Network"
+      "headertitle": "Partners Network",
+      "tabletitle": "Business Partner Data",
+      "columns": {
+        "bpn": "BPN",
+        "name": "Company Name",
+        "country": "Country",
+        "street": "Street",
+        "zipcode": "Zip Code",
+        "city": "City",
+        "taxid": "Tax ID"
+      },
+      "filters": {
+        "germany": "Germany",
+        "others": "Others"
+      },
+      "message": "Contents of Partner Network",
+      "loadmore": "Load More",
+      "bpnsearchplaceholder": "Please type BPN number of company",
+      "bpnsearchlabel": "BPN Nummer",
+      "companynamesearchplaceholder": "Please type company name",
+      "companynamesearchlabel": "Name der Firma",
+      "searchbuttonlabel": "Search"
     },
     "invite": {
       "title": "Invite a new Business Partner",
@@ -172,37 +193,9 @@
         }
       }
     },
-    "help": {
-      "message": "add content here"
-    },
-    "contact": {
-      "message": "add content here"
-    },
-    "imprint": {
-      "directors": "Board of Directors",
-      "ceo": "CEO",
-      "deputyCeo": "Deputy CEO",
-      "treasurer": "Treasurer",
-      "address": "Address",
-      "contact&support": "Contact & Support",
-      "contact&supportDesc": "You can find answers to many questions on our support page. If your question is not answered, please use our contact form. Alternatively, you can also contact us by email at info@catena-x.net.",
-      "privacy": "Privacy",
-      "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
-    },
-    "privacy": {
-      "message": "add content here"
-    },
-    "terms": {
-      "message": "add content here"
-    },
-    "cookiepolicy": {
-      "message": "add content here"
-    },
-    "thirdpartylicenses": {
-      "message": "The Catena-X Portal is currently using these packages."
-    },
     "account": {
-      "token": "Current authentication token"
+      "token": "Current authentication token",
+      "copy_to_clipboard": "copy token to clipboard"
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"

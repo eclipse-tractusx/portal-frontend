@@ -1,7 +1,7 @@
 {
   "title": "Catena-X Portal",
   "pages": {
-    "dashboard": "Übersicht",
+    "home": "Startseite",
     "appstore": "App Store",
     "appmarketplace": "App Marketplace",
     "datacatalog": "Datenkatalog",
@@ -24,7 +24,7 @@
     "imprint": "Impressum",
     "privacy": "Privatsphäre",
     "terms": "Nutzungsbedingungen",
-    "cookiepolicy": "Cookie Richtline",
+    "cookiepolicy": "Cookies",
     "3rdpartylicenses": "Third Party Lizenzen",
     "registration-requests": "Registrierungsanfragen",
     "logout": "Abmelden",
@@ -52,7 +52,7 @@
         "celldeclined": "abgelehnt"
       }
     },
-    "dashboard": {
+    "home": {
       "stage": {
         "title": "Catena-X",
         "subtitle": "der Eintritt in das digital automobile <1></1> Netzwerk",
@@ -66,7 +66,7 @@
         "title": "Meine Applications"
       },
       "appStoreSection": {
-        "title": "Aus dem App Store"
+        "title": "Neue Apps"
       }
     },
     "appstore": {
@@ -107,7 +107,28 @@
       "message": "Inhalte vom Konnektor"
     },
     "partnernetwork": {
-      "message": "Inhalte vom Partner Netzwerk"
+      "headertitle": "Partnernetzwerk",
+      "tabletitle": "Geschäftspartnerdaten",
+      "columns": {
+        "bpn": "BPN",
+        "name": "Name der Firma",
+        "country": "Land",
+        "street": "Straße",
+        "zipcode": "Postleitzahl",
+        "city": "Stadt",
+        "taxid": "Steuer ID"
+      },
+      "filters": {
+        "germany": "Deutschland",
+        "others": "Andere"
+      },
+      "message": "Inhalte vom Partner Netzwerk",
+      "loadmore": "Mehr Laden",
+      "bpnsearchplaceholder": "Bitte geben Sie die BPN-Nummer des Unternehmens ein",
+      "bpnsearchlabel": "BPN Nummer",
+      "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
+      "companynamesearchlabel": "Name der Firma",
+      "searchbuttonlabel": "Suche"
     },
     "invite": {
       "title": "Laden Sie Geschäftspartner ein",
@@ -196,13 +217,24 @@
       "message": "Fügen Sie hier Inhalte hinzu"
     },
     "cookiepolicy": {
-      "message": "Fügen Sie hier Inhalte hinzu"
+      "description1": "A cookie is a small piece of data (text file) that a website - when visited by a user - asks your browser to store on your device in order to remember information about you, such as your language preference or login information.",
+      "description2": "More specially, we use cookies for the following purposes:",
+      "description2_first": "Assisting you in navigation;",
+      "description2_second": "Assisting in login;",
+      "description2_third": "Remember your preferences and settings;",
+      "description2_fourth": "Detect the size of your screen;",
+      "description2_fifth": "Showing you personlised products / services;",
+      "description3": "Below is a detailed list of the cookies we use on our Website.",
+      "description3_first": "Strictly Necessary Cookies",
+      "description3_second": "Functional Cookies",
+      "description3_third": "Targetting Cookies"
     },
     "thirdpartylicenses": {
       "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
     },
     "account": {
-      "token": "Aktuelles Authentisierungstoken"
+      "token": "Aktuelles Authentisierungstoken",
+      "copy_to_clipboard": "Token in die Zwischenablage kopieren"
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"

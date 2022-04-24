@@ -1,6 +1,7 @@
 import {
   BusinessPartner,
   BusinessPartnerResponse,
+  BusinessPartnerSearchResponse,
   PartnerNetworkDataGrid,
 } from 'types/partnerNetwork/PartnerNetworkTypes'
 
@@ -13,14 +14,14 @@ import {
 const mapBusinessPartnerToDataGrid = (
   bpResponse: BusinessPartnerResponse
 ): Array<PartnerNetworkDataGrid> => {
-  return bpResponse?.content?.map((bp: BusinessPartner) => {
-    const bpAddress = bp.addresses[0]
-    const taxObject = bp.identifiers.filter(
+  return bpResponse?.content?.map((bp: BusinessPartnerSearchResponse) => {
+    const bpAddress = bp.businessPartner.addresses[0]
+    const taxObject = bp.businessPartner.identifiers.filter(
       (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
     )
     return {
-      id: bp.bpn,
-      name: bp.names.filter(
+      bpn: bp.businessPartner.bpn,
+      name: bp.businessPartner.names.filter(
         (name) =>
           name.type.technicalKey === 'INTERNATIONAL' ||
           name.type.technicalKey === 'LOCAL'
@@ -42,7 +43,7 @@ const mapSingleBusinessPartnerToDataGrid = (
     (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
   )
   return {
-    id: bp.bpn,
+    bpn: bp.bpn,
     name: bp.names.filter(
       (name) =>
         name.type.technicalKey === 'INTERNATIONAL' ||

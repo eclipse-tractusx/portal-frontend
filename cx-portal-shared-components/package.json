@@ -1,6 +1,6 @@
 {
   "name": "cx-portal-shared-components",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",
@@ -16,9 +16,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
-    "clean": "rm -rf ./build ./dist ./storybook-static",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build:storybook": "mkdir -p ./public && build-storybook -s public && rm -rf ../cx-portal/public/_storybook && mv ./storybook-static ../cx-portal/public/_storybook"
+    "clean": "rimraf ./build ./dist ./storybook-static",
+    "start:storybook": "start-storybook -p 6006 -s public",
+    "build:storybook": "mkdirp public && build-storybook -s public && rimraf ../cx-portal/public/_storybook && mv ./storybook-static ../cx-portal/public/_storybook"
   },
   "dependencies": {
     "@mui/x-data-grid": "^5.6.0",

@@ -1,4 +1,4 @@
-import { useState, useEffect , Children } from 'react'
+import { useState, Children } from 'react'
 import Slider from 'react-slick'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -21,27 +21,16 @@ export interface CarouselProps {
 }
 
 function NavArrows(props: any) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick } = props
   return (
-    <div
-      className={className}
-      style={{ ...style}}
-    >
-      { props.show &&
-        <IconButton
-          color="secondary"
-          size="small"
-          onClick={onClick}
-        >
-          { props.isNext &&
-            <ArrowForwardIcon />
-          }
+    <div className={className} style={{ ...style }}>
+      {props.show && (
+        <IconButton color="secondary" size="small" onClick={onClick}>
+          {props.isNext && <ArrowForwardIcon />}
 
-          { !props.isNext &&
-            <ArrowBackIcon />
-          }
+          {!props.isNext && <ArrowBackIcon />}
         </IconButton>
-      }
+      )}
     </div>
   )
 }
@@ -90,22 +79,22 @@ export const Carousel = ({
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-        }
+        },
       },
       {
         breakpoint: theme.breakpoints.values.md,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-        }
+        },
       },
       {
         breakpoint: theme.breakpoints.values.sm,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 

@@ -39,6 +39,7 @@ export const AppListGroup = ({
         imageSize={'small'}
         items={itemsToShow}
         variant={'compact'}
+        expandOnHover={true}
       />
     </>
   )

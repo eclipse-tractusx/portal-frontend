@@ -7,11 +7,17 @@ export default {
   title: 'Carousel',
   component: Component,
   argTypes: {
-    children: {}
-  }
+    children: {},
+  },
 }
 
-const itemsArray = ['Element 1', 'Element 2', 'Element 3', 'Element 4', 'Element 5']
+const itemsArray = [
+  'Element 1',
+  'Element 2',
+  'Element 3',
+  'Element 4',
+  'Element 5',
+]
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args}>
