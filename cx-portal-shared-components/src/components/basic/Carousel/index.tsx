@@ -1,4 +1,4 @@
-import { useState, Children } from 'react'
+import { useState, Children, useEffect } from 'react'
 import Slider from 'react-slick'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -53,59 +53,80 @@ export const Carousel = ({
   const onMouseLeave = () => setShowArrows(false)
   const arrayChildren = Children.toArray(children)
 
+  useEffect(() => {
+    setResponsiveSlides(slidesToShow)
+    setResponsiveWidth(getCarouselWidth(slidesToShow))
+  }, [slidesToShow])
+
+  useEffect(() => {
+    window.addEventListener('resize', updateWindowSize)
+
+    return () => {
+      window.removeEventListener('resize', updateWindowSize)
+    }
+  })
+
   slidesToShow = slidesToShow && slidesToShow > 0 ? slidesToShow : 1
   slidesToShow = slidesToShow && slidesToShow > arrayChildren.length ? arrayChildren.length : slidesToShow
   gapToArrows = gapToArrows && gapToArrows > 0 ? gapToArrows : 1
   gapBetweenSlides = gapBetweenSlides && gapBetweenSlides > 0 ? gapBetweenSlides : 1
 
-  const carouselLeft = gapBetweenSlides ? `-${2 * gapBetweenSlides}px` : 0
   const slidsInnerGap = gapBetweenSlides ? `${gapBetweenSlides / 2}px` : 0
-  const outerGapToArrow = gapToArrows ? `${gapToArrows}px` : 0;
-  const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0;
+  const outerGapToArrow = gapToArrows ? `${gapToArrows}px` : 0
+  const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0
   const outerGapToDots = gapToDots && dots ? `${gapToDots}px` : 'auto'
   const itemTop = itemHeight && gapCarouselTop ? itemHeight + gapCarouselTop : itemHeight
   const arrowsTop = itemHeight ? itemTop / 2 : 0
-  const carouselWidth = slidesToShow && itemWidth && gapBetweenSlides && gapToArrows ? 
-    slidesToShow * itemWidth + (slidesToShow * gapBetweenSlides) + 3 * gapToArrows : 
-    'auto'
 
-    const settings = {
+  const getCarouselWidth = (slides: number) => {
+    return slides && itemWidth && gapBetweenSlides && gapToArrows ? 
+    slides * itemWidth + (slides * gapBetweenSlides) + 3 * gapToArrows : 
+    0
+  }
+
+  const getCarouselLeft = () => {
+    return gapBetweenSlides ? `-${2 * gapBetweenSlides}px` : 0
+  }
+
+  const [responsiveSlides, setResponsiveSlides] = useState(slidesToShow)
+  const [responsiveWidth, setResponsiveWidth] = useState(getCarouselWidth(slidesToShow))
+  const [carouselLeft, setCarouselLeft] = useState(getCarouselLeft())
+
+  const updateWindowSize = () => {
+    const appId = document.getElementById('app')
+    if (appId?.clientWidth) {
+      if (appId.clientWidth >= theme.breakpoints.values.lg) {
+        setResponsiveSlides(slidesToShow)
+        setCarouselLeft(getCarouselLeft)
+      }
+      if (appId.clientWidth <= theme.breakpoints.values.lg && appId.clientWidth > theme.breakpoints.values.md) {
+        setResponsiveSlides(2)
+        setCarouselLeft(0)
+      }
+      if(appId.clientWidth <= theme.breakpoints.values.md) {
+        setResponsiveSlides(1)
+        setCarouselLeft(0)
+      }
+
+      setResponsiveWidth(getCarouselWidth(responsiveSlides))
+    }
+  }
+
+  const settings = {
     dots: dots,
     infinite: infinite,
-    slidesToShow: slidesToShow,
-    slidesToScroll: slidesToShow,
+    slidesToShow: responsiveSlides,
+    slidesToScroll: responsiveSlides,
     swipeToSlide: false,
     nextArrow: <NavArrows show={showArrows} isNext={true} />,
     prevArrow: <NavArrows show={showArrows} isNext={false} />,
-    responsive: [
-      {
-        breakpoint: theme.breakpoints.values.lg,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: theme.breakpoints.values.md,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: theme.breakpoints.values.sm,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  }
 
   return (
     <Box
       sx={{
-        width: carouselWidth,
+        width: 'max-content',
+        maxWidth: `${responsiveWidth}px`,
         position: 'relative',
         left: carouselLeft,
         marginLeft: 'auto',
