@@ -1,17 +1,19 @@
-import { ILayoutProps } from 'react-dropzone-uploader'
+import { ILayoutProps } from '../DropzoneTypes'
 import { Box } from '@mui/material'
 
-export const Layout = ({
-  input,
-  previews,
-  dropzoneProps,
-  files,
-  extra: { maxFiles },
-}: ILayoutProps) => {
+const Layout = (props: ILayoutProps) => {
+  const {
+    input,
+    previews,
+    dropzoneProps,
+    files,
+    extra: { maxFiles },
+  } = props
+
   return (
     <Box
       sx={{
-        '.dzu-input': {
+        '.input': {
           visibility: 'hidden',
         },
       }}
@@ -21,3 +23,5 @@ export const Layout = ({
     </Box>
   )
 }
+
+export default Layout

@@ -1,5 +1,5 @@
-import { BusinessPartnerResponse } from 'types/partnerNetwork/PartnerNetworkTypes'
-import { IUser } from 'types/user/UserTypes'
+import { BusinessPartnerResponse } from 'state/features/partnerNetwork/types'
+import { IUser } from 'state/features/user/types'
 
 // Mock redux user to initialize store
 const storeMockUser: IUser = {
@@ -50,10 +50,6 @@ const storeMockUser: IUser = {
 // Entire store initial state mock
 export const MockReduxStoreInitialState = {
   user: storeMockUser,
-  apps: {
-    list: [],
-    loading: false,
-  },
   partnerNetwork: {
     businessPartners: {} as BusinessPartnerResponse,
     mappedPartnerList: [],

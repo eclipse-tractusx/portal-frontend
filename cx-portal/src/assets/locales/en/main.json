@@ -4,6 +4,7 @@
     "home": "Home",
     "appstore": "Appstore",
     "appmarketplace": "App Marketplace",
+    "appdetails": "",
     "datacatalog": "Data Catalog",
     "applications": "Applications",
     "semantichub": "Semantic Hub",
@@ -84,9 +85,10 @@
           "useCases": "Use Cases"
         },
         "categories": {
-          "businesspartnerdatamanagement": "Business Partner Data Management",
+          "businesspartnermanagement": "Business Partner Data Management",
           "circulareconomy": "Circular Economy",
           "quality&demandmanagement": "Demand & Quality Management",
+          "demandandcapacitymanagement": "Demand & Capacity Management",
           "traceability": "Traceability"
         }
       }
@@ -211,6 +213,11 @@
         "notimplemented": "hasn't been implemented yet."
       },
       "further": "If you think there should be content please contact your administrator."
+    },
+    "appdetail": {
+      "usecase": "Use Cases",
+      "language": "Language",
+      "subscribe": "Subscribe"
     }
   },
   "global": {

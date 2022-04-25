@@ -4,22 +4,18 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/licenses/actions'
 import { licensesSelector } from 'state/features/licenses/slice'
-import { selectorUser } from 'state/features/user/userSlice'
 import debounce from 'lodash.debounce'
 
 export default function ThirdPartyLicenses() {
   const { t } = useTranslation('footer', { keyPrefix: 'licenses' })
   const dispatch = useDispatch()
-  const { token } = useSelector(selectorUser)
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [filter, setFilter] = useState<RegExp>(/./)
   const { items } = useSelector(licensesSelector)
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchItems())
-    }
-  }, [token, dispatch])
+    dispatch(fetchItems())
+  }, [dispatch])
 
   const debouncedFilter = useMemo(
     () =>

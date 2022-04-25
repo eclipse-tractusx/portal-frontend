@@ -1,10 +1,22 @@
 #!/bin/bash
 
-export ACR=catenaxacr
-export ACRSRV=$ACR.azurecr.io
-export FRONTEND=frontend/portal
-export IMAGE=$ACRSRV/$FRONTEND
+export FRONTEND=catenax-ng/product-portal-frontend
 export VERSION=$(cat package.json | jq -r .version)
+
+ghcr-token() {
+    IMAGE=${1:-$FRONTEND}
+    curl -s https://ghcr.io/token\?scope\="repository:$IMAGE:pull" \
+        | jq -r .token
+}
+
+export GHCR_TOKEN=$(ghcr-token)
+
+ghcr-tags() {
+    IMAGE=${1:-$FRONTEND}
+    curl -s \
+        -H "Authorization: Bearer $GHCR_TOKEN" \
+        https://ghcr.io/v2/$IMAGE/tags/list
+}
 
 cx-docker-login() {
     echo '''

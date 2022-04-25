@@ -10,7 +10,9 @@ export default function Translator() {
   const [langTo, setLangTo] = useState('en,bg')
 
   function doTranslate() {
-    const url = `${process.env.REACT_APP_BASE_UTIL}/translate/${langFrom}/${langTo}`
+    const url = `${
+      process.env.REACT_APP_BASE_UTIL || ''
+    }/translate/${langFrom}/${langTo}`
     axios
       .post(url, input)
       .then(function (response) {
