@@ -85,9 +85,10 @@
           "useCases": "Use Cases"
         },
         "categories": {
-          "businesspartnerdatamanagement": "Business Partner Data Management",
+          "businesspartnermanagement": "Business Partner Data Management",
           "circulareconomy": "Circular Economy",
           "quality&demandmanagement": "Demand & Quality Management",
+          "demandandcapacitymanagement": "Demand & Capacity Management",
           "traceability": "Traceability"
         }
       }
