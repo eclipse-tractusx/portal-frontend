@@ -1,9 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Carousel, Typography, Cards } from 'cx-portal-shared-components'
-import { Box } from '@mui/system'
-import { uniqueId } from 'lodash'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import { Cards, Typography } from 'cx-portal-shared-components'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
@@ -24,9 +20,6 @@ export default function BusinessApplicationsSection() {
           'https://apps.cdq.com/signin/00c9f5bf?redirectUri=https://apps.cdq.com/dashboard/fraud/report-fraud'
       },
     },
-  ]
-
-  const items1 = [
     {
       title: 'Dismantler App',
       subtitle: 'SAP',
@@ -42,9 +35,6 @@ export default function BusinessApplicationsSection() {
           'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
       },
     },
-  ]
-
-  const items2 = [
     {
       title: 'Covanto - AFQM',
       subtitle: 'BOSCH',
@@ -59,9 +49,6 @@ export default function BusinessApplicationsSection() {
         document.location.href = 'https://portal-staging.afqm-services.com/'
       },
     },
-  ]
-
-  const items3 = [
     {
       title: 'Fraud Dashboard',
       subtitle: 'Catena-X',
@@ -78,42 +65,6 @@ export default function BusinessApplicationsSection() {
     },
   ]
 
-  const items4 = [
-    {
-      title: 'Dismantler App',
-      subtitle: 'SAP',
-      image: {
-        src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Quick and transparent overview of reusable car components.',
-      onClick: () => {
-        document.location.href =
-          'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
-      },
-    },
-  ]
-
-  const items5 = [
-    {
-      title: 'Dismantler App',
-      subtitle: 'SAP',
-      image: {
-        src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Quick and transparent overview of reusable car components.',
-      onClick: () => {
-        document.location.href =
-          'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
-      },
-    },
-  ]
-  
   return (
     <div className="orange-background">
       <section className="business-applications-section">
@@ -124,68 +75,17 @@ export default function BusinessApplicationsSection() {
         >
           {t('content.home.businessApplicationsSection.title')}
         </Typography>
-        <Carousel itemWidth={266} itemHeight={279} gapBetweenSlides={32} gapToDots={10}>
-          <Cards
-            items={items} // TODO: Replace from api
-            columns={1}
-            buttonText="Details"
-            imageSize="small"
-            imageShape="round"
-            variant="minimal"
-            expandOnHover={false}
-            filledBackground={true}
-          />
-          <Cards
-            items={items1} // TODO: Replace from api
-            columns={1}
-            buttonText="Details"
-            imageSize="small"
-            imageShape="round"
-            variant="minimal"
-            expandOnHover={false}
-            filledBackground={true}
-          />
-          <Cards
-            items={items2} // TODO: Replace from api
-            columns={1}
-            buttonText="Details"
-            imageSize="small"
-            imageShape="round"
-            variant="minimal"
-            expandOnHover={false}
-            filledBackground={true}
-          />
-          <Cards
-            items={items3} // TODO: Replace from api
-            columns={1}
-            buttonText="Details"
-            imageSize="small"
-            imageShape="round"
-            variant="minimal"
-            expandOnHover={false}
-            filledBackground={true}
-          />
-          <Cards
-            items={items4} // TODO: Replace from api
-            columns={1}
-            buttonText="Details"
-            imageSize="small"
-            imageShape="round"
-            variant="minimal"
-            expandOnHover={false}
-            filledBackground={true}
-          />
-          <Cards
-            items={items5} // TODO: Replace from api
-            columns={1}
-            buttonText="Details"
-            imageSize="small"
-            imageShape="round"
-            variant="minimal"
-            expandOnHover={false}
-            filledBackground={true}
-          />
-        </Carousel>
+
+        <Cards
+          items={items} // TODO: Replace from api
+          columns={4}
+          buttonText="Details"
+          imageSize="small"
+          imageShape="round"
+          variant="minimal"
+          expandOnHover={false}
+          filledBackground={true}
+        />
       </section>
     </div>
   )

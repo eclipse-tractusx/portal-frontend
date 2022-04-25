@@ -109,6 +109,8 @@ export const Carousel = ({
       }
 
       setResponsiveWidth(getCarouselWidth(responsiveSlides))
+    } else {
+      setCarouselLeft(0)
     }
   }
 
