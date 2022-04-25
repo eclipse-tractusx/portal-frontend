@@ -18,6 +18,7 @@ export interface CarouselProps {
   gapBetweenSlides?: number,
   gapToDots?: number,
   gapToArrows?: number,
+  gapCarouselTop?: number,
 }
 
 function NavArrows(props: any) {
@@ -45,6 +46,7 @@ export const Carousel = ({
   gapBetweenSlides = 32,
   gapToDots = 40,
   gapToArrows = 32,
+  gapCarouselTop = 32,
 }: CarouselProps) => {
   const [showArrows, setShowArrows] = useState(false)
   const onMouseEnter = () => setShowArrows(true)
@@ -61,6 +63,8 @@ export const Carousel = ({
   const outerGapToArrow = gapToArrows ? `${gapToArrows}px` : 0;
   const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0;
   const outerGapToDots = gapToDots && dots ? `${gapToDots}px` : 'auto'
+  const itemTop = itemHeight && gapCarouselTop ? itemHeight + gapCarouselTop : itemHeight
+  const arrowsTop = itemHeight ? itemTop / 2 : 0
   const carouselWidth = slidesToShow && itemWidth && gapBetweenSlides && gapToArrows ? 
     slidesToShow * itemWidth + (slidesToShow * gapBetweenSlides) + 3 * gapToArrows : 
     'auto'
@@ -124,12 +128,14 @@ export const Carousel = ({
           }
         },
         '.slick-prev': {
+          top: `${arrowsTop}px`,
           left: '-33px',
           ':before': {
             content: 'none',
           },
         },
         '.slick-next': {
+          top: `${arrowsTop}px`,
           ':before': {
             content: 'none',
           },
@@ -144,7 +150,7 @@ export const Carousel = ({
           width: 'max-content !important',
         },
         '.slick-dots': {
-          marginLeft: '-20px'
+          marginLeft: '-16px'
         },
         'img': {
           display: 'initial',
@@ -163,7 +169,7 @@ export const Carousel = ({
                   sx={{
                     width: `${itemWidth}px`,
                     height: `${itemHeight}px`,
-                    marginTop: outerGapToDots,
+                    marginTop: `${gapCarouselTop}px`,
                     marginBottom: outerGapToDots,
                   }}
                 >

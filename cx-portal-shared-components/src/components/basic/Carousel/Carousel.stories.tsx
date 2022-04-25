@@ -52,4 +52,5 @@ Carousel.args = {
   gapBetweenSlides: 32,
   gapToDots: 40,
   gapToArrows: 32,
+  gapCarouselTop: 32,
 }
