@@ -1,4 +1,4 @@
-import { useState, Children, useEffect } from 'react'
+import { useState, Children, useEffect, useCallback  } from 'react'
 import Slider from 'react-slick'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -54,11 +54,6 @@ export const Carousel = ({
   const arrayChildren = Children.toArray(children)
 
   useEffect(() => {
-    setResponsiveSlides(slidesToShow)
-    setResponsiveWidth(getCarouselWidth(slidesToShow))
-  }, [slidesToShow])
-
-  useEffect(() => {
     window.addEventListener('resize', updateWindowSize)
 
     return () => {
@@ -78,11 +73,11 @@ export const Carousel = ({
   const itemTop = itemHeight && gapCarouselTop ? itemHeight + gapCarouselTop : itemHeight
   const arrowsTop = itemHeight ? itemTop / 2 : 0
 
-  const getCarouselWidth = (slides: number) => {
+  const getCarouselWidth = useCallback((slides: number) => {
     return slides && itemWidth && gapBetweenSlides && gapToArrows ? 
     slides * itemWidth + (slides * gapBetweenSlides) + 3 * gapToArrows : 
     0
-  }
+  }, [itemWidth, gapBetweenSlides, gapToArrows])
 
   const getCarouselLeft = () => {
     return gapBetweenSlides ? `-${2 * gapBetweenSlides}px` : 0
@@ -113,6 +108,11 @@ export const Carousel = ({
       setCarouselLeft(0)
     }
   }
+
+  useEffect(() => {
+    setResponsiveSlides(slidesToShow)
+    setResponsiveWidth(getCarouselWidth(slidesToShow))
+  }, [slidesToShow, getCarouselWidth])
 
   const settings = {
     dots: dots,
