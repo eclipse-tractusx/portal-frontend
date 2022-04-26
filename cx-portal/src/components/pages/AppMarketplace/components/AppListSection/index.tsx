@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   SearchInput,
@@ -12,6 +12,9 @@ import { fetchItems } from 'state/features/appMarketplace/actions'
 import { appMarketplaceSelectCards } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import PageService from 'services/PageService'
+
+export const label = 'AppList'
 
 export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
@@ -19,6 +22,8 @@ export default function AppListSection() {
   const navigate = useNavigate()
   const cards = useSelector(appMarketplaceSelectCards)
   const { t } = useTranslation()
+
+  const reference = PageService.registerReference(label, useRef(null))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
@@ -44,7 +49,7 @@ export default function AppListSection() {
   }, [dispatch])
 
   return (
-    <Box className="overview-section">
+    <Box ref={reference} className="overview-section">
       <section className="overview-section-content">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}

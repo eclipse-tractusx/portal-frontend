@@ -1,5 +1,7 @@
-import { Typography } from 'cx-portal-shared-components'
+import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
+import PageService from 'services/PageService'
+import { label as AppList } from '../AppListSection'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -12,9 +14,15 @@ export default function SearchSection() {
         </Typography>
         <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h2">
           <Trans i18nKey="content.appstore.stage.subtitle">
-            A scalable & expandable <br /> ecosystem
+            The gateway to <br /> a Digital Economy
           </Trans>
         </Typography>
+        <Button
+          sx={{ margin: '40px 10px 0 0' }}
+          onClick={() => PageService.scrollTo(AppList)}
+        >
+          {t('content.appstore.stage.appButton')}
+        </Button>
       </div>
       <div className="stage-background">
         <div className="image-wrapper image-ratio-parent">
