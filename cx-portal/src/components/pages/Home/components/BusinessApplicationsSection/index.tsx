@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { Cards, Typography } from 'cx-portal-shared-components'
+import { Typography, Carousel, Card } from 'cx-portal-shared-components'
+import uniqueId from 'lodash/uniqueId'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
@@ -63,29 +64,51 @@ export default function BusinessApplicationsSection() {
         document.location.href = 'https://dash.catenax-cdq.com/'
       },
     },
+    {
+      title: 'Fraud Dashboard',
+      subtitle: 'Catena-X',
+      image: {
+        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
+        alt: 'Catena-X AppCard',
+      },
+      rating: 4.5,
+      price: 'free to use',
+      description: 'Fraud Dashboard.',
+      onClick: () => {
+        document.location.href = 'https://dash.catenax-cdq.com/'
+      },
+    },
   ]
 
   return (
     <div className="orange-background">
       <section className="business-applications-section">
         <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
+          sx={{ fontFamily: 'LibreFranklin-Light', marginBottom: '48px !important' }}
           variant="h3"
           className="section-title"
         >
           {t('content.home.businessApplicationsSection.title')}
         </Typography>
 
-        <Cards
-          items={items} // TODO: Replace from api
-          columns={4}
-          buttonText="Details"
-          imageSize="small"
-          imageShape="round"
-          variant="minimal"
-          expandOnHover={false}
-          filledBackground={true}
-        />
+        <Carousel gapToDots={5}>
+          {items.map((item) => {
+            return (
+              <Card
+                key={uniqueId(item.title)}
+                title={item.title}
+                subtitle={item.subtitle}
+                image={item.image}
+                buttonText="Details"
+                imageSize="small"
+                imageShape="round"
+                variant="minimal"
+                expandOnHover={false}
+                filledBackground={true}
+              />
+            )
+          })}
+        </Carousel>
       </section>
     </div>
   )
