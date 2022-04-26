@@ -1,5 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Cards, Typography } from 'cx-portal-shared-components'
+import { useRef } from 'react'
+import PageService from 'services/PageService'
+
+export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
@@ -65,8 +69,10 @@ export default function BusinessApplicationsSection() {
     },
   ]
 
+  const reference = PageService.registerReference(label, useRef(null))
+
   return (
-    <div className="orange-background">
+    <div ref={reference} className="orange-background">
       <section className="business-applications-section">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}

@@ -73,7 +73,8 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "A scalable & expandable <1></1> ecosystem"
+        "subtitle": "A scalable & expandable <1></1> ecosystem",
+        "appButton": "App Overview"
       },
       "favoriteSection": {
         "title": "My Favorite Applications"
