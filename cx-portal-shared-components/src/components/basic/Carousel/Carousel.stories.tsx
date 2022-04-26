@@ -21,7 +21,7 @@ const itemsArray = [
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args}>
-    { itemsArray.map((item: string) => {
+    {itemsArray.map((item: string) => {
       return (
         <div
           style={{
@@ -33,12 +33,12 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
             borderStyle: 'solid',
             borderColor: theme.palette.border.border01,
           }}
-          key={uniqueId('carousel-item')}>
+          key={uniqueId('carousel-item')}
+        >
           {item}
         </div>
       )
-    })
-    } 
+    })}
   </Component>
 )
 

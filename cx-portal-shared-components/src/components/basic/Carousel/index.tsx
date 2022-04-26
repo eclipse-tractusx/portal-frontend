@@ -1,4 +1,4 @@
-import { useState, Children, useEffect, useCallback  } from 'react'
+import { useState, Children, useEffect, useCallback } from 'react'
 import Slider from 'react-slick'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -9,16 +9,16 @@ import uniqueId from 'lodash/uniqueId'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 export interface CarouselProps {
-  children?: React.ReactNode,
-  dots?: boolean,
-  infinite?: boolean,
-  slidesToShow?: number, 
-  itemWidth?: number,
-  itemHeight?: number,
-  gapBetweenSlides?: number,
-  gapToDots?: number,
-  gapToArrows?: number,
-  gapCarouselTop?: number,
+  children?: React.ReactNode
+  dots?: boolean
+  infinite?: boolean
+  slidesToShow?: number
+  itemWidth?: number
+  itemHeight?: number
+  gapBetweenSlides?: number
+  gapToDots?: number
+  gapToArrows?: number
+  gapCarouselTop?: number
 }
 
 function NavArrows(props: any) {
@@ -62,29 +62,39 @@ export const Carousel = ({
   })
 
   slidesToShow = slidesToShow && slidesToShow > 0 ? slidesToShow : 1
-  slidesToShow = slidesToShow && slidesToShow > arrayChildren.length ? arrayChildren.length : slidesToShow
+  slidesToShow =
+    slidesToShow && slidesToShow > arrayChildren.length
+      ? arrayChildren.length
+      : slidesToShow
   gapToArrows = gapToArrows && gapToArrows > 0 ? gapToArrows : 1
-  gapBetweenSlides = gapBetweenSlides && gapBetweenSlides > 0 ? gapBetweenSlides : 1
+  gapBetweenSlides =
+    gapBetweenSlides && gapBetweenSlides > 0 ? gapBetweenSlides : 1
 
   const slidsInnerGap = gapBetweenSlides ? `${gapBetweenSlides / 2}px` : 0
   const outerGapToArrow = gapToArrows ? `${gapToArrows}px` : 0
   const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0
   const outerGapToDots = gapToDots && dots ? `${gapToDots}px` : 'auto'
-  const itemTop = itemHeight && gapCarouselTop ? itemHeight + gapCarouselTop : itemHeight
+  const itemTop =
+    itemHeight && gapCarouselTop ? itemHeight + gapCarouselTop : itemHeight
   const arrowsTop = itemHeight ? itemTop / 2 : 0
 
-  const getCarouselWidth = useCallback((slides: number) => {
-    return slides && itemWidth && gapBetweenSlides && gapToArrows ? 
-    slides * itemWidth + (slides * gapBetweenSlides) + 3 * gapToArrows : 
-    0
-  }, [itemWidth, gapBetweenSlides, gapToArrows])
+  const getCarouselWidth = useCallback(
+    (slides: number) => {
+      return slides && itemWidth && gapBetweenSlides && gapToArrows
+        ? slides * itemWidth + slides * gapBetweenSlides + 3 * gapToArrows
+        : 0
+    },
+    [itemWidth, gapBetweenSlides, gapToArrows]
+  )
 
   const getCarouselLeft = () => {
     return gapBetweenSlides ? `-${2 * gapBetweenSlides}px` : 0
   }
 
   const [responsiveSlides, setResponsiveSlides] = useState(slidesToShow)
-  const [responsiveWidth, setResponsiveWidth] = useState(getCarouselWidth(slidesToShow))
+  const [responsiveWidth, setResponsiveWidth] = useState(
+    getCarouselWidth(slidesToShow)
+  )
   const [carouselLeft, setCarouselLeft] = useState(getCarouselLeft())
 
   const updateWindowSize = () => {
@@ -94,11 +104,14 @@ export const Carousel = ({
         setResponsiveSlides(slidesToShow)
         setCarouselLeft(getCarouselLeft)
       }
-      if (appId.clientWidth <= theme.breakpoints.values.lg && appId.clientWidth > theme.breakpoints.values.md) {
+      if (
+        appId.clientWidth <= theme.breakpoints.values.lg &&
+        appId.clientWidth > theme.breakpoints.values.md
+      ) {
         setResponsiveSlides(2)
         setCarouselLeft(0)
       }
-      if(appId.clientWidth <= theme.breakpoints.values.md) {
+      if (appId.clientWidth <= theme.breakpoints.values.md) {
         setResponsiveSlides(1)
         setCarouselLeft(0)
       }
@@ -139,16 +152,16 @@ export const Carousel = ({
             ':before': {
               opacity: '.9',
               fontSize: 8,
-            }
+            },
           },
           '&.slick-active': {
             button: {
               ':before': {
                 opacity: '.9',
                 fontSize: 12,
-              }
+              },
             },
-          }
+          },
         },
         '.slick-prev': {
           top: `${arrowsTop}px`,
@@ -173,11 +186,11 @@ export const Carousel = ({
           width: 'max-content !important',
         },
         '.slick-dots': {
-          marginLeft: '-16px'
+          marginLeft: '-16px',
         },
-        'img': {
+        img: {
           display: 'initial',
-        }
+        },
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -186,8 +199,8 @@ export const Carousel = ({
         {Children.map(arrayChildren, (child) => {
           return (
             <div key={uniqueId('cax-carousel')}>
-              <Box sx={{display:"flex"}}>
-                <Box sx={{width: slidsInnerGap}}></Box>
+              <Box sx={{ display: 'flex' }}>
+                <Box sx={{ width: slidsInnerGap }}></Box>
                 <Box
                   sx={{
                     width: `${itemWidth}px`,
@@ -198,12 +211,11 @@ export const Carousel = ({
                 >
                   {child}
                 </Box>
-                <Box sx={{width: slidsInnerGap}}></Box>
+                <Box sx={{ width: slidsInnerGap }}></Box>
               </Box>
             </div>
           )
-        })
-        }
+        })}
       </Slider>
     </Box>
   )
