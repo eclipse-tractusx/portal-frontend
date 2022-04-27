@@ -8,28 +8,15 @@ import './UserManagement.scss'
 export default function UserManagement() {
   const [open, setOpen] = useState(false)
 
-  const openAddUserLayout = () => {
-    setOpen(true)
-  }
-
-  const closeAddUserLayout = () => {
-    setOpen(false)
-  }
-
-  const confirmNewUser = () => {
-    console.log('confirmed')
-  }
-
   return (
     <main className="UserManagement">
       <AddUserOverlay
         openDialog={open}
-        handleClose={closeAddUserLayout}
-        handleConfirm={confirmNewUser}
+        handleClose={() => setOpen(false)}
       />
       <StageSection />
       <AppArea />
-      <ActiveUserTable onAddUserButtonClick={openAddUserLayout} />
+      <ActiveUserTable onAddUserButtonClick={() => setOpen(true)} />
     </main>
   )
 }

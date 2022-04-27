@@ -19,16 +19,19 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 interface AddUserOverlayProps {
   openDialog?: boolean
   handleClose: React.MouseEventHandler
-  handleConfirm: React.MouseEventHandler
 }
 
 export const AddUserOverlay = ({
   openDialog = false,
-  handleClose,
-  handleConfirm,
+  handleClose
 }: AddUserOverlayProps) => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState(0)
+
+  const handleConfirm = () => {
+    console.log('confirmed')
+  }
+
   const handleChange = (
     event: React.ChangeEvent<unknown>,
     newValue: number

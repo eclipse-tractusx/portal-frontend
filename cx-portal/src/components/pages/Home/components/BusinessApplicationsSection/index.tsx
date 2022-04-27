@@ -29,7 +29,7 @@ export default function BusinessApplicationsSection() {
       title: 'Dismantler App',
       subtitle: 'SAP',
       image: {
-        src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
+        src: '',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
