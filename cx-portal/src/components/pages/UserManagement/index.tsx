@@ -10,10 +10,7 @@ export default function UserManagement() {
 
   return (
     <main className="UserManagement">
-      <AddUserOverlay
-        openDialog={open}
-        handleClose={() => setOpen(false)}
-      />
+      <AddUserOverlay openDialog={open} handleClose={() => setOpen(false)} />
       <StageSection />
       <AppArea />
       <ActiveUserTable onAddUserButtonClick={() => setOpen(true)} />

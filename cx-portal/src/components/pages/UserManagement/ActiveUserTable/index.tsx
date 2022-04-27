@@ -13,7 +13,7 @@ import { userAdministrationSelector } from 'state/features/userAdministration/sl
 import { TenantUser } from 'state/features/userAdministration/types'
 import PageService from 'services/PageService'
 
-export const label = "ActiveUsersTable"
+export const label = 'ActiveUsersTable'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void

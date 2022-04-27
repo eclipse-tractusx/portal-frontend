@@ -23,7 +23,7 @@ interface AddUserOverlayProps {
 
 export const AddUserOverlay = ({
   openDialog = false,
-  handleClose
+  handleClose,
 }: AddUserOverlayProps) => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState(0)
