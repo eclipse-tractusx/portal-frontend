@@ -3,7 +3,7 @@ import Header from './Header'
 
 export default function DigitalTwins() {
   return (
-    <main className="page-main-container">
+    <main className="DigitalTwins">
       <Header />
       <TwinTable />
     </main>

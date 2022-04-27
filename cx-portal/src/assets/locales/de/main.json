@@ -98,7 +98,7 @@
       "table": {
         "title": "Datenübersicht der Digitalen Zwillinge",
         "columns": {
-          "name": "Name",
+          "idShort": "Name",
           "type": "Typ",
           "prov": "Anbieter"
         }

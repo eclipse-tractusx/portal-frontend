@@ -4,6 +4,11 @@ export interface DigitalTwinsInitialState {
   error: string
 }
 
+export type FilterParams = {
+  readonly page: number,
+  readonly pageSize: number
+}
+
 export interface TwinList {
   items: Array<ShellDescriptor>
   totalItems: number
