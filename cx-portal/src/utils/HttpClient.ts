@@ -23,7 +23,7 @@ export abstract class HttpClient {
       'Content-Type': 'application/json',
     },
     timeout: number = Number.parseInt(
-      `${process.env.REACT_APP_API_CALL_TIMEOUT}`
+      `${process.env.REACT_APP_REQUEST_TIMEOUT || 30000}`
     )
   ) {
     this.instance = axios.create({

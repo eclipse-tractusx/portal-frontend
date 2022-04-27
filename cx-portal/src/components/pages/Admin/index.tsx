@@ -1,9 +1,8 @@
 import { ProvisionIdentityProviderForm } from 'components/pages/Admin/components/ProvisionIdentityProviderForm'
 import { useState } from 'react'
 import { info } from 'services/LogService'
-import UserService from 'services/UserService'
-import { ProvisioningApi } from 'state/api/provisioning/provisioningAPI'
-import { ProvisionIdentityProviderData } from 'types/provisioning/ProvisioningTypes'
+import { ProvisioningApi } from 'state/features/provisioning/api'
+import { ProvisionIdentityProviderData } from 'state/features/provisioning/types'
 import './Admin.scss'
 
 export default function Admin() {
@@ -12,7 +11,7 @@ export default function Admin() {
   const doSubmit = (data: ProvisionIdentityProviderData) => {
     setProcessing('busy')
 
-    new ProvisioningApi(UserService.getToken())
+    new ProvisioningApi()
       .provisionIdp(data)
       .then(() => {
         setProcessing('success')

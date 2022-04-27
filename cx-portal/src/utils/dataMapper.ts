@@ -1,26 +1,27 @@
 import {
   BusinessPartner,
   BusinessPartnerResponse,
+  BusinessPartnerSearchResponse,
   PartnerNetworkDataGrid,
-} from 'types/partnerNetwork/PartnerNetworkTypes'
+} from 'state/features/partnerNetwork/types'
 
 import {
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
-} from 'types/userAdministration/UserAdministrationTypes'
+} from 'state/features/userAdministration/types'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
   bpResponse: BusinessPartnerResponse
 ): Array<PartnerNetworkDataGrid> => {
-  return bpResponse?.content?.map((bp: BusinessPartner) => {
-    const bpAddress = bp.addresses[0]
-    const taxObject = bp.identifiers.filter(
+  return bpResponse?.content?.map((bp: BusinessPartnerSearchResponse) => {
+    const bpAddress = bp.businessPartner.addresses[0]
+    const taxObject = bp.businessPartner.identifiers.filter(
       (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
     )
     return {
-      bpn: bp.bpn,
-      name: bp.names.filter(
+      bpn: bp.businessPartner.bpn,
+      name: bp.businessPartner.names.filter(
         (name) =>
           name.type.technicalKey === 'INTERNATIONAL' ||
           name.type.technicalKey === 'LOCAL'

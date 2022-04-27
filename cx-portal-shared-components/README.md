@@ -1,12 +1,13 @@
 # Catena-X Portal Shared Components
 
+Shared components for Catena-X portal and applications.
+
 ## steps
 
-    install dependencies
     yarn
+    yarn build:lib
+    yarn start:storybook
 
-    check UI components http://localhost:6006/
-    yarn start
 
 ## fonts
 
