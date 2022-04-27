@@ -1,7 +1,6 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
-import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
 import DataCatalog from 'components/pages/DataCatalog'
 import DeveloperHub from 'components/pages/DeveloperHub'
@@ -17,7 +16,6 @@ import UserManagement from 'components/pages/UserManagement'
 import { IPage, PAGES, ROLES } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
-import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
 import Help from 'components/pages/Help'
 import Contact from 'components/pages/Contact'
 import Imprint from 'components/pages/Imprint'
@@ -29,6 +27,9 @@ import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
 import AppMarketplace from 'components/pages/AppMarketplace'
 import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
+import AppDetail from 'components/pages/AppDetail'
+import Appstore from 'components/pages/Appstore'
+import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
 
 /**
  * ALL_PAGES
@@ -36,8 +37,8 @@ import Registration from 'components/pages/Registration'
  * this is the main application config table. Each entry has at least:
  * name - name of the page used as application route (without leading '/')
  * role - role required to access this page on the front end
- * element - JSX Element that renders the page
- * route? - (optional) a custom router setup for this page. By default it will create a simple route name -> element
+ * element - either a JSX Element that renders the page or a custom router setup
+ *           for that page. By default it will create a simple route name -> element
  */
 const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
@@ -46,8 +47,8 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APPSTORE,
     role: ROLES.APPSTORE_VIEW,
-    element: <Appstore />,
-    route: (
+    isRoute: true,
+    element: (
       <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
         <Route index element={<></>} />
         <Route path=":appId" element={<AppstoreDetail />} />
@@ -58,6 +59,21 @@ const ALL_PAGES: IPage[] = [
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
+  },
+  {
+    name: PAGES.APP_DETAIL,
+    role: ROLES.APPSTORE_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.APP_DETAIL}
+        path={PAGES.APP_DETAIL}
+        element={<AppDetail />}
+      >
+        <Route index element={<></>} />
+        <Route path=":appId" element={<AppDetail />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.DATACATALOG,
@@ -200,16 +216,17 @@ const userMenu = () => accessToMenu(userMenuFull)
 const footerMenu = () => accessToMenu(footerMenuFull)
 
 const permittedRoutes = () =>
-  ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.route)
+  ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.element)
 
 function init() {
   // from the list of pages set up a map for easier access and create default routes
   pageMap = ALL_PAGES.reduce((map: { [page: string]: IPage }, page: IPage) => {
     map[page.name] = page
-    if (!page.route)
-      page.route = (
+    if (!page.isRoute) {
+      page.element = (
         <Route key={page.name} path={page.name} element={page.element} />
       )
+    }
     return map
   }, {})
 }

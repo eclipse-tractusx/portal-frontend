@@ -1,5 +1,7 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
+import PageService from 'services/PageService'
+import { label as BusinessApplictions } from '../BusinessApplicationsSection'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -13,10 +15,16 @@ export default function SearchSection() {
             The gateway to <br /> a Digital Economy
           </Trans>
         </Typography>
-        <Button sx={{ margin: '40px 10px 0 0' }}>
+        <Button
+          sx={{ margin: '40px 10px 0 0' }}
+          onClick={() => PageService.scrollTo(BusinessApplictions)}
+        >
           {t('content.home.stage.appButton')}
         </Button>
-        <Button sx={{ margin: '40px 0 0 10px' }} variant="outlined">
+        <Button
+          sx={{ margin: '40px 0 0 10px', visibility: 'hidden' }}
+          variant="outlined"
+        >
           {t('content.home.stage.cxButton')}
         </Button>
       </div>

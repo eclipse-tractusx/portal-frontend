@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setLoggedUser } from 'state/features/user/userSlice'
-import { IUser } from 'types/user/UserTypes'
+import { setLoggedUser } from 'state/features/user/slice'
+import { IUser } from 'state/features/user/types'
 
 export function AuthProvider(props: {
   children: JSX.Element

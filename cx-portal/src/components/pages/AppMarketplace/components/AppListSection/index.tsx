@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   SearchInput,
@@ -8,17 +8,22 @@ import {
 import { AppListGroupView } from '../AppListGroupView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchApps } from 'state/features/appMarketplace/appMarketplaceActions'
-import { selectorAppMarketplace } from 'state/features/appMarketplace/appMarketplaceSlice'
-import { selectorUser } from 'state/features/user/userSlice'
+import { fetchItems } from 'state/features/appMarketplace/actions'
+import { appMarketplaceSelectCards } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import PageService from 'services/PageService'
+
+export const label = 'AppList'
 
 export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
-  const { apps } = useSelector(selectorAppMarketplace)
+  const navigate = useNavigate()
+  const cards = useSelector(appMarketplaceSelectCards)
   const { t } = useTranslation()
-  const { token } = useSelector(selectorUser)
+
+  const reference = PageService.registerReference(label, useRef(null))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
@@ -40,13 +45,11 @@ export default function AppListSection() {
   ]
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchApps(token))
-    }
-  }, [token, dispatch])
+    dispatch(fetchItems())
+  }, [dispatch])
 
   return (
-    <Box className="overview-section">
+    <Box ref={reference} className="overview-section">
       <section className="overview-section-content">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}
@@ -65,7 +68,13 @@ export default function AppListSection() {
             placeholder={t('content.home.searchSection.inputPlaceholder')}
           />
         </Box>
-        <AppListGroupView items={apps} groupKey={group} />
+        <AppListGroupView
+          items={cards.map((card) => ({
+            ...card,
+            onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+          }))}
+          groupKey={group}
+        />
       </section>
     </Box>
   )

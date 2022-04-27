@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Table, Typography } from 'cx-portal-shared-components'
-import { selectorUserAdministration } from 'state/features/userAdministration/userAdministrationSlice'
+import { userAdministrationSelector } from 'state/features/userAdministration/slice'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchRegistrationRequests } from 'state/features/userAdministration/userAdministrationActions'
+import { fetchRegistrationRequests } from 'state/features/userAdministration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
-import { RootState } from 'state/store'
 import './RegistrationRequests.scss'
 
-const RegistrationRequests = () => {
+export default function RegistrationRequests() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const columns = RegistrationRequestsTableColumns(useTranslation)
-  const token = useSelector((state: RootState) => state.user.token)
 
   const { loading, registrationRequests } = useSelector(
-    selectorUserAdministration
+    userAdministrationSelector
   )
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchRegistrationRequests(token))
-    }
-  }, [dispatch, token])
+    dispatch(fetchRegistrationRequests())
+  }, [dispatch])
 
   return (
     <main className="page-main-container">
@@ -100,5 +96,3 @@ const RegistrationRequests = () => {
     </main>
   )
 }
-
-export default RegistrationRequests

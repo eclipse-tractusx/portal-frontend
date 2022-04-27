@@ -45,7 +45,6 @@ const PartnerNetwork = () => {
 
       dispatch(fetchBusinessPartners({ params, token }))
     }
-    console.log('ecuasion:', paginationData.totalElements! < pageSize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, dispatch, pageSize, currentPage])
 
