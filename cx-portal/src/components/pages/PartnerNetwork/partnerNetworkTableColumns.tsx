@@ -20,13 +20,13 @@ export const PartnerNetworksTableColumns = (
       flex: 2,
     },
     {
-      field: 'taxId',
-      headerName: t('content.partnernetwork.columns.taxid'),
+      field: 'country',
+      headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
     },
     {
-      field: 'country',
-      headerName: t('content.partnernetwork.columns.country'),
+      field: 'city',
+      headerName: t('content.partnernetwork.columns.city'),
       flex: 1.5,
     },
     {

@@ -7,7 +7,6 @@
     "street": "AV.IRMAOS PEREIRA 1330",
     "zipCode": "87300-010",
     "city": "CAMPO MOURAO",
-    "taxId": "",
     "identifiers": [
       {
         "uuid": "4e05ce63-6e69-417e-b2f1-410e97440acc",
@@ -88,7 +87,6 @@
     "street": "R RIO DE JANEIRO , 421",
     "zipCode": "13800-470",
     "city": "Moji Mirim",
-    "taxId": "",
     "identifiers": [
       {
         "uuid": "d38cc9b0-e9c8-4a65-a61f-f65fdc89c0d0",

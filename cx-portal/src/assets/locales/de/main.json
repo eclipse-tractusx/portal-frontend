@@ -118,8 +118,7 @@
         "country": "Land",
         "street": "Straße",
         "zipcode": "Postleitzahl",
-        "city": "Stadt",
-        "taxid": "Steuer ID"
+        "city": "Stadt"
       },
       "filters": {
         "germany": "Deutschland",

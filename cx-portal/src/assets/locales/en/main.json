@@ -118,8 +118,7 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City",
-        "taxid": "Tax ID"
+        "city": "City"
       },
       "filters": {
         "germany": "Germany",

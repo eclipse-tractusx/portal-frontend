@@ -147,7 +147,6 @@ export interface PartnerNetworkDataGrid {
   street: string
   zipCode: string
   city: string
-  taxId: string
   identifiers: Array<BpdmTypeUUIDKeyPair>
 }
 

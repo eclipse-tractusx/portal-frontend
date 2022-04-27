@@ -109,11 +109,6 @@ const BusinessPartnerDetailOverlay = ({
               <DetailGridRow
                 {...{ variableName: 'BPN', value: selectedRowBPN.bpn }}
               />
-              {selectedRowBPN.taxId && (
-                <DetailGridRow
-                  {...{ variableName: 'Tax ID', value: selectedRowBPN.taxId }}
-                />
-              )}
               {selectedRowBPN.legalForm && (
                 <DetailGridRow
                   {...{

@@ -16,9 +16,6 @@ const mapBusinessPartnerToDataGrid = (
 ): Array<PartnerNetworkDataGrid> => {
   return bpResponse?.content?.map((bp: BusinessPartnerSearchResponse) => {
     const bpAddress = bp.businessPartner.addresses[0]
-    const taxObject = bp.businessPartner.identifiers.filter(
-      (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
-    )
     return {
       bpn: bp.businessPartner.bpn,
       legalForm: bp.businessPartner.legalForm?.name || '',
@@ -31,7 +28,6 @@ const mapBusinessPartnerToDataGrid = (
       street: bpAddress.thoroughfares[0].value,
       zipCode: bpAddress.postCodes[0].value,
       city: bpAddress.localities[0].value,
-      taxId: taxObject.length > 0 ? taxObject[0].value : '',
       identifiers: bp.businessPartner.identifiers,
     } as PartnerNetworkDataGrid
   })
@@ -41,9 +37,6 @@ const mapSingleBusinessPartnerToDataGrid = (
   bp: BusinessPartner
 ): PartnerNetworkDataGrid => {
   const bpAddress = bp.addresses[0]
-  const taxObject = bp.identifiers.filter(
-    (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
-  )
   return {
     bpn: bp.bpn,
     name: bp.names.filter(
@@ -56,7 +49,6 @@ const mapSingleBusinessPartnerToDataGrid = (
     street: bpAddress.thoroughfares[0].value,
     zipCode: bpAddress.postCodes[0].value,
     city: bpAddress.localities[0].value,
-    taxId: taxObject.length > 0 ? taxObject[0].value : '',
     identifiers: bp.identifiers,
   } as PartnerNetworkDataGrid
 }
