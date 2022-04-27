@@ -1,12 +1,12 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import partnerNetworkSlice, {
-  selectorPartnerNetwork,
-} from 'state/features/partnerNetwork/partnerNetworkSlice'
+  partnerNetworkSelector,
+} from 'state/features/partnerNetwork/slice'
 import {
   fetchBusinessPartners,
   getOneBusinessPartner,
-} from 'state/features/partnerNetwork/partnerNetworkActions'
+} from 'state/features/partnerNetwork/actions'
 import { Table, Button } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { RootState } from 'state/store'
@@ -16,7 +16,7 @@ import PartnerNetworkHeader from './components/PartnerNetworkHeader'
 import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
-import { PartnerNetworkDataGrid } from 'types/partnerNetwork/PartnerNetworkTypes'
+import { PartnerNetworkDataGrid } from 'state/features/partnerNetwork/types'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ const PartnerNetwork = () => {
 
   const token = useSelector((state: RootState) => state.user.token)
   const { mappedPartnerList, loading, paginationData } = useSelector(
-    selectorPartnerNetwork
+    partnerNetworkSelector
   )
 
   useEffect(() => {

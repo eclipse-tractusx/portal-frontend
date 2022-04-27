@@ -90,7 +90,10 @@ export default function BusinessApplicationsSection() {
     <div ref={reference} className="orange-background">
       <section className="business-applications-section">
         <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light', marginBottom: '48px !important' }}
+          sx={{
+            fontFamily: 'LibreFranklin-Light',
+            marginBottom: '48px !important',
+          }}
           variant="h3"
           className="section-title"
         >

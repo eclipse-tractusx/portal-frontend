@@ -10,7 +10,7 @@ interface BpdmTypeCommonKeyValuePair extends BpdmTypeNameObject {
   technicalKey: string
 }
 
-interface BpdmTypeUUIDKeyPair {
+export interface BpdmTypeUUIDKeyPair {
   uuid: string
   value: string
   type: BpdmTypeCommonKeyValuePair

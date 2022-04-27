@@ -6,7 +6,10 @@ import {
   DialogHeader,
   Typography,
 } from 'cx-portal-shared-components'
-import { PartnerNetworkDataGrid } from 'types/partnerNetwork/PartnerNetworkTypes'
+import {
+  PartnerNetworkDataGrid,
+  BpdmTypeUUIDKeyPair,
+} from 'state/features/partnerNetwork/types'
 import { Box, Grid, useTheme } from '@mui/material'
 
 interface BusinessPartnerDetailOverlayProps {
@@ -149,17 +152,20 @@ const BusinessPartnerDetailOverlay = ({
               >
                 <Typography variant="h5">Identifiers</Typography>
               </Grid>
-              {selectedRowBPN.identifiers?.map((identifier) => {
-                return (
-                  <DetailGridRow
-                    {...{
-                      variableName:
-                        identifier.type?.name || identifier.type?.technicalKey,
-                      value: identifier.value,
-                    }}
-                  />
-                )
-              })}
+              {selectedRowBPN.identifiers?.map(
+                (identifier: BpdmTypeUUIDKeyPair) => {
+                  return (
+                    <DetailGridRow
+                      {...{
+                        variableName:
+                          identifier.type?.name ||
+                          identifier.type?.technicalKey,
+                        value: identifier.value,
+                      }}
+                    />
+                  )
+                }
+              )}
             </Grid>
           </Box>
         </DialogContent>
