@@ -3,9 +3,11 @@ import Header from './Header'
 
 export default function DigitalTwins() {
   return (
-    <main className="DigitalTwins">
+    <>
       <Header />
-      <TwinTable />
-    </main>
+      <main className="digital-twins">
+        <TwinTable />
+      </main>
+    </>
   )
 }

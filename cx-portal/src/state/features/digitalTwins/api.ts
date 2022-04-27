@@ -7,15 +7,13 @@ export class DigitalTwinApi extends HttpClient {
   private static classInstance?: DigitalTwinApi;
 
 
-  public constructor(token: string) {
-    super(`${process.env.REACT_APP_SLDT_API_BASE_URL}/twin-registry/registry`, {
-      Authorization: `Bearer ${token}`,
-    })
+  public constructor() {
+    super(`${process.env.REACT_APP_SLDT_API_BASE_URL}/twin-registry/registry`)
   }
 
-  public static getInstance(token: string) {
+  public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new DigitalTwinApi(token)
+      this.classInstance = new DigitalTwinApi()
     }
     return this.classInstance
   }

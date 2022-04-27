@@ -4,22 +4,18 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDigitalTwins } from "state/features/digitalTwins/actions";
 import { twinsSelector } from "state/features/digitalTwins/slice";
-import { selectorUser } from "state/features/user/userSlice";
 import { DigitalTwinsTableColumns } from "./DigitalTwinsTableColumns";
 import { data } from "./staticData";
 
 const TwinTable = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch()
-  const { token } = useSelector(selectorUser);
   const { twins, loading, error } = useSelector(twinsSelector);
   const rowCount = 10;
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchDigitalTwins({filter: { page: 1, pageSize: rowCount }, token}))
-    }
-  }, [token, dispatch]);
+    dispatch(fetchDigitalTwins({filter: { page: 1, pageSize: rowCount }}))
+  }, [dispatch]);
 
   const columns = DigitalTwinsTableColumns(useTranslation);
 
