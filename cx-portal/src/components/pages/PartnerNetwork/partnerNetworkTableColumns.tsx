@@ -12,28 +12,27 @@ export const PartnerNetworksTableColumns = (
     {
       field: 'name',
       headerName: t('content.partnernetwork.columns.name'),
-      flex: 4,
+      flex: 2.5,
     },
     {
       field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
-      flex: 2.5,
+      flex: 2,
     },
     {
       field: 'taxId',
       headerName: t('content.partnernetwork.columns.taxid'),
-      flex: 1,
+      flex: 1.5,
     },
     {
       field: 'country',
       headerName: t('content.partnernetwork.columns.country'),
-      flex: 1,
+      flex: 1.5,
     },
-
     {
-      field: '',
+      field: 'detail',
       headerName: `Detail`,
-      flex: 1,
+      flex: 0.8,
       align: 'center',
       renderCell: () => (
         <IconButton

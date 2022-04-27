@@ -127,8 +127,13 @@ export interface BusinessPartnerResponse {
   content: Array<BusinessPartnerSearchResponse>
 }
 
+export interface PaginationData {
+  totalElements: number
+  page: number
+}
+
 export interface PartnerNetworkInitialState {
-  businessPartners: BusinessPartnerResponse
+  paginationData: PaginationData
   mappedPartnerList: Array<PartnerNetworkDataGrid>
   loading: boolean
   error: string
@@ -137,11 +142,13 @@ export interface PartnerNetworkInitialState {
 export interface PartnerNetworkDataGrid {
   bpn: string
   name: string
+  legalForm: string
   country: string
   street: string
   zipCode: string
   city: string
   taxId: string
+  identifiers: Array<BpdmTypeUUIDKeyPair>
 }
 
 export type SearchParams = {

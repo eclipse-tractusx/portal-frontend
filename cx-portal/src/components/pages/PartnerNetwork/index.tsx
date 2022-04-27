@@ -14,6 +14,9 @@ import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import PartnerNetworkHeader from './components/PartnerNetworkHeader'
 import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
+import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
+import { GridCellParams } from '@mui/x-data-grid'
+import { PartnerNetworkDataGrid } from 'types/partnerNetwork/PartnerNetworkTypes'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -22,10 +25,14 @@ const PartnerNetwork = () => {
   const [bpnValue, setBpnValue] = useState<string>('')
   const [companyName, setCompanyName] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const [pageSize] = useState<number>(20)
+  const [pageSize] = useState<number>(10)
+  const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const [selectedBPN, setSelectedBPN] = useState<PartnerNetworkDataGrid>(
+    {} as PartnerNetworkDataGrid
+  )
 
   const token = useSelector((state: RootState) => state.user.token)
-  const { mappedPartnerList, loading, businessPartners } = useSelector(
+  const { mappedPartnerList, loading, paginationData } = useSelector(
     selectorPartnerNetwork
   )
 
@@ -38,6 +45,7 @@ const PartnerNetwork = () => {
 
       dispatch(fetchBusinessPartners({ params, token }))
     }
+    console.log('ecuasion:', paginationData.totalElements! < pageSize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, dispatch, pageSize, currentPage])
 
@@ -79,8 +87,24 @@ const PartnerNetwork = () => {
     }
   }
 
+  const onTableCellClick = (params: GridCellParams) => {
+    // Show overlay only when detail field clicked
+    if (params.field === 'detail') {
+      console.log('table cell click:', params)
+      setSelectedBPN(params.row as PartnerNetworkDataGrid)
+      setOverlayOpen(true)
+    }
+  }
+
   return (
     <main className="partner-network-page-container">
+      <BusinessPartnerDetailOverlay
+        {...{
+          selectedRowBPN: selectedBPN,
+          openDialog: overlayOpen,
+          handleOverlayClose: () => setOverlayOpen(false),
+        }}
+      />
       <PartnerNetworkHeader />
       <PartnerNetworkSearchForm
         {...{
@@ -95,7 +119,7 @@ const PartnerNetwork = () => {
         <Table
           {...{
             rows: mappedPartnerList,
-            rowsCount: businessPartners.totalElements,
+            rowsCount: paginationData.totalElements,
             columns: columns,
             title: t('content.partnernetwork.tabletitle'),
             rowHeight: 100,
@@ -105,6 +129,7 @@ const PartnerNetwork = () => {
             disableColumnSelector: true,
             disableDensitySelector: true,
             disableSelectionOnClick: true,
+            onCellClick: (params: GridCellParams) => onTableCellClick(params),
             toolbar: {
               onFilter: () => {},
               filter: [
@@ -129,14 +154,15 @@ const PartnerNetwork = () => {
         />
       </div>
       <div className="load-more-button-container">
-        {businessPartners.totalElements > pageSize * currentPage && (
-          <Button
-            size="medium"
-            onClick={() => setCurrentPage((prevState) => prevState + 1)}
-          >
-            {t('content.partnernetwork.loadmore')}
-          </Button>
-        )}
+        {paginationData.totalElements > pageSize * currentPage &&
+          paginationData.totalElements! > pageSize && (
+            <Button
+              size="medium"
+              onClick={() => setCurrentPage((prevState) => prevState + 1)}
+            >
+              {t('content.partnernetwork.loadmore')}
+            </Button>
+          )}
       </div>
     </main>
   )

@@ -16,4 +16,5 @@ DialogHeader.args = {
   title: 'Title',
   intro:
     'Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+  closeWithIcon: false,
 }

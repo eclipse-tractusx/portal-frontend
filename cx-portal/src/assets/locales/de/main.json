@@ -128,7 +128,11 @@
       "bpnsearchlabel": "BPN Nummer",
       "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
       "companynamesearchlabel": "Name der Firma",
-      "searchbuttonlabel": "Suche"
+      "searchbuttonlabel": "Suche",
+      "overlay": {
+        "title": "Firmendetails",
+        "companydatatitle": "Firmen Data"
+      }
     },
     "invite": {
       "title": "Laden Sie Geschäftspartner ein",
@@ -267,7 +271,8 @@
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
-      "details": "Details"
+      "details": "Details",
+      "close": "Schließen"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
