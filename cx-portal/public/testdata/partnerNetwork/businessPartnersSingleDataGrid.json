@@ -1,9 +1,70 @@
 {
   "bpn": "BPNL0000000001YN",
   "name": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
+  "legalForm": "",
   "country": "Germany",
   "street": "An der Wiese 14",
   "zipCode": "79650",
   "city": "Schopfheim",
-  "taxId": "DE813155579"
+  "taxId": "DE813155579",
+  "identifiers": [
+    {
+      "uuid": "fa59a765-d9c4-4d92-810f-e49bce3dd57c",
+      "value": "DE813155579",
+      "type": {
+        "technicalKey": "EU_VAT_ID_DE",
+        "name": "Umsatzsteuer-Identifikationsnummer",
+        "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+      },
+      "issuingBody": null,
+      "status": null
+    },
+    {
+      "uuid": "7854bfb0-1661-44e3-910c-1e775affa3e2",
+      "value": "BPNL0000000001YN",
+      "type": {
+        "technicalKey": "BPN",
+        "name": "Business Partner Number",
+        "url": ""
+      },
+      "issuingBody": {
+        "technicalKey": "CATENAX",
+        "name": "Catena-X",
+        "url": ""
+      },
+      "status": {
+        "technicalKey": "UNKNOWN",
+        "name": "Unknown"
+      }
+    },
+    {
+      "uuid": "c5794afe-8661-4b6a-a4cf-9dcb23262e07",
+      "value": "61c0969c780a205a1c6cafe7",
+      "type": {
+        "technicalKey": "CDQID",
+        "name": "CDQ Identifier",
+        "url": ""
+      },
+      "issuingBody": {
+        "technicalKey": "CDQ",
+        "name": "CDQ AG",
+        "url": ""
+      },
+      "status": {
+        "technicalKey": "CDQ_SYNCHRONIZED",
+        "name": "Synchronized with CDQ"
+      }
+    },
+    {
+      "uuid": "6602110a-7512-495a-941d-d4904966ccee",
+      "value": "316622612",
+      "type": {
+        "technicalKey": "DUNS_ID",
+        "name": "DUNS Number",
+        "url": "https://meta.cdq.com/D-U-N-S"
+      },
+      "issuingBody": null,
+      "status": null
+    }
+  ]
 }

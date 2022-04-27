@@ -21,7 +21,7 @@ const mapBusinessPartnerToDataGrid = (
     )
     return {
       bpn: bp.businessPartner.bpn,
-      legalForm: bp.businessPartner.legalForm?.name,
+      legalForm: bp.businessPartner.legalForm?.name || '',
       name: bp.businessPartner.names.filter(
         (name) =>
           name.type.technicalKey === 'INTERNATIONAL' ||
@@ -51,7 +51,7 @@ const mapSingleBusinessPartnerToDataGrid = (
         name.type.technicalKey === 'INTERNATIONAL' ||
         name.type.technicalKey === 'LOCAL'
     )[0].value,
-    legalForm: bp.legalForm?.name,
+    legalForm: bp.legalForm?.name || '',
     country: bpAddress.country.name,
     street: bpAddress.thoroughfares[0].value,
     zipCode: bpAddress.postCodes[0].value,
