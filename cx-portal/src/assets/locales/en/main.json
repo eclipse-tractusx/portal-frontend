@@ -127,9 +127,9 @@
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
       "bpnsearchplaceholder": "Please type BPN number of company",
-      "bpnsearchlabel": "BPN Nummer",
+      "bpnsearchlabel": "BPN Number",
       "companynamesearchplaceholder": "Please type company name",
-      "companynamesearchlabel": "Name der Firma",
+      "companynamesearchlabel": "Company Name",
       "searchbuttonlabel": "Search",
       "overlay": {
         "title": "Company Detail",
