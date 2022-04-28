@@ -15,24 +15,21 @@ import { SingleUserContent } from './SingleUserContent'
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
+import { addUserOpenSelector } from 'state/features/userAdministration/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeAddUser } from 'state/features/userAdministration/actions'
 
-interface AddUserOverlayProps {
-  openDialog?: boolean
-  handleClose: React.MouseEventHandler
-}
-
-export const AddUserOverlay = ({
-  openDialog = false,
-  handleClose,
-}: AddUserOverlayProps) => {
+export const AddUserOverlay = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const addUserOpen = useSelector(addUserOpenSelector)
   const [activeTab, setActiveTab] = useState(0)
 
   const handleConfirm = () => {
     console.log('confirmed')
   }
 
-  const handleChange = (
+  const handleTabSwitch = (
     event: React.ChangeEvent<unknown>,
     newValue: number
   ) => {
@@ -41,7 +38,7 @@ export const AddUserOverlay = ({
 
   return (
     <div className={'add-user-overlay'}>
-      <Dialog open={openDialog}>
+      <Dialog open={addUserOpen}>
         <DialogHeader
           title={t('content.addUser.headline')}
           intro={t('content.addUser.subheadline')}
@@ -50,7 +47,7 @@ export const AddUserOverlay = ({
         <DialogContent className="w-100">
           <Tabs
             value={activeTab}
-            onChange={handleChange}
+            onChange={handleTabSwitch}
             aria-label="basic tabs usage"
           >
             <Tab
@@ -76,7 +73,7 @@ export const AddUserOverlay = ({
         </DialogContent>
 
         <DialogActions helperText={t('content.addUser.helperText')}>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button variant="outlined" onClick={() => dispatch(closeAddUser())}>
             {`${t('global.actions.cancel')}`}
           </Button>
           <Button variant="contained" onClick={handleConfirm}>

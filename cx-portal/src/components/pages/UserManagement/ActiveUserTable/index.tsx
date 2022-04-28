@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/userAdministration/actions'
-import { userAdministrationSelector } from 'state/features/userAdministration/slice'
+import { tenantUsersSelector } from 'state/features/userAdministration/slice'
 import { TenantUser } from 'state/features/userAdministration/types'
 import PageService from 'services/PageService'
 
@@ -24,7 +24,7 @@ export const ActiveUserTable = ({
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { tenantUsers } = useSelector(userAdministrationSelector)
+  const tenantUsers = useSelector(tenantUsersSelector)
   const reference = PageService.registerReference(label, useRef(null))
 
   const onUserDetailsClick = (userId: string) => {

@@ -1,10 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import RegistrationRequests from 'utils/mockDataSet/registrationRequests.json'
 import { UserAdministrationApi } from './api'
 import { RegistrationRequestAPIResponse } from './types'
 
-// Token needs to pass from outside to avoid store object circular dependency issue at unit test
-// https://github.com/reduxjs/redux-toolkit/issues/1609#issuecomment-941126991
+const openAddUser = createAction('userAdministration/openAddUser')
+const closeAddUser = createAction('userAdministration/closeAddUser')
+
 const fetchTenantUsers = createAsyncThunk(
   'userAdministration/fetchTenantUsers',
   async () => {
@@ -31,4 +32,9 @@ const fetchRegistrationRequests = createAsyncThunk(
   }
 )
 
-export { fetchTenantUsers, fetchRegistrationRequests }
+export {
+  openAddUser,
+  closeAddUser,
+  fetchTenantUsers,
+  fetchRegistrationRequests,
+}

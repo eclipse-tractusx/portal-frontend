@@ -58,8 +58,9 @@ export type RegistrationRequestDataGrid = {
 }
 
 export interface UserAdministrationState {
-  tenantUsers: TenantUser[]
+  tenantUsers: Array<TenantUser>
   registrationRequests: Array<RegistrationRequestDataGrid>
   loading: boolean
   error: string
+  addUserOpen: boolean
 }

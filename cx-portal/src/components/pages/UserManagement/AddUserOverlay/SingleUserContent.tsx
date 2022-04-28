@@ -31,7 +31,10 @@ export const SingleUserContent = () => {
     },
   ]
 
-  const { handleChange, errors } = useFormValidation(userInputs)
+  const { handleChange, errors, valid } = useFormValidation(userInputs)
+
+  console.log(errors)
+  console.log(valid)
 
   return (
     <Box sx={{ marginTop: '30px' }}>

@@ -1,10 +1,11 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
-import PageService from 'services/PageService'
-import { label as ActiveUsers } from '../ActiveUserTable'
+import { useDispatch } from 'react-redux'
+import { openAddUser } from 'state/features/userAdministration/actions'
 
 export default function SearchSection() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   return (
     <div className="stage-home stage-section">
@@ -17,7 +18,7 @@ export default function SearchSection() {
         </Typography>
         <Button
           sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => PageService.scrollTo(ActiveUsers)}
+          onClick={() => dispatch(openAddUser())}
         >
           {t('content.usermanagement.table.add')}
         </Button>
