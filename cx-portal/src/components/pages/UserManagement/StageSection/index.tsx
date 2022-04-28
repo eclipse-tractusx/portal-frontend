@@ -1,5 +1,7 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
+import PageService from 'services/PageService'
+import { label as ActiveUsers } from '../ActiveUserTable'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -13,7 +15,10 @@ export default function SearchSection() {
             xxx <br /> xxx
           </Trans>
         </Typography>
-        <Button sx={{ margin: '40px 10px 0 0' }}>
+        <Button
+          sx={{ margin: '40px 10px 0 0' }}
+          onClick={() => PageService.scrollTo(ActiveUsers)}
+        >
           {t('content.usermanagement.table.add')}
         </Button>
       </div>

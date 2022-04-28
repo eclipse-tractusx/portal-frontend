@@ -6,6 +6,7 @@ import {
 } from './types'
 import { fetchTenantUsers, fetchRegistrationRequests } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
+import { RootState } from 'state/store'
 
 const initialState: UserAdministrationState = {
   tenantUsers: [],
@@ -50,7 +51,6 @@ const userAdministrationSlice = createSlice({
           (mapRegistrationRequestResponseToDataGrid(
             payloadList
           ) as Array<RegistrationRequestDataGrid>) || []
-
         state.loading = false
         state.error = ''
       }
@@ -64,6 +64,7 @@ const userAdministrationSlice = createSlice({
 })
 
 export const userAdministrationSelector = (
-  state: any
+  state: RootState
 ): UserAdministrationState => state.userAdministration
+
 export default userAdministrationSlice
