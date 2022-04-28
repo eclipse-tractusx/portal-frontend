@@ -118,7 +118,8 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City"
+        "city": "City",
+        "cxparticipant": "CX Participant"
       },
       "filters": {
         "germany": "Germany",
@@ -133,7 +134,8 @@
       "searchbuttonlabel": "Search",
       "overlay": {
         "title": "Company Detail",
-        "companydatatitle": "Company Data"
+        "companydatatitle": "Company Data",
+        "legalform": "Legal Form"
       }
     },
     "invite": {

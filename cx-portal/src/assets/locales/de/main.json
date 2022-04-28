@@ -118,7 +118,8 @@
         "country": "Land",
         "street": "Straße",
         "zipcode": "Postleitzahl",
-        "city": "Stadt"
+        "city": "Stadt",
+        "cxparticipant": "CX Beteiligte"
       },
       "filters": {
         "germany": "Deutschland",
@@ -133,7 +134,8 @@
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",
-        "companydatatitle": "Firmen Data"
+        "companydatatitle": "Firmen Data",
+        "legalform": "Rechtsform"
       }
     },
     "invite": {

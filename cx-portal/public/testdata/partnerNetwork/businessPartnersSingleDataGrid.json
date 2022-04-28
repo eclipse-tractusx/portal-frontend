@@ -37,24 +37,6 @@
       }
     },
     {
-      "uuid": "c5794afe-8661-4b6a-a4cf-9dcb23262e07",
-      "value": "61c0969c780a205a1c6cafe7",
-      "type": {
-        "technicalKey": "CDQID",
-        "name": "CDQ Identifier",
-        "url": ""
-      },
-      "issuingBody": {
-        "technicalKey": "CDQ",
-        "name": "CDQ AG",
-        "url": ""
-      },
-      "status": {
-        "technicalKey": "CDQ_SYNCHRONIZED",
-        "name": "Synchronized with CDQ"
-      }
-    },
-    {
       "uuid": "6602110a-7512-495a-941d-d4904966ccee",
       "value": "316622612",
       "type": {

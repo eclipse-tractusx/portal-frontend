@@ -28,7 +28,9 @@ const mapBusinessPartnerToDataGrid = (
       street: bpAddress.thoroughfares[0].value,
       zipCode: bpAddress.postCodes[0].value,
       city: bpAddress.localities[0].value,
-      identifiers: bp.businessPartner.identifiers,
+      identifiers: bp.businessPartner.identifiers?.filter(
+        (identifier) => identifier.type.technicalKey !== 'CDQID'
+      ),
     } as PartnerNetworkDataGrid
   })
 }
@@ -49,7 +51,9 @@ const mapSingleBusinessPartnerToDataGrid = (
     street: bpAddress.thoroughfares[0].value,
     zipCode: bpAddress.postCodes[0].value,
     city: bpAddress.localities[0].value,
-    identifiers: bp.identifiers,
+    identifiers: bp.identifiers?.filter(
+      (identifier) => identifier.type.technicalKey !== 'CDQID'
+    ),
   } as PartnerNetworkDataGrid
 }
 

@@ -13,25 +13,30 @@ export const PartnerNetworksTableColumns = (
       field: 'name',
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2.5,
+      sortable: false,
     },
     {
       field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
+      sortable: false,
+    },
+    {
+      field: 'cxmember', // Temporary field, doesnt exists yet
+      headerName: t('content.partnernetwork.columns.cxparticipant'),
+      flex: 1,
+      sortable: false,
     },
     {
       field: 'country',
       headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
-    },
-    {
-      field: 'city',
-      headerName: t('content.partnernetwork.columns.city'),
-      flex: 1.5,
+      sortable: false,
     },
     {
       field: 'detail',
       headerName: `Detail`,
+      headerAlign: 'center',
       flex: 0.8,
       align: 'center',
       renderCell: () => (

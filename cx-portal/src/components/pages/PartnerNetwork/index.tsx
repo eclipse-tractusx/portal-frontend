@@ -9,7 +9,6 @@ import {
 } from 'state/features/partnerNetwork/actions'
 import { Table, Button } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
-import { RootState } from 'state/store'
 import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import PartnerNetworkHeader from './components/PartnerNetworkHeader'
@@ -17,6 +16,7 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'state/features/partnerNetwork/types'
+import UserService from 'services/UserService'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -31,7 +31,7 @@ const PartnerNetwork = () => {
     {} as PartnerNetworkDataGrid
   )
 
-  const token = useSelector((state: RootState) => state.user.token)
+  const token = UserService.getToken()
   const { mappedPartnerList, loading, paginationData } = useSelector(
     partnerNetworkSelector
   )
@@ -46,7 +46,7 @@ const PartnerNetwork = () => {
       dispatch(fetchBusinessPartners({ params, token }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, dispatch, pageSize, currentPage])
+  }, [dispatch, pageSize, currentPage])
 
   // Reset store data when page init
   useEffect(() => {
@@ -89,7 +89,6 @@ const PartnerNetwork = () => {
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      console.log('table cell click:', params)
       setSelectedBPN(params.row as PartnerNetworkDataGrid)
       setOverlayOpen(true)
     }

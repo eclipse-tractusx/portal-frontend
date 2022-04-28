@@ -91,6 +91,7 @@ const BusinessPartnerDetailOverlay = ({
             <Grid container spacing={1.5} style={{ marginTop: 0 }}>
               <Grid
                 xs={12}
+                item
                 style={{
                   backgroundColor: theme.palette.grey['100'],
                   padding: spacing(2),
@@ -101,24 +102,33 @@ const BusinessPartnerDetailOverlay = ({
                 </Typography>
               </Grid>
               <DetailGridRow
+                key={t('content.partnernetwork.columns.name') as string}
                 {...{
-                  variableName: 'Company Name',
+                  variableName: `${t('content.partnernetwork.columns.name')}`,
                   value: selectedRowBPN.name,
                 }}
               />
               <DetailGridRow
-                {...{ variableName: 'BPN', value: selectedRowBPN.bpn }}
+                key={t('content.partnernetwork.columns.bpn') as string}
+                {...{
+                  variableName: `${t('content.partnernetwork.columns.bpn')}`,
+                  value: selectedRowBPN.bpn,
+                }}
               />
               {selectedRowBPN.legalForm && (
                 <DetailGridRow
+                  key={t('content.partnernetwork.overlay.legalform') as string}
                   {...{
-                    variableName: 'Legal Form',
+                    variableName: `${t(
+                      'content.partnernetwork.overlay.legalform'
+                    )}`,
                     value: selectedRowBPN.legalForm,
                   }}
                 />
               )}
               <Grid
                 xs={12}
+                item
                 style={{
                   backgroundColor: theme.palette.grey['100'],
                   padding: spacing(2),
@@ -127,19 +137,23 @@ const BusinessPartnerDetailOverlay = ({
                 <Typography variant="h5">Address</Typography>
               </Grid>
               <DetailGridRow
+                key="Street"
                 {...{ variableName: 'Street', value: selectedRowBPN.street }}
               />
               <DetailGridRow
+                key="PLZ / City"
                 {...{
                   variableName: 'PLZ / City',
                   value: `${selectedRowBPN.zipCode} ${selectedRowBPN.city}`,
                 }}
               />
               <DetailGridRow
+                key="Country"
                 {...{ variableName: 'Country', value: selectedRowBPN.country }}
               />
               <Grid
                 xs={12}
+                item
                 style={{
                   backgroundColor: theme.palette.grey['100'],
                   padding: spacing(2),
@@ -151,6 +165,7 @@ const BusinessPartnerDetailOverlay = ({
                 (identifier: BpdmTypeUUIDKeyPair) => {
                   return (
                     <DetailGridRow
+                      key={identifier.type?.name}
                       {...{
                         variableName:
                           identifier.type?.name ||
