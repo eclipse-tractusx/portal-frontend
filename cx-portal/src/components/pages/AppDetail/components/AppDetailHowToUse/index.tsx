@@ -9,7 +9,7 @@ export default function AppDetailHowToUse() {
     <>
       <div className="howtouse-content">
         <div className="container">
-          <Typography variant="h4">How To Use</Typography>
+          <Typography variant="h4">{t('content.appdetail.howtouse.heading')}</Typography>
           <Typography variant="body2">
             Far far away, behind the word mountains, far from the countries
             Vokalia and Consonantia, there live the blind texts. Separated they

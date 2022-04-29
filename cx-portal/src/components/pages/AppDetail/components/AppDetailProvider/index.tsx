@@ -6,7 +6,7 @@ export default function AppDetailProvider() {
   const { t } = useTranslation()
 
   const tableData: TableType = {
-    head: ['App Provider', 'Website', 'E-mail', 'Phone'],
+    head: [t('content.appdetail.providerInformation.appProvider'), t('content.appdetail.providerInformation.website'), t('content.appdetail.providerInformation.email'), t('content.appdetail.providerInformation.phone')],
     body: [
       ['Catena-X'],
       ['https://catena-x.com'],
@@ -19,7 +19,7 @@ export default function AppDetailProvider() {
     <>
       <div className="provider-content">
         <div className="container">
-          <Typography variant="h4">Provider Information</Typography>
+          <Typography variant="h4">{t('content.appdetail.providerInformation.heading')}</Typography>
           <Typography variant="body2">
             Far far away, behind the word mountains, far from the countries
             Vokalia and Consonantia, there live the blind texts. Separated they

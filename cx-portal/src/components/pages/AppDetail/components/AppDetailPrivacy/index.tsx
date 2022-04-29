@@ -19,7 +19,7 @@ export default function AppDetailPrivacy() {
     <>
       <div className="privacy-content">
         <div className="container">
-          <Typography variant="h4">Privacy Policy</Typography>
+          <Typography variant="h4">{t('content.appdetail.privacy.heading')}</Typography>
           <Typography variant="body2">
             Far far away, behind the word mountains, far from the countries
             Vokalia and Consonantia, there live the blind texts. Separated they

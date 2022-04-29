@@ -218,7 +218,20 @@
     "appdetail": {
       "usecase": "Use Case",
       "language": "Language",
-      "subscribe": "Subscribe"
+      "subscribe": "Subscribe",
+      "privacy": {
+        "heading": "Privacy Policy"
+      },
+      "howtouse": {
+        "heading": "How to Use"
+      },
+      "providerInformation": {
+        "heading": "Provider Information",
+        "appProvider": "App Provider",
+        "website": "Website",
+        "email": "E-Mail",
+        "phone": "Phone"
+      }
     }
   },
   "global": {
