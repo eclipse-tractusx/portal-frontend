@@ -1,7 +1,6 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
-import Appstore from 'components/pages/Appstore'
 import Connector from 'components/pages/Connector'
 import DataCatalog from 'components/pages/DataCatalog'
 import DeveloperHub from 'components/pages/DeveloperHub'
@@ -17,7 +16,6 @@ import UserManagement from 'components/pages/UserManagement'
 import { IPage, PAGES, ROLES } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
-import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
 import Help from 'components/pages/Help'
 import Contact from 'components/pages/Contact'
 import Imprint from 'components/pages/Imprint'
@@ -30,6 +28,8 @@ import AppMarketplace from 'components/pages/AppMarketplace'
 import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
+import Appstore from 'components/pages/Appstore'
+import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
 
 /**
  * ALL_PAGES
@@ -47,6 +47,7 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APPSTORE,
     role: ROLES.APPSTORE_VIEW,
+    isRoute: true,
     element: (
       <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
         <Route index element={<></>} />
@@ -217,7 +218,7 @@ function init() {
   // from the list of pages set up a map for easier access and create default routes
   pageMap = ALL_PAGES.reduce((map: { [page: string]: IPage }, page: IPage) => {
     map[page.name] = page
-    if (page.element.type.name !== 'Route') {
+    if (!page.isRoute) {
       page.element = (
         <Route key={page.name} path={page.name} element={page.element} />
       )

@@ -73,7 +73,8 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "A scalable & expandable <1></1> ecosystem"
+        "subtitle": "Ein skalierendes und erweiterbares <1></1> Ökosystem",
+        "appButton": "App Übersicht"
       },
       "favoriteSection": {
         "title": "Meine Favoriten"
@@ -85,9 +86,10 @@
           "useCases": "Anwendungsbereiche"
         },
         "categories": {
-          "businesspartnerdatamanagement": "Geschäftspartner Datenmanagement",
+          "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
           "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
+          "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
           "traceability": "Rückverfolgbarkeit"
         }
       }
@@ -112,7 +114,7 @@
       "tabletitle": "Geschäftspartnerdaten",
       "columns": {
         "bpn": "BPN",
-        "name": "Name",
+        "name": "Name der Firma",
         "country": "Land",
         "street": "Straße",
         "zipcode": "Postleitzahl",
@@ -123,7 +125,13 @@
         "germany": "Deutschland",
         "others": "Andere"
       },
-      "message": "Inhalte vom Partner Netzwerk"
+      "message": "Inhalte vom Partner Netzwerk",
+      "loadmore": "Mehr Laden",
+      "bpnsearchplaceholder": "Bitte geben Sie die BPN-Nummer des Unternehmens ein",
+      "bpnsearchlabel": "BPN Nummer",
+      "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
+      "companynamesearchlabel": "Name der Firma",
+      "searchbuttonlabel": "Suche"
     },
     "invite": {
       "title": "Laden Sie Geschäftspartner ein",

@@ -6,7 +6,7 @@ export class AppDetailsApi extends HttpClient {
   private static classInstance?: AppDetailsApi
 
   public constructor() {
-    super('')
+    super(process.env.REACT_APP_BASE_API || '')
   }
 
   public static getInstance() {
@@ -17,13 +17,10 @@ export class AppDetailsApi extends HttpClient {
   }
 
   public getItem = (appId: string) => {
-    return this.instance.get<AppDetails>(
-      `/testdata/appDetails.json?id=${appId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${UserService.getToken()}`,
-        },
-      }
-    )
+    return this.instance.get<AppDetails>(`/api/apps/${appId}/details.json`, {
+      headers: {
+        authorization: `Bearer ${UserService.getToken()}`,
+      },
+    })
   }
 }

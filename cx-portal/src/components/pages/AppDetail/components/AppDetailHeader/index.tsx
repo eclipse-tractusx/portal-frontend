@@ -9,14 +9,13 @@ export interface AppDetailHeaderProps {
 }
 
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
-  console.log('item', item)
   const { t } = useTranslation()
 
   return (
     <div className="container">
       <div className="row">
         <div className="lead-image">
-          <img src={item.leadPictureURI} alt={item.name} />
+          <img src={item.leadPictureUri} alt={item.name} />
         </div>
         <div className="content">
           <p className="provider">{item.provider}</p>

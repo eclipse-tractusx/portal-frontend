@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { appDetailsSelector } from 'state/features/appDetails/slice'
 import { fetchItem } from 'state/features/appDetails/actions'
-import { selectorUser } from 'state/features/user/userSlice'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
@@ -19,14 +18,13 @@ export default function AppDetail() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const appId = useParams().appId
-  const { token } = useSelector(selectorUser)
   const { item } = useSelector(appDetailsSelector)
 
   useEffect(() => {
-    if (token && appId) {
+    if ( appId) {
       dispatch(fetchItem(appId))
     }
-  }, [appId, token, dispatch])
+  }, [appId, dispatch])
 
   return item === null ? (
     <NotFound />

@@ -90,4 +90,5 @@ export type IPage = {
   name: string
   role?: string
   element: JSX.Element
+  isRoute?: boolean
 }
