@@ -171,12 +171,7 @@
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
-          "add": "Benutzer hinzufügen",
-          "userName": "Name",
-          "userMail": "Email-Adresse",
-          "status": "Status",
-          "role": "Rolle",
-          "details": "Details"
+          "add": "Benutzer hinzufügen"
         }
       }
     },
@@ -286,7 +281,9 @@
       "status": "Status",
       "role": "Role",
       "active": "Aktiv",
-      "inactive": "Inaktiv"
+      "inactive": "Inaktiv",
+      "name": "Name",
+      "details": "Details"
     },
     "actions": {
       "cancel": "Abbrechen",

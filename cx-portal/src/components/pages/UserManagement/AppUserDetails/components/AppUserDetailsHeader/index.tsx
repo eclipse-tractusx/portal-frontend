@@ -14,22 +14,29 @@ export default function AppUserDetailsHeader({ roles }: AppUserDetailsHeaderProp
   return (
     <section className="app-user-details-header">
       <Typography
-        sx={{ fontFamily: 'LibreFranklin-Light', marginBottom: '48px !important' }}
+        sx={{ fontFamily: 'LibreFranklin-Light', marginBottom: '40px !important' }}
         variant="h3"
         className="section-title"
       >
         {t('content.usermanagement.appUserDetails.header.title')}
       </Typography>
       <Box sx={{ textAlign: "center" }}>
-      {t('content.usermanagement.appUserDetails.header.subtitle')}
+        {t('content.usermanagement.appUserDetails.header.subtitle')}
       </Box>
 
       <div className="app-user-details-header-roles-section">
         {roles.map((role) => {
           return (
             <div className="app-user-details-header-role">
-              <Typography variant="h5">{role.name}</Typography>
-              <Typography variant="h6">{role.description}</Typography>
+              <Typography variant="h5">
+                {role.name}
+              </Typography>
+              <Typography
+                variant="h6"
+                className="app-user-details-header-description"
+              >
+                {role.description}
+              </Typography>
             </div>
           )
         })}

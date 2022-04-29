@@ -171,12 +171,7 @@
         "table": {
           "headline": "Identity Management",
           "title": "User List",
-          "add": "Add user",
-          "userName": "Name",
-          "userMail": "Email Address",
-          "status": "Status",
-          "role": "Role",
-          "details": "Details"
+          "add": "Add user"
         }
       }
     },
@@ -247,7 +242,9 @@
       "status": "Status",
       "role": "Rollen",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "name": "Name",
+      "details": "Details"
     },
     "actions": {
       "cancel": "Cancel",

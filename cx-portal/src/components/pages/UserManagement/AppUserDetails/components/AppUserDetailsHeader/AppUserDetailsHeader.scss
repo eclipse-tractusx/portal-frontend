@@ -6,23 +6,30 @@
 
 .app-user-details-header-roles-section {
   display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-flow: row wrap;
+  max-width: 1200px;
+  width: max-content;
   height: max-content;
-  margin: 80px auto;
+  margin: 80px auto 0px auto;
 }
 
 .app-user-details-header-role {
   width: 350px;
   height: 120px;
   border: 1px solid color(primary);
-  border-radius: 10px;
-  margin: auto 32px;
-  padding: 25px;
+  border-radius: 8px;
+  margin: 16px;
+  padding: 30px 0px 30px 30px;
 }
 
 .app-user-details-header-role:hover {
   border: 1px solid color(primary-hover);
-  box-shadow: 0 0 1em gray;
+  box-shadow: 0px 20px 40px 0px #5050504D;
   cursor: pointer;
+}
+
+.app-user-details-header-description {
+  font-size: 14px !important;
+  text-decoration-line: underline;
+  color: color(primary) !important;
 }
