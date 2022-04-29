@@ -7,11 +7,11 @@ import { AddUserOverlay } from '../AddUserOverlay'
 import './AppUserDetails.scss'
 
 export type UserRole = {
-  name: string,
-  description: string,
+  name: string
+  description: string
 }
 
-export default function AppUserDetails(){
+export default function AppUserDetails() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
 
@@ -28,9 +28,9 @@ export default function AppUserDetails(){
   }
 
   const roles: UserRole[] = [
-    { name: 'Admin', description: 'Role Description'},
-    { name: 'User', description: 'Role Description'},
-    { name: 'Editor', description: 'Role Description'},
+    { name: 'Admin', description: 'Role Description' },
+    { name: 'User', description: 'Role Description' },
+    { name: 'Editor', description: 'Role Description' },
   ]
 
   return (
@@ -42,8 +42,8 @@ export default function AppUserDetails(){
       />
 
       <div className="app-user-details-title-section">
-        <Typography 
-          sx={{ fontFamily: 'LibreFranklin-Light'}}
+        <Typography
+          sx={{ fontFamily: 'LibreFranklin-Light' }}
           variant="h4"
           className="app-user-details-title"
         >
@@ -51,12 +51,12 @@ export default function AppUserDetails(){
         </Typography>
       </div>
 
-      { roles.length > 0 &&
+      {roles.length > 0 && (
         <>
           <AppUserDetailsHeader roles={roles} />
           <AppUserDetailsTable onAddUserButtonClick={openAddUserLayout} />
         </>
-      }
+      )}
     </main>
   )
 }

@@ -88,7 +88,9 @@ export const AppUserDetailsTable = ({
       <div className="load-more-button-container">
         <Button
           size="medium"
-          onClick={() => { console.log('load more') }}
+          onClick={() => {
+            console.log('load more')
+          }}
         >
           {t('content.partnernetwork.loadmore')}
         </Button>
