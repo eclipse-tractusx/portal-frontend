@@ -31,4 +31,19 @@ const fetchRegistrationRequests = createAsyncThunk(
   }
 )
 
-export { fetchTenantUsers, fetchRegistrationRequests }
+const fetchCompanyDetail = createAsyncThunk(
+  'userAdministration/fetchCompanyDetail',
+  async (applicationId: string) => {
+    try {
+      // Currently implementation uses mock data
+      return await UserAdministrationApi.getInstance().getCompanyDetail(
+        applicationId
+      )
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('fetchCompanyDetail api call error')
+    }
+  }
+)
+
+export { fetchTenantUsers, fetchRegistrationRequests, fetchCompanyDetail }
