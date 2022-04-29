@@ -1,8 +1,10 @@
 import { Cards, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 export const AppArea = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   // TODO: Replace from api
   const items = [
@@ -18,6 +20,7 @@ export const AppArea = () => {
       description: 'Fraud Detection App to report Fraud Cases.',
       onClick: () => {
         console.log('click')
+        navigate(`/usermanagement/app-user-details/123`)
       },
     },
     {
@@ -32,6 +35,7 @@ export const AppArea = () => {
       description: 'Quick and transparent overview of reusable car components.',
       onClick: () => {
         console.log('click')
+        navigate(`/usermanagement/app-user-details/456`)
       },
     },
     {

@@ -161,6 +161,23 @@
         "title": "User List",
         "details": "Details",
         "add": "Add user"
+      },
+      "appUserDetails": {
+        "headline": "Page title",
+        "header": {
+          "title": "Available Roles",
+          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+        },
+        "table": {
+          "headline": "Identity Management",
+          "title": "User List",
+          "add": "Add user",
+          "userName": "Name",
+          "userMail": "Email Address",
+          "status": "Status",
+          "role": "Role",
+          "details": "Details"
+        }
       }
     },
     "addUser": {

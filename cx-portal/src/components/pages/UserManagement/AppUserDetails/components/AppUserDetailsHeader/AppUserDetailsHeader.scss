@@ -1,0 +1,28 @@
+@import '../../../../../styles/colors';
+
+.app-user-details-header-subtitle {
+  text-align: center !important;
+}
+
+.app-user-details-header-roles-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: max-content;
+  margin: 80px auto;
+}
+
+.app-user-details-header-role {
+  width: 350px;
+  height: 120px;
+  border: 1px solid color(primary);
+  border-radius: 10px;
+  margin: auto 32px;
+  padding: 25px;
+}
+
+.app-user-details-header-role:hover {
+  border: 1px solid color(primary-hover);
+  box-shadow: 0 0 1em gray;
+  cursor: pointer;
+}

@@ -161,6 +161,23 @@
         "title": "User Liste",
         "details": "Details",
         "add": "User hinzufügen"
+      },
+      "appUserDetails": {
+        "headline": "Seitentitle",
+        "header": {
+          "title": "Verfügbare Rollen",
+          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+        },
+        "table": {
+          "headline": "Benutzermanagement",
+          "title": "Benutzer Liste",
+          "add": "Benutzer hinzufügen",
+          "userName": "Name",
+          "userMail": "Email-Adresse",
+          "status": "Status",
+          "role": "Rolle",
+          "details": "Details"
+        }
       }
     },
     "addUser": {
