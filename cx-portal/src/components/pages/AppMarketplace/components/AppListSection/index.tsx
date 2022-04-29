@@ -71,7 +71,7 @@ export default function AppListSection() {
         <AppListGroupView
           items={cards.map((card) => ({
             ...card,
-            onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+            onButtonClick: () => navigate(`/appdetail/${card.id}`),
           }))}
           groupKey={group}
         />
