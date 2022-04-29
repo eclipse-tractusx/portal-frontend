@@ -37,8 +37,8 @@ import AppDetail from 'components/pages/AppDetail'
  * this is the main application config table. Each entry has at least:
  * name - name of the page used as application route (without leading '/')
  * role - role required to access this page on the front end
- * element - JSX Element that renders the page
- * route? - (optional) a custom router setup for this page. By default it will create a simple route name -> element
+ * element - either a JSX Element that renders the page or a custom router setup
+ *           for that page. By default it will create a simple route name -> element
  */
 const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
@@ -47,8 +47,7 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APPSTORE,
     role: ROLES.APPSTORE_VIEW,
-    element: <Appstore />,
-    route: (
+    element: (
       <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
         <Route index element={<></>} />
         <Route path=":appId" element={<AppstoreDetail />} />
@@ -63,7 +62,13 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APP_DETAIL,
     role: ROLES.APPSTORE_VIEW,
-    element: <AppDetail />,
+    element: (
+      <Route
+        key={`${PAGES.APP_DETAIL}/:appId`}
+        path={`${PAGES.APP_DETAIL}/:appId`}
+        element={<AppDetail />}
+      />
+    ),
   },
   {
     name: PAGES.DATACATALOG,
@@ -206,16 +211,17 @@ const userMenu = () => accessToMenu(userMenuFull)
 const footerMenu = () => accessToMenu(footerMenuFull)
 
 const permittedRoutes = () =>
-  ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.route)
+  ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.element)
 
 function init() {
   // from the list of pages set up a map for easier access and create default routes
   pageMap = ALL_PAGES.reduce((map: { [page: string]: IPage }, page: IPage) => {
     map[page.name] = page
-    if (!page.route)
-      page.route = (
+    if (page.element.type.name !== 'Route') {
+      page.element = (
         <Route key={page.name} path={page.name} element={page.element} />
       )
+    }
     return map
   }, {})
 }

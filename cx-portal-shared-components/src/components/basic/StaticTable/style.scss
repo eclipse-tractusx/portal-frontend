@@ -1,0 +1,46 @@
+.vertical-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .vertical-headings {
+        background-color: #ecf0f4;
+        text-align: left;
+        padding: 10px 15px;
+    }
+
+    tbody {
+        tr {
+            td {
+                padding: 10px 15px;
+                border-bottom: 1px solid #f1f1f1;
+            }
+        }
+    }
+}
+
+.horizontal-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .horizontal-headings {
+        background-color: #ecf0f4;
+        text-align: left;
+        padding: 10px 15px;
+        width: 160px;
+        border-bottom: 1px solid #e0e1e2;
+    }
+
+    tr {
+        td {
+            border-bottom: 1px solid #e0e1e2;
+            padding: 10px 15px;
+        }
+    }
+
+    :first-child {
+        th,
+        td {
+            border-top: 1px solid #e0e1e2;
+        }
+    }
+}

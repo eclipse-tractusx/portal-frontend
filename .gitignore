@@ -46,7 +46,7 @@ log/
 **/storybook-static
 **/_storybook
 **/src/ignore
-**/third-party-licenses.txt
+**/third-party-licenses.*
 
 # misc
 **/.DS_Store
