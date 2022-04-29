@@ -1,4 +1,4 @@
 export type TableType = {
-    head: string[]
-    body: string[][]
+  head: string[]
+  body: string[][]
 }

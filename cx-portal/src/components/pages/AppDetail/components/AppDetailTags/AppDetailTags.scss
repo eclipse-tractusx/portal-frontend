@@ -1,23 +1,23 @@
 .appdetail-tags {
-    .all-tags{
-        display: flex;
-        ul{
-            list-style: none;
-            li{
-                margin-right: 20px;
-                margin-bottom: 15px;
-                a {
-                    color: #676BC6;
-                    font-weight: 500;
-                    font-size: 14px;
-                    line-height: 20px;
-                    text-decoration: none;
-                    background: #F2F3FB;
-                    border-radius: 6px;
-                    padding: 6px 12px;
-                    display: inline-block;
-                }
-            }
+  .all-tags {
+    display: flex;
+    ul {
+      list-style: none;
+      li {
+        margin-right: 20px;
+        margin-bottom: 15px;
+        a {
+          color: #676bc6;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          text-decoration: none;
+          background: #f2f3fb;
+          border-radius: 6px;
+          padding: 6px 12px;
+          display: inline-block;
         }
+      }
     }
+  }
 }

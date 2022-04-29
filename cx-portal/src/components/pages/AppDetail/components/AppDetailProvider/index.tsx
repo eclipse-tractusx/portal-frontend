@@ -6,15 +6,13 @@ export default function AppDetailProvider() {
   const { t } = useTranslation()
 
   const tableData: TableType = {
-    "head": [
-      "App Provider", "Website", "E-mail", "Phone"
+    head: ['App Provider', 'Website', 'E-mail', 'Phone'],
+    body: [
+      ['Catena-X'],
+      ['https://catena-x.com'],
+      ['contact@catena-x.com'],
+      ['+49555667788'],
     ],
-    "body": [
-      ["Catena-X"],
-      ["https://catena-x.com"],
-      ["contact@catena-x.com"],
-      ["+49555667788"]
-    ]
   }
 
   return (
@@ -23,9 +21,14 @@ export default function AppDetailProvider() {
         <div className="container">
           <Typography variant="h4">Provider Information</Typography>
           <Typography variant="body2">
-            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+            Far far away, behind the word mountains, far from the countries
+            Vokalia and Consonantia, there live the blind texts. Separated they
+            live in Bookmarksgrove right at the coast of the Semantics, a large
+            language ocean.
           </Typography>
-          <a href="/" className="product-desc">+ more</a>
+          <a href="/" className="product-desc">
+            + more
+          </a>
         </div>
       </div>
       <div className="privacy-table">
