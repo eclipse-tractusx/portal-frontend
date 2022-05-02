@@ -18,6 +18,15 @@ export type TenantUser = {
   status?: string
 }
 
+export type AddUser = {
+  userName: string
+  eMail: string
+  firstName: string
+  lastName: string
+  role: string
+  message: string
+}
+
 export type RegistrationRequestAPIResponse = {
   application_id: string
   changed_date: Date

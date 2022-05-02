@@ -1,10 +1,22 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import RegistrationRequests from 'utils/mockDataSet/registrationRequests.json'
 import { UserAdministrationApi } from './api'
-import { RegistrationRequestAPIResponse } from './types'
+import { AddUser, RegistrationRequestAPIResponse } from './types'
 
 const openAddUser = createAction('userAdministration/openAddUser')
 const closeAddUser = createAction('userAdministration/closeAddUser')
+
+const addTenantUsers = createAsyncThunk(
+  'userAdministration/addTenantUsers',
+  async (users: AddUser[]) => {
+    try {
+      return await UserAdministrationApi.getInstance().addTenantUsers(users)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('fetchTenantUsers api call error')
+    }
+  }
+)
 
 const fetchTenantUsers = createAsyncThunk(
   'userAdministration/fetchTenantUsers',
@@ -36,5 +48,6 @@ export {
   openAddUser,
   closeAddUser,
   fetchTenantUsers,
+  addTenantUsers,
   fetchRegistrationRequests,
 }

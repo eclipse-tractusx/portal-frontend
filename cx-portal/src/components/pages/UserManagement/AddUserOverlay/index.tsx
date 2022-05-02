@@ -17,16 +17,39 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import { addUserOpenSelector } from 'state/features/userAdministration/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeAddUser } from 'state/features/userAdministration/actions'
+import { addTenantUsers, closeAddUser } from 'state/features/userAdministration/actions'
+import { AddUser } from 'state/features/userAdministration/types'
+
+export type AddUserCallback = (users: AddUser[]) => void;
 
 export const AddUserOverlay = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const addUserOpen = useSelector(addUserOpenSelector)
   const [activeTab, setActiveTab] = useState(0)
+  const [users, setUsers] = useState<AddUser[]>([])
+
+  const setValidUsers = (validUsers: AddUser[]) => {
+    setUsers(validUsers)
+  }
+
+  /*
+  const users = [
+    {
+      userName: 'rohrmeierwebde',
+      eMail: 'rohrmeier@web.de',
+      firstName: 'Martin',
+      lastName: 'Rohrmeier',
+      role: 'IT Admin',
+      message: 'you have been invited to catena-x'
+    }
+  ]
+  */
 
   const handleConfirm = () => {
     console.log('confirmed')
+    console.log(users)
+    //dispatch(addTenantUsers(users))
   }
 
   const handleTabSwitch = (
@@ -64,7 +87,7 @@ export const AddUserOverlay = () => {
             />
           </Tabs>
           <TabPanel value={activeTab} index={0}>
-            <SingleUserContent />
+            <SingleUserContent onValidInput={setValidUsers}/>
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />

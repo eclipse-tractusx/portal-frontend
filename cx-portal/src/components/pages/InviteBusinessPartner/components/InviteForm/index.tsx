@@ -32,8 +32,7 @@ export const InviteForm = ({
           /^([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
         ].map((p, i) => !p.test(expr[i]))
         check.push(
-          check.reduce((all, valid) => all || valid),
-          false
+          check.reduce((all, valid) => all || valid)
         )
         setInpValid(check)
       }, 300),

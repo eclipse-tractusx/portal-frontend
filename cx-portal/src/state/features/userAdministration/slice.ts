@@ -5,7 +5,7 @@ import {
   TenantUser,
   UserAdministrationState,
 } from './types'
-import { fetchTenantUsers, fetchRegistrationRequests } from './actions'
+import { addTenantUsers, fetchTenantUsers, fetchRegistrationRequests } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'state/store'
 
@@ -31,6 +31,21 @@ const userAdministrationSlice = createSlice({
     }),
   },
   extraReducers: (builder) => {
+    builder.addCase(addTenantUsers.pending, (state) => ({
+      ...state,
+      loading: true,
+      error: '',
+    }))
+    builder.addCase(addTenantUsers.fulfilled, (state, { payload }) => ({
+      ...state,
+      loading: false,
+      error: '',
+    }))
+    builder.addCase(addTenantUsers.rejected, (state, action) => ({
+      ...state,
+      loading: false,
+      error: action.error.message as string,
+    }))
     builder.addCase(fetchTenantUsers.pending, (state) => ({
       ...state,
       tenantUsers: [],
