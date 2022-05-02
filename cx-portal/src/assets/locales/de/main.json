@@ -119,7 +119,7 @@
         "street": "Straße",
         "zipcode": "Postleitzahl",
         "city": "Stadt",
-        "taxid": "Steuer ID"
+        "cxparticipant": "CX Beteiligte"
       },
       "filters": {
         "germany": "Deutschland",
@@ -131,7 +131,12 @@
       "bpnsearchlabel": "BPN Nummer",
       "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
       "companynamesearchlabel": "Name der Firma",
-      "searchbuttonlabel": "Suche"
+      "searchbuttonlabel": "Suche",
+      "overlay": {
+        "title": "Firmendetails",
+        "companydatatitle": "Firmen Data",
+        "legalform": "Rechtsform"
+      }
     },
     "invite": {
       "title": "Laden Sie Geschäftspartner ein",
@@ -275,7 +280,8 @@
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
-      "details": "Details"
+      "details": "Details",
+      "close": "Schließen"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

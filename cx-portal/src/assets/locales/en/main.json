@@ -119,7 +119,7 @@
         "street": "Street",
         "zipcode": "Zip Code",
         "city": "City",
-        "taxid": "Tax ID"
+        "cxparticipant": "CX Participant"
       },
       "filters": {
         "germany": "Germany",
@@ -128,10 +128,15 @@
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
       "bpnsearchplaceholder": "Please type BPN number of company",
-      "bpnsearchlabel": "BPN Nummer",
+      "bpnsearchlabel": "BPN Number",
       "companynamesearchplaceholder": "Please type company name",
-      "companynamesearchlabel": "Name der Firma",
-      "searchbuttonlabel": "Search"
+      "companynamesearchlabel": "Company Name",
+      "searchbuttonlabel": "Search",
+      "overlay": {
+        "title": "Company Detail",
+        "companydatatitle": "Company Data",
+        "legalform": "Legal Form"
+      }
     },
     "invite": {
       "title": "Invite a new Business Partner",
@@ -236,7 +241,8 @@
       "cancel": "Cancel",
       "confirm": "Confirm",
       "more": "More",
-      "details": "Details"
+      "details": "Details",
+      "close": "Close"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

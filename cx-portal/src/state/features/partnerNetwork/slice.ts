@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   BusinessPartner,
   BusinessPartnerResponse,
+  PaginationData,
   PartnerNetworkDataGrid,
   PartnerNetworkInitialState,
 } from './types'
@@ -13,7 +14,7 @@ import {
 } from 'utils/dataMapper'
 
 const initialState: PartnerNetworkInitialState = {
-  businessPartners: {} as BusinessPartnerResponse,
+  paginationData: {} as PaginationData,
   mappedPartnerList: [],
   loading: true,
   error: '',
@@ -29,7 +30,7 @@ const partnerNetworkSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getOneBusinessPartner.pending, (state) => {
-      state.businessPartners = {} as BusinessPartnerResponse
+      state.paginationData = {} as PaginationData
       state.mappedPartnerList = []
       state.loading = true
     })
@@ -39,23 +40,15 @@ const partnerNetworkSlice = createSlice({
         mapSingleBusinessPartnerToDataGrid(bp),
       ] as Array<PartnerNetworkDataGrid>
       state.mappedPartnerList = mappedList
-      state.businessPartners = {
-        content: [
-          {
-            score: 1, // Only one response always has top score,
-            businessPartner: bp,
-          },
-        ],
-        contentSize: mappedList.length,
+      state.paginationData = {
         totalElements: mappedList.length,
-        totalPages: 1, // One business partner or null can be possible values here. Page is always default 1
         page: 1, // One business partner or null can be possible values here. Page is always default 1
-      } as BusinessPartnerResponse
+      } as PaginationData
 
       state.loading = false
     })
     builder.addCase(getOneBusinessPartner.rejected, (state, action) => {
-      state.businessPartners = {} as BusinessPartnerResponse
+      state.paginationData = {} as PaginationData
       state.mappedPartnerList = []
       state.loading = false
       state.error = action.error.message as string
@@ -73,7 +66,10 @@ const partnerNetworkSlice = createSlice({
           ) as Array<PartnerNetworkDataGrid>),
         ]
         state.loading = false
-        state.businessPartners = payloadList
+        state.paginationData = {
+          totalElements: payloadList.totalElements,
+          page: payloadList.page,
+        }
       } catch (error: unknown) {
         return {
           ...state,

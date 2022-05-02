@@ -12,28 +12,32 @@ export const PartnerNetworksTableColumns = (
     {
       field: 'name',
       headerName: t('content.partnernetwork.columns.name'),
-      flex: 4,
+      flex: 2.5,
+      sortable: false,
     },
     {
       field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
-      flex: 2.5,
+      flex: 2,
+      sortable: false,
     },
     {
-      field: 'taxId',
-      headerName: t('content.partnernetwork.columns.taxid'),
+      field: 'cxmember', // Temporary field, doesnt exists yet
+      headerName: t('content.partnernetwork.columns.cxparticipant'),
       flex: 1,
+      sortable: false,
     },
     {
       field: 'country',
       headerName: t('content.partnernetwork.columns.country'),
-      flex: 1,
+      flex: 1.5,
+      sortable: false,
     },
-
     {
-      field: '',
+      field: 'detail',
       headerName: `Detail`,
-      flex: 1,
+      headerAlign: 'center',
+      flex: 0.8,
       align: 'center',
       renderCell: () => (
         <IconButton
