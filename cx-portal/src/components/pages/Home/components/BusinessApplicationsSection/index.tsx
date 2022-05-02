@@ -1,14 +1,23 @@
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
+import { useDispatch, useSelector } from 'react-redux'
+import { appMarketplaceSelectSubscribed } from 'state/features/appMarketplace/slice'
+import { fetchSubscribed } from 'state/features/appMarketplace/actions'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const items = useSelector(appMarketplaceSelectSubscribed)
 
+  useEffect(() => {
+    dispatch(fetchSubscribed())
+  }, [dispatch])
+  /*
   const items = [
     {
       title: 'Fraud Prevention Report',
@@ -98,7 +107,7 @@ export default function BusinessApplicationsSection() {
       },
     },
   ]
-
+*/
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
@@ -129,6 +138,7 @@ export default function BusinessApplicationsSection() {
                 variant="minimal"
                 expandOnHover={false}
                 filledBackground={true}
+                onClick={item.onClick}
               />
             )
           })}

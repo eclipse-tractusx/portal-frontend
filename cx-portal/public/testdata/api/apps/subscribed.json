@@ -1,0 +1,62 @@
+[
+  {
+    "id": "0000-0000-0000-0000",
+    "title": "Fraud Prevention Report",
+    "provider": "Catena-X",
+    "leadPictureUri": "https://americourses.com/wp-content/uploads/2020/07/fraud-prevention.jpg",
+    "rating": 4.5,
+    "price": "free to use",
+    "shortDescription": "Fraud Detection App to report Fraud Cases.",
+    "link": "https://apps.cdq.com/signin/00c9f5bf?redirectUri=https://apps.cdq.com/dashboard/fraud/report-fraud"
+  },
+  {
+    "id": "0000-0000-0000-0000",
+    "title": "Dismantler App",
+    "provider": "SAP",
+    "leadPictureUri": "https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg",
+    "rating": 4.5,
+    "price": "free to use",
+    "shortDescription": "Quick and transparent overview of reusable car components.",
+    "link": "https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login"
+  },
+  {
+    "id": "0000-0000-0000-0000",
+    "title": "Fleet Manager",
+    "provider": "ADAC",
+    "leadPictureUri": "Fleet_Manager_LP.png",
+    "rating": 4.5,
+    "price": "free to use",
+    "shortDescription": "Behavior Twin.",
+    "link": "https://fleet-management.adac.openresearch.com"
+  },
+  {
+    "id": "0000-0000-0000-0000",
+    "title": "Fraud Dashboard",
+    "provider": "Catena-X",
+    "leadPictureUri": "https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg",
+    "rating": 4.5,
+    "price": "free to use",
+    "shortDescription": "Fraud Dashboard.",
+    "link": "https://dash.catenax-cdq.com/"
+  },
+  {
+    "id": "0000-0000-0000-0000",
+    "title": "Covanto - AFQM",
+    "provider": "BOSCH",
+    "leadPictureUri": "https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg",
+    "rating": 4.5,
+    "price": "free to use",
+    "shortDescription": "Quality Traceability.",
+    "link": "https://portal-staging.afqm-services.com/"
+  },
+  {
+    "id": "0000-0000-0000-0000",
+    "title": "DTC-Translator",
+    "provider": "ADAC",
+    "leadPictureUri": "DTC-Translator_LP.svg",
+    "rating": 4.5,
+    "price": "free to use",
+    "shortDescription": "Behavior Twin.",
+    "link": "https://dtc-translator.adac.openresearch.com"
+  }
+]
