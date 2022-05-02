@@ -51,7 +51,8 @@ export default function BusinessApplicationsSection() {
       price: 'free to use',
       description: 'Behavior Twin.',
       onClick: () => {
-        document.location.href = 'https://fleet-management.adac.openresearch.com'
+        document.location.href =
+          'https://fleet-management.adac.openresearch.com'
       },
     },
     {
