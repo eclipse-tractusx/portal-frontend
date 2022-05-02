@@ -29,6 +29,10 @@ export default function AppListSection() {
     setGroup(e.currentTarget.value)
   }
 
+  const add2Favorites = (appId: string) => {
+    console.error('TODO: Add app to favorites logic.')
+  }
+
   const categoryViews = [
     {
       buttonText: t('content.appstore.appOverviewSection.categoryViews.all'),
@@ -72,6 +76,7 @@ export default function AppListSection() {
           items={cards.map((card) => ({
             ...card,
             onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+            onSecondaryButtonClick: add2Favorites,
           }))}
           groupKey={group}
         />
