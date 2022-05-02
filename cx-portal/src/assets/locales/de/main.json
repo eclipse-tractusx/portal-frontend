@@ -53,8 +53,8 @@
         "celldeclined": "abgelehnt",
         "overlay": {
           "title": "Firmendetails",
-          "companydatatitle": "Firmen Data",
-          "taxid": "Steuer ID"
+          "companydatatitle": "Firmendaten",
+          "taxid": "Steuernummer"
         }
       }
     },
