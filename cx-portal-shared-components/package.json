@@ -11,7 +11,7 @@
   },
   "author": "Catena-X NG <julia.jeroch@bmw.de> (https://github.com/catena-ng/)",
   "scripts": {
-    "start": "yarn storybook",
+    "start": "yarn start:storybook",
     "build:lib": "rollup -c",
     "build": "react-scripts build",
     "test": "react-scripts test",
