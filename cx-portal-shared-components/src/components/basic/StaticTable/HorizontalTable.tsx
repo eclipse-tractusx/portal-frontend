@@ -3,7 +3,7 @@ import { TableType } from './types'
 export const HorizontalTable = ({ data }: { data: TableType }) => (
   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
     {data.head.map((col, i) => (
-      <tr>
+      <tr key={i}>
         <th
           style={{
             backgroundColor: '#ecf0f4',

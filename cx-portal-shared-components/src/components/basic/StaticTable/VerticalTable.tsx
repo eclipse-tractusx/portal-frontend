@@ -18,8 +18,8 @@ export const VerticalTable = ({ data }: { data: TableType }) => (
       </tr>
     </thead>
     <tbody>
-      {data.body.map((row) => (
-        <tr>
+      {data.body.map((row, i) => (
+        <tr key={i}>
           {row.map((col) => (
             <td
               style={{

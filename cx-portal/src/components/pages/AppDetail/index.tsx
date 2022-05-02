@@ -1,7 +1,6 @@
 import { Typography } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { appDetailsSelector } from 'state/features/appDetails/slice'
 import { fetchItem } from 'state/features/appDetails/actions'
@@ -16,7 +15,6 @@ import NotFound from '../NotFound'
 import './AppDetail.scss'
 
 export default function AppDetail() {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
   const appId = useParams().appId
   const { token } = useSelector(userSelector)
@@ -56,7 +54,7 @@ export default function AppDetail() {
             blind text by the name of Lorem Ipsum decided to leave for the far
             World of Grammar...
           </Typography>
-          <a href="/" className="product-desc-more">
+          <a href="/#" className="product-desc-more">
             + more
           </a>
         </div>

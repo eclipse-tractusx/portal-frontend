@@ -33,7 +33,7 @@ export default function AppDetailProvider() {
             live in Bookmarksgrove right at the coast of the Semantics, a large
             language ocean.
           </Typography>
-          <a href="/" className="product-desc">
+          <a href="/#" className="product-desc">
             + more
           </a>
         </div>

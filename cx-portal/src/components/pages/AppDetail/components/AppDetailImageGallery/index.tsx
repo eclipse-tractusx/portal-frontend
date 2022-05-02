@@ -1,8 +1,6 @@
-import { useTranslation } from 'react-i18next'
 import './AppDetailImageGallery.scss'
 
 export default function AppDetailHeader() {
-  const { t } = useTranslation()
 
   return (
     <div className="container">
