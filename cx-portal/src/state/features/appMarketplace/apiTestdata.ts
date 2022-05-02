@@ -5,7 +5,8 @@ export class AppMarketplaceApi extends HttpClient {
   private static classInstance?: AppMarketplaceApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_ASSETS || '')
+    //super(process.env.REACT_APP_BASE_ASSETS || '')
+    super(`https://portal-dev.demo.catena-x.net/assets`)
   }
 
   public static getInstance() {
@@ -17,5 +18,9 @@ export class AppMarketplaceApi extends HttpClient {
 
   public getItems = () => {
     return this.instance.get<AppMarketplaceApp[]>(`/api/apps/active.json`)
+  }
+
+  public getSubscribed = () => {
+    return this.instance.get<AppMarketplaceApp[]>(`/api/apps/subscribed.json`)
   }
 }
