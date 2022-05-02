@@ -18,6 +18,9 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
     alt: app.title,
   },
   onClick: () => {
-    document.location.href = app.link || '/notfound'
+    // same tab
+    // document.location.href = app.link || '/notfound'
+    // new tab
+    window.open(app.link || '/notfound', '_blank')?.focus()
   },
 })
