@@ -8,9 +8,7 @@ export interface AppUserDetailsHeaderProps {
   roles: UserRole[]
 }
 
-export default function AppUserDetailsHeader({
-  roles,
-}: AppUserDetailsHeaderProps) {
+export default function AppUserDetailsHeader({ roles }: AppUserDetailsHeaderProps) {
   const { t } = useTranslation()
 
   return (

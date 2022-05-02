@@ -35,7 +35,7 @@ export const AppArea = () => {
       description: 'Quick and transparent overview of reusable car components.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/app-user-details/456`)
+        navigate(`/usermanagement/app-user-details/123`)
       },
     },
     {
@@ -50,6 +50,7 @@ export const AppArea = () => {
       description: 'Quality Traceability.',
       onClick: () => {
         console.log('click')
+        navigate(`/usermanagement/app-user-details/123`)
       },
     },
     {
@@ -64,6 +65,7 @@ export const AppArea = () => {
       description: 'Component Performance validation.',
       onClick: () => {
         console.log('click')
+        navigate(`/usermanagement/app-user-details/123`)
       },
     },
   ]
