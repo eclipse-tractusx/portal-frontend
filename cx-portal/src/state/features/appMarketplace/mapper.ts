@@ -6,7 +6,10 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   subtitle: app.provider,
   description: app.shortDescription,
   image: {
-    src: app.leadPictureUri,
+    src:
+      app.leadPictureUri === 'ERROR'
+        ? ''
+        : `https://portal-dev.demo.catena-x.net/assets/images/apps/${app.id}/${app.leadPictureUri}`,
     alt: app.title,
   },
 })

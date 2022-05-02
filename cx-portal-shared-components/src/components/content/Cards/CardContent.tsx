@@ -3,6 +3,7 @@ import { Typography } from '../../basic/Typography'
 import { CardRating, CardRatingProps } from './CardRating'
 
 export interface CardContentProps extends Partial<CardRatingProps> {
+  id?: string
   title: string
   subtitle?: string
   price?: string
