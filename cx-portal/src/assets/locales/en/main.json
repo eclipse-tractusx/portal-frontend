@@ -98,7 +98,14 @@
       "message": "Contents of Semantic Hub"
     },
     "digitaltwin": {
-      "message": "Contents of Digital Twin"
+      "table": {
+        "title": "Overview Digital Twins",
+        "columns": {
+          "idShort": "Name",
+          "sm_count": "Submodel Count",
+          "asset_count": "Specific Asset Count"
+        }
+      }
     },
     "datacatalog": {
       "message": "Contents of Data Catalog"

@@ -102,8 +102,8 @@
         "title": "Datenübersicht der Digitalen Zwillinge",
         "columns": {
           "idShort": "Name",
-          "type": "Typ",
-          "prov": "Anbieter"
+          "sm_count": "Anzahl Submodelle",
+          "asset_count": "Anzahl Assets"
         }
       }
     },
