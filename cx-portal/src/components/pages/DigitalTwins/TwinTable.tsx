@@ -7,21 +7,24 @@ import { twinsSelector } from "state/features/digitalTwins/slice";
 import { DigitalTwinsTableColumns } from "./DigitalTwinsTableColumns";
 import { data } from "./staticData";
 
-const TwinTable = () => {
+interface TwinTableProps {
+  onTwinSelect: (id: string) => void
+}
+const TwinTable = ({ onTwinSelect }: TwinTableProps ) => {
   const { t } = useTranslation();
   const dispatch = useDispatch()
   const { twins, loading, error } = useSelector(twinsSelector);
   const rowCount = 10;
 
   useEffect(() => {
-    dispatch(fetchDigitalTwins({filter: { page: 1, pageSize: rowCount }}))
+    dispatch(fetchDigitalTwins({filter: { page: 1, pageSize: rowCount }}));
   }, [dispatch]);
-
-  const columns = DigitalTwinsTableColumns(useTranslation);
 
   const onSearch = (value: string) => {
     console.log(value);
   }
+
+  const columns = DigitalTwinsTableColumns(useTranslation, onTwinSelect);
 
   return(
     <section>

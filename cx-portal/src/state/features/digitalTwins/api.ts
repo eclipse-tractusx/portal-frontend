@@ -18,7 +18,7 @@ export class DigitalTwinApi extends HttpClient {
     return this.classInstance
   }
 
-  public getItems = (filters: FilterParams) => {
+  public getTwins = (filters: FilterParams) => {
     const params = qs.stringify(filters)
     return this.instance.get<TwinList>(`/shell-descriptors?${params}`, {
       headers: {

@@ -3,9 +3,17 @@ import { RootState } from 'state/store'
 import { fetchDigitalTwins } from './actions'
 import { DigitalTwinsInitialState, TwinList } from './types'
 
+const defaultTwins: TwinList = {
+  items: [],
+  totalItems: 0,
+  itemCount: 0,
+  currentPage: 0,
+  totalPages: 0
+}
+
 const initialState: DigitalTwinsInitialState = {
-  twins: {} as TwinList,
-  loading: true,
+  twins: defaultTwins,
+  loading: false,
   error: '',
 }
 
@@ -15,7 +23,7 @@ const twinsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchDigitalTwins.pending, (state) => {
-      state.twins = {} as TwinList
+      state.twins = defaultTwins
       state.loading = true
       state.error = ''
     })
@@ -25,7 +33,7 @@ const twinsSlice = createSlice({
       state.error = ''
     })
     builder.addCase(fetchDigitalTwins.rejected, (state, action) => {
-      state.twins = {} as TwinList
+      state.twins = defaultTwins
       state.loading = false
       state.error = action.error.message as string
     })
