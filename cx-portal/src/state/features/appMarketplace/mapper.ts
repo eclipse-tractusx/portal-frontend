@@ -17,10 +17,12 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
         : `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`,
     alt: app.title,
   },
-  onClick: () => {
-    // same tab
-    // document.location.href = app.link || '/notfound'
-    // new tab
-    window.open(app.link || '/notfound', '_blank')?.focus()
-  },
+  onClick: app.link
+    ? () => {
+        // same tab
+        // document.location.href = app.link || '/notfound'
+        // new tab
+        window.open(app.link, '_blank')?.focus()
+      }
+    : undefined,
 })
