@@ -1,7 +1,6 @@
 import './AppDetailTags.scss'
 
 export default function AppDetailTags() {
-
   return (
     <div className="container">
       <div className="all-tags">

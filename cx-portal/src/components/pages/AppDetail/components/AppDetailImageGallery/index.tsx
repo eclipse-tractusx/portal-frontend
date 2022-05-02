@@ -1,7 +1,6 @@
 import './AppDetailImageGallery.scss'
 
 export default function AppDetailHeader() {
-
   return (
     <div className="container">
       <div className="row">
