@@ -5,7 +5,11 @@ import {
   TenantUser,
   UserAdministrationState,
 } from './types'
-import { addTenantUsers, fetchTenantUsers, fetchRegistrationRequests } from './actions'
+import {
+  addTenantUsers,
+  fetchTenantUsers,
+  fetchRegistrationRequests,
+} from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'state/store'
 

@@ -5,7 +5,11 @@ import { useFormValidation } from 'hooks/useFormValidation'
 import React from 'react'
 import { AddUserCallback } from '.'
 
-export const SingleUserContent = ({ onValidInput }: {onValidInput: AddUserCallback}) => {
+export const SingleUserContent = ({
+  onValidInput,
+}: {
+  onValidInput: AddUserCallback
+}) => {
   const { t } = useTranslation()
 
   const userInputs = [

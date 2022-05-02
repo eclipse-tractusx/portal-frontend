@@ -17,10 +17,13 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import { addUserOpenSelector } from 'state/features/userAdministration/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTenantUsers, closeAddUser } from 'state/features/userAdministration/actions'
+import {
+  addTenantUsers,
+  closeAddUser,
+} from 'state/features/userAdministration/actions'
 import { AddUser } from 'state/features/userAdministration/types'
 
-export type AddUserCallback = (users: AddUser[]) => void;
+export type AddUserCallback = (users: AddUser[]) => void
 
 export const AddUserOverlay = () => {
   const { t } = useTranslation()
@@ -87,7 +90,7 @@ export const AddUserOverlay = () => {
             />
           </Tabs>
           <TabPanel value={activeTab} index={0}>
-            <SingleUserContent onValidInput={setValidUsers}/>
+            <SingleUserContent onValidInput={setValidUsers} />
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />
