@@ -50,7 +50,12 @@
         "buttonconfirm": "bestätigen",
         "buttondecline": "ablehnen",
         "cellconfirmed": "bestätigt",
-        "celldeclined": "abgelehnt"
+        "celldeclined": "abgelehnt",
+        "overlay": {
+          "title": "Firmendetails",
+          "companydatatitle": "Firmendaten",
+          "taxid": "Steuernummer"
+        }
       }
     },
     "home": {

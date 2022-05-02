@@ -18,7 +18,7 @@ interface BusinessPartnerDetailOverlayProps {
   handleOverlayClose: React.MouseEventHandler
 }
 
-const DetailGridRow = ({
+export const DetailGridRow = ({
   variableName,
   value,
 }: {
