@@ -19,7 +19,6 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const CustomAccordion = Template.bind({})
 CustomAccordion.args = {
   expanded: true,
-  onChange: () => console.log('onChange'),
   id: 'panel-1',
   title: 'Accordion Title'
 }
