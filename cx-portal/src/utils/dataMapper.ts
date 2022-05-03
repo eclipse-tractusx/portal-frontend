@@ -16,11 +16,9 @@ const mapBusinessPartnerToDataGrid = (
 ): Array<PartnerNetworkDataGrid> => {
   return bpResponse?.content?.map((bp: BusinessPartnerSearchResponse) => {
     const bpAddress = bp.businessPartner.addresses[0]
-    const taxObject = bp.businessPartner.identifiers.filter(
-      (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
-    )
     return {
       bpn: bp.businessPartner.bpn,
+      legalForm: bp.businessPartner.legalForm?.name || '',
       name: bp.businessPartner.names.filter(
         (name) =>
           name.type.technicalKey === 'INTERNATIONAL' ||
@@ -30,7 +28,9 @@ const mapBusinessPartnerToDataGrid = (
       street: bpAddress.thoroughfares[0].value,
       zipCode: bpAddress.postCodes[0].value,
       city: bpAddress.localities[0].value,
-      taxId: taxObject.length > 0 ? taxObject[0].value : '',
+      identifiers: bp.businessPartner.identifiers?.filter(
+        (identifier) => identifier.type.technicalKey !== 'CDQID'
+      ),
     } as PartnerNetworkDataGrid
   })
 }
@@ -39,9 +39,6 @@ const mapSingleBusinessPartnerToDataGrid = (
   bp: BusinessPartner
 ): PartnerNetworkDataGrid => {
   const bpAddress = bp.addresses[0]
-  const taxObject = bp.identifiers.filter(
-    (identifier) => identifier.type.technicalKey === 'EU_VAT_ID_DE'
-  )
   return {
     bpn: bp.bpn,
     name: bp.names.filter(
@@ -49,11 +46,14 @@ const mapSingleBusinessPartnerToDataGrid = (
         name.type.technicalKey === 'INTERNATIONAL' ||
         name.type.technicalKey === 'LOCAL'
     )[0].value,
+    legalForm: bp.legalForm?.name || '',
     country: bpAddress.country.name,
     street: bpAddress.thoroughfares[0].value,
     zipCode: bpAddress.postCodes[0].value,
     city: bpAddress.localities[0].value,
-    taxId: taxObject.length > 0 ? taxObject[0].value : '',
+    identifiers: bp.identifiers?.filter(
+      (identifier) => identifier.type.technicalKey !== 'CDQID'
+    ),
   } as PartnerNetworkDataGrid
 }
 

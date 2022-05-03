@@ -9,7 +9,7 @@ import { AppListGroupView } from '../AppListGroupView'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/appMarketplace/actions'
-import { appMarketplaceSelectCards } from 'state/features/appMarketplace/slice'
+import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
@@ -20,13 +20,17 @@ export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const cards = useSelector(appMarketplaceSelectCards)
+  const cards = useSelector(appMarketplaceSelectActive)
   const { t } = useTranslation()
 
   const reference = PageService.registerReference(label, useRef(null))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
+  }
+
+  const add2Favorites = (appId: string) => {
+    console.error('TODO: Add app to favorites logic.')
   }
 
   const categoryViews = [
@@ -72,6 +76,7 @@ export default function AppListSection() {
           items={cards.map((card) => ({
             ...card,
             onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+            onSecondaryButtonClick: add2Favorites,
           }))}
           groupKey={group}
         />

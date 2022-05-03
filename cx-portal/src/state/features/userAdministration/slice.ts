@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
+  CompanyDetail,
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
   TenantUser,
@@ -9,6 +10,7 @@ import {
   addTenantUsers,
   fetchTenantUsers,
   fetchRegistrationRequests,
+  fetchCompanyDetail,
 } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'state/store'
@@ -16,13 +18,15 @@ import { RootState } from 'state/store'
 const initialState: UserAdministrationState = {
   tenantUsers: [],
   registrationRequests: [],
-  loading: false,
-  error: '',
+  companyDetail: {} as CompanyDetail,
   addUserOpen: false,
+  loading: false,
+  detailLoading: false,
+  error: '',
 }
 
 const userAdministrationSlice = createSlice({
-  name: 'userAdministration',
+  name: 'admin/user',
   initialState,
   reducers: {
     openAddUser: (state) => ({
@@ -88,6 +92,21 @@ const userAdministrationSlice = createSlice({
     builder.addCase(fetchRegistrationRequests.rejected, (state, action) => {
       state.registrationRequests = []
       state.loading = false
+      state.error = action.error.message as string
+    })
+    builder.addCase(fetchCompanyDetail.pending, (state) => {
+      state.detailLoading = true
+      state.companyDetail = {} as CompanyDetail
+      state.error = ''
+    })
+    builder.addCase(fetchCompanyDetail.fulfilled, (state, { payload }) => {
+      state.companyDetail = payload as CompanyDetail
+      state.detailLoading = false
+      state.error = ''
+    })
+    builder.addCase(fetchCompanyDetail.rejected, (state, action) => {
+      state.companyDetail = {} as CompanyDetail
+      state.detailLoading = false
       state.error = action.error.message as string
     })
   },

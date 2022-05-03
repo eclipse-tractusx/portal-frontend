@@ -3,11 +3,11 @@ import RegistrationRequests from 'utils/mockDataSet/registrationRequests.json'
 import { UserAdministrationApi } from './api'
 import { AddUser, RegistrationRequestAPIResponse } from './types'
 
-const openAddUser = createAction('userAdministration/openAddUser')
-const closeAddUser = createAction('userAdministration/closeAddUser')
+const openAddUser = createAction('admin/user/openAddUser')
+const closeAddUser = createAction('admin/user/closeAddUser')
 
 const addTenantUsers = createAsyncThunk(
-  'userAdministration/addTenantUsers',
+  'admin/user/addTenantUsers',
   async (users: AddUser[]) => {
     try {
       return await UserAdministrationApi.getInstance().addTenantUsers(users)
@@ -19,7 +19,7 @@ const addTenantUsers = createAsyncThunk(
 )
 
 const fetchTenantUsers = createAsyncThunk(
-  'userAdministration/fetchTenantUsers',
+  'admin/user/fetchTenantUsers',
   async () => {
     try {
       return await UserAdministrationApi.getInstance().getTenantUsers()
@@ -31,7 +31,7 @@ const fetchTenantUsers = createAsyncThunk(
 )
 
 const fetchRegistrationRequests = createAsyncThunk(
-  'userAdministration/fetchRegistrationRequests',
+  'admin/user/fetchRegistrationRequests',
   async () => {
     try {
       // Currently implementation uses mock data
@@ -44,10 +44,26 @@ const fetchRegistrationRequests = createAsyncThunk(
   }
 )
 
+const fetchCompanyDetail = createAsyncThunk(
+  'admin/user/fetchCompanyDetail',
+  async (applicationId: string) => {
+    try {
+      // Currently implementation uses mock data
+      return await UserAdministrationApi.getInstance().getCompanyDetail(
+        applicationId
+      )
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('fetchCompanyDetail api call error')
+    }
+  }
+)
+
 export {
   openAddUser,
   closeAddUser,
-  fetchTenantUsers,
   addTenantUsers,
+  fetchCompanyDetail,
+  fetchTenantUsers,
   fetchRegistrationRequests,
 }

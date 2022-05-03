@@ -1,14 +1,23 @@
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
+import { useDispatch, useSelector } from 'react-redux'
+import { appMarketplaceSelectSubscribed } from 'state/features/appMarketplace/slice'
+import { fetchSubscribed } from 'state/features/appMarketplace/actions'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const items = useSelector(appMarketplaceSelectSubscribed)
 
+  useEffect(() => {
+    dispatch(fetchSubscribed())
+  }, [dispatch])
+  /*
   const items = [
     {
       title: 'Fraud Prevention Report',
@@ -41,6 +50,35 @@ export default function BusinessApplicationsSection() {
       },
     },
     {
+      title: 'Fleet Manager',
+      subtitle: 'ADAC',
+      image: {
+        src: 'Fleet_Manager_LP.png',
+        alt: 'Catena-X AppCard',
+      },
+      rating: 4.5,
+      price: 'free to use',
+      description: 'Behavior Twin.',
+      onClick: () => {
+        document.location.href =
+          'https://fleet-management.adac.openresearch.com'
+      },
+    },
+    {
+      title: 'Fraud Dashboard',
+      subtitle: 'Catena-X',
+      image: {
+        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
+        alt: 'Catena-X AppCard',
+      },
+      rating: 4.5,
+      price: 'free to use',
+      description: 'Fraud Dashboard.',
+      onClick: () => {
+        document.location.href = 'https://dash.catenax-cdq.com/'
+      },
+    },
+    {
       title: 'Covanto - AFQM',
       subtitle: 'BOSCH',
       image: {
@@ -55,35 +93,21 @@ export default function BusinessApplicationsSection() {
       },
     },
     {
-      title: 'Fraud Dashboard',
-      subtitle: 'Catena-X',
+      title: 'DTC-Translator',
+      subtitle: 'ADAC',
       image: {
-        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
+        src: 'DTC-Translator_LP.svg',
         alt: 'Catena-X AppCard',
       },
       rating: 4.5,
       price: 'free to use',
-      description: 'Fraud Dashboard.',
+      description: 'Behavior Twin.',
       onClick: () => {
-        document.location.href = 'https://dash.catenax-cdq.com/'
-      },
-    },
-    {
-      title: 'Fraud Dashboard',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Fraud Dashboard.',
-      onClick: () => {
-        document.location.href = 'https://dash.catenax-cdq.com/'
+        document.location.href = 'https://dtc-translator.adac.openresearch.com'
       },
     },
   ]
-
+*/
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
@@ -114,6 +138,7 @@ export default function BusinessApplicationsSection() {
                 variant="minimal"
                 expandOnHover={false}
                 filledBackground={true}
+                onClick={item.onClick}
               />
             )
           })}
