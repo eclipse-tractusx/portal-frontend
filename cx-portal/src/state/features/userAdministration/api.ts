@@ -19,7 +19,7 @@ export class UserAdministrationApi extends HttpClient {
 
   public inviteBusinessPartner = (invite: InviteData) => {
     return this.instance.post<void>(
-      '/api/useradministration/invitation',
+      '/api/administration/invitation',
       JSON.stringify(invite),
       {
         headers: {
@@ -32,7 +32,7 @@ export class UserAdministrationApi extends HttpClient {
 
   public getTenantUsers = () => {
     return this.instance.get<TenantUser[]>(
-      `/api/useradministration/tenant/${UserService.getTenant()}/users`,
+      `/api/administration/user/tenant/${UserService.getTenant()}/users`,
       {
         headers: {
           authorization: `Bearer ${UserService.getToken()}`,
@@ -43,7 +43,7 @@ export class UserAdministrationApi extends HttpClient {
 
   public getCompanyDetail = (applicationId: string) => {
     return this.instance.get<CompanyDetail>(
-      `/api/useradministration/application/${applicationId}/companyDetailsWithAddress`,
+      `/api/administration/registration/application/${applicationId}/companyDetailsWithAddress`,
       {
         headers: {
           authorization: `Bearer ${UserService.getToken()}`,
