@@ -23,4 +23,12 @@ export class AppMarketplaceApi extends HttpClient {
       },
     })
   }
+
+  public getSubscribed = () => {
+    return this.instance.get<AppMarketplaceApp[]>(`/api/apps/subscribed`, {
+      headers: {
+        authorization: `Bearer ${UserService.getToken()}`,
+      },
+    })
+  }
 }

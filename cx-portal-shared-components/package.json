@@ -11,7 +11,7 @@
   },
   "author": "Catena-X NG <julia.jeroch@bmw.de> (https://github.com/catena-ng/)",
   "scripts": {
-    "start": "yarn storybook",
+    "start": "yarn start:storybook",
     "build:lib": "rollup -c",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -72,7 +72,7 @@
     "prettier": "^2.5.1",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
-    "react-scripts": "5.0.0",
+    "react-scripts": "5.0.1",
     "rollup": "^2.70.0",
     "rollup-plugin-dts": "^4.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",

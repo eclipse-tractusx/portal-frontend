@@ -60,7 +60,7 @@ jobs:
 
       - name: Publish Shared Components to npm
         working-directory: ./cx-portal-shared-components
-        run: echo yarn publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 

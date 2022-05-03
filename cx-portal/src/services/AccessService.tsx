@@ -112,7 +112,6 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    role: ROLES.FE_DEVELOPER,
     element: <PartnerNetwork />,
   },
   {
