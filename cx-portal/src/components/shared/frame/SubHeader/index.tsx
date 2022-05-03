@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import './SubHeader.scss'
 
 interface ComponentProps {
-  title: string;
-  hasBackButton: boolean;
+  title: string
+  hasBackButton: boolean
 }
 
 export default function SubHeader({ title, hasBackButton }: ComponentProps) {
@@ -38,21 +38,19 @@ export default function SubHeader({ title, hasBackButton }: ComponentProps) {
         </svg>
       </div>
 
-        { hasBackButton && (
-          <div className="sub-header-back">
-            <Button
-              name="back"
-              size="small"
-              color="secondary"
-              onClick={ () => navigate(-1) }
-              sx={{
-                
-              }}
-            >
-              {`${t('global.actions.back')}`}
-            </Button>
-          </div>
-        )}
+      {hasBackButton && (
+        <div className="sub-header-back">
+          <Button
+            name="back"
+            size="small"
+            color="secondary"
+            onClick={() => navigate(-1)}
+            sx={{}}
+          >
+            {`${t('global.actions.back')}`}
+          </Button>
+        </div>
+      )}
     </>
   )
 }

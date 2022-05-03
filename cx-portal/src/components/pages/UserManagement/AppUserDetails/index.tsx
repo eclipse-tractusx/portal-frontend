@@ -24,7 +24,10 @@ export default function AppUserDetails() {
 
   return (
     <main className="app-user-details">
-      <SubHeader title={t('content.usermanagement.appUserDetails.headline')} hasBackButton={true} />
+      <SubHeader
+        title={t('content.usermanagement.appUserDetails.headline')}
+        hasBackButton={true}
+      />
 
       {roles.length > 0 && (
         <>
