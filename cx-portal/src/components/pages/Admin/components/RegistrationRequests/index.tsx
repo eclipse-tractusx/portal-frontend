@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Table, Typography } from 'cx-portal-shared-components'
-import { userAdministrationSelector } from 'state/features/userAdministration/slice'
+import { adminRegistrationSelector } from 'state/features/adminRegistration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchRegistrationRequests,
   fetchCompanyDetail,
-} from 'state/features/userAdministration/actions'
+} from 'state/features/adminRegistration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
@@ -19,7 +19,7 @@ export default function RegistrationRequests() {
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
   const { loading, registrationRequests } = useSelector(
-    userAdministrationSelector
+    adminRegistrationSelector
   )
 
   useEffect(() => {

@@ -3,75 +3,25 @@ import {
   CompanyDetail,
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
-  TenantUser,
-  UserAdministrationState,
+  AdminRegistrationState,
 } from './types'
-import {
-  addTenantUsers,
-  fetchTenantUsers,
-  fetchRegistrationRequests,
-  fetchCompanyDetail,
-} from './actions'
+import { fetchRegistrationRequests, fetchCompanyDetail } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'state/store'
 
-const initialState: UserAdministrationState = {
-  tenantUsers: [],
+const initialState: AdminRegistrationState = {
   registrationRequests: [],
   companyDetail: {} as CompanyDetail,
-  addUserOpen: false,
   loading: false,
   detailLoading: false,
   error: '',
 }
 
-const userAdministrationSlice = createSlice({
+const adminRegistrationSlice = createSlice({
   name: 'admin/user',
   initialState,
-  reducers: {
-    openAddUser: (state) => ({
-      ...state,
-      addUserOpen: true,
-    }),
-    closeAddUser: (state) => ({
-      ...state,
-      addUserOpen: false,
-    }),
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addTenantUsers.pending, (state) => ({
-      ...state,
-      loading: true,
-      error: '',
-    }))
-    builder.addCase(addTenantUsers.fulfilled, (state, { payload }) => ({
-      ...state,
-      loading: false,
-      error: '',
-    }))
-    builder.addCase(addTenantUsers.rejected, (state, action) => ({
-      ...state,
-      loading: false,
-      error: action.error.message as string,
-    }))
-    builder.addCase(fetchTenantUsers.pending, (state) => ({
-      ...state,
-      tenantUsers: [],
-      loading: true,
-      error: '',
-    }))
-    builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => ({
-      ...state,
-      tenantUsers: payload || [],
-      loading: false,
-      error: '',
-    }))
-    builder.addCase(fetchTenantUsers.rejected, (state, action) => ({
-      ...state,
-      tenantUsers: [],
-      loading: false,
-      error: action.error.message as string,
-    }))
     builder.addCase(fetchRegistrationRequests.pending, (state) => {
       state.registrationRequests = []
       state.loading = true
@@ -112,17 +62,12 @@ const userAdministrationSlice = createSlice({
   },
 })
 
-export const userAdministrationSelector = (
+export const adminRegistrationSelector = (
   state: RootState
-): UserAdministrationState => state.userAdministration
+): AdminRegistrationState => state.adminRegistration
 
-export const addUserOpenSelector = (state: RootState): boolean =>
-  state.userAdministration.addUserOpen
-export const tenantUsersSelector = (state: RootState): TenantUser[] =>
-  state.userAdministration.tenantUsers
 export const registrationRequestsSelector = (
   state: RootState
-): RegistrationRequestDataGrid[] =>
-  state.userAdministration.registrationRequests
+): RegistrationRequestDataGrid[] => state.adminRegistration.registrationRequests
 
-export default userAdministrationSlice
+export default adminRegistrationSlice

@@ -15,20 +15,17 @@ import { SingleUserContent } from './SingleUserContent'
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import { addUserOpenSelector } from 'state/features/userAdministration/slice'
+import { addOpenSelector } from 'state/features/adminUser/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  addTenantUsers,
-  closeAddUser,
-} from 'state/features/userAdministration/actions'
-import { AddUser } from 'state/features/userAdministration/types'
+import { closeAdd } from 'state/features/adminUser/actions'
+import { AddUser } from 'state/features/adminUser/types'
 
 export type AddUserCallback = (users: AddUser[]) => void
 
 export const AddUserOverlay = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const addUserOpen = useSelector(addUserOpenSelector)
+  const addUserOpen = useSelector(addOpenSelector)
   const [activeTab, setActiveTab] = useState(0)
   const [users, setUsers] = useState<AddUser[]>([])
 
@@ -99,7 +96,7 @@ export const AddUserOverlay = () => {
         </DialogContent>
 
         <DialogActions helperText={t('content.addUser.helperText')}>
-          <Button variant="outlined" onClick={() => dispatch(closeAddUser())}>
+          <Button variant="outlined" onClick={() => dispatch(closeAdd())}>
             {`${t('global.actions.cancel')}`}
           </Button>
           <Button variant="contained" onClick={handleConfirm}>

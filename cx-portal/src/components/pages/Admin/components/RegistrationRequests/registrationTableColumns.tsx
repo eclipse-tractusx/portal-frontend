@@ -6,7 +6,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   CompanyApplicationInfo,
   RegistrationRequestContract,
-} from 'state/features/userAdministration/types'
+} from 'state/features/adminRegistration/types'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (

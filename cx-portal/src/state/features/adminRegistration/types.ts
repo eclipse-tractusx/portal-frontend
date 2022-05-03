@@ -6,27 +6,6 @@ export type InviteData = {
   organisationName: string
 }
 
-export type TenantUser = {
-  userId: string
-  providerUserId: string
-  enabled: boolean
-  userName: string
-  firstName: string
-  lastName: string
-  email: string
-  role?: string
-  status?: string
-}
-
-export type AddUser = {
-  userName: string
-  eMail: string
-  firstName: string
-  lastName: string
-  role: string
-  message: string
-}
-
 export type RegistrationRequestAPIResponse = {
   application_id: string
   changed_date: Date
@@ -78,12 +57,10 @@ export type RegistrationRequestDataGrid = {
   status: string
 }
 
-export interface UserAdministrationState {
-  tenantUsers: Array<TenantUser>
+export interface AdminRegistrationState {
   registrationRequests: Array<RegistrationRequestDataGrid>
   companyDetail: CompanyDetail
   loading: boolean
   detailLoading: boolean
   error: string
-  addUserOpen: boolean
 }

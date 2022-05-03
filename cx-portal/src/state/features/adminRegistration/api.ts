@@ -1,9 +1,9 @@
 import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
-import { TenantUser, AddUser, InviteData, CompanyDetail } from './types'
+import { InviteData, CompanyDetail } from './types'
 
-export class UserAdministrationApi extends HttpClient {
-  private static classInstance?: UserAdministrationApi
+export class AdminRegistrationApi extends HttpClient {
+  private static classInstance?: AdminRegistrationApi
 
   public constructor() {
     super(process.env.REACT_APP_BASE_API || '')
@@ -11,7 +11,7 @@ export class UserAdministrationApi extends HttpClient {
 
   public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new UserAdministrationApi()
+      this.classInstance = new AdminRegistrationApi()
     }
 
     return this.classInstance
@@ -30,32 +30,9 @@ export class UserAdministrationApi extends HttpClient {
     )
   }
 
-  public getTenantUsers = () => {
-    return this.instance.get<TenantUser[]>(
-      `/api/administration/user/tenant/${UserService.getTenant()}/users`,
-      {
-        headers: {
-          authorization: `Bearer ${UserService.getToken()}`,
-        },
-      }
-    )
-  }
-
   public getCompanyDetail = (applicationId: string) => {
     return this.instance.get<CompanyDetail>(
       `/api/administration/registration/application/${applicationId}/companyDetailsWithAddress`,
-      {
-        headers: {
-          authorization: `Bearer ${UserService.getToken()}`,
-        },
-      }
-    )
-  }
-
-  public addTenantUsers = (users: AddUser[]) => {
-    return this.instance.post<AddUser[]>(
-      `/api/useradministration/tenant/${UserService.getTenant()}/users`,
-      users,
       {
         headers: {
           authorization: `Bearer ${UserService.getToken()}`,

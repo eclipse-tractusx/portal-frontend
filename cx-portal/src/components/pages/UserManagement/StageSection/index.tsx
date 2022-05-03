@@ -1,7 +1,7 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { openAddUser } from 'state/features/userAdministration/actions'
+import { openAdd } from 'state/features/adminUser/actions'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -18,7 +18,7 @@ export default function SearchSection() {
         </Typography>
         <Button
           sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => dispatch(openAddUser())}
+          onClick={() => dispatch(openAdd())}
         >
           {t('content.usermanagement.table.add')}
         </Button>
