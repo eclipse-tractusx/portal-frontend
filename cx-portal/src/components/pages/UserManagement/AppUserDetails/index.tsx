@@ -1,9 +1,10 @@
-import { Typography } from 'cx-portal-shared-components'
+
 import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetalisTable'
 import { useState } from 'react'
 import { AddUserOverlay } from '../AddUserOverlay'
+import SubHeader from 'components/shared/frame/SubHeader'
 import './AppUserDetails.scss'
 
 export type UserRole = {
@@ -41,15 +42,7 @@ export default function AppUserDetails() {
         handleConfirm={confirmNewUser}
       />
 
-      <div className="app-user-details-title-section">
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h4"
-          className="app-user-details-title"
-        >
-          {t('content.usermanagement.appUserDetails.headline')}
-        </Typography>
-      </div>
+      <SubHeader title={t('content.usermanagement.appUserDetails.headline')} />
 
       {roles.length > 0 && (
         <>

@@ -1,4 +1,4 @@
-@import '../../../../../styles/colors';
+@import 'components/styles/colors';
 
 .app-user-details-header-subtitle {
   text-align: center !important;
@@ -8,7 +8,6 @@
   display: flex;
   flex-flow: row wrap;
   max-width: 1200px;
-  width: max-content;
   height: max-content;
   margin: 80px auto 0px auto;
 }
