@@ -20,7 +20,7 @@ export const AppArea = () => {
       description: 'Fraud Detection App to report Fraud Cases.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/app-user-details/123`)
+        navigate(`/usermanagement/appuserdetails/123`)
       },
     },
     {
@@ -35,7 +35,7 @@ export const AppArea = () => {
       description: 'Quick and transparent overview of reusable car components.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/app-user-details/123`)
+        navigate(`/usermanagement/appuserdetails/123`)
       },
     },
     {
@@ -50,7 +50,7 @@ export const AppArea = () => {
       description: 'Quality Traceability.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/app-user-details/123`)
+        navigate(`/usermanagement/appuserdetails/123`)
       },
     },
     {
@@ -65,7 +65,7 @@ export const AppArea = () => {
       description: 'Component Performance validation.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/app-user-details/123`)
+        navigate(`/usermanagement/appuserdetails/123`)
       },
     },
   ]

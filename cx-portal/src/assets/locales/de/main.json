@@ -295,7 +295,8 @@
       "confirm": "Bestätigen",
       "more": "Mehr",
       "details": "Details",
-      "close": "Schließen"
+      "close": "Schließen",
+      "back": "Zurück"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

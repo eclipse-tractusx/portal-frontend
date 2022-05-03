@@ -256,7 +256,8 @@
       "confirm": "Confirm",
       "more": "More",
       "details": "Details",
-      "close": "Close"
+      "close": "Close",
+      "back": "Back"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
