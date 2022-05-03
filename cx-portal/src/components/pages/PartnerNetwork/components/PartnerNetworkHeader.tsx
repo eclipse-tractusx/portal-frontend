@@ -18,16 +18,6 @@ const PartnerNetworkHeader = () => {
           alt="Partner Network Background"
         />
       </div>
-
-      <div className="page-title-container">
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h3"
-          className="page-title"
-        >
-          Business Partner
-        </Typography>
-      </div>
     </>
   )
 }
