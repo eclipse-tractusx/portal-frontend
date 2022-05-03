@@ -18,7 +18,9 @@ interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
 }
 
-export const AppUserDetailsTable = ({ onAddUserButtonClick }: ActiveUserTableProps) => {
+export const AppUserDetailsTable = ({
+  onAddUserButtonClick,
+}: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { tenantUsers } = useSelector(userAdministrationSelector)

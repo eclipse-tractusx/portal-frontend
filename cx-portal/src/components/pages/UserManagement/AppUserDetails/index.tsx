@@ -1,4 +1,3 @@
-
 import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetalisTable'

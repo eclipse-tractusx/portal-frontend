@@ -2,10 +2,10 @@ import { Typography } from 'cx-portal-shared-components'
 import './SubHeader.scss'
 
 interface ComponentProps {
-  title: string;
+  title: string
 }
 
-export default function SubHeader ({ title }: ComponentProps) {
+export default function SubHeader({ title }: ComponentProps) {
   return (
     <div className="alternative-header">
       <Typography
