@@ -57,7 +57,7 @@ export default function BusinessApplicationsSection() {
     },
     {
       title: 'Fraud Dashboard',
-      subtitle: 'Catena-X',
+      subtitle: 'Catena-X App',
       image: {
         src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
         alt: 'Catena-X AppCard',

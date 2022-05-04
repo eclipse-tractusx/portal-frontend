@@ -20,12 +20,12 @@ export const AppArea = () => {
       description: 'Fraud Detection App to report Fraud Cases.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/appuserdetails/123`)
+        navigate(`/usermanagement/appuserdetails/${'demo'}`)
       },
     },
     {
       title: 'Dismantler App',
-      subtitle: 'SAP',
+      subtitle: 'SAP App',
       image: {
         src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
         alt: 'Catena-X AppCard',
@@ -35,7 +35,7 @@ export const AppArea = () => {
       description: 'Quick and transparent overview of reusable car components.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/appuserdetails/123`)
+        navigate(`/usermanagement/appuserdetails/${'demo'}`)
       },
     },
     {
@@ -50,7 +50,7 @@ export const AppArea = () => {
       description: 'Quality Traceability.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/appuserdetails/123`)
+        navigate(`/usermanagement/appuserdetails/${'demo'}`)
       },
     },
     {
@@ -65,7 +65,7 @@ export const AppArea = () => {
       description: 'Component Performance validation.',
       onClick: () => {
         console.log('click')
-        navigate(`/usermanagement/appuserdetails/123`)
+        navigate(`/usermanagement/appuserdetails/${'demo'}`)
       },
     },
   ]
