@@ -41,7 +41,7 @@ export const AppUserDetailsTable = ({
         <Table
           title={t('content.usermanagement.appUserDetails.table.title')}
           toolbar={{
-            onSearch: () => {},
+            onSearch: () => {console.log('search function')},
             buttonLabel: t('content.usermanagement.appUserDetails.table.add'),
             onButtonClick: onAddUserButtonClick,
           }}
