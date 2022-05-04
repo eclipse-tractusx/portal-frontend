@@ -110,6 +110,18 @@
           "sm_count": "Submodel Count",
           "asset_count": "Specific Asset Count"
         }
+      },
+      "detail": {
+        "no_description": "This asset has no description.",
+        "assetId": "Specific asset IDs",
+        "submodel_endpoints": "Submodel endpoints:",
+        "semanticid": "Semantic ID:",
+        "key": "Key:",
+        "value": "Value:",
+        "endpoints": "Endpoints:",
+        "interface": "Interface:",
+        "protocol": "Protocol:",
+        "protocol_version": "Protocol version:"
       }
     },
     "datacatalog": {
