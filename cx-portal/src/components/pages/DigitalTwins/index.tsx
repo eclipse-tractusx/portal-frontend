@@ -1,10 +1,8 @@
 import TwinTable from './TwinTable'
 import Header from './Header'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DigitalTwinDetailDialog from './DigitalTwinDetailDialog';
-import { data } from './staticData';
-import { useDispatch, useSelector } from 'react-redux';
-import { twinsSelector } from 'state/features/digitalTwins/slice';
+import { useDispatch } from 'react-redux';
 import { fetchTwinById } from 'state/features/digitalTwins/actions';
 
 export default function DigitalTwins() {

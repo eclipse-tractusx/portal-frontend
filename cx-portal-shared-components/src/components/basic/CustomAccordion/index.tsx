@@ -10,15 +10,16 @@ export interface CustomAccordionProps extends AccordionProps {
   id: string,
   title: string,
   children: React.ReactElement,
+  color?: string
 }
 
-export const CustomAccordion = ({expanded, id, title, children, ...props}: CustomAccordionProps) => {
+export const CustomAccordion = ({expanded, id, title, children, color, ...props}: CustomAccordionProps) => {
   return(
-    <Accordion expanded={expanded} {...props}>
-      <AccordionSummary aria-controls={`${id}-content`} id={`${id}-header`} expandIcon={<ExpandMoreIcon />}>
+    <Accordion expanded={expanded} {...props} sx={{mb: 0}} elevation={0}>
+      <AccordionSummary aria-controls={`${id}-content`} id={`${id}-header`} expandIcon={<ExpandMoreIcon />} sx={{bgcolor: color}}>
         <Typography variant="label1">{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{mb: 5, bgcolor: color}}>
         {children}
       </AccordionDetails>
     </Accordion>

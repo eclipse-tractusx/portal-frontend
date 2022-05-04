@@ -13,7 +13,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps ) => {
   const { t } = useTranslation();
   const dispatch = useDispatch()
   const { twinList, loading, error } = useSelector(twinsSelector);
-  const rowCount = 10;
+  const rowCount = 100;
 
   useEffect(() => {
     dispatch(fetchDigitalTwins({filter: { page: 1, pageSize: rowCount }}));
