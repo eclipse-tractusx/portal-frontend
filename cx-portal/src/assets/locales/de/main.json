@@ -112,6 +112,7 @@
         }
       },
       "detail": {
+        "error": "FEHLER: Es gibt keinen Details zu diesem Asset.",
         "no_description": "Dieses Asset hat keine Beschreibung.",
         "assetId": "Specific Asset IDs",
         "submodel_endpoints": "Submodell Endpunkte:",

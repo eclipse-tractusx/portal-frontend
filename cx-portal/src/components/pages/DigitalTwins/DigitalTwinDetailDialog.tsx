@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { twinsSelector } from 'state/features/digitalTwins/slice';
 import { TwinDetails } from './TwinDetails';
 import { Box, useTheme, CircularProgress } from '@mui/material'
+import { useTranslation } from 'react-i18next';
 
 interface TwinDialogProps {
   show: boolean,
@@ -11,6 +12,7 @@ interface TwinDialogProps {
 const DigitalTwinDetailDialog = ({show, onClose}: TwinDialogProps) => {
   const {twin, loading, error } = useSelector(twinsSelector);
   const theme = useTheme();
+  const { t } = useTranslation();;
 
   return (
     <Dialog open={show}>
@@ -35,7 +37,7 @@ const DigitalTwinDetailDialog = ({show, onClose}: TwinDialogProps) => {
         }
         { error &&
           <>
-            <Typography variant='h5'>ERROR: No twin data available</Typography>
+            <Typography variant='h5'>{t('content.digitaltwin.detail.error')}</Typography>
             <Typography>{error}</Typography>
           </>
         }

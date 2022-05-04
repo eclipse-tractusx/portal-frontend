@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
   const [expanded, setExpanded] = useState<string | false>('panel1');
   const theme = useTheme();
-  const { t } = useTranslation();;
+  const { t } = useTranslation();
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -35,7 +35,7 @@ export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
             <>
               <Divider sx={{mb: 2, mr: -2, ml: -2}} />
               <Typography sx={{mb: 3, typography: 'label2'}}>
-               {t('content.digitaltwin.detail.assetId')}
+                {t('content.digitaltwin.detail.assetId')}
               </Typography>
               {twin.submodelDescriptors.length > 0 &&
                 <TwinDetailGrid
@@ -76,6 +76,7 @@ export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
       {hasSubmodels() &&
         twin.submodelDescriptors.map((subModel, index) => {
           const idKey = `${subModel.idShort}_${index}`;
+          const semId = subModel.semanticId.value[0];
           return <CustomAccordion
             key={idKey}
             expanded={expanded === idKey}
@@ -88,18 +89,27 @@ export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
                 <TwinDetailGrid
                   topic={t('content.digitaltwin.detail.semanticid')}
                   link={{
-                    pathname: `/semantichub/${encodeURIComponent(subModel.semanticId.value[0])}`,
-                    state: subModel.semanticId.value[0]
+                    pathname: `/semantichub/${encodeURIComponent(semId)}`,
+                    state: semId
                   }}
-                  content={subModel.semanticId.value[0]}
+                  content={semId}
                 />
                 <Divider sx={{mr: -2, ml: -2}} />
                 <Grid container
-                  sx={{width: `calc(100% + ${theme.spacing(4)})`, m: `0 -${theme.spacing(2)}`, p: 2, typography: 'label3', bgcolor: 'background.background09'}}>
-                  <Grid item xs={12}>{t('content.digitaltwin.detail.endpoints')}</Grid>
+                  sx={{
+                    width: `calc(100% + ${theme.spacing(4)})`,
+                    m: `0 -${theme.spacing(2)}`,
+                    p: 2,
+                    typography: 'label3',
+                    bgcolor: 'background.background09'
+                  }}
+                >
+                  <Grid item xs={12}>
+                    {t('content.digitaltwin.detail.endpoints')}
+                  </Grid>
                 </Grid>
                 {subModel.endpoints.map((endpoint, index) =>
-                  <>
+                  <Box key={`${idKey}_${endpoint.interface}_${index}`}>
                     <Divider sx={{mb: 2, mr: -2, ml: -2}} />
                     <TwinDetailGrid
                       topic={t('content.digitaltwin.detail.interface')}
@@ -115,7 +125,7 @@ export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
                       topic={t('content.digitaltwin.detail.protocol_version')}
                       content={endpoint.protocolInformation.endpointProtocolVersion} 
                     />
-                  </>
+                  </Box>
                 )}
               </>
           </CustomAccordion>

@@ -112,6 +112,7 @@
         }
       },
       "detail": {
+        "error": "ERROR: No twin data available.",
         "no_description": "This asset has no description.",
         "assetId": "Specific asset IDs",
         "submodel_endpoints": "Submodel endpoints:",
