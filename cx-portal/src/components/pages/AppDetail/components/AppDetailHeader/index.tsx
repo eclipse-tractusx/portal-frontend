@@ -1,4 +1,4 @@
-import { Button, Rating } from 'cx-portal-shared-components'
+import { Button, Rating, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import UserService from 'services/UserService'
 import { AppDetails } from 'state/features/appDetails/types'
@@ -15,28 +15,38 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
     <div className="container">
       <div className="row">
         <div className="lead-image">
-          <img src={item.leadPictureUri} alt={item.name} />
+          <img src={item.leadPictureUri} alt={item.title} />
         </div>
         <div className="content">
-          <p className="provider">{item.provider}</p>
-          <h2 className="heading">{item.name}</h2>
+          <Typography variant="body2" className='provider'>
+            {item.provider}
+          </Typography>
+          <Typography variant="h4" className='heading'>
+            {item.title}
+          </Typography>
           <div className="rating">
             <Rating defaultRating={item.rating} />
             <span className="rating-number">{item.rating}</span>
           </div>
-          <p className="price">{item.price}</p>
-          <p className="usecase">
-            <b>{t('content.appdetail.usecase')}:</b>{' '}
+          <Typography variant="body2" className='price'>
+            {item.price}
+          </Typography>
+          <div className="usecase">
+            <Typography variant="h5" className='head'>
+              {t('content.appdetail.usecase')}:{' '}
+            </Typography>
             {item.useCases.map((useCase) => (
               <span key={useCase}> {useCase} </span>
             ))}
-          </p>
-          <p className="language">
-            <b>{t('content.appdetail.language')}:</b>{' '}
+          </div>
+          <div className="language">
+            <Typography variant="h5" className='head'>
+              {t('content.appdetail.language')}:{' '}
+            </Typography>
             {item.languages.map((lang) => (
               <span key={lang}> {lang} </span>
             ))}
-          </p>
+          </div>
           <Button
             color={UserService.hasRole('view_apps"') ? 'primary' : 'secondary'}
           >

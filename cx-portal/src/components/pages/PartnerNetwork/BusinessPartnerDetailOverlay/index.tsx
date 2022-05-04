@@ -67,11 +67,11 @@ const BusinessPartnerDetailOverlay = ({
     <div className={'business-partner-overlay'}>
       <Dialog
         open={openDialog}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: 700,
-          },
-        }}
+        // sx={{
+        //   '.MuiDialog-paper': {
+        //     maxWidth: 700,
+        //   },
+        // }}
       >
         <DialogHeader
           {...{

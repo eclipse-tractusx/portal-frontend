@@ -6,7 +6,7 @@ export default function AppDetailHowToUse() {
   const { t } = useTranslation()
 
   return (
-    <>
+    <div className="appdetail-howtouse">
       <div className="howtouse-content">
         <div className="container">
           <Typography variant="h4">
@@ -38,6 +38,6 @@ export default function AppDetailHowToUse() {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -21,7 +21,7 @@ export default function AppDetailProvider() {
   }
 
   return (
-    <>
+    <div className="appdetail-provider">
       <div className="provider-content">
         <div className="container">
           <Typography variant="h4">
@@ -43,6 +43,6 @@ export default function AppDetailProvider() {
           <StaticTable data={tableData} horizontal={true} />
         </div>
       </div>
-    </>
+    </div>
   )
 }

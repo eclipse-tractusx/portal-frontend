@@ -16,7 +16,7 @@ export default function AppDetailPrivacy() {
   }
 
   return (
-    <>
+    <div className="appdetail-privacy">
       <div className="privacy-content">
         <div className="container">
           <Typography variant="h4">
@@ -37,6 +37,6 @@ export default function AppDetailPrivacy() {
           <StaticTable data={tableData} horizontal={false} />
         </div>
       </div>
-    </>
+    </div>
   )
 }
