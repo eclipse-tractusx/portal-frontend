@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDigitalTwins } from "state/features/digitalTwins/actions";
 import { twinsSelector } from "state/features/digitalTwins/slice";
 import { DigitalTwinsTableColumns } from "./DigitalTwinsTableColumns";
-import { data } from "./staticData";
 
 interface TwinTableProps {
   onTwinSelect: (id: string) => void
@@ -13,7 +12,7 @@ interface TwinTableProps {
 const TwinTable = ({ onTwinSelect }: TwinTableProps ) => {
   const { t } = useTranslation();
   const dispatch = useDispatch()
-  const { twins, loading, error } = useSelector(twinsSelector);
+  const { twinList, loading, error } = useSelector(twinsSelector);
   const rowCount = 10;
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps ) => {
           onSearch: onSearch,
         }}
         columns={columns}
-        rows={data.items}
+        rows={twinList.items}
         getRowId={(row) => row.identification}
       />
     </section>

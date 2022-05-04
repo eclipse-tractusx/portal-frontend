@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'state/store'
-import { fetchDigitalTwins } from './actions'
-import { DigitalTwinsInitialState, TwinList } from './types'
+import { fetchDigitalTwins, fetchTwinById } from './actions'
+import { DigitalTwinsInitialState, ShellDescriptor, TwinList } from './types'
 
 const defaultTwins: TwinList = {
   items: [],
@@ -12,7 +12,8 @@ const defaultTwins: TwinList = {
 }
 
 const initialState: DigitalTwinsInitialState = {
-  twins: defaultTwins,
+  twinList: defaultTwins,
+  twin: null,
   loading: false,
   error: '',
 }
@@ -23,17 +24,32 @@ const twinsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchDigitalTwins.pending, (state) => {
-      state.twins = defaultTwins
+      state.twinList = defaultTwins
       state.loading = true
       state.error = ''
     })
     builder.addCase(fetchDigitalTwins.fulfilled, (state, { payload }) => {
-      state.twins = payload as TwinList
+      state.twinList = payload as TwinList
       state.loading = false
       state.error = ''
     })
     builder.addCase(fetchDigitalTwins.rejected, (state, action) => {
-      state.twins = defaultTwins
+      state.twinList = defaultTwins
+      state.loading = false
+      state.error = action.error.message as string
+    })
+    builder.addCase(fetchTwinById.pending, (state) => {
+      state.twin = null
+      state.loading = true
+      state.error = ''
+    })
+    builder.addCase(fetchTwinById.fulfilled, (state, { payload }) => {
+      state.twin = payload as ShellDescriptor
+      state.loading = false
+      state.error = ''
+    })
+    builder.addCase(fetchTwinById.rejected, (state, action) => {
+      state.twin = null
       state.loading = false
       state.error = action.error.message as string
     })

@@ -1,6 +1,6 @@
 import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
-import { FilterParams, TwinList } from './types'
+import { FilterParams, ShellDescriptor, TwinList } from './types'
 import qs from 'querystring'
 
 export class DigitalTwinApi extends HttpClient {
@@ -8,7 +8,7 @@ export class DigitalTwinApi extends HttpClient {
 
 
   public constructor() {
-    super(`${process.env.REACT_APP_SLDT_API_BASE_URL}/twin-registry/registry`)
+    super(`${process.env.REACT_APP_SLDT_API_BASE_URL}/twin-registry/registry/shell-descriptors`)
   }
 
   public static getInstance() {
@@ -20,7 +20,15 @@ export class DigitalTwinApi extends HttpClient {
 
   public getTwins = (filters: FilterParams) => {
     const params = qs.stringify(filters)
-    return this.instance.get<TwinList>(`/shell-descriptors?${params}`, {
+    return this.instance.get<TwinList>(`?${params}`, {
+      headers: {
+        Authorization: `Bearer ${UserService.getToken()}`,
+      },
+    })
+  }
+
+  public getTwinById = (id: string) => {
+    return this.instance.get<ShellDescriptor>(`/${id}`, {
       headers: {
         Authorization: `Bearer ${UserService.getToken()}`,
       },

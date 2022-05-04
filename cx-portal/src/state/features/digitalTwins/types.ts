@@ -1,5 +1,8 @@
+import { Nullable } from "types/MainTypes"
+
 export interface DigitalTwinsInitialState {
-  twins: TwinList
+  twinList: TwinList
+  twin: Nullable<ShellDescriptor>
   loading: boolean
   error: string
 }
