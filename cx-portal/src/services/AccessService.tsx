@@ -112,6 +112,7 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
+    role: ROLES.PARTNER_NETWORK_VIEW,
     element: <PartnerNetwork />,
   },
   {
