@@ -36,7 +36,7 @@ export const AppUserDetailsTable = ({
   return (
     <>
       <section style={{ paddingTop: '100px' }}>
-        <SubHeaderTitle title="content.usermanagement.appUserDetails.table.headline"/>
+        <SubHeaderTitle title="content.usermanagement.appUserDetails.table.headline" />
 
         <Table
           title={t('content.usermanagement.appUserDetails.table.title')}
