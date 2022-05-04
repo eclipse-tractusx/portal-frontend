@@ -2,10 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setUsersToAdd } from 'state/features/adminUser/actions'
 import debounce from 'lodash.debounce'
 import { IHashMap, UserInput } from 'types/MainTypes'
+import { usersToAddSelector } from 'state/features/adminUser/slice'
 
 const InputDefinitions = {
   firstname: {
@@ -38,6 +39,7 @@ const InputDefinitions = {
 export const SingleUserContent = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const usersToAdd = useSelector(usersToAddSelector)
   const [inputValid, setInputValid] = useState<boolean>(false)
   const [userInputs, setUserInputs] =
     useState<IHashMap<UserInput>>(InputDefinitions)
@@ -66,19 +68,21 @@ export const SingleUserContent = () => {
   )
 
   useEffect(() => {
-    if (!inputValid) return
-    console.log(inputValid)
     dispatch(
-      setUsersToAdd([
-        {
-          userName: 'username',
-          eMail: 'rohrmeier@web.de',
-          firstName: 'Martin',
-          lastName: 'Rohrmeier',
-          role: 'IT Admin',
-          message: 'you have been invited to catena-x',
-        },
-      ])
+      setUsersToAdd(
+        inputValid
+          ? [
+              {
+                userName: userInputs.email.value,
+                eMail: userInputs.email.value,
+                firstName: userInputs.firstname.value,
+                lastName: userInputs.lastname.value,
+                role: 'IT Admin',
+                message: 'you have been invited to catena-x',
+              },
+            ]
+          : []
+      )
     )
   }, [inputValid, userInputs, dispatch])
 

@@ -32,8 +32,6 @@ export const AddUserOverlay = () => {
   const usersToAdd = useSelector(usersToAddSelector)
   const [activeTab, setActiveTab] = useState(0)
 
-  console.log(usersToAdd)
-
   const handleConfirm = () => {
     console.log('confirmed')
     //dispatch(addTenantUsers(users))
@@ -88,7 +86,7 @@ export const AddUserOverlay = () => {
           </Button>
           <Button
             variant="contained"
-            disabled={usersToAdd.length > 0}
+            disabled={usersToAdd.length === 0}
             onClick={handleConfirm}
           >
             {`${t('global.actions.confirm')}`}
