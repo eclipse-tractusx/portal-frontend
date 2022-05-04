@@ -2,7 +2,6 @@ import {
   IconButton,
   StatusTag,
   Table,
-  Typography,
   Button,
 } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
@@ -12,6 +11,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/userAdministration/actions'
 import { userAdministrationSelector } from 'state/features/userAdministration/slice'
 import { TenantUser } from 'state/features/userAdministration/types'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './AppUserDetailsTable.scss'
 
 interface ActiveUserTableProps {
@@ -36,13 +36,8 @@ export const AppUserDetailsTable = ({
   return (
     <>
       <section style={{ paddingTop: '100px' }}>
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h3"
-          className="section-title"
-        >
-          {t('content.usermanagement.appUserDetails.table.headline')}
-        </Typography>
+        <SubHeaderTitle title="content.usermanagement.appUserDetails.table.headline"/>
+
         <Table
           title={t('content.usermanagement.appUserDetails.table.title')}
           toolbar={{

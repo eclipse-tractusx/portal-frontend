@@ -1,6 +1,7 @@
-import { Typography, Button } from 'cx-portal-shared-components'
+import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import SubHeaderTitle from '../SubHeaderTitle'
 import './SubHeader.scss'
 
 interface ComponentProps {
@@ -15,13 +16,9 @@ export default function SubHeader({ title, hasBackButton }: ComponentProps) {
   return (
     <>
       <div className="sub-header">
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h4"
-          className="sub-header-title"
-        >
-          {title}
-        </Typography>
+        <div className="sub-header-title">
+          <SubHeaderTitle title={title} />
+        </div>
 
         <svg
           width="100%"

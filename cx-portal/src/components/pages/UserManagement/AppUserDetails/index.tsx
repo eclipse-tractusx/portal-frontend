@@ -1,6 +1,6 @@
 import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
-import { AppUserDetailsTable } from './components/AppUserDetalisTable'
+import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import SubHeader from 'components/shared/frame/SubHeader'
 import './AppUserDetails.scss'
 
