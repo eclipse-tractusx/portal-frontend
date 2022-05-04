@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { TenantUser, AdminUserState } from './types'
+import { TenantUser, AdminUserState, AddUser } from './types'
 import { addTenantUsers, fetchTenantUsers } from './actions'
 import { RootState } from 'state/store'
 
 const initialState: AdminUserState = {
   tenantUsers: [],
-  addUsers: [],
+  usersToAdd: [],
   addOpen: false,
   loading: false,
   error: '',
@@ -22,6 +22,10 @@ const adminUserSlice = createSlice({
     closeAdd: (state) => ({
       ...state,
       addOpen: false,
+    }),
+    setUsersToAdd: (state, action) => ({
+      ...state,
+      usersToAdd: action.payload,
     }),
   },
   extraReducers: (builder) => {
@@ -69,5 +73,8 @@ export const addOpenSelector = (state: RootState): boolean =>
 
 export const tenantUsersSelector = (state: RootState): TenantUser[] =>
   state.adminUser.tenantUsers
+
+export const usersToAddSelector = (state: RootState): AddUser[] =>
+  state.adminUser.usersToAdd
 
 export default adminUserSlice

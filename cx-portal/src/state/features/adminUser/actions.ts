@@ -4,6 +4,7 @@ import { AddUser } from './types'
 
 const openAdd = createAction('admin/user/openAdd')
 const closeAdd = createAction('admin/user/closeAdd')
+const setUsersToAdd = createAction<AddUser[]>('admin/user/setUsersToAdd')
 
 const addTenantUsers = createAsyncThunk(
   'admin/user/addTenantUsers',
@@ -29,4 +30,4 @@ const fetchTenantUsers = createAsyncThunk(
   }
 )
 
-export { openAdd, closeAdd, addTenantUsers, fetchTenantUsers }
+export { openAdd, closeAdd, setUsersToAdd, addTenantUsers, fetchTenantUsers }

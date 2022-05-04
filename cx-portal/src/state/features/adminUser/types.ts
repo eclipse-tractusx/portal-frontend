@@ -28,7 +28,7 @@ export type AddUser = {
 }
 export interface AdminUserState {
   tenantUsers: Array<TenantUser>
-  addUsers: Array<AddUser>
+  usersToAdd: Array<AddUser>
   loading: boolean
   error: string
   addOpen: boolean

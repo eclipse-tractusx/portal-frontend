@@ -15,7 +15,10 @@ import { SingleUserContent } from './SingleUserContent'
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import { addOpenSelector } from 'state/features/adminUser/slice'
+import {
+  addOpenSelector,
+  usersToAddSelector,
+} from 'state/features/adminUser/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeAdd } from 'state/features/adminUser/actions'
 import { AddUser } from 'state/features/adminUser/types'
@@ -25,30 +28,14 @@ export type AddUserCallback = (users: AddUser[]) => void
 export const AddUserOverlay = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const addUserOpen = useSelector(addOpenSelector)
+  const addOpen = useSelector(addOpenSelector)
+  const usersToAdd = useSelector(usersToAddSelector)
   const [activeTab, setActiveTab] = useState(0)
-  const [users, setUsers] = useState<AddUser[]>([])
 
-  const setValidUsers = (validUsers: AddUser[]) => {
-    setUsers(validUsers)
-  }
-
-  /*
-  const users = [
-    {
-      userName: 'rohrmeierwebde',
-      eMail: 'rohrmeier@web.de',
-      firstName: 'Martin',
-      lastName: 'Rohrmeier',
-      role: 'IT Admin',
-      message: 'you have been invited to catena-x'
-    }
-  ]
-  */
+  console.log(usersToAdd)
 
   const handleConfirm = () => {
     console.log('confirmed')
-    console.log(users)
     //dispatch(addTenantUsers(users))
   }
 
@@ -61,7 +48,7 @@ export const AddUserOverlay = () => {
 
   return (
     <div className={'add-user-overlay'}>
-      <Dialog open={addUserOpen}>
+      <Dialog open={addOpen}>
         <DialogHeader
           title={t('content.addUser.headline')}
           intro={t('content.addUser.subheadline')}
@@ -87,7 +74,7 @@ export const AddUserOverlay = () => {
             />
           </Tabs>
           <TabPanel value={activeTab} index={0}>
-            <SingleUserContent onValidInput={setValidUsers} />
+            <SingleUserContent />
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />
@@ -99,7 +86,11 @@ export const AddUserOverlay = () => {
           <Button variant="outlined" onClick={() => dispatch(closeAdd())}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button variant="contained" onClick={handleConfirm}>
+          <Button
+            variant="contained"
+            disabled={usersToAdd.length > 0}
+            onClick={handleConfirm}
+          >
             {`${t('global.actions.confirm')}`}
           </Button>
         </DialogActions>

@@ -92,3 +92,12 @@ export type IPage = {
   element: JSX.Element
   isRoute?: boolean
 }
+
+export type UserInput = {
+  key: string
+  i18n: string
+  helperText: string
+  pattern: RegExp
+  value: string
+  valid: boolean
+}
