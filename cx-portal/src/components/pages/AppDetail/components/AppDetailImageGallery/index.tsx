@@ -2,7 +2,7 @@ import './AppDetailImageGallery.scss'
 
 export default function AppDetailHeader() {
   return (
-    <div className='appdetail-gallery'>
+    <div className="appdetail-gallery">
       <div className="container">
         <div className="row">
           <div className="img-col">

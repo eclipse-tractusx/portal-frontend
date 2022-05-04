@@ -18,21 +18,21 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           <img src={item.leadPictureUri} alt={item.title} />
         </div>
         <div className="content">
-          <Typography variant="body2" className='provider'>
+          <Typography variant="body2" className="provider">
             {item.provider}
           </Typography>
-          <Typography variant="h4" className='heading'>
+          <Typography variant="h4" className="heading">
             {item.title}
           </Typography>
           <div className="rating">
             <Rating defaultRating={item.rating} />
             <span className="rating-number">{item.rating}</span>
           </div>
-          <Typography variant="body2" className='price'>
+          <Typography variant="body2" className="price">
             {item.price}
           </Typography>
           <div className="usecase">
-            <Typography variant="h5" className='head'>
+            <Typography variant="h5" className="head">
               {t('content.appdetail.usecase')}:{' '}
             </Typography>
             {item.useCases.map((useCase) => (
@@ -40,7 +40,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             ))}
           </div>
           <div className="language">
-            <Typography variant="h5" className='head'>
+            <Typography variant="h5" className="head">
               {t('content.appdetail.language')}:{' '}
             </Typography>
             {item.languages.map((lang) => (

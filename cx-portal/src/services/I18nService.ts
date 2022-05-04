@@ -15,7 +15,7 @@ const resources = {
   en: {
     translation: mainEN,
     footer: footerEN,
-    apps: appsEN
+    apps: appsEN,
   },
 }
 
