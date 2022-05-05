@@ -1,5 +1,5 @@
 import { CardItems } from 'cx-portal-shared-components'
-import { getAssetBase } from 'utils/EnvUtil'
+import { getAssetBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 
 export class NewsApi extends HttpClient {

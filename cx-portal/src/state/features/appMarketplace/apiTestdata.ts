@@ -1,4 +1,4 @@
-import { getAssetBase } from 'utils/EnvUtil'
+import { getAssetBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { AppMarketplaceApp } from './types'
 

@@ -1,5 +1,5 @@
 import UserService from 'services/UserService'
-import getApiBase from 'utils/EnvUtil'
+import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { AppDetails } from './types'
 

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { AppMarketplaceApp } from 'state/features/appMarketplace/types'
-import { getAssetBase } from 'utils/EnvUtil'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export const useAppCards = (apps: AppMarketplaceApp[]) => {
   const navigate = useNavigate()

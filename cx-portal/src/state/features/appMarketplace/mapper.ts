@@ -1,5 +1,5 @@
 import { CardItems } from 'cx-portal-shared-components'
-import { getAssetBase } from 'utils/EnvUtil'
+import { getAssetBase } from 'services/EnvironmentService'
 import { AppMarketplaceApp } from './types'
 
 const baseAssets = getAssetBase()

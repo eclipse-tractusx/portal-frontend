@@ -1,7 +1,7 @@
 import { HttpClient } from 'utils/HttpClient'
 import { ProvisionIdentityProviderData } from './types'
 import UserService from 'services/UserService'
-import getApiBase from 'utils/EnvUtil'
+import { getApiBase } from 'services/EnvironmentService'
 
 export class ProvisioningApi extends HttpClient {
   private static classInstance?: ProvisioningApi
