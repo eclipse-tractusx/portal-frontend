@@ -1,4 +1,5 @@
 import UserService from 'services/UserService'
+import getApiBase from 'utils/EnvUtil'
 import { HttpClient } from 'utils/HttpClient'
 import { AppMarketplaceApp } from './types'
 
@@ -6,7 +7,7 @@ export class AppMarketplaceApi extends HttpClient {
   private static classInstance?: AppMarketplaceApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_API || '')
+    super(getApiBase() || '')
   }
 
   public static getInstance() {
