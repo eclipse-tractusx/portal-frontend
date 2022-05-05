@@ -7,7 +7,7 @@ export class AppDetailsApi extends HttpClient {
   private static classInstance?: AppDetailsApi
 
   public constructor() {
-    super(getApiBase() || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

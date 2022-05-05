@@ -7,7 +7,7 @@ export class UserAdministrationApi extends HttpClient {
   private static classInstance?: UserAdministrationApi
 
   public constructor() {
-    super(getApiBase() || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

@@ -13,7 +13,7 @@ export const useAppCards = (apps: AppMarketplaceApp[]) => {
           alt: app.title,
         }
       : {
-          src: `${getAssetBase() || ''}/images/apps/default/lead.png`,
+          src: `${getAssetBase()}/images/apps/default/lead.png`,
           alt: app.title,
         },
     onButtonClick: () => {

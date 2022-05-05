@@ -6,7 +6,7 @@ export class NewsApi extends HttpClient {
   private static classInstance?: NewsApi
 
   public constructor() {
-    super(getAssetBase() || '')
+    super(getAssetBase())
   }
 
   public static getInstance() {

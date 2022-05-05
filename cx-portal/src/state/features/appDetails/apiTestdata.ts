@@ -6,7 +6,7 @@ export class AppDetailsApi extends HttpClient {
   private static classInstance?: AppDetailsApi
 
   public constructor() {
-    super(getAssetBase() || '')
+    super(getAssetBase())
   }
 
   public static getInstance() {

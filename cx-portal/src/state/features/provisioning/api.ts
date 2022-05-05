@@ -7,7 +7,7 @@ export class ProvisioningApi extends HttpClient {
   private static classInstance?: ProvisioningApi
 
   public constructor() {
-    super(getApiBase() || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

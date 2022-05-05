@@ -7,7 +7,7 @@ export class AppMarketplaceApi extends HttpClient {
   private static classInstance?: AppMarketplaceApi
 
   public constructor() {
-    super(getApiBase() || '')
+    super(getApiBase())
   }
 
   public static getInstance() {
