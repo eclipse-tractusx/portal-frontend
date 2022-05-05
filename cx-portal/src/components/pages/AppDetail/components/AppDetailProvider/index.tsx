@@ -3,19 +3,16 @@ import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
 import './AppDetailProvider.scss'
 
 export default function AppDetailProvider() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('', {
+    keyPrefix: 'content.appdetail.providerInformation',
+  })
 
   const tableData: TableType = {
-    head: [
-      t('content.appdetail.providerInformation.appProvider'),
-      t('content.appdetail.providerInformation.website'),
-      t('content.appdetail.providerInformation.email'),
-      t('content.appdetail.providerInformation.phone'),
-    ],
+    head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
       ['Catena-X'],
-      ['https://catena-x.com'],
-      ['contact@catena-x.com'],
+      ['https://catena-x.net'],
+      ['contact@catena-x.net'],
       ['+49555667788'],
     ],
   }
@@ -23,23 +20,13 @@ export default function AppDetailProvider() {
   return (
     <div className="appdetail-provider">
       <div className="provider-content">
-        <div className="container">
-          <Typography variant="h4">
-            {t('content.appdetail.providerInformation.heading')}
-          </Typography>
-          <Typography variant="body2">
-            {t('content.appdetail.providerInformation.message')}
-          </Typography>
-          <a href="/#" className="product-desc">
-            + more
-          </a>
-        </div>
+        <Typography variant="h4">{t('heading')}</Typography>
+        <Typography variant="body2">{t('message')}</Typography>
+        <a href="/#" className="product-desc">
+          + more
+        </a>
       </div>
-      <div className="privacy-table">
-        <div className="container">
-          <StaticTable data={tableData} horizontal={true} />
-        </div>
-      </div>
+      <StaticTable data={tableData} horizontal={true} />
     </div>
   )
 }

@@ -1,57 +1,50 @@
-import { Typography } from 'cx-portal-shared-components'
+import { Button, Typography } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { appDetailsSelector } from 'state/features/appDetails/slice'
 import { fetchItem } from 'state/features/appDetails/actions'
-import { userSelector } from 'state/features/user/slice'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailHowToUse from './components/AppDetailHowToUse'
 import AppDetailProvider from './components/AppDetailProvider'
 import AppDetailTags from './components/AppDetailTags'
-import NotFound from '../NotFound'
-import './AppDetail.scss'
 import { useTranslation } from 'react-i18next'
 import { t } from 'i18next'
+import './AppDetail.scss'
+import NotFound from '../NotFound'
 
 export default function AppDetail() {
   const dispatch = useDispatch()
-  const appId = useParams().appId
-  const { token } = useSelector(userSelector)
+  const navigate = useNavigate()
+  const { appId } = useParams()
   const { item } = useSelector(appDetailsSelector)
   const ta = useTranslation('apps').t
 
   useEffect(() => {
-    if (token && appId) {
+    if (appId) {
       dispatch(fetchItem(appId))
     }
-  }, [appId, token, dispatch])
+  }, [appId, dispatch])
 
-  return item === null ? (
-    <NotFound />
-  ) : (
+  return item ? (
     <main className="appdetail-main">
-      <div className="back-btn">
-        <div className="container">
-          <div className="row">
-            <a href="/appmarketplace">{t('content.appdetail.back')}</a>
-          </div>
-        </div>
-      </div>
-      <div className="appdetail-header">
-        <AppDetailHeader item={item} />
-      </div>
+      <Button
+        color="secondary"
+        size="small"
+        onClick={() => navigate('/appmarketplace')}
+      >
+        {t('global.actions.back')}
+      </Button>
+      <AppDetailHeader item={item} />
       <div className="product-description">
-        <div className="container">
           <Typography variant="body2">
             {ta(`${item.id}.description`)}
           </Typography>
           <a href="/#" className="product-desc-more">
             + more
           </a>
-        </div>
       </div>
       <AppDetailImageGallery />
       <AppDetailPrivacy />
@@ -59,5 +52,7 @@ export default function AppDetail() {
       <AppDetailProvider />
       <AppDetailTags />
     </main>
+  ) : (
+    <NotFound />
   )
 }

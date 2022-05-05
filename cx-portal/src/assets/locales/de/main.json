@@ -260,9 +260,8 @@
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
     },
     "appdetail": {
-      "back": "Back",
       "usecase": "Use Case",
-      "language": "Language",
+      "language": "Sprache",
       "subscribe": "Abonnieren",
       "privacy": {
         "heading": "Datenschutz",
@@ -294,6 +293,7 @@
       "inactive": "Inaktiv"
     },
     "actions": {
+      "back": "← Zurück",
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",

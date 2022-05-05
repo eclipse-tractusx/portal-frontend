@@ -1,9 +1,13 @@
 .appdetail-tags {
-  .all-tags {
     display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     ul {
       list-style: none;
-      li {
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+        li {
         margin-right: 20px;
         margin-bottom: 15px;
         a {
@@ -19,5 +23,4 @@
         }
       }
     }
-  }
 }

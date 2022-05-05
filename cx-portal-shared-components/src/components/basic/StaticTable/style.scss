@@ -30,16 +30,10 @@
     border-bottom: 1px solid #e0e1e2;
   }
 
-  tr {
-    td {
-      border-bottom: 1px solid #e0e1e2;
-      padding: 10px 15px;
-    }
-  }
-
-  :first-child {
-    th,
-    td {
+  td {
+    border-bottom: 5px solid #e0e1e2;
+    padding: 10px 15px;
+    :first-child {
       border-top: 1px solid #e0e1e2;
     }
   }

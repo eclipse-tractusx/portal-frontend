@@ -4,7 +4,8 @@ import { AppMarketplaceApp } from './types'
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
   subtitle: app.provider,
-  description: app.shortDescription,
+  description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
+  price: app.price === 'ERROR' ? '' : app.price,
   image: {
     src:
       app.leadPictureUri === 'ERROR'

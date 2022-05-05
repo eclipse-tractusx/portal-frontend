@@ -8,33 +8,27 @@ export default function AppDetailHowToUse() {
   return (
     <div className="appdetail-howtouse">
       <div className="howtouse-content">
-        <div className="container">
-          <Typography variant="h4">
-            {t('content.appdetail.howtouse.heading')}
-          </Typography>
-          <Typography variant="body2">
-            {t('content.appdetail.howtouse.message')}
-          </Typography>
-        </div>
+        <Typography variant="h4">
+          {t('content.appdetail.howtouse.heading')}
+        </Typography>
+        <Typography variant="body2">
+          {t('content.appdetail.howtouse.message')}
+        </Typography>
       </div>
-      <div className="privacy-table">
-        <div className="container">
-          <ul>
-            <li key="document1">
-              <a href="/#">Document 1</a>
-            </li>
-            <li key="document2">
-              <a href="/#">Document 2</a>
-            </li>
-            <li key="document3">
-              <a href="/#">Document 3</a>
-            </li>
-            <li key="document4">
-              <a href="/#">Document 4</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+        <ul>
+          <li>
+            <a href="/#">Document 1</a>
+          </li>
+          <li>
+            <a href="/#">Document 2</a>
+          </li>
+          <li>
+            <a href="/#">Document 3</a>
+          </li>
+          <li>
+            <a href="/#">Document 4</a>
+          </li>
+        </ul>
     </div>
   )
 }

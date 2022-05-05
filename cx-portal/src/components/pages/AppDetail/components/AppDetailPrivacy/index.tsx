@@ -18,19 +18,15 @@ export default function AppDetailPrivacy() {
   return (
     <div className="appdetail-privacy">
       <div className="privacy-content">
-        <div className="container">
-          <Typography variant="h4">
-            {t('content.appdetail.privacy.heading')}
-          </Typography>
-          <Typography variant="body2">
-            {t('content.appdetail.privacy.message')}
-          </Typography>
-        </div>
+        <Typography variant="h4">
+          {t('content.appdetail.privacy.heading')}
+        </Typography>
+        <Typography variant="body2">
+          {t('content.appdetail.privacy.message')}
+        </Typography>
       </div>
       <div className="privacy-table">
-        <div className="container">
-          <StaticTable data={tableData} horizontal={false} />
-        </div>
+        <StaticTable data={tableData} horizontal={false} />
       </div>
     </div>
   )

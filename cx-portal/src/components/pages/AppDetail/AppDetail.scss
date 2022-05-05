@@ -1,37 +1,12 @@
-.container {
+.appdetail-main {
   width: 100%;
+  padding: 30px 0;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
   max-width: 1140px;
 
-  .row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .row {
-    flex-direction: column;
-  }
-
-  .row > * {
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-bottom: 15px;
-  }
-}
-
-.appdetail-main {
-  width: 100%;
-  padding: 30px 0;
   .product-description {
     margin-bottom: 42px;
     p {

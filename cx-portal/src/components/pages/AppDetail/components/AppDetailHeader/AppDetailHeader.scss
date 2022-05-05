@@ -1,5 +1,10 @@
 .appdetail-header {
-  margin-bottom: 94px;
+  margin: 30px -15px 94px -15px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
   .lead-image {
     flex: 0 0 350px;
     max-width: 305px;
