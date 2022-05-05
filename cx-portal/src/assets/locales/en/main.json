@@ -109,7 +109,8 @@
           "idShort": "Name",
           "sm_count": "Submodel Count",
           "asset_count": "Specific Asset Count"
-        }
+        },
+        "load_button": "Load more"
       },
       "detail": {
         "error": "ERROR: No twin data available.",

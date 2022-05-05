@@ -109,7 +109,8 @@
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
           "asset_count": "Anzahl Assets"
-        }
+        },
+        "load_button": "Mehr laden"
       },
       "detail": {
         "error": "FEHLER: Es gibt keinen Details zu diesem Asset.",
