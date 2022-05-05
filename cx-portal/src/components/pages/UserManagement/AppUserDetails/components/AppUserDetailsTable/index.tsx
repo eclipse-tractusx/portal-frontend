@@ -24,7 +24,7 @@ export const userList = [
     email: 'admin@mail.com',
     enabled: true,
     role: 'Admin',
-    details: ''
+    details: '',
   },
   {
     id: '2',
@@ -32,11 +32,13 @@ export const userList = [
     email: 'user@mail.com',
     enabled: false,
     role: 'User',
-    details: ''
-  }
+    details: '',
+  },
 ]
 
-export const AppUserDetailsTable = ({ onAddUserButtonClick }: ActiveUserTableProps) => {
+export const AppUserDetailsTable = ({
+  onAddUserButtonClick,
+}: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 

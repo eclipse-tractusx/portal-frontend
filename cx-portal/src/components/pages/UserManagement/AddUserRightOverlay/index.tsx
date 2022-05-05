@@ -16,8 +16,12 @@ export interface AddUserRightOverlayProps {
   handleConfirm: React.MouseEventHandler
 }
 
-export default function AddUserRightOverlay({ openDialog = false, handleClose, handleConfirm }: AddUserRightOverlayProps) {
-  const { t } = useTranslation();
+export default function AddUserRightOverlay({
+  openDialog = false,
+  handleClose,
+  handleConfirm,
+}: AddUserRightOverlayProps) {
+  const { t } = useTranslation()
 
   return (
     <div>

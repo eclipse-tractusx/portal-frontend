@@ -6,7 +6,10 @@ interface ComponentProps {
   title: string
 }
 
-export default function SubHeaderTitle({ title, variant='body1' }: ComponentProps & TypographyProps) {
+export default function SubHeaderTitle({
+  title,
+  variant = 'body1',
+}: ComponentProps & TypographyProps) {
   const { t } = useTranslation()
 
   return (

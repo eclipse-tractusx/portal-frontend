@@ -48,14 +48,11 @@ export const UserRoles = ({ headline }: UserRolesProps) => {
         },
       }}
     >
-      {headline &&
-        <div className='add-user-title'>
-          <SubHeaderTitle
-            title={headline}
-            variant="body1"
-          />
+      {headline && (
+        <div className="add-user-title">
+          <SubHeaderTitle title={headline} variant="body1" />
         </div>
-      }
+      )}
 
       <div className="checkbox-section">
         {userRoles.map(({ title, id }) => (
