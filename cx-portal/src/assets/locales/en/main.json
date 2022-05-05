@@ -218,6 +218,10 @@
         }
       }
     },
+    "addUserRight": {
+      "headline": "Select and Add users to this app",
+      "subheadline": "Please select one or more roles for your company to participant in Cateny-X. Don't worry, you can change later."
+    },
     "account": {
       "token": "Current authentication token",
       "copy_to_clipboard": "copy token to clipboard"

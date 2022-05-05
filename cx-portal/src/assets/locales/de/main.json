@@ -218,6 +218,10 @@
         }
       }
     },
+    "addUserRight": {
+      "headline": "tbd DE: Select and Add users to this app",
+      "subheadline": "tbd"
+    },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
     },

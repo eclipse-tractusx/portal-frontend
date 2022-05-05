@@ -1,8 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { Checkbox, Typography } from 'cx-portal-shared-components'
+import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
-export const UserRoles = () => {
+interface UserRolesProps {
+  headline?: string
+}
+
+export const UserRoles = ({ headline }: UserRolesProps) => {
   const { t } = useTranslation()
   const userRoles = [
     {
@@ -43,9 +48,15 @@ export const UserRoles = () => {
         },
       }}
     >
-      <Typography sx={{ marginBottom: '30px' }} variant="body1">
-        {t('content.addUser.chooseUserRole')}
-      </Typography>
+      {headline &&
+        <div className='add-user-title'>
+          <SubHeaderTitle
+            title={headline}
+            variant="body1"
+          />
+        </div>
+      }
+
       <div className="checkbox-section">
         {userRoles.map(({ title, id }) => (
           <Checkbox label={title} key={id} />

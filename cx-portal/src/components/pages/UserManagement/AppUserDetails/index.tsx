@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import SubHeader from 'components/shared/frame/SubHeader'
+import AddUserRightOverlay from '../AddUserRightOverlay'
 import './AppUserDetails.scss'
 
 export type UserRole = {
@@ -12,8 +14,18 @@ export type UserRole = {
 export default function AppUserDetails() {
   const { t } = useTranslation()
 
-  const openAddUserLayout = () => {
-    // Open add user modal
+  const [open, setOpen] = useState(false)
+
+  const openAddUserRightLayout = () => {
+    setOpen(true)
+  }
+
+  const closeAddUserRightLayout = () => {
+    setOpen(false)
+  }
+
+  const confirmNewUserRight = () => {
+    console.log('confirmed user right!')
   }
 
   const roles: UserRole[] = [
@@ -24,6 +36,12 @@ export default function AppUserDetails() {
 
   return (
     <main className="app-user-details">
+      <AddUserRightOverlay
+        openDialog={open}
+        handleClose={closeAddUserRightLayout}
+        handleConfirm={confirmNewUserRight}
+      />
+
       <SubHeader
         title={t('content.usermanagement.appUserDetails.headline')}
         hasBackButton={true}
@@ -32,7 +50,7 @@ export default function AppUserDetails() {
       {roles.length > 0 && (
         <>
           <AppUserDetailsHeader roles={roles} />
-          <AppUserDetailsTable onAddUserButtonClick={openAddUserLayout} />
+          <AppUserDetailsTable onAddUserButtonClick={openAddUserRightLayout} />
         </>
       )}
     </main>
