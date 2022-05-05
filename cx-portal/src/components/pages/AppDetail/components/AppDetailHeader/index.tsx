@@ -44,7 +44,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
               {t('content.appdetail.language')}:{' '}
             </Typography>
             {item.languages.map((lang, index) => (
-              <span key={lang}>{ (index ? ', ' : '') + lang }</span>
+              <span key={lang}>{(index ? ', ' : '') + lang}</span>
             ))}
           </div>
           <Button
