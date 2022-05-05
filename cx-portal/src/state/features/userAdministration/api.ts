@@ -1,5 +1,5 @@
 import UserService from 'services/UserService'
-import getApiBase from 'utils/EnvUtil'
+import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { TenantUser, InviteData, CompanyDetail } from './types'
 
@@ -7,7 +7,7 @@ export class UserAdministrationApi extends HttpClient {
   private static classInstance?: UserAdministrationApi
 
   public constructor() {
-    super(getApiBase() || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

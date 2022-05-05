@@ -1,5 +1,5 @@
 import UserService from 'services/UserService'
-import getApiBase from 'utils/EnvUtil'
+import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { AppMarketplaceApp } from './types'
 
@@ -7,7 +7,7 @@ export class AppMarketplaceApi extends HttpClient {
   private static classInstance?: AppMarketplaceApi
 
   public constructor() {
-    super(getApiBase() || '')
+    super(getApiBase())
   }
 
   public static getInstance() {
