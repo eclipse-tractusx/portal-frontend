@@ -20,7 +20,9 @@ export class AppMarketplaceApi extends HttpClient {
     return this.instance.get<AppMarketplaceApp[]>(`/api/apps/active.json`)
   }
 
-  public getSubscribed = () => {
-    return this.instance.get<AppMarketplaceApp[]>(`/api/apps/subscribed.json`)
+  public getSubscribed = (all?: boolean) => {
+    return this.instance.get<AppMarketplaceApp[]>(
+      `/api/apps/subscribed.json${all ? '?' : ''}`
+    )
   }
 }
