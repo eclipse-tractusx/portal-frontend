@@ -1,4 +1,5 @@
 import UserService from 'services/UserService'
+import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { AppDetails } from './types'
 
@@ -6,7 +7,7 @@ export class AppDetailsApi extends HttpClient {
   private static classInstance?: AppDetailsApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_API || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

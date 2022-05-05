@@ -13,9 +13,9 @@ const fetchItems = createAsyncThunk('appMarketplace/fetchItems', async () => {
 
 const fetchSubscribed = createAsyncThunk(
   'appMarketplace/fetchSubscribed',
-  async () => {
+  async (all?: boolean) => {
     try {
-      return await ApiMock.getInstance().getSubscribed()
+      return await ApiMock.getInstance().getSubscribed(all)
     } catch (error: unknown) {
       console.error('api call error:', error)
       throw Error('fetchItems api call error')

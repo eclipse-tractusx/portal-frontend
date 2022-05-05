@@ -191,6 +191,18 @@
         "title": "User List",
         "details": "Details",
         "add": "Add user"
+      },
+      "appUserDetails": {
+        "headline": "Page title",
+        "header": {
+          "title": "Available Roles",
+          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+        },
+        "table": {
+          "headline": "Identity Management",
+          "title": "User List",
+          "add": "Add user"
+        }
       }
     },
     "addUser": {
@@ -260,14 +272,17 @@
       "status": "Status",
       "role": "Rollen",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "name": "Name",
+      "details": "Details"
     },
     "actions": {
       "cancel": "Cancel",
       "confirm": "Confirm",
       "more": "More",
       "details": "Details",
-      "close": "Close"
+      "close": "Close",
+      "back": "Back"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
