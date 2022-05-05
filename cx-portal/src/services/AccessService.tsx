@@ -13,6 +13,7 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import SemanticHub from 'components/pages/SemanticHub'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
+import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
 import { IPage, PAGES, ROLES } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
@@ -119,6 +120,20 @@ const ALL_PAGES: IPage[] = [
     name: PAGES.USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     element: <UserManagement />,
+  },
+  {
+    name: PAGES.APP_USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.APP_USER_DETAILS}
+        path={`${PAGES.USER_MANAGEMENT}/${PAGES.APP_USER_DETAILS}`}
+        element={<AppUserDetails />}
+      >
+        <Route path=":appId" element={<AppUserDetails />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.INVITE,
