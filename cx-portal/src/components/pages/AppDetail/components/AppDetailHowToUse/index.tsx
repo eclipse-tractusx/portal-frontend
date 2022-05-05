@@ -13,10 +13,7 @@ export default function AppDetailHowToUse() {
             {t('content.appdetail.howtouse.heading')}
           </Typography>
           <Typography variant="body2">
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia, there live the blind texts. Separated they
-            live in Bookmarksgrove right at the coast of the Semantics, a large
-            language ocean.
+            {t('content.appdetail.howtouse.message')}
           </Typography>
         </div>
       </div>

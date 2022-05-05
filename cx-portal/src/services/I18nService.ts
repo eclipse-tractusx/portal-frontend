@@ -5,12 +5,14 @@ import mainDE from '../assets/locales/de/main.json'
 import mainEN from '../assets/locales/en/main.json'
 import footerDE from '../assets/locales/de/footer.json'
 import footerEN from '../assets/locales/en/footer.json'
+import appsDE from '../assets/locales/de/apps.json'
 import appsEN from '../assets/locales/en/apps.json'
 
 const resources = {
   de: {
     translation: mainDE,
     footer: footerDE,
+    apps: appsDE,
   },
   en: {
     translation: mainEN,

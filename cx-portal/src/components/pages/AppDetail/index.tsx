@@ -14,13 +14,13 @@ import AppDetailTags from './components/AppDetailTags'
 import NotFound from '../NotFound'
 import './AppDetail.scss'
 import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
 export default function AppDetail() {
   const dispatch = useDispatch()
   const appId = useParams().appId
   const { token } = useSelector(userSelector)
   const { item } = useSelector(appDetailsSelector)
-  const { t } = useTranslation()
   const ta = useTranslation('apps').t
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function AppDetail() {
       <div className="back-btn">
         <div className="container">
           <div className="row">
-            <a href="/appmarketplace">Back</a>
+            <a href="/appmarketplace">{t('content.appdetail.back')}</a>
           </div>
         </div>
       </div>
