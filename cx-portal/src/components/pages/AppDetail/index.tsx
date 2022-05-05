@@ -39,12 +39,10 @@ export default function AppDetail() {
       </Button>
       <AppDetailHeader item={item} />
       <div className="product-description">
-          <Typography variant="body2">
-            {ta(`${item.id}.description`)}
-          </Typography>
-          <a href="/#" className="product-desc-more">
-            + more
-          </a>
+        <Typography variant="body2">{ta(`${item.id}.description`)}</Typography>
+        <a href="/#" className="product-desc-more">
+          + more
+        </a>
       </div>
       <AppDetailImageGallery />
       <AppDetailPrivacy />

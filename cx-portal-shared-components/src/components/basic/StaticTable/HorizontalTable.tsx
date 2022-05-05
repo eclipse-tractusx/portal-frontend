@@ -1,7 +1,13 @@
 import { TableType } from './types'
 
 export const HorizontalTable = ({ data }: { data: TableType }) => (
-  <table style={{ width: '100%', borderCollapse: 'collapse', borderTop: '1px solid #e0e1e2' }}>
+  <table
+    style={{
+      width: '100%',
+      borderCollapse: 'collapse',
+      borderTop: '1px solid #e0e1e2',
+    }}
+  >
     <tbody>
       {data.head.map((col, c) => (
         <tr key={col}>

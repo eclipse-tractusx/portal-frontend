@@ -15,20 +15,20 @@ export default function AppDetailHowToUse() {
           {t('content.appdetail.howtouse.message')}
         </Typography>
       </div>
-        <ul>
-          <li>
-            <a href="/#">Document 1</a>
-          </li>
-          <li>
-            <a href="/#">Document 2</a>
-          </li>
-          <li>
-            <a href="/#">Document 3</a>
-          </li>
-          <li>
-            <a href="/#">Document 4</a>
-          </li>
-        </ul>
+      <ul>
+        <li>
+          <a href="/#">Document 1</a>
+        </li>
+        <li>
+          <a href="/#">Document 2</a>
+        </li>
+        <li>
+          <a href="/#">Document 3</a>
+        </li>
+        <li>
+          <a href="/#">Document 4</a>
+        </li>
+      </ul>
     </div>
   )
 }

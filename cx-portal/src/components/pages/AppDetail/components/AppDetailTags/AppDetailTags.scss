@@ -1,26 +1,26 @@
 .appdetail-tags {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  ul {
+    list-style: none;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    ul {
-      list-style: none;
-      display: flex;
-      -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-        li {
-        margin-right: 20px;
-        margin-bottom: 15px;
-        a {
-          color: #676bc6;
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 20px;
-          text-decoration: none;
-          background: #f2f3fb;
-          border-radius: 6px;
-          padding: 6px 12px;
-          display: inline-block;
-        }
+    li {
+      margin-right: 20px;
+      margin-bottom: 15px;
+      a {
+        color: #676bc6;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        text-decoration: none;
+        background: #f2f3fb;
+        border-radius: 6px;
+        padding: 6px 12px;
+        display: inline-block;
       }
     }
+  }
 }
