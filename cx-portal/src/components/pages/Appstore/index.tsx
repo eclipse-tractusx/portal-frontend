@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useSearchParams } from 'react-router-dom'
 import { CardItems, Cards, SearchInput } from 'cx-portal-shared-components'
-import { appMarketplaceSelectCards } from 'state/features/appMarketplace/slice'
+import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
 import { fetchItems } from 'state/features/appMarketplace/actions'
 
 const Appstore = () => {
   const dispatch = useDispatch()
-  const cards = useSelector(appMarketplaceSelectCards)
+  const cards = useSelector(appMarketplaceSelectActive)
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = new RegExp(searchParams.get('filter') || '', 'i')
 

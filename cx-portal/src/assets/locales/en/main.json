@@ -50,7 +50,12 @@
         "buttonconfirm": "confirm",
         "buttondecline": "decline",
         "cellconfirmed": "confirmed",
-        "celldeclined": "declined"
+        "celldeclined": "declined",
+        "overlay": {
+          "title": "Company Detail",
+          "companydatatitle": "Company Data",
+          "taxid": "Tax ID"
+        }
       }
     },
     "home": {

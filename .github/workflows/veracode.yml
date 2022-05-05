@@ -1,7 +1,11 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name:  analyze
+name: Veracode 
 
-on: workflow_dispatch
+# run on manual trigger or once a week
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"
     
 jobs:
   static_analysis:

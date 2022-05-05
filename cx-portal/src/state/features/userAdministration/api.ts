@@ -1,6 +1,6 @@
 import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
-import { TenantUser, InviteData } from './types'
+import { TenantUser, InviteData, CompanyDetail } from './types'
 
 export class UserAdministrationApi extends HttpClient {
   private static classInstance?: UserAdministrationApi
@@ -19,7 +19,7 @@ export class UserAdministrationApi extends HttpClient {
 
   public inviteBusinessPartner = (invite: InviteData) => {
     return this.instance.post<void>(
-      '/api/useradministration/invitation',
+      '/api/administration/invitation',
       JSON.stringify(invite),
       {
         headers: {
@@ -32,7 +32,18 @@ export class UserAdministrationApi extends HttpClient {
 
   public getTenantUsers = () => {
     return this.instance.get<TenantUser[]>(
-      `/api/useradministration/tenant/${UserService.getTenant()}/users`,
+      `/api/administration/user/tenant/${UserService.getTenant()}/users`,
+      {
+        headers: {
+          authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
+    )
+  }
+
+  public getCompanyDetail = (applicationId: string) => {
+    return this.instance.get<CompanyDetail>(
+      `/api/administration/registration/application/${applicationId}/companyDetailsWithAddress`,
       {
         headers: {
           authorization: `Bearer ${UserService.getToken()}`,
