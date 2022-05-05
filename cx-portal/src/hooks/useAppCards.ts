@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { AppMarketplaceApp } from 'state/features/appMarketplace/types'
+import { getAssetBase } from 'utils/EnvUtil'
 
 export const useAppCards = (apps: AppMarketplaceApp[]) => {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ export const useAppCards = (apps: AppMarketplaceApp[]) => {
         }
       : {
           src: `${
-            process.env.REACT_APP_BASE_ASSETS || ''
+            getAssetBase() || ''
           }/images/apps/default/lead.png`,
           alt: app.title,
         },

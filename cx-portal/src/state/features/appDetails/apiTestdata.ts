@@ -1,3 +1,4 @@
+import { getAssetBase } from 'utils/EnvUtil'
 import { HttpClient } from 'utils/HttpClient'
 import { AppDetails } from './types'
 
@@ -5,7 +6,7 @@ export class AppDetailsApi extends HttpClient {
   private static classInstance?: AppDetailsApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_ASSETS || '')
+    super(getAssetBase() || '')
   }
 
   public static getInstance() {

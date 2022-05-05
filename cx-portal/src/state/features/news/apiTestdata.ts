@@ -1,11 +1,12 @@
 import { CardItems } from 'cx-portal-shared-components'
+import { getAssetBase } from 'utils/EnvUtil'
 import { HttpClient } from 'utils/HttpClient'
 
 export class NewsApi extends HttpClient {
   private static classInstance?: NewsApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_ASSETS || '')
+    super(getAssetBase() || '')
   }
 
   public static getInstance() {
