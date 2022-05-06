@@ -4,10 +4,10 @@ import {
 } from '@mui/material'
 
 export const CircularProgress = ({
-                        size = 60,
-                        thickness = 4,
-                        ...props
-                      }: CircularProgressProps) => {
+  size = 60,
+  thickness = 4,
+  ...props
+}: CircularProgressProps) => {
   return (
     <Loading
       {...{

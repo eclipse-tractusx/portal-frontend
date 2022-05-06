@@ -592,11 +592,11 @@ export const theme = createTheme({
       },
     },
     MuiCircularProgress: {
-      styleOverrides:{
-        circle:{
-          strokeLinecap: 'butt'
-        }
-      }
-    }
+      styleOverrides: {
+        circle: {
+          strokeLinecap: 'butt',
+        },
+      },
+    },
   },
 })
