@@ -12,6 +12,7 @@ export interface CardProps
     CardImageProps {
   variant?: Exclude<Variants, 'preview'>
   filledBackground?: boolean
+  backgroundColor?: string
   expandOnHover?: boolean
   readMoreText?: string
   readMoreLink?: string
@@ -22,6 +23,7 @@ export const Card = ({
   variant: variantProp = 'minimal',
   expandOnHover = false,
   filledBackground,
+  backgroundColor,
   title,
   subtitle,
   rating,
@@ -83,6 +85,10 @@ export const Card = ({
   }
   const onMouseLeave = () => setVariant(variantProp)
 
+  const customBackgroundColor = () => {
+    return backgroundColor ? backgroundColor : 'background.background02'
+  }
+
   return (
     <div
       ref={boxRef}
@@ -104,7 +110,7 @@ export const Card = ({
             boxShadow: shadows['20'],
           },
           ...(filledBackground === true && {
-            backgroundColor: 'background.background02',
+            backgroundColor: customBackgroundColor,
             border: 'none',
           }),
           ...(variant === 'preview' && {

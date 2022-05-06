@@ -1,9 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
+import { useNavigate } from 'react-router-dom'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+
+  const removeFromFavorites = (appId: string) => {
+    console.error('TODO: remove app favorites logic.')
+  }
 
   const items = [
     {
@@ -13,10 +19,11 @@ export default function FavoriteSection() {
         src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
         alt: 'Catena-X AppCard',
       },
-      rating: 4.5,
+      rating: 2.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'BPDM - Manage Customers',
@@ -25,10 +32,11 @@ export default function FavoriteSection() {
         src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
         alt: 'Catena-X AppCard',
       },
-      rating: 4.5,
+      rating: 3,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'Material Traceability',
@@ -40,7 +48,8 @@ export default function FavoriteSection() {
       rating: 4.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'CE Marketplace',
@@ -52,7 +61,8 @@ export default function FavoriteSection() {
       rating: 4.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'CE Marketplace',
@@ -64,7 +74,8 @@ export default function FavoriteSection() {
       rating: 4.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
+      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
+      onSecondaryButtonClick: () => removeFromFavorites,
     },
   ]
 
@@ -81,7 +92,7 @@ export default function FavoriteSection() {
         {t('content.appstore.favoriteSection.title')}
       </Typography>
 
-      <Carousel gapToDots={5}>
+      <Carousel gapToDots={115} expandOnHover={true}>
         {items.map((item) => {
           return (
             <Card
@@ -92,9 +103,14 @@ export default function FavoriteSection() {
               buttonText="Details"
               imageSize="small"
               imageShape="round"
-              variant="minimal"
-              expandOnHover={false}
+              variant="compact"
+              expandOnHover={true}
               filledBackground={true}
+              backgroundColor="background.background11"
+              rating={item.rating}
+              price={item.price}
+              onButtonClick={item.onButtonClick}
+              onSecondaryButtonClick={item.onSecondaryButtonClick}
             />
           )
         })}
