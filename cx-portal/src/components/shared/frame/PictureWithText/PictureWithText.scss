@@ -1,0 +1,11 @@
+.picture-with-text-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+
+  .image-text {
+    padding-left: 100px;
+  }
+}

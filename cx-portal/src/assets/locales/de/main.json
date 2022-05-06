@@ -112,7 +112,16 @@
       "message": "Inhalte vom Entwickler Hub"
     },
     "connector": {
-      "message": "Inhalte vom Konnektor"
+      "columns": {
+        "name": "Konnektorname",
+        "id": "Konnektor-ID",
+        "type": "Steckertyp",
+        "details": "Einzelheiten"
+      },
+      "headertitle": "IDS/EDC Konnektor",
+      "subheadertitle": "IDS/EDC",
+      "tabletitle": "Integrierte Anschlüsse",
+      "imagetext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
     },
     "partnernetwork": {
       "headertitle": "Partnernetzwerk",

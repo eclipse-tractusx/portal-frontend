@@ -31,6 +31,7 @@ import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import Appstore from 'components/pages/Appstore'
 import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
+import ConnectorPage from 'components/pages/Connector'
 
 /**
  * ALL_PAGES
@@ -158,6 +159,11 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.TERMS, element: <Terms /> },
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
+  {
+    name: PAGES.CONNECTOR,
+    role: ROLES.TECHNICAL_SETUP_VIEW,
+    element: <ConnectorPage />,
+  },
   { name: PAGES.LOGOUT, element: <Logout /> },
 ]
 
@@ -192,6 +198,7 @@ const userMenuFull = [
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
   PAGES.REGISTRATION_REQUESTS,
+  PAGES.CONNECTOR,
   PAGES.LOGOUT,
 ]
 

@@ -112,7 +112,16 @@
       "message": "Contents of Developer Hub"
     },
     "connector": {
-      "message": "Contents of Connector"
+      "columns": {
+        "name": "Connector Name",
+        "id": "Connector_ID",
+        "type": "Connector Type",
+        "details": "Details"
+      },
+      "headertitle": "IDS/EDC Connector",
+      "subheadertitle": "IDS/EDC",
+      "tabletitle": "Onboarded Connectors",
+      "imagetext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
     },
     "partnernetwork": {
       "headertitle": "Partners Network",
