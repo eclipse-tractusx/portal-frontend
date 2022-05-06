@@ -19,7 +19,7 @@ export interface CarouselProps {
   gapToDots?: number
   gapToArrows?: number
   gapCarouselTop?: number
-  expandOnHover?: boolean,
+  expandOnHover?: boolean
 }
 
 function NavArrows(props: any) {
@@ -72,7 +72,7 @@ export const Carousel = ({
   gapBetweenSlides =
     gapBetweenSlides && gapBetweenSlides > 0 ? gapBetweenSlides : 1
 
-  const dotsBottom = expandOnHover? `${gapBetweenSlides}px` : '-25px'
+  const dotsBottom = expandOnHover ? `${gapBetweenSlides}px` : '-25px'
   const slidsInnerGap = gapBetweenSlides ? `${gapBetweenSlides / 2}px` : 0
   const outerGapToArrow = gapToArrows ? `${gapToArrows}px` : 0
   const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0
