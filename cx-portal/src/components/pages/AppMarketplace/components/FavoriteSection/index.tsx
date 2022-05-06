@@ -7,8 +7,12 @@ export default function FavoriteSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const removeFromFavorites = (appId: string) => {
-    console.error('TODO: remove app favorites logic.')
+  const handleSecondaryButtonClick = () => {
+    console.log('TODO: remove app favorites logic.')
+  }
+
+  const handleButtonClick = () => {
+    navigate(`/appdetail/${'demo'}`)
   }
 
   const items = [
@@ -22,8 +26,6 @@ export default function FavoriteSection() {
       rating: 2.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
-      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'BPDM - Manage Customers',
@@ -35,8 +37,6 @@ export default function FavoriteSection() {
       rating: 3,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
-      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'Material Traceability',
@@ -48,8 +48,6 @@ export default function FavoriteSection() {
       rating: 4.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
-      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'CE Marketplace',
@@ -61,8 +59,6 @@ export default function FavoriteSection() {
       rating: 4.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
-      onSecondaryButtonClick: () => removeFromFavorites,
     },
     {
       title: 'CE Marketplace',
@@ -74,8 +70,6 @@ export default function FavoriteSection() {
       rating: 4.5,
       price: 'free to use',
       description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => navigate(`/appdetail/${'demo'}`),
-      onSecondaryButtonClick: () => removeFromFavorites,
     },
   ]
 
@@ -109,8 +103,8 @@ export default function FavoriteSection() {
               backgroundColor="background.background11"
               rating={item.rating}
               price={item.price}
-              onButtonClick={item.onButtonClick}
-              onSecondaryButtonClick={item.onSecondaryButtonClick}
+              onButtonClick={handleButtonClick}
+              onSecondaryButtonClick={handleSecondaryButtonClick}
             />
           )
         })}
