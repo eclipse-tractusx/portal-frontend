@@ -34,6 +34,7 @@ export const RegistrationRequestsTableColumns = (
         'content.admin.registration-requests.columns.companyinfo'
       )}`,
       flex: 2,
+      sortable: false,
       renderCell: (params: GridRenderCellParams<CompanyApplicationInfo>) => (
         <div>
           <p style={{ margin: '3px 0' }}>{params?.value?.companyName}</p>
@@ -48,6 +49,7 @@ export const RegistrationRequestsTableColumns = (
         'content.admin.registration-requests.columns.documents'
       )}`,
       flex: 2,
+      sortable: false,
       renderCell: (
         params: GridRenderCellParams<Array<RegistrationRequestContract>>
       ) => (
@@ -66,10 +68,11 @@ export const RegistrationRequestsTableColumns = (
       ),
     },
     {
-      field: '',
+      field: 'detail',
       headerName: `${t('content.admin.registration-requests.columns.details')}`,
       flex: 1,
       align: 'center',
+      sortable: false,
       renderCell: () => (
         <IconButton
           color="secondary"
@@ -85,6 +88,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: `${t('content.admin.registration-requests.columns.state')}`,
       align: 'center',
       flex: 1.2,
+      sortable: false,
       renderCell: (params: GridRenderCellParams<string>) => {
         if (params.value === 'pending')
           return (

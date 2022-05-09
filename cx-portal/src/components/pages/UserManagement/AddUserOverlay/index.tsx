@@ -15,6 +15,7 @@ import { SingleUserContent } from './SingleUserContent'
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
+import './AddUserOverlay.scss'
 
 interface AddUserOverlayProps {
   openDialog?: boolean
@@ -69,7 +70,7 @@ export const AddUserOverlay = ({
           <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />
           </TabPanel>
-          <UserRoles />
+          <UserRoles headline="content.addUser.chooseUserRole" />
         </DialogContent>
 
         <DialogActions helperText={t('content.addUser.helperText')}>

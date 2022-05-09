@@ -50,7 +50,12 @@
         "buttonconfirm": "confirm",
         "buttondecline": "decline",
         "cellconfirmed": "confirmed",
-        "celldeclined": "declined"
+        "celldeclined": "declined",
+        "overlay": {
+          "title": "Company Detail",
+          "companydatatitle": "Company Data",
+          "taxid": "Tax ID"
+        }
       }
     },
     "home": {
@@ -166,6 +171,18 @@
         "title": "User List",
         "details": "Details",
         "add": "Add user"
+      },
+      "appUserDetails": {
+        "headline": "Page title",
+        "header": {
+          "title": "Available Roles",
+          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+        },
+        "table": {
+          "headline": "Identity Management",
+          "title": "User List",
+          "add": "Add user"
+        }
       }
     },
     "addUser": {
@@ -200,6 +217,10 @@
           "done": "done"
         }
       }
+    },
+    "addUserRight": {
+      "headline": "Select and Add users to this app",
+      "subheadline": "Please select one or more roles for your company to participant in Cateny-X. Don't worry, you can change later."
     },
     "account": {
       "token": "Current authentication token",
@@ -251,7 +272,9 @@
       "status": "Status",
       "role": "Rollen",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "name": "Name",
+      "details": "Details"
     },
     "actions": {
       "back": "← Back",
@@ -259,7 +282,8 @@
       "confirm": "Confirm",
       "more": "More",
       "details": "Details",
-      "close": "Close"
+      "close": "Close",
+      "back": "Back"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

@@ -33,6 +33,18 @@ export type RegistrationRequestAPIResponse = {
   status: string
 }
 
+export type CompanyDetail = {
+  companyId: string
+  name: string
+  bpn: string
+  taxId: string
+  streetname: string
+  streetnumber: string
+  zipcode: string
+  city: string
+  countryDe: string
+}
+
 export type RegistrationRequestContract = {
   name: string
   document: string
@@ -60,6 +72,8 @@ export type RegistrationRequestDataGrid = {
 export interface UserAdministrationState {
   tenantUsers: TenantUser[]
   registrationRequests: Array<RegistrationRequestDataGrid>
+  companyDetail: CompanyDetail
   loading: boolean
+  detailLoading: boolean
   error: string
 }

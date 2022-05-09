@@ -50,7 +50,12 @@
         "buttonconfirm": "bestätigen",
         "buttondecline": "ablehnen",
         "cellconfirmed": "bestätigt",
-        "celldeclined": "abgelehnt"
+        "celldeclined": "abgelehnt",
+        "overlay": {
+          "title": "Firmendetails",
+          "companydatatitle": "Firmendaten",
+          "taxid": "Steuernummer"
+        }
       }
     },
     "home": {
@@ -166,6 +171,18 @@
         "title": "User Liste",
         "details": "Details",
         "add": "User hinzufügen"
+      },
+      "appUserDetails": {
+        "headline": "Seitentitle",
+        "header": {
+          "title": "Verfügbare Rollen",
+          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+        },
+        "table": {
+          "headline": "Benutzermanagement",
+          "title": "Benutzer Liste",
+          "add": "Benutzer hinzufügen"
+        }
       }
     },
     "addUser": {
@@ -200,6 +217,10 @@
           "done": "done"
         }
       }
+    },
+    "addUserRight": {
+      "headline": "tbd DE: Select and Add users to this app",
+      "subheadline": "tbd"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -290,7 +311,9 @@
       "status": "Status",
       "role": "Role",
       "active": "Aktiv",
-      "inactive": "Inaktiv"
+      "inactive": "Inaktiv",
+      "name": "Name",
+      "details": "Details"
     },
     "actions": {
       "back": "← Zurück",
@@ -298,7 +321,8 @@
       "confirm": "Bestätigen",
       "more": "Mehr",
       "details": "Details",
-      "close": "Schließen"
+      "close": "Schließen",
+      "back": "Zurück"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

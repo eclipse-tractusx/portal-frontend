@@ -25,7 +25,7 @@ const PartnerNetwork = () => {
   const [bpnValue, setBpnValue] = useState<string>('')
   const [companyName, setCompanyName] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const [pageSize] = useState<number>(10)
+  const [pageSize] = useState<number>(100)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
   const [selectedBPN, setSelectedBPN] = useState<PartnerNetworkDataGrid>(
     {} as PartnerNetworkDataGrid

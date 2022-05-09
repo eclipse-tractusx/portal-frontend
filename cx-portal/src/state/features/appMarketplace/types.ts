@@ -5,12 +5,14 @@ export type AppMarketplaceApp = {
   shortDescription: string
   price: string
   rating?: number
-  useCase: string[]
+  useCase?: string[]
   leadPictureUri: string
+  link?: string
 }
 
 export type AppMarketplaceState = {
   items: AppMarketplaceApp[]
+  subscribed: AppMarketplaceApp[]
   loading: boolean
   error: string
 }

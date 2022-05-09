@@ -1,4 +1,5 @@
 import UserService from 'services/UserService'
+import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { AppMarketplaceApp } from './types'
 
@@ -6,7 +7,7 @@ export class AppMarketplaceApi extends HttpClient {
   private static classInstance?: AppMarketplaceApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_API || '')
+    super(getApiBase())
   }
 
   public static getInstance() {
@@ -22,5 +23,16 @@ export class AppMarketplaceApi extends HttpClient {
         authorization: `Bearer ${UserService.getToken()}`,
       },
     })
+  }
+
+  public getSubscribed = (all?: boolean) => {
+    return this.instance.get<AppMarketplaceApp[]>(
+      `/api/apps/subscribed${all ? '?all===true' : ''}`,
+      {
+        headers: {
+          authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
+    )
   }
 }

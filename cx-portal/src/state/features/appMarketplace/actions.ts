@@ -1,13 +1,26 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AppMarketplaceApi } from './api'
+import { AppMarketplaceApi as Api } from './api'
+import { AppMarketplaceApi as ApiMock } from './apiTestdata'
 
 const fetchItems = createAsyncThunk('appMarketplace/fetchItems', async () => {
   try {
-    return await AppMarketplaceApi.getInstance().getItems()
+    return await Api.getInstance().getItems()
   } catch (error: unknown) {
     console.error('api call error:', error)
     throw Error('fetchItems api call error')
   }
 })
 
-export { fetchItems }
+const fetchSubscribed = createAsyncThunk(
+  'appMarketplace/fetchSubscribed',
+  async (all?: boolean) => {
+    try {
+      return await ApiMock.getInstance().getSubscribed(all)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('fetchItems api call error')
+    }
+  }
+)
+
+export { fetchItems, fetchSubscribed }
