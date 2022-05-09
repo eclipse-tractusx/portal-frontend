@@ -13,12 +13,15 @@ import { fetchConnectors } from 'state/features/connector/actions'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import './Connector.scss'
+import AddConnectorOverlay from './AddConnectorOverlay'
 
 const Connector = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const columns = ConnectorTableColumns(useTranslation)
+  const [addConnectorOverlayOpen, setAddConnectorOverlayOpen] = useState<boolean>(false)
   const [currentPage] = useState<number>(0)
+  const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] = useState<number>(0)
   const [pageSize] = useState<number>(10)
 
   const token = UserService.getToken()
@@ -27,8 +30,8 @@ const Connector = () => {
 
   useEffect(() => {
     if (token) {
-      const params = { size: pageSize, page: currentPage }
-      dispatch(fetchConnectors({ params, token }))
+      //const params = { size: pageSize, page: currentPage }
+      dispatch(fetchConnectors())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, pageSize, currentPage])
@@ -46,8 +49,23 @@ const Connector = () => {
     }
   }
 
+  const handleOverlayClose = ()=> {
+    setAddConnectorOverlayCurrentStep(0)
+    setAddConnectorOverlayOpen(false)
+  }
+
+  const onConfirmClick = () => {
+    setAddConnectorOverlayCurrentStep((prevState) => prevState += 1)
+  }
+
+
   return (
-    <main className="connector-page-container">
+    <main className='connector-page-container'>
+      <AddConnectorOverlay
+        openDialog={addConnectorOverlayOpen}
+        handleOverlayClose={handleOverlayClose}
+        connectorStep={addConnectorOverlayCurrentStep}
+        handleConfirmClick={onConfirmClick} />
       <PageHeader translationKey={'content.connector.headertitle'} />
       <section>
         <SubHeaderTitle title={'content.connector.subheadertitle'} />
@@ -55,7 +73,7 @@ const Connector = () => {
       <section className={'picture-with-text-section'}>
         <PictureWithText text={'content.connector.imagetext'} />
       </section>
-      <div className="partner-network-table-container">
+      <div className='partner-network-table-container'>
         <Table
           {...{
             rows: connectorList,
@@ -71,6 +89,25 @@ const Connector = () => {
             disableSelectionOnClick: true,
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
             loading,
+            toolbar: {
+              onButtonClick: () => setAddConnectorOverlayOpen(true),
+              buttonLabel: 'Add Connector',
+              filter: [
+                {
+                  name: 'country',
+                  values: [
+                    {
+                      value: 'DE',
+                      label: t('content.partnernetwork.filters.germany'),
+                    },
+                    {
+                      value: 'Others',
+                      label: t('content.partnernetwork.filters.others'),
+                    },
+                  ],
+                },
+              ],
+            },
           }}
           getRowId={(row) => row.id}
         />

@@ -1,10 +1,13 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import { Grid, Container } from '@mui/material'
+
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
-  translationHook: any
+  translationHook: any,
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
@@ -34,13 +37,32 @@ export const ConnectorTableColumns = (
       flex: 0.8,
       align: 'center',
       renderCell: () => (
-        <IconButton
-          color="secondary"
-          size="small"
-          style={{ alignSelf: 'center' }}
-        >
-          <ArrowForwardIcon />
-        </IconButton>
+        <Container maxWidth='sm'>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <IconButton
+                color='secondary'
+                disabled
+                size='small'
+                style={{ alignSelf: 'center' }}
+              >
+                <DeleteOutlineIcon />
+              </IconButton>
+
+            </Grid>
+            <Grid item xs={6}>
+              <IconButton
+                color='secondary'
+                disabled
+                size='small'
+                style={{ alignSelf: 'center' }}
+              >
+                <AccessTimeIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </Container>
+
       ),
     },
   ]
