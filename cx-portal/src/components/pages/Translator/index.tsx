@@ -13,9 +13,7 @@ export default function Translator() {
   const [langTo, setLangTo] = useState('de')
 
   function doTranslate() {
-    const url = `${
-      process.env.REACT_APP_BASE_UTIL || ''
-    }/translate/${langFrom}/${langTo}`
+    const url = `https://catenax-dev003-util.azurewebsites.net/v1/translate/${langFrom}/${langTo}`
     axios
       .post(url, input)
       .then(function (response) {
