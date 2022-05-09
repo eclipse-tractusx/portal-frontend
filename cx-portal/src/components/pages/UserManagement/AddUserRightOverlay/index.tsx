@@ -24,32 +24,30 @@ export default function AddUserRightOverlay({
   const { t } = useTranslation()
 
   return (
-    <div>
-      <Dialog open={openDialog}>
-        <DialogHeader
-          title={t('content.addUserRight.headline')}
-          intro={t('content.addUserRight.subheadline')}
-        />
+    <Dialog open={openDialog}>
+      <DialogHeader
+        title={t('content.addUserRight.headline')}
+        intro={t('content.addUserRight.subheadline')}
+      />
 
-        <DialogContent className="add-user-overlay-content">
-          <div className="add-user-overlay-content-roles">
-            <UserRoles />
-          </div>
+      <DialogContent className="add-user-overlay-content">
+        <div className="add-user-overlay-content-roles">
+          <UserRoles />
+        </div>
 
-          <div className="add-user-overlay-content-content">
-            <UserListContent />
-          </div>
-        </DialogContent>
+        <div className="add-user-overlay-content-content">
+          <UserListContent />
+        </div>
+      </DialogContent>
 
-        <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>
-            {`${t('global.actions.cancel')}`}
-          </Button>
-          <Button variant="contained" onClick={handleConfirm}>
-            {`${t('global.actions.confirm')}`}
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+      <DialogActions>
+        <Button variant="outlined" onClick={handleClose}>
+          {`${t('global.actions.cancel')}`}
+        </Button>
+        <Button variant="contained" onClick={handleConfirm}>
+          {`${t('global.actions.confirm')}`}
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
