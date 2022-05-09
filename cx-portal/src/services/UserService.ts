@@ -2,10 +2,11 @@ import Keycloak from 'keycloak-js'
 import { IUser } from 'state/features/user/types'
 import { ROLES } from 'types/MainTypes'
 import AccessService from './AccessService'
+import { getCentralIdp } from './EnvironmentService'
 import { error, info } from './LogService'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
-  url: process.env.REACT_APP_BASE_CENTRAL_IDP,
+  url: getCentralIdp(),
   realm: 'CX-Central',
   clientId: 'catenax-portal',
 }
