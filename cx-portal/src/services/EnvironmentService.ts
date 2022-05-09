@@ -1,14 +1,21 @@
+const LOCAL_SERVICES_FRONTEND = 'https://portal.dev.demo.catena-x.net'
+const LOCAL_SERVICES_BACKEND = 'https://portal-backend.dev.demo.catena-x.net'
+
+export const getHostname = () => window.location.hostname
+
+export const isLocal = () => getHostname() === 'localhost'
+
 export const getApiBase = () =>
-  `https://portal-backend.${
-    document.location.hostname.includes('.int.') ? 'int' : 'dev'
-  }.demo.catena-x.net/`
+  isLocal()
+    ? LOCAL_SERVICES_BACKEND
+    : window.location.origin.replace('portal', 'portal-backend')
 
 export const getAssetBase = () =>
-  `https://portal.${
-    document.location.hostname.includes('.int.') ? 'int' : 'dev'
-  }.demo.catena-x.net/assets`
+  `${isLocal() ? LOCAL_SERVICES_FRONTEND : ''}/assets`
 
 const EnvironmentService = {
+  isLocal,
+  getHostname,
   getApiBase,
   getAssetBase,
 }

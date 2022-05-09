@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteData } from 'state/features/userAdministration/types'
+import Patterns from 'types/Patterns'
 import './InviteForm.scss'
 
 export const InviteForm = ({
@@ -26,10 +27,10 @@ export const InviteForm = ({
     () =>
       debounce((expr: string[]) => {
         const check = [
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          Patterns.MAIL,
           /^.{2,60}$/i,
-          /^([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
-          /^([A-Za-zÀ-ÿ-,.']{1,40}[ ]?){1,8}$/i,
+          Patterns.NAME,
+          Patterns.NAME,
         ].map((p, i) => !p.test(expr[i]))
         check.push(
           check.reduce((all, valid) => all || valid),
