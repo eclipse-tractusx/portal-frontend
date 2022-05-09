@@ -1,4 +1,4 @@
-import { Button, Rating, Typography } from 'cx-portal-shared-components'
+import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import UserService from 'services/UserService'
 import { AppDetails } from 'state/features/appDetails/types'
