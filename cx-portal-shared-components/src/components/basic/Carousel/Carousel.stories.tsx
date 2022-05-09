@@ -53,4 +53,5 @@ Carousel.args = {
   gapToDots: 40,
   gapToArrows: 32,
   gapCarouselTop: 32,
+  expandOnHover: false,
 }
