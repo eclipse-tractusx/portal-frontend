@@ -173,15 +173,15 @@
         "add": "Add user"
       },
       "appUserDetails": {
-        "headline": "Page title",
+        "headline": "App Access Management - <1>App-Title</1>",
         "header": {
-          "title": "Available Roles",
-          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+          "title": "App Roles",
+          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
         },
         "table": {
           "headline": "Identity Management",
           "title": "User List",
-          "add": "Add user"
+          "add": "Add Role"
         }
       }
     },
@@ -242,8 +242,8 @@
       "further": "If you think there should be content please contact your administrator."
     },
     "appdetail": {
-      "usecase": "Use Case",
-      "language": "Language",
+      "usecase": "Use Cases",
+      "language": "App Languages",
       "subscribe": "Subscribe",
       "privacy": {
         "heading": "Privacy Policy",
@@ -291,7 +291,7 @@
       "cxUser": "CX User",
       "dataSpecialist": "Data Specialist",
       "appDeveloper": "App Developer",
-      "appAdmin": "App Developer"
+      "appAdmin": "App Administrator"
     }
   }
 }
