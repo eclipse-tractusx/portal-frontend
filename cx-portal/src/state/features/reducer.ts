@@ -9,6 +9,7 @@ import licensesSlice from './licenses/slice'
 
 // Reducers need separate export for testing library
 export const reducers = {
+  //apps: appsSlice.reducer,
   user: userSlice,
   news: newsSlice.reducer,
   licenses: licensesSlice.reducer,

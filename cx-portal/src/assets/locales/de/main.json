@@ -281,9 +281,25 @@
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
     },
     "appdetail": {
-      "usecase": "Use Cases",
-      "language": "Language",
-      "subscribe": "Abonnieren"
+      "usecase": "Use Case",
+      "language": "Sprache",
+      "subscribe": "Abonnieren",
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth."
+      },
+      "howtouse": {
+        "heading": "Nutzungsrichtlinien",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      },
+      "providerInformation": {
+        "heading": "Anbieterinformationen",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+        "appProvider": "App Anbieter",
+        "website": "Webseite",
+        "email": "Email",
+        "phone": "Telefon"
+      }
     }
   },
   "global": {
@@ -300,6 +316,7 @@
       "details": "Details"
     },
     "actions": {
+      "back": "← Zurück",
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",

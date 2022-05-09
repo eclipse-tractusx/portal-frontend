@@ -1,56 +1,72 @@
 .appdetail-header {
+  margin: 30px -15px 94px -15px;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 15px;
-  max-width: 1140px;
-  img {
+
+  .lead-image {
     flex: 0 0 350px;
-    max-width: 350px;
+    max-width: 305px;
     padding: 0 15px;
     width: 100%;
     object-fit: cover;
+    img {
+      width: 100%;
+      border-radius: 20px;
+    }
   }
   .content {
     padding: 0 15px;
     flex: 1;
-  }
-  .provider {
-    margin: 0 0 10px 0;
-    padding: 0;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 24px;
-    color: #888888;
-  }
-  .heading {
-    margin: 0 0 10px 0;
-    color: #111111;
-  }
-  .price {
-    padding: 0;
-    margin: 0 0 10px 0;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 28px;
-    color: #888888;
-  }
-  ul {
-    display: flex;
-    align-items: center;
-    margin: 0 0 10px 0;
-    padding: 0;
-  }
-  .usecase,
-  .language {
-    margin: 0 0 10px 0;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    color: #888888;
-    b {
+    .provider {
+      margin: 0 0 10px 0;
+      padding: 0;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #888888;
+    }
+    .heading {
+      margin: 0 0 10px 0;
       color: #111111;
+    }
+    .rating {
+      display: flex;
+      align-items: center;
+      .rating-number {
+        color: #8888;
+        font-size: 14px;
+      }
+    }
+    .price {
+      padding: 0;
+      margin: 0 0 10px 0;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 28px;
+      color: #888888;
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+    .usecase,
+    .language {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      flex-wrap: wrap;
+      margin: 0 0 10px 0;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #888888;
+      .head {
+        margin-right: 5px;
+      }
     }
   }
 }

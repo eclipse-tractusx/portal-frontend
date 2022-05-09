@@ -18,7 +18,7 @@ export class AppDetailsApi extends HttpClient {
   }
 
   public getItem = (appId: string) => {
-    return this.instance.get<AppDetails>(`/api/apps/${appId}/details.json`, {
+    return this.instance.get<AppDetails>(`/api/apps/${appId}`, {
       headers: {
         authorization: `Bearer ${UserService.getToken()}`,
       },
