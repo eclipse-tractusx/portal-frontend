@@ -10,7 +10,7 @@ export const HorizontalTable = ({ data }: { data: TableType }) => (
   >
     <tbody>
       {data.head.map((col, c) => (
-        <tr key={col}>
+        <tr key={c}>
           <th
             style={{
               backgroundColor: '#ecf0f4',
@@ -23,7 +23,7 @@ export const HorizontalTable = ({ data }: { data: TableType }) => (
             {col}
           </th>
           {data.body[c].map((row, r) => (
-            <td
+            <td key={r}
               style={{
                 borderBottom: '1px solid #e0e1e2',
                 padding: '10px 15px',

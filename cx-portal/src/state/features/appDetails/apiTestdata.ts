@@ -16,6 +16,6 @@ export class AppDetailsApi extends HttpClient {
   }
 
   public getItem = (appId: string) => {
-    return this.instance.get<AppDetails>(`/api/apps/${'demo'}/details.json`)
+    return this.instance.get<AppDetails>(`/api/apps/${appId}/details.json`)
   }
 }
