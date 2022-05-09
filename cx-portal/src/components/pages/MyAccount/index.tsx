@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'state/store'
 import SubHeader from '../../shared/frame/SubHeader'
 import './MyAccount.scss'
-import { UserDetailCard } from 'cx-portal-shared-components/src/components/basic/UserCard'
+import { MyUserDetails } from './components/MyUserDetails'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -14,9 +14,7 @@ export default function MyAccount() {
     <main className="my-account">
       {/*<p>{t('content.account.token')}</p>*/}
       <SubHeader title={t('pages.account')} hasBackButton={true} />
-      <UserDetails>
-        <UserDetailCard></UserDetailCard>
-      </UserDetails>
+      <MyUserDetails>{/*<UserDetailCard></UserDetailCard>*/}</MyUserDetails>
 
       {/*<Table></Table>*/}
 
