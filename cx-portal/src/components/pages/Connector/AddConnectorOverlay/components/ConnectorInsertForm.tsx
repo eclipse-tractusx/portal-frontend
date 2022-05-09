@@ -2,8 +2,6 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid, useTheme } from '@mui/material'
 
-
-
 // Static content
 // Add Connector Button action modal first step content
 const ConnectorInsertForm = () => {
@@ -29,5 +27,3 @@ const ConnectorInsertForm = () => {
 }
 
 export default ConnectorInsertForm
-
-

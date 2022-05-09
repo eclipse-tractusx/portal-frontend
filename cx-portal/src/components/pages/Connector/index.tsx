@@ -19,9 +19,11 @@ const Connector = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const columns = ConnectorTableColumns(useTranslation)
-  const [addConnectorOverlayOpen, setAddConnectorOverlayOpen] = useState<boolean>(false)
+  const [addConnectorOverlayOpen, setAddConnectorOverlayOpen] =
+    useState<boolean>(false)
   const [currentPage] = useState<number>(0)
-  const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] = useState<number>(0)
+  const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] =
+    useState<number>(0)
   const [pageSize] = useState<number>(10)
 
   const token = UserService.getToken()
@@ -49,23 +51,23 @@ const Connector = () => {
     }
   }
 
-  const handleOverlayClose = ()=> {
+  const handleOverlayClose = () => {
     setAddConnectorOverlayCurrentStep(0)
     setAddConnectorOverlayOpen(false)
   }
 
   const onConfirmClick = () => {
-    setAddConnectorOverlayCurrentStep((prevState) => prevState += 1)
+    setAddConnectorOverlayCurrentStep((prevState) => (prevState += 1))
   }
 
-
   return (
-    <main className='connector-page-container'>
+    <main className="connector-page-container">
       <AddConnectorOverlay
         openDialog={addConnectorOverlayOpen}
         handleOverlayClose={handleOverlayClose}
         connectorStep={addConnectorOverlayCurrentStep}
-        handleConfirmClick={onConfirmClick} />
+        handleConfirmClick={onConfirmClick}
+      />
       <PageHeader translationKey={'content.connector.headertitle'} />
       <section>
         <SubHeaderTitle title={'content.connector.subheadertitle'} />
@@ -73,7 +75,7 @@ const Connector = () => {
       <section className={'picture-with-text-section'}>
         <PictureWithText text={'content.connector.imagetext'} />
       </section>
-      <div className='partner-network-table-container'>
+      <div className="partner-network-table-container">
         <Table
           {...{
             rows: connectorList,

@@ -18,11 +18,11 @@ interface AddCollectorOverlayProps {
 }
 
 const AddConnectorOverlay = ({
-                               openDialog = false,
-                               connectorStep = 0,
-                               handleOverlayClose,
-                               handleConfirmClick,
-                             }: AddCollectorOverlayProps) => {
+  openDialog = false,
+  connectorStep = 0,
+  handleOverlayClose,
+  handleConfirmClick,
+}: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
 
   return (
@@ -35,31 +35,32 @@ const AddConnectorOverlay = ({
           },
         }}
       >
-
-        {connectorStep === 1 &&
-        <DialogHeader title={'Connect company connector'}
-                         intro='Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit.' />}
+        {connectorStep === 1 && (
+          <DialogHeader
+            title={'Connect company connector'}
+            intro="Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          />
+        )}
         <DialogContent
           sx={{
             padding: '40px 120px',
           }}
-        >{
-          connectorStep === 0 ?
+        >
+          {connectorStep === 0 ? (
             <>
               <ConnectorTypeSelection />
-
-            </> :
+            </>
+          ) : (
             <>
               <ConnectorInsertForm />
-
             </>
-        }
+          )}
         </DialogContent>
         <DialogActions>
-          <Button variant='outlined' onClick={(e) => handleOverlayClose(e)}>
+          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button variant='contained' onClick={(e) => handleConfirmClick(e)}>
+          <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
             {`${t('global.actions.confirm')}`}
           </Button>
         </DialogActions>

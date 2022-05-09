@@ -4,10 +4,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import { Grid, Container } from '@mui/material'
 
-
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
-  translationHook: any,
+  translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
@@ -37,24 +36,23 @@ export const ConnectorTableColumns = (
       flex: 0.8,
       align: 'center',
       renderCell: () => (
-        <Container maxWidth='sm'>
+        <Container maxWidth="sm">
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <IconButton
-                color='secondary'
+                color="secondary"
                 disabled
-                size='small'
+                size="small"
                 style={{ alignSelf: 'center' }}
               >
                 <DeleteOutlineIcon />
               </IconButton>
-
             </Grid>
             <Grid item xs={6}>
               <IconButton
-                color='secondary'
+                color="secondary"
                 disabled
-                size='small'
+                size="small"
                 style={{ alignSelf: 'center' }}
               >
                 <AccessTimeIcon />
@@ -62,7 +60,6 @@ export const ConnectorTableColumns = (
             </Grid>
           </Grid>
         </Container>
-
       ),
     },
   ]
