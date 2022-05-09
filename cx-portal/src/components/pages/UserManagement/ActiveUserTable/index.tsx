@@ -1,9 +1,4 @@
-import {
-  IconButton,
-  StatusTag,
-  Table,
-  Typography,
-} from 'cx-portal-shared-components'
+import { IconButton, StatusTag, Table } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +6,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/userAdministration/actions'
 import { userAdministrationSelector } from 'state/features/userAdministration/slice'
 import { TenantUser } from 'state/features/userAdministration/types'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -33,9 +29,10 @@ export const ActiveUserTable = ({
 
   return (
     <section>
-      <Typography variant="h3" className="section-title">
-        {t('content.usermanagement.table.headline')}
-      </Typography>
+      <SubHeaderTitle
+        title="content.usermanagement.table.headline"
+        variant="h3"
+      />
       <Table
         title={t('content.usermanagement.table.title')}
         toolbar={{

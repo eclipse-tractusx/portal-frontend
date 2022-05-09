@@ -32,3 +32,15 @@
   text-decoration-line: underline;
   color: color(primary) !important;
 }
+
+.app-user-details-header-title {
+  h3 {
+    margin-bottom: 40px !important;
+  }
+}
+
+.app-user-details-header-sub-title {
+  p:after {
+    border: none !important;
+  }
+}

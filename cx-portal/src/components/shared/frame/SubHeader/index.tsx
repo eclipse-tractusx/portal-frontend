@@ -1,7 +1,7 @@
 import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import SubHeaderTitle from '../SubHeaderTitle'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './SubHeader.scss'
 
 interface ComponentProps {
@@ -17,7 +17,7 @@ export default function SubHeader({ title, hasBackButton }: ComponentProps) {
     <>
       <div className="sub-header">
         <div className="sub-header-title">
-          <SubHeaderTitle title={title} />
+          <SubHeaderTitle title={title} variant="h4" />
         </div>
 
         <svg
