@@ -24,8 +24,10 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           {item.title}
         </Typography>
         <div className="rating">
+          {/*
           <Rating defaultRating={item.rating} />
           <span className="rating-number">{item.rating}</span>
+          */}
         </div>
         <Typography variant="body2" className="price">
           {item.price}
