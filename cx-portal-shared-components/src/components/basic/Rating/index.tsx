@@ -16,6 +16,7 @@ export const Rating = ({ defaultRating }: RatingContentProps) => {
     >
       <RatingUI
         name="half-rating"
+        precision={0.5}
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue)

@@ -2,7 +2,7 @@ import { Nullable } from 'types/MainTypes'
 
 export type AppDetails = {
   id: string
-  name: string
+  title: string
   leadPictureUri: string
   providerUri: string
   provider: string

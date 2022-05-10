@@ -1,18 +1,19 @@
+// TODO:
+// for developer convenience - remove in prod
+
 import axios from 'axios'
 import { useState } from 'react'
 import Dropzone from './Dropzone'
 import './Translator.css'
 
 export default function Translator() {
-  const [input, setInput] = useState('{"message":"Guten Morgen!"}')
+  const [input, setInput] = useState('{"message":"good morning!"}')
   const [output, setOutput] = useState('')
-  const [langFrom, setLangFrom] = useState('de')
-  const [langTo, setLangTo] = useState('en,bg')
+  const [langFrom, setLangFrom] = useState('en')
+  const [langTo, setLangTo] = useState('de')
 
   function doTranslate() {
-    const url = `${
-      process.env.REACT_APP_BASE_UTIL || ''
-    }/translate/${langFrom}/${langTo}`
+    const url = `https://catenax-dev003-util.azurewebsites.net/v1/translate/${langFrom}/${langTo}`
     axios
       .post(url, input)
       .then(function (response) {
