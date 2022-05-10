@@ -2,13 +2,14 @@ import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
 import { FilterParams, ShellDescriptor, TwinList } from './types'
 import qs from 'querystring'
+import { getSemanticApiBase } from 'services/EnvironmentService';
 
 export class DigitalTwinApi extends HttpClient {
   private static classInstance?: DigitalTwinApi;
 
 
   public constructor() {
-    super(`${process.env.REACT_APP_SLDT_API_BASE_URL}/twin-registry/registry/shell-descriptors`)
+    super(`${getSemanticApiBase()}/twin-registry/registry/shell-descriptors`)
   }
 
   public static getInstance() {
