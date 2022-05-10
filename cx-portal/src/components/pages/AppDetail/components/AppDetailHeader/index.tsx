@@ -33,7 +33,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           {item.price}
         </Typography>
         <div className="usecase">
-          <Typography variant="h5" className="head">
+          <Typography variant="caption" className="head">
             {t('content.appdetail.usecase')}:{' '}
           </Typography>
           {item.useCases.map((useCase) => (
@@ -41,7 +41,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           ))}
         </div>
         <div className="language">
-          <Typography variant="h5" className="head">
+          <Typography variant="caption" className="head">
             {t('content.appdetail.language')}:{' '}
           </Typography>
           {item.languages.map((lang, index) => (
