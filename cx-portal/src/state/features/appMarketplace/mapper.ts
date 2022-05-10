@@ -1,13 +1,14 @@
 import { CardItems } from 'cx-portal-shared-components'
+import { getAssetBase } from 'services/EnvironmentService'
 import { AppMarketplaceApp } from './types'
 
-//const baseAssets = process.env.REACT_APP_BASE_ASSETS
-const baseAssets = 'https://portal-dev.demo.catena-x.net/assets'
+const baseAssets = getAssetBase()
 
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
   subtitle: app.provider,
-  description: app.shortDescription,
+  description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
+  price: app.price === 'ERROR' ? '' : app.price,
   image: {
     src:
       !app.leadPictureUri || app.leadPictureUri === 'ERROR'

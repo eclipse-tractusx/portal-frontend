@@ -1,0 +1,46 @@
+@import 'components/styles/colors';
+
+.app-user-details-header-subtitle {
+  text-align: center !important;
+}
+
+.app-user-details-header-roles-section {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1200px;
+  height: max-content;
+  margin: 80px auto 0px auto;
+}
+
+.app-user-details-header-role {
+  width: 350px;
+  height: 120px;
+  border: 1px solid color(primary);
+  border-radius: 8px;
+  margin: 16px;
+  padding: 30px 0px 30px 30px;
+}
+
+.app-user-details-header-role:hover {
+  border: 1px solid color(primary-hover);
+  box-shadow: 0px 20px 40px 0px #5050504d;
+  cursor: pointer;
+}
+
+.app-user-details-header-description {
+  font-size: 14px !important;
+  text-decoration-line: underline;
+  color: color(primary) !important;
+}
+
+.app-user-details-header-title {
+  h3 {
+    margin-bottom: 40px !important;
+  }
+}
+
+.app-user-details-header-sub-title {
+  p:after {
+    border: none !important;
+  }
+}

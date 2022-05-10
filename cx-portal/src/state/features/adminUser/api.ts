@@ -1,3 +1,4 @@
+import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { HttpClient } from 'utils/HttpClient'
 import { TenantUser, AddUser } from './types'
@@ -6,7 +7,7 @@ export class AdminUserApi extends HttpClient {
   private static classInstance?: AdminUserApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_API || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

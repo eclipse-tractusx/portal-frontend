@@ -1,9 +1,4 @@
-import {
-  IconButton,
-  StatusTag,
-  Table,
-  Typography,
-} from 'cx-portal-shared-components'
+import { IconButton, StatusTag, Table } from 'cx-portal-shared-components'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +7,7 @@ import { fetchTenantUsers } from 'state/features/adminUser/actions'
 import { tenantUsersSelector } from 'state/features/adminUser/slice'
 import { TenantUser } from 'state/features/adminUser/types'
 import PageService from 'services/PageService'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
 export const label = 'ActiveUsersTable'
 
@@ -36,10 +32,11 @@ export const ActiveUserTable = ({
   }, [dispatch])
 
   return (
-    <section ref={reference}>
-      <Typography variant="h3" className="section-title">
-        {t('content.usermanagement.table.headline')}
-      </Typography>
+    <section>
+      <SubHeaderTitle
+        title="content.usermanagement.table.headline"
+        variant="h3"
+      />
       <Table
         title={t('content.usermanagement.table.title')}
         toolbar={{

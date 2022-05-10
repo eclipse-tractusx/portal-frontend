@@ -1,12 +1,13 @@
 import { HttpClient } from 'utils/HttpClient'
 import { ProvisionIdentityProviderData } from './types'
 import UserService from 'services/UserService'
+import { getApiBase } from 'services/EnvironmentService'
 
 export class ProvisioningApi extends HttpClient {
   private static classInstance?: ProvisioningApi
 
   public constructor() {
-    super(process.env.REACT_APP_BASE_API || '')
+    super(getApiBase())
   }
 
   public static getInstance() {

@@ -11,13 +11,16 @@ const fetchItems = createAsyncThunk('apps/fetchItems', async () => {
   }
 })
 
-const fetchSubscribed = createAsyncThunk('apps/fetchSubscribed', async () => {
-  try {
-    return await ApiMock.getInstance().getSubscribed()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
-    throw Error('fetchItems api call error')
+const fetchSubscribed = createAsyncThunk(
+  'appMarketplace/fetchSubscribed',
+  async (all?: boolean) => {
+    try {
+      return await ApiMock.getInstance().getSubscribed(all)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('fetchItems api call error')
+    }
   }
-})
+)
 
 export { fetchItems, fetchSubscribed }

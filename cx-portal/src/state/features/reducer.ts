@@ -12,6 +12,7 @@ import adminRegistrationSlice from './adminRegistration/slice'
 export const reducers = {
   adminUser: adminUserSlice.reducer,
   adminRegistration: adminRegistrationSlice.reducer,
+  //apps: appsSlice.reducer,
   user: userSlice,
   news: newsSlice.reducer,
   licenses: licensesSlice.reducer,

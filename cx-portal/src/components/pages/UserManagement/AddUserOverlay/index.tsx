@@ -22,6 +22,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { closeAdd } from 'state/features/adminUser/actions'
 import { AddUser } from 'state/features/adminUser/types'
+import './AddUserOverlay.scss'
 
 export type AddUserCallback = (users: AddUser[]) => void
 
@@ -77,7 +78,7 @@ export const AddUserOverlay = () => {
           <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />
           </TabPanel>
-          <UserRoles />
+          <UserRoles headline="content.addUser.chooseUserRole" />
         </DialogContent>
 
         <DialogActions helperText={t('content.addUser.helperText')}>
