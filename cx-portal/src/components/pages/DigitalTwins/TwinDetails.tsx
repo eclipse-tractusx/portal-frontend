@@ -74,8 +74,8 @@ export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
         </>
       </CustomAccordion>
       {hasSubmodels() &&
-        twin.submodelDescriptors.map((subModel, index) => {
-          const idKey = `${subModel.idShort}_${index}`;
+        twin.submodelDescriptors.map((subModel, indexSubmodel) => {
+          const idKey = `${subModel.idShort}_${indexSubmodel}`;
           const semId = subModel.semanticId.value[0];
           return <CustomAccordion
             key={idKey}
@@ -108,8 +108,8 @@ export const TwinDetails = ({ twin }: {twin: ShellDescriptor}) => {
                     {t('content.digitaltwin.detail.endpoints')}
                   </Grid>
                 </Grid>
-                {subModel.endpoints.map((endpoint, index) =>
-                  <Box key={`${idKey}_${endpoint.interface}_${index}`}>
+                {subModel.endpoints.map((endpoint, indexEndpoint) =>
+                  <Box key={`${idKey}_${endpoint.interface}_${indexEndpoint}`}>
                     <Divider sx={{mb: 2, mr: -2, ml: -2}} />
                     <TwinDetailGrid
                       topic={t('content.digitaltwin.detail.interface')}
