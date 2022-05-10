@@ -113,7 +113,7 @@
         "load_button": "Mehr laden"
       },
       "detail": {
-        "error": "FEHLER: Es gibt keinen Details zu diesem Asset.",
+        "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
         "no_description": "Dieses Asset hat keine Beschreibung.",
         "assetId": "Specific Asset IDs",
         "submodel_endpoints": "Submodell Endpunkte:",
