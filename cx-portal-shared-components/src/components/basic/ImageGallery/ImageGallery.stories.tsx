@@ -1,9 +1,19 @@
-import './AppDetailImageGallery.scss'
-import { ImageGallery, GalleryType } from 'cx-portal-shared-components'
+import { ComponentStory } from '@storybook/react'
 
-export default function AppDetailHeader() {
+import { ImageGallery as Component } from '.'
 
-  const gallery: GalleryType = {
+export default {
+  title: 'ImageGallery',
+  component: Component,
+}
+
+const Template: ComponentStory<typeof Component> = (args) => (
+  <Component {...args} />
+)
+
+export const Gallery = Template.bind({})
+Gallery.args = {
+  gallery: {
     images: [
       "https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg",
       "https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg",
@@ -14,11 +24,6 @@ export default function AppDetailHeader() {
       'Lorem Image Caption',
       'Lorem Image Caption'
     ]
-  };
-
-  return (
-    <div className="appdetail-gallery">
-      <ImageGallery gallery={gallery} />
-    </div>
-  )
+  }
+    
 }
