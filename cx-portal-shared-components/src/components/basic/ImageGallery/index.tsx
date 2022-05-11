@@ -1,6 +1,7 @@
-import { GalleryType } from './types'
+import { ImageType } from './types'
+import { Typography } from '../Typography'
 
-export const ImageGallery = ({ gallery }: { gallery: GalleryType }) => (
+export const ImageGallery = ({ gallery }: { gallery: ImageType }) => (
   <div
     style={{
       display: 'flex',
@@ -10,14 +11,13 @@ export const ImageGallery = ({ gallery }: { gallery: GalleryType }) => (
       boxSizing: 'border-box',
     }}
   >
-    {gallery.images.map((image, index) => (
+    {gallery.url.map((link, index) => (
       <div
         style={{
           position: 'relative',
           width: '100%',
           paddingRight: '15px',
           paddingLeft: '15px',
-          //-ms-flex: 0 0 33.333333%;
           flex: '0 0 33.333333%',
           maxWidth: '33.333333%',
           boxSizing: 'border-box',
@@ -25,22 +25,23 @@ export const ImageGallery = ({ gallery }: { gallery: GalleryType }) => (
         key={index}
       >
         <img
-          src={image}
+          src={link}
           alt=""
           style={{
             width: '100%',
             borderRadius: '20px',
           }}
         />
-        <p
-          style={{
+        <Typography 
+          variant="body2"
+          sx={{
             color: '#888888',
             margin: '5px 0',
             fontSize: '14px',
           }}
         >
           {gallery.text[index]}
-        </p>
+        </Typography>
       </div>
     ))}
   </div>

@@ -1,4 +1,4 @@
-export type GalleryType = {
-  images: string[]
+export type ImageType = {
+  url: string[]
   text: string[]
 }
