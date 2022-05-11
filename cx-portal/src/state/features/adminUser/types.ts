@@ -1,3 +1,5 @@
+import { RequestState } from "types/MainTypes"
+
 export type InviteData = {
   userName: string
   firstName: string
@@ -27,9 +29,9 @@ export type AddUser = {
   message: string
 }
 export interface AdminUserState {
+  addOpen: boolean
   tenantUsers: Array<TenantUser>
   usersToAdd: Array<AddUser>
-  loading: boolean
+  request: RequestState
   error: string
-  addOpen: boolean
 }

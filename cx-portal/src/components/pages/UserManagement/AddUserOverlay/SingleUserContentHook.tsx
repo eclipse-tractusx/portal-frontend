@@ -2,16 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useFormValidation } from 'hooks/useFormValidation'
-import React from 'react'
-import { AddUserCallback } from '.'
 import { useDispatch } from 'react-redux'
 import { setUsersToAdd } from 'state/features/adminUser/actions'
 
-export const SingleUserContent = ({
-  onValidInput,
-}: {
-  onValidInput: AddUserCallback
-}) => {
+export const SingleUserContent = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 

@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { TenantUser, AdminUserState, AddUser } from './types'
 import { addTenantUsers, fetchTenantUsers } from './actions'
 import { RootState } from 'state/store'
+import { RequestState } from 'types/MainTypes'
 
 const initialState: AdminUserState = {
   tenantUsers: [],
   usersToAdd: [],
+  request: RequestState.NONE,
   addOpen: false,
-  loading: false,
   error: '',
 }
 
@@ -31,35 +32,35 @@ const adminUserSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addTenantUsers.pending, (state) => ({
       ...state,
-      loading: true,
+      request: RequestState.SUBMIT,
       error: '',
     }))
     builder.addCase(addTenantUsers.fulfilled, (state, { payload }) => ({
       ...state,
-      loading: false,
+      request: RequestState.OK,
       error: '',
     }))
     builder.addCase(addTenantUsers.rejected, (state, action) => ({
       ...state,
-      loading: false,
+      request: RequestState.ERROR,
       error: action.error.message as string,
     }))
     builder.addCase(fetchTenantUsers.pending, (state) => ({
       ...state,
       tenantUsers: [],
-      loading: true,
+      request: RequestState.SUBMIT,
       error: '',
     }))
     builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => ({
       ...state,
       tenantUsers: payload || [],
-      loading: false,
+      request: RequestState.OK,
       error: '',
     }))
     builder.addCase(fetchTenantUsers.rejected, (state, action) => ({
       ...state,
       tenantUsers: [],
-      loading: false,
+      request: RequestState.ERROR,
       error: action.error.message as string,
     }))
   },
@@ -76,5 +77,8 @@ export const tenantUsersSelector = (state: RootState): TenantUser[] =>
 
 export const usersToAddSelector = (state: RootState): AddUser[] =>
   state.adminUser.usersToAdd
+
+export const requestStateSelector = (state: RootState): RequestState =>
+  state.adminUser.request
 
 export default adminUserSlice

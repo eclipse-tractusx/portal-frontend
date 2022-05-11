@@ -20,7 +20,12 @@ export interface CardImage {
   alt?: string
 }
 
-export type MouseEventHandler = (e: MouseEvent) => void
+export enum RequestState {
+  NONE,
+  SUBMIT,
+  OK,
+  ERROR,
+}
 
 export enum PAGES {
   ROOT = '',

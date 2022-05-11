@@ -1,3 +1,4 @@
+export { Alert } from './basic/Alert'
 export { Button } from './basic/Button'
 export { Checkbox } from './basic/Checkbox'
 export { CategoryDivider } from './basic/CategoryDivider'
