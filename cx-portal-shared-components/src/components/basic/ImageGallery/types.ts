@@ -1,4 +1,4 @@
 export type ImageType = {
-  url: string[]
-  text: string[]
+  url: string
+  text: string
 }
