@@ -1,4 +1,4 @@
-import { RequestState } from "types/MainTypes"
+import { RequestState } from 'types/MainTypes'
 
 export type InviteData = {
   userName: string

@@ -10,11 +10,11 @@ export default {
   },
 }
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} >{args.children}</Component>
+  <Component {...args}>{args.children}</Component>
 )
 
 export const Alert = Template.bind({})
 Alert.args = {
   severity: 'info',
-  children: <span>Message</span>
+  children: <span>Message</span>,
 }
