@@ -2,7 +2,7 @@ import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import UserService from 'services/UserService'
 import { AppDetails } from 'state/features/appDetails/types'
-import { ROLES } from 'types/MainTypes';
+import { ROLES } from 'types/MainTypes'
 import './AppDetailHeader.scss'
 
 export interface AppDetailHeaderProps {
@@ -50,7 +50,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           ))}
         </div>
         <Button
-          color={UserService.hasRole(ROLES.APPSTORE_VIEW) ? 'primary' : 'secondary'}
+          color={
+            UserService.hasRole(ROLES.APPSTORE_VIEW) ? 'primary' : 'secondary'
+          }
         >
           {t('content.appdetail.subscribe')}
         </Button>
