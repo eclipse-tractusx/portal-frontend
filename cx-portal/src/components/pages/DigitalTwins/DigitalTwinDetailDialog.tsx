@@ -12,7 +12,7 @@ interface TwinDialogProps {
 const DigitalTwinDetailDialog = ({show, onClose}: TwinDialogProps) => {
   const {twin, loading, error } = useSelector(twinsSelector);
   const theme = useTheme();
-  const { t } = useTranslation();;
+  const { t } = useTranslation();
 
   return (
     <Dialog open={show}>

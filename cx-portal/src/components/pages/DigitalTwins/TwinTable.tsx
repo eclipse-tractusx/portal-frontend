@@ -46,7 +46,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps ) => {
         }}
         columns={columns}
         rows={twins}
-        getRowId={(row) => row.identification}
+        getRowId={(row) => `${row.identification}_${row.idShort}`}
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage &&

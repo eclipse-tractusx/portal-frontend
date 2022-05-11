@@ -34,15 +34,15 @@ export interface ShellDescriptor {
       value: string
     }
   ]
-  submodelDescriptors: [
-    {
-      description: Description[]
-      endpoints: Endpoints[]
-      idShort: string
-      identification: string
-      semanticId: semanticId
-    }
-  ]
+  submodelDescriptors: SubmodelDescriptors[]
+}
+
+export interface SubmodelDescriptors {
+  description: Description[]
+  endpoints: Endpoints[]
+  idShort: string
+  identification: string
+  semanticId: semanticId
 }
 
 interface Description {
@@ -65,3 +65,4 @@ interface Endpoints {
 interface semanticId {
   value: string[]
 }
+

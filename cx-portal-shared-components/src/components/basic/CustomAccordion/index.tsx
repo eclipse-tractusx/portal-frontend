@@ -1,27 +1,22 @@
-import React from "react";
-import Accordion, { AccordionProps } from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { Typography } from "@mui/material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useState } from "react";
+import { CustomAccordionItem, CustomAccordionProps } from "./Item";
 
-export interface CustomAccordionProps extends AccordionProps {
-  expanded: boolean | undefined,
-  id: string,
-  title: string,
-  children: React.ReactElement,
-  color?: string
-}
+export const CustomAccordion = ({items}: {items: CustomAccordionProps[]}) => {
+  const defaultExpanded = items.map(item => item.expanded ? item.id : '')[0];
+  const [expanded, setExpanded] = useState<string | false>(defaultExpanded);
 
-export const CustomAccordion = ({expanded, id, title, children, color, ...props}: CustomAccordionProps) => {
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : false);
+    };
+
   return(
-    <Accordion expanded={expanded} {...props} sx={{mb: 0}} elevation={0}>
-      <AccordionSummary aria-controls={`${id}-content`} id={`${id}-header`} expandIcon={<ExpandMoreIcon />} sx={{bgcolor: color}}>
-        <Typography variant="label1">{title}</Typography>
-      </AccordionSummary>
-      <AccordionDetails sx={{mb: 5, bgcolor: color}}>
-        {children}
-      </AccordionDetails>
-    </Accordion>
+    <>
+      {items.map(item => {
+        item.expanded = expanded === item.id;
+        item.onChange = handleChange(item.id)
+        return <CustomAccordionItem {...item} key={item.id} />
+      })}
+    </>
   )
 }
