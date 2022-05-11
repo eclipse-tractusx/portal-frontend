@@ -32,7 +32,7 @@ export const ImageGallery = ({ gallery }: { gallery: ImageType }) => (
             borderRadius: '20px',
           }}
         />
-        <Typography 
+        <Typography
           variant="body2"
           sx={{
             color: '#888888',
