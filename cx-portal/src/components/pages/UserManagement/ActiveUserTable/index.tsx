@@ -8,8 +8,6 @@ import { tenantUsersSelector } from 'state/features/adminUser/slice'
 import { TenantUser } from 'state/features/adminUser/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
-export const label = 'ActiveUsersTable'
-
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
 }

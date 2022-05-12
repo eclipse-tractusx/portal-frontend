@@ -37,7 +37,7 @@ const adminUserSlice = createSlice({
       addRequest: RequestState.SUBMIT,
       error: '',
     }))
-    builder.addCase(addTenantUsers.fulfilled, (state, { payload }) => ({
+    builder.addCase(addTenantUsers.fulfilled, (state) => ({
       ...state,
       addRequest: RequestState.OK,
       error: '',

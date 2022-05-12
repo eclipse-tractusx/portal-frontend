@@ -32,9 +32,7 @@ const adminRegistrationSlice = createSlice({
       (state, { payload }) => {
         const payloadList = payload as Array<RegistrationRequestAPIResponse>
         state.registrationRequests =
-          (mapRegistrationRequestResponseToDataGrid(
-            payloadList
-          ) as Array<RegistrationRequestDataGrid>) || []
+          mapRegistrationRequestResponseToDataGrid(payloadList) || []
         state.loading = false
         state.error = ''
       }
