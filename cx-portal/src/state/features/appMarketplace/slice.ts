@@ -84,7 +84,7 @@ export const appMarketplaceSelectActive = (state: RootState): CardItems[] =>
 export const appMarketplaceSelectLatest = (state: RootState): CardItems[] =>
   state.appMarketplace.latest.map((app) => appToCard(app))
 
-  export const appMarketplaceSelectSubscribed = (state: RootState): CardItems[] =>
+export const appMarketplaceSelectSubscribed = (state: RootState): CardItems[] =>
   state.appMarketplace.subscribed.map((app) => appToCard(app))
 
 export default appMarketplaceSlice

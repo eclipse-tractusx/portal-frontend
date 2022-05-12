@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './app-store-section.scss'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchLatest, fetchSubscribed } from 'state/features/appMarketplace/actions'
+import { fetchLatest } from 'state/features/appMarketplace/actions'
 import { appMarketplaceSelectLatest } from 'state/features/appMarketplace/slice'
 
 export default function AppStoreSection() {
@@ -16,59 +16,6 @@ export default function AppStoreSection() {
   useEffect(() => {
     dispatch(fetchLatest())
   }, [dispatch])
-
-
-  // TODO: Replace from api
-  const itemsx = [
-    {
-      title: 'smart MOM',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
-    },
-    {
-      title: 'BPDM - Manage Customers',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
-    },
-    {
-      title: 'Material Traceability',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://www.visiott.com/wp-content/uploads/2022/01/Traceability-EN-Banner.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
-    },
-    {
-      title: 'CE Marketplace',
-      subtitle: 'SAP',
-      image: {
-        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Lorem Ipsum is simply dummy text of the printing.',
-      onButtonClick: () => {},
-    },
-  ]
 
   return (
     <section className="app-store-section">
