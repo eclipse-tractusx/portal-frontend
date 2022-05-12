@@ -30,7 +30,7 @@ export interface ShellDescriptor {
   specificAssetIds: [
     {
       key: string
-      semanticId: semanticId
+      semanticId: SemanticId
       value: string
     }
   ]
@@ -42,7 +42,7 @@ export interface SubmodelDescriptors {
   endpoints: Endpoints[]
   idShort: string
   identification: string
-  semanticId: semanticId
+  semanticId: SemanticId
 }
 
 interface Description {
@@ -62,6 +62,6 @@ interface Endpoints {
   }
 }
 
-interface semanticId {
+interface SemanticId {
   value: string[]
 }

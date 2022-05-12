@@ -10,7 +10,7 @@ export const CustomAccordion = ({
   const [expanded, setExpanded] = useState<string | false>(defaultExpanded)
 
   const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false)
     }
 
