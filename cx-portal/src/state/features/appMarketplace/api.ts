@@ -25,6 +25,14 @@ export class AppMarketplaceApi extends HttpClient {
     })
   }
 
+  public getLatest = () => {
+    return this.instance.get<AppMarketplaceApp[]>(`/api/apps/latest`, {
+      headers: {
+        authorization: `Bearer ${UserService.getToken()}`,
+      },
+    })
+  }
+
   public getSubscribed = (all?: boolean) => {
     return this.instance.get<AppMarketplaceApp[]>(
       `/api/apps/subscribed${all ? '?all===true' : ''}`,

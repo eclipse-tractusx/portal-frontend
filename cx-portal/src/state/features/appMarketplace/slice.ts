@@ -1,12 +1,13 @@
 import { CardItems } from 'cx-portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'state/store'
-import { fetchItems, fetchSubscribed } from './actions'
+import { fetchItems, fetchLatest, fetchSubscribed } from './actions'
 import { AppMarketplaceState } from './types'
 import { appToCard } from './mapper'
 
 const initialState: AppMarketplaceState = {
   items: [],
+  latest: [],
   subscribed: [],
   loading: true,
   error: '',
@@ -32,6 +33,24 @@ const appMarketplaceSlice = createSlice({
     builder.addCase(fetchItems.rejected, (state, action) => ({
       ...state,
       items: [],
+      loading: false,
+      error: action.error.message as string,
+    }))
+    builder.addCase(fetchLatest.pending, (state) => ({
+      ...state,
+      latest: [],
+      loading: true,
+      error: '',
+    }))
+    builder.addCase(fetchLatest.fulfilled, (state, { payload }) => ({
+      ...state,
+      latest: payload || [],
+      loading: false,
+      error: '',
+    }))
+    builder.addCase(fetchLatest.rejected, (state, action) => ({
+      ...state,
+      latest: [],
       loading: false,
       error: action.error.message as string,
     }))
@@ -62,7 +81,10 @@ export const appMarketplaceSelector = (state: RootState): AppMarketplaceState =>
 export const appMarketplaceSelectActive = (state: RootState): CardItems[] =>
   state.appMarketplace.items.map((app) => appToCard(app))
 
-export const appMarketplaceSelectSubscribed = (state: RootState): CardItems[] =>
+export const appMarketplaceSelectLatest = (state: RootState): CardItems[] =>
+  state.appMarketplace.latest.map((app) => appToCard(app))
+
+  export const appMarketplaceSelectSubscribed = (state: RootState): CardItems[] =>
   state.appMarketplace.subscribed.map((app) => appToCard(app))
 
 export default appMarketplaceSlice
