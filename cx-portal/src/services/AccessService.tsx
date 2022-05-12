@@ -1,6 +1,7 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
+import EdcConnector from 'components/pages/EdcConnector'
 import Connector from 'components/pages/Connector'
 import DataCatalog from 'components/pages/DataCatalog'
 import DeveloperHub from 'components/pages/DeveloperHub'
@@ -31,7 +32,6 @@ import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import Appstore from 'components/pages/Appstore'
 import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
-import ConnectorPage from 'components/pages/Connector'
 
 /**
  * ALL_PAGES
@@ -160,9 +160,9 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
   {
-    name: PAGES.CONNECTOR,
+    name: PAGES.EDC_CONNECTOR,
     role: ROLES.TECHNICAL_SETUP_VIEW,
-    element: <ConnectorPage />,
+    element: <EdcConnector />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
 ]
@@ -198,7 +198,7 @@ const userMenuFull = [
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
   PAGES.REGISTRATION_REQUESTS,
-  PAGES.CONNECTOR,
+  PAGES.EDC_CONNECTOR,
   PAGES.LOGOUT,
 ]
 

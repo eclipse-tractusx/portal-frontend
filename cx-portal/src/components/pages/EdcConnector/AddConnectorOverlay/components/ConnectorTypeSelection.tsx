@@ -22,7 +22,12 @@ const ConnectorTypeSelection = () => {
             }}
             className={'dotted-gradient'}
           >
-            <Checkbox label="Connect company connector" checked />
+            <Checkbox
+              label={
+                t('content.edcconnector.modal.companyconnectorlabel') as string
+              }
+              checked
+            />
             <Typography variant="body2" style={{ marginLeft: '30px' }}>
               <p>This is the only value available now</p>
               <p>
@@ -42,7 +47,12 @@ const ConnectorTypeSelection = () => {
             }}
             className={'dotted-gradient'}
           >
-            <Checkbox label="Connector-as-a-service" disabled />
+            <Checkbox
+              label={
+                t('content.edcconnector.modal.connectorasaservice') as string
+              }
+              disabled
+            />
             <Typography variant="body2" style={{ marginLeft: '30px' }}>
               <p>This option NOT AVAILABLE yet</p>
               <p>

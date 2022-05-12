@@ -13,25 +13,25 @@ export const ConnectorTableColumns = (
   return [
     {
       field: 'name',
-      headerName: t('content.connector.columns.name'),
+      headerName: t('content.edcconnector.columns.name'),
       flex: 2.5,
       sortable: false,
     },
     {
       field: 'id',
-      headerName: t('content.connector.columns.id'),
+      headerName: t('content.edcconnector.columns.id'),
       flex: 2,
       sortable: false,
     },
     {
       field: 'type',
-      headerName: t('content.connector.columns.type'),
+      headerName: t('content.edcconnector.columns.type'),
       flex: 1,
       sortable: false,
     },
     {
       field: 'detail',
-      headerName: t('content.connector.columns.details'),
+      headerName: t('content.edcconnector.columns.details'),
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',

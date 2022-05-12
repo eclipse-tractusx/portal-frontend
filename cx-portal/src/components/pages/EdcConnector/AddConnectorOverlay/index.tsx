@@ -9,21 +9,58 @@ import {
 } from 'cx-portal-shared-components'
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
+import { useForm } from 'react-hook-form'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
   connectorStep: number
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
+  onFormConfirmClick: (data: FormFieldsType) => void
+}
+
+export type FormFieldsType = {
+  ConnectorName: string
+  ConnectorID: string
+  ConnectorURL: string
+}
+
+const formFields = {
+  ConnectorName: '',
+  ConnectorID: '',
+  ConnectorURL: '',
 }
 
 const AddConnectorOverlay = ({
   openDialog = false,
-  connectorStep = 0,
+  connectorStep,
   handleOverlayClose,
   handleConfirmClick,
+  onFormConfirmClick,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
+
+  const {
+    handleSubmit,
+    getValues,
+    control,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    defaultValues: formFields,
+    mode: 'onChange',
+  })
+
+  const onFormSubmit = async () => {
+    const validateFields = await trigger([
+      'ConnectorName',
+      'ConnectorID',
+      'ConnectorURL',
+    ])
+    if (validateFields) {
+      onFormConfirmClick(getValues() as FormFieldsType)
+    }
+  }
 
   return (
     <div>
@@ -31,14 +68,14 @@ const AddConnectorOverlay = ({
         open={openDialog}
         sx={{
           '.MuiDialog-paper': {
-            maxWidth: '80%',
+            maxWidth: '45%',
           },
         }}
       >
         {connectorStep === 1 && (
           <DialogHeader
-            title={'Connect company connector'}
-            intro="Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            title={t('content.edcconnector.modal.title')}
+            intro={t('content.edcconnector.modal.intro')}
           />
         )}
         <DialogContent
@@ -52,7 +89,9 @@ const AddConnectorOverlay = ({
             </>
           ) : (
             <>
-              <ConnectorInsertForm />
+              <ConnectorInsertForm
+                {...{ handleSubmit, control, errors, trigger }}
+              />
             </>
           )}
         </DialogContent>
@@ -60,7 +99,12 @@ const AddConnectorOverlay = ({
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
+          <Button
+            variant="contained"
+            onClick={(e) =>
+              connectorStep === 0 ? handleConfirmClick(e) : onFormSubmit()
+            }
+          >
             {`${t('global.actions.confirm')}`}
           </Button>
         </DialogActions>

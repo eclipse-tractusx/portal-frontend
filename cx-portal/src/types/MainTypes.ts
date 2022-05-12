@@ -54,6 +54,7 @@ export enum PAGES {
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
   REGISTRATION_REQUESTS = 'registration-requests',
+  EDC_CONNECTOR = 'edc-connector',
   LOGOUT = 'logout',
 }
 
