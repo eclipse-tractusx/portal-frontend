@@ -11,6 +11,7 @@ import { RegistrationRequestsTableColumns } from 'components/pages/Admin/compone
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
+import StageHeader from 'components/shared/frame/StageHeader'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -42,17 +43,7 @@ export default function RegistrationRequests() {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <div className="header-section">
-        <div className="header-content">
-          <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
-            {t('content.admin.registration-requests.headertitle')}
-          </Typography>
-        </div>
-        <img
-          src="./stage-header-background.png"
-          alt="Registration Requests Background"
-        />
-      </div>
+      <StageHeader title={t('content.admin.registration-requests.headertitle')} />
       <div className="page-title-container">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}

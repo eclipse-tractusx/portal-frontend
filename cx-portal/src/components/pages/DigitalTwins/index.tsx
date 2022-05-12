@@ -1,11 +1,13 @@
 import TwinTable from './TwinTable'
-import Header from './Header'
 import { useState } from 'react';
 import DigitalTwinDetailDialog from './DigitalTwinDetailDialog';
 import { useDispatch } from 'react-redux';
 import { fetchTwinById } from 'state/features/digitalTwins/actions';
+import StageHeader from 'components/shared/frame/StageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function DigitalTwins() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showTwin, setShowTwin] = useState<boolean>(false)
   
@@ -17,7 +19,7 @@ export default function DigitalTwins() {
 
   return (
     <>
-      <Header />
+      <StageHeader title={t('pages.digitaltwin')} />
       <main className="digital-twins">
         <TwinTable onTwinSelect={onTwinSelect}/>
       </main>
