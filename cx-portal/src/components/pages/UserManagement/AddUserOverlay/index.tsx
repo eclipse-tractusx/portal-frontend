@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -17,31 +17,36 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import {
   addOpenSelector,
-  requestStateSelector,
+  addRequestStateSelector,
   usersToAddSelector,
 } from 'state/features/adminUser/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTenantUsers, closeAdd } from 'state/features/adminUser/actions'
+import { RequestState } from 'types/MainTypes'
 import './AddUserOverlay.scss'
-import { RequestStateIndicator } from './RequestStateIndicator'
 
 export const AddUserOverlay = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const addOpen = useSelector(addOpenSelector)
   const usersToAdd = useSelector(usersToAddSelector)
+  const request = useSelector(addRequestStateSelector)
   const [activeTab, setActiveTab] = useState(0)
 
+  useEffect(() => {
+    if (request === RequestState.OK) {
+      dispatch(closeAdd())
+    }
+  }, [request, dispatch])
+
   const handleConfirm = () => {
-    //console.log('confirmed')
     dispatch(addTenantUsers(usersToAdd))
   }
 
   const handleTabSwitch = (
-    event: React.ChangeEvent<unknown>,
+    _event: React.ChangeEvent<unknown>,
     newValue: number
   ) => {
-    console.log(event.type)
     setActiveTab(newValue)
   }
 
@@ -92,7 +97,6 @@ export const AddUserOverlay = () => {
           >
             {`${t('global.actions.confirm')}`}
           </Button>
-          <RequestStateIndicator selector={requestStateSelector} />
         </DialogActions>
       </Dialog>
     </div>

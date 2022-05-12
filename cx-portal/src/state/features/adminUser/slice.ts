@@ -7,7 +7,8 @@ import { RequestState } from 'types/MainTypes'
 const initialState: AdminUserState = {
   tenantUsers: [],
   usersToAdd: [],
-  request: RequestState.NONE,
+  getRequest: RequestState.NONE,
+  addRequest: RequestState.NONE,
   addOpen: false,
   error: '',
 }
@@ -19,6 +20,7 @@ const adminUserSlice = createSlice({
     openAdd: (state) => ({
       ...state,
       addOpen: true,
+      addRequest: RequestState.NONE,
     }),
     closeAdd: (state) => ({
       ...state,
@@ -32,35 +34,35 @@ const adminUserSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addTenantUsers.pending, (state) => ({
       ...state,
-      request: RequestState.SUBMIT,
+      addRequest: RequestState.SUBMIT,
       error: '',
     }))
     builder.addCase(addTenantUsers.fulfilled, (state, { payload }) => ({
       ...state,
-      request: RequestState.OK,
+      addRequest: RequestState.OK,
       error: '',
     }))
     builder.addCase(addTenantUsers.rejected, (state, action) => ({
       ...state,
-      request: RequestState.ERROR,
+      addRequest: RequestState.ERROR,
       error: action.error.message as string,
     }))
     builder.addCase(fetchTenantUsers.pending, (state) => ({
       ...state,
       tenantUsers: [],
-      request: RequestState.SUBMIT,
+      getRequest: RequestState.SUBMIT,
       error: '',
     }))
     builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => ({
       ...state,
       tenantUsers: payload || [],
-      request: RequestState.OK,
+      getRequest: RequestState.OK,
       error: '',
     }))
     builder.addCase(fetchTenantUsers.rejected, (state, action) => ({
       ...state,
       tenantUsers: [],
-      request: RequestState.ERROR,
+      getRequest: RequestState.ERROR,
       error: action.error.message as string,
     }))
   },
@@ -78,7 +80,10 @@ export const tenantUsersSelector = (state: RootState): TenantUser[] =>
 export const usersToAddSelector = (state: RootState): AddUser[] =>
   state.adminUser.usersToAdd
 
-export const requestStateSelector = (state: RootState): RequestState =>
-  state.adminUser.request
+export const getRequestStateSelector = (state: RootState): RequestState =>
+  state.adminUser.getRequest
+
+export const addRequestStateSelector = (state: RootState): RequestState =>
+  state.adminUser.addRequest
 
 export default adminUserSlice

@@ -28,10 +28,12 @@ export type AddUser = {
   role: string
   message: string
 }
+
 export interface AdminUserState {
   addOpen: boolean
   tenantUsers: Array<TenantUser>
   usersToAdd: Array<AddUser>
-  request: RequestState
+  addRequest: RequestState
+  getRequest: RequestState
   error: string
 }

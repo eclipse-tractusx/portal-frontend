@@ -2,11 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUsersToAdd } from 'state/features/adminUser/actions'
 import debounce from 'lodash.debounce'
 import { IHashMap, UserInput } from 'types/MainTypes'
-import { usersToAddSelector } from 'state/features/adminUser/slice'
 
 const InputDefinitions = {
   firstname: {
@@ -39,7 +38,6 @@ const InputDefinitions = {
 export const SingleUserContent = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const usersToAdd = useSelector(usersToAddSelector)
   const [inputValid, setInputValid] = useState<boolean>(false)
   const [userInputs, setUserInputs] =
     useState<IHashMap<UserInput>>(InputDefinitions)
