@@ -13,7 +13,7 @@ const initialState: AppMarketplaceState = {
 }
 
 const appMarketplaceSlice = createSlice({
-  name: 'appMarketplace',
+  name: 'apps',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

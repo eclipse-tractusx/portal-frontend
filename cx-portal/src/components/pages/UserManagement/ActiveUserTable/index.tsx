@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { fetchTenantUsers } from 'state/features/userAdministration/actions'
-import { userAdministrationSelector } from 'state/features/userAdministration/slice'
-import { TenantUser } from 'state/features/userAdministration/types'
+import { fetchTenantUsers } from 'state/features/adminUser/actions'
+import { tenantUsersSelector } from 'state/features/adminUser/slice'
+import { TenantUser } from 'state/features/adminUser/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
 interface ActiveUserTableProps {
@@ -17,7 +17,7 @@ export const ActiveUserTable = ({
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { tenantUsers } = useSelector(userAdministrationSelector)
+  const tenantUsers = useSelector(tenantUsersSelector)
 
   const onUserDetailsClick = (userId: string) => {
     console.log('show details', userId)

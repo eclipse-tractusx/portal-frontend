@@ -1,24 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import RegistrationRequests from 'utils/mockDataSet/registrationRequests.json'
-import { UserAdministrationApi } from './api'
+import { AdminRegistrationApi } from './api'
 import { RegistrationRequestAPIResponse } from './types'
 
-// Token needs to pass from outside to avoid store object circular dependency issue at unit test
-// https://github.com/reduxjs/redux-toolkit/issues/1609#issuecomment-941126991
-const fetchTenantUsers = createAsyncThunk(
-  'userAdministration/fetchTenantUsers',
-  async () => {
-    try {
-      return await UserAdministrationApi.getInstance().getTenantUsers()
-    } catch (error: unknown) {
-      console.error('api call error:', error)
-      throw Error('fetchTenantUsers api call error')
-    }
-  }
-)
-
 const fetchRegistrationRequests = createAsyncThunk(
-  'userAdministration/fetchRegistrationRequests',
+  'admin/user/fetchRegistrationRequests',
   async () => {
     try {
       // Currently implementation uses mock data
@@ -32,11 +18,11 @@ const fetchRegistrationRequests = createAsyncThunk(
 )
 
 const fetchCompanyDetail = createAsyncThunk(
-  'userAdministration/fetchCompanyDetail',
+  'admin/user/fetchCompanyDetail',
   async (applicationId: string) => {
     try {
       // Currently implementation uses mock data
-      return await UserAdministrationApi.getInstance().getCompanyDetail(
+      return await AdminRegistrationApi.getInstance().getCompanyDetail(
         applicationId
       )
     } catch (error: unknown) {
@@ -46,4 +32,4 @@ const fetchCompanyDetail = createAsyncThunk(
   }
 )
 
-export { fetchTenantUsers, fetchRegistrationRequests, fetchCompanyDetail }
+export { fetchCompanyDetail, fetchRegistrationRequests }

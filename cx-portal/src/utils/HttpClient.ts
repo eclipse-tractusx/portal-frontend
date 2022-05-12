@@ -22,9 +22,7 @@ export abstract class HttpClient {
     headers: AxiosRequestHeaders = {
       'Content-Type': 'application/json',
     },
-    timeout: number = Number.parseInt(
-      `${process.env.REACT_APP_REQUEST_TIMEOUT || 30000}`
-    )
+    timeout: number = 30000
   ) {
     this.instance = axios.create({
       baseURL,

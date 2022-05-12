@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AppMarketplaceApi as Api } from './api'
 import { AppMarketplaceApi as ApiMock } from './apiTestdata'
 
-const fetchItems = createAsyncThunk('appMarketplace/fetchItems', async () => {
+const fetchItems = createAsyncThunk('apps/fetchItems', async () => {
   try {
     return await Api.getInstance().getItems()
   } catch (error: unknown) {
