@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# npm run pretty
-# npm run lint --fix
+npm run pretty
+npm run lint --fix
