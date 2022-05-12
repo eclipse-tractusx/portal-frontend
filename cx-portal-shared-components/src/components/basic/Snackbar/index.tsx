@@ -30,7 +30,7 @@ export const Snackbar = ({ severity = 'info', children }: SnackbarProps) => {
   return (
     <MuiSnackbar open={open} autoHideDuration={3000} onClose={handleClose}>
       <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-       {children}
+        {children}
       </Alert>
     </MuiSnackbar>
   )

@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const Alert = Template.bind({})
 Alert.args = {
   severity: 'success',
-  children: <Typography sx={{color: 'white'}}>Message</Typography>,
+  children: <Typography sx={{ color: 'white' }}>Message</Typography>,
 }
