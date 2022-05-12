@@ -1,25 +1,30 @@
-import './AppDetailImageGallery.scss'
-import { ImageGallery, ImageType } from 'cx-portal-shared-components'
+import { ComponentStory } from '@storybook/react'
 
-export default function AppDetailHeader() {
-  const gallery: ImageType[] = [
-    {
-      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-      text: 'Lorem Image Caption',
-    },
-    {
-      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-      text: 'Lorem Image Caption',
-    },
-    {
-      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-      text: 'Lorem Image Caption',
-    },
-  ]
+import { ImageGallery as Component } from '.'
 
-  return (
-    <div className="appdetail-gallery">
-      <ImageGallery gallery={gallery} />
-    </div>
-  )
+export default {
+  title: 'ImageGallery',
+  component: Component,
+}
+
+const Template: ComponentStory<typeof Component> = (args) => (
+  <Component {...args} />
+)
+
+export const Gallery = Template.bind({})
+Gallery.args = {
+  gallery: [
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+    },
+  ],
 }

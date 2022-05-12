@@ -263,8 +263,8 @@
       "further": "If you think there should be content please contact your administrator."
     },
     "appdetail": {
-      "usecase": "Use Cases",
-      "language": "App Languages",
+      "usecase": "Use Case",
+      "language": "Language",
       "subscribe": "Subscribe",
       "privacy": {
         "heading": "Privacy Policy",
