@@ -82,7 +82,10 @@ const EdcConnector = () => {
         <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
       </section>
       <section className={'picture-with-text-section'}>
-        <PictureWithText text={'content.edcconnector.imagetext'} />
+        <PictureWithText
+          text={'content.edcconnector.imagetext'}
+          onButtonClicked={() => setAddConnectorOverlayOpen(true)}
+        />
       </section>
       <div className="partner-network-table-container">
         <Table
@@ -100,10 +103,6 @@ const EdcConnector = () => {
             disableSelectionOnClick: true,
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
             loading,
-            toolbar: {
-              onButtonClick: () => setAddConnectorOverlayOpen(true),
-              buttonLabel: t('content.edcconnector.addconnectorbutton'),
-            },
           }}
           getRowId={(row) => row.id}
         />

@@ -8,7 +8,7 @@ import { Box, Grid, useTheme } from '@mui/material'
 const ConnectorTypeSelection = () => {
   const { t } = useTranslation()
   const theme = useTheme()
-  const { spacing } = theme
+  const { spacing, palette } = theme
 
   return (
     <div className={'connector-type-selector-container'}>
@@ -33,9 +33,7 @@ const ConnectorTypeSelection = () => {
               <p>
                 Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen
                 nyck till fysoras. Gaskapet prelaras, syning diheten alltså
-                piporat. Kinas fagologi pon i dekassa. Bipivis psykostat medan
-                antibelt. Miv semism det vill säga nanoteknik. Anang gos, tävla
-                ut decijengen. Serat hådyher soren.
+                piporat
               </p>
             </Typography>
           </Grid>
@@ -53,14 +51,15 @@ const ConnectorTypeSelection = () => {
               }
               disabled
             />
-            <Typography variant="body2" style={{ marginLeft: '30px' }}>
+            <Typography
+              variant="body2"
+              style={{ marginLeft: '30px', color: palette.grey.A400 }}
+            >
               <p>This option NOT AVAILABLE yet</p>
               <p>
                 Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen
                 nyck till fysoras. Gaskapet prelaras, syning diheten alltså
-                piporat. Kinas fagologi pon i dekassa. Bipivis psykostat medan
-                antibelt. Miv semism det vill säga nanoteknik. Anang gos, tävla
-                ut decijengen. Serat hådyher soren.
+                piporat. Kinas
               </p>
             </Typography>
           </Grid>

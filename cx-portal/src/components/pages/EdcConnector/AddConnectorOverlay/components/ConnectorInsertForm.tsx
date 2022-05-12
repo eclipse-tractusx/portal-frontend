@@ -4,6 +4,8 @@ import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import { Input } from 'cx-portal-shared-components'
 
+// Pass Regex useless escape
+/* eslint-disable no-useless-escape */
 const ConnectorInsertForm = ({
   handleSubmit,
   errors,
@@ -102,7 +104,6 @@ const ConnectorInsertForm = ({
                 control={control}
                 rules={{
                   required: true,
-                  // eslint-disable-next-line no-useless-escape
                   pattern:
                     /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm,
                 }}
