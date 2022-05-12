@@ -17,7 +17,7 @@ export const DialogActions = ({
   return (
     <Box
       sx={{
-        padding: spacing(7, 14),
+        padding: spacing(4, 14),
         backgroundColor: 'background.background09',
       }}
     >
