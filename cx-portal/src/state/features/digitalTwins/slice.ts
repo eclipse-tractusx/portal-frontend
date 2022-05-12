@@ -8,7 +8,7 @@ const defaultTwins: TwinList = {
   totalItems: 0,
   itemCount: 0,
   currentPage: 0,
-  totalPages: 0
+  totalPages: 0,
 }
 
 const initialState: DigitalTwinsInitialState = {

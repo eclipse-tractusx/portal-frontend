@@ -4,7 +4,10 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { ShellDescriptor } from 'state/features/digitalTwins/types'
 
 // Columns definitions of Digital Twin page Data Grid
-export const DigitalTwinsTableColumns = ( translationHook: any, onDetailClick: (id: string) => void ): Array<GridColDef> => {
+export const DigitalTwinsTableColumns = (
+  translationHook: any,
+  onDetailClick: (id: string) => void
+): Array<GridColDef> => {
   const { t } = translationHook()
 
   return [
@@ -18,14 +21,18 @@ export const DigitalTwinsTableColumns = ( translationHook: any, onDetailClick: (
       headerName: t('content.digitaltwin.table.columns.sm_count'),
       flex: 1,
       align: 'center',
-      renderCell: ({ row }: { row: ShellDescriptor }) => <>{row.submodelDescriptors.length}</>
+      renderCell: ({ row }: { row: ShellDescriptor }) => (
+        <>{row.submodelDescriptors.length}</>
+      ),
     },
     {
       field: '',
       headerName: t('content.digitaltwin.table.columns.asset_count'),
       flex: 1,
       align: 'center',
-      renderCell: ({ row }: { row: ShellDescriptor }) => <>{row.specificAssetIds.length}</>
+      renderCell: ({ row }: { row: ShellDescriptor }) => (
+        <>{row.specificAssetIds.length}</>
+      ),
     },
     {
       field: 'detail',

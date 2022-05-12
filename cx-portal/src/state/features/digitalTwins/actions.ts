@@ -4,7 +4,7 @@ import { FilterParams } from './types'
 
 const fetchDigitalTwins = createAsyncThunk(
   'fetch twins',
-  async ({filter}: {filter: FilterParams}) => {
+  async ({ filter }: { filter: FilterParams }) => {
     try {
       return await DigitalTwinApi.getInstance().getTwins(filter)
     } catch (error: unknown) {

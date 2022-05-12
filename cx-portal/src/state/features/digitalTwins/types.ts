@@ -1,4 +1,4 @@
-import { Nullable } from "types/MainTypes"
+import { Nullable } from 'types/MainTypes'
 
 export interface DigitalTwinsInitialState {
   twinList: TwinList
@@ -8,7 +8,7 @@ export interface DigitalTwinsInitialState {
 }
 
 export type FilterParams = {
-  readonly page: number,
+  readonly page: number
   readonly pageSize: number
 }
 
@@ -65,4 +65,3 @@ interface Endpoints {
 interface semanticId {
   value: string[]
 }
-

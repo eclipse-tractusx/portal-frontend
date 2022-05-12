@@ -43,7 +43,9 @@ export default function RegistrationRequests() {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <StageHeader title={t('content.admin.registration-requests.headertitle')} />
+      <StageHeader
+        title={t('content.admin.registration-requests.headertitle')}
+      />
       <div className="page-title-container">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}

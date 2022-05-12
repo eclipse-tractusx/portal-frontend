@@ -28,18 +28,26 @@ const item_1_open_colored: CustomAccordionProps = {
   id: 'panel-1',
   title: 'First Item',
   color: 'background.background09',
-  children: 
+  children: (
     <Box>
       <Typography variant="h4">Content of the first item</Typography>
-      <Divider sx={{m: 2}} />
-      <Typography mb={2}>You can add any complex content into the accordion item. For example a table:</Typography>
-      <Table 
+      <Divider sx={{ m: 2 }} />
+      <Typography mb={2}>
+        You can add any complex content into the accordion item. For example a
+        table:
+      </Typography>
+      <Table
         data={{
-          head: ['Header 1', 'Header 2', 'Header 3'], 
-          body: [['data 1', 'data 2', 'data 3'], ['data 1', 'data 2', 'data 3'], ['data 1', 'data 2', 'data 3']]
+          head: ['Header 1', 'Header 2', 'Header 3'],
+          body: [
+            ['data 1', 'data 2', 'data 3'],
+            ['data 1', 'data 2', 'data 3'],
+            ['data 1', 'data 2', 'data 3'],
+          ],
         }}
-        />
-    </Box>,
+      />
+    </Box>
+  ),
 }
 const item_2_closed: CustomAccordionProps = {
   expanded: false,
@@ -56,10 +64,10 @@ const item_3_closed: CustomAccordionProps = {
 
 export const BasicAccordion = Template.bind({})
 BasicAccordion.args = {
-  items: [item_1_open, item_2_closed, item_3_closed]
-};
+  items: [item_1_open, item_2_closed, item_3_closed],
+}
 
 export const ColoredAccordion = Template.bind({})
 ColoredAccordion.args = {
-  items: [item_1_open_colored, item_2_closed, item_3_closed]
-};
+  items: [item_1_open_colored, item_2_closed, item_3_closed],
+}
