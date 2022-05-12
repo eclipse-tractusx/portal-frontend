@@ -2,6 +2,7 @@ import { HttpClient } from 'utils/HttpClient'
 import { SearchParams, BusinessPartnerResponse, BusinessPartner } from './types'
 import qs from 'querystring'
 import UserService from 'services/UserService'
+import { getBpdmApiBase } from 'services/EnvironmentService'
 
 // Instance of BPDM API endpoint
 export class PartnerNetworkApi extends HttpClient {
@@ -9,7 +10,7 @@ export class PartnerNetworkApi extends HttpClient {
 
   // TODO: Token needs to read from Redux store
   public constructor() {
-    super(process.env.REACT_APP_BPDM_API_BASE_URL || '')
+    super(getBpdmApiBase())
   }
 
   // To avoid create an instance everytime, pointed to Singleton of static value

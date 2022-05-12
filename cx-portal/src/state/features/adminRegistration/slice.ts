@@ -3,47 +3,25 @@ import {
   CompanyDetail,
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
-  UserAdministrationState,
+  AdminRegistrationState,
 } from './types'
-import {
-  fetchTenantUsers,
-  fetchRegistrationRequests,
-  fetchCompanyDetail,
-} from './actions'
+import { fetchRegistrationRequests, fetchCompanyDetail } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
+import { RootState } from 'state/store'
 
-const initialState: UserAdministrationState = {
-  tenantUsers: [],
+const initialState: AdminRegistrationState = {
   registrationRequests: [],
   companyDetail: {} as CompanyDetail,
-  loading: true,
+  loading: false,
   detailLoading: false,
   error: '',
 }
 
-const userAdministrationSlice = createSlice({
-  name: 'userAdministration',
+const adminRegistrationSlice = createSlice({
+  name: 'admin/user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchTenantUsers.pending, (state) => {
-      state.tenantUsers = []
-      state.registrationRequests = []
-      state.loading = true
-      state.error = ''
-    })
-    builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => {
-      state.tenantUsers = payload || []
-      state.registrationRequests = []
-      state.loading = false
-      state.error = ''
-    })
-    builder.addCase(fetchTenantUsers.rejected, (state, action) => {
-      state.tenantUsers = []
-      state.registrationRequests = []
-      state.loading = false
-      state.error = action.error.message as string
-    })
     builder.addCase(fetchRegistrationRequests.pending, (state) => {
       state.registrationRequests = []
       state.loading = true
@@ -54,10 +32,7 @@ const userAdministrationSlice = createSlice({
       (state, { payload }) => {
         const payloadList = payload as Array<RegistrationRequestAPIResponse>
         state.registrationRequests =
-          (mapRegistrationRequestResponseToDataGrid(
-            payloadList
-          ) as Array<RegistrationRequestDataGrid>) || []
-
+          mapRegistrationRequestResponseToDataGrid(payloadList) || []
         state.loading = false
         state.error = ''
       }
@@ -85,7 +60,12 @@ const userAdministrationSlice = createSlice({
   },
 })
 
-export const userAdministrationSelector = (
-  state: any
-): UserAdministrationState => state.userAdministration
-export default userAdministrationSlice
+export const adminRegistrationSelector = (
+  state: RootState
+): AdminRegistrationState => state.adminRegistration
+
+export const registrationRequestsSelector = (
+  state: RootState
+): RegistrationRequestDataGrid[] => state.adminRegistration.registrationRequests
+
+export default adminRegistrationSlice

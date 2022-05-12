@@ -12,6 +12,7 @@ export type AppMarketplaceApp = {
 
 export type AppMarketplaceState = {
   items: AppMarketplaceApp[]
+  latest: AppMarketplaceApp[]
   subscribed: AppMarketplaceApp[]
   loading: boolean
   error: string

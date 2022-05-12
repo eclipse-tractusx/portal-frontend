@@ -19,7 +19,7 @@
     "settings": "Einstellungen",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
-    "invite": "Geschäftspartner Einladen",
+    "invite": "Einladung CX Teilnehmer",
     "help": "Hilfe",
     "contact": "Kontakt",
     "imprint": "Impressum",
@@ -181,10 +181,10 @@
       }
     },
     "invite": {
-      "title": "Laden Sie Geschäftspartner ein",
+      "title": "Einladung CX Teilnehmer",
       "send": "Einladung absenden",
       "success": "Einladung erfolgreich",
-      "failure": "Die Verarbeitung Ihrer Anfrage ist fehlgeschlagen"
+      "failure": "Die Verarbeitung der Einladung ist fehlgeschlagen"
     },
     "provisionIdp": {
       "title": "Verbinden Sie Ihren IDP",
@@ -210,15 +210,15 @@
         "add": "User hinzufügen"
       },
       "appUserDetails": {
-        "headline": "Seitentitle",
+        "headline": "App Zugriffsmanagement - <1>App-Title</1>",
         "header": {
-          "title": "Verfügbare Rollen",
-          "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+          "title": "App Rollen",
+          "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
         },
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
-          "add": "Benutzer hinzufügen"
+          "add": "Benutzerrolle hinzufügen"
         }
       }
     },
@@ -228,7 +228,7 @@
       "singleUser": "Einzel-Upload",
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
-      "multipleUserSubheadline": "Bitte verwenden Sie diese <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
+      "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Please enter all required information before proceeding.",
       "userUpload": {
@@ -254,6 +254,10 @@
           "done": "done"
         }
       }
+    },
+    "addUserRight": {
+      "headline": "tbd DE: Select and Add users to this app",
+      "subheadline": "tbd"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -314,9 +318,25 @@
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
     },
     "appdetail": {
-      "usecase": "Use Cases",
-      "language": "Language",
-      "subscribe": "Abonnieren"
+      "usecase": "Use Case",
+      "language": "Verfügbare App Sprachen",
+      "subscribe": "Abonnieren",
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth."
+      },
+      "howtouse": {
+        "heading": "Nutzungsrichtlinien",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+      },
+      "providerInformation": {
+        "heading": "Anbieterinformationen",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+        "appProvider": "App Anbieter",
+        "website": "Webseite",
+        "email": "Email",
+        "phone": "Telefon"
+      }
     }
   },
   "global": {
@@ -333,6 +353,7 @@
       "details": "Details"
     },
     "actions": {
+      "back": "← Zurück",
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
@@ -343,10 +364,10 @@
     "userRoles": {
       "itAdmin": "IT Admin",
       "businessAdmin": "Business Admin",
-      "cxUser": "CX User",
-      "dataSpecialist": "Data Specialist",
-      "appDeveloper": "App Developer",
-      "appAdmin": "App Developer"
+      "cxUser": "CX Teilnehmer",
+      "dataSpecialist": "Data Spezialist",
+      "appDeveloper": "App Entwickler",
+      "appAdmin": "App Administrator"
     }
   }
 }
