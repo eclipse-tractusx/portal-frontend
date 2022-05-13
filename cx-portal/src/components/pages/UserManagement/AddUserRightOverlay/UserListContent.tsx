@@ -34,6 +34,7 @@ export default function UserListContent() {
       rows={userList}
       getRowId={(row: { [key: string]: string }) => row.id}
       hideFooter
+      checkboxSelection
     />
   )
 }
