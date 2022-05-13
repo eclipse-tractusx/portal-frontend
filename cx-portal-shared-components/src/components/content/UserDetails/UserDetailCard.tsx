@@ -1,16 +1,22 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
-import { IconButton } from '../IconButton'
-import { Typography } from '../Typography'
+import { IconButton } from '../../basic/IconButton'
+import { Typography } from '../../basic/Typography'
+import { Chip } from '../../basic/Chip'
 
-export interface UserCardProps {
+interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory: string
   cardContentItems: UserItems
 }
 
+interface UserItemsTranslation {
+  label: string
+  value: string
+}
+
 export interface UserItems {
-  [key: string]: string
+  [key: string]: UserItemsTranslation | undefined
 }
 
 export const UserDetailCard = ({
@@ -51,10 +57,23 @@ export const UserDetailCard = ({
               borderColor: 'border.border01',
               color: 'text.tertiary',
               fontFamily: 'LibreFranklin-Light',
-              padding: '20px',
+              padding: k === 'status' ? '12.5px' : '20px',
             }}
           >
-            {k}: {v}
+            {k === 'status' ? (
+              <>
+                <span style={{ marginRight: '10px' }}>{v?.label} :</span>
+                <Chip
+                  color="secondary"
+                  label={v?.value}
+                  type="confirm"
+                  variant="filled"
+                  withIcon={false}
+                />
+              </>
+            ) : (
+              `${v?.label}: ${v?.value}`
+            )}
           </ListItem>
         ))}
       </List>

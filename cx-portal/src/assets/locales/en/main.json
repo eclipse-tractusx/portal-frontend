@@ -224,7 +224,8 @@
     },
     "account": {
       "token": "Current authentication token",
-      "copy_to_clipboard": "copy token to clipboard"
+      "copy_to_clipboard": "copy token to clipboard",
+      "deleteAccount": "Benutzer löschen"
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"
@@ -277,7 +278,6 @@
       "details": "Details"
     },
     "actions": {
-      "back": "← Back",
       "cancel": "Cancel",
       "confirm": "Confirm",
       "more": "More",
