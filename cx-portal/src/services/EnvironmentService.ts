@@ -31,6 +31,9 @@ export const getBpdmApiBase = () =>
 //    ? LOCAL_SERVICES_BPDM
 //    : window.location.origin.replace('portal', 'bpdm')
 
+export const getSemanticApiBase = () =>
+  'https://catenaxintakssrv.germanywestcentral.cloudapp.azure.com/semantics'
+
 const EnvironmentService = {
   isLocal,
   getHostname,
@@ -38,6 +41,7 @@ const EnvironmentService = {
   getAssetBase,
   getBpdmApiBase,
   getCentralIdp,
+  getSemanticApiBase,
 }
 
 export default EnvironmentService
