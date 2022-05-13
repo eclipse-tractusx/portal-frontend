@@ -2,6 +2,7 @@ import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import UserService from 'services/UserService'
 import { AppDetails } from 'state/features/appDetails/types'
+import { getAppImage } from 'state/features/appMarketplace/mapper'
 import { ROLES } from 'types/MainTypes'
 import './AppDetailHeader.scss'
 
@@ -15,7 +16,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   return (
     <div className="appdetail-header">
       <div className="lead-image">
-        <img src={item.leadPictureUri} alt={item.title} />
+        <img src={getAppImage(item)} alt={item.title} />
       </div>
       <div className="content">
         <Typography variant="body2" className="provider">

@@ -17,8 +17,10 @@ export default function FavoriteSection() {
     dispatch(fetchFavorites())
   }, [dispatch])
 
+  //TODO:
+  //implement logic
   const handleSecondaryButtonClick = (id: string) => {
-    console.log('TODO: remove app favorites logic.')
+    console.log(`TODO: remove app favorites logic for ${id}`)
   }
 
   const handleButtonClick = (id: string) => {

@@ -3,8 +3,27 @@ import { RootState } from 'state/store'
 import { fetchItem } from './actions'
 import { AppDetailsState } from './types'
 
+const AppDetailInitial = {
+  id: 'default',
+  title: '',
+  provider: '',
+  leadPictureUri: 'trans.png',
+  shortDescription: '',
+  useCases: [''],
+  price: '',
+  providerUri: '',
+  contactEmail: '',
+  contactNumber: '',
+  detailPictureUris: [''],
+  longDescription: '',
+  isSubscribed: false,
+  tags: [''],
+  languages: ['']
+} 
+
+
 const initialState: AppDetailsState = {
-  item: null,
+  item: AppDetailInitial,
   loading: true,
   error: '',
 }
@@ -15,7 +34,7 @@ const appDetailsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchItem.pending, (state) => {
-      state.item = null
+      state.item = AppDetailInitial
       state.loading = true
       state.error = ''
     })
