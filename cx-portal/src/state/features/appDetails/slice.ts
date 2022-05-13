@@ -18,9 +18,8 @@ const AppDetailInitial = {
   longDescription: '',
   isSubscribed: false,
   tags: [''],
-  languages: ['']
-} 
-
+  languages: [''],
+}
 
 const initialState: AppDetailsState = {
   item: AppDetailInitial,
