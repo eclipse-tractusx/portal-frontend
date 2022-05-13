@@ -17,6 +17,7 @@ export interface CardProps
   readMoreText?: string
   readMoreLink?: string
   onClick?: React.MouseEventHandler
+  addButtonClicked?: boolean
 }
 
 export const Card = ({
@@ -38,6 +39,7 @@ export const Card = ({
   onSecondaryButtonClick,
   readMoreText,
   readMoreLink,
+  addButtonClicked,
 }: CardProps) => {
   const { shape, shadows, spacing } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
@@ -148,6 +150,7 @@ export const Card = ({
               buttonText={buttonText}
               onButtonClick={onButtonClick}
               onSecondaryButtonClick={onSecondaryButtonClick}
+              addButtonClicked={addButtonClicked}
             />
           )}
           {variant === 'text-only' && readMoreLink && readMoreText && (

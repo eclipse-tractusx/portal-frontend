@@ -35,4 +35,5 @@ ContentCards.args = {
   buttonText: 'Details',
   imageSize: 'medium',
   imageShape: 'round',
+  addButtonClicked: false,
 }
