@@ -15,7 +15,7 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'state/features/partnerNetwork/types'
-import StageHeader from 'components/shared/frame/StageHeader'
+import SubHeader from 'components/shared/frame/SubHeader'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -94,7 +94,10 @@ const PartnerNetwork = () => {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <StageHeader title={t('content.partnernetwork.headertitle')} />
+      <SubHeader
+        title={t('content.partnernetwork.headertitle')}
+        hasBackButton={false}
+      />
       <PartnerNetworkSearchForm
         {...{
           onBpnFieldChange,

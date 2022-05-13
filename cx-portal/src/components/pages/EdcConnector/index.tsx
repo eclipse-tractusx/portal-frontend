@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
-import PageHeader from 'components/shared/frame/PageHeader'
+import SubHeader from 'components/shared/frame/SubHeader'
 import { Table } from 'cx-portal-shared-components'
 import connectorSlice, {
   connectorSelector,
@@ -77,7 +77,10 @@ const EdcConnector = () => {
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={onFormSubmit}
       />
-      <PageHeader translationKey={'content.edcconnector.headertitle'} />
+      <SubHeader
+        title={'content.edcconnector.headertitle'}
+        hasBackButton={false}
+      />
       <section>
         <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
       </section>
