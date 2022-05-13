@@ -30,25 +30,31 @@ export default function AppDetail() {
 
   return item ? (
     <main className="appdetail-main">
-      <Button
-        color="secondary"
-        size="small"
-        onClick={() => navigate('/appmarketplace')}
-      >
-        {t('global.actions.back')}
-      </Button>
-      <AppDetailHeader item={item} />
-      <div className="product-description">
-        <Typography variant="body2">{ta(`${item.id}.description`)}</Typography>
-        <a href="/#" className="product-desc-more">
-          + more
-        </a>
-      </div>
-      <AppDetailImageGallery />
-      <AppDetailPrivacy />
-      <AppDetailHowToUse />
-      <AppDetailProvider />
-      <AppDetailTags />
+      {item.id === 'default' || (
+        <>
+          <Button
+            color="secondary"
+            size="small"
+            onClick={() => navigate('/appmarketplace')}
+          >
+            {t('global.actions.back')}
+          </Button>
+          <AppDetailHeader item={item} />
+          <div className="product-description">
+            <Typography variant="body2">
+              {ta(`${item.id}.description`)}
+            </Typography>
+            <a href="/#" className="product-desc-more">
+              + more
+            </a>
+          </div>
+          <AppDetailImageGallery />
+          <AppDetailPrivacy />
+          <AppDetailHowToUse />
+          <AppDetailProvider />
+          <AppDetailTags />
+        </>
+      )}
     </main>
   ) : (
     <NotFound />
