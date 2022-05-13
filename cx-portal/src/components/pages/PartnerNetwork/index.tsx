@@ -11,12 +11,12 @@ import { Table, Button } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
-import PartnerNetworkHeader from './components/PartnerNetworkHeader'
 import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'state/features/partnerNetwork/types'
 import UserService from 'services/UserService'
+import StageHeader from 'components/shared/frame/StageHeader'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -103,7 +103,7 @@ const PartnerNetwork = () => {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <PartnerNetworkHeader />
+      <StageHeader title={t('content.partnernetwork.headertitle')} />
       <PartnerNetworkSearchForm
         {...{
           onBpnFieldChange,

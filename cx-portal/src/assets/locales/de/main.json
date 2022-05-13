@@ -103,7 +103,28 @@
       "message": "Inhalte vom Semantischen Hub"
     },
     "digitaltwin": {
-      "message": "Inhalte vom Digitalen Zwilling"
+      "table": {
+        "title": "Datenübersicht der Digitalen Zwillinge",
+        "columns": {
+          "idShort": "Name",
+          "sm_count": "Anzahl Submodelle",
+          "asset_count": "Anzahl Assets"
+        },
+        "load_button": "Mehr laden"
+      },
+      "detail": {
+        "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
+        "no_description": "Dieses Asset hat keine Beschreibung.",
+        "assetId": "Specific Asset IDs",
+        "submodel_endpoints": "Submodell Endpunkte:",
+        "semanticid": "Semantic ID:",
+        "key": "Schlüssel:",
+        "value": "Wert:",
+        "endpoints": "Endpunkte:",
+        "interface": "Schnittstelle:",
+        "protocol": "Protokoll:",
+        "protocol_version": "Protokoll Version:"
+      }
     },
     "datacatalog": {
       "message": "Inhalte vom Datenkatalog"
