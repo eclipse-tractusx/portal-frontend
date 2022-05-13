@@ -20,6 +20,15 @@ const fetchLatest = createAsyncThunk('apps/fetchLatest', async () => {
   }
 })
 
+const fetchFavorites = createAsyncThunk('apps/fetchFavorites', async () => {
+  try {
+    return await ApiMock.getInstance().getFavorites()
+  } catch (error: unknown) {
+    console.error('api call error:', error)
+    throw Error('fetchFavorites api call error')
+  }
+})
+
 const fetchSubscribed = createAsyncThunk(
   'appMarketplace/fetchSubscribed',
   async (all?: boolean) => {
@@ -32,4 +41,4 @@ const fetchSubscribed = createAsyncThunk(
   }
 )
 
-export { fetchItems, fetchLatest, fetchSubscribed }
+export { fetchItems, fetchLatest, fetchFavorites, fetchSubscribed }

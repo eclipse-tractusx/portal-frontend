@@ -1,21 +1,15 @@
 import { Nullable } from 'types/MainTypes'
+import { AppMarketplaceApp } from '../appMarketplace/types'
 
-export type AppDetails = {
-  id: string
-  title: string
-  leadPictureUri: string
+export type AppDetails = AppMarketplaceApp & {
   providerUri: string
-  provider: string
   contactEmail: string
   contactNumber: string
-  detailPictures: string[]
-  useCases: string[]
-  languages: string[]
-  descriptionLong: string
-  price: string
-  rating: number
-  purchased: boolean
+  detailPictureUris: string[]
+  longDescription: string
+  isSubscribed: boolean
   tags: string[]
+  languages: string[]
 }
 
 export type AppDetailsState = {
