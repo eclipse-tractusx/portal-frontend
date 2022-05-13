@@ -103,7 +103,28 @@
       "message": "Contents of Semantic Hub"
     },
     "digitaltwin": {
-      "message": "Contents of Digital Twin"
+      "table": {
+        "title": "Overview Digital Twins",
+        "columns": {
+          "idShort": "Name",
+          "sm_count": "Submodel Count",
+          "asset_count": "Specific Asset Count"
+        },
+        "load_button": "Load more"
+      },
+      "detail": {
+        "error": "ERROR: No twin data available.",
+        "no_description": "This asset has no description.",
+        "assetId": "Specific asset IDs",
+        "submodel_endpoints": "Submodel endpoints:",
+        "semanticid": "Semantic ID:",
+        "key": "Key:",
+        "value": "Value:",
+        "endpoints": "Endpoints:",
+        "interface": "Interface:",
+        "protocol": "Protocol:",
+        "protocol_version": "Protocol version:"
+      }
     },
     "datacatalog": {
       "message": "Contents of Data Catalog"

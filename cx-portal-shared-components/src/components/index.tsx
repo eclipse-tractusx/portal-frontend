@@ -28,6 +28,8 @@ export { Dropzone } from './basic/Dropzone'
 export { Chip } from './basic/Chip'
 export { ViewSelector } from './basic/ViewSelector'
 export { Carousel } from './basic/Carousel'
+export { CustomAccordion } from './basic/CustomAccordion'
+export { CustomAccordionItem } from './basic/CustomAccordion/Item'
 export { UserDetailCard } from './basic/UserDetailCard'
 
 export { Cards } from './content/Cards'
