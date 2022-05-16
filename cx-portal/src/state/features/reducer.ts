@@ -8,6 +8,7 @@ import twinsSlice from './digitalTwins/slice'
 import licensesSlice from './licenses/slice'
 import adminUserSlice from './adminUser/slice'
 import adminRegistrationSlice from './adminRegistration/slice'
+import connectorSlice from './connector/slice'
 
 // Reducers need separate export for testing library
 export const reducers = {
@@ -20,6 +21,7 @@ export const reducers = {
   partnerNetwork: partnerNetworkSlice.reducer,
   appDetails: appDetailsSlice.reducer,
   appMarketplace: appMarketplaceSlice.reducer,
+  connector: connectorSlice.reducer,
 }
 
 const rootReducer = combineReducers(reducers)

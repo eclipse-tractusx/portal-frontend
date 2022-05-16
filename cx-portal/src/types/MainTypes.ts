@@ -59,6 +59,7 @@ export enum PAGES {
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
   REGISTRATION_REQUESTS = 'registration-requests',
+  EDC_CONNECTOR = 'edc-connector',
   LOGOUT = 'logout',
 }
 
@@ -89,6 +90,7 @@ export enum ROLES {
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',
+  TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
 }
 

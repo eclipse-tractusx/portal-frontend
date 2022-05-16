@@ -15,8 +15,7 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'state/features/partnerNetwork/types'
-import UserService from 'services/UserService'
-import StageHeader from 'components/shared/frame/StageHeader'
+import SubHeader from 'components/shared/frame/SubHeader'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -31,22 +30,16 @@ const PartnerNetwork = () => {
     {} as PartnerNetworkDataGrid
   )
 
-  const token = UserService.getToken()
   const { mappedPartnerList, loading, paginationData } = useSelector(
     partnerNetworkSelector
   )
 
   useEffect(() => {
-    if (token) {
-      const params = {
-        ...{ size: pageSize, page: currentPage },
-        ...(companyName !== '' && { name: companyName }),
-      }
-
-      dispatch(fetchBusinessPartners({ params, token }))
+    const params = {
+      ...{ size: pageSize, page: currentPage },
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, pageSize, currentPage])
+    dispatch(fetchBusinessPartners({ params }))
+  }, [currentPage, dispatch, pageSize])
 
   // Reset store data when page init
   useEffect(() => {
@@ -69,18 +62,16 @@ const PartnerNetwork = () => {
 
     // There is two different endpoint for BPN search and for the field search
     // Detect which api call to make a request
-    if (bpnValue !== '')
-      dispatch(getOneBusinessPartner({ bpn: bpnValue, token }))
+    if (bpnValue !== '') dispatch(getOneBusinessPartner({ bpn: bpnValue }))
     // Reset current page to default everytime user search some term
     else {
       const params = {
-        ...{ size: pageSize, page: currentPage },
+        ...{ size: pageSize, page: 0 },
         ...(companyName !== '' && { name: companyName }),
       }
       dispatch(
         fetchBusinessPartners({
           params,
-          token,
         })
       )
     }
@@ -103,7 +94,10 @@ const PartnerNetwork = () => {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <StageHeader title={t('content.partnernetwork.headertitle')} />
+      <SubHeader
+        title={t('content.partnernetwork.headertitle')}
+        hasBackButton={false}
+      />
       <PartnerNetworkSearchForm
         {...{
           onBpnFieldChange,

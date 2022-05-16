@@ -1,0 +1,15 @@
+.picture-with-text-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+
+  .text-with-button-wrapper {
+    padding-left: 100px;
+
+    button {
+      margin-top: 40px;
+    }
+  }
+}

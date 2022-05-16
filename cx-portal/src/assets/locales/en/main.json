@@ -29,7 +29,8 @@
     "thirdpartylicenses": "Third Party Licenses",
     "registration-requests": "Registration Requests",
     "logout": "Sign Out",
-    "notfound": "Page not found"
+    "notfound": "Page not found",
+    "edc-connector": "Edc Connector"
   },
   "content": {
     "admin": {
@@ -133,7 +134,43 @@
       "message": "Contents of Developer Hub"
     },
     "connector": {
-      "message": "Contents of Connector"
+      "message": "Contents of connector"
+    },
+    "edcconnector": {
+      "columns": {
+        "name": "Connector Name",
+        "id": "Connector_ID",
+        "type": "Connector Type",
+        "details": "Details"
+      },
+      "headertitle": "IDS/EDC Connector",
+      "subheadertitle": "IDS/EDC",
+      "tabletitle": "Onboarded Connectors",
+      "imagetext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "addconnectorbutton": "Add Connector",
+      "modal": {
+        "title": "Connect company connector",
+        "intro": "Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "companyconnectorlabel": "Connect company connector",
+        "connectorasaservice": "Connector-as-a-service",
+        "insertform": {
+          "name": {
+            "label": "ConnectorName*",
+            "placeholder": "Connector Name",
+            "error": "Connector name field is mandatory"
+          },
+          "id": {
+            "label": "ConnectorID*",
+            "placeholder": "Connector ID",
+            "error": "Connector ID field is mandatory"
+          },
+          "url": {
+            "label": "Connector URL*",
+            "placeholder": "Connector URL",
+            "error": "This field needs to be valid url eg: https://catane-x.net"
+          }
+        }
+      }
     },
     "partnernetwork": {
       "headertitle": "Partners Network",

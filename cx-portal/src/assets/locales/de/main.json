@@ -29,7 +29,8 @@
     "3rdpartylicenses": "Third Party Lizenzen",
     "registration-requests": "Registrierungsanfragen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden"
+    "notfound": "Seite nicht gefunden",
+    "edc-connector": "Edc Konnektor"
   },
   "content": {
     "admin": {
@@ -133,7 +134,43 @@
       "message": "Inhalte vom Entwickler Hub"
     },
     "connector": {
-      "message": "Inhalte vom Konnektor"
+      "message": "Contents of connector"
+    },
+    "edcconnector": {
+      "columns": {
+        "name": "Konnektorname",
+        "id": "Konnektor-ID",
+        "type": "Steckertyp",
+        "details": "Einzelheiten"
+      },
+      "headertitle": "IDS/EDC Konnektor",
+      "subheadertitle": "IDS/EDC",
+      "tabletitle": "Integrierte Anschlüsse",
+      "imagetext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "addconnectorbutton": "Konnektor hinzufügen",
+      "modal": {
+        "title": "Verbinden Sie den Unternehmenskonnektor",
+        "intro": "Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
+        "connectorasaservice": "Connector-as-a-service",
+        "insertform": {
+          "name": {
+            "label": "Konnektorname*",
+            "placeholder": "Konnektorname",
+            "error": "Das Feld Konnektorname ist erforderlich"
+          },
+          "id": {
+            "label": "Konnektor-ID*",
+            "placeholder": "Konnektor-ID",
+            "error": "Das Feld Konnektor-ID ist erforderlich"
+          },
+          "url": {
+            "label": "Konnektor URL*",
+            "placeholder": "Konnektor URL",
+            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catane-x.net"
+          }
+        }
+      }
     },
     "partnernetwork": {
       "headertitle": "Partnernetzwerk",
