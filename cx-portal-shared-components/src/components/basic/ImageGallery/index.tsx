@@ -30,6 +30,8 @@ export const ImageGallery = ({ gallery }: { gallery: ImageType[] }) => (
           style={{
             width: '100%',
             borderRadius: '20px',
+            height: '250px',
+            objectFit: 'cover'
           }}
         />
         <Typography
