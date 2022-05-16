@@ -1,15 +1,15 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
+  CardItems,
   SearchInput,
   Typography,
   ViewSelector,
 } from 'cx-portal-shared-components'
 import { AppListGroupView } from '../AppListGroupView'
-import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/appMarketplace/actions'
-import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
+import { appMarketplaceSelectActive, appMarketplaceSelectFavorites } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
@@ -23,6 +23,7 @@ export default function AppListSection() {
   const cards = useSelector(appMarketplaceSelectActive)
   const { t } = useTranslation()
 
+  const favoriteItems = useSelector(appMarketplaceSelectFavorites)
   const reference = PageService.registerReference(label, useRef(null))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -30,7 +31,11 @@ export default function AppListSection() {
   }
 
   const add2Favorites = (appId: string) => {
-    console.error('TODO: Add app to favorites logic.')
+    console.log('TODO: Add app to favorites logic.', appId)
+  }
+
+  const checkIsFavoriteItem = (appId: string) => {
+    return favoriteItems.some((item: CardItems) => item.id === appId)
   }
 
   const categoryViews = [
@@ -76,7 +81,8 @@ export default function AppListSection() {
           items={cards.map((card) => ({
             ...card,
             onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: add2Favorites,
+            onSecondaryButtonClick: () => add2Favorites(card.id!),
+            addButtonClicked: checkIsFavoriteItem(card.id!)
           }))}
           groupKey={group}
         />
