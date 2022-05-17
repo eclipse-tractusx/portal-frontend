@@ -1,6 +1,6 @@
 {
   "name": "cx-portal-shared-components",
-  "version": "0.3.5",
+  "version": "0.4.1",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",
@@ -26,8 +26,8 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1",
-    "rollup-plugin-dts": "^4.2.0"
+    "rollup-plugin-dts": "^4.2.0",
+    "slick-carousel": "^1.8.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.8.1",
