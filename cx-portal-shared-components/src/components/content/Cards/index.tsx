@@ -32,7 +32,7 @@ export const Cards = ({
   columns = 6,
   expandOnHover,
   filledBackground,
-  addButtonClicked=false,
+  addButtonClicked = false,
 }: CardsProps) => {
   const settings = {
     variant,

@@ -6,7 +6,7 @@ const baseAssets = getAssetBase()
 
 export const getAppImage = (app: AppMarketplaceApp): string =>
   !app.leadPictureUri || app.leadPictureUri === 'ERROR'
-    ? ''
+    ? `${baseAssets}/images/apps/default/lead.png`
     : app.leadPictureUri.startsWith('https://')
     ? app.leadPictureUri
     : `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
