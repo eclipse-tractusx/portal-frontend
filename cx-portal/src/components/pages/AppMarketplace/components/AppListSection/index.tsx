@@ -9,7 +9,10 @@ import {
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/appMarketplace/actions'
-import { appMarketplaceSelectActive, appMarketplaceSelectFavorites } from 'state/features/appMarketplace/slice'
+import {
+  appMarketplaceSelectActive,
+  appMarketplaceSelectFavorites,
+} from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
@@ -82,7 +85,7 @@ export default function AppListSection() {
             ...card,
             onButtonClick: () => navigate(`/appdetail/${card.id}`),
             onSecondaryButtonClick: () => add2Favorites(card.id!),
-            addButtonClicked: checkIsFavoriteItem(card.id!)
+            addButtonClicked: checkIsFavoriteItem(card.id!),
           }))}
           groupKey={group}
         />

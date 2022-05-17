@@ -9,7 +9,7 @@ interface FavoriteItemProps {
 
 export default function FavoriteItem({ item }: FavoriteItemProps) {
   const navigate = useNavigate()
-  const [ addedToFavorite, setAddedToFavorite ] = useState(false)
+  const [addedToFavorite, setAddedToFavorite] = useState(false)
 
   //TODO:
   //implement logic
@@ -38,9 +38,7 @@ export default function FavoriteItem({ item }: FavoriteItemProps) {
       rating={item.rating}
       price={item.price}
       onButtonClick={() => handleButtonClick(item.id!)}
-      onSecondaryButtonClick={() =>
-        handleSecondaryButtonClick(item.id!)
-      }
+      onSecondaryButtonClick={() => handleSecondaryButtonClick(item.id!)}
       addButtonClicked={true}
     />
   )
