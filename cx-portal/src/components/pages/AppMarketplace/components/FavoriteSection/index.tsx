@@ -12,11 +12,10 @@ export default function FavoriteSection() {
 
   useEffect(() => {
     dispatch(fetchFavorites())
-
   }, [dispatch])
-  
+
   return (
-    <section className="favorite-section">      
+    <section className="favorite-section">
       <div className="favorite-section-title">
         <SubHeaderTitle
           title={'content.appstore.favoriteSection.title'}
@@ -25,11 +24,10 @@ export default function FavoriteSection() {
       </div>
 
       <Carousel gapToDots={115} expandOnHover={true}>
-        {items && items.map((item) => {
-          return (
-            <FavoriteItem item={item}/>
-          )
-        })}
+        {items &&
+          items.map((item) => {
+            return <FavoriteItem item={item} />
+          })}
       </Carousel>
     </section>
   )
