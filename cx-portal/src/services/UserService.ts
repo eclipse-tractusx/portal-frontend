@@ -8,7 +8,7 @@ import { error, info } from './LogService'
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
   realm: 'CX-Central',
-  clientId: 'catenax-portal',
+  clientId: 'Cl2-CX-Portal',
 }
 
 // TODO: add an ESLint exception until there is a solution

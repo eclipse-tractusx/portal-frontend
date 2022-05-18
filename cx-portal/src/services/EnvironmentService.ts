@@ -16,8 +16,14 @@ export const getAssetBase = () =>
   `${isLocal() ? LOCAL_SERVICES_FRONTEND : ''}/assets`
 
 //TODO: remove hard coded url and activate after setup of centralidp
-export const getCentralIdp = () =>
-  'https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com/iamcentralidp/auth'
+export const getCentralIdp = () => {
+  const hostname = getHostname()
+  if (hostname === 'portal.int.demo.catena-x.net')
+    return 'https://centralidp.demo.catena-x.net/auth'
+  if (hostname === 'portal.catena-x.net')
+    return 'https://centralidp.catena-x.net/auth'
+  return 'https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com/iamcentralidp/auth'
+}
 //export const getCentralIdp = () =>
 //  isLocal()
 //    ? LOCAL_SERVICES_CENTRALIDP
