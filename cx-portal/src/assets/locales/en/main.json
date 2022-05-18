@@ -8,7 +8,7 @@
     "datacatalog": "Data Catalog",
     "applications": "Applications",
     "semantichub": "Semantic Hub",
-    "digitaltwin": "Digital Twin",
+    "digitaltwin": "Digital Twins",
     "developerhub": "Developer Hub",
     "connector": "Connector",
     "account": "My Account",
@@ -30,7 +30,7 @@
     "registration-requests": "Registration Requests",
     "logout": "Sign Out",
     "notfound": "Page not found",
-    "edc-connector": "Edc Connector"
+    "edc-connector": "Technical Integration"
   },
   "content": {
     "admin": {
@@ -109,7 +109,7 @@
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
-          "asset_count": "Specific Asset Count"
+          "asset_count": "Asset Count"
         },
         "load_button": "Load more"
       },
@@ -143,26 +143,26 @@
         "type": "Connector Type",
         "details": "Details"
       },
-      "headertitle": "IDS/EDC Connector",
-      "subheadertitle": "IDS/EDC",
+      "headertitle": "Technical Integration - Connectors & IDPs",
+      "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
-      "imagetext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "addconnectorbutton": "Add Connector",
+      "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
+      "addconnectorbutton": "Register Connector",
       "modal": {
         "title": "Connect company connector",
-        "intro": "Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "intro": "Registration of a company connector which is implemented in your own company network.",
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {
           "name": {
-            "label": "ConnectorName*",
+            "label": "Connector Name*",
             "placeholder": "Connector Name",
-            "error": "Connector name field is mandatory"
+            "error": "Connector name is mandatory"
           },
           "id": {
-            "label": "ConnectorID*",
+            "label": "Connector ID*",
             "placeholder": "Connector ID",
-            "error": "Connector ID field is mandatory"
+            "error": "Connector ID is mandatory"
           },
           "url": {
             "label": "Connector URL*",
@@ -182,7 +182,7 @@
         "street": "Street",
         "zipcode": "Zip Code",
         "city": "City",
-        "cxparticipant": "CX Participant"
+        "cxparticipant": "CX Member"
       },
       "filters": {
         "germany": "Germany",
@@ -305,15 +305,15 @@
       "subscribe": "Subscribe",
       "privacy": {
         "heading": "Privacy Policy",
-        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth."
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
       },
       "howtouse": {
-        "heading": "How to Use",
-        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+        "heading": "Terms of use",
+        "message": "These terms of use regulate the relationship between app prospects and app providers. The terms of use, as well as the data models and further information can be viewed by clicking on the hyperlinks."
       },
       "providerInformation": {
         "heading": "Provider Information",
-        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+        "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
         "appProvider": "App Provider",
         "website": "Website",
         "email": "E-Mail",

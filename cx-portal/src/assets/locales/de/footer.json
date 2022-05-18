@@ -11,8 +11,12 @@
       "goal": {
         "question": "Was ist das Ziel des Catena-X Automotive Network?",
         "answer": "Ziel des Catena-X Automotive Network ist es, standardisierte Daten- und Informationsflüsse entlang der gesamten automobilen Wertschöpfungskette zu schaffen. Der Fokus liegt dabei auf dem Nutzen und Mehrwert für jeden Teilnehmer am Netzwerk unter Wahrung der Datenhoheit nach den Standards der Europäischen Union (GAIA-X)."
-      }
-    }
+	  },
+      "Contract Term Change": {
+        "question": "Was passiert wenn sich von einem bestehenden Service die Vertragsverhältnisse verändern?",
+        "answer": "  Wenn Vertragsrichtlinien sich ändern, werden Sie hierüber informieren. Soweit diese geänderten Nutzungsbedingungen Regelungen enthalten, die sich auf eine laufende Vertragsbeziehung mit dem Provider auswirken, gilt das Folgende: Sie werden frühzeitig über die Vertragsänderung informieren und Ihnen die Möglichkeit einräumen, den Vertrag mindestens 30 Tage zuvor zu kündigen, bevor die Änderung wirksam wird. Wir werden Sie ferner besonders informieren, dass die Änderung wirksam wird, sollten Sie den Vertrag nicht kündigen. Widerspricht der Nutzer, kann der Provider fristlos kündigen. Abgeschlossene Transaktionen bleiben davon unberührt."
+       }
+	}
   },
   "contact": {
     "title": "Kontakt",
