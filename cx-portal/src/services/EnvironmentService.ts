@@ -29,6 +29,16 @@ export const getCentralIdp = () => {
 //    ? LOCAL_SERVICES_CENTRALIDP
 //    : window.location.origin.replace('portal', 'centralidp')
 
+//TODO: remove once migration to ng keycloak is wrapped up one only Cl2-CX-Portal is relevant any longer
+export const getClientId = () => {
+  const hostname = getHostname()
+  if (hostname === 'portal.int.demo.catena-x.net')
+    return 'Cl2-CX-Portal'
+  if (hostname === 'portal.catena-x.net')
+    return 'Cl2-CX-Portal'
+  return 'catenax-portal'
+}
+
 //TODO: remove hard coded url and activate after setup of BPDM Api
 export const getBpdmApiBase = () =>
   'https://catenax-bpdm-dev.demo.catena-x.net/api'
@@ -48,6 +58,7 @@ const EnvironmentService = {
   getBpdmApiBase,
   getCentralIdp,
   getSemanticApiBase,
+  getClientId,
 }
 
 export default EnvironmentService

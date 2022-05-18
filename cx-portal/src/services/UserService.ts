@@ -2,13 +2,13 @@ import Keycloak from 'keycloak-js'
 import { IUser } from 'state/features/user/types'
 import { ROLES } from 'types/MainTypes'
 import AccessService from './AccessService'
-import { getCentralIdp } from './EnvironmentService'
+import { getCentralIdp, getClientId } from './EnvironmentService'
 import { error, info } from './LogService'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
   realm: 'CX-Central',
-  clientId: 'Cl2-CX-Portal',
+  clientId: getClientId(),
 }
 
 // TODO: add an ESLint exception until there is a solution
