@@ -167,7 +167,7 @@
           "url": {
             "label": "Konnektor URL*",
             "placeholder": "Konnektor URL",
-            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catane-x.net"
+            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net"
           }
         }
       }
