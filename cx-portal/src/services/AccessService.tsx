@@ -124,7 +124,8 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
+    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+    // role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
     element: (
       <Route

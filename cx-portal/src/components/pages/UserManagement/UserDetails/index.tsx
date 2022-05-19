@@ -21,6 +21,7 @@ import uniqueId from 'lodash/uniqueId'
 export default function UserDetails() {
   const { t } = useTranslation()
 
+  // TODO: Wrong user mock data
   const parsedUser = useSelector((state: RootState) => state.user)
 
   const userDetails = [
