@@ -223,9 +223,15 @@
       "subheadline": "Please select one or more roles for your company to participant in Cateny-X. Don't worry, you can change later."
     },
     "account": {
-      "token": "Current authentication token",
+      "userAccount": "User account",
+      "token": "DEV only: Current authentication token",
       "copy_to_clipboard": "copy token to clipboard",
-      "deleteAccount": "Benutzer löschen"
+      "deleteAccount": "Delete user",
+      "suspendAccount": "Suspend user",
+      "resetPasswordAccount": "Reset password",
+      "appPermissionTable": {
+        "title": "User permission per application"
+      }
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"
@@ -271,7 +277,7 @@
       "email": "Email",
       "company": "Company Name",
       "status": "Status",
-      "role": "Rollen",
+      "role": "Role",
       "active": "Active",
       "inactive": "Inactive",
       "name": "Name",

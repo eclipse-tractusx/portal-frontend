@@ -9,9 +9,9 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/userAdministration/actions'
-import { TenantUser } from 'state/features/userAdministration/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './AppUserDetailsTable.scss'
+import { useNavigate } from 'react-router-dom'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -41,9 +41,10 @@ export const AppUserDetailsTable = ({
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onUserDetailsClick = (userId: string) => {
-    console.log('show details', userId)
+    navigate('/usermanagement/userdetails/' + userId)
   }
 
   useEffect(() => {
@@ -86,10 +87,10 @@ export const AppUserDetailsTable = ({
               field: 'details',
               headerName: t('global.field.details'),
               flex: 1,
-              renderCell: ({ row }: { row: TenantUser }) => (
+              renderCell: ({ row }) => (
                 <IconButton
                   color="secondary"
-                  onClick={() => onUserDetailsClick(row.userId)}
+                  onClick={() => onUserDetailsClick(row.id)}
                 >
                   <ArrowForwardIcon />
                 </IconButton>
