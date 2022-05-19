@@ -167,7 +167,7 @@
           "url": {
             "label": "Connector URL*",
             "placeholder": "Connector URL",
-            "error": "This field needs to be valid url eg: https://catane-x.net"
+            "error": "This field needs to be valid url eg: https://catena-x.net"
           }
         }
       }

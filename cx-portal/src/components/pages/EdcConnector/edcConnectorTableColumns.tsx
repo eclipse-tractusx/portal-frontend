@@ -35,6 +35,7 @@ export const ConnectorTableColumns = (
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',
+      sortable: false,
       renderCell: () => (
         <Container maxWidth="sm">
           <Grid container spacing={2}>

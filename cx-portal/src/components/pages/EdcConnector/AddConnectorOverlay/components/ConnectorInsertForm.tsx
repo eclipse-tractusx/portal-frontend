@@ -66,6 +66,9 @@ const ConnectorInsertForm = ({
                   trigger,
                   errors,
                   name: 'ConnectorName',
+                  rules: {
+                    required: true,
+                  },
                   helperText: t(
                     'content.edcconnector.modal.insertform.name.error'
                   ),
