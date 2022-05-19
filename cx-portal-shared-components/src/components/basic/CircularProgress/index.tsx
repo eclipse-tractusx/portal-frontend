@@ -1,24 +1,5 @@
-import {
-  CircularProgress as Loading,
-  CircularProgressProps,
-} from '@mui/material'
+import './CircularProgress.scss'
 
-export const CircularProgress = ({
-  size = 60,
-  thickness = 4,
-  ...props
-}: CircularProgressProps) => {
-  return (
-    <Loading
-      {...{
-        ...props,
-        ...{
-          size,
-          thickness,
-          variant: 'indeterminate',
-          value: 100,
-        },
-      }}
-    />
-  )
+export const CircularProgress = () => {
+  return <div className={'circularProgress'} />
 }
