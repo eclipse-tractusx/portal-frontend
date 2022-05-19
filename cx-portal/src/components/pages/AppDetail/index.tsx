@@ -45,7 +45,11 @@ export default function AppDetail() {
               + more
             </a>
           </div>
-          <AppDetailImageGallery images={item.detailPictureUris.map(image=>getAppImage(item.id, image))} />
+          <AppDetailImageGallery
+            images={item.detailPictureUris.map((image) =>
+              getAppImage(item.id, image)
+            )}
+          />
           <AppDetailPrivacy />
           <AppDetailHowToUse />
           <AppDetailProvider />
