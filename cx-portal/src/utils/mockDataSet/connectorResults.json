@@ -1,0 +1,12 @@
+[
+  {
+    "id": "12732",
+    "name": "Connector 1",
+    "type": "Data Provider"
+  },
+  {
+    "id": "12733",
+    "name": "Connector 2",
+    "type": "Graph Provider"
+  }
+]

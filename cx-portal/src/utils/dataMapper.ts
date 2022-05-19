@@ -8,7 +8,7 @@ import {
 import {
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
-} from 'state/features/userAdministration/types'
+} from 'state/features/adminRegistration/types'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (

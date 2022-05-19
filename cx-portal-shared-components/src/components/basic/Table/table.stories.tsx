@@ -59,6 +59,7 @@ const basicArgs = {
   disableColumnSelector: true,
   disableDensitySelector: true,
   disableSelectionOnClick: true,
+  checkboxSelection: true,
   loading: false,
   rows,
   columns,

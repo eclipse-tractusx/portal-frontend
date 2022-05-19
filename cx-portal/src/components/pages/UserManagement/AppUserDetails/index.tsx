@@ -28,10 +28,12 @@ export default function AppUserDetails() {
     console.log('confirmed user right!')
   }
 
+  /* !! the following section will need to get replaced with the BL and an API integration */
   const roles: UserRole[] = [
-    { name: 'Admin', description: 'Role Description' },
-    { name: 'User', description: 'Role Description' },
-    { name: 'Editor', description: 'Role Description' },
+    { name: 'Admin', description: 'The Admin can do everything' },
+    { name: 'User', description: 'The User can view cars' },
+    { name: 'Editor', description: 'The Editor can edit cars' },
+    { name: 'Purchaser', description: 'The Purchaser can purchase cars' },
   ]
 
   return (

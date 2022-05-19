@@ -20,7 +20,12 @@ export interface CardImage {
   alt?: string
 }
 
-export type MouseEventHandler = (e: MouseEvent) => void
+export enum RequestState {
+  NONE,
+  SUBMIT,
+  OK,
+  ERROR,
+}
 
 export enum PAGES {
   ROOT = '',
@@ -55,6 +60,7 @@ export enum PAGES {
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
   REGISTRATION_REQUESTS = 'registration-requests',
+  EDC_CONNECTOR = 'edc-connector',
   LOGOUT = 'logout',
 }
 
@@ -86,6 +92,7 @@ export enum ROLES {
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',
+  TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
 }
 
@@ -94,4 +101,13 @@ export type IPage = {
   role?: string
   element: JSX.Element
   isRoute?: boolean
+}
+
+export type UserInput = {
+  key: string
+  i18n: string
+  helperText: string
+  pattern: RegExp
+  value: string
+  valid: boolean
 }

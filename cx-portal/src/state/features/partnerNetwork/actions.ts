@@ -4,7 +4,7 @@ import { PartnerNetworkApi } from './api'
 
 const fetchBusinessPartners = createAsyncThunk(
   'partnerNetwork/fetchBusinessPartners',
-  async ({ params, token }: { params: SearchParams; token: string }) => {
+  async ({ params }: { params: SearchParams }) => {
     try {
       // Call axios instance to get values
       return await PartnerNetworkApi.getInstance().getAllBusinessPartner(params)
@@ -17,7 +17,7 @@ const fetchBusinessPartners = createAsyncThunk(
 
 const getOneBusinessPartner = createAsyncThunk(
   'partnerNetwork/getOneBusinessPartner',
-  async ({ bpn, token }: { bpn: string; token: string }) => {
+  async ({ bpn }: { bpn: string }) => {
     try {
       // Call axios instance to get values
       return await PartnerNetworkApi.getInstance().getBusinessPartnerByBpn(bpn)

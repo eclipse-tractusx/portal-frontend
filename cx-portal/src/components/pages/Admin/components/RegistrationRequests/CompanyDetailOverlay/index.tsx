@@ -9,7 +9,7 @@ import {
 import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
 import { DetailGridRow } from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay'
 import { useSelector } from 'react-redux'
-import { userAdministrationSelector } from 'state/features/userAdministration/slice'
+import { adminRegistrationSelector } from 'state/features/adminRegistration/slice'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -24,7 +24,7 @@ const CompanyDetailOverlay = ({
   const theme = useTheme()
   const { spacing } = theme
   const { detailLoading, companyDetail: selectedCompany } = useSelector(
-    userAdministrationSelector
+    adminRegistrationSelector
   )
 
   return (

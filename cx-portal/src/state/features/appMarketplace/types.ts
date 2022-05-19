@@ -2,16 +2,18 @@ export type AppMarketplaceApp = {
   id: string
   title: string
   provider: string
+  leadPictureUri: string
   shortDescription: string
+  useCases: string[]
   price: string
   rating?: number
-  useCase?: string[]
-  leadPictureUri: string
   link?: string
 }
 
 export type AppMarketplaceState = {
   items: AppMarketplaceApp[]
+  favorites: AppMarketplaceApp[]
+  latest: AppMarketplaceApp[]
   subscribed: AppMarketplaceApp[]
   loading: boolean
   error: string

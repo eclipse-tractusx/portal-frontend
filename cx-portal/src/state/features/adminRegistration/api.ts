@@ -1,10 +1,10 @@
 import UserService from 'services/UserService'
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { TenantUser, InviteData, CompanyDetail } from './types'
+import { InviteData, CompanyDetail } from './types'
 
-export class UserAdministrationApi extends HttpClient {
-  private static classInstance?: UserAdministrationApi
+export class AdminRegistrationApi extends HttpClient {
+  private static classInstance?: AdminRegistrationApi
 
   public constructor() {
     super(getApiBase())
@@ -12,7 +12,7 @@ export class UserAdministrationApi extends HttpClient {
 
   public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new UserAdministrationApi()
+      this.classInstance = new AdminRegistrationApi()
     }
 
     return this.classInstance
@@ -26,17 +26,6 @@ export class UserAdministrationApi extends HttpClient {
         headers: {
           authorization: `Bearer ${UserService.getToken()}`,
           'content-type': 'application/json',
-        },
-      }
-    )
-  }
-
-  public getTenantUsers = () => {
-    return this.instance.get<TenantUser[]>(
-      `/api/administration/user/tenant/${UserService.getTenant()}/users`,
-      {
-        headers: {
-          authorization: `Bearer ${UserService.getToken()}`,
         },
       }
     )

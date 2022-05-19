@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Table, Typography } from 'cx-portal-shared-components'
-import { userAdministrationSelector } from 'state/features/userAdministration/slice'
+import { adminRegistrationSelector } from 'state/features/adminRegistration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchRegistrationRequests,
   fetchCompanyDetail,
-} from 'state/features/userAdministration/actions'
+} from 'state/features/adminRegistration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
+import StageHeader from 'components/shared/frame/StageHeader'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -19,7 +20,7 @@ export default function RegistrationRequests() {
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
   const { loading, registrationRequests } = useSelector(
-    userAdministrationSelector
+    adminRegistrationSelector
   )
 
   useEffect(() => {
@@ -42,17 +43,9 @@ export default function RegistrationRequests() {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <div className="header-section">
-        <div className="header-content">
-          <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="h4">
-            {t('content.admin.registration-requests.headertitle')}
-          </Typography>
-        </div>
-        <img
-          src="./stage-header-background.png"
-          alt="Registration Requests Background"
-        />
-      </div>
+      <StageHeader
+        title={t('content.admin.registration-requests.headertitle')}
+      />
       <div className="page-title-container">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}
