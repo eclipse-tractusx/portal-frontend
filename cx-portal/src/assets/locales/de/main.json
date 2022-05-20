@@ -360,6 +360,13 @@
       }
     }
   },
+  "navigation": {
+    "subNavigation": {
+      "buttonLabel": "Technical User Management",
+      "link1Label": "Access Management",
+      "link2Label": "Identity User Management"
+    }
+  },
   "global": {
     "field": {
       "first": "Name",
@@ -379,8 +386,7 @@
       "confirm": "Bestätigen",
       "more": "Mehr",
       "details": "Details",
-      "close": "Schließen",
-      "back": "Zurück"
+      "close": "Schließen"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
