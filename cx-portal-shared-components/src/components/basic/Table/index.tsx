@@ -38,16 +38,6 @@ export const Table = ({
         checkboxSelection,
       }}
       {...props}
-      sx={{
-        '.MuiDataGrid-columnHeaderCheckbox': {
-          width: '64px !important',
-          minWidth: '64px !important',
-          maxWidth: '64px !important',
-          paddingLeft: '10px !important',
-          paddingRight: '10px !important',
-          height: '76px !important',
-        },
-      }}
     />
   )
 }

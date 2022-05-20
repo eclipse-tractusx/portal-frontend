@@ -476,6 +476,14 @@ export const theme = createTheme({
           padding: '16px 32px',
           borderColor: palette.border.border01,
         },
+        columnHeaderCheckbox: {
+          width: '64px !important',
+          minWidth: '64px !important',
+          maxWidth: '64px !important',
+          paddingLeft: '10px !important',
+          paddingRight: '10px !important',
+          height: '76px !important',
+        },
       },
     },
     MuiChip: {
