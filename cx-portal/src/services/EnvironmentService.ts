@@ -32,10 +32,8 @@ export const getCentralIdp = () => {
 //TODO: remove once migration to ng keycloak is wrapped up one only Cl2-CX-Portal is relevant any longer
 export const getClientId = () => {
   const hostname = getHostname()
-  if (hostname === 'portal.int.demo.catena-x.net')
-    return 'Cl2-CX-Portal'
-  if (hostname === 'portal.catena-x.net')
-    return 'Cl2-CX-Portal'
+  if (hostname === 'portal.int.demo.catena-x.net') return 'Cl2-CX-Portal'
+  if (hostname === 'portal.catena-x.net') return 'Cl2-CX-Portal'
   return 'catenax-portal'
 }
 
