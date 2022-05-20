@@ -12,7 +12,7 @@ const breadcrumbs = [
     key="1"
     color="inherit"
     sx={{ cursor: 'pointer', fontSize: '14px' }}
-    onClick={() => console.log('navigate to home')}
+    onClick={() => console.log('step back to page link 1')}
   >
     Home
   </Link>,
@@ -21,12 +21,12 @@ const breadcrumbs = [
     key="2"
     color="inherit"
     sx={{ cursor: 'pointer', fontSize: '14px' }}
-    onClick={() => console.log('navigate to Breackcrumb 1')}
+    onClick={() => console.log('step back to page link 2')}
   >
-    Breadcrumb 1
+    Link 1
   </Link>,
   <Typography key="3" color="text.primary" sx={{ fontSize: '14px' }}>
-    Breadcrumb 2
+    Link 2
   </Typography>,
 ]
 
