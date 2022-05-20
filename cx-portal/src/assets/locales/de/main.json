@@ -386,7 +386,8 @@
       "confirm": "Bestätigen",
       "more": "Mehr",
       "details": "Details",
-      "close": "Schließen"
+      "close": "Schließen",
+      "breadcrumbBack": "Zurück"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

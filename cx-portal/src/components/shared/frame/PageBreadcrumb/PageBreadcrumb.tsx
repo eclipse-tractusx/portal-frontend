@@ -1,6 +1,7 @@
 import { Breadcrumb } from 'cx-portal-shared-components'
 import { Link, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 // This hardcoded Breadcrumbs array have to be replaced with generated array from:
 // 1- per adding breadcrumb items in store und read theme in this component with useSelector!
@@ -31,11 +32,12 @@ const breadcrumbs = [
 
 export const PageBreadcrumb = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   return (
     <Breadcrumb
       backButton={true}
-      backButtonLabel="Back"
+      backButtonLabel={t('global.actions.breadcrumbBack')}
       backButtonVariant="text"
       onBackButtonClick={() => navigate(-1)}
       breadcrumbs={breadcrumbs}
