@@ -11,11 +11,11 @@
       "goal": {
         "question": "What is the goal of the Catena-X Automotive Network?",
         "answer": "The aim of the Catena-X Automotive Network is to create standardized data and information flows along the entire automotive value chain. The focus here is on the benefits and added value for each participant in the network while maintaining data sovereignty in accordance with the standards of the European Union (GAIA-X)."
-	   },
-	   "Contract Term Change": {
-	    "question": "What happens, if Contract Terms are getting changed after my service subscription?",
-	    "answer": "  Wenn Vertragsrichtlinien sich ändern, werden Sie hierüber informieren. Soweit diese geänderten Nutzungsbedingungen Regelungen enthalten, die sich auf eine laufende Vertragsbeziehung mit dem Provider auswirken, gilt das Folgende: Sie werden frühzeitig über die Vertragsänderung informieren und Ihnen die Möglichkeit einräumen, den Vertrag mindestens 30 Tage zuvor zu kündigen, bevor die Änderung wirksam wird. Wir werden Sie ferner besonders informieren, dass die Änderung wirksam wird, sollten Sie den Vertrag nicht kündigen. Widerspricht der Nutzer, kann der Provider fristlos kündigen. Abgeschlossene Transaktionen bleiben davon unberührt."
-	  }
+      },
+      "Contract Term Change": {
+        "question": "What happens, if Contract Terms are getting changed after my service subscription?",
+        "answer": "  Wenn Vertragsrichtlinien sich ändern, werden Sie hierüber informieren. Soweit diese geänderten Nutzungsbedingungen Regelungen enthalten, die sich auf eine laufende Vertragsbeziehung mit dem Provider auswirken, gilt das Folgende: Sie werden frühzeitig über die Vertragsänderung informieren und Ihnen die Möglichkeit einräumen, den Vertrag mindestens 30 Tage zuvor zu kündigen, bevor die Änderung wirksam wird. Wir werden Sie ferner besonders informieren, dass die Änderung wirksam wird, sollten Sie den Vertrag nicht kündigen. Widerspricht der Nutzer, kann der Provider fristlos kündigen. Abgeschlossene Transaktionen bleiben davon unberührt."
+      }
     }
   },
   "contact": {
