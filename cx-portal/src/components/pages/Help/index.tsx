@@ -7,7 +7,7 @@ export default function Help() {
     <>
       <h3>{t('general.title')}</h3>
       <ul>
-        {['what', 'goal'].map((topic) => (
+        {['what', 'goal', 'Contract Term Change'].map((topic) => (
           <li key={topic}>
             <p>{t(`general.${topic}.question`)}</p>
             <p>{t(`general.${topic}.answer`)}</p>

@@ -13,6 +13,7 @@ import AppDetailTags from './components/AppDetailTags'
 import { t } from 'i18next'
 import './AppDetail.scss'
 import NotFound from '../NotFound'
+import { getAppImage } from 'state/features/appMarketplace/mapper'
 
 export default function AppDetail() {
   const dispatch = useDispatch()
@@ -44,7 +45,11 @@ export default function AppDetail() {
               + more
             </a>
           </div>
-          <AppDetailImageGallery />
+          <AppDetailImageGallery
+            images={item.detailPictureUris.map((image) =>
+              getAppImage(item.id, image)
+            )}
+          />
           <AppDetailPrivacy />
           <AppDetailHowToUse />
           <AppDetailProvider />
