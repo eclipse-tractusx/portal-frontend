@@ -1,11 +1,11 @@
 import { Box, Breadcrumbs } from '@mui/material'
 import { Button } from '../Button'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 interface BreadcrumbProps {
   backButton?: boolean
   backButtonLabel?: string
-  backButtonVariant?: "text" | "outlined" | "contained"
+  backButtonVariant?: 'text' | 'outlined' | 'contained'
   onBackButtonClick?: React.MouseEventHandler
   breadcrumbs: any[]
 }
@@ -13,10 +13,10 @@ interface BreadcrumbProps {
 export const Breadcrumb = ({
   backButton,
   backButtonLabel,
-  backButtonVariant='text',
+  backButtonVariant = 'text',
   onBackButtonClick,
   breadcrumbs,
- }: BreadcrumbProps) => { 
+}: BreadcrumbProps) => {
   return (
     <Box sx={{ display: 'flex' }}>
       {backButton && (
@@ -25,9 +25,13 @@ export const Breadcrumb = ({
           color="secondary"
           variant={`${backButtonVariant}`}
           size="small"
-          sx={{ width: 'fit-content', marginRight: '24px', padding: '4px 12px !important' }}
+          sx={{
+            width: 'fit-content',
+            marginRight: '24px',
+            padding: '4px 12px !important',
+          }}
         >
-          <ArrowBackIcon sx={{marginRight: '5px'}} /> {backButtonLabel}
+          <ArrowBackIcon sx={{ marginRight: '5px' }} /> {backButtonLabel}
         </Button>
       )}
 

@@ -3,7 +3,7 @@ import { theme } from '../../../theme'
 import { SubNavigationLink } from './SubNavigationLink'
 import { SubNavigationButton } from './SubNavigationButton'
 
-export interface SubNavigationProps{
+export interface SubNavigationProps {
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   link1Label?: string

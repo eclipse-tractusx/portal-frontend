@@ -6,8 +6,7 @@ import { Breadcrumb as Component } from '.'
 export default {
   title: 'Breadcrumb',
   component: Component,
-  argTypes: {
-  },
+  argTypes: {},
 }
 
 const breadcrumbs = [
@@ -15,7 +14,7 @@ const breadcrumbs = [
     underline="hover"
     key="1"
     color="inherit"
-    sx={{cursor: 'pointer', fontSize:'14px'}}
+    sx={{ cursor: 'pointer', fontSize: '14px' }}
     onClick={() => console.log('navigate to home')}
   >
     Home
@@ -24,19 +23,15 @@ const breadcrumbs = [
     underline="hover"
     key="2"
     color="inherit"
-    sx={{cursor: 'pointer', fontSize:'14px'}}
+    sx={{ cursor: 'pointer', fontSize: '14px' }}
     onClick={() => console.log('navigate to Breackcrumb 1')}
   >
     Breadcrumb 1
   </Link>,
-  <Typography
-    key="3"
-    color="text.primary"
-    sx={{ fontSize:'14px' }}
-  >
+  <Typography key="3" color="text.primary" sx={{ fontSize: '14px' }}>
     Breadcrumb 2
   </Typography>,
-];
+]
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />

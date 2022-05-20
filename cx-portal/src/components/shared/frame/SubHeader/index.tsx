@@ -11,18 +11,22 @@ interface ComponentProps {
   hasBreadcrumb?: boolean
 }
 
-export default function SubHeader({ title, hasBackButton, hasBreadcrumb }: ComponentProps) {
+export default function SubHeader({
+  title,
+  hasBackButton,
+  hasBreadcrumb,
+}: ComponentProps) {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
   return (
     <>
       <div className="sub-header">
-        {hasBreadcrumb &&
+        {hasBreadcrumb && (
           <div className="sub-header-breadcrumb">
-          <PageBreadcrumb />
-        </div>
-        }
+            <PageBreadcrumb />
+          </div>
+        )}
         <div className="sub-header-title">
           <SubHeaderTitle title={title} variant="h4" />
         </div>

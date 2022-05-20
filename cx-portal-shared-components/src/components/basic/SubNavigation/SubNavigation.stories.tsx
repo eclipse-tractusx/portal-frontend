@@ -4,8 +4,7 @@ import { SubNavigation as Component } from '.'
 export default {
   title: 'Navigation',
   component: Component,
-  argTypes: {
-  },
+  argTypes: {},
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
