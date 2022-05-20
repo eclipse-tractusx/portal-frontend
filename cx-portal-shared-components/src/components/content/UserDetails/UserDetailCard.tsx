@@ -12,7 +12,7 @@ interface UserCardProps {
 
 interface UserItemsTranslation {
   label: string
-  value: string
+  value: string | []
 }
 
 export interface UserItems {
@@ -24,6 +24,28 @@ export const UserDetailCard = ({
   cardCategory,
   cardContentItems,
 }: UserCardProps) => {
+  const renderContentSwitch = (
+    param: string,
+    value: UserItemsTranslation | undefined
+  ) => {
+    switch (param) {
+      case 'status':
+        return (
+          <>
+            <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+            <Chip
+              color="secondary"
+              label={value?.value}
+              type="confirm"
+              variant="filled"
+              withIcon={false}
+            />
+          </>
+        )
+      default:
+        return `${value?.label}: ${value?.value}`
+    }
+  }
   return (
     <Box>
       <Box
@@ -60,20 +82,7 @@ export const UserDetailCard = ({
               padding: k === 'status' ? '12.5px' : '20px',
             }}
           >
-            {k === 'status' ? (
-              <>
-                <span style={{ marginRight: '10px' }}>{v?.label} :</span>
-                <Chip
-                  color="secondary"
-                  label={v?.value}
-                  type="confirm"
-                  variant="filled"
-                  withIcon={false}
-                />
-              </>
-            ) : (
-              `${v?.label}: ${v?.value}`
-            )}
+            {renderContentSwitch(k, v)}
           </ListItem>
         ))}
       </List>
