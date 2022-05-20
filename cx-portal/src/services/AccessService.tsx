@@ -125,8 +125,7 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USER_DETAILS,
-    // role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT, // <-- correct new role but not all test users have the right yet
-    role: ROLES.USERMANAGEMENT_VIEW,
+    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
     isRoute: true,
     element: (
       <Route
