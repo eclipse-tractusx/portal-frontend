@@ -5,17 +5,20 @@
     "appstore": "Appstore",
     "appmarketplace": "App Marketplace",
     "appdetails": "",
+    "datamanagement": "Data Management",
     "datacatalog": "Data Catalog",
     "applications": "Applications",
     "semantichub": "Semantic Hub",
     "digitaltwin": "Digital Twins",
     "developerhub": "Developer Hub",
-    "connector": "Connector",
-    "account": "My Account",
-    "notifications": "Notifications",
-    "organization": "Organization",
     "partnernetwork": "Partner Network",
+    "connector": "Connector",
+    "account": "My CX Account",
+    "organization": "My Organization",
+    "notifications": "Notifications",
     "usermanagement": "User Management",
+    "technicalsetup": "Technical Integration",
+    "applicationrequests": "Application Requests",
     "settings": "Settings",
     "admin": "Administration",
     "developer": "Development",
@@ -27,10 +30,8 @@
     "terms": "Terms of Service",
     "cookiepolicy": "Cookies",
     "thirdpartylicenses": "Third Party Licenses",
-    "registration-requests": "Registration Requests",
     "logout": "Sign Out",
-    "notfound": "Page not found",
-    "edc-connector": "Technical Integration"
+    "notfound": "Page not found"
   },
   "content": {
     "admin": {
@@ -127,10 +128,13 @@
         "protocol_version": "Protocol version:"
       }
     },
+    "datamanagement": {
+      "message": "Contents of Data Management"
+    },
     "datacatalog": {
       "message": "Contents of Data Catalog"
     },
-    "devloperhub": {
+    "developerhub": {
       "message": "Contents of Developer Hub"
     },
     "connector": {
@@ -328,6 +332,13 @@
       }
     }
   },
+  "navigation": {
+    "subNavigation": {
+      "buttonLabel": "Technical User Management",
+      "link1Label": "Access Management",
+      "link2Label": "Identity User Management"
+    }
+  },
   "global": {
     "field": {
       "first": "First Name",
@@ -346,8 +357,7 @@
       "confirm": "Confirm",
       "more": "More",
       "details": "Details",
-      "close": "Close",
-      "back": "Back"
+      "close": "Close"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

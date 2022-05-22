@@ -10,8 +10,8 @@ export default function Main() {
   return (
     <>
       <Header
-        pages={AccessService.mainMenu()}
-        userPages={AccessService.userMenu()}
+        main={AccessService.mainMenuTree()}
+        user={AccessService.userMenu()}
       />
       <Outlet />
       <Footer pages={AccessService.footerMenu()} />

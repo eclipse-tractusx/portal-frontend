@@ -5,17 +5,20 @@
     "appstore": "App Store",
     "appmarketplace": "App Marketplace",
     "appdetails": "",
+    "datamanagement": "Datenmanagement",
     "datacatalog": "Datenkatalog",
     "applications": "Anwendungen",
     "semantichub": "Semantischer Hub",
     "digitaltwin": "Digitale Zwillinge",
     "developerhub": "Entwickler Hub",
     "connector": "Konnektor",
-    "account": "Mein Konto",
+    "partnernetwork": "Partner Network",
+    "account": "Mein CX Account",
+    "organization": "Meine Organisation",
     "notifications": "Benachrichtigungen",
-    "organization": "Organisation",
-    "partnernetwork": "Partner Netzwerk",
     "usermanagement": "Benutzerverwaltung",
+    "technicalsetup": "Technische Integration",
+    "applicationrequests": "Beitrittsanträge",
     "settings": "Einstellungen",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
@@ -127,10 +130,13 @@
         "protocol_version": "Protokoll Version:"
       }
     },
+    "datamanagement": {
+      "message": "Inhalte vom Datenmanagement"
+    },
     "datacatalog": {
       "message": "Inhalte vom Datenkatalog"
     },
-    "devloperhub": {
+    "developerhub": {
       "message": "Inhalte vom Entwickler Hub"
     },
     "connector": {
@@ -367,6 +373,13 @@
       }
     }
   },
+  "navigation": {
+    "subNavigation": {
+      "buttonLabel": "Technical User Management",
+      "link1Label": "Access Management",
+      "link2Label": "Identity User Management"
+    }
+  },
   "global": {
     "field": {
       "first": "Name",
@@ -385,8 +398,7 @@
       "confirm": "Bestätigen",
       "more": "Mehr",
       "details": "Details",
-      "close": "Schließen",
-      "back": "Zurück"
+      "close": "Schließen"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

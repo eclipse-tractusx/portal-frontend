@@ -16,7 +16,7 @@ import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
 import UserDetails from '../components/pages/UserManagement/UserDetails'
 import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
-import { IPage, PAGES, ROLES } from 'types/MainTypes'
+import { IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import Help from 'components/pages/Help'
@@ -33,6 +33,7 @@ import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import Appstore from 'components/pages/Appstore'
 import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
+import DataManagement from 'components/pages/DataManagement'
 
 /**
  * ALL_PAGES
@@ -79,6 +80,10 @@ const ALL_PAGES: IPage[] = [
     ),
   },
   {
+    name: PAGES.DATA_MANAGEMENT,
+    element: <DataManagement />,
+  },
+  {
     name: PAGES.DATACATALOG,
     role: ROLES.DATACATALOG_VIEW,
     element: <DataCatalog />,
@@ -110,7 +115,6 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
@@ -158,7 +162,7 @@ const ALL_PAGES: IPage[] = [
   },
   { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
-    name: PAGES.REGISTRATION_REQUESTS,
+    name: PAGES.APPLICATION_REQUESTS,
     role: ROLES.CX_ADMIN,
     element: <RegistrationRequests />,
   },
@@ -175,7 +179,7 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
   {
-    name: PAGES.EDC_CONNECTOR,
+    name: PAGES.TECHNICAL_SETUP,
     role: ROLES.TECHNICAL_SETUP_VIEW,
     element: <EdcConnector />,
   },
@@ -198,6 +202,20 @@ const mainMenuFull = [
   PAGES.CONNECTOR,
 ]
 
+const mainMenuFullTree = [
+  { name: PAGES.HOME },
+  { name: PAGES.APP_MARKETPLACE },
+  {
+    name: PAGES.DATA_MANAGEMENT,
+    children: [
+      { name: PAGES.DATACATALOG },
+      { name: PAGES.SEMANTICHUB },
+      { name: PAGES.DIGITALTWIN },
+    ],
+  },
+  { name: PAGES.PARTNER_NETWORK },
+]
+
 /**
  * userMenuFull
  *
@@ -206,14 +224,13 @@ const mainMenuFull = [
  */
 const userMenuFull = [
   PAGES.ACCOUNT,
-  PAGES.NOTIFICATIONS,
   PAGES.ORGANIZATION,
-  PAGES.PARTNER_NETWORK,
+  PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
+  PAGES.TECHNICAL_SETUP,
+  PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
-  PAGES.REGISTRATION_REQUESTS,
-  PAGES.EDC_CONNECTOR,
   PAGES.LOGOUT,
 ]
 
@@ -246,7 +263,17 @@ const hasAccess = (page: string): boolean => {
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
+const accessToMenuTree = (menu: Tree[] | undefined): any =>
+  menu
+    ?.filter((item: Tree) => hasAccess(item.name))
+    .map((item: Tree) => ({
+      ...item,
+      children: accessToMenuTree(item.children),
+    }))
+
 const mainMenu = () => accessToMenu(mainMenuFull)
+
+const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
 
@@ -273,6 +300,7 @@ const AccessService = {
   hasAccess,
   permittedRoutes,
   mainMenu,
+  mainMenuTree,
   userMenu,
   footerMenu,
 }

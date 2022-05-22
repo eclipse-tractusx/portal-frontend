@@ -4,21 +4,23 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Navigation, Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import './Header.scss'
+import { MenuItem, Tree } from 'types/MainTypes'
 
-export const Header = ({
-  pages,
-  userPages,
-}: {
-  pages: string[]
-  userPages: string[]
-}) => {
+export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const menu = pages.map((page) => ({
-    to: page,
-    title: t(`pages.${page}`),
-  }))
+  const addTitle = (items: Tree[] | undefined) =>
+    items?.map(
+      (item: Tree): MenuItem => ({
+        ...item,
+        to: `/${item.name}`,
+        title: t(`pages.${item.name}`),
+        children: addTitle(item.children),
+      })
+    )
+
+  const menu = addTitle(main) || []
 
   return (
     <header>
@@ -34,7 +36,7 @@ export const Header = ({
         >
           {t('pages.help')}
         </Button>
-        <UserInfo pages={userPages} />
+        <UserInfo pages={user} />
       </div>
     </header>
   )
