@@ -15,7 +15,7 @@ import SemanticHub from 'components/pages/SemanticHub'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
 import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
-import { IPage, PAGES, ROLES } from 'types/MainTypes'
+import { IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import Help from 'components/pages/Help'
@@ -32,6 +32,7 @@ import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import Appstore from 'components/pages/Appstore'
 import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
+import DataManagement from 'components/pages/DataManagement'
 
 /**
  * ALL_PAGES
@@ -76,6 +77,10 @@ const ALL_PAGES: IPage[] = [
         <Route path=":appId" element={<AppDetail />} />
       </Route>
     ),
+  },
+  {
+    name: PAGES.DATA_MANAGEMENT,
+    element: <DataManagement />,
   },
   {
     name: PAGES.DATACATALOG,
@@ -183,6 +188,20 @@ const mainMenuFull = [
   PAGES.CONNECTOR,
 ]
 
+const mainMenuFullTree = [
+  { name: PAGES.HOME },
+  { name: PAGES.APP_MARKETPLACE },
+  {
+    name: PAGES.DATA_MANAGEMENT,
+    children: [
+      { name: PAGES.DATACATALOG },
+      { name: PAGES.SEMANTICHUB },
+      { name: PAGES.DIGITALTWIN },
+    ],
+  },
+  { name: PAGES.PARTNER_NETWORK },
+]
+
 /**
  * userMenuFull
  *
@@ -193,7 +212,6 @@ const userMenuFull = [
   PAGES.ACCOUNT,
   PAGES.NOTIFICATIONS,
   PAGES.ORGANIZATION,
-  PAGES.PARTNER_NETWORK,
   PAGES.USER_MANAGEMENT,
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
@@ -231,7 +249,17 @@ const hasAccess = (page: string): boolean => {
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
+const accessToMenuTree = (menu: Tree[] | undefined): any =>
+  menu
+    ?.filter((item: Tree) => hasAccess(item.name))
+    .map((item: Tree) => ({
+      ...item,
+      children: accessToMenuTree(item.children),
+    }))
+
 const mainMenu = () => accessToMenu(mainMenuFull)
+
+const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
 
@@ -258,6 +286,7 @@ const AccessService = {
   hasAccess,
   permittedRoutes,
   mainMenu,
+  mainMenuTree,
   userMenu,
   footerMenu,
 }

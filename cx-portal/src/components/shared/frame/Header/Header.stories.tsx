@@ -23,15 +23,20 @@ const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />
 
 export const Standard = Template.bind({})
 Standard.args = {
-  pages: [
-    'home',
-    'appstore',
-    'datacatalog',
-    'digitaltwins',
-    'semantichub',
-    'developerhub',
+  main: [
+    { name: 'home' },
+    { name: 'appstore' },
+    {
+      name: 'datamanagement',
+      children: [
+        { name: 'datacatalog' },
+        { name: 'digitaltwins' },
+        { name: 'semantichub' },
+      ],
+    },
+    { name: 'developerhub' },
   ],
-  userPages: [
+  user: [
     'account',
     'notifications',
     'organization',
