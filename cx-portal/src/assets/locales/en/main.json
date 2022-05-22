@@ -5,6 +5,7 @@
     "appstore": "Appstore",
     "appmarketplace": "App Marketplace",
     "appdetails": "",
+    "datamanagement": "Data Management",
     "datacatalog": "Data Catalog",
     "applications": "Applications",
     "semantichub": "Semantic Hub",
@@ -127,10 +128,13 @@
         "protocol_version": "Protocol version:"
       }
     },
+    "datamanagement": {
+      "message": "Contents of Data Management"
+    },
     "datacatalog": {
       "message": "Contents of Data Catalog"
     },
-    "devloperhub": {
+    "developerhub": {
       "message": "Contents of Developer Hub"
     },
     "connector": {

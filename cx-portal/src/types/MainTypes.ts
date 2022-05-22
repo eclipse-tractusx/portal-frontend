@@ -35,6 +35,7 @@ export enum PAGES {
   APP_MARKETPLACE = 'appmarketplace',
   APP_DETAIL = 'appdetail',
   DATACATALOG = 'datacatalog',
+  DATA_MANAGEMENT = 'datamanagement',
   DIGITALTWIN = 'digitaltwin',
   SEMANTICHUB = 'semantichub',
   DEVELOPERHUB = 'developerhub',
@@ -99,6 +100,19 @@ export type IPage = {
   role?: string
   element: JSX.Element
   isRoute?: boolean
+  children?: string[]
+}
+
+type LinkItem = Partial<Record<'href' | 'to', string>>
+
+export interface Tree {
+  name: string
+  children?: Tree[]
+}
+
+export interface MenuItem extends LinkItem, Tree {
+  title: string
+  children?: MenuItem[]
 }
 
 export type UserInput = {
