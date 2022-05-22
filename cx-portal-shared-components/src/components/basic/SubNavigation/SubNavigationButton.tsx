@@ -2,7 +2,10 @@ import { Box } from '@mui/material'
 import { SubNavigationProps } from '.'
 import { Button } from '../Button'
 
-export const SubNavigationButton = ({ buttonLabel, onButtonClick }: SubNavigationProps) => {
+export const SubNavigationButton = ({
+  buttonLabel,
+  onButtonClick,
+}: SubNavigationProps) => {
   return (
     <Box
       sx={{
@@ -10,7 +13,7 @@ export const SubNavigationButton = ({ buttonLabel, onButtonClick }: SubNavigatio
         margin: '32px 0px',
         width: '40%',
       }}
-      >
+    >
       {buttonLabel && onButtonClick && (
         <Button
           onClick={onButtonClick}

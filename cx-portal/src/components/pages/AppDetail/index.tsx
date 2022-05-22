@@ -38,18 +38,12 @@ export default function AppDetail() {
           >
             {t('global.actions.back')}
           </Button>
-          
+
           <br />
-          
+
           <AppDetailHeader item={item} />
           <div className="product-description">
             <Typography variant="body2">{item.longDescription}</Typography>
-            
-            /* !! More Button is commented out, since its not yet in use */
-            /* <a href="/#" className="product-desc-more">
-              + more
-            </a> */
-          
           </div>
           <AppDetailImageGallery
             images={item.detailPictureUris.map((image) =>
