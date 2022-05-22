@@ -114,7 +114,6 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
@@ -148,7 +147,7 @@ const ALL_PAGES: IPage[] = [
   },
   { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
-    name: PAGES.REGISTRATION_REQUESTS,
+    name: PAGES.APPLICATION_REQUESTS,
     role: ROLES.CX_ADMIN,
     element: <RegistrationRequests />,
   },
@@ -165,7 +164,7 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
   {
-    name: PAGES.EDC_CONNECTOR,
+    name: PAGES.TECHNICAL_SETUP,
     role: ROLES.TECHNICAL_SETUP_VIEW,
     element: <EdcConnector />,
   },
@@ -210,13 +209,13 @@ const mainMenuFullTree = [
  */
 const userMenuFull = [
   PAGES.ACCOUNT,
-  PAGES.NOTIFICATIONS,
   PAGES.ORGANIZATION,
+  PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
+  PAGES.TECHNICAL_SETUP,
+  PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
-  PAGES.REGISTRATION_REQUESTS,
-  PAGES.EDC_CONNECTOR,
   PAGES.LOGOUT,
 ]
 

@@ -11,12 +11,14 @@
     "semantichub": "Semantic Hub",
     "digitaltwin": "Digital Twins",
     "developerhub": "Developer Hub",
-    "connector": "Connector",
-    "account": "My Account",
-    "notifications": "Notifications",
-    "organization": "Organization",
     "partnernetwork": "Partner Network",
+    "connector": "Connector",
+    "account": "My CX Account",
+    "organization": "My Organization",
+    "notifications": "Notifications",
     "usermanagement": "User Management",
+    "technicalsetup": "Technical Integration",
+    "applicationrequests": "Application Requests",
     "settings": "Settings",
     "admin": "Administration",
     "developer": "Development",
@@ -28,10 +30,8 @@
     "terms": "Terms of Service",
     "cookiepolicy": "Cookies",
     "thirdpartylicenses": "Third Party Licenses",
-    "registration-requests": "Registration Requests",
     "logout": "Sign Out",
-    "notfound": "Page not found",
-    "edc-connector": "Technical Integration"
+    "notfound": "Page not found"
   },
   "content": {
     "admin": {
