@@ -10,8 +10,8 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const addTitle = (menu: Tree[] | undefined) =>
-    menu?.map(
+  const addTitle = (items: Tree[] | undefined) =>
+    items?.map(
       (item: Tree): MenuItem => ({
         ...item,
         to: `/${item.name}`,
