@@ -17,7 +17,8 @@ export class AdminAppRoleApi extends HttpClient {
   }
 
   public getItems = (appId: string) => {
-    return this.instance.get<AppRole[]>(`/api/administration/user/demo/roles.json?appId=${appId}`)
+    return this.instance.get<AppRole[]>(
+      `/api/administration/user/demo/roles.json?appId=${appId}`
+    )
   }
-
 }

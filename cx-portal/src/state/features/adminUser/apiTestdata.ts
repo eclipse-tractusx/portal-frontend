@@ -17,7 +17,8 @@ export class AdminUserApi extends HttpClient {
   }
 
   public getTenantUsers = () => {
-    return this.instance.get<TenantUser[]>(`/api/administration/user/owncompany/users.json`)
+    return this.instance.get<TenantUser[]>(
+      `/api/administration/user/owncompany/users.json`
+    )
   }
-
 }

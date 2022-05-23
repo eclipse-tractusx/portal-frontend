@@ -24,7 +24,7 @@ export const AppUserDetailsTable = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const tenantUsers = useSelector(tenantUsersSelector)
-  
+
   const onUserDetailsClick = (userId: string) => {
     console.log('show details', userId)
   }
