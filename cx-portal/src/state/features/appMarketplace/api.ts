@@ -33,14 +33,6 @@ export class AppMarketplaceApi extends HttpClient {
     })
   }
 
-  public getFavorites = () => {
-    return this.instance.get<AppMarketplaceApp[]>(`/api/apps/favourites`, {
-      headers: {
-        authorization: `Bearer ${UserService.getToken()}`,
-      },
-    })
-  }
-
   public getSubscribed = (all?: boolean) => {
     return this.instance.get<AppMarketplaceApp[]>(
       `/api/apps/subscribed${all ? '?all===true' : ''}`,

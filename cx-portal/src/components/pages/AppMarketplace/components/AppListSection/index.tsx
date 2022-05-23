@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  CardItems,
   SearchInput,
   Typography,
   ViewSelector,
@@ -9,13 +8,12 @@ import {
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/appMarketplace/actions'
-import {
-  appMarketplaceSelectActive,
-  appMarketplaceSelectFavorites,
-} from 'state/features/appMarketplace/slice'
+import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
+import { itemsSelector } from 'state/features/appFavorites/slice'
+import { addItem } from 'state/features/appFavorites/actions'
 
 export const label = 'AppList'
 
@@ -26,7 +24,7 @@ export default function AppListSection() {
   const cards = useSelector(appMarketplaceSelectActive)
   const { t } = useTranslation()
 
-  const favoriteItems = useSelector(appMarketplaceSelectFavorites)
+  const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -34,12 +32,10 @@ export default function AppListSection() {
   }
 
   const add2Favorites = (appId: string) => {
-    console.log('TODO: Add app to favorites logic.', appId)
+    dispatch(addItem(appId))
   }
 
-  const checkIsFavoriteItem = (appId: string) => {
-    return favoriteItems.some((item: CardItems) => item.id === appId)
-  }
+  const checkIsFavoriteItem = (appId: string) => favoriteItems.includes(appId)
 
   const categoryViews = [
     {

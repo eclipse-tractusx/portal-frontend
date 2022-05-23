@@ -82,11 +82,10 @@ export const Carousel = ({
   const arrowsTop = itemHeight ? itemTop / 2 : 0
 
   const getCarouselWidth = useCallback(
-    (slides: number) => {
-      return slides && itemWidth && gapBetweenSlides && gapToArrows
+    (slides: number) =>
+      slides && itemWidth && gapBetweenSlides && gapToArrows
         ? slides * itemWidth + slides * gapBetweenSlides + 3 * gapToArrows
-        : 0
-    },
+        : 0,
     [itemWidth, gapBetweenSlides, gapToArrows]
   )
 

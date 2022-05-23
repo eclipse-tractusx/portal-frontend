@@ -2,6 +2,8 @@ import { Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { removeItem } from 'state/features/appFavorites/actions'
+import { useDispatch } from 'react-redux'
 
 interface FavoriteItemProps {
   item: any
@@ -9,12 +11,13 @@ interface FavoriteItemProps {
 
 export default function FavoriteItem({ item }: FavoriteItemProps) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [addedToFavorite, setAddedToFavorite] = useState(false)
 
   //TODO:
   //implement logic
   const handleSecondaryButtonClick = (id: string) => {
-    console.log(`TODO: remove app favorites logic for ${id}`)
+    dispatch(removeItem(id))
     setAddedToFavorite(!addedToFavorite)
   }
 
