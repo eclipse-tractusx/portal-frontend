@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { AdminUserApi } from './api'
+import { getUserWithId } from './mapper'
 import { AddUser } from './types'
 
 const openAdd = createAction('admin/user/openAdd')
@@ -22,7 +23,8 @@ const fetchTenantUsers = createAsyncThunk(
   'admin/user/fetchTenantUsers',
   async () => {
     try {
-      return await AdminUserApi.getInstance().getTenantUsers()
+      const users = await AdminUserApi.getInstance().getTenantUsers()
+      return users.map((user) => getUserWithId(user))
     } catch (error: unknown) {
       console.error('api call error:', error)
       throw Error('fetchTenantUsers api call error')

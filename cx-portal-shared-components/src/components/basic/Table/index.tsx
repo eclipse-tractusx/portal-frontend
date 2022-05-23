@@ -22,8 +22,11 @@ export const Table = ({
   checkboxSelection,
   ...props
 }: TableProps) => {
+  console.log('xxx')
+  console.log(rows)
   return (
     <DataGrid
+      getRowId={(row) => row.id}
       components={{
         Toolbar: () => (
           <Toolbar title={title} {...toolbar} {...{ rowsCount }} />

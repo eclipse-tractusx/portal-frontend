@@ -9,15 +9,13 @@ export type InviteData = {
 }
 
 export type TenantUser = {
-  userId: string
-  providerUserId: string
-  enabled: boolean
-  userName: string
+  id: string
+  userEntityId: string
+  companyUserId: string
+  status: string
   firstName: string
   lastName: string
   email: string
-  role?: string
-  status?: string
 }
 
 export type AddUser = {

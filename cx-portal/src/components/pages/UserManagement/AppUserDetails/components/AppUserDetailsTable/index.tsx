@@ -6,41 +6,26 @@ import {
 } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/adminUser/actions'
 import { TenantUser } from 'state/features/adminUser/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './AppUserDetailsTable.scss'
+import { tenantUsersSelector } from 'state/features/adminUser/slice'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
 }
-
-export const userList = [
-  {
-    id: '1',
-    name: 'Admin Name',
-    email: 'admin@mail.com',
-    enabled: true,
-    role: 'Admin',
-    details: '',
-  },
-  {
-    id: '2',
-    name: 'User Name',
-    email: 'user@mail.com',
-    enabled: false,
-    role: 'User',
-    details: '',
-  },
-]
 
 export const AppUserDetailsTable = ({
   onAddUserButtonClick,
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const tenantUsers = useSelector(tenantUsersSelector)
+
+  console.log(tenantUsers)
 
   const onUserDetailsClick = (userId: string) => {
     console.log('show details', userId)
@@ -89,14 +74,14 @@ export const AppUserDetailsTable = ({
               renderCell: ({ row }: { row: TenantUser }) => (
                 <IconButton
                   color="secondary"
-                  onClick={() => onUserDetailsClick(row.userId)}
+                  onClick={() => onUserDetailsClick(row.userEntityId)}
                 >
                   <ArrowForwardIcon />
                 </IconButton>
               ),
             },
           ]}
-          rows={userList}
+          rows={tenantUsers}
           getRowId={(row: { [key: string]: string }) => row.id}
           hideFooter
         />
