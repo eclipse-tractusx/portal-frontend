@@ -46,7 +46,8 @@ export default function AppUserDetails() {
 
       <SubHeader
         title={t('content.usermanagement.appUserDetails.headline')}
-        hasBackButton={true}
+        hasBackButton={false}
+        hasBreadcrumb={true}
       />
 
       {roles.length > 0 && (
