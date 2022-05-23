@@ -7,7 +7,6 @@ import { fetchTenantUsers } from 'state/features/adminUser/actions'
 import { tenantUsersSelector } from 'state/features/adminUser/slice'
 import { TenantUser } from 'state/features/adminUser/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { getUserWithId } from 'state/features/adminUser/mapper'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -19,8 +18,6 @@ export const ActiveUserTable = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const tenantUsers = useSelector(tenantUsersSelector)
-
-  console.log(tenantUsers)
 
   const onUserDetailsClick = (userId: string) => {
     console.log('show details', userId)
@@ -73,7 +70,7 @@ export const ActiveUserTable = ({
           },
         ]}
         rows={tenantUsers}
-        getRowId={(row: { [key: string]: string }) => row.userId}
+        getRowId={(row: { [key: string]: string }) => row.userEntityId}
         hideFooter
       />
     </section>

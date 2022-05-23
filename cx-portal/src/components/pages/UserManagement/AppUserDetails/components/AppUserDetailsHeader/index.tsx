@@ -1,9 +1,10 @@
 import { Typography } from 'cx-portal-shared-components'
-import { UserRole } from '../../../AppUserDetails'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { AppRole } from 'state/features/adminAppRole/types'
 import './AppUserDetailsHeader.scss'
+
 export interface AppUserDetailsHeaderProps {
-  roles: UserRole[]
+  roles: AppRole[]
 }
 
 export default function AppUserDetailsHeader({
@@ -28,8 +29,8 @@ export default function AppUserDetailsHeader({
       <div className="app-user-details-header-roles-section">
         {roles.map((role) => {
           return (
-            <div key={role.name} className="app-user-details-header-role">
-              <Typography variant="h5">{role.name}</Typography>
+            <div key={role.role} className="app-user-details-header-role">
+              <Typography variant="h5">{role.role}</Typography>
               <Typography
                 variant="h6"
                 className="app-user-details-header-description"

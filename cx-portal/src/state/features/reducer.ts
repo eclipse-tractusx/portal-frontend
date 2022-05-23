@@ -9,9 +9,11 @@ import licensesSlice from './licenses/slice'
 import adminUserSlice from './adminUser/slice'
 import adminRegistrationSlice from './adminRegistration/slice'
 import connectorSlice from './connector/slice'
+import adminAppRoleSlice from './adminAppRole/slice'
 
 // Reducers need separate export for testing library
 export const reducers = {
+  adminAppRole: adminAppRoleSlice.reducer,
   adminUser: adminUserSlice.reducer,
   adminRegistration: adminRegistrationSlice.reducer,
   user: userSlice,

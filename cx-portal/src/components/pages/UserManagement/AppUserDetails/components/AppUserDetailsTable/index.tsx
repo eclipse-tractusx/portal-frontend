@@ -24,9 +24,7 @@ export const AppUserDetailsTable = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const tenantUsers = useSelector(tenantUsersSelector)
-
-  console.log(tenantUsers)
-
+  
   const onUserDetailsClick = (userId: string) => {
     console.log('show details', userId)
   }
@@ -82,7 +80,7 @@ export const AppUserDetailsTable = ({
             },
           ]}
           rows={tenantUsers}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          getRowId={(row: { [key: string]: string }) => row.userEntityId}
           hideFooter
         />
       </section>

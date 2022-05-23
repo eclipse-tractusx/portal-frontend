@@ -9,7 +9,6 @@ export type InviteData = {
 }
 
 export type TenantUser = {
-  id: string
   userEntityId: string
   companyUserId: string
   status: string
