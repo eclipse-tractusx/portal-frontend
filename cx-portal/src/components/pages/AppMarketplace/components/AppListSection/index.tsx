@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  CardItems,
   SearchInput,
   Typography,
   ViewSelector,
@@ -9,13 +8,12 @@ import {
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'state/features/appMarketplace/actions'
-import {
-  appMarketplaceSelectActive,
-  appMarketplaceSelectFavorites,
-} from 'state/features/appMarketplace/slice'
+import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
+import { itemsSelector } from 'state/features/appFavorites/slice'
+import { addItem, removeItem } from 'state/features/appFavorites/actions'
 
 export const label = 'AppList'
 
@@ -26,19 +24,17 @@ export default function AppListSection() {
   const cards = useSelector(appMarketplaceSelectActive)
   const { t } = useTranslation()
 
-  const favoriteItems = useSelector(appMarketplaceSelectFavorites)
+  const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
   }
 
-  const add2Favorites = (appId: string) => {
-    console.log('TODO: Add app to favorites logic.', appId)
-  }
+  const checkIsFavorite = (appId: string) => favoriteItems.includes(appId)
 
-  const checkIsFavoriteItem = (appId: string) => {
-    return favoriteItems.some((item: CardItems) => item.id === appId)
+  const addOrRemoveFavorite = (appId: string) => {
+    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
   }
 
   const categoryViews = [
@@ -84,8 +80,8 @@ export default function AppListSection() {
           items={cards.map((card) => ({
             ...card,
             onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: () => add2Favorites(card.id!),
-            addButtonClicked: checkIsFavoriteItem(card.id!),
+            onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
+            addButtonClicked: checkIsFavorite(card.id!),
           }))}
           groupKey={group}
         />

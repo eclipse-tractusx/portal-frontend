@@ -27,6 +27,20 @@ export enum RequestState {
   ERROR,
 }
 
+export interface ListState<T> {
+  items: T[]
+  change: T | null
+  request: RequestState
+  error: string
+}
+
+export const InitialListState = {
+  items: [],
+  change: null,
+  request: RequestState.NONE,
+  error: '',
+}
+
 export enum PAGES {
   ROOT = '',
   HOME = 'home',
@@ -41,6 +55,7 @@ export enum PAGES {
   DEVELOPERHUB = 'developerhub',
   CONNECTOR = 'connector',
   ACCOUNT = 'account',
+  USER_DETAILS = 'userdetails',
   NOTIFICATIONS = 'notifications',
   ORGANIZATION = 'organization',
   PARTNER_NETWORK = 'partnernetwork',
@@ -88,6 +103,7 @@ export enum ROLES {
   USERMANAGEMENT_VIEW = 'view_user_management',
   USERMANAGEMENT_ADD = 'add_user_account',
   USERMANAGEMENT_DELETE = 'delete_user_account',
+  USERMANAGEMENT_VIEW_USER_ACCOUNT = 'view_user_account',
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',

@@ -21,33 +21,20 @@ export const Table = ({
   toolbar,
   checkboxSelection,
   ...props
-}: TableProps) => {
-  return (
-    <DataGrid
-      components={{
-        Toolbar: () => (
-          <Toolbar title={title} {...toolbar} {...{ rowsCount }} />
-        ),
-      }}
-      {...{
-        rows,
-        columns,
-        autoHeight,
-        headerHeight,
-        rowHeight,
-        checkboxSelection,
-      }}
-      {...props}
-      sx={{
-        '.MuiDataGrid-columnHeaderCheckbox': {
-          width: '64px !important',
-          minWidth: '64px !important',
-          maxWidth: '64px !important',
-          paddingLeft: '10px !important',
-          paddingRight: '10px !important',
-          height: '76px !important',
-        },
-      }}
-    />
-  )
-}
+}: TableProps) => (
+  <DataGrid
+    getRowId={(row) => row.id}
+    components={{
+      Toolbar: () => <Toolbar title={title} {...toolbar} {...{ rowsCount }} />,
+    }}
+    {...{
+      rows,
+      columns,
+      autoHeight,
+      headerHeight,
+      rowHeight,
+      checkboxSelection,
+    }}
+    {...props}
+  />
+)

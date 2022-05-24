@@ -1,9 +1,13 @@
 import { StatusTag, Table } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { userList } from '../AppUserDetails/components/AppUserDetailsTable'
+import { useSelector } from 'react-redux'
+import { tenantUsersSelector } from 'state/features/adminUser/slice'
 
 export default function UserListContent() {
   const { t } = useTranslation()
+  const tenantUsers = useSelector(tenantUsersSelector)
+
+  console.log(tenantUsers)
 
   return (
     <Table
@@ -31,8 +35,8 @@ export default function UserListContent() {
           },
         },
       ]}
-      rows={userList}
-      getRowId={(row: { [key: string]: string }) => row.id}
+      rows={tenantUsers}
+      getRowId={(row: { [key: string]: string }) => row.userEntityId}
       hideFooter
       checkboxSelection
     />

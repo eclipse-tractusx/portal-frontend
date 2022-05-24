@@ -13,7 +13,7 @@ const addTenantUsers = createAsyncThunk(
       return await AdminUserApi.getInstance().addTenantUsers(users)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error('fetchTenantUsers api call error')
+      throw Error('addTenantUsers api call error')
     }
   }
 )
