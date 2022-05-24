@@ -39,7 +39,6 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const Breadcrumb = Template.bind({})
 Breadcrumb.args = {
-  backButton: true,
   backButtonLabel: 'Back',
   backButtonVariant: 'outlined',
   onBackButtonClick: () => console.log('Back button clicked!'),
