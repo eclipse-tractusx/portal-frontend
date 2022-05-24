@@ -13,6 +13,7 @@ import { tenantUsersSelector } from 'state/features/adminUser/slice'
 import { TenantUser } from 'state/features/adminUser/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './AppUserDetailsTable.scss'
+import { useNavigate } from 'react-router-dom'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -24,9 +25,10 @@ export const AppUserDetailsTable = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const tenantUsers = useSelector(tenantUsersSelector)
+  const navigate = useNavigate()
 
   const onUserDetailsClick = (userId: string) => {
-    console.log('show details', userId)
+    navigate('/usermanagement/userdetails/' + userId)
   }
 
   useEffect(() => {

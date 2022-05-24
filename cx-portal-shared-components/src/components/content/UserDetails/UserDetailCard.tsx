@@ -1,7 +1,8 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
-import { IconButton } from '../IconButton'
-import { Typography } from '../Typography'
+import { Chip } from '../../basic/Chip'
+import { IconButton } from '../../basic/IconButton'
+import { Typography } from '../../basic/Typography'
 
 export interface UserCardProps {
   cardAction?: React.MouseEventHandler
@@ -9,8 +10,13 @@ export interface UserCardProps {
   cardContentItems: UserItems
 }
 
+interface UserItemsTranslation {
+  label: string
+  value: string
+}
+
 export interface UserItems {
-  [key: string]: string
+  [key: string]: UserItemsTranslation | undefined
 }
 
 export const UserDetailCard = ({
@@ -18,6 +24,28 @@ export const UserDetailCard = ({
   cardCategory,
   cardContentItems,
 }: UserCardProps) => {
+  const renderContentSwitch = (
+    param: string,
+    value: UserItemsTranslation | undefined
+  ) => {
+    switch (param) {
+    case 'status':
+      return (
+        <>
+          <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+          <Chip
+            color="secondary"
+            label={value?.value}
+            type="confirm"
+            variant="filled"
+            withIcon={false}
+          />
+        </>
+      )
+    default:
+      return `${value?.label}: ${value?.value}`
+    }
+  }
   return (
     <Box>
       <Box
@@ -51,10 +79,10 @@ export const UserDetailCard = ({
               borderColor: 'border.border01',
               color: 'text.tertiary',
               fontFamily: 'LibreFranklin-Light',
-              padding: '20px',
+              padding: k === 'status' ? '12.5px' : '20px',
             }}
           >
-            {k}: {v}
+            {renderContentSwitch(k, v)}
           </ListItem>
         ))}
       </List>

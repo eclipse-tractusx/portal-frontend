@@ -11,8 +11,8 @@
     "semantichub": "Semantischer Hub",
     "digitaltwin": "Digitale Zwillinge",
     "developerhub": "Entwickler Hub",
+    "connector": "Konnektor",
     "partnernetwork": "Partner Network",
-    "connector": "Connector",
     "account": "Mein CX Account",
     "organization": "Meine Organisation",
     "notifications": "Benachrichtigungen",
@@ -327,8 +327,15 @@
       "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
     },
     "account": {
-      "token": "Aktuelles Authentisierungstoken",
-      "copy_to_clipboard": "Token in die Zwischenablage kopieren"
+      "userAccount": "Benutzer Konto",
+      "token": "DEV only: Aktuelles Authentisierungstoken",
+      "copy_to_clipboard": "Token in die Zwischenablage kopieren",
+      "deleteAccount": "Benutzer löschen",
+      "suspendAccount": "Benutzer aussetzen",
+      "resetPasswordAccount": "Passwort zurücksetzen",
+      "appPermissionTable": {
+        "title": "Nutzerbrechtigungen pro Applikation"
+      }
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"
@@ -381,14 +388,13 @@
       "email": "E-Mail",
       "company": "Firmenname",
       "status": "Status",
-      "role": "Role",
+      "role": "Rolle",
       "active": "Aktiv",
       "inactive": "Inaktiv",
       "name": "Name",
       "details": "Details"
     },
     "actions": {
-      "back": "← Zurück",
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
