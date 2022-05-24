@@ -5,9 +5,9 @@ import { IconButton } from '../../basic/IconButton'
 import { Typography } from '../../basic/Typography'
 
 export interface UserCardProps {
-  cardAction?: React.MouseEventHandler
-  cardCategory: string
-  cardContentItems: UserItems
+  action?: React.MouseEventHandler
+  category: string
+  items: UserItems
 }
 
 interface UserItemsTranslation {
@@ -19,11 +19,7 @@ export interface UserItems {
   [key: string]: UserItemsTranslation | undefined
 }
 
-export const UserDetailCard = ({
-  cardAction,
-  cardCategory,
-  cardContentItems,
-}: UserCardProps) => {
+export const UserDetailCard = ({ action, category, items }: UserCardProps) => {
   const renderContentSwitch = (
     param: string,
     value: UserItemsTranslation | undefined
@@ -58,19 +54,19 @@ export const UserDetailCard = ({
           paddingRight: '14px',
         }}
       >
-        <Typography variant="label3">{cardCategory}</Typography>
-        {cardAction && (
+        <Typography variant="label3">{category}</Typography>
+        {action && (
           <IconButton
             color="secondary"
             sx={{ marginLeft: 'auto' }}
-            onClick={cardAction}
+            onClick={action}
           >
             <EditOutlinedIcon />
           </IconButton>
         )}
       </Box>
       <List>
-        {Object.entries(cardContentItems).map(([k, v], i) => (
+        {Object.entries(items).map(([k, v], i) => (
           <ListItem
             key={i}
             disableGutters
