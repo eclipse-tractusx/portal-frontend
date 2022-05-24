@@ -13,7 +13,7 @@ import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
 import { itemsSelector } from 'state/features/appFavorites/slice'
-import { addItem } from 'state/features/appFavorites/actions'
+import { addItem, removeItem } from 'state/features/appFavorites/actions'
 
 export const label = 'AppList'
 
@@ -31,11 +31,11 @@ export default function AppListSection() {
     setGroup(e.currentTarget.value)
   }
 
-  const add2Favorites = (appId: string) => {
-    dispatch(addItem(appId))
-  }
+  const checkIsFavorite = (appId: string) => favoriteItems.includes(appId)
 
-  const checkIsFavoriteItem = (appId: string) => favoriteItems.includes(appId)
+  const addOrRemoveFavorite = (appId: string) => {
+    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
+  }
 
   const categoryViews = [
     {
@@ -80,8 +80,8 @@ export default function AppListSection() {
           items={cards.map((card) => ({
             ...card,
             onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: () => add2Favorites(card.id!),
-            addButtonClicked: checkIsFavoriteItem(card.id!),
+            onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
+            addButtonClicked: checkIsFavorite(card.id!),
           }))}
           groupKey={group}
         />

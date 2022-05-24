@@ -93,6 +93,7 @@
           "useCases": "Use Cases"
         },
         "categories": {
+          "none": "Not categorized",
           "businesspartnermanagement": "Business Partner Data Management",
           "circulareconomy": "Circular Economy",
           "quality&demandmanagement": "Demand & Quality Management",

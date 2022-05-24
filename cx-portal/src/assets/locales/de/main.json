@@ -95,6 +95,7 @@
           "useCases": "Anwendungsbereiche"
         },
         "categories": {
+          "none": "Nicht kategorisiert",
           "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
           "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
