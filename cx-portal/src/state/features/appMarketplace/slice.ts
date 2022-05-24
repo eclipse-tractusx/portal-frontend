@@ -1,12 +1,7 @@
 import { CardItems } from 'cx-portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'state/store'
-import {
-  fetchFavorites,
-  fetchItems,
-  fetchLatest,
-  fetchSubscribed,
-} from './actions'
+import { fetchItems, fetchLatest, fetchSubscribed } from './actions'
 import { AppMarketplaceState } from './types'
 import { appToCard } from './mapper'
 
@@ -60,24 +55,6 @@ const appMarketplaceSlice = createSlice({
       loading: false,
       error: action.error.message as string,
     }))
-    builder.addCase(fetchFavorites.pending, (state) => ({
-      ...state,
-      favorites: [],
-      loading: true,
-      error: '',
-    }))
-    builder.addCase(fetchFavorites.fulfilled, (state, { payload }) => ({
-      ...state,
-      favorites: payload || [],
-      loading: false,
-      error: '',
-    }))
-    builder.addCase(fetchFavorites.rejected, (state, action) => ({
-      ...state,
-      favorites: [],
-      loading: false,
-      error: action.error.message as string,
-    }))
     builder.addCase(fetchSubscribed.pending, (state) => ({
       ...state,
       subscribed: [],
@@ -107,9 +84,6 @@ export const appMarketplaceSelectActive = (state: RootState): CardItems[] =>
 
 export const appMarketplaceSelectLatest = (state: RootState): CardItems[] =>
   state.appMarketplace.latest.map((app) => appToCard(app))
-
-export const appMarketplaceSelectFavorites = (state: RootState): CardItems[] =>
-  state.appMarketplace.favorites.map((app) => appToCard(app))
 
 export const appMarketplaceSelectSubscribed = (state: RootState): CardItems[] =>
   state.appMarketplace.subscribed.map((app) => appToCard(app))

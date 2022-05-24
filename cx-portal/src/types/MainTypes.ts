@@ -27,6 +27,20 @@ export enum RequestState {
   ERROR,
 }
 
+export interface ListState<T> {
+  items: T[]
+  change: T | null
+  request: RequestState
+  error: string
+}
+
+export const InitialListState = {
+  items: [],
+  change: null,
+  request: RequestState.NONE,
+  error: '',
+}
+
 export enum PAGES {
   ROOT = '',
   HOME = 'home',

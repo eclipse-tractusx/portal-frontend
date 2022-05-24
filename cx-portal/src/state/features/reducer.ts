@@ -10,6 +10,7 @@ import adminUserSlice from './adminUser/slice'
 import adminRegistrationSlice from './adminRegistration/slice'
 import connectorSlice from './connector/slice'
 import adminAppRoleSlice from './adminAppRole/slice'
+import { slice as appFavorites } from './appFavorites/slice'
 
 // Reducers need separate export for testing library
 export const reducers = {
@@ -23,6 +24,7 @@ export const reducers = {
   partnerNetwork: partnerNetworkSlice.reducer,
   appDetails: appDetailsSlice.reducer,
   appMarketplace: appMarketplaceSlice.reducer,
+  appFavorites: appFavorites.reducer,
   connector: connectorSlice.reducer,
 }
 
