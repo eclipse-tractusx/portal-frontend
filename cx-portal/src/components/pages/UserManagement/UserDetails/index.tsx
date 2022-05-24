@@ -132,7 +132,7 @@ export default function UserDetails() {
               variant="outlined"
               startIcon={<RestartAltOutlinedIcon />}
             >
-              {t('content.account.resetPasswordAccount')}
+              {t('content.account.resetPswrdAccount')}
             </Button>
           </Box>
 

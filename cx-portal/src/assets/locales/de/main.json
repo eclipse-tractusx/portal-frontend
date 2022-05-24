@@ -332,7 +332,7 @@
       "copy_to_clipboard": "Token in die Zwischenablage kopieren",
       "deleteAccount": "Benutzer löschen",
       "suspendAccount": "Benutzer aussetzen",
-      "resetPasswordAccount": "Passwort zurücksetzen",
+      "resetPswrdAccount": "Passwort zurücksetzen",
       "appPermissionTable": {
         "title": "Nutzerbrechtigungen pro Applikation"
       }
