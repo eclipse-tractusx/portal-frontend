@@ -27,8 +27,8 @@ export default function MyAccount() {
 
   const userDetails = [
     {
-      category: 'Personal Information',
-      items: {
+      cardCategory: 'Personal Information',
+      cardContentItems: {
         name: { label: 'Name', value: 'Max' },
         surname: { label: 'Nachname', value: 'Mustermann' },
         email: { label: 'E-Mail', value: 'm.musterman@test.de' },
@@ -36,15 +36,15 @@ export default function MyAccount() {
       },
     },
     {
-      category: 'Status Information',
-      items: {
+      cardCategory: 'Status Information',
+      cardContentItems: {
         status: { label: 'Status', value: 'Aktiv' },
         userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
       },
     },
     {
-      category: 'Issuer Information',
-      items: {
+      cardCategory: 'Issuer Information',
+      cardContentItems: {
         organisation: { label: 'Organisation', value: 'BMW' },
         adminName: { label: 'Admin Name', value: 'Admin Muster' },
         adminMail: { label: 'Admin E-Mail', value: 'admin.muster@test.de' },
