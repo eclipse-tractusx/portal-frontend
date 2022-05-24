@@ -1,10 +1,10 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
+import { Chip } from '../../basic/Chip'
 import { IconButton } from '../../basic/IconButton'
 import { Typography } from '../../basic/Typography'
-import { Chip } from '../../basic/Chip'
 
-interface UserCardProps {
+export interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory: string
   cardContentItems: UserItems

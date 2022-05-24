@@ -1,21 +1,15 @@
-import { Box, useTheme } from '@mui/material'
-import { UserDetailCard, UserItems } from './UserDetailCard'
 import uniqueId from 'lodash/uniqueId'
-
-interface UserDetailsCards {
-  action?: React.MouseEventHandler
-  category: string
-  items: UserItems
-}
+import { Box, useTheme } from '@mui/material'
+import { UserCardProps, UserDetailCard } from './UserDetailCard'
 
 interface UserDetailsProps {
-  userDetailsCards: UserDetailsCards[]
   columns?: number
+  userDetailsCards: UserCardProps[]
 }
 
 export const UserDetails = ({
-  userDetailsCards,
   columns = 6,
+  userDetailsCards,
 }: UserDetailsProps) => {
   const { spacing } = useTheme()
 
@@ -29,9 +23,9 @@ export const UserDetails = ({
     >
       {userDetailsCards.map((card) => (
         <UserDetailCard
-          cardAction={card.action}
-          cardCategory={card.category}
-          cardContentItems={card.items}
+          cardAction={card.cardAction}
+          cardCategory={card.cardCategory}
+          cardContentItems={card.cardContentItems}
           key={uniqueId('UserDetails')}
         />
       ))}
