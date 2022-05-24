@@ -1,20 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import SubHeader from 'components/shared/frame/SubHeader'
 import AddUserRightOverlay from '../AddUserRightOverlay'
+import { useDispatch, useSelector } from 'react-redux'
+import { itemSelector } from 'state/features/adminAppRole/slice'
+import { fetchItems } from 'state/features/adminAppRole/actions'
+import { useParams } from 'react-router-dom'
 import './AppUserDetails.scss'
-
-export type UserRole = {
-  name: string
-  description: string
-}
 
 export default function AppUserDetails() {
   const { t } = useTranslation()
-
+  const dispatch = useDispatch()
+  const items = useSelector(itemSelector)
   const [open, setOpen] = useState(false)
+  const appId = useParams().appId
+
+  useEffect(() => {
+    if (appId) {
+      dispatch(fetchItems(appId))
+    }
+  }, [dispatch, appId])
 
   const openAddUserRightLayout = () => {
     setOpen(true)
@@ -28,14 +35,6 @@ export default function AppUserDetails() {
     console.log('confirmed user right!')
   }
 
-  /* !! the following section will need to get replaced with the BL and an API integration */
-  const roles: UserRole[] = [
-    { name: 'Admin', description: 'The Admin can do everything' },
-    { name: 'User', description: 'The User can view cars' },
-    { name: 'Editor', description: 'The Editor can edit cars' },
-    { name: 'Purchaser', description: 'The Purchaser can purchase cars' },
-  ]
-
   return (
     <main className="app-user-details">
       <AddUserRightOverlay
@@ -46,12 +45,13 @@ export default function AppUserDetails() {
 
       <SubHeader
         title={t('content.usermanagement.appUserDetails.headline')}
-        hasBackButton={true}
+        hasBackButton={false}
+        hasBreadcrumb={true}
       />
 
-      {roles.length > 0 && (
+      {items.length > 0 && (
         <>
-          <AppUserDetailsHeader roles={roles} />
+          <AppUserDetailsHeader roles={items} />
           <AppUserDetailsTable onAddUserButtonClick={openAddUserRightLayout} />
         </>
       )}

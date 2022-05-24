@@ -6,9 +6,11 @@ import {
 } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'state/features/adminUser/actions'
+import { tenantUsersSelector } from 'state/features/adminUser/slice'
+import { TenantUser } from 'state/features/adminUser/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './AppUserDetailsTable.scss'
 import { useNavigate } from 'react-router-dom'
@@ -17,30 +19,12 @@ interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
 }
 
-export const userList = [
-  {
-    id: '1',
-    name: 'Admin Name',
-    email: 'admin@mail.com',
-    enabled: true,
-    role: 'Admin',
-    details: '',
-  },
-  {
-    id: '2',
-    name: 'User Name',
-    email: 'user@mail.com',
-    enabled: false,
-    role: 'User',
-    details: '',
-  },
-]
-
 export const AppUserDetailsTable = ({
   onAddUserButtonClick,
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const tenantUsers = useSelector(tenantUsersSelector)
   const navigate = useNavigate()
 
   const onUserDetailsClick = (userId: string) => {
@@ -87,18 +71,18 @@ export const AppUserDetailsTable = ({
               field: 'details',
               headerName: t('global.field.details'),
               flex: 1,
-              renderCell: ({ row }) => (
+              renderCell: ({ row }: { row: TenantUser }) => (
                 <IconButton
                   color="secondary"
-                  onClick={() => onUserDetailsClick(row.id)}
+                  onClick={() => onUserDetailsClick(row.userEntityId)}
                 >
                   <ArrowForwardIcon />
                 </IconButton>
               ),
             },
           ]}
-          rows={userList}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          rows={tenantUsers}
+          getRowId={(row: { [key: string]: string }) => row.userEntityId}
           hideFooter
         />
       </section>

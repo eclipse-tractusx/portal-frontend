@@ -31,6 +31,7 @@ export { Carousel } from './basic/Carousel'
 export { CustomAccordion } from './basic/CustomAccordion'
 export { CustomAccordionItem } from './basic/CustomAccordion/Item'
 export { SubNavigation } from './basic/SubNavigation'
+export { Breadcrumb } from './basic/Breadcrumb'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'

@@ -32,9 +32,9 @@ export const CardContent = ({
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'normal',
-          display: '-webkit-box',
-          '-webkitLineClamp': '2',
-          '-webkitBoxOrient': 'vertical',
+          display: 'box',
+          lineClamp: '2',
+          boxOrient: 'vertical',
         }}
       >
         {title}

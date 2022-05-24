@@ -2,24 +2,34 @@ import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import './SubHeader.scss'
 
 interface ComponentProps {
   title: string
-  hasBackButton: boolean
+  hasBackButton?: boolean
+  hasBreadcrumb?: boolean
 }
 
-export default function SubHeader({ title, hasBackButton }: ComponentProps) {
+export default function SubHeader({
+  title,
+  hasBackButton,
+  hasBreadcrumb,
+}: ComponentProps) {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
   return (
     <>
       <div className="sub-header">
+        {hasBreadcrumb && (
+          <div className="sub-header-breadcrumb">
+            <PageBreadcrumb />
+          </div>
+        )}
         <div className="sub-header-title">
           <SubHeaderTitle title={title} variant="h4" />
         </div>
-
         <svg
           width="100%"
           viewBox="0 0 1440 60"

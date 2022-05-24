@@ -20,7 +20,7 @@ export class AdminUserApi extends HttpClient {
 
   public getTenantUsers = () => {
     return this.instance.get<TenantUser[]>(
-      `/api/administration/user/tenant/${UserService.getTenant()}/users`,
+      `/api/administration/user/owncompany/users?status=ACTIVE`,
       {
         headers: {
           authorization: `Bearer ${UserService.getToken()}`,
@@ -31,7 +31,7 @@ export class AdminUserApi extends HttpClient {
 
   public addTenantUsers = (users: AddUser[]) => {
     return this.instance.post<AddUser[]>(
-      `/api/administration/user/tenant/${UserService.getTenant()}/users`,
+      `/api/administration/user/tenant/owncompany/users`,
       users,
       {
         headers: {
