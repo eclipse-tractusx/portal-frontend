@@ -3,7 +3,7 @@ import { PageHeaderProps } from '../PageHeader'
 export const HeaderSubtract = ({ hasSubtract }: PageHeaderProps) => {
   return (
     <>
-      {hasSubtract &&
+      {hasSubtract && (
         <svg
           width="100%"
           viewBox="0 0 1440 60"
@@ -22,7 +22,7 @@ export const HeaderSubtract = ({ hasSubtract }: PageHeaderProps) => {
             fill="#fff"
           />
         </svg>
-      }
+      )}
     </>
   )
 }

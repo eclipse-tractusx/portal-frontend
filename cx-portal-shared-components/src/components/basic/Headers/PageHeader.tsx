@@ -14,10 +14,10 @@ export const PageHeader = ({
   children,
   title,
   spacingTop,
-  headerHeight=314,
-  hasSubtract=true,
+  headerHeight = 314,
+  hasSubtract = true,
 }: PageHeaderProps) => {
-  const top = spacingTop ? (spacingTop * -1) + 36 : 36
+  const top = spacingTop ? spacingTop * -1 + 36 : 36
 
   return (
     <Box

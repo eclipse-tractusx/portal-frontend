@@ -7,7 +7,11 @@ export interface BackButtonProps {
   onBackButtonClick?: React.MouseEventHandler
 }
 
-export const BackButton = ({ backButtonLabel, backButtonVariant, onBackButtonClick, }: BackButtonProps) => {
+export const BackButton = ({
+  backButtonLabel,
+  backButtonVariant,
+  onBackButtonClick,
+}: BackButtonProps) => {
   return (
     <>
       {backButtonLabel && (

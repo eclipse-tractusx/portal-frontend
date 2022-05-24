@@ -4,17 +4,17 @@ import { PageHeaderProps } from '../PageHeader'
 export const HeaderTitle = ({ title }: PageHeaderProps) => {
   return (
     <>
-      {title &&
+      {title && (
         <Typography
           sx={{
             paddingTop: '36px',
-            fontFamily: 'LibreFranklin-Light'
+            fontFamily: 'LibreFranklin-Light',
           }}
-          variant='h4'
+          variant="h4"
         >
           {title}
         </Typography>
-      }
+      )}
     </>
   )
 }
