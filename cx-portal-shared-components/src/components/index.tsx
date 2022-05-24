@@ -33,6 +33,8 @@ export { CustomAccordionItem } from './basic/CustomAccordion/Item'
 export { UserDetailCard } from './basic/UserDetailCard'
 export { SubNavigation } from './basic/SubNavigation'
 export { Breadcrumb } from './basic/Breadcrumb'
+export { PageHeader } from './basic/Headers/PageHeader'
+export { BackButton } from './basic/Button/BackButton'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'

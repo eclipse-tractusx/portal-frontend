@@ -13,4 +13,9 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 )
 
 export const PageHeader = Template.bind({})
-PageHeader.args = {}
+PageHeader.args = {
+  title: 'Page title',
+  hasSubtract: true,
+  spacingTop: 0,
+  headerHeight: 200,
+}
