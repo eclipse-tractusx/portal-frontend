@@ -1,8 +1,8 @@
 import { InviteForm } from 'components/pages/InviteBusinessPartner/components/InviteForm'
 import { useState } from 'react'
 import { info } from 'services/LogService'
-import { AdminRegistrationApi } from 'state/features/adminRegistration/api'
-import { InviteData } from 'state/features/adminRegistration/types'
+import { Api as AdminRegistrationApi } from 'features/admin/registration/api'
+import { InviteData } from 'features/admin/registration/types'
 import './InviteBusinessPartner.scss'
 
 export default function InviteBusinessPartner() {
@@ -12,7 +12,7 @@ export default function InviteBusinessPartner() {
     setProcessing('busy')
 
     new AdminRegistrationApi()
-      .inviteBusinessPartner(data)
+      .postInviteBusinessPartner(data)
       .then(() => {
         setProcessing('success')
         info(`onboarding for company ${data.organisationName} started`)

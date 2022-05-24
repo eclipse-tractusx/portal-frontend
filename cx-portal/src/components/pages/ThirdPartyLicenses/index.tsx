@@ -2,8 +2,8 @@ import { SearchInput } from 'cx-portal-shared-components'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from 'state/features/licenses/actions'
-import { licensesSelector } from 'state/features/licenses/slice'
+import { fetchItems } from 'features/licenses/actions'
+import { licensesSelector } from 'features/licenses/slice'
 import debounce from 'lodash.debounce'
 
 export default function ThirdPartyLicenses() {

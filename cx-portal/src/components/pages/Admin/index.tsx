@@ -1,8 +1,8 @@
 import { ProvisionIdentityProviderForm } from 'components/pages/Admin/components/ProvisionIdentityProviderForm'
 import { useState } from 'react'
 import { info } from 'services/LogService'
-import { ProvisioningApi } from 'state/features/provisioning/api'
-import { ProvisionIdentityProviderData } from 'state/features/provisioning/types'
+import { ProvisioningApi } from 'features/provisioning/api'
+import { ProvisionIdentityProviderData } from 'features/provisioning/types'
 import './Admin.scss'
 
 export default function Admin() {

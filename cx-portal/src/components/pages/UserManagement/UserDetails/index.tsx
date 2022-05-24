@@ -12,7 +12,7 @@ import {
   Table,
   Chip,
 } from 'cx-portal-shared-components'
-import { RootState } from 'state/store'
+import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'

@@ -2,7 +2,7 @@ import { Typography, CustomAccordion } from 'cx-portal-shared-components'
 import {
   ShellDescriptor,
   SubmodelDescriptors,
-} from 'state/features/digitalTwins/types'
+} from 'features/digitalTwins/types'
 import { TwinDetailGrid } from './TwinDetailGrid'
 import { Grid, Box, Divider, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'

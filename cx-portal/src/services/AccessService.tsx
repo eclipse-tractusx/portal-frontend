@@ -31,8 +31,6 @@ import AppMarketplace from 'components/pages/AppMarketplace'
 import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
-import Appstore from 'components/pages/Appstore'
-import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
 import DataManagement from 'components/pages/DataManagement'
 
 /**
@@ -48,17 +46,6 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Registration /> },
-  {
-    name: PAGES.APPSTORE,
-    role: ROLES.APPSTORE_VIEW,
-    isRoute: true,
-    element: (
-      <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
-        <Route index element={<></>} />
-        <Route path=":appId" element={<AppstoreDetail />} />
-      </Route>
-    ),
-  },
   {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,

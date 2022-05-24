@@ -1,5 +1,5 @@
-import { BusinessPartnerResponse } from 'state/features/partnerNetwork/types'
-import { IUser } from 'state/features/user/types'
+import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
+import { IUser } from 'features/user/types'
 
 // Mock redux user to initialize store
 const storeMockUser: IUser = {

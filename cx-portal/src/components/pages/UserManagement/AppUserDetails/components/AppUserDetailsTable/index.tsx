@@ -8,9 +8,9 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { fetchTenantUsers } from 'state/features/adminUser/actions'
-import { tenantUsersSelector } from 'state/features/adminUser/slice'
-import { TenantUser } from 'state/features/adminUser/types'
+import { fetchTenantUsers } from 'features/admin/user/actions'
+import { tenantUsersSelector } from 'features/admin/user/slice'
+import { TenantUser } from 'features/admin/user/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import './AppUserDetailsTable.scss'
 import { useNavigate } from 'react-router-dom'
@@ -53,7 +53,8 @@ export const AppUserDetailsTable = ({
             onButtonClick: onAddUserButtonClick,
           }}
           columns={[
-            { field: 'name', headerName: t('global.field.name'), flex: 2 },
+            { field: 'lastName', headerName: t('global.field.name'), flex: 1 },
+            { field: 'firstName', headerName: t('global.field.name'), flex: 1 },
             { field: 'email', headerName: t('global.field.email'), flex: 2 },
             {
               field: 'enabled',

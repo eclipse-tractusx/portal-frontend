@@ -2,9 +2,9 @@ import { Button, Table } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDigitalTwins } from 'state/features/digitalTwins/actions'
-import { twinsSelector } from 'state/features/digitalTwins/slice'
-import { ShellDescriptor } from 'state/features/digitalTwins/types'
+import { fetchDigitalTwins } from 'features/digitalTwins/actions'
+import { twinsSelector } from 'features/digitalTwins/slice'
+import { ShellDescriptor } from 'features/digitalTwins/types'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
 
 interface TwinTableProps {

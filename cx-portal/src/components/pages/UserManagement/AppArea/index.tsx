@@ -2,15 +2,15 @@ import { Card, Carousel } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { fetchSubscribed } from 'state/features/appMarketplace/actions'
-import { appMarketplaceSelectSubscribed } from 'state/features/appMarketplace/slice'
+import { fetchSubscribed } from 'features/apps/marketplace/actions'
+import { subscribedSelector } from 'features/apps/marketplace/slice'
 import uniqueId from 'lodash/uniqueId'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
 export const AppArea = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const items = useSelector(appMarketplaceSelectSubscribed)
+  const items = useSelector(subscribedSelector)
 
   useEffect(() => {
     dispatch(fetchSubscribed(true))

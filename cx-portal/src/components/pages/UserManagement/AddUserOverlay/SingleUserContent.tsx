@@ -3,7 +3,7 @@ import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUsersToAdd } from 'state/features/adminUser/actions'
+import { setUsersToAdd } from 'features/admin/user/actions'
 import debounce from 'lodash.debounce'
 import { IHashMap, UserInput } from 'types/MainTypes'
 
