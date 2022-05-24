@@ -1,14 +1,13 @@
+import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
 import { SearchParams, BusinessPartnerResponse, BusinessPartner } from './types'
-import qs from 'querystring'
-import UserService from 'services/UserService'
 import { getBpdmApiBase } from 'services/EnvironmentService'
+import { getHeaders } from 'services/RequestService'
 
 // Instance of BPDM API endpoint
 export class PartnerNetworkApi extends HttpClient {
   private static classInstance?: PartnerNetworkApi
 
-  // TODO: Token needs to read from Redux store
   public constructor() {
     super(getBpdmApiBase())
   }
@@ -21,26 +20,15 @@ export class PartnerNetworkApi extends HttpClient {
     return this.classInstance
   }
 
-  public getAllBusinessPartner = (filters: SearchParams) => {
-    const params = qs.stringify(filters)
-    return this.instance.get<BusinessPartnerResponse>(
-      `/catena/business-partner?${params}`,
-      {
-        headers: {
-          authorization: `Bearer ${UserService.getToken()}`,
-        },
-      }
+  public getAllBusinessPartner = (filters: SearchParams) =>
+    this.instance.get<BusinessPartnerResponse>(
+      `/catena/business-partner?${qs.stringify(filters)}`,
+      getHeaders()
     )
-  }
 
-  public getBusinessPartnerByBpn = (bpn: string) => {
-    return this.instance.get<BusinessPartner>(
+  public getBusinessPartnerByBpn = (bpn: string) =>
+    this.instance.get<BusinessPartner>(
       `/catena/business-partner/${bpn}?idType=BPN`,
-      {
-        headers: {
-          authorization: `Bearer ${UserService.getToken()}`,
-        },
-      }
+      getHeaders()
     )
-  }
 }

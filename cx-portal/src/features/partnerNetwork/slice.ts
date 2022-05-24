@@ -61,9 +61,7 @@ const partnerNetworkSlice = createSlice({
       try {
         state.mappedPartnerList = [
           ...state.mappedPartnerList,
-          ...(mapBusinessPartnerToDataGrid(
-            payloadList
-          ) as Array<PartnerNetworkDataGrid>),
+          ...mapBusinessPartnerToDataGrid(payloadList),
         ]
         state.loading = false
         state.paginationData = {
@@ -74,7 +72,7 @@ const partnerNetworkSlice = createSlice({
         return {
           ...state,
           loading: false,
-          error: (error as Error).message as string,
+          error: (error as Error).message,
         } as PartnerNetworkInitialState
       }
     })

@@ -1,6 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-//import { ConnectorApi } from './api'
-//import { SearchParams } from './types'
 import ConnectorResultsMock from 'utils/mockDataSet/connectorResults.json'
 
 // action params: { params }: { params: SearchParams; token: string }

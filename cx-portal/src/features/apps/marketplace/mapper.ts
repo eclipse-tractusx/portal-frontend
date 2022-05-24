@@ -4,12 +4,12 @@ import { AppMarketplaceApp } from './types'
 
 const baseAssets = getAssetBase()
 
-export const getAppLeadImage = (app: AppMarketplaceApp): string =>
-  !app.leadPictureUri || app.leadPictureUri === 'ERROR'
-    ? `${baseAssets}/images/apps/default/lead.png`
-    : app.leadPictureUri.startsWith('https://')
-    ? app.leadPictureUri
-    : `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
+export const getAppLeadImage = (app: AppMarketplaceApp): string => {
+  if (!app.leadPictureUri || app.leadPictureUri === 'ERROR')
+    return `${baseAssets}/images/apps/default/lead.png`
+  if (app.leadPictureUri.startsWith('https://')) return app.leadPictureUri
+  return `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
+}
 
 export const getAppImage = (appid: string, image: string): ImageType => ({
   text: 'image caption',
