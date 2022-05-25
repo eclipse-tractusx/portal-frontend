@@ -1,7 +1,7 @@
 import { StatusTag, Table } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { tenantUsersSelector } from 'state/features/adminUser/slice'
+import { tenantUsersSelector } from 'features/admin/user/slice'
 
 export default function UserListContent() {
   const { t } = useTranslation()

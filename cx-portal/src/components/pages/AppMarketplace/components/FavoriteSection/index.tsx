@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Carousel } from 'cx-portal-shared-components'
 import FavoriteItem from './FavoriteItem'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
-import { fetchItems } from 'state/features/appFavorites/actions'
-import { itemsSelector } from 'state/features/appFavorites/slice'
+import { activeSelector } from 'features/apps/marketplace/slice'
+import { fetchItems } from 'features/apps/favorites/actions'
+import { itemsSelector as favoriteSelector } from 'features/apps/favorites/slice'
 
 export default function FavoriteSection() {
   const dispatch = useDispatch()
-  const active = useSelector(appMarketplaceSelectActive)
-  const favorites = useSelector(itemsSelector)
+  const active = useSelector(activeSelector)
+  const favorites = useSelector(favoriteSelector)
 
   useEffect(() => {
     dispatch(fetchItems())

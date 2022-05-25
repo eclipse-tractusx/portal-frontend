@@ -1,6 +1,6 @@
 import { Typography } from 'cx-portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { AppRole } from 'state/features/adminAppRole/types'
+import { AppRole } from 'features/admin/approle/types'
 import './AppUserDetailsHeader.scss'
 
 export interface AppUserDetailsHeaderProps {

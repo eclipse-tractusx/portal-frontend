@@ -4,15 +4,15 @@ import uniqueId from 'lodash/uniqueId'
 import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
 import { useDispatch, useSelector } from 'react-redux'
-import { appMarketplaceSelectSubscribed } from 'state/features/appMarketplace/slice'
-import { fetchSubscribed } from 'state/features/appMarketplace/actions'
+import { subscribedSelector } from 'features/apps/marketplace/slice'
+import { fetchSubscribed } from 'features/apps/marketplace/actions'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const items = useSelector(appMarketplaceSelectSubscribed)
+  const items = useSelector(subscribedSelector)
 
   useEffect(() => {
     dispatch(fetchSubscribed())

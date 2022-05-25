@@ -7,13 +7,13 @@ import {
 } from 'cx-portal-shared-components'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from 'state/features/appMarketplace/actions'
-import { appMarketplaceSelectActive } from 'state/features/appMarketplace/slice'
+import { fetchActive } from 'features/apps/marketplace/actions'
+import { activeSelector } from 'features/apps/marketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
-import { itemsSelector } from 'state/features/appFavorites/slice'
-import { addItem, removeItem } from 'state/features/appFavorites/actions'
+import { itemsSelector } from 'features/apps/favorites/slice'
+import { addItem, removeItem } from 'features/apps/favorites/actions'
 
 export const label = 'AppList'
 
@@ -21,7 +21,7 @@ export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const cards = useSelector(appMarketplaceSelectActive)
+  const cards = useSelector(activeSelector)
   const { t } = useTranslation()
 
   const favoriteItems = useSelector(itemsSelector)
@@ -53,7 +53,7 @@ export default function AppListSection() {
   ]
 
   useEffect(() => {
-    dispatch(fetchItems())
+    dispatch(fetchActive())
   }, [dispatch])
 
   return (

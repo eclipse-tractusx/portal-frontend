@@ -9,7 +9,7 @@ import {
 import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
 import { DetailGridRow } from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay'
 import { useSelector } from 'react-redux'
-import { adminRegistrationSelector } from 'state/features/adminRegistration/slice'
+import { adminRegistrationSelector } from 'features/admin/registration/slice'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean

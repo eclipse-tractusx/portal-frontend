@@ -9,7 +9,7 @@ import {
   Table,
   Chip,
 } from 'cx-portal-shared-components'
-import { RootState } from 'state/store'
+import { RootState } from 'features/store'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'

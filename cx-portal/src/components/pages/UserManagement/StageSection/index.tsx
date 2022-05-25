@@ -1,7 +1,7 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { openAdd } from 'state/features/adminUser/actions'
+import { openAdd } from 'features/admin/user/actions'
 
 export default function SearchSection() {
   const { t } = useTranslation()

@@ -5,7 +5,7 @@ import I18nService from 'services/I18nService'
 import { MockReduxStoreInitialState } from 'utils/mockDataSet/mockReduxStore'
 import { renderWithStore } from 'utils/renderWithStore'
 import RegistrationRequestsMockData from 'utils/mockDataSet/registrationRequests.json'
-import { RegistrationRequestAPIResponse } from 'state/features/adminRegistration/types'
+import { RegistrationRequestAPIResponse } from 'features/admin/registration/types'
 import EnglishScripts from 'assets/locales/en/main.json'
 
 const renderRegistrationRequestsPage = (): RenderResult =>

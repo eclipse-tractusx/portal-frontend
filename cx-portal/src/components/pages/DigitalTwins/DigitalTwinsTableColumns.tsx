@@ -1,7 +1,7 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { ShellDescriptor } from 'state/features/digitalTwins/types'
+import { ShellDescriptor } from 'features/digitalTwins/types'
 
 // Columns definitions of Digital Twin page Data Grid
 export const DigitalTwinsTableColumns = (

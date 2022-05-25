@@ -6,8 +6,8 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import AddUserRightOverlay from '../AddUserRightOverlay'
 import { PageHeader } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { itemSelector } from 'state/features/adminAppRole/slice'
-import { fetchItems } from 'state/features/adminAppRole/actions'
+import { itemSelector } from 'features/admin/approle/slice'
+import { fetchItems } from 'features/admin/approle/actions'
 import { useParams } from 'react-router-dom'
 import './AppUserDetails.scss'
 

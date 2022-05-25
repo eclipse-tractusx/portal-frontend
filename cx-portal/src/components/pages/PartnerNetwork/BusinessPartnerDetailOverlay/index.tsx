@@ -9,7 +9,7 @@ import {
 import {
   PartnerNetworkDataGrid,
   BpdmTypeUUIDKeyPair,
-} from 'state/features/partnerNetwork/types'
+} from 'features/partnerNetwork/types'
 import { Box, Grid, useTheme } from '@mui/material'
 
 interface BusinessPartnerDetailOverlayProps {

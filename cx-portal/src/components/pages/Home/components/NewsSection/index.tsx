@@ -1,8 +1,8 @@
 import { Cards } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from 'state/features/news/actions'
-import { newsSelector } from 'state/features/news/slice'
+import { fetchItems } from 'features/news/actions'
+import { newsSelector } from 'features/news/slice'
 import './news-section.scss'
 
 export default function NewsSection() {
