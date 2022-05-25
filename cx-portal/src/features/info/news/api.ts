@@ -2,8 +2,8 @@ import { CardItems } from 'cx-portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 
-export class NewsApi extends HttpClient {
-  private static classInstance?: NewsApi
+export class Api extends HttpClient {
+  private static classInstance?: Api
 
   public constructor() {
     super(getAssetBase())
@@ -11,12 +11,11 @@ export class NewsApi extends HttpClient {
 
   public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new NewsApi()
+      this.classInstance = new Api()
     }
     return this.classInstance
   }
 
-  public getItems = () => {
-    return this.instance.get<CardItems[]>(`/api/news/latest.json`)
-  }
+  public getItems = () =>
+    this.instance.get<CardItems[]>(`/api/news/latest.json`)
 }

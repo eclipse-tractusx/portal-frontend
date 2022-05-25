@@ -2,8 +2,8 @@ import { SearchInput } from 'cx-portal-shared-components'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from 'features/licenses/actions'
-import { licensesSelector } from 'features/licenses/slice'
+import { fetchItems } from 'features/info/licenses/actions'
+import { itemsSelector } from 'features/info/licenses/slice'
 import debounce from 'lodash.debounce'
 
 export default function ThirdPartyLicenses() {
@@ -11,7 +11,7 @@ export default function ThirdPartyLicenses() {
   const dispatch = useDispatch()
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [filter, setFilter] = useState<RegExp>(/./)
-  const { items } = useSelector(licensesSelector)
+  const items = useSelector(itemsSelector)
 
   useEffect(() => {
     dispatch(fetchItems())

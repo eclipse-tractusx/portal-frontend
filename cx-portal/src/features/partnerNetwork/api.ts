@@ -1,8 +1,9 @@
 import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
-import { SearchParams, BusinessPartnerResponse, BusinessPartner } from './types'
+import { BusinessPartnerResponse, BusinessPartner } from './types'
 import { getBpdmApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
+import { SearchParams } from 'types/MainTypes'
 
 // Instance of BPDM API endpoint
 export class PartnerNetworkApi extends HttpClient {

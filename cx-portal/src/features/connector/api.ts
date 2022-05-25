@@ -1,14 +1,15 @@
+import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
 import { ConnectorResponse, SearchParams } from './types'
-import UserService from 'services/UserService'
-import qs from 'querystring'
+import { getBpdmApiBase } from 'services/EnvironmentService'
+import { getHeaders } from 'services/RequestService'
 
 // Instance of Connector API endpoint
 export class ConnectorApi extends HttpClient {
   private static classInstance?: ConnectorApi
 
   public constructor() {
-    super(process.env.REACT_APP_BPDM_API_BASE_URL || '')
+    super(getBpdmApiBase())
   }
 
   // To avoid create an instance everytime, pointed to Singleton of static value
@@ -21,15 +22,9 @@ export class ConnectorApi extends HttpClient {
 
   // Temp method to simulate API call
   // Will updated when endpoint gets ready
-  public getAllConnector = (filters: SearchParams) => {
-    const params = qs.stringify(filters)
-    return this.instance.get<ConnectorResponse>(
-      `/catena/business-partner?${params}`,
-      {
-        headers: {
-          authorization: `Bearer ${UserService.getToken()}`,
-        },
-      }
+  public getAllConnector = (filters: SearchParams) =>
+    this.instance.get<ConnectorResponse>(
+      `/catena/business-partner?${qs.stringify(filters)}`,
+      getHeaders()
     )
-  }
 }

@@ -2,8 +2,7 @@ import React from 'react'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { render as renderRtl } from '@testing-library/react'
-import { RootState } from 'features/store'
-import { reducers } from 'features/reducer'
+import { RootState, reducers } from 'features/store'
 
 interface WrapperProps {
   children?: React.ReactNode

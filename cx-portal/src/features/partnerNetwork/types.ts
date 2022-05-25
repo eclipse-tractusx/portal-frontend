@@ -149,9 +149,3 @@ export interface PartnerNetworkDataGrid {
   city: string
   identifiers: Array<BpdmTypeUUIDKeyPair>
 }
-
-export type SearchParams = {
-  readonly name?: string
-  readonly page: number
-  readonly size: number
-}
