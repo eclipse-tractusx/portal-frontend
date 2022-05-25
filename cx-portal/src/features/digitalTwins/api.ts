@@ -8,7 +8,7 @@ export class DigitalTwinApi extends HttpClient {
   private static classInstance?: DigitalTwinApi
 
   public constructor() {
-    super(`${getSemanticApiBase()}/twin-registry/registry/shell-descriptors`)
+    super(`${getSemanticApiBase()}registry/shell-descriptors`)
   }
 
   public static getInstance() {
