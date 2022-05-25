@@ -26,8 +26,8 @@ export default function UserDetails() {
 
   const userDetails = [
     {
-      cardCategory: 'Personal Information',
-      cardContentItems: {
+      category: 'Personal Information',
+      items: {
         name: { label: 'Name', value: 'Max' },
         surname: { label: 'Nachname', value: 'Mustermann' },
         email: { label: 'E-Mail', value: 'm.musterman@test.de' },
@@ -35,8 +35,8 @@ export default function UserDetails() {
       },
     },
     {
-      cardCategory: 'Status Information',
-      cardContentItems: {
+      category: 'Status Information',
+      items: {
         status: { label: 'Status', value: 'Aktiv' },
         userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
       },
