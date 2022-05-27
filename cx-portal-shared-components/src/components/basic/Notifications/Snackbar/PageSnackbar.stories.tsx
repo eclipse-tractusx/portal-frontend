@@ -1,20 +1,22 @@
 import { ComponentStory } from '@storybook/react'
 
-import { PageNotifications as Component } from '.'
+import { PageSnackbar as Component } from '.'
 
 export default {
   title: 'Notifications',
   component: Component,
   argTypes: {},
 }
+
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args}>{args.children}</Component>
+  <Component {...args} />
 )
 
-export const PageNotifications = Template.bind({})
-PageNotifications.args = {
+export const PageSnackbar = Template.bind({})
+PageSnackbar.args = {
   severity: 'success',
-  onClose: () => console.log('close alert'),
+  open: true,
+  onClose: () => console.log('close snackbar'),
   title: 'Notification title',
   description: 'This is some notification text and can be replaced later.',
   contactText: 'Contact',

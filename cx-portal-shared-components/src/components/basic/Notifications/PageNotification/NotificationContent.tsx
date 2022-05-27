@@ -15,31 +15,30 @@ export const NotificationContent = ({
   titleColor,
 }: NotificationContentProps & PageNotificationsProps) => {
   return (
-    <Box
-      sx={{display: 'flex'}}>
-      {title &&
+    <Box sx={{ display: 'flex' }}>
+      {title && (
         <Typography
           variant="h5"
           sx={{ marginRight: '10px', color: titleColor, width: 'max-content' }}
         >
           {title}
         </Typography>
-      }
-      {description &&
+      )}
+      {description && (
         <Typography variant="body1">
           {description}
-          {contactText && 
+          {contactText && (
             <a
               style={{ marginLeft: '10px', paddingTop: '3px' }}
               href={contactLinks}
-              target= {contactNewTab ? '_blank' : ''}
+              target={contactNewTab ? '_blank' : ''}
               rel="noreferrer"
             >
               {contactText}
             </a>
-          }
+          )}
         </Typography>
-      }
+      )}
     </Box>
   )
 }
