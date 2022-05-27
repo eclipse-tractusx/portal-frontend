@@ -21,6 +21,8 @@ declare module '@mui/material/styles' {
   interface TypeSupport {
     success: string
     error: string
+    info: string
+    warning: string
   }
 
   interface TypeBorders {
