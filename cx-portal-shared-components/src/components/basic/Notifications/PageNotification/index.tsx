@@ -44,7 +44,12 @@ export function titleIcon(severity: string) {
     case 'warning':
       return <WarningAmber fontSize="inherit" sx={{ color: color(severity) }} />
     case 'success':
-      return <CheckCircleOutline fontSize="inherit" sx={{ color: color(severity) }} />
+      return (
+        <CheckCircleOutline
+          fontSize="inherit"
+          sx={{ color: color(severity) }}
+        />
+      )
     default:
       return ''
   }

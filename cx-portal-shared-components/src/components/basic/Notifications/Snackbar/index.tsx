@@ -2,14 +2,14 @@ import { Box, IconButton } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { PageNotificationsProps, color, titleIcon } from '../PageNotification'
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
-import { SnackbarContent } from './SnackbarContent';
+import { SnackbarContent } from './SnackbarContent'
 import { theme } from '../../../../theme'
 
 export interface PageSnackbarProps extends SnackbarOrigin {
-  open: boolean;
+  open: boolean
 }
 
-export const PageSnackbar = ({ 
+export const PageSnackbar = ({
   severity = 'info',
   onClose,
   open,
@@ -19,7 +19,7 @@ export const PageSnackbar = ({
   contactLinks,
   contactNewTab,
   showIcon,
- }: PageNotificationsProps & PageSnackbarProps) => {
+}: PageNotificationsProps & PageSnackbarProps) => {
   return (
     <Box>
       <Snackbar
@@ -63,8 +63,8 @@ export const PageSnackbar = ({
             flexDirection: 'column-reverse',
           },
           '.MuiSnackbarContent-message': {
-            padding: '0px'
-          }
+            padding: '0px',
+          },
         }}
       />
     </Box>
