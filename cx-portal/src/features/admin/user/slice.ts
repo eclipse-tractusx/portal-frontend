@@ -27,6 +27,15 @@ export const slice = createSlice({
       ...state,
       usersToAdd: action.payload,
     }),
+    openTechnicalUserAdd: (state) => ({
+      ...state,
+      addTechnicalUserOpen: true,
+      addRequest: RequestState.NONE,
+    }),
+    closeTechnicalUserAdd: (state) => ({
+      ...state,
+      addTechnicalUserOpen: false,
+    }),
   },
   extraReducers: (builder) => {
     builder.addCase(addTenantUsers.pending, (state) => ({
@@ -82,6 +91,9 @@ export const getRequestStateSelector = (state: RootState): RequestState =>
 
 export const addRequestStateSelector = (state: RootState): RequestState =>
   state.admin.user.addRequest
+
+export const addTechnicalUserOpenSelector = (state: RootState): boolean =>
+  state.admin.user.addTechnicalUserOpen
 
 const Slice = { slice }
 

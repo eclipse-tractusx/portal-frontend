@@ -60,6 +60,7 @@ export enum PAGES {
   ORGANIZATION = 'organization',
   PARTNER_NETWORK = 'partnernetwork',
   USER_MANAGEMENT = 'usermanagement',
+  TECHNICAL_USER_MANAGEMENT = 'technicaluser',
   TECHNICAL_SETUP = 'technicalsetup',
   APPLICATION_REQUESTS = 'applicationrequests',
   APP_USER_DETAILS = 'appuserdetails',
