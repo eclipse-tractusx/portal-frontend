@@ -1,8 +1,8 @@
-import { CardItems, SearchItem } from 'cx-portal-shared-components'
+import { CardItems } from 'cx-portal-shared-components'
 import { TenantUser } from 'features/admin/user/types'
 import { AppMarketplaceApp } from 'features/apps/marketplace/types'
 import { BusinessPartner } from 'features/partnerNetwork/types'
-import { SearchCategory } from './types'
+import { SearchCategory, SearchItem } from './types'
 
 export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
   id: item.id,

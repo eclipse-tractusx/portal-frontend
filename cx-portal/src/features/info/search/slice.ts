@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { SearchItem } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 import { fetchSearch } from './actions'
-import { initialState, name } from './types'
+import { initialState, name, SearchItem } from './types'
 
 export const slice = createSlice({
   name,
