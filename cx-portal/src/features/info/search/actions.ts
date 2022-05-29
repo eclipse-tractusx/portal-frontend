@@ -7,6 +7,7 @@ import {
   appToSearchItem,
   businessPartnerToSearchItem,
   newsToSearchItem,
+  pageToSearchItem,
   userToSearchItem,
 } from './mapper'
 import { name, SearchItem } from './types'
@@ -18,9 +19,11 @@ import {
   BusinessPartnerResponse,
 } from 'features/partnerNetwork/types'
 import { TenantUser } from 'features/admin/user/types'
+import I18nService from 'services/I18nService'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
+const emptyPageResult: string[] = []
 const emptyUserResult: TenantUser[] = []
 const emptyPartnerResult: BusinessPartnerResponse = {
   totalElements: 0,
@@ -40,16 +43,16 @@ const getSinglePartnerResult = (partner: BusinessPartner) => ({
 const searchForExpression = async function (expr: string) {
   if (!expr || expr.length < 3) {
     return Promise.all([
+      emptyPageResult,
       emptyAppResult,
+      emptyPartnerResult,
       emptyNewsResult,
       emptyUserResult,
-      emptyPartnerResult,
     ])
   } else if (Patterns.prefix.BPN.test(expr)) {
     return Promise.all([
+      emptyPageResult,
       emptyAppResult,
-      emptyNewsResult,
-      emptyUserResult,
       Patterns.BPN.test(expr)
         ? getSinglePartnerResult(
             await PartnerNetworkApi.getInstance().getBusinessPartnerByBpn(
@@ -57,17 +60,20 @@ const searchForExpression = async function (expr: string) {
             )
           )
         : emptyPartnerResult,
+      emptyNewsResult,
+      emptyUserResult,
     ])
   } else {
     return Promise.all([
+      I18nService.searchPages(expr),
       await AppsApi.getInstance().getActive(),
-      await NewsApi.getInstance().getItems(),
-      await UserApi.getInstance().getTenantUsers(),
       await PartnerNetworkApi.getInstance().getAllBusinessPartner({
         name: expr,
         page: 0,
         size: 5,
       }),
+      await NewsApi.getInstance().getItems(),
+      await UserApi.getInstance().getTenantUsers(),
     ])
   }
 }
@@ -79,14 +85,20 @@ const fetchSearch = createAsyncThunk(
   async (expr: string): Promise<SearchItem[]> => {
     const searchExpr = new RegExp(expr, 'gi')
     try {
-      let [apps, news, users, partners] = await searchForExpression(expr.trim())
+      let [pages, apps, partners, news, users] = await searchForExpression(
+        expr.trim()
+      )
       return [
+        pages.map((item) => pageToSearchItem(item)),
         apps
           .filter(
             (item) =>
               item.title.match(searchExpr) || item.provider.match(searchExpr)
           )
           .map((item) => appToSearchItem(item)),
+        partners.content.map((item) =>
+          businessPartnerToSearchItem(item.businessPartner)
+        ),
         news
           .filter(
             (item) =>
@@ -103,9 +115,6 @@ const fetchSearch = createAsyncThunk(
               item.email.match(searchExpr)
           )
           .map((item) => userToSearchItem(item)),
-        partners.content.map((item) =>
-          businessPartnerToSearchItem(item.businessPartner)
-        ),
       ].flat()
     } catch (error: unknown) {
       console.error('api call error:', error)

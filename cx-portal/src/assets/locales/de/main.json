@@ -32,8 +32,7 @@
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "registration-requests": "Registrierungsanfragen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden",
-    "edc-connector": "Technische Integration"
+    "notfound": "Seite nicht gefunden"
   },
   "content": {
     "admin": {
