@@ -4,42 +4,7 @@ import { Box, Grid, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
-
-export const DetailGridRow = ({
-  variableName,
-  value,
-}: {
-  variableName: string
-  value: string
-}) => {
-  const { palette, spacing } = useTheme()
-  return (
-    <>
-      <Grid
-        item
-        xs={5}
-        style={{
-          borderBottom: `1px solid ${palette.grey['200']}`,
-          marginTop: 0,
-          padding: spacing(1.5),
-        }}
-      >
-        <span>{variableName}</span>
-      </Grid>
-      <Grid
-        item
-        xs={7}
-        style={{
-          borderBottom: `1px solid ${palette.grey['200']}`,
-          marginTop: 0,
-          padding: spacing(1.5),
-        }}
-      >
-        <span>{value}</span>
-      </Grid>
-    </>
-  )
-}
+import DetailGridRow from './DetailGridRow'
 
 const BusinessPartnerDetailContent = () => {
   const { t } = useTranslation()
