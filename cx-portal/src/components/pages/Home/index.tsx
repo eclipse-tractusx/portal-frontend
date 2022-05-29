@@ -1,4 +1,5 @@
 import SearchSection from './components/SearchSection'
+import SearchResultSection from './components/SearchResultSection'
 import NewsSection from './components/NewsSection'
 import BusinessApplicationsSection from './components/BusinessApplicationsSection'
 import StageSection from './components/StageSection'
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="home">
       <StageSection />
       <SearchSection />
+      <SearchResultSection />
       <NewsSection />
       <BusinessApplicationsSection />
       <AppStoreSection />

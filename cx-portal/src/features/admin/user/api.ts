@@ -24,9 +24,15 @@ export class Api extends HttpClient {
       getHeaders()
     )
 
+  public searchTenantUsers = (expr: string) =>
+    this.instance.get<TenantUser[]>(
+      `/api/administration/user/owncompany/users?status=ACTIVE&firstName=${expr}&lastName=${expr}`,
+      getHeaders()
+    )
+
   public addTenantUsers = (users: AddUser[]) =>
     this.instance.post<AddUser[]>(
-      `/api/administration/user/tenant/owncompany/users`,
+      `/api/administration/user/owncompany/users`,
       users,
       getHeaders()
     )

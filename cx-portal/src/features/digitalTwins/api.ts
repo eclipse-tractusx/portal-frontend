@@ -1,11 +1,11 @@
-import UserService from 'services/UserService'
+import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
 import { FilterParams, ShellDescriptor, TwinList } from './types'
-import qs from 'querystring'
 import { getSemanticApiBase } from 'services/EnvironmentService'
+import { getHeaders } from 'services/RequestService'
 
-export class DigitalTwinApi extends HttpClient {
-  private static classInstance?: DigitalTwinApi
+export class Api extends HttpClient {
+  private static classInstance?: Api
 
   public constructor() {
     super(`${getSemanticApiBase()}/twin-registry/registry/shell-descriptors`)
@@ -13,25 +13,14 @@ export class DigitalTwinApi extends HttpClient {
 
   public static getInstance() {
     if (!this.classInstance) {
-      this.classInstance = new DigitalTwinApi()
+      this.classInstance = new Api()
     }
     return this.classInstance
   }
 
-  public getTwins = (filters: FilterParams) => {
-    const params = qs.stringify(filters)
-    return this.instance.get<TwinList>(`?${params}`, {
-      headers: {
-        Authorization: `Bearer ${UserService.getToken()}`,
-      },
-    })
-  }
+  public getTwins = (filters: FilterParams) =>
+    this.instance.get<TwinList>(`?${qs.stringify(filters)}`, getHeaders())
 
-  public getTwinById = (id: string) => {
-    return this.instance.get<ShellDescriptor>(`/${id}`, {
-      headers: {
-        Authorization: `Bearer ${UserService.getToken()}`,
-      },
-    })
-  }
+  public getTwinById = (id: string) =>
+    this.instance.get<ShellDescriptor>(`/${id}`, getHeaders())
 }

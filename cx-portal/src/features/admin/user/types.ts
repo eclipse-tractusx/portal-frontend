@@ -21,10 +21,10 @@ export type TenantUser = {
 
 export type AddUser = {
   userName: string
-  eMail: string
+  email: string
   firstName: string
   lastName: string
-  role: string
+  roles: string[]
   message: string
 }
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { SearchParams } from './types'
+import { SearchParams } from 'types/MainTypes'
 import { PartnerNetworkApi } from './api'
 
 const fetchBusinessPartners = createAsyncThunk(
