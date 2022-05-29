@@ -11,6 +11,7 @@ export interface MenuItemProps extends LinkItem {
   component?: React.ElementType
   divider?: boolean
   menuProps?: BoxProps
+  onClick?: React.MouseEventHandler
   Menu?: MenuType
 }
 
@@ -20,6 +21,7 @@ export const MenuItem = ({
   divider,
   component = Link,
   menuProps,
+  onClick,
   Menu,
   ...props
 }: MenuItemProps) => {
@@ -36,9 +38,11 @@ export const MenuItem = ({
         display: 'block',
         position: 'relative',
         padding: spacing(0, 1),
+        ...(onClick && { cursor: 'pointer' }),
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
     >
       <Link
         component={component}

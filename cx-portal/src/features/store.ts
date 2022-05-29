@@ -6,11 +6,13 @@ import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
 import { reducer as admin } from './admin/reducer'
 import { reducer as apps } from './apps/reducer'
+import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
 
 export const reducers = {
   admin,
   apps,
+  control,
   info,
   user: userSlice,
   twins: twinsSlice.reducer,

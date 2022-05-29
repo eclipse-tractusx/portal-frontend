@@ -9,8 +9,8 @@ import {
   newsToSearchItem,
   userToSearchItem,
 } from './mapper'
-import { name } from './types'
-import { CardItems, SearchItem } from 'cx-portal-shared-components'
+import { name, SearchItem } from './types'
+import { CardItems } from 'cx-portal-shared-components'
 import { Patterns } from 'types/Patterns'
 import { AppMarketplaceApp } from 'features/apps/marketplace/types'
 import {
