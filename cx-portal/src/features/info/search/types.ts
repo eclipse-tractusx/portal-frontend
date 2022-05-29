@@ -5,6 +5,7 @@ export const name = 'info/search'
 export enum SearchCategory {
   APP = 'APP',
   NEWS = 'NEWS',
+  PAGE = 'PAGE',
   USER = 'USER',
   PARTNER = 'PARTNER',
 }

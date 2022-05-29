@@ -37,9 +37,22 @@ const init = (): void => {
     .catch((e) => console.error('Translation library init got error:', e))
 }
 
+const searchPages = (expr: string): string[] => {
+  const regex = new RegExp(expr, 'ig')
+  return [
+    ...new Set(
+      Object.entries(resources.en.translation.pages)
+        .concat(Object.entries(resources.de.translation.pages))
+        .filter(([key, value]) => regex.test(value))
+        .map(([key, value]) => key)
+    ),
+  ]
+}
+
 const I18nService = {
   init,
   changeLanguage,
+  searchPages,
   useTranslation,
   supportedLanguages,
 }
