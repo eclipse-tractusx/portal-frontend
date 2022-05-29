@@ -29,7 +29,6 @@ const PartnerNetwork = () => {
   const [selectedBPN, setSelectedBPN] = useState<PartnerNetworkDataGrid>(
     {} as PartnerNetworkDataGrid
   )
-  console.log(`render ${companyName}`)
   const { mappedPartnerList, loading, paginationData } = useSelector(
     partnerNetworkSelector
   )

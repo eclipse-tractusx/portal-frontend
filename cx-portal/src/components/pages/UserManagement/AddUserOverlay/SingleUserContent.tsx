@@ -72,10 +72,10 @@ export const SingleUserContent = () => {
           ? [
               {
                 userName: userInputs.email.value,
-                eMail: userInputs.email.value,
+                email: userInputs.email.value,
                 firstName: userInputs.firstname.value,
                 lastName: userInputs.lastname.value,
-                role: 'IT Admin',
+                roles: ['IT Admin'],
                 message: 'you have been invited to catena-x',
               },
             ]
