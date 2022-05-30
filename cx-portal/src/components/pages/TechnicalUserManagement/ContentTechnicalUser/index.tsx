@@ -5,12 +5,13 @@ interface ContentTechnicalUserProps {
   openAddTechnicalUserOverlay: React.MouseEventHandler
 }
 
-export const ContentTechnicalUser = ({ openAddTechnicalUserOverlay }: ContentTechnicalUserProps) => {
+export const ContentTechnicalUser = ({
+  openAddTechnicalUserOverlay,
+}: ContentTechnicalUserProps) => {
   const { t } = useTranslation()
 
   return (
     <section>
-      
       <Button size="small" onClick={openAddTechnicalUserOverlay}>
         {t('content.usermanagement.technicalUser.create')}
       </Button>

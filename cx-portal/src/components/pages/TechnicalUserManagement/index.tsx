@@ -29,10 +29,12 @@ export default function TechnicalUserManagement() {
         spacingTop={-84}
         headerHeight={314}
       >
-        <PageBreadcrumb backButtonVariant='contained' />
+        <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
 
-      <ContentTechnicalUser openAddTechnicalUserOverlay={openAddTechnicalUserOverlay} />
+      <ContentTechnicalUser
+        openAddTechnicalUserOverlay={openAddTechnicalUserOverlay}
+      />
     </main>
   )
 }

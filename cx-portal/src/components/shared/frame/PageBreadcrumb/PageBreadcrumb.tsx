@@ -34,7 +34,9 @@ interface PageBreadcrumbProps {
   backButtonVariant?: 'text' | 'contained' | 'outlined'
 }
 
-export const PageBreadcrumb = ({ backButtonVariant = 'text' }: PageBreadcrumbProps) => {
+export const PageBreadcrumb = ({
+  backButtonVariant = 'text',
+}: PageBreadcrumbProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
