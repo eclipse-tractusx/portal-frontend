@@ -30,14 +30,18 @@ const breadcrumbs = [
   </Typography>,
 ]
 
-export const PageBreadcrumb = () => {
+interface PageBreadcrumbProps {
+  backButtonVariant?: 'text' | 'contained' | 'outlined'
+}
+
+export const PageBreadcrumb = ({ backButtonVariant = 'text' }: PageBreadcrumbProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
   return (
     <Breadcrumb
       backButtonLabel={t('global.actions.breadcrumbBack')}
-      backButtonVariant="text"
+      backButtonVariant={backButtonVariant}
       onBackButtonClick={() => navigate(-1)}
       breadcrumbs={breadcrumbs}
     />

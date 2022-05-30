@@ -248,7 +248,8 @@
         }
       },
       "technicalUser": {
-        "create": "Create technical user"
+        "create": "Create technical user",
+        "headline": "Technical user management COMPANY_NAME"
       }
     },
     "addUser": {

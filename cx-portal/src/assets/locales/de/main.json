@@ -249,7 +249,8 @@
         }
       },
       "technicalUser": {
-        "create": "Technischen Nutzer anlegen"
+        "create": "Technischen Nutzer anlegen",
+        "headline": "Technical user management COMPANY_NAME"
       }
     },
     "addUser": {
