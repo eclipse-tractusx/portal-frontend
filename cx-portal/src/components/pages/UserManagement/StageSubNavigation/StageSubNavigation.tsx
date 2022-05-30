@@ -1,5 +1,6 @@
 import { SubNavigation } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 export const StageSubNavigation = () => {
   const { t } = useTranslation()
@@ -11,11 +12,12 @@ export const StageSubNavigation = () => {
       behavior: 'smooth',
     })
   }
+  const navigate = useNavigate()
 
   return (
     <SubNavigation
       buttonLabel={t('navigation.subNavigation.buttonLabel')}
-      onButtonClick={() => console.log('add button event')}
+      onButtonClick={() => navigate('/usermanagement/technicaluser')}
       link1Label={t('navigation.subNavigation.link1Label')}
       onLink1Click={() => scrollToId('access-management-id')}
       link2Label={t('navigation.subNavigation.link2Label')}

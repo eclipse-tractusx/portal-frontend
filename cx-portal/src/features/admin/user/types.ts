@@ -30,6 +30,7 @@ export type AddUser = {
 
 export interface AdminUserState {
   addOpen: boolean
+  addTechnicalUserOpen: boolean
   tenantUsers: Array<TenantUser>
   usersToAdd: Array<AddUser>
   addRequest: RequestState
@@ -43,5 +44,6 @@ export const initialState: AdminUserState = {
   getRequest: RequestState.NONE,
   addRequest: RequestState.NONE,
   addOpen: false,
+  addTechnicalUserOpen: false,
   error: '',
 }

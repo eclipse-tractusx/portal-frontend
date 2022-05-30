@@ -247,6 +247,9 @@
           "title": "Benutzer Liste",
           "add": "Benutzerrolle hinzufügen"
         }
+      },
+      "technicalUser": {
+        "create": "Technischen Nutzer anlegen"
       }
     },
     "addUser": {

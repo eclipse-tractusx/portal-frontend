@@ -246,6 +246,9 @@
           "title": "User List",
           "add": "Add Role"
         }
+      },
+      "technicalUser": {
+        "create": "Create technical user"
       }
     },
     "addUser": {
