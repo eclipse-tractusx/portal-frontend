@@ -2,7 +2,7 @@ import { Button, Input, Typography } from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ProvisionIdentityProviderData } from 'state/features/provisioning/types'
+import { ProvisionIdentityProviderData } from 'features/provisioning/types'
 import './ProvisionIdentityProviderForm.scss'
 
 export const ProvisionIdentityProviderForm = ({

@@ -1,5 +1,5 @@
 import Keycloak from 'keycloak-js'
-import { IUser } from 'state/features/user/types'
+import { IUser } from 'features/user/types'
 import { ROLES } from 'types/MainTypes'
 import AccessService from './AccessService'
 import { getCentralIdp, getClientId } from './EnvironmentService'

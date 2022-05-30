@@ -15,6 +15,12 @@ export interface GeographicCoordinate {
   altitude?: number
 }
 
+export type SearchParams = {
+  readonly name?: string
+  readonly page: number
+  readonly size: number
+}
+
 export interface CardImage {
   src: string
   alt?: string

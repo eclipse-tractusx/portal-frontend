@@ -3,7 +3,7 @@ import { ActiveUserTable } from './ActiveUserTable'
 import StageSection from './StageSection'
 import { AppArea } from './AppArea'
 import { useDispatch } from 'react-redux'
-import { openAdd } from 'state/features/adminUser/actions'
+import { openAdd } from 'features/admin/user/actions'
 import { StageSubNavigation } from './StageSubNavigation/StageSubNavigation'
 import './UserManagement.scss'
 

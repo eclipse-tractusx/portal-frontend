@@ -36,7 +36,6 @@ export const PageBreadcrumb = () => {
 
   return (
     <Breadcrumb
-      backButton={true}
       backButtonLabel={t('global.actions.breadcrumbBack')}
       backButtonVariant="text"
       onBackButtonClick={() => navigate(-1)}

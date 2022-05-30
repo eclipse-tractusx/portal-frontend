@@ -12,7 +12,7 @@ import {
   Table,
   Chip,
 } from 'cx-portal-shared-components'
-import { RootState } from 'state/store'
+import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
@@ -26,8 +26,8 @@ export default function UserDetails() {
 
   const userDetails = [
     {
-      cardCategory: 'Personal Information',
-      cardContentItems: {
+      category: 'Personal Information',
+      items: {
         name: { label: 'Name', value: 'Max' },
         surname: { label: 'Nachname', value: 'Mustermann' },
         email: { label: 'E-Mail', value: 'm.musterman@test.de' },
@@ -35,8 +35,8 @@ export default function UserDetails() {
       },
     },
     {
-      cardCategory: 'Status Information',
-      cardContentItems: {
+      category: 'Status Information',
+      items: {
         status: { label: 'Status', value: 'Aktiv' },
         userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
       },
@@ -132,7 +132,7 @@ export default function UserDetails() {
               variant="outlined"
               startIcon={<RestartAltOutlinedIcon />}
             >
-              {t('content.account.resetPasswordAccount')}
+              {t('content.account.resetPswrdAccount')}
             </Button>
           </Box>
 

@@ -1,8 +1,8 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import UserService from 'services/UserService'
-import { AppDetails } from 'state/features/appDetails/types'
-import { getAppLeadImage } from 'state/features/appMarketplace/mapper'
+import { AppDetails } from 'features/apps/details/types'
+import { getAppLeadImage } from 'features/apps/marketplace/mapper'
 import { ROLES } from 'types/MainTypes'
 import './AppDetailHeader.scss'
 

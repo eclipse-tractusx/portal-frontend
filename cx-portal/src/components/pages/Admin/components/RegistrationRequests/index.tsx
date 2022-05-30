@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Table, Typography } from 'cx-portal-shared-components'
-import { adminRegistrationSelector } from 'state/features/adminRegistration/slice'
+import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchRegistrationRequests,
   fetchCompanyDetail,
-} from 'state/features/adminRegistration/actions'
+} from 'features/admin/registration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'

@@ -5,7 +5,7 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { useSelector } from 'react-redux'
-import { twinsSelector } from 'state/features/digitalTwins/slice'
+import { twinsSelector } from 'features/digitalTwins/slice'
 import { TwinDetails } from './TwinDetails'
 import { Box, useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'

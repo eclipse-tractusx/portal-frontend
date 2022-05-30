@@ -30,7 +30,7 @@ export const ActiveUserTable = ({
   }, [dispatch])
 
   return (
-    <section>
+    <section id="identity-management-id">
       <SubHeaderTitle
         title="content.usermanagement.table.headline"
         variant="h3"
@@ -44,7 +44,7 @@ export const ActiveUserTable = ({
         columns={[
           { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
-          { field: 'userName', headerName: t('global.field.email'), flex: 2 },
+          { field: 'email', headerName: t('global.field.email'), flex: 2 },
           {
             field: 'enabled',
             headerName: t('global.field.status'),

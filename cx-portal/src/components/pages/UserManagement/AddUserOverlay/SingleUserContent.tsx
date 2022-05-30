@@ -3,7 +3,7 @@ import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUsersToAdd } from 'state/features/adminUser/actions'
+import { setUsersToAdd } from 'features/admin/user/actions'
 import debounce from 'lodash.debounce'
 import { IHashMap, UserInput } from 'types/MainTypes'
 
@@ -72,10 +72,10 @@ export const SingleUserContent = () => {
           ? [
               {
                 userName: userInputs.email.value,
-                eMail: userInputs.email.value,
+                email: userInputs.email.value,
                 firstName: userInputs.firstname.value,
                 lastName: userInputs.lastname.value,
-                role: 'IT Admin',
+                roles: ['IT Admin'],
                 message: 'you have been invited to catena-x',
               },
             ]

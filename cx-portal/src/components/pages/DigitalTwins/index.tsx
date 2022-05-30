@@ -2,7 +2,7 @@ import TwinTable from './TwinTable'
 import { useState } from 'react'
 import DigitalTwinDetailDialog from './DigitalTwinDetailDialog'
 import { useDispatch } from 'react-redux'
-import { fetchTwinById } from 'state/features/digitalTwins/actions'
+import { fetchTwinById } from 'features/digitalTwins/actions'
 import StageHeader from 'components/shared/frame/StageHeader'
 import { useTranslation } from 'react-i18next'
 

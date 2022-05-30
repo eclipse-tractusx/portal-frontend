@@ -9,7 +9,7 @@ import {
   Table,
   Chip,
 } from 'cx-portal-shared-components'
-import { RootState } from 'state/store'
+import { RootState } from 'features/store'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
@@ -27,8 +27,8 @@ export default function MyAccount() {
 
   const userDetails = [
     {
-      cardCategory: 'Personal Information',
-      cardContentItems: {
+      category: 'Personal Information',
+      items: {
         name: { label: 'Name', value: 'Max' },
         surname: { label: 'Nachname', value: 'Mustermann' },
         email: { label: 'E-Mail', value: 'm.musterman@test.de' },
@@ -36,15 +36,15 @@ export default function MyAccount() {
       },
     },
     {
-      cardCategory: 'Status Information',
-      cardContentItems: {
+      category: 'Status Information',
+      items: {
         status: { label: 'Status', value: 'Aktiv' },
         userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
       },
     },
     {
-      cardCategory: 'Issuer Information',
-      cardContentItems: {
+      category: 'Issuer Information',
+      items: {
         organisation: { label: 'Organisation', value: 'BMW' },
         adminName: { label: 'Admin Name', value: 'Admin Muster' },
         adminMail: { label: 'Admin E-Mail', value: 'admin.muster@test.de' },

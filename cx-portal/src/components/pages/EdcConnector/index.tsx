@@ -6,10 +6,8 @@ import { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import SubHeader from 'components/shared/frame/SubHeader'
 import { Table } from 'cx-portal-shared-components'
-import connectorSlice, {
-  connectorSelector,
-} from 'state/features/connector/slice'
-import { fetchConnectors } from 'state/features/connector/actions'
+import connectorSlice, { connectorSelector } from 'features/connector/slice'
+import { fetchConnectors } from 'features/connector/actions'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import './EdcConnector.scss'

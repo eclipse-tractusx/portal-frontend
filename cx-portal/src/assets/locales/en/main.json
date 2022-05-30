@@ -4,7 +4,7 @@
     "home": "Home",
     "appstore": "Appstore",
     "appmarketplace": "App Marketplace",
-    "appdetails": "",
+    "appdetails": "App Details",
     "datamanagement": "Data Management",
     "datacatalog": "Data Catalog",
     "applications": "Applications",
@@ -68,7 +68,7 @@
         "appButton": "My Apps"
       },
       "searchSection": {
-        "inputPlaceholder": "Search for Apps"
+        "inputPlaceholder": "Search in Catena-X"
       },
       "businessApplicationsSection": {
         "title": "My Business Applications"
@@ -93,6 +93,7 @@
           "useCases": "Use Cases"
         },
         "categories": {
+          "none": "Not categorized",
           "businesspartnermanagement": "Business Partner Data Management",
           "circulareconomy": "Circular Economy",
           "quality&demandmanagement": "Demand & Quality Management",
@@ -290,7 +291,7 @@
       "copy_to_clipboard": "copy token to clipboard",
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
-      "resetPasswordAccount": "Reset password",
+      "resetPswrdAccount": "Reset password",
       "appPermissionTable": {
         "title": "User permission per application",
         "appName": "App Name",
@@ -360,6 +361,7 @@
       "more": "More",
       "details": "Details",
       "close": "Close",
+      "back": "Back",
       "breadcrumbBack": "Back"
     },
     "userRoles": {

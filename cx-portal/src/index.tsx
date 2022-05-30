@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { store } from 'state/store'
+import { store } from 'features/store'
 import I18nService from 'services/I18nService'
 import UserService from 'services/UserService'
 import { AuthProvider } from 'components/AuthProvider'

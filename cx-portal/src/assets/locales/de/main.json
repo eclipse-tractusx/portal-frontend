@@ -4,7 +4,7 @@
     "home": "Startseite",
     "appstore": "App Store",
     "appmarketplace": "App Marketplace",
-    "appdetails": "",
+    "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
     "datacatalog": "Datenkatalog",
     "applications": "Anwendungen",
@@ -32,8 +32,7 @@
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "registration-requests": "Registrierungsanfragen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden",
-    "edc-connector": "Technische Integration"
+    "notfound": "Seite nicht gefunden"
   },
   "content": {
     "admin": {
@@ -70,7 +69,7 @@
         "appButton": "Meine Apps"
       },
       "searchSection": {
-        "inputPlaceholder": "Suche nach Apps"
+        "inputPlaceholder": "Suche in Catena-X"
       },
       "businessApplications": {
         "title": "Meine Applications"
@@ -95,6 +94,7 @@
           "useCases": "Anwendungsbereiche"
         },
         "categories": {
+          "none": "Nicht kategorisiert",
           "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
           "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
@@ -331,7 +331,7 @@
       "copy_to_clipboard": "Token in die Zwischenablage kopieren",
       "deleteAccount": "Benutzer löschen",
       "suspendAccount": "Benutzer aussetzen",
-      "resetPasswordAccount": "Passwort zurücksetzen",
+      "resetPswrdAccount": "Passwort zurücksetzen",
       "appPermissionTable": {
         "title": "Nutzerbrechtigungen pro Applikation",
         "appName": "App Name",
@@ -401,6 +401,7 @@
       "more": "Mehr",
       "details": "Details",
       "close": "Schließen",
+      "back": "Zurück",
       "breadcrumbBack": "Zurück"
     },
     "userRoles": {

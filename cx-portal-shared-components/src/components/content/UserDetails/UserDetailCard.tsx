@@ -29,21 +29,21 @@ export const UserDetailCard = ({
     value: UserItemsTranslation | undefined
   ) => {
     switch (param) {
-    case 'status':
-      return (
-        <>
-          <span style={{ marginRight: '10px' }}>{value?.label} :</span>
-          <Chip
-            color="secondary"
-            label={value?.value}
-            type="plain"
-            variant="filled"
-            withIcon={false}
-          />
-        </>
-      )
-    default:
-      return `${value?.label}: ${value?.value}`
+      case 'status':
+        return (
+          <>
+            <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+            <Chip
+              color="secondary"
+              label={value?.value}
+              type="plain"
+              variant="filled"
+              withIcon={false}
+            />
+          </>
+        )
+      default:
+        return `${value?.label}: ${value?.value}`
     }
   }
   return (
