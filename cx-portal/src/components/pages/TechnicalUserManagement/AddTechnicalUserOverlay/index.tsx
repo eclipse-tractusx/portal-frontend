@@ -12,7 +12,10 @@ interface AddTechnicalUserOverlayProps {
   handleClose: React.MouseEventHandler
 }
 
-export const AddTechnicalUserOverlay = ({ dialogOpen, handleClose }: AddTechnicalUserOverlayProps) => {
+export const AddTechnicalUserOverlay = ({
+  dialogOpen,
+  handleClose,
+}: AddTechnicalUserOverlayProps) => {
   const { t } = useTranslation()
 
   const handleConfirm = () => {
@@ -27,14 +30,14 @@ export const AddTechnicalUserOverlay = ({ dialogOpen, handleClose }: AddTechnica
           intro={t('content.addUser.subheadline')}
         />
 
-      <DialogActions>
-        <Button variant="outlined" onClick={handleClose}>
-          {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button variant="contained" onClick={handleConfirm}>
-          {`${t('global.actions.confirm')}`}
-        </Button>
-      </DialogActions>
+        <DialogActions>
+          <Button variant="outlined" onClick={handleClose}>
+            {`${t('global.actions.cancel')}`}
+          </Button>
+          <Button variant="contained" onClick={handleConfirm}>
+            {`${t('global.actions.confirm')}`}
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   )
