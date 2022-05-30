@@ -30,4 +30,12 @@ const fetchTenantUsers = createAsyncThunk(`${name}/fetch`, async () => {
   }
 })
 
-export { openAdd, closeAdd, setUsersToAdd, openTechnicalUserAdd, closeTechnicalUserAdd, addTenantUsers, fetchTenantUsers }
+export {
+  openAdd,
+  closeAdd,
+  setUsersToAdd,
+  openTechnicalUserAdd,
+  closeTechnicalUserAdd,
+  addTenantUsers,
+  fetchTenantUsers,
+}

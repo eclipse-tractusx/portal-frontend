@@ -127,7 +127,7 @@ const ALL_PAGES: IPage[] = [
       >
         <Route path=":appId" element={<TechnicalUserManagement />} />
       </Route>
-    )
+    ),
   },
   {
     name: PAGES.USER_DETAILS,
