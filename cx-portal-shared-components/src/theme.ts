@@ -62,6 +62,8 @@ const palette = createPalette({
   support: {
     success: '#00AA55',
     error: '#D91E18',
+    info: '#676BC6',
+    warning: '#FFA600',
   },
   icon: {
     icon01: '#939393',
