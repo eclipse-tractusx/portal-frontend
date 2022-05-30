@@ -36,7 +36,7 @@ export const UserDetailCard = ({
           <Chip
             color="secondary"
             label={value?.value}
-            type="confirm"
+            type="plain"
             variant="filled"
             withIcon={false}
           />
@@ -79,7 +79,7 @@ export const UserDetailCard = ({
               borderColor: 'border.border01',
               color: 'text.tertiary',
               fontFamily: 'LibreFranklin-Light',
-              padding: k === 'status' ? '12.5px' : '20px',
+              padding: k === 'status' ? '14.5px 20px' : '20px',
             }}
           >
             {renderContentSwitch(k, v)}

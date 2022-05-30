@@ -4,7 +4,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { theme } from '../../../theme'
 
 interface ChipCustomProps extends ChipProps {
-  type?: 'decline' | 'confirm'
+  type?: 'decline' | 'confirm' | 'plain'
   withIcon?: true | false
 }
 
@@ -19,16 +19,16 @@ export const Chip = ({
   let icon, hoverBgColor, hoverTextColor
 
   switch (type) {
-    case 'decline':
-      icon = <HighlightOffIcon />
-      hoverBgColor = theme.palette.declined.main
-      hoverTextColor = theme.palette.declined.contrastText
-      break
-    case 'confirm':
-      icon = <CheckCircleOutlineIcon />
-      hoverBgColor = theme.palette.confirmed.main
-      hoverTextColor = theme.palette.confirmed.contrastText
-      break
+  case 'decline':
+    icon = <HighlightOffIcon />
+    hoverBgColor = theme.palette.declined.main
+    hoverTextColor = theme.palette.declined.contrastText
+    break
+  case 'confirm':
+    icon = <CheckCircleOutlineIcon />
+    hoverBgColor = theme.palette.confirmed.main
+    hoverTextColor = theme.palette.confirmed.contrastText
+    break
   }
 
   return (
@@ -39,8 +39,8 @@ export const Chip = ({
       sx={{
         borderRadius: '36px',
         ':hover': {
-          backgroundColor: hoverBgColor,
-          color: hoverTextColor,
+          backgroundColor: type !== 'plain' ? hoverBgColor : undefined,
+          color: type !== 'plain' ? hoverTextColor : undefined,
         },
       }}
       {...props}

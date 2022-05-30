@@ -77,7 +77,7 @@ export default function UserDetails() {
           key={uniqueId(i)}
           color="secondary"
           label={i}
-          type="confirm"
+          type="plain"
           variant="filled"
           withIcon={false}
           sx={{ marginRight: '10px' }}
@@ -90,7 +90,7 @@ export default function UserDetails() {
     <main className="user-details">
       <SubHeader
         title={t('content.account.userAccount')}
-        hasBackButton={true}
+        hasBackButton={false}
       />
       <section>
         <Box

@@ -78,7 +78,7 @@ export default function MyAccount() {
           key={uniqueId(i)}
           color="secondary"
           label={i}
-          type="confirm"
+          type="plain"
           variant="filled"
           withIcon={false}
           sx={{ marginRight: '10px' }}
@@ -89,7 +89,7 @@ export default function MyAccount() {
 
   return (
     <main className="my-account">
-      <SubHeader title={t('pages.account')} hasBackButton={true} />
+      <SubHeader title={t('pages.account')} hasBackButton={false} />
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
@@ -129,10 +129,10 @@ export default function MyAccount() {
               field: 'id',
               hide: true,
             },
-            { field: 'appName', headerName: t('global.field.last'), flex: 1 },
+            { field: 'appName', headerName: t('content.account.appPermissionTable.appName'), flex: 1 },
             {
               field: 'appProvider',
-              headerName: t('global.field.first'),
+              headerName: t('content.account.appPermissionTable.appProvider'),
               flex: 1,
             },
             {
