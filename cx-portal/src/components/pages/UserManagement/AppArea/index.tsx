@@ -17,7 +17,7 @@ export const AppArea = () => {
   }, [dispatch])
 
   return (
-    <section>
+    <section id="access-management-id">
       <div className="app-user-details-header-title">
         <SubHeaderTitle
           title="content.usermanagement.apparea.headline"

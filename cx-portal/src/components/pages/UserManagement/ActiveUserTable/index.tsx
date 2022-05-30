@@ -28,7 +28,7 @@ export const ActiveUserTable = ({
   }, [dispatch])
 
   return (
-    <section>
+    <section id="identity-management-id">
       <SubHeaderTitle
         title="content.usermanagement.table.headline"
         variant="h3"
