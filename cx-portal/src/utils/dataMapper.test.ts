@@ -9,7 +9,7 @@ import TestSingleDataGridData from '../../public/testdata/partnerNetwork/busines
 import {
   BusinessPartner,
   BusinessPartnerResponse,
-} from 'state/features/partnerNetwork/types'
+} from 'features/partnerNetwork/types'
 
 describe('DataMapperTest', () => {
   it('mapBusinessPartnerToDataGrid maps correctly', () => {

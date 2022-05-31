@@ -1,16 +1,13 @@
-import {
-  IconButton,
-  StatusTag,
-  Table,
-  Typography,
-} from 'cx-portal-shared-components'
-import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { fetchTenantUsers } from 'state/features/userAdministration/actions'
-import { userAdministrationSelector } from 'state/features/userAdministration/slice'
-import { TenantUser } from 'state/features/userAdministration/types'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { IconButton, StatusTag, Table } from 'cx-portal-shared-components'
+import { fetchTenantUsers } from 'features/admin/user/actions'
+import { tenantUsersSelector } from 'features/admin/user/slice'
+import { TenantUser } from 'features/admin/user/types'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -21,10 +18,11 @@ export const ActiveUserTable = ({
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { tenantUsers } = useSelector(userAdministrationSelector)
+  const navigate = useNavigate()
+  const tenantUsers = useSelector(tenantUsersSelector)
 
   const onUserDetailsClick = (userId: string) => {
-    console.log('show details', userId)
+    navigate('/usermanagement/userdetails/' + userId)
   }
 
   useEffect(() => {
@@ -32,10 +30,11 @@ export const ActiveUserTable = ({
   }, [dispatch])
 
   return (
-    <section>
-      <Typography variant="h3" className="section-title">
-        {t('content.usermanagement.table.headline')}
-      </Typography>
+    <section id="identity-management-id">
+      <SubHeaderTitle
+        title="content.usermanagement.table.headline"
+        variant="h3"
+      />
       <Table
         title={t('content.usermanagement.table.title')}
         toolbar={{
@@ -45,7 +44,7 @@ export const ActiveUserTable = ({
         columns={[
           { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
-          { field: 'userName', headerName: t('global.field.email'), flex: 2 },
+          { field: 'email', headerName: t('global.field.email'), flex: 2 },
           {
             field: 'enabled',
             headerName: t('global.field.status'),
@@ -65,7 +64,7 @@ export const ActiveUserTable = ({
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton
                 color="secondary"
-                onClick={() => onUserDetailsClick(row.userId)}
+                onClick={() => onUserDetailsClick(row.userEntityId)}
               >
                 <ArrowForwardIcon />
               </IconButton>
@@ -73,7 +72,7 @@ export const ActiveUserTable = ({
           },
         ]}
         rows={tenantUsers}
-        getRowId={(row: { [key: string]: string }) => row.userId}
+        getRowId={(row: { [key: string]: string }) => row.userEntityId}
         hideFooter
       />
     </section>

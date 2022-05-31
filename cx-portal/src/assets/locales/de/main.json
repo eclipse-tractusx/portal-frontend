@@ -4,29 +4,32 @@
     "home": "Startseite",
     "appstore": "App Store",
     "appmarketplace": "App Marketplace",
-    "appdetails": "",
+    "appdetails": "App Details",
+    "datamanagement": "Datenmanagement",
     "datacatalog": "Datenkatalog",
     "applications": "Anwendungen",
     "semantichub": "Semantischer Hub",
-    "digitaltwin": "Digitaler Zwilling",
+    "digitaltwin": "Digitale Zwillinge",
     "developerhub": "Entwickler Hub",
     "connector": "Konnektor",
-    "account": "Mein Account",
+    "partnernetwork": "Partner Network",
+    "account": "Mein CX Account",
+    "organization": "Meine Organisation",
     "notifications": "Benachrichtigungen",
-    "organization": "Organisation",
-    "partnernetwork": "Partner Netzwerk",
     "usermanagement": "Benutzerverwaltung",
+    "technicalsetup": "Technische Integration",
+    "applicationrequests": "Beitrittsanträge",
     "settings": "Einstellungen",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
-    "invite": "Geschäftspartner Einladen",
+    "invite": "Einladung CX Teilnehmer",
     "help": "Hilfe",
     "contact": "Kontakt",
     "imprint": "Impressum",
     "privacy": "Privatsphäre",
     "terms": "Nutzungsbedingungen",
     "cookiepolicy": "Cookies",
-    "3rdpartylicenses": "Third Party Lizenzen",
+    "3rdpartylicenses": "Drittanbieterlizenzen",
     "registration-requests": "Registrierungsanfragen",
     "logout": "Abmelden",
     "notfound": "Seite nicht gefunden"
@@ -66,7 +69,7 @@
         "appButton": "Meine Apps"
       },
       "searchSection": {
-        "inputPlaceholder": "Suche nach Apps"
+        "inputPlaceholder": "Suche in Catena-X"
       },
       "businessApplications": {
         "title": "Meine Applications"
@@ -91,6 +94,7 @@
           "useCases": "Anwendungsbereiche"
         },
         "categories": {
+          "none": "Nicht kategorisiert",
           "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
           "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
@@ -103,28 +107,88 @@
       "message": "Inhalte vom Semantischen Hub"
     },
     "digitaltwin": {
-      "message": "Inhalte vom Digitalen Zwilling"
+      "table": {
+        "title": "Übersicht Digitale Zwillinge",
+        "columns": {
+          "idShort": "Name",
+          "sm_count": "Anzahl Submodelle",
+          "asset_count": "Anzahl Assets"
+        },
+        "load_button": "Mehr laden"
+      },
+      "detail": {
+        "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
+        "no_description": "Dieses Asset hat keine Beschreibung.",
+        "assetId": "Specific Asset IDs",
+        "submodel_endpoints": "Submodell Endpunkte:",
+        "semanticid": "Semantic ID:",
+        "key": "Schlüssel:",
+        "value": "Wert:",
+        "endpoints": "Endpunkte:",
+        "interface": "Schnittstelle:",
+        "protocol": "Protokoll:",
+        "protocol_version": "Protokoll Version:"
+      }
+    },
+    "datamanagement": {
+      "message": "Inhalte vom Datenmanagement"
     },
     "datacatalog": {
       "message": "Inhalte vom Datenkatalog"
     },
-    "devloperhub": {
+    "developerhub": {
       "message": "Inhalte vom Entwickler Hub"
     },
     "connector": {
-      "message": "Inhalte vom Konnektor"
+      "message": "Contents of connector"
+    },
+    "edcconnector": {
+      "columns": {
+        "name": "Konnektorname",
+        "id": "Konnektor-ID",
+        "type": "Steckertyp",
+        "details": "Einzelheiten"
+      },
+      "headertitle": "Technische Integration - Connector & IDPs",
+      "subheadertitle": "Connector",
+      "tabletitle": "Onboarded Connectors",
+      "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
+      "addconnectorbutton": "Connector registrieren",
+      "modal": {
+        "title": "Company Connector",
+        "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
+        "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
+        "connectorasaservice": "Connector-as-a-service",
+        "insertform": {
+          "name": {
+            "label": "Connector Name*",
+            "placeholder": "Konnektorname",
+            "error": "Connector Name ist erforderlich"
+          },
+          "id": {
+            "label": "Connector ID*",
+            "placeholder": "Connector ID",
+            "error": "Connector ID ist erforderlich."
+          },
+          "url": {
+            "label": "Konnektor URL*",
+            "placeholder": "Konnektor URL",
+            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net"
+          }
+        }
+      }
     },
     "partnernetwork": {
       "headertitle": "Partnernetzwerk",
       "tabletitle": "Geschäftspartnerdaten",
       "columns": {
         "bpn": "BPN",
-        "name": "Name der Firma",
+        "name": "Firmenname",
         "country": "Land",
         "street": "Straße",
-        "zipcode": "Postleitzahl",
+        "zipcode": "PLZ",
         "city": "Stadt",
-        "cxparticipant": "CX Beteiligte"
+        "cxparticipant": "CX Zertifiziert"
       },
       "filters": {
         "germany": "Deutschland",
@@ -144,10 +208,10 @@
       }
     },
     "invite": {
-      "title": "Laden Sie Geschäftspartner ein",
+      "title": "Einladung CX Teilnehmer",
       "send": "Einladung absenden",
       "success": "Einladung erfolgreich",
-      "failure": "Die Verarbeitung Ihrer Anfrage ist fehlgeschlagen"
+      "failure": "Die Verarbeitung der Einladung ist fehlgeschlagen"
     },
     "provisionIdp": {
       "title": "Verbinden Sie Ihren IDP",
@@ -171,6 +235,18 @@
         "title": "User Liste",
         "details": "Details",
         "add": "User hinzufügen"
+      },
+      "appUserDetails": {
+        "headline": "App Zugriffsmanagement - <1>App-Title</1>",
+        "header": {
+          "title": "App Rollen",
+          "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
+        },
+        "table": {
+          "headline": "Benutzermanagement",
+          "title": "Benutzer Liste",
+          "add": "Benutzerrolle hinzufügen"
+        }
       }
     },
     "addUser": {
@@ -179,7 +255,7 @@
       "singleUser": "Einzel-Upload",
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
-      "multipleUserSubheadline": "Bitte verwenden Sie diese <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
+      "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Please enter all required information before proceeding.",
       "userUpload": {
@@ -205,6 +281,10 @@
           "done": "done"
         }
       }
+    },
+    "addUserRight": {
+      "headline": "tbd DE: Select and Add users to this app",
+      "subheadline": "tbd"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -246,8 +326,17 @@
       "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
     },
     "account": {
-      "token": "Aktuelles Authentisierungstoken",
-      "copy_to_clipboard": "Token in die Zwischenablage kopieren"
+      "userAccount": "Benutzer Konto",
+      "token": "DEV only: Aktuelles Authentisierungstoken",
+      "copy_to_clipboard": "Token in die Zwischenablage kopieren",
+      "deleteAccount": "Benutzer löschen",
+      "suspendAccount": "Benutzer aussetzen",
+      "resetPswrdAccount": "Passwort zurücksetzen",
+      "appPermissionTable": {
+        "title": "Nutzerbrechtigungen pro Applikation",
+        "appName": "App Name",
+        "appProvider": "App Anbieter"
+      }
     },
     "footer": {
       "copyright": "Copyright © Catena-X Automotive Network"
@@ -265,36 +354,63 @@
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
     },
     "appdetail": {
-      "usecase": "Use Cases",
-      "language": "Language",
-      "subscribe": "Abonnieren"
+      "usecase": "Use Case",
+      "language": "Verfügbare App Sprachen",
+      "subscribe": "Abonnieren",
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden."
+      },
+      "howtouse": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+      },
+      "providerInformation": {
+        "heading": "Anbieterinformationen",
+        "message": "Folgend finden Sie alle notwendigen Informationen zum direkten Kontakt zum Anbieter.",
+        "appProvider": "App Anbieter",
+        "website": "Webseite",
+        "email": "E-Mail",
+        "phone": "Telefon"
+      }
+    }
+  },
+  "navigation": {
+    "subNavigation": {
+      "buttonLabel": "Technical User Management",
+      "link1Label": "Access Management",
+      "link2Label": "Identity User Management"
     }
   },
   "global": {
     "field": {
       "first": "Name",
       "last": "Nachname",
-      "email": "E-mail",
+      "email": "E-Mail",
       "company": "Firmenname",
       "status": "Status",
-      "role": "Role",
+      "role": "Rolle",
       "active": "Aktiv",
-      "inactive": "Inaktiv"
+      "inactive": "Inaktiv",
+      "name": "Name",
+      "details": "Details"
     },
     "actions": {
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
       "details": "Details",
-      "close": "Schließen"
+      "close": "Schließen",
+      "back": "Zurück",
+      "breadcrumbBack": "Zurück"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
       "businessAdmin": "Business Admin",
-      "cxUser": "CX User",
-      "dataSpecialist": "Data Specialist",
-      "appDeveloper": "App Developer",
-      "appAdmin": "App Developer"
+      "cxUser": "CX Teilnehmer",
+      "dataSpecialist": "Data Spezialist",
+      "appDeveloper": "App Entwickler",
+      "appAdmin": "App Administrator"
     }
   }
 }

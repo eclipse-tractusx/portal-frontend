@@ -3,12 +3,12 @@ import {
   BusinessPartnerResponse,
   BusinessPartnerSearchResponse,
   PartnerNetworkDataGrid,
-} from 'state/features/partnerNetwork/types'
+} from 'features/partnerNetwork/types'
 
 import {
   RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
-} from 'state/features/userAdministration/types'
+} from 'features/admin/registration/types'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (

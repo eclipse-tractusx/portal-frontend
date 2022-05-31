@@ -21,6 +21,8 @@ declare module '@mui/material/styles' {
   interface TypeSupport {
     success: string
     error: string
+    info: string
+    warning: string
   }
 
   interface TypeBorders {
@@ -40,6 +42,7 @@ declare module '@mui/material/styles' {
     background08: string
     background09: string
     background10: string
+    background11: string
   }
 
   interface TypeTextField {

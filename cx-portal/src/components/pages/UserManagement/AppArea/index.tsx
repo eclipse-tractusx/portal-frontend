@@ -1,82 +1,50 @@
-import { Cards, Typography } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
+import { Card, Carousel } from 'cx-portal-shared-components'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { fetchSubscribed } from 'features/apps/marketplace/actions'
+import { subscribedSelector } from 'features/apps/marketplace/slice'
+import uniqueId from 'lodash/uniqueId'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
 export const AppArea = () => {
-  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const items = useSelector(subscribedSelector)
 
-  // TODO: Replace from api
-  const items = [
-    {
-      title: 'Fraud Prevention',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://americourses.com/wp-content/uploads/2020/07/fraud-prevention.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Fraud Detection App to report Fraud Cases.',
-      onClick: () => {
-        console.log('click')
-      },
-    },
-    {
-      title: 'Dismantler App',
-      subtitle: 'SAP',
-      image: {
-        src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Quick and transparent overview of reusable car components.',
-      onClick: () => {
-        console.log('click')
-      },
-    },
-    {
-      title: 'Covanto - AFQM',
-      subtitle: 'BOSCH',
-      image: {
-        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Quality Traceability.',
-      onClick: () => {
-        console.log('click')
-      },
-    },
-    {
-      title: 'Component Performance',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Component Performance validation.',
-      onClick: () => {
-        console.log('click')
-      },
-    },
-  ]
+  useEffect(() => {
+    dispatch(fetchSubscribed(true))
+  }, [dispatch])
 
   return (
-    <section>
-      <Typography variant="h3" className="section-title">
-        {t('content.usermanagement.apparea.headline')}
-      </Typography>
-      <Cards
-        items={items} // TODO: Replace from api
-        columns={4}
-        buttonText="Details"
-        imageSize="small"
-        imageShape="round"
-        filledBackground={true}
-      />
+    <section id="access-management-id">
+      <div className="app-user-details-header-title">
+        <SubHeaderTitle
+          title="content.usermanagement.apparea.headline"
+          variant="h3"
+        />
+      </div>
+      <Carousel gapToDots={5}>
+        {items.map((item) => {
+          return (
+            <Card
+              key={uniqueId(item.title)}
+              title={item.title}
+              subtitle={item.subtitle}
+              image={item.image}
+              buttonText="Details"
+              imageSize="small"
+              imageShape="round"
+              variant="minimal"
+              expandOnHover={false}
+              filledBackground={true}
+              onClick={() => {
+                navigate(`/usermanagement/appuserdetails/${item.id}`)
+              }}
+            />
+          )
+        })}
+      </Carousel>
     </section>
   )
 }

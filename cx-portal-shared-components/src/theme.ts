@@ -62,6 +62,8 @@ const palette = createPalette({
   support: {
     success: '#00AA55',
     error: '#D91E18',
+    info: '#676BC6',
+    warning: '#FFA600',
   },
   icon: {
     icon01: '#939393',
@@ -84,6 +86,7 @@ const palette = createPalette({
     background08: '#FFF6FF',
     background09: '#EDF0F4',
     background10: '#303030F2',
+    background11: '#EDEFF2',
   },
   textField: {
     placeholderText: '#8D8D8D',
@@ -474,6 +477,14 @@ export const theme = createTheme({
         cell: {
           padding: '16px 32px',
           borderColor: palette.border.border01,
+        },
+        columnHeaderCheckbox: {
+          width: '64px !important',
+          minWidth: '64px !important',
+          maxWidth: '64px !important',
+          paddingLeft: '10px !important',
+          paddingRight: '10px !important',
+          height: '76px !important',
         },
       },
     },

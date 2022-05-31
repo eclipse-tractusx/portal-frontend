@@ -1,31 +1,23 @@
-import { Typography } from 'cx-portal-shared-components'
-import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { appDetailsSelector } from 'state/features/appDetails/slice'
-import { fetchItem } from 'state/features/appDetails/actions'
-import AppDetailHeader from './components/AppDetailHeader'
-import { useParams } from 'react-router-dom'
-import NotFound from '../NotFound'
+import { Button } from 'cx-portal-shared-components'
+import { useNavigate, useParams } from 'react-router-dom'
+import { t } from 'i18next'
+import './AppDetail.scss'
+import AppDetailContent from './AppDetailContent'
 
 export default function AppDetail() {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const appId = useParams().appId
-  const { item } = useSelector(appDetailsSelector)
+  const navigate = useNavigate()
+  const { appId } = useParams()
 
-  useEffect(() => {
-    if (appId) {
-      dispatch(fetchItem(appId))
-    }
-  }, [appId, dispatch])
-
-  return item === null ? (
-    <NotFound />
-  ) : (
-    <main>
-      <Typography variant="h3">{t('pages.appdetails')}</Typography>
-      <AppDetailHeader item={item} />
+  return (
+    <main className="appdetail-main">
+      <Button
+        color="secondary"
+        size="small"
+        onClick={() => navigate('/appmarketplace')}
+      >
+        {t('global.actions.back')}
+      </Button>
+      <AppDetailContent id={appId!} />
     </main>
   )
 }

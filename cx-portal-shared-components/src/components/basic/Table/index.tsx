@@ -19,23 +19,22 @@ export const Table = ({
   rowsCount = 0,
   title,
   toolbar,
+  checkboxSelection,
   ...props
-}: TableProps) => {
-  return (
-    <DataGrid
-      components={{
-        Toolbar: () => (
-          <Toolbar title={title} {...toolbar} {...{ rowsCount }} />
-        ),
-      }}
-      {...{
-        rows,
-        columns,
-        autoHeight,
-        headerHeight,
-        rowHeight,
-      }}
-      {...props}
-    />
-  )
-}
+}: TableProps) => (
+  <DataGrid
+    getRowId={(row) => row.id}
+    components={{
+      Toolbar: () => <Toolbar title={title} {...toolbar} {...{ rowsCount }} />,
+    }}
+    {...{
+      rows,
+      columns,
+      autoHeight,
+      headerHeight,
+      rowHeight,
+      checkboxSelection,
+    }}
+    {...props}
+  />
+)

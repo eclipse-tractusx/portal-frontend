@@ -1,18 +1,13 @@
 header {
   position: relative;
+  z-index: 10;
   padding: 22px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10;
-  &:after {
-    position: absolute;
-    content: '';
-    left: 30px;
-    right: 30px;
-    bottom: 0;
-    border-bottom: 1px solid #dcdcdc;
-  }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXc3NyBAeViAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==);
+  background-repeat: repeat-x;
+  background-position: 0 bottom;
   .d-flex {
     display: flex;
   }

@@ -5,7 +5,6 @@ import { label as BusinessApplictions } from '../BusinessApplicationsSection'
 
 export default function SearchSection() {
   const { t } = useTranslation()
-
   return (
     <div className="stage-home stage-section">
       <div className="stage-content">
@@ -20,12 +19,6 @@ export default function SearchSection() {
           onClick={() => PageService.scrollTo(BusinessApplictions)}
         >
           {t('content.home.stage.appButton')}
-        </Button>
-        <Button
-          sx={{ margin: '40px 0 0 10px', visibility: 'hidden' }}
-          variant="outlined"
-        >
-          {t('content.home.stage.cxButton')}
         </Button>
       </div>
       <div className="stage-background">

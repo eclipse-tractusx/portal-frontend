@@ -1,6 +1,7 @@
 import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
+import EdcConnector from 'components/pages/EdcConnector'
 import Connector from 'components/pages/Connector'
 import DataCatalog from 'components/pages/DataCatalog'
 import DeveloperHub from 'components/pages/DeveloperHub'
@@ -13,7 +14,9 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import SemanticHub from 'components/pages/SemanticHub'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
-import { IPage, PAGES, ROLES } from 'types/MainTypes'
+import UserDetails from '../components/pages/UserManagement/UserDetails'
+import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
+import { IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import Help from 'components/pages/Help'
@@ -28,8 +31,7 @@ import AppMarketplace from 'components/pages/AppMarketplace'
 import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
-import Appstore from 'components/pages/Appstore'
-import AppstoreDetail from 'components/pages/Appstore/components/AppstoreDetail'
+import DataManagement from 'components/pages/DataManagement'
 
 /**
  * ALL_PAGES
@@ -44,17 +46,6 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Registration /> },
-  {
-    name: PAGES.APPSTORE,
-    role: ROLES.APPSTORE_VIEW,
-    isRoute: true,
-    element: (
-      <Route key={PAGES.APPSTORE} path={PAGES.APPSTORE} element={<Appstore />}>
-        <Route index element={<></>} />
-        <Route path=":appId" element={<AppstoreDetail />} />
-      </Route>
-    ),
-  },
   {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
@@ -74,6 +65,10 @@ const ALL_PAGES: IPage[] = [
         <Route path=":appId" element={<AppDetail />} />
       </Route>
     ),
+  },
+  {
+    name: PAGES.DATA_MANAGEMENT,
+    element: <DataManagement />,
   },
   {
     name: PAGES.DATACATALOG,
@@ -107,7 +102,6 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
@@ -121,13 +115,41 @@ const ALL_PAGES: IPage[] = [
     element: <UserManagement />,
   },
   {
+    name: PAGES.USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.USER_DETAILS}
+        path={`${PAGES.USER_MANAGEMENT}/${PAGES.USER_DETAILS}`}
+        element={<UserDetails />}
+      >
+        <Route path=":appId" element={<UserDetails />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.APP_USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.APP_USER_DETAILS}
+        path={`${PAGES.USER_MANAGEMENT}/${PAGES.APP_USER_DETAILS}`}
+        element={<AppUserDetails />}
+      >
+        <Route path=":appId" element={<AppUserDetails />} />
+      </Route>
+    ),
+  },
+  {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,
     element: <InviteBusinessPartner />,
   },
   { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
-    name: PAGES.REGISTRATION_REQUESTS,
+    name: PAGES.APPLICATION_REQUESTS,
     role: ROLES.CX_ADMIN,
     element: <RegistrationRequests />,
   },
@@ -143,6 +165,11 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.TERMS, element: <Terms /> },
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
+  {
+    name: PAGES.TECHNICAL_SETUP,
+    role: ROLES.TECHNICAL_SETUP_VIEW,
+    element: <EdcConnector />,
+  },
   { name: PAGES.LOGOUT, element: <Logout /> },
 ]
 
@@ -162,6 +189,20 @@ const mainMenuFull = [
   PAGES.CONNECTOR,
 ]
 
+const mainMenuFullTree = [
+  { name: PAGES.HOME },
+  { name: PAGES.APP_MARKETPLACE },
+  {
+    name: PAGES.DATA_MANAGEMENT,
+    children: [
+      { name: PAGES.DATACATALOG },
+      { name: PAGES.SEMANTICHUB },
+      { name: PAGES.DIGITALTWIN },
+    ],
+  },
+  { name: PAGES.PARTNER_NETWORK },
+]
+
 /**
  * userMenuFull
  *
@@ -170,13 +211,13 @@ const mainMenuFull = [
  */
 const userMenuFull = [
   PAGES.ACCOUNT,
-  PAGES.NOTIFICATIONS,
   PAGES.ORGANIZATION,
-  PAGES.PARTNER_NETWORK,
+  PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
+  PAGES.TECHNICAL_SETUP,
+  PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
   PAGES.ADMINISTRATION,
-  PAGES.REGISTRATION_REQUESTS,
   PAGES.LOGOUT,
 ]
 
@@ -209,7 +250,17 @@ const hasAccess = (page: string): boolean => {
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
+const accessToMenuTree = (menu: Tree[] | undefined): any =>
+  menu
+    ?.filter((item: Tree) => hasAccess(item.name))
+    .map((item: Tree) => ({
+      ...item,
+      children: accessToMenuTree(item.children),
+    }))
+
 const mainMenu = () => accessToMenu(mainMenuFull)
+
+const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
 
@@ -236,6 +287,7 @@ const AccessService = {
   hasAccess,
   permittedRoutes,
   mainMenu,
+  mainMenuTree,
   userMenu,
   footerMenu,
 }

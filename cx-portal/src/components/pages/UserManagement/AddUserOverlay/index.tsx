@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogHeader,
-  Button,
   Tab,
   Tabs,
   TabPanel,
@@ -15,22 +15,36 @@ import { SingleUserContent } from './SingleUserContent'
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
+import {
+  addOpenSelector,
+  addRequestStateSelector,
+  usersToAddSelector,
+} from 'features/admin/user/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTenantUsers, closeAdd } from 'features/admin/user/actions'
+import { RequestState } from 'types/MainTypes'
+import './AddUserOverlay.scss'
 
-interface AddUserOverlayProps {
-  openDialog?: boolean
-  handleClose: React.MouseEventHandler
-  handleConfirm: React.MouseEventHandler
-}
-
-export const AddUserOverlay = ({
-  openDialog = false,
-  handleClose,
-  handleConfirm,
-}: AddUserOverlayProps) => {
+export const AddUserOverlay = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const addOpen = useSelector(addOpenSelector)
+  const usersToAdd = useSelector(usersToAddSelector)
+  const request = useSelector(addRequestStateSelector)
   const [activeTab, setActiveTab] = useState(0)
-  const handleChange = (
-    event: React.ChangeEvent<unknown>,
+
+  useEffect(() => {
+    if (request === RequestState.OK) {
+      dispatch(closeAdd())
+    }
+  }, [request, dispatch])
+
+  const handleConfirm = () => {
+    dispatch(addTenantUsers(usersToAdd))
+  }
+
+  const handleTabSwitch = (
+    _event: React.ChangeEvent<unknown>,
     newValue: number
   ) => {
     setActiveTab(newValue)
@@ -38,7 +52,7 @@ export const AddUserOverlay = ({
 
   return (
     <div className={'add-user-overlay'}>
-      <Dialog open={openDialog}>
+      <Dialog open={addOpen}>
         <DialogHeader
           title={t('content.addUser.headline')}
           intro={t('content.addUser.subheadline')}
@@ -47,7 +61,7 @@ export const AddUserOverlay = ({
         <DialogContent className="w-100">
           <Tabs
             value={activeTab}
-            onChange={handleChange}
+            onChange={handleTabSwitch}
             aria-label="basic tabs usage"
           >
             <Tab
@@ -69,14 +83,18 @@ export const AddUserOverlay = ({
           <TabPanel value={activeTab} index={1}>
             <MultipleUserContent />
           </TabPanel>
-          <UserRoles />
+          <UserRoles headline="content.addUser.chooseUserRole" />
         </DialogContent>
 
         <DialogActions helperText={t('content.addUser.helperText')}>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button variant="outlined" onClick={() => dispatch(closeAdd())}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button variant="contained" onClick={handleConfirm}>
+          <Button
+            variant="contained"
+            disabled={usersToAdd.length === 0}
+            onClick={handleConfirm}
+          >
             {`${t('global.actions.confirm')}`}
           </Button>
         </DialogActions>

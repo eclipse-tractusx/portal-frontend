@@ -1,0 +1,33 @@
+.appdetail-main {
+  width: 100%;
+  padding: 30px 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1140px;
+  min-height: 2000px;
+
+  .product-description {
+    margin-bottom: 42px;
+    p {
+      margin-bottom: 12px;
+    }
+  }
+  .line-border {
+    border-bottom: 1px solid #dcdcdc;
+  }
+  .back-btn {
+    margin-bottom: 48px;
+    a {
+      background: #eaf1fe;
+      border-radius: 200px;
+      padding: 10px 18px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      color: #0d61ae;
+      text-decoration: none;
+    }
+  }
+}

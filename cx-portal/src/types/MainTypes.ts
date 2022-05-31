@@ -15,12 +15,37 @@ export interface GeographicCoordinate {
   altitude?: number
 }
 
+export type SearchParams = {
+  readonly name?: string
+  readonly page: number
+  readonly size: number
+}
+
 export interface CardImage {
   src: string
   alt?: string
 }
 
-export type MouseEventHandler = (e: MouseEvent) => void
+export enum RequestState {
+  NONE,
+  SUBMIT,
+  OK,
+  ERROR,
+}
+
+export interface ListState<T> {
+  items: T[]
+  change: T | null
+  request: RequestState
+  error: string
+}
+
+export const InitialListState = {
+  items: [],
+  change: null,
+  request: RequestState.NONE,
+  error: '',
+}
 
 export enum PAGES {
   ROOT = '',
@@ -30,15 +55,20 @@ export enum PAGES {
   APP_MARKETPLACE = 'appmarketplace',
   APP_DETAIL = 'appdetail',
   DATACATALOG = 'datacatalog',
+  DATA_MANAGEMENT = 'datamanagement',
   DIGITALTWIN = 'digitaltwin',
   SEMANTICHUB = 'semantichub',
   DEVELOPERHUB = 'developerhub',
   CONNECTOR = 'connector',
   ACCOUNT = 'account',
+  USER_DETAILS = 'userdetails',
   NOTIFICATIONS = 'notifications',
   ORGANIZATION = 'organization',
   PARTNER_NETWORK = 'partnernetwork',
   USER_MANAGEMENT = 'usermanagement',
+  TECHNICAL_SETUP = 'technicalsetup',
+  APPLICATION_REQUESTS = 'applicationrequests',
+  APP_USER_DETAILS = 'appuserdetails',
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
   HELP = 'help',
@@ -52,7 +82,6 @@ export enum PAGES {
   DEVELOPER = 'developer',
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
-  REGISTRATION_REQUESTS = 'registration-requests',
   LOGOUT = 'logout',
 }
 
@@ -71,18 +100,20 @@ export enum ROLES {
   APPSTORE_DELETE = 'delete_apps',
   CONNECTOR_SETUP = 'setup_connector',
   DATACATALOG_VIEW = 'view_data_catalog',
-  DIGITALTWIN_VIEW = 'view_digital_twins',
-  DIGITALTWIN_ADD = 'add_digital_twins',
-  DIGITALTWIN_DELETE = 'delete_digital_twins',
+  DIGITALTWIN_VIEW = 'view_digital_twin',
+  DIGITALTWIN_ADD = 'add_digital_twin',
+  DIGITALTWIN_DELETE = 'delete_digital_twin',
   SEMANTICHUB_VIEW = 'view_semantic_hub',
   SEMANTICHUB_ADD = 'add_semantic_hub',
   SEMANTICHUB_DELETE = 'delete_semantic_hub',
   USERMANAGEMENT_VIEW = 'view_user_management',
   USERMANAGEMENT_ADD = 'add_user_account',
   USERMANAGEMENT_DELETE = 'delete_user_account',
+  USERMANAGEMENT_VIEW_USER_ACCOUNT = 'view_user_account',
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',
+  TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
 }
 
@@ -91,4 +122,26 @@ export type IPage = {
   role?: string
   element: JSX.Element
   isRoute?: boolean
+  children?: string[]
+}
+
+type LinkItem = Partial<Record<'href' | 'to', string>>
+
+export interface Tree {
+  name: string
+  children?: Tree[]
+}
+
+export interface MenuItem extends LinkItem, Tree {
+  title: string
+  children?: MenuItem[]
+}
+
+export type UserInput = {
+  key: string
+  i18n: string
+  helperText: string
+  pattern: RegExp
+  value: string
+  valid: boolean
 }

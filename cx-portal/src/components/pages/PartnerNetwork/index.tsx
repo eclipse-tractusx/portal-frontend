@@ -2,21 +2,20 @@ import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import partnerNetworkSlice, {
   partnerNetworkSelector,
-} from 'state/features/partnerNetwork/slice'
+} from 'features/partnerNetwork/slice'
 import {
   fetchBusinessPartners,
   getOneBusinessPartner,
-} from 'state/features/partnerNetwork/actions'
+} from 'features/partnerNetwork/actions'
 import { Table, Button } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
-import PartnerNetworkHeader from './components/PartnerNetworkHeader'
 import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
-import { PartnerNetworkDataGrid } from 'state/features/partnerNetwork/types'
-import UserService from 'services/UserService'
+import { PartnerNetworkDataGrid } from 'features/partnerNetwork/types'
+import SubHeader from 'components/shared/frame/SubHeader'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -30,23 +29,16 @@ const PartnerNetwork = () => {
   const [selectedBPN, setSelectedBPN] = useState<PartnerNetworkDataGrid>(
     {} as PartnerNetworkDataGrid
   )
-
-  const token = UserService.getToken()
   const { mappedPartnerList, loading, paginationData } = useSelector(
     partnerNetworkSelector
   )
 
   useEffect(() => {
-    if (token) {
-      const params = {
-        ...{ size: pageSize, page: currentPage },
-        ...(companyName !== '' && { name: companyName }),
-      }
-
-      dispatch(fetchBusinessPartners({ params, token }))
+    const params = {
+      ...{ size: pageSize, page: currentPage },
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, pageSize, currentPage])
+    dispatch(fetchBusinessPartners({ params }))
+  }, [currentPage, dispatch, pageSize])
 
   // Reset store data when page init
   useEffect(() => {
@@ -69,18 +61,16 @@ const PartnerNetwork = () => {
 
     // There is two different endpoint for BPN search and for the field search
     // Detect which api call to make a request
-    if (bpnValue !== '')
-      dispatch(getOneBusinessPartner({ bpn: bpnValue, token }))
+    if (bpnValue !== '') dispatch(getOneBusinessPartner({ bpn: bpnValue }))
     // Reset current page to default everytime user search some term
     else {
       const params = {
-        ...{ size: pageSize, page: currentPage },
+        ...{ size: pageSize, page: 0 },
         ...(companyName !== '' && { name: companyName }),
       }
       dispatch(
         fetchBusinessPartners({
           params,
-          token,
         })
       )
     }
@@ -103,7 +93,10 @@ const PartnerNetwork = () => {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <PartnerNetworkHeader />
+      <SubHeader
+        title={t('content.partnernetwork.headertitle')}
+        hasBackButton={false}
+      />
       <PartnerNetworkSearchForm
         {...{
           onBpnFieldChange,

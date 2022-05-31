@@ -4,110 +4,20 @@ import uniqueId from 'lodash/uniqueId'
 import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
 import { useDispatch, useSelector } from 'react-redux'
-import { appMarketplaceSelectSubscribed } from 'state/features/appMarketplace/slice'
-import { fetchSubscribed } from 'state/features/appMarketplace/actions'
+import { subscribedSelector } from 'features/apps/marketplace/slice'
+import { fetchSubscribed } from 'features/apps/marketplace/actions'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const items = useSelector(appMarketplaceSelectSubscribed)
+  const items = useSelector(subscribedSelector)
 
   useEffect(() => {
     dispatch(fetchSubscribed())
   }, [dispatch])
-  /*
-  const items = [
-    {
-      title: 'Fraud Prevention Report',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://americourses.com/wp-content/uploads/2020/07/fraud-prevention.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Fraud Detection App to report Fraud Cases.',
-      onClick: () => {
-        document.location.href =
-          'https://apps.cdq.com/signin/00c9f5bf?redirectUri=https://apps.cdq.com/dashboard/fraud/report-fraud'
-      },
-    },
-    {
-      title: 'Dismantler App',
-      subtitle: 'SAP',
-      image: {
-        src: 'https://hackernoon.com/hn-images/1*ruk9c2uz62aEdb8Nm5PWHw.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Quick and transparent overview of reusable car components.',
-      onClick: () => {
-        document.location.href =
-          'https://catenax-dt-rec.authentication.eu10.hana.ondemand.com/login'
-      },
-    },
-    {
-      title: 'Fleet Manager',
-      subtitle: 'ADAC',
-      image: {
-        src: 'Fleet_Manager_LP.png',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Behavior Twin.',
-      onClick: () => {
-        document.location.href =
-          'https://fleet-management.adac.openresearch.com'
-      },
-    },
-    {
-      title: 'Fraud Dashboard',
-      subtitle: 'Catena-X',
-      image: {
-        src: 'https://blog.hubspot.de/hubfs/Germany/Blog_images/GettyImages-840201636.jpeg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Fraud Dashboard.',
-      onClick: () => {
-        document.location.href = 'https://dash.catenax-cdq.com/'
-      },
-    },
-    {
-      title: 'Covanto - AFQM',
-      subtitle: 'BOSCH',
-      image: {
-        src: 'https://laszeray.com/wp-content/uploads/2019/08/laszeray-2-740x450.jpg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Quality Traceability.',
-      onClick: () => {
-        document.location.href = 'https://portal-staging.afqm-services.com/'
-      },
-    },
-    {
-      title: 'DTC-Translator',
-      subtitle: 'ADAC',
-      image: {
-        src: 'DTC-Translator_LP.svg',
-        alt: 'Catena-X AppCard',
-      },
-      rating: 4.5,
-      price: 'free to use',
-      description: 'Behavior Twin.',
-      onClick: () => {
-        document.location.href = 'https://dtc-translator.adac.openresearch.com'
-      },
-    },
-  ]
-*/
+
   const reference = PageService.registerReference(label, useRef(null))
 
   return (

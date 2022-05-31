@@ -1,35 +1,22 @@
-import { useState } from 'react'
 import { AddUserOverlay } from './AddUserOverlay'
 import { ActiveUserTable } from './ActiveUserTable'
 import StageSection from './StageSection'
 import { AppArea } from './AppArea'
+import { useDispatch } from 'react-redux'
+import { openAdd } from 'features/admin/user/actions'
+import { StageSubNavigation } from './StageSubNavigation/StageSubNavigation'
 import './UserManagement.scss'
 
 export default function UserManagement() {
-  const [open, setOpen] = useState(false)
-
-  const openAddUserLayout = () => {
-    setOpen(true)
-  }
-
-  const closeAddUserLayout = () => {
-    setOpen(false)
-  }
-
-  const confirmNewUser = () => {
-    console.log('confirmed')
-  }
+  const dispatch = useDispatch()
 
   return (
     <main className="UserManagement">
-      <AddUserOverlay
-        openDialog={open}
-        handleClose={closeAddUserLayout}
-        handleConfirm={confirmNewUser}
-      />
+      <AddUserOverlay />
       <StageSection />
+      <StageSubNavigation />
       <AppArea />
-      <ActiveUserTable onAddUserButtonClick={openAddUserLayout} />
+      <ActiveUserTable onAddUserButtonClick={() => dispatch(openAdd())} />
     </main>
   )
 }

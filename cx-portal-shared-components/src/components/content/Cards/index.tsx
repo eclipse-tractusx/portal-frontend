@@ -18,6 +18,7 @@ interface CardsProps {
   columns?: number
   readMoreText?: CardProps['readMoreText']
   readMoreLink?: CardProps['readMoreLink']
+  addButtonClicked?: boolean
 }
 
 export const Cards = ({
@@ -31,6 +32,7 @@ export const Cards = ({
   columns = 6,
   expandOnHover,
   filledBackground,
+  addButtonClicked = false,
 }: CardsProps) => {
   const settings = {
     variant,
@@ -41,6 +43,7 @@ export const Cards = ({
     imageShape,
     expandOnHover,
     filledBackground,
+    addButtonClicked,
   }
   const { spacing } = useTheme()
 

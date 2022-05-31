@@ -3,6 +3,7 @@ import { Typography } from '../../basic/Typography'
 import { CardRating, CardRatingProps } from './CardRating'
 
 export interface CardContentProps extends Partial<CardRatingProps> {
+  id?: string
   title: string
   subtitle?: string
   price?: string
@@ -31,9 +32,9 @@ export const CardContent = ({
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'normal',
-          display: '-webkit-box',
-          '-webkitLineClamp': '2',
-          '-webkitBoxOrient': 'vertical',
+          display: 'box',
+          lineClamp: '2',
+          boxOrient: 'vertical',
         }}
       >
         {title}
