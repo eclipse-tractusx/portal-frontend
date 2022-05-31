@@ -257,7 +257,7 @@
         "detailsHeader": "Technical User: USER_NAME",
         "detailsPage": {
           "userDetails": "User Details",
-          "description" : "Description",
+          "description": "Description",
           "spoc": "SPOC",
           "permission": "Permission"
         }

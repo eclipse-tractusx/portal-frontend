@@ -5,15 +5,20 @@ interface TechnicalUserDetailsGridProps {
   title: string
 }
 
-export const TechnicalUserDetailsGrid = ({ items, title }: TechnicalUserDetailsGridProps) => {
+export const TechnicalUserDetailsGrid = ({
+  items,
+  title,
+}: TechnicalUserDetailsGridProps) => {
   const { palette } = useTheme()
 
   return (
-    <Box sx={{
-      width: '353px',
-      marginRight: '31px',
-      marginBottom: '92px',
-    }}>
+    <Box
+      sx={{
+        width: '353px',
+        marginRight: '31px',
+        marginBottom: '92px',
+      }}
+    >
       <Box
         sx={{
           height: '60px',
@@ -27,20 +32,19 @@ export const TechnicalUserDetailsGrid = ({ items, title }: TechnicalUserDetailsG
       {items.map((gridItem) => {
         return (
           <Grid
-          key={gridItem}
-          item
-          xs={7}
-          style={{
-            borderBottom: `1px solid ${palette.grey['200']}`,
-            marginTop: 0,
-            padding: '18px 24px',
-          }}
+            key={gridItem}
+            item
+            xs={7}
+            style={{
+              borderBottom: `1px solid ${palette.grey['200']}`,
+              marginTop: 0,
+              padding: '18px 24px',
+            }}
           >
             <Box>{gridItem}</Box>
           </Grid>
         )
-      })
-      }
+      })}
     </Box>
   )
 }

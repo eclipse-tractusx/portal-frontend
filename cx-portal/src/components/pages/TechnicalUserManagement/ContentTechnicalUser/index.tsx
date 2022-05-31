@@ -37,10 +37,10 @@ export const ContentTechnicalUser = ({
           </Button>
         </div>
         <div className="content-technical-user-image">
-          <img src='/edc-connector-text-image.png' alt={'alt tag info'} />
+          <img src="/edc-connector-text-image.png" alt={'alt tag info'} />
         </div>
       </div>
-      
+
       <TechnicalUserTable />
     </section>
   )

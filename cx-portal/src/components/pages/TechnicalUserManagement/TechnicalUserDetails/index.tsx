@@ -37,34 +37,43 @@ export default function TechnicalUserDetails() {
           {t('content.usermanagement.technicalUser.delete')}
         </Button>
 
-        <Box sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          marginTop: '130px',
-          marginBottom: '92px',
-          width: '100%'
-        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            marginTop: '130px',
+            marginBottom: '92px',
+            width: '100%',
+          }}
+        >
           <TechnicalUserDetailsGrid
             items={['Client ID', 'Auth Type', 'Client Secret']}
-            title= {t('content.usermanagement.technicalUser.detailsPage.userDetails')}
+            title={t(
+              'content.usermanagement.technicalUser.detailsPage.userDetails'
+            )}
           />
 
           <TechnicalUserDetailsGrid
-            items={['Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis nat']}
-            title= {t('content.usermanagement.technicalUser.detailsPage.description')}
+            items={[
+              'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis nat',
+            ]}
+            title={t(
+              'content.usermanagement.technicalUser.detailsPage.description'
+            )}
           />
 
           <TechnicalUserDetailsGrid
             items={['Organisation name', 'User Name', 'admin@gmail.com']}
-            title= {t('content.usermanagement.technicalUser.detailsPage.spoc')}
+            title={t('content.usermanagement.technicalUser.detailsPage.spoc')}
           />
 
           <TechnicalUserDetailsGrid
             items={['load registry data', 'view registry data', 'access_xy']}
-            title= {t('content.usermanagement.technicalUser.detailsPage.permission')}
+            title={t(
+              'content.usermanagement.technicalUser.detailsPage.permission'
+            )}
           />
         </Box>
-        
       </section>
     </main>
   )

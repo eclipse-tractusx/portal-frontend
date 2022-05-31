@@ -1,4 +1,4 @@
-import { IconButton, Table} from 'cx-portal-shared-components'
+import { IconButton, Table } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -34,7 +34,9 @@ export const TechnicalUserTable = () => {
   const navigate = useNavigate()
 
   const onUserDetailsClick = (userId: string, username: string) => {
-    navigate('/usermanagement/technicaluser/userdetails/' + userId, { state: {username: username}})
+    navigate('/usermanagement/technicaluser/userdetails/' + userId, {
+      state: { username: username },
+    })
   }
 
   useEffect(() => {
@@ -45,11 +47,27 @@ export const TechnicalUserTable = () => {
     <div style={{ paddingTop: '100px' }}>
       <Table
         title={t('content.usermanagement.technicalUser.tableHeader')}
-        toolbar={{ onSearch: () => {console.log('search function') }}}
+        toolbar={{
+          onSearch: () => {
+            console.log('search function')
+          },
+        }}
         columns={[
-          { field: 'userName', headerName: t('global.field.userName'), flex: 2 },
-          { field: 'clientId', headerName: t('global.field.clientId'), flex: 1 },
-          { field: 'authType', headerName: t('global.field.authType'), flex: 1 },
+          {
+            field: 'userName',
+            headerName: t('global.field.userName'),
+            flex: 2,
+          },
+          {
+            field: 'clientId',
+            headerName: t('global.field.clientId'),
+            flex: 1,
+          },
+          {
+            field: 'authType',
+            headerName: t('global.field.authType'),
+            flex: 1,
+          },
           {
             field: 'details',
             headerName: t('global.field.details'),
@@ -57,7 +75,9 @@ export const TechnicalUserTable = () => {
             renderCell: ({ row }: { row: TechnicalUser }) => (
               <IconButton
                 color="secondary"
-                onClick={() => onUserDetailsClick(row.userEntityId, row.userName)}
+                onClick={() =>
+                  onUserDetailsClick(row.userEntityId, row.userName)
+                }
               >
                 <ArrowForwardIcon />
               </IconButton>
