@@ -18,9 +18,5 @@ export class Api extends HttpClient {
   }
 
   public getUserOwn = () =>
-    this.instance.get<OwnUser>(
-      `/api/administration/user/ownuser`,
-      getHeaders()
-    )
-
+    this.instance.get<OwnUser>(`/api/administration/user/ownuser`, getHeaders())
 }

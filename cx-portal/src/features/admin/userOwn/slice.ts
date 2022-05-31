@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  name,
-  initialState,
-  OwnUser,
-} from './types'
+import { name, initialState, OwnUser } from './types'
 import { fetch } from './actions'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
@@ -34,7 +30,7 @@ export const slice = createSlice({
   },
 })
 
-export const ownUserSelector = (state: RootState): (OwnUser | null) =>
+export const ownUserSelector = (state: RootState): OwnUser | null =>
   state.admin.userOwn.data
 
 const Slice = { slice }

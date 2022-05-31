@@ -68,7 +68,7 @@ export const InviteFormContent = ({
             placeholder={t(`global.field.${value}`)}
             value={inpExpr[i]}
             error={inpValid[i]}
-            autoFocus={value==='email'}
+            autoFocus={value === 'email'}
             onChange={(e) => doValidate(i, e.target.value)}
           ></Input>
         ))}

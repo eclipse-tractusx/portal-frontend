@@ -110,7 +110,9 @@ const fetchSearch = createAsyncThunk(
         trexpr
       )
       return [
-        pages.filter((item) => AccessService.hasAccess(item)).map((item) => pageToSearchItem(item)),
+        pages
+          .filter((item) => AccessService.hasAccess(item))
+          .map((item) => pageToSearchItem(item)),
         apps
           .filter((item) =>
             isUUID

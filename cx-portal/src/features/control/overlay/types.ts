@@ -5,7 +5,7 @@ export enum Overlay {
   COMPANY = 'COMPANY',
   USER = 'USER',
   APP = 'APP',
-  INVITE = 'INVITE'
+  INVITE = 'INVITE',
 }
 
 export type OverlayState = {

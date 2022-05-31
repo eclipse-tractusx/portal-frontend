@@ -5,13 +5,10 @@ import { useDispatch } from 'react-redux'
 
 export default function InviteBusinessPartner() {
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(show(Overlay.INVITE, ''))
   }, [dispatch])
 
-  return (
-    <main>
-    </main>
-  )
+  return <main></main>
 }

@@ -28,7 +28,5 @@ export default function InviteForm() {
       })
   }
 
-  return (
-    <InviteFormContent onSubmit={doSubmitInvite} state={processing} />
-  )
+  return <InviteFormContent onSubmit={doSubmitInvite} state={processing} />
 }
