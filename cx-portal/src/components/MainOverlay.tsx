@@ -9,6 +9,7 @@ import { Overlay } from 'features/control/overlay/types'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import AppDetailContent from './pages/AppDetail/AppDetailContent'
+import InviteForm from './pages/InviteBusinessPartner/components/InviteForm'
 import BusinessPartnerDetail from './pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 
 const getOverlayTitle = (type: Overlay) => {
@@ -40,6 +41,7 @@ export default function MainOverlay() {
           <BusinessPartnerDetail id={overlay.id} />
         )}
         {overlay.type === Overlay.APP && <AppDetailContent id={overlay.id} />}
+        {overlay.type === Overlay.INVITE && <InviteForm />}
       </DialogContent>
     </Dialog>
   )
