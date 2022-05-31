@@ -38,8 +38,12 @@ export const getClientId = () => {
 }
 
 //TODO: remove hard coded url and activate after setup of BPDM Api
-export const getBpdmApiBase = () =>
-  'https://catenax-bpdm-dev.demo.catena-x.net/api'
+export const getBpdmApiBase = () =>{
+  const hostname = getHostname()
+  if (hostname === 'portal.int.demo.catena-x.net') return 'https://catenax-bpdm-int.demo.catena-x.net/api'
+  if (hostname === 'portal.catena-x.net') return 'https://catenax-bpdm-dev.demo.catena-x.net/api'
+  return 'https://catenax-bpdm-dev.demo.catena-x.net/api'
+}
 //export const getBpdmApiBase = () =>
 //  isLocal()
 //    ? LOCAL_SERVICES_BPDM
