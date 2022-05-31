@@ -293,7 +293,9 @@
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
       "appPermissionTable": {
-        "title": "User permission per application"
+        "title": "User permission per application",
+        "appName": "App Name",
+        "appProvider": "App Provider"
       }
     },
     "footer": {

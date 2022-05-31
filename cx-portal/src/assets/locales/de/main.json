@@ -333,7 +333,9 @@
       "suspendAccount": "Benutzer aussetzen",
       "resetPswrdAccount": "Passwort zurücksetzen",
       "appPermissionTable": {
-        "title": "Nutzerbrechtigungen pro Applikation"
+        "title": "Nutzerbrechtigungen pro Applikation",
+        "appName": "App Name",
+        "appProvider": "App Anbieter"
       }
     },
     "footer": {

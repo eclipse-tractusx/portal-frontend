@@ -5,9 +5,9 @@ import { IconButton } from '../../basic/IconButton'
 import { Typography } from '../../basic/Typography'
 
 export interface UserCardProps {
-  action?: React.MouseEventHandler
-  category: string
-  items: UserItems
+  cardAction?: React.MouseEventHandler
+  cardCategory: string
+  cardContentItems: UserItems
 }
 
 interface UserItemsTranslation {
@@ -19,7 +19,11 @@ export interface UserItems {
   [key: string]: UserItemsTranslation | undefined
 }
 
-export const UserDetailCard = ({ action, category, items }: UserCardProps) => {
+export const UserDetailCard = ({
+  cardAction,
+  cardCategory,
+  cardContentItems,
+}: UserCardProps) => {
   const renderContentSwitch = (
     param: string,
     value: UserItemsTranslation | undefined
@@ -32,7 +36,7 @@ export const UserDetailCard = ({ action, category, items }: UserCardProps) => {
             <Chip
               color="secondary"
               label={value?.value}
-              type="confirm"
+              type="plain"
               variant="filled"
               withIcon={false}
             />
@@ -54,19 +58,19 @@ export const UserDetailCard = ({ action, category, items }: UserCardProps) => {
           paddingRight: '14px',
         }}
       >
-        <Typography variant="label3">{category}</Typography>
-        {action && (
+        <Typography variant="label3">{cardCategory}</Typography>
+        {cardAction && (
           <IconButton
             color="secondary"
             sx={{ marginLeft: 'auto' }}
-            onClick={action}
+            onClick={cardAction}
           >
             <EditOutlinedIcon />
           </IconButton>
         )}
       </Box>
       <List>
-        {Object.entries(items).map(([k, v], i) => (
+        {Object.entries(cardContentItems).map(([k, v], i) => (
           <ListItem
             key={i}
             disableGutters
@@ -75,7 +79,7 @@ export const UserDetailCard = ({ action, category, items }: UserCardProps) => {
               borderColor: 'border.border01',
               color: 'text.tertiary',
               fontFamily: 'LibreFranklin-Light',
-              padding: k === 'status' ? '12.5px' : '20px',
+              padding: k === 'status' ? '14.5px 20px' : '20px',
             }}
           >
             {renderContentSwitch(k, v)}

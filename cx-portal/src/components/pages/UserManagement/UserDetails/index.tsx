@@ -26,8 +26,8 @@ export default function UserDetails() {
 
   const userDetails = [
     {
-      category: 'Personal Information',
-      items: {
+      cardCategory: 'Personal Information',
+      cardContentItems: {
         name: { label: 'Name', value: 'Max' },
         surname: { label: 'Nachname', value: 'Mustermann' },
         email: { label: 'E-Mail', value: 'm.musterman@test.de' },
@@ -35,8 +35,8 @@ export default function UserDetails() {
       },
     },
     {
-      category: 'Status Information',
-      items: {
+      cardCategory: 'Status Information',
+      cardContentItems: {
         status: { label: 'Status', value: 'Aktiv' },
         userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
       },
@@ -77,7 +77,7 @@ export default function UserDetails() {
           key={uniqueId(i)}
           color="secondary"
           label={i}
-          type="confirm"
+          type="plain"
           variant="filled"
           withIcon={false}
           sx={{ marginRight: '10px' }}
@@ -90,7 +90,7 @@ export default function UserDetails() {
     <main className="user-details">
       <SubHeader
         title={t('content.account.userAccount')}
-        hasBackButton={true}
+        hasBackButton={false}
       />
       <section>
         <Box
