@@ -46,7 +46,7 @@ export const getBpdmApiBase = () =>
 //    : window.location.origin.replace('portal', 'bpdm')
 
 export const getSemanticApiBase = () =>
-  'https://catenaxintakssrv.germanywestcentral.cloudapp.azure.com/semantics'
+  'https://semantics.int.demo.catena-x.net/'
 
 const EnvironmentService = {
   isLocal,

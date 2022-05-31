@@ -8,7 +8,7 @@ export class Api extends HttpClient {
   private static classInstance?: Api
 
   public constructor() {
-    super(`${getSemanticApiBase()}/twin-registry/registry/shell-descriptors`)
+    super(`${getSemanticApiBase()}registry/shell-descriptors`)
   }
 
   public static getInstance() {
