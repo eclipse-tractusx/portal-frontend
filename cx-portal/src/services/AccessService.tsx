@@ -33,6 +33,7 @@ import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import DataManagement from 'components/pages/DataManagement'
+import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
 
 /**
  * ALL_PAGES
@@ -126,6 +127,20 @@ const ALL_PAGES: IPage[] = [
         element={<TechnicalUserManagement />}
       >
         <Route path=":appId" element={<TechnicalUserManagement />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.TECHNICAL_USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.TECHNICAL_USER_DETAILS}
+        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_DETAILS}`}
+        element={<TechnicalUserDetails />}
+      >
+        <Route path=":userId" element={<TechnicalUserDetails />} />
       </Route>
     ),
   },

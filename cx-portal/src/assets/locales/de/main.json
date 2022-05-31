@@ -250,7 +250,18 @@
       },
       "technicalUser": {
         "create": "Technischen Nutzer anlegen",
-        "headline": "Technical user management COMPANY_NAME"
+        "delete": "Technischen Nutzer entfernen",
+        "headline": "Technical user management COMPANY_NAME",
+        "descriptionHeader": "Technical user management COMPANY_NAME",
+        "descriptionText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
+        "tableHeader": "Technischen Benutzerlist",
+        "detailsHeader": "Technischer Benutzer: USER_NAME",
+        "detailsPage": {
+          "userDetails": "Benutzer Details",
+          "description" : "Beschreibung",
+          "spoc": "SPOC",
+          "permission": "Berechtigungen"
+        }
       }
     },
     "addUser": {
@@ -395,7 +406,10 @@
       "active": "Aktiv",
       "inactive": "Inaktiv",
       "name": "Name",
-      "details": "Details"
+      "details": "Details",
+      "userName": "Benutzername",
+      "clientId": "Client ID",
+      "authType": "Auth Type"
     },
     "actions": {
       "cancel": "Abbrechen",

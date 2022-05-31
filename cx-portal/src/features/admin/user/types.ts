@@ -28,6 +28,13 @@ export type AddUser = {
   message: string
 }
 
+export type TechnicalUser = {
+  userEntityId: string
+  userName: string
+  clientId: string
+  authType: string
+}
+
 export interface AdminUserState {
   addOpen: boolean
   addTechnicalUserOpen: boolean

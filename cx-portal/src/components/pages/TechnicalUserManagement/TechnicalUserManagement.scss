@@ -2,3 +2,42 @@
   width: 100%;
   padding: 0;
 }
+
+// Content technical user
+.content-technical-user {
+  display: flex;
+}
+
+.content-technical-user-description {
+  width: 50%;
+}
+
+.content-technical-user-image {
+  width: 50%;
+  img {
+    width: max-content;
+    margin-left: 93px;
+  }
+}
+
+.content-technical-user-title {
+  h3 {
+    margin-bottom: 16px !important;
+    text-align: left !important;
+  }
+
+  p {
+    margin-bottom: 16px !important;
+    text-align: left !important;
+  }
+
+  .section-title::after {
+    border-bottom: none !important;
+  }
+}
+
+// technical user details
+.technical-user-details {
+  width: 100%;
+  padding: 0;
+}
