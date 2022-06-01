@@ -1,4 +1,4 @@
-import { Button, Input, Typography } from 'cx-portal-shared-components'
+import { Button, Input } from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
