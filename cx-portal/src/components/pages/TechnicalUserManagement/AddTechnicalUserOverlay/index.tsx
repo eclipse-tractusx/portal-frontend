@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogActions,
-  DialogContent,
   DialogHeader,
   Button,
 } from 'cx-portal-shared-components'
