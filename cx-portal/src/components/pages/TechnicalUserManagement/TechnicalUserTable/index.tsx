@@ -1,47 +1,28 @@
 import { IconButton, Table } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { fetchTenantUsers } from 'features/admin/user/actions'
-import { TechnicalUser } from 'features/admin/user/types'
 import { useNavigate } from 'react-router-dom'
-
-const technicalUsers = [
-  {
-    userEntityId: '1',
-    userName: 'userName1',
-    clientId: 'clientId1',
-    authType: 'authType',
-  },
-  {
-    userEntityId: '2',
-    userName: 'userName2',
-    clientId: 'clientId2',
-    authType: 'authType2',
-  },
-  {
-    userEntityId: '3',
-    userName: 'userName3',
-    clientId: 'clientId3',
-    authType: 'authType3',
-  },
-]
+import { fetchPage } from 'features/admin/serviceAccount/actions'
+import { itemsSelector } from 'features/admin/serviceAccount/slice'
+import { ServiceAccount } from 'features/admin/serviceAccount/types'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const serviceAccounts = useSelector(itemsSelector)
+  console.log(serviceAccounts)
+  useEffect(() => {
+    dispatch(fetchPage(0))
+  }, [dispatch])
 
   const onUserDetailsClick = (userId: string, username: string) => {
     navigate('/usermanagement/technicaluser/userdetails/' + userId, {
       state: { username: username },
     })
   }
-
-  useEffect(() => {
-    dispatch(fetchTenantUsers())
-  }, [dispatch])
 
   return (
     <div style={{ paddingTop: '100px' }}>
@@ -54,7 +35,7 @@ export const TechnicalUserTable = () => {
         }}
         columns={[
           {
-            field: 'userName',
+            field: 'name',
             headerName: t('global.field.userName'),
             flex: 2,
           },
@@ -64,19 +45,14 @@ export const TechnicalUserTable = () => {
             flex: 1,
           },
           {
-            field: 'authType',
-            headerName: t('global.field.authType'),
-            flex: 1,
-          },
-          {
             field: 'details',
             headerName: t('global.field.details'),
             flex: 1,
-            renderCell: ({ row }: { row: TechnicalUser }) => (
+            renderCell: ({ row }: { row: ServiceAccount }) => (
               <IconButton
                 color="secondary"
                 onClick={() =>
-                  onUserDetailsClick(row.userEntityId, row.userName)
+                  onUserDetailsClick(row.serviceAccountId, row.name)
                 }
               >
                 <ArrowForwardIcon />
@@ -84,8 +60,8 @@ export const TechnicalUserTable = () => {
             ),
           },
         ]}
-        rows={technicalUsers}
-        getRowId={(row: { [key: string]: string }) => row.userEntityId}
+        rows={serviceAccounts}
+        getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
         hideFooter
       />
     </div>
