@@ -129,7 +129,11 @@ export default function MyAccount() {
               field: 'id',
               hide: true,
             },
-            { field: 'appName', headerName: t('content.account.appPermissionTable.appName'), flex: 1 },
+            {
+              field: 'appName',
+              headerName: t('content.account.appPermissionTable.appName'),
+              flex: 1,
+            },
             {
               field: 'appProvider',
               headerName: t('content.account.appPermissionTable.appProvider'),

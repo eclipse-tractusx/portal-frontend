@@ -19,16 +19,16 @@ export const Chip = ({
   let icon, hoverBgColor, hoverTextColor
 
   switch (type) {
-  case 'decline':
-    icon = <HighlightOffIcon />
-    hoverBgColor = theme.palette.declined.main
-    hoverTextColor = theme.palette.declined.contrastText
-    break
-  case 'confirm':
-    icon = <CheckCircleOutlineIcon />
-    hoverBgColor = theme.palette.confirmed.main
-    hoverTextColor = theme.palette.confirmed.contrastText
-    break
+    case 'decline':
+      icon = <HighlightOffIcon />
+      hoverBgColor = theme.palette.declined.main
+      hoverTextColor = theme.palette.declined.contrastText
+      break
+    case 'confirm':
+      icon = <CheckCircleOutlineIcon />
+      hoverBgColor = theme.palette.confirmed.main
+      hoverTextColor = theme.palette.confirmed.contrastText
+      break
   }
 
   return (

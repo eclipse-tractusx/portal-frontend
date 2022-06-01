@@ -38,7 +38,7 @@ export default function MainOverlay() {
       search:
         overlay.type === Overlay.NONE
           ? ''
-          : `?overlay=${overlay.type}${overlay.id && ':' + overlay.id}`,
+          : `?overlay=${overlay.type}${overlay.id ? ':' + overlay.id : ''}`,
     })
   }, [navigate, overlay])
 
