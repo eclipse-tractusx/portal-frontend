@@ -271,8 +271,16 @@
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
       "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
+      "technicalUserHeadline": "Technischen Nutzer anfragen",
+      "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Please enter all required information before proceeding.",
+      "technicalUser": {
+        "addOverlay": {
+          "service": "Service",
+          "description": "Beschreibung"
+        }
+      },
       "userUpload": {
         "title": "Drag & drop your files here",
         "subtitle": "or browse files on your computer.",
