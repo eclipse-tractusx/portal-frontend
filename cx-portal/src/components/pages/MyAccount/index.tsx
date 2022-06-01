@@ -1,4 +1,3 @@
-import './MyAccount.scss'
 import SubHeader from '../../shared/frame/SubHeader'
 import { Box } from '@mui/material'
 import {
@@ -10,7 +9,7 @@ import {
   Chip,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -19,38 +18,23 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
 import uniqueId from 'lodash/uniqueId'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
+import { useEffect } from 'react'
+import { fetch } from 'features/admin/userOwn/actions'
+import './MyAccount.scss'
+import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
+  const ownUser = useSelector(ownUserSelector)
 
-  const userDetails = [
-    {
-      cardCategory: 'Personal Information',
-      cardContentItems: {
-        name: { label: 'Name', value: 'Max' },
-        surname: { label: 'Nachname', value: 'Mustermann' },
-        email: { label: 'E-Mail', value: 'm.musterman@test.de' },
-        bpn: { label: 'BPN', value: '1234567' },
-      },
-    },
-    {
-      cardCategory: 'Status Information',
-      cardContentItems: {
-        status: { label: 'Status', value: 'Aktiv' },
-        userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
-      },
-    },
-    {
-      cardCategory: 'Issuer Information',
-      cardContentItems: {
-        organisation: { label: 'Organisation', value: 'BMW' },
-        adminName: { label: 'Admin Name', value: 'Admin Muster' },
-        adminMail: { label: 'Admin E-Mail', value: 'admin.muster@test.de' },
-      },
-    },
-  ]
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetch())
+  }, [dispatch])
 
   const userAppRoles = [
     {
@@ -120,7 +104,12 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        <UserDetails userDetailsCards={userDetails} columns={3} />
+        {ownUser && (
+          <UserDetails
+            userDetailsCards={userDetailsToCards(ownUser)}
+            columns={3}
+          />
+        )}
 
         <Table
           title={t('content.account.appPermissionTable.title')}

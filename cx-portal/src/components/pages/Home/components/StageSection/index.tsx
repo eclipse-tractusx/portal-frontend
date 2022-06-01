@@ -1,18 +1,10 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
 import { label as BusinessApplictions } from '../BusinessApplicationsSection'
 
 export default function SearchSection() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-
-  const appendParams = () => {
-    navigate({
-      search: '?sort=date&order=newest',
-    })
-  }
 
   return (
     <div className="stage-home stage-section">
@@ -28,9 +20,6 @@ export default function SearchSection() {
           onClick={() => PageService.scrollTo(BusinessApplictions)}
         >
           {t('content.home.stage.appButton')}
-        </Button>
-        <Button sx={{ margin: '40px 10px 0 0' }} onClick={appendParams}>
-          {'test'}
         </Button>
       </div>
       <div className="stage-background">
