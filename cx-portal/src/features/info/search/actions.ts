@@ -126,7 +126,7 @@ const fetchSearch = createAsyncThunk(
         news
           .filter(
             (item) =>
-              item.title.match(searchExpr) ||
+              item.title?.match(searchExpr) ||
               item.subtitle?.match(searchExpr) ||
               item.description?.match(searchExpr)
           )
@@ -136,8 +136,8 @@ const fetchSearch = createAsyncThunk(
             isUUID
               ? item.userEntityId.match(searchExpr) ||
                 item.companyUserId.match(searchExpr)
-              : item.firstName.match(searchExpr) ||
-                item.lastName.match(searchExpr) ||
+              : item.firstName?.match(searchExpr) ||
+                item.lastName?.match(searchExpr) ||
                 item.email.match(searchExpr)
           )
           .map((item) => userToSearchItem(item)),
