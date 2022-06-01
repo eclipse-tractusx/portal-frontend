@@ -35,8 +35,11 @@ export default function MainOverlay() {
 
   useEffect(() => {
     navigate({
-      search: overlay.type===Overlay.NONE ? '' : `?overlay=${overlay.type}${overlay.id && ':'+overlay.id}`,
-    });    
+      search:
+        overlay.type === Overlay.NONE
+          ? ''
+          : `?overlay=${overlay.type}${overlay.id && ':' + overlay.id}`,
+    })
   }, [navigate, overlay])
 
   return (
