@@ -14,6 +14,7 @@ import {
   Button,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { DialogContent } from 'cx-portal-shared-components/src'
 
 interface AddTechnicalUserOverlayProps {
   dialogOpen: boolean
