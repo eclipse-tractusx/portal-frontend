@@ -2,12 +2,11 @@
   "title": "Catena-X Portal",
   "pages": {
     "home": "Home",
-    "appstore": "Appstore",
+    "registration": "Registration",
     "appmarketplace": "App Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Data Management",
     "datacatalog": "Data Catalog",
-    "applications": "Applications",
     "semantichub": "Semantic Hub",
     "digitaltwin": "Digital Twins",
     "developerhub": "Developer Hub",
@@ -19,7 +18,6 @@
     "usermanagement": "User Management",
     "technicalsetup": "Technical Integration",
     "applicationrequests": "Application Requests",
-    "settings": "Settings",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -310,7 +308,9 @@
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
       "appPermissionTable": {
-        "title": "User permission per application"
+        "title": "User permission per application",
+        "appName": "App Name",
+        "appProvider": "App Provider"
       }
     },
     "footer": {

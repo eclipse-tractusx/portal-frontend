@@ -14,34 +14,30 @@ import {
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import uniqueId from 'lodash/uniqueId'
+import { useParams } from 'react-router-dom'
+import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { useEffect } from 'react'
+import { fetch } from 'features/admin/userOwn/actions'
+import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 
 export default function UserDetails() {
   const { t } = useTranslation()
+  const { appId } = useParams()
+  console.log(`TODO: get user details for ${appId}`)
+
+  const ownUser = useSelector(ownUserSelector)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetch(/*appId*/))
+  }, [dispatch])
 
   // TODO: Wrong user mock data
   const parsedUser = useSelector((state: RootState) => state.user)
-
-  const userDetails = [
-    {
-      category: 'Personal Information',
-      items: {
-        name: { label: 'Name', value: 'Max' },
-        surname: { label: 'Nachname', value: 'Mustermann' },
-        email: { label: 'E-Mail', value: 'm.musterman@test.de' },
-        bpn: { label: 'BPN', value: '1234567' },
-      },
-    },
-    {
-      category: 'Status Information',
-      items: {
-        status: { label: 'Status', value: 'Aktiv' },
-        userCreated: { label: 'Nutzer angelegt', value: '17.02.1989' },
-      },
-    },
-  ]
 
   const userAppRoles = [
     {
@@ -77,7 +73,7 @@ export default function UserDetails() {
           key={uniqueId(i)}
           color="secondary"
           label={i}
-          type="confirm"
+          type="plain"
           variant="filled"
           withIcon={false}
           sx={{ marginRight: '10px' }}
@@ -90,7 +86,7 @@ export default function UserDetails() {
     <main className="user-details">
       <SubHeader
         title={t('content.account.userAccount')}
-        hasBackButton={true}
+        hasBackButton={false}
       />
       <section>
         <Box
@@ -141,7 +137,12 @@ export default function UserDetails() {
           </Box>
         </Box>
 
-        <UserDetailsComponent userDetailsCards={userDetails} columns={3} />
+        {ownUser && (
+          <UserDetailsComponent
+            userDetailsCards={userDetailsToCards(ownUser)}
+            columns={3}
+          />
+        )}
 
         <Table
           title={t('content.account.appPermissionTable.title')}

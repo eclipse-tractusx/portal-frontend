@@ -23,9 +23,9 @@ export const UserDetails = ({
     >
       {userDetailsCards.map((card) => (
         <UserDetailCard
-          action={card.action}
-          category={card.category}
-          items={card.items}
+          cardAction={card.cardAction}
+          cardCategory={card.cardCategory}
+          cardContentItems={card.cardContentItems}
           key={uniqueId('UserDetails')}
         />
       ))}

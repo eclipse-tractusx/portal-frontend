@@ -5,6 +5,7 @@ import { label as BusinessApplictions } from '../BusinessApplicationsSection'
 
 export default function SearchSection() {
   const { t } = useTranslation()
+
   return (
     <div className="stage-home stage-section">
       <div className="stage-content">

@@ -20,6 +20,7 @@ import {
 } from 'features/partnerNetwork/types'
 import { TenantUser } from 'features/admin/user/types'
 import I18nService from 'services/I18nService'
+import AccessService from 'services/AccessService'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -63,6 +64,24 @@ const searchForExpression = async function (expr: string) {
       emptyNewsResult,
       emptyUserResult,
     ])
+  } else if (Patterns.prefix.MAIL.test(expr)) {
+    return Promise.all([
+      emptyPageResult,
+      emptyAppResult,
+      emptyPartnerResult,
+      emptyNewsResult,
+      Patterns.MAIL.test(expr)
+        ? await UserApi.getInstance().getTenantUsers()
+        : emptyUserResult,
+    ])
+  } else if (Patterns.UUID.test(expr)) {
+    return Promise.all([
+      emptyPageResult,
+      await AppsApi.getInstance().getActive(),
+      emptyPartnerResult,
+      emptyNewsResult,
+      await UserApi.getInstance().getTenantUsers(),
+    ])
   } else {
     return Promise.all([
       I18nService.searchPages(expr),
@@ -83,17 +102,22 @@ const clearSearch = createAction(`${name}/clear`)
 const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
   async (expr: string): Promise<SearchItem[]> => {
-    const searchExpr = new RegExp(expr, 'gi')
+    const trexpr = expr.trim()
+    const searchExpr = new RegExp(trexpr, 'gi')
+    const isUUID = Patterns.UUID.test(trexpr)
     try {
       let [pages, apps, partners, news, users] = await searchForExpression(
-        expr.trim()
+        trexpr
       )
       return [
-        pages.map((item) => pageToSearchItem(item)),
+        pages
+          .filter((item) => AccessService.hasAccess(item))
+          .map((item) => pageToSearchItem(item)),
         apps
-          .filter(
-            (item) =>
-              item.title.match(searchExpr) || item.provider.match(searchExpr)
+          .filter((item) =>
+            isUUID
+              ? item.id.match(searchExpr)
+              : item.title.match(searchExpr) || item.provider.match(searchExpr)
           )
           .map((item) => appToSearchItem(item)),
         partners.content.map((item) =>
@@ -108,11 +132,13 @@ const fetchSearch = createAsyncThunk(
           )
           .map((item) => newsToSearchItem(item)),
         users
-          .filter(
-            (item) =>
-              item.firstName.match(searchExpr) ||
-              item.lastName.match(searchExpr) ||
-              item.email.match(searchExpr)
+          .filter((item) =>
+            isUUID
+              ? item.userEntityId.match(searchExpr) ||
+                item.companyUserId.match(searchExpr)
+              : item.firstName.match(searchExpr) ||
+                item.lastName.match(searchExpr) ||
+                item.email.match(searchExpr)
           )
           .map((item) => userToSearchItem(item)),
       ].flat()

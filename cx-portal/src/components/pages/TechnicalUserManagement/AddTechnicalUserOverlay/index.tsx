@@ -10,7 +10,6 @@ import FormHelperText from '@mui/material/FormHelperText'
 import {
   Dialog,
   DialogActions,
-  DialogContent,
   DialogHeader,
   Button,
 } from 'cx-portal-shared-components'

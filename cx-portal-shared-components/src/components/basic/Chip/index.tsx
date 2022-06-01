@@ -4,7 +4,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { theme } from '../../../theme'
 
 interface ChipCustomProps extends ChipProps {
-  type?: 'decline' | 'confirm'
+  type?: 'decline' | 'confirm' | 'plain'
   withIcon?: true | false
 }
 
@@ -39,8 +39,8 @@ export const Chip = ({
       sx={{
         borderRadius: '36px',
         ':hover': {
-          backgroundColor: hoverBgColor,
-          color: hoverTextColor,
+          backgroundColor: type !== 'plain' ? hoverBgColor : undefined,
+          color: type !== 'plain' ? hoverTextColor : undefined,
         },
       }}
       {...props}
