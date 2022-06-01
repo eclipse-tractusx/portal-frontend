@@ -14,6 +14,7 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import SemanticHub from 'components/pages/SemanticHub'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
+import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import UserDetails from '../components/pages/UserManagement/UserDetails'
 import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
 import { IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
@@ -32,6 +33,7 @@ import Home from 'components/pages/Home'
 import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import DataManagement from 'components/pages/DataManagement'
+import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
 
 /**
  * ALL_PAGES
@@ -113,6 +115,34 @@ const ALL_PAGES: IPage[] = [
     name: PAGES.USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     element: <UserManagement />,
+  },
+  {
+    name: PAGES.TECHNICAL_USER_MANAGEMENT,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.TECHNICAL_USER_MANAGEMENT}
+        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}`}
+        element={<TechnicalUserManagement />}
+      >
+        <Route path=":appId" element={<TechnicalUserManagement />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.TECHNICAL_USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.TECHNICAL_USER_DETAILS}
+        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_DETAILS}`}
+        element={<TechnicalUserDetails />}
+      >
+        <Route path=":userId" element={<TechnicalUserDetails />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.USER_DETAILS,

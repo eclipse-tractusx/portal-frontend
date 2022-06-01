@@ -28,8 +28,16 @@ export type AddUser = {
   message: string
 }
 
+export type TechnicalUser = {
+  userEntityId: string
+  userName: string
+  clientId: string
+  authType: string
+}
+
 export interface AdminUserState {
   addOpen: boolean
+  addTechnicalUserOpen: boolean
   tenantUsers: Array<TenantUser>
   usersToAdd: Array<AddUser>
   addRequest: RequestState
@@ -43,5 +51,6 @@ export const initialState: AdminUserState = {
   getRequest: RequestState.NONE,
   addRequest: RequestState.NONE,
   addOpen: false,
+  addTechnicalUserOpen: false,
   error: '',
 }
