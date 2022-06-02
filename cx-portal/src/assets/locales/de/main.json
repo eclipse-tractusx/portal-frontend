@@ -270,12 +270,14 @@
       "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
       "technicalUserHeadline": "Technischen Nutzer anfragen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
+      "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
-          "service": "Service",
-          "description": "Beschreibung"
+          "service": "Dienst",
+          "description": "Beschreibung",
+          "spocHeadline": "Single Point of Contact (SPoC):"
         }
       },
       "userUpload": {
@@ -425,7 +427,8 @@
       "details": "Details",
       "close": "Schließen",
       "back": "Zurück",
-      "breadcrumbBack": "Zurück"
+      "breadcrumbBack": "Zurück",
+      "pleaseSelect": "Bitte auswählen"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

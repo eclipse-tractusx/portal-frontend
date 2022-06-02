@@ -6,8 +6,9 @@ import { Typography } from '../../basic/Typography'
 
 export interface UserCardProps {
   cardAction?: React.MouseEventHandler
-  cardCategory: string
+  cardCategory?: string
   cardContentItems: UserItems
+  variant?: 'wide'
 }
 
 interface UserItemsTranslation {
@@ -23,6 +24,7 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
+  variant
 }: UserCardProps) => {
   const renderContentSwitch = (
     param: string,
@@ -43,12 +45,17 @@ export const UserDetailCard = ({
           </>
         )
       default:
-        return `${value?.label}: ${value?.value}`
-    }
+        return (
+          <>
+            <span>{value?.label}:</span>&nbsp;<span style={{marginLeft: variant === 'wide' ? 'auto' : '' }}>{value?.value}</span>
+          </>
+        )
+   }
   }
+
   return (
     <Box>
-      <Box
+      {cardCategory && <Box
         sx={{
           alignItems: 'center',
           backgroundColor: 'background.background09',
@@ -68,7 +75,7 @@ export const UserDetailCard = ({
             <EditOutlinedIcon />
           </IconButton>
         )}
-      </Box>
+      </Box>}
       <List>
         {Object.entries(cardContentItems).map(([k, v], i) => (
           <ListItem

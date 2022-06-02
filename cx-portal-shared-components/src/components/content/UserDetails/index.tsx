@@ -5,11 +5,13 @@ import { UserCardProps, UserDetailCard } from './UserDetailCard'
 interface UserDetailsProps {
   columns?: number
   userDetailsCards: UserCardProps[]
+  variant?: 'wide'
 }
 
 export const UserDetails = ({
   columns = 6,
   userDetailsCards,
+  variant
 }: UserDetailsProps) => {
   const { spacing } = useTheme()
 
@@ -26,6 +28,7 @@ export const UserDetails = ({
           cardAction={card.cardAction}
           cardCategory={card.cardCategory}
           cardContentItems={card.cardContentItems}
+          variant={variant}
           key={uniqueId('UserDetails')}
         />
       ))}
