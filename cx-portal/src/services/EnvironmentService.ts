@@ -22,7 +22,8 @@ export const getCentralIdp = () => {
     return 'https://centralidp.demo.catena-x.net/auth'
   if (hostname === 'portal.catena-x.net')
     return 'https://centralidp.catena-x.net/auth'
-  return 'https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com/iamcentralidp/auth'
+  return 'https://centralidp.dev.demo.catena-x.net/auth'
+  //return 'https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com/iamcentralidp/auth'
 }
 //export const getCentralIdp = () =>
 //  isLocal()
@@ -34,7 +35,7 @@ export const getClientId = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net') return 'Cl2-CX-Portal'
   if (hostname === 'portal.catena-x.net') return 'Cl2-CX-Portal'
-  return 'catenax-portal'
+  return 'Cl2-CX-Portal'
 }
 
 //TODO: remove hard coded url and activate after setup of BPDM Api

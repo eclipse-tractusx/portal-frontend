@@ -1,13 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
-import { initialPaginResult, RequestState } from 'types/MainTypes'
-import { fetchPage } from './actions'
 import {
-  initialState,
-  name,
-  ServiceAccount,
-  ServiceAccountState,
-} from './types'
+  AsyncDataState,
+  initialPaginResult,
+  PaginResult,
+  RequestState,
+} from 'types/MainTypes'
+import { fetchPage } from './actions'
+import { name, ServiceAccount } from './types'
+
+const initialState: AsyncDataState<PaginResult<ServiceAccount>> = {
+  data: initialPaginResult,
+  request: RequestState.NONE,
+  error: '',
+}
 
 export const slice = createSlice({
   name,
@@ -35,11 +41,12 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): ServiceAccountState =>
-  state.admin.service
+export const stateSelector = (
+  state: RootState
+): AsyncDataState<PaginResult<ServiceAccount>> => state.admin.service.list
 
 export const itemsSelector = (state: RootState): ServiceAccount[] =>
-  state.admin.service.data.content
+  state.admin.service.list.data.content
 
 const Slice = { slice }
 

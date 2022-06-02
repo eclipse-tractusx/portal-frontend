@@ -1,6 +1,7 @@
 import {
   getApiBase,
   getAssetBase,
+  getCentralIdp,
   getHostname,
   isLocal,
 } from './EnvironmentService'
@@ -12,6 +13,7 @@ const ENV = [
     origin: 'http://localhost',
     assets: 'https://portal.dev.demo.catena-x.net/assets',
     api: 'https://portal-backend.dev.demo.catena-x.net',
+    idp: 'https://centralidp.dev.demo.catena-x.net/auth',
   },
   {
     name: 'dev',
@@ -19,6 +21,7 @@ const ENV = [
     origin: 'https://portal.dev.demo.catena-x.net',
     assets: '/assets',
     api: 'https://portal-backend.dev.demo.catena-x.net',
+    idp: 'https://centralidp.dev.demo.catena-x.net/auth',
   },
   {
     name: 'int',
@@ -26,6 +29,7 @@ const ENV = [
     origin: 'https://portal.int.demo.catena-x.net',
     assets: '/assets',
     api: 'https://portal-backend.int.demo.catena-x.net',
+    idp: 'https://centralidp.demo.catena-x.net/auth',
   },
   {
     name: 'prod',
@@ -33,6 +37,7 @@ const ENV = [
     origin: 'https://portal.catena-x.net',
     assets: '/assets',
     api: 'https://portal-backend.catena-x.net',
+    idp: 'https://centralidp.catena-x.net/auth',
   },
 ]
 
@@ -52,6 +57,7 @@ describe('EnvironmentService', () => {
       expect(isLocal()).toEqual(env.hostname === 'localhost')
       expect(getApiBase()).toEqual(env.api)
       expect(getAssetBase()).toEqual(env.assets)
+      expect(getCentralIdp()).toEqual(env.idp)
     })
   )
 })

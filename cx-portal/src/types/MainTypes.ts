@@ -35,6 +35,15 @@ export enum RequestState {
   ERROR,
 }
 
+export interface AsyncState {
+  request: RequestState
+  error: string
+}
+
+export interface AsyncDataState<T> extends AsyncState {
+  data: T
+}
+
 export interface ListState<T> {
   items: T[]
   change: T | null
