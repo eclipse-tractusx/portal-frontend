@@ -26,8 +26,13 @@ export const DialogHeader = ({
   return (
     <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
       <MuiDialogTitle>
-        { icon && (
-          <Box><CheckCircleOutlineOutlinedIcon sx={{ fontSize: 60 }} color="success" /></Box>
+        {icon && (
+          <Box>
+            <CheckCircleOutlineOutlinedIcon
+              sx={{ fontSize: 60 }}
+              color="success"
+            />
+          </Box>
         )}
         {title}
         {closeWithIcon && (

@@ -24,7 +24,7 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
-  variant
+  variant,
 }: UserCardProps) => {
   const renderContentSwitch = (
     param: string,
@@ -47,35 +47,40 @@ export const UserDetailCard = ({
       default:
         return (
           <>
-            <span>{value?.label}:</span>&nbsp;<span style={{marginLeft: variant === 'wide' ? 'auto' : '' }}>{value?.value}</span>
+            <span>{value?.label}:</span>&nbsp;
+            <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+              {value?.value}
+            </span>
           </>
         )
-   }
+    }
   }
 
   return (
     <Box>
-      {cardCategory && <Box
-        sx={{
-          alignItems: 'center',
-          backgroundColor: 'background.background09',
-          display: 'flex',
-          height: '55px',
-          paddingLeft: '20px',
-          paddingRight: '14px',
-        }}
-      >
-        <Typography variant="label3">{cardCategory}</Typography>
-        {cardAction && (
-          <IconButton
-            color="secondary"
-            sx={{ marginLeft: 'auto' }}
-            onClick={cardAction}
-          >
-            <EditOutlinedIcon />
-          </IconButton>
-        )}
-      </Box>}
+      {cardCategory && (
+        <Box
+          sx={{
+            alignItems: 'center',
+            backgroundColor: 'background.background09',
+            display: 'flex',
+            height: '55px',
+            paddingLeft: '20px',
+            paddingRight: '14px',
+          }}
+        >
+          <Typography variant="label3">{cardCategory}</Typography>
+          {cardAction && (
+            <IconButton
+              color="secondary"
+              sx={{ marginLeft: 'auto' }}
+              onClick={cardAction}
+            >
+              <EditOutlinedIcon />
+            </IconButton>
+          )}
+        </Box>
+      )}
       <List>
         {Object.entries(cardContentItems).map(([k, v], i) => (
           <ListItem

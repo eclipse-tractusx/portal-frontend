@@ -3,7 +3,8 @@ import Box from '@mui/material/Box'
 import {
   Dialog,
   DialogContent,
-  DialogHeader, UserDetails,
+  DialogHeader,
+  UserDetails,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
@@ -14,17 +15,20 @@ interface AddTechnicalUserOverlayProps {
 
 export const AddTechnicalUserResponseOverlay = ({
   dialogOpen,
-  onCloseWithIcon
+  onCloseWithIcon,
 }: AddTechnicalUserOverlayProps) => {
   const { t } = useTranslation()
 
   const userDataResponse = [
     {
       cardContentItems: {
-        clientId: { label: "Client ID" , value: "1237856"},
-        clientSecret: {label: "Client Secret", value: "asdds9g89897ds5f6njk234hf8zs9d"},
-        userName: {label: "UserName", value: "max_mustermann23"},
-        authType: {label: "Auth Type", value: "oauth2"}
+        clientId: { label: 'Client ID', value: '1237856' },
+        clientSecret: {
+          label: 'Client Secret',
+          value: 'asdds9g89897ds5f6njk234hf8zs9d',
+        },
+        userName: { label: 'UserName', value: 'max_mustermann23' },
+        authType: { label: 'Auth Type', value: 'oauth2' },
       },
     },
   ]
@@ -44,7 +48,7 @@ export const AddTechnicalUserResponseOverlay = ({
             <UserDetails
               columns={1}
               userDetailsCards={userDataResponse}
-              variant='wide'
+              variant="wide"
             />
           </Box>
         </DialogContent>

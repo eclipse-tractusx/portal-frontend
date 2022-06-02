@@ -13,7 +13,7 @@ import {
   DialogContent,
   DialogHeader,
   Button,
-  UserDetails
+  UserDetails,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
@@ -34,16 +34,16 @@ export const AddTechnicalUserOverlay = ({
     {
       cardCategory: 'Single Point of Contact (SPoC):',
       cardContentItems: {
-        organizsationName: { label: "Organization name" , value: "BMW"},
-        username: {label: "Username", value: "Max Mustermann"},
-        eMailAddress: {label: "E-Mail Address", value: "test@test.de"}
+        organizsationName: { label: 'Organization name', value: 'BMW' },
+        username: { label: 'Username', value: 'Max Mustermann' },
+        eMailAddress: { label: 'E-Mail Address', value: 'test@test.de' },
       },
     },
   ]
 
   const [values, setValues] = useState({
     description: '',
-    service: 'none'
+    service: 'none',
   })
 
   const handleChange = (name: string) => (event: any) => {
@@ -59,7 +59,7 @@ export const AddTechnicalUserOverlay = ({
         />
 
         <DialogContent className="w-100">
-          <Box sx={{ marginBottom: '23px'}}>
+          <Box sx={{ marginBottom: '23px' }}>
             <InputLabel error={true} sx={{ marginBottom: '7px' }}>
               {t('content.addUser.technicalUser.addOverlay.service')}
             </InputLabel>
@@ -70,7 +70,7 @@ export const AddTechnicalUserOverlay = ({
               error={true}
               onChange={handleChange('service')}
               sx={{
-                color: values.service === 'none' ? 'gray' : ''
+                color: values.service === 'none' ? 'gray' : '',
               }}
             >
               <MenuItem disabled value="none">
@@ -79,7 +79,9 @@ export const AddTechnicalUserOverlay = ({
               <MenuItem value="digitaltwin">Digital Twin</MenuItem>
               <MenuItem value="semantichub">Semantic Hub</MenuItem>
             </Select>
-            <FormHelperText sx={{ marginBottom: '23px', color: 'red'}}>Error message!</FormHelperText>
+            <FormHelperText sx={{ marginBottom: '23px', color: 'red' }}>
+              Error message!
+            </FormHelperText>
 
             <InputLabel error={true} sx={{ marginBottom: '7px' }}>
               {t('content.addUser.technicalUser.addOverlay.description')}
@@ -87,12 +89,14 @@ export const AddTechnicalUserOverlay = ({
             <TextField
               variant="filled"
               value={values.description}
-              placeholder={ t('content.addUser.technicalUser.addOverlay.description') }
+              placeholder={t(
+                'content.addUser.technicalUser.addOverlay.description'
+              )}
               multiline
               fullWidth
               error={false}
               FormHelperTextProps={{
-                sx: { marginLeft: 'auto' }
+                sx: { marginLeft: 'auto' },
               }}
               helperText={`${values.description.length}/${CHARACTER_LIMIT}`}
               onChange={handleChange('description')}
@@ -101,10 +105,10 @@ export const AddTechnicalUserOverlay = ({
                   <InputAdornment sx={{ color: 'red' }} position="end">
                     <ErrorOutlineOutlinedIcon />
                   </InputAdornment>
-                )
+                ),
               }}
               inputProps={{
-                maxLength: CHARACTER_LIMIT
+                maxLength: CHARACTER_LIMIT,
               }}
             />
           </Box>
@@ -112,7 +116,7 @@ export const AddTechnicalUserOverlay = ({
             <UserDetails
               columns={1}
               userDetailsCards={userDetailsData}
-              variant='wide'
+              variant="wide"
             />
           </Box>
         </DialogContent>

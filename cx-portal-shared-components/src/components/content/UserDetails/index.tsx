@@ -11,7 +11,7 @@ interface UserDetailsProps {
 export const UserDetails = ({
   columns = 6,
   userDetailsCards,
-  variant
+  variant,
 }: UserDetailsProps) => {
   const { spacing } = useTheme()
 

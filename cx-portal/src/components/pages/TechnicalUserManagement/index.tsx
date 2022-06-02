@@ -40,7 +40,10 @@ export default function TechnicalUserManagement() {
         handleClose={closeAddTechnicalUserOverlay}
         handleConfirm={handleAddUTechnicalUserConfirm}
       />
-      <AddTechnicalUserResponseOverlay dialogOpen={openResponse} onCloseWithIcon={closeAddTechnicalUserResponseOverlay} />
+      <AddTechnicalUserResponseOverlay
+        dialogOpen={openResponse}
+        onCloseWithIcon={closeAddTechnicalUserResponseOverlay}
+      />
       <PageHeader
         title={t('content.usermanagement.technicalUser.headline')}
         spacingTop={-84}
