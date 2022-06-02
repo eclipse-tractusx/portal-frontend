@@ -275,9 +275,13 @@
       "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst",
-          "description": "Beschreibung",
-          "spocHeadline": "Single Point of Contact (SPoC):"
+          "service": "Dienst*",
+          "description": "Beschreibung*",
+          "spocHeadline": "Single Point of Contact (SPoC):",
+          "error": {
+            "select": "Bitte wählen Sie einen Wert.",
+            "description": "Bitte geben Sie eine Beschreibung ein."
+          }
         }
       },
       "userUpload": {

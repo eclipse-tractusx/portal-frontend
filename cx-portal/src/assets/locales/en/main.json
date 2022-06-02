@@ -276,7 +276,12 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
-          "description": "Description"
+          "description": "Description",
+          "spocHeadline": "Single Point of Contact (SPoC):",
+          "error": {
+            "select": "Please select a value.",
+            "description": "Please enter a description."
+          }
         }
       },
       "userUpload": {
