@@ -39,20 +39,25 @@ const TechnicalUserAddFormSelect = ({
               color: value === 'none' ? 'gray' : '',
             }}
           >
-            <MenuItem disabled value="none">{t('global.actions.pleaseSelect')}</MenuItem>
+            <MenuItem disabled value="none">
+              {t('global.actions.pleaseSelect')}
+            </MenuItem>
             <MenuItem value="digitaltwin">Digital Twin</MenuItem>
             <MenuItem value="semantichub">Semantic Hub</MenuItem>
           </Select>
-            {!!errors[name] &&
-              <FormHelperText sx={{ marginBottom: '23px', color: 'danger.danger' }}>
-                {t('content.addUser.technicalUser.addOverlay.error.select')}
-              </FormHelperText>}
-          </>
-        )}
-        name={name}
-        control={control}
-        rules={rules}
-      />
+          {!!errors[name] && (
+            <FormHelperText
+              sx={{ marginBottom: '23px', color: 'danger.danger' }}
+            >
+              {t('content.addUser.technicalUser.addOverlay.error.select')}
+            </FormHelperText>
+          )}
+        </>
+      )}
+      name={name}
+      control={control}
+      rules={rules}
+    />
   )
 }
 
@@ -68,48 +73,51 @@ const TechnicalUserAddFormTextfield = ({
 }: any) => {
   const CHARACTER_LIMIT = 120
 
-  return(
-    <Controller render={({field: { onChange, value}}) => (
-      <>
-      <InputLabel error={!!errors[name]} sx={{ marginBottom: '7px' }}>
-        {label}
-      </InputLabel>
-      <TextField
-        error={!!errors[name]}
-        fullWidth
-        helperText={!!errors[name] ? helperText : `${value.length}/${CHARACTER_LIMIT}`}
-        inputProps={{
-          maxLength: CHARACTER_LIMIT,
-        }}
-        multiline
-        onChange={(event) => {
-          trigger(name)
-          onChange(event)
-        }}
-        placeholder={placeholder}
-        value={value}
-        variant="filled"
-        FormHelperTextProps={{
-          sx: { marginLeft: !!errors[name] ? '' : 'auto' },
-        }}
-        InputProps={{
-          endAdornment: (!!errors[name] && (
-            <InputAdornment sx={{ color: 'danger.danger' }} position="end">
-              <ErrorOutlineOutlinedIcon />
-            </InputAdornment>
-          )),
-        }}
-      />
-      </>
-    )}
-    name={name}
-    control={control}
-    rules={rules}
+  return (
+    <Controller
+      render={({ field: { onChange, value } }) => (
+        <>
+          <InputLabel error={!!errors[name]} sx={{ marginBottom: '7px' }}>
+            {label}
+          </InputLabel>
+          <TextField
+            error={!!errors[name]}
+            fullWidth
+            helperText={
+              !!errors[name] ? helperText : `${value.length}/${CHARACTER_LIMIT}`
+            }
+            inputProps={{
+              maxLength: CHARACTER_LIMIT,
+            }}
+            multiline
+            onChange={(event) => {
+              trigger(name)
+              onChange(event)
+            }}
+            placeholder={placeholder}
+            value={value}
+            variant="filled"
+            FormHelperTextProps={{
+              sx: { marginLeft: !!errors[name] ? '' : 'auto' },
+            }}
+            InputProps={{
+              endAdornment: !!errors[name] && (
+                <InputAdornment sx={{ color: 'danger.danger' }} position="end">
+                  <ErrorOutlineOutlinedIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </>
+      )}
+      name={name}
+      control={control}
+      rules={rules}
     />
   )
 }
 
-export const TechnicalUserAddForm =  ({
+export const TechnicalUserAddForm = ({
   control,
   errors,
   handleSubmit,
