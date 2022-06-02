@@ -45,8 +45,14 @@ export const getBpdmApiBase = () =>
 //    ? LOCAL_SERVICES_BPDM
 //    : window.location.origin.replace('portal', 'bpdm')
 
-export const getSemanticApiBase = () =>
-  'https://semantics.int.demo.catena-x.net/'
+export const getSemanticApiBase = () => {
+  const hostname = getHostname()
+  if(hostname === 'portal.int.demo.catena-x.net'){
+    return 'https://semantics.int.demo.catena-x.net/'
+  } else {
+    return 'https://semantics.dev.demo.catena-x.net/'
+  }
+}
 
 const EnvironmentService = {
   isLocal,
