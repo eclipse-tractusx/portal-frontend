@@ -19,7 +19,7 @@ export const slice = createSlice({
       request: RequestState.SUBMIT,
       error: '',
     }))
-    builder.addCase(removeItem.fulfilled, (state, { payload }) => ({
+    builder.addCase(removeItem.fulfilled, (state) => ({
       ...state,
       request: RequestState.OK,
       error: '',
