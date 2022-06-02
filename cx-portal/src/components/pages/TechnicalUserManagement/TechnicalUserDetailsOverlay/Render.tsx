@@ -1,7 +1,7 @@
 import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import { TechnicalUserDetailsGrid } from './TechnicalUserDetailsGrid'
+import { TechnicalUserDetailsGrid } from '../TechnicalUserDetails/TechnicalUserDetailsGrid'
 import { Box } from '@mui/material'
 import { ServiceAccountDetail } from 'features/admin/service/types'
 
