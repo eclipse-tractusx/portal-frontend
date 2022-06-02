@@ -47,7 +47,8 @@ export const getBpdmApiBase = () =>
 
 export const getSemanticApiBase = () => {
   const hostname = getHostname()
-  if (hostname === 'portal.int.demo.catena-x.net') return 'https://semantics.int.demo.catena-x.net/'
+  if (hostname === 'portal.int.demo.catena-x.net')
+    return 'https://semantics.int.demo.catena-x.net/'
   return 'https://semantics.dev.demo.catena-x.net/'
 }
 
