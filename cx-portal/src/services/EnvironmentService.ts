@@ -15,7 +15,6 @@ export const getApiBase = () =>
 export const getAssetBase = () =>
   `${isLocal() ? LOCAL_SERVICES_FRONTEND : ''}/assets`
 
-//TODO: remove hard coded url and activate after setup of centralidp
 export const getCentralIdp = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net')
@@ -24,10 +23,6 @@ export const getCentralIdp = () => {
     return 'https://centralidp.catena-x.net/auth'
   return 'https://centralidp.dev.demo.catena-x.net/auth'
 }
-//export const getCentralIdp = () =>
-//  isLocal()
-//    ? LOCAL_SERVICES_CENTRALIDP
-//    : window.location.origin.replace('portal', 'centralidp')
 
 export const getClientId = () => 'Cl2-CX-Portal'
 
