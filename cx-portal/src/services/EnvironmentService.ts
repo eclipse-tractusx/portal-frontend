@@ -15,27 +15,16 @@ export const getApiBase = () =>
 export const getAssetBase = () =>
   `${isLocal() ? LOCAL_SERVICES_FRONTEND : ''}/assets`
 
-//TODO: remove hard coded url and activate after setup of centralidp
 export const getCentralIdp = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net')
     return 'https://centralidp.demo.catena-x.net/auth'
   if (hostname === 'portal.catena-x.net')
     return 'https://centralidp.catena-x.net/auth'
-  return 'https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com/iamcentralidp/auth'
+  return 'https://centralidp.dev.demo.catena-x.net/auth'
 }
-//export const getCentralIdp = () =>
-//  isLocal()
-//    ? LOCAL_SERVICES_CENTRALIDP
-//    : window.location.origin.replace('portal', 'centralidp')
 
-//TODO: remove once migration to ng keycloak is wrapped up one only Cl2-CX-Portal is relevant any longer
-export const getClientId = () => {
-  const hostname = getHostname()
-  if (hostname === 'portal.int.demo.catena-x.net') return 'Cl2-CX-Portal'
-  if (hostname === 'portal.catena-x.net') return 'Cl2-CX-Portal'
-  return 'catenax-portal'
-}
+export const getClientId = () => 'Cl2-CX-Portal'
 
 //TODO: remove hard coded url and activate after setup of BPDM Api
 export const getBpdmApiBase = () =>
@@ -45,8 +34,12 @@ export const getBpdmApiBase = () =>
 //    ? LOCAL_SERVICES_BPDM
 //    : window.location.origin.replace('portal', 'bpdm')
 
-export const getSemanticApiBase = () =>
-  'https://semantics.int.demo.catena-x.net/'
+export const getSemanticApiBase = () => {
+  const hostname = getHostname()
+  if (hostname === 'portal.int.demo.catena-x.net')
+    return 'https://semantics.int.demo.catena-x.net/'
+  return 'https://semantics.dev.demo.catena-x.net/'
+}
 
 const EnvironmentService = {
   isLocal,

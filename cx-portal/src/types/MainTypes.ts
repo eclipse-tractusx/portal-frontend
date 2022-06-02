@@ -1,3 +1,5 @@
+export const PAGE_SIZE = 15
+
 export type Nullable<T> = T | null
 
 export interface IHashMap<T> {
@@ -33,6 +35,15 @@ export enum RequestState {
   ERROR,
 }
 
+export interface AsyncState {
+  request: RequestState
+  error: string
+}
+
+export interface AsyncDataState<T> extends AsyncState {
+  data: T
+}
+
 export interface ListState<T> {
   items: T[]
   change: T | null
@@ -46,6 +57,27 @@ export const InitialListState = {
   request: RequestState.NONE,
   error: '',
 }
+
+export type PaginMeta = {
+  totalElements: number
+  totalPages: number
+  page: number
+  contentSize: number
+}
+
+export const initialPaginMeta: PaginMeta = {
+  totalElements: 0,
+  totalPages: 0,
+  page: 0,
+  contentSize: 0,
+}
+
+export type PaginResult<T> = {
+  meta: PaginMeta
+  content: T[]
+}
+
+export const initialPaginResult = { meta: { ...initialPaginMeta }, content: [] }
 
 export enum PAGES {
   ROOT = '',
