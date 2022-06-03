@@ -35,20 +35,12 @@ export const RemoveTechnicalUserOverlay = ({
 
   return (
     <Dialog open={dialogOpen}>
-      <DialogHeader
-        title={t('global.actions.delete') + ' ' + name}
-      />
-      
+      <DialogHeader title={t('global.actions.delete') + ' ' + name} />
+
       <DialogContent>
         <div className="remove-technical-user-content">
-          <SubHeaderTitle
-            title={confirmDeleteUserText()}
-            variant="h6"
-          />
-          <SubHeaderTitle
-            title={noteDeleteUserText()}
-            variant="h5"
-          />
+          <SubHeaderTitle title={confirmDeleteUserText()} variant="h6" />
+          <SubHeaderTitle title={noteDeleteUserText()} variant="h5" />
         </div>
       </DialogContent>
 

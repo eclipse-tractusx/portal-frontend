@@ -1,4 +1,8 @@
-import { PageHeader, Button, PageNotificationsProps } from 'cx-portal-shared-components'
+import {
+  PageHeader,
+  Button,
+  PageNotificationsProps,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { TechnicalUserDetailsGrid } from './TechnicalUserDetailsGrid'
@@ -16,7 +20,7 @@ export default function TechnicalUserDetails() {
   const dispatch = useDispatch()
   const data: any = location.state
   const [open, setOpen] = useState(false)
-  
+
   const openAddTechnicalUserOverlay = () => {
     setOpen(true)
   }
@@ -30,8 +34,10 @@ export default function TechnicalUserDetails() {
     const notification: PageNotificationsProps = {
       open: true,
       severity: 'success',
-      title: 'content.usermanagement.technicalUser.confirmDeleteNotificationTitle',
-      description: 'content.usermanagement.technicalUser.confirmDeleteNotificationDescription',
+      title:
+        'content.usermanagement.technicalUser.confirmDeleteNotificationTitle',
+      description:
+        'content.usermanagement.technicalUser.confirmDeleteNotificationDescription',
     }
 
     dispatch(setNotification(notification))

@@ -1,7 +1,8 @@
 import { Box } from '@mui/material'
 import { PageNotificationsProps } from '.'
 
-interface NotificationContentProps extends Omit<PageNotificationsProps, 'onCloseNotification' | 'open'> {
+interface NotificationContentProps
+  extends Omit<PageNotificationsProps, 'onCloseNotification' | 'open'> {
   titleColor?: string
 }
 
@@ -17,7 +18,12 @@ export const NotificationContent = ({
     <Box>
       {title && (
         <span
-          style={{ marginRight: '10px', color: titleColor, width: 'max-content', fontWeight: 'bold' }}
+          style={{
+            marginRight: '10px',
+            color: titleColor,
+            width: 'max-content',
+            fontWeight: 'bold',
+          }}
         >
           {title}
         </span>

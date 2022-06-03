@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
-import { initialPaginResult, initServicetNotifications, RequestState } from 'types/MainTypes'
+import {
+  initialPaginResult,
+  initServicetNotifications,
+  RequestState,
+} from 'types/MainTypes'
 import { PageNotificationsProps } from 'cx-portal-shared-components'
 import { fetchPage } from './actions'
 import {
@@ -16,11 +20,11 @@ export const slice = createSlice({
   reducers: {
     setNotification: (state, { payload }) => ({
       ...state,
-      notification: payload.notification
+      notification: payload.notification,
     }),
     resetNotification: (state) => ({
       ...state,
-      notification: initServicetNotifications
+      notification: initServicetNotifications,
     }),
   },
   extraReducers: (builder) => {
@@ -51,8 +55,9 @@ export const stateSelector = (state: RootState): ServiceAccountState =>
 export const itemsSelector = (state: RootState): ServiceAccount[] =>
   state.admin.service.data.content
 
-export const notificationSelector = (state: RootState): PageNotificationsProps =>
-  state.admin.service.notification
+export const notificationSelector = (
+  state: RootState
+): PageNotificationsProps => state.admin.service.notification
 
 const Slice = { slice }
 

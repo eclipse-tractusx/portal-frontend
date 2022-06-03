@@ -51,7 +51,7 @@ export const ContentTechnicalUser = ({
       </div>
 
       <div style={{ paddingTop: '70px' }}>
-        {notification.title && notification.description &&
+        {notification.title && notification.description && (
           <PageNotifications
             open={notification.open}
             severity={notification.severity}
@@ -60,10 +60,9 @@ export const ContentTechnicalUser = ({
             onCloseNotification={handleCloseNotification}
             showIcon={false}
           />
-        }
+        )}
         <TechnicalUserTable />
       </div>
-      
     </section>
   )
 }

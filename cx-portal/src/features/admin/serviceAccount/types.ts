@@ -1,4 +1,9 @@
-import { initialPaginResult, PaginResult, RequestState, initServicetNotifications } from 'types/MainTypes'
+import {
+  initialPaginResult,
+  PaginResult,
+  RequestState,
+  initServicetNotifications,
+} from 'types/MainTypes'
 import { PageNotificationsProps } from 'cx-portal-shared-components'
 
 export const name = 'admin/service'

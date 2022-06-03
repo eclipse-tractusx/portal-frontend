@@ -2,7 +2,8 @@ import { Box } from '@mui/material'
 import { Typography } from '../../Typography'
 import { PageNotificationsProps } from '../PageNotification'
 
-interface SnackbarContentProps extends Omit<PageNotificationsProps, 'onCloseNotification' | 'open'> {
+interface SnackbarContentProps
+  extends Omit<PageNotificationsProps, 'onCloseNotification' | 'open'> {
   children?: React.ReactNode
   titleColor?: string
 }
