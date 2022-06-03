@@ -42,7 +42,7 @@ export const PageBreadcrumb = ({
 
   return (
     <Breadcrumb
-      backButtonLabel={t('global.actions.breadcrumbBack')}
+      backButtonLabel={t('global.actions.back')}
       backButtonVariant={backButtonVariant}
       onBackButtonClick={() => navigate(-1)}
       breadcrumbs={breadcrumbs}

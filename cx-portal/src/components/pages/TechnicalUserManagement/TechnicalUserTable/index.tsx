@@ -13,19 +13,18 @@ export const TechnicalUserTable = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const serviceAccounts = useSelector(itemsSelector)
-  console.log(serviceAccounts)
   useEffect(() => {
     dispatch(fetchPage(0))
   }, [dispatch])
 
-  const onUserDetailsClick = (userId: string, username: string) => {
+  const onUserDetailsClick = (userId: string, name: string) => {
     navigate('/usermanagement/technicaluser/userdetails/' + userId, {
-      state: { username: username },
+      state: { name: name },
     })
   }
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <div style={{ paddingTop: '30px' }}>
       <Table
         title={t('content.usermanagement.technicalUser.tableHeader')}
         toolbar={{

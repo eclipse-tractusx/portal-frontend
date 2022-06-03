@@ -258,7 +258,11 @@
           "description": "Beschreibung",
           "spoc": "SPOC",
           "permission": "Berechtigungen"
-        }
+        },
+        "confirmDeleteUser": "Sind Sie sicher, dass Sie OBJECT_NAME löschen möchten?",
+        "noteDeleteUser": "Hinweis: Fügen Sie hier beliebige Notizen hinzu!",
+        "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
+        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
       }
     },
     "addUser": {
@@ -417,7 +421,7 @@
       "details": "Details",
       "close": "Schließen",
       "back": "Zurück",
-      "breadcrumbBack": "Zurück"
+      "delete": "Löschen"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

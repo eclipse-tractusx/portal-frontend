@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { Typography } from '../../Typography'
 import { PageNotificationsProps } from '../PageNotification'
 
-interface SnackbarContentProps {
+interface SnackbarContentProps extends Omit<PageNotificationsProps, 'onCloseNotification' | 'open'> {
   children?: React.ReactNode
   titleColor?: string
 }
@@ -16,7 +16,7 @@ export const SnackbarContent = ({
   contactNewTab,
   showIcon,
   titleColor,
-}: SnackbarContentProps & PageNotificationsProps) => {
+}: SnackbarContentProps) => {
   const descriptionPadding = showIcon ? '20px' : '0px'
   return (
     <Box>

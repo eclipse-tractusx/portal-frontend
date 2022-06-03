@@ -11,7 +11,8 @@ import { theme } from '../../../../theme'
 
 export interface PageNotificationsProps {
   severity?: 'error' | 'warning' | 'info' | 'success'
-  onClose?: React.MouseEventHandler
+  open: boolean,
+  onCloseNotification?: React.MouseEventHandler
   title?: string
   description?: string
   contactText?: string
@@ -57,7 +58,8 @@ export function titleIcon(severity: string) {
 
 export const PageNotifications = ({
   severity = 'info',
-  onClose,
+  open,
+  onCloseNotification,
   title,
   description,
   contactText,
@@ -65,13 +67,11 @@ export const PageNotifications = ({
   contactNewTab,
   showIcon,
 }: PageNotificationsProps) => {
-  const [open, setOpen] = useState(true)
   return (
     <Collapse in={open}>
       <Alert
         severity={severity}
         variant="outlined"
-        onClose={() => onClose}
         icon={showIcon === false ? false : titleIcon(severity)}
         sx={{
           borderColor: color(severity),
@@ -82,7 +82,7 @@ export const PageNotifications = ({
           <IconButton
             aria-label="close"
             size="small"
-            onClick={() => setOpen(false)}
+            onClick={onCloseNotification}
             sx={{
               color: theme.palette.icon.icon01,
               marginTop: '5px',

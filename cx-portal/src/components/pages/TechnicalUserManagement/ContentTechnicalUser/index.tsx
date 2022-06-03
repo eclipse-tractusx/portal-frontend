@@ -1,8 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import { Button } from 'cx-portal-shared-components'
+import { Button, PageNotifications } from 'cx-portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { TechnicalUserTable } from '../TechnicalUserTable'
+import { notificationSelector } from 'features/admin/serviceAccount/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetNotification } from 'features/admin/serviceAccount/actions'
 
 interface ContentTechnicalUserProps {
   openAddTechnicalUserOverlay: React.MouseEventHandler
@@ -12,6 +15,12 @@ export const ContentTechnicalUser = ({
   openAddTechnicalUserOverlay,
 }: ContentTechnicalUserProps) => {
   const { t } = useTranslation()
+  const notification = useSelector(notificationSelector)
+  const dispatch = useDispatch()
+
+  const handleCloseNotification = () => {
+    dispatch(resetNotification())
+  }
 
   return (
     <section>
@@ -41,7 +50,20 @@ export const ContentTechnicalUser = ({
         </div>
       </div>
 
-      <TechnicalUserTable />
+      <div style={{ paddingTop: '70px' }}>
+        {notification.title && notification.description &&
+          <PageNotifications
+            open={notification.open}
+            severity={notification.severity}
+            title={t(notification.title)}
+            description={t(notification.description)}
+            onCloseNotification={handleCloseNotification}
+            showIcon={false}
+          />
+        }
+        <TechnicalUserTable />
+      </div>
+      
     </section>
   )
 }

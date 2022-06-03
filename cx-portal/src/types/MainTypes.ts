@@ -1,3 +1,5 @@
+import { PageNotificationsProps } from 'cx-portal-shared-components'
+
 export const PAGE_SIZE = 15
 
 export type Nullable<T> = T | null
@@ -169,4 +171,11 @@ export type UserInput = {
   pattern: RegExp
   value: string
   valid: boolean
+}
+
+export const initServicetNotifications: PageNotificationsProps = {
+  open: false,
+  severity: undefined,
+  title: '',
+  description: '',
 }
