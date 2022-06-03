@@ -43,7 +43,7 @@ export const AddTechnicalUserResponseOverlay = ({
           icon={true}
           onCloseWithIcon={onCloseWithIcon}
         />
-        <DialogContent className="w-100">
+        <DialogContent>
           <Box>
             <UserDetails
               columns={1}

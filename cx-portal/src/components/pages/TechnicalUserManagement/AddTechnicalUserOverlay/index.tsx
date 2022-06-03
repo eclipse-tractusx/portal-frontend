@@ -7,19 +7,19 @@ import {
   DialogHeader,
   UserDetails,
 } from 'cx-portal-shared-components'
-import { addItem, fetchPage } from 'features/admin/service/actions'
-import { stateSelector as createSelector } from 'features/admin/service/screate'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { TechnicalUserAddForm } from './components/TechnicalUserAddForm'
-import { useDispatch, useSelector } from 'react-redux'
-import { RequestState } from 'types/MainTypes'
 
 interface AddTechnicalUserOverlayProps {
   dialogOpen: boolean
   handleClose: React.MouseEventHandler
-  handleConfirm: () => void
+  handleConfirm: (formValues: DefaultFormFieldValuesType) => void
+}
+
+export type DefaultFormFieldValuesType = {
+  TechnicalUserService: string
+  TechnicalUserDescription: string
 }
 
 export const AddTechnicalUserOverlay = ({
@@ -38,22 +38,10 @@ export const AddTechnicalUserOverlay = ({
       },
     },
   ]
-
   const defaultFormFieldValues = {
     TechnicalUserService: 'none',
     TechnicalUserDescription: '',
   }
-  const dispatch = useDispatch()
-  const createResult = useSelector(createSelector)
-  console.log(createResult)
-
-  useEffect(() => {
-    //reload the data after successful create
-    if (createResult.request === RequestState.OK) {
-      dispatch(fetchPage(0))
-    }
-  }, [dispatch, createResult])
-
   const {
     handleSubmit,
     getValues,
@@ -72,21 +60,14 @@ export const AddTechnicalUserOverlay = ({
     ])
 
     if (validateFields) {
-      handleConfirm()
+      const formValues = (getValues() as DefaultFormFieldValuesType)
+      handleConfirm(formValues)
+
     }
-    // const handleConfirm = () => {
-    //   // TODO:
-    //   // read data from form
-    //   // (fields should be validated while entering data and
-    //   // confirm button should be disabled as long as data is invalid
-    //   // so we don't need another check here
-    //   dispatch(
-    //     addItem({
-    //       name: `testaccount-${Date.now()}`,
-    //       description: 'another test account',
-    //       authenticationType: 'SECRET',
-    //     })
-    //   )
+  }
+
+  const formHasErrors = () => {
+    return Object.keys(errors).length > 0
   }
 
   return (
@@ -112,12 +93,7 @@ export const AddTechnicalUserOverlay = ({
           <Button variant="outlined" onClick={handleClose}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button variant="contained" onClick={onFormSubmit}>
-            {/*<Button*/}
-            {/*  variant="contained"*/}
-            {/*  onClick={handleConfirm}*/}
-            {/*  disabled={false /* true as long as data is invalid *!/*/}
-            {/*>*/}
+          <Button variant="contained" onClick={onFormSubmit} disabled={formHasErrors()}>
             {`${t('global.actions.confirm')}`}
           </Button>
         </DialogActions>
