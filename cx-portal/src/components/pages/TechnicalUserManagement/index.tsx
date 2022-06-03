@@ -1,5 +1,8 @@
 import './TechnicalUserManagement.scss'
-import { AddTechnicalUserOverlay, DefaultFormFieldValuesType } from './AddTechnicalUserOverlay'
+import {
+  AddTechnicalUserOverlay,
+  DefaultFormFieldValuesType,
+} from './AddTechnicalUserOverlay'
 import { AddTechnicalUserResponseOverlay } from './AddTechnicalUserResponseOverlay'
 import { ContentTechnicalUser } from './ContentTechnicalUser'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
@@ -42,7 +45,9 @@ export default function TechnicalUserManagement() {
     setOpenResponse(false)
   }
 
-  const handleAddTechnicalUserConfirm = (formValues: DefaultFormFieldValuesType) => {
+  const handleAddTechnicalUserConfirm = (
+    formValues: DefaultFormFieldValuesType
+  ) => {
     openAddTechnicalUserResponseOverlay()
 
     console.log('Form data: ', formValues)

@@ -60,9 +60,8 @@ export const AddTechnicalUserOverlay = ({
     ])
 
     if (validateFields) {
-      const formValues = (getValues() as DefaultFormFieldValuesType)
+      const formValues = getValues() as DefaultFormFieldValuesType
       handleConfirm(formValues)
-
     }
   }
 
@@ -93,7 +92,11 @@ export const AddTechnicalUserOverlay = ({
           <Button variant="outlined" onClick={handleClose}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button variant="contained" onClick={onFormSubmit} disabled={formHasErrors()}>
+          <Button
+            variant="contained"
+            onClick={onFormSubmit}
+            disabled={formHasErrors()}
+          >
             {`${t('global.actions.confirm')}`}
           </Button>
         </DialogActions>
