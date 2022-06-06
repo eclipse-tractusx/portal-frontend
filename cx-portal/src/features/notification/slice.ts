@@ -10,16 +10,17 @@ export const notificationSlice = createSlice({
   reducers: {
     setNotification: (state, { payload }) => ({
       ...state,
-      notification: payload.notification
+      notification: payload.notification,
     }),
     resetNotification: (state) => ({
       ...state,
-      notification: initServicetNotifications
+      notification: initServicetNotifications,
     }),
   },
 })
 
-export const notificationSelector = (state: RootState): PageNotificationsProps =>
-  state.notification.notification
+export const notificationSelector = (
+  state: RootState
+): PageNotificationsProps => state.notification.notification
 
 export default notificationSlice
