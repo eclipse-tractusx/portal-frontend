@@ -4,15 +4,16 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useNavigate } from 'react-router-dom'
-import { fetchPage } from 'features/admin/serviceAccount/actions'
-import { itemsSelector } from 'features/admin/serviceAccount/slice'
-import { ServiceAccount } from 'features/admin/serviceAccount/types'
+import { fetchPage } from 'features/admin/service/actions'
+import { itemsSelector } from 'features/admin/service/slist'
+import { ServiceAccount } from 'features/admin/service/types'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const serviceAccounts = useSelector(itemsSelector)
+
   useEffect(() => {
     dispatch(fetchPage(0))
   }, [dispatch])

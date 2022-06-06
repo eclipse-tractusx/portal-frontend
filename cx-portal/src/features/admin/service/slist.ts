@@ -1,18 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
+import { PageNotificationsProps } from 'cx-portal-shared-components'
 import {
+  AsyncDataState,
   initialPaginResult,
   initServicetNotifications,
+  PaginResult,
   RequestState,
 } from 'types/MainTypes'
-import { PageNotificationsProps } from 'cx-portal-shared-components'
 import { fetchPage } from './actions'
-import {
-  initialState,
-  name,
-  ServiceAccount,
-  ServiceAccountState,
-} from './types'
+import { name, ServiceAccount } from './types'
+
+const initialState: AsyncDataState<PaginResult<ServiceAccount>> = {
+  data: initialPaginResult,
+  request: RequestState.NONE,
+  error: '',
+}
 
 export const slice = createSlice({
   name,
@@ -49,11 +52,12 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): ServiceAccountState =>
-  state.admin.service
+export const stateSelector = (
+  state: RootState
+): AsyncDataState<PaginResult<ServiceAccount>> => state.admin.service.list
 
 export const itemsSelector = (state: RootState): ServiceAccount[] =>
-  state.admin.service.data.content
+  state.admin.service.list.data.content
 
 export const notificationSelector = (
   state: RootState
