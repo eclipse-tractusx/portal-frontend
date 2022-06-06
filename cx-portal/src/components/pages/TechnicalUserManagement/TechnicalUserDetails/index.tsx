@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 import { RemoveTechnicalUserOverlay } from './RemoveTechnicalUserOverlay'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setNotification } from 'features/admin/serviceAccount/actions'
+import { setNotification } from 'features/notification/actions'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 
 export default function TechnicalUserDetails() {

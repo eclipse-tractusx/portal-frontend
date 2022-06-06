@@ -4,6 +4,7 @@ import userSlice from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
 import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
+import notificationSlice from './notification/slice'
 import { reducer as admin } from './admin/reducer'
 import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
@@ -18,6 +19,7 @@ export const reducers = {
   twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
   connector: connectorSlice.reducer,
+  notification: notificationSlice.reducer,
 }
 
 export const store = configureStore({

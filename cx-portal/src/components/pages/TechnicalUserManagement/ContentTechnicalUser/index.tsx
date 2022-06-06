@@ -3,9 +3,9 @@ import { Button, PageNotifications } from 'cx-portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { TechnicalUserTable } from '../TechnicalUserTable'
-import { notificationSelector } from 'features/admin/serviceAccount/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetNotification } from 'features/admin/serviceAccount/actions'
+import { resetNotification } from 'features/notification/actions'
+import { notificationSelector } from 'features/notification/slice'
 
 interface ContentTechnicalUserProps {
   openAddTechnicalUserOverlay: React.MouseEventHandler
