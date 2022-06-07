@@ -16,7 +16,7 @@ export const PageSnackbar = Template.bind({})
 PageSnackbar.args = {
   severity: 'success',
   open: true,
-  onClose: () => console.log('close snackbar'),
+  onCloseNotification: () => console.log('close snackbar'),
   title: 'Notification title',
   description: 'This is some notification text and can be replaced later.',
   contactText: 'Contact',

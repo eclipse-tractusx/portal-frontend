@@ -14,7 +14,8 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const PageNotifications = Template.bind({})
 PageNotifications.args = {
   severity: 'success',
-  onClose: () => console.log('close alert'),
+  open: true,
+  onCloseNotification: () => console.log('close alert'),
   title: 'Notification title',
   description: 'This is some notification text and can be replaced later.',
   contactText: 'Contact',

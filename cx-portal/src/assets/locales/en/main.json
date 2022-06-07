@@ -258,7 +258,11 @@
           "description": "Description",
           "spoc": "SPOC",
           "permission": "Permission"
-        }
+        },
+        "confirmDeleteUser": "Are you sure you want to delete OBJECT_NAME ?",
+        "noteDeleteUser": "Note: add any note information here - e.g. if the deletion is getting confirmed, the user wont be able to reactivate the OBJECT_NAME",
+        "confirmDeleteNotificationTitle": "User deletion was successful.",
+        "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }
     },
     "addUser": {
@@ -392,7 +396,7 @@
       "details": "Details",
       "close": "Close",
       "back": "Back",
-      "breadcrumbBack": "Back",
+      "delete": "Delete",
       "pleaseSelect": "Please select"
     },
     "userRoles": {
