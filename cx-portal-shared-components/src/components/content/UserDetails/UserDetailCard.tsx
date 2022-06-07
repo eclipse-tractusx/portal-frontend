@@ -6,8 +6,9 @@ import { Typography } from '../../basic/Typography'
 
 export interface UserCardProps {
   cardAction?: React.MouseEventHandler
-  cardCategory: string
+  cardCategory?: string
   cardContentItems: UserItems
+  variant?: 'wide'
 }
 
 interface UserItemsTranslation {
@@ -23,6 +24,7 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
+  variant,
 }: UserCardProps) => {
   const renderContentSwitch = (
     param: string,
@@ -43,32 +45,42 @@ export const UserDetailCard = ({
           </>
         )
       default:
-        return `${value?.label}: ${value?.value}`
+        return (
+          <>
+            <span>{value?.label}:</span>&nbsp;
+            <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+              {value?.value}
+            </span>
+          </>
+        )
     }
   }
+
   return (
     <Box>
-      <Box
-        sx={{
-          alignItems: 'center',
-          backgroundColor: 'background.background09',
-          display: 'flex',
-          height: '55px',
-          paddingLeft: '20px',
-          paddingRight: '14px',
-        }}
-      >
-        <Typography variant="label3">{cardCategory}</Typography>
-        {cardAction && (
-          <IconButton
-            color="secondary"
-            sx={{ marginLeft: 'auto' }}
-            onClick={cardAction}
-          >
-            <EditOutlinedIcon />
-          </IconButton>
-        )}
-      </Box>
+      {cardCategory && (
+        <Box
+          sx={{
+            alignItems: 'center',
+            backgroundColor: 'background.background09',
+            display: 'flex',
+            height: '55px',
+            paddingLeft: '20px',
+            paddingRight: '14px',
+          }}
+        >
+          <Typography variant="label3">{cardCategory}</Typography>
+          {cardAction && (
+            <IconButton
+              color="secondary"
+              sx={{ marginLeft: 'auto' }}
+              onClick={cardAction}
+            >
+              <EditOutlinedIcon />
+            </IconButton>
+          )}
+        </Box>
+      )}
       <List>
         {Object.entries(cardContentItems).map(([k, v], i) => (
           <ListItem

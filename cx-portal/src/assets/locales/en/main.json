@@ -268,8 +268,22 @@
       "multipleUser": "Multiple User",
       "multipleUserHeadline": "Add multiple users by file upload:",
       "multipleUserSubheadline": "Please use this <1>upload template</1>, to add multiple users by file",
+      "technicalUserHeadline": "Request technical user",
+      "technicalUserSubheadline": "Please enter the required information:",
+      "technicalUserSubheadlineSuccess": "The technical user has been created with the following data:",
       "chooseUserRole": "Select CX Portal User Role",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
+      "technicalUser": {
+        "addOverlay": {
+          "service": "Service",
+          "description": "Description",
+          "spocHeadline": "Single Point of Contact (SPoC):",
+          "error": {
+            "select": "Please select a value.",
+            "description": "Please enter a description."
+          }
+        }
+      },
       "userUpload": {
         "title": "Drag & drop your files here",
         "subtitle": "or browse files on your computer.",
@@ -378,7 +392,8 @@
       "details": "Details",
       "close": "Close",
       "back": "Back",
-      "breadcrumbBack": "Back"
+      "breadcrumbBack": "Back",
+      "pleaseSelect": "Please select"
     },
     "userRoles": {
       "itAdmin": "IT Admin",

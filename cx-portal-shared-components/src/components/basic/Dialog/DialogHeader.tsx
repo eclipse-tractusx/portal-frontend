@@ -4,10 +4,12 @@ import MuiDialogTitle from '@mui/material/DialogTitle'
 import { Typography } from '../Typography'
 import { IconButton } from '../IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 
 export interface DialogHeaderProps {
   title: string
   intro?: string
+  icon?: boolean
   closeWithIcon?: boolean
   onCloseWithIcon?: (event: React.MouseEvent) => void
 }
@@ -15,6 +17,7 @@ export interface DialogHeaderProps {
 export const DialogHeader = ({
   title,
   intro,
+  icon,
   closeWithIcon,
   onCloseWithIcon,
 }: DialogHeaderProps) => {
@@ -23,6 +26,14 @@ export const DialogHeader = ({
   return (
     <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
       <MuiDialogTitle>
+        {icon && (
+          <Box>
+            <CheckCircleOutlineOutlinedIcon
+              sx={{ fontSize: 60 }}
+              color="success"
+            />
+          </Box>
+        )}
         {title}
         {closeWithIcon && (
           <IconButton
