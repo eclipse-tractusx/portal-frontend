@@ -43,6 +43,7 @@ export { Navigation } from './content/Navigation'
 export { UserMenu } from './content/UserMenu'
 export { UserNav } from './content/UserNav'
 export { UserDetails } from './content/UserDetails'
+export { CircularProgress } from './basic/CircularProgress'
 
 export type { TableProps } from './basic/Table'
 export type { CardItems } from './content/Cards'

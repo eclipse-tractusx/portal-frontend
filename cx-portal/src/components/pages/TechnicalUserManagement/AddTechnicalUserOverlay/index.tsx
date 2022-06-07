@@ -1,68 +1,101 @@
+import Box from '@mui/material/Box'
 import {
+  Button,
   Dialog,
   DialogActions,
+  DialogContent,
   DialogHeader,
-  Button,
+  UserDetails,
 } from 'cx-portal-shared-components'
-import { addItem, fetchPage } from 'features/admin/service/actions'
-import { stateSelector as createSelector } from 'features/admin/service/screate'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { RequestState } from 'types/MainTypes'
+import { useForm } from 'react-hook-form'
+import { TechnicalUserAddForm } from './components/TechnicalUserAddForm'
 
 interface AddTechnicalUserOverlayProps {
   dialogOpen: boolean
   handleClose: React.MouseEventHandler
+  handleConfirm: (formValues: DefaultFormFieldValuesType) => void
+}
+
+export type DefaultFormFieldValuesType = {
+  TechnicalUserService: string
+  TechnicalUserDescription: string
 }
 
 export const AddTechnicalUserOverlay = ({
   dialogOpen,
   handleClose,
+  handleConfirm,
 }: AddTechnicalUserOverlayProps) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const createResult = useSelector(createSelector)
-  console.log(createResult)
+  const userDetailsData = [
+    {
+      cardCategory: 'Single Point of Contact (SPoC):',
+      cardContentItems: {
+        organizsationName: { label: 'Organization name', value: 'BMW' },
+        username: { label: 'Username', value: 'Max Mustermann' },
+        eMailAddress: { label: 'E-Mail Address', value: 'test@test.de' },
+      },
+    },
+  ]
+  const defaultFormFieldValues = {
+    TechnicalUserService: 'none',
+    TechnicalUserDescription: '',
+  }
+  const {
+    handleSubmit,
+    getValues,
+    control,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultFormFieldValues,
+    mode: 'onChange',
+  })
 
-  useEffect(() => {
-    //reload the data after successful create
-    if (createResult.request === RequestState.OK) {
-      dispatch(fetchPage(0))
+  const onFormSubmit = async () => {
+    const validateFields = await trigger([
+      'TechnicalUserService',
+      'TechnicalUserDescription',
+    ])
+
+    if (validateFields) {
+      const formValues = getValues() as DefaultFormFieldValuesType
+      handleConfirm(formValues)
     }
-  }, [dispatch, createResult])
+  }
 
-  const handleConfirm = () => {
-    // TODO:
-    // read data from form
-    // (fields should be validated while entering data and
-    // confirm button should be disabled as long as data is invalid
-    // so we don't need another check here
-    dispatch(
-      addItem({
-        name: `testaccount-${Date.now()}`,
-        description: 'another test account',
-        authenticationType: 'SECRET',
-      })
-    )
+  const formHasErrors = () => {
+    return Object.keys(errors).length > 0
   }
 
   return (
     <div>
       <Dialog open={dialogOpen}>
         <DialogHeader
-          title={t('content.addUser.headline')}
-          intro={t('content.addUser.subheadline')}
+          title={t('content.addUser.technicalUserHeadline')}
+          intro={t('content.addUser.technicalUserSubheadline')}
         />
-
+        <DialogContent className="w-100">
+          <TechnicalUserAddForm
+            {...{ handleSubmit, control, errors, trigger }}
+          />
+          <Box>
+            <UserDetails
+              columns={1}
+              userDetailsCards={userDetailsData}
+              variant="wide"
+            />
+          </Box>
+        </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose}>
             {`${t('global.actions.cancel')}`}
           </Button>
           <Button
             variant="contained"
-            onClick={handleConfirm}
-            disabled={false /* true as long as data is invalid */}
+            onClick={onFormSubmit}
+            disabled={formHasErrors()}
           >
             {`${t('global.actions.confirm')}`}
           </Button>
