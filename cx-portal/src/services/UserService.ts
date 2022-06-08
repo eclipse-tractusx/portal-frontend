@@ -71,7 +71,7 @@ const getCompany = () => KC.tokenParsed?.organisation
 
 const getTenant = () => KC.tokenParsed?.tenant
 
-// TODO: add a more sustainable logic for role management with muliple clients
+// TODO: add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients
 const getRoles = () =>
   KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles.concat(
