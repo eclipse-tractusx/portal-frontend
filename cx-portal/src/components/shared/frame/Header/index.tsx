@@ -24,10 +24,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
 
   return (
     <header>
-      <MainNavigation
-        items={menu}
-        component={NavLink}
-      >
+      <MainNavigation items={menu} component={NavLink}>
         <Logo />
         <div className="d-flex">
           <Button

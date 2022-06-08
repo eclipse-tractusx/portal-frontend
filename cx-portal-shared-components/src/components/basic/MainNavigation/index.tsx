@@ -21,15 +21,12 @@ export const MainNavigation = ({
         height: '85px',
 
         display: 'flex',
-        padding: '22px 30px'
+        padding: '22px 30px',
       }}
     >
-      
-      {arrayChildren.length &&
-        <Box sx={{ width: '170px' }}>
-          {arrayChildren[0]}
-        </Box>
-      }
+      {arrayChildren.length && (
+        <Box sx={{ width: '170px' }}>{arrayChildren[0]}</Box>
+      )}
 
       <Box
         sx={{
@@ -37,17 +34,12 @@ export const MainNavigation = ({
           marginLeft: 'auto',
         }}
       >
-        <Navigation
-          items={items}
-          component={component}
-        />
+        <Navigation items={items} component={component} />
       </Box>
 
-      {arrayChildren.length &&
-        <Box sx={{ width: '122px' }}>
-          {arrayChildren[1]}
-        </Box>
-      }
+      {arrayChildren.length && (
+        <Box sx={{ width: '122px' }}>{arrayChildren[1]}</Box>
+      )}
     </Box>
   )
 }

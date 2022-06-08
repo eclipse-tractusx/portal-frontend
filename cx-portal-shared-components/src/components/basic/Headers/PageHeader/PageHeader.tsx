@@ -25,19 +25,19 @@ export const PageHeader = ({
 }: PageHeaderProps) => {
   const top = topPage ? -49 : 36
   const spacingTop = topPage ? -85 : 0
-  
+
   const backgroundstyle = () => {
     if (background === 'LinearGradient1') {
       return {
         direction: 152.33,
         colorFrom: '#adb9c7 4.24%',
-        colorTo:'#e4ebf3 72.17%',
+        colorTo: '#e4ebf3 72.17%',
       }
     } else {
       return {
         direction: 145.91,
         colorFrom: '#F0F2F5 18.42%',
-        colorTo:'#B4BBC3 79.14%',
+        colorTo: '#B4BBC3 79.14%',
       }
     }
   }
@@ -49,7 +49,9 @@ export const PageHeader = ({
         height: `${headerHeight}px`,
         marginTop: `${spacingTop}px`,
         position: 'relative',
-        background: `linear-gradient(${backgroundstyle().direction}deg, ${backgroundstyle().colorFrom}, ${backgroundstyle().colorTo})`,
+        background: `linear-gradient(${backgroundstyle().direction}deg, ${
+          backgroundstyle().colorFrom
+        }, ${backgroundstyle().colorTo})`,
       }}
     >
       <Box
@@ -63,9 +65,15 @@ export const PageHeader = ({
         {children}
         <HeaderTitle title={title} />
       </Box>
-      {subtractOption === 'Option1' && <HeaderSubtractOption1 hasSubtract={hasSubtract} />}
-      {subtractOption === 'Option2' && <HeaderSubtractOption2 hasSubtract={hasSubtract} />}
-      {subtractOption === 'Option3' && <HeaderSubtractOption3 hasSubtract={hasSubtract} />}
+      {subtractOption === 'Option1' && (
+        <HeaderSubtractOption1 hasSubtract={hasSubtract} />
+      )}
+      {subtractOption === 'Option2' && (
+        <HeaderSubtractOption2 hasSubtract={hasSubtract} />
+      )}
+      {subtractOption === 'Option3' && (
+        <HeaderSubtractOption3 hasSubtract={hasSubtract} />
+      )}
     </Box>
   )
 }

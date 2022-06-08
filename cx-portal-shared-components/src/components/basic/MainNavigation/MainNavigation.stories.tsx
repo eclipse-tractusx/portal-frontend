@@ -5,7 +5,7 @@ import CXLogoText from '../../../assets/logo/cx-logo-text.svg'
 import { MainNavigation as Component } from '.'
 import { Button } from '../Button'
 import { IconButton } from '../IconButton'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 
 export default {
   title: 'Navigation',
@@ -40,10 +40,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
       >
         Help
       </Button>
-      <IconButton
-        size="medium"
-        color="primary"
-      >
+      <IconButton size="medium" color="primary">
         <PersonOutlineIcon />
       </IconButton>
     </Box>
