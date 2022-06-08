@@ -1,29 +1,23 @@
 import { Box } from '@mui/material'
-import { HeaderTitle } from './Components/HeaderTitle'
-import { HeaderSubtractOption1 } from './Components/HeaderSubtractOption1'
-import { HeaderSubtractOption2 } from './Components/HeaderSubtractOption2'
-import { HeaderSubtractOption3 } from './Components/HeaderSubtractOption3'
+import { MainHeaderTitle } from './Components/MainHeaderTitle'
 
-export interface PageHeaderProps {
+export interface MainHeaderProps {
   children?: React.ReactNode
   title?: string
-  spacingTop?: number
+  topPage?: boolean,
   headerHeight?: number
-  hasSubtract?: boolean
-  subtractOption?: 'Option1' | 'Option2' | 'Option3'
   background?: 'LinearGradient1' | 'LinearGradient2'
 }
 
-export const PageHeader = ({
+export const MainHeader = ({
   children,
   title,
-  spacingTop,
-  headerHeight = 314,
-  hasSubtract = true,
-  subtractOption = 'Option1',
+  topPage = false,
+  headerHeight = 645,
   background = 'LinearGradient1',
-}: PageHeaderProps) => {
-  const top = spacingTop ? spacingTop * -1 + 36 : 36
+}: MainHeaderProps) => {
+  const top = topPage ? -49 : 36
+  const spacingTop = topPage ? -85 : 0
 
   const backgroundstyle = () => {
     if (background === 'LinearGradient1') {
@@ -60,11 +54,8 @@ export const PageHeader = ({
         }}
       >
         {children}
-        <HeaderTitle title={title} spacingTop={spacingTop} />
+        <MainHeaderTitle title={title} />
       </Box>
-      {subtractOption === 'Option1' && <HeaderSubtractOption1 hasSubtract={hasSubtract} />}
-      {subtractOption === 'Option2' && <HeaderSubtractOption2 hasSubtract={hasSubtract} />}
-      {subtractOption === 'Option3' && <HeaderSubtractOption3 hasSubtract={hasSubtract} />}
     </Box>
   )
 }

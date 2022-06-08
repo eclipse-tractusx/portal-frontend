@@ -21,7 +21,7 @@ export default function TechnicalUserDetails() {
     <main className="technical-user-details">
       <PageHeader
         title={headerTitle.replace('USER_NAME', data.username)}
-        spacingTop={-84}
+        topPage={true}
         headerHeight={314}
       >
         <PageBreadcrumb backButtonVariant="contained" />

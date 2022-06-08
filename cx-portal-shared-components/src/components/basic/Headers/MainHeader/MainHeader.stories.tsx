@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react'
 
-import { PageHeader as Component } from './PageHeader'
+import { MainHeader as Component } from './MainHeader'
 
 export default {
   title: 'Headers',
@@ -12,12 +12,10 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />
 )
 
-export const PageHeader = Template.bind({})
-PageHeader.args = {
+export const MainHeader = Template.bind({})
+MainHeader.args = {
   title: 'Page title',
-  hasSubtract: true,
-  spacingTop: 0,
-  headerHeight: 200,
-  subtractOption: 'Option1',
+  topPage: false,
+  headerHeight: 645,
   background: 'LinearGradient1',
 }

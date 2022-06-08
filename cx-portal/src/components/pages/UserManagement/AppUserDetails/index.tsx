@@ -45,7 +45,7 @@ export default function AppUserDetails() {
       />
       <PageHeader
         title={t('content.usermanagement.appUserDetails.headline')}
-        spacingTop={-84}
+        topPage={true}
         headerHeight={314}
       >
         <PageBreadcrumb />

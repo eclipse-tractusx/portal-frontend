@@ -8,7 +8,7 @@ import { ContentTechnicalUser } from './ContentTechnicalUser'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { PageHeader } from 'cx-portal-shared-components'
 import { RequestState } from 'types/MainTypes'
-import { addItem, fetchPage } from 'features/admin/service/actions'
+import { fetchPage } from 'features/admin/service/actions'
 import { stateSelector as createSelector } from 'features/admin/service/screate'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -75,7 +75,7 @@ export default function TechnicalUserManagement() {
       />
       <PageHeader
         title={t('content.usermanagement.technicalUser.headline')}
-        spacingTop={-84}
+        topPage={true}
         headerHeight={314}
       >
         <PageBreadcrumb backButtonVariant="contained" />

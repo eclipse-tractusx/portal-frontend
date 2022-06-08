@@ -1,10 +1,10 @@
 import { UserInfo } from '../UserInfo'
-import { Logo } from '../Logo'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { Navigation, Button } from 'cx-portal-shared-components'
+import { Button, MainNavigation } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import './Header.scss'
 import { MenuItem, Tree } from 'types/MainTypes'
+import { Logo } from '../Logo'
+import './Header.scss'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -24,20 +24,24 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
 
   return (
     <header>
-      <Logo />
-      <Navigation items={menu} component={NavLink} />
-      <div className="d-flex">
-        <Button
-          size="small"
-          color="secondary"
-          variant="contained"
-          onClick={() => navigate('/help')}
-          sx={{ backgroundColor: 'white', marginRight: '16px' }}
-        >
-          {t('pages.help')}
-        </Button>
-        <UserInfo pages={user} />
-      </div>
+      <MainNavigation
+        items={menu}
+        component={NavLink}
+      >
+        <Logo />
+        <div className="d-flex">
+          <Button
+            size="small"
+            color="secondary"
+            variant="contained"
+            onClick={() => navigate('/help')}
+            sx={{ backgroundColor: 'white', marginRight: '16px' }}
+          >
+            {t('pages.help')}
+          </Button>
+          <UserInfo pages={user} />
+        </div>
+      </MainNavigation>
     </header>
   )
 }
