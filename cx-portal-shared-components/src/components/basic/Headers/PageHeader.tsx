@@ -1,6 +1,8 @@
 import { Box } from '@mui/material'
 import { HeaderTitle } from './Components/HeaderTitle'
-import { HeaderSubtract } from './Components/HeaderSubtract'
+import { HeaderSubtractOption1 } from './Components/HeaderSubtractOption1'
+import { HeaderSubtractOption2 } from './Components/HeaderSubtractOption2'
+import { HeaderSubtractOption3 } from './Components/HeaderSubtractOption3'
 
 export interface PageHeaderProps {
   children?: React.ReactNode
@@ -8,6 +10,8 @@ export interface PageHeaderProps {
   spacingTop?: number
   headerHeight?: number
   hasSubtract?: boolean
+  subtractOption?: 'Option1' | 'Option2' | 'Option3'
+  background?: 'LinearGradient1' | 'LinearGradient2'
 }
 
 export const PageHeader = ({
@@ -16,8 +20,26 @@ export const PageHeader = ({
   spacingTop,
   headerHeight = 314,
   hasSubtract = true,
+  subtractOption = 'Option1',
+  background = 'LinearGradient1',
 }: PageHeaderProps) => {
   const top = spacingTop ? spacingTop * -1 + 36 : 36
+
+  const backgroundstyle = () => {
+    if (background === 'LinearGradient1') {
+      return {
+        direction: 152.33,
+        colorFrom: '#adb9c7 4.24%',
+        colorTo:'#e4ebf3 72.17%',
+      }
+    } else {
+      return {
+        direction: 145.91,
+        colorFrom: '#F0F2F5 18.42%',
+        colorTo:'#B4BBC3 79.14%',
+      }
+    }
+  }
 
   return (
     <Box
@@ -25,8 +47,8 @@ export const PageHeader = ({
         width: '100%',
         height: `${headerHeight}px`,
         marginTop: `${spacingTop}px`,
-        background: 'linear-gradient(152.33deg, #adb9c7 4.24%, #e4ebf3 72.17%)',
         position: 'relative',
+        background: `linear-gradient(${backgroundstyle().direction}deg, ${backgroundstyle().colorFrom}, ${backgroundstyle().colorTo})`,
       }}
     >
       <Box
@@ -40,7 +62,9 @@ export const PageHeader = ({
         {children}
         <HeaderTitle title={title} spacingTop={spacingTop} />
       </Box>
-      <HeaderSubtract hasSubtract={hasSubtract} />
+      {subtractOption === 'Option1' && <HeaderSubtractOption1 hasSubtract={hasSubtract} />}
+      {subtractOption === 'Option2' && <HeaderSubtractOption2 hasSubtract={hasSubtract} />}
+      {subtractOption === 'Option3' && <HeaderSubtractOption3 hasSubtract={hasSubtract} />}
     </Box>
   )
 }

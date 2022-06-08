@@ -18,4 +18,6 @@ PageHeader.args = {
   hasSubtract: true,
   spacingTop: 0,
   headerHeight: 200,
+  subtractOption: 'Option1',
+  background: 'LinearGradient1',
 }
