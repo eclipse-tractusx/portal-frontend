@@ -64,7 +64,7 @@ export const ActiveUserTable = ({
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton
                 color="secondary"
-                onClick={() => onUserDetailsClick(row.userEntityId)}
+                onClick={() => onUserDetailsClick(row.companyUserId)}
               >
                 <ArrowForwardIcon />
               </IconButton>
@@ -72,7 +72,7 @@ export const ActiveUserTable = ({
           },
         ]}
         rows={tenantUsers}
-        getRowId={(row: { [key: string]: string }) => row.userEntityId}
+        getRowId={(row: { [key: string]: string }) => row.companyUserId}
         hideFooter
       />
     </section>

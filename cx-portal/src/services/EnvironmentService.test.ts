@@ -24,6 +24,14 @@ const ENV = [
     idp: 'https://centralidp.dev.demo.catena-x.net/auth',
   },
   {
+    name: 'pen',
+    hostname: 'portal-pen.dev.demo.catena-x.net',
+    origin: 'https://portal-pen.dev.demo.catena-x.net',
+    assets: '/assets',
+    api: 'https://portal-backend-pen.dev.demo.catena-x.net',
+    idp: 'https://centralidp-pen.dev.demo.catena-x.net/auth',
+  },
+  {
     name: 'int',
     hostname: 'portal.int.demo.catena-x.net',
     origin: 'https://portal.int.demo.catena-x.net',

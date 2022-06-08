@@ -36,7 +36,7 @@ export default function UserListContent() {
         },
       ]}
       rows={tenantUsers}
-      getRowId={(row: { [key: string]: string }) => row.userEntityId}
+      getRowId={(row: { [key: string]: string }) => row.companyUserId}
       hideFooter
       checkboxSelection
     />

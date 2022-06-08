@@ -1,24 +1,63 @@
-import { PageHeader, Button } from 'cx-portal-shared-components'
+import {
+  PageHeader,
+  Button,
+  PageNotificationsProps,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { TechnicalUserDetailsGrid } from './TechnicalUserDetailsGrid'
 import { Box } from '@mui/material'
 import { useLocation } from 'react-router-dom'
+import { RemoveTechnicalUserOverlay } from './RemoveTechnicalUserOverlay'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setNotification } from 'features/notification/actions'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 
 export default function TechnicalUserDetails() {
   const { t } = useTranslation()
   const location = useLocation()
+  const dispatch = useDispatch()
   const data: any = location.state
+  const [open, setOpen] = useState(false)
+
+  const openAddTechnicalUserOverlay = () => {
+    setOpen(true)
+  }
+  const closeAddTechnicalUserOverlay = () => {
+    setOpen(false)
+  }
+
+  const deleteUserIsSuccess = () => {
+    // Add delete user logic:
+    // If delete is success then show notification:
+    const notification: PageNotificationsProps = {
+      open: true,
+      severity: 'success',
+      title:
+        'content.usermanagement.technicalUser.confirmDeleteNotificationTitle',
+      description:
+        'content.usermanagement.technicalUser.confirmDeleteNotificationDescription',
+    }
+
+    dispatch(setNotification(notification))
+  }
 
   const removeTechnicalUser = () => {
     console.log('TODO: Remove technical user function!')
+    openAddTechnicalUserOverlay()
   }
 
   const headerTitle = t('content.usermanagement.technicalUser.detailsHeader')
-
   return (
     <main className="technical-user-details">
+      <RemoveTechnicalUserOverlay
+        name={data.name}
+        dialogOpen={open}
+        handleClose={closeAddTechnicalUserOverlay}
+        deleteUser={deleteUserIsSuccess}
+      />
+
       <PageHeader
         title={headerTitle.replace('USER_NAME', data.username)}
         topPage={true}

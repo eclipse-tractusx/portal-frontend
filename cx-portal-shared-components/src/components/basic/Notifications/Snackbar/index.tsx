@@ -5,13 +5,9 @@ import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
 import { SnackbarContent } from './SnackbarContent'
 import { theme } from '../../../../theme'
 
-export interface PageSnackbarProps extends SnackbarOrigin {
-  open: boolean
-}
-
 export const PageSnackbar = ({
   severity = 'info',
-  onClose,
+  onCloseNotification,
   open,
   title,
   description,
@@ -19,7 +15,7 @@ export const PageSnackbar = ({
   contactLinks,
   contactNewTab,
   showIcon,
-}: PageNotificationsProps & PageSnackbarProps) => {
+}: PageNotificationsProps & SnackbarOrigin) => {
   return (
     <Box>
       <Snackbar
@@ -44,7 +40,7 @@ export const PageSnackbar = ({
             size="small"
             aria-label="close"
             color="inherit"
-            onClick={onClose}
+            onClick={onCloseNotification}
             sx={{
               color: theme.palette.icon.icon01,
             }}

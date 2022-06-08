@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
-import { Typography } from '../../Typography'
 import { PageNotificationsProps } from '.'
 
-interface NotificationContentProps {
+interface NotificationContentProps
+  extends Omit<PageNotificationsProps, 'onCloseNotification' | 'open'> {
   titleColor?: string
 }
 
@@ -13,19 +13,23 @@ export const NotificationContent = ({
   contactLinks,
   contactNewTab,
   titleColor,
-}: NotificationContentProps & PageNotificationsProps) => {
+}: NotificationContentProps) => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       {title && (
-        <Typography
-          variant="h5"
-          sx={{ marginRight: '10px', color: titleColor, width: 'max-content' }}
+        <span
+          style={{
+            marginRight: '10px',
+            color: titleColor,
+            width: 'max-content',
+            fontWeight: 'bold',
+          }}
         >
           {title}
-        </Typography>
+        </span>
       )}
       {description && (
-        <Typography variant="body1">
+        <span>
           {description}
           {contactText && (
             <a
@@ -37,7 +41,7 @@ export const NotificationContent = ({
               {contactText}
             </a>
           )}
-        </Typography>
+        </span>
       )}
     </Box>
   )
