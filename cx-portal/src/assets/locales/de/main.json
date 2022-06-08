@@ -7,7 +7,7 @@
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
     "datacatalog": "Datenkatalog",
-    "semantichub": "Semantischer Hub",
+    "semantichub": "Semantische Modelle",
     "digitaltwin": "Digitale Zwillinge",
     "developerhub": "Entwickler Hub",
     "connector": "Konnektor",
@@ -101,7 +101,20 @@
       }
     },
     "semantichub": {
-      "message": "Inhalte vom Semantischen Hub"
+      "title": "Semantische Datenmodelle",
+      "introText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "table": {
+        "title": "Semantische Datenmodelle",
+        "columns": {
+          "name": "Name",
+          "state": "Status",
+          "vocType": "Sprache",
+          "objType": "Objekt Typ",
+          "src": "Quelle",
+          "details": "Details"
+        },
+        "load_button": "Mehr laden"
+      }
     },
     "digitaltwin": {
       "table": {

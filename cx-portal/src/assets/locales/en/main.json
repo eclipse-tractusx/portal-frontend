@@ -101,7 +101,20 @@
       }
     },
     "semantichub": {
-      "message": "Contents of Semantic Hub"
+      "title": "Semantic Data Models",
+      "introText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "table": {
+        "title": "Semantic Data Models",
+        "columns": {
+          "name": "Name",
+          "state": "Status",
+          "vocType": "Vocabulary Type",
+          "objType": "Object Type",
+          "src": "Source",
+          "details": "Details"
+        },
+        "load_button": "Load more"
+      }
     },
     "digitaltwin": {
       "table": {
