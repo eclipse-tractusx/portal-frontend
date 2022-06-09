@@ -49,7 +49,7 @@ export const MainHeader = ({
         }, ${backgroundstyle().colorTo})`,
       }}
     >
-      {imagePath &&
+      {imagePath && (
         <Box
           sx={{
             height: '100%',
@@ -74,7 +74,7 @@ export const MainHeader = ({
             }}
           />
         </Box>
-      }
+      )}
 
       <Box
         sx={{
@@ -84,7 +84,7 @@ export const MainHeader = ({
           paddingTop: '150px',
           zIndex: 1,
           position: 'absolute',
-          top: '0px'
+          top: '0px',
         }}
       >
         <MainHeaderTitle

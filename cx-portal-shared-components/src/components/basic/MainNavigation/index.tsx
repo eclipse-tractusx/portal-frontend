@@ -23,7 +23,8 @@ export const MainNavigation = ({
         height: `${mainNavigationHieght}px`,
         display: 'flex',
         padding: '0px 30px',
-        backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXc3NyBAeViAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==)',
+        backgroundImage:
+          'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXc3NyBAeViAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==)',
         backgroundRepeat: 'repeat-x',
         backgroundPosition: '0 bottom',
       }}
@@ -34,7 +35,8 @@ export const MainNavigation = ({
             width: '170px',
             paddingTop: '22px',
             paddingBottom: '22px',
-         }}>
+          }}
+        >
           {arrayChildren[0]}
         </Box>
       )}
@@ -56,9 +58,10 @@ export const MainNavigation = ({
             width: '122px',
             paddingTop: '22px',
             paddingBottom: '22px',
-          }}>
-            {arrayChildren[1]}
-          </Box>
+          }}
+        >
+          {arrayChildren[1]}
+        </Box>
       )}
     </Box>
   )

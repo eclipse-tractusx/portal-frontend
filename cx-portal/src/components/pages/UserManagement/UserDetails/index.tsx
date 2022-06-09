@@ -88,8 +88,7 @@ export default function UserDetails() {
         title={t('content.account.userAccount')}
         topPage={false}
         headerHeight={200}
-      >
-      </PageHeader>
+      ></PageHeader>
 
       <section>
         <Box

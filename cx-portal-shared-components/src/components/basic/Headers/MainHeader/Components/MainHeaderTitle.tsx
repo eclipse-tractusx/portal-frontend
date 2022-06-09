@@ -1,7 +1,11 @@
 import { Typography } from '@mui/material'
 import { MainHeaderProps } from '../MainHeader'
 
-export const MainHeaderTitle = ({ title, subTitle, subTitleWidth }: MainHeaderProps) => {
+export const MainHeaderTitle = ({
+  title,
+  subTitle,
+  subTitleWidth,
+}: MainHeaderProps) => {
   return (
     <>
       {title && (
@@ -20,7 +24,7 @@ export const MainHeaderTitle = ({ title, subTitle, subTitleWidth }: MainHeaderPr
         <Typography
           sx={{
             fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`
+            width: `${subTitleWidth}px`,
           }}
           variant="h2"
         >

@@ -9,12 +9,12 @@ export default function SearchSection() {
   return (
     <div className="stage-home stage-section">
       <MainHeader
-          title={t('content.home.stage.title')}
-          subTitle={t('content.home.stage.subtitle')}
-          headerHeight={731}
-          subTitleWidth={787}
-          background='LinearGradient1'
-          imagePath='./home-stage-desktop.png'
+        title={t('content.home.stage.title')}
+        subTitle={t('content.home.stage.subtitle')}
+        headerHeight={731}
+        subTitleWidth={787}
+        background="LinearGradient1"
+        imagePath="./home-stage-desktop.png"
       >
         <Button
           sx={{ margin: '40px 10px 0 0' }}

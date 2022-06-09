@@ -77,8 +77,7 @@ export default function MyAccount() {
         title={t('pages.account')}
         topPage={false}
         headerHeight={200}
-      >
-      </PageHeader>
+      ></PageHeader>
 
       <section>
         <Box

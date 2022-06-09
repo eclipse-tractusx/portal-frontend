@@ -79,8 +79,7 @@ const EdcConnector = () => {
         title={t('content.edcconnector.headertitle')}
         topPage={false}
         headerHeight={200}
-      >
-      </PageHeader>
+      ></PageHeader>
 
       <section>
         <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
