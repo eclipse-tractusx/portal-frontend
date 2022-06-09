@@ -1,6 +1,5 @@
 import { Children } from 'react'
 import { Box } from '@mui/material'
-import { theme } from '../../../theme'
 import { MenuProps } from '../../basic/Menu'
 import { Navigation } from '../../content/Navigation'
 
