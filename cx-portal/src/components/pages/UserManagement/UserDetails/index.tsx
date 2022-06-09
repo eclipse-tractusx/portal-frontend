@@ -2,7 +2,6 @@ import './UserDetails.scss'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined'
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
-import SubHeader from '../../../shared/frame/SubHeader'
 import { Box } from '@mui/material'
 import {
   Button,
@@ -11,6 +10,7 @@ import {
   Typography,
   Table,
   Chip,
+  PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
@@ -84,10 +84,13 @@ export default function UserDetails() {
 
   return (
     <main className="user-details">
-      <SubHeader
+      <PageHeader
         title={t('content.account.userAccount')}
-        hasBackButton={false}
-      />
+        topPage={false}
+        headerHeight={200}
+      >
+      </PageHeader>
+
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
@@ -163,19 +166,6 @@ export default function UserDetails() {
               flex: 1,
               renderCell: ({ row }) => renderChips(row),
             },
-            // {
-            //   field: 'details',
-            //   headerName: t('global.field.details'),
-            //   flex: 1,
-            //   renderCell: () => (
-            //     <IconButton
-            //       color="secondary"
-            //       onClick={() => console.log('Link to app')}
-            //     >
-            //       <ArrowForwardIcon />
-            //     </IconButton>
-            //   ),
-            // },
           ]}
           rows={userAppRoles}
           rowsCount={userAppRoles.length}

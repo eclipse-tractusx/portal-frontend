@@ -4,15 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
-import SubHeader from 'components/shared/frame/SubHeader'
-import { Table } from 'cx-portal-shared-components'
+import { Table, PageHeader } from 'cx-portal-shared-components'
 import connectorSlice, { connectorSelector } from 'features/connector/slice'
 import { fetchConnectors } from 'features/connector/actions'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
-import './EdcConnector.scss'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
+import './EdcConnector.scss'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -75,10 +74,14 @@ const EdcConnector = () => {
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={onFormSubmit}
       />
-      <SubHeader
-        title={'content.edcconnector.headertitle'}
-        hasBackButton={false}
-      />
+
+      <PageHeader
+        title={t('content.edcconnector.headertitle')}
+        topPage={false}
+        headerHeight={200}
+      >
+      </PageHeader>
+
       <section>
         <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
       </section>

@@ -1,4 +1,3 @@
-import SubHeader from '../../shared/frame/SubHeader'
 import { Box } from '@mui/material'
 import {
   Button,
@@ -7,6 +6,7 @@ import {
   Typography,
   Table,
   Chip,
+  PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { useDispatch, useSelector } from 'react-redux'
@@ -73,7 +73,13 @@ export default function MyAccount() {
 
   return (
     <main className="my-account">
-      <SubHeader title={t('pages.account')} hasBackButton={false} />
+      <PageHeader
+        title={t('pages.account')}
+        topPage={false}
+        headerHeight={200}
+      >
+      </PageHeader>
+
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}

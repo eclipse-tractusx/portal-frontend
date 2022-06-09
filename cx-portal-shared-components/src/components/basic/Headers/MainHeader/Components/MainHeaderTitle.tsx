@@ -1,18 +1,30 @@
 import { Typography } from '@mui/material'
-import { PageHeaderProps } from '../../PageHeader/PageHeader'
+import { MainHeaderProps } from '../MainHeader'
 
-export const MainHeaderTitle = ({ title }: PageHeaderProps) => {
+export const MainHeaderTitle = ({ title, subTitle, subTitleWidth }: MainHeaderProps) => {
   return (
     <>
       {title && (
         <Typography
           sx={{
-            paddingTop: '36px',
             fontFamily: 'LibreFranklin-Light',
+            fontWeight: 600,
           }}
-          variant="h4"
+          variant="h2"
         >
-          {title} MAIN
+          {title}
+        </Typography>
+      )}
+
+      {subTitle && (
+        <Typography
+          sx={{
+            fontFamily: 'LibreFranklin-Light',
+            width: `${subTitleWidth}px`
+          }}
+          variant="h2"
+        >
+          {subTitle}
         </Typography>
       )}
     </>

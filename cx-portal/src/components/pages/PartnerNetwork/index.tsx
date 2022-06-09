@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import partnerNetworkSlice, {
   partnerNetworkSelector,
@@ -7,7 +7,7 @@ import {
   fetchBusinessPartners,
   getOneBusinessPartner,
 } from 'features/partnerNetwork/actions'
-import { Table, Button } from 'cx-portal-shared-components'
+import { Table, Button, PageHeader } from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
@@ -15,7 +15,6 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'features/partnerNetwork/types'
-import SubHeader from 'components/shared/frame/SubHeader'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -93,10 +92,13 @@ const PartnerNetwork = () => {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <SubHeader
+      <PageHeader
         title={t('content.partnernetwork.headertitle')}
-        hasBackButton={false}
-      />
+        topPage={false}
+        headerHeight={200}
+      >
+      </PageHeader>
+
       <PartnerNetworkSearchForm
         {...{
           onBpnFieldChange,

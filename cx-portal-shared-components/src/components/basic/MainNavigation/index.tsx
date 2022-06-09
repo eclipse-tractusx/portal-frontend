@@ -8,6 +8,8 @@ export interface MainNavigationProps extends MenuProps {
   children?: React.ReactNode
 }
 
+export const mainNavigationHieght = 85
+
 export const MainNavigation = ({
   children,
   items,
@@ -18,27 +20,45 @@ export const MainNavigation = ({
   return (
     <Box
       sx={{
-        height: '85px',
-
+        height: `${mainNavigationHieght}px`,
         display: 'flex',
-        padding: '22px 30px',
+        padding: '0px 30px',
+        backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXc3NyBAeViAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==)',
+        backgroundRepeat: 'repeat-x',
+        backgroundPosition: '0 bottom',
       }}
     >
       {arrayChildren.length && (
-        <Box sx={{ width: '170px' }}>{arrayChildren[0]}</Box>
+        <Box
+          sx={{
+            width: '170px',
+            paddingTop: '22px',
+            paddingBottom: '22px',
+         }}>
+          {arrayChildren[0]}
+        </Box>
       )}
 
       <Box
         sx={{
           marginRight: 'auto',
           marginLeft: 'auto',
+          paddingTop: '22px',
+          paddingBottom: '22px',
         }}
       >
         <Navigation items={items} component={component} />
       </Box>
 
       {arrayChildren.length && (
-        <Box sx={{ width: '122px' }}>{arrayChildren[1]}</Box>
+        <Box
+          sx={{
+            width: '122px',
+            paddingTop: '22px',
+            paddingBottom: '22px',
+          }}>
+            {arrayChildren[1]}
+          </Box>
       )}
     </Box>
   )
