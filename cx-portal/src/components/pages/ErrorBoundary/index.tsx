@@ -5,7 +5,7 @@ import { Header } from '../../shared/frame/Header'
 import { ErrorPage } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { errorSelector } from 'features/error/slice'
-import { resetError } from 'features/error/actions' 
+import { resetError } from 'features/error/actions'
 
 export default function ErrorBoundary() {
   const { t } = useTranslation()
@@ -37,7 +37,7 @@ export default function ErrorBoundary() {
     }
     dispatch(resetError())
   }
-  
+
   const handleHome = () => {
     if (error.homePageLink) {
       navigate(error.homePageLink)
@@ -69,12 +69,12 @@ export default function ErrorBoundary() {
 
   return (
     <div>
-      {error.hasNavigation &&
+      {error.hasNavigation && (
         <Header
           main={AccessService.mainMenuTree()}
           user={AccessService.userMenu()}
         />
-      }
+      )}
 
       <ErrorPage
         hasNavigation={error.hasNavigation}

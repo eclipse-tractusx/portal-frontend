@@ -47,7 +47,10 @@ export const ErrorDescription = ({
           }}
           variant="body1"
         >
-          {description} <span style={{ borderBottom: '1px solid gray' }}>{additionalDescription}</span>
+          {description}{' '}
+          <span style={{ borderBottom: '1px solid gray' }}>
+            {additionalDescription}
+          </span>
         </Typography>
       )}
     </Box>
