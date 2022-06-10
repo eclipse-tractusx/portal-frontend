@@ -2,13 +2,20 @@ import Keycloak from 'keycloak-js'
 import { IUser } from 'features/user/types'
 import { ROLES } from 'types/MainTypes'
 import AccessService from './AccessService'
-import { getCentralIdp, getClientId } from './EnvironmentService'
+import {
+  getCentralIdp,
+  getClientId,
+  getClientIdSemantic,
+  getClientIdDigitalTwin,
+} from './EnvironmentService'
 import { error, info } from './LogService'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
   realm: 'CX-Central',
   clientId: getClientId(),
+  clientIdSemantic: getClientIdSemantic(),
+  clientIdDigitalTwin: getClientIdDigitalTwin(),
 }
 
 // TODO: add an ESLint exception until there is a solution
@@ -64,8 +71,13 @@ const getCompany = () => KC.tokenParsed?.organisation
 
 const getTenant = () => KC.tokenParsed?.tenant
 
+// TODO: add a more sustainable logic for role management with multiple clients
+// not sustainable because client roles need to be unique across all clients
 const getRoles = () =>
-  KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles
+  KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles.concat(
+    KC.tokenParsed?.resource_access[keycloakConfig.clientIdSemantic]?.roles,
+    KC.tokenParsed?.resource_access[keycloakConfig.clientIdDigitalTwin]?.roles
+  )
 
 const hasRole = (role: string) => getRoles()?.includes(role)
 
