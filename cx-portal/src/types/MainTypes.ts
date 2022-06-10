@@ -1,4 +1,5 @@
 import { PageNotificationsProps } from 'cx-portal-shared-components'
+import { ErrorServiceState } from 'features/error/types'
 
 export const PAGE_SIZE = 15
 
@@ -188,4 +189,16 @@ export const initServicetNotifications: PageNotificationsProps = {
   severity: undefined,
   title: '',
   description: '',
+}
+
+export const initErrorServiceState: ErrorServiceState = {
+  hasError: false,
+  hasNavigation: false,
+  header: '',
+  title: '',
+  description: '',
+  reloadPageLink: '',
+  reloadButtonTitle: '',
+  homePageLink: '',
+  homeButtonTitle: '',
 }

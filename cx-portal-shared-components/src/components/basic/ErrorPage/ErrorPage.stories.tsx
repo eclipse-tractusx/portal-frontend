@@ -18,7 +18,8 @@ ErrorPage.args = {
   header: '500 Internal Server Error',
   title: 'Oops, Something went wrong.',
   description:
-    'The server encountered an internal error or misconfiguration and was unable to complete your request. Please contact your admin.',
+    'The server encountered an internal error or misconfiguration and was unable to complete your request.',
+  additionalDescription: 'Please contact your admin.',
   reloadButtonTitle: 'Reload Page',
   homeButtonTitle: 'Homepage',
   onReloadClick: () => console.log('reload'),

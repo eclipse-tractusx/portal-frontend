@@ -9,6 +9,7 @@ export interface ErrorPageProps {
   header?: string
   title?: string
   description?: string
+  additionalDescription?: string
   reloadButtonTitle?: string
   homeButtonTitle?: string
   onReloadClick?: React.MouseEventHandler
@@ -20,14 +21,13 @@ export const ErrorPage = ({
   header,
   title,
   description,
+  additionalDescription,
   reloadButtonTitle,
   homeButtonTitle,
   onReloadClick,
   onHomeClick,
 }: ErrorPageProps) => {
   const height = hasNavigation ? 'calc(100vh - 85px)' : '100vh'
-  const marginTop = hasNavigation ? 123 : 208
-
   return (
     <Box
       sx={{
@@ -43,13 +43,14 @@ export const ErrorPage = ({
       <Box
         sx={{
           width: 'max-content',
-          margin: `${marginTop}px auto 200px auto`,
+          margin: `auto`,
         }}
       >
         <ErrorDescription
           header={header}
           title={title}
           description={description}
+          additionalDescription={additionalDescription}
         />
         <ErrorActions
           reloadButtonTitle={reloadButtonTitle}

@@ -5,6 +5,7 @@ export const ErrorDescription = ({
   header,
   title,
   description,
+  additionalDescription,
 }: ErrorPageProps) => {
   return (
     <Box
@@ -46,7 +47,7 @@ export const ErrorDescription = ({
           }}
           variant="body1"
         >
-          {description}
+          {description} <span style={{ borderBottom: '1px solid gray' }}>{additionalDescription}</span>
         </Typography>
       )}
     </Box>
