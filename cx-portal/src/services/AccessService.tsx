@@ -1,4 +1,3 @@
-import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import EdcConnector from 'components/pages/EdcConnector'
@@ -21,6 +20,7 @@ import { IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import Help from 'components/pages/Help'
+import ErrorBondary from 'components/pages/ErrorBoundary'
 import Contact from 'components/pages/Contact'
 import Imprint from 'components/pages/Imprint'
 import Privacy from 'components/pages/Privacy'
@@ -189,6 +189,7 @@ const ALL_PAGES: IPage[] = [
     element: <Translator />,
   },
   { name: PAGES.HELP, element: <Help /> },
+  // { name: PAGES.ERROR, element: <ErrorBondary /> },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },

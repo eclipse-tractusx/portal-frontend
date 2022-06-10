@@ -36,6 +36,7 @@ export { PageHeader } from './basic/Headers/PageHeader'
 export { BackButton } from './basic/Button/BackButton'
 export { PageNotifications } from './basic/Notifications/PageNotification'
 export { PageSnackbar } from './basic/Notifications/Snackbar'
+export { ErrorPage } from './basic/ErrorPage'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
