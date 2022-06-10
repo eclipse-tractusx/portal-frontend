@@ -10,7 +10,7 @@ export const ErrorDescription = ({
     <Box
       sx={{
         width: 'max-content',
-        margin: 'auto'
+        margin: 'auto',
       }}
     >
       {header && (
@@ -18,7 +18,7 @@ export const ErrorDescription = ({
           sx={{
             fontFamily: 'LibreFranklin-Light',
             fontWeight: '600',
-            marginBottom: '30px !important'
+            marginBottom: '10px !important',
           }}
           variant="h2"
         >
@@ -42,6 +42,7 @@ export const ErrorDescription = ({
           sx={{
             fontFamily: 'LibreFranklin-Light',
             width: '640px',
+            paddingTop: '20px !important',
           }}
           variant="body1"
         >

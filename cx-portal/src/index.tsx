@@ -7,7 +7,10 @@ import UserService from 'services/UserService'
 import { AuthProvider } from 'components/AuthProvider'
 import AuthorizingRouter from 'components/AuthorizingRouter'
 import ErrorRouter from 'components/ErrorRouter'
-import { SharedThemeProvider, SharedCssBaseline } from 'cx-portal-shared-components'
+import {
+  SharedThemeProvider,
+  SharedCssBaseline,
+} from 'cx-portal-shared-components'
 
 I18nService.init()
 

@@ -1,4 +1,3 @@
-
 export const Footer = () => {
   return (
     <>
@@ -31,8 +30,8 @@ export const Footer = () => {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(698 200.305) rotate(-139.894) scale(305.939 890.489)"
           >
-            <stop stop-color="#ADB9C7"/>
-            <stop offset="1" stop-color="#F3F3F3"/>
+            <stop stop-color="#ADB9C7" />
+            <stop offset="1" stop-color="#F3F3F3" />
           </radialGradient>
         </defs>
       </svg>

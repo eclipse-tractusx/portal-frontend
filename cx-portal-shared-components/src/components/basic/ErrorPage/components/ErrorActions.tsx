@@ -9,11 +9,13 @@ export const ErrorActions = ({
   onHomeClick,
 }: ErrorPageProps) => {
   return (
-    <Box sx={{
-      width: 'max-content',
-      margin: '32px auto',
-    }}>
-      {reloadButtonTitle &&
+    <Box
+      sx={{
+        width: 'max-content',
+        margin: '32px auto',
+      }}
+    >
+      {reloadButtonTitle && (
         <Button
           color={'primary'}
           variant={'contained'}
@@ -23,8 +25,8 @@ export const ErrorActions = ({
         >
           {reloadButtonTitle}
         </Button>
-      }
-      {homeButtonTitle &&
+      )}
+      {homeButtonTitle && (
         <Button
           color={'primary'}
           variant={'outlined'}
@@ -34,7 +36,7 @@ export const ErrorActions = ({
         >
           {homeButtonTitle}
         </Button>
-      }
+      )}
     </Box>
   )
 }

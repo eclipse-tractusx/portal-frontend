@@ -119,7 +119,7 @@ export enum PAGES {
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
   LOGOUT = 'logout',
-  ERROR = 'error'
+  ERROR = 'error',
 }
 
 export enum ROLES {
