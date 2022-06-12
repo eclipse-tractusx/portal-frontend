@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
-  ConnectorResponse,
   PaginationData,
   ConnectorInitialState,
+  ConnectorAPIResponse,
 } from './types'
 import { RootState } from 'features/store'
 import { fetchConnectors } from './actions'
+import uniq from 'lodash.uniq'
 
 const initialState: ConnectorInitialState = {
   paginationData: {} as PaginationData,
@@ -25,17 +26,16 @@ const connectorSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchConnectors.pending, (state) => {
       state.paginationData = {} as PaginationData
-      state.connectorList = []
       state.loading = true
     })
     builder.addCase(fetchConnectors.fulfilled, (state, { payload }) => {
-      const mappedList = payload as unknown as Array<ConnectorResponse>
-      state.connectorList = mappedList
-      // Mock pagination to simulate API response
-      // It will be change after API gets ready
+      const responseList = payload as unknown as ConnectorAPIResponse
+      state.connectorList = uniq(
+        state.connectorList.concat(responseList.content)
+      )
       state.paginationData = {
-        totalElements: mappedList.length,
-        page: 1,
+        totalElements: responseList.meta.totalElements,
+        page: responseList.meta.page,
       } as PaginationData
 
       state.loading = false

@@ -1,7 +1,11 @@
 import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
-import { ConnectorResponse, SearchParams } from './types'
-import { getBpdmApiBase } from 'services/EnvironmentService'
+import {
+  ConnectorAPIResponse,
+  SearchParams,
+  ConnectorCreateBody,
+} from './types'
+import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 
 // Instance of Connector API endpoint
@@ -9,7 +13,7 @@ export class ConnectorApi extends HttpClient {
   private static classInstance?: ConnectorApi
 
   public constructor() {
-    super(getBpdmApiBase())
+    super(getApiBase())
   }
 
   // To avoid create an instance everytime, pointed to Singleton of static value
@@ -20,11 +24,16 @@ export class ConnectorApi extends HttpClient {
     return this.classInstance
   }
 
-  // Temp method to simulate API call
-  // Will updated when endpoint gets ready
   public getAllConnector = (filters: SearchParams) =>
-    this.instance.get<ConnectorResponse>(
-      `/catena/business-partner?${qs.stringify(filters)}`,
+    this.instance.get<ConnectorAPIResponse>(
+      `/api/administration/Connectors?${qs.stringify(filters)}`,
+      getHeaders()
+    )
+
+  public createConnector = (body: ConnectorCreateBody) =>
+    this.instance.post<ConnectorCreateBody>(
+      `/api/administration/Connectors`,
+      body,
       getHeaders()
     )
 }
