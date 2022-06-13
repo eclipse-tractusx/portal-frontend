@@ -29,8 +29,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     setModels((prevModels) => prevModels.concat(modelList.items))
   }, [modelList])
 
-
-  const onSearch = (value: string) => console.log(value);
+  const onSearch = (value: string) => console.log(value)
   const columns = SemanticModelTableColumns(t, onModelSelect)
 
   return (

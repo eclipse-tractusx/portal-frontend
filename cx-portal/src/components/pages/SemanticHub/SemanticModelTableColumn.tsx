@@ -8,14 +8,15 @@ export const SemanticModelTableColumns = (
   t: any,
   onDetailClick: (id: string) => void
 ): Array<GridColDef> => {
-  
   const columnIds = ['name', 'status', 'type', 'version', 'src']
   return [
-    ...columnIds.map(item => {return {
-      field: item,
-      flex: 2,
-      headerName: t(`content.semantichub.table.columns.${item}`),
-    }}),
+    ...columnIds.map((item) => {
+      return {
+        field: item,
+        flex: 2,
+        headerName: t(`content.semantichub.table.columns.${item}`),
+      }
+    }),
     {
       field: 'detail',
       headerName: `Detail`,
