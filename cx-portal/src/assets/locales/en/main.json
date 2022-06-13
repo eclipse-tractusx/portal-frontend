@@ -107,9 +107,9 @@
         "title": "Semantic Data Models",
         "columns": {
           "name": "Name",
-          "state": "Status",
-          "vocType": "Vocabulary Type",
-          "objType": "Object Type",
+          "status": "Status",
+          "type": "Vocabulary Type",
+          "version": "Version",
           "src": "Source",
           "details": "Details"
         },

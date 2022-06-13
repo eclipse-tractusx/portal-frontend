@@ -107,9 +107,9 @@
         "title": "Semantische Datenmodelle",
         "columns": {
           "name": "Name",
-          "state": "Status",
-          "vocType": "Sprache",
-          "objType": "Objekt Typ",
+          "status": "Status",
+          "type": "Sprache",
+          "version": "Version",
           "src": "Quelle",
           "details": "Details"
         },

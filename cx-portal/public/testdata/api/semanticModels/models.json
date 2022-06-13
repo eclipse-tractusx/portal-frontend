@@ -1,0 +1,17 @@
+{"items": [
+    {"urn":"urn:bamm:com.catenax.assembly_part_relationship:1.0.0#AssemblyPartRelationship","version":"1.0.0","name":"AssemblyPartRelationship","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.batch:1.0.0#Batch","version":"1.0.0","name":"Batch","type":"BAMM","status":"DRAFT"},
+    {"urn":"urn:bamm:com.catenax.battery.product_description:1.0.0#ProductDescription","version":"1.0.0","name":"ProductDescription","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.battery.product_description:1.0.1#ProductDescription","version":"1.0.1","name":"ProductDescription","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.idconversion:1.0.0#IdConversion","version":"1.0.0","name":"IdConversion","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.market_place_offer:1.0.0#MarketplaceOffer","version":"1.0.0","name":"MarketplaceOffer","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.material_for_recycling:1.0.0#MaterialForRecycling","version":"1.0.0","name":"MaterialForRecycling","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.part_typization:0.1.0#PartTypization","version":"0.1.0","name":"PartTypization","type":"BAMM","status":"DRAFT"},
+    {"urn":"urn:bamm:com.catenax.physical_dimension:1.0.0#PhysicalDimension","version":"1.0.0","name":"PhysicalDimension","type":"BAMM","status":"RELEASED"},
+    {"urn":"urn:bamm:com.catenax.return_request:1.0.0#ReturnRequest","version":"1.0.0","name":"ReturnRequest","type":"BAMM","status":"RELEASED"}
+  ],
+  "totalItems": 48,
+  "currentPage": 0,
+  "totalPages": 5,
+  "itemCount": 10
+}

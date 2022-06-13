@@ -8,7 +8,7 @@ export class Api extends HttpClient {
   private static classInstance?: Api
 
   public constructor() {
-    super(`${getSemanticApiBase()}hub/api/v1/`)
+    super(`${getSemanticApiBase()}hub/api/v1/`);
   }
 
   public static getInstance() {
@@ -23,6 +23,9 @@ export class Api extends HttpClient {
       `models?${qs.stringify(filters)}`,
       getHeaders()
     )
+
+  public getStaticModels = () =>
+    this.instance.get<ModelList>(`api/semanticModels/models.json`)
 
   public getModelById = (id: string) =>
     this.instance.get<SemanticModel>(`models/${id}`, getHeaders())
