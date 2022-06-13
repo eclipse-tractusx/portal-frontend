@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
-import { fetchSemanticModelById, fetchSemanticModels, postSemanticModel } from './actions'
+import {
+  fetchSemanticModelById,
+  fetchSemanticModels,
+  postSemanticModel,
+} from './actions'
 import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
 
 const defaultModels: ModelList = {

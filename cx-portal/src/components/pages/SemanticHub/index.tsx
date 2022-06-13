@@ -7,7 +7,7 @@ import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
 import { useDispatch } from 'react-redux'
 import { fetchSemanticModelById } from 'features/semanticModels/actions'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModeImportDialog'
 
 export default function SemanticHub() {
@@ -34,7 +34,8 @@ export default function SemanticHub() {
               </Typography>
               <Button
                 onClick={() => setImportModel(true)}
-                startIcon={<AddCircleOutlineIcon fontSize="large" />}>
+                startIcon={<AddCircleOutlineIcon fontSize="large" />}
+              >
                 {t('content.semantichub.addModel')}
               </Button>
             </Grid>
@@ -51,7 +52,10 @@ export default function SemanticHub() {
         <ModelTable onModelSelect={onModelSelect} />
       </main>
       <ModelDetailDialog show={showModel} onClose={() => setShowModel(false)} />
-      <ModelImportDialog show={importModel} onClose={() => setImportModel(false)} />
+      <ModelImportDialog
+        show={importModel}
+        onClose={() => setImportModel(false)}
+      />
     </>
   )
 }

@@ -1,6 +1,11 @@
 import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
-import { FilterParams, ModelList, NewSemanticModel, SemanticModel } from './types'
+import {
+  FilterParams,
+  ModelList,
+  NewSemanticModel,
+  SemanticModel,
+} from './types'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 
@@ -29,11 +34,7 @@ export class Api extends HttpClient {
 
   public getModelById = (id: string) =>
     this.instance.get<SemanticModel>(`models/${id}`, getHeaders())
-  
+
   public postSemanticModel = (model: NewSemanticModel) =>
-    this.instance.post<void>(
-      'models/',
-      model,
-      getHeaders()
-    )
+    this.instance.post<void>('models/', model, getHeaders())
 }

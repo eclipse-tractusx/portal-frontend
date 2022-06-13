@@ -31,13 +31,13 @@ export interface SemanticModel {
   status: string
 }
 
-export interface NewSemanticModel{
-  model: string,
-  type: string,
-  status: Status,
+export interface NewSemanticModel {
+  model: string
+  type: string
+  status: Status
 }
 
 export enum Status {
-  Draft = "DRAFT",
-  Released = "RELEASED"
-};
+  Draft = 'DRAFT',
+  Released = 'RELEASED',
+}
