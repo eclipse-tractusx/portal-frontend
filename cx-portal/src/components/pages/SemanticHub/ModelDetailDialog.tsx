@@ -2,6 +2,7 @@ import {
   Dialog,
   DialogHeader,
   DialogContent,
+  Typography,
 } from 'cx-portal-shared-components'
 
 interface ModelDetailDialogProps {
@@ -13,7 +14,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   return (
     <Dialog open={show}>
       <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
-      <DialogContent>Hello Model</DialogContent>
+      <DialogContent>
+        <Typography>Aspect Model</Typography>
+      </DialogContent>
     </Dialog>
   )
 }

@@ -1,9 +1,11 @@
-import { Nullable } from 'types/MainTypes'
+import { Nullable, RequestState } from 'types/MainTypes'
 
 export interface SemanticModelsInitialState {
   modelList: ModelList
   model: Nullable<SemanticModel>
   loading: boolean
+  uploading: boolean
+  uploadRequest: RequestState
   error: string
 }
 
@@ -28,3 +30,14 @@ export interface SemanticModel {
   type: string
   status: string
 }
+
+export interface NewSemanticModel{
+  model: string,
+  type: string,
+  status: Status,
+}
+
+export enum Status {
+  Draft = "DRAFT",
+  Released = "RELEASED"
+};

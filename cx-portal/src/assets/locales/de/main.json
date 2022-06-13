@@ -103,6 +103,7 @@
     "semantichub": {
       "title": "Semantische Datenmodelle",
       "introText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "addModel": "Neues Model anlegen",
       "table": {
         "title": "Semantische Datenmodelle",
         "columns": {
@@ -114,6 +115,12 @@
           "details": "Details"
         },
         "load_button": "Mehr laden"
+      },
+      "importDialog": {
+        "title": "Modell importieren",
+        "text": "Benutze das Textfeld, um den gesamten Inhalt deiner Turtle Datei einzufügen.",
+        "buttonConfirm": "Hochladen",
+        "buttonCancel": "Abbrechen"
       }
     },
     "digitaltwin": {

@@ -103,6 +103,7 @@
     "semantichub": {
       "title": "Semantic Data Models",
       "introText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "addModel": "Neues Model anlegen",
       "table": {
         "title": "Semantic Data Models",
         "columns": {
@@ -114,6 +115,12 @@
           "details": "Details"
         },
         "load_button": "Load more"
+      },
+      "importDialog": {
+        "title": "Import Model",
+        "text": "Paste your model definition into the text field.",
+        "buttonConfirm": "Upload",
+        "buttonCancel": "Cancel"
       }
     },
     "digitaltwin": {

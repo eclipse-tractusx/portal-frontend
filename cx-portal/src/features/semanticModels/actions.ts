@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
-import { FilterParams } from './types'
+import { FilterParams, NewSemanticModel } from './types'
 
 const fetchSemanticModels = createAsyncThunk(
   'fetch semantic models',
@@ -25,4 +25,16 @@ const fetchSemanticModelById = createAsyncThunk(
   }
 )
 
-export { fetchSemanticModels, fetchSemanticModelById }
+const postSemanticModel = createAsyncThunk(
+  'post semantic model',
+  async (model: NewSemanticModel) => {
+    try {
+      return await Api.getInstance().postSemanticModel(model)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('Post semantic model error')
+    }
+  }
+)
+
+export { fetchSemanticModels, fetchSemanticModelById, postSemanticModel }
