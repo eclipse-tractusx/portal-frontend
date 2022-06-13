@@ -1,11 +1,8 @@
-@use 'sass:math';
+@import 'src/scss/global';
+
 $loader-color: #ffa600 !default;
 $loader-size: 16px !default;
 $loader-animation-duration: 1s !default;
-
-@function circle-angle($size) {
-  @return round($size * 0.70710678118) + math.div($size, 2);
-}
 
 @function circle-normal($size) {
   @return round($size * 0.70710678118) + $size;
