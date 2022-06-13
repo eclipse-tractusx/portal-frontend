@@ -3,7 +3,7 @@ import { HeaderTitle } from './Components/HeaderTitle'
 import { HeaderSubtractOption1 } from './Components/HeaderSubtractOption1'
 import { HeaderSubtractOption2 } from './Components/HeaderSubtractOption2'
 import { HeaderSubtractOption3 } from './Components/HeaderSubtractOption3'
-import { mainNavigationHieght } from '../../MainNavigation'
+import { mainNavigationHeight } from '../../MainNavigation'
 
 export interface PageHeaderProps {
   children?: React.ReactNode
@@ -24,11 +24,11 @@ export const PageHeader = ({
   subtractOption = 'Option1',
   background = 'LinearGradient1',
 }: PageHeaderProps) => {
-  const top = topPage ? mainNavigationHieght + 36 : 36
-  const hight = topPage ? headerHeight + mainNavigationHieght : headerHeight
-  const spacingTop = topPage ? -mainNavigationHieght : 0
+  const top = topPage ? mainNavigationHeight + 36 : 36
+  const height = topPage ? headerHeight + mainNavigationHeight : headerHeight
+  const spacingTop = topPage ? -mainNavigationHeight : 0
 
-  const backgroundstyle = () => {
+  const backgroundStyle = () => {
     if (background === 'LinearGradient1') {
       return {
         direction: 152.33,
@@ -48,12 +48,12 @@ export const PageHeader = ({
     <Box
       sx={{
         width: '100%',
-        height: `${hight}px`,
+        height: `${height}px`,
         marginTop: `${spacingTop}px`,
         position: 'relative',
-        background: `linear-gradient(${backgroundstyle().direction}deg, ${
-          backgroundstyle().colorFrom
-        }, ${backgroundstyle().colorTo})`,
+        background: `linear-gradient(${backgroundStyle().direction}deg, ${
+          backgroundStyle().colorFrom
+        }, ${backgroundStyle().colorTo})`,
       }}
     >
       <Box

@@ -7,7 +7,7 @@ export interface MainNavigationProps extends MenuProps {
   children?: React.ReactNode
 }
 
-export const mainNavigationHieght = 85
+export const mainNavigationHeight = 85
 
 export const MainNavigation = ({
   children,
@@ -19,7 +19,7 @@ export const MainNavigation = ({
   return (
     <Box
       sx={{
-        height: `${mainNavigationHieght}px`,
+        height: `${mainNavigationHeight}px`,
         display: 'flex',
         padding: '0px 30px',
         backgroundImage:

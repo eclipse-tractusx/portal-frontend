@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { mainNavigationHieght } from '../../MainNavigation'
+import { mainNavigationHeight } from '../../MainNavigation'
 import { MainHeaderTitle } from './Components/MainHeaderTitle'
 
 export interface MainHeaderProps {
@@ -42,7 +42,7 @@ export const MainHeader = ({
       sx={{
         width: '100%',
         height: `${headerHeight}px`,
-        marginTop: `${-mainNavigationHieght}px`,
+        marginTop: `${-mainNavigationHeight}px`,
         position: 'relative',
         background: `linear-gradient(${backgroundstyle().direction}deg, ${
           backgroundstyle().colorFrom
