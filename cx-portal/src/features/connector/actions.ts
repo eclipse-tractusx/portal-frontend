@@ -40,4 +40,17 @@ const createConnector = createAsyncThunk(
   }
 )
 
-export { fetchConnectors, createConnector }
+const deleteConnector = createAsyncThunk(
+  'connector/deleteConnector',
+  async ({ connectorID }: { connectorID: string }) => {
+    try {
+      // Call axios instance to get values
+      return await ConnectorApi.getInstance().deleteConnector(connectorID)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('deleteConnector api call error')
+    }
+  }
+)
+
+export { fetchConnectors, createConnector, deleteConnector }

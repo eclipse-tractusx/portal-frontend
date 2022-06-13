@@ -151,6 +151,13 @@
       "tabletitle": "Onboarded Connectors",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
+      "snackbar": {
+        "message": "Edc-Konnektor erfolgreich hinzugefügt"
+      },
+      "deletemodal": {
+        "title": "Löschen Sie den EDC-Connector",
+        "description": "Möchten Sie den ausgewählten Connector wirklich löschen?"
+      },
       "modal": {
         "title": "Company Connector",
         "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",

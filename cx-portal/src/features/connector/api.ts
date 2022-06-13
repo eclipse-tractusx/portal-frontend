@@ -36,4 +36,10 @@ export class ConnectorApi extends HttpClient {
       body,
       getHeaders()
     )
+
+  public deleteConnector = (connectorID: string) =>
+    this.instance.delete(
+      `/api/administration/Connectors/${connectorID}`,
+      getHeaders()
+    )
 }

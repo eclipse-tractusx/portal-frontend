@@ -32,8 +32,7 @@ export const ConnectorTableColumns = (
     {
       field: 'detail',
       headerName: t('content.edcconnector.columns.details'),
-      headerAlign: 'center',
-      flex: 0.8,
+      flex: 1.5,
       align: 'center',
       sortable: false,
       renderCell: () => (
