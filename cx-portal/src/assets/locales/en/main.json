@@ -61,7 +61,7 @@
     "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "the gateway to the automotive <1></1> digital network",
+        "subtitle": "the gateway to the automotive digital network",
         "cxButton": "My CX",
         "appButton": "My Apps"
       },
@@ -78,7 +78,7 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "A scalable & expandable <1></1> ecosystem",
+        "subtitle": "A scalable & expandable ecosystem",
         "appButton": "App Overview"
       },
       "favoriteSection": {
