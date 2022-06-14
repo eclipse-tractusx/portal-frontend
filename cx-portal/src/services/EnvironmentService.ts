@@ -49,6 +49,10 @@ export const getSemanticApiBase = () => {
   return 'https://semantics.dev.demo.catena-x.net/'
 }
 
+export const getClientIdSemantic = () => 'Cl3-CX-Semantic'
+
+export const getClientIdDigitalTwin = () => 'Cl4-CX-DigitalTwin'
+
 const EnvironmentService = {
   isLocal,
   getHostname,
@@ -58,6 +62,8 @@ const EnvironmentService = {
   getCentralIdp,
   getSemanticApiBase,
   getClientId,
+  getClientIdSemantic,
+  getClientIdDigitalTwin,
 }
 
 export default EnvironmentService
