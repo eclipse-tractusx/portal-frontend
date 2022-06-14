@@ -14,7 +14,7 @@ export default {
 }
 
 const items = [
-  { href: '/home', title: 'home' },
+  { href: '/home', title: 'Home' },
   { href: '/appmarktplace', title: 'App Marktplace' },
   { href: '/datamanagement', title: 'Data Management' },
   { href: '/partnernetwork', title: 'Partner Network' },

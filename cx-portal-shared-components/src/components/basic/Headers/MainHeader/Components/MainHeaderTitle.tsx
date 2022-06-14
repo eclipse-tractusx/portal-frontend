@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Typography } from 'cx-portal-shared-components'
 import { MainHeaderProps } from '../MainHeader'
 
 export const MainHeaderTitle = ({

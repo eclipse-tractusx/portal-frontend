@@ -88,7 +88,7 @@ export default function UserDetails() {
         title={t('content.account.userAccount')}
         topPage={false}
         headerHeight={200}
-      ></PageHeader>
+      />
 
       <section>
         <Box
@@ -165,6 +165,20 @@ export default function UserDetails() {
               flex: 1,
               renderCell: ({ row }) => renderChips(row),
             },
+            // The details section is required in the future but already added
+            // {
+            //   field: 'details',
+            //   headerName: t('global.field.details'),
+            //   flex: 1,
+            //   renderCell: () => (
+            //     <IconButton
+            //       color="secondary"
+            //       onClick={() => console.log('Link to app')}
+            //     >
+            //       <ArrowForwardIcon />
+            //     </IconButton>
+            //   ),
+            // },
           ]}
           rows={userAppRoles}
           rowsCount={userAppRoles.length}
