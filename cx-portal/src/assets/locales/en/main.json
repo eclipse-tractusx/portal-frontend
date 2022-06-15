@@ -87,8 +87,8 @@
       "appOverviewSection": {
         "title": "App Overview",
         "categoryViews": {
-          "all": "All",
-          "useCases": "Use Cases"
+          "all": "List View",
+          "useCases": "Category View"
         },
         "categories": {
           "none": "Not categorized",
@@ -313,8 +313,8 @@
       }
     },
     "addUserRight": {
-      "headline": "Select and Add users to this app",
-      "subheadline": "Please select one or more roles for your company to participant in Cateny-X. Don't worry, you can change later."
+      "headline": "Add app permissions to your company user",
+      "subheadline": "Select one or multiple user roles with the checkboxes below as well as the relevant user/s which should receive the role."
     },
     "account": {
       "userAccount": "User account",
@@ -360,8 +360,8 @@
         "heading": "Provider Information",
         "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
         "appProvider": "App Provider",
-        "website": "Website",
-        "email": "E-Mail",
+        "website": "Provider Homepage",
+        "email": "Email",
         "phone": "Phone"
       }
     }
