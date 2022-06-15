@@ -24,7 +24,6 @@ const fetchSemanticModelById = createAsyncThunk(
     }
   }
 )
-
 const postSemanticModel = createAsyncThunk(
   'post semantic model',
   async (model: NewSemanticModel) => {
@@ -36,5 +35,15 @@ const postSemanticModel = createAsyncThunk(
     }
   }
 )
-
-export { fetchSemanticModels, fetchSemanticModelById, postSemanticModel }
+const fetchModelDiagram = createAsyncThunk(
+  'fetch model diagram',
+  async (id: string) => {
+    try {
+      return await Api.getInstance().getArtifact(Api.getInstance().getModelDiagramUrl(id))
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('Fetch model diagram api call error')
+    }
+  }
+)
+export { fetchSemanticModels, fetchSemanticModelById, postSemanticModel, fetchModelDiagram }

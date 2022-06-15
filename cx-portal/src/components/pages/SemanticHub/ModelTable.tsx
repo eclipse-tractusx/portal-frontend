@@ -14,7 +14,7 @@ interface ModelTableProps {
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { modelList, loading } = useSelector(semanticModelsSelector)
+  const { modelList, loadingList } = useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
   const rowCount = 10
@@ -37,7 +37,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       <Table
         rowsCount={modelList.totalItems}
         hideFooter
-        loading={loading}
+        loading={loadingList}
         disableSelectionOnClick={true}
         title={t('content.semantichub.table.title')}
         toolbar={{

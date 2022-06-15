@@ -121,6 +121,19 @@
         "text": "Benutze das Textfeld, um den gesamten Inhalt deiner Turtle Datei einzufügen.",
         "buttonConfirm": "Hochladen",
         "buttonCancel": "Abbrechen"
+      },
+      "detail": {
+        "title": "Aspect Model",
+        "diagramTitle": "UML diagram of the aspect model",
+        "downloads": {
+          "ttl": "TTL",
+          "docu": "Documentation",
+          "json": "JSON Schema",
+          "payload": "Example Payload JSON"
+        },
+        "downloadTitle": "Download options related to this aspect model",
+        "url": "URL",
+        "saveUrl": "Save new URL"
       }
     },
     "digitaltwin": {

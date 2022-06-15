@@ -3,7 +3,13 @@ import { Nullable, RequestState } from 'types/MainTypes'
 export interface SemanticModelsInitialState {
   modelList: ModelList
   model: Nullable<SemanticModel>
-  loading: boolean
+  diagram: string,
+  loadingDiagram: boolean,
+  ttlFile: Nullable<Blob>,
+  jsonFile: Nullable<Blob>,
+  payloadFile: Nullable<Blob>,
+  loadingList: boolean
+  loadingModel: boolean
   uploading: boolean
   uploadRequest: RequestState
   error: string

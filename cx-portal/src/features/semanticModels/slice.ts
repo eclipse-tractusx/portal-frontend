@@ -5,6 +5,7 @@ import {
   fetchSemanticModelById,
   fetchSemanticModels,
   postSemanticModel,
+  fetchModelDiagram
 } from './actions'
 import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
 
@@ -19,7 +20,13 @@ const defaultModels: ModelList = {
 const initialState: SemanticModelsInitialState = {
   modelList: defaultModels,
   model: null,
-  loading: false,
+  diagram: '',
+  loadingDiagram: false,
+  ttlFile: null,
+  jsonFile: null,
+  payloadFile: null,
+  loadingList: false,
+  loadingModel: false,
   uploading: false,
   uploadRequest: RequestState.NONE,
   error: '',
@@ -32,32 +39,32 @@ const modelsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchSemanticModels.pending, (state) => {
       state.modelList = defaultModels
-      state.loading = true
+      state.loadingList = true
       state.error = ''
     })
     builder.addCase(fetchSemanticModels.fulfilled, (state, { payload }) => {
       state.modelList = payload as ModelList
-      state.loading = false
+      state.loadingList = false
       state.error = ''
     })
     builder.addCase(fetchSemanticModels.rejected, (state, action) => {
       state.modelList = defaultModels
-      state.loading = false
+      state.loadingList = false
       state.error = action.error.message as string
     })
     builder.addCase(fetchSemanticModelById.pending, (state) => {
       state.model = null
-      state.loading = true
+      state.loadingModel = true
       state.error = ''
     })
     builder.addCase(fetchSemanticModelById.fulfilled, (state, { payload }) => {
       state.model = payload as SemanticModel
-      state.loading = false
+      state.loadingModel = false
       state.error = ''
     })
     builder.addCase(fetchSemanticModelById.rejected, (state, action) => {
       state.model = null
-      state.loading = false
+      state.loadingModel = false
       state.error = action.error.message as string
     })
     builder.addCase(postSemanticModel.pending, (state) => {
@@ -73,6 +80,21 @@ const modelsSlice = createSlice({
     builder.addCase(postSemanticModel.rejected, (state, action) => {
       state.uploading = false
       state.uploadRequest = RequestState.ERROR
+      state.error = action.error.message as string
+    })
+    builder.addCase(fetchModelDiagram.pending, (state) => {
+      state.loadingDiagram = true
+      state.diagram = ''
+      state.error = ''
+    })
+    builder.addCase(fetchModelDiagram.fulfilled, (state, {payload} ) => {
+      state.loadingDiagram = false
+      state.diagram = URL.createObjectURL(payload)
+      state.error = ''
+    })
+    builder.addCase(fetchModelDiagram.rejected, (state, action) => {
+      state.loadingDiagram = false
+      state.diagram = ''
       state.error = action.error.message as string
     })
   },

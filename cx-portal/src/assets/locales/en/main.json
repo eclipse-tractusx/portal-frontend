@@ -121,6 +121,19 @@
         "text": "Paste your model definition into the text field.",
         "buttonConfirm": "Upload",
         "buttonCancel": "Cancel"
+      },
+      "detail": {
+        "title": "Aspect Model",
+        "diagramTitle": "UML diagram of the aspect model",
+        "downloads": {
+          "ttl": "TTL",
+          "docu": "Documentation",
+          "json": "JSON Schema",
+          "payload": "Example Payload JSON"
+        },
+        "downloadTitle": "Download options related to this aspect model",
+        "url": "URL",
+        "saveUrl": "Save new URL"
       }
     },
     "digitaltwin": {
