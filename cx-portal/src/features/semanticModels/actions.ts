@@ -39,11 +39,18 @@ const fetchModelDiagram = createAsyncThunk(
   'fetch model diagram',
   async (id: string) => {
     try {
-      return await Api.getInstance().getArtifact(Api.getInstance().getModelDiagramUrl(id))
+      return await Api.getInstance().getArtifact(
+        Api.getInstance().getModelDiagramUrl(id)
+      )
     } catch (error: unknown) {
       console.error('api call error:', error)
       throw Error('Fetch model diagram api call error')
     }
   }
 )
-export { fetchSemanticModels, fetchSemanticModelById, postSemanticModel, fetchModelDiagram }
+export {
+  fetchSemanticModels,
+  fetchSemanticModelById,
+  postSemanticModel,
+  fetchModelDiagram,
+}

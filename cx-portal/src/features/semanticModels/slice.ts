@@ -5,7 +5,7 @@ import {
   fetchSemanticModelById,
   fetchSemanticModels,
   postSemanticModel,
-  fetchModelDiagram
+  fetchModelDiagram,
 } from './actions'
 import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
 
@@ -87,7 +87,7 @@ const modelsSlice = createSlice({
       state.diagram = ''
       state.error = ''
     })
-    builder.addCase(fetchModelDiagram.fulfilled, (state, {payload} ) => {
+    builder.addCase(fetchModelDiagram.fulfilled, (state, { payload }) => {
       state.loadingDiagram = false
       state.diagram = URL.createObjectURL(payload)
       state.error = ''

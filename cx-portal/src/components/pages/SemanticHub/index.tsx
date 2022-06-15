@@ -6,7 +6,10 @@ import { Grid } from '@mui/material'
 import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
 import { useDispatch } from 'react-redux'
-import { fetchModelDiagram, fetchSemanticModelById } from 'features/semanticModels/actions'
+import {
+  fetchModelDiagram,
+  fetchSemanticModelById,
+} from 'features/semanticModels/actions'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModeImportDialog'
 
@@ -19,8 +22,8 @@ export default function SemanticHub() {
   const onModelSelect = (urn: string) => {
     setShowModel(true)
     const encodedUrn = encodeURIComponent(urn)
-    dispatch(fetchSemanticModelById(encodedUrn));
-    dispatch(fetchModelDiagram(encodedUrn));
+    dispatch(fetchSemanticModelById(encodedUrn))
+    dispatch(fetchModelDiagram(encodedUrn))
   }
 
   return (

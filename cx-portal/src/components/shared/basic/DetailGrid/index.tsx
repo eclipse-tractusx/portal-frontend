@@ -6,11 +6,7 @@ interface DetailGridProps {
   content: string | number
   link?: any
 }
-export const DetailGrid = ({
-  topic,
-  content,
-  link,
-}: DetailGridProps) => {
+export const DetailGrid = ({ topic, content, link }: DetailGridProps) => {
   return (
     <Grid container sx={{ mb: 2, typography: 'body3' }}>
       <Grid item xs={6}>

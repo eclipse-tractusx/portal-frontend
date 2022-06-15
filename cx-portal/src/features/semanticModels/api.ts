@@ -37,13 +37,16 @@ export class Api extends HttpClient {
 
   public postSemanticModel = (model: NewSemanticModel) =>
     this.instance.post<void>('models/', model, getHeaders())
-  
+
   public getArtifact = (url: string) =>
-    this.instance.get<Blob>(`models/${url}`, {responseType: 'blob', ...getHeaders()})
-    
+    this.instance.get<Blob>(`models/${url}`, {
+      responseType: 'blob',
+      ...getHeaders(),
+    })
+
   public getModelDiagramUrl = (id: string) => `${id}/diagram`
-    
-   /*  export function getDocumentationUrl(id){
+
+  /*  export function getDocumentationUrl(id){
       return `${MODEL_URL}/${id}/documentation`;
     }
     

@@ -13,10 +13,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { postSemanticModel } from 'features/semanticModels/actions'
 import { Status } from 'features/semanticModels/types'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -25,10 +25,14 @@ interface ModelDetailDialogProps {
 
 const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const dispatch = useDispatch()
-  const { uploading, uploadRequest, error } = useSelector(semanticModelsSelector)
+  const { uploading, uploadRequest, error } = useSelector(
+    semanticModelsSelector
+  )
   const { t } = useTranslation()
   const [inputText, setInputText] = useState<string>('')
-  const [inputStatus, setInputStatus] = useState<Status.Draft | Status.Released>(Status.Draft)
+  const [inputStatus, setInputStatus] = useState<
+    Status.Draft | Status.Released
+  >(Status.Draft)
 
   const uploadModel = () => {
     dispatch(
@@ -40,7 +44,8 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     )
   }
 
-  const onSelectChange = (e: SelectChangeEvent) => setInputStatus(e.target.value as Status)
+  const onSelectChange = (e: SelectChangeEvent) =>
+    setInputStatus(e.target.value as Status)
 
   return (
     <Dialog open={show}>
@@ -53,19 +58,20 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         <Typography mb={2}>
           {t('content.semantichub.importDialog.text')}
         </Typography>
-        <FormControl
-          fullWidth
-          sx={{mb: 2}}>
+        <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id="import-model-status-label">Status</InputLabel>
           <Select
             labelId="import-model-status-label"
             id="import-model-status"
             value={inputStatus}
             label="Status"
-            onChange={onSelectChange}>
-            {Object.values(Status).map(status =>
-              <MenuItem value={status} key={`status_${status}`}>{status}</MenuItem>
-            )}
+            onChange={onSelectChange}
+          >
+            {Object.values(Status).map((status) => (
+              <MenuItem value={status} key={`status_${status}`}>
+                {status}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <Input
@@ -73,7 +79,8 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           onChange={(e) => setInputText(e.target.value)}
           multiline
           minRows={4}
-          maxRows={18} />
+          maxRows={18}
+        />
         {error && <Typography color="error">{error}</Typography>}
       </DialogContent>
       <DialogActions>
