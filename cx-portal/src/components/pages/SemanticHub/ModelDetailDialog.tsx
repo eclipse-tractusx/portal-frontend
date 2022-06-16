@@ -7,11 +7,11 @@ import {
   theme,
 } from 'cx-portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Divider, Box, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadIcon from '@mui/icons-material/Download'
-import { useEffect } from 'react'
+import { fetchModelArtefact } from 'features/semanticModels/actions'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -20,14 +20,29 @@ interface ModelDetailDialogProps {
 
 const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const { t } = useTranslation()
-  const { model, loadingModel, diagram, error } = useSelector(
+  const { model, loadingModel, diagram, ttlFile, jsonFile, payloadFile, error } = useSelector(
     semanticModelsSelector
   )
   const downloadItems = ['ttl', 'docu', 'json', 'payload']
   const margin = { mr: -2, ml: -2 }
-  useEffect(() => {
-    console.log(diagram)
-  }, [diagram])
+
+  const getFile = (type: string) => {
+    switch(type) { 
+      case 'diagram': { 
+        return diagram
+      }
+      case 'ttl': { 
+        return ttlFile;
+      }
+      case 'json': { 
+        return jsonFile
+      }
+      case 'payload': { 
+        return payloadFile
+      }
+    } 
+  }
+
   return (
     <Dialog open={show}>
       <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
@@ -66,12 +81,18 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               {t('content.semantichub.detail.downloadTitle')}
             </Typography>
             {downloadItems.map((download) => (
-              <Box key={`download_${download}`} sx={{ display: 'flex', mb: 2 }}>
+              <a
+                key={`download_${download}`}
+                style={{ display: 'flex', marginBottom: '16px'}}
+                href={getFile(download)}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <DownloadIcon sx={{ mr: '20px', alignItems: 'center' }} />
                 <Typography>
                   {t(`content.semantichub.detail.downloads.${download}`)}
                 </Typography>
-              </Box>
+              </a>
             ))}
           </>
         )}
@@ -85,6 +106,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             />
           </Box>
         )}
+        {error &&
+          <Typography color="error">{error}</Typography>
+        }
       </DialogContent>
     </Dialog>
   )

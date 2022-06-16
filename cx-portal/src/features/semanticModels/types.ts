@@ -4,10 +4,9 @@ export interface SemanticModelsInitialState {
   modelList: ModelList
   model: Nullable<SemanticModel>
   diagram: string
-  loadingDiagram: boolean
-  ttlFile: Nullable<Blob>
-  jsonFile: Nullable<Blob>
-  payloadFile: Nullable<Blob>
+  ttlFile: string
+  jsonFile: string
+  payloadFile: string
   loadingList: boolean
   loadingModel: boolean
   uploading: boolean

@@ -38,11 +38,31 @@ export class Api extends HttpClient {
   public postSemanticModel = (model: NewSemanticModel) =>
     this.instance.post<void>('models/', model, getHeaders())
 
-  public getArtifact = (url: string) =>
-    this.instance.get<Blob>(`models/${url}`, {
+  public getArtifact = (type: string, id: string) => {
+    let url = '';
+    switch(type) { 
+      case 'diagram': { 
+        url = `${id}/diagram`
+        break; 
+      } 
+      case 'ttl': { 
+        url = `${id}/file`
+        break; 
+      }
+      case 'json': { 
+        url = `${id}/json-schema`
+        break; 
+      }
+      case 'payload': { 
+        url = `${id}/example-payload`
+        break; 
+      }
+    } 
+    return this.instance.get<Blob>(`models/${url}`, {
       responseType: 'blob',
       ...getHeaders(),
     })
+  }
 
   public getModelDiagramUrl = (id: string) => `${id}/diagram`
 
@@ -50,19 +70,9 @@ export class Api extends HttpClient {
       return `${MODEL_URL}/${id}/documentation`;
     }
     
-    export function getJsonSchemaUrl(id){
-      return `${MODEL_URL}/${id}/json-schema`;
-    }
-    
-    export function getFileUrl(id){
-      return `${MODEL_URL}/${id}/file`;
-    }
-    
     export function getOpenApiUrl(id, baseUrl){
       return `${MODEL_URL}/${id}/openapi?baseUrl=${baseUrl}`;
     }
     
-    export function getExamplePayloadUrl(id){
-      return `${MODEL_URL}/${id}/example-payload`;
-    } */
+*/
 }

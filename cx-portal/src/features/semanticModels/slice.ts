@@ -5,7 +5,7 @@ import {
   fetchSemanticModelById,
   fetchSemanticModels,
   postSemanticModel,
-  fetchModelDiagram,
+  fetchModelArtefact,
 } from './actions'
 import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
 
@@ -21,10 +21,9 @@ const initialState: SemanticModelsInitialState = {
   modelList: defaultModels,
   model: null,
   diagram: '',
-  loadingDiagram: false,
-  ttlFile: null,
-  jsonFile: null,
-  payloadFile: null,
+  ttlFile: '',
+  jsonFile: '',
+  payloadFile: '',
   loadingList: false,
   loadingModel: false,
   uploading: false,
@@ -82,23 +81,42 @@ const modelsSlice = createSlice({
       state.uploadRequest = RequestState.ERROR
       state.error = action.error.message as string
     })
-    builder.addCase(fetchModelDiagram.pending, (state) => {
-      state.loadingDiagram = true
-      state.diagram = ''
+    builder.addCase(fetchModelArtefact.pending, (state, action) => {
+      setFileType(action.meta.arg.type, state, '')
       state.error = ''
     })
-    builder.addCase(fetchModelDiagram.fulfilled, (state, { payload }) => {
-      state.loadingDiagram = false
-      state.diagram = URL.createObjectURL(payload)
+    builder.addCase(fetchModelArtefact.fulfilled, (state, action) => {
+      const value = URL.createObjectURL(action.payload);
+      setFileType(action.meta.arg.type, state, value)
       state.error = ''
     })
-    builder.addCase(fetchModelDiagram.rejected, (state, action) => {
-      state.loadingDiagram = false
-      state.diagram = ''
+    builder.addCase(fetchModelArtefact.rejected, (state, action) => {
+      setFileType(action.meta.arg.type, state, '')
       state.error = action.error.message as string
     })
   },
 })
+
+const setFileType = (type: string, state: SemanticModelsInitialState, value: string) => {
+  switch(type) { 
+    case 'diagram': { 
+      state.diagram = value
+      break; 
+    } 
+    case 'ttl': { 
+      state.ttlFile = value
+      break; 
+    }
+    case 'json': { 
+      state.jsonFile = value
+      break; 
+    }
+    case 'payload': { 
+      state.payloadFile = value
+      break; 
+    }
+  }
+}
 
 export const semanticModelsSelector = (
   state: RootState
