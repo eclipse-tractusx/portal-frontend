@@ -7,11 +7,11 @@ import {
   theme,
 } from 'cx-portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { useDispatch, useSelector } from 'react-redux'
-import { Divider, Box, CircularProgress } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { Divider, Box, CircularProgress, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import DownloadIcon from '@mui/icons-material/Download'
-import { fetchModelArtefact } from 'features/semanticModels/actions'
+import DownloadLink from './DownloadLink'
+
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -30,7 +30,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     payloadFile,
     error,
   } = useSelector(semanticModelsSelector)
-  const downloadItems = ['ttl', 'docu', 'json', 'payload']
+  const downloadItems = ['docu', 'json', 'payload']
   const margin = { mr: -2, ml: -2 }
 
   const getFile = (type: string) => {
@@ -90,19 +90,17 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             <Typography variant="h5" mb={4}>
               {t('content.semantichub.detail.downloadTitle')}
             </Typography>
+            <Tooltip title="Add" arrow placement="bottom-start">
+              <DownloadLink
+                type="ttl"
+                href={getFile('ttl')}
+              />
+            </Tooltip>
             {downloadItems.map((download) => (
-              <a
-                key={`download_${download}`}
-                style={{ display: 'flex', marginBottom: '16px' }}
+              <DownloadLink
+                type={download}
                 href={getFile(download)}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <DownloadIcon sx={{ mr: '20px', alignItems: 'center' }} />
-                <Typography>
-                  {t(`content.semantichub.detail.downloads.${download}`)}
-                </Typography>
-              </a>
+              />
             ))}
           </>
         )}
