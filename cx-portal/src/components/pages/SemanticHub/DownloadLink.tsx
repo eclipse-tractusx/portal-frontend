@@ -1,15 +1,15 @@
 import DownloadIcon from '@mui/icons-material/Download'
-import { Typography } from 'cx-portal-shared-components';
-import { useTranslation } from 'react-i18next';
+import { Typography } from 'cx-portal-shared-components'
+import { useTranslation } from 'react-i18next'
 
-interface DownloadLinkProps{
-  type: string,
+interface DownloadLinkProps {
+  type: string
   href: string | undefined
 }
-const DownloadLink = ({type, href}: DownloadLinkProps) => {
-  const {t} = useTranslation();
+const DownloadLink = ({ type, href }: DownloadLinkProps) => {
+  const { t } = useTranslation()
 
-  return(
+  return (
     <a
       key={`download_${type}`}
       style={{ display: 'flex', marginBottom: '16px' }}
@@ -25,4 +25,4 @@ const DownloadLink = ({type, href}: DownloadLinkProps) => {
   )
 }
 
-export default DownloadLink;
+export default DownloadLink

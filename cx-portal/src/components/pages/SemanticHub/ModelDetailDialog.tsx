@@ -12,7 +12,6 @@ import { Divider, Box, CircularProgress, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
 
-
 interface ModelDetailDialogProps {
   show: boolean
   onClose: () => void
@@ -91,16 +90,10 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               {t('content.semantichub.detail.downloadTitle')}
             </Typography>
             <Tooltip title="Add" arrow placement="bottom-start">
-              <DownloadLink
-                type="ttl"
-                href={getFile('ttl')}
-              />
+              <DownloadLink type="ttl" href={getFile('ttl')} />
             </Tooltip>
             {downloadItems.map((download) => (
-              <DownloadLink
-                type={download}
-                href={getFile(download)}
-              />
+              <DownloadLink type={download} href={getFile(download)} />
             ))}
           </>
         )}
