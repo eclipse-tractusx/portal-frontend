@@ -7,7 +7,7 @@ import {
   SemanticModel,
 } from './types'
 import { getSemanticApiBase } from 'services/EnvironmentService'
-import { getHeaders } from 'services/RequestService'
+import { getHeaders, getTextHeaders } from 'services/RequestService'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
@@ -36,39 +36,39 @@ export class Api extends HttpClient {
     this.instance.get<SemanticModel>(`models/${id}`, getHeaders())
 
   public postSemanticModel = (model: NewSemanticModel) =>
-    this.instance.post<void>('models/', model, getHeaders())
+    this.instance.post<SemanticModel>(`models?type=${model.type}&status=${model.status}`, model.model, getTextHeaders())
 
   public getArtifact = (type: string, id: string) => {
-    let url = '';
-    switch(type) { 
-      case 'diagram': { 
+    let url = ''
+    switch (type) {
+      case 'diagram': {
         url = `${id}/diagram`
-        break; 
-      } 
-      case 'ttl': { 
+        break
+      }
+      case 'ttl': {
         url = `${id}/file`
-        break; 
+        break
       }
-      case 'json': { 
+      case 'json': {
         url = `${id}/json-schema`
-        break; 
+        break
       }
-      case 'payload': { 
+      case 'payload': {
         url = `${id}/example-payload`
-        break; 
+        break
       }
-    } 
+      case 'docu': {
+        url = `${id}/documentation`
+        break
+      }
+    }
     return this.instance.get<Blob>(`models/${url}`, {
       responseType: 'blob',
       ...getHeaders(),
     })
   }
 
-  public getModelDiagramUrl = (id: string) => `${id}/diagram`
-
-  /*  export function getDocumentationUrl(id){
-      return `${MODEL_URL}/${id}/documentation`;
-    }
+  /*
     
     export function getOpenApiUrl(id, baseUrl){
       return `${MODEL_URL}/${id}/openapi?baseUrl=${baseUrl}`;

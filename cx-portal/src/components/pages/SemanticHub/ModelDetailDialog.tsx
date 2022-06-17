@@ -20,27 +20,37 @@ interface ModelDetailDialogProps {
 
 const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const { t } = useTranslation()
-  const { model, loadingModel, diagram, ttlFile, jsonFile, payloadFile, error } = useSelector(
-    semanticModelsSelector
-  )
+  const {
+    model,
+    loadingModel,
+    diagram,
+    ttlFile,
+    jsonFile,
+    docuFile,
+    payloadFile,
+    error,
+  } = useSelector(semanticModelsSelector)
   const downloadItems = ['ttl', 'docu', 'json', 'payload']
   const margin = { mr: -2, ml: -2 }
 
   const getFile = (type: string) => {
-    switch(type) { 
-      case 'diagram': { 
+    switch (type) {
+      case 'diagram': {
         return diagram
       }
-      case 'ttl': { 
-        return ttlFile;
+      case 'ttl': {
+        return ttlFile
       }
-      case 'json': { 
+      case 'json': {
         return jsonFile
       }
-      case 'payload': { 
+      case 'payload': {
         return payloadFile
       }
-    } 
+      case 'docu': {
+        return docuFile
+      }
+    }
   }
 
   return (
@@ -83,7 +93,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             {downloadItems.map((download) => (
               <a
                 key={`download_${download}`}
-                style={{ display: 'flex', marginBottom: '16px'}}
+                style={{ display: 'flex', marginBottom: '16px' }}
                 href={getFile(download)}
                 target="_blank"
                 rel="noreferrer"
@@ -106,9 +116,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             />
           </Box>
         )}
-        {error &&
-          <Typography color="error">{error}</Typography>
-        }
+        {error && <Typography color="error">{error}</Typography>}
       </DialogContent>
     </Dialog>
   )

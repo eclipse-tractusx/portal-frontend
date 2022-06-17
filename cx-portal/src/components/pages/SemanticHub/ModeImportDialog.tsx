@@ -6,17 +6,19 @@ import {
   Button,
   Typography,
   Input,
+  Dropzone,
 } from 'cx-portal-shared-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { postSemanticModel } from 'features/semanticModels/actions'
+import { fetchSemanticModels, postSemanticModel } from 'features/semanticModels/actions'
 import { Status } from 'features/semanticModels/types'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import { RequestState } from 'types/MainTypes'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -25,7 +27,7 @@ interface ModelDetailDialogProps {
 
 const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const dispatch = useDispatch()
-  const { uploading, uploadRequest, error } = useSelector(
+  const { modelList, uploading, uploadRequest, error } = useSelector(
     semanticModelsSelector
   )
   const { t } = useTranslation()
@@ -33,6 +35,13 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const [inputStatus, setInputStatus] = useState<
     Status.Draft | Status.Released
   >(Status.Draft)
+
+  useEffect(() => {
+    if(uploadRequest === RequestState.OK) {
+      onClose();
+      //should there be an alert, when model is uploaded?
+    }
+  }, [uploadRequest])
 
   const uploadModel = () => {
     dispatch(
@@ -54,11 +63,8 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         closeWithIcon
         onCloseWithIcon={onClose}
       />
-      <DialogContent>
-        <Typography mb={2}>
-          {t('content.semantichub.importDialog.text')}
-        </Typography>
-        <FormControl fullWidth sx={{ mb: 2 }}>
+      <DialogContent sx={{pt: 1}}>
+        <FormControl fullWidth sx={{mb: 2}}>
           <InputLabel id="import-model-status-label">Status</InputLabel>
           <Select
             labelId="import-model-status-label"
@@ -80,14 +86,19 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           multiline
           minRows={4}
           maxRows={18}
+          disabled={uploading}
         />
+        {/* <Dropzone
+          multiple={false}
+          maxFiles={1}
+        /> */}
         {error && <Typography color="error">{error}</Typography>}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>
+        <Button onClick={onClose} disabled={uploading}>
           {t('content.semantichub.importDialog.buttonCancel')}
         </Button>
-        <Button onClick={uploadModel}>
+        <Button onClick={uploadModel} disabled={uploading}>
           {t('content.semantichub.importDialog.buttonConfirm')}
         </Button>
       </DialogActions>

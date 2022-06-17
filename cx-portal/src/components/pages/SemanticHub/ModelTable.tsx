@@ -1,4 +1,4 @@
-import { Table } from 'cx-portal-shared-components'
+import { Button, Table } from 'cx-portal-shared-components'
 import { fetchSemanticModels } from 'features/semanticModels/actions'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { SemanticModel } from 'features/semanticModels/types'
@@ -16,8 +16,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const dispatch = useDispatch()
   const { modelList, loadingList } = useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
-  const [pageNumber, setPageNumber] = useState<number>(0)
-  const rowCount = 10
+  const [pageNumber, setPageNumber] = useState<number>(1)
+  const rowCount = 3
 
   useEffect(() => {
     dispatch(
@@ -28,6 +28,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   useEffect(() => {
     setModels((prevModels) => prevModels.concat(modelList.items))
   }, [modelList])
+
 
   const onSearch = (value: string) => console.log(value)
   const columns = SemanticModelTableColumns(t, onModelSelect)
@@ -47,6 +48,17 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         rows={models}
         getRowId={(row) => `${row.urn}`}
       />
+      <div className="load-more-button-container">
+        {modelList.totalPages !== modelList.currentPage && (
+          <Button
+            size="medium"
+            sx={{ mt: 15 }}
+            onClick={() => setPageNumber((prevState) => prevState + 1)}
+          >
+            {t('content.semantichub.table.load_button')}
+          </Button>
+        )}
+      </div>
     </section>
   )
 }

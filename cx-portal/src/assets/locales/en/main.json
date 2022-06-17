@@ -118,7 +118,6 @@
       },
       "importDialog": {
         "title": "Import Model",
-        "text": "Paste your model definition into the text field.",
         "buttonConfirm": "Upload",
         "buttonCancel": "Cancel"
       },

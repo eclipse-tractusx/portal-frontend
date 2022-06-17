@@ -23,10 +23,11 @@ export default function SemanticHub() {
     setShowModel(true)
     const encodedUrn = encodeURIComponent(urn)
     dispatch(fetchSemanticModelById(encodedUrn))
-    dispatch(fetchModelArtefact({type: 'diagram', id: encodedUrn}))
-    dispatch(fetchModelArtefact({type: 'ttl', id: encodedUrn}))
-    dispatch(fetchModelArtefact({type: 'json', id: encodedUrn}))
-    dispatch(fetchModelArtefact({type: 'payload', id: encodedUrn}))
+    dispatch(fetchModelArtefact({ type: 'diagram', id: encodedUrn }))
+    dispatch(fetchModelArtefact({ type: 'ttl', id: encodedUrn }))
+    dispatch(fetchModelArtefact({ type: 'json', id: encodedUrn }))
+    dispatch(fetchModelArtefact({ type: 'payload', id: encodedUrn }))
+    dispatch(fetchModelArtefact({ type: 'docu', id: encodedUrn }))
   }
 
   return (
@@ -60,8 +61,7 @@ export default function SemanticHub() {
       </main>
       <ModelDetailDialog
         show={showModel}
-        onClose={() => setShowModel(false)}
-      />
+        onClose={() => setShowModel(false)} />
       <ModelImportDialog
         show={importModel}
         onClose={() => setImportModel(false)}

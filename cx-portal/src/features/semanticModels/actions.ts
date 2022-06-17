@@ -31,14 +31,14 @@ const postSemanticModel = createAsyncThunk(
       return await Api.getInstance().postSemanticModel(model)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error('Post semantic model error.')
+      throw Error(`${error}. Adding a new model failed.`)
     }
   }
 )
 const fetchModelArtefact = createAsyncThunk(
   'fetch model artefact',
-  async (params: {type: string, id: string}) => {
-    const {type, id} = params;
+  async (params: { type: string; id: string }) => {
+    const { type, id } = params
     try {
       return await Api.getInstance().getArtifact(type, id)
     } catch (error: unknown) {
@@ -51,5 +51,5 @@ export {
   fetchSemanticModels,
   fetchSemanticModelById,
   postSemanticModel,
-  fetchModelArtefact
+  fetchModelArtefact,
 }

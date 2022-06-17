@@ -6,9 +6,11 @@ export interface SemanticModelsInitialState {
   diagram: string
   ttlFile: string
   jsonFile: string
+  docuFile: string
   payloadFile: string
   loadingList: boolean
   loadingModel: boolean
+  uploadedModel: Nullable<SemanticModel>
   uploading: boolean
   uploadRequest: RequestState
   error: string

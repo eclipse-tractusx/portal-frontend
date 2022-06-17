@@ -118,7 +118,6 @@
       },
       "importDialog": {
         "title": "Modell importieren",
-        "text": "Benutze das Textfeld, um den gesamten Inhalt deiner Turtle Datei einzufügen.",
         "buttonConfirm": "Hochladen",
         "buttonCancel": "Abbrechen"
       },

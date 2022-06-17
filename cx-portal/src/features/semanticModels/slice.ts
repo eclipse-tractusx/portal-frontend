@@ -23,9 +23,11 @@ const initialState: SemanticModelsInitialState = {
   diagram: '',
   ttlFile: '',
   jsonFile: '',
+  docuFile: '',
   payloadFile: '',
   loadingList: false,
   loadingModel: false,
+  uploadedModel: null,
   uploading: false,
   uploadRequest: RequestState.NONE,
   error: '',
@@ -68,16 +70,18 @@ const modelsSlice = createSlice({
     })
     builder.addCase(postSemanticModel.pending, (state) => {
       state.uploading = true
-      state.uploadRequest = RequestState.SUBMIT
+      state.uploadedModel = null
       state.error = ''
     })
-    builder.addCase(postSemanticModel.fulfilled, (state) => {
+    builder.addCase(postSemanticModel.fulfilled, (state, { payload }) => {
       state.uploading = false
+      state.uploadedModel = payload
       state.uploadRequest = RequestState.OK
       state.error = ''
     })
     builder.addCase(postSemanticModel.rejected, (state, action) => {
       state.uploading = false
+      state.uploadedModel = null
       state.uploadRequest = RequestState.ERROR
       state.error = action.error.message as string
     })
@@ -86,7 +90,7 @@ const modelsSlice = createSlice({
       state.error = ''
     })
     builder.addCase(fetchModelArtefact.fulfilled, (state, action) => {
-      const value = URL.createObjectURL(action.payload);
+      const value = URL.createObjectURL(action.payload)
       setFileType(action.meta.arg.type, state, value)
       state.error = ''
     })
@@ -97,23 +101,31 @@ const modelsSlice = createSlice({
   },
 })
 
-const setFileType = (type: string, state: SemanticModelsInitialState, value: string) => {
-  switch(type) { 
-    case 'diagram': { 
+const setFileType = (
+  type: string,
+  state: SemanticModelsInitialState,
+  value: string
+) => {
+  switch (type) {
+    case 'diagram': {
       state.diagram = value
-      break; 
-    } 
-    case 'ttl': { 
+      break
+    }
+    case 'ttl': {
       state.ttlFile = value
-      break; 
+      break
     }
-    case 'json': { 
+    case 'json': {
       state.jsonFile = value
-      break; 
+      break
     }
-    case 'payload': { 
+    case 'docu': {
+      state.docuFile = value
+      break
+    }
+    case 'payload': {
       state.payloadFile = value
-      break; 
+      break
     }
   }
 }
