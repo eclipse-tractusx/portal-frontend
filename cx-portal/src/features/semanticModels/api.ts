@@ -36,7 +36,11 @@ export class Api extends HttpClient {
     this.instance.get<SemanticModel>(`models/${id}`, getHeaders())
 
   public postSemanticModel = (model: NewSemanticModel) =>
-    this.instance.post<SemanticModel>(`models?type=${model.type}&status=${model.status}`, model.model, getTextHeaders())
+    this.instance.post<SemanticModel>(
+      `models?type=${model.type}&status=${model.status}`,
+      model.model,
+      getTextHeaders()
+    )
 
   public getArtifact = (type: string, id: string) => {
     let url = ''

@@ -59,9 +59,7 @@ export default function SemanticHub() {
         </section>
         <ModelTable onModelSelect={onModelSelect} />
       </main>
-      <ModelDetailDialog
-        show={showModel}
-        onClose={() => setShowModel(false)} />
+      <ModelDetailDialog show={showModel} onClose={() => setShowModel(false)} />
       <ModelImportDialog
         show={importModel}
         onClose={() => setImportModel(false)}

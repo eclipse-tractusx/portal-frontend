@@ -12,7 +12,10 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { fetchSemanticModels, postSemanticModel } from 'features/semanticModels/actions'
+import {
+  fetchSemanticModels,
+  postSemanticModel,
+} from 'features/semanticModels/actions'
 import { Status } from 'features/semanticModels/types'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -37,8 +40,8 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   >(Status.Draft)
 
   useEffect(() => {
-    if(uploadRequest === RequestState.OK) {
-      onClose();
+    if (uploadRequest === RequestState.OK) {
+      onClose()
       //should there be an alert, when model is uploaded?
     }
   }, [uploadRequest])
@@ -63,8 +66,8 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         closeWithIcon
         onCloseWithIcon={onClose}
       />
-      <DialogContent sx={{pt: 1}}>
-        <FormControl fullWidth sx={{mb: 2}}>
+      <DialogContent sx={{ pt: 1 }}>
+        <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id="import-model-status-label">Status</InputLabel>
           <Select
             labelId="import-model-status-label"

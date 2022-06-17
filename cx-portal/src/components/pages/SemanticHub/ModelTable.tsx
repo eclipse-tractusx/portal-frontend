@@ -17,7 +17,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { modelList, loadingList } = useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(1)
-  const rowCount = 3
+  const rowCount = 10
 
   useEffect(() => {
     dispatch(
@@ -28,7 +28,6 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   useEffect(() => {
     setModels((prevModels) => prevModels.concat(modelList.items))
   }, [modelList])
-
 
   const onSearch = (value: string) => console.log(value)
   const columns = SemanticModelTableColumns(t, onModelSelect)
