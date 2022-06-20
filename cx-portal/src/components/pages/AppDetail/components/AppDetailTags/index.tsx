@@ -12,7 +12,7 @@ export default function AppDetailTags() {
     <div className="appdetail-tags">
       <Typography>Tags:</Typography>
       {tags.map((tag, i) => (
-        <Chip key={i} label={tag} withIcon={false} />
+        <Chip key={i} label={tag} withIcon={false} type="plain" />
       ))}
     </div>
   )
