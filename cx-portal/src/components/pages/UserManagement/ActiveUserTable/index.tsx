@@ -36,11 +36,6 @@ export const ActiveUserTable = ({
         variant="h3"
       />
       <Table
-        title={t('content.usermanagement.table.title')}
-        toolbar={{
-          buttonLabel: t('content.usermanagement.table.add'),
-          onButtonClick: onAddUserButtonClick,
-        }}
         columns={[
           { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
@@ -71,9 +66,16 @@ export const ActiveUserTable = ({
             ),
           },
         ]}
-        rows={tenantUsers}
         getRowId={(row: { [key: string]: string }) => row.companyUserId}
+        headerHeight={57}
         hideFooter
+        rowHeight={57}
+        rows={tenantUsers}
+        title={t('content.usermanagement.table.title')}
+        toolbar={{
+          buttonLabel: t('content.usermanagement.table.add'),
+          onButtonClick: onAddUserButtonClick,
+        }}
       />
     </section>
   )
