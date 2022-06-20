@@ -397,7 +397,9 @@
       "close": "Close",
       "back": "Back",
       "delete": "Delete",
-      "pleaseSelect": "Please select"
+      "pleaseSelect": "Please select",
+      "reload": "Reload Page",
+      "homepage": "Homepage"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
@@ -406,6 +408,11 @@
       "dataSpecialist": "Data Specialist",
       "appDeveloper": "App Developer",
       "appAdmin": "App Administrator"
+    },
+    "errors": {
+      "title": "Oops, Something went wrong.",
+      "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
+      "additionalDescription": "Please contact your admin."
     }
   }
 }
