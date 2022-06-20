@@ -32,7 +32,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     <div className="Footer">
       {showScrollToTop && (
         <IconButton
-          color="primary"
+          color="secondary"
           onClick={scrollToTop}
           sx={{ position: 'absolute', right: '40px', top: '2px' }}
         >
