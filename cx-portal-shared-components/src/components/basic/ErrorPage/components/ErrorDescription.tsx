@@ -38,7 +38,7 @@ export const ErrorDescription = ({
         </Typography>
       )}
 
-      {title && (
+      {title && description && (
         <Typography
           sx={{
             fontFamily: 'LibreFranklin-Light',

@@ -188,7 +188,6 @@ const ALL_PAGES: IPage[] = [
     element: <Translator />,
   },
   { name: PAGES.HELP, element: <Help /> },
-  // { name: PAGES.ERROR, element: <ErrorBondary /> },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
