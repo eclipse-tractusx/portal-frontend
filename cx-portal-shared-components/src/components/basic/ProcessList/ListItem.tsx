@@ -18,7 +18,7 @@ export const ListItem = ({
   stepsColor,
   stepsFontColor,
   lastItem,
- }: ListItemProps) => {
+}: ListItemProps) => {
   const borderToNextStep = !lastItem ? `2px solid ${stepsColor}` : 'none'
   return (
     <Box
@@ -31,7 +31,8 @@ export const ListItem = ({
           width: '32px',
           height: '32px',
           margin: '0px',
-        }}>
+        }}
+      >
         <Box
           sx={{
             backgroundColor: stepsColor,
@@ -73,11 +74,11 @@ export const ListItem = ({
         >
           {headline}
         </Typography>
-        
+
         <Typography
           variant="body2"
           fontSize="16px"
-          color= {theme.palette.text.tertiary}
+          color={theme.palette.text.tertiary}
           sx={{
             width: 'fit-content',
             borderLeft: borderToNextStep,

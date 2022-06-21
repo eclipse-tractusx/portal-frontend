@@ -12,32 +12,38 @@ const processListElements = [
   {
     step: 1,
     headline: 'App Market Card',
-    description: 'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+    description:
+      'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
   },
   {
     step: 2,
     headline: 'App Page',
-    description: 'App Page descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    description:
+      'App Page descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
   },
   {
     step: 3,
     headline: 'Contrac & Consent',
-    description: 'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    description:
+      'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
   },
   {
     step: 4,
     headline: 'Technical Integration',
-    description: 'Technical Integration descsription consetetur sadipscing elitr Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    description:
+      'Technical Integration descsription consetetur sadipscing elitr Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
   },
   {
     step: 5,
     headline: 'Beta Test',
-    description: 'Beta Test descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    description:
+      'Beta Test descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
   },
   {
     step: 6,
     headline: 'Validate & Publish',
-    description: 'Validate & Publish descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+    description:
+      'Validate & Publish descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
   },
 ]
 

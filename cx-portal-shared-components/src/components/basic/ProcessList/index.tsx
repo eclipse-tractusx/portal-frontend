@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { ListItem } from './ListItem' 
+import { ListItem } from './ListItem'
 
 export interface ProcessListProps {
   list: any[]
@@ -16,21 +16,21 @@ export const ProcessList = ({
 }: ProcessListProps) => {
   return (
     <Box>
-      {list && list.map((item: any) => {
-        if (item.step <= elementNumbers && item.step <= list.length) {
-          return (
-            <ListItem
-              step={item.step}
-              headline={item.headline}
-              description={item.description}
-              stepsColor={stepsColor}
-              stepsFontColor={stepsFontColor}
-              lastItem={item.step === elementNumbers}
-            />
-          )
-        }
-      })
-      }
+      {list &&
+        list.map((item: any) => {
+          if (item.step <= elementNumbers && item.step <= list.length) {
+            return (
+              <ListItem
+                step={item.step}
+                headline={item.headline}
+                description={item.description}
+                stepsColor={stepsColor}
+                stepsFontColor={stepsFontColor}
+                lastItem={item.step === elementNumbers}
+              />
+            )
+          }
+        })}
     </Box>
   )
 }
