@@ -73,7 +73,7 @@ const searchForExpression = async function (expr: string) {
       Patterns.MAIL.test(expr)
         ? await UserApi.getInstance()
             .getTenantUsers()
-            .catch((e) => emptyUserResult)
+            .catch(() => emptyUserResult)
         : emptyUserResult,
     ])
   } else if (Patterns.UUID.test(expr)) {
@@ -81,33 +81,33 @@ const searchForExpression = async function (expr: string) {
       emptyPageResult,
       AppsApi.getInstance()
         .getActive()
-        .catch((e) => emptyAppResult),
+        .catch(() => emptyAppResult),
       emptyPartnerResult,
       emptyNewsResult,
       UserApi.getInstance()
         .getTenantUsers()
-        .catch((e) => emptyUserResult),
+        .catch(() => emptyUserResult),
     ])
   } else {
-    return await Promise.all([
+    return [
       I18nService.searchPages(expr),
       AppsApi.getInstance()
         .getActive()
-        .catch((e) => emptyAppResult),
+        .catch(() => emptyAppResult),
       PartnerNetworkApi.getInstance()
         .getAllBusinessPartner({
           name: expr,
           page: 0,
           size: 5,
         })
-        .catch((e) => emptyPartnerResult),
+        .catch(() => emptyPartnerResult),
       NewsApi.getInstance()
         .getItems()
-        .catch((e) => emptyNewsResult),
+        .catch(() => emptyNewsResult),
       UserApi.getInstance()
         .getTenantUsers()
-        .catch((e) => emptyUserResult),
-    ])
+        .catch(() => emptyUserResult),
+    ]
   }
 }
 
