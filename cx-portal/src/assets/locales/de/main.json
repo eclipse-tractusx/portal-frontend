@@ -102,7 +102,8 @@
     },
     "semantichub": {
       "title": "Semantische Datenmodelle",
-      "introText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "introText_0": "Semantische Modelle dienen zur Strukturierung von Daten. Als Konzept ermöglichen sie es, Daten und ihren Beziehungen eine grundlegende Bedeutung zu verleihen. Im Rahmen der Datenmodellierung und Datenorganisation realisieren sie die einfache Entwicklung von Anwendungen wie auch die Aufrechterhaltung von Datenkonsistenz.",
+      "introText_1": "In Catena-X werden semantische Datenmodelle in einem geeigneten Publikationssystem, dem sogenannten Semantic Hub, bereitgestellt. Für Daten bzw. Service Anbieter stellt der Semantic Hub  eine Grundlage für die Nutzung und Wiederverwendung von semantischen Modellen. Aus diesem Grund erfolgt die Veröffentlichung eines semantischen Datenmodells unter der Angabe einer Version. Dies fördert Transparenz wie auch Kontrolle über alle semantischen Modelle und deren Freigabestatus.",
       "addModel": "Neues Model anlegen",
       "table": {
         "title": "Semantische Datenmodelle",

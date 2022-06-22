@@ -16,7 +16,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const dispatch = useDispatch()
   const { modelList, loadingList } = useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
-  const [pageNumber, setPageNumber] = useState<number>(1)
+  const [pageNumber, setPageNumber] = useState<number>(0)
   const rowCount = 10
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         getRowId={(row) => `${row.urn}`}
       />
       <div className="load-more-button-container">
-        {modelList.totalPages !== modelList.currentPage && (
+        {modelList.totalPages !== modelList.currentPage + 1 && (
           <Button
             size="medium"
             sx={{ mt: 15 }}

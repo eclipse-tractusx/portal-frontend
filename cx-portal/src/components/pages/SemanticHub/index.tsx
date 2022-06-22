@@ -36,9 +36,11 @@ export default function SemanticHub() {
       <main className="semantic-models">
         <section>
           <Grid container justifyContent="space-between">
-            <Grid item xs={4}>
-              <Typography variant="body2" mb={4}>
-                {t('content.semantichub.introText')}
+            <Grid item xs={5}>
+              <Typography variant="body2" mb={2}>
+                {t('content.semantichub.introText_0')}
+              </Typography><Typography variant="body2" mb={4}>
+                {t('content.semantichub.introText_1')}
               </Typography>
               <Button
                 onClick={() => setImportModel(true)}
