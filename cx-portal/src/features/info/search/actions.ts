@@ -89,7 +89,7 @@ const searchForExpression = async function (expr: string) {
         .catch(() => emptyUserResult),
     ])
   } else {
-    return [
+    return Promise.all([
       I18nService.searchPages(expr),
       AppsApi.getInstance()
         .getActive()
@@ -107,7 +107,7 @@ const searchForExpression = async function (expr: string) {
       UserApi.getInstance()
         .getTenantUsers()
         .catch(() => emptyUserResult),
-    ]
+    ])
   }
 }
 
