@@ -33,10 +33,10 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     payloadFile,
     openApiLink,
     error,
-    openApiError
+    openApiError,
   } = useSelector(semanticModelsSelector)
-  const dispatch = useDispatch();
-  const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('');
+  const dispatch = useDispatch()
+  const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
   const downloadItems = ['docu', 'json', 'payload']
   const margin = { mr: -2, ml: -2 }
 
@@ -61,14 +61,13 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   }
 
   useEffect(() => {
-    if(openApiLink.length > 0)
-      window.open(openApiLink, '_blank')
+    if (openApiLink.length > 0) window.open(openApiLink, '_blank')
   }, [openApiLink])
 
   const onOpenApiUrlChange = () => {
-    if(model){
+    if (model) {
       const encodedUrn = encodeURIComponent(model?.urn)
-      dispatch(changeOpenApiUrl({id: encodedUrn, url: openApiUrlInput}))
+      dispatch(changeOpenApiUrl({ id: encodedUrn, url: openApiUrlInput }))
     }
   }
 
@@ -113,20 +112,30 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               <DownloadLink type="ttl" href={getFile('ttl')} />
             </Tooltip>
             {downloadItems.map((download) => (
-              <DownloadLink key={`download_${download}`} type={download} href={getFile(download)} />
+              <DownloadLink
+                key={`download_${download}`}
+                type={download}
+                href={getFile(download)}
+              />
             ))}
-            <Box display='flex' alignItems='flex-end'>
-              <Box sx={{flexGrow: '1', mr: 2}}>
+            <Box display="flex" alignItems="flex-end">
+              <Box sx={{ flexGrow: '1', mr: 2 }}>
                 <Input
-                  label={"Enter a base URL to change the default open API URL"}
-                  placeholder={"Default URL"}
+                  label={'Enter a base URL to change the default open API URL'}
+                  placeholder={'Default URL'}
                   onChange={(e) => setOpenApiUrlInput(e.target.value)}
                   value={openApiUrlInput}
                 />
               </Box>
-              <Button title='Get Open API JSON' onClick={onOpenApiUrlChange}>Save new URL</Button>
+              <Button title="Get Open API JSON" onClick={onOpenApiUrlChange}>
+                Save new URL
+              </Button>
             </Box>
-            {openApiError && <Typography sx={{typography: 'body3', mt: 1}} color='error'>{openApiError}</Typography>}
+            {openApiError && (
+              <Typography sx={{ typography: 'body3', mt: 1 }} color="error">
+                {openApiError}
+              </Typography>
+            )}
           </>
         )}
         {loadingModel && (

@@ -64,5 +64,5 @@ export {
   fetchSemanticModelById,
   postSemanticModel,
   fetchModelArtefact,
-  changeOpenApiUrl
+  changeOpenApiUrl,
 }

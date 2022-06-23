@@ -102,11 +102,11 @@ const modelsSlice = createSlice({
       state.error = action.error.message as string
     })
     builder.addCase(changeOpenApiUrl.fulfilled, (state, action) => {
-      state.openApiLink = URL.createObjectURL(action.payload);
+      state.openApiLink = URL.createObjectURL(action.payload)
       state.openApiError = ''
     })
     builder.addCase(changeOpenApiUrl.rejected, (state, action) => {
-      state.openApiLink = '';
+      state.openApiLink = ''
       state.openApiError = action.error.message as string
     })
   },

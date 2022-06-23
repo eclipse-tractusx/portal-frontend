@@ -72,7 +72,7 @@ export class Api extends HttpClient {
     })
   }
 
-  public getOpenAPIUrl = (id: string, url: string) => 
+  public getOpenAPIUrl = (id: string, url: string) =>
     this.instance.get<Blob>(`models/${id}/openapi?baseUrl=${url}`, {
       responseType: 'blob',
       ...getHeaders(),
