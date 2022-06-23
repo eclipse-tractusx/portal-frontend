@@ -47,9 +47,22 @@ const fetchModelArtefact = createAsyncThunk(
     }
   }
 )
+const changeOpenApiUrl = createAsyncThunk(
+  'change open API URL and fetch JSON',
+  async (params: { id: string; url: string }) => {
+    const { id, url } = params
+    try {
+      return await Api.getInstance().getOpenAPIUrl(id, url)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error('Change open API URL call error.')
+    }
+  }
+)
 export {
   fetchSemanticModels,
   fetchSemanticModelById,
   postSemanticModel,
   fetchModelArtefact,
+  changeOpenApiUrl
 }

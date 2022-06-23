@@ -39,7 +39,8 @@ export default function SemanticHub() {
             <Grid item xs={5}>
               <Typography variant="body2" mb={2}>
                 {t('content.semantichub.introText_0')}
-              </Typography><Typography variant="body2" mb={4}>
+              </Typography>
+              <Typography variant="body2" mb={4}>
                 {t('content.semantichub.introText_1')}
               </Typography>
               <Button

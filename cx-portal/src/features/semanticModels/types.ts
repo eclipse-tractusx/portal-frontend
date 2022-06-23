@@ -2,17 +2,19 @@ import { Nullable, RequestState } from 'types/MainTypes'
 
 export interface SemanticModelsInitialState {
   modelList: ModelList
+  loadingModelList: boolean
   model: Nullable<SemanticModel>
+  loadingModel: boolean
   diagram: string
   ttlFile: string
   jsonFile: string
   docuFile: string
   payloadFile: string
-  loadingList: boolean
-  loadingModel: boolean
   uploadedModel: Nullable<SemanticModel>
   uploading: boolean
   uploadRequest: RequestState
+  openApiLink: string
+  openApiError: string
   error: string
 }
 

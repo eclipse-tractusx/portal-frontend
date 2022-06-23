@@ -6,6 +6,7 @@ import {
   fetchSemanticModels,
   postSemanticModel,
   fetchModelArtefact,
+  changeOpenApiUrl,
 } from './actions'
 import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
 
@@ -19,17 +20,19 @@ const defaultModels: ModelList = {
 
 const initialState: SemanticModelsInitialState = {
   modelList: defaultModels,
+  loadingModelList: false,
   model: null,
+  loadingModel: false,
   diagram: '',
   ttlFile: '',
   jsonFile: '',
   docuFile: '',
   payloadFile: '',
-  loadingList: false,
-  loadingModel: false,
   uploadedModel: null,
   uploading: false,
   uploadRequest: RequestState.NONE,
+  openApiLink: '',
+  openApiError: '',
   error: '',
 }
 
@@ -40,17 +43,17 @@ const modelsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchSemanticModels.pending, (state) => {
       state.modelList = defaultModels
-      state.loadingList = true
+      state.loadingModelList = true
       state.error = ''
     })
     builder.addCase(fetchSemanticModels.fulfilled, (state, { payload }) => {
       state.modelList = payload as ModelList
-      state.loadingList = false
+      state.loadingModelList = false
       state.error = ''
     })
     builder.addCase(fetchSemanticModels.rejected, (state, action) => {
       state.modelList = defaultModels
-      state.loadingList = false
+      state.loadingModelList = false
       state.error = action.error.message as string
     })
     builder.addCase(fetchSemanticModelById.pending, (state) => {
@@ -97,6 +100,14 @@ const modelsSlice = createSlice({
     builder.addCase(fetchModelArtefact.rejected, (state, action) => {
       setFileType(action.meta.arg.type, state, '')
       state.error = action.error.message as string
+    })
+    builder.addCase(changeOpenApiUrl.fulfilled, (state, action) => {
+      state.openApiLink = URL.createObjectURL(action.payload);
+      state.openApiError = ''
+    })
+    builder.addCase(changeOpenApiUrl.rejected, (state, action) => {
+      state.openApiLink = '';
+      state.openApiError = action.error.message as string
     })
   },
 })

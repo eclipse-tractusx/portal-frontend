@@ -46,37 +46,35 @@ export class Api extends HttpClient {
     let url = ''
     switch (type) {
       case 'diagram': {
-        url = `${id}/diagram`
+        url = 'diagram'
         break
       }
       case 'ttl': {
-        url = `${id}/file`
+        url = 'file'
         break
       }
       case 'json': {
-        url = `${id}/json-schema`
+        url = 'json-schema'
         break
       }
       case 'payload': {
-        url = `${id}/example-payload`
+        url = 'example-payload'
         break
       }
       case 'docu': {
-        url = `${id}/documentation`
+        url = 'documentation'
         break
       }
     }
-    return this.instance.get<Blob>(`models/${url}`, {
+    return this.instance.get<Blob>(`models/${id}/${url}`, {
       responseType: 'blob',
       ...getHeaders(),
     })
   }
 
-  /*
-    
-    export function getOpenApiUrl(id, baseUrl){
-      return `${MODEL_URL}/${id}/openapi?baseUrl=${baseUrl}`;
-    }
-    
-*/
+  public getOpenAPIUrl = (id: string, url: string) => 
+    this.instance.get<Blob>(`models/${id}/openapi?baseUrl=${url}`, {
+      responseType: 'blob',
+      ...getHeaders(),
+    })
 }
