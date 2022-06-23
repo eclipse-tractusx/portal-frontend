@@ -16,6 +16,8 @@ export const PageHeader = Template.bind({})
 PageHeader.args = {
   title: 'Page title',
   hasSubtract: true,
-  spacingTop: 0,
+  topPage: false,
   headerHeight: 200,
+  subtractOption: 'Option1',
+  background: 'LinearGradient1',
 }

@@ -470,7 +470,9 @@
       "close": "Schließen",
       "back": "Zurück",
       "delete": "Löschen",
-      "pleaseSelect": "Bitte auswählen"
+      "pleaseSelect": "Bitte auswählen",
+      "reload": "Seite neuladen",
+      "homepage": "Startseite"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
@@ -479,6 +481,11 @@
       "dataSpecialist": "Data Spezialist",
       "appDeveloper": "App Entwickler",
       "appAdmin": "App Administrator"
+    },
+    "errors": {
+      "title": "Oops, Etwas ist schief gelaufen.",
+      "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
+      "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
     }
   }
 }

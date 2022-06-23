@@ -61,7 +61,7 @@
     "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "the gateway to the automotive <1></1> digital network",
+        "subtitle": "the gateway to the automotive digital network",
         "cxButton": "My CX",
         "appButton": "My Apps"
       },
@@ -78,7 +78,7 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "A scalable & expandable <1></1> ecosystem",
+        "subtitle": "A scalable & expandable ecosystem",
         "appButton": "App Overview"
       },
       "favoriteSection": {
@@ -87,8 +87,8 @@
       "appOverviewSection": {
         "title": "App Overview",
         "categoryViews": {
-          "all": "All",
-          "useCases": "Use Cases"
+          "all": "List View",
+          "useCases": "Category View"
         },
         "categories": {
           "none": "Not categorized",
@@ -347,8 +347,8 @@
       }
     },
     "addUserRight": {
-      "headline": "Select and Add users to this app",
-      "subheadline": "Please select one or more roles for your company to participant in Cateny-X. Don't worry, you can change later."
+      "headline": "Add app permissions to your company user",
+      "subheadline": "Select one or multiple user roles with the checkboxes below as well as the relevant user/s which should receive the role."
     },
     "account": {
       "userAccount": "User account",
@@ -394,8 +394,8 @@
         "heading": "Provider Information",
         "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
         "appProvider": "App Provider",
-        "website": "Website",
-        "email": "E-Mail",
+        "website": "Provider Homepage",
+        "email": "Email",
         "phone": "Phone"
       }
     }
@@ -431,7 +431,9 @@
       "close": "Close",
       "back": "Back",
       "delete": "Delete",
-      "pleaseSelect": "Please select"
+      "pleaseSelect": "Please select",
+      "reload": "Reload Page",
+      "homepage": "Homepage"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
@@ -440,6 +442,11 @@
       "dataSpecialist": "Data Specialist",
       "appDeveloper": "App Developer",
       "appAdmin": "App Administrator"
+    },
+    "errors": {
+      "title": "Oops, Something went wrong.",
+      "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
+      "additionalDescription": "Please contact your admin."
     }
   }
 }

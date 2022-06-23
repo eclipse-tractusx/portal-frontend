@@ -1,4 +1,3 @@
-import React from 'react'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import EdcConnector from 'components/pages/EdcConnector'

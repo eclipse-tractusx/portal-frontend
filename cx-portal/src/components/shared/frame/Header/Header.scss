@@ -1,13 +1,8 @@
 header {
   position: relative;
   z-index: 10;
-  padding: 22px 30px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXc3NyBAeViAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==);
-  background-repeat: repeat-x;
-  background-position: 0 bottom;
   .d-flex {
     display: flex;
   }
