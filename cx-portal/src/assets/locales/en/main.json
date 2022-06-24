@@ -129,9 +129,9 @@
         "buttonCancel": "Cancel"
       },
       "detail": {
-        "title": "Aspect Model",
+        "deleteButton": "Delete Model",
         "diagramTitle": "UML diagram of the aspect model",
-        "urnLabel": "URN",
+        "urnLabel": "Aspect model URN",
         "imgAlt": "Model diagram",
         "downloads": {
           "ttl": "TTL",

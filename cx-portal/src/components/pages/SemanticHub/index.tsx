@@ -14,6 +14,8 @@ import {
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModeImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/MainTypes'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
@@ -99,12 +101,14 @@ export default function SemanticHub() {
               <Typography variant="body2" mb={4}>
                 {t('content.semantichub.introText_1')}
               </Typography>
-              <Button
-                onClick={() => setImportModel(true)}
-                startIcon={<AddCircleOutlineIcon fontSize="large" />}
-              >
-                {t('content.semantichub.addModel')}
-              </Button>
+              {UserService.hasRole(ROLES.SEMANTICHUB_ADD) && (
+                <Button
+                  onClick={() => setImportModel(true)}
+                  startIcon={<AddCircleOutlineIcon fontSize="large" />}
+                >
+                  {t('content.semantichub.addModel')}
+                </Button>
+              )}
             </Grid>
             <Grid item xs={4}>
               <img

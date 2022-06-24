@@ -129,9 +129,9 @@
         "buttonCancel": "Abbrechen"
       },
       "detail": {
-        "title": "Aspekt-Modell",
+        "deleteButton": "Modell löschen",
         "diagramTitle": "UML Diagramm des Aspekts",
-        "urnLabel": "URN",
+        "urnLabel": "Aspekt-Modell URN",
         "imgAlt": "Modelldiagram",
         "downloads": {
           "ttl": "TTL",

@@ -19,6 +19,8 @@ import {
   deleteSemanticModelById,
   fetchModelArtefact,
 } from 'features/semanticModels/actions'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/MainTypes'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -102,19 +104,21 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                   bgcolor: 'background.background09',
                 }}
               >
-                {t('content.semantichub.detail.title')}
+                {model.name}
               </Typography>
-              <Button
-                size="small"
-                onClick={onDeleteModel}
-                sx={{
-                  position: 'absolute',
-                  top: '10px',
-                  right: 0,
-                }}
-              >
-                Delete Model
-              </Button>
+              {UserService.hasRole(ROLES.SEMANTICHUB_DELETE) && (
+                <Button
+                  size="small"
+                  onClick={onDeleteModel}
+                  sx={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: 0,
+                  }}
+                >
+                  {t('content.semantichub.detail.deleteButton')}
+                </Button>
+              )}
               <Divider sx={{ mb: 2, ...margin }} />
             </Box>
             <DetailGrid

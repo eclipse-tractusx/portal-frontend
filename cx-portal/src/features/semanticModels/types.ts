@@ -36,7 +36,7 @@ export interface ModelList {
 
 export interface SemanticModel {
   name: string
-  description: string
+  description?: string
   urn: string
   version: string
   type: string
