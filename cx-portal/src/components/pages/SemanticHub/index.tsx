@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import StageHeader from 'components/shared/frame/StageHeader'
 import { Button, PageSnackbar, Typography } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
@@ -19,21 +20,52 @@ export default function SemanticHub() {
   const dispatch = useDispatch()
   const [showModel, setShowModel] = useState<boolean>(false)
   const [importModel, setImportModel] = useState<boolean>(false)
-  const [showDeleteError, setShowDeleteError] = useState<boolean>(false)
-  const [showDeleteSuccess, setShowDeleteSuccess] = useState<boolean>(false)
-  const { deleteError, deleteModelId } = useSelector(semanticModelsSelector)
+  const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false)
+  const [errorAlertMsg, setErrorAlertMsg] = useState<string>('')
+  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
+  const [successAlertMsg, setSuccessAlertMsg] = useState<string>('')
+  const { deleteError, deleteModelId, uploadedModel, uploadError } =
+    useSelector(semanticModelsSelector)
 
   useEffect(() => {
-    if (deleteError.length > 0) setShowDeleteError(true)
+    if (deleteError.length > 0) {
+      setErrorAlertMsg(deleteError)
+      setShowErrorAlert(true)
+    }
   }, [deleteError])
 
   useEffect(() => {
-    console.log(deleteModelId)
+    if (uploadError.length > 0) {
+      setErrorAlertMsg(uploadError)
+      setShowErrorAlert(true)
+    }
+  }, [uploadError])
+
+  useEffect(() => {
     if (deleteModelId.length > 0) {
       setShowModel(false)
-      setShowDeleteSuccess(true)
+      setSuccessAlertMsg(t('content.semantichub.alerts.deleteSuccess'))
+      setShowSuccessAlert(true)
     }
   }, [deleteModelId])
+
+  useEffect(() => {
+    if (uploadedModel !== null) {
+      setShowModel(false)
+      setSuccessAlertMsg(t('content.semantichub.alerts.uploadSuccess'))
+      setShowSuccessAlert(true)
+    }
+  }, [uploadedModel])
+
+  const onErrorAlertClose = () => {
+    setShowErrorAlert(false)
+    setErrorAlertMsg('')
+  }
+
+  const onSuccessAlertClose = () => {
+    setShowSuccessAlert(false)
+    setSuccessAlertMsg('')
+  }
 
   const onModelSelect = (urn: string) => {
     setShowModel(true)
@@ -84,21 +116,21 @@ export default function SemanticHub() {
         onClose={() => setImportModel(false)}
       />
       <PageSnackbar
-        open={showDeleteError}
-        onCloseNotification={() => setShowDeleteError(false)}
+        open={showErrorAlert}
+        onCloseNotification={onErrorAlertClose}
         severity="error"
-        title="Error"
-        description={deleteError}
+        title={t('content.semantichub.alerts.alertErrorTitle')}
+        description={errorAlertMsg}
         showIcon={true}
         vertical={'bottom'}
         horizontal={'left'}
       />
-
       <PageSnackbar
-        open={showDeleteSuccess}
-        onCloseNotification={() => setShowDeleteSuccess(false)}
+        open={showSuccessAlert}
+        onCloseNotification={onSuccessAlertClose}
         severity="success"
-        title="Model deleted!"
+        title={t('content.semantichub.alerts.alertSuccessTitle')}
+        description={successAlertMsg}
         showIcon={true}
         vertical={'bottom'}
         horizontal={'left'}

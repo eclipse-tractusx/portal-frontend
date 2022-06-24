@@ -6,6 +6,7 @@ import {
   Button,
   Typography,
   Input,
+  theme,
 } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,11 +14,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { postSemanticModel } from 'features/semanticModels/actions'
 import { Status } from 'features/semanticModels/types'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { RequestState } from 'types/MainTypes'
+import {
+  InputLabel,
+  Box,
+  MenuItem,
+  FormControl,
+  Select,
+  SelectChangeEvent,
+  CircularProgress,
+} from '@mui/material'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -26,7 +31,7 @@ interface ModelDetailDialogProps {
 
 const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const dispatch = useDispatch()
-  const { uploading, uploadRequest, error } = useSelector(
+  const { uploading, uploadedModel, error } = useSelector(
     semanticModelsSelector
   )
   const { t } = useTranslation()
@@ -36,10 +41,18 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   >(Status.Draft)
 
   useEffect(() => {
-    if (uploadRequest === RequestState.OK) {
+    if (show) {
+      setInputText('')
+      setInputStatus(Status.Draft)
+    }
+  }, [show])
+
+  useEffect(() => {
+    if (uploadedModel !== null) {
       onClose()
     }
-  }, [uploadRequest])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadedModel])
 
   const uploadModel = () => {
     dispatch(
@@ -70,6 +83,7 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             value={inputStatus}
             label="Status"
             onChange={onSelectChange}
+            disabled={uploading}
           >
             {Object.values(Status).map((status) => (
               <MenuItem value={status} key={`status_${status}`}>
@@ -87,6 +101,16 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           disabled={uploading}
         />
         {error && <Typography color="error">{error}</Typography>}
+        {uploading && (
+          <Box sx={{ textAlign: 'center', mt: 2 }}>
+            <CircularProgress
+              size={35}
+              sx={{
+                color: theme.palette.primary.main,
+              }}
+            />
+          </Box>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} disabled={uploading}>

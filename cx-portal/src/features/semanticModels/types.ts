@@ -1,4 +1,4 @@
-import { Nullable, RequestState } from 'types/MainTypes'
+import { Nullable } from 'types/MainTypes'
 
 export interface SemanticModelsInitialState {
   modelList: ModelList
@@ -12,7 +12,7 @@ export interface SemanticModelsInitialState {
   payloadFile: string
   uploadedModel: Nullable<SemanticModel>
   uploading: boolean
-  uploadRequest: RequestState
+  uploadError: string
   openApiLink: string
   openApiError: string
   error: string

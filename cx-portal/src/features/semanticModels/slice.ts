@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
-import { RequestState } from 'types/MainTypes'
 import {
   fetchSemanticModelById,
   fetchSemanticModels,
@@ -31,7 +30,7 @@ const initialState: SemanticModelsInitialState = {
   payloadFile: '',
   uploadedModel: null,
   uploading: false,
-  uploadRequest: RequestState.NONE,
+  uploadError: '',
   openApiLink: '',
   openApiError: '',
   error: '',
@@ -82,14 +81,12 @@ const modelsSlice = createSlice({
     builder.addCase(postSemanticModel.fulfilled, (state, { payload }) => {
       state.uploading = false
       state.uploadedModel = payload
-      state.uploadRequest = RequestState.OK
       state.error = ''
     })
     builder.addCase(postSemanticModel.rejected, (state, action) => {
       state.uploading = false
       state.uploadedModel = null
-      state.uploadRequest = RequestState.ERROR
-      state.error = action.error.message as string
+      state.uploadError = action.error.message as string
     })
     builder.addCase(fetchModelArtefact.pending, (state, action) => {
       setFileType(action.meta.arg.type, state, '')

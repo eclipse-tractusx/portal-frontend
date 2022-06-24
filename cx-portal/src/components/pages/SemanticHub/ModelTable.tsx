@@ -14,9 +14,8 @@ interface ModelTableProps {
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { modelList, loadingModelList, deleteModelId } = useSelector(
-    semanticModelsSelector
-  )
+  const { modelList, loadingModelList, deleteModelId, uploadedModel } =
+    useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
   const rowCount = 10
@@ -37,11 +36,18 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   }, [deleteModelId])
 
   useEffect(() => {
+    if (uploadedModel !== null) {
+      setModels((prevModels) => [uploadedModel, ...prevModels])
+    }
+  }, [uploadedModel])
+
+  useEffect(() => {
     if (modelListHasItems() && modelList.currentPage === 0)
-      setModels((prevModels) => modelList.items)
+      setModels(modelList.items)
     if (modelListHasItems() && modelList.currentPage > 0) {
       setModels((prevModels) => prevModels.concat(modelList.items))
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelList])
 
   const onSearch = (value: string) => console.log(value)
