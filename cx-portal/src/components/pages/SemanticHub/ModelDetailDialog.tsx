@@ -14,7 +14,7 @@ import { Divider, Box, CircularProgress, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
 import { useEffect, useState } from 'react'
-import { changeOpenApiUrl } from 'features/semanticModels/actions'
+import { changeOpenApiUrl, deleteSemanticModelById } from 'features/semanticModels/actions'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -33,7 +33,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     payloadFile,
     openApiLink,
     error,
-    openApiError,
+    openApiError
   } = useSelector(semanticModelsSelector)
   const dispatch = useDispatch()
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
@@ -71,24 +71,43 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     }
   }
 
+  const onDeleteModel = () => {
+    if (model) {
+      dispatch(deleteSemanticModelById({id: model.urn, modelName: model.name}))
+    }
+  }
+
   return (
     <Dialog open={show}>
       <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
       <DialogContent>
         {model && (
           <>
-            <Divider sx={margin} />
-            <Typography
-              sx={{
-                typography: 'label2',
-                ...margin,
-                p: '18px 16px',
-                bgcolor: 'background.background09',
-              }}
-            >
-              {t('content.semantichub.detail.title')}
-            </Typography>
-            <Divider sx={{ mb: 2, ...margin }} />
+            <Box sx={{position: "relative"}}>
+              <Divider sx={margin} />
+              <Typography
+                sx={{
+                  typography: 'label2',
+                  ...margin,
+                  p: '18px 16px',
+                  bgcolor: 'background.background09',
+                }}
+              >
+                {t('content.semantichub.detail.title')}
+              </Typography>
+              <Button
+                size='small'
+                onClick={onDeleteModel}
+                sx={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: 0
+                }}
+              >
+                Delete Model
+              </Button>
+              <Divider sx={{ mb: 2, ...margin }} />
+            </Box>
             <DetailGrid topic="Version" content={model.version} />
             <Divider sx={{ mb: 2, ...margin }} />
             <DetailGrid topic="Status" content={model.status} />

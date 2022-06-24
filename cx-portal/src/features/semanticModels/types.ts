@@ -16,6 +16,8 @@ export interface SemanticModelsInitialState {
   openApiLink: string
   openApiError: string
   error: string
+  deleteModelId: string
+  deleteError: string
 }
 
 export type FilterParams = {

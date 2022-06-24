@@ -14,10 +14,11 @@ interface ModelTableProps {
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { modelList, loadingModelList } = useSelector(semanticModelsSelector)
+  const { modelList, loadingModelList, deleteModelId } = useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
   const rowCount = 10
+  const modelListHasItems = () => modelList.items.length > 0
 
   useEffect(() => {
     dispatch(
@@ -26,7 +27,18 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   }, [dispatch, pageNumber])
 
   useEffect(() => {
-    setModels((prevModels) => prevModels.concat(modelList.items))
+    if(deleteModelId.length > 0){
+      console.log(models.filter(model => model.urn !== deleteModelId))
+      setModels((prevModels) => prevModels.filter(model => model.urn !== deleteModelId))
+    }
+  }, [deleteModelId])
+
+  useEffect(() => {
+    if(modelListHasItems() && modelList.currentPage === 0)
+      setModels((prevModels) => modelList.items)
+    if(modelListHasItems() && modelList.currentPage > 0) {
+      setModels((prevModels) => prevModels.concat(modelList.items))
+    }
   }, [modelList])
 
   const onSearch = (value: string) => console.log(value)

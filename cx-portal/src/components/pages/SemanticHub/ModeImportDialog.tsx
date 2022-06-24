@@ -6,14 +6,12 @@ import {
   Button,
   Typography,
   Input,
-  Dropzone,
 } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import {
-  fetchSemanticModels,
   postSemanticModel,
 } from 'features/semanticModels/actions'
 import { Status } from 'features/semanticModels/types'
@@ -30,7 +28,7 @@ interface ModelDetailDialogProps {
 
 const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const dispatch = useDispatch()
-  const { modelList, uploading, uploadRequest, error } = useSelector(
+  const { uploading, uploadRequest, error } = useSelector(
     semanticModelsSelector
   )
   const { t } = useTranslation()

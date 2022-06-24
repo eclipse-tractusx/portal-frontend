@@ -7,6 +7,7 @@ import {
   postSemanticModel,
   fetchModelArtefact,
   changeOpenApiUrl,
+  deleteSemanticModelById,
 } from './actions'
 import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
 
@@ -34,6 +35,8 @@ const initialState: SemanticModelsInitialState = {
   openApiLink: '',
   openApiError: '',
   error: '',
+  deleteModelId: '',
+  deleteError: ''
 }
 
 const modelsSlice = createSlice({
@@ -108,6 +111,14 @@ const modelsSlice = createSlice({
     builder.addCase(changeOpenApiUrl.rejected, (state, action) => {
       state.openApiLink = ''
       state.openApiError = action.error.message as string
+    })
+    builder.addCase(deleteSemanticModelById.fulfilled, (state, {payload}) => {
+      state.deleteModelId = payload
+      state.deleteError = ''
+    })
+    builder.addCase(deleteSemanticModelById.rejected, (state, action) => {
+      state.deleteModelId = ''
+      state.deleteError = action.error.message as string
     })
   },
 })

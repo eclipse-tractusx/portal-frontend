@@ -1,23 +1,40 @@
 import StageHeader from 'components/shared/frame/StageHeader'
-import { Button, Typography } from 'cx-portal-shared-components'
-import { useState } from 'react'
+import { Button, PageSnackbar, Typography } from 'cx-portal-shared-components'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchModelArtefact,
   fetchSemanticModelById,
 } from 'features/semanticModels/actions'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModeImportDialog'
+import { semanticModelsSelector } from 'features/semanticModels/slice'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [showModel, setShowModel] = useState<boolean>(false)
   const [importModel, setImportModel] = useState<boolean>(false)
+  const [showDeleteError, setShowDeleteError] = useState<boolean>(false)
+  const [showDeleteSuccess, setShowDeleteSuccess] = useState<boolean>(false)
+  const { deleteError, deleteModelId } = useSelector(semanticModelsSelector)
+
+  useEffect(() => {
+    if(deleteError.length > 0)
+      setShowDeleteError(true);
+  }, [deleteError])
+  
+  useEffect(() => {
+    console.log(deleteModelId)
+    if(deleteModelId.length > 0){
+      setShowModel(false);
+      setShowDeleteSuccess(true);
+    }
+  }, [deleteModelId])
 
   const onModelSelect = (urn: string) => {
     setShowModel(true)
@@ -67,6 +84,20 @@ export default function SemanticHub() {
         show={importModel}
         onClose={() => setImportModel(false)}
       />
+      <PageSnackbar
+        open={showDeleteError}
+        onCloseNotification={() => setShowDeleteError(false)}
+        severity='error'
+        title='Error'
+        description={deleteError}
+        showIcon={true} vertical={'bottom'} horizontal={'left'} />
+
+      <PageSnackbar
+        open={showDeleteSuccess}
+        onCloseNotification={() => setShowDeleteSuccess(false)}
+        severity='success'
+        title='Model deleted!'
+        showIcon={true} vertical={'bottom'} horizontal={'left'} />
     </>
   )
 }

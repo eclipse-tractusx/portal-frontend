@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { FilterParams, NewSemanticModel } from './types'
 
+const message = 'The server responded with an error.'
+
 const fetchSemanticModels = createAsyncThunk(
   'fetch semantic models',
   async ({ filter }: { filter: FilterParams }) => {
@@ -9,21 +11,36 @@ const fetchSemanticModels = createAsyncThunk(
       return await Api.getInstance().getModels(filter)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error('Semantic model api call error.')
+      throw Error(`Fetching models failed: ${message}`)
     }
   }
 )
 const fetchSemanticModelById = createAsyncThunk(
-  'fetch twin by id',
+  'fetch semantic model by id',
   async (id: string) => {
     try {
       return await Api.getInstance().getModelById(id)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error('Get semantic model by id api call error.')
+      throw Error(`Fetching model failed: ${message}`)
     }
   }
 )
+
+const deleteSemanticModelById = createAsyncThunk(
+  'delete model by id',
+  async (params: {id: string, modelName: string}) => {
+    const {id, modelName} = params;
+    try {
+      const encodedUrn = encodeURIComponent(id.replace(modelName, ''));
+      return await Api.getInstance().deleteModelById(encodedUrn).then(() => id);
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error(`Deleting model failed: ${message}`)
+    }
+  }
+)
+
 const postSemanticModel = createAsyncThunk(
   'post semantic model',
   async (model: NewSemanticModel) => {
@@ -43,7 +60,7 @@ const fetchModelArtefact = createAsyncThunk(
       return await Api.getInstance().getArtifact(type, id)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error('Fetch model artefact api call error.')
+      throw Error(`Fetching artefact failed: ${message}`)
     }
   }
 )
@@ -62,6 +79,7 @@ const changeOpenApiUrl = createAsyncThunk(
 export {
   fetchSemanticModels,
   fetchSemanticModelById,
+  deleteSemanticModelById,
   postSemanticModel,
   fetchModelArtefact,
   changeOpenApiUrl,
