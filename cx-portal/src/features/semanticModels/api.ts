@@ -34,7 +34,7 @@ export class Api extends HttpClient {
 
   public getModelById = (id: string) =>
     this.instance.get<SemanticModel>(`models/${id}`, getHeaders())
-  
+
   public deleteModelById = (id: string) =>
     this.instance.delete<string>(`models/${id}`, getHeaders())
 

@@ -29,11 +29,13 @@ const fetchSemanticModelById = createAsyncThunk(
 
 const deleteSemanticModelById = createAsyncThunk(
   'delete model by id',
-  async (params: {id: string, modelName: string}) => {
-    const {id, modelName} = params;
+  async (params: { id: string; modelName: string }) => {
+    const { id, modelName } = params
     try {
-      const encodedUrn = encodeURIComponent(id.replace(modelName, ''));
-      return await Api.getInstance().deleteModelById(encodedUrn).then(() => id);
+      const encodedUrn = encodeURIComponent(id.replace(modelName, ''))
+      return await Api.getInstance()
+        .deleteModelById(encodedUrn)
+        .then(() => id)
     } catch (error: unknown) {
       console.error('api call error:', error)
       throw Error(`Deleting model failed: ${message}`)

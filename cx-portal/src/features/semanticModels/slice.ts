@@ -36,7 +36,7 @@ const initialState: SemanticModelsInitialState = {
   openApiError: '',
   error: '',
   deleteModelId: '',
-  deleteError: ''
+  deleteError: '',
 }
 
 const modelsSlice = createSlice({
@@ -112,7 +112,7 @@ const modelsSlice = createSlice({
       state.openApiLink = ''
       state.openApiError = action.error.message as string
     })
-    builder.addCase(deleteSemanticModelById.fulfilled, (state, {payload}) => {
+    builder.addCase(deleteSemanticModelById.fulfilled, (state, { payload }) => {
       state.deleteModelId = payload
       state.deleteError = ''
     })

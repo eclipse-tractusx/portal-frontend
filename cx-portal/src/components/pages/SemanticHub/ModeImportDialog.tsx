@@ -11,9 +11,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import {
-  postSemanticModel,
-} from 'features/semanticModels/actions'
+import { postSemanticModel } from 'features/semanticModels/actions'
 import { Status } from 'features/semanticModels/types'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -40,7 +38,6 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   useEffect(() => {
     if (uploadRequest === RequestState.OK) {
       onClose()
-      //should there be an alert, when model is uploaded?
     }
   }, [uploadRequest])
 
@@ -89,10 +86,6 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           maxRows={18}
           disabled={uploading}
         />
-        {/* <Dropzone
-          multiple={false}
-          maxFiles={1}
-        /> */}
         {error && <Typography color="error">{error}</Typography>}
       </DialogContent>
       <DialogActions>

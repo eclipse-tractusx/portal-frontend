@@ -14,7 +14,10 @@ import { Divider, Box, CircularProgress, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
 import { useEffect, useState } from 'react'
-import { changeOpenApiUrl, deleteSemanticModelById } from 'features/semanticModels/actions'
+import {
+  changeOpenApiUrl,
+  deleteSemanticModelById,
+} from 'features/semanticModels/actions'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -33,7 +36,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     payloadFile,
     openApiLink,
     error,
-    openApiError
+    openApiError,
   } = useSelector(semanticModelsSelector)
   const dispatch = useDispatch()
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
@@ -73,7 +76,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
 
   const onDeleteModel = () => {
     if (model) {
-      dispatch(deleteSemanticModelById({id: model.urn, modelName: model.name}))
+      dispatch(
+        deleteSemanticModelById({ id: model.urn, modelName: model.name })
+      )
     }
   }
 
@@ -83,7 +88,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
       <DialogContent>
         {model && (
           <>
-            <Box sx={{position: "relative"}}>
+            <Box sx={{ position: 'relative' }}>
               <Divider sx={margin} />
               <Typography
                 sx={{
@@ -96,12 +101,12 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 {t('content.semantichub.detail.title')}
               </Typography>
               <Button
-                size='small'
+                size="small"
                 onClick={onDeleteModel}
                 sx={{
                   position: 'absolute',
                   top: '10px',
-                  right: 0
+                  right: 0,
                 }}
               >
                 Delete Model

@@ -24,15 +24,14 @@ export default function SemanticHub() {
   const { deleteError, deleteModelId } = useSelector(semanticModelsSelector)
 
   useEffect(() => {
-    if(deleteError.length > 0)
-      setShowDeleteError(true);
+    if (deleteError.length > 0) setShowDeleteError(true)
   }, [deleteError])
-  
+
   useEffect(() => {
     console.log(deleteModelId)
-    if(deleteModelId.length > 0){
-      setShowModel(false);
-      setShowDeleteSuccess(true);
+    if (deleteModelId.length > 0) {
+      setShowModel(false)
+      setShowDeleteSuccess(true)
     }
   }, [deleteModelId])
 
@@ -87,17 +86,23 @@ export default function SemanticHub() {
       <PageSnackbar
         open={showDeleteError}
         onCloseNotification={() => setShowDeleteError(false)}
-        severity='error'
-        title='Error'
+        severity="error"
+        title="Error"
         description={deleteError}
-        showIcon={true} vertical={'bottom'} horizontal={'left'} />
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
 
       <PageSnackbar
         open={showDeleteSuccess}
         onCloseNotification={() => setShowDeleteSuccess(false)}
-        severity='success'
-        title='Model deleted!'
-        showIcon={true} vertical={'bottom'} horizontal={'left'} />
+        severity="success"
+        title="Model deleted!"
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </>
   )
 }
