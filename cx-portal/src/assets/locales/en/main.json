@@ -131,6 +131,8 @@
       "detail": {
         "title": "Aspect Model",
         "diagramTitle": "UML diagram of the aspect model",
+        "urnLabel": "URN",
+        "imgAlt": "Model diagram",
         "downloads": {
           "ttl": "TTL",
           "docu": "Documentation",
@@ -139,8 +141,12 @@
         },
         "ttlTooltip": "The downloaded Turtle file looks different but is semantically the same compared to the uploaded Turtle file for the Aspect. To further develop existing Aspects refer to the source Turtle files (e.g. in the Catena-X BAMM Model GitHub Repository)",
         "downloadTitle": "Download options related to this aspect model",
-        "url": "URL",
-        "saveUrl": "Save new URL"
+        "openApi": {
+          "inputLabel": "Enter a base URL to change the default open API URL.",
+          "inputPlaceholder": "Default URL",
+          "buttonText": "Save new URL",
+          "buttonTitle": "Get Open API JSON"
+        }
       }
     },
     "digitaltwin": {

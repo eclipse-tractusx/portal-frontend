@@ -10,6 +10,7 @@ export interface SemanticModelsInitialState {
   jsonFile: string
   docuFile: string
   payloadFile: string
+  artefactError: string
   uploadedModel: Nullable<SemanticModel>
   uploading: boolean
   uploadError: string

@@ -28,6 +28,7 @@ const initialState: SemanticModelsInitialState = {
   jsonFile: '',
   docuFile: '',
   payloadFile: '',
+  artefactError: '',
   uploadedModel: null,
   uploading: false,
   uploadError: '',
@@ -90,16 +91,16 @@ const modelsSlice = createSlice({
     })
     builder.addCase(fetchModelArtefact.pending, (state, action) => {
       setFileType(action.meta.arg.type, state, '')
-      state.error = ''
+      state.artefactError = ''
     })
     builder.addCase(fetchModelArtefact.fulfilled, (state, action) => {
       const value = URL.createObjectURL(action.payload)
       setFileType(action.meta.arg.type, state, value)
-      state.error = ''
+      state.artefactError = ''
     })
     builder.addCase(fetchModelArtefact.rejected, (state, action) => {
       setFileType(action.meta.arg.type, state, '')
-      state.error = action.error.message as string
+      state.artefactError = action.error.message as string
     })
     builder.addCase(changeOpenApiUrl.fulfilled, (state, action) => {
       state.openApiLink = URL.createObjectURL(action.payload)

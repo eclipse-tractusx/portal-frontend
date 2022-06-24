@@ -24,8 +24,13 @@ export default function SemanticHub() {
   const [errorAlertMsg, setErrorAlertMsg] = useState<string>('')
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
   const [successAlertMsg, setSuccessAlertMsg] = useState<string>('')
-  const { deleteError, deleteModelId, uploadedModel, uploadError } =
-    useSelector(semanticModelsSelector)
+  const {
+    deleteError,
+    deleteModelId,
+    uploadedModel,
+    uploadError,
+    artefactError,
+  } = useSelector(semanticModelsSelector)
 
   useEffect(() => {
     if (deleteError.length > 0) {
@@ -33,6 +38,13 @@ export default function SemanticHub() {
       setShowErrorAlert(true)
     }
   }, [deleteError])
+
+  useEffect(() => {
+    if (artefactError.length > 0) {
+      setErrorAlertMsg(artefactError)
+      setShowErrorAlert(true)
+    }
+  }, [artefactError])
 
   useEffect(() => {
     if (uploadError.length > 0) {
@@ -72,10 +84,6 @@ export default function SemanticHub() {
     const encodedUrn = encodeURIComponent(urn)
     dispatch(fetchSemanticModelById(encodedUrn))
     dispatch(fetchModelArtefact({ type: 'diagram', id: encodedUrn }))
-    dispatch(fetchModelArtefact({ type: 'ttl', id: encodedUrn }))
-    dispatch(fetchModelArtefact({ type: 'json', id: encodedUrn }))
-    dispatch(fetchModelArtefact({ type: 'payload', id: encodedUrn }))
-    dispatch(fetchModelArtefact({ type: 'docu', id: encodedUrn }))
   }
 
   return (

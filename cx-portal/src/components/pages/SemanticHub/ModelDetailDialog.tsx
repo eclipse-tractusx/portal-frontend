@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react'
 import {
   changeOpenApiUrl,
   deleteSemanticModelById,
+  fetchModelArtefact,
 } from 'features/semanticModels/actions'
 
 interface ModelDetailDialogProps {
@@ -44,28 +45,31 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const margin = { mr: -2, ml: -2 }
 
   const getFile = (type: string) => {
-    switch (type) {
-      case 'diagram': {
-        return diagram
-      }
-      case 'ttl': {
-        return ttlFile
-      }
-      case 'json': {
-        return jsonFile
-      }
-      case 'payload': {
-        return payloadFile
-      }
-      case 'docu': {
-        return docuFile
-      }
+    if (model) {
+      const encodedUrn = encodeURIComponent(model.urn)
+      dispatch(fetchModelArtefact({ type: type, id: encodedUrn }))
     }
   }
 
   useEffect(() => {
     if (openApiLink.length > 0) window.open(openApiLink, '_blank')
   }, [openApiLink])
+
+  useEffect(() => {
+    if (ttlFile.length > 0) window.open(ttlFile, '_blank')
+  }, [ttlFile])
+
+  useEffect(() => {
+    if (jsonFile.length > 0) window.open(jsonFile, '_blank')
+  }, [jsonFile])
+
+  useEffect(() => {
+    if (docuFile.length > 0) window.open(docuFile, '_blank')
+  }, [docuFile])
+
+  useEffect(() => {
+    if (payloadFile.length > 0) window.open(payloadFile, '_blank')
+  }, [payloadFile])
 
   const onOpenApiUrlChange = () => {
     if (model) {
@@ -113,11 +117,20 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               </Button>
               <Divider sx={{ mb: 2, ...margin }} />
             </Box>
-            <DetailGrid topic="Version" content={model.version} />
+            <DetailGrid
+              topic={t('content.semantichub.table.columns.version')}
+              content={model.version}
+            />
             <Divider sx={{ mb: 2, ...margin }} />
-            <DetailGrid topic="Status" content={model.status} />
+            <DetailGrid
+              topic={t('content.semantichub.table.columns.status')}
+              content={model.status}
+            />
             <Divider sx={{ mb: 2, ...margin }} />
-            <DetailGrid topic="URN" content={model.urn} />
+            <DetailGrid
+              topic={t('content.semantichub.detail.urnLabel')}
+              content={model.urn}
+            />
             <Typography variant="h5" mb={4}>
               {t('content.semantichub.detail.diagramTitle')}
             </Typography>
@@ -126,33 +139,47 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 style={{ marginBottom: '32px' }}
                 width="100%"
                 src={diagram}
-                alt="Model diagram"
+                alt={t('content.semantichub.detail.imgAlt')}
               />
             )}
-            <Typography variant="h5" mb={4}>
+            <Typography variant="h5" mb={2}>
               {t('content.semantichub.detail.downloadTitle')}
             </Typography>
-            <Tooltip title="Add" arrow placement="bottom-start">
-              <DownloadLink type="ttl" href={getFile('ttl')} />
-            </Tooltip>
-            {downloadItems.map((download) => (
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              mb={2}
+            >
               <DownloadLink
-                key={`download_${download}`}
-                type={download}
-                href={getFile(download)}
+                type="ttl"
+                onClick={getFile}
+                title={t('content.semantichub.detail.ttlTooltip')}
               />
-            ))}
+              {downloadItems.map((download) => (
+                <DownloadLink
+                  key={`download_${download}`}
+                  type={download}
+                  onClick={getFile}
+                />
+              ))}
+            </Box>
             <Box display="flex" alignItems="flex-end">
               <Box sx={{ flexGrow: '1', mr: 2 }}>
                 <Input
-                  label={'Enter a base URL to change the default open API URL'}
-                  placeholder={'Default URL'}
+                  label={t('content.semantichub.detail.openApi.inputLabel')}
+                  placeholder={t(
+                    'content.semantichub.detail.openApi.inputPlaceholder'
+                  )}
                   onChange={(e) => setOpenApiUrlInput(e.target.value)}
                   value={openApiUrlInput}
                 />
               </Box>
-              <Button title="Get Open API JSON" onClick={onOpenApiUrlChange}>
-                Save new URL
+              <Button
+                title={t('content.semantichub.detail.openApi.buttonTitle')}
+                onClick={onOpenApiUrlChange}
+              >
+                {t('content.semantichub.detail.openApi.buttonText')}
               </Button>
             </Box>
             {openApiError && (

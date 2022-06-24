@@ -1,27 +1,27 @@
 import DownloadIcon from '@mui/icons-material/Download'
-import { Typography } from 'cx-portal-shared-components'
+import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 interface DownloadLinkProps {
   type: string
-  href: string | undefined
+  onClick: (type: string) => void
+  title?: string
 }
-const DownloadLink = ({ type, href }: DownloadLinkProps) => {
+const DownloadLink = ({ type, onClick, title }: DownloadLinkProps) => {
   const { t } = useTranslation()
 
   return (
-    <a
+    <Button
       key={`download_${type}`}
-      style={{ display: 'flex', marginBottom: '16px' }}
-      href={href}
-      target="_blank"
-      rel="noreferrer"
+      size="small"
+      startIcon={<DownloadIcon />}
+      variant="text"
+      onClick={() => onClick(type)}
+      title={title}
+      sx={{ mb: 1 }}
     >
-      <DownloadIcon sx={{ mr: '20px', alignItems: 'center' }} />
-      <Typography>
-        {t(`content.semantichub.detail.downloads.${type}`)}
-      </Typography>
-    </a>
+      {t(`content.semantichub.detail.downloads.${type}`)}
+    </Button>
   )
 }
 

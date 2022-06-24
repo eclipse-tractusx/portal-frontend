@@ -47,7 +47,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     if (modelListHasItems() && modelList.currentPage > 0) {
       setModels((prevModels) => prevModels.concat(modelList.items))
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelList])
 
   const onSearch = (value: string) => console.log(value)

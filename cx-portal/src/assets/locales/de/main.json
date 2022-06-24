@@ -129,18 +129,24 @@
         "buttonCancel": "Abbrechen"
       },
       "detail": {
-        "title": "Aspect Model",
-        "diagramTitle": "UML diagram of the aspect model",
+        "title": "Aspekt-Modell",
+        "diagramTitle": "UML Diagramm des Aspekts",
+        "urnLabel": "URN",
+        "imgAlt": "Modelldiagram",
         "downloads": {
           "ttl": "TTL",
-          "docu": "Documentation",
+          "docu": "Dokumentation",
           "json": "JSON Schema",
-          "payload": "Example Payload JSON"
+          "payload": "Beispiel Payload JSON"
         },
         "ttlTooltip": "Das runtergeladene Turtle-Dokument sieht anders aus, ist jedoch semantisch das gleiche im Vergleich zum hochgeladenen Aspekt Turtle-Dokument. Um bestehende Aspekte weiterzuentwickeln, beziehen Sie sich auf die Turtle-Quelldateien (z. B. im Catena-X BAMM Model GitHub Repository).",
-        "downloadTitle": "Download options related to this aspect model",
-        "url": "URL",
-        "saveUrl": "Save new URL"
+        "downloadTitle": "Download-Optionen für das Aspekt-Modell",
+        "openApi": {
+          "inputLabel": "Gebe eine URL ein, um den Basis-Pfad der Open API URL zu ändern.",
+          "inputPlaceholder": "Default URL",
+          "buttonText": "Neue URL speichern",
+          "buttonTitle": "Open API JSON generieren"
+        }
       }
     },
     "digitaltwin": {

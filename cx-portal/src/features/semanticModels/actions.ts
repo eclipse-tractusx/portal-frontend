@@ -62,7 +62,7 @@ const fetchModelArtefact = createAsyncThunk(
       return await Api.getInstance().getArtifact(type, id)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error(`Fetching artefact failed: ${message}`)
+      throw Error(`Fetching ${type} failed: ${message}`)
     }
   }
 )
