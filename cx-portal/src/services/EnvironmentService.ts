@@ -26,7 +26,7 @@ export const getCentralIdp = () => {
   return 'https://centralidp.dev.demo.catena-x.net/auth'
 }
 
-export const getClientId = () => 'Cl3-CX-Semantic'
+export const getClientId = () => 'Cl2-CX-Portal'
 
 //TODO: remove hard coded url and activate after setup of BPDM Api
 export const getBpdmApiBase = () => {
