@@ -108,7 +108,7 @@
       "alerts": {
         "alertSuccessTitle": "Erfolg!",
         "alertErrorTitle": "Fehler!",
-        "uploadSuccess": "Modell wure erfolgreich hochgeladen.",
+        "uploadSuccess": "Modell wurde erfolgreich hochgeladen.",
         "deleteSuccess": "Modell wurde erfolgreich gelöscht."
       },
       "table": {
