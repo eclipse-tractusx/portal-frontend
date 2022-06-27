@@ -3,6 +3,8 @@ import { ComponentStory } from '@storybook/react'
 import { CustomAccordion as Component } from '.'
 import { Table } from '../StaticTable/StaticTable.stories'
 import { CustomAccordionProps } from './Item'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 
 export default {
   title: 'CustomAccordion',
@@ -20,6 +22,7 @@ const item_1_open: CustomAccordionProps = {
   expanded: true,
   id: 'panel-1',
   title: 'First Item',
+  icon: <HomeOutlinedIcon />,
   children: <Typography>Content of the first item</Typography>,
 }
 
@@ -27,6 +30,7 @@ const item_1_open_colored: CustomAccordionProps = {
   expanded: false,
   id: 'panel-1',
   title: 'First Item',
+  icon: <HomeOutlinedIcon />,
   color: 'background.background09',
   children: (
     <Box>
@@ -52,6 +56,7 @@ const item_1_open_colored: CustomAccordionProps = {
 const item_2_closed: CustomAccordionProps = {
   expanded: false,
   id: 'panel-2',
+  icon: <SettingsOutlinedIcon />,
   title: 'Second Item',
   children: <Typography>Content of the second item</Typography>,
 }
