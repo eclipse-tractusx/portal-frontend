@@ -12,7 +12,11 @@ export interface PageHeaderProps {
   headerHeight?: number
   hasSubtract?: boolean
   subtractOption?: 'Option1' | 'Option2' | 'Option3'
-  background?: 'LinearGradient1' | 'LinearGradient2' | 'LinearGradient3' | 'LinearGradient4'
+  background?:
+    | 'LinearGradient1'
+    | 'LinearGradient2'
+    | 'LinearGradient3'
+    | 'LinearGradient4'
 }
 
 export const PageHeader = ({

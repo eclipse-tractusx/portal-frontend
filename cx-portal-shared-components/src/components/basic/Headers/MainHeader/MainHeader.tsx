@@ -8,7 +8,11 @@ export interface MainHeaderProps {
   subTitle?: string
   subTitleWidth?: number
   headerHeight?: number
-  background?: 'LinearGradient1' | 'LinearGradient2' | 'LinearGradient3' | 'LinearGradient4'
+  background?:
+    | 'LinearGradient1'
+    | 'LinearGradient2'
+    | 'LinearGradient3'
+    | 'LinearGradient4'
   imagePath?: string
 }
 
