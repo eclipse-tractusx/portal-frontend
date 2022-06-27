@@ -63,6 +63,7 @@ export default function RegistrationRequests() {
             columns: columns,
             rowsCount: registrationRequests.length,
             title: `${t('content.admin.registration-requests.tabletitle')}`,
+            headerHeight: 76,
             rowHeight: 100,
             hideFooter: true,
             disableColumnFilter: true,
