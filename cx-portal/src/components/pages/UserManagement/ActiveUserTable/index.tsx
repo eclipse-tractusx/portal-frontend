@@ -68,6 +68,7 @@ export const ActiveUserTable = ({
         ]}
         getRowId={(row: { [key: string]: string }) => row.companyUserId}
         headerHeight={57}
+        disableColumnMenu
         hideFooter
         rowHeight={57}
         rows={tenantUsers}

@@ -39,6 +39,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
     <section>
       <Table
         rowsCount={twinList.totalItems}
+        disableColumnMenu
         hideFooter
         loading={loading}
         disableSelectionOnClick={true}

@@ -84,6 +84,7 @@ export const AppUserDetailsTable = ({
           ]}
           rows={tenantUsers}
           getRowId={(row: { [key: string]: string }) => row.companyUserId}
+          disableColumnMenu
           hideFooter
         />
       </section>
