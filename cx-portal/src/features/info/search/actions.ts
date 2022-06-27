@@ -71,28 +71,42 @@ const searchForExpression = async function (expr: string) {
       emptyPartnerResult,
       emptyNewsResult,
       Patterns.MAIL.test(expr)
-        ? await UserApi.getInstance().getTenantUsers()
+        ? await UserApi.getInstance()
+            .getTenantUsers()
+            .catch(() => emptyUserResult)
         : emptyUserResult,
     ])
   } else if (Patterns.UUID.test(expr)) {
     return Promise.all([
       emptyPageResult,
-      await AppsApi.getInstance().getActive(),
+      AppsApi.getInstance()
+        .getActive()
+        .catch(() => emptyAppResult),
       emptyPartnerResult,
       emptyNewsResult,
-      await UserApi.getInstance().getTenantUsers(),
+      UserApi.getInstance()
+        .getTenantUsers()
+        .catch(() => emptyUserResult),
     ])
   } else {
     return Promise.all([
       I18nService.searchPages(expr),
-      await AppsApi.getInstance().getActive(),
-      await PartnerNetworkApi.getInstance().getAllBusinessPartner({
-        name: expr,
-        page: 0,
-        size: 5,
-      }),
-      await NewsApi.getInstance().getItems(),
-      await UserApi.getInstance().getTenantUsers(),
+      AppsApi.getInstance()
+        .getActive()
+        .catch(() => emptyAppResult),
+      PartnerNetworkApi.getInstance()
+        .getAllBusinessPartner({
+          name: expr,
+          page: 0,
+          size: 5,
+        })
+        .catch(() => emptyPartnerResult),
+      NewsApi.getInstance()
+        .getItems()
+        .catch(() => emptyNewsResult),
+      UserApi.getInstance()
+        .getTenantUsers()
+        .catch(() => emptyUserResult),
     ])
   }
 }
@@ -106,41 +120,41 @@ const fetchSearch = createAsyncThunk(
     const searchExpr = new RegExp(trexpr, 'gi')
     const isUUID = Patterns.UUID.test(trexpr)
     try {
-      let [pages, apps, partners, news, users] = await searchForExpression(
+      const [pages, apps, partners, news, users] = await searchForExpression(
         trexpr
       )
       return [
         pages
-          .filter((item) => AccessService.hasAccess(item))
-          .map((item) => pageToSearchItem(item)),
+          .filter((item: string) => AccessService.hasAccess(item))
+          .map((item: string) => pageToSearchItem(item)),
         apps
-          .filter((item) =>
+          .filter((item: AppMarketplaceApp) =>
             isUUID
               ? item.id.match(searchExpr)
               : item.title.match(searchExpr) || item.provider.match(searchExpr)
           )
-          .map((item) => appToSearchItem(item)),
-        partners.content.map((item) =>
+          .map((item: AppMarketplaceApp) => appToSearchItem(item)),
+        partners.content.map((item: { businessPartner: BusinessPartner }) =>
           businessPartnerToSearchItem(item.businessPartner)
         ),
         news
           .filter(
-            (item) =>
+            (item: CardItems) =>
               item.title?.match(searchExpr) ||
               item.subtitle?.match(searchExpr) ||
               item.description?.match(searchExpr)
           )
-          .map((item) => newsToSearchItem(item)),
+          .map((item: CardItems) => newsToSearchItem(item)),
         users
-          .filter((item) =>
+          .filter((item: TenantUser) =>
             isUUID
-              ? item.userEntityId.match(searchExpr) ||
+              ? item.userEntityId?.match(searchExpr) ||
                 item.companyUserId.match(searchExpr)
               : item.firstName?.match(searchExpr) ||
                 item.lastName?.match(searchExpr) ||
                 item.email.match(searchExpr)
           )
-          .map((item) => userToSearchItem(item)),
+          .map((item: TenantUser) => userToSearchItem(item)),
       ].flat()
     } catch (error: unknown) {
       console.error('api call error:', error)

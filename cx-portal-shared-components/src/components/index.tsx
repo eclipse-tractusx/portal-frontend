@@ -40,6 +40,7 @@ export { PageNotifications } from './basic/Notifications/PageNotification'
 export { PageSnackbar } from './basic/Notifications/Snackbar'
 export { ErrorPage } from './basic/ErrorPage'
 export { MultiSelectList } from './basic/MultiSelectList'
+export { ProcessList } from './basic/ProcessList'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
