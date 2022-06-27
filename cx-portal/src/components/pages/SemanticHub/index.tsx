@@ -43,9 +43,15 @@ export default function SemanticHub() {
       setShowErrorAlert(true)
     }
   }, [deleteError])
+
+  const resetMessages = () => {
+    setShowErrorAlert(false);
+    setShowSuccessAlert(false)
+  }
   
   useEffect(() => {
     if(modelId){
+      resetMessages();
       setShowModel(true)
       const encodedUrn = encodeURIComponent(modelId)
       dispatch(fetchSemanticModelById(encodedUrn))
@@ -54,6 +60,7 @@ export default function SemanticHub() {
   }, [modelId])
 
   useEffect(() => {
+    console.log(errorAlertMsg)
     if (artefactError.length > 0) {
       setErrorAlertMsg(artefactError)
       setShowErrorAlert(true)
@@ -97,6 +104,12 @@ export default function SemanticHub() {
     navigate(`/semantichub/${encodeURIComponent(urn)}`)
   }
 
+  const onDetailClose = () => {
+    navigate('/semantichub/');
+    setShowModel(false)
+    resetMessages();
+  }
+
   return (
     <>
       <StageHeader title={t('content.semantichub.title')} />
@@ -131,7 +144,7 @@ export default function SemanticHub() {
         </section>
         <ModelTable onModelSelect={onModelSelect} />
       </main>
-      <ModelDetailDialog show={showModel} onClose={() => setShowModel(false)} />
+      <ModelDetailDialog show={showModel} onClose={onDetailClose} />
       <ModelImportDialog
         show={importModel}
         onClose={() => setImportModel(false)}
