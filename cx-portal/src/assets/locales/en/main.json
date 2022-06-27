@@ -128,6 +128,13 @@
         "buttonConfirm": "Upload",
         "buttonCancel": "Cancel"
       },
+      "deleteDialog": {
+        "title": "Delete aspect model",
+        "subtitle": "Are you sure you want to delete the aspect model?",
+        "info": "Note: If you delete the model now, you won't be able to reactivate it later.",
+        "buttonConfirm": "Delete",
+        "buttonCancel": "Cancel"
+      },
       "detail": {
         "deleteButton": "Delete Model",
         "diagramTitle": "UML diagram of the aspect model",
