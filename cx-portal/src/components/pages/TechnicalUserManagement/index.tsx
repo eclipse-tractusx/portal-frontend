@@ -38,6 +38,7 @@ export default function TechnicalUserManagement() {
   }
 
   const openAddTechnicalUserResponseOverlay = () => {
+    setOpen(false)
     setOpenResponse(true)
   }
 
