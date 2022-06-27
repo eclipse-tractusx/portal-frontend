@@ -13,7 +13,7 @@ export const SemanticModelTableColumns = (
     ...columnIds.map((item) => {
       return {
         field: item,
-        flex: 2,
+        flex: item === 'name' || item ==='status' ? 3 : 2,
         headerName: t(`content.semantichub.table.columns.${item}`),
       }
     }),
@@ -22,6 +22,9 @@ export const SemanticModelTableColumns = (
       headerName: `Detail`,
       flex: 1,
       align: 'center',
+      minWidth: 100,
+      sortable: false,
+      filterable: false,
       renderCell: ({ row }: { row: SemanticModel }) => (
         <IconButton
           onClick={() => onDetailClick(row.urn)}
