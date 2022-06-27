@@ -45,13 +45,13 @@ export default function SemanticHub() {
   }, [deleteError])
 
   const resetMessages = () => {
-    setShowErrorAlert(false);
+    setShowErrorAlert(false)
     setShowSuccessAlert(false)
   }
-  
+
   useEffect(() => {
-    if(modelId){
-      resetMessages();
+    if (modelId) {
+      resetMessages()
       setShowModel(true)
       const encodedUrn = encodeURIComponent(modelId)
       dispatch(fetchSemanticModelById(encodedUrn))
@@ -105,9 +105,9 @@ export default function SemanticHub() {
   }
 
   const onDetailClose = () => {
-    navigate('/semantichub/');
+    navigate('/semantichub/')
     setShowModel(false)
-    resetMessages();
+    resetMessages()
   }
 
   return (

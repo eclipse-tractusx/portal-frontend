@@ -94,7 +94,7 @@ const ALL_PAGES: IPage[] = [
         <Route index element={<></>} />
         <Route path=":modelId" element={<SemanticHub />} />
       </Route>
-    )
+    ),
   },
   {
     name: PAGES.DEVELOPERHUB,

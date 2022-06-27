@@ -13,7 +13,7 @@ export const SemanticModelTableColumns = (
     ...columnIds.map((item) => {
       return {
         field: item,
-        flex: item === 'name' || item ==='status' ? 3 : 2,
+        flex: item === 'name' || item === 'status' ? 3 : 2,
         headerName: t(`content.semantichub.table.columns.${item}`),
       }
     }),

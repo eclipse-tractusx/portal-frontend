@@ -83,7 +83,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   }
 
   const onDeleteConfirm = () => {
-    setShowDeleteConfirm(false);
+    setShowDeleteConfirm(false)
     if (model) {
       dispatch(
         deleteSemanticModelById({ id: model.urn, modelName: model.name })
@@ -207,28 +207,38 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               />
             </Box>
           )}
-          {error &&
-            <Box sx={{textAlign: 'center'}}>
-              <Typography variant="h4" mb={3}>{t('content.semantichub.detail.nomodelTitle')}</Typography>
-              <Typography>{t('content.semantichub.detail.nomodelText')}</Typography>
+          {error && (
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h4" mb={3}>
+                {t('content.semantichub.detail.nomodelTitle')}
+              </Typography>
+              <Typography>
+                {t('content.semantichub.detail.nomodelText')}
+              </Typography>
             </Box>
-          }
+          )}
         </DialogContent>
       </Dialog>
       <Dialog open={showDeleteConfirm}>
-        <DialogContent sx={{textAlign: 'center', pt: 7, pb: 7}}>
-          <Typography variant='h4' mb={3}>{t('content.semantichub.deleteDialog.title')}</Typography>
-          <Typography variant='h5' mb={3}>{t('content.semantichub.deleteDialog.subtitle')}</Typography>
-          <Typography sx={{typography: 'body01'}}>{t('content.semantichub.deleteDialog.info')}</Typography>
+        <DialogContent sx={{ textAlign: 'center', pt: 7, pb: 7 }}>
+          <Typography variant="h4" mb={3}>
+            {t('content.semantichub.deleteDialog.title')}
+          </Typography>
+          <Typography variant="h5" mb={3}>
+            {t('content.semantichub.deleteDialog.subtitle')}
+          </Typography>
+          <Typography sx={{ typography: 'body01' }}>
+            {t('content.semantichub.deleteDialog.info')}
+          </Typography>
         </DialogContent>
         <DialogActions>
-        <Button onClick={() => setShowDeleteConfirm(false)}>
-          {t('content.semantichub.deleteDialog.buttonCancel')}
-        </Button>
-        <Button onClick={onDeleteConfirm}>
-          {t('content.semantichub.deleteDialog.buttonConfirm')}
-        </Button>
-      </DialogActions>
+          <Button onClick={() => setShowDeleteConfirm(false)}>
+            {t('content.semantichub.deleteDialog.buttonCancel')}
+          </Button>
+          <Button onClick={onDeleteConfirm}>
+            {t('content.semantichub.deleteDialog.buttonConfirm')}
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   )
