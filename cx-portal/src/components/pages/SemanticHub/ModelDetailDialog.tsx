@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { DetailGrid } from 'components/shared/basic/DetailGrid'
 import {
   Dialog,
@@ -55,24 +56,28 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     }
   }
 
+  const openFileInNewTab = (file: string) => {
+    if(file.length > 0) window.open(file, '_blank');
+  }
+
   useEffect(() => {
-    if (openApiLink.length > 0) window.open(openApiLink, '_blank')
+    openFileInNewTab(openApiLink)
   }, [openApiLink])
 
   useEffect(() => {
-    if (ttlFile.length > 0) window.open(ttlFile, '_blank')
+    openFileInNewTab(ttlFile)
   }, [ttlFile])
 
   useEffect(() => {
-    if (jsonFile.length > 0) window.open(jsonFile, '_blank')
+    openFileInNewTab(jsonFile)
   }, [jsonFile])
 
   useEffect(() => {
-    if (docuFile.length > 0) window.open(docuFile, '_blank')
+    openFileInNewTab(docuFile)
   }, [docuFile])
 
   useEffect(() => {
-    if (payloadFile.length > 0) window.open(payloadFile, '_blank')
+    openFileInNewTab(payloadFile)
   }, [payloadFile])
 
   const onOpenApiUrlChange = () => {
