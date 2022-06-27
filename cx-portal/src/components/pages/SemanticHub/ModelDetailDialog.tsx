@@ -207,7 +207,12 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               />
             </Box>
           )}
-          {error && <Typography color="error">{error}</Typography>}
+          {error &&
+            <Box sx={{textAlign: 'center'}}>
+              <Typography variant="h4" mb={3}>{t('content.semantichub.detail.nomodelTitle')}</Typography>
+              <Typography>{t('content.semantichub.detail.nomodelText')}</Typography>
+            </Box>
+          }
         </DialogContent>
       </Dialog>
       <Dialog open={showDeleteConfirm}>

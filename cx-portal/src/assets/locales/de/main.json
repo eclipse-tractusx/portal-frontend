@@ -153,7 +153,9 @@
           "inputPlaceholder": "Default URL",
           "buttonText": "Neue URL speichern",
           "buttonTitle": "Open API JSON generieren"
-        }
+        },
+        "nomodelTitle": "Oooops! Kein Modell gefunden!",
+        "nomodelText": "Die verwendete URN ist entweder falsch, oder das Modell existiert noch nicht."
       }
     },
     "digitaltwin": {
