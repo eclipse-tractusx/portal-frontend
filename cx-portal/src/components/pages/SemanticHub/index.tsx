@@ -16,10 +16,13 @@ import ModelImportDialog from './ModeImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/MainTypes'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { modelId } = useParams()
   const [showModel, setShowModel] = useState<boolean>(false)
   const [importModel, setImportModel] = useState<boolean>(false)
   const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false)
@@ -40,6 +43,15 @@ export default function SemanticHub() {
       setShowErrorAlert(true)
     }
   }, [deleteError])
+  
+  useEffect(() => {
+    if(modelId){
+      setShowModel(true)
+      const encodedUrn = encodeURIComponent(modelId)
+      dispatch(fetchSemanticModelById(encodedUrn))
+      dispatch(fetchModelArtefact({ type: 'diagram', id: encodedUrn }))
+    }
+  }, [modelId])
 
   useEffect(() => {
     if (artefactError.length > 0) {
@@ -82,10 +94,7 @@ export default function SemanticHub() {
   }
 
   const onModelSelect = (urn: string) => {
-    setShowModel(true)
-    const encodedUrn = encodeURIComponent(urn)
-    dispatch(fetchSemanticModelById(encodedUrn))
-    dispatch(fetchModelArtefact({ type: 'diagram', id: encodedUrn }))
+    navigate(`/semantichub/${encodeURIComponent(urn)}`)
   }
 
   return (
