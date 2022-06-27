@@ -12,7 +12,7 @@ export interface PageHeaderProps {
   headerHeight?: number
   hasSubtract?: boolean
   subtractOption?: 'Option1' | 'Option2' | 'Option3'
-  background?: 'LinearGradient1' | 'LinearGradient2'
+  background?: 'LinearGradient1' | 'LinearGradient2' | 'LinearGradient3' | 'LinearGradient4'
 }
 
 export const PageHeader = ({
@@ -34,6 +34,18 @@ export const PageHeader = ({
         direction: 152.33,
         colorFrom: '#adb9c7 4.24%',
         colorTo: '#e4ebf3 72.17%',
+      }
+    } else if (background === 'LinearGradient3') {
+      return {
+        direction: 292.62,
+        colorFrom: '#FF782C -16.38%',
+        colorTo: '#FFB326 82.22%',
+      }
+    } else if (background === 'LinearGradient4') {
+      return {
+        direction: 111.81,
+        colorFrom: '#9EABA9 41.97%',
+        colorTo: '#B6A763 72.9%',
       }
     } else {
       return {
