@@ -24,7 +24,7 @@ export const DialogHeader = ({
   const { spacing, palette } = useTheme()
 
   return (
-    <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
+    <Box sx={{ padding: spacing(4), textAlign: 'center' }}>
       <MuiDialogTitle>
         {icon && (
           <Box>
