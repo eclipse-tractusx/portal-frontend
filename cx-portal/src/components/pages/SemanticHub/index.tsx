@@ -7,11 +7,9 @@ import { Grid } from '@mui/material'
 import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  fetchSemanticModelById,
-} from 'features/semanticModels/actions'
+import { fetchSemanticModelById } from 'features/semanticModels/actions'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import ModelImportDialog from './ModeImportDialog'
+import ModelImportDialog from './ModelImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/MainTypes'
@@ -28,12 +26,8 @@ export default function SemanticHub() {
   const [errorAlertMsg, setErrorAlertMsg] = useState<string>('')
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
   const [successAlertMsg, setSuccessAlertMsg] = useState<string>('')
-  const {
-    deleteError,
-    deleteModelId,
-    uploadedModel,
-    uploadError,
-  } = useSelector(semanticModelsSelector)
+  const { deleteError, deleteModelId, uploadedModel, uploadError } =
+    useSelector(semanticModelsSelector)
 
   useEffect(() => {
     if (deleteError.length > 0) {

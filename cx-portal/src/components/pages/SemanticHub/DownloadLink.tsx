@@ -41,29 +41,31 @@ const DownloadLink = ({ urn, type, title }: DownloadLinkProps) => {
           break
         }
       }
-      fetch(`${getSemanticApiBase()}hub/api/v1/models/${encodedUrn}/${url}`, getHeaders())
-        .then(response => {
+      fetch(
+        `${getSemanticApiBase()}hub/api/v1/models/${encodedUrn}/${url}`,
+        getHeaders()
+      )
+        .then((response) => {
           if (!response.ok) {
             setError(t('content.semantichub.detail.fileError'))
           } else {
-            return response.blob();
-          } 
+            return response.blob()
+          }
         })
-        .then(result => {
-          if(result){
+        .then((result) => {
+          if (result) {
             setFile(URL.createObjectURL(result))
           }
-        }
-      );
+        })
     }
   }
 
-  const openFileInNewTab = (file: string) => {
-    if(file.length > 0) window.open(file, '_blank');
+  const openFileInNewTab = (f: string) => {
+    if (f.length > 0) window.open(f, '_blank')
   }
 
   useEffect(() => {
-    if(file.length > 0){
+    if (file.length > 0) {
       openFileInNewTab(file)
     }
   }, [file])

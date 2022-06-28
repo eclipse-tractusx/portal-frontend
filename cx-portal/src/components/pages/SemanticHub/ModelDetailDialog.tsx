@@ -32,13 +32,9 @@ interface ModelDetailDialogProps {
 
 const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const { t } = useTranslation()
-  const {
-    model,
-    loadingModel,
-    openApiLink,
-    error,
-    openApiError,
-  } = useSelector(semanticModelsSelector)
+  const { model, loadingModel, openApiLink, error, openApiError } = useSelector(
+    semanticModelsSelector
+  )
   const dispatch = useDispatch()
   const [diagram, setDiagram] = useState<string>('')
   const [diagramError, setDiagramError] = useState<string>('')
@@ -48,26 +44,31 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const margin = { mr: -2, ml: -2 }
 
   useEffect(() => {
-    setDiagram('');
-    if(model){
-      fetch(`${getSemanticApiBase()}hub/api/v1/models/${encodeURIComponent(model.urn)}/diagram`, getHeaders())
-        .then(response => {
+    setDiagram('')
+    if (model) {
+      fetch(
+        `${getSemanticApiBase()}hub/api/v1/models/${encodeURIComponent(
+          model.urn
+        )}/diagram`,
+        getHeaders()
+      )
+        .then((response) => {
           if (!response.ok) {
             setDiagramError(t('content.semantichub.detail.fileError'))
           } else {
-            return response.blob();
-          } 
+            return response.blob()
+          }
         })
-        .then(result => {
-          if(result){
+        .then((result) => {
+          if (result) {
             setDiagram(URL.createObjectURL(result))
           }
-        });
+        })
     }
   }, [model])
 
   useEffect(() => {
-    if(openApiLink.length > 0) window.open(openApiLink, '_blank');
+    if (openApiLink.length > 0) window.open(openApiLink, '_blank')
   }, [openApiLink])
 
   const onOpenApiUrlChange = () => {
@@ -86,7 +87,11 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     }
   }
 
-  const Loading = <CircularProgress size={35} sx={{color: theme.palette.primary.main}}/>
+  const Loading = (
+    <Box sx={{ textAlign: 'center' }}>
+      <CircularProgress size={35} sx={{ color: theme.palette.primary.main }} />
+    </Box>
+  )
 
   return (
     <>
@@ -139,22 +144,21 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               <Typography variant="h5" mb={4}>
                 {t('content.semantichub.detail.diagramTitle')}
               </Typography>
-              {diagram ?
+              {diagram ? (
                 <img
                   style={{ marginBottom: '32px' }}
                   width="100%"
                   src={diagram}
                   alt={t('content.semantichub.detail.imgAlt')}
                 />
-              :
-              <Box sx={{ textAlign: 'center' }}>
-                {diagramError.length > 0 ?
-                  <Typography color="error">Fehler</Typography>
-                  :
-                  Loading
-                }
-              </Box>
-              }
+              ) : (
+                Loading
+              )}
+              {diagramError.length > 0 && (
+                <Typography color="error">
+                  t('content.semantichub.detail.fileError')
+                </Typography>
+              )}
               <Typography variant="h5" mb={2}>
                 {t('content.semantichub.detail.downloadTitle')}
               </Typography>
@@ -202,7 +206,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               )}
             </>
           )}
-          {loadingModel && <Box sx={{ textAlign: 'center' }}>Loading</Box>}
+          {loadingModel && Loading}
           {error && (
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="h4" mb={3}>
