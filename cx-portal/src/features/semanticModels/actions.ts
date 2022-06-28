@@ -5,7 +5,7 @@ import { FilterParams, NewSemanticModel } from './types'
 const message = 'The server responded with an error.'
 
 const fetchSemanticModels = createAsyncThunk(
-  'fetch semantic models',
+  'semantic/models/fetch',
   async ({ filter }: { filter: FilterParams }) => {
     try {
       return await Api.getInstance().getModels(filter)
@@ -16,7 +16,7 @@ const fetchSemanticModels = createAsyncThunk(
   }
 )
 const fetchSemanticModelById = createAsyncThunk(
-  'fetch semantic model by id',
+  'semantic/model/fetchById',
   async (id: string) => {
     try {
       return await Api.getInstance().getModelById(id)
@@ -28,7 +28,7 @@ const fetchSemanticModelById = createAsyncThunk(
 )
 
 const deleteSemanticModelById = createAsyncThunk(
-  'delete model by id',
+  'semantic/model/delete',
   async (params: { id: string; modelName: string }) => {
     const { id, modelName } = params
     try {
@@ -44,7 +44,7 @@ const deleteSemanticModelById = createAsyncThunk(
 )
 
 const postSemanticModel = createAsyncThunk(
-  'post semantic model',
+  'semantic/model/post',
   async (model: NewSemanticModel) => {
     try {
       return await Api.getInstance().postSemanticModel(model)
@@ -55,7 +55,7 @@ const postSemanticModel = createAsyncThunk(
   }
 )
 const changeOpenApiUrl = createAsyncThunk(
-  'change open API URL and fetch JSON',
+  'semantic/model/openApi/post',
   async (params: { id: string; url: string }) => {
     const { id, url } = params
     try {
