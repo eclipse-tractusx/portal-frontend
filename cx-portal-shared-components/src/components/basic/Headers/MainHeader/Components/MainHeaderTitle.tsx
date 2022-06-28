@@ -1,5 +1,5 @@
-import { Typography } from 'cx-portal-shared-components'
 import { MainHeaderProps } from '../MainHeader'
+import { Typography } from '../../../Typography'
 
 export const MainHeaderTitle = ({
   title,
