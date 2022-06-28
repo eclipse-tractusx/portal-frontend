@@ -4,7 +4,6 @@ import {
   fetchSemanticModelById,
   fetchSemanticModels,
   postSemanticModel,
-  fetchModelArtefact,
   changeOpenApiUrl,
   deleteSemanticModelById,
 } from './actions'
@@ -23,12 +22,6 @@ const initialState: SemanticModelsInitialState = {
   loadingModelList: false,
   model: null,
   loadingModel: false,
-  diagram: '',
-  ttlFile: '',
-  jsonFile: '',
-  docuFile: '',
-  payloadFile: '',
-  artefactError: '',
   uploadedModel: null,
   uploading: false,
   uploadError: '',
@@ -89,19 +82,6 @@ const modelsSlice = createSlice({
       state.uploadedModel = null
       state.uploadError = action.error.message as string
     })
-    builder.addCase(fetchModelArtefact.pending, (state, action) => {
-      setFileType(action.meta.arg.type, state, '')
-      state.artefactError = ''
-    })
-    builder.addCase(fetchModelArtefact.fulfilled, (state, action) => {
-      const value = URL.createObjectURL(action.payload)
-      setFileType(action.meta.arg.type, state, value)
-      state.artefactError = ''
-    })
-    builder.addCase(fetchModelArtefact.rejected, (state, action) => {
-      setFileType(action.meta.arg.type, state, '')
-      state.artefactError = action.error.message as string
-    })
     builder.addCase(changeOpenApiUrl.fulfilled, (state, action) => {
       state.openApiLink = URL.createObjectURL(action.payload)
       state.openApiError = ''
@@ -120,35 +100,6 @@ const modelsSlice = createSlice({
     })
   },
 })
-
-const setFileType = (
-  type: string,
-  state: SemanticModelsInitialState,
-  value: string
-) => {
-  switch (type) {
-    case 'diagram': {
-      state.diagram = value
-      break
-    }
-    case 'ttl': {
-      state.ttlFile = value
-      break
-    }
-    case 'json': {
-      state.jsonFile = value
-      break
-    }
-    case 'docu': {
-      state.docuFile = value
-      break
-    }
-    case 'payload': {
-      state.payloadFile = value
-      break
-    }
-  }
-}
 
 export const semanticModelsSelector = (
   state: RootState

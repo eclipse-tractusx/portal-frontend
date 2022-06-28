@@ -54,18 +54,6 @@ const postSemanticModel = createAsyncThunk(
     }
   }
 )
-const fetchModelArtefact = createAsyncThunk(
-  'fetch model artefact',
-  async (params: { type: string; id: string }) => {
-    const { type, id } = params
-    try {
-      return await Api.getInstance().getArtifact(type, id)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
-      throw Error(`Fetching ${type} failed: ${message}`)
-    }
-  }
-)
 const changeOpenApiUrl = createAsyncThunk(
   'change open API URL and fetch JSON',
   async (params: { id: string; url: string }) => {
@@ -83,6 +71,5 @@ export {
   fetchSemanticModelById,
   deleteSemanticModelById,
   postSemanticModel,
-  fetchModelArtefact,
   changeOpenApiUrl,
 }

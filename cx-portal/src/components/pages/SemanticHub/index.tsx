@@ -8,7 +8,6 @@ import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  fetchModelArtefact,
   fetchSemanticModelById,
 } from 'features/semanticModels/actions'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
@@ -34,7 +33,6 @@ export default function SemanticHub() {
     deleteModelId,
     uploadedModel,
     uploadError,
-    artefactError,
   } = useSelector(semanticModelsSelector)
 
   useEffect(() => {
@@ -55,17 +53,8 @@ export default function SemanticHub() {
       setShowModel(true)
       const encodedUrn = encodeURIComponent(modelId)
       dispatch(fetchSemanticModelById(encodedUrn))
-      dispatch(fetchModelArtefact({ type: 'diagram', id: encodedUrn }))
     }
   }, [modelId])
-
-  useEffect(() => {
-    console.log(errorAlertMsg)
-    if (artefactError.length > 0) {
-      setErrorAlertMsg(artefactError)
-      setShowErrorAlert(true)
-    }
-  }, [artefactError])
 
   useEffect(() => {
     if (uploadError.length > 0) {

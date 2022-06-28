@@ -19,10 +19,11 @@ import { useEffect, useState } from 'react'
 import {
   changeOpenApiUrl,
   deleteSemanticModelById,
-  fetchModelArtefact,
 } from 'features/semanticModels/actions'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/MainTypes'
+import { getSemanticApiBase } from 'services/EnvironmentService'
+import { getHeaders } from 'services/RequestService'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -34,51 +35,40 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const {
     model,
     loadingModel,
-    diagram,
-    ttlFile,
-    jsonFile,
-    docuFile,
-    payloadFile,
     openApiLink,
     error,
     openApiError,
   } = useSelector(semanticModelsSelector)
   const dispatch = useDispatch()
+  const [diagram, setDiagram] = useState<string>('')
+  const [diagramError, setDiagramError] = useState<string>('')
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
   const downloadItems = ['docu', 'json', 'payload']
   const margin = { mr: -2, ml: -2 }
 
-  const getFile = (type: string) => {
-    if (model) {
-      const encodedUrn = encodeURIComponent(model.urn)
-      dispatch(fetchModelArtefact({ type: type, id: encodedUrn }))
+  useEffect(() => {
+    setDiagram('');
+    if(model){
+      fetch(`${getSemanticApiBase()}hub/api/v1/models/${encodeURIComponent(model.urn)}/diagram`, getHeaders())
+        .then(response => {
+          if (!response.ok) {
+            setDiagramError(t('content.semantichub.detail.fileError'))
+          } else {
+            return response.blob();
+          } 
+        })
+        .then(result => {
+          if(result){
+            setDiagram(URL.createObjectURL(result))
+          }
+        });
     }
-  }
-
-  const openFileInNewTab = (file: string) => {
-    if(file.length > 0) window.open(file, '_blank');
-  }
+  }, [model])
 
   useEffect(() => {
-    openFileInNewTab(openApiLink)
+    if(openApiLink.length > 0) window.open(openApiLink, '_blank');
   }, [openApiLink])
-
-  useEffect(() => {
-    openFileInNewTab(ttlFile)
-  }, [ttlFile])
-
-  useEffect(() => {
-    openFileInNewTab(jsonFile)
-  }, [jsonFile])
-
-  useEffect(() => {
-    openFileInNewTab(docuFile)
-  }, [docuFile])
-
-  useEffect(() => {
-    openFileInNewTab(payloadFile)
-  }, [payloadFile])
 
   const onOpenApiUrlChange = () => {
     if (model) {
@@ -95,6 +85,8 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
       )
     }
   }
+
+  const Loading = <CircularProgress size={35} sx={{color: theme.palette.primary.main}}/>
 
   return (
     <>
@@ -147,14 +139,22 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               <Typography variant="h5" mb={4}>
                 {t('content.semantichub.detail.diagramTitle')}
               </Typography>
-              {diagram && (
+              {diagram ?
                 <img
                   style={{ marginBottom: '32px' }}
                   width="100%"
                   src={diagram}
                   alt={t('content.semantichub.detail.imgAlt')}
                 />
-              )}
+              :
+              <Box sx={{ textAlign: 'center' }}>
+                {diagramError.length > 0 ?
+                  <Typography color="error">Fehler</Typography>
+                  :
+                  Loading
+                }
+              </Box>
+              }
               <Typography variant="h5" mb={2}>
                 {t('content.semantichub.detail.downloadTitle')}
               </Typography>
@@ -166,14 +166,14 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               >
                 <DownloadLink
                   type="ttl"
-                  onClick={getFile}
+                  urn={model.urn}
                   title={t('content.semantichub.detail.ttlTooltip')}
                 />
                 {downloadItems.map((download) => (
                   <DownloadLink
                     key={`download_${download}`}
                     type={download}
-                    onClick={getFile}
+                    urn={model.urn}
                   />
                 ))}
               </Box>
@@ -202,16 +202,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               )}
             </>
           )}
-          {loadingModel && (
-            <Box sx={{ textAlign: 'center' }}>
-              <CircularProgress
-                size={35}
-                sx={{
-                  color: theme.palette.primary.main,
-                }}
-              />
-            </Box>
-          )}
+          {loadingModel && <Box sx={{ textAlign: 'center' }}>Loading</Box>}
           {error && (
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="h4" mb={3}>

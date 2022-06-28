@@ -146,6 +146,7 @@
           "json": "JSON Schema",
           "payload": "Beispiel Payload JSON"
         },
+        "fileError": "Fehler: Die Datei konnte nicht geladen werden.",
         "ttlTooltip": "Das runtergeladene Turtle-Dokument sieht anders aus, ist jedoch semantisch das gleiche im Vergleich zum hochgeladenen Aspekt Turtle-Dokument. Um bestehende Aspekte weiterzuentwickeln, beziehen Sie sich auf die Turtle-Quelldateien (z. B. im Catena-X BAMM Model GitHub Repository).",
         "downloadTitle": "Download-Optionen für das Aspekt-Modell",
         "openApi": {

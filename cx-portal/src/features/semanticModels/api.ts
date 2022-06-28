@@ -45,36 +45,6 @@ export class Api extends HttpClient {
       getTextHeaders()
     )
 
-  public getArtifact = (type: string, id: string) => {
-    let url = ''
-    switch (type) {
-      case 'diagram': {
-        url = 'diagram'
-        break
-      }
-      case 'ttl': {
-        url = 'file'
-        break
-      }
-      case 'json': {
-        url = 'json-schema'
-        break
-      }
-      case 'payload': {
-        url = 'example-payload'
-        break
-      }
-      case 'docu': {
-        url = 'documentation'
-        break
-      }
-    }
-    return this.instance.get<Blob>(`models/${id}/${url}`, {
-      responseType: 'blob',
-      ...getHeaders(),
-    })
-  }
-
   public getOpenAPIUrl = (id: string, url: string) =>
     this.instance.get<Blob>(`models/${id}/openapi?baseUrl=${url}`, {
       responseType: 'blob',
