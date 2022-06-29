@@ -19,4 +19,7 @@ export class Api extends HttpClient {
 
   public getUserOwn = () =>
     this.instance.get<OwnUser>(`/api/administration/user/ownuser`, getHeaders())
+
+  public resetPassword = (companyUserId: string) =>
+    this.instance.put<any>(`/api/administration/user/ownCompany/users/${companyUserId}/resetPassword`, getHeaders())
 }

@@ -18,10 +18,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import uniqueId from 'lodash/uniqueId'
 import { useParams } from 'react-router-dom'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
 import { fetch } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { putResetPassword } from 'features/admin/userOwn/actions'
 
 export default function UserDetails() {
   const { t } = useTranslation()
@@ -29,6 +30,21 @@ export default function UserDetails() {
   console.log(`TODO: get user details for ${appId}`)
 
   const ownUser = useSelector(ownUserSelector)
+  console.log('ownUser', ownUser)
+
+  const {resetStatus, error} = useSelector(resetSelector)
+  console.log('resetStatus', resetStatus)
+  console.log('error', error)
+  var errorMsg= ''
+  if(resetStatus){
+    errorMsg = 'Password Reset Successfully'
+  }else if(error == 401){
+    errorMsg = 'The maximum amount of errors is triggered already. Please try it later again'
+  }else if(error == 500){
+    errorMsg = 'The password reset was unsuccessful. An issue occurred. Please try It later again'
+  }else if(error == 404){
+    errorMsg = 'Reset of the password was unsuccessful due to missing permissions.'
+  }
 
   const dispatch = useDispatch()
 
@@ -63,7 +79,7 @@ export default function UserDetails() {
   }
 
   const handleResetPasswordForUser = () => {
-    console.log('Reset user pasword method')
+    dispatch(putResetPassword(ownUser.companyUserId))
   }
 
   const renderChips = (row: GridRowModel) => {
@@ -89,7 +105,6 @@ export default function UserDetails() {
         topPage={false}
         headerHeight={200}
       />
-
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
@@ -138,7 +153,15 @@ export default function UserDetails() {
             <UserAvatar size="large" />
           </Box>
         </Box>
-
+        <div className="errorMsg">
+          {error && (
+            <>
+              <Typography variant="h5">
+                {errorMsg}
+              </Typography>
+            </>
+          )}
+        </div>
         {ownUser && (
           <UserDetailsComponent
             userDetailsCards={userDetailsToCards(ownUser)}
