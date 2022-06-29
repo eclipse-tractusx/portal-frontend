@@ -10,13 +10,11 @@ export const SemanticModelTableColumns = (
 ): Array<GridColDef> => {
   const columnIds = ['name', 'status', 'type', 'version', 'src']
   return [
-    ...columnIds.map((item) =>
-      ({
-        field: item,
-        flex: item === 'name' || item === 'status' ? 3 : 2,
-        headerName: t(`content.semantichub.table.columns.${item}`),
-      })
-    ),
+    ...columnIds.map((item) => ({
+      field: item,
+      flex: item === 'name' || item === 'status' ? 3 : 2,
+      headerName: t(`content.semantichub.table.columns.${item}`),
+    })),
     {
       field: 'detail',
       headerName: `Detail`,
