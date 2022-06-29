@@ -20,9 +20,8 @@ import uniqueId from 'lodash/uniqueId'
 import { useParams } from 'react-router-dom'
 import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
-import { fetch } from 'features/admin/userOwn/actions'
+import { fetch, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
-import { putResetPassword } from 'features/admin/userOwn/actions'
 
 export default function UserDetails() {
   const { t } = useTranslation()
@@ -35,7 +34,7 @@ export default function UserDetails() {
   const { resetStatus, error } = useSelector(resetSelector)
   console.log('resetStatus', resetStatus)
   console.log('error', error)
-  var errorMsg = ''
+  let errorMsg = ''
   if (resetStatus) {
     errorMsg = 'Password Reset Successfully'
   } else if (error == 401) {
