@@ -14,8 +14,8 @@ export const Table = ({
   columns,
   rows,
   autoHeight = true,
-  headerHeight = 76, // Default header height from base design
-  rowHeight = 76, // Default row height from base design
+  headerHeight = 57, // Default header height from base design
+  rowHeight = 57, // Default row height from base design
   rowsCount = 0,
   title,
   toolbar,

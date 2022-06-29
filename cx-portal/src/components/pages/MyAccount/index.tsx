@@ -77,7 +77,7 @@ export default function MyAccount() {
         title={t('pages.account')}
         topPage={false}
         headerHeight={200}
-      ></PageHeader>
+      />
 
       <section>
         <Box
@@ -144,6 +144,7 @@ export default function MyAccount() {
           rowsCount={userAppRoles.length}
           getRowId={(row: { [key: string]: string }) => row.id}
           sx={{ marginTop: '80px' }}
+          disableColumnMenu
           hideFooter
         />
       </section>

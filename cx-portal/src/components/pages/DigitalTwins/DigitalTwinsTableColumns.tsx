@@ -21,6 +21,8 @@ export const DigitalTwinsTableColumns = (
       headerName: t('content.digitaltwin.table.columns.sm_count'),
       flex: 1,
       align: 'center',
+      sortable: false,
+      filterable: false,
       renderCell: ({ row }: { row: ShellDescriptor }) => (
         <>{row.submodelDescriptors.length}</>
       ),

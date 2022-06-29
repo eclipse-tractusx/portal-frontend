@@ -84,7 +84,17 @@ const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SEMANTICHUB,
     role: ROLES.SEMANTICHUB_VIEW,
-    element: <SemanticHub />,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SEMANTICHUB}
+        path={PAGES.SEMANTICHUB}
+        element={<SemanticHub />}
+      >
+        <Route index element={<></>} />
+        <Route path=":modelId" element={<SemanticHub />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.DEVELOPERHUB,

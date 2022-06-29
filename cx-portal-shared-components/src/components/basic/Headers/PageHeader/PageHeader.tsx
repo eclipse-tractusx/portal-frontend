@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { HeaderTitle } from './Components/HeaderTitle'
 import { HeaderSubtractOption1 } from './Components/HeaderSubtractOption1'
 import { HeaderSubtractOption2 } from './Components/HeaderSubtractOption2'
@@ -12,7 +12,11 @@ export interface PageHeaderProps {
   headerHeight?: number
   hasSubtract?: boolean
   subtractOption?: 'Option1' | 'Option2' | 'Option3'
-  background?: 'LinearGradient1' | 'LinearGradient2'
+  background?:
+    | 'LinearGradient1'
+    | 'LinearGradient2'
+    | 'LinearGradient3'
+    | 'LinearGradient4'
 }
 
 export const PageHeader = ({
@@ -24,9 +28,13 @@ export const PageHeader = ({
   subtractOption = 'Option1',
   background = 'LinearGradient1',
 }: PageHeaderProps) => {
-  const top = topPage ? mainNavigationHeight + 36 : 36
+  const { palette } = useTheme()
+  const hasChildren = !!children
+  // TODO: to many magic numbers and the overall composition of this header needs to be thought through again
+  // ternary operator hell: topPage/hasChildren : topPage/!hasChildren : !topPage/hasChildren : !topPage/!hasChildren
+  const top = topPage ? (hasChildren ? 73 : 153) : hasChildren ? 0 : 68
   const height = topPage ? headerHeight + mainNavigationHeight : headerHeight
-  const spacingTop = topPage ? -mainNavigationHeight : 0
+  const spacingTop = topPage ? -mainNavigationHeight : hasChildren ? 0 : 12
 
   const backgroundStyle = () => {
     if (background === 'LinearGradient1') {
@@ -34,6 +42,18 @@ export const PageHeader = ({
         direction: 152.33,
         colorFrom: '#adb9c7 4.24%',
         colorTo: '#e4ebf3 72.17%',
+      }
+    } else if (background === 'LinearGradient3') {
+      return {
+        direction: 292.62,
+        colorFrom: '#FF782C -16.38%',
+        colorTo: '#FFB326 82.22%',
+      }
+    } else if (background === 'LinearGradient4') {
+      return {
+        direction: 111.81,
+        colorFrom: '#9EABA9 41.97%',
+        colorTo: '#B6A763 72.9%',
       }
     } else {
       return {
@@ -56,15 +76,38 @@ export const PageHeader = ({
         }, ${backgroundStyle().colorTo})`,
       }}
     >
+      {children && (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '80px',
+            backgroundColor: palette.background.background13,
+            position: 'relative',
+            top: topPage ? '85px' : '0',
+          }}
+        >
+          <Box
+            sx={{
+              maxWidth: '1200px',
+              width: '100%',
+              margin: '0 auto',
+              padding: '0 20px',
+            }}
+          >
+            {children}
+          </Box>
+        </Box>
+      )}
       <Box
         sx={{
           maxWidth: '1200px',
           padding: '0px 20px',
           margin: '0px auto',
           paddingTop: `${top}px`,
+          marginTop: !topPage ? '-12px' : '0',
         }}
       >
-        {children}
         <HeaderTitle title={title} />
       </Box>
       {subtractOption === 'Option1' && (

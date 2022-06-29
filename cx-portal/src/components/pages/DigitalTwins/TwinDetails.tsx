@@ -3,7 +3,7 @@ import {
   ShellDescriptor,
   SubmodelDescriptors,
 } from 'features/digitalTwins/types'
-import { TwinDetailGrid } from './TwinDetailGrid'
+import { DetailGrid } from '../../shared/basic/DetailGrid'
 import { Grid, Box, Divider, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
@@ -31,7 +31,7 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
             {t('content.digitaltwin.detail.assetId')}
           </Typography>
           {twin.submodelDescriptors.length > 0 && (
-            <TwinDetailGrid
+            <DetailGrid
               topic={t('content.digitaltwin.detail.submodel_endpoints')}
               content={twin.submodelDescriptors.length}
             />
@@ -39,19 +39,19 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           {twin.specificAssetIds.map((saId, index) => (
             <Box key={saId.key}>
-              <TwinDetailGrid
+              <DetailGrid
                 topic={t('content.digitaltwin.detail.key')}
                 content={saId.key}
               />
               <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <TwinDetailGrid
+              <DetailGrid
                 topic={t('content.digitaltwin.detail.value')}
                 content={saId.value}
               />
               {saId.semanticId && (
                 <>
                   <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-                  <TwinDetailGrid
+                  <DetailGrid
                     topic={t('content.digitaltwin.detail.semanticid')}
                     content={saId.semanticId.value.join(', ')}
                   />
@@ -75,7 +75,7 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
     <>
       {getDesciption(subModel)}
       <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-      <TwinDetailGrid
+      <DetailGrid
         topic={t('content.digitaltwin.detail.semanticid')}
         link={{
           pathname: `/semantichub/${encodeURIComponent(semId)}`,
@@ -101,17 +101,17 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
       {subModel.endpoints.map((endpoint, indexEndpoint) => (
         <Box key={`${idKey}_${endpoint.interface}_${indexEndpoint}`}>
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <TwinDetailGrid
+          <DetailGrid
             topic={t('content.digitaltwin.detail.interface')}
             content={endpoint.interface}
           />
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <TwinDetailGrid
+          <DetailGrid
             topic={t('content.digitaltwin.detail.protocol')}
             content={endpoint.protocolInformation.endpointProtocol}
           />
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <TwinDetailGrid
+          <DetailGrid
             topic={t('content.digitaltwin.detail.protocol_version')}
             content={endpoint.protocolInformation.endpointProtocolVersion}
           />
