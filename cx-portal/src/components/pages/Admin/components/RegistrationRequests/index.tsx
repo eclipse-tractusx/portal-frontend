@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Table, Typography } from 'cx-portal-shared-components'
+import { Table, Typography, PageHeader } from 'cx-portal-shared-components'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -11,7 +11,6 @@ import { RegistrationRequestsTableColumns } from 'components/pages/Admin/compone
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
-import StageHeader from 'components/shared/frame/StageHeader'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -43,8 +42,10 @@ export default function RegistrationRequests() {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
-      <StageHeader
+      <PageHeader
         title={t('content.admin.registration-requests.headertitle')}
+        topPage={false}
+        headerHeight={200}
       />
       <div className="page-title-container">
         <Typography
@@ -63,6 +64,7 @@ export default function RegistrationRequests() {
             columns: columns,
             rowsCount: registrationRequests.length,
             title: `${t('content.admin.registration-requests.tabletitle')}`,
+            headerHeight: 76,
             rowHeight: 100,
             hideFooter: true,
             disableColumnFilter: true,

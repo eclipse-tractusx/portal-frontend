@@ -184,6 +184,7 @@ export default function UserDetails() {
           rowsCount={userAppRoles.length}
           getRowId={(row: { [key: string]: string }) => row.id}
           sx={{ marginTop: '80px' }}
+          disableColumnMenu
           hideFooter
         />
       </section>
