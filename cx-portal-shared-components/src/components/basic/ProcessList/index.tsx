@@ -17,8 +17,12 @@ export const ProcessList = ({
   return (
     <Box>
       {list &&
-        list.filter((item: any) => item.step <= elementNumbers && item.step <= list.length)
-          .map(item =>
+        list
+          .filter(
+            (item: any) =>
+              item.step <= elementNumbers && item.step <= list.length
+          )
+          .map((item) => (
             <ListItem
               step={item.step}
               headline={item.headline}
@@ -27,8 +31,7 @@ export const ProcessList = ({
               stepsFontColor={stepsFontColor}
               lastItem={item.step === elementNumbers}
             />
-          )
-      }
+          ))}
     </Box>
   )
 }
