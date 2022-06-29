@@ -51,8 +51,7 @@ export const slice = createSlice({
 export const ownUserSelector = (state: RootState): OwnUser =>
   state.admin.userOwn.data
 
-export const resetSelector = (state: RootState): any => 
-  state.admin.userOwn
+export const resetSelector = (state: RootState): any => state.admin.userOwn
 
 const Slice = { slice }
 
