@@ -11,4 +11,15 @@ const fetch = createAsyncThunk(`${name}/fetch`, async () => {
   }
 })
 
-export { fetch }
+const putResetPassword = createAsyncThunk(
+  `${name}/resetPassword`,
+  async (companyUserId: string) => {
+    try {
+      return await Api.getInstance().resetPassword(companyUserId)
+    } catch (error: any) {
+      throw Error(JSON.stringify(error.response.status))
+    }
+  }
+)
+
+export { fetch, putResetPassword }
