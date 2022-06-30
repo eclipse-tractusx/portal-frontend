@@ -17,20 +17,21 @@ export const ProcessList = ({
   return (
     <Box>
       {list &&
-        list.map((item: any) => {
-          if (item.step <= elementNumbers && item.step <= list.length) {
-            return (
-              <ListItem
-                step={item.step}
-                headline={item.headline}
-                description={item.description}
-                stepsColor={stepsColor}
-                stepsFontColor={stepsFontColor}
-                lastItem={item.step === elementNumbers}
-              />
-            )
-          }
-        })}
+        list
+          .map(
+            (item: any) =>
+              item.step <= elementNumbers && item.step <= list.length
+          )
+          .map((item: any) => (
+            <ListItem
+              step={item.step}
+              headline={item.headline}
+              description={item.description}
+              stepsColor={stepsColor}
+              stepsFontColor={stepsFontColor}
+              lastItem={item.step === elementNumbers}
+            />
+          ))}
     </Box>
   )
 }
