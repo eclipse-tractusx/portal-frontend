@@ -67,7 +67,7 @@ const CompanyDetailOverlay = ({
         ) : (
           <DialogContent
             sx={{
-              padding: '0 30px',
+              padding: '0 120px',
               marginBottom: 5,
             }}
           >
