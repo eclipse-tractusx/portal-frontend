@@ -15,7 +15,7 @@ export const Dialog = ({
   ...props
 }: DialogProps & AddtionalDialogProps) => {
   const radius =
-    modalBorderRadius && modalBorderRadius !== 0 ? modalBorderRadius : 10
+    modalBorderRadius && modalBorderRadius !== 0 ? modalBorderRadius : 20
   return (
     <MuiDialog
       {...props}
