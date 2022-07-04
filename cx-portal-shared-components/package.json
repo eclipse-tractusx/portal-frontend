@@ -1,6 +1,6 @@
 {
   "name": "cx-portal-shared-components",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",
@@ -10,6 +10,11 @@
     "url": "https://github.com/catenax-ng/product-portal-frontend.git"
   },
   "author": "Catena-X NG <julia.jeroch@bmw.de> (https://github.com/catena-ng/)",
+  "files": [
+    "package.json",
+    "src",
+    "dist"
+  ],
   "scripts": {
     "start": "yarn start:storybook",
     "build:lib": "rollup -c",
