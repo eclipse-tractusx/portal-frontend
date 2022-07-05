@@ -1,6 +1,5 @@
 import { ComponentStory } from '@storybook/react'
 import { SearchCategory } from 'features/info/search/types'
-import { groupBy } from 'lodash'
 import { SearchResultGroup as Component } from '.'
 
 export default {
