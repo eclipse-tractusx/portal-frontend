@@ -11,9 +11,9 @@ export const pageToSearchItem = (item: string): SearchItem => ({
 })
 
 export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
-  id: item.id,
+  ...item,
   category: SearchCategory.APP,
-  title: `${item.provider} | ${item.title}`,
+  description: item.provider,
 })
 
 export const businessPartnerToSearchItem = (
@@ -21,17 +21,20 @@ export const businessPartnerToSearchItem = (
 ): SearchItem => ({
   id: item.bpn,
   category: SearchCategory.PARTNER,
-  title: `${item.bpn} | ${item.names[0]?.value}`,
+  title: item.names[0]?.value,
+  description: item.bpn,
 })
 
 export const newsToSearchItem = (item: CardItems): SearchItem => ({
   id: item.id || '0',
   category: SearchCategory.NEWS,
-  title: `${item.title} | ${item.subtitle}`,
+  title: item.title,
+  description: item.subtitle,
 })
 
 export const userToSearchItem = (item: TenantUser): SearchItem => ({
   id: item.userEntityId,
   category: SearchCategory.USER,
-  title: `${item.firstName} ${item.lastName} <${item.email}>`,
+  title: `${item.firstName || ''} ${item.lastName || ''}`,
+  description: item.email,
 })
