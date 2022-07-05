@@ -496,6 +496,16 @@
       "reload": "Seite neuladen",
       "homepage": "Startseite"
     },
+    "search": {
+      "category": {
+        "USECASE": "Anwendungsfälle",
+        "APP": "Apps",
+        "USER": "Benutzer",
+        "PARTNER": "Geschäftspartner",
+        "PAGE": "Seiten",
+        "NEWS": "Neuigkeiten"
+      }
+    },
     "userRoles": {
       "itAdmin": "IT Admin",
       "businessAdmin": "Business Admin",

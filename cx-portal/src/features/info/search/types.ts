@@ -6,6 +6,7 @@ export enum SearchCategory {
   APP = 'APP',
   NEWS = 'NEWS',
   PAGE = 'PAGE',
+  USECASE = 'USECASE',
   USER = 'USER',
   PARTNER = 'PARTNER',
 }
