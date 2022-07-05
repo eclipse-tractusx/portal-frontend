@@ -1,6 +1,5 @@
 import { ComponentStory } from '@storybook/react'
 import { SearchCategory } from 'features/info/search/types'
-
 import { SearchResultItem as Component } from '.'
 
 export default {

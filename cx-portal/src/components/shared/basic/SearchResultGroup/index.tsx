@@ -2,7 +2,7 @@ import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
-import { SearchCategory, SearchItem } from 'features/info/search/types'
+import { SearchItem } from 'features/info/search/types'
 import { SearchResultItem } from '../SearchResultItem'
 import { useTranslation } from 'react-i18next'
 
@@ -10,13 +10,6 @@ const SearchResultList = styled(List)<{ component?: React.ElementType }>({
   '& .MuiListItemButton-root': {
     paddingLeft: 12,
     paddingRight: 12,
-  },
-  '& .MuiListItemIcon-root': {
-    minWidth: 0,
-    marginRight: 16,
-  },
-  '& .MuiSvgIcon-root': {
-    fontSize: 12,
   },
 })
 
