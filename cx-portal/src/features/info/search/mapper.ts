@@ -22,14 +22,14 @@ export const businessPartnerToSearchItem = (
   id: item.bpn,
   category: SearchCategory.PARTNER,
   title: item.names[0]?.value,
-  description: item.bpn
+  description: item.bpn,
 })
 
 export const newsToSearchItem = (item: CardItems): SearchItem => ({
   id: item.id || '0',
   category: SearchCategory.NEWS,
   title: item.title,
-  description: item.subtitle
+  description: item.subtitle,
 })
 
 export const userToSearchItem = (item: TenantUser): SearchItem => ({
