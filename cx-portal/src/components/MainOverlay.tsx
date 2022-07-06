@@ -5,7 +5,7 @@ import {
 } from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { stateSelector } from 'features/control/overlay/slice'
-import { Overlay } from 'features/control/overlay/types'
+import { Overlay, OverlayState } from 'features/control/overlay/types'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,6 +24,19 @@ const getOverlayTitle = (type: Overlay) => {
       return '' //no title or pages.appdetails
     default:
       return ''
+  }
+}
+
+const getOverlay = (overlay: OverlayState) => {
+  switch (overlay.type) {
+    case Overlay.INVITE:
+      return <InviteForm />
+    case Overlay.COMPANY:
+      return <BusinessPartnerDetail id={overlay.id} />
+    case Overlay.APP:
+      return <AppDetailContent id={overlay.id} />
+    default:
+      return <></>
   }
 }
 
@@ -52,11 +65,7 @@ export default function MainOverlay() {
         }}
       />
       <DialogContent>
-        {overlay.type === Overlay.COMPANY && (
-          <BusinessPartnerDetail id={overlay.id} />
-        )}
-        {overlay.type === Overlay.APP && <AppDetailContent id={overlay.id} />}
-        {overlay.type === Overlay.INVITE && <InviteForm />}
+        {getOverlay(overlay)}
       </DialogContent>
     </Dialog>
   )

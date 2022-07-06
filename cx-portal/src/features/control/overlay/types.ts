@@ -4,6 +4,7 @@ export enum Overlay {
   NONE = 'NONE',
   COMPANY = 'COMPANY',
   USER = 'USER',
+  ADD_USER = 'ADD_USER',
   TECHUSER = 'TECHUSER',
   APP = 'APP',
   INVITE = 'INVITE',
