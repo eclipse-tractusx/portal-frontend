@@ -1,7 +1,6 @@
 import { Box } from '@mui/material'
 import {
   Button,
-  UserDetails,
   UserAvatar,
   Typography,
   Table,
@@ -23,6 +22,7 @@ import { fetch } from 'features/admin/userOwn/actions'
 import './MyAccount.scss'
 import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { UserDetails } from 'components/shared/basic/UserDetails'
 
 export default function MyAccount() {
   const { t } = useTranslation()

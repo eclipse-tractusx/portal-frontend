@@ -5,7 +5,6 @@ import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import { Box } from '@mui/material'
 import {
   Button,
-  UserDetails as UserDetailsComponent,
   UserAvatar,
   Typography,
   Table,
@@ -22,6 +21,7 @@ import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
 import { fetch, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { UserDetails as UserDetailsComponent } from 'components/shared/basic/UserDetails'
 
 export default function UserDetails() {
   const { t } = useTranslation()
@@ -29,11 +29,9 @@ export default function UserDetails() {
   console.log(`TODO: get user details for ${appId}`)
 
   const ownUser = useSelector(ownUserSelector)
-  console.log('ownUser', ownUser)
 
   const { resetStatus, error } = useSelector(resetSelector)
-  console.log('resetStatus', resetStatus)
-  console.log('error', error)
+  
   let errorMsg = ''
   if (resetStatus) {
     errorMsg = 'Password Reset Successfully'
