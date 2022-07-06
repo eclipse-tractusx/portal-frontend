@@ -2,14 +2,26 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
 
-const fetch = createAsyncThunk(`${name}/fetch`, async () => {
+const fetchOwn = createAsyncThunk(`${name}/fetchOwn`, async () => {
   try {
     return await Api.getInstance().getUserOwn()
   } catch (error: unknown) {
     console.error('api call error:', error)
-    throw Error(`${name}/fetch error`)
+    throw Error(`${name}/fetchOwn error`)
   }
 })
+
+const fetchAny = createAsyncThunk(
+  `${name}/fetchAny`,
+  async (companyUserId: string) => {
+    try {
+      return await Api.getInstance().getUserInfo(companyUserId)
+    } catch (error: unknown) {
+      console.error('api call error:', error)
+      throw Error(`${name}/fetchAny error`)
+    }
+  }
+)
 
 const putResetPassword = createAsyncThunk(
   `${name}/resetPassword`,
@@ -22,4 +34,4 @@ const putResetPassword = createAsyncThunk(
   }
 )
 
-export { fetch, putResetPassword }
+export { fetchOwn, fetchAny, putResetPassword }

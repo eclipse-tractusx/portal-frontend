@@ -10,6 +10,9 @@ import {
   Typography,
   Input,
 } from 'cx-portal-shared-components'
+import { useDispatch } from 'react-redux'
+import { Overlay } from 'features/control/overlay/types'
+import { show } from 'features/control/overlay/actions'
 
 export type OwnUser = {
   companyUserId: string
@@ -26,6 +29,7 @@ export interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory?: string
   cardContentItems: UserItems
+  userInfo?: OwnUser
   variant?: 'wide'
 }
 
@@ -42,8 +46,11 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
+  userInfo,
   variant,
 }: UserCardProps) => {
+  const dispatch = useDispatch()
+  /*
   const [editOpen, setEditOpen] = useState(false)
   const [bpnValues, setBpnValues] = useState([''])
   const [inputBPN, setInputBPN] = useState('')
@@ -75,6 +82,12 @@ export const UserDetailCard = ({
       setBpnValues([...bpnValues, inputBPN])
     }
   }
+*/
+
+  const openEditOverlay = () => {
+    console.log(userInfo)
+    dispatch(show(Overlay.ADD_BPN, userInfo?.companyUserId))
+  }
 
   const renderContentSwitch = (
     param: string,
@@ -101,14 +114,14 @@ export const UserDetailCard = ({
             <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
               {value?.value}
             </span>
-            <a href="#" onClick={() => openModal(value?.value)}>
+            <a href="#" onClick={openEditOverlay}>
               {value?.label === 'BPN' ? 'Edit' : ''}
             </a>
           </>
         )
     }
   }
-
+  /*
   const renderEditOverlay = () => {
     console.log('editOpen', editOpen)
     return (
@@ -151,7 +164,7 @@ export const UserDetailCard = ({
       </div>
     )
   }
-
+*/
   return (
     <Box>
       {cardCategory && (
@@ -194,7 +207,6 @@ export const UserDetailCard = ({
           </ListItem>
         ))}
       </List>
-      {renderEditOverlay()}
     </Box>
   )
 }
