@@ -8,7 +8,7 @@ It's recommended to use the [File Header Comment](https://marketplace.visualstud
 
 Install the extension and assign some [keyboard shortcut](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-editor) to the extension insertFileHeaderCommentOther, Ctrl+Alt+I for instance.
 
-Every time you create a new file or edit a file which doesn't yet have a header use the keyboard shortcut to insert the according header template in the file.
+Every time you create a new file or edit a file that you created and doesn't yet have a header, use the keyboard shortcut to insert the according header template in the file.
 
 Currently the following templates are available:
 * cx_header_default
