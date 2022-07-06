@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import {
   Dialog,
   DialogContent,
-  DialogHeader
+  DialogHeader,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { UserDetails } from 'components/shared/basic/UserDetails'

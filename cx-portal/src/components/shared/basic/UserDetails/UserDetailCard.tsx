@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
-import {  
-  Chip, 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  IconButton, 
-  Typography, 
-  Input 
+import {
+  Chip,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  IconButton,
+  Typography,
+  Input,
 } from 'cx-portal-shared-components'
 
 export type OwnUser = {
@@ -44,10 +44,9 @@ export const UserDetailCard = ({
   cardContentItems,
   variant,
 }: UserCardProps) => {
-
-  const [editOpen, setEditOpen] = useState(false);
-  const [bpnValues, setBpnValues] = useState(['']);
-  const [inputBPN, setInputBPN] = useState('');
+  const [editOpen, setEditOpen] = useState(false)
+  const [bpnValues, setBpnValues] = useState([''])
+  const [inputBPN, setInputBPN] = useState('')
   const [bpnErrorMsg, setBpnErrorMessage] = useState('')
 
   const openModal = (bpnValue: any) => {
@@ -64,14 +63,14 @@ export const UserDetailCard = ({
     const bpnPattern = /^BPNL[a-z0-9]{12}$/i
     if (!bpnPattern.test(value.trim())) {
       setBpnErrorMessage('Invalid BPN Number. Please enter a valid number.')
-    }else{
+    } else {
       setBpnErrorMessage('')
       setInputBPN(value)
     }
   }
 
   const addBPN = () => {
-    if(!bpnErrorMsg){
+    if (!bpnErrorMsg) {
       //cardContentItems.bpn.addBPNFn(inputBPN)
       setBpnValues([...bpnValues, inputBPN])
     }
@@ -114,7 +113,7 @@ export const UserDetailCard = ({
     console.log('editOpen', editOpen)
     return (
       <div>
-        <Dialog 
+        <Dialog
           open={editOpen}
           sx={{
             '.MuiDialog-paper': {
@@ -122,21 +121,25 @@ export const UserDetailCard = ({
             },
           }}
         >
-          <DialogHeader 
-            title="Manage BPNs" 
-            closeWithIcon 
+          <DialogHeader
+            title="Manage BPNs"
+            closeWithIcon
             onCloseWithIcon={closeModal}
           />
           <DialogContent>
             {bpnValues.map((bpn, i) => {
-              return <li key={i} >{ bpn } <a href="#">Delete</a></li>
+              return (
+                <li key={i}>
+                  {bpn} <a href="#">Delete</a>
+                </li>
+              )
             })}
-            <Input 
-              name="bpn" 
-              label="Add a new BPN" 
-              placeholder="Placeholder Text" 
-              onChange={(e) => addInputBPN(e.target.value)} 
-              onKeyPress={event => {
+            <Input
+              name="bpn"
+              label="Add a new BPN"
+              placeholder="Placeholder Text"
+              onChange={(e) => addInputBPN(e.target.value)}
+              onKeyPress={(event) => {
                 if (event.key === 'Enter') {
                   addBPN()
                 }
@@ -162,7 +165,7 @@ export const UserDetailCard = ({
             paddingRight: '14px',
           }}
         >
-          <Typography sx={{typography: 'label3'}}>{cardCategory}</Typography>
+          <Typography sx={{ typography: 'label3' }}>{cardCategory}</Typography>
           {cardAction && (
             <IconButton
               color="secondary"
@@ -191,9 +194,7 @@ export const UserDetailCard = ({
           </ListItem>
         ))}
       </List>
-      {
-        renderEditOverlay()
-      }
+      {renderEditOverlay()}
     </Box>
   )
 }

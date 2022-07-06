@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogHeader
+  DialogHeader,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'

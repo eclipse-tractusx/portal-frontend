@@ -31,7 +31,7 @@ export default function UserDetails() {
   const ownUser = useSelector(ownUserSelector)
 
   const { resetStatus, error } = useSelector(resetSelector)
-  
+
   let errorMsg = ''
   if (resetStatus) {
     errorMsg = 'Password Reset Successfully'
