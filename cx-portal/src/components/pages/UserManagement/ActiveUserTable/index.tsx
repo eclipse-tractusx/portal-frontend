@@ -41,11 +41,11 @@ export const ActiveUserTable = ({
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
           { field: 'email', headerName: t('global.field.email'), flex: 2 },
           {
-            field: 'enabled',
+            field: 'status',
             headerName: t('global.field.status'),
             flex: 1,
-            renderCell: ({ value: enabled }) => {
-              const label = enabled ? 'active' : 'inactive'
+            renderCell: ({ value: status }) => {
+              const label = status ? 'active' : 'inactive'
               return (
                 <StatusTag color="label" label={t(`global.field.${label}`)} />
               )
