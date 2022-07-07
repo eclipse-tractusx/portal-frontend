@@ -1,10 +1,13 @@
 import debounce from 'lodash.debounce'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from 'cx-portal-shared-components'
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './search-section.scss'
+import PageService from 'services/PageService'
+
+export const label = 'Search'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -14,6 +17,7 @@ export default function SearchSection() {
   const debouncedSearch = useMemo(
     () =>
       debounce((expr: string) => {
+        PageService.scrollTo(label)
         dispatch(expr ? fetchSearch(expr) : clearSearch())
       }, 400),
     [dispatch]
@@ -27,8 +31,10 @@ export default function SearchSection() {
     [debouncedSearch]
   )
 
+  const reference = PageService.registerReference(label, useRef(null))
+
   return (
-    <div className="search-section">
+    <div ref={reference} className="search-section">
       <SearchInput
         placeholder={t('content.home.searchSection.inputPlaceholder')}
         value={searchExpr}

@@ -6,6 +6,8 @@ export enum SearchCategory {
   APP = 'APP',
   NEWS = 'NEWS',
   PAGE = 'PAGE',
+  OVERLAY = 'OVERLAY',
+  ACTION = 'ACTION',
   USECASE = 'USECASE',
   USER = 'USER',
   PARTNER = 'PARTNER',

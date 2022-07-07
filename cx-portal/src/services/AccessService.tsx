@@ -16,7 +16,7 @@ import UserManagement from 'components/pages/UserManagement'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import UserDetails from '../components/pages/UserManagement/UserDetails'
 import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
-import { IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
+import { ACTIONS, IAction, IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import Help from 'components/pages/Help'
@@ -33,6 +33,10 @@ import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import DataManagement from 'components/pages/DataManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
+import Swagger from 'components/pages/Swagger'
+import Storybook from 'components/pages/Storybook'
+import SignOut from 'components/actions/SignOut'
+import SetLang from 'components/actions/SetLang'
 
 /**
  * ALL_PAGES
@@ -47,6 +51,8 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Registration /> },
+  { name: PAGES.SWAGGER, element: <Swagger /> },
+  { name: PAGES.STORYBOOK, element: <Storybook /> },
   {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
@@ -212,6 +218,12 @@ const ALL_PAGES: IPage[] = [
   { name: PAGES.LOGOUT, element: <Logout /> },
 ]
 
+const ALL_ACTIONS: IAction[] = [
+  { name: ACTIONS.SIGNOUT, element: <SignOut /> },
+  { name: ACTIONS.LANG_DE, element: <SetLang lang="de" /> },
+  { name: ACTIONS.LANG_EN, element: <SetLang lang="en" /> },
+]
+
 /**
  * mainMenuFull
  *
@@ -277,6 +289,7 @@ const footerMenuFull = [
 ]
 
 let pageMap: { [page: string]: IPage }
+let actionMap: { [action: string]: IAction }
 
 const hasAccess = (page: string): boolean => {
   const fullPage = pageMap[page]
@@ -308,6 +321,8 @@ const footerMenu = () => accessToMenu(footerMenuFull)
 const permittedRoutes = () =>
   ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.element)
 
+export const getAction = (key: string) => actionMap[key]
+
 function init() {
   // from the list of pages set up a map for easier access and create default routes
   pageMap = ALL_PAGES.reduce((map: { [page: string]: IPage }, page: IPage) => {
@@ -319,10 +334,18 @@ function init() {
     }
     return map
   }, {})
+  actionMap = ALL_ACTIONS.reduce(
+    (map: { [action: string]: IAction }, action: IAction) => {
+      map[action.name] = action
+      return map
+    },
+    {}
+  )
 }
 
 const AccessService = {
   init,
+  getAction,
   hasAccess,
   permittedRoutes,
   mainMenu,

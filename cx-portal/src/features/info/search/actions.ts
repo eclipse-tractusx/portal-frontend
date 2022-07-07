@@ -4,9 +4,11 @@ import { Api as AppsApi } from 'features/apps/marketplace/api'
 import { Api as UserApi } from 'features/admin/user/api'
 import { Api as NewsApi } from 'features/info/news/api'
 import {
+  actionToSearchItem,
   appToSearchItem,
   businessPartnerToSearchItem,
   newsToSearchItem,
+  overlayToSearchItem,
   pageToSearchItem,
   userToSearchItem,
 } from './mapper'
@@ -25,6 +27,8 @@ import AccessService from 'services/AccessService'
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
 const emptyPageResult: string[] = []
+const emptyOverlayResult: string[] = []
+const emptyActionResult: string[] = []
 const emptyUserResult: TenantUser[] = []
 const emptyPartnerResult: BusinessPartnerResponse = {
   totalElements: 0,
@@ -45,6 +49,8 @@ const searchForExpression = async function (expr: string) {
   if (!expr || expr.length < 3) {
     return Promise.all([
       emptyPageResult,
+      emptyOverlayResult,
+      emptyActionResult,
       emptyAppResult,
       emptyPartnerResult,
       emptyNewsResult,
@@ -53,6 +59,8 @@ const searchForExpression = async function (expr: string) {
   } else if (Patterns.prefix.BPN.test(expr)) {
     return Promise.all([
       emptyPageResult,
+      emptyOverlayResult,
+      emptyActionResult,
       emptyAppResult,
       Patterns.BPN.test(expr)
         ? getSinglePartnerResult(
@@ -67,6 +75,8 @@ const searchForExpression = async function (expr: string) {
   } else if (Patterns.prefix.MAIL.test(expr)) {
     return Promise.all([
       emptyPageResult,
+      emptyOverlayResult,
+      emptyActionResult,
       emptyAppResult,
       emptyPartnerResult,
       emptyNewsResult,
@@ -79,6 +89,8 @@ const searchForExpression = async function (expr: string) {
   } else if (Patterns.UUID.test(expr)) {
     return Promise.all([
       emptyPageResult,
+      emptyOverlayResult,
+      emptyActionResult,
       AppsApi.getInstance()
         .getActive()
         .catch(() => emptyAppResult),
@@ -91,6 +103,8 @@ const searchForExpression = async function (expr: string) {
   } else {
     return Promise.all([
       I18nService.searchPages(expr),
+      I18nService.searchOverlays(expr),
+      I18nService.searchActions(expr),
       AppsApi.getInstance()
         .getActive()
         .catch(() => emptyAppResult),
@@ -120,13 +134,18 @@ const fetchSearch = createAsyncThunk(
     const searchExpr = new RegExp(trexpr, 'gi')
     const isUUID = Patterns.UUID.test(trexpr)
     try {
-      const [pages, apps, partners, news, users] = await searchForExpression(
-        trexpr
-      )
+      const [pages, overlays, actions, apps, partners, news, users] =
+        await searchForExpression(trexpr)
       return [
         pages
           .filter((item: string) => AccessService.hasAccess(item))
           .map((item: string) => pageToSearchItem(item)),
+        overlays
+          //.filter((item: string) => AccessService.hasAccess(item))
+          .map((item: string) => overlayToSearchItem(item)),
+        actions
+          //.filter((item: string) => AccessService.hasAccess(item))
+          .map((item: string) => actionToSearchItem(item)),
         apps
           .filter((item: AppMarketplaceApp) =>
             isUUID
