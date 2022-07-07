@@ -29,6 +29,14 @@ export class Api extends HttpClient {
   public resetPassword = (companyUserId: string) =>
     this.instance.put<any>(
       `/api/administration/user/ownCompany/users/${companyUserId}/resetPassword`,
+      {},
+      getHeaders()
+    )
+
+  public addBusinessPartnerNumber = (companyUserId: string, bpn: string) =>
+    this.instance.put<any>(
+      `/api/administration/user/ownCompany/users/${companyUserId}/businessPartnerNumbers/${bpn}`,
+      {},
       getHeaders()
     )
 }

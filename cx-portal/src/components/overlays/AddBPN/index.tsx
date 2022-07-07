@@ -5,7 +5,7 @@ import {
   DialogHeader,
   Input,
 } from 'cx-portal-shared-components'
-import { fetchAny } from 'features/admin/userOwn/actions'
+import { fetchAny, putBusinessPartnerNumber } from 'features/admin/userOwn/actions'
 import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
 import { Overlay } from 'features/control/overlay/types'
@@ -29,8 +29,6 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
     setBpnValues(userInfo.bpn)
   }, [userInfo])
 
-  const handleConfirm = () => console.log('call API to add BPN')
-
   const addInputBPN = (value: string) => {
     const bpnPattern = /^BPNL[a-z0-9]{12}$/i
     if (!bpnPattern.test(value.trim())) {
@@ -43,7 +41,7 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
 
   const addBPN = () => {
     if (!bpnErrorMsg) {
-      //cardContentItems.bpn.addBPNFn(inputBPN)
+      dispatch(putBusinessPartnerNumber({companyUserId, inputBPN}))
       setBpnValues([...bpnValues, inputBPN])
     }
   }
@@ -87,9 +85,6 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
           onClick={() => dispatch(show(Overlay.NONE, ''))}
         >
           {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button variant="contained" onClick={handleConfirm}>
-          {`${t('global.actions.confirm')}`}
         </Button>
       </DialogActions>
     </>
