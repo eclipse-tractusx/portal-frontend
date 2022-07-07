@@ -5,7 +5,10 @@ import {
   DialogHeader,
   Input,
 } from 'cx-portal-shared-components'
-import { fetchAny, putBusinessPartnerNumber } from 'features/admin/userOwn/actions'
+import {
+  fetchAny,
+  putBusinessPartnerNumber,
+} from 'features/admin/userOwn/actions'
 import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
 import { Overlay } from 'features/control/overlay/types'
@@ -41,7 +44,7 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
 
   const addBPN = () => {
     if (!bpnErrorMsg) {
-      dispatch(putBusinessPartnerNumber({companyUserId, inputBPN}))
+      dispatch(putBusinessPartnerNumber({ companyUserId, inputBPN }))
       setBpnValues([...bpnValues, inputBPN])
     }
   }

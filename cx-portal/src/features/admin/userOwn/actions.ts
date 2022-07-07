@@ -37,9 +37,18 @@ const putResetPassword = createAsyncThunk(
 
 const putBusinessPartnerNumber = createAsyncThunk(
   `${name}/putBusinessPartnerNumber`,
-  async ({companyUserId, inputBPN}: {companyUserId: string, inputBPN: string}) => {
+  async ({
+    companyUserId,
+    inputBPN,
+  }: {
+    companyUserId: string
+    inputBPN: string
+  }) => {
     try {
-      return await Api.getInstance().addBusinessPartnerNumber(companyUserId, inputBPN)
+      return await Api.getInstance().addBusinessPartnerNumber(
+        companyUserId,
+        inputBPN
+      )
     } catch (error: any) {
       throw Error(JSON.stringify(error.response.status))
     }
