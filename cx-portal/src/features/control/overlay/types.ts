@@ -8,6 +8,7 @@ export enum Overlay {
   TECHUSER = 'TECHUSER',
   APP = 'APP',
   INVITE = 'INVITE',
+  ADD_BPN = 'ADD_BPN',
 }
 
 export type OverlayState = {

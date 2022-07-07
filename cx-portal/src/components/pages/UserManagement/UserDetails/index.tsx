@@ -5,7 +5,6 @@ import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import { Box } from '@mui/material'
 import {
   Button,
-  UserDetails as UserDetailsComponent,
   UserAvatar,
   Typography,
   Table,
@@ -20,8 +19,9 @@ import uniqueId from 'lodash/uniqueId'
 import { useParams } from 'react-router-dom'
 import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
-import { fetch, putResetPassword } from 'features/admin/userOwn/actions'
+import { fetchOwn, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { UserDetails as UserDetailsComponent } from 'components/shared/basic/UserDetails'
 
 export default function UserDetails() {
   const { t } = useTranslation()
@@ -29,11 +29,9 @@ export default function UserDetails() {
   console.log(`TODO: get user details for ${appId}`)
 
   const ownUser = useSelector(ownUserSelector)
-  console.log('ownUser', ownUser)
 
   const { resetStatus, error } = useSelector(resetSelector)
-  console.log('resetStatus', resetStatus)
-  console.log('error', error)
+
   let errorMsg = ''
   if (resetStatus) {
     errorMsg = 'Password Reset Successfully'
@@ -51,7 +49,7 @@ export default function UserDetails() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetch(/*appId*/))
+    dispatch(fetchOwn(/*appId*/))
   }, [dispatch])
 
   // TODO: Wrong user mock data
@@ -165,6 +163,7 @@ export default function UserDetails() {
         {ownUser && (
           <UserDetailsComponent
             userDetailsCards={userDetailsToCards(ownUser)}
+            userInfo={ownUser}
             columns={3}
           />
         )}

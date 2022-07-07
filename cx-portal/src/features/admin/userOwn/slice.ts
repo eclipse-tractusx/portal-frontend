@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { name, initialState, OwnUser, InitialOwnUser } from './types'
-import { fetch, putResetPassword } from './actions'
+import { fetchAny, fetchOwn, putResetPassword } from './actions'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 
@@ -9,24 +9,44 @@ export const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetch.pending, (state) => ({
+    builder.addCase(fetchOwn.pending, (state) => ({
       ...state,
       data: InitialOwnUser,
       request: RequestState.SUBMIT,
       error: '',
     }))
-    builder.addCase(fetch.fulfilled, (state, { payload }) => ({
+    builder.addCase(fetchOwn.fulfilled, (state, { payload }) => ({
       ...state,
       data: payload || [],
       request: RequestState.OK,
       error: '',
     }))
-    builder.addCase(fetch.rejected, (state, action) => ({
+    builder.addCase(fetchOwn.rejected, (state, action) => ({
       ...state,
       data: InitialOwnUser,
       request: RequestState.ERROR,
       error: action.error.message as string,
     }))
+
+    builder.addCase(fetchAny.pending, (state) => ({
+      ...state,
+      data: InitialOwnUser,
+      request: RequestState.SUBMIT,
+      error: '',
+    }))
+    builder.addCase(fetchAny.fulfilled, (state, { payload }) => ({
+      ...state,
+      data: payload || [],
+      request: RequestState.OK,
+      error: '',
+    }))
+    builder.addCase(fetchAny.rejected, (state, action) => ({
+      ...state,
+      data: InitialOwnUser,
+      request: RequestState.ERROR,
+      error: action.error.message as string,
+    }))
+
     builder.addCase(putResetPassword.pending, (state) => ({
       ...state,
       resetStatus: null,

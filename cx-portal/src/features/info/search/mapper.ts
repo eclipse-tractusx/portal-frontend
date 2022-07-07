@@ -33,7 +33,7 @@ export const newsToSearchItem = (item: CardItems): SearchItem => ({
 })
 
 export const userToSearchItem = (item: TenantUser): SearchItem => ({
-  id: item.userEntityId,
+  id: item.companyUserId,
   category: SearchCategory.USER,
   title: `${item.firstName || ''} ${item.lastName || ''}`,
   description: item.email,
