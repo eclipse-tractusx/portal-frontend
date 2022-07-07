@@ -3,7 +3,12 @@ import { useState } from 'react'
 import { info } from 'services/LogService'
 import { Api as AdminRegistrationApi } from 'features/admin/registration/api'
 import { InviteData } from 'features/admin/registration/types'
-import { DialogHeader, DialogContent, DialogActions, Button } from 'cx-portal-shared-components'
+import {
+  DialogHeader,
+  DialogContent,
+  DialogActions,
+  Button,
+} from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { Overlay } from 'features/control/overlay/types'
 import { t } from 'i18next'

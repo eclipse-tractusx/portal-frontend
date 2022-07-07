@@ -14,7 +14,7 @@ import BusinessPartnerDetail from './pages/PartnerNetwork/BusinessPartnerDetailO
 const getOverlay = (overlay: OverlayState) => {
   switch (overlay.type) {
     case Overlay.ADD_USER:
-      return <AddUser  />
+      return <AddUser />
     case Overlay.USER:
       return <UserInfo id={overlay.id} />
     case Overlay.ADD_BPN:
