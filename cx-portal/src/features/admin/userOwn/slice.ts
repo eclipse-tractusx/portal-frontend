@@ -76,14 +76,11 @@ export const slice = createSlice({
       request: RequestState.SUBMIT,
       error: '',
     }))
-    builder.addCase(
-      putBusinessPartnerNumber.fulfilled,
-      (state, { payload }) => ({
-        ...state,
-        request: RequestState.OK,
-        error: '',
-      })
-    )
+    builder.addCase(putBusinessPartnerNumber.fulfilled, (state) => ({
+      ...state,
+      request: RequestState.OK,
+      error: '',
+    }))
     builder.addCase(putBusinessPartnerNumber.rejected, (state, action) => ({
       ...state,
       request: RequestState.ERROR,
