@@ -19,7 +19,7 @@ export default function UserInfo({ id }: { id: string }) {
 
   useEffect(() => {
     dispatch(fetchAny(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   const handleConfirm = () => console.log('confirm')
 

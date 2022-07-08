@@ -22,7 +22,7 @@ const getOverlay = (overlay: OverlayState) => {
     case Overlay.NEWS:
       return <NewsDetail id={overlay.id} />
     case Overlay.ADD_BPN:
-      return <AddBPN companyUserId={overlay.id} />
+      return <AddBPN id={overlay.id} />
     case Overlay.INVITE:
       return <InviteForm />
     case Overlay.PARTNER:

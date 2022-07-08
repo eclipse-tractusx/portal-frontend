@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function AddBPN({ companyUserId }: { companyUserId: string }) {
+export default function AddBPN({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const userInfo = useSelector(ownUserSelector)
@@ -25,8 +25,8 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
   const [bpnErrorMsg, setBpnErrorMessage] = useState('')
 
   useEffect(() => {
-    dispatch(fetchAny(companyUserId))
-  }, [dispatch])
+    dispatch(fetchAny(id))
+  }, [dispatch, id])
 
   useEffect(() => {
     setBpnValues(userInfo.bpn)
@@ -44,7 +44,7 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
 
   const addBPN = () => {
     if (!bpnErrorMsg) {
-      dispatch(putBusinessPartnerNumber({ companyUserId, inputBPN }))
+      dispatch(putBusinessPartnerNumber({ companyUserId: id, inputBPN }))
       setBpnValues([...bpnValues, inputBPN])
     }
   }
@@ -60,11 +60,10 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
       />
 
       <DialogContent>
-        {/*<pre>{JSON.stringify(userInfo, null, 2)}</pre>*/}
         {bpnValues.map((bpn, i) => {
           return (
             <li key={i}>
-              {bpn} <a href="#">Delete</a>
+              {bpn} <a href="a#">Delete</a>
             </li>
           )
         })}
