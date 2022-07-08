@@ -1,14 +1,13 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography, Dropzone } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import { Dropzone } from 'cx-portal-shared-components'
 
 export const MultipleUserContent = () => {
   const { t } = useTranslation('', { keyPrefix: 'content.addUser' })
   const dropzoneProps = {
     title: t('userUpload.title'),
     subtitle: t('userUpload.subtitle'),
-    accept: '*', // TODO: add the correct info, as soon as it is known
+    accept: '*',
     getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
     onChangeStatus: ({ meta }: { [name: string]: any }, status: string) => {
       if (status === 'headers_received') {
