@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import AddBPN from 'components/overlays/AddBPN'
 import { Api } from './api'
 import { name } from './types'
 
@@ -34,4 +35,24 @@ const putResetPassword = createAsyncThunk(
   }
 )
 
-export { fetchOwn, fetchAny, putResetPassword }
+const putBusinessPartnerNumber = createAsyncThunk(
+  `${name}/putBusinessPartnerNumber`,
+  async ({
+    companyUserId,
+    inputBPN,
+  }: {
+    companyUserId: string
+    inputBPN: string
+  }) => {
+    try {
+      return await Api.getInstance().addBusinessPartnerNumber(
+        companyUserId,
+        inputBPN
+      )
+    } catch (error: any) {
+      throw Error(JSON.stringify(error.response.status))
+    }
+  }
+)
+
+export { fetchOwn, fetchAny, putResetPassword, putBusinessPartnerNumber }
