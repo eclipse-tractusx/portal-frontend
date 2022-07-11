@@ -7,9 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import AddBPN from './overlays/AddBPN'
 
 const getOverlay = (overlay: OverlayState) => {
-  switch (overlay.type) {
-    case Overlay.ADD_BPN:
-      return <AddBPN companyUserId={overlay.id} />
+  if (overlay.type === Overlay.ADD_BPN) {
+    return <AddBPN companyUserId={overlay.id} />
   }
 }
 

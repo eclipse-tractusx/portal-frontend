@@ -52,39 +52,38 @@ export const UserDetailCard = ({
     param: string,
     value: UserItemsTranslation | undefined
   ) => {
-    switch (param) {
-      case 'status':
-        return (
-          <>
-            <span style={{ marginRight: '10px' }}>{value?.label} :</span>
-            <Chip
-              color="secondary"
-              label={value?.value}
-              type="plain"
-              variant="filled"
-              withIcon={false}
-            />
-          </>
-        )
-      default:
-        return (
-          <>
-            <span>{value?.label}:</span>&nbsp;
-            <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-              {value?.value}
-            </span>
-            <span>
-              {value?.label === 'BPN' ? (
-                <EditIcon
-                  style={{ cursor: 'pointer' }}
-                  onClick={openEditOverlay}
-                />
-              ) : (
-                ''
-              )}
-            </span>
-          </>
-        )
+    if (param === 'status') {
+      return (
+        <>
+          <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+          <Chip
+            color="secondary"
+            label={value?.value}
+            type="plain"
+            variant="filled"
+            withIcon={false}
+          />
+        </>
+      )
+    } else {
+      return (
+        <>
+          <span>{value?.label}:</span>&nbsp;
+          <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+            {value?.value}
+          </span>
+          <span>
+            {value?.label === 'BPN' ? (
+              <EditIcon
+                style={{ cursor: 'pointer' }}
+                onClick={openEditOverlay}
+              />
+            ) : (
+              ''
+            )}
+          </span>
+        </>
+      )
     }
   }
 

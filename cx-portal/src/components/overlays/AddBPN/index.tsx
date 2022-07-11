@@ -19,7 +19,6 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import './style.scss'
 
 export default function AddBPN({ companyUserId }: { companyUserId: string }) {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
   const userInfo = useSelector(ownUserSelector)
   const [bpnValues, setBpnValues] = useState([''])
