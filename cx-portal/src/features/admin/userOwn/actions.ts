@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import AddBPN from 'components/overlays/AddBPN'
 import { Api } from './api'
 import { name } from './types'
 

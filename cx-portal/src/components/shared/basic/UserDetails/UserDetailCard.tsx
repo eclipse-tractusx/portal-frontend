@@ -1,18 +1,10 @@
-import { useState } from 'react'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
-import {
-  Chip,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  IconButton,
-  Typography,
-  Input,
-} from 'cx-portal-shared-components'
+import { Chip, IconButton, Typography } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { Overlay } from 'features/control/overlay/types'
 import { show } from 'features/control/overlay/actions'
+import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 
 export type OwnUser = {
   companyUserId: string
@@ -50,39 +42,6 @@ export const UserDetailCard = ({
   variant,
 }: UserCardProps) => {
   const dispatch = useDispatch()
-  /*
-  const [editOpen, setEditOpen] = useState(false)
-  const [bpnValues, setBpnValues] = useState([''])
-  const [inputBPN, setInputBPN] = useState('')
-  const [bpnErrorMsg, setBpnErrorMessage] = useState('')
-
-  const openModal = (bpnValue: any) => {
-    console.log('bpnValue@@@@@', bpnValue)
-    setBpnValues(bpnValue)
-    setEditOpen(true)
-  }
-
-  const closeModal = () => {
-    setEditOpen(false)
-  }
-
-  const addInputBPN = (value: string) => {
-    const bpnPattern = /^BPNL[a-z0-9]{12}$/i
-    if (!bpnPattern.test(value.trim())) {
-      setBpnErrorMessage('Invalid BPN Number. Please enter a valid number.')
-    } else {
-      setBpnErrorMessage('')
-      setInputBPN(value)
-    }
-  }
-
-  const addBPN = () => {
-    if (!bpnErrorMsg) {
-      //cardContentItems.bpn.addBPNFn(inputBPN)
-      setBpnValues([...bpnValues, inputBPN])
-    }
-  }
-*/
 
   const openEditOverlay = () => {
     console.log(userInfo)
@@ -114,57 +73,21 @@ export const UserDetailCard = ({
             <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
               {value?.value}
             </span>
-            <a href="#" onClick={openEditOverlay}>
-              {value?.label === 'BPN' ? 'Edit' : ''}
-            </a>
+            <span>
+              {value?.label === 'BPN' ? (
+                <EditIcon
+                  style={{ cursor: 'pointer' }}
+                  onClick={openEditOverlay}
+                />
+              ) : (
+                ''
+              )}
+            </span>
           </>
         )
     }
   }
-  /*
-  const renderEditOverlay = () => {
-    console.log('editOpen', editOpen)
-    return (
-      <div>
-        <Dialog
-          open={editOpen}
-          sx={{
-            '.MuiDialog-paper': {
-              maxWidth: '45%',
-            },
-          }}
-        >
-          <DialogHeader
-            title="Manage BPNs"
-            closeWithIcon
-            onCloseWithIcon={closeModal}
-          />
-          <DialogContent>
-            {bpnValues.map((bpn, i) => {
-              return (
-                <li key={i}>
-                  {bpn} <a href="#">Delete</a>
-                </li>
-              )
-            })}
-            <Input
-              name="bpn"
-              label="Add a new BPN"
-              placeholder="Placeholder Text"
-              onChange={(e) => addInputBPN(e.target.value)}
-              onKeyPress={(event) => {
-                if (event.key === 'Enter') {
-                  addBPN()
-                }
-              }}
-            />
-            <p style={{ color: 'red' }}>{bpnErrorMsg}</p>
-          </DialogContent>
-        </Dialog>
-      </div>
-    )
-  }
-*/
+
   return (
     <Box>
       {cardCategory && (
