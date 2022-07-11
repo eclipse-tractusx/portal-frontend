@@ -61,7 +61,7 @@
     "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "der Eintritt in das digital automobile <1></1> Netzwerk",
+        "subtitle": "der Eintritt in das digital automobile Netzwerk",
         "cxButton": "Mein CX",
         "appButton": "Meine Apps"
       },
@@ -78,7 +78,7 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "Ein skalierendes und erweiterbares <1></1> Ökosystem",
+        "subtitle": "Ein skalierendes und erweiterbares Ökosystem",
         "appButton": "App Übersicht"
       },
       "favoriteSection": {
@@ -345,19 +345,19 @@
         }
       },
       "userUpload": {
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer.",
+        "title": "Dateien hierher ziehen",
+        "subtitle": "oder wähle eine Datei direkt aus.",
         "uploadStatus": {
-          "rejected_file_type": "rejected (file type)",
-          "rejected_max_files": "rejected (max files)",
-          "preparing": "preparing",
-          "error_file_size": "error (file_size)",
-          "error_validation": "error (validation)",
-          "ready": "ready",
+          "rejected_file_type": "Fehler - falscher Dateityp.",
+          "rejected_max_files": "Fehler - Dateigröße zu groß.",
+          "preparing": "vorbereiten",
+          "error_file_size": "Fehler (file_size)",
+          "error_validation": "Fehler (validation)",
+          "ready": "Fertig",
           "started": "started",
           "getting_upload_params": "getting (upload_params)",
           "error_upload_params": "error (upload_params)",
-          "uploading": "uploading",
+          "uploading": "hochladen",
           "exception_upload": "exception_upload",
           "aborted": "aborted",
           "restarted": "restarted",
@@ -369,8 +369,8 @@
       }
     },
     "addUserRight": {
-      "headline": "tbd DE: Select and Add users to this app",
-      "subheadline": "tbd"
+      "headline": "Benutzer hinzufügen",
+      "subheadline": "Auswählen und hinzufügen von Benutzern"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
