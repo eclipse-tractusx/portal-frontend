@@ -47,7 +47,6 @@ export { Card } from './content/Cards/Card'
 export { Navigation } from './content/Navigation'
 export { UserMenu } from './content/UserMenu'
 export { UserNav } from './content/UserNav'
-export { UserDetails } from './content/UserDetails'
 export { CircularProgress } from './basic/CircularProgress'
 
 export type { TableProps } from './basic/Table'
