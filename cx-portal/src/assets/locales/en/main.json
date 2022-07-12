@@ -478,6 +478,16 @@
       "reload": "Reload Page",
       "homepage": "Homepage"
     },
+    "search": {
+      "category": {
+        "USECASE": "Use Cases",
+        "APP": "Apps",
+        "USER": "Users",
+        "PARTNER": "Business Partners",
+        "PAGE": "Pages",
+        "NEWS": "News"
+      }
+    },
     "userRoles": {
       "itAdmin": "IT Admin",
       "businessAdmin": "Business Admin",

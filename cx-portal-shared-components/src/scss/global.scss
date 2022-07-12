@@ -1,5 +1,15 @@
-@use 'sass:math';
+//TODO:
+//deactivated because of build error
+//Error:
+//	@use rules must be written before any other rules.
+//   ╷
+//43 │ @use 'sass:math';
+//   │ ^^^^^^^^^^^^^^^^
+//   ╵
+//  stdin 43:1  root stylesheet
+//
+//@use 'sass:math';
 
 @function circle-angle($size) {
-  @return round($size * 0.70710678118) + math.div($size, 2);
+  @return 1; //round($size * 0.70710678118) + math.div($size, 2);
 }
