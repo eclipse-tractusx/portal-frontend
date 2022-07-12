@@ -29,7 +29,10 @@
     "cookiepolicy": "Cookies",
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden"
+    "notfound": "Seite nicht gefunden",
+    "appmanagement": "App Management",
+    "appoverview": "App Overview",
+    "appreleaseprocess": "App Release Process"
   },
   "content": {
     "admin": {
@@ -191,6 +194,12 @@
     },
     "developerhub": {
       "message": "Inhalte vom Entwickler Hub"
+    },
+    "appoverview": {
+      "message": "App Overview Message"
+    },
+    "appreleaseprocess": {
+      "message": "App Release Process Message"
     },
     "connector": {
       "message": "Contents of connector"

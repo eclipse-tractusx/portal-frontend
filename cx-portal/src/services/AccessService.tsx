@@ -33,6 +33,9 @@ import Registration from 'components/pages/Registration'
 import AppDetail from 'components/pages/AppDetail'
 import DataManagement from 'components/pages/DataManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
+import NotFound from 'components/pages/NotFound'
+import AppOverview from 'components/pages/AppOverview'
+import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 
 /**
  * ALL_PAGES
@@ -119,6 +122,21 @@ const ALL_PAGES: IPage[] = [
     name: PAGES.PARTNER_NETWORK,
     role: ROLES.PARTNER_NETWORK_VIEW,
     element: <PartnerNetwork />,
+  },
+  {
+    name: PAGES.APP_MANAGEMENT,
+   // role: ROLES.VIEW_APP_RELEASE,
+    element: <NotFound />,
+  },
+  {
+    name: PAGES.APPOVERVIEW,
+    //role: ROLES.VIEW_APP_RELEASE,
+    element: <AppOverview />,
+  },
+  {
+    name: PAGES.APPRELEASEPROCESS,
+    //role: ROLES.VIEW_APP_RELEASE,
+    element: <AppReleaseProcess />,
   },
   {
     name: PAGES.USER_MANAGEMENT,
@@ -240,6 +258,13 @@ const mainMenuFullTree = [
     ],
   },
   { name: PAGES.PARTNER_NETWORK },
+  {
+    name: PAGES.APP_MANAGEMENT,
+    children: [
+      { name: PAGES.APPOVERVIEW },
+      { name: PAGES.APPRELEASEPROCESS },
+    ],
+  },
 ]
 
 /**
@@ -299,7 +324,9 @@ const accessToMenuTree = (menu: Tree[] | undefined): any =>
 
 const mainMenu = () => accessToMenu(mainMenuFull)
 
-const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
+const mainMenuTree = () => {
+  return accessToMenuTree(mainMenuFullTree)
+}
 
 const userMenu = () => accessToMenu(userMenuFull)
 
