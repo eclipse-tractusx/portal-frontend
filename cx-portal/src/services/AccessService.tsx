@@ -125,7 +125,7 @@ const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-   // role: ROLES.VIEW_APP_RELEASE,
+    // role: ROLES.VIEW_APP_RELEASE,
     element: <NotFound />,
   },
   {
@@ -260,10 +260,7 @@ const mainMenuFullTree = [
   { name: PAGES.PARTNER_NETWORK },
   {
     name: PAGES.APP_MANAGEMENT,
-    children: [
-      { name: PAGES.APPOVERVIEW },
-      { name: PAGES.APPRELEASEPROCESS },
-    ],
+    children: [{ name: PAGES.APPOVERVIEW }, { name: PAGES.APPRELEASEPROCESS }],
   },
 ]
 

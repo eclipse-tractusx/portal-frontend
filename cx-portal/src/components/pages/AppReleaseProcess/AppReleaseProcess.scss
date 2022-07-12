@@ -1,126 +1,126 @@
 .container {
-    max-width: 1140px;
-    margin: 0 auto;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .appoverview-main {
-    .mt-40 {
-        margin-top: 40px;
+  .mt-40 {
+    margin-top: 40px;
+  }
+
+  .desc-section {
+    text-align: center;
+    margin-top: 112px;
+
+    .desc-heading {
+      max-width: 550px;
+      margin: 0 auto 34px;
     }
 
-    .desc-section {
+    .desc-message {
+      max-width: 733px;
+      margin: 0 auto 34px;
+    }
+
+    .create-btn {
+      margin-right: 16px;
+    }
+
+    .overview-btn {
+      margin-left: 16px;
+    }
+  }
+
+  .process-steps {
+    margin-top: 112px;
+    background-color: #f9f9f9;
+    padding: 96px 0;
+
+    .steps-main {
+      max-width: 720px;
+      margin: 0 auto;
+
+      .step-heading {
         text-align: center;
-        margin-top: 112px;
+        margin-bottom: 132px;
+      }
 
-        .desc-heading {
-            max-width: 550px;
-            margin: 0 auto 34px;
-        }
+      // .lr-text-divider{
+      //     position: relative;
+      //     display: flex;
+      //     align-items: center;
+      //     ::before{
+      //         content: '';
+      //         height: 1px;
+      //         flex: 1;
+      //         padding-right: 10px;
+      //         background-color: #333;
+      //     }
+      //     ::after{
+      //         content: '';
+      //         height: 1px;
+      //         flex: 1;
+      //         padding-left: 10px;
+      //         background-color: #333;
+      //     }
+      // }
+      .lr-text-divider {
+        margin-top: 104px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
 
-        .desc-message {
-            max-width: 733px;
-            margin: 0 auto 34px;
-        }
+      .lr-text-divider::before,
+      .lr-text-divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #dcdcdc;
+      }
 
-        .create-btn {
-            margin-right: 16px;
-        }
+      .lr-text-divider:not(:empty)::before {
+        margin-right: 1.25em;
+      }
 
-        .overview-btn {
-            margin-left: 16px;
+      .lr-text-divider:not(:empty)::after {
+        margin-left: 1.25em;
+      }
+
+      .create-btn {
+        margin-top: 48px;
+        text-align: center;
+      }
+      .marketplace-heading {
+        max-width: 690px;
+        margin: 158px auto 60px;
+      }
+      .marketplace-main {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          li {
+            display: flex;
+            margin-bottom: 30px;
+            button {
+              margin-right: 36px;
+            }
+            span {
+              flex: 1;
+            }
+            :last-child {
+              margin-bottom: 0;
+            }
+          }
         }
+      }
     }
-
-    .process-steps {
-        margin-top: 112px;
-        background-color: #F9F9F9;
-        padding: 96px 0;
-
-        .steps-main {
-            max-width: 720px;
-            margin: 0 auto;
-
-            .step-heading {
-                text-align: center;
-                margin-bottom: 132px;
-            }
-
-            // .lr-text-divider{
-            //     position: relative;
-            //     display: flex;
-            //     align-items: center;
-            //     ::before{
-            //         content: '';
-            //         height: 1px;
-            //         flex: 1;
-            //         padding-right: 10px;
-            //         background-color: #333;
-            //     }
-            //     ::after{
-            //         content: '';
-            //         height: 1px;
-            //         flex: 1;
-            //         padding-left: 10px;
-            //         background-color: #333;
-            //     }
-            // }
-            .lr-text-divider {
-                margin-top: 104px;
-                display: flex;
-                align-items: center;
-                text-align: center;
-            }
-
-            .lr-text-divider::before,
-            .lr-text-divider::after {
-                content: '';
-                flex: 1;
-                border-bottom: 1px solid #DCDCDC;
-            }
-
-            .lr-text-divider:not(:empty)::before {
-                margin-right: 1.25em;
-            }
-
-            .lr-text-divider:not(:empty)::after {
-                margin-left: 1.25em;
-            }
-
-            .create-btn {
-                margin-top: 48px;
-                text-align: center;
-            }
-            .marketplace-heading{
-                max-width: 690px;
-                margin: 158px auto 60px;
-            }
-            .marketplace-main{
-                ul{
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    li{
-                        display: flex;
-                        margin-bottom: 30px;
-                        button{
-                            margin-right: 36px;
-                        }
-                        span{
-                            flex: 1;
-                        }
-                    :last-child{
-                        margin-bottom: 0;
-                    }
-                    }
-                }
-            }
-        }
-    }
+  }
 }
