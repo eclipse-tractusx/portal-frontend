@@ -320,8 +320,8 @@
         "delete": "Delete this technical User",
         "headline": "Technical user management COMPANY_NAME",
         "descriptionHeader": "Technical user management COMPANY_NAME",
-        "descriptionText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
-        "tableHeader": "Technical User list",
+        "descriptionText": "The technical user is an identity that a company can use to connect to CX backend services without continous disconnection. For example, a run-as technical user is required for connecting to the digital twin registry or the semantic model. Please use the action button to request a new technical user with the roles as per your need. Or manage already existing technical users by using the user management function below.",
+        "tableHeader": "Technical User List",
         "detailsHeader": "Technical User: USER_NAME",
         "detailsPage": {
           "userDetails": "User Details",
@@ -342,9 +342,9 @@
       "multipleUser": "Multiple User",
       "multipleUserHeadline": "Add multiple users by file upload:",
       "multipleUserSubheadline": "Please use this <1>upload template</1>, to add multiple users by file",
-      "technicalUserHeadline": "Request technical user",
-      "technicalUserSubheadline": "Please enter the required information:",
-      "technicalUserSubheadlineSuccess": "The technical user has been created with the following data:",
+      "technicalUserHeadline": "Technical User Creation",
+      "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
+      "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
       "chooseUserRole": "Select CX Portal User Role",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "technicalUser": {
@@ -394,7 +394,7 @@
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
       "appPermissionTable": {
-        "title": "User permission per application",
+        "title": "App User Permissions",
         "appName": "App Name",
         "appProvider": "App Provider"
       }

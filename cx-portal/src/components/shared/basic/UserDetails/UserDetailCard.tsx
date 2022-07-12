@@ -4,6 +4,7 @@ import { Chip, IconButton, Typography } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { Overlay } from 'features/control/overlay/types'
 import { show } from 'features/control/overlay/actions'
+import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 
 export type OwnUser = {
   companyUserId: string
@@ -51,33 +52,37 @@ export const UserDetailCard = ({
     param: string,
     value: UserItemsTranslation | undefined
   ) => {
-    switch (param) {
-      case 'status':
-        return (
-          <>
-            <span style={{ marginRight: '10px' }}>{value?.label} :</span>
-            <Chip
-              color="secondary"
-              label={value?.value}
-              type="plain"
-              variant="filled"
-              withIcon={false}
-            />
-          </>
-        )
-      default:
-        return (
-          <>
-            <span>{value?.label}:</span>&nbsp;
-            <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-              {value?.value}
-            </span>
-            <a href="a#" onClick={openEditOverlay}>
-              {value?.label === 'BPN' ? 'Edit' : ''}
-            </a>
-          </>
-        )
-    }
+    return (param === 'status')
+      ? (
+        <>
+          <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+          <Chip
+            color="secondary"
+            label={value?.value}
+            type="plain"
+            variant="filled"
+            withIcon={false}
+          />
+        </>
+      )
+    : (
+        <>
+          <span>{value?.label}:</span>&nbsp;
+          <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+            {value?.value}
+          </span>
+          <span>
+            {value?.label === 'BPN' ? (
+              <EditIcon
+                style={{ cursor: 'pointer' }}
+                onClick={openEditOverlay}
+              />
+            ) : (
+              ''
+            )}
+          </span>
+        </>
+      )
   }
 
   return (

@@ -1,0 +1,25 @@
+.manageBPN {
+  padding: 0 50px 0 50px;
+  .bpnListing {
+    list-style: none;
+    display: inline-block;
+    margin: 0 0 50px 0;
+    padding: 0;
+    li {
+      display: flex;
+      align-items: center;
+      p {
+        margin: 3px auto 3px 0;
+        padding-right: 15px;
+        word-break: break-all;
+      }
+      .deleteIcon {
+        cursor: pointer;
+      }
+    }
+  }
+  .bpnInput {
+    max-width: 85%;
+    margin: 0 auto;
+  }
+}

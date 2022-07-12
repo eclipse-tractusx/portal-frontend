@@ -13,11 +13,11 @@ import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
 import { Overlay } from 'features/control/overlay/types'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import './style.scss'
 
 export default function AddBPN({ id }: { id: string }) {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
   const userInfo = useSelector(ownUserSelector)
   const [bpnValues, setBpnValues] = useState([''])
@@ -53,13 +53,14 @@ export default function AddBPN({ id }: { id: string }) {
     <>
       <DialogHeader
         {...{
-          title: 'Add BPN',
+          title: 'Manage BPNs',
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
         }}
       />
 
       <DialogContent>
+        {/*
         {bpnValues.map((bpn, i) => {
           return (
             <li key={i}>
@@ -79,6 +80,32 @@ export default function AddBPN({ id }: { id: string }) {
           }}
         />
         <p style={{ color: 'red' }}>{bpnErrorMsg}</p>
+        */}
+        <div className="manageBPN">
+          <ul className="bpnListing">
+            {bpnValues.map((bpn, i) => {
+              return (
+                <li key={i}>
+                  <p>{bpn}</p> <DeleteIcon className="deleteIcon" />
+                </li>
+              )
+            })}
+          </ul>
+          <div className="bpnInput">
+            <Input
+              name="bpn"
+              label="Add a new BPN"
+              placeholder="Placeholder Text"
+              onChange={(e) => addInputBPN(e.target.value)}
+              onKeyPress={(event) => {
+                if (event.key === 'Enter') {
+                  addBPN()
+                }
+              }}
+            />
+            <p style={{ color: 'red' }}>{bpnErrorMsg}</p>
+          </div>
+        </div>
       </DialogContent>
 
       <DialogActions>
@@ -86,7 +113,7 @@ export default function AddBPN({ id }: { id: string }) {
           variant="outlined"
           onClick={() => dispatch(show(Overlay.NONE, ''))}
         >
-          {`${t('global.actions.cancel')}`}
+          Close
         </Button>
       </DialogActions>
     </>
