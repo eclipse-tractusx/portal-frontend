@@ -48,26 +48,6 @@
         text-align: center;
         margin-bottom: 132px;
       }
-
-      // .lr-text-divider{
-      //     position: relative;
-      //     display: flex;
-      //     align-items: center;
-      //     ::before{
-      //         content: '';
-      //         height: 1px;
-      //         flex: 1;
-      //         padding-right: 10px;
-      //         background-color: #333;
-      //     }
-      //     ::after{
-      //         content: '';
-      //         height: 1px;
-      //         flex: 1;
-      //         padding-left: 10px;
-      //         background-color: #333;
-      //     }
-      // }
       .lr-text-divider {
         margin-top: 104px;
         display: flex;
@@ -123,4 +103,8 @@
       }
     }
   }
+}
+
+.Footer {
+  background: #f9f9f9;
 }
