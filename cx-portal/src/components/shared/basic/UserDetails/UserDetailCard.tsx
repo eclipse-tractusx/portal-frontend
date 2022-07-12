@@ -52,37 +52,32 @@ export const UserDetailCard = ({
     param: string,
     value: UserItemsTranslation | undefined
   ) => {
-    return (param === 'status')
-      ? (
-        <>
-          <span style={{ marginRight: '10px' }}>{value?.label} :</span>
-          <Chip
-            color="secondary"
-            label={value?.value}
-            type="plain"
-            variant="filled"
-            withIcon={false}
-          />
-        </>
-      )
-    : (
-        <>
-          <span>{value?.label}:</span>&nbsp;
-          <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-            {value?.value}
-          </span>
-          <span>
-            {value?.label === 'BPN' ? (
-              <EditIcon
-                style={{ cursor: 'pointer' }}
-                onClick={openEditOverlay}
-              />
-            ) : (
-              ''
-            )}
-          </span>
-        </>
-      )
+    return param === 'status' ? (
+      <>
+        <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+        <Chip
+          color="secondary"
+          label={value?.value}
+          type="plain"
+          variant="filled"
+          withIcon={false}
+        />
+      </>
+    ) : (
+      <>
+        <span>{value?.label}:</span>&nbsp;
+        <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+          {value?.value}
+        </span>
+        <span>
+          {value?.label === 'BPN' ? (
+            <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
+          ) : (
+            ''
+          )}
+        </span>
+      </>
+    )
   }
 
   return (
