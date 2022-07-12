@@ -20,4 +20,8 @@ export type SearchItem = {
   description?: string
 }
 
-export const initialState: ListState<SearchItem> = { ...InitialListState }
+export interface SearchState extends ListState<SearchItem> {
+  expr: string
+}
+
+export const initialState: SearchState = { ...InitialListState, expr: '' }

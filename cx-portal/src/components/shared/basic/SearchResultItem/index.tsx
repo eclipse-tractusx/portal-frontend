@@ -40,7 +40,7 @@ const getHighlightedText = (text: string, expr?: string) =>
           key={i}
           style={
             part.toLowerCase() === expr.toLowerCase()
-              ? { backgroundColor: '#eeeeee' }
+              ? { backgroundColor: '#ffffcc' }
               : {}
           }
         >
@@ -103,20 +103,26 @@ export const SearchResultItem = ({
           },
         },
       }}
-      onClick={() =>
-        item.category === SearchCategory.PAGE
-          ? navigate(`/${item.id}`)
-          : item.category === SearchCategory.OVERLAY
-          ? dispatch(show(item.id as Overlay, ''))
-          : item.category === SearchCategory.ACTION
-          ? dispatch(exec(item.id))
-          : dispatch(show(getCategoryOverlay(item.category), item.id))
-      }
+      onClick={() => {
+        switch (item.category) {
+          case SearchCategory.PAGE:
+            navigate(`/${item.id}`)
+            break
+          case SearchCategory.OVERLAY:
+            dispatch(show(item.id as Overlay, ''))
+            break
+          case SearchCategory.ACTION:
+            dispatch(exec(item.id))
+            break
+          default:
+            dispatch(show(getCategoryOverlay(item.category), item.id))
+        }
+      }}
     >
       <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
       <ListItemText
         primary={getHighlightedText(t(item.title), expr)}
-        secondary={item.description}
+        secondary={getHighlightedText(t(item.description!), expr)}
         primaryTypographyProps={{
           color: '#606060',
           fontWeight: 800,

@@ -5,11 +5,11 @@ import { SearchItem } from 'features/info/search/types'
 import { SearchResultGroup } from '../SearchResultGroup'
 
 export const SearchResult = ({
-  items,
   expr,
+  items,
 }: {
-  items: SearchItem[]
   expr?: string
+  items: SearchItem[]
 }) => {
   const groupedItems = groupBy(items, (item: SearchItem) => item.category)
   const groupList = Object.entries(groupedItems).sort(

@@ -10,14 +10,16 @@ export const slice = createSlice({
   reducers: {
     clear: (state) => ({
       ...state,
+      expr: '',
       items: [],
       request: RequestState.NONE,
       error: '',
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSearch.pending, (state) => ({
+    builder.addCase(fetchSearch.pending, (state, action) => ({
       ...state,
+      expr: action.meta.arg,
       request: RequestState.SUBMIT,
       error: '',
     }))
@@ -36,7 +38,10 @@ export const slice = createSlice({
   },
 })
 
-export const searchSelector = (state: RootState): SearchItem[] =>
+export const searchExprSelector = (state: RootState): string =>
+  state.info.search.expr
+
+export const searchItemSelector = (state: RootState): SearchItem[] =>
   state.info.search.items
 
 const Slice = { slice }

@@ -23,13 +23,14 @@ import {
 import { TenantUser } from 'features/admin/user/types'
 import I18nService from 'services/I18nService'
 import AccessService from 'services/AccessService'
+import { initialPaginResult, PaginResult } from 'types/MainTypes'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
 const emptyPageResult: string[] = []
 const emptyOverlayResult: string[] = []
 const emptyActionResult: string[] = []
-const emptyUserResult: TenantUser[] = []
+const emptyUserResult: PaginResult<TenantUser> = initialPaginResult
 const emptyPartnerResult: BusinessPartnerResponse = {
   totalElements: 0,
   totalPages: 0,
@@ -164,7 +165,7 @@ const fetchSearch = createAsyncThunk(
               item.description?.match(searchExpr)
           )
           .map((item: CardItems) => newsToSearchItem(item)),
-        users
+        users.content
           .filter((item: TenantUser) =>
             isUUID
               ? item.userEntityId?.match(searchExpr) ||
