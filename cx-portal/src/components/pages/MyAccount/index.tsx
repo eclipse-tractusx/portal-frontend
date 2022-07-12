@@ -71,6 +71,8 @@ export default function MyAccount() {
     })
   }
 
+  console.log('render')
+
   return (
     <main className="my-account">
       <PageHeader

@@ -6,11 +6,13 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
 import BusinessIcon from '@mui/icons-material/Business'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import Home from '@mui/icons-material/Home'
+import LayersIcon from '@mui/icons-material/Layers'
 import NewspaperIcon from '@mui/icons-material/Newspaper'
+import SettingsIcon from '@mui/icons-material/Settings'
 import WebIcon from '@mui/icons-material/Web'
 import { SearchCategory, SearchItem } from 'features/info/search/types'
 import { Overlay } from 'features/control/overlay/types'
-import { show } from 'features/control/overlay/actions'
+import { exec, show } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -20,9 +22,11 @@ export const getCategoryOverlay = (category: SearchCategory): Overlay => {
     case SearchCategory.APP:
       return Overlay.APP
     case SearchCategory.PARTNER:
-      return Overlay.COMPANY
+      return Overlay.PARTNER
     case SearchCategory.USER:
       return Overlay.USER
+    case SearchCategory.NEWS:
+      return Overlay.NEWS
     default:
       return Overlay.NONE
   }
@@ -36,7 +40,7 @@ const getHighlightedText = (text: string, expr?: string) =>
           key={i}
           style={
             part.toLowerCase() === expr.toLowerCase()
-              ? { backgroundColor: '#eeeeee' }
+              ? { backgroundColor: '#ffffcc' }
               : {}
           }
         >
@@ -57,6 +61,10 @@ const getIcon = (category: string) => {
       return <WebIcon sx={style} />
     case SearchCategory.PAGE:
       return <ExitToAppIcon sx={style} />
+    case SearchCategory.OVERLAY:
+      return <LayersIcon sx={style} />
+    case SearchCategory.ACTION:
+      return <SettingsIcon sx={style} />
     case SearchCategory.PARTNER:
       return <BusinessIcon sx={style} />
     case SearchCategory.USER:
@@ -95,16 +103,26 @@ export const SearchResultItem = ({
           },
         },
       }}
-      onClick={() =>
-        item.category === SearchCategory.PAGE
-          ? navigate(`/${item.id}`)
-          : dispatch(show(getCategoryOverlay(item.category), item.id))
-      }
+      onClick={() => {
+        switch (item.category) {
+          case SearchCategory.PAGE:
+            navigate(`/${item.id}`)
+            break
+          case SearchCategory.OVERLAY:
+            dispatch(show(item.id as Overlay, ''))
+            break
+          case SearchCategory.ACTION:
+            dispatch(exec(item.id))
+            break
+          default:
+            dispatch(show(getCategoryOverlay(item.category), item.id))
+        }
+      }}
     >
       <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
       <ListItemText
         primary={getHighlightedText(t(item.title), expr)}
-        secondary={item.description}
+        secondary={getHighlightedText(t(item.description!), expr)}
         primaryTypographyProps={{
           color: '#606060',
           fontWeight: 800,

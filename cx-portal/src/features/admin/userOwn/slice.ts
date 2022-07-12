@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { name, initialState, OwnUser, InitialOwnUser } from './types'
+import {
+  name,
+  initialState,
+  AdminOwnUserState,
+  OwnUser,
+  InitialOwnUser,
+} from './types'
 import {
   fetchAny,
   fetchOwn,
@@ -9,45 +15,42 @@ import {
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 
+const pending = (state: AdminOwnUserState) => ({
+  ...state,
+  data: InitialOwnUser,
+  request: RequestState.SUBMIT,
+  error: '',
+})
+
+const fulfilled = (
+  state: AdminOwnUserState,
+  { payload }: { payload: OwnUser }
+) => ({
+  ...state,
+  data: payload || [],
+  request: RequestState.OK,
+  error: '',
+})
+
+const rejected = (state: AdminOwnUserState, action: { error: any }) => ({
+  ...state,
+  data: InitialOwnUser,
+  request: RequestState.ERROR,
+  error: action.error.message as string,
+})
+
 export const slice = createSlice({
   name,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchOwn.pending, (state) => ({
-      ...state,
-      data: InitialOwnUser,
-      request: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(fetchOwn.fulfilled, (state, { payload }) => ({
-      ...state,
-      data: payload || [],
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(fetchOwn.rejected, (state, action) => ({
-      ...state,
-      data: InitialOwnUser,
-      request: RequestState.ERROR,
-      error: action.error.message as string,
-    }))
+    builder.addCase(fetchOwn.pending, pending)
+    builder.addCase(fetchOwn.fulfilled, fulfilled)
+    builder.addCase(fetchOwn.rejected, rejected)
 
-    builder.addCase(fetchAny.pending, (state) => ({
-      ...state,
-      data: InitialOwnUser,
-      error: '',
-    }))
-    builder.addCase(fetchAny.fulfilled, (state, { payload }) => ({
-      ...state,
-      data: payload || [],
-      error: '',
-    }))
-    builder.addCase(fetchAny.rejected, (state, action) => ({
-      ...state,
-      data: InitialOwnUser,
-      error: action.error.message as string,
-    }))
+    builder.addCase(fetchAny.pending, pending)
+    builder.addCase(fetchAny.fulfilled, fulfilled)
+    builder.addCase(fetchAny.rejected, rejected)
 
     builder.addCase(putResetPassword.pending, (state) => ({
       ...state,

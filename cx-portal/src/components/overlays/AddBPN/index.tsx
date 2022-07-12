@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import './style.scss'
 
-export default function AddBPN({ companyUserId }: { companyUserId: string }) {
+export default function AddBPN({ id }: { id: string }) {
   const dispatch = useDispatch()
   const userInfo = useSelector(ownUserSelector)
   const [bpnValues, setBpnValues] = useState([''])
@@ -25,8 +25,8 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
   const [bpnErrorMsg, setBpnErrorMessage] = useState('')
 
   useEffect(() => {
-    dispatch(fetchAny(companyUserId))
-  }, [dispatch])
+    dispatch(fetchAny(id))
+  }, [dispatch, id])
 
   useEffect(() => {
     setBpnValues(userInfo.bpn)
@@ -44,7 +44,7 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
 
   const addBPN = () => {
     if (!bpnErrorMsg) {
-      dispatch(putBusinessPartnerNumber({ companyUserId, inputBPN }))
+      dispatch(putBusinessPartnerNumber({ companyUserId: id, inputBPN }))
       setBpnValues([...bpnValues, inputBPN])
     }
   }
@@ -60,6 +60,27 @@ export default function AddBPN({ companyUserId }: { companyUserId: string }) {
       />
 
       <DialogContent>
+        {/*
+        {bpnValues.map((bpn, i) => {
+          return (
+            <li key={i}>
+              {bpn} <a href="a#">Delete</a>
+            </li>
+          )
+        })}
+        <Input
+          name="bpn"
+          label="Add a new BPN"
+          placeholder="Placeholder Text"
+          onChange={(e) => addInputBPN(e.target.value)}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              addBPN()
+            }
+          }}
+        />
+        <p style={{ color: 'red' }}>{bpnErrorMsg}</p>
+        */}
         <div className="manageBPN">
           <ul className="bpnListing">
             {bpnValues.map((bpn, i) => {

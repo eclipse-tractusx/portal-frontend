@@ -2,8 +2,10 @@ export const name = 'control/overlay'
 
 export enum Overlay {
   NONE = 'NONE',
-  COMPANY = 'COMPANY',
+  PARTNER = 'PARTNER',
+  NEWS = 'NEWS',
   USER = 'USER',
+  ADD_USER = 'ADD_USER',
   TECHUSER = 'TECHUSER',
   APP = 'APP',
   INVITE = 'INVITE',
