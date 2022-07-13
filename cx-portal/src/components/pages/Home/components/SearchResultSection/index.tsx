@@ -14,7 +14,5 @@ export default function SearchResultSection() {
     <div className="search-result-section">
       <SearchResult expr={searchExpr} items={searchItems} />
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }
