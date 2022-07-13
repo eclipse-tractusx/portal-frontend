@@ -45,6 +45,7 @@ export enum PAGES {
 }
 
 export enum OVERLAYS {
+  NONE = 'none',
   ADD_USER = 'add_user',
   USER = 'user',
   NEWS = 'news',
@@ -52,6 +53,7 @@ export enum OVERLAYS {
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
+  TECHUSER = 'techuser',
 }
 
 export enum ACTIONS {
@@ -85,6 +87,7 @@ export enum ROLES {
   USERMANAGEMENT_ADD = 'add_user_account',
   USERMANAGEMENT_DELETE = 'delete_user_account',
   USERMANAGEMENT_VIEW_USER_ACCOUNT = 'view_user_account',
+  MODIFY_USER_ACCOUNT = 'modify_user_account',
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',

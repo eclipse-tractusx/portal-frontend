@@ -8,7 +8,7 @@ import InviteForm from 'components/overlays/InviteForm'
 import NewsDetail from 'components/overlays/NewsDetail'
 import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import UserInfo from 'components/overlays/UserInfo'
-import { Overlay, OverlayState } from 'features/control/overlay/types'
+import { OverlayState } from 'features/control/overlay/types'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,
@@ -17,6 +17,7 @@ import {
   mainMenuFullTree,
   userMenuFull,
 } from 'types/Config'
+import { OVERLAYS } from 'types/Constants'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -65,19 +66,19 @@ export const getOverlay = (overlay: OverlayState) => {
     return null
   }
   switch (overlay.type) {
-    case Overlay.ADD_USER:
+    case OVERLAYS.ADD_USER:
       return <AddUser />
-    case Overlay.USER:
+    case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
-    case Overlay.NEWS:
+    case OVERLAYS.NEWS:
       return <NewsDetail id={overlay.id} />
-    case Overlay.ADD_BPN:
+    case OVERLAYS.ADD_BPN:
       return <AddBPN id={overlay.id} />
-    case Overlay.INVITE:
+    case OVERLAYS.INVITE:
       return <InviteForm />
-    case Overlay.PARTNER:
+    case OVERLAYS.PARTNER:
       return <BusinessPartnerDetail id={overlay.id} />
-    case Overlay.APP:
+    case OVERLAYS.APP:
       return <AppInfo id={overlay.id} />
     default:
       return null
@@ -103,7 +104,7 @@ function init() {
     {}
   )
   overlayMap = ALL_OVERLAYS.reduce(
-    (map: { [overlay: string]: IAction }, overlay: IOverlay) => {
+    (map: { [overlay: string]: IOverlay }, overlay: IOverlay) => {
       map[overlay.name] = overlay
       return map
     },

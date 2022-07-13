@@ -93,7 +93,6 @@ export type IPage = {
 export type IOverlay = {
   name: string
   role?: string
-  element: JSX.Element
 }
 
 export type IAction = {
