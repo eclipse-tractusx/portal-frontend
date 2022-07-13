@@ -321,9 +321,7 @@ const accessToMenuTree = (menu: Tree[] | undefined): any =>
 
 const mainMenu = () => accessToMenu(mainMenuFull)
 
-const mainMenuTree = () => {
-  return accessToMenuTree(mainMenuFullTree)
-}
+const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
 
