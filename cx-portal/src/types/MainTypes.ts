@@ -86,6 +86,8 @@ export enum PAGES {
   ROOT = '',
   HOME = 'home',
   REGISTRATION = 'registration',
+  SWAGGER = 'swagger',
+  STORYBOOK = 'storybook',
   APPSTORE = 'appstore',
   APP_MARKETPLACE = 'appmarketplace',
   APP_DETAIL = 'appdetail',
@@ -159,12 +161,25 @@ export enum ROLES {
   VIEW_APP_RELEASE = 'view_app_release',
 }
 
+export enum ACTIONS {
+  LANG_DE = 'Lang_de',
+  LANG_EN = 'Lang_en',
+  SIGNOUT = 'SignOut',
+}
+
 export type IPage = {
   name: string
   role?: string
   element: JSX.Element
   isRoute?: boolean
   children?: string[]
+}
+
+export type IAction = {
+  name: string
+  role?: string
+  element: JSX.Element
+  value?: string
 }
 
 type LinkItem = Partial<Record<'href' | 'to', string>>

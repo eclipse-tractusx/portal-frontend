@@ -52,7 +52,7 @@ export const slice = createSlice({
     }))
     builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => ({
       ...state,
-      tenantUsers: payload || [],
+      tenantUsers: payload.content || [],
       getRequest: RequestState.OK,
       error: '',
     }))

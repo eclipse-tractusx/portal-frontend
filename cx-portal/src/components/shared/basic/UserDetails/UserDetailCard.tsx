@@ -1,19 +1,33 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
-import { Chip } from '../../basic/Chip'
-import { IconButton } from '../../basic/IconButton'
-import { Typography } from '../../basic/Typography'
+import { Chip, IconButton, Typography } from 'cx-portal-shared-components'
+import { useDispatch } from 'react-redux'
+import { Overlay } from 'features/control/overlay/types'
+import { show } from 'features/control/overlay/actions'
+import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
+
+export type OwnUser = {
+  companyUserId: string
+  firstName: string
+  lastName: string
+  email: string
+  bpn: string[]
+  created: string
+  company: string
+  status: string
+}
 
 export interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory?: string
   cardContentItems: UserItems
+  userInfo?: OwnUser
   variant?: 'wide'
 }
 
 interface UserItemsTranslation {
   label: string
-  value: string
+  value: string | string[]
 }
 
 export interface UserItems {
@@ -24,36 +38,46 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
+  userInfo,
   variant,
 }: UserCardProps) => {
+  const dispatch = useDispatch()
+
+  const openEditOverlay = () => {
+    console.log(userInfo)
+    dispatch(show(Overlay.ADD_BPN, userInfo?.companyUserId))
+  }
+
   const renderContentSwitch = (
     param: string,
     value: UserItemsTranslation | undefined
   ) => {
-    switch (param) {
-      case 'status':
-        return (
-          <>
-            <span style={{ marginRight: '10px' }}>{value?.label} :</span>
-            <Chip
-              color="secondary"
-              label={value?.value}
-              type="plain"
-              variant="filled"
-              withIcon={false}
-            />
-          </>
-        )
-      default:
-        return (
-          <>
-            <span>{value?.label}:</span>&nbsp;
-            <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-              {value?.value}
-            </span>
-          </>
-        )
-    }
+    return param === 'status' ? (
+      <>
+        <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+        <Chip
+          color="secondary"
+          label={value?.value}
+          type="plain"
+          variant="filled"
+          withIcon={false}
+        />
+      </>
+    ) : (
+      <>
+        <span>{value?.label}:</span>&nbsp;
+        <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+          {value?.value}
+        </span>
+        <span>
+          {value?.label === 'BPN' ? (
+            <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
+          ) : (
+            ''
+          )}
+        </span>
+      </>
+    )
   }
 
   return (
@@ -69,7 +93,7 @@ export const UserDetailCard = ({
             paddingRight: '14px',
           }}
         >
-          <Typography variant="label3">{cardCategory}</Typography>
+          <Typography sx={{ typography: 'label3' }}>{cardCategory}</Typography>
           {cardAction && (
             <IconButton
               color="secondary"

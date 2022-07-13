@@ -8,4 +8,11 @@ const show = createAction(`${name}/show`, (type: Overlay, id?: string) => ({
   },
 }))
 
-export { show }
+const exec = createAction(`${name}/exec`, (id: string) => ({
+  payload: {
+    type: Overlay.NONE,
+    id,
+  },
+}))
+
+export { show, exec }

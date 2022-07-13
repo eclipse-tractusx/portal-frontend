@@ -1,35 +1,40 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-} from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
+import { Dialog } from 'cx-portal-shared-components'
 import { stateSelector } from 'features/control/overlay/slice'
-import { Overlay } from 'features/control/overlay/types'
+import { Overlay, OverlayState } from 'features/control/overlay/types'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import AppDetailContent from './pages/AppDetail/AppDetailContent'
-import InviteForm from './pages/InviteBusinessPartner/components/InviteForm'
+import { getAction } from 'services/AccessService'
+import AddBPN from './overlays/AddBPN'
+import { AddUser } from './overlays/AddUser'
+import AppDetail from './overlays/AppDetail'
+import InviteForm from './overlays/InviteForm'
+import NewsDetail from './overlays/NewsDetail'
+import UserInfo from './overlays/UserInfo'
 import BusinessPartnerDetail from './pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 
-const getOverlayTitle = (type: Overlay) => {
-  switch (type) {
+const getOverlay = (overlay: OverlayState) => {
+  switch (overlay.type) {
+    case Overlay.ADD_USER:
+      return <AddUser />
+    case Overlay.USER:
+      return <UserInfo id={overlay.id} />
+    case Overlay.NEWS:
+      return <NewsDetail id={overlay.id} />
+    case Overlay.ADD_BPN:
+      return <AddBPN id={overlay.id} />
     case Overlay.INVITE:
-      return 'content.invite.title'
-    case Overlay.COMPANY:
-      return 'content.partnernetwork.overlay.title'
+      return <InviteForm />
+    case Overlay.PARTNER:
+      return <BusinessPartnerDetail id={overlay.id} />
     case Overlay.APP:
-      return '' //no title or pages.appdetails
+      return <AppDetail id={overlay.id} />
     default:
-      return ''
+      return <></>
   }
 }
 
 export default function MainOverlay() {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
   const overlay = useSelector(stateSelector)
   const navigate = useNavigate()
 
@@ -43,21 +48,14 @@ export default function MainOverlay() {
   }, [navigate, overlay])
 
   return (
-    <Dialog open={overlay.type !== Overlay.NONE}>
-      <DialogHeader
-        {...{
-          title: t(getOverlayTitle(overlay.type)),
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
-        }}
-      />
-      <DialogContent>
-        {overlay.type === Overlay.COMPANY && (
-          <BusinessPartnerDetail id={overlay.id} />
-        )}
-        {overlay.type === Overlay.APP && <AppDetailContent id={overlay.id} />}
-        {overlay.type === Overlay.INVITE && <InviteForm />}
-      </DialogContent>
-    </Dialog>
+    <>
+      {overlay.type === Overlay.NONE && getAction(overlay.id) ? (
+        getAction(overlay.id).element
+      ) : (
+        <Dialog open={overlay.type !== Overlay.NONE}>
+          {getOverlay(overlay)}
+        </Dialog>
+      )}
+    </>
   )
 }

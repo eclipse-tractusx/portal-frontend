@@ -2,7 +2,9 @@
   "title": "Catena-X Portal",
   "pages": {
     "home": "Home",
-    "registration": "Registration",
+    "registration": "Onboarding Registration",
+    "swagger": "Swagger OpenAPI Definition",
+    "storybook": "Storybook Shared Component Library",
     "appmarketplace": "App Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Data Management",
@@ -34,6 +36,15 @@
     "appoverview": "App Overview",
     "appreleaseprocess": "App Release Process"
   },
+  "overlays": {
+    "INVITE": "Invite new Business Partner",
+    "ADD_USER": "Add new User"
+  },
+  "actions": {
+    "SignOut": "Sign out",
+    "Lang_de": "Switch language to german",
+    "Lang_en": "Switch language to english"
+  },
   "content": {
     "admin": {
       "registration-requests": {
@@ -60,6 +71,9 @@
           "taxid": "Tax ID"
         }
       }
+    },
+    "news": {
+      "title": "News"
     },
     "home": {
       "stage": {
@@ -485,6 +499,8 @@
         "USER": "Users",
         "PARTNER": "Business Partners",
         "PAGE": "Pages",
+        "OVERLAY": "Actions",
+        "ACTION": "Settings",
         "NEWS": "News"
       }
     },

@@ -10,6 +10,18 @@ export const pageToSearchItem = (item: string): SearchItem => ({
   title: `pages.${item}`,
 })
 
+export const overlayToSearchItem = (item: string): SearchItem => ({
+  id: item,
+  category: SearchCategory.OVERLAY,
+  title: `overlays.${item}`,
+})
+
+export const actionToSearchItem = (item: string): SearchItem => ({
+  id: item,
+  category: SearchCategory.ACTION,
+  title: `actions.${item}`,
+})
+
 export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
   ...item,
   category: SearchCategory.APP,
@@ -33,7 +45,7 @@ export const newsToSearchItem = (item: CardItems): SearchItem => ({
 })
 
 export const userToSearchItem = (item: TenantUser): SearchItem => ({
-  id: item.userEntityId,
+  id: item.companyUserId,
   category: SearchCategory.USER,
   title: `${item.firstName || ''} ${item.lastName || ''}`,
   description: item.email,

@@ -5,11 +5,11 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  UserDetails,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { TechnicalUserAddForm } from './components/TechnicalUserAddForm'
+import { UserDetails } from 'components/shared/basic/UserDetails'
 
 interface AddTechnicalUserOverlayProps {
   dialogOpen: boolean
