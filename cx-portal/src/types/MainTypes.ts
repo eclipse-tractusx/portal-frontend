@@ -123,6 +123,9 @@ export enum PAGES {
   TRANSLATOR = 'translator',
   LOGOUT = 'logout',
   ERROR = 'error',
+  APP_MANAGEMENT = 'appmanagement',
+  APPOVERVIEW = 'appoverview',
+  APPRELEASEPROCESS = 'appreleaseprocess',
 }
 
 export enum ROLES {
@@ -155,6 +158,7 @@ export enum ROLES {
   DEVELOPER = 'catenax_developer',
   TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
+  VIEW_APP_RELEASE = 'view_app_release',
 }
 
 export enum ACTIONS {
