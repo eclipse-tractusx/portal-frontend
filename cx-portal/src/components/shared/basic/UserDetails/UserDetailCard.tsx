@@ -44,7 +44,6 @@ export const UserDetailCard = ({
   const dispatch = useDispatch()
 
   const openEditOverlay = () => {
-    console.log(userInfo)
     dispatch(show(OVERLAYS.ADD_BPN, userInfo?.companyUserId))
   }
 
@@ -67,7 +66,14 @@ export const UserDetailCard = ({
       <>
         <span>{value?.label}:</span>&nbsp;
         <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-          {value?.value}
+          {Array.isArray(value?.value)
+            ? value?.value.map((bpn, i) => (
+                <span key={i}>
+                  {bpn}
+                  <br />
+                </span>
+              ))
+            : value?.value}
         </span>
         <span>
           {value?.label === 'BPN' ? (

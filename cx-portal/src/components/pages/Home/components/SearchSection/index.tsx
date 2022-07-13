@@ -13,8 +13,8 @@ export const label = 'Search'
 export default function SearchSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const expr = useSelector(searchExprSelector)
-  const [searchExpr, setSearchExpr] = useState<string>(expr)
+  const currentExpr = useSelector(searchExprSelector)
+  const [searchExpr, setSearchExpr] = useState<string>(currentExpr)
 
   const debouncedSearch = useMemo(
     () =>
