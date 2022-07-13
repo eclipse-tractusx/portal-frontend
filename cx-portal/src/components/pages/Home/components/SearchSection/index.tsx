@@ -18,17 +18,17 @@ export default function SearchSection() {
 
   const debouncedSearch = useMemo(
     () =>
-      debounce((expr: string) => {
+      debounce((exprSelector: string) => {
         //PageService.scrollTo(label)
-        dispatch(expr ? fetchSearch(expr) : clearSearch())
+        dispatch(exprSelector ? fetchSearch(exprSelector) : clearSearch())
       }, 400),
     [dispatch]
   )
 
   const doSearch = useCallback(
-    (expr: string) => {
-      setSearchExpr(expr)
-      debouncedSearch(expr)
+    (exprSelector: string) => {
+      setSearchExpr(exprSelector)
+      debouncedSearch(exprSelector)
     },
     [debouncedSearch]
   )
