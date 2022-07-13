@@ -2,9 +2,9 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
 import { Chip, IconButton, Typography } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { Overlay } from 'features/control/overlay/types'
 import { show } from 'features/control/overlay/actions'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
+import { OVERLAYS } from 'types/Constants'
 
 export type OwnUser = {
   companyUserId: string
@@ -45,7 +45,7 @@ export const UserDetailCard = ({
 
   const openEditOverlay = () => {
     console.log(userInfo)
-    dispatch(show(Overlay.ADD_BPN, userInfo?.companyUserId))
+    dispatch(show(OVERLAYS.ADD_BPN, userInfo?.companyUserId))
   }
 
   const renderContentSwitch = (

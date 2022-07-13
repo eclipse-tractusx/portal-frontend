@@ -11,11 +11,11 @@ import {
 } from 'features/admin/userOwn/actions'
 import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
-import { Overlay } from 'features/control/overlay/types'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import './style.scss'
+import { OVERLAYS } from 'types/Constants'
 
 export default function AddBPN({ id }: { id: string }) {
   const dispatch = useDispatch()
@@ -55,7 +55,7 @@ export default function AddBPN({ id }: { id: string }) {
         {...{
           title: 'Manage BPNs',
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
       />
 
@@ -111,7 +111,7 @@ export default function AddBPN({ id }: { id: string }) {
       <DialogActions>
         <Button
           variant="outlined"
-          onClick={() => dispatch(show(Overlay.NONE, ''))}
+          onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
         >
           Close
         </Button>

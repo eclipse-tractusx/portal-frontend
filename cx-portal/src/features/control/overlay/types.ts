@@ -1,23 +1,13 @@
+import { OVERLAYS } from 'types/Constants'
+
 export const name = 'control/overlay'
 
-export enum Overlay {
-  NONE = 'NONE',
-  PARTNER = 'PARTNER',
-  NEWS = 'NEWS',
-  USER = 'USER',
-  ADD_USER = 'ADD_USER',
-  TECHUSER = 'TECHUSER',
-  APP = 'APP',
-  INVITE = 'INVITE',
-  ADD_BPN = 'ADD_BPN',
-}
-
 export type OverlayState = {
-  type: Overlay
+  type: OVERLAYS
   id: string
 }
 
 export const initialState = {
-  type: Overlay.NONE,
+  type: OVERLAYS.NONE,
   id: '',
 }

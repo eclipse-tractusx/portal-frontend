@@ -1,11 +1,6 @@
 import Redirect from 'components/actions/Redirect'
 import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
-import AddBPN from 'components/overlays/AddBPN'
-import { AddUser } from 'components/overlays/AddUser'
-import InviteForm from 'components/overlays/InviteForm'
-import NewsDetail from 'components/overlays/NewsDetail'
-import UserInfo from 'components/overlays/UserInfo'
 import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
@@ -30,7 +25,6 @@ import NotFound from 'components/pages/NotFound'
 import NotificationCenter from 'components/pages/NotificationCenter'
 import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
-import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
@@ -57,9 +51,9 @@ import { IAction, IOverlay, IPage } from './MainTypes'
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
-  { name: PAGES.REGISTRATION, element: <Redirect path="/registration/" /> },
-  { name: PAGES.SWAGGER, element: <Redirect path="/swagger/" /> },
-  { name: PAGES.STORYBOOK, element: <Redirect path="/_storybook/" /> },
+  { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
+  { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
+  { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
@@ -241,17 +235,28 @@ export const ALL_PAGES: IPage[] = [
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
-  { name: OVERLAYS.ADD_BPN, element: <AddBPN id="" /> },
+  {
+    name: OVERLAYS.ADD_BPN,
+    role: ROLES.MODIFY_USER_ACCOUNT,
+  },
   {
     name: OVERLAYS.ADD_USER,
-    element: <AddUser />,
     role: ROLES.USERMANAGEMENT_ADD,
   },
-  { name: OVERLAYS.APP, element: <AppDetail /> },
-  { name: OVERLAYS.INVITE, element: <InviteForm /> },
-  { name: OVERLAYS.NEWS, element: <NewsDetail id="" /> },
-  { name: OVERLAYS.PARTNER, element: <BusinessPartnerDetail id="" /> },
-  { name: OVERLAYS.USER, element: <UserInfo id="" /> },
+  { name: OVERLAYS.APP, role: ROLES.APPSTORE_VIEW },
+  {
+    name: OVERLAYS.INVITE,
+    role: ROLES.INVITE_NEW_PARTNER,
+  },
+  { name: OVERLAYS.NEWS },
+  {
+    name: OVERLAYS.PARTNER,
+    role: ROLES.PARTNER_NETWORK_VIEW,
+  },
+  {
+    name: OVERLAYS.USER,
+    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
