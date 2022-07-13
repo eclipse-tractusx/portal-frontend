@@ -1,325 +1,41 @@
-import Admin from 'components/pages/Admin'
-import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
-import EdcConnector from 'components/pages/EdcConnector'
-import Connector from 'components/pages/Connector'
-import DataCatalog from 'components/pages/DataCatalog'
-import DeveloperHub from 'components/pages/DeveloperHub'
-import DigitalTwins from 'components/pages/DigitalTwins'
-import Logout from 'components/pages/Logout'
-import MyAccount from 'components/pages/MyAccount'
-import NotificationCenter from 'components/pages/NotificationCenter'
-import Organization from 'components/pages/Organization'
-import PartnerNetwork from 'components/pages/PartnerNetwork'
-import SemanticHub from 'components/pages/SemanticHub'
-import Translator from 'components/pages/Translator'
-import UserManagement from 'components/pages/UserManagement'
-import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
-import UserDetails from '../components/pages/UserManagement/UserDetails'
-import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
-import { ACTIONS, IAction, IPage, PAGES, ROLES, Tree } from 'types/MainTypes'
+import { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
-import Help from 'components/pages/Help'
-import Contact from 'components/pages/Contact'
-import Imprint from 'components/pages/Imprint'
-import Privacy from 'components/pages/Privacy'
-import Terms from 'components/pages/Terms'
-import CookiePolicy from 'components/pages/CookiePolicy'
-import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
-import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
-import AppMarketplace from 'components/pages/AppMarketplace'
-import Home from 'components/pages/Home'
-import Registration from 'components/pages/Registration'
-import AppDetail from 'components/pages/AppDetail'
-import DataManagement from 'components/pages/DataManagement'
-import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
-import NotFound from 'components/pages/NotFound'
-import AppOverview from 'components/pages/AppOverview'
-import AppReleaseProcess from 'components/pages/AppReleaseProcess'
-import Swagger from 'components/pages/Swagger'
-import Storybook from 'components/pages/Storybook'
-import SignOut from 'components/actions/SignOut'
-import SetLang from 'components/actions/SetLang'
-
-/**
- * ALL_PAGES
- *
- * this is the main application config table. Each entry has at least:
- * name - name of the page used as application route (without leading '/')
- * role - role required to access this page on the front end
- * element - either a JSX Element that renders the page or a custom router setup
- *           for that page. By default it will create a simple route name -> element
- */
-const ALL_PAGES: IPage[] = [
-  { name: PAGES.ROOT, element: <Home /> },
-  { name: PAGES.HOME, element: <Home /> },
-  { name: PAGES.REGISTRATION, element: <Registration /> },
-  { name: PAGES.SWAGGER, element: <Swagger /> },
-  { name: PAGES.STORYBOOK, element: <Storybook /> },
-  {
-    name: PAGES.APP_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW,
-    element: <AppMarketplace />,
-  },
-  {
-    name: PAGES.APP_DETAIL,
-    role: ROLES.APPSTORE_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.APP_DETAIL}
-        path={PAGES.APP_DETAIL}
-        element={<AppDetail />}
-      >
-        <Route index element={<></>} />
-        <Route path=":appId" element={<AppDetail />} />
-      </Route>
-    ),
-  },
-  {
-    name: PAGES.DATA_MANAGEMENT,
-    element: <DataManagement />,
-  },
-  {
-    name: PAGES.DATACATALOG,
-    role: ROLES.DATACATALOG_VIEW,
-    element: <DataCatalog />,
-  },
-  {
-    name: PAGES.DIGITALTWIN,
-    role: ROLES.DIGITALTWIN_VIEW,
-    element: <DigitalTwins />,
-  },
-  {
-    name: PAGES.SEMANTICHUB,
-    role: ROLES.SEMANTICHUB_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.SEMANTICHUB}
-        path={PAGES.SEMANTICHUB}
-        element={<SemanticHub />}
-      >
-        <Route index element={<></>} />
-        <Route path=":modelId" element={<SemanticHub />} />
-      </Route>
-    ),
-  },
-  {
-    name: PAGES.DEVELOPERHUB,
-    role: ROLES.DEVELOPER,
-    element: <DeveloperHub />,
-  },
-  {
-    name: PAGES.CONNECTOR,
-    role: ROLES.CONNECTOR_SETUP,
-    element: <Connector />,
-  },
-  { name: PAGES.ACCOUNT, element: <MyAccount /> },
-  {
-    name: PAGES.NOTIFICATIONS,
-    element: <NotificationCenter />,
-  },
-  {
-    name: PAGES.ORGANIZATION,
-    element: <Organization />,
-  },
-  {
-    name: PAGES.PARTNER_NETWORK,
-    role: ROLES.PARTNER_NETWORK_VIEW,
-    element: <PartnerNetwork />,
-  },
-  {
-    name: PAGES.APP_MANAGEMENT,
-    // role: ROLES.VIEW_APP_RELEASE,
-    element: <NotFound />,
-  },
-  {
-    name: PAGES.APPOVERVIEW,
-    //role: ROLES.VIEW_APP_RELEASE,
-    element: <AppOverview />,
-  },
-  {
-    name: PAGES.APPRELEASEPROCESS,
-    //role: ROLES.VIEW_APP_RELEASE,
-    element: <AppReleaseProcess />,
-  },
-  {
-    name: PAGES.USER_MANAGEMENT,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    element: <UserManagement />,
-  },
-  {
-    name: PAGES.TECHNICAL_USER_MANAGEMENT,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.TECHNICAL_USER_MANAGEMENT}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}`}
-        element={<TechnicalUserManagement />}
-      >
-        <Route path=":appId" element={<TechnicalUserManagement />} />
-      </Route>
-    ),
-  },
-  {
-    name: PAGES.TECHNICAL_USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.TECHNICAL_USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_DETAILS}`}
-        element={<TechnicalUserDetails />}
-      >
-        <Route path=":userId" element={<TechnicalUserDetails />} />
-      </Route>
-    ),
-  },
-  {
-    name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.USER_DETAILS}`}
-        element={<UserDetails />}
-      >
-        <Route path=":appId" element={<UserDetails />} />
-      </Route>
-    ),
-  },
-  {
-    name: PAGES.APP_USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.APP_USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.APP_USER_DETAILS}`}
-        element={<AppUserDetails />}
-      >
-        <Route path=":appId" element={<AppUserDetails />} />
-      </Route>
-    ),
-  },
-  {
-    name: PAGES.INVITE,
-    role: ROLES.INVITE_NEW_PARTNER,
-    element: <InviteBusinessPartner />,
-  },
-  { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
-  {
-    name: PAGES.APPLICATION_REQUESTS,
-    role: ROLES.CX_ADMIN,
-    element: <RegistrationRequests />,
-  },
-  {
-    name: PAGES.TRANSLATOR,
-    role: ROLES.CX_ADMIN,
-    element: <Translator />,
-  },
-  { name: PAGES.HELP, element: <Help /> },
-  { name: PAGES.CONTACT, element: <Contact /> },
-  { name: PAGES.IMPRINT, element: <Imprint /> },
-  { name: PAGES.PRIVACY, element: <Privacy /> },
-  { name: PAGES.TERMS, element: <Terms /> },
-  { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
-  { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
-  {
-    name: PAGES.TECHNICAL_SETUP,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
-    element: <EdcConnector />,
-  },
-  { name: PAGES.LOGOUT, element: <Logout /> },
-]
-
-const ALL_ACTIONS: IAction[] = [
-  { name: ACTIONS.SIGNOUT, element: <SignOut /> },
-  { name: ACTIONS.LANG_DE, element: <SetLang lang="de" /> },
-  { name: ACTIONS.LANG_EN, element: <SetLang lang="en" /> },
-]
-
-/**
- * mainMenuFull
- *
- * lists all the entries that are visible in the main menu for a user with maximum permissions.
- * it will be restricted by personal user permissions
- */
-const mainMenuFull = [
-  PAGES.HOME,
-  PAGES.APP_MARKETPLACE,
-  PAGES.DATACATALOG,
-  PAGES.DIGITALTWIN,
-  PAGES.SEMANTICHUB,
-  PAGES.DEVELOPERHUB,
-  PAGES.CONNECTOR,
-]
-
-const mainMenuFullTree = [
-  { name: PAGES.HOME },
-  { name: PAGES.APP_MARKETPLACE },
-  {
-    name: PAGES.DATA_MANAGEMENT,
-    children: [
-      { name: PAGES.DATACATALOG },
-      { name: PAGES.SEMANTICHUB },
-      { name: PAGES.DIGITALTWIN },
-    ],
-  },
-  { name: PAGES.PARTNER_NETWORK },
-  {
-    name: PAGES.APP_MANAGEMENT,
-    children: [{ name: PAGES.APPOVERVIEW }, { name: PAGES.APPRELEASEPROCESS }],
-  },
-]
-
-/**
- * userMenuFull
- *
- * lists all the entries that are visible in the user menu for a user with maximum permissions
- * it will be restricted by personal user permissions
- */
-const userMenuFull = [
-  PAGES.ACCOUNT,
-  PAGES.ORGANIZATION,
-  PAGES.NOTIFICATIONS,
-  PAGES.USER_MANAGEMENT,
-  PAGES.TECHNICAL_SETUP,
-  PAGES.APPLICATION_REQUESTS,
-  PAGES.INVITE,
-  PAGES.ADMINISTRATION,
-  PAGES.LOGOUT,
-]
-
-/**
- * footerMenuFull
- *
- * lists all the entries that are visible in the footer menu for a user with maximum permissions.
- * it will be restricted by personal user permissions
- */
-const footerMenuFull = [
-  PAGES.HELP,
-  PAGES.CONTACT,
-  PAGES.IMPRINT,
-  PAGES.PRIVACY,
-  PAGES.TERMS,
-  PAGES.COOKIE_POLICY,
-  PAGES.THIRD_PARTY_LICENSES,
-]
+import AppInfo from 'components/overlays/AppInfo'
+import AddBPN from 'components/overlays/AddBPN'
+import { AddUser } from 'components/overlays/AddUser'
+import InviteForm from 'components/overlays/InviteForm'
+import NewsDetail from 'components/overlays/NewsDetail'
+import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
+import UserInfo from 'components/overlays/UserInfo'
+import { Overlay, OverlayState } from 'features/control/overlay/types'
+import {
+  ALL_ACTIONS,
+  ALL_OVERLAYS,
+  ALL_PAGES,
+  footerMenuFull,
+  mainMenuFullTree,
+  userMenuFull,
+} from 'types/Config'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
+let overlayMap: { [overlay: string]: IOverlay }
 
-const hasAccess = (page: string): boolean => {
-  const fullPage = pageMap[page]
-  if (!fullPage) return false // page doesn't exist
-  const role = fullPage.role
+const checkAccess = (element: { name: string; role?: string }): boolean => {
+  if (!element) return false // page doesn't exist
+  const role = element.role
   if (!role) return true // no permission required for this page
   return UserService.hasRole(role) // check if user has the required permission
 }
+
+export const hasAccess = (page: string) => checkAccess(pageMap[page])
+
+export const hasAccessAction = (action: string) =>
+  checkAccess(actionMap[action])
+
+export const hasAccessOverlay = (overlay: string) =>
+  checkAccess(overlayMap[overlay])
 
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
@@ -332,8 +48,6 @@ const accessToMenuTree = (menu: Tree[] | undefined): any =>
       children: accessToMenuTree(item.children),
     }))
 
-const mainMenu = () => accessToMenu(mainMenuFull)
-
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
@@ -343,7 +57,32 @@ const footerMenu = () => accessToMenu(footerMenuFull)
 const permittedRoutes = () =>
   ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.element)
 
-export const getAction = (key: string) => actionMap[key]
+export const getAction = (action: string) =>
+  hasAccessAction(action) ? actionMap[action] : null
+
+export const getOverlay = (overlay: OverlayState) => {
+  if (!hasAccessOverlay(overlay.type)) {
+    return null
+  }
+  switch (overlay.type) {
+    case Overlay.ADD_USER:
+      return <AddUser />
+    case Overlay.USER:
+      return <UserInfo id={overlay.id} />
+    case Overlay.NEWS:
+      return <NewsDetail id={overlay.id} />
+    case Overlay.ADD_BPN:
+      return <AddBPN id={overlay.id} />
+    case Overlay.INVITE:
+      return <InviteForm />
+    case Overlay.PARTNER:
+      return <BusinessPartnerDetail id={overlay.id} />
+    case Overlay.APP:
+      return <AppInfo id={overlay.id} />
+    default:
+      return null
+  }
+}
 
 function init() {
   // from the list of pages set up a map for easier access and create default routes
@@ -363,14 +102,23 @@ function init() {
     },
     {}
   )
+  overlayMap = ALL_OVERLAYS.reduce(
+    (map: { [overlay: string]: IAction }, overlay: IOverlay) => {
+      map[overlay.name] = overlay
+      return map
+    },
+    {}
+  )
 }
 
 const AccessService = {
   init,
   getAction,
+  getOverlay,
   hasAccess,
+  hasAccessAction,
+  hasAccessOverlay,
   permittedRoutes,
-  mainMenu,
   mainMenuTree,
   userMenu,
   footerMenu,

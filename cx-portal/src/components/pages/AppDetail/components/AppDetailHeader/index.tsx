@@ -1,10 +1,10 @@
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import UserService from 'services/UserService'
 import { AppDetails } from 'features/apps/details/types'
 import { getAppLeadImage } from 'features/apps/marketplace/mapper'
-import { ROLES } from 'types/MainTypes'
 import './AppDetailHeader.scss'
+import { hasAccess } from 'services/AccessService'
+import { PAGES } from 'types/Constants'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -50,11 +50,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             <span key={lang}>{(index ? ', ' : '') + lang}</span>
           ))}
         </div>
-        <Button
-          color={
-            UserService.hasRole(ROLES.APPSTORE_VIEW) ? 'primary' : 'secondary'
-          }
-        >
+        <Button color={hasAccess(PAGES.APPSTORE) ? 'primary' : 'secondary'}>
           {t('content.appdetail.subscribe')}
         </Button>
       </div>

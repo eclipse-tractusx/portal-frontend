@@ -22,7 +22,11 @@ import {
 } from 'features/partnerNetwork/types'
 import { TenantUser } from 'features/admin/user/types'
 import I18nService from 'services/I18nService'
-import AccessService from 'services/AccessService'
+import {
+  hasAccess,
+  hasAccessAction,
+  hasAccessOverlay,
+} from 'services/AccessService'
 import { initialPaginResult, PaginResult } from 'types/MainTypes'
 
 const emptyAppResult: AppMarketplaceApp[] = []
@@ -139,13 +143,13 @@ const fetchSearch = createAsyncThunk(
         await searchForExpression(trexpr)
       return [
         pages
-          .filter((item: string) => AccessService.hasAccess(item))
+          .filter((item: string) => hasAccess(item))
           .map((item: string) => pageToSearchItem(item)),
         overlays
-          //.filter((item: string) => AccessService.hasAccess(item))
+          .filter((item: string) => hasAccessOverlay(item))
           .map((item: string) => overlayToSearchItem(item)),
         actions
-          //.filter((item: string) => AccessService.hasAccess(item))
+          .filter((item: string) => hasAccessAction(item))
           .map((item: string) => actionToSearchItem(item)),
         apps
           .filter((item: AppMarketplaceApp) =>

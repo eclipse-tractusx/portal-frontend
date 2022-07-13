@@ -4,7 +4,7 @@ import { show } from 'features/control/overlay/actions'
 import { Overlay } from 'features/control/overlay/types'
 import { useDispatch } from 'react-redux'
 
-export default function AppDetail({ id }: { id: string }) {
+export default function AppInfo({ id }: { id: string }) {
   const dispatch = useDispatch()
   return (
     <>
