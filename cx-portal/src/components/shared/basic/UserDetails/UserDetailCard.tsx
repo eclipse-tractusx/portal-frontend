@@ -44,7 +44,7 @@ export const UserDetailCard = ({
   const dispatch = useDispatch()
 
   const openEditOverlay = () => {
-    dispatch(show(Overlay.ADD_BPN, userInfo?.companyUserId))
+    dispatch(show(OVERLAYS.ADD_BPN, userInfo?.companyUserId))
   }
 
   const renderContentSwitch = (

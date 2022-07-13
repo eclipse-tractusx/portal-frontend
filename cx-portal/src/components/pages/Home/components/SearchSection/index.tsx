@@ -13,22 +13,22 @@ export const label = 'Search'
 export default function SearchSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const expr = useSelector(searchExprSelector)
-  const [searchExpr, setSearchExpr] = useState<string>(expr)
+  const currentExpr = useSelector(searchExprSelector)
+  const [searchExpr, setSearchExpr] = useState<string>(currentExpr)
 
   const debouncedSearch = useMemo(
     () =>
-      debounce((exprSelector: string) => {
+      debounce((expr: string) => {
         //PageService.scrollTo(label)
-        dispatch(exprSelector ? fetchSearch(exprSelector) : clearSearch())
+        dispatch(expr ? fetchSearch(expr) : clearSearch())
       }, 400),
     [dispatch]
   )
 
   const doSearch = useCallback(
-    (exprSelector: string) => {
-      setSearchExpr(exprSelector)
-      debouncedSearch(exprSelector)
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedSearch(expr)
     },
     [debouncedSearch]
   )
