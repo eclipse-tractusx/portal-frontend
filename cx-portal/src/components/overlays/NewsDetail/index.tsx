@@ -6,12 +6,12 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
-import { Overlay } from 'features/control/overlay/types'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
 
 export default function NewsDetail({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -30,7 +30,7 @@ export default function NewsDetail({ id }: { id: string }) {
         {...{
           title: t('content.news.title'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
       />
 
@@ -48,7 +48,7 @@ export default function NewsDetail({ id }: { id: string }) {
       <DialogActions>
         <Button
           variant="outlined"
-          onClick={() => dispatch(show(Overlay.NONE, ''))}
+          onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
         >
           {`${t('global.actions.cancel')}`}
         </Button>

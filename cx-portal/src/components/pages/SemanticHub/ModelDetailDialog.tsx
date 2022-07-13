@@ -21,7 +21,7 @@ import {
   deleteSemanticModelById,
 } from 'features/semanticModels/actions'
 import UserService from 'services/UserService'
-import { ROLES } from 'types/MainTypes'
+import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 

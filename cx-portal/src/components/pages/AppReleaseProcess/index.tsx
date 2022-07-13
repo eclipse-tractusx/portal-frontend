@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import './AppReleaseProcess.scss'
 
-export default function AppOverview() {
+export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
@@ -68,10 +68,20 @@ export default function AppOverview() {
             {t('content.apprelease.descMessage')}
           </Typography>
           <div className="">
-            <Button color="primary" size="small" className="create-btn">
+            <Button
+              key="create"
+              color="primary"
+              size="small"
+              className="create-btn"
+            >
               {t('content.apprelease.startCreatingButton')}
             </Button>
-            <Button color="secondary" size="small" className="overview-btn">
+            <Button
+              key="overview"
+              color="secondary"
+              size="small"
+              className="overview-btn"
+            >
               {t('content.apprelease.appOverviewButton')}
             </Button>
           </div>

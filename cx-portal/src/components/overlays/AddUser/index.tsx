@@ -18,7 +18,7 @@ import { usersToAddSelector } from 'features/admin/user/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTenantUsers, closeAdd } from 'features/admin/user/actions'
 import { show } from 'features/control/overlay/actions'
-import { Overlay } from 'features/control/overlay/types'
+import { OVERLAYS } from 'types/Constants'
 import './AddUserOverlay.scss'
 
 export const AddUser = () => {
@@ -45,7 +45,7 @@ export const AddUser = () => {
           title: t('content.addUser.headline'),
           intro: t('content.addUser.subheadline'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
       />
 

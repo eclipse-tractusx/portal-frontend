@@ -37,8 +37,8 @@
     "appreleaseprocess": "App Release Process"
   },
   "overlays": {
-    "INVITE": "Invite new Business Partner",
-    "ADD_USER": "Add new User"
+    "invite": "Invite new Business Partner",
+    "add_user": "Add new User"
   },
   "actions": {
     "SignOut": "Sign out",
@@ -493,6 +493,8 @@
       "homepage": "Homepage"
     },
     "search": {
+      "less": "show less",
+      "more": "show more",
       "category": {
         "USECASE": "Use Cases",
         "APP": "Apps",
