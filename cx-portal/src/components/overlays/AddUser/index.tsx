@@ -28,7 +28,7 @@ export const AddUser = () => {
   const [activeTab, setActiveTab] = useState(0)
 
   const handleConfirm = () => {
-    dispatch(addTenantUsers(usersToAdd))
+    dispatch(addTenantUsers([usersToAdd]))
   }
 
   const handleTabSwitch = (
@@ -83,7 +83,7 @@ export const AddUser = () => {
         </Button>
         <Button
           variant="contained"
-          disabled={usersToAdd.length === 0}
+          disabled={usersToAdd.email ? false : true}
           onClick={handleConfirm}
         >
           {`${t('global.actions.confirm')}`}

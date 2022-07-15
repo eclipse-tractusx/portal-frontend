@@ -25,7 +25,11 @@ export const slice = createSlice({
     }),
     setUsersToAdd: (state, action) => ({
       ...state,
-      usersToAdd: action.payload,
+      usersToAdd: { ...state.usersToAdd, ...action.payload },
+    }),
+    setUserRolesToAdd: (state, action) => ({
+      ...state,
+      usersToAdd: { ...state.usersToAdd, roles: action.payload },
     }),
   },
   extraReducers: (builder) => {
@@ -74,7 +78,7 @@ export const addOpenSelector = (state: RootState): boolean =>
 export const tenantUsersSelector = (state: RootState): TenantUser[] =>
   state.admin.user.tenantUsers
 
-export const usersToAddSelector = (state: RootState): AddUser[] =>
+export const usersToAddSelector = (state: RootState): AddUser =>
   state.admin.user.usersToAdd
 
 export const getRequestStateSelector = (state: RootState): RequestState =>

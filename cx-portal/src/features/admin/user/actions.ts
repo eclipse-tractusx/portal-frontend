@@ -4,7 +4,8 @@ import { AddUser, name } from './types'
 
 const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)
-const setUsersToAdd = createAction<AddUser[]>(`${name}/setUsersToAdd`)
+const setUsersToAdd = createAction<AddUser | {}>(`${name}/setUsersToAdd`)
+const setUserRolesToAdd = createAction<string[]>(`${name}/setUserRolesToAdd`)
 
 const addTenantUsers = createAsyncThunk(
   `${name}/add`,
@@ -27,4 +28,11 @@ const fetchTenantUsers = createAsyncThunk(`${name}/fetch`, async () => {
   }
 })
 
-export { openAdd, closeAdd, setUsersToAdd, addTenantUsers, fetchTenantUsers }
+export {
+  openAdd,
+  closeAdd,
+  setUsersToAdd,
+  setUserRolesToAdd,
+  addTenantUsers,
+  fetchTenantUsers,
+}
