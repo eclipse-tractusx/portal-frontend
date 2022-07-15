@@ -1,15 +1,15 @@
 import { show } from 'features/control/overlay/actions'
-import { Overlay } from 'features/control/overlay/types'
 import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
 
 export default function OpenOverlay({
   overlay,
   id,
 }: {
-  overlay: Overlay | string
+  overlay: string
   id: string
 }) {
   const dispatch = useDispatch()
-  dispatch(show(overlay as Overlay, id))
+  dispatch(show(overlay as OVERLAYS, id))
   return null
 }

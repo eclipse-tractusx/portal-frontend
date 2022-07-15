@@ -114,6 +114,7 @@ export default function MyAccount() {
         {ownUser && (
           <UserDetails
             userDetailsCards={userDetailsToCards(ownUser)}
+            userInfo={ownUser}
             columns={3}
           />
         )}
@@ -162,7 +163,7 @@ export default function MyAccount() {
         </AccordionSummary>
         <AccordionDetails sx={{ marginBottom: '20px' }}>
           <Typography>
-            <code>{JSON.stringify(parsedToken, null, 2)}</code>
+            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
           </Typography>
         </AccordionDetails>
       </Accordion>

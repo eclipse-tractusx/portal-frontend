@@ -5,9 +5,9 @@ import { Api as AdminRegistrationApi } from 'features/admin/registration/api'
 import { InviteData } from 'features/admin/registration/types'
 import { DialogHeader, DialogContent } from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
-import { Overlay } from 'features/control/overlay/types'
 import { t } from 'i18next'
 import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
 
 export default function InviteForm() {
   const [processing, setProcessing] = useState<string>('input')
@@ -40,7 +40,7 @@ export default function InviteForm() {
         {...{
           title: t('content.invite.title'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
       />
 

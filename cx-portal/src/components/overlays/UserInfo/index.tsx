@@ -7,10 +7,10 @@ import {
 import { fetchAny } from 'features/admin/userOwn/actions'
 import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
-import { Overlay } from 'features/control/overlay/types'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
 
 export default function UserInfo({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -29,7 +29,7 @@ export default function UserInfo({ id }: { id: string }) {
         {...{
           title: t('content.account.userAccount'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(Overlay.NONE, '')),
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
       />
 
@@ -40,7 +40,7 @@ export default function UserInfo({ id }: { id: string }) {
       <DialogActions>
         <Button
           variant="outlined"
-          onClick={() => dispatch(show(Overlay.NONE, ''))}
+          onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
         >
           {`${t('global.actions.cancel')}`}
         </Button>

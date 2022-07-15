@@ -1,10 +1,10 @@
 import { Dialog } from 'cx-portal-shared-components'
 import { stateSelector } from 'features/control/overlay/slice'
-import { Overlay } from 'features/control/overlay/types'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getAction, getOverlay } from 'services/AccessService'
+import { OVERLAYS } from 'types/Constants'
 
 export default function MainOverlay() {
   const overlay = useSelector(stateSelector)
@@ -13,7 +13,7 @@ export default function MainOverlay() {
   useEffect(() => {
     navigate({
       search:
-        overlay.type === Overlay.NONE
+        overlay.type === OVERLAYS.NONE
           ? ''
           : `?overlay=${overlay.type}${overlay.id ? ':' + overlay.id : ''}`,
     })
@@ -21,10 +21,10 @@ export default function MainOverlay() {
 
   return (
     <>
-      {overlay.type === Overlay.NONE && getAction(overlay.id) ? (
+      {overlay.type === OVERLAYS.NONE && getAction(overlay.id) ? (
         getAction(overlay.id)?.element
       ) : (
-        <Dialog open={overlay.type !== Overlay.NONE}>
+        <Dialog open={overlay.type !== OVERLAYS.NONE}>
           {getOverlay(overlay)}
         </Dialog>
       )}

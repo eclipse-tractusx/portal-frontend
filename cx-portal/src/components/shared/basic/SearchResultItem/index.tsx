@@ -11,24 +11,24 @@ import NewspaperIcon from '@mui/icons-material/Newspaper'
 import SettingsIcon from '@mui/icons-material/Settings'
 import WebIcon from '@mui/icons-material/Web'
 import { SearchCategory, SearchItem } from 'features/info/search/types'
-import { Overlay } from 'features/control/overlay/types'
 import { exec, show } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { OVERLAYS } from 'types/Constants'
 
-export const getCategoryOverlay = (category: SearchCategory): Overlay => {
+export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {
     case SearchCategory.APP:
-      return Overlay.APP
+      return OVERLAYS.APP
     case SearchCategory.PARTNER:
-      return Overlay.PARTNER
+      return OVERLAYS.PARTNER
     case SearchCategory.USER:
-      return Overlay.USER
+      return OVERLAYS.USER
     case SearchCategory.NEWS:
-      return Overlay.NEWS
+      return OVERLAYS.NEWS
     default:
-      return Overlay.NONE
+      return OVERLAYS.NONE
   }
 }
 
@@ -109,7 +109,7 @@ export const SearchResultItem = ({
             navigate(`/${item.id}`)
             break
           case SearchCategory.OVERLAY:
-            dispatch(show(item.id as Overlay, ''))
+            dispatch(show(item.id as OVERLAYS, ''))
             break
           case SearchCategory.ACTION:
             dispatch(exec(item.id))
