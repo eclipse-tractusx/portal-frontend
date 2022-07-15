@@ -6,7 +6,6 @@ export enum Overlay {
   USER = 'USER',
   TECHUSER = 'TECHUSER',
   APP = 'APP',
-  INVITE = 'INVITE',
 }
 
 export type OverlayState = {

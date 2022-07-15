@@ -261,10 +261,24 @@
       }
     },
     "invite": {
-      "title": "Invite a new Business Partner",
-      "send": "Send Invite",
-      "success": "Invitation successful",
-      "failure": "Processing your request failed"
+      "headerTitle": "Business Partner Invite",
+      "headerIntro": "Add below the business partner registration contact and the company name.",
+      "subHeaderTitle": "Invite a new partner",
+      "inviteText1": "Registration application invite process.",
+      "inviteText2": "Invite a new partner to Catena-X.",
+      "invite": "Invite",
+      "success": "Business Partner Successfully Invited",
+      "successSubText": "The window will close automatically. In case it doesn't, please use the 'close' button on the top right.",
+      "failure": "Error - Business Partner was not invited",
+      "failureSubText": "An error occured. Please try it again later.",
+      "tabletitle": "Invites",
+      "columns": {
+        "companyName": "Company Name",
+        "firstAndLastName": "First and Last Name",
+        "date": "Date",
+        "status": "Status",
+        "details": "Details"
+      }
     },
     "provisionIdp": {
       "title": "Setup your company IDP",
