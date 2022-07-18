@@ -122,7 +122,7 @@ export default function InviteForm() {
       <DialogActions>
         <Button
           variant="outlined"
-          onClick={(e) => dispatch(show(OVERLAYS.NONE))}
+          onClick={() => dispatch(show(OVERLAYS.NONE))}
         >
           {`${t('global.actions.cancel')}`}
         </Button>
