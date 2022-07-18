@@ -82,7 +82,6 @@ export const initialState: AdminRegistrationState = {
 }
 
 export type InvitesDataGrid = {
-  applicationId: string
   applicationStatus: string
   dateCreated: Date
   companyName: string

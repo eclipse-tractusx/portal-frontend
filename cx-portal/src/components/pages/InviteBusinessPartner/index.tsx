@@ -33,6 +33,13 @@ export default function InviteBusinessPartner() {
   )
 
   useEffect(() => {
+    // Adding "firstAndLastName" column to the invites table data
+    setInvitesTableData(invitesData?.map((item: InvitesDataGrid, index) => (
+      { ...item, firstAndLastName: `${item.firstName} ${item.lastName}`, key: index }
+    )))
+  }, [invitesData])
+
+  useEffect(() => {
     dispatch(fetchPage(0))
   }, [dispatch])
 
@@ -153,7 +160,7 @@ export default function InviteBusinessPartner() {
           title={t('content.invite.tabletitle')}
           columns={[
             {
-              field: 'applicationId',
+              field: 'key',
               hide: true,
             },
             {
