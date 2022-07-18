@@ -34,9 +34,13 @@ export default function InviteBusinessPartner() {
 
   useEffect(() => {
     // Adding "firstAndLastName" column to the invites table data
-    setInvitesTableData(invitesData?.map((item: InvitesDataGrid, index) => (
-      { ...item, firstAndLastName: `${item.firstName} ${item.lastName}`, key: index }
-    )))
+    setInvitesTableData(
+      invitesData?.map((item: InvitesDataGrid, index) => ({
+        ...item,
+        firstAndLastName: `${item.firstName} ${item.lastName}`,
+        key: index,
+      }))
+    )
   }, [invitesData])
 
   useEffect(() => {
