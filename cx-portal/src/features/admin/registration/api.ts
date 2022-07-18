@@ -32,7 +32,7 @@ export class Api extends HttpClient {
       getHeaders()
     )
 
-    public getItems = (page: number) =>
+  public getItems = (page: number) =>
     this.instance.get<PaginResult<InvitesDataGrid>>(
       `api/administration/registration/applicationsWithStatus?page=${page}&size=${PAGE_SIZE}`,
       getHeaders()

@@ -1,5 +1,12 @@
 import './InviteFormContent.scss'
-import { Button, Dialog, DialogActions, DialogContent, DialogHeader, Input } from 'cx-portal-shared-components'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
+  Input,
+} from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
 import { InviteData } from 'features/admin/registration/types'
 import Patterns from 'types/Patterns'
@@ -17,7 +24,7 @@ export const InviteFormContent = ({
   openDialog = false,
   handleOverlayClose,
   onSubmit,
-  state
+  state,
 }: AddInviteFormOverlayProps) => {
   const { t } = useTranslation()
   const [inpExpr, setInpExpr] = useState<string[]>(['', '', '', ''])
@@ -35,7 +42,7 @@ export const InviteFormContent = ({
       setInpValid([false, false, false, false, true])
     }
   }, [openDialog])
-  
+
   const debouncedValidation = useMemo(
     () =>
       debounce((expr: string[]) => {
@@ -100,16 +107,11 @@ export const InviteFormContent = ({
           </span>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
-            onClick={(e) => handleOverlayClose(e)}>
+          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button
-            name="send"
-            disabled={inpValid[4]}
-            onClick={doSubmit}
-          >{`${t('content.invite.invite')}`}
+          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+            {`${t('content.invite.invite')}`}
           </Button>
         </DialogActions>
       </Dialog>

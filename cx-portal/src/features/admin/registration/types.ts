@@ -1,4 +1,4 @@
-import { initialPaginResult, PaginResult, RequestState } from "types/MainTypes"
+import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
 
 export const name = 'admin/registration'
 

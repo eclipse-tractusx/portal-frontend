@@ -1,16 +1,24 @@
-import './InviteBusinessPartner.scss';
+import './InviteBusinessPartner.scss'
 import { Api as AdminRegistrationApi } from 'features/admin/registration/api'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { Button, Dialog, DialogContent, IconButton, PageHeader, Table, Typography } from 'cx-portal-shared-components'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  IconButton,
+  PageHeader,
+  Table,
+  Typography,
+} from 'cx-portal-shared-components'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { fetchPage } from 'features/admin/registration/actions';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { fetchPage } from 'features/admin/registration/actions'
 import { InviteData, InvitesDataGrid } from 'features/admin/registration/types'
-import { InviteFormContent } from './components/InviteForm/InviteFormContent'
-import { itemsSelector } from 'features/admin/registration/slice';
+import { InviteFormContent } from './components/overlays/InviteForm/InviteFormContent'
+import { itemsSelector } from 'features/admin/registration/slice'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -20,16 +28,21 @@ export default function InviteBusinessPartner() {
   const { t } = useTranslation()
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
-  const [invitesTableData, setInvitesTableData] = useState(invitesData as InvitesDataGrid[])
+  const [invitesTableData, setInvitesTableData] = useState(
+    invitesData as InvitesDataGrid[]
+  )
   const [processing, setProcessing] = useState<string>('input')
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
 
   useEffect(() => {
     // Adding "firstAndLastName" column to the invites table data
-    setInvitesTableData(invitesTableData?.map((item: InvitesDataGrid) => (
-      { ...item, firstAndLastName: `${item.firstName} ${item.lastName}` }
-    )))
-  }, [])
+    setInvitesTableData(
+      invitesTableData?.map((item: InvitesDataGrid) => ({
+        ...item,
+        firstAndLastName: `${item.firstName} ${item.lastName}`,
+      }))
+    )
+  }, [invitesTableData])
 
   useEffect(() => {
     dispatch(fetchPage(0))
@@ -42,7 +55,7 @@ export default function InviteBusinessPartner() {
         setSuccessOverlayOpen(false)
       }, 5000)
     }
-  }, [successOverlayOpen]);
+  }, [successOverlayOpen])
 
   const doSubmitInvite = (data: InviteData) => {
     setProcessing('busy')
@@ -74,8 +87,11 @@ export default function InviteBusinessPartner() {
       />
 
       {/* success dialog/overlay */}
-      <Dialog open={successOverlayOpen} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
-        <DialogContent >
+      <Dialog
+        open={successOverlayOpen}
+        sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}
+      >
+        <DialogContent>
           <IconButton
             aria-label="close"
             onClick={() => setSuccessOverlayOpen(false)}
@@ -83,14 +99,17 @@ export default function InviteBusinessPartner() {
               position: 'absolute',
               right: 16,
               top: 16,
-              color: '#939393'
+              color: '#939393',
             }}
           >
             <CloseIcon />
           </IconButton>
 
           <Typography mt={7} mb={2} variant="body2" align="center">
-            <CheckCircleOutlineIcon color='success' sx={{ width: 46, height: 46 }} />
+            <CheckCircleOutlineIcon
+              color="success"
+              sx={{ width: 46, height: 46 }}
+            />
           </Typography>
           <Typography mb={2} variant="h4" align="center">
             {t('content.invite.success')}
@@ -102,7 +121,10 @@ export default function InviteBusinessPartner() {
       </Dialog>
 
       {/* failure dialog/overlay */}
-      <Dialog open={failureOverlayOpen} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
+      <Dialog
+        open={failureOverlayOpen}
+        sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}
+      >
         <DialogContent>
           <IconButton
             aria-label="close"
@@ -111,13 +133,13 @@ export default function InviteBusinessPartner() {
               position: 'absolute',
               right: 16,
               top: 16,
-              color: '#939393'
+              color: '#939393',
             }}
           >
             <CloseIcon />
           </IconButton>
           <Typography mt={7} mb={2} variant="body2" align="center">
-            <ErrorOutlineIcon color='error' style={{ height: 20, width: 20 }} />
+            <ErrorOutlineIcon color="error" style={{ height: 20, width: 20 }} />
           </Typography>
           <Typography mb={2} variant="h4" align="center">
             {t('content.invite.failure')}
@@ -195,7 +217,7 @@ export default function InviteBusinessPartner() {
                   <ArrowForwardIcon />
                 </IconButton>
               ),
-            }
+            },
           ]}
           rows={invitesTableData}
           getRowId={(row: { [key: string]: string }) => row.applicationId}

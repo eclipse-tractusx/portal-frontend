@@ -8,7 +8,11 @@ import {
   name,
   InvitesDataGrid,
 } from './types'
-import { fetchRegistrationRequests, fetchCompanyDetail, fetchPage } from './actions'
+import {
+  fetchRegistrationRequests,
+  fetchCompanyDetail,
+  fetchPage,
+} from './actions'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'features/store'
@@ -80,9 +84,7 @@ export const registrationRequestsSelector = (
 ): RegistrationRequestDataGrid[] =>
   state.admin.registration.registrationRequests
 
-export const itemsSelector = (
-  state: RootState
-): InvitesDataGrid[] =>
+export const itemsSelector = (state: RootState): InvitesDataGrid[] =>
   state.admin.registration.data.content
 
 const Slice = { slice }
