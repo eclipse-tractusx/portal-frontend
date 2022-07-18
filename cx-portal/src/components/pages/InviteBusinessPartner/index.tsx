@@ -5,18 +5,35 @@ import { Button, Dialog, DialogContent, IconButton, PageHeader, Table, Typograph
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { fetchPage } from 'features/admin/registration/actions';
 import { info } from 'services/LogService'
-import { InviteData } from 'features/admin/registration/types'
+import { InviteData, InvitesDataGrid } from 'features/admin/registration/types'
 import { InviteFormContent } from './components/InviteForm/InviteFormContent'
+import { itemsSelector } from 'features/admin/registration/slice';
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export default function InviteBusinessPartner() {
+  const dispatch = useDispatch()
+  const invitesData = useSelector(itemsSelector)
   const { t } = useTranslation()
-  const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
-  const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
+  const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
+  const [invitesTableData, setInvitesTableData] = useState(invitesData as InvitesDataGrid[])
+  const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    // Adding "firstAndLastName" column to the invites table data
+    setInvitesTableData(invitesTableData?.map((item: InvitesDataGrid) => (
+      { ...item, firstAndLastName: `${item.firstName} ${item.lastName}` }
+    )))
+  }, [invitesTableData])
+
+  useEffect(() => {
+    dispatch(fetchPage(0))
+  }, [dispatch])
 
   useEffect(() => {
     // close success overlay/dialog after 5 seconds
@@ -42,30 +59,6 @@ export default function InviteBusinessPartner() {
         // info(JSON.stringify(error))
       })
   }
-
-  const userInvites = [
-    {
-      id: '1',
-      companyName: 'Bayrische Motoren',
-      firstAndLastName: 'Julia Jeroch',
-      date: '05.05.2022',
-      status: "In progress",
-    },
-    {
-      id: '2',
-      companyName: 'Bayrische Motoren',
-      firstAndLastName: 'Julia Jeroch',
-      date: '05.05.2022',
-      status: "In progress",
-    },
-    {
-      id: '3',
-      companyName: 'Bayrische Motoren',
-      firstAndLastName: 'Julia Jeroch',
-      date: '05.05.2022',
-      status: "In progress",
-    },
-  ]
 
   return (
     <main className="invite-main-container">
@@ -157,63 +150,53 @@ export default function InviteBusinessPartner() {
         </Button>
 
         <Table
-          columns={
-            [
-              {
-                field: 'id',
-                hide: true,
-              },
-              {
-                field: 'companyName',
-                headerName: `${t('content.invite.columns.companyName')}`,
-                flex: 1,
-              },
-              {
-                field: 'firstAndLastName',
-                headerName: `${t('content.invite.columns.firstAndLastName')}`,
-                flex: 1,
-              },
-              {
-                field: 'date',
-                headerName: `${t('content.invite.columns.date')}`,
-                flex: 1,
-              },
-              {
-                field: 'status',
-                headerName: `${t('content.invite.columns.status')}`,
-                flex: 1,
-              },
-              {
-                field: 'details',
-                headerName: `${t('content.invite.columns.details')}`,
-                flex: 1,
-                align: 'center',
-                sortable: false,
-                renderCell: () => (
-                  <IconButton
-                    color="secondary"
-                    size="small"
-                    style={{ alignSelf: 'center' }}
-                  >
-                    <ArrowForwardIcon />
-                  </IconButton>
-                ),
-              }
-            ]
-          }
-          rows={userInvites}
-          rowsCount={userInvites.length}
           title={t('content.invite.tabletitle')}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          columns={[
+            {
+              field: 'applicationId',
+              hide: true,
+            },
+            {
+              field: 'companyName',
+              headerName: `${t('content.invite.columns.companyName')}`,
+              flex: 1,
+            },
+            {
+              field: 'firstAndLastName',
+              headerName: `${t('content.invite.columns.firstAndLastName')}`,
+              flex: 1,
+            },
+            {
+              field: 'dateCreated',
+              headerName: `${t('content.invite.columns.date')}`,
+              flex: 1,
+              // renderCell: rowData => moment(rowData.dateCreated).format('DD-MM-YYYY')
+            },
+            {
+              field: 'applicationStatus',
+              headerName: `${t('content.invite.columns.status')}`,
+              flex: 1,
+            },
+            {
+              field: 'details',
+              headerName: `${t('content.invite.columns.details')}`,
+              flex: 1,
+              sortable: false,
+              renderCell: () => (
+                <IconButton
+                  color="secondary"
+                  onClick={() => console.log('on details click')}
+                >
+                  <ArrowForwardIcon />
+                </IconButton>
+              ),
+            }
+          ]}
+          rows={invitesTableData}
+          getRowId={(row: { [key: string]: string }) => row.applicationId}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
-          headerHeight={76}
-          rowHeight={100}
           hideFooter
-          disableColumnFilter
-          disableColumnSelector
-          disableDensitySelector
-          disableSelectionOnClick
           toolbar={{
             onSearch: () => {
               console.log('search function')
