@@ -113,6 +113,14 @@
       },
       "table": {
         "title": "Semantic Data Models",
+        "filter": {
+          "namespaceLabel": "Namespace",
+          "namespacePlaceholder": "Please enter a namespace to search for models",
+          "objNameLabel": "Object Name",
+          "objNamePlaceholder": "Please enter a object name to search for models",
+          "selectLabel": "Select Object Type",
+          "button": "Search"
+        },
         "columns": {
           "name": "Name",
           "status": "Status",

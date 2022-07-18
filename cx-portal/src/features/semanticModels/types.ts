@@ -36,8 +36,12 @@ export interface SemanticModelsInitialState {
 }
 
 export type FilterParams = {
-  readonly page: number
-  readonly pageSize: number
+  page: number
+  pageSize: number
+  nameFilter?: string
+  namespaceFilter?: string
+  status?: Status
+  nameType?: string
 }
 
 export interface ModelList {
@@ -66,4 +70,20 @@ export interface NewSemanticModel {
 export enum Status {
   Draft = 'DRAFT',
   Released = 'RELEASED',
+}
+
+export enum SearchType {
+  '_NAME_' = "Name",
+  '_DESCRIPTION_' = "Description",
+  'bamm:Aspect' = "Aspect", 
+  'bamm:Property' = "Property",
+  'bamm:Entity' = "Entity",
+  'bamm:Constraint' = "Constraint", 
+  'bamm:Characteristic' = "Characteristic",
+  'bamm-c:Measurement' = "Measurement", 
+  'bamm-c:Quantifiable' = "Quantifiable",
+  'bamm-c:Enumeration' = "Enumeration",  
+  'bamm-c:SingleEntity' = "SingleEntity",  
+  'bamm-c:Set' = "Set", 
+  'bamm-c:Collection' = "Collection"
 }
