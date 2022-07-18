@@ -2,7 +2,9 @@
   "title": "Catena-X Portal",
   "pages": {
     "home": "Startseite",
-    "registration": "Registrierung",
+    "registration": "Onboarding Registrierung",
+    "swagger": "Swagger OpenAPI Definition",
+    "storybook": "Storybook Shared Component Library",
     "appmarketplace": "App Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
@@ -29,7 +31,19 @@
     "cookiepolicy": "Cookies",
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden"
+    "notfound": "Seite nicht gefunden",
+    "appmanagement": "App Management",
+    "appoverview": "App Overview",
+    "appreleaseprocess": "App Release Process"
+  },
+  "overlays": {
+    "invite": "Neuen Geschäftspartner einladen",
+    "add_user": "Neuen Benutzer hinzu fügen"
+  },
+  "actions": {
+    "SignOut": "Abmelden",
+    "Lang_de": "Sprache auf Deutsch stellen",
+    "Lang_en": "Sprache auf Englisch stellen"
   },
   "content": {
     "admin": {
@@ -58,10 +72,13 @@
         }
       }
     },
+    "news": {
+      "title": "Neuigkeiten"
+    },
     "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "der Eintritt in das digital automobile <1></1> Netzwerk",
+        "subtitle": "der Eintritt in das digital automobile Netzwerk",
         "cxButton": "Mein CX",
         "appButton": "Meine Apps"
       },
@@ -78,7 +95,7 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "Ein skalierendes und erweiterbares <1></1> Ökosystem",
+        "subtitle": "Ein skalierendes und erweiterbares Ökosystem",
         "appButton": "App Übersicht"
       },
       "favoriteSection": {
@@ -191,6 +208,12 @@
     },
     "developerhub": {
       "message": "Inhalte vom Entwickler Hub"
+    },
+    "appoverview": {
+      "message": "App Overview Message"
+    },
+    "appreleaseprocess": {
+      "message": "App Release Process Message"
     },
     "connector": {
       "message": "Contents of connector"
@@ -359,19 +382,19 @@
         }
       },
       "userUpload": {
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer.",
+        "title": "Dateien hierher ziehen",
+        "subtitle": "oder wähle eine Datei direkt aus.",
         "uploadStatus": {
-          "rejected_file_type": "rejected (file type)",
-          "rejected_max_files": "rejected (max files)",
-          "preparing": "preparing",
-          "error_file_size": "error (file_size)",
-          "error_validation": "error (validation)",
-          "ready": "ready",
+          "rejected_file_type": "Fehler - falscher Dateityp.",
+          "rejected_max_files": "Fehler - Dateigröße zu groß.",
+          "preparing": "vorbereiten",
+          "error_file_size": "Fehler (file_size)",
+          "error_validation": "Fehler (validation)",
+          "ready": "Fertig",
           "started": "started",
           "getting_upload_params": "getting (upload_params)",
           "error_upload_params": "error (upload_params)",
-          "uploading": "uploading",
+          "uploading": "hochladen",
           "exception_upload": "exception_upload",
           "aborted": "aborted",
           "restarted": "restarted",
@@ -383,8 +406,8 @@
       }
     },
     "addUserRight": {
-      "headline": "tbd DE: Select and Add users to this app",
-      "subheadline": "tbd"
+      "headline": "Benutzer hinzufügen",
+      "subheadline": "Auswählen und hinzufügen von Benutzern"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -509,6 +532,20 @@
       "pleaseSelect": "Bitte auswählen",
       "reload": "Seite neuladen",
       "homepage": "Startseite"
+    },
+    "search": {
+      "less": "weniger anzeigen",
+      "more": "mehr anzeigen",
+      "category": {
+        "USECASE": "Anwendungsfälle",
+        "APP": "Apps",
+        "USER": "Benutzer",
+        "PARTNER": "Geschäftspartner",
+        "PAGE": "Seiten",
+        "OVERLAY": "Aktionen",
+        "ACTION": "Einstellungen",
+        "NEWS": "Neuigkeiten"
+      }
     },
     "userRoles": {
       "itAdmin": "IT Admin",

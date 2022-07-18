@@ -69,17 +69,14 @@ export const SingleUserContent = () => {
     dispatch(
       setUsersToAdd(
         inputValid
-          ? [
-              {
-                userName: userInputs.email.value,
-                email: userInputs.email.value,
-                firstName: userInputs.firstname.value,
-                lastName: userInputs.lastname.value,
-                roles: ['IT Admin'],
-                message: 'you have been invited to catena-x',
-              },
-            ]
-          : []
+          ? {
+              userName: userInputs.email.value,
+              email: userInputs.email.value,
+              firstName: userInputs.firstname.value,
+              lastName: userInputs.lastname.value,
+              message: 'you have been invited to catena-x',
+            }
+          : {}
       )
     )
   }, [inputValid, userInputs, dispatch])

@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { setUserRolesToAdd } from 'features/admin/user/actions'
 
 interface UserRolesProps {
   headline?: string
@@ -9,6 +12,8 @@ interface UserRolesProps {
 
 export const UserRoles = ({ headline }: UserRolesProps) => {
   const { t } = useTranslation()
+  let [roles, setRoles] = useState<string[]>([])
+  const dispatch = useDispatch()
   const userRoles = [
     {
       id: 'itAdmin',
@@ -36,6 +41,20 @@ export const UserRoles = ({ headline }: UserRolesProps) => {
     },
   ]
 
+  useEffect(() => {
+    dispatch(setUserRolesToAdd(roles))
+  }, [roles, dispatch])
+
+  const onInputChange = ({ e, title }: { e: any; title: string }) => {
+    if (!roles.includes(title) && e.target.checked) {
+      setRoles([...roles, title])
+    } else {
+      const oldRoles = [...roles]
+      oldRoles.splice(oldRoles.indexOf(title), 1)
+      setRoles([...oldRoles])
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -56,7 +75,11 @@ export const UserRoles = ({ headline }: UserRolesProps) => {
 
       <div className="checkbox-section">
         {userRoles.map(({ title, id }) => (
-          <Checkbox label={title} key={id} />
+          <Checkbox
+            label={title}
+            key={id}
+            onChange={(e) => onInputChange({ e, title })}
+          />
         ))}
       </div>
     </Box>

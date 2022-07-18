@@ -7,7 +7,7 @@ Frontend web application and shared UI components for the Catena-X Portal writte
 * Components: https://portal.dev.demo.catena-x.net/_storybook/
 
 
-Here are three ways to run the application on your machine on http://localhost:3000/
+Here are three ways to run the application locally on http://localhost:3000/
 
 ### Local build & run
 

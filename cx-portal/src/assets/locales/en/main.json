@@ -2,7 +2,9 @@
   "title": "Catena-X Portal",
   "pages": {
     "home": "Home",
-    "registration": "Registration",
+    "registration": "Onboarding Registration",
+    "swagger": "Swagger OpenAPI Definition",
+    "storybook": "Storybook Shared Component Library",
     "appmarketplace": "App Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Data Management",
@@ -29,7 +31,19 @@
     "cookiepolicy": "Cookies",
     "thirdpartylicenses": "Third Party Licenses",
     "logout": "Sign Out",
-    "notfound": "Page not found"
+    "notfound": "Page not found",
+    "appmanagement": "App Management",
+    "appoverview": "App Overview",
+    "appreleaseprocess": "App Release Process"
+  },
+  "overlays": {
+    "invite": "Invite new Business Partner",
+    "add_user": "Add new User"
+  },
+  "actions": {
+    "SignOut": "Sign out",
+    "Lang_de": "Switch language to german",
+    "Lang_en": "Switch language to english"
   },
   "content": {
     "admin": {
@@ -57,6 +71,9 @@
           "taxid": "Tax ID"
         }
       }
+    },
+    "news": {
+      "title": "News"
     },
     "home": {
       "stage": {
@@ -191,6 +208,12 @@
     },
     "developerhub": {
       "message": "Contents of Developer Hub"
+    },
+    "appoverview": {
+      "message": "App Overview Message"
+    },
+    "appreleaseprocess": {
+      "message": "App Release Process Message"
     },
     "connector": {
       "message": "Contents of connector"
@@ -434,6 +457,18 @@
         "email": "Email",
         "phone": "Phone"
       }
+    },
+    "apprelease": {
+      "descHeading": "Publish your company app inside the Catena-X marketplace",
+      "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "startCreatingButton": "Start creating your app",
+      "appOverviewButton": "Overview my apps",
+      "stepHeading": "The process will guide your through the following steps:",
+      "dividerText": "Lets get started to publishing your app...",
+      "marketplaceHeading": "App Marketplace upcomming submission requirements",
+      "neuButton": "Neu",
+      "marketplaceTitle": "Requirement Lorem ipsum",
+      "marketplaceExplanation": "Expalanation of the requirement"
     }
   },
   "navigation": {
@@ -470,6 +505,20 @@
       "pleaseSelect": "Please select",
       "reload": "Reload Page",
       "homepage": "Homepage"
+    },
+    "search": {
+      "less": "show less",
+      "more": "show more",
+      "category": {
+        "USECASE": "Use Cases",
+        "APP": "Apps",
+        "USER": "Users",
+        "PARTNER": "Business Partners",
+        "PAGE": "Pages",
+        "OVERLAY": "Actions",
+        "ACTION": "Settings",
+        "NEWS": "News"
+      }
     },
     "userRoles": {
       "itAdmin": "IT Admin",

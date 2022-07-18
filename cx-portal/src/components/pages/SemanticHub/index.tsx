@@ -12,7 +12,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModelImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import UserService from 'services/UserService'
-import { ROLES } from 'types/MainTypes'
+import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
 
 export default function SemanticHub() {

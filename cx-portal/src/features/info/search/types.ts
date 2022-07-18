@@ -6,6 +6,9 @@ export enum SearchCategory {
   APP = 'APP',
   NEWS = 'NEWS',
   PAGE = 'PAGE',
+  OVERLAY = 'OVERLAY',
+  ACTION = 'ACTION',
+  USECASE = 'USECASE',
   USER = 'USER',
   PARTNER = 'PARTNER',
 }
@@ -17,4 +20,8 @@ export type SearchItem = {
   description?: string
 }
 
-export const initialState: ListState<SearchItem> = { ...InitialListState }
+export interface SearchState extends ListState<SearchItem> {
+  expr: string
+}
+
+export const initialState: SearchState = { ...InitialListState, expr: '' }
