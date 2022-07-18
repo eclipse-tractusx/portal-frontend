@@ -21,6 +21,7 @@ export default function InviteBusinessPartner() {
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
   const [invitesTableData, setInvitesTableData] = useState(invitesData as InvitesDataGrid[])
+  const [processing, setProcessing] = useState<string>('input')
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function InviteBusinessPartner() {
     setInvitesTableData(invitesTableData?.map((item: InvitesDataGrid) => (
       { ...item, firstAndLastName: `${item.firstName} ${item.lastName}` }
     )))
-  }, [invitesTableData])
+  }, [])
 
   useEffect(() => {
     dispatch(fetchPage(0))
@@ -44,6 +45,7 @@ export default function InviteBusinessPartner() {
   }, [successOverlayOpen]);
 
   const doSubmitInvite = (data: InviteData) => {
+    setProcessing('busy')
     new AdminRegistrationApi()
       .postInviteBusinessPartner(data)
       .then(() => {
@@ -55,6 +57,11 @@ export default function InviteBusinessPartner() {
         setFailureOverlayOpen(true)
         setInviteOverlayOpen(false)
       })
+      .finally(() => {
+        setTimeout(() => {
+          setProcessing('input')
+        }, 5000)
+      })
   }
 
   return (
@@ -63,6 +70,7 @@ export default function InviteBusinessPartner() {
         openDialog={inviteOverlayOpen}
         handleOverlayClose={() => setInviteOverlayOpen(false)}
         onSubmit={doSubmitInvite}
+        state={processing}
       />
 
       {/* success dialog/overlay */}

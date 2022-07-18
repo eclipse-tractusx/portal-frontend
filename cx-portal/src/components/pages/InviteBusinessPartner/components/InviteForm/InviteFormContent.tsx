@@ -3,19 +3,21 @@ import { Button, Dialog, DialogActions, DialogContent, DialogHeader, Input } fro
 import debounce from 'lodash.debounce'
 import { InviteData } from 'features/admin/registration/types'
 import Patterns from 'types/Patterns'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface AddInviteFormOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
   onSubmit: (data: InviteData) => void
+  state: string
 }
 
 export const InviteFormContent = ({
   openDialog = false,
   handleOverlayClose,
   onSubmit,
+  state
 }: AddInviteFormOverlayProps) => {
   const { t } = useTranslation()
   const [inpExpr, setInpExpr] = useState<string[]>(['', '', '', ''])
@@ -27,6 +29,13 @@ export const InviteFormContent = ({
     true,
   ])
 
+  useEffect(() => {
+    if (openDialog) {
+      setInpExpr(['', '', '', ''])
+      setInpValid([false, false, false, false, true])
+    }
+  }, [openDialog])
+  
   const debouncedValidation = useMemo(
     () =>
       debounce((expr: string[]) => {
@@ -86,6 +95,9 @@ export const InviteFormContent = ({
               ></Input>
             ))}
           </form>
+          <span className={`InviteFormResult ${state}`}>
+            {state === 'busy' && <span className="loader" />}
+          </span>
         </DialogContent>
         <DialogActions>
           <Button
