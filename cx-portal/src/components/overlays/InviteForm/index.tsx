@@ -13,11 +13,13 @@ import { OVERLAYS } from 'types/Constants'
 import debounce from 'lodash.debounce'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
+import { info } from 'services/LogService'
+import { Api } from 'features/admin/registration/api'
 
 export default function InviteForm() {
-  const [processing, setProcessing] = useState<string>('input')
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  const [processing, setProcessing] = useState<string>('input')
   const [inpExpr, setInpExpr] = useState<string[]>(['', '', '', ''])
   const [inpValid, setInpValid] = useState<boolean[]>([
     false,
@@ -26,8 +28,6 @@ export default function InviteForm() {
     false,
     true,
   ])
-
-  console.log(processing)
 
   const debouncedValidation = useMemo(
     () =>
@@ -56,9 +56,10 @@ export default function InviteForm() {
 
   const doSubmitInvite = (data: InviteData) => {
     setProcessing('busy')
-    console.log('submit invite', data)
-    /*
-    new AdminRegistrationApi()
+    //console.log('submit invite', data)
+    //TODO:
+    //switch to redux
+    new Api()
       .postInviteBusinessPartner(data)
       .then(() => {
         setProcessing('success')
@@ -74,7 +75,6 @@ export default function InviteForm() {
           setProcessing('input')
         }, 5000)
       })
-      */
   }
 
   const doSubmit = () =>
@@ -85,6 +85,8 @@ export default function InviteForm() {
       email: inpExpr[1].trim(),
       organisationName: inpExpr[0].trim(),
     })
+
+  console.log(processing)
 
   return (
     <>
