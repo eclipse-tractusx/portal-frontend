@@ -1,5 +1,4 @@
 import './InviteBusinessPartner.scss'
-import { Api as AdminRegistrationApi } from 'features/admin/registration/api'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   Button,
@@ -14,40 +13,40 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { fetchPage } from 'features/admin/registration/actions'
-import { InviteData, InvitesDataGrid } from 'features/admin/registration/types'
-import { InviteFormContent } from './components/overlays/InviteForm/InviteFormContent'
+import { InvitesDataGrid } from 'features/admin/registration/types'
 import { itemsSelector } from 'features/admin/registration/slice'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 
 export default function InviteBusinessPartner() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const invitesData = useSelector(itemsSelector)
-  const { t } = useTranslation()
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
-  const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
+  const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [invitesTableData, setInvitesTableData] = useState(
     invitesData as InvitesDataGrid[]
   )
-  const [processing, setProcessing] = useState<string>('input')
-  const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
-
-  useEffect(() => {
-    // Adding "firstAndLastName" column to the invites table data
-    setInvitesTableData(
-      invitesTableData?.map((item: InvitesDataGrid) => ({
-        ...item,
-        firstAndLastName: `${item.firstName} ${item.lastName}`,
-      }))
-    )
-  }, [invitesTableData])
 
   useEffect(() => {
     dispatch(fetchPage(0))
   }, [dispatch])
 
+  useEffect(() => {
+    // Adding "firstAndLastName" column to the invites table data
+    setInvitesTableData(
+      invitesData?.map((item: InvitesDataGrid) => ({
+        ...item,
+        firstAndLastName: `${item.firstName} ${item.lastName}`,
+      }))
+    )
+  }, [invitesData])
+
+  /*
   useEffect(() => {
     // close success overlay/dialog after 5 seconds
     if (successOverlayOpen) {
@@ -57,35 +56,9 @@ export default function InviteBusinessPartner() {
     }
   }, [successOverlayOpen])
 
-  const doSubmitInvite = (data: InviteData) => {
-    setProcessing('busy')
-    new AdminRegistrationApi()
-      .postInviteBusinessPartner(data)
-      .then(() => {
-        setSuccessOverlayOpen(true)
-        setInviteOverlayOpen(false)
-      })
-      .catch((error: unknown) => {
-        console.log(error)
-        setFailureOverlayOpen(true)
-        setInviteOverlayOpen(false)
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setProcessing('input')
-        }, 5000)
-      })
-  }
-
+*/
   return (
     <main className="invite-main-container">
-      <InviteFormContent
-        openDialog={inviteOverlayOpen}
-        handleOverlayClose={() => setInviteOverlayOpen(false)}
-        onSubmit={doSubmitInvite}
-        state={processing}
-      />
-
       {/* success dialog/overlay */}
       <Dialog
         open={successOverlayOpen}
@@ -169,7 +142,7 @@ export default function InviteBusinessPartner() {
           {t('content.invite.inviteText2')}
         </Typography>
         <Button
-          onClick={() => setInviteOverlayOpen(true)}
+          onClick={() => dispatch(show(OVERLAYS.INVITE))}
           size="medium"
           sx={{ margin: 'auto', display: 'block' }}
         >
@@ -220,7 +193,7 @@ export default function InviteBusinessPartner() {
             },
           ]}
           rows={invitesTableData}
-          getRowId={(row: { [key: string]: string }) => row.applicationId}
+          getRowId={(row: { [key: string]: string }) => row.dateCreated}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
