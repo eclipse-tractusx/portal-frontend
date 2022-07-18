@@ -6,7 +6,6 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { fetchPage } from 'features/admin/registration/actions';
-import { info } from 'services/LogService'
 import { InviteData, InvitesDataGrid } from 'features/admin/registration/types'
 import { InviteFormContent } from './components/InviteForm/InviteFormContent'
 import { itemsSelector } from 'features/admin/registration/slice';
@@ -50,13 +49,11 @@ export default function InviteBusinessPartner() {
       .then(() => {
         setSuccessOverlayOpen(true)
         setInviteOverlayOpen(false)
-        // info(`onboarding for company ${data.organisationName} started`)
       })
       .catch((error: unknown) => {
+        console.log(error)
         setFailureOverlayOpen(true)
         setInviteOverlayOpen(false)
-        // info(`onboarding for company ${data.organisationName} failed`)
-        // info(JSON.stringify(error))
       })
   }
 
