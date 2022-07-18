@@ -20,16 +20,16 @@ export default function InviteBusinessPartner() {
   const { t } = useTranslation()
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
-  const [invitesTableData, setInvitesTableData] = useState(invitesData as InvitesDataGrid[])
+  const [invitesTableData, setInvitesTableData] = useState([] as InvitesDataGrid[])
   const [processing, setProcessing] = useState<string>('input')
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
 
   useEffect(() => {
     // Adding "firstAndLastName" column to the invites table data
-    setInvitesTableData(invitesTableData?.map((item: InvitesDataGrid) => (
-      { ...item, firstAndLastName: `${item.firstName} ${item.lastName}` }
+    setInvitesTableData(invitesData?.map((item: InvitesDataGrid, index) => (
+      { ...item, firstAndLastName: `${item.firstName} ${item.lastName}`, key: index }
     )))
-  }, [])
+  }, [invitesData])
 
   useEffect(() => {
     dispatch(fetchPage(0))
@@ -158,7 +158,7 @@ export default function InviteBusinessPartner() {
           title={t('content.invite.tabletitle')}
           columns={[
             {
-              field: 'applicationId',
+              field: 'key',
               hide: true,
             },
             {
@@ -198,7 +198,7 @@ export default function InviteBusinessPartner() {
             }
           ]}
           rows={invitesTableData}
-          getRowId={(row: { [key: string]: string }) => row.applicationId}
+          getRowId={(row: { [key: string]: string }) => row.key}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
