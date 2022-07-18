@@ -43,7 +43,7 @@ export const UserRoles = ({ headline }: UserRolesProps) => {
 
   useEffect(() => {
     dispatch(setUserRolesToAdd(roles))
-  }, [roles])
+  }, [roles, dispatch])
 
   const onInputChange = ({ e, title }: { e: any; title: string }) => {
     if (!roles.includes(title) && e.target.checked) {
