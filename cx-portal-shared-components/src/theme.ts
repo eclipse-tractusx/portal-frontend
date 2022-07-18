@@ -74,6 +74,7 @@ const palette = createPalette({
     border01: '#DCDCDC',
     border02: '#B6B6B6',
     border03: '#989898',
+    border04: '#0F71CB',
   },
   background: {
     background01: '#F9F9F9',
