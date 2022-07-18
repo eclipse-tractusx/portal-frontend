@@ -1,4 +1,4 @@
-import { Box, useTheme } from  '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { Typography } from '../../basic/Typography'
 
 interface CardAddServiceProps {
@@ -6,7 +6,10 @@ interface CardAddServiceProps {
   onButtonClick: React.MouseEventHandler
 }
 
-export const CardAddService = ({ title, onButtonClick }: CardAddServiceProps) => {
+export const CardAddService = ({
+  title,
+  onButtonClick,
+}: CardAddServiceProps) => {
   const theme = useTheme()
   return (
     <Box
@@ -39,12 +42,21 @@ export const CardAddService = ({ title, onButtonClick }: CardAddServiceProps) =>
           borderRadius: '20px',
           ':hover': {
             cursor: 'pointer',
-          }
+          },
         }}
         onClick={onButtonClick}
       >
-        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M25 0C11.2 0 0 11.2 0 25C0 38.8 11.2 50 25 50C38.8 50 50 38.8 50 25C50 11.2 38.8 0 25 0ZM37.5 27.5H27.5V37.5H22.5V27.5H12.5V22.5H22.5V12.5H27.5V22.5H37.5V27.5Z" fill="#0F71CB"/>
+        <svg
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M25 0C11.2 0 0 11.2 0 25C0 38.8 11.2 50 25 50C38.8 50 50 38.8 50 25C50 11.2 38.8 0 25 0ZM37.5 27.5H27.5V37.5H22.5V27.5H12.5V22.5H22.5V12.5H27.5V22.5H37.5V27.5Z"
+            fill="#0F71CB"
+          />
         </svg>
       </Box>
       <Typography

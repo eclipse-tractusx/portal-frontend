@@ -15,5 +15,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const AddServiceCard = Template.bind({})
 AddServiceCard.args = {
   title: 'Create new App',
-  onButtonClick: () => { console.log('Add new app') },
+  onButtonClick: () => {
+    console.log('Add new app')
+  },
 }
