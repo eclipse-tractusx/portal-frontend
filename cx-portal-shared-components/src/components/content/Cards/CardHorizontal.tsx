@@ -3,6 +3,7 @@ import MuiChip from '@mui/material/Chip'
 import { useEffect, useState } from 'react'
 import { LogoGrayData } from '../../basic/Logo'
 import { Typography } from '../../basic/Typography'
+import { EnumStatusVariants, getChipBgColor, getChipColor, StatusVariants } from './Card'
 
 interface CardHorizontalProps {
   label: string
@@ -10,7 +11,7 @@ interface CardHorizontalProps {
   borderRadius: number
   imagePath: string
   imageAlt: string
-  status: 'release' | 'active' | 'inactive'
+  status: StatusVariants
   statusText: string
 }
 
@@ -20,7 +21,7 @@ export const CardHorizontal = ({
   borderRadius = 0,
   imagePath,
   imageAlt,
-  status = 'release',
+  status = EnumStatusVariants.release,
   statusText,
 }: CardHorizontalProps) => {
   const theme = useTheme()
@@ -28,20 +29,8 @@ export const CardHorizontal = ({
   const [chipBackground, setChipBackground] = useState('')
 
   useEffect(() => {
-    switch (status) {
-      case 'release':
-        setChipColor(theme.palette.chip.release)
-        setChipBackground(theme.palette.chip.bgRelease)
-        break
-      case 'active':
-        setChipColor(theme.palette.chip.active)
-        setChipBackground(theme.palette.chip.bgActive)
-        break
-      case 'inactive':
-        setChipColor(theme.palette.chip.inactive)
-        setChipBackground(theme.palette.chip.bgInactive)
-        break
-    }
+    setChipColor(getChipColor(status, theme))
+    setChipBackground(getChipBgColor(status, theme))
   }, [status, theme])
 
   return (

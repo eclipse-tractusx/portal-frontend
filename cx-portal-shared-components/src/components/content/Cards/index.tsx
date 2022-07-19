@@ -4,7 +4,7 @@ import uniqueId from 'lodash/uniqueId'
 
 export type CardItems = Omit<
   CardProps,
-  'variant' | 'imageSize' | 'imageShape' | 'buttonText'
+  'variant' | 'imageSize' | 'imageShape' | 'buttonText' | 'status'
 >
 
 interface CardsProps {

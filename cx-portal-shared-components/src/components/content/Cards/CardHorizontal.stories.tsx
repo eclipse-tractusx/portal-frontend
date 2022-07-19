@@ -1,4 +1,5 @@
 import { ComponentStory } from '@storybook/react'
+import { EnumStatusVariants } from './Card'
 
 import { CardHorizontal as Component } from './CardHorizontal'
 
@@ -16,9 +17,9 @@ export const CardHorizontal = Template.bind({})
 CardHorizontal.args = {
   label: 'Catena-X',
   title: 'Digital Twin Debugger',
-  borderRadius: 0,
+  borderRadius: 20,
   imagePath: '',
   imageAlt: 'App Card ',
-  status: 'release',
+  status: EnumStatusVariants.release,
   statusText: 'In Release',
 }

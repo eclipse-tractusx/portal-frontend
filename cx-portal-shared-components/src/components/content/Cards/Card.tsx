@@ -1,15 +1,28 @@
-import { Box, Link, useTheme } from '@mui/material'
+import { Box, Link, Theme, useTheme } from '@mui/material'
+import MuiChip from '@mui/material/Chip'
 import { useEffect, useRef, useState } from 'react'
 import { CardButtons, CardButtonsProps } from './CardButtons'
 import { CardContent, CardContentProps } from './CardContent'
 import { CardImage, CardImageProps } from './CardImage'
 
+export enum EnumStatusVariants {
+  release = 'release',
+  active = 'active',
+  inactive = 'inactive',
+}
+
+export type StatusVariants =  EnumStatusVariants.release | EnumStatusVariants.active | EnumStatusVariants.inactive
 type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only'
 
+interface CardStatusProps {
+  status?: StatusVariants
+  statusText?: string
+}
 export interface CardProps
   extends CardContentProps,
     CardButtonsProps,
-    CardImageProps {
+    CardImageProps,
+    CardStatusProps {
   variant?: Exclude<Variants, 'preview'>
   filledBackground?: boolean
   backgroundColor?: string
@@ -18,6 +31,28 @@ export interface CardProps
   readMoreLink?: string
   onClick?: React.MouseEventHandler
   addButtonClicked?: boolean
+}
+
+export function getChipColor(status: StatusVariants, theme: Theme) {
+  switch (status) {
+    case EnumStatusVariants.release:
+      return theme.palette.chip.release
+    case EnumStatusVariants.active:
+      return theme.palette.chip.active
+    case EnumStatusVariants.inactive:
+      return theme.palette.chip.inactive
+  }
+}
+
+export function getChipBgColor(status: StatusVariants, theme: Theme) {
+  switch (status) {
+    case EnumStatusVariants.release:
+      return theme.palette.chip.bgRelease
+    case EnumStatusVariants.active:
+      return theme.palette.chip.bgActive
+    case EnumStatusVariants.inactive:
+      return theme.palette.chip.bgInactive
+  }
 }
 
 export const Card = ({
@@ -40,6 +75,8 @@ export const Card = ({
   readMoreText,
   readMoreLink,
   addButtonClicked,
+  status,
+  statusText,
 }: CardProps) => {
   const { shape, shadows, spacing } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
@@ -48,6 +85,9 @@ export const Card = ({
     subtitle,
   } as CardContentProps)
   const boxRef = useRef<HTMLDivElement>(null)
+  const theme = useTheme()
+  const [chipColor, setChipColor] = useState('')
+  const [chipBackground, setChipBackground] = useState('')
   const [showButton, setShowButton] = useState(false)
   const [boxHeight, setBoxHeight] = useState<number | undefined>()
 
@@ -91,6 +131,11 @@ export const Card = ({
     return backgroundColor ? backgroundColor : 'background.background02'
   }
 
+  useEffect(() => {
+    setChipColor(getChipColor(status!, theme))
+    setChipBackground(getChipBgColor(status!, theme))
+  }, [status, theme])
+
   return (
     <div
       ref={boxRef}
@@ -130,12 +175,31 @@ export const Card = ({
         }}
         className="card"
       >
-        <CardImage
-          image={image}
-          imageSize={imageSize}
-          imageShape={imageShape}
-          preview={variant === 'preview'}
-        />
+        <Box>
+          {statusText &&
+            <MuiChip
+              label={statusText}
+              variant="outlined"
+              sx={{
+                color: chipColor,
+                backgroundColor: chipBackground,
+                borderRadius: '200px',
+                border: 'none',
+                height: '28px',
+                position: 'absolute',
+                right: '0',
+                marginRight: '17px',
+                marginTop: '21px',
+              }}
+            />
+          }
+          <CardImage
+            image={image}
+            imageSize={imageSize}
+            imageShape={imageShape}
+            preview={variant === 'preview'}
+          />
+        </Box>
         <Box
           sx={{
             padding: 3,
