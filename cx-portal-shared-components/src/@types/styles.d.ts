@@ -88,6 +88,14 @@ declare module '@mui/material/styles' {
     contrastText: string
   }
 
+  interface TypeChipCardColor {
+    release: string
+    active: string
+    inactive: string
+    bgRelease: string
+    bgActive: string
+    bgInactive: string
+  }
   interface PaletteColor {
     shadow: string
   }
@@ -111,6 +119,7 @@ declare module '@mui/material/styles' {
     confirmed: TypeChipColor
     declined: TypeChipColor
     label: TypeChipColor
+    chip: TypeChipCardColor
   }
   interface PaletteOptions {
     icon?: Partial<TypeIcons>
@@ -127,6 +136,7 @@ declare module '@mui/material/styles' {
     confirmed?: Partial<TypeChipColor>
     declined?: Partial<TypeChipColor>
     label?: Partial<TypeChipColor>
+    chip?: Partial<TypeChipCardColor>
   }
 
   interface TypographyVariants {

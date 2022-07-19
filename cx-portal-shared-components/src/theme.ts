@@ -76,6 +76,14 @@ const palette = createPalette({
     border03: '#989898',
     border04: '#0F71CB',
   },
+  chip: {
+    release: '#0D61AE',
+    active: '#88982D',
+    inactive: '#D91E18',
+    bgRelease: '#EAF1FE',
+    bgActive: '#F0F5D5',
+    bgInactive: '#FFF7FF',
+  },
   background: {
     background01: '#F9F9F9',
     background02: '#F3F3F3',
