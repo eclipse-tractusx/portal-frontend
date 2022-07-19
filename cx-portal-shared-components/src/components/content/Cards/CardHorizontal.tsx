@@ -81,17 +81,17 @@ export const CardHorizontal = ({
           width: '299px',
           height: '160px',
           margin: '0px 0px 0px auto ',
-          paddingTop: '20px'
+          paddingTop: '20px',
         }}
       >
         <Typography
           variant="caption2"
           sx={{
-            color:  theme.palette.text.tertiary,
+            color: theme.palette.text.tertiary,
             fontWeight: '600',
             height: '24px',
           }}
-          >
+        >
           {label}
         </Typography>
 
@@ -108,13 +108,13 @@ export const CardHorizontal = ({
             marginBottom: '17px',
             marginTop: '9px',
           }}
-          >
+        >
           {title}
         </Typography>
-        
+
         <MuiChip
           label={statusText}
-          variant='outlined'
+          variant="outlined"
           sx={{
             color: chipColor,
             backgroundColor: chipBackground,
