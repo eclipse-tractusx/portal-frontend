@@ -11,7 +11,10 @@ export enum EnumStatusVariants {
   inactive = 'inactive',
 }
 
-export type StatusVariants =  EnumStatusVariants.release | EnumStatusVariants.active | EnumStatusVariants.inactive
+export type StatusVariants =
+  | EnumStatusVariants.release
+  | EnumStatusVariants.active
+  | EnumStatusVariants.inactive
 type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only'
 
 interface CardStatusProps {
@@ -176,7 +179,7 @@ export const Card = ({
         className="card"
       >
         <Box>
-          {statusText &&
+          {statusText && (
             <MuiChip
               label={statusText}
               variant="outlined"
@@ -192,7 +195,7 @@ export const Card = ({
                 marginTop: '21px',
               }}
             />
-          }
+          )}
           <CardImage
             image={image}
             imageSize={imageSize}

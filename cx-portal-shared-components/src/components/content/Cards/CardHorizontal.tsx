@@ -3,7 +3,12 @@ import MuiChip from '@mui/material/Chip'
 import { useEffect, useState } from 'react'
 import { LogoGrayData } from '../../basic/Logo'
 import { Typography } from '../../basic/Typography'
-import { EnumStatusVariants, getChipBgColor, getChipColor, StatusVariants } from './Card'
+import {
+  EnumStatusVariants,
+  getChipBgColor,
+  getChipColor,
+  StatusVariants,
+} from './Card'
 
 interface CardHorizontalProps {
   label: string
