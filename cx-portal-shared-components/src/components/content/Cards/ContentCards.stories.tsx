@@ -21,7 +21,9 @@ const items = [
       alt: 'Catena-X Card',
     },
     description: 'Lorem Ipsum is simply dummy text of the printing.',
-    onButtonClick: () => { console.log('Catena-X News') },
+    onButtonClick: () => {
+      console.log('Catena-X News')
+    },
     readMoreText: 'Read more',
     readMoreLink: '#',
     status: 'release',
@@ -34,8 +36,11 @@ const items = [
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
       alt: 'Catena-X Card',
     },
-    description: 'Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-    onButtonClick: () => { console.log('Samrt MOM') },
+    description:
+      'Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+    onButtonClick: () => {
+      console.log('Samrt MOM')
+    },
     readMoreText: 'Read more',
     readMoreLink: '#',
     status: 'active',
@@ -49,7 +54,9 @@ const items = [
       alt: 'Catena-X Card',
     },
     description: 'sea takimata sanctus est Lorem ipsum dolor sit amet.',
-    onButtonClick: () => { console.log('Fraud Reporter') },
+    onButtonClick: () => {
+      console.log('Fraud Reporter')
+    },
     readMoreText: 'Read more',
     readMoreLink: '#',
     status: 'inactive',
@@ -63,7 +70,9 @@ const items = [
       alt: 'Catena-X Card',
     },
     description: 'At vero eos et accusam et justo duo dolores et ea rebum.',
-    onButtonClick: () => { console.log('Fraud Dashboard') },
+    onButtonClick: () => {
+      console.log('Fraud Dashboard')
+    },
     readMoreText: 'Read more',
     readMoreLink: '#',
   },
