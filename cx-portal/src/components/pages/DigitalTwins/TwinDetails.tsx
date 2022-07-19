@@ -112,6 +112,11 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
           />
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           <DetailGrid
+            topic={t('content.digitaltwin.detail.protocol_endpoint')}
+            content={endpoint.protocolInformation.endpointAddress}
+          />
+          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+          <DetailGrid
             topic={t('content.digitaltwin.detail.protocol_version')}
             content={endpoint.protocolInformation.endpointProtocolVersion}
           />

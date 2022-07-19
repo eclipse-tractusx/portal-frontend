@@ -180,7 +180,8 @@
         "endpoints": "Endpoints:",
         "interface": "Interface:",
         "protocol": "Protocol:",
-        "protocol_version": "Protocol version:"
+        "protocol_version": "Protocol version:",
+        "protocol_endpoint": "Aspect Endpoint:"
       }
     },
     "datamanagement": {
