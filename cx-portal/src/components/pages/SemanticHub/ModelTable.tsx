@@ -105,7 +105,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       filter.nameFilter = nameFilter;
     }
     if(objectType.length > 0){
-      filter.nameFilter = encodeURIComponent(objectType);
+      filter.nameType = encodeURIComponent(objectType);
     }
     dispatch(
       fetchSemanticModels({ filter: filter })
