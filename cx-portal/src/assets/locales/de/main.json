@@ -115,11 +115,12 @@
         "title": "Semantische Datenmodelle",
         "filter": {
           "namespaceLabel": "Namespace",
-          "namespacePlaceholder": "Bitte geben Sie den Namespace eines Modells ein",
+          "namespacePlaceholder": "Filtern der Modelle nach Namespace",
           "objNameLabel": "Objektname",
-          "objNamePlaceholder": "Bitte geben Sie den Objektname eines Modells ein",
+          "objNamePlaceholder": "Filtern der Modelle nach Objektname",
           "selectLabel": "Wähle Objekttyp aus",
-          "button": "Suchen"
+          "button": "Suchen",
+          "resetButton": "Zurücksetzen"
         },
         "columns": {
           "name": "Name",

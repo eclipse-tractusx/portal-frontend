@@ -96,6 +96,17 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelList])
 
+  const filterHasValues = () => `${namespaceFilter}${nameFilter}${objectType}`.length > 0
+
+  const onFilterReset = () => {
+    setNamespaceFilter('')
+    setNameFilter('')
+    setObjectType('')
+    dispatch(
+      fetchSemanticModels({ filter: { page: pageNumber, pageSize: rowCount } })
+    )
+  }
+
   const onSearch = () => {
     var filter: FilterParams = { page: 0, pageSize: rowCount, }
     if(namespaceFilter.length > 0) {
@@ -137,19 +148,19 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           label={t('content.semantichub.table.filter.namespaceLabel')}
           placeholder={t('content.semantichub.table.filter.namespacePlaceholder')}
           variant="filled"
-          sx={{minWidth: '400px'}}
+          sx={{minWidth: '320px'}}
         />
-        <Box sx={{ml: 2}}>
+        <Box sx={{ml: 1}}>
           <Input
             value={nameFilter}
             onChange={(e) => setNameFilter(e.target.value)}
             label={t('content.semantichub.table.filter.objNameLabel')}
             placeholder={t('content.semantichub.table.filter.objNamePlaceholder')}
             variant="filled"
-            sx={{minWidth: '400px'}}
+            sx={{minWidth: '320px'}}
           />
         </Box>
-        <FormControl variant="outlined" sx={{ml: 2}}>
+        <FormControl variant="outlined" sx={{ml: 1}}>
           <InputLabel id="table-select-label">{t('content.semantichub.table.filter.selectLabel')}</InputLabel>
           <Select
             labelId="table-select-label"
@@ -165,7 +176,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
             )}
           </Select>
         </FormControl>
-        <Button onClick={onSearch} sx={{ml: 2}}>{t('content.semantichub.table.filter.button')}</Button>
+        {filterHasValues() &&
+          <Button onClick={onFilterReset} sx={{ml: 1}}>{t('content.semantichub.table.filter.resetButton')}</Button>
+        }
+        <Button onClick={onSearch} sx={{ml: 1}}>{t('content.semantichub.table.filter.button')}</Button>
       </Box>
       <Table
         rowsCount={models.length}
