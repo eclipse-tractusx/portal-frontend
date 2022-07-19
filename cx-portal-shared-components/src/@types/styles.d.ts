@@ -29,6 +29,7 @@ declare module '@mui/material/styles' {
     border01: string
     border02: string
     border03: string
+    border04: string
   }
 
   interface TypeBackground {
