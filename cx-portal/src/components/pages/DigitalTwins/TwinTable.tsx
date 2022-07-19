@@ -29,7 +29,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
     setTwins((prevTwins) => prevTwins.concat(twinList.items))
   }, [twinList])
 
-  const onSearch = (value: any) => {
+  const onSearch = (value: string) => {
     console.log(value)
   }
 
