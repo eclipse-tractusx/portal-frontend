@@ -208,7 +208,8 @@
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
       "snackbar": {
-        "message": "Edc-Konnektor erfolgreich hinzugefügt"
+        "successmessage": "Edc-Konnektor erfolgreich hinzugefügt",
+        "errormessage": "Fehler! Etwas ist schief gelaufen"
       },
       "deletemodal": {
         "title": "Löschen Sie den EDC-Connector",

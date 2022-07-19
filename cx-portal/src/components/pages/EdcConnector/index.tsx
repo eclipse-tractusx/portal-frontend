@@ -4,7 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
-import { Button, Table, PageHeader,PageSnackbar } from 'cx-portal-shared-components'
+import {
+  Button,
+  Table,
+  PageHeader,
+  PageSnackbar,
+} from 'cx-portal-shared-components'
 import connectorSlice, { connectorSelector } from 'features/connector/slice'
 import {
   createConnector,
@@ -19,7 +24,6 @@ import './EdcConnector.scss'
 import { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
 
-
 const EdcConnector = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -30,8 +34,13 @@ const EdcConnector = () => {
   const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] =
     useState<number>(0)
   const [pageSize] = useState<number>(15)
-  const [successNotificationOpen, setSuccessNotificationOpen] =
-    useState<boolean>(false)
+  const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
+  const [notificationType, setNotificationType] = useState<
+    'error' | 'warning' | 'info' | 'success'
+  >('success')
+  const [notificationMessage, setNotificationMessage] = useState<string>(
+    t('content.edcconnector.snackbar.successmessage')
+  )
   const [deleteConnectorConfirmModalOpen, setDeleteConnectorConfirmModalOpen] =
     useState<boolean>(false)
   const [selectedConnector, setSelectedConnector] =
@@ -42,7 +51,7 @@ const EdcConnector = () => {
     })
 
   const token = UserService.getToken()
-  const { connectorList, loading, paginationData } =
+  const { connectorList, loading, paginationData, error } =
     useSelector(connectorSelector)
 
   useEffect(() => {
@@ -50,8 +59,15 @@ const EdcConnector = () => {
       const params = { size: pageSize, page: currentPage }
       dispatch(fetchConnectors({ params, token }))
     }
+
+    if (error) {
+      setNotificationType('error')
+      setNotificationMessage(t('content.edcconnector.snackbar.errormessage'))
+      setNotificationOpen(true)
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, pageSize, currentPage])
+  }, [dispatch, pageSize, currentPage, error])
 
   // Reset store data when page init
   useEffect(() => {
@@ -65,13 +81,11 @@ const EdcConnector = () => {
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    console.log('params.field:', params.field)
     if (params.field === 'detail') {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
       setDeleteConnectorConfirmModalOpen(true)
     }
   }
-
 
   const onConfirmClick = () => {
     setAddConnectorOverlayCurrentStep((prevState) => {
@@ -80,8 +94,6 @@ const EdcConnector = () => {
   }
 
   const onFormSubmit = (data: FormFieldsType) => {
-    console.log('Form data values:', data)
-
     dispatch(
       createConnector({
         body: {
@@ -93,10 +105,7 @@ const EdcConnector = () => {
     )
     // After create new connector, current page should reset to initial page
     dispatch(connectorSlice.actions.resetConnectorState())
-    const params = { size: pageSize, page: 0 }
-    dispatch(fetchConnectors({ params, token }))
     closeAndResetModalState()
-    setSuccessNotificationOpen(true)
   }
 
   const handleSnackbarClose = (
@@ -107,11 +116,10 @@ const EdcConnector = () => {
       return
     }
 
-    setSuccessNotificationOpen(false)
+    setNotificationOpen(false)
   }
 
   const deleteSelectedConnector = () => {
-    console.log('will be deleted connector:', selectedConnector)
     dispatch(deleteConnector({ connectorID: selectedConnector.id || '' }))
     // After create new connector, current page should reset to initial page
     dispatch(connectorSlice.actions.resetConnectorState())
@@ -124,12 +132,12 @@ const EdcConnector = () => {
   return (
     <main className="connector-page-container">
       <PageSnackbar
-        description={t('content.edcconnector.snackbar.message')}
+        description={notificationMessage}
         vertical="bottom"
         horizontal="right"
         onCloseNotification={handleSnackbarClose}
-        severity="success"
-        open={successNotificationOpen}
+        severity={notificationType}
+        open={notificationOpen}
       />
       <DeleteConfirmationOverlay
         openDialog={deleteConnectorConfirmModalOpen}

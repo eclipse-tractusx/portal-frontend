@@ -5,7 +5,7 @@ import {
   ConnectorAPIResponse,
 } from './types'
 import { RootState } from 'features/store'
-import { fetchConnectors } from './actions'
+import { fetchConnectors, createConnector } from './actions'
 import uniq from 'lodash.uniq'
 
 const initialState: ConnectorInitialState = {
@@ -43,6 +43,11 @@ const connectorSlice = createSlice({
     builder.addCase(fetchConnectors.rejected, (state, action) => {
       state.paginationData = {} as PaginationData
       state.connectorList = []
+      state.loading = false
+      state.error = action.error.message as string
+    })
+    builder.addCase(createConnector.rejected, (state, action) => {
+      debugger
       state.loading = false
       state.error = action.error.message as string
     })
