@@ -37,6 +37,7 @@ export default function UserListContent() {
       ]}
       rows={tenantUsers}
       getRowId={(row: { [key: string]: string }) => row.companyUserId}
+      disableColumnMenu
       hideFooter
       checkboxSelection
     />

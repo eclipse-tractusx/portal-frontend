@@ -13,14 +13,27 @@ export type OwnUser = {
   status: string
 }
 
+export const InitialOwnUser = {
+  companyUserId: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  bpn: '',
+  created: '',
+  company: '',
+  status: '',
+}
+
 export type AdminOwnUserState = {
-  data: OwnUser | null
+  resetStatus: null
+  data: OwnUser
   request: RequestState
   error: string
 }
 
 export const initialState: AdminOwnUserState = {
-  data: null,
+  resetStatus: null,
+  data: InitialOwnUser,
   request: RequestState.NONE,
   error: '',
 }

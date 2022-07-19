@@ -2,7 +2,6 @@ import './UserDetails.scss'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined'
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
-import SubHeader from '../../../shared/frame/SubHeader'
 import { Box } from '@mui/material'
 import {
   Button,
@@ -11,6 +10,7 @@ import {
   Typography,
   Table,
   Chip,
+  PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
@@ -18,9 +18,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import uniqueId from 'lodash/uniqueId'
 import { useParams } from 'react-router-dom'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
-import { fetch } from 'features/admin/userOwn/actions'
+import { fetch, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 
 export default function UserDetails() {
@@ -29,6 +29,24 @@ export default function UserDetails() {
   console.log(`TODO: get user details for ${appId}`)
 
   const ownUser = useSelector(ownUserSelector)
+  console.log('ownUser', ownUser)
+
+  const { resetStatus, error } = useSelector(resetSelector)
+  console.log('resetStatus', resetStatus)
+  console.log('error', error)
+  let errorMsg = ''
+  if (resetStatus) {
+    errorMsg = 'Password Reset Successfully'
+  } else if (error === 401) {
+    errorMsg =
+      'The maximum amount of errors is triggered already. Please try it later again'
+  } else if (error === 500) {
+    errorMsg =
+      'The password reset was unsuccessful. An issue occurred. Please try It later again'
+  } else if (error === 404) {
+    errorMsg =
+      'Reset of the password was unsuccessful due to missing permissions.'
+  }
 
   const dispatch = useDispatch()
 
@@ -63,7 +81,7 @@ export default function UserDetails() {
   }
 
   const handleResetPasswordForUser = () => {
-    console.log('Reset user pasword method')
+    dispatch(putResetPassword(ownUser.companyUserId))
   }
 
   const renderChips = (row: GridRowModel) => {
@@ -84,9 +102,10 @@ export default function UserDetails() {
 
   return (
     <main className="user-details">
-      <SubHeader
+      <PageHeader
         title={t('content.account.userAccount')}
-        hasBackButton={false}
+        topPage={false}
+        headerHeight={200}
       />
       <section>
         <Box
@@ -136,7 +155,13 @@ export default function UserDetails() {
             <UserAvatar size="large" />
           </Box>
         </Box>
-
+        <div className="errorMsg">
+          {error && (
+            <>
+              <Typography variant="h5">{errorMsg}</Typography>
+            </>
+          )}
+        </div>
         {ownUser && (
           <UserDetailsComponent
             userDetailsCards={userDetailsToCards(ownUser)}
@@ -163,6 +188,7 @@ export default function UserDetails() {
               flex: 1,
               renderCell: ({ row }) => renderChips(row),
             },
+            // The details section is required in the future but already added
             // {
             //   field: 'details',
             //   headerName: t('global.field.details'),
@@ -181,6 +207,7 @@ export default function UserDetails() {
           rowsCount={userAppRoles.length}
           getRowId={(row: { [key: string]: string }) => row.id}
           sx={{ marginTop: '80px' }}
+          disableColumnMenu
           hideFooter
         />
       </section>

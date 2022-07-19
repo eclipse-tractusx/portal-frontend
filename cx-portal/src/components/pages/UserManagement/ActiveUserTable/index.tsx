@@ -36,21 +36,16 @@ export const ActiveUserTable = ({
         variant="h3"
       />
       <Table
-        title={t('content.usermanagement.table.title')}
-        toolbar={{
-          buttonLabel: t('content.usermanagement.table.add'),
-          onButtonClick: onAddUserButtonClick,
-        }}
         columns={[
           { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
           { field: 'email', headerName: t('global.field.email'), flex: 2 },
           {
-            field: 'enabled',
+            field: 'status',
             headerName: t('global.field.status'),
             flex: 1,
-            renderCell: ({ value: enabled }) => {
-              const label = enabled ? 'active' : 'inactive'
+            renderCell: ({ value: status }) => {
+              const label = status ? 'active' : 'inactive'
               return (
                 <StatusTag color="label" label={t(`global.field.${label}`)} />
               )
@@ -71,9 +66,17 @@ export const ActiveUserTable = ({
             ),
           },
         ]}
-        rows={tenantUsers}
         getRowId={(row: { [key: string]: string }) => row.companyUserId}
+        headerHeight={57}
+        disableColumnMenu
         hideFooter
+        rowHeight={57}
+        rows={tenantUsers}
+        title={t('content.usermanagement.table.title')}
+        toolbar={{
+          buttonLabel: t('content.usermanagement.table.add'),
+          onButtonClick: onAddUserButtonClick,
+        }}
       />
     </section>
   )

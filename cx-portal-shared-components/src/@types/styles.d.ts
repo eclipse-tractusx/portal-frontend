@@ -29,6 +29,7 @@ declare module '@mui/material/styles' {
     border01: string
     border02: string
     border03: string
+    border04: string
   }
 
   interface TypeBackground {
@@ -43,6 +44,8 @@ declare module '@mui/material/styles' {
     background09: string
     background10: string
     background11: string
+    background12: string
+    background13: string
   }
 
   interface TypeTextField {

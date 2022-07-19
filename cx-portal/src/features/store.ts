@@ -5,21 +5,25 @@ import partnerNetworkSlice from './partnerNetwork/slice'
 import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
 import notificationSlice from './notification/slice'
+import ErrorSlice from './error/slice'
 import { reducer as admin } from './admin/reducer'
 import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
+import modelsSlice from './semanticModels/slice'
 
 export const reducers = {
   admin,
   apps,
   control,
   info,
+  semanticModels: modelsSlice.reducer,
   user: userSlice,
   twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
   connector: connectorSlice.reducer,
   notification: notificationSlice.reducer,
+  error: ErrorSlice.reducer,
 }
 
 export const store = configureStore({

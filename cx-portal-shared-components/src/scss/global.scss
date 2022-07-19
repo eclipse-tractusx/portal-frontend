@@ -1,0 +1,5 @@
+@use 'sass:math';
+
+@function circle-angle($size) {
+  @return round($size * 0.70710678118) + math.div($size, 2);
+}

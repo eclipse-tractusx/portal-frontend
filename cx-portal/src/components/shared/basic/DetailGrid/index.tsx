@@ -1,16 +1,12 @@
 import { Grid } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-interface TwinDetailGridProps {
+interface DetailGridProps {
   topic: string
   content: string | number
   link?: any
 }
-export const TwinDetailGrid = ({
-  topic,
-  content,
-  link,
-}: TwinDetailGridProps) => {
+export const DetailGrid = ({ topic, content, link }: DetailGridProps) => {
   return (
     <Grid container sx={{ mb: 2, typography: 'body3' }}>
       <Grid item xs={6}>

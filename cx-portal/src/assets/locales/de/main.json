@@ -7,7 +7,7 @@
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
     "datacatalog": "Datenkatalog",
-    "semantichub": "Semantischer Hub",
+    "semantichub": "Semantische Modelle",
     "digitaltwin": "Digitale Zwillinge",
     "developerhub": "Entwickler Hub",
     "connector": "Konnektor",
@@ -61,7 +61,7 @@
     "home": {
       "stage": {
         "title": "Catena-X",
-        "subtitle": "der Eintritt in das digital automobile <1></1> Netzwerk",
+        "subtitle": "der Eintritt in das digital automobile Netzwerk",
         "cxButton": "Mein CX",
         "appButton": "Meine Apps"
       },
@@ -78,7 +78,7 @@
     "appstore": {
       "stage": {
         "title": "Catena-X App Store",
-        "subtitle": "Ein skalierendes und erweiterbares <1></1> Ökosystem",
+        "subtitle": "Ein skalierendes und erweiterbares Ökosystem",
         "appButton": "App Übersicht"
       },
       "favoriteSection": {
@@ -101,7 +101,63 @@
       }
     },
     "semantichub": {
-      "message": "Inhalte vom Semantischen Hub"
+      "title": "Semantische Datenmodelle",
+      "introText_0": "Semantische Modelle dienen zur Strukturierung von Daten. Als Konzept ermöglichen sie es, Daten und ihren Beziehungen eine grundlegende Bedeutung zu verleihen. Im Rahmen der Datenmodellierung und Datenorganisation realisieren sie die einfache Entwicklung von Anwendungen wie auch die Aufrechterhaltung von Datenkonsistenz.",
+      "introText_1": "In Catena-X werden semantische Datenmodelle in einem geeigneten Publikationssystem, dem sogenannten Semantic Hub, bereitgestellt. Für Daten bzw. Service Anbieter stellt der Semantic Hub  eine Grundlage für die Nutzung und Wiederverwendung von semantischen Modellen. Aus diesem Grund erfolgt die Veröffentlichung eines semantischen Datenmodells unter der Angabe einer Version. Dies fördert Transparenz wie auch Kontrolle über alle semantischen Modelle und deren Freigabestatus.",
+      "addModel": "Neues Model anlegen",
+      "alerts": {
+        "alertSuccessTitle": "Erfolg!",
+        "alertErrorTitle": "Fehler!",
+        "uploadSuccess": "Modell wurde erfolgreich hochgeladen.",
+        "deleteSuccess": "Modell wurde erfolgreich gelöscht."
+      },
+      "table": {
+        "title": "Semantische Datenmodelle",
+        "columns": {
+          "name": "Name",
+          "status": "Status",
+          "type": "Sprache",
+          "version": "Version",
+          "src": "Quelle",
+          "details": "Details"
+        },
+        "load_button": "Mehr laden"
+      },
+      "importDialog": {
+        "title": "Modell importieren",
+        "buttonConfirm": "Hochladen",
+        "buttonCancel": "Abbrechen"
+      },
+      "deleteDialog": {
+        "title": "Aspekt Modell löschen",
+        "subtitle": "Bist du sicher, dass du das aktuelle Modell löschen möchtest?",
+        "info": "Notiz: Falls das Modell gelöscht wird, kann es später nicht wieder hergestellt werden.",
+        "buttonConfirm": "Löschen",
+        "buttonCancel": "Abbrechen"
+      },
+      "detail": {
+        "deleteButton": "Modell löschen",
+        "diagramTitle": "UML Diagramm des Aspekts",
+        "urnLabel": "Aspekt-Modell URN",
+        "imgAlt": "Modelldiagram",
+        "downloads": {
+          "ttl": "TTL",
+          "docu": "Dokumentation",
+          "json": "JSON Schema",
+          "payload": "Beispiel Payload JSON"
+        },
+        "fileError": "Fehler: Die Datei konnte nicht geladen werden.",
+        "ttlTooltip": "Das runtergeladene Turtle-Dokument sieht anders aus, ist jedoch semantisch das gleiche im Vergleich zum hochgeladenen Aspekt Turtle-Dokument. Um bestehende Aspekte weiterzuentwickeln, beziehen Sie sich auf die Turtle-Quelldateien (z. B. im Catena-X BAMM Model GitHub Repository).",
+        "downloadTitle": "Download-Optionen für das Aspekt-Modell",
+        "openApi": {
+          "inputLabel": "Gebe eine URL ein, um den Basis-Pfad der Open API URL zu ändern.",
+          "inputPlaceholder": "Default URL",
+          "buttonText": "Neue URL speichern",
+          "buttonTitle": "Open API JSON generieren"
+        },
+        "nomodelTitle": "Oooops! Kein Modell gefunden!",
+        "nomodelText": "Die verwendete URN ist entweder falsch, oder das Modell existiert noch nicht."
+      }
     },
     "digitaltwin": {
       "table": {
@@ -296,19 +352,19 @@
         }
       },
       "userUpload": {
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer.",
+        "title": "Dateien hierher ziehen",
+        "subtitle": "oder wähle eine Datei direkt aus.",
         "uploadStatus": {
-          "rejected_file_type": "rejected (file type)",
-          "rejected_max_files": "rejected (max files)",
-          "preparing": "preparing",
-          "error_file_size": "error (file_size)",
-          "error_validation": "error (validation)",
-          "ready": "ready",
+          "rejected_file_type": "Fehler - falscher Dateityp.",
+          "rejected_max_files": "Fehler - Dateigröße zu groß.",
+          "preparing": "vorbereiten",
+          "error_file_size": "Fehler (file_size)",
+          "error_validation": "Fehler (validation)",
+          "ready": "Fertig",
           "started": "started",
           "getting_upload_params": "getting (upload_params)",
           "error_upload_params": "error (upload_params)",
-          "uploading": "uploading",
+          "uploading": "hochladen",
           "exception_upload": "exception_upload",
           "aborted": "aborted",
           "restarted": "restarted",
@@ -320,8 +376,8 @@
       }
     },
     "addUserRight": {
-      "headline": "tbd DE: Select and Add users to this app",
-      "subheadline": "tbd"
+      "headline": "Benutzer hinzufügen",
+      "subheadline": "Auswählen und hinzufügen von Benutzern"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -443,7 +499,9 @@
       "close": "Schließen",
       "back": "Zurück",
       "delete": "Löschen",
-      "pleaseSelect": "Bitte auswählen"
+      "pleaseSelect": "Bitte auswählen",
+      "reload": "Seite neuladen",
+      "homepage": "Startseite"
     },
     "userRoles": {
       "itAdmin": "IT Admin",
@@ -452,6 +510,11 @@
       "dataSpecialist": "Data Spezialist",
       "appDeveloper": "App Entwickler",
       "appAdmin": "App Administrator"
+    },
+    "errors": {
+      "title": "Oops, Etwas ist schief gelaufen.",
+      "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
+      "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
     }
   }
 }

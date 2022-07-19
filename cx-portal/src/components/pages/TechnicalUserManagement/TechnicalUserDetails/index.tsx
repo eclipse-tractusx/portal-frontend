@@ -59,8 +59,8 @@ export default function TechnicalUserDetails() {
       />
 
       <PageHeader
-        title={headerTitle.replace('USER_NAME', data.name)}
-        spacingTop={-84}
+        title={headerTitle.replace('USER_NAME', data.username)}
+        topPage={true}
         headerHeight={314}
       >
         <PageBreadcrumb backButtonVariant="contained" />

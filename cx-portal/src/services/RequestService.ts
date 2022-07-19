@@ -6,6 +6,13 @@ export const getHeaders = () => ({
   },
 })
 
+export const getTextHeaders = () => ({
+  headers: {
+    authorization: `Bearer ${UserService.getToken()}`,
+    'content-type': 'text/plain',
+  },
+})
+
 const RequestService = {
   getHeaders,
 }

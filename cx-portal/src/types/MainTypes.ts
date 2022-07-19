@@ -1,4 +1,5 @@
 import { PageNotificationsProps } from 'cx-portal-shared-components'
+import { ErrorServiceState } from 'features/error/types'
 
 export const PAGE_SIZE = 15
 
@@ -119,6 +120,7 @@ export enum PAGES {
   TESTAPI = 'testapi',
   TRANSLATOR = 'translator',
   LOGOUT = 'logout',
+  ERROR = 'error',
 }
 
 export enum ROLES {
@@ -139,9 +141,9 @@ export enum ROLES {
   DIGITALTWIN_VIEW = 'view_digital_twin',
   DIGITALTWIN_ADD = 'add_digital_twin',
   DIGITALTWIN_DELETE = 'delete_digital_twin',
-  SEMANTICHUB_VIEW = 'view_semantic_hub',
-  SEMANTICHUB_ADD = 'add_semantic_hub',
-  SEMANTICHUB_DELETE = 'delete_semantic_hub',
+  SEMANTICHUB_VIEW = 'view_semantic_model',
+  SEMANTICHUB_ADD = 'add_semantic_model',
+  SEMANTICHUB_DELETE = 'delete_semantic_model',
   USERMANAGEMENT_VIEW = 'view_user_management',
   USERMANAGEMENT_ADD = 'add_user_account',
   USERMANAGEMENT_DELETE = 'delete_user_account',
@@ -187,4 +189,16 @@ export const initServicetNotifications: PageNotificationsProps = {
   severity: undefined,
   title: '',
   description: '',
+}
+
+export const initErrorServiceState: ErrorServiceState = {
+  hasError: false,
+  hasNavigation: false,
+  header: '',
+  title: '',
+  description: '',
+  reloadPageLink: '',
+  reloadButtonTitle: '',
+  homePageLink: '',
+  homeButtonTitle: '',
 }
