@@ -1,6 +1,7 @@
 import { Box, Link, useTheme } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { CardButtons, CardButtonsProps } from './CardButtons'
+import { CardChip, CardChipProps } from './CardChip'
 import { CardContent, CardContentProps } from './CardContent'
 import { CardImage, CardImageProps } from './CardImage'
 
@@ -9,7 +10,8 @@ type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only'
 export interface CardProps
   extends CardContentProps,
     CardButtonsProps,
-    CardImageProps {
+    CardImageProps,
+    CardChipProps {
   variant?: Exclude<Variants, 'preview'>
   filledBackground?: boolean
   backgroundColor?: string
@@ -40,6 +42,8 @@ export const Card = ({
   readMoreText,
   readMoreLink,
   addButtonClicked,
+  status,
+  statusText,
 }: CardProps) => {
   const { shape, shadows, spacing } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
@@ -130,12 +134,26 @@ export const Card = ({
         }}
         className="card"
       >
-        <CardImage
-          image={image}
-          imageSize={imageSize}
-          imageShape={imageShape}
-          preview={variant === 'preview'}
-        />
+        <Box>
+          {statusText && (
+            <Box
+              sx={{
+                position: 'absolute',
+                right: '0',
+                marginRight: '17px',
+                marginTop: '21px',
+              }}
+            >
+              <CardChip status={status} statusText={statusText} />
+            </Box>
+          )}
+          <CardImage
+            image={image}
+            imageSize={imageSize}
+            imageShape={imageShape}
+            preview={variant === 'preview'}
+          />
+        </Box>
         <Box
           sx={{
             padding: 3,
