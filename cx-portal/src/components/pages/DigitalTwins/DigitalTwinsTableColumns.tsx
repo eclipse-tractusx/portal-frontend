@@ -2,6 +2,8 @@ import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { ShellDescriptor } from 'features/digitalTwins/types'
+import { GridComparatorFn } from '@mui/x-data-grid';
+
 
 // Columns definitions of Digital Twin page Data Grid
 export const DigitalTwinsTableColumns = (
@@ -14,33 +16,34 @@ export const DigitalTwinsTableColumns = (
     {
       field: 'idShort',
       headerName: t('content.digitaltwin.table.columns.idShort'),
-      flex: 2,
+      flex: 3,
+      filterable: false
     },
     {
       field: 'sm_count',
       headerName: t('content.digitaltwin.table.columns.sm_count'),
-      flex: 1,
-      align: 'center',
-      sortable: false,
+      flex: 2,
+      type: 'number',
       filterable: false,
-      renderCell: ({ row }: { row: ShellDescriptor }) => (
-        <>{row.submodelDescriptors.length}</>
-      ),
+      sortable: false,
+      renderCell: ({ row }: { row: ShellDescriptor }) => row.submodelDescriptors.length
     },
     {
-      field: '',
+      field: 'asset_count',
       headerName: t('content.digitaltwin.table.columns.asset_count'),
-      flex: 1,
-      align: 'center',
-      renderCell: ({ row }: { row: ShellDescriptor }) => (
-        <>{row.specificAssetIds.length}</>
-      ),
+      flex: 2,
+      type: 'number',
+      filterable: false,
+      sortable: false,
+      renderCell: ({ row }: { row: ShellDescriptor }) => row.specificAssetIds.length,
     },
     {
       field: 'detail',
       headerName: `Detail`,
       flex: 1,
-      align: 'center',
+      sortable: false,
+      filterable: false,
+      width: 150,
       renderCell: ({ row }: { row: ShellDescriptor }) => (
         <IconButton
           onClick={() => onDetailClick(row.identification)}

@@ -30,7 +30,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   }, [twinList])
 
   const onSearch = (value: string) => {
-    console.log(value)
+    onTwinSelect(value)
   }
 
   const columns = DigitalTwinsTableColumns(useTranslation, onTwinSelect)
@@ -43,13 +43,15 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         hideFooter
         loading={loading}
         disableSelectionOnClick={true}
+        disableColumnSelector={true}
+        disableDensitySelector={true}
         title={t('content.digitaltwin.table.title')}
         toolbar={{
           onSearch: onSearch,
         }}
         columns={columns}
         rows={twins}
-        getRowId={(row) => `${row.identification}_${row.idShort}`}
+        getRowId={(row) => {console.log(twins); return `${row.identification}_${row.idShort}`}}
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (
