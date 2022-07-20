@@ -24,7 +24,8 @@ export const slice = createSlice({
     builder.addCase(
       fetchRegistrationRequests.fulfilled,
       (state, { payload }) => {
-        const payloadList = payload as unknown as Array<RegistrationRequestAPIResponse>
+        const payloadList =
+          payload as unknown as Array<RegistrationRequestAPIResponse>
         state.registrationRequests =
           mapRegistrationRequestResponseToDataGrid(payloadList) || []
         state.loading = false
