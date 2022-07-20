@@ -23,7 +23,6 @@ import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { ShellDescriptor } from 'features/digitalTwins/types'
 
-
 // Columns definitions of Digital Twin page Data Grid
 export const DigitalTwinsTableColumns = (
   translationHook: any,
@@ -36,21 +35,23 @@ export const DigitalTwinsTableColumns = (
       field: 'idShort',
       headerName: t('content.digitaltwin.table.columns.idShort'),
       flex: 3,
-      filterable: false
+      filterable: false,
     },
     {
       field: 'sm_count',
       headerName: t('content.digitaltwin.table.columns.sm_count'),
       flex: 2,
       filterable: false,
-      valueGetter: ({ row }: { row: ShellDescriptor }) => row.submodelDescriptors.length
+      valueGetter: ({ row }: { row: ShellDescriptor }) =>
+        row.submodelDescriptors.length,
     },
     {
       field: 'asset_count',
       headerName: t('content.digitaltwin.table.columns.asset_count'),
       flex: 2,
       filterable: false,
-      valueGetter: ({ row }: { row: ShellDescriptor }) => row.specificAssetIds.length,
+      valueGetter: ({ row }: { row: ShellDescriptor }) =>
+        row.specificAssetIds.length,
     },
     {
       field: 'detail',

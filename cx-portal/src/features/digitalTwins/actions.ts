@@ -1,4 +1,3 @@
-
 /********************************************************************************
  * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.

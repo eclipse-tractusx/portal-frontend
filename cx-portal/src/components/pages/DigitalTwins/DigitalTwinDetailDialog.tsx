@@ -56,7 +56,7 @@ const DigitalTwinDetailDialog = ({ show, onClose }: TwinDialogProps) => {
         )}
         {error && (
           <>
-            <Typography variant="h5" sx={{mb: 4, }}>
+            <Typography variant="h5" sx={{ mb: 4 }}>
               {t('content.digitaltwin.detail.error')}
             </Typography>
           </>
