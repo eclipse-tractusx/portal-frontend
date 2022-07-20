@@ -1,25 +1,37 @@
-import { useCallback, useMemo, useState } from 'react'
+import './InviteForm.scss'
 import { InviteData } from 'features/admin/registration/types'
 import {
-  DialogHeader,
-  DialogContent,
   Button,
+  Dialog,
   DialogActions,
-  Input,
+  DialogContent,
+  DialogHeader,
+  Input
 } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
 import debounce from 'lodash.debounce'
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
-import { info } from 'services/LogService'
-import { Api } from 'features/admin/registration/api'
 
-export default function InviteForm() {
-  const dispatch = useDispatch()
+interface AddInviteFormOverlayProps {
+  openDialog?: boolean
+  handleOverlayClose: React.MouseEventHandler
+  onSubmit: (data: InviteData) => void
+  state: string
+}
+
+export const InviteForm = ({
+  openDialog = false,
+  handleOverlayClose,
+  onSubmit,
+  state,
+}: AddInviteFormOverlayProps) => {
   const { t } = useTranslation()
-  const [processing, setProcessing] = useState<string>('input')
   const [inpExpr, setInpExpr] = useState<string[]>(['', '', '', ''])
   const [inpValid, setInpValid] = useState<boolean[]>([
     false,
@@ -28,6 +40,13 @@ export default function InviteForm() {
     false,
     true,
   ])
+
+  useEffect(() => {
+    if (openDialog) {
+      setInpExpr(['', '', '', ''])
+      setInpValid([false, false, false, false, true])
+    }
+  }, [openDialog])
 
   const debouncedValidation = useMemo(
     () =>
@@ -54,31 +73,8 @@ export default function InviteForm() {
     [debouncedValidation, inpExpr]
   )
 
-  const doSubmitInvite = (data: InviteData) => {
-    setProcessing('busy')
-    //console.log('submit invite', data)
-    //TODO:
-    //switch to redux
-    new Api()
-      .postInviteBusinessPartner(data)
-      .then(() => {
-        setProcessing('success')
-        info(`onboarding for company ${data.organisationName} started`)
-      })
-      .catch((error: unknown) => {
-        setProcessing('failure')
-        info(`onboarding for company ${data.organisationName} failed`)
-        info(JSON.stringify(error))
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setProcessing('input')
-        }, 5000)
-      })
-  }
-
   const doSubmit = () =>
-    doSubmitInvite({
+    onSubmit({
       userName: inpExpr[1].trim(),
       firstName: inpExpr[2].trim(),
       lastName: inpExpr[3].trim(),
@@ -86,50 +82,49 @@ export default function InviteForm() {
       organisationName: inpExpr[0].trim(),
     })
 
-  console.log(processing)
-
   return (
     <>
-      <DialogHeader
-        {...{
-          title: t('content.invite.headerTitle'),
-          intro: t('content.invite.headerIntro'),
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-        }}
-      />
-
-      <DialogContent sx={{ padding: '0px 130px 40px 150px' }}>
-        <form className="InviteForm">
-          {['company', 'email', 'first', 'last'].map((value, i) => (
-            <Input
-              label={t(`global.field.${value}`)}
-              key={i}
-              name={value}
-              placeholder={t(`global.field.${value}`)}
-              value={inpExpr[i]}
-              error={inpValid[i]}
-              autoFocus={value === 'company'}
-              onChange={(e) => doValidate(i, e.target.value)}
-            ></Input>
-          ))}
-        </form>
-        {/*<span className={`InviteFormResult ${state}`}>
+      <Dialog
+        open={openDialog}
+        sx={{ '.MuiDialog-paper': { maxWidth: '60%' } }}
+      >
+        <DialogHeader
+          title={t('content.invite.headerTitle')}
+          intro={t('content.invite.headerIntro')}
+        />
+        <DialogContent sx={{ padding: '0px 130px 40px 150px' }}>
+          <form className="InviteForm">
+            {['company', 'email', 'first', 'last'].map((value, i) => (
+              <Input
+                label={t(`global.field.${value}`)}
+                key={i}
+                name={value}
+                placeholder={t(`global.field.${value}`)}
+                value={inpExpr[i]}
+                error={inpValid[i]}
+                autoFocus={value === 'company'}
+                onChange={(e) => doValidate(i, e.target.value)}
+              ></Input>
+            ))}
+          </form>
+          <span className={`InviteFormResult ${state}`}>
             {state === 'busy' && <span className="loader" />}
-            </span>*/}
-      </DialogContent>
-
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE))}
-        >
-          {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
-          {`${t('content.invite.invite')}`}
-        </Button>
-      </DialogActions>
+          </span>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={(e) => handleOverlayClose(e)}>
+            {`${t('global.actions.cancel')}`}
+          </Button>
+          <Button
+            name="send"
+            disabled={inpValid[4]}
+            onClick={doSubmit}
+          >{`${t('content.invite.invite')}`}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }

@@ -295,6 +295,7 @@
       "failure": "Error - Business Partner was not invited",
       "failureSubText": "An error occured. Please try it again later.",
       "tabletitle": "Invites",
+      "load_button": "Mehr laden",
       "columns": {
         "companyName": "Company Name",
         "firstAndLastName": "First and Last Name",
