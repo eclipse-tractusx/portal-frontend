@@ -46,8 +46,13 @@ const connectorSlice = createSlice({
       state.loading = false
       state.error = action.error.message as string
     })
+    builder.addCase(createConnector.pending, (state) => {
+      state.loading = true
+    })
+    builder.addCase(createConnector.fulfilled, (state, { payload }) => {
+      state.loading = false
+    })
     builder.addCase(createConnector.rejected, (state, action) => {
-      debugger
       state.loading = false
       state.error = action.error.message as string
     })

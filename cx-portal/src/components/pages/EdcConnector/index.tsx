@@ -93,8 +93,9 @@ const EdcConnector = () => {
     })
   }
 
-  const onFormSubmit = (data: FormFieldsType) => {
-    dispatch(
+  const onFormSubmit = async (data: FormFieldsType) => {
+    closeAndResetModalState()
+    await dispatch(
       createConnector({
         body: {
           name: data.ConnectorName,
@@ -104,8 +105,10 @@ const EdcConnector = () => {
       })
     )
     // After create new connector, current page should reset to initial page
-    dispatch(connectorSlice.actions.resetConnectorState())
-    closeAndResetModalState()
+    await dispatch(connectorSlice.actions.resetConnectorState())
+
+    const params = { size: pageSize, page: 0 }
+    dispatch(fetchConnectors({ params, token }))
   }
 
   const handleSnackbarClose = (
@@ -119,8 +122,8 @@ const EdcConnector = () => {
     setNotificationOpen(false)
   }
 
-  const deleteSelectedConnector = () => {
-    dispatch(deleteConnector({ connectorID: selectedConnector.id || '' }))
+  const deleteSelectedConnector = async () => {
+    await dispatch(deleteConnector({ connectorID: selectedConnector.id || '' }))
     // After create new connector, current page should reset to initial page
     dispatch(connectorSlice.actions.resetConnectorState())
     const params = { size: pageSize, page: 0 }
