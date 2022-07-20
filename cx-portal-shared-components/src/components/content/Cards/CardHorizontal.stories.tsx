@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react'
-import { EnumStatusVariants } from './Card'
+import { StatusVariants } from './CardChip'
 
 import { CardHorizontal as Component } from './CardHorizontal'
 
@@ -20,6 +20,6 @@ CardHorizontal.args = {
   borderRadius: 20,
   imagePath: '',
   imageAlt: 'App Card ',
-  status: EnumStatusVariants.release,
+  status: StatusVariants.release,
   statusText: 'In Release',
 }

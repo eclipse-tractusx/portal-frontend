@@ -1,23 +1,14 @@
 import { Box, useTheme } from '@mui/material'
-import MuiChip from '@mui/material/Chip'
-import { useEffect, useState } from 'react'
 import { LogoGrayData } from '../../basic/Logo'
 import { Typography } from '../../basic/Typography'
-import {
-  EnumStatusVariants,
-  getChipBgColor,
-  getChipColor,
-  StatusVariants,
-} from './Card'
+import { CardChip, CardChipProps } from './CardChip'
 
-interface CardHorizontalProps {
+interface CardHorizontalProps extends CardChipProps {
   label: string
   title: string
   borderRadius: number
   imagePath: string
   imageAlt: string
-  status: StatusVariants
-  statusText: string
 }
 
 export const CardHorizontal = ({
@@ -26,18 +17,10 @@ export const CardHorizontal = ({
   borderRadius = 0,
   imagePath,
   imageAlt,
-  status = EnumStatusVariants.release,
+  status,
   statusText,
 }: CardHorizontalProps) => {
   const theme = useTheme()
-  const [chipColor, setChipColor] = useState('')
-  const [chipBackground, setChipBackground] = useState('')
-
-  useEffect(() => {
-    setChipColor(getChipColor(status, theme))
-    setChipBackground(getChipBgColor(status, theme))
-  }, [status, theme])
-
   return (
     <Box
       sx={{
@@ -106,17 +89,7 @@ export const CardHorizontal = ({
           {title}
         </Typography>
 
-        <MuiChip
-          label={statusText}
-          variant="outlined"
-          sx={{
-            color: chipColor,
-            backgroundColor: chipBackground,
-            borderRadius: '200px',
-            border: 'none',
-            height: '44px',
-          }}
-        />
+        <CardChip status={status} statusText={statusText} />
       </Box>
     </Box>
   )
