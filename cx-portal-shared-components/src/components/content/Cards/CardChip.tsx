@@ -18,7 +18,7 @@ export interface CardChipProps {
   statusText?: string
 }
 
-export const CardChip = ({ status, statusText}: CardChipProps) => {
+export const CardChip = ({ status, statusText }: CardChipProps) => {
   const theme = useTheme()
   const [chipColor, setChipColor] = useState('')
   const [chipBackground, setChipBackground] = useState('')

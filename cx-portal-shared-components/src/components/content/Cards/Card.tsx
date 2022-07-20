@@ -135,16 +135,18 @@ export const Card = ({
         className="card"
       >
         <Box>
-          {statusText &&
-            <Box sx={{
-              position: 'absolute',
-              right: '0',
-              marginRight: '17px',
-              marginTop: '21px',
-            }}>
+          {statusText && (
+            <Box
+              sx={{
+                position: 'absolute',
+                right: '0',
+                marginRight: '17px',
+                marginTop: '21px',
+              }}
+            >
               <CardChip status={status} statusText={statusText} />
             </Box>
-          }
+          )}
           <CardImage
             image={image}
             imageSize={imageSize}
