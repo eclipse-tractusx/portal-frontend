@@ -2,7 +2,6 @@ import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { ShellDescriptor } from 'features/digitalTwins/types'
-import { GridComparatorFn } from '@mui/x-data-grid';
 
 
 // Columns definitions of Digital Twin page Data Grid
