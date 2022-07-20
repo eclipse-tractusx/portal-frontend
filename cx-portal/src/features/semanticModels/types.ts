@@ -73,17 +73,17 @@ export enum Status {
 }
 
 export enum SearchType {
-  '_NAME_' = "Name",
-  '_DESCRIPTION_' = "Description",
-  'bamm:Aspect' = "Aspect", 
-  'bamm:Property' = "Property",
-  'bamm:Entity' = "Entity",
-  'bamm:Constraint' = "Constraint", 
-  'bamm:Characteristic' = "Characteristic",
-  'bamm-c:Measurement' = "Measurement", 
-  'bamm-c:Quantifiable' = "Quantifiable",
-  'bamm-c:Enumeration' = "Enumeration",  
-  'bamm-c:SingleEntity' = "SingleEntity",  
-  'bamm-c:Set' = "Set", 
-  'bamm-c:Collection' = "Collection"
+  '_NAME_' = 'Name',
+  '_DESCRIPTION_' = 'Description',
+  'bamm:Aspect' = 'Aspect',
+  'bamm:Property' = 'Property',
+  'bamm:Entity' = 'Entity',
+  'bamm:Constraint' = 'Constraint',
+  'bamm:Characteristic' = 'Characteristic',
+  'bamm-c:Measurement' = 'Measurement',
+  'bamm-c:Quantifiable' = 'Quantifiable',
+  'bamm-c:Enumeration' = 'Enumeration',
+  'bamm-c:SingleEntity' = 'SingleEntity',
+  'bamm-c:Set' = 'Set',
+  'bamm-c:Collection' = 'Collection',
 }

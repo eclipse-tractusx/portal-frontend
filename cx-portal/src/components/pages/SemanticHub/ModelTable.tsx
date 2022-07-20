@@ -21,18 +21,16 @@
 import { Button, Table, Input } from 'cx-portal-shared-components'
 import { fetchSemanticModels } from 'features/semanticModels/actions'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { FilterParams, SearchType, SemanticModel } from 'features/semanticModels/types'
+import {
+  FilterParams,
+  SearchType,
+  SemanticModel,
+} from 'features/semanticModels/types'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
-import {
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  Box
-} from '@mui/material'
+import { InputLabel, MenuItem, FormControl, Select, Box } from '@mui/material'
 
 interface ModelTableProps {
   onModelSelect: (id: string) => void
@@ -62,9 +60,9 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           value: 'DRAFT',
           label: 'Draft',
         },
-      ]
+      ],
     },
-  ];
+  ]
   const searchTypes = Object.entries(SearchType)
 
   useEffect(() => {
@@ -96,7 +94,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelList])
 
-  const filterHasValues = () => `${namespaceFilter}${nameFilter}${objectType}`.length > 0
+  const filterHasValues = () =>
+    `${namespaceFilter}${nameFilter}${objectType}`.length > 0
 
   const onFilterReset = () => {
     setNamespaceFilter('')
@@ -114,25 +113,29 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   }
 
   const onSearch = () => {
-    const searchFilter: FilterParams = { page: 0, pageSize: rowCount, }
-    if(namespaceFilter.length > 0) {
-      searchFilter.namespaceFilter = namespaceFilter;
+    const searchFilter: FilterParams = { page: 0, pageSize: rowCount }
+    if (namespaceFilter.length > 0) {
+      searchFilter.namespaceFilter = namespaceFilter
     }
-    if(nameFilter.length > 0) {
-      searchFilter.nameFilter = nameFilter;
+    if (nameFilter.length > 0) {
+      searchFilter.nameFilter = nameFilter
     }
-    if(objectType.length > 0){
-      searchFilter.nameType = encodeURIComponent(objectType);
+    if (objectType.length > 0) {
+      searchFilter.nameType = encodeURIComponent(objectType)
     }
-    dispatch(
-      fetchSemanticModels({ filter: searchFilter })
-    )
+    dispatch(fetchSemanticModels({ filter: searchFilter }))
   }
 
   const onFilter = (selectedFilter: any) => {
-    if(selectedFilter.status && selectedFilter.status.length === 1){
+    if (selectedFilter.status && selectedFilter.status.length === 1) {
       dispatch(
-        fetchSemanticModels({ filter: { page: 0, pageSize: rowCount, status: selectedFilter.status[0]} })
+        fetchSemanticModels({
+          filter: {
+            page: 0,
+            pageSize: rowCount,
+            status: selectedFilter.status[0],
+          },
+        })
       )
     }
   }
@@ -141,12 +144,12 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   return (
     <section>
       <Box
-        display='flex'
-        alignItems='flex-end'
-        justifyContent='flex-end'
+        display="flex"
+        alignItems="flex-end"
+        justifyContent="flex-end"
         sx={{
           mb: 2,
-          width: '100%'
+          width: '100%',
         }}
       >
         <Input
@@ -154,23 +157,29 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           onChange={(e) => setNamespaceFilter(e.target.value)}
           onKeyDown={onEnterInput}
           label={t('content.semantichub.table.filter.namespaceLabel')}
-          placeholder={t('content.semantichub.table.filter.namespacePlaceholder')}
+          placeholder={t(
+            'content.semantichub.table.filter.namespacePlaceholder'
+          )}
           variant="filled"
-          sx={{minWidth: '320px'}}
+          sx={{ minWidth: '320px' }}
         />
-        <Box sx={{ml: 1}}>
+        <Box sx={{ ml: 1 }}>
           <Input
             value={nameFilter}
             onChange={(e) => setNameFilter(e.target.value)}
             onKeyDown={onEnterInput}
             label={t('content.semantichub.table.filter.objNameLabel')}
-            placeholder={t('content.semantichub.table.filter.objNamePlaceholder')}
+            placeholder={t(
+              'content.semantichub.table.filter.objNamePlaceholder'
+            )}
             variant="filled"
-            sx={{minWidth: '320px'}}
+            sx={{ minWidth: '320px' }}
           />
         </Box>
-        <FormControl variant="outlined" sx={{ml: 1}}>
-          <InputLabel id="table-select-label">{t('content.semantichub.table.filter.selectLabel')}</InputLabel>
+        <FormControl variant="outlined" sx={{ ml: 1 }}>
+          <InputLabel id="table-select-label">
+            {t('content.semantichub.table.filter.selectLabel')}
+          </InputLabel>
           <Select
             labelId="table-select-label"
             id="table-select"
@@ -178,17 +187,23 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
             label={t('content.semantichub.table.filter.selectLabel')}
             onChange={(e) => setObjectType(e.target.value)}
             variant="filled"
-            sx={{minWidth: '200px'}}
+            sx={{ minWidth: '200px' }}
           >
-            {searchTypes.map((item) =>
-              <MenuItem key={item[0]} value={item[0]}>{item[1]}</MenuItem>
-            )}
+            {searchTypes.map((item) => (
+              <MenuItem key={item[0]} value={item[0]}>
+                {item[1]}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
-        {filterHasValues() &&
-          <Button onClick={onFilterReset} sx={{ml: 1}}>{t('content.semantichub.table.filter.resetButton')}</Button>
-        }
-        <Button onClick={onSearch} sx={{ml: 1}}>{t('content.semantichub.table.filter.button')}</Button>
+        {filterHasValues() && (
+          <Button onClick={onFilterReset} sx={{ ml: 1 }}>
+            {t('content.semantichub.table.filter.resetButton')}
+          </Button>
+        )}
+        <Button onClick={onSearch} sx={{ ml: 1 }}>
+          {t('content.semantichub.table.filter.button')}
+        </Button>
       </Box>
       <Table
         rowsCount={models.length}
@@ -202,7 +217,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         title={t('content.semantichub.table.title')}
         toolbar={{
           onFilter: onFilter,
-          filter: filter
+          filter: filter,
         }}
         columns={columns}
         rows={models}
