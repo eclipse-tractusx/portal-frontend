@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { Nullable } from 'types/MainTypes'
 
 export interface SemanticModelsInitialState {
@@ -16,8 +36,12 @@ export interface SemanticModelsInitialState {
 }
 
 export type FilterParams = {
-  readonly page: number
-  readonly pageSize: number
+  page: number
+  pageSize: number
+  nameFilter?: string
+  namespaceFilter?: string
+  status?: Status
+  nameType?: string
 }
 
 export interface ModelList {
@@ -46,4 +70,20 @@ export interface NewSemanticModel {
 export enum Status {
   Draft = 'DRAFT',
   Released = 'RELEASED',
+}
+
+export enum SearchType {
+  '_NAME_' = 'Name',
+  '_DESCRIPTION_' = 'Description',
+  'bamm:Aspect' = 'Aspect',
+  'bamm:Property' = 'Property',
+  'bamm:Entity' = 'Entity',
+  'bamm:Constraint' = 'Constraint',
+  'bamm:Characteristic' = 'Characteristic',
+  'bamm-c:Measurement' = 'Measurement',
+  'bamm-c:Quantifiable' = 'Quantifiable',
+  'bamm-c:Enumeration' = 'Enumeration',
+  'bamm-c:SingleEntity' = 'SingleEntity',
+  'bamm-c:Set' = 'Set',
+  'bamm-c:Collection' = 'Collection',
 }
