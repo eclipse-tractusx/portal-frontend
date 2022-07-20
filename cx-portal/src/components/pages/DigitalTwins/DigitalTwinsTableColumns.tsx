@@ -22,19 +22,15 @@ export const DigitalTwinsTableColumns = (
       field: 'sm_count',
       headerName: t('content.digitaltwin.table.columns.sm_count'),
       flex: 2,
-      type: 'number',
       filterable: false,
-      sortable: false,
-      renderCell: ({ row }: { row: ShellDescriptor }) => row.submodelDescriptors.length
+      valueGetter: ({ row }: { row: ShellDescriptor }) => row.submodelDescriptors.length
     },
     {
       field: 'asset_count',
       headerName: t('content.digitaltwin.table.columns.asset_count'),
       flex: 2,
-      type: 'number',
       filterable: false,
-      sortable: false,
-      renderCell: ({ row }: { row: ShellDescriptor }) => row.specificAssetIds.length,
+      valueGetter: ({ row }: { row: ShellDescriptor }) => row.specificAssetIds.length,
     },
     {
       field: 'detail',
