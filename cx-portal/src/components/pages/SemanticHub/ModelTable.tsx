@@ -107,19 +107,25 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     )
   }
 
+  const onEnterInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && onSearch) {
+      onSearch()
+    }
+  }
+
   const onSearch = () => {
-    var filter: FilterParams = { page: 0, pageSize: rowCount, }
+    const searchFilter: FilterParams = { page: 0, pageSize: rowCount, }
     if(namespaceFilter.length > 0) {
-      filter.namespaceFilter = namespaceFilter;
+      searchFilter.namespaceFilter = namespaceFilter;
     }
     if(nameFilter.length > 0) {
-      filter.nameFilter = nameFilter;
+      searchFilter.nameFilter = nameFilter;
     }
     if(objectType.length > 0){
-      filter.nameType = encodeURIComponent(objectType);
+      searchFilter.nameType = encodeURIComponent(objectType);
     }
     dispatch(
-      fetchSemanticModels({ filter: filter })
+      fetchSemanticModels({ filter: searchFilter })
     )
   }
 
@@ -137,6 +143,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       <Box
         display='flex'
         alignItems='flex-end'
+        justifyContent='flex-end'
         sx={{
           mb: 2,
           width: '100%'
@@ -145,6 +152,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         <Input
           value={namespaceFilter}
           onChange={(e) => setNamespaceFilter(e.target.value)}
+          onKeyDown={onEnterInput}
           label={t('content.semantichub.table.filter.namespaceLabel')}
           placeholder={t('content.semantichub.table.filter.namespacePlaceholder')}
           variant="filled"
@@ -154,6 +162,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           <Input
             value={nameFilter}
             onChange={(e) => setNameFilter(e.target.value)}
+            onKeyDown={onEnterInput}
             label={t('content.semantichub.table.filter.objNameLabel')}
             placeholder={t('content.semantichub.table.filter.objNamePlaceholder')}
             variant="filled"
