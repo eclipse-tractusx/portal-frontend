@@ -1,15 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import RegistrationRequests from 'utils/mockDataSet/registrationRequests.json'
 import { Api } from './api'
 import { name, RegistrationRequestAPIResponse } from './types'
+import { SearchParams } from '../../connector/types'
 
 const fetchRegistrationRequests = createAsyncThunk(
   `${name}/fetchRegistrationRequests`,
-  async () => {
+  async ({ params }: { params: SearchParams }) => {
     try {
-      // Currently implementation uses mock data
-      // This action will change when API endpoint get ready
-      return RegistrationRequests as unknown as Array<RegistrationRequestAPIResponse>
+      //return RegistrationRequests as unknown as Array<RegistrationRequestAPIResponse>
+      return await Api.getInstance().getRegistrationRequests(params)
     } catch (error: unknown) {
       console.error('api call error:', error)
       throw Error(`${name}/fetchRegistrationRequests error`)

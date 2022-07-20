@@ -18,13 +18,19 @@ export default function RegistrationRequests() {
   const columns = RegistrationRequestsTableColumns(useTranslation)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [pageSize] = useState<number>(100)
+
   const { loading, registrationRequests } = useSelector(
     adminRegistrationSelector
   )
 
   useEffect(() => {
-    dispatch(fetchRegistrationRequests())
-  }, [dispatch])
+    const params = {
+      ...{ size: pageSize, page: currentPage },
+    }
+    dispatch(fetchRegistrationRequests({ params }))
+  }, [dispatch, currentPage, pageSize])
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
