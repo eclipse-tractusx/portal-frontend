@@ -49,7 +49,7 @@ const connectorSlice = createSlice({
     builder.addCase(createConnector.pending, (state) => {
       state.loading = true
     })
-    builder.addCase(createConnector.fulfilled, (state, { payload }) => {
+    builder.addCase(createConnector.fulfilled, (state) => {
       state.loading = false
     })
     builder.addCase(createConnector.rejected, (state, action) => {
