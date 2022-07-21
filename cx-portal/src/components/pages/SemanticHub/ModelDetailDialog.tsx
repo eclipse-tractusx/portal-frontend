@@ -44,6 +44,7 @@ import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
+import { Status } from 'features/semanticModels/types'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -59,6 +60,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const [diagram, setDiagram] = useState<string>('')
   const [diagramError, setDiagramError] = useState<string>('')
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
+  const [showDeleteBtn, setShowDeleteBtn] = useState<boolean>(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
   const downloadItems = ['docu', 'json', 'payload', 'aas']
   const margin = { mr: -2, ml: -2 }
@@ -84,6 +86,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             setDiagram(URL.createObjectURL(result))
           }
         })
+        setShowDeleteBtn(UserService.hasRole(ROLES.SEMANTICHUB_DELETE) && model.status === Status.Draft)
     }
   }, [model])
 
@@ -132,7 +135,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 >
                   {model.name}
                 </Typography>
-                {UserService.hasRole(ROLES.SEMANTICHUB_DELETE) && (
+                {showDeleteBtn && (
                   <Button
                     size="small"
                     onClick={() => setShowDeleteConfirm(true)}
@@ -213,6 +216,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                   />
                 </Box>
                 <Button
+                  size='small'
                   title={t('content.semantichub.detail.openApi.buttonTitle')}
                   onClick={onOpenApiUrlChange}
                 >
