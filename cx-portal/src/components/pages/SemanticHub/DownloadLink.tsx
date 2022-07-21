@@ -60,6 +60,9 @@ const DownloadLink = ({ urn, type, title }: DownloadLinkProps) => {
           url = 'documentation'
           break
         }
+        case 'aas': {
+          url = 'aas'
+        }
       }
       fetch(
         `${getSemanticApiBase()}hub/api/v1/models/${encodedUrn}/${url}`,

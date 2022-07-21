@@ -60,7 +60,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const [diagramError, setDiagramError] = useState<string>('')
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
-  const downloadItems = ['docu', 'json', 'payload']
+  const downloadItems = ['docu', 'json', 'payload', 'aas']
   const margin = { mr: -2, ml: -2 }
 
   useEffect(() => {
