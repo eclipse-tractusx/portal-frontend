@@ -43,8 +43,32 @@ const searchPages = (expr: string): string[] => {
     ...new Set(
       Object.entries(resources.en.translation.pages)
         .concat(Object.entries(resources.de.translation.pages))
-        .filter(([key, value]) => regex.test(value))
-        .map(([key, value]) => key)
+        .filter(([_key, value]) => value.match(regex))
+        .map(([key, _value]) => key)
+    ),
+  ]
+}
+
+const searchOverlays = (expr: string): string[] => {
+  const regex = new RegExp(expr, 'ig')
+  return [
+    ...new Set(
+      Object.entries(resources.en.translation.overlays)
+        .concat(Object.entries(resources.de.translation.overlays))
+        .filter(([_key, value]) => value.match(regex))
+        .map(([key, _value]) => key)
+    ),
+  ]
+}
+
+const searchActions = (expr: string): string[] => {
+  const regex = new RegExp(expr, 'ig')
+  return [
+    ...new Set(
+      Object.entries(resources.en.translation.actions)
+        .concat(Object.entries(resources.de.translation.actions))
+        .filter(([_key, value]) => value.match(regex))
+        .map(([key, _value]) => key)
     ),
   ]
 }
@@ -53,6 +77,8 @@ const I18nService = {
   init,
   changeLanguage,
   searchPages,
+  searchOverlays,
+  searchActions,
   useTranslation,
   supportedLanguages,
 }

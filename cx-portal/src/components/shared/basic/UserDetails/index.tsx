@@ -1,16 +1,19 @@
 import uniqueId from 'lodash/uniqueId'
 import { Box, useTheme } from '@mui/material'
 import { UserCardProps, UserDetailCard } from './UserDetailCard'
+import { OwnUser } from 'features/admin/userOwn/types'
 
 interface UserDetailsProps {
   columns?: number
   userDetailsCards: UserCardProps[]
+  userInfo?: OwnUser
   variant?: 'wide'
 }
 
 export const UserDetails = ({
   columns = 6,
   userDetailsCards,
+  userInfo,
   variant,
 }: UserDetailsProps) => {
   const { spacing } = useTheme()
@@ -28,6 +31,7 @@ export const UserDetails = ({
           cardAction={card.cardAction}
           cardCategory={card.cardCategory}
           cardContentItems={card.cardContentItems}
+          userInfo={userInfo}
           variant={variant}
           key={uniqueId('UserDetails')}
         />

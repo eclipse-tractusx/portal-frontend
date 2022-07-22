@@ -1,3 +1,5 @@
+import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
+
 export const name = 'admin/registration'
 
 export type InviteData = {
@@ -59,6 +61,8 @@ export interface AdminRegistrationState {
   loading: boolean
   detailLoading: boolean
   error: string
+  request: RequestState
+  data: PaginResult<InvitesDataGrid>
 }
 
 export const initialState: AdminRegistrationState = {
@@ -67,4 +71,15 @@ export const initialState: AdminRegistrationState = {
   loading: false,
   detailLoading: false,
   error: '',
+  request: RequestState.NONE,
+  data: initialPaginResult,
+}
+
+export type InvitesDataGrid = {
+  applicationStatus: string
+  dateCreated: Date
+  companyName: string
+  firstName: string
+  lastName: string
+  email: string
 }

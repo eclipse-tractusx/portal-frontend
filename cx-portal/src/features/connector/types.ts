@@ -1,6 +1,17 @@
-export type ConnectorResponse = {
-  id: string
+export type ConnectorAPIResponse = {
+  meta: PaginationData
+  content: Array<ConnectorContentAPIResponse>
+}
+
+export type ConnectorContentAPIResponse = {
+  id?: string
   name: string
+  type: string
+}
+
+export type ConnectorCreateBody = {
+  name: string
+  connectorUrl: string
   type: string
 }
 
@@ -11,7 +22,7 @@ export type PaginationData = {
 
 export type ConnectorInitialState = {
   paginationData: PaginationData
-  connectorList: Array<ConnectorResponse>
+  connectorList: Array<ConnectorContentAPIResponse>
   loading: boolean
   error: string
 }

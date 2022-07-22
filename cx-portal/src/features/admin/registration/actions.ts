@@ -28,4 +28,15 @@ const fetchCompanyDetail = createAsyncThunk(
   }
 )
 
-export { fetchCompanyDetail, fetchRegistrationRequests }
+const fetchPage = createAsyncThunk(
+  `${name}/fetchPage`,
+  async (page: number) => {
+    try {
+      return await Api.getInstance().getItems(page)
+    } catch (error: unknown) {
+      throw Error(`${name}/fetchPage error`)
+    }
+  }
+)
+
+export { fetchCompanyDetail, fetchRegistrationRequests, fetchPage }

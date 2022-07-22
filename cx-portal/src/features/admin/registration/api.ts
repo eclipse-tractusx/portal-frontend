@@ -1,9 +1,10 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { InviteData, CompanyDetail } from './types'
+import { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
 import { SearchParams } from '../../connector/types'
 import qs from 'querystring'
+import { PAGE_SIZE, PaginResult } from 'types/MainTypes'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
@@ -36,6 +37,12 @@ export class Api extends HttpClient {
   public getCompanyDetail = (applicationId: string) =>
     this.instance.get<CompanyDetail>(
       `/api/administration/registration/application/${applicationId}/companyDetailsWithAddress`,
+      getHeaders()
+    )
+
+  public getItems = (page: number) =>
+    this.instance.get<PaginResult<InvitesDataGrid>>(
+      `api/administration/registration/applicationsWithStatus?page=${page}&size=${PAGE_SIZE}`,
       getHeaders()
     )
 

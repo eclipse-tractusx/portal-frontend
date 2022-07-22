@@ -3530,6 +3530,13 @@
   dependencies:
     "@types/lodash" "*"
 
+"@types/lodash.uniq@^4.5.7":
+  version "4.5.7"
+  resolved "https://registry.npmjs.org/@types/lodash.uniq/-/lodash.uniq-4.5.7.tgz#0773960ec0148b29e6a54821a65b878a0ebb5c1a"
+  integrity sha512-qg7DeAbdZMi6DGvCxThlJycykLLhETrJrQZ6F2KaZ+o0sNK1qRHz46lgNA+nHHjwrmA2a91DyiZTp3ey3m1rEw==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash@*", "@types/lodash@^4.14.179":
   version "4.14.180"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.180.tgz#4ab7c9ddfc92ec4a887886483bc14c79fb380670"
@@ -6332,6 +6339,21 @@ csstype@^3.0.11, csstype@^3.0.2:
   version "3.0.11"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.11.tgz#d66700c5eacfac1940deb4e3ee5642792d85cd33"
   integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
+
+cx-portal-shared-components@0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/cx-portal-shared-components/-/cx-portal-shared-components-0.4.4.tgz#ceb02ac822685617bc19823ec095bd794eef8eae"
+  integrity sha512-yNjqFbqsIfr2Ol42NQDQ7aE5J0BSWXkYzUOb+3RyLlZLYN8R3AOuM9VF9huR2yyxL7LA3K93t8rjmRCg0RJssw==
+  dependencies:
+    "@mui/x-data-grid" "^5.6.0"
+    "@types/autosuggest-highlight" "^3.2.0"
+    "@types/react-slick" "^0.23.8"
+    autosuggest-highlight "^3.2.1"
+    react-redux "^7.2.6"
+    react-router-dom "^6.2.1"
+    react-slick "^0.28.1"
+    rollup-plugin-dts "^4.2.0"
+    slick-carousel "^1.8.1"
 
 cyclist@^1.0.1:
   version "1.0.1"

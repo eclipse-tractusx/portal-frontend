@@ -1,0 +1,55 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+### JetBrains ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+### Visual Studio Code ###
+.vscode/
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### Log files ###
+log/
+
+### Secrets ###
+**/secrets.*
+
+# dependencies
+**/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+*.zip
+**/build
+**/storybook-static
+**/_storybook
+**/src/ignore
+**/third-party-licenses.*
+
+# misc
+**/.DS_Store
+**/.npmrc
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

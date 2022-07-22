@@ -7,8 +7,14 @@ import {
   initialState,
   name,
   RegistrationRequest,
+  InvitesDataGrid,
 } from './types'
-import { fetchRegistrationRequests, fetchCompanyDetail } from './actions'
+import {
+  fetchRegistrationRequests,
+  fetchCompanyDetail,
+  fetchPage,
+} from './actions'
+import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'features/store'
 
@@ -53,12 +59,35 @@ export const slice = createSlice({
       state.detailLoading = false
       state.error = action.error.message as string
     })
+    builder.addCase(fetchPage.pending, (state) => {
+      state.data = initialPaginResult
+      state.request = RequestState.SUBMIT
+      state.error = ''
+    })
+    builder.addCase(fetchPage.fulfilled, (state, { payload }) => {
+      state.data = payload
+      state.request = RequestState.OK
+      state.error = ''
+    })
+    builder.addCase(fetchPage.rejected, (state, action) => {
+      state.data = initialPaginResult
+      state.request = RequestState.ERROR
+      state.error = action.error.message as string
+    })
   },
 })
 
 export const adminRegistrationSelector = (
   state: RootState
 ): AdminRegistrationState => state.admin.registration
+
+export const registrationRequestsSelector = (
+  state: RootState
+): RegistrationRequestDataGrid[] =>
+  state.admin.registration.registrationRequests
+
+export const itemsSelector = (state: RootState): PaginResult<InvitesDataGrid> =>
+  state.admin.registration.data
 
 const Slice = { slice }
 

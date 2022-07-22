@@ -4,9 +4,9 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  UserDetails,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { UserDetails } from 'components/shared/basic/UserDetails'
 
 interface AddTechnicalUserOverlayProps {
   dialogOpen: boolean

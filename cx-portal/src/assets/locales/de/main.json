@@ -2,7 +2,9 @@
   "title": "Catena-X Portal",
   "pages": {
     "home": "Startseite",
-    "registration": "Registrierung",
+    "registration": "Onboarding Registrierung",
+    "swagger": "Swagger OpenAPI Definition",
+    "storybook": "Storybook Shared Component Library",
     "appmarketplace": "App Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
@@ -29,7 +31,19 @@
     "cookiepolicy": "Cookies",
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden"
+    "notfound": "Seite nicht gefunden",
+    "appmanagement": "App Management",
+    "appoverview": "App Overview",
+    "appreleaseprocess": "App Release Process"
+  },
+  "overlays": {
+    "invite": "Neuen Geschäftspartner einladen",
+    "add_user": "Neuen Benutzer hinzu fügen"
+  },
+  "actions": {
+    "SignOut": "Abmelden",
+    "Lang_de": "Sprache auf Deutsch stellen",
+    "Lang_en": "Sprache auf Englisch stellen"
   },
   "content": {
     "admin": {
@@ -57,6 +71,9 @@
           "taxid": "Steuernummer"
         }
       }
+    },
+    "news": {
+      "title": "Neuigkeiten"
     },
     "home": {
       "stage": {
@@ -113,6 +130,15 @@
       },
       "table": {
         "title": "Semantische Datenmodelle",
+        "filter": {
+          "namespaceLabel": "Namespace",
+          "namespacePlaceholder": "Filtern der Modelle nach Namespace",
+          "objNameLabel": "Objektname",
+          "objNamePlaceholder": "Filtern der Modelle nach Objektname",
+          "selectLabel": "Wähle Objekttyp aus",
+          "button": "Suchen",
+          "resetButton": "Zurücksetzen"
+        },
         "columns": {
           "name": "Name",
           "status": "Status",
@@ -192,6 +218,12 @@
     "developerhub": {
       "message": "Inhalte vom Entwickler Hub"
     },
+    "appoverview": {
+      "message": "App Overview Message"
+    },
+    "appreleaseprocess": {
+      "message": "App Release Process Message"
+    },
     "connector": {
       "message": "Contents of connector"
     },
@@ -207,6 +239,14 @@
       "tabletitle": "Onboarded Connectors",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
+      "snackbar": {
+        "successmessage": "Edc-Konnektor erfolgreich hinzugefügt",
+        "errormessage": "Fehler! Etwas ist schief gelaufen"
+      },
+      "deletemodal": {
+        "title": "Löschen Sie den EDC-Connector",
+        "description": "Möchten Sie den ausgewählten Connector wirklich löschen?"
+      },
       "modal": {
         "title": "Company Connector",
         "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
@@ -261,10 +301,25 @@
       }
     },
     "invite": {
-      "title": "Einladung CX Teilnehmer",
-      "send": "Einladung absenden",
-      "success": "Einladung erfolgreich",
-      "failure": "Die Verarbeitung der Einladung ist fehlgeschlagen"
+      "headerTitle": "Business Partner Invite",
+      "headerIntro": "Add below the business partner registration contact and the company name.",
+      "subHeaderTitle": "Invite a new partner",
+      "inviteText1": "Registration application invite process.",
+      "inviteText2": "Invite a new partner to Catena-X.",
+      "invite": "Invite",
+      "success": "Business Partner Successfully Invited",
+      "successSubText": "The window will close automatically. In case it doesn't, please use the 'close' button on the top right.",
+      "failure": "Error - Business Partner was not invited",
+      "failureSubText": "An error occured. Please try it again later.",
+      "tabletitle": "Invites",
+      "load_button": "Mehr laden",
+      "columns": {
+        "companyName": "Company Name",
+        "firstAndLastName": "First and Last Name",
+        "date": "Date",
+        "status": "Status",
+        "details": "Details"
+      }
     },
     "provisionIdp": {
       "title": "Verbinden Sie Ihren IDP",
@@ -495,6 +550,20 @@
       "pleaseSelect": "Bitte auswählen",
       "reload": "Seite neuladen",
       "homepage": "Startseite"
+    },
+    "search": {
+      "less": "weniger anzeigen",
+      "more": "mehr anzeigen",
+      "category": {
+        "USECASE": "Anwendungsfälle",
+        "APP": "Apps",
+        "USER": "Benutzer",
+        "PARTNER": "Geschäftspartner",
+        "PAGE": "Seiten",
+        "OVERLAY": "Aktionen",
+        "ACTION": "Einstellungen",
+        "NEWS": "Neuigkeiten"
+      }
     },
     "userRoles": {
       "itAdmin": "IT Admin",

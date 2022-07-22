@@ -44,10 +44,11 @@ export { ProcessList } from './basic/ProcessList'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
+export { CardAddService } from './content/Cards/CardAddService'
+export { CardHorizontal } from './content/Cards/CardHorizontal'
 export { Navigation } from './content/Navigation'
 export { UserMenu } from './content/UserMenu'
 export { UserNav } from './content/UserNav'
-export { UserDetails } from './content/UserDetails'
 export { CircularProgress } from './basic/CircularProgress'
 
 export type { TableProps } from './basic/Table'

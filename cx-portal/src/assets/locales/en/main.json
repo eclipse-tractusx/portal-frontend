@@ -2,7 +2,9 @@
   "title": "Catena-X Portal",
   "pages": {
     "home": "Home",
-    "registration": "Registration",
+    "registration": "Onboarding Registration",
+    "swagger": "Swagger OpenAPI Definition",
+    "storybook": "Storybook Shared Component Library",
     "appmarketplace": "App Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Data Management",
@@ -29,7 +31,19 @@
     "cookiepolicy": "Cookies",
     "thirdpartylicenses": "Third Party Licenses",
     "logout": "Sign Out",
-    "notfound": "Page not found"
+    "notfound": "Page not found",
+    "appmanagement": "App Management",
+    "appoverview": "App Overview",
+    "appreleaseprocess": "App Release Process"
+  },
+  "overlays": {
+    "invite": "Invite new Business Partner",
+    "add_user": "Add new User"
+  },
+  "actions": {
+    "SignOut": "Sign out",
+    "Lang_de": "Switch language to german",
+    "Lang_en": "Switch language to english"
   },
   "content": {
     "admin": {
@@ -57,6 +71,9 @@
           "taxid": "Tax ID"
         }
       }
+    },
+    "news": {
+      "title": "News"
     },
     "home": {
       "stage": {
@@ -113,6 +130,15 @@
       },
       "table": {
         "title": "Semantic Data Models",
+        "filter": {
+          "namespaceLabel": "Namespace",
+          "namespacePlaceholder": "Enter a namespace to filter",
+          "objNameLabel": "Object Name",
+          "objNamePlaceholder": "Enter a object name to filter",
+          "selectLabel": "Select Object Type",
+          "button": "Search",
+          "resetButton": "Reset"
+        },
         "columns": {
           "name": "Name",
           "status": "Status",
@@ -192,6 +218,12 @@
     "developerhub": {
       "message": "Contents of Developer Hub"
     },
+    "appoverview": {
+      "message": "App Overview Message"
+    },
+    "appreleaseprocess": {
+      "message": "App Release Process Message"
+    },
     "connector": {
       "message": "Contents of connector"
     },
@@ -207,6 +239,14 @@
       "tabletitle": "Onboarded Connectors",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
+      "snackbar": {
+        "successmessage": "Edc connector successfully added",
+        "errormessage": "Error! Something went wrong"
+      },
+      "deletemodal": {
+        "title": "Delete EDC Connector",
+        "description": "Are you sure to delete selected connector?"
+      },
       "modal": {
         "title": "Connect company connector",
         "intro": "Registration of a company connector which is implemented in your own company network.",
@@ -261,10 +301,25 @@
       }
     },
     "invite": {
-      "title": "Invite a new Business Partner",
-      "send": "Send Invite",
-      "success": "Invitation successful",
-      "failure": "Processing your request failed"
+      "headerTitle": "Business Partner Invite",
+      "headerIntro": "Add below the business partner registration contact and the company name.",
+      "subHeaderTitle": "Invite a new partner",
+      "inviteText1": "Registration application invite process.",
+      "inviteText2": "Invite a new partner to Catena-X.",
+      "invite": "Invite",
+      "success": "Business Partner Successfully Invited",
+      "successSubText": "The window will close automatically. In case it doesn't, please use the 'close' button on the top right.",
+      "failure": "Error - Business Partner was not invited",
+      "failureSubText": "An error occured. Please try it again later.",
+      "tabletitle": "Invites",
+      "load_button": "Load more",
+      "columns": {
+        "companyName": "Company Name",
+        "firstAndLastName": "First and Last Name",
+        "date": "Date",
+        "status": "Status",
+        "details": "Details"
+      }
     },
     "provisionIdp": {
       "title": "Setup your company IDP",
@@ -420,6 +475,18 @@
         "email": "Email",
         "phone": "Phone"
       }
+    },
+    "apprelease": {
+      "descHeading": "Publish your company app inside the Catena-X marketplace",
+      "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "startCreatingButton": "Start creating your app",
+      "appOverviewButton": "Overview my apps",
+      "stepHeading": "The process will guide your through the following steps:",
+      "dividerText": "Lets get started to publishing your app...",
+      "marketplaceHeading": "App Marketplace upcomming submission requirements",
+      "neuButton": "Neu",
+      "marketplaceTitle": "Requirement Lorem ipsum",
+      "marketplaceExplanation": "Expalanation of the requirement"
     }
   },
   "navigation": {
@@ -456,6 +523,20 @@
       "pleaseSelect": "Please select",
       "reload": "Reload Page",
       "homepage": "Homepage"
+    },
+    "search": {
+      "less": "show less",
+      "more": "show more",
+      "category": {
+        "USECASE": "Use Cases",
+        "APP": "Apps",
+        "USER": "Users",
+        "PARTNER": "Business Partners",
+        "PAGE": "Pages",
+        "OVERLAY": "Actions",
+        "ACTION": "Settings",
+        "NEWS": "News"
+      }
     },
     "userRoles": {
       "itAdmin": "IT Admin",

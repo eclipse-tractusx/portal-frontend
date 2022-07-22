@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { InviteFormContent } from './InviteFormContent'
+import { InviteForm} from './index'
 import { MemoryRouter } from 'react-router-dom'
 
 export default {
   title: 'frame/InviteForm',
-  component: InviteFormContent,
+  component: InviteForm,
   parameters: {
     layout: 'fullscreen',
   },
@@ -16,10 +16,10 @@ export default {
     ),
   ],
   styles: ['./components/App.css'],
-} as ComponentMeta<typeof InviteFormContent>
+} as ComponentMeta<typeof InviteForm>
 
-const Template: ComponentStory<typeof InviteFormContent> = (args) => (
-  <InviteFormContent {...args} />
+const Template: ComponentStory<typeof InviteForm> = (args) => (
+  <InviteForm {...args} />
 )
 
 export const Standard = Template.bind({})
