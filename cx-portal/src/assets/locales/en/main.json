@@ -69,6 +69,10 @@
           "title": "Company Detail",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
+        },
+        "confirmmodal": {
+          "title": "Confirm action",
+          "description": "Are you sure to make action on selected request?"
         }
       }
     },

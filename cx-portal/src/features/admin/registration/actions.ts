@@ -39,4 +39,32 @@ const fetchPage = createAsyncThunk(
   }
 )
 
-export { fetchCompanyDetail, fetchRegistrationRequests, fetchPage }
+const approveRequest = createAsyncThunk(
+  `${name}/approveRequest`,
+  async (applicationId: string) => {
+    try {
+      return await Api.getInstance().approveRegistrationRequest(applicationId)
+    } catch (error: unknown) {
+      throw Error(`${name}/approveRequest error`)
+    }
+  }
+)
+
+const declineRequest = createAsyncThunk(
+  `${name}/declineRequest`,
+  async (applicationId: string) => {
+    try {
+      return await Api.getInstance().declineRegistrationRequest(applicationId)
+    } catch (error: unknown) {
+      throw Error(`${name}/declineRequest error`)
+    }
+  }
+)
+
+export {
+  fetchCompanyDetail,
+  fetchRegistrationRequests,
+  fetchPage,
+  approveRequest,
+  declineRequest,
+}

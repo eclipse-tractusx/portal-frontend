@@ -9,117 +9,11 @@ import {
 } from 'features/admin/registration/types'
 import dayjs from 'dayjs'
 
-/*
-{
-      field: 'companyInfo',
-      headerName: `${t(
-        'content.admin.registration-requests.columns.companyinfo'
-      )}`,
-      flex: 2,
-      sortable: false,
-      renderCell: (params: GridRenderCellParams<CompanyApplicationInfo>) => (
-        <div>
-          <p style={{ margin: '3px 0' }}>{params?.value?.companyName}</p>
-          <p style={{ margin: '3px 0' }}>{params?.value?.userEmail}</p>
-          <span>{params?.value?.bpn}</span>
-        </div>
-      ),
-    },
-    {
-      field: 'contracts',
-      headerName: `${t(
-        'content.admin.registration-requests.columns.documents'
-      )}`,
-      flex: 2,
-      sortable: false,
-      renderCell: (
-        params: GridRenderCellParams<Array<RegistrationRequestContract>>
-      ) => (
-        <div className="document-cell-container">
-          {params?.value?.map((contract) => {
-            return (
-              <div className="document-cell-line">
-                <ArticleOutlinedIcon />
-                <a href={contract?.document} rel="noreferrer">
-                  {contract?.name}
-                </a>
-              </div>
-            )
-          })}
-        </div>
-      ),
-    },
-    {
-      field: 'detail',
-      headerName: `${t('content.admin.registration-requests.columns.details')}`,
-      flex: 1,
-      align: 'center',
-      sortable: false,
-      renderCell: () => (
-        <IconButton
-          color="secondary"
-          size="small"
-          style={{ alignSelf: 'center' }}
-        >
-          <ArrowForwardIcon />
-        </IconButton>
-      ),
-    },
-    {
-      field: 'status',
-      headerName: `${t('content.admin.registration-requests.columns.state')}`,
-      align: 'center',
-      flex: 1.2,
-      sortable: false,
-      renderCell: (params: GridRenderCellParams<string>) => {
-        if (params.value === 'pending')
-          return (
-            <div className="state-cell-container">
-              <Chip
-                {...{
-                  color: 'secondary',
-                  variant: 'filled',
-                  label: `${t(
-                    'content.admin.registration-requests.buttondecline'
-                  )}`,
-                  type: 'decline',
-                  onClick: () => console.log('Decline clicked event'),
-                  withIcon: true,
-                }}
-              />
-
-              <Chip
-                {...{
-                  color: 'secondary',
-                  variant: 'filled',
-                  label: `${t(
-                    'content.admin.registration-requests.buttonconfirm'
-                  )}`,
-                  type: 'confirm',
-                  onClick: () => console.log('Confirm clicked event'),
-                  withIcon: true,
-                }}
-              />
-            </div>
-          )
-        else
-          return (
-            <div className="state-cell-container">
-              <StatusTag
-                color={params.value === 'confirmed' ? 'confirmed' : 'declined'}
-                label={t(
-                  `content.admin.registration-requests.cell${params.value}`
-                )}
-              />
-            </div>
-          )
-      },
-    },
- */
-
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
-  translationHook: any
+  translationHook: any,
+  onApproveClick: (id: string) => void,
+  onDeclineClick: (id: string) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
@@ -218,7 +112,7 @@ export const RegistrationRequestsTableColumns = (
                     'content.admin.registration-requests.buttondecline'
                   )}`,
                   type: 'decline',
-                  onClick: () => console.log('Decline clicked event'),
+                  onClick: () => onDeclineClick(params?.id?.toString()),
                   withIcon: true,
                 }}
               />
@@ -231,7 +125,7 @@ export const RegistrationRequestsTableColumns = (
                     'content.admin.registration-requests.buttonconfirm'
                   )}`,
                   type: 'confirm',
-                  onClick: () => console.log('Confirm clicked event'),
+                  onClick: () => onApproveClick(params?.id?.toString()),
                   withIcon: true,
                 }}
               />

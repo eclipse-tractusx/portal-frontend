@@ -6,20 +6,29 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchRegistrationRequests,
   fetchCompanyDetail,
+  approveRequest,
+  declineRequest,
 } from 'features/admin/registration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 
+import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
+
 export default function RegistrationRequests() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const columns = RegistrationRequestsTableColumns(useTranslation)
+
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [pageSize] = useState<number>(10)
+
+  const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false)
+
+  const [selectedRequestId, setSelectedRequestId] = useState<string>()
+  const [actionType, setActionType] = useState<string>('approve')
 
   const { loading, registrationRequests } = useSelector(
     adminRegistrationSelector
@@ -41,6 +50,48 @@ export default function RegistrationRequests() {
     }
   }
 
+  const onApproveClick = (id: string) => {
+    console.log('approve id:', id)
+    setConfirmModalOpen(true)
+    setSelectedRequestId(id)
+  }
+
+  const onDeclineClick = (id: string) => {
+    setConfirmModalOpen(true)
+    setActionType('decline')
+    setSelectedRequestId(id)
+  }
+
+  const makeActionSelectedRequest = async () => {
+    if (actionType === 'approve' && selectedRequestId)
+      await dispatch(approveRequest(selectedRequestId))
+    if (actionType === 'decline' && selectedRequestId)
+      await dispatch(declineRequest(selectedRequestId))
+
+    const params = {
+      ...{ size: pageSize, page: 0 },
+    }
+    dispatch(fetchRegistrationRequests({ params }))
+
+    setConfirmModalOpen(false)
+
+    /*await dispatch(deleteConnector({ connectorID: selectedConnector.id || '' }))
+    // After create new connector, current page should reset to initial page
+    dispatch(connectorSlice.actions.resetConnectorState())
+    const params = { size: pageSize, page: 0 }
+    dispatch(fetchConnectors({ params, token }))
+    closeAndResetModalState()
+    setDeleteConnectorConfirmModalOpen(false)
+
+     */
+  }
+
+  const columns = RegistrationRequestsTableColumns(
+    useTranslation,
+    onApproveClick,
+    onDeclineClick
+  )
+
   return (
     <main className="page-main-container">
       <CompanyDetailOverlay
@@ -48,6 +99,11 @@ export default function RegistrationRequests() {
           openDialog: overlayOpen,
           handleOverlayClose: () => setOverlayOpen(false),
         }}
+      />
+      <ConfirmationOverlay
+        openDialog={confirmModalOpen}
+        handleOverlayClose={() => setConfirmModalOpen(false)}
+        handleConfirmClick={() => makeActionSelectedRequest()}
       />
       <PageHeader
         title={t('content.admin.registration-requests.headertitle')}
