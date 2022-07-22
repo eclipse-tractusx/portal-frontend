@@ -8,10 +8,6 @@
 }
 
 .appoverview-main {
-  .mt-40 {
-    margin-top: 40px;
-  }
-
   .desc-section {
     text-align: center;
     margin-top: 112px;
@@ -97,6 +93,11 @@
             }
             :last-child {
               margin-bottom: 0;
+            }
+            .neu-btn {
+              height: 36px;
+              width: 51px;
+              cursor: unset;
             }
           }
         }

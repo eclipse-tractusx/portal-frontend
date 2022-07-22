@@ -485,6 +485,7 @@
       }
     },
     "apprelease": {
+      "headerTitle": "App Release Process",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "startCreatingButton": "Start creating your app",
