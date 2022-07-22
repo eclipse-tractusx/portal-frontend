@@ -93,11 +93,11 @@ const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
       if (f.includes('documentation')) {
         window.open(f, '_blank')
       } else {
-        const link = document.createElement("a");
-        if(fileName) link.download = fileName
+        const link = document.createElement('a')
+        if (fileName) link.download = fileName
         link.href = f
         link.target = '_blank'
-        link.click();
+        link.click()
       }
     }
   }

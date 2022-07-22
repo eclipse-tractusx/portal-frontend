@@ -32,7 +32,15 @@ import {
 } from 'cx-portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { InputLabel, MenuItem, FormControl, Select, Divider, Box, CircularProgress } from '@mui/material'
+import {
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Divider,
+  Box,
+  CircularProgress,
+} from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
 import { useEffect, useState } from 'react'
@@ -65,9 +73,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
   const [aasFormat, setAasFormat] = useState<string>(aasFileTypes[0])
   const downloadItems = [
-    {type: 'docu'},
-    {type: 'json', fileFormat: 'schema.json'},
-    {type: 'payload', fileFormat: 'payload.json'}
+    { type: 'docu' },
+    { type: 'json', fileFormat: 'schema.json' },
+    { type: 'payload', fileFormat: 'payload.json' },
   ]
   const margin = { mr: -2, ml: -2 }
 
@@ -92,7 +100,10 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             setDiagram(URL.createObjectURL(result))
           }
         })
-        setShowDeleteBtn(UserService.hasRole(ROLES.SEMANTICHUB_DELETE) && model.status === Status.Draft)
+      setShowDeleteBtn(
+        UserService.hasRole(ROLES.SEMANTICHUB_DELETE) &&
+          model.status === Status.Draft
+      )
     }
   }, [model])
 
@@ -208,10 +219,14 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                     key={`download_${download.type}`}
                     type={download.type}
                     urn={model.urn}
-                    fileName={download.fileFormat ? `${model.name}-${download.fileFormat}` : ''}
+                    fileName={
+                      download.fileFormat
+                        ? `${model.name}-${download.fileFormat}`
+                        : ''
+                    }
                   />
                 ))}
-                <Box display='flex' mt={2}>
+                <Box display="flex" mt={2}>
                   <FormControl variant="outlined" sx={{ mr: 2 }}>
                     <InputLabel id="table-select-label">
                       {t('content.semantichub.detail.aasSelect.label')}
@@ -253,7 +268,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                   />
                 </Box>
                 <Button
-                  size='small'
+                  size="small"
                   title={t('content.semantichub.detail.openApi.buttonTitle')}
                   onClick={onOpenApiUrlChange}
                 >
