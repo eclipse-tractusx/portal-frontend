@@ -85,26 +85,6 @@ const ConnectorInsertForm = ({
                   control,
                   trigger,
                   errors,
-                  name: 'ConnectorID',
-                  rules: {
-                    required: true,
-                  },
-                  helperText: t(
-                    'content.edcconnector.modal.insertform.id.error'
-                  ),
-                  label: t('content.edcconnector.modal.insertform.id.label'),
-                  placeholder: t(
-                    'content.edcconnector.modal.insertform.id.placeholder'
-                  ),
-                }}
-              />
-            </div>
-            <div className="form-input">
-              <ConnectorFormInput
-                {...{
-                  control,
-                  trigger,
-                  errors,
                   name: 'ConnectorURL',
                   rules: {
                     required: true,
