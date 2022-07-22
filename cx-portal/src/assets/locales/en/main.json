@@ -163,7 +163,7 @@
       },
       "detail": {
         "deleteButton": "Delete Model",
-        "diagramTitle": "UML diagram of the aspect model",
+        "diagramTitle": "diagram of the aspect model",
         "urnLabel": "Aspect model URN",
         "imgAlt": "Model diagram",
         "downloads": {

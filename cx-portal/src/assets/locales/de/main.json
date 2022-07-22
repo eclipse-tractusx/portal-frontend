@@ -163,7 +163,7 @@
       },
       "detail": {
         "deleteButton": "Modell löschen",
-        "diagramTitle": "UML Diagramm des Aspekts",
+        "diagramTitle": "Diagramm des Aspekts",
         "urnLabel": "Aspekt-Modell URN",
         "imgAlt": "Modelldiagram",
         "downloads": {
