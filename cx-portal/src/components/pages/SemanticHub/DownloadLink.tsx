@@ -29,8 +29,9 @@ interface DownloadLinkProps {
   urn: string
   type: string
   title?: string
+  fileName?: string
 }
-const DownloadLink = ({ urn, type, title }: DownloadLinkProps) => {
+const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
   const { t } = useTranslation()
   const [file, setFile] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -60,8 +61,12 @@ const DownloadLink = ({ urn, type, title }: DownloadLinkProps) => {
           url = 'documentation'
           break
         }
-        case 'aas': {
-          url = 'aas'
+        case 'aasAasx': {
+          url = 'aas?aasFormat=FILE'
+          break
+        }
+        case 'aasXml': {
+          url = 'aas?aasFormat=XML'
         }
       }
       fetch(
@@ -84,7 +89,17 @@ const DownloadLink = ({ urn, type, title }: DownloadLinkProps) => {
   }
 
   const openFileInNewTab = (f: string) => {
-    if (f.length > 0) window.open(f, '_blank')
+    if (f.length > 0) {
+      if (f.includes('documentation')) {
+        window.open(f, '_blank')
+      } else {
+        const link = document.createElement("a");
+        if(fileName) link.download = fileName
+        link.href = f
+        link.target = '_blank'
+        link.click();
+      }
+    }
   }
 
   useEffect(() => {
