@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { InviteForm} from './index'
+import { InviteForm } from './index'
 import { MemoryRouter } from 'react-router-dom'
 
 export default {
