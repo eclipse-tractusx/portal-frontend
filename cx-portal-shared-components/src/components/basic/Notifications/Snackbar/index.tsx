@@ -15,6 +15,7 @@ export const PageSnackbar = ({
   contactLinks,
   contactNewTab,
   showIcon,
+  ...props
 }: PageNotificationsProps & SnackbarOrigin) => {
   return (
     <Box>
@@ -22,6 +23,7 @@ export const PageSnackbar = ({
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         open={open}
         key={'bottom right'}
+        {...props}
         message={
           <SnackbarContent
             title={title}
@@ -60,6 +62,7 @@ export const PageSnackbar = ({
           },
           '.MuiSnackbarContent-message': {
             padding: '0px',
+            color: 'black',
           },
         }}
       />

@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
 import { AddUser } from 'components/overlays/AddUser'
-import InviteForm from 'components/overlays/InviteForm'
 import NewsDetail from 'components/overlays/NewsDetail'
 import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import UserInfo from 'components/overlays/UserInfo'
@@ -74,8 +73,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <NewsDetail id={overlay.id} />
     case OVERLAYS.ADD_BPN:
       return <AddBPN id={overlay.id} />
-    case OVERLAYS.INVITE:
-      return <InviteForm />
     case OVERLAYS.PARTNER:
       return <BusinessPartnerDetail id={overlay.id} />
     case OVERLAYS.APP:

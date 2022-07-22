@@ -13,7 +13,7 @@ import {
   fetchCompanyDetail,
   fetchPage,
 } from './actions'
-import { initialPaginResult, RequestState } from 'types/MainTypes'
+import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'features/store'
 
@@ -84,8 +84,8 @@ export const registrationRequestsSelector = (
 ): RegistrationRequestDataGrid[] =>
   state.admin.registration.registrationRequests
 
-export const itemsSelector = (state: RootState): InvitesDataGrid[] =>
-  state.admin.registration.data.content
+export const itemsSelector = (state: RootState): PaginResult<InvitesDataGrid> =>
+  state.admin.registration.data
 
 const Slice = { slice }
 

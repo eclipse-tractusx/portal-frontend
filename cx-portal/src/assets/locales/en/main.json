@@ -163,14 +163,21 @@
       },
       "detail": {
         "deleteButton": "Delete Model",
-        "diagramTitle": "UML diagram of the aspect model",
+        "diagramTitle": "diagram of the aspect model",
         "urnLabel": "Aspect model URN",
         "imgAlt": "Model diagram",
         "downloads": {
-          "ttl": "TTL",
+          "ttl": "TTL file",
           "docu": "Documentation",
           "json": "JSON Schema",
-          "payload": "Example Payload JSON"
+          "payload": "Example Payload JSON",
+          "aasAasx": "AAS file",
+          "aasXml": "AAS XML"
+        },
+        "aasSelect": {
+          "label": "Choose a download format",
+          "itemFile": "AASX",
+          "itemXml": "XML"
         },
         "fileError": "Error: The file could not be loaded.",
         "ttlTooltip": "The downloaded Turtle file looks different but is semantically the same compared to the uploaded Turtle file for the Aspect. To further develop existing Aspects refer to the source Turtle files (e.g. in the Catena-X BAMM Model GitHub Repository)",
@@ -206,7 +213,8 @@
         "endpoints": "Endpoints:",
         "interface": "Interface:",
         "protocol": "Protocol:",
-        "protocol_version": "Protocol version:"
+        "protocol_version": "Protocol version:",
+        "protocol_endpoint": "Aspect Endpoint:"
       }
     },
     "datamanagement": {
@@ -239,6 +247,14 @@
       "tabletitle": "Onboarded Connectors",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
+      "snackbar": {
+        "successmessage": "Edc connector successfully added",
+        "errormessage": "Error! Something went wrong"
+      },
+      "deletemodal": {
+        "title": "Delete EDC Connector",
+        "description": "Are you sure to delete selected connector?"
+      },
       "modal": {
         "title": "Connect company connector",
         "intro": "Registration of a company connector which is implemented in your own company network.",
@@ -304,6 +320,7 @@
       "failure": "Error - Business Partner was not invited",
       "failureSubText": "An error occured. Please try it again later.",
       "tabletitle": "Invites",
+      "load_button": "Load more",
       "columns": {
         "companyName": "Company Name",
         "firstAndLastName": "First and Last Name",
@@ -468,6 +485,7 @@
       }
     },
     "apprelease": {
+      "headerTitle": "App Release Process",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "startCreatingButton": "Start creating your app",

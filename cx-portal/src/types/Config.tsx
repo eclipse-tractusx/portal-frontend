@@ -244,10 +244,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.USERMANAGEMENT_ADD,
   },
   { name: OVERLAYS.APP, role: ROLES.APPSTORE_VIEW },
-  {
-    name: OVERLAYS.INVITE,
-    role: ROLES.INVITE_NEW_PARTNER,
-  },
   { name: OVERLAYS.NEWS },
   {
     name: OVERLAYS.PARTNER,

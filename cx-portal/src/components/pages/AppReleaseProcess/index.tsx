@@ -1,11 +1,15 @@
-import { Button, ProcessList, Typography } from 'cx-portal-shared-components'
-import { useNavigate } from 'react-router-dom'
+import {
+  Button,
+  PageHeader,
+  ProcessList,
+  Typography,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import './AppReleaseProcess.scss'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
 
   const stepsLists = [
     {
@@ -48,16 +52,14 @@ export default function AppReleaseProcess() {
 
   return (
     <div className="appoverview-main">
-      <div className="mt-40">
-        <div className="container">
-          <Button
-            color="secondary"
-            size="small"
-            onClick={() => navigate('/home')}
-          >
-            {t('global.actions.back')}
-          </Button>
-        </div>
+      <div>
+        <PageHeader
+          title={t('content.apprelease.headerTitle')}
+          topPage={true}
+          headerHeight={200}
+        >
+          <PageBreadcrumb backButtonVariant="contained" />
+        </PageHeader>
       </div>
       <div className="desc-section">
         <div className="container">
