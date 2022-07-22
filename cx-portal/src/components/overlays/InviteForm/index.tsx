@@ -6,15 +6,10 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  Input
+  Input,
 } from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
 
@@ -112,16 +107,11 @@ export const InviteForm = ({
           </span>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
-            onClick={(e) => handleOverlayClose(e)}>
+          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button
-            name="send"
-            disabled={inpValid[4]}
-            onClick={doSubmit}
-          >{`${t('content.invite.invite')}`}
+          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+            {`${t('content.invite.invite')}`}
           </Button>
         </DialogActions>
       </Dialog>
