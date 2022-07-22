@@ -5,7 +5,10 @@ import I18nService from 'services/I18nService'
 import { MockReduxStoreInitialState } from 'utils/mockDataSet/mockReduxStore'
 import { renderWithStore } from 'utils/renderWithStore'
 import RegistrationRequestsMockData from 'utils/mockDataSet/registrationRequests.json'
-import { RegistrationRequestAPIResponse } from 'features/admin/registration/types'
+import {
+  RegistrationRequest,
+  RegistrationRequestAPIResponse,
+} from 'features/admin/registration/types'
 import EnglishScripts from 'assets/locales/en/main.json'
 
 const renderRegistrationRequestsPage = (): RenderResult =>
@@ -40,9 +43,9 @@ test('Control data grid correctly filled up', async () => {
     // get last item id at mock data response
     const lastRequestItem = RegistrationRequestsMockData[
       RegistrationRequestsMockData.length - 1
-    ] as unknown as RegistrationRequestAPIResponse
+    ] as unknown as RegistrationRequest
 
     // Check id is rendered at page
-    expect(screen.getByText(lastRequestItem.application_id)).toBeInTheDocument()
+    expect(screen.getByText(lastRequestItem.applicationId)).toBeInTheDocument()
   })
 })

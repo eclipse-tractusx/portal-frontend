@@ -1,6 +1,6 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { CompanyDetail } from './types'
+import { InviteData, CompanyDetail } from './types'
 import { getHeaders } from 'services/RequestService'
 import { SearchParams } from '../../connector/types'
 import qs from 'querystring'
@@ -21,14 +21,33 @@ export class Api extends HttpClient {
   }
 
   public getRegistrationRequests = (filters: SearchParams) =>
-    this.instance.post<void>(
+    this.instance.get<void>(
       `/api/administration/registration/applications?${qs.stringify(filters)}`,
+      getHeaders()
+    )
+
+  public postInviteBusinessPartner = (invite: InviteData) =>
+    this.instance.post<void>(
+      '/api/administration/invitation',
+      invite,
       getHeaders()
     )
 
   public getCompanyDetail = (applicationId: string) =>
     this.instance.get<CompanyDetail>(
       `/api/administration/registration/application/${applicationId}/companyDetailsWithAddress`,
+      getHeaders()
+    )
+
+  public approveRegistrationRequest = (applicationId: string) =>
+    this.instance.put<void>(
+      `/api/administration/registration/application/${applicationId}/approveRequest`,
+      getHeaders()
+    )
+
+  public declineRegistrationRequest = (applicationId: string) =>
+    this.instance.put<void>(
+      `/api/administration/registration/application/${applicationId}/declineRequest`,
       getHeaders()
     )
 }

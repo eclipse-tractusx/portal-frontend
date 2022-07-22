@@ -6,6 +6,7 @@ import {
   AdminRegistrationState,
   initialState,
   name,
+  RegistrationRequest,
 } from './types'
 import { fetchRegistrationRequests, fetchCompanyDetail } from './actions'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
@@ -24,10 +25,10 @@ export const slice = createSlice({
     builder.addCase(
       fetchRegistrationRequests.fulfilled,
       (state, { payload }) => {
-        const payloadList =
-          payload as unknown as Array<RegistrationRequestAPIResponse>
+        const payloadList = payload as unknown as RegistrationRequestAPIResponse
         state.registrationRequests =
-          mapRegistrationRequestResponseToDataGrid(payloadList) || []
+          mapRegistrationRequestResponseToDataGrid(payloadList?.content) || []
+        //state.registrationRequests = payloadList.content
         state.loading = false
         state.error = ''
       }
@@ -58,11 +59,6 @@ export const slice = createSlice({
 export const adminRegistrationSelector = (
   state: RootState
 ): AdminRegistrationState => state.admin.registration
-
-export const registrationRequestsSelector = (
-  state: RootState
-): RegistrationRequestDataGrid[] =>
-  state.admin.registration.registrationRequests
 
 const Slice = { slice }
 

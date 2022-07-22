@@ -19,7 +19,7 @@ export default function RegistrationRequests() {
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const [pageSize] = useState<number>(100)
+  const [pageSize] = useState<number>(10)
 
   const { loading, registrationRequests } = useSelector(
     adminRegistrationSelector
@@ -35,7 +35,8 @@ export default function RegistrationRequests() {
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      dispatch(fetchCompanyDetail('0195a85f-e465-4571-b980-d1351dd76a9f'))
+      console.log('params:', params)
+      dispatch(fetchCompanyDetail(params.id.toString()))
       setOverlayOpen(true)
     }
   }
