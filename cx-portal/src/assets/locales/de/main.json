@@ -206,7 +206,8 @@
         "endpoints": "Endpunkte:",
         "interface": "Schnittstelle:",
         "protocol": "Protokoll:",
-        "protocol_version": "Protokoll Version:"
+        "protocol_version": "Protokoll Version:",
+        "protocol_endpoint": "Aspekt Endpunkt:"
       }
     },
     "datamanagement": {
