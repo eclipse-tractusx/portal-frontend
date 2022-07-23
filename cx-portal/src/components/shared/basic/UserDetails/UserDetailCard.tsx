@@ -47,11 +47,32 @@ export const UserDetailCard = ({
     dispatch(show(OVERLAYS.ADD_BPN, userInfo?.companyUserId))
   }
 
+  const renderValue = (value: UserItemsTranslation | undefined) => (
+    <>
+      <span>{value?.label}:</span>&nbsp;
+      <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+        {Array.isArray(value?.value)
+          ? value?.value.map((bpn, i) => (
+              <span key={i}>
+                {bpn}
+                <br />
+              </span>
+            ))
+          : value?.value}
+      </span>
+      <span>
+        {value?.label === 'BPN' && (
+          <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
+        )}
+      </span>
+    </>
+  )
+
   const renderContentSwitch = (
     param: string,
     value: UserItemsTranslation | undefined
-  ) => {
-    return param === 'status' ? (
+  ) =>
+    param === 'status' ? (
       <>
         <span style={{ marginRight: '10px' }}>{value?.label} :</span>
         <Chip
@@ -63,28 +84,8 @@ export const UserDetailCard = ({
         />
       </>
     ) : (
-      <>
-        <span>{value?.label}:</span>&nbsp;
-        <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-          {Array.isArray(value?.value)
-            ? value?.value.map((bpn, i) => (
-                <span key={i}>
-                  {bpn}
-                  <br />
-                </span>
-              ))
-            : value?.value}
-        </span>
-        <span>
-          {value?.label === 'BPN' ? (
-            <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
-          ) : (
-            ''
-          )}
-        </span>
-      </>
+      renderValue(value)
     )
-  }
 
   return (
     <Box>
