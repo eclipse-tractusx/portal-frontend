@@ -5,13 +5,10 @@ import {
   StatusTag,
   PageLoadingTable,
 } from 'cx-portal-shared-components'
-import { fetchTenantUsers } from 'features/admin/user/actions'
-import { tenantUsersSelector } from 'features/admin/user/slice'
 import { TenantUser } from 'features/admin/user/types'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useFetchUsersQuery } from 'features/admin/user/apiSlice'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -21,17 +18,11 @@ export const ActiveUserTable = ({
   onAddUserButtonClick,
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const tenantUsers = useSelector(tenantUsersSelector)
 
   const onUserDetailsClick = (userId: string) => {
     navigate('/usermanagement/userdetails/' + userId)
   }
-
-  useEffect(() => {
-    dispatch(fetchTenantUsers())
-  }, [dispatch])
 
   return (
     <section id="identity-management-id">
@@ -76,7 +67,7 @@ export const ActiveUserTable = ({
         hideFooter
         rowHeight={57}
         loadLabel={t('global.actions.more')}
-        fetch={fetchTenantUsers}
+        fetch={useFetchUsersQuery}
         title={t('content.usermanagement.table.title')}
         toolbar={{
           buttonLabel: t('content.usermanagement.table.add'),
