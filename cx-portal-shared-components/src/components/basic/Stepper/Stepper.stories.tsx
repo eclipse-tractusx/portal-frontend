@@ -33,7 +33,7 @@ const stepperElements = [
     step: 6,
     headline: 'Verify your company data',
   },
-]        
+]
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />

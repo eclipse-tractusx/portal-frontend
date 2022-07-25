@@ -7,11 +7,7 @@ export interface StepperProps {
   activeStep: number
 }
 
-export const Stepper = ({
-  list,
-  showSteps,
-  activeStep,
-}: StepperProps) => {
+export const Stepper = ({ list, showSteps, activeStep }: StepperProps) => {
   return (
     <Box
       sx={{
@@ -21,9 +17,7 @@ export const Stepper = ({
     >
       {list &&
         list
-          .filter(
-            (item) => item.step <= showSteps && item.step <= list.length
-          )
+          .filter((item) => item.step <= showSteps && item.step <= list.length)
           .map((item, i) => (
             <StepperItem
               key={i}

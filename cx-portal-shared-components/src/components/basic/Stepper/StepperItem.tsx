@@ -14,9 +14,11 @@ export const StepperItem = ({
   step,
   headline,
   activeStep,
-  index
+  index,
 }: StepperItemProps) => {
-  const [backgroundColor, setBackgroundColor] = useState(theme.palette.stepper.stepUpcoming)
+  const [backgroundColor, setBackgroundColor] = useState(
+    theme.palette.stepper.stepUpcoming
+  )
   const [done, setDone] = useState(false)
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export const StepperItem = ({
       setBackgroundColor(theme.palette.stepper.stepUpcoming)
       setDone(false)
     }
-  },[index, activeStep])
+  }, [index, activeStep])
   return (
     <Box
       sx={{
@@ -54,17 +56,29 @@ export const StepperItem = ({
         <Typography
           variant="body1"
           fontSize="14px"
-          color='#fff'
+          color="#fff"
           sx={{
             margin: 'auto',
             paddingTop: '4px',
             width: 'fit-content',
           }}
         >
-          {done && <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8078 1.24939L5.09535 12.1399L0.305542 7.15056L1.74832 5.7655L4.95851 9.10944L12.2461 0L13.8078 1.24939Z" fill="white"/>
-          </svg>
-          }
+          {done && (
+            <svg
+              width="14"
+              height="13"
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.8078 1.24939L5.09535 12.1399L0.305542 7.15056L1.74832 5.7655L4.95851 9.10944L12.2461 0L13.8078 1.24939Z"
+                fill="white"
+              />
+            </svg>
+          )}
           {!done && step}
         </Typography>
       </Box>
