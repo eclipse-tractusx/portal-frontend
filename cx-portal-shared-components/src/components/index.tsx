@@ -42,6 +42,7 @@ export { PageSnackbar } from './basic/Notifications/Snackbar'
 export { ErrorPage } from './basic/ErrorPage'
 export { MultiSelectList } from './basic/MultiSelectList'
 export { ProcessList } from './basic/ProcessList'
+export { CircleProgress } from './basic/Progress/CircleProgress'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
