@@ -84,6 +84,11 @@ const palette = createPalette({
     bgActive: '#F0F5D5',
     bgInactive: '#FFF7FF',
   },
+  stepper: {
+    stepDone: '#B3CB2D',
+    stepCurrent: '#FFA600',
+    stepUpcoming: '#EAEAEA',
+  },
   background: {
     background01: '#F9F9F9',
     background02: '#F3F3F3',
