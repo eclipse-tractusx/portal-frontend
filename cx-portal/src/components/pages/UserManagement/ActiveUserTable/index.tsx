@@ -1,6 +1,10 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { IconButton, StatusTag, PageLoadingTable } from 'cx-portal-shared-components'
+import {
+  IconButton,
+  StatusTag,
+  PageLoadingTable,
+} from 'cx-portal-shared-components'
 import { fetchTenantUsers } from 'features/admin/user/actions'
 import { tenantUsersSelector } from 'features/admin/user/slice'
 import { TenantUser } from 'features/admin/user/types'

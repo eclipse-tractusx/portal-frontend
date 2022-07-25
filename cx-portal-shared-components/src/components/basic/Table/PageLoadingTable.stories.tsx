@@ -1,9 +1,7 @@
 import { ComponentStory } from '@storybook/react'
 
 import { PageLoadingTable as Component } from './PageLoadingTable'
-import {
-  GridColDef,
-} from '@mui/x-data-grid'
+import { GridColDef } from '@mui/x-data-grid'
 
 const columns: GridColDef[] = [
   { field: 'id', flex: 2 },
@@ -23,9 +21,12 @@ const fetch = (page: number) => ({
       totalElements: 115,
       totalPages: 10,
       page,
-      contentSize: SIZE
+      contentSize: SIZE,
     },
-    content: [...Array(SIZE).keys()].map(n => ({id: page*SIZE+n, value: `value ${page*SIZE+n}`}))
+    content: [...Array(SIZE).keys()].map((n) => ({
+      id: page * SIZE + n,
+      value: `value ${page * SIZE + n}`,
+    })),
   },
   isSuccess: true,
   isFetching: false,
@@ -39,5 +40,5 @@ export const Standard = Template.bind({})
 Standard.args = {
   columns,
   loadLabel: 'load more',
-  fetch
+  fetch,
 }
