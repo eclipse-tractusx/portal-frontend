@@ -1,7 +1,6 @@
 import { Box } from '@mui/material'
 import {
   Button,
-  UserDetails,
   UserAvatar,
   Typography,
   Table,
@@ -19,10 +18,11 @@ import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
 import uniqueId from 'lodash/uniqueId'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import { useEffect } from 'react'
-import { fetch } from 'features/admin/userOwn/actions'
+import { fetchOwn } from 'features/admin/userOwn/actions'
 import './MyAccount.scss'
 import { ownUserSelector } from 'features/admin/userOwn/slice'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { UserDetails } from 'components/shared/basic/UserDetails'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ export default function MyAccount() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetch())
+    dispatch(fetchOwn())
   }, [dispatch])
 
   const userAppRoles = [
@@ -70,6 +70,8 @@ export default function MyAccount() {
       )
     })
   }
+
+  console.log('render')
 
   return (
     <main className="my-account">
@@ -112,6 +114,7 @@ export default function MyAccount() {
         {ownUser && (
           <UserDetails
             userDetailsCards={userDetailsToCards(ownUser)}
+            userInfo={ownUser}
             columns={3}
           />
         )}
@@ -160,7 +163,7 @@ export default function MyAccount() {
         </AccordionSummary>
         <AccordionDetails sx={{ marginBottom: '20px' }}>
           <Typography>
-            <code>{JSON.stringify(parsedToken, null, 2)}</code>
+            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
           </Typography>
         </AccordionDetails>
       </Accordion>

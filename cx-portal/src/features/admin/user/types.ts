@@ -24,7 +24,7 @@ export type AddUser = {
   email: string
   firstName: string
   lastName: string
-  roles: string[]
+  roles?: string[]
   message: string
 }
 
@@ -39,15 +39,24 @@ export interface AdminUserState {
   addOpen: boolean
   addTechnicalUserOpen: boolean
   tenantUsers: Array<TenantUser>
-  usersToAdd: Array<AddUser>
+  usersToAdd: AddUser
   addRequest: RequestState
   getRequest: RequestState
   error: string
 }
 
+export const InitialAddUser = {
+  userName: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  roles: [],
+  message: '',
+}
+
 export const initialState: AdminUserState = {
   tenantUsers: [],
-  usersToAdd: [],
+  usersToAdd: InitialAddUser,
   getRequest: RequestState.NONE,
   addRequest: RequestState.NONE,
   addOpen: false,

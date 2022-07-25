@@ -3,11 +3,13 @@ import { Typography } from '../../basic/Typography'
 
 interface CardAddServiceProps {
   title: string
+  borderRadius: number
   onButtonClick: React.MouseEventHandler
 }
 
 export const CardAddService = ({
   title,
+  borderRadius = 20,
   onButtonClick,
 }: CardAddServiceProps) => {
   const theme = useTheme()
@@ -15,7 +17,7 @@ export const CardAddService = ({
     <Box
       sx={{
         border: `1px dashed ${theme.palette.border.border04}`,
-        borderRadius: '20px',
+        borderRadius: `${borderRadius}px`,
         height: '160px',
         display: 'flex',
         flexDirection: 'row',
@@ -39,7 +41,7 @@ export const CardAddService = ({
           width: '120px',
           height: '120px',
           background: theme.palette.accent.accent02,
-          borderRadius: '20px',
+          borderRadius: `${borderRadius}px`,
           ':hover': {
             cursor: 'pointer',
           },

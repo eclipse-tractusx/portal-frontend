@@ -4,6 +4,7 @@ name: build
 on:
   push:
     branches:
+      - 'dev'
       - 'main'
 
 env:
@@ -20,6 +21,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
 
       - name: Install Dependencies
         run: yarn
@@ -52,7 +55,7 @@ jobs:
           context: .
           file: .conf/Dockerfile.prebuilt
           push: true
-          # build tag :main
+          # build tag :dev
           tags: ${{ steps.meta.outputs.tags }}
           # build tag :latest
           # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

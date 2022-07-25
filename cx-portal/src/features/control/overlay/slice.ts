@@ -6,6 +6,9 @@ export const slice = createSlice({
   name,
   initialState,
   reducers: {
+    exec: (_state, action) => ({
+      ...action.payload,
+    }),
     show: (_state, action) => ({
       ...action.payload,
     }),
