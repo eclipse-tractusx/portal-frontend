@@ -17,7 +17,8 @@ nbdist/
 .nb-gradle/
 
 ### Visual Studio Code ###
-.vscode/
+.vscode/*
+!.vscode/settings.json
 
 # Local History for Visual Studio Code
 .history/

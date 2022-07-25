@@ -1,16 +1,18 @@
 import { useSelector } from 'react-redux'
-import { searchSelector } from 'features/info/search/slice'
+import {
+  searchExprSelector,
+  searchItemSelector,
+} from 'features/info/search/slice'
 import { SearchResult } from 'components/shared/basic/SearchResult'
 import './search-result-section.scss'
 
 export default function SearchResultSection() {
-  const searchItems = useSelector(searchSelector)
+  const searchExpr = useSelector(searchExprSelector)
+  const searchItems = useSelector(searchItemSelector)
 
   return searchItems.length > 0 ? (
     <div className="search-result-section">
-      <SearchResult items={searchItems} />
+      <SearchResult expr={searchExpr} items={searchItems} />
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }

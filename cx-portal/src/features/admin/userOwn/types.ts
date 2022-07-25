@@ -7,7 +7,7 @@ export type OwnUser = {
   firstName: string
   lastName: string
   email: string
-  bpn: string
+  bpn: string[]
   created: string
   company: string
   status: string
@@ -18,7 +18,7 @@ export const InitialOwnUser = {
   firstName: '',
   lastName: '',
   email: '',
-  bpn: '',
+  bpn: [''],
   created: '',
   company: '',
   status: '',

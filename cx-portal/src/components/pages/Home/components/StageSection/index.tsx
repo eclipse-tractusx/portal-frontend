@@ -1,7 +1,7 @@
 import { Button, MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import PageService from 'services/PageService'
-import { label as BusinessApplictions } from '../BusinessApplicationsSection'
+import { label as BusinessApplications } from '../BusinessApplicationsSection'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -18,7 +18,7 @@ export default function SearchSection() {
       >
         <Button
           sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => PageService.scrollTo(BusinessApplictions)}
+          onClick={() => PageService.scrollTo(BusinessApplications)}
         >
           {t('content.home.stage.appButton')}
         </Button>

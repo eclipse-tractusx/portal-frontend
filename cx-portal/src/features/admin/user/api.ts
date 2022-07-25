@@ -1,5 +1,6 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
+import { PaginResult } from 'types/MainTypes'
 import { HttpClient } from 'utils/HttpClient'
 import { TenantUser, AddUser } from './types'
 
@@ -19,8 +20,8 @@ export class Api extends HttpClient {
   }
 
   public getTenantUsers = () =>
-    this.instance.get<TenantUser[]>(
-      `/api/administration/user/owncompany/users?status=ACTIVE`,
+    this.instance.get<PaginResult<TenantUser>>(
+      `/api/administration/user/owncompany/users?status=ACTIVE&page=0&size=20`,
       getHeaders()
     )
 

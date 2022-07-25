@@ -19,11 +19,11 @@ export const ProcessList = ({
       {list &&
         list
           .filter(
-            (item: any) =>
-              item.step <= elementNumbers && item.step <= list.length
+            (item) => item.step <= elementNumbers && item.step <= list.length
           )
-          .map((item) => (
+          .map((item, i) => (
             <ListItem
+              key={i}
               step={item.step}
               headline={item.headline}
               description={item.description}

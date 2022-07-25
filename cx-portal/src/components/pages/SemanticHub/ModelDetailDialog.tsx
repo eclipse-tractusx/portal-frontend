@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { DetailGrid } from 'components/shared/basic/DetailGrid'
 import {
@@ -12,7 +32,15 @@ import {
 } from 'cx-portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { Divider, Box, CircularProgress } from '@mui/material'
+import {
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Divider,
+  Box,
+  CircularProgress,
+} from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
 import { useEffect, useState } from 'react'
@@ -21,9 +49,10 @@ import {
   deleteSemanticModelById,
 } from 'features/semanticModels/actions'
 import UserService from 'services/UserService'
-import { ROLES } from 'types/MainTypes'
+import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
+import { Status } from 'features/semanticModels/types'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -31,6 +60,7 @@ interface ModelDetailDialogProps {
 }
 
 const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
+  const aasFileTypes = ['Aasx', 'Xml']
   const { t } = useTranslation()
   const { model, loadingModel, openApiLink, error, openApiError } = useSelector(
     semanticModelsSelector
@@ -39,8 +69,14 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const [diagram, setDiagram] = useState<string>('')
   const [diagramError, setDiagramError] = useState<string>('')
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
+  const [showDeleteBtn, setShowDeleteBtn] = useState<boolean>(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
-  const downloadItems = ['docu', 'json', 'payload']
+  const [aasFormat, setAasFormat] = useState<string>(aasFileTypes[0])
+  const downloadItems = [
+    { type: 'docu' },
+    { type: 'json', fileFormat: 'schema.json' },
+    { type: 'payload', fileFormat: 'payload.json' },
+  ]
   const margin = { mr: -2, ml: -2 }
 
   useEffect(() => {
@@ -64,6 +100,10 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             setDiagram(URL.createObjectURL(result))
           }
         })
+      setShowDeleteBtn(
+        UserService.hasRole(ROLES.SEMANTICHUB_DELETE) &&
+          model.status === Status.Draft
+      )
     }
   }, [model])
 
@@ -112,7 +152,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 >
                   {model.name}
                 </Typography>
-                {UserService.hasRole(ROLES.SEMANTICHUB_DELETE) && (
+                {showDeleteBtn && (
                   <Button
                     size="small"
                     onClick={() => setShowDeleteConfirm(true)}
@@ -172,14 +212,49 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                   type="ttl"
                   urn={model.urn}
                   title={t('content.semantichub.detail.ttlTooltip')}
+                  fileName={`${model.name}.ttl`}
                 />
                 {downloadItems.map((download) => (
                   <DownloadLink
-                    key={`download_${download}`}
-                    type={download}
+                    key={`download_${download.type}`}
+                    type={download.type}
                     urn={model.urn}
+                    fileName={
+                      download.fileFormat
+                        ? `${model.name}-${download.fileFormat}`
+                        : ''
+                    }
                   />
                 ))}
+                <Box display="flex" mt={2}>
+                  <FormControl variant="outlined" sx={{ mr: 2 }}>
+                    <InputLabel id="table-select-label">
+                      {t('content.semantichub.detail.aasSelect.label')}
+                    </InputLabel>
+                    <Select
+                      labelId="table-select-label"
+                      id="table-select"
+                      value={aasFormat}
+                      label={t('content.semantichub.detail.aasSelect.label')}
+                      onChange={(e) => setAasFormat(e.target.value)}
+                      variant="filled"
+                      defaultValue={aasFileTypes[0]}
+                      sx={{ minWidth: '200px' }}
+                    >
+                      <MenuItem value={aasFileTypes[0]}>
+                        {t('content.semantichub.detail.aasSelect.itemFile')}
+                      </MenuItem>
+                      <MenuItem value={aasFileTypes[1]}>
+                        {t('content.semantichub.detail.aasSelect.itemXml')}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                  <DownloadLink
+                    type={`aas${aasFormat}`}
+                    urn={model.urn}
+                    fileName={`${model.name}.${aasFormat.toLowerCase()}`}
+                  />
+                </Box>
               </Box>
               <Box display="flex" alignItems="flex-end">
                 <Box sx={{ flexGrow: '1', mr: 2 }}>
@@ -193,6 +268,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                   />
                 </Box>
                 <Button
+                  size="small"
                   title={t('content.semantichub.detail.openApi.buttonTitle')}
                   onClick={onOpenApiUrlChange}
                 >

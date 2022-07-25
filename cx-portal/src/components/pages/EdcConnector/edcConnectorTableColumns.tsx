@@ -14,7 +14,7 @@ export const ConnectorTableColumns = (
     {
       field: 'name',
       headerName: t('content.edcconnector.columns.name'),
-      flex: 2.5,
+      flex: 2,
       sortable: false,
     },
     {
@@ -26,14 +26,13 @@ export const ConnectorTableColumns = (
     {
       field: 'type',
       headerName: t('content.edcconnector.columns.type'),
-      flex: 1,
+      flex: 2.5,
       sortable: false,
     },
     {
       field: 'detail',
       headerName: t('content.edcconnector.columns.details'),
-      headerAlign: 'center',
-      flex: 0.8,
+      flex: 1.5,
       align: 'center',
       sortable: false,
       renderCell: () => (

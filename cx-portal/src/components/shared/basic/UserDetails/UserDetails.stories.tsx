@@ -14,7 +14,7 @@ const userDetailsCardsContent = [
       name: { label: 'Name', value: 'Max' },
       surname: { label: 'Nachname', value: 'Mustermann' },
       email: { label: 'E-Mail', value: 'm.musterman@test.de' },
-      bpn: { label: 'BPN', value: '1234567' },
+      bpn: { label: 'BPN', value: ['1234567'] },
     },
   },
   {
