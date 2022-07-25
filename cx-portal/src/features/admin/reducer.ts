@@ -4,7 +4,6 @@ import { slice as approle } from './approle/slice'
 import { slice as registration } from './registration/slice'
 import { slice as user } from './user/slice'
 import { slice as userOwn } from './userOwn/slice'
-import { apiSlice } from './user/apiSlice'
 
 export const reducer = combineReducers({
   service,
@@ -12,7 +11,6 @@ export const reducer = combineReducers({
   registration: registration.reducer,
   user: user.reducer,
   userOwn: userOwn.reducer,
-  [apiSlice.reducerPath]: apiSlice.reducer,
 })
 
 const Reducer = { reducer }

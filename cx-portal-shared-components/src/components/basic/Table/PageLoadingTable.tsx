@@ -38,7 +38,7 @@ export const PageLoadingTable = function <T>({
   const nextPage = () => setPage(page + 1)
   useEffect(() => {
     if (isSuccess && !isFetching) {
-      setItems((i) => data.content)
+      setItems((i) => i.concat(data.content))
     }
   }, [isSuccess, isFetching, data])
 
