@@ -1,6 +1,6 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { IconButton, StatusTag, Table } from 'cx-portal-shared-components'
+import { IconButton, StatusTag, PageLoadingTable } from 'cx-portal-shared-components'
 import { fetchTenantUsers } from 'features/admin/user/actions'
 import { tenantUsersSelector } from 'features/admin/user/slice'
 import { TenantUser } from 'features/admin/user/types'
@@ -35,7 +35,7 @@ export const ActiveUserTable = ({
         title="content.usermanagement.table.headline"
         variant="h3"
       />
-      <Table
+      <PageLoadingTable<TenantUser>
         columns={[
           { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
@@ -71,7 +71,8 @@ export const ActiveUserTable = ({
         disableColumnMenu
         hideFooter
         rowHeight={57}
-        rows={tenantUsers}
+        loadLabel={t('global.actions.more')}
+        fetch={fetchTenantUsers}
         title={t('content.usermanagement.table.title')}
         toolbar={{
           buttonLabel: t('content.usermanagement.table.add'),
