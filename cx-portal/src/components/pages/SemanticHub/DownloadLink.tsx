@@ -106,7 +106,7 @@ const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
     if (file.length > 0) {
       openFileInNewTab(file)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file])
 
   return (

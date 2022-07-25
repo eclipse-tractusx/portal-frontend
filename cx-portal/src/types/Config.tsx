@@ -55,7 +55,23 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
   { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
+    name: PAGES.MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW,
+    isRoute: false,
+    element: <AppMarketplace />,
+  },
+  {
     name: PAGES.APP_MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW,
+    element: <AppMarketplace />,
+  },
+  {
+    name: PAGES.SERVICE_MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW,
+    element: <AppMarketplace />,
+  },
+  {
+    name: PAGES.DATASPACE_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
   },
@@ -269,7 +285,14 @@ export const ALL_ACTIONS: IAction[] = [
  */
 export const mainMenuFullTree = [
   { name: PAGES.HOME },
-  { name: PAGES.APP_MARKETPLACE },
+  {
+    name: PAGES.MARKETPLACE,
+    children: [
+      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.SERVICE_MARKETPLACE },
+      { name: PAGES.DATASPACE_MARKETPLACE },
+    ],
+  },
   {
     name: PAGES.DATA_MANAGEMENT,
     children: [
