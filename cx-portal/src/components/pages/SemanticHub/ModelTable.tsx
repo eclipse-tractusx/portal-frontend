@@ -60,6 +60,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           value: 'DRAFT',
           label: 'Draft',
         },
+        {
+          value: 'DEPRECATED',
+          label: 'Deprecated',
+        },
       ],
     },
   ]
