@@ -3,10 +3,11 @@ import CircularProgress, {
 } from '@mui/material/CircularProgress'
 import { useState, useEffect } from 'react'
 
-interface CircleProgressProps extends CircularProgressProps {
+interface CircleProgressProps extends Omit<CircularProgressProps, 'variant'> {
   step?: number
   interval?: number
   iteration?: boolean
+  variant: 'determinate' | 'indeterminate'
   colorVariant:
     | 'primary'
     | 'secondary'
