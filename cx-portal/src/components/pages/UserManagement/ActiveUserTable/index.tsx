@@ -1,13 +1,14 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { IconButton, StatusTag, Table } from 'cx-portal-shared-components'
-import { fetchTenantUsers } from 'features/admin/user/actions'
-import { tenantUsersSelector } from 'features/admin/user/slice'
+import {
+  IconButton,
+  StatusTag,
+  PageLoadingTable,
+} from 'cx-portal-shared-components'
 import { TenantUser } from 'features/admin/user/types'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useFetchUsersQuery } from 'features/admin/user/apiSlice'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -17,17 +18,11 @@ export const ActiveUserTable = ({
   onAddUserButtonClick,
 }: ActiveUserTableProps) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const tenantUsers = useSelector(tenantUsersSelector)
 
   const onUserDetailsClick = (userId: string) => {
     navigate('/usermanagement/userdetails/' + userId)
   }
-
-  useEffect(() => {
-    dispatch(fetchTenantUsers())
-  }, [dispatch])
 
   return (
     <section id="identity-management-id">
@@ -35,7 +30,7 @@ export const ActiveUserTable = ({
         title="content.usermanagement.table.headline"
         variant="h3"
       />
-      <Table
+      <PageLoadingTable<TenantUser>
         columns={[
           { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
           { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
@@ -71,7 +66,8 @@ export const ActiveUserTable = ({
         disableColumnMenu
         hideFooter
         rowHeight={57}
-        rows={tenantUsers}
+        loadLabel={t('global.actions.more')}
+        fetch={useFetchUsersQuery}
         title={t('content.usermanagement.table.title')}
         toolbar={{
           buttonLabel: t('content.usermanagement.table.add'),

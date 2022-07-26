@@ -32,6 +32,12 @@ declare module '@mui/material/styles' {
     border04: string
   }
 
+  interface TypeStepper {
+    stepDone: string
+    stepCurrent: string
+    stepUpcoming: string
+  }
+
   interface TypeBackground {
     background01: string
     background02: string
@@ -120,6 +126,7 @@ declare module '@mui/material/styles' {
     declined: TypeChipColor
     label: TypeChipColor
     chip: TypeChipCardColor
+    stepper: TypeStepper
   }
   interface PaletteOptions {
     icon?: Partial<TypeIcons>
@@ -137,6 +144,7 @@ declare module '@mui/material/styles' {
     declined?: Partial<TypeChipColor>
     label?: Partial<TypeChipColor>
     chip?: Partial<TypeChipCardColor>
+    stepper?: Partial<TypeStepper>
   }
 
   interface TypographyVariants {

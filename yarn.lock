@@ -6340,21 +6340,6 @@ csstype@^3.0.11, csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.11.tgz#d66700c5eacfac1940deb4e3ee5642792d85cd33"
   integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
 
-cx-portal-shared-components@0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/cx-portal-shared-components/-/cx-portal-shared-components-0.4.4.tgz#ceb02ac822685617bc19823ec095bd794eef8eae"
-  integrity sha512-yNjqFbqsIfr2Ol42NQDQ7aE5J0BSWXkYzUOb+3RyLlZLYN8R3AOuM9VF9huR2yyxL7LA3K93t8rjmRCg0RJssw==
-  dependencies:
-    "@mui/x-data-grid" "^5.6.0"
-    "@types/autosuggest-highlight" "^3.2.0"
-    "@types/react-slick" "^0.23.8"
-    autosuggest-highlight "^3.2.1"
-    react-redux "^7.2.6"
-    react-router-dom "^6.2.1"
-    react-slick "^0.28.1"
-    rollup-plugin-dts "^4.2.0"
-    slick-carousel "^1.8.1"
-
 cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
@@ -14102,9 +14087,9 @@ terser-webpack-plugin@^5.0.3, terser-webpack-plugin@^5.1.3, terser-webpack-plugi
     terser "^5.7.2"
 
 terser@^4.1.2, terser@^4.6.3:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-4.8.0.tgz#63056343d7c70bb29f3af665865a46fe03a0df17"
-  integrity sha512-EAPipTNeWsb/3wLPeup1tVPaXfIaU68xMnVdPafIL1TV05OhASArYyIfFvnvJCNrR2NIOvDVNNTFRa+Re2MWyw==
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.8.1.tgz#a00e5634562de2239fd404c649051bf6fc21144f"
+  integrity sha512-4GnLC0x667eJG0ewJTa6z/yXrbLGv80D9Ru6HIpCQmO+Q4PfEtBFi0ObSckqwL6VyQv/7ENJieXHo2ANmdQwgw==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"

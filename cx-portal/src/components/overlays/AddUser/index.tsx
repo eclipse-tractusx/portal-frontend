@@ -9,8 +9,6 @@ import {
   Tabs,
   TabPanel,
 } from 'cx-portal-shared-components'
-import { MultipleUserContent } from './MultipleUserContent'
-import { SingleUserContent } from './SingleUserContent'
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
@@ -20,6 +18,8 @@ import { addTenantUsers, closeAdd } from 'features/admin/user/actions'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddUserOverlay.scss'
+import { MultipleUserContent } from 'components/pages/UserManagement/AddUserOverlay/MultipleUserContent'
+import { SingleUserContent } from 'components/pages/UserManagement/AddUserOverlay/SingleUserContent'
 
 export const AddUser = () => {
   const { t } = useTranslation()
@@ -79,14 +79,14 @@ export const AddUser = () => {
 
       <DialogActions helperText={t('content.addUser.helperText')}>
         <Button variant="outlined" onClick={() => dispatch(closeAdd())}>
-          {`${t('global.actions.cancel')}`}
+          {t('global.actions.cancel')}
         </Button>
         <Button
           variant="contained"
           disabled={usersToAdd.email ? false : true}
           onClick={handleConfirm}
         >
-          {`${t('global.actions.confirm')}`}
+          {t('global.actions.confirm')}
         </Button>
       </DialogActions>
     </>

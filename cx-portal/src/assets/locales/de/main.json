@@ -34,7 +34,10 @@
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
     "appoverview": "App Overview",
-    "appreleaseprocess": "App Release Process"
+    "appreleaseprocess": "App Release Process",
+    "appuserdetails": "App Benutzer Details",
+    "userdetails": "Benutzer Details",
+    "technicaluser": "Technical Benutzer"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -163,14 +166,21 @@
       },
       "detail": {
         "deleteButton": "Modell löschen",
-        "diagramTitle": "UML Diagramm des Aspekts",
+        "diagramTitle": "Diagramm des Aspekts",
         "urnLabel": "Aspekt-Modell URN",
         "imgAlt": "Modelldiagram",
         "downloads": {
-          "ttl": "TTL",
+          "ttl": "TTL Datei",
           "docu": "Dokumentation",
           "json": "JSON Schema",
-          "payload": "Beispiel Payload JSON"
+          "payload": "Beispiel Payload JSON",
+          "aasAasx": "AAS Datei",
+          "aasXml": "AAS XML"
+        },
+        "aasSelect": {
+          "label": "Wähle eine Download-Format aus",
+          "itemFile": "AASX",
+          "itemXml": "XML"
         },
         "fileError": "Fehler: Die Datei konnte nicht geladen werden.",
         "ttlTooltip": "Das runtergeladene Turtle-Dokument sieht anders aus, ist jedoch semantisch das gleiche im Vergleich zum hochgeladenen Aspekt Turtle-Dokument. Um bestehende Aspekte weiterzuentwickeln, beziehen Sie sich auf die Turtle-Quelldateien (z. B. im Catena-X BAMM Model GitHub Repository).",
@@ -206,7 +216,8 @@
         "endpoints": "Endpunkte:",
         "interface": "Schnittstelle:",
         "protocol": "Protokoll:",
-        "protocol_version": "Protokoll Version:"
+        "protocol_version": "Protokoll Version:",
+        "protocol_endpoint": "Aspekt Endpunkt:"
       }
     },
     "datamanagement": {
@@ -514,6 +525,19 @@
         "email": "E-Mail",
         "phone": "Telefon"
       }
+    },
+    "apprelease": {
+      "headerTitle": "App Release Process",
+      "descHeading": "Publish your company app inside the Catena-X marketplace",
+      "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "startCreatingButton": "Start creating your app",
+      "appOverviewButton": "Overview my apps",
+      "stepHeading": "The process will guide your through the following steps:",
+      "dividerText": "Lets get started to publishing your app...",
+      "marketplaceHeading": "App Marketplace upcomming submission requirements",
+      "neuButton": "Neu",
+      "marketplaceTitle": "Requirement Lorem ipsum",
+      "marketplaceExplanation": "Expalanation of the requirement"
     }
   },
   "navigation": {

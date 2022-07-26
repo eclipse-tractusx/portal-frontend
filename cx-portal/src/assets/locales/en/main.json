@@ -34,7 +34,10 @@
     "notfound": "Page not found",
     "appmanagement": "App Management",
     "appoverview": "App Overview",
-    "appreleaseprocess": "App Release Process"
+    "appreleaseprocess": "App Release Process",
+    "appuserdetails": "App User Details",
+    "userdetails": "User Details",
+    "technicaluser": "Technical User"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -167,14 +170,21 @@
       },
       "detail": {
         "deleteButton": "Delete Model",
-        "diagramTitle": "UML diagram of the aspect model",
+        "diagramTitle": "diagram of the aspect model",
         "urnLabel": "Aspect model URN",
         "imgAlt": "Model diagram",
         "downloads": {
-          "ttl": "TTL",
+          "ttl": "TTL file",
           "docu": "Documentation",
           "json": "JSON Schema",
-          "payload": "Example Payload JSON"
+          "payload": "Example Payload JSON",
+          "aasAasx": "AAS file",
+          "aasXml": "AAS XML"
+        },
+        "aasSelect": {
+          "label": "Choose a download format",
+          "itemFile": "AASX",
+          "itemXml": "XML"
         },
         "fileError": "Error: The file could not be loaded.",
         "ttlTooltip": "The downloaded Turtle file looks different but is semantically the same compared to the uploaded Turtle file for the Aspect. To further develop existing Aspects refer to the source Turtle files (e.g. in the Catena-X BAMM Model GitHub Repository)",
@@ -210,7 +220,8 @@
         "endpoints": "Endpoints:",
         "interface": "Interface:",
         "protocol": "Protocol:",
-        "protocol_version": "Protocol version:"
+        "protocol_version": "Protocol version:",
+        "protocol_endpoint": "Aspect Endpoint:"
       }
     },
     "datamanagement": {
@@ -481,6 +492,7 @@
       }
     },
     "apprelease": {
+      "headerTitle": "App Release Process",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "startCreatingButton": "Start creating your app",

@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { Typography, CustomAccordion } from 'cx-portal-shared-components'
 import {
   ShellDescriptor,
@@ -26,10 +46,6 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
       {getDesciption(twin)}
       {hasSubmodels() && (
         <>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <Typography sx={{ mb: 3, typography: 'label2' }}>
-            {t('content.digitaltwin.detail.assetId')}
-          </Typography>
           {twin.submodelDescriptors.length > 0 && (
             <DetailGrid
               topic={t('content.digitaltwin.detail.submodel_endpoints')}
@@ -37,13 +53,15 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
             />
           )}
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+          <Typography sx={{ mb: 3, typography: 'label2' }}>
+            {t('content.digitaltwin.detail.assetId')}
+          </Typography>
           {twin.specificAssetIds.map((saId, index) => (
             <Box key={saId.key}>
               <DetailGrid
                 topic={t('content.digitaltwin.detail.key')}
                 content={saId.key}
               />
-              <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
               <DetailGrid
                 topic={t('content.digitaltwin.detail.value')}
                 content={saId.value}
@@ -105,12 +123,14 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
             topic={t('content.digitaltwin.detail.interface')}
             content={endpoint.interface}
           />
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           <DetailGrid
             topic={t('content.digitaltwin.detail.protocol')}
             content={endpoint.protocolInformation.endpointProtocol}
           />
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+          <DetailGrid
+            topic={t('content.digitaltwin.detail.protocol_endpoint')}
+            content={endpoint.protocolInformation.endpointAddress}
+          />
           <DetailGrid
             topic={t('content.digitaltwin.detail.protocol_version')}
             content={endpoint.protocolInformation.endpointProtocolVersion}

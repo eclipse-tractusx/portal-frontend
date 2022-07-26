@@ -22,6 +22,7 @@ import { useEffect } from 'react'
 import { fetchOwn, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { UserDetails as UserDetailsComponent } from 'components/shared/basic/UserDetails'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 
 export default function UserDetails() {
   const { t } = useTranslation()
@@ -104,7 +105,9 @@ export default function UserDetails() {
         title={t('content.account.userAccount')}
         topPage={false}
         headerHeight={200}
-      />
+      >
+        <PageBreadcrumb />
+      </PageHeader>
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
