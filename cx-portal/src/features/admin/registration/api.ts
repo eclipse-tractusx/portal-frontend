@@ -49,12 +49,14 @@ export class Api extends HttpClient {
   public approveRegistrationRequest = (applicationId: string) =>
     this.instance.put<void>(
       `/api/administration/registration/application/${applicationId}/approveRequest`,
+      {},
       getHeaders()
     )
 
   public declineRegistrationRequest = (applicationId: string) =>
     this.instance.put<void>(
       `/api/administration/registration/application/${applicationId}/declineRequest`,
+      {},
       getHeaders()
     )
 }

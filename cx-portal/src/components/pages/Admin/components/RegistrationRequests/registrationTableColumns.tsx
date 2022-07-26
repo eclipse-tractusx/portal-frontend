@@ -31,7 +31,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: `${t('content.admin.registration-requests.columns.date')}`,
       flex: 1,
       renderCell: (params: GridRenderCellParams<string>) => (
-        <span>{dayjs(params?.value).format('DD.MM.YYYY')}</span>
+        <span>{dayjs(params?.value).format('DD/MM/YYYY')}</span>
       ),
     },
 
@@ -58,6 +58,7 @@ export const RegistrationRequestsTableColumns = (
       )}`,
       flex: 2,
       sortable: false,
+      cellClassName: 'documents-column--cell',
       renderCell: (
         params: GridRenderCellParams<Array<RegistrationRequestDocument>>
       ) => (
@@ -66,8 +67,8 @@ export const RegistrationRequestsTableColumns = (
             return (
               <div className="document-cell-line">
                 <ArticleOutlinedIcon />
-                <a href={contract?.document} rel="noreferrer">
-                  {contract?.name}
+                <a href={contract?.documentHash} rel="noreferrer">
+                  {contract?.documentType}
                 </a>
               </div>
             )

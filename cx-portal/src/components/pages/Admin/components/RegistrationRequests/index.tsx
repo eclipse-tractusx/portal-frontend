@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Table, Typography, PageHeader } from 'cx-portal-shared-components'
+import {
+  Table,
+  Typography,
+  PageHeader,
+  Button,
+} from 'cx-portal-shared-components'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -30,7 +35,7 @@ export default function RegistrationRequests() {
   const [selectedRequestId, setSelectedRequestId] = useState<string>()
   const [actionType, setActionType] = useState<string>('approve')
 
-  const { loading, registrationRequests } = useSelector(
+  const { loading, registrationRequests, paginationData } = useSelector(
     adminRegistrationSelector
   )
 
@@ -44,14 +49,12 @@ export default function RegistrationRequests() {
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      console.log('params:', params)
       dispatch(fetchCompanyDetail(params.id.toString()))
       setOverlayOpen(true)
     }
   }
 
   const onApproveClick = (id: string) => {
-    console.log('approve id:', id)
     setConfirmModalOpen(true)
     setSelectedRequestId(id)
   }
@@ -74,16 +77,6 @@ export default function RegistrationRequests() {
     dispatch(fetchRegistrationRequests({ params }))
 
     setConfirmModalOpen(false)
-
-    /*await dispatch(deleteConnector({ connectorID: selectedConnector.id || '' }))
-    // After create new connector, current page should reset to initial page
-    dispatch(connectorSlice.actions.resetConnectorState())
-    const params = { size: pageSize, page: 0 }
-    dispatch(fetchConnectors({ params, token }))
-    closeAndResetModalState()
-    setDeleteConnectorConfirmModalOpen(false)
-
-     */
   }
 
   const columns = RegistrationRequestsTableColumns(
@@ -137,8 +130,6 @@ export default function RegistrationRequests() {
             disableSelectionOnClick: true,
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
             toolbar: {
-              onSearch: () => {},
-              onFilter: () => {},
               filter: [
                 {
                   name: 'state',
@@ -172,6 +163,17 @@ export default function RegistrationRequests() {
           }}
           getRowId={(row) => row.applicationId}
         />
+      </div>
+      <div className="load-more-button-container">
+        {paginationData.totalElements > pageSize * (currentPage + 1) &&
+          paginationData.totalElements! > pageSize && (
+            <Button
+              size="medium"
+              onClick={() => setCurrentPage((prevState) => prevState + 1)}
+            >
+              {t('content.partnernetwork.loadmore')}
+            </Button>
+          )}
       </div>
     </main>
   )

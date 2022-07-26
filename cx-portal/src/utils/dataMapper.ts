@@ -7,7 +7,6 @@ import {
 
 import {
   RegistrationRequest,
-  RegistrationRequestAPIResponse,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
 

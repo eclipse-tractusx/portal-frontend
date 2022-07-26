@@ -1,117 +1,168 @@
-[
-  {
-    "application_id": "12732",
-    "changed_date": "17/03/2022",
-    "Company_name": "Bosch AG",
-    "user_email": "julia.jeroch@bmw.de",
-    "BPN": "BPNL078843209186",
-    "contracts": [
-      {
-        "name": "contract1",
-        "document": "document1"
-      },
-      {
-        "name": "contract2",
-        "document": "document2"
-      }
-    ],
-    "street": "Munich Street",
-    "house_number": "3",
-    "plz": "80808",
-    "city": "Munich",
-    "country": "Germany",
-    "status": "pending"
+{
+  "meta": {
+    "totalElements": 9,
+    "totalPages": 1,
+    "page": 0,
+    "contentSize": 9
   },
-  {
-    "application_id": "12733",
-    "changed_date": "18/03/2022",
-    "Company_name": "Siemens",
-    "user_email": "julia.jeroch@bmw.de",
-    "BPN": "BPNL0788432091ZZ",
-    "contracts": [
-      {
-        "name": "contract1",
-        "document": "document1"
-      },
-      {
-        "name": "contract2",
-        "document": "document2"
-      }
-    ],
-    "street": "Siemens Street",
-    "house_number": "265",
-    "plz": "01109",
-    "city": "Stuttgart",
-    "country": "Germany",
-    "status": "pending"
-  },
-  {
-    "application_id": "12734",
-    "changed_date": "18/03/2022",
-    "Company_name": "Cloud Data Share",
-    "user_email": "julia.jeroch@bmw.de",
-    "BPN": "BPNL0001535T86ZZ",
-    "contracts": [
-      {
-        "name": "contract1",
-        "document": "document1"
-      },
-      {
-        "name": "contract2",
-        "document": "document2"
-      }
-    ],
-    "street": "Alexanderplatz",
-    "house_number": "01",
-    "plz": "67331",
-    "city": "Berlin",
-    "country": "Germany",
-    "status": "pending"
-  },
-  {
-    "application_id": "12731",
-    "changed_date": "15/03/2022",
-    "Company_name": "Car Company 1",
-    "user_email": "julia.jeroch@bmw.de",
-    "BPN": "BPNL01011398TZZZ",
-    "contracts": [
-      {
-        "name": "contract1",
-        "document": "document1"
-      },
-      {
-        "name": "contract2",
-        "document": "document2"
-      }
-    ],
-    "street": "Straße der Jugend",
-    "house_number": "71",
-    "plz": "32221",
-    "city": "Cottbus",
-    "country": "Germany",
-    "status": "declined"
-  },
-  {
-    "application_id": "12730",
-    "changed_date": "15/03/2022",
-    "Company_name": "Car Company 1",
-    "user_email": "julia.jeroch@bmw.de",
-    "BPN": "BPNL01011358TZZZ",
-    "contracts": [
-      {
-        "name": "contract1",
-        "document": "document1"
-      },
-      {
-        "name": "contract2",
-        "document": "document2"
-      }
-    ],
-    "street": "Alexanderplatz",
-    "house_number": "01",
-    "plz": "67331",
-    "city": "Berlin",
-    "country": "Germany",
-    "status": "confirmed"
-  }
-]
+  "content": [
+    {
+      "applicationId": "bc3cb57b-8179-41be-ad9c-42af7f054d51",
+      "applicationStatus": "SUBMITTED",
+      "dateCreated": "2022-06-03T11:50:56.527665+00:00",
+      "companyName": "June",
+      "email": "evelyn.gurschler@bmw.de",
+      "bpn": "CAXDUMMYJUNEZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "6b2d1263-c073-4a48-bfaf-704dc154ca9c",
+      "applicationStatus": "CONFIRMED",
+      "dateCreated": "2022-03-24T18:01:33.439+00:00",
+      "companyName": "Car Factory 1",
+      "email": "julia.jeroch@bmw.de",
+      "bpn": "CAXSCARFACTORY1ZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "6b2d1263-c073-4a48-bfaf-704dc154ca9a",
+      "applicationStatus": "CONFIRMED",
+      "dateCreated": "2022-03-24T18:01:33.439+00:00",
+      "companyName": "Catena-X",
+      "email": "julia.jeroch@bmw.de",
+      "bpn": "CAXSDUMMYCATENAZZ",
+      "documents": [
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "UQceIY3IbZSIDTrDnB2E36THml0sUHuxL2C8O5UBx/E="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "MZpTl8ODsS5zHCsXxGa5tbeuMUgGAkqI5ui7zplbOcc="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "UQceIY3IbZSIDTrDnB2E36THml0sUHuxL2C8O5UBx/E="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "/eKZa6e4KMpNwTgAN8MwIBqjUrgUx3X8BMu0Zx9LxiQ="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "fHM+Ku6AOKQCZTnnEtmHV8LCAXTmy2WMHXZLVCf/rZE="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "MZpTl8ODsS5zHCsXxGa5tbeuMUgGAkqI5ui7zplbOcc="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "/eKZa6e4KMpNwTgAN8MwIBqjUrgUx3X8BMu0Zx9LxiQ="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "UQceIY3IbZSIDTrDnB2E36THml0sUHuxL2C8O5UBx/E="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "MZpTl8ODsS5zHCsXxGa5tbeuMUgGAkqI5ui7zplbOcc="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        },
+        {
+          "documentType": "CX_FRAME_CONTRACT",
+          "documentHash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+        }
+      ]
+    },
+    {
+      "applicationId": "0195a85f-e465-4571-b980-d1351dd76a9f",
+      "applicationStatus": "DECLINED",
+      "dateCreated": "2022-03-24T18:01:33.431+00:00",
+      "companyName": "Car Factory 2",
+      "email": null,
+      "bpn": "CAXSCARFACTORY2ZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "4f0146c6-32aa-4bb1-b844-df7e8babdcb3",
+      "applicationStatus": "CONFIRMED",
+      "dateCreated": "2022-03-24T18:01:33.403+00:00",
+      "companyName": "SAP AG",
+      "email": null,
+      "bpn": "CAXSDUMMYSAPZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "4f0146c6-32aa-4bb1-b844-df7e8babdcb4",
+      "applicationStatus": "CONFIRMED",
+      "dateCreated": "2022-03-24T18:01:33.403+00:00",
+      "companyName": "CDQ",
+      "email": null,
+      "bpn": "CAXLCDQCORPZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "4f0146c6-32aa-4bb1-b844-df7e8babdcb2",
+      "applicationStatus": "CONFIRMED",
+      "dateCreated": "2022-03-24T18:01:33.403+00:00",
+      "companyName": "Bayerische Motorenwerke AG",
+      "email": null,
+      "bpn": "CAXSDUMMYBMWZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "4f0146c6-32aa-4bb1-b844-df7e8babdcb5",
+      "applicationStatus": "CONFIRMED",
+      "dateCreated": "2022-03-24T18:01:33.403+00:00",
+      "companyName": "BOSCH",
+      "email": null,
+      "bpn": "CAXLBOSCHZZ",
+      "documents": []
+    },
+    {
+      "applicationId": "4f0146c6-32aa-4bb1-b844-df7e8babdcb6",
+      "applicationStatus": "DECLINED",
+      "dateCreated": "2022-03-24T18:01:33.403+00:00",
+      "companyName": "Dummy Corp. 1",
+      "email": null,
+      "bpn": "CAXLDUMMYCORPZZ",
+      "documents": []
+    }
+  ]
+}

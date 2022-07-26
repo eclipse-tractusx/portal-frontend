@@ -1,13 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
-import { name, RegistrationRequestAPIResponse } from './types'
+import { name } from './types'
 import { SearchParams } from '../../connector/types'
 
 const fetchRegistrationRequests = createAsyncThunk(
   `${name}/fetchRegistrationRequests`,
   async ({ params }: { params: SearchParams }) => {
     try {
-      //return RegistrationRequests as unknown as Array<RegistrationRequestAPIResponse>
       return await Api.getInstance().getRegistrationRequests(params)
     } catch (error: unknown) {
       console.error('api call error:', error)

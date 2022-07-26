@@ -12,6 +12,7 @@ export type InviteData = {
 
 export type RegistrationRequestAPIResponse = {
   content: Array<RegistrationRequest>
+  meta: PaginationData
 }
 
 export type CompanyDetail = {
@@ -27,8 +28,8 @@ export type CompanyDetail = {
 }
 
 export type RegistrationRequestDocument = {
-  name: string
-  document: string
+  documentType: string
+  documentHash: string
 }
 
 export type CompanyApplicationInfo = {
@@ -55,6 +56,11 @@ export type RegistrationRequestDataGrid = {
   status: string
 }
 
+export type PaginationData = {
+  totalElements: number
+  page: number
+}
+
 export interface AdminRegistrationState {
   registrationRequests: Array<RegistrationRequestDataGrid>
   companyDetail: CompanyDetail
@@ -63,6 +69,7 @@ export interface AdminRegistrationState {
   error: string
   request: RequestState
   data: PaginResult<InvitesDataGrid>
+  paginationData: PaginationData
 }
 
 export const initialState: AdminRegistrationState = {
@@ -73,6 +80,7 @@ export const initialState: AdminRegistrationState = {
   error: '',
   request: RequestState.NONE,
   data: initialPaginResult,
+  paginationData: {} as PaginationData,
 }
 
 export type InvitesDataGrid = {
