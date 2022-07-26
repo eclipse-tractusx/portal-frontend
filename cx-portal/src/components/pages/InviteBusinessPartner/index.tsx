@@ -62,7 +62,6 @@ export default function InviteBusinessPartner() {
 
   const doSubmitInvite = (data: InviteData) => {
     setProcessing('busy')
-    //TODO:
     //switch to redux
     new Api()
       .postInviteBusinessPartner(data)
