@@ -69,12 +69,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.SERVICE_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
     element: <ServiceMarketplace />,
   },
   {
     name: PAGES.DATASPACE_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW,
+    role: ROLES.APPSTORE_VIEW_DATASPACES,
     element: <DataspaceMarketplace />,
   },
   {
