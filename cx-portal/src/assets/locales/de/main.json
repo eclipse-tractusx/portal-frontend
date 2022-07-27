@@ -72,6 +72,10 @@
           "title": "Firmendetails",
           "companydatatitle": "Firmendaten",
           "taxid": "Steuernummer"
+        },
+        "confirmmodal": {
+          "title": "Aktion bestätigen",
+          "description": "Möchten Sie die ausgewählte Anfrage wirklich ausführen?"
         }
       }
     },
