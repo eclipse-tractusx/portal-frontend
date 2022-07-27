@@ -1,12 +1,12 @@
 import uniqueId from 'lodash/uniqueId'
 import { Box, useTheme } from '@mui/material'
 import { UserCardProps, UserDetailCard } from './UserDetailCard'
-import { OwnUser } from 'features/admin/userOwn/types'
+import { UserDetail } from 'features/admin/userOwn/types'
 
 interface UserDetailsProps {
   columns?: number
   userDetailsCards: UserCardProps[]
-  userInfo?: OwnUser
+  userInfo?: UserDetail
   variant?: 'wide'
 }
 

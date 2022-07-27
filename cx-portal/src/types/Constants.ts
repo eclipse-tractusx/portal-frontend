@@ -74,6 +74,8 @@ export enum ROLES {
   SETUP_IDP = 'setup_idp',
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
+  APPSTORE_VIEW_SERVICES = 'view_services',
+  APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',
   APPSTORE_FILTER = 'filter_apps',
@@ -97,4 +99,8 @@ export enum ROLES {
   TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
+}
+
+export enum HINTS {
+  COMING_SOON = 'coming_soon',
 }

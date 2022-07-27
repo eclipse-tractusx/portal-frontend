@@ -6,7 +6,7 @@ import { show } from 'features/control/overlay/actions'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
 
-export type OwnUser = {
+export type UserDetail = {
   companyUserId: string
   firstName: string
   lastName: string
@@ -21,7 +21,7 @@ export interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory?: string
   cardContentItems: UserItems
-  userInfo?: OwnUser
+  userInfo?: UserDetail
   variant?: 'wide'
 }
 

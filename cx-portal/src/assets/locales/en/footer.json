@@ -22,6 +22,14 @@
     "title": "Contact",
     "message": "add content here"
   },
+  "servicemarketplace": {
+    "title": "Service Marketplace",
+    "message": "Service Marketplace Description"
+  },
+  "dataspacemarketplace": {
+    "title": "Privatsphäre",
+    "message": "Dataspace Marketplace Description"
+  },
   "imprint": {
     "title": "Imprint",
     "directors": "Board of Directors",

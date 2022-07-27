@@ -2,11 +2,13 @@ import { ArrowForward } from '@mui/icons-material'
 import { BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { MenuType } from '.'
+import { Chip } from '../Chip'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
 export interface MenuItemProps extends LinkItem {
   title: string
+  hint?: string
   children?: MenuItemProps[]
   component?: React.ElementType
   divider?: boolean
@@ -17,6 +19,7 @@ export interface MenuItemProps extends LinkItem {
 
 export const MenuItem = ({
   title,
+  hint,
   children,
   divider,
   component = Link,
@@ -66,6 +69,7 @@ export const MenuItem = ({
         {...props}
       >
         {title}
+        {hint && <Chip label={hint} type="plain" sx={{ height: 'auto' }} />}
         {children && (
           <ArrowForward fontSize="small" sx={{ color: 'icon.icon02' }} />
         )}

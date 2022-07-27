@@ -602,5 +602,8 @@
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
     }
+  },
+  "hints": {
+    "coming_soon": "Coming Soon"
   }
 }

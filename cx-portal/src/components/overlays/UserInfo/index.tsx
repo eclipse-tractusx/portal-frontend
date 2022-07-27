@@ -5,7 +5,7 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 import { fetchAny } from 'features/admin/userOwn/actions'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -15,7 +15,7 @@ import { OVERLAYS } from 'types/Constants'
 export default function UserInfo({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const userInfo = useSelector(ownUserSelector)
+  const userInfo = useSelector(UserdetailSelector)
 
   useEffect(() => {
     dispatch(fetchAny(id))
