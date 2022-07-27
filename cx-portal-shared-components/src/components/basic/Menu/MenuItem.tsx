@@ -73,7 +73,7 @@ export const MenuItem = ({
         {hint && (
           <Box
             sx={{
-              backgroundColor: 'lightblue',
+              backgroundColor: '#de60de',
               borderRadius: '5px',
               maxWidth: '40px',
               minWidth: '40px',
@@ -85,7 +85,12 @@ export const MenuItem = ({
             <Typography
               variant="helper"
               display="block"
-              sx={{ fontSize: '10px', fontWeight: 'bold', color: 'white' }}
+              sx={{
+                fontSize: '10px',
+                lineHeight: '14px',
+                fontWeight: 'bold',
+                color: 'white',
+              }}
             >
               {hint}
             </Typography>
