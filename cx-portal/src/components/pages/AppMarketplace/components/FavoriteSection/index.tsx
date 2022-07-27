@@ -27,14 +27,14 @@ export default function FavoriteSection() {
       <Carousel gapToDots={115} expandOnHover={true}>
         {active
           .filter((item) => favorites.includes(item.id!))
-          .map((item) => 
+          .map((item) => (
             <FavoriteItem
               key={item.id}
               item={item}
               expandOnHover={true}
               cardClick={false}
             />
-          )}
+          ))}
       </Carousel>
     </section>
   )
