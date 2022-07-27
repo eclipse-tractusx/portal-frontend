@@ -37,7 +37,10 @@
     "notfound": "Page not found",
     "appmanagement": "App Management",
     "appoverview": "App Overview",
-    "appreleaseprocess": "App Release Process"
+    "appreleaseprocess": "App Release Process",
+    "appuserdetails": "App User Details",
+    "userdetails": "User Details",
+    "technicaluser": "Technical User"
   },
   "overlays": {
     "invite": "Invite new Business Partner",

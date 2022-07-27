@@ -1,0 +1,106 @@
+import { Box } from '@mui/material'
+import { Typography } from '../Typography'
+import { theme } from '../../../theme'
+import { useEffect, useState } from 'react'
+
+interface StepperItemProps {
+  step: number
+  headline: string
+  activeStep: number
+  index: number
+}
+
+export const StepperItem = ({
+  step,
+  headline,
+  activeStep,
+  index,
+}: StepperItemProps) => {
+  const [backgroundColor, setBackgroundColor] = useState(
+    theme.palette.stepper.stepUpcoming
+  )
+  const [done, setDone] = useState(false)
+
+  useEffect(() => {
+    if (index === activeStep) {
+      setBackgroundColor(theme.palette.stepper.stepCurrent)
+      setDone(false)
+    } else if (index < activeStep) {
+      setBackgroundColor(theme.palette.stepper.stepDone)
+      setDone(true)
+    } else {
+      setBackgroundColor(theme.palette.stepper.stepUpcoming)
+      setDone(false)
+    }
+  }, [index, activeStep])
+  return (
+    <Box
+      sx={{
+        width: '186px',
+        margin: '0px',
+        borderBottom: `2px solid ${backgroundColor}`,
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: `${backgroundColor}`,
+          borderRadius: '50%',
+          margin: '12px auto 16px auto',
+          width: '28px',
+          height: '28px',
+          top: '15px',
+          left: '15px',
+          color: '#fff',
+        }}
+      >
+        <Typography
+          variant="body1"
+          fontSize="14px"
+          color="#fff"
+          sx={{
+            margin: 'auto',
+            paddingTop: '4px',
+            width: 'fit-content',
+          }}
+        >
+          {done && (
+            <svg
+              width="14"
+              height="13"
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.8078 1.24939L5.09535 12.1399L0.305542 7.15056L1.74832 5.7655L4.95851 9.10944L12.2461 0L13.8078 1.24939Z"
+                fill="white"
+              />
+            </svg>
+          )}
+          {!done && step}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          width: '95px',
+          margin: '0px auto 24px auto',
+          textAlign: 'center',
+        }}
+      >
+        <Typography
+          variant="label3"
+          fontSize="14px"
+          fontWeight="500"
+          sx={{
+            margin: 'auto',
+            height: 'fit-contetn',
+          }}
+        >
+          {headline}
+        </Typography>
+      </Box>
+    </Box>
+  )
+}
