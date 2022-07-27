@@ -109,7 +109,7 @@ export const MainHeader = ({
           subTitleWidth={subTitleWidth}
         />
 
-        <div className='children-header'>{children}</div>
+        <div className="children-header">{children}</div>
       </Box>
     </Box>
   )

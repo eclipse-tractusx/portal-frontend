@@ -11,11 +11,15 @@ interface FavoriteItemProps {
   cardClick: boolean
 }
 
-export default function FavoriteItem({ item, expandOnHover, cardClick }: FavoriteItemProps) {
+export default function FavoriteItem({
+  item,
+  expandOnHover,
+  cardClick,
+}: FavoriteItemProps) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [addedToFavorite, setAddedToFavorite] = useState(false)
-  
+
   const handleSecondaryButtonClick = (id: string) => {
     dispatch(removeItem(id))
     setAddedToFavorite(!addedToFavorite)

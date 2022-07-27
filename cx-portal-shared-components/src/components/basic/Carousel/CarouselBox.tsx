@@ -86,8 +86,16 @@ export const CarouselBox = ({
     slidesToScroll: 2,
     swipeToSlide: false,
     rows: itemsCount ? 2 : 1,
-    nextArrow: itemsCount ? <NavArrows show={showArrows} isNext={true} /> : <></>,
-    prevArrow: itemsCount ? <NavArrows show={showArrows} isNext={false} /> : <></>,
+    nextArrow: itemsCount ? (
+      <NavArrows show={showArrows} isNext={true} />
+    ) : (
+      <></>
+    ),
+    prevArrow: itemsCount ? (
+      <NavArrows show={showArrows} isNext={false} />
+    ) : (
+      <></>
+    ),
   }
 
   return (
