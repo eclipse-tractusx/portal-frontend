@@ -1,8 +1,8 @@
 import { ArrowForward } from '@mui/icons-material'
-import { BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
+import { Box, BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { MenuType } from '.'
-import { Chip } from '../Chip'
+import { Typography } from '../Typography'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -54,10 +54,11 @@ export const MenuItem = ({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: spacing(1.5, 2),
+          padding: spacing(hint ? 1.3 : 1.5, 2),
           borderRadius: 3,
           typography: 'label3',
           textDecoration: 'none',
+          whiteSpace: 'nowrap',
           ':hover': {
             backgroundColor: 'selected.hover',
             color: 'primary.dark',
@@ -69,7 +70,27 @@ export const MenuItem = ({
         {...props}
       >
         {title}
-        {hint && <Chip label={hint} type="plain" sx={{ height: 'auto' }} />}
+        {hint && (
+          <Box
+            sx={{
+              backgroundColor: 'lightblue',
+              borderRadius: '5px',
+              maxWidth: '40px',
+              minWidth: '40px',
+              textAlign: 'center',
+              whiteSpace: 'normal',
+              marginLeft: '12px',
+            }}
+          >
+            <Typography
+              variant="helper"
+              display="block"
+              sx={{ fontSize: '10px', fontWeight: 'bold', color: 'white' }}
+            >
+              {hint}
+            </Typography>
+          </Box>
+        )}
         {children && (
           <ArrowForward fontSize="small" sx={{ color: 'icon.icon02' }} />
         )}
