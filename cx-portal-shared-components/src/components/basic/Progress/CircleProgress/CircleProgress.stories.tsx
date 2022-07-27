@@ -19,6 +19,6 @@ CircleProgress.args = {
   iteration: true,
   thickness: 8,
   size: 80,
-  color: 'primary',
+  colorVariant: 'primary',
   variant: 'determinate',
 }
