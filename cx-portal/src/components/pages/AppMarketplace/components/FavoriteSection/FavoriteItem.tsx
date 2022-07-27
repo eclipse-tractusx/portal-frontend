@@ -7,13 +7,15 @@ import { useDispatch } from 'react-redux'
 
 interface FavoriteItemProps {
   item: any
+  expandOnHover: boolean
+  cardClick: boolean
 }
 
-export default function FavoriteItem({ item }: FavoriteItemProps) {
+export default function FavoriteItem({ item, expandOnHover, cardClick }: FavoriteItemProps) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [addedToFavorite, setAddedToFavorite] = useState(false)
-
+  
   const handleSecondaryButtonClick = (id: string) => {
     dispatch(removeItem(id))
     setAddedToFavorite(!addedToFavorite)
@@ -33,7 +35,7 @@ export default function FavoriteItem({ item }: FavoriteItemProps) {
       imageSize="small"
       imageShape="round"
       variant="compact"
-      expandOnHover={true}
+      expandOnHover={expandOnHover}
       filledBackground={true}
       backgroundColor="background.background11"
       rating={item.rating}
@@ -41,6 +43,7 @@ export default function FavoriteItem({ item }: FavoriteItemProps) {
       onButtonClick={() => handleButtonClick(item.id!)}
       onSecondaryButtonClick={() => handleSecondaryButtonClick(item.id!)}
       addButtonClicked={true}
+      onClick={cardClick ? () => handleButtonClick(item.id!) : () => null}
     />
   )
 }

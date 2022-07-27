@@ -50,11 +50,11 @@ export const CarouselBox = ({
   const onMouseEnter = () => setShowArrows(true)
   const onMouseLeave = () => setShowArrows(false)
   const arrayChildren = Children.toArray(children)
-  const dotsBottom = arrayChildren.length > 2 ? `0px` : '-25px'
-  const arrowsTopMultiRow = itemHeight ? itemHeight + 20 : 0
+  const itemsCount = arrayChildren.length > 2
+  const dotsBottom = itemsCount ? `0px` : '-25px'
+  const arrowsTopMultiRow = itemHeight ? itemHeight + 35 : 0
   const arrowsTopSingleRow = itemHeight ? itemHeight / 2 : 0
-  const arrowsTop =
-    arrayChildren.length > 2 ? arrowsTopMultiRow : arrowsTopSingleRow
+  const arrowsTop = itemsCount ? arrowsTopMultiRow : arrowsTopSingleRow
 
   // check if more than tow items:
   const [carouselHeight, setCarouselHeight] = useState(700)
@@ -62,8 +62,8 @@ export const CarouselBox = ({
   const [carouselWidth, setCarouselWidth] = useState(690)
 
   useEffect(() => {
-    if (arrayChildren.length > 2) {
-      const height = 2 * itemHeight + 182
+    if (itemsCount) {
+      const height = 2 * itemHeight + 172
       setCarouselHeight(height)
 
       const width = 2 * itemWidth + 180
@@ -71,19 +71,23 @@ export const CarouselBox = ({
 
       setSliderHeight(2 * itemHeight + 100)
     } else {
-      setCarouselHeight(400)
+      setCarouselHeight(382)
+      setSliderHeight(itemHeight + 100)
+
+      const width = 2 * itemWidth + 180
+      setCarouselWidth(width)
     }
-  }, [arrayChildren, itemHeight, itemWidth])
+  }, [itemHeight, itemWidth, itemsCount])
 
   const settings = {
-    dots: dots,
-    infinite: true,
-    slidesToShow: arrayChildren.length > 1 ? 2 : 1,
+    dots: dots && itemsCount,
+    infinite: itemsCount,
+    slidesToShow: itemsCount ? 2 : 1,
     slidesToScroll: 2,
     swipeToSlide: false,
-    rows: arrayChildren.length > 2 ? 2 : 1,
-    nextArrow: <NavArrows show={showArrows} isNext={true} />,
-    prevArrow: <NavArrows show={showArrows} isNext={false} />,
+    rows: itemsCount ? 2 : 1,
+    nextArrow: itemsCount ? <NavArrows show={showArrows} isNext={true} /> : <></>,
+    prevArrow: itemsCount ? <NavArrows show={showArrows} isNext={false} /> : <></>,
   }
 
   return (
@@ -118,17 +122,18 @@ export const CarouselBox = ({
         },
         '.slick-list': {
           paddingBottom: '50px',
+          paddingLeft: '5px',
         },
         '.slick-prev': {
           top: `${arrowsTop}px`,
-          left: '-13px',
+          left: '-8px',
           ':before': {
             content: 'none',
           },
         },
         '.slick-next': {
           top: `${arrowsTop}px`,
-          right: '-6px',
+          right: '5px',
           ':before': {
             content: 'none',
           },
@@ -157,7 +162,6 @@ export const CarouselBox = ({
       <Typography
         variant="h4"
         sx={{
-          color: 'text.tertiary',
           margin: '0 auto',
           paddingTop: '20px',
           width: 'fit-content',
