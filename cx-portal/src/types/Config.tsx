@@ -31,6 +31,7 @@ import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
 import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
+import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
 import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
@@ -224,6 +225,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
   { name: PAGES.TERMS, element: <Terms /> },
+  { name: PAGES.TEST, element: <Test /> },
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
   {

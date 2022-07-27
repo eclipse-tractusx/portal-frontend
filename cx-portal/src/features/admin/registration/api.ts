@@ -2,7 +2,8 @@ import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
-import { PAGE_SIZE, PaginResult } from 'types/MainTypes'
+import { PaginResult } from 'types/MainTypes'
+import { PAGE_SIZE } from 'types/Constants'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

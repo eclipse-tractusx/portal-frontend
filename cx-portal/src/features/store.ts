@@ -11,7 +11,8 @@ import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
-import { apiSlice } from './admin/user/apiSlice'
+import { apiSlice as userApiSlice} from './admin/user/apiSlice'
+import { apiSlice as notificationApiSlice} from './notification/apiSlice'
 
 export const reducers = {
   admin,
@@ -25,7 +26,8 @@ export const reducers = {
   connector: connectorSlice.reducer,
   notification: notificationSlice.reducer,
   error: ErrorSlice.reducer,
-  [apiSlice.reducerPath]: apiSlice.reducer,
+  [userApiSlice.reducerPath]: userApiSlice.reducer,
+  [notificationApiSlice.reducerPath]: notificationApiSlice.reducer,
 }
 
 export const store = configureStore({

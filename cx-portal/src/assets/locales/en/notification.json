@@ -1,0 +1,23 @@
+{
+    "WelcomeInvite": {
+        "title": "Welcome to Catena-X!",
+        "message": "Hello {{you}}! Your company is now officially registered to the network and you can start your technical onboarding journey now."
+    },
+    "WelcomeUser": {
+        "title": "Welcome to Catena-X!",
+        "message": "Hello {{you}}! You have been added to Catena-X. The community welcomes you and is looking forward to your contributions."
+    },
+    "WelcomeAppMarketplace": {
+        "title": "Check out the App Marketplace",
+        "message": "By the way {{you}}, at the App Marketplace you find useful apps for common use cases."
+    },
+    "PersonalMessage": {
+        "title": "You received a personal message",
+        "message": "Hi {{you}}, {{user}} writes you: {{message}}"
+    },
+    "AppRecommendation": {
+        "title": "Someone recommended an app to you",
+        "message": "Hey {{you}}, {{user}} recommended the app {{app}} to you: {{message}}.",
+        "applink": "Go to app"
+    }
+}

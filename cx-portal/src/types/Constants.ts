@@ -1,3 +1,7 @@
+export const PAGE_SIZE = 12
+
+export const INTERVAL_CHECK_NOTIFICATIONS = 10000
+
 export enum PAGES {
   ROOT = '',
   HOME = 'home',
@@ -35,7 +39,7 @@ export enum PAGES {
   THIRD_PARTY_LICENSES = 'thirdpartylicenses',
   SETTINGS = 'settings',
   DEVELOPER = 'developer',
-  TESTAPI = 'testapi',
+  TEST = 'test',
   TRANSLATOR = 'translator',
   LOGOUT = 'logout',
   ERROR = 'error',

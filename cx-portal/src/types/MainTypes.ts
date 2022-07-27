@@ -1,8 +1,6 @@
 import { PageNotificationsProps } from 'cx-portal-shared-components'
 import { ErrorServiceState } from 'features/error/types'
 
-export const PAGE_SIZE = 12
-
 export type Nullable<T> = T | null
 
 export interface IHashMap<T> {

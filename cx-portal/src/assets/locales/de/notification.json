@@ -1,0 +1,20 @@
+{
+    "Welcome": {
+        "title": "Willkommen bei Catena-X!",
+        "message": "Hallo {{you}}! Du wurdest zu Catena-X hinzugefügt. Die Community heißt dich willkommen und freut sich auf deine Beiträge."
+    },
+    "WelcomeAppMarketplace": {
+        "title": "Schau dir den App Marketplace an",
+        "message": "Übrigens {{you}}, auf dem App Marketplace findest du nützliche Apps für gängige Anwendungsfälle."
+    },
+    "PersonalMessage": {
+        "title": "Du hast eine persönliche Nachricht bekommen",
+        "message": "Hi {{you}}, {{user}} schreibt dir: {{message}}"
+    },
+    "AppRecommendation": {
+        "title": "Jemand hat dir eine App empfohlen",
+        "message": "Hey {{you}}, {{user}} empfiehlt dir die App {{app}}: {{message}}.",
+        "applink": "Gehe zur App"
+    }
+
+}
