@@ -39,8 +39,7 @@ export default function SearchSection() {
             right: `${favoriteSectionPosition}px !important`,
           }}
         >
-          {favorites.length === 0 && <EmptyFavorites />}
-          {favorites.length > 0 && (
+          {favorites.length <= 0 ? <EmptyFavorites /> :
             <CarouselBox
               title={t('content.appstore.favoriteSection.myFavorite')}
               itemWidth={266}
@@ -50,18 +49,17 @@ export default function SearchSection() {
             >
               {active
                 .filter((item) => favorites.includes(item.id!))
-                .map((item) => {
-                  return (
-                    <FavoriteItem
-                      key={item.id}
-                      item={item}
-                      expandOnHover={false}
-                      cardClick={true}
-                    />
-                  )
-                })}
+                .map((item) => 
+                  <FavoriteItem
+                    key={item.id}
+                    item={item}
+                    expandOnHover={false}
+                    cardClick={true}
+                  />
+                )}
             </CarouselBox>
-          )}
+          }
+          
         </Box>
       </MainHeader>
     </div>
