@@ -1,23 +1,58 @@
 {
-    "WelcomeInvite": {
-        "title": "Welcome to Catena-X!",
-        "message": "Hello {{you}}! Your company is now officially registered to the network and you can start your technical onboarding journey now."
-    },
-    "WelcomeUser": {
-        "title": "Welcome to Catena-X!",
-        "message": "Hello {{you}}! You have been added to Catena-X. The community welcomes you and is looking forward to your contributions."
-    },
-    "WelcomeAppMarketplace": {
-        "title": "Check out the App Marketplace",
-        "message": "By the way {{you}}, at the App Marketplace you find useful apps for common use cases."
-    },
-    "PersonalMessage": {
-        "title": "You received a personal message",
-        "message": "Hi {{you}}, {{user}} writes you: {{message}}"
-    },
-    "AppRecommendation": {
-        "title": "Someone recommended an app to you",
-        "message": "Hey {{you}}, {{user}} recommended the app {{app}} to you: {{message}}.",
-        "applink": "Go to app"
-    }
+  "WelcomeInvite": {
+    "title": "Welcome to Catena-X!",
+    "message": "Hello {{you}}! Your company is now officially registered to the network and you can start your technical onboarding journey now."
+  },
+  "WelcomeUser": {
+    "title": "Welcome to Catena-X!",
+    "message": "Hello {{you}}! You have been added to Catena-X. The community welcomes you and is looking forward to your contributions."
+  },
+  "WelcomeAppMarketplace": {
+    "title": "Check out the App Marketplace",
+    "message": "Get a first inside into available apps, just follow us to the marketplace for apps."
+  },
+  "NoConnector": {
+    "title": "No connector registered",
+    "message": "You do not have any registered Connector so far. Have a look at the connector offers and get your connector to participate."
+  },
+  "ConnectorRegistered": {
+    "title": "Connector registered successfully",
+    "message": "The connector {{connector}} was successfully created and you can assign users now.",
+    "connectorlink": "Go to connector"
+  },
+  "NoUseCases": {
+    "title": "Select Use Cases",
+    "message": "Pick your preferred use cases to customize the network to you needs."
+  },
+  "PersonalMessage": {
+    "title": "Personal message",
+    "message": "{{user}} writes: {{message}}"
+  },
+  "AppRequestReceived": {
+    "title": "Received app request",
+    "message": "Hey {{you}}, we just received your request to approve app {{app}}. We will let you know when the request got processed.",
+    "applink": "Go to app"
+  },
+  "AppRequestApproved": {
+    "title": "App request approved",
+    "message": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel.",
+    "applink": "Go to app"
+  },
+  "AppRequestRejeced": {
+    "title": "App request rejected",
+    "message": "Your request for app {{app}} got declined. Please contact {{user}} for questions.",
+    "applink": "Go to app",
+    "userlink": "Contact user"
+  },
+  "AppTermsChange": {
+    "title": "Changed terms and conditions",
+    "message": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply.",
+    "applink": "Go to app"
+  },
+  "AppSubscriptionRequest": {
+    "title": "Request for app subscription",
+    "message": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}}.",
+    "applink": "Go to app",
+    "userlink": "Contact user"
+  }
 }

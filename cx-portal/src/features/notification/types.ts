@@ -15,7 +15,7 @@ export enum NotificationType {
   Welcome = 'Welcome',
   WelcomeAppMarketplace = 'WelcomeAppMarketplace',
   PersonalMessage = 'PersonalMessage',
-  AppRecommendation = 'AppRecommendation'
+  AppRecommendation = 'AppRecommendation',
 }
 
 export interface PersonalMessageNotification {
@@ -23,7 +23,8 @@ export interface PersonalMessageNotification {
   message: string
 }
 
-export interface AppRecommendationNotification extends PersonalMessageNotification {
+export interface AppRecommendationNotification
+  extends PersonalMessageNotification {
   appId: string
 }
 

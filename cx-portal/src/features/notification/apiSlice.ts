@@ -11,14 +11,14 @@ export const apiSlice = createApi({
       return headers
     },
   }),
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getCount: builder.query<number, null>({
-      query: () => '/count.json'
+      query: () => '/count.json',
     }),
     getNotifications: builder.query<CXNotification[], null>({
-      query: () => '/all.json'
-    })
-  })
+      query: () => '/all.json',
+    }),
+  }),
 })
 
 export const { useGetCountQuery, useGetNotificationsQuery } = apiSlice

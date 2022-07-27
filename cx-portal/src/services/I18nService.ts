@@ -15,13 +15,13 @@ const resources = {
     translation: mainDE,
     footer: footerDE,
     apps: appsDE,
-    notification: notificationDE
+    notification: notificationDE,
   },
   en: {
     translation: mainEN,
     footer: footerEN,
     apps: appsEN,
-    notification: notificationEN
+    notification: notificationEN,
   },
 }
 

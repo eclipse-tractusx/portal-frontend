@@ -36,7 +36,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
   return (
     <div className="UserInfo">
       <div ref={avatar}>
-        <UserAvatar onClick={openMenu} notificationCount={data}/>
+        <UserAvatar onClick={openMenu} notificationCount={data} />
       </div>
       <UserMenu
         open={menuOpen}

@@ -13,7 +13,12 @@ export default function NotificationCenter() {
     <main className="notification-center">
       <StageHeader title={t('pages.notifications')} />
       <ul>
-        {data && data.map((item: CXNotification) => <li key={item.id}><NotificationItem item={item}/></li>)}
+        {data &&
+          data.map((item: CXNotification) => (
+            <li key={item.id}>
+              <NotificationItem item={item} />
+            </li>
+          ))}
       </ul>
     </main>
   )
