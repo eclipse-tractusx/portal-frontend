@@ -72,5 +72,7 @@ MultiSelectList.args = {
   variant: 'filled',
   focused: false,
   popperHeight: 0, // 0 = auto size
+  clearText: 'clear',
+  noOptionsText: 'No Options',
   onAddItem: (item: any) => console.log('items:', item),
 }

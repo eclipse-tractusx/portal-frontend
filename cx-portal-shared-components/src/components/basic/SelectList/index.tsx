@@ -1,10 +1,10 @@
-import { Box, Chip, Popper, TextFieldProps } from '@mui/material'
+import { Box, TextFieldProps } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
+import { Input } from '../Input'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
-import { Input } from '../Input'
 
-interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
+interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
   label: string
   placeholder: string
@@ -12,10 +12,10 @@ interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
   variant?: 'filled'
   clearText?: string
   noOptionsText?: string
-  onAddItem: (items: any[]) => void
+  onChangeItem: (items: any) => void
 }
 
-export const MultiSelectList = ({
+export const SelectList = ({
   items,
   label,
   placeholder,
@@ -26,44 +26,22 @@ export const MultiSelectList = ({
   error = false,
   disabled,
   popperHeight = 0,
-  clearText = 'Clear',
-  noOptionsText = 'No Options',
-  onAddItem,
-}: MultiSelectListProps) => {
+  clearText='Clear',
+  noOptionsText="No Options",
+  onChangeItem,
+}: SelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
   return (
     <Autocomplete
-      id="selectList"
+      id="singleSelectList"
       sx={{ width: '100%' }}
       clearText={clearText}
       noOptionsText={noOptionsText}
-      PopperComponent={({ style, ...props }) => (
-        <Popper {...props} style={{ ...style, height: 0 }} />
-      )}
       ListboxProps={{ style: { maxHeight: selectHeight } }}
-      multiple
       disabled={disabled}
       options={items.map((item) => item)}
       getOptionLabel={(option) => option.title}
-      renderTags={(value: string[], getTagProps) => {
-        return value.map((option: any, index: number) => (
-          <Chip
-            variant="filled"
-            label={option.title}
-            sx={{
-              borderRadius: '16px',
-              border: '2px solid #d1d1d1 !important',
-              span: {
-                borderRight: '2px solid #d1d1d1 !important',
-                marginRight: '10px !important',
-                height: '26px !important',
-                paddingTop: '2px',
-              },
-            }}
-            {...getTagProps({ index })}
-          />
-        ))
-      }}
+      onChange={(_, reason: any) => onChangeItem(reason)}
       renderInput={(params) => (
         <Box
           sx={{
@@ -121,8 +99,6 @@ export const MultiSelectList = ({
           </li>
         )
       }}
-
-      onChange={(_, reason: any[]) => onAddItem(reason)}
     />
   )
 }
