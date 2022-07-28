@@ -69,12 +69,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.SERVICE_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW_SERVICES,
+    role: ROLES.APPSTORE_VIEW,
     element: <ServiceMarketplace />,
   },
   {
     name: PAGES.DATASPACE_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW_DATASPACES,
+    role: ROLES.APPSTORE_VIEW,
     element: <DataspaceMarketplace />,
   },
   {
@@ -292,7 +292,7 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APP_MARKETPLACE },
       { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.COMING_SOON },
-      { name: PAGES.DATASPACE_MARKETPLACE },
+      { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
     ],
   },
   {

@@ -567,6 +567,14 @@
       "additionalDescription": "Please contact your admin."
     }
   },
+  "servicemarketplace": {
+    "title": "Service Marketplace",
+    "message": "Service Marketplace Description"
+  },
+  "dataspacemarketplace": {
+    "title": "Dataspace Marketplace",
+    "message": "Dataspace Marketplace Description"
+  },
   "hints": {
     "coming_soon": "Coming Soon"
   }
