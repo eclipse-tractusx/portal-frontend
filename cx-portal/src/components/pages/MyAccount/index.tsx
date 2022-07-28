@@ -114,7 +114,6 @@ export default function MyAccount() {
         {userDetail && (
           <UserDetails
             userDetailsCards={userDetailsToCards(userDetail)}
-            userInfo={userDetail}
             columns={3}
           />
         )}
