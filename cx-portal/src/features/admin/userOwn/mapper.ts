@@ -1,6 +1,6 @@
-import { OwnUser } from './types'
+import { UserDetail } from './types'
 
-export const userDetailsToCards = (user: OwnUser) => [
+export const userDetailsToCards = (user: UserDetail) => [
   {
     cardCategory: 'Personal Information',
     cardContentItems: {

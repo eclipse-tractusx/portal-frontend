@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { useParams } from 'react-router-dom'
 
-export type OwnUser = {
+export type UserDetail = {
   companyUserId: string
   firstName: string
   lastName: string

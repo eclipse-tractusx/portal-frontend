@@ -9,7 +9,7 @@ import {
   fetchAny,
   putBusinessPartnerNumber,
 } from 'features/admin/userOwn/actions'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay/actions'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,7 +19,7 @@ import { OVERLAYS } from 'types/Constants'
 
 export default function AddBPN({ id }: { id: string }) {
   const dispatch = useDispatch()
-  const userInfo = useSelector(ownUserSelector)
+  const userInfo = useSelector(UserdetailSelector)
   const [bpnValues, setBpnValues] = useState([''])
   const [inputBPN, setInputBPN] = useState('')
   const [bpnErrorMsg, setBpnErrorMessage] = useState('')

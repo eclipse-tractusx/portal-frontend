@@ -20,7 +20,7 @@ import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import { useEffect } from 'react'
 import { fetchOwn } from 'features/admin/userOwn/actions'
 import './MyAccount.scss'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { UserDetails } from 'components/shared/basic/UserDetails'
 
@@ -28,7 +28,7 @@ export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
-  const ownUser = useSelector(ownUserSelector)
+  const userDetail = useSelector(UserdetailSelector)
 
   const dispatch = useDispatch()
 
@@ -111,9 +111,9 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        {ownUser && (
+        {userDetail && (
           <UserDetails
-            userDetailsCards={userDetailsToCards(ownUser)}
+            userDetailsCards={userDetailsToCards(userDetail)}
             columns={3}
           />
         )}
