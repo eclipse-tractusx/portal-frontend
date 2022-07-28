@@ -21,20 +21,20 @@ export enum NotificationType {
   ConnectorRegistered = 'ConnectorRegistered',
   PersonalMessage = 'PersonalMessage',
   AppRecommendation = 'AppRecommendation',
-  AppRequest = 'AppRequest',
+  AppRequestSubmitted = 'AppRequestSubmitted',
+  AppRequestReceived = 'AppRequestReceived',
   AppRequestApproved = 'AppRequestApproved',
   AppRequestRejected = 'AppRequestRejected',
-  AppSubscription = 'AppSubscription',
+  AppSubscriptionSubmitted = 'AppSubscriptionSubmitted',
+  AppSubscriptionReceived = 'AppSubscriptionReceived',
   AppSubscriptionApproved = 'AppSubscriptionApproved',
   AppSubscriptionRejected = 'AppSubscriptionRejected',
 }
 
-export interface MessageNotification {
-  message: string
-}
-
-export interface AppRelatedNotification {
-  appId: string
+export interface NotificationContent {
+  message?: string
+  appId?: string
+  userId?: string
 }
 
 export type CXNotification = {
@@ -42,5 +42,7 @@ export type CXNotification = {
   created: Date
   notificationTypeId: NotificationType
   creatorId?: string
-  content?: MessageNotification | AppRelatedNotification
+  content?: string
+  contentParsed?: NotificationContent
+  read?: boolean
 }

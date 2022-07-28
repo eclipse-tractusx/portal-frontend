@@ -90,7 +90,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
 
   useEffect(() => {
     if (models.length > 0 && pageNumber > 0) {
-      if(modelList.items.length > 0) setModels((prevModels) => prevModels.concat(modelList.items))
+      if (modelList.items.length > 0)
+        setModels((prevModels) => prevModels.concat(modelList.items))
     } else {
       setModels(modelList.items)
     }

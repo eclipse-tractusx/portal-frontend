@@ -603,6 +603,11 @@
       "title": "Oops, Etwas ist schief gelaufen.",
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
+    },
+    "date": {
+      "yesterday": "gestern",
+      "today": "heute",
+      "tomorrow": "morgen"
     }
   }
 }

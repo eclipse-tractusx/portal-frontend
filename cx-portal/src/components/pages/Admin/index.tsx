@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { info } from 'services/LogService'
 import { ProvisioningApi } from 'features/provisioning/api'
 import { ProvisionIdentityProviderData } from 'features/provisioning/types'
-import './Admin.scss'
 
 export default function Admin() {
   const [processing, setProcessing] = useState<string>('input')
@@ -30,7 +29,7 @@ export default function Admin() {
   }
 
   return (
-    <main>
+    <main className="Admin">
       <ProvisionIdentityProviderForm onSubmit={doSubmit} state={processing} />
     </main>
   )
