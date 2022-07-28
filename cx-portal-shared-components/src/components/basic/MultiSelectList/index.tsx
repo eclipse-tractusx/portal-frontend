@@ -1,10 +1,12 @@
-import { Box, Chip, Popper, TextFieldProps } from '@mui/material'
+import { Chip, Popper, TextFieldProps } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
-import { Input } from '../Input'
+import { SelectInput } from './Components/SelectInput'
+import { SelectOptions } from './Components/SelectOptions'
+import uniqueId from 'lodash/uniqueId'
 
-interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
+export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
   label: string
   placeholder: string
@@ -65,60 +67,23 @@ export const MultiSelectList = ({
         ))
       }}
       renderInput={(params) => (
-        <Box
-          sx={{
-            '.MuiFilledInput-root': {
-              paddingTop: '0px !important',
-              minHeight: '55px',
-            },
-          }}
-        >
-          <Input
-            {...params}
-            label={label}
-            placeholder={placeholder}
-            variant={variant}
-            helperText={helperText}
-            error={error}
-            margin={margin}
-            focused={focused}
-            disabled={disabled}
-          />
-        </Box>
+        <SelectInput
+          params={params}
+          label={label}
+          placeholder={placeholder}
+          variant={variant}
+          margin={margin}
+          focused={focused}
+          helperText={helperText}
+          error = {error}
+          disabled= {disabled}
+        />
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue)
         const parts = parse(option.title, matches)
-
         return (
-          <li
-            {...props}
-            style={{
-              paddingBottom: '0px',
-              marginLeft: '5px',
-              marginRight: '5px',
-              marginTop: '-1px',
-            }}
-          >
-            <Box
-              sx={{
-                borderBottom: '1px solid #f2f2f2 !important',
-                width: '100%',
-                paddingBottom: '10px',
-              }}
-            >
-              {parts.map((part: any, index: any) => (
-                <span
-                  key={index}
-                  style={{
-                    fontWeight: part.highlight ? 700 : 400,
-                  }}
-                >
-                  {part.text}
-                </span>
-              ))}
-            </Box>
-          </li>
+          <SelectOptions props={props} parts={parts} key={uniqueId('select-option')} />
         )
       }}
       onChange={(_, reason: any[]) => onAddItem(reason)}
