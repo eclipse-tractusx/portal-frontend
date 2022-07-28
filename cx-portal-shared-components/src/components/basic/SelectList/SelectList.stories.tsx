@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 }
 
-const items = [
+const countries = [
   {
     id: 1,
     title: 'Germany',
@@ -47,7 +47,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const SelectList = Template.bind({})
 SelectList.args = {
-  items: items,
+  items: countries,
   label: 'Select country',
   placeholder: 'Enter country name (type min 2 character)',
   helperText: 'Helper',
