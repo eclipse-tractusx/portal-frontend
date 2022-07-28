@@ -75,15 +75,19 @@ export const MultiSelectList = ({
           margin={margin}
           focused={focused}
           helperText={helperText}
-          error = {error}
-          disabled= {disabled}
+          error={error}
+          disabled={disabled}
         />
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue)
         const parts = parse(option.title, matches)
         return (
-          <SelectOptions props={props} parts={parts} key={uniqueId('select-option')} />
+          <SelectOptions
+            props={props}
+            parts={parts}
+            key={uniqueId('select-option')}
+          />
         )
       }}
       onChange={(_, reason: any[]) => onAddItem(reason)}

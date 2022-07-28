@@ -2,7 +2,8 @@ import { AutocompleteRenderInputParams, Box } from '@mui/material'
 import { MultiSelectListProps } from '..'
 import { Input } from '../../Input'
 
-interface SelectInputProps extends Omit<MultiSelectListProps, 'items' | 'onAddItem'> {
+interface SelectInputProps
+  extends Omit<MultiSelectListProps, 'items' | 'onAddItem'> {
   params: AutocompleteRenderInputParams
 }
 
@@ -17,7 +18,7 @@ export const SelectInput = ({
   error = false,
   disabled,
 }: SelectInputProps) => {
-  return(
+  return (
     <Box
       sx={{
         '.MuiFilledInput-root': {

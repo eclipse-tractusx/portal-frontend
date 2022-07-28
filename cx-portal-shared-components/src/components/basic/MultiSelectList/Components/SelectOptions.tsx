@@ -6,11 +6,8 @@ interface SelectOptionsProps {
   parts: any[]
 }
 
-export const SelectOptions = ({
-  props,
-  parts,
-}: SelectOptionsProps) => {
-  return(
+export const SelectOptions = ({ props, parts }: SelectOptionsProps) => {
+  return (
     <li
       {...props}
       style={{

@@ -53,15 +53,21 @@ export const SelectList = ({
           margin={margin}
           focused={focused}
           helperText={helperText}
-          error = {error}
-          disabled= {disabled}
+          error={error}
+          disabled={disabled}
         />
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue)
         const parts = parse(option.title, matches)
 
-        return (<SelectOptions props={props} parts={parts} key={uniqueId('select-option')} />)
+        return (
+          <SelectOptions
+            props={props}
+            parts={parts}
+            key={uniqueId('select-option')}
+          />
+        )
       }}
     />
   )
