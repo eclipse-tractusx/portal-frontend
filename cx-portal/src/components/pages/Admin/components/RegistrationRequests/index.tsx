@@ -40,9 +40,7 @@ export default function RegistrationRequests() {
   )
 
   useEffect(() => {
-    const params = {
-      ...{ size: pageSize, page: currentPage },
-    }
+    const params = { size: pageSize, page: currentPage }
     dispatch(fetchRegistrationRequests({ params }))
   }, [dispatch, currentPage, pageSize])
 
@@ -71,9 +69,7 @@ export default function RegistrationRequests() {
     if (actionType === 'decline' && selectedRequestId)
       await dispatch(declineRequest(selectedRequestId))
 
-    const params = {
-      ...{ size: pageSize, page: 0 },
-    }
+    const params = { size: pageSize, page: 0 }
     dispatch(fetchRegistrationRequests({ params }))
 
     setConfirmModalOpen(false)
@@ -119,7 +115,7 @@ export default function RegistrationRequests() {
             rows: registrationRequests,
             columns: columns,
             rowsCount: registrationRequests.length,
-            title: `${t('content.admin.registration-requests.tabletitle')}`,
+            title: t('content.admin.registration-requests.tabletitle'),
             headerHeight: 76,
             rowHeight: 100,
             hideFooter: true,

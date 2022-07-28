@@ -1,5 +1,9 @@
 import { IconButton, StatusTag, Chip } from 'cx-portal-shared-components'
-import { GridRenderCellParams, GridColDef } from '@mui/x-data-grid'
+import {
+  GridRenderCellParams,
+  GridColDef,
+  GridValueGetterParams,
+} from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 
@@ -28,11 +32,10 @@ export const RegistrationRequestsTableColumns = (
     },
     {
       field: 'dateCreated',
-      headerName: `${t('content.admin.registration-requests.columns.date')}`,
+      headerName: t('content.admin.registration-requests.columns.date'),
       flex: 1,
-      renderCell: (params: GridRenderCellParams<string>) => (
-        <span>{dayjs(params?.value).format('DD/MM/YYYY')}</span>
-      ),
+      valueGetter: (params: GridValueGetterParams) =>
+        dayjs(params?.value).format('YYYY-MM-DD'),
     },
 
     {
