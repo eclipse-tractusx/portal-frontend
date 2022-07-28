@@ -51,9 +51,8 @@ export const SelectList = ({
           key={uniqueId('select-list-option')}
         />
       )}
-
       renderInput={(params) => {
-        return(
+        return (
           <SelectInput
             params={params}
             label={label}
@@ -65,8 +64,8 @@ export const SelectList = ({
             error={error}
             disabled={disabled}
           />
-        )}
-      }
+        )
+      }}
     />
   )
 }
