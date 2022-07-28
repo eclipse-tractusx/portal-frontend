@@ -44,31 +44,29 @@ export const SelectList = ({
       options={items.map((item) => item)}
       getOptionLabel={(option) => option.title}
       onChange={(_, reason: any) => onChangeItem(reason)}
-      renderInput={(params) => (
-        <SelectInput
-          params={params}
-          label={label}
-          placeholder={placeholder}
-          variant={variant}
-          margin={margin}
-          focused={focused}
-          helperText={helperText}
-          error={error}
-          disabled={disabled}
+      renderOption={(props, option, { inputValue }) => (
+        <SelectOptions
+          props={props}
+          parts={parse(option.title, match(option.title, inputValue))}
+          key={uniqueId('select-list-option')}
         />
       )}
-      renderOption={(props, option, { inputValue }) => {
-        const matches = match(option.title, inputValue)
-        const parts = parse(option.title, matches)
 
-        return (
-          <SelectOptions
-            props={props}
-            parts={parts}
-            key={uniqueId('select-list-option')}
+      renderInput={(params) => {
+        return(
+          <SelectInput
+            params={params}
+            label={label}
+            placeholder={placeholder}
+            variant={variant}
+            margin={margin}
+            focused={focused}
+            helperText={helperText}
+            error={error}
+            disabled={disabled}
           />
-        )
-      }}
+        )}
+      }
     />
   )
 }
