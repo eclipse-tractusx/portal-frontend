@@ -121,7 +121,6 @@ export const MultiSelectList = ({
           </li>
         )
       }}
-
       onChange={(_, reason: any[]) => onAddItem(reason)}
     />
   )

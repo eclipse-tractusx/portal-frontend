@@ -26,8 +26,8 @@ export const SelectList = ({
   error = false,
   disabled,
   popperHeight = 0,
-  clearText='Clear',
-  noOptionsText="No Options",
+  clearText = 'Clear',
+  noOptionsText = 'No Options',
   onChangeItem,
 }: SelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
