@@ -12,6 +12,7 @@ import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
 import DataCatalog from 'components/pages/DataCatalog'
 import DataManagement from 'components/pages/DataManagement'
+import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
@@ -27,6 +28,7 @@ import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
+import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
@@ -36,7 +38,7 @@ import UserManagement from 'components/pages/UserManagement'
 import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
 import UserDetails from 'components/pages/UserManagement/UserDetails'
 import { Route } from 'react-router-dom'
-import { ACTIONS, OVERLAYS, PAGES, ROLES } from './Constants'
+import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import { IAction, IOverlay, IPage } from './MainTypes'
 
 /**
@@ -55,9 +57,24 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
   { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
+    name: PAGES.MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW,
+    element: <AppMarketplace />,
+  },
+  {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
+  },
+  {
+    name: PAGES.SERVICE_MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+    element: <ServiceMarketplace />,
+  },
+  {
+    name: PAGES.DATASPACE_MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW_DATASPACES,
+    element: <DataspaceMarketplace />,
   },
   {
     name: PAGES.APP_DETAIL,
@@ -269,7 +286,14 @@ export const ALL_ACTIONS: IAction[] = [
  */
 export const mainMenuFullTree = [
   { name: PAGES.HOME },
-  { name: PAGES.APP_MARKETPLACE },
+  {
+    name: PAGES.MARKETPLACE,
+    children: [
+      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
+    ],
+  },
   {
     name: PAGES.DATA_MANAGEMENT,
     children: [

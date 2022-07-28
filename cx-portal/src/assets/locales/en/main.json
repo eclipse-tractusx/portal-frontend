@@ -5,7 +5,10 @@
     "registration": "Onboarding Registration",
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
+    "marketplace": "Marketplace",
     "appmarketplace": "App Marketplace",
+    "servicemarketplace": "Service Marketplace",
+    "dataspacemarketplace": "Dataspace Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Data Management",
     "datacatalog": "Data Catalog",
@@ -567,5 +570,16 @@
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
       "additionalDescription": "Please contact your admin."
     }
+  },
+  "servicemarketplace": {
+    "title": "Service Marketplace",
+    "message": "Service Marketplace Description"
+  },
+  "dataspacemarketplace": {
+    "title": "Dataspace Marketplace",
+    "message": "Dataspace Marketplace Description"
+  },
+  "hints": {
+    "coming_soon": "coming soon"
   }
 }

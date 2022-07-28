@@ -16,6 +16,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         ...item,
         to: `/${item.name}`,
         title: t(`pages.${item.name}`),
+        hint: item.hint ? t(`hints.${item.hint}`) : '',
         children: addTitle(item.children),
       })
     )
