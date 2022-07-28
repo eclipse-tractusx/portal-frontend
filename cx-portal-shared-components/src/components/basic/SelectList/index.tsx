@@ -65,7 +65,7 @@ export const SelectList = ({
           <SelectOptions
             props={props}
             parts={parts}
-            key={uniqueId('select-option')}
+            key={uniqueId('select-list-option')}
           />
         )
       }}

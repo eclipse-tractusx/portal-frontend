@@ -66,9 +66,9 @@ export const MultiSelectList = ({
           />
         ))
       }}
-      renderInput={(params) => (
+      renderInput={(param) => (
         <SelectInput
-          params={params}
+          params={param}
           label={label}
           placeholder={placeholder}
           variant={variant}
@@ -86,7 +86,7 @@ export const MultiSelectList = ({
           <SelectOptions
             props={props}
             parts={parts}
-            key={uniqueId('select-option')}
+            key={uniqueId('multi-select-option')}
           />
         )
       }}
