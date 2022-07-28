@@ -17,8 +17,7 @@
   },
   "ConnectorRegistered": {
     "title": "Connector registered successfully",
-    "message": "The connector {{connector}} was successfully created and you can assign users now.",
-    "connectorlink": "Go to connector"
+    "message": "The connector {{connector}} was successfully created and you can assign users now."
   },
   "NoUseCases": {
     "title": "Select Use Cases",
@@ -30,29 +29,24 @@
   },
   "AppRequestReceived": {
     "title": "Received app request",
-    "message": "Hey {{you}}, we just received your request to approve app {{app}}. We will let you know when the request got processed.",
-    "applink": "Go to app"
+    "message": "Hey {{you}}, we just received your request to approve app {{app}}. We will let you know when the request got processed."
   },
   "AppRequestApproved": {
     "title": "App request approved",
-    "message": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel.",
-    "applink": "Go to app"
+    "message": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel."
   },
   "AppRequestRejeced": {
     "title": "App request rejected",
-    "message": "Your request for app {{app}} got declined. Please contact {{user}} for questions.",
-    "applink": "Go to app",
-    "userlink": "Contact user"
+    "message": "Your request for app {{app}} got declined. Please contact {{user}} for questions."
   },
   "AppTermsChange": {
     "title": "Changed terms and conditions",
-    "message": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply.",
-    "applink": "Go to app"
+    "message": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
   },
   "AppSubscriptionRequest": {
     "title": "Request for app subscription",
-    "message": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}}.",
-    "applink": "Go to app",
-    "userlink": "Contact user"
-  }
+    "message": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}}."
+  },
+  "applink": "Go to app",
+  "userlink": "Contact user"
 }

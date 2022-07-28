@@ -13,24 +13,34 @@ export const initialState: ServiceAccountState = {
 
 export enum NotificationType {
   Welcome = 'Welcome',
+  WelcomeInvite = 'WelcomeInvite',
+  WelcomeUser = 'WelcomeUser',
   WelcomeAppMarketplace = 'WelcomeAppMarketplace',
+  NoUseCase = 'NoUseCase',
+  NoConnector = 'NoConnector',
+  ConnectorRegistered = 'ConnectorRegistered',
   PersonalMessage = 'PersonalMessage',
   AppRecommendation = 'AppRecommendation',
+  AppRequest = 'AppRequest',
+  AppRequestApproved = 'AppRequestApproved',
+  AppRequestRejected = 'AppRequestRejected',
+  AppSubscription = 'AppSubscription',
+  AppSubscriptionApproved = 'AppSubscriptionApproved',
+  AppSubscriptionRejected = 'AppSubscriptionRejected',
 }
 
-export interface PersonalMessageNotification {
-  originator: string
+export interface MessageNotification {
   message: string
 }
 
-export interface AppRecommendationNotification
-  extends PersonalMessageNotification {
+export interface AppRelatedNotification {
   appId: string
 }
 
 export type CXNotification = {
   id: string
-  time: Date
+  created: Date
   notificationTypeId: NotificationType
-  content?: PersonalMessageNotification | AppRecommendationNotification
+  creatorId?: string
+  content?: MessageNotification | AppRelatedNotification
 }
