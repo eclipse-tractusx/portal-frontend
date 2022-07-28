@@ -106,7 +106,9 @@
         "appButton": "App Übersicht"
       },
       "favoriteSection": {
-        "title": "Meine Favoriten"
+        "title": "Meine Favoriten",
+        "myFavorite": "Meine Favoriten",
+        "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind."
       },
       "appOverviewSection": {
         "title": "App Übersicht",

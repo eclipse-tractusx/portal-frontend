@@ -166,7 +166,6 @@ export default function UserDetails() {
         {ownUser && (
           <UserDetailsComponent
             userDetailsCards={userDetailsToCards(ownUser)}
-            userInfo={ownUser}
             columns={3}
           />
         )}
