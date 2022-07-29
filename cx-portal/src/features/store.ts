@@ -32,6 +32,7 @@ export const reducers = {
 
 export const store = configureStore({
   reducer: combineReducers(reducers),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApiSlice.middleware).concat(notificationApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

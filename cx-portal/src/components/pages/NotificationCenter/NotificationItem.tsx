@@ -19,11 +19,15 @@
  ********************************************************************************/
 
 import dayjs from 'dayjs'
+import { fetchAny } from 'features/admin/userOwn/actions'
+import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { fetch } from 'features/apps/details/actions'
+import { itemSelector } from 'features/apps/details/slice'
 import { show } from 'features/control/overlay/actions'
 import { CXNotification, NotificationType } from 'features/notification/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
 import { OVERLAYS } from 'types/Constants'
@@ -40,13 +44,26 @@ const NotificationContent = ({
     keyPrefix: item.notificationTypeId,
   }).t
   const { t } = useTranslation('notification')
+  const userData = useSelector(ownUserSelector)
+  const appData = useSelector(itemSelector)
   const dispatch = useDispatch()
   const message = item.contentParsed?.message
   const app = item.contentParsed?.appId
   const user = item.creatorId
+  const you = UserService.getName()
+
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchAny(user))
+    }
+    if (app) {
+      dispatch(fetch(app))
+    }
+  }, [])
+
   return (
     <>
-      <div>{tn('content', { you: UserService.getName(), user, app })}</div>
+      <div>{tn('content', { you, user: appData ? `${userData.firstName} ${userData.lastName}` : user, app: appData ? appData.title : app })}</div>
       {message && <div className="message">{message}</div>}
       {(app || user || navlinks) && (
         <div className="links">
@@ -100,11 +117,17 @@ const NotificationConfig = ({ item }: { item: CXNotification }) => {
 export default function NotificationItem({ item }: { item: CXNotification }) {
   const { t } = useTranslation('notification')
   const [open, setOpen] = useState<boolean>(false)
-  const toggle = () => setOpen(!open)
+  const toggle = () => {
+    const nextState = !open
+    if (nextState && !item.read) {
+      console.log('set notification to read', item.id)
+    }
+    setOpen(nextState)
+  }
   return (
     <li>
       <div onClick={toggle} className="item">
-        <div className="created">{dayjs(item.created).format('hh:mm')}</div>
+        <div className="created">{dayjs(item.created).format('HH:mm')}</div>
         <div className={`title ${item.read ? 'read' : 'unread'}`}>
           {t(`${item.notificationTypeId}.title`)}
         </div>
