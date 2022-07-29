@@ -1,65 +1,73 @@
 import { IconButton, StatusTag, Chip } from 'cx-portal-shared-components'
-import { GridRenderCellParams, GridColDef } from '@mui/x-data-grid'
+import {
+  GridRenderCellParams,
+  GridColDef,
+  GridValueGetterParams,
+} from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 
 import {
   CompanyApplicationInfo,
-  RegistrationRequestContract,
+  RegistrationRequestDocument,
 } from 'features/admin/registration/types'
+import dayjs from 'dayjs'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
-  translationHook: any
+  translationHook: any,
+  onApproveClick: (id: string) => void,
+  onDeclineClick: (id: string) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
   return [
     {
       field: 'applicationId',
-      headerName: `${t('content.admin.registration-requests.columns.request')}`,
-      description: `${t(
+      headerName: t('content.admin.registration-requests.columns.request'),
+      description: t(
         'content.admin.registration-requests.columns.requestDescription'
-      )}`,
+      ),
       flex: 1,
     },
     {
-      field: 'changedDate',
-      headerName: `${t('content.admin.registration-requests.columns.date')}`,
+      field: 'dateCreated',
+      headerName: t('content.admin.registration-requests.columns.date'),
       flex: 1,
+      valueGetter: (params: GridValueGetterParams) =>
+        dayjs(params?.value).format('YYYY-MM-DD'),
     },
+
     {
       field: 'companyInfo',
-      headerName: `${t(
-        'content.admin.registration-requests.columns.companyinfo'
-      )}`,
+      headerName: t('content.admin.registration-requests.columns.companyinfo'),
       flex: 2,
       sortable: false,
       renderCell: (params: GridRenderCellParams<CompanyApplicationInfo>) => (
         <div>
           <p style={{ margin: '3px 0' }}>{params?.value?.companyName}</p>
-          <p style={{ margin: '3px 0' }}>{params?.value?.userEmail}</p>
+          <p style={{ margin: '3px 0' }}>{params?.value?.email}</p>
           <span>{params?.value?.bpn}</span>
         </div>
       ),
     },
+
     {
-      field: 'contracts',
-      headerName: `${t(
-        'content.admin.registration-requests.columns.documents'
-      )}`,
+      field: 'documents',
+      headerName: t('content.admin.registration-requests.columns.documents'),
       flex: 2,
       sortable: false,
+      cellClassName: 'documents-column--cell',
       renderCell: (
-        params: GridRenderCellParams<Array<RegistrationRequestContract>>
+        params: GridRenderCellParams<Array<RegistrationRequestDocument>>
       ) => (
         <div className="document-cell-container">
           {params?.value?.map((contract) => {
             return (
               <div className="document-cell-line">
                 <ArticleOutlinedIcon />
-                <a href={contract?.document} rel="noreferrer">
-                  {contract?.name}
+                <a href={contract?.documentHash} rel="noreferrer">
+                  {contract?.documentType}
                 </a>
               </div>
             )
@@ -67,11 +75,13 @@ export const RegistrationRequestsTableColumns = (
         </div>
       ),
     },
+
     {
       field: 'detail',
-      headerName: `${t('content.admin.registration-requests.columns.details')}`,
+      headerName: t('content.admin.registration-requests.columns.details'),
       flex: 1,
       align: 'center',
+      headerAlign: 'center',
       sortable: false,
       renderCell: () => (
         <IconButton
@@ -85,23 +95,22 @@ export const RegistrationRequestsTableColumns = (
     },
     {
       field: 'status',
-      headerName: `${t('content.admin.registration-requests.columns.state')}`,
+      headerName: t('content.admin.registration-requests.columns.state'),
       align: 'center',
+      headerAlign: 'center',
       flex: 1.2,
       sortable: false,
       renderCell: (params: GridRenderCellParams<string>) => {
-        if (params.value === 'pending')
+        if (params.value === 'SUBMITTED')
           return (
             <div className="state-cell-container">
               <Chip
                 {...{
                   color: 'secondary',
                   variant: 'filled',
-                  label: `${t(
-                    'content.admin.registration-requests.buttondecline'
-                  )}`,
+                  label: t('content.admin.registration-requests.buttondecline'),
                   type: 'decline',
-                  onClick: () => console.log('Decline clicked event'),
+                  onClick: () => onDeclineClick(params?.id?.toString()),
                   withIcon: true,
                 }}
               />
@@ -110,11 +119,9 @@ export const RegistrationRequestsTableColumns = (
                 {...{
                   color: 'secondary',
                   variant: 'filled',
-                  label: `${t(
-                    'content.admin.registration-requests.buttonconfirm'
-                  )}`,
+                  label: t('content.admin.registration-requests.buttonconfirm'),
                   type: 'confirm',
-                  onClick: () => console.log('Confirm clicked event'),
+                  onClick: () => onApproveClick(params?.id?.toString()),
                   withIcon: true,
                 }}
               />
@@ -124,9 +131,9 @@ export const RegistrationRequestsTableColumns = (
           return (
             <div className="state-cell-container">
               <StatusTag
-                color={params.value === 'confirmed' ? 'confirmed' : 'declined'}
+                color={params.value === 'CONFIRMED' ? 'confirmed' : 'declined'}
                 label={t(
-                  `content.admin.registration-requests.cell${params.value}`
+                  `content.admin.registration-requests.cell${params.value.toLowerCase()}`
                 )}
               />
             </div>

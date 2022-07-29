@@ -6,7 +6,7 @@ import {
 } from 'features/partnerNetwork/types'
 
 import {
-  RegistrationRequestAPIResponse,
+  RegistrationRequest,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
 
@@ -58,24 +58,19 @@ const mapSingleBusinessPartnerToDataGrid = (
 }
 
 const mapRegistrationRequestResponseToDataGrid = (
-  requestsResponse: Array<RegistrationRequestAPIResponse>
+  requestsResponse: Array<RegistrationRequest>
 ): Array<RegistrationRequestDataGrid> => {
-  return requestsResponse?.map((request: RegistrationRequestAPIResponse) => {
+  return requestsResponse?.map((request: RegistrationRequest) => {
     return {
-      applicationId: request.application_id,
-      changedDate: request.changed_date,
+      applicationId: request.applicationId,
+      dateCreated: request.dateCreated,
       companyInfo: {
-        companyName: request.Company_name,
-        userEmail: request.user_email,
-        bpn: request.BPN,
+        companyName: request.companyName,
+        email: request.email,
+        bpn: request.bpn,
       },
-      contracts: request.contracts,
-      street: request.street,
-      houseNumber: request.house_number,
-      plz: request.plz,
-      city: request.city,
-      country: request.country,
-      status: request.status,
+      documents: request.documents,
+      status: request.applicationStatus,
     } as RegistrationRequestDataGrid
   })
 }
