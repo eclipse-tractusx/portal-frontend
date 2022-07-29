@@ -4,23 +4,28 @@ import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AddUserRightOverlay from '../AddUserRightOverlay'
-import { PageHeader } from 'cx-portal-shared-components'
+import { PageHeader, PageNotifications } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { itemSelector } from 'features/admin/approle/slice'
-import { fetchItems } from 'features/admin/approle/actions'
+import { roleSelector } from 'features/admin/approle/slice'
+import { stateSelector } from 'features/admin/approle/slice'
+import { fetchRoles } from 'features/admin/approle/actions'
 import { useParams } from 'react-router-dom'
 import './AppUserDetails.scss'
 
 export default function AppUserDetails() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const items = useSelector(itemSelector)
+  const roles = useSelector(roleSelector)
+  const { error } = useSelector(stateSelector)
   const [open, setOpen] = useState(false)
   const appId = useParams().appId
 
+  console.log('roles', roles)
+  console.log('error', error)
+
   useEffect(() => {
     if (appId) {
-      dispatch(fetchItems(appId))
+      dispatch(fetchRoles(appId))
     }
   }, [dispatch, appId])
 
@@ -51,12 +56,24 @@ export default function AppUserDetails() {
         <PageBreadcrumb />
       </PageHeader>
 
-      {items.length > 0 && (
+      {roles.length > 0 && (
         <>
-          <AppUserDetailsHeader roles={items} />
+          <AppUserDetailsHeader roles={roles} />
           <AppUserDetailsTable onAddUserButtonClick={openAddUserRightLayout} />
         </>
       )}
+      <div className="errorMsg">
+        {error && (
+          <PageNotifications
+            description={t(
+              'content.usermanagement.appUserDetails.roles.error.message'
+            )}
+            open
+            severity="error"
+            title={t('content.usermanagement.appUserDetails.roles.error.title')}
+          />
+        )}
+      </div>
     </main>
   )
 }
