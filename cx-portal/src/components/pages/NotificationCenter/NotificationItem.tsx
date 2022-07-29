@@ -59,11 +59,17 @@ const NotificationContent = ({
     if (app) {
       dispatch(fetch(app))
     }
-  }, [])
+  }, [app, user, dispatch])
 
   return (
     <>
-      <div>{tn('content', { you, user: appData ? `${userData.firstName} ${userData.lastName}` : user, app: appData ? appData.title : app })}</div>
+      <div>
+        {tn('content', {
+          you,
+          user: appData ? `${userData.firstName} ${userData.lastName}` : user,
+          app: appData ? appData.title : app,
+        })}
+      </div>
       {message && <div className="message">{message}</div>}
       {(app || user || navlinks) && (
         <div className="links">
