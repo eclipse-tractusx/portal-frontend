@@ -94,11 +94,14 @@ export default function RegistrationRequests() {
         handleOverlayClose={() => setConfirmModalOpen(false)}
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
-      <PageHeader
-        title={t('content.admin.registration-requests.headertitle')}
-        topPage={false}
-        headerHeight={200}
-      />
+      
+        <Typography variant="body2" align="center">
+          {t('content.registration-requests.introText1')}
+        </Typography>
+        <Typography variant="body2" mb={3} align="center">
+          {t('content.registration-requests.introText2')}
+        </Typography>
+      
       <div className="page-title-container">
         <Typography
           sx={{ fontFamily: 'LibreFranklin-Light' }}
