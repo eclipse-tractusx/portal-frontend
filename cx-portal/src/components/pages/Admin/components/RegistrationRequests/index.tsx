@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import {
   Table,
   Typography,
-  PageHeader,
   Button,
 } from 'cx-portal-shared-components'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
