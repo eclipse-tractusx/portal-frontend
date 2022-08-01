@@ -53,25 +53,45 @@ export const AppUserDetailsTable = ({
             onButtonClick: onAddUserButtonClick,
           }}
           columns={[
-            { field: 'lastName', headerName: t('global.field.name'), flex: 1 },
-            { field: 'firstName', headerName: t('global.field.name'), flex: 1 },
-            { field: 'email', headerName: t('global.field.email'), flex: 2 },
             {
-              field: 'enabled',
+              field: 'firstName',
+              headerName: t('global.field.name'),
+              flex: 3,
+              valueGetter: ({ row }: { row: TenantUser }) =>
+                `${row.firstName} ${row.lastName}`,
+            },
+            { field: 'email', headerName: t('global.field.email'), flex: 3 },
+            {
+              field: 'status',
               headerName: t('global.field.status'),
-              flex: 1,
-              renderCell: ({ value: enabled }) => {
-                const label = enabled ? 'active' : 'inactive'
+              flex: 2,
+              renderCell: ({ value: status }) => {
+                const label = status ? 'active' : 'inactive'
                 return (
                   <StatusTag color="label" label={t(`global.field.${label}`)} />
                 )
               },
             },
-            { field: 'role', headerName: t('global.field.role'), flex: 1 },
+            {
+              field: 'roles',
+              headerName: t('global.field.role'),
+              flex: 4,
+              renderCell: ({ value: roles }) => {
+                return roles.length
+                  ? roles.map((role: string) => (
+                      <StatusTag
+                        color="label"
+                        label={role}
+                        className="statusTag"
+                      />
+                    ))
+                  : ''
+              },
+            },
             {
               field: 'details',
               headerName: t('global.field.details'),
-              flex: 1,
+              flex: 2,
               renderCell: ({ row }: { row: TenantUser }) => (
                 <IconButton
                   color="secondary"
