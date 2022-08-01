@@ -104,6 +104,7 @@ type LinkItem = Partial<Record<'href' | 'to', string>>
 
 export interface Tree {
   name: string
+  hint?: string
   children?: Tree[]
 }
 

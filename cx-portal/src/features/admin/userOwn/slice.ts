@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   name,
   initialState,
-  AdminOwnUserState,
-  OwnUser,
-  InitialOwnUser,
+  AdminUserDetailState,
+  UserDetail,
+  InitialUserDetail,
 } from './types'
 import {
   fetchAny,
@@ -15,16 +15,16 @@ import {
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 
-const pending = (state: AdminOwnUserState) => ({
+const pending = (state: AdminUserDetailState) => ({
   ...state,
-  data: InitialOwnUser,
+  data: InitialUserDetail,
   request: RequestState.SUBMIT,
   error: '',
 })
 
 const fulfilled = (
-  state: AdminOwnUserState,
-  { payload }: { payload: OwnUser }
+  state: AdminUserDetailState,
+  { payload }: { payload: UserDetail }
 ) => ({
   ...state,
   data: payload || [],
@@ -32,9 +32,9 @@ const fulfilled = (
   error: '',
 })
 
-const rejected = (state: AdminOwnUserState, action: { error: any }) => ({
+const rejected = (state: AdminUserDetailState, action: { error: any }) => ({
   ...state,
-  data: InitialOwnUser,
+  data: InitialUserDetail,
   request: RequestState.ERROR,
   error: action.error.message as string,
 })
@@ -89,7 +89,7 @@ export const slice = createSlice({
   },
 })
 
-export const ownUserSelector = (state: RootState): OwnUser =>
+export const UserdetailSelector = (state: RootState): UserDetail =>
   state.admin.userOwn.data
 
 export const resetSelector = (state: RootState): any => state.admin.userOwn

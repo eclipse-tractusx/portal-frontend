@@ -4,6 +4,8 @@ import { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
 import { PaginResult } from 'types/MainTypes'
 import { PAGE_SIZE } from 'types/Constants'
+import { SearchParams } from '../../connector/types'
+import qs from 'querystring'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
@@ -19,6 +21,12 @@ export class Api extends HttpClient {
 
     return this.classInstance
   }
+
+  public getRegistrationRequests = (filters: SearchParams) =>
+    this.instance.get<void>(
+      `/api/administration/registration/applications?${qs.stringify(filters)}`,
+      getHeaders()
+    )
 
   public postInviteBusinessPartner = (invite: InviteData) =>
     this.instance.post<void>(
@@ -36,6 +44,20 @@ export class Api extends HttpClient {
   public getItems = (page: number) =>
     this.instance.get<PaginResult<InvitesDataGrid>>(
       `api/administration/registration/applicationsWithStatus?page=${page}&size=${PAGE_SIZE}`,
+      getHeaders()
+    )
+
+  public approveRegistrationRequest = (applicationId: string) =>
+    this.instance.put<void>(
+      `/api/administration/registration/application/${applicationId}/approveRequest`,
+      {},
+      getHeaders()
+    )
+
+  public declineRegistrationRequest = (applicationId: string) =>
+    this.instance.put<void>(
+      `/api/administration/registration/application/${applicationId}/declineRequest`,
+      {},
       getHeaders()
     )
 }

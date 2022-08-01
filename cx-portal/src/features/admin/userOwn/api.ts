@@ -1,7 +1,7 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { HttpClient } from 'utils/HttpClient'
-import { OwnUser } from './types'
+import { UserDetail } from './types'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
@@ -18,10 +18,13 @@ export class Api extends HttpClient {
   }
 
   public getUserOwn = () =>
-    this.instance.get<OwnUser>(`/api/administration/user/ownuser`, getHeaders())
+    this.instance.get<UserDetail>(
+      `/api/administration/user/ownuser`,
+      getHeaders()
+    )
 
   public getUserInfo = (companyUserId: string) =>
-    this.instance.get<OwnUser>(
+    this.instance.get<UserDetail>(
       `/api/administration/user/ownCompany/users/${companyUserId}`,
       getHeaders()
     )

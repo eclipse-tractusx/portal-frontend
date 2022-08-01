@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
+import { useParams } from 'react-router-dom'
 
-export type OwnUser = {
+export type UserDetail = {
   companyUserId: string
   firstName: string
   lastName: string
@@ -21,7 +22,6 @@ export interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory?: string
   cardContentItems: UserItems
-  userInfo?: OwnUser
   variant?: 'wide'
 }
 
@@ -38,13 +38,13 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
-  userInfo,
   variant,
 }: UserCardProps) => {
+  const { appId: companyUserId } = useParams()
   const dispatch = useDispatch()
 
   const openEditOverlay = () => {
-    dispatch(show(OVERLAYS.ADD_BPN, userInfo?.companyUserId))
+    dispatch(show(OVERLAYS.ADD_BPN, companyUserId))
   }
 
   const renderValue = (value: UserItemsTranslation | undefined) => (

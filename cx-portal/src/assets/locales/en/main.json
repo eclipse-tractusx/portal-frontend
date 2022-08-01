@@ -5,7 +5,10 @@
     "registration": "Onboarding Registration",
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
+    "marketplace": "Marketplace",
     "appmarketplace": "App Marketplace",
+    "servicemarketplace": "Service Marketplace",
+    "dataspacemarketplace": "Dataspace Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Data Management",
     "datacatalog": "Data Catalog",
@@ -72,6 +75,10 @@
           "title": "Company Detail",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
+        },
+        "confirmmodal": {
+          "title": "Confirm action",
+          "description": "Are you sure to make action on selected request?"
         }
       }
     },
@@ -472,6 +479,8 @@
       "usecase": "Use Case",
       "language": "Language",
       "subscribe": "Subscribe",
+      "subscribed": "Subscribed",
+      "pending": "Requested",
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
@@ -570,5 +579,16 @@
       "today": "today",
       "tomorrow": "tomorrow"
     }
+  },
+  "servicemarketplace": {
+    "title": "Service Marketplace",
+    "message": "Service Marketplace Description"
+  },
+  "dataspacemarketplace": {
+    "title": "Dataspace Marketplace",
+    "message": "Dataspace Marketplace Description"
+  },
+  "hints": {
+    "coming_soon": "coming soon"
   }
 }

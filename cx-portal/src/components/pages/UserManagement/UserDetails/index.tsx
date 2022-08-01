@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import uniqueId from 'lodash/uniqueId'
 import { useParams } from 'react-router-dom'
-import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
 import { fetchOwn, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
@@ -29,7 +29,7 @@ export default function UserDetails() {
   const { appId } = useParams()
   console.log(`TODO: get user details for ${appId}`)
 
-  const ownUser = useSelector(ownUserSelector)
+  const userDetail = useSelector(UserdetailSelector)
 
   const { resetStatus, error } = useSelector(resetSelector)
 
@@ -80,7 +80,7 @@ export default function UserDetails() {
   }
 
   const handleResetPasswordForUser = () => {
-    dispatch(putResetPassword(ownUser.companyUserId))
+    dispatch(putResetPassword(userDetail.companyUserId))
   }
 
   const renderChips = (row: GridRowModel) => {
@@ -163,10 +163,9 @@ export default function UserDetails() {
             </>
           )}
         </div>
-        {ownUser && (
+        {userDetail && (
           <UserDetailsComponent
-            userDetailsCards={userDetailsToCards(ownUser)}
-            userInfo={ownUser}
+            userDetailsCards={userDetailsToCards(userDetail)}
             columns={3}
           />
         )}
