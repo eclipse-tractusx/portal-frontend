@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import { TextFieldProps } from '@mui/material/TextField'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Input } from '../Input'
-import deLocale from 'date-fns/locale/de';
-import enLocale from 'date-fns/locale/en-US';
+import deLocale from 'date-fns/locale/de'
+import enLocale from 'date-fns/locale/en-US'
 
 export type DateType = Date | null
 export interface DatepickerProps extends Omit<TextFieldProps, 'variant'> {
@@ -22,7 +22,7 @@ export interface DatepickerProps extends Omit<TextFieldProps, 'variant'> {
 const localeMap = {
   en: enLocale,
   de: deLocale,
-};
+}
 
 export const Datepicker = ({
   label,
@@ -51,7 +51,7 @@ export const Datepicker = ({
   const handleChange = (newValue: DateType) => {
     if (newValue) {
       setValue(new Date(newValue))
-    } 
+    }
     onChangeItem(newValue)
   }
 
@@ -67,16 +67,19 @@ export const Datepicker = ({
   return (
     <Box
       sx={{
-        'button': {
+        button: {
           color: iconColor,
           fontSize: '14px !important',
         },
         'button:hover': {
-          color: '#0F71CB'
+          color: '#0F71CB',
         },
       }}
     >
-      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={localeMap[locale]} >
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        adapterLocale={localeMap[locale]}
+      >
         <DatePicker
           // open={open}
           value={value}
@@ -86,7 +89,7 @@ export const Datepicker = ({
           views={['year', 'month', 'day']}
           onChange={(newValue) => handleChange(newValue)}
           // onAccept={() => handleOpen()}
-          renderInput={(params) =>
+          renderInput={(params) => (
             <Box
               sx={{
                 '.MuiFilledInput-root': {
@@ -109,7 +112,7 @@ export const Datepicker = ({
                 // onBlur={() => handleOpen()}
               />
             </Box>
-          }
+          )}
         />
       </LocalizationProvider>
     </Box>
