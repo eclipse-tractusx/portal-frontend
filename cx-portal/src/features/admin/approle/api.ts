@@ -1,3 +1,4 @@
+import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { HttpClient } from 'utils/HttpClient'
@@ -17,6 +18,12 @@ export class Api extends HttpClient {
 
     return this.classInstance
   }
+
+  public getRoles = (appId: string) =>
+    this.instance.get<AppRole[]>(
+      `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
+      getHeaders()
+    )
 
   public getItems = (appId: string) =>
     this.instance.get<AppRole[]>(

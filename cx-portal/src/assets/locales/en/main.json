@@ -374,6 +374,12 @@
           "headline": "Identity Management",
           "title": "User List",
           "add": "Add Role"
+        },
+        "roles": {
+          "error": {
+            "title": "Error",
+            "message": "Incorrect Application Id"
+          }
         }
       },
       "technicalUser": {

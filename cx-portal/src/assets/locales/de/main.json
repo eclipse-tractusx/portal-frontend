@@ -374,6 +374,12 @@
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
           "add": "Benutzerrolle hinzufügen"
+        },
+        "roles": {
+          "error": {
+            "title": "Error",
+            "message": "Incorrect Application Id"
+          }
         }
       },
       "technicalUser": {
