@@ -35,10 +35,11 @@ dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
 
 const NotificationGroupTitle = ({ label }: { label: string }) => {
+  const { t } = useTranslation()
   const date = dayjs(label)
-  if (date.isToday()) return <>t('global.date.today')</>
-  if (date.isYesterday()) return <>t('global.date.yesterday')</>
-  return <>date.fromNow()</>
+  if (date.isToday()) return <>{t('global.date.today')}</>
+  if (date.isYesterday()) return <>{t('global.date.yesterday')}</>
+  return <>{date.fromNow()}</>
 }
 
 const NotificationGroup = ({

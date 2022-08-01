@@ -20,7 +20,7 @@
 
 import dayjs from 'dayjs'
 import { fetchAny } from 'features/admin/userOwn/actions'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { fetch } from 'features/apps/details/actions'
 import { itemSelector } from 'features/apps/details/slice'
 import { show } from 'features/control/overlay/actions'
@@ -44,7 +44,7 @@ const NotificationContent = ({
     keyPrefix: item.notificationTypeId,
   }).t
   const { t } = useTranslation('notification')
-  const userData = useSelector(ownUserSelector)
+  const userData = useSelector(UserdetailSelector)
   const appData = useSelector(itemSelector)
   const dispatch = useDispatch()
   const message = item.contentParsed?.message
