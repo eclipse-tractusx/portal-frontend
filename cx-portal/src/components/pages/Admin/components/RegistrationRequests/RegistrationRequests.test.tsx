@@ -16,12 +16,6 @@ beforeAll(() => {
 })
 
 test('Control page is correctly rendered', async () => {
-  // Check page title to be sure page rendered correctly
-  expect(
-    screen.getByText(
-      EnglishScripts.content.admin['registration-requests'].headertitle
-    )
-  ).toBeInTheDocument()
 
   // Check table component rendered correctly via one of the table column
   expect(
