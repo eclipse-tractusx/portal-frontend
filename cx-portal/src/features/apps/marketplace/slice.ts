@@ -2,7 +2,12 @@ import { CardItems } from 'cx-portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 import { fetchActive, fetchLatest, fetchSubscribed } from './actions'
-import { AppMarketplaceState, initialState, name } from './types'
+import {
+  AppMarketplaceApp,
+  AppMarketplaceState,
+  initialState,
+  name,
+} from './types'
 import { appToCard } from './mapper'
 
 export const slice = createSlice({
@@ -71,13 +76,15 @@ export const stateSelector = (state: RootState): AppMarketplaceState =>
   state.apps.marketplace
 
 export const activeSelector = (state: RootState): CardItems[] =>
-  state.apps.marketplace.items.map((app) => appToCard(app))
+  state.apps.marketplace.items.map((app: AppMarketplaceApp) => appToCard(app))
 
 export const latestSelector = (state: RootState): CardItems[] =>
-  state.apps.marketplace.latest.map((app) => appToCard(app))
+  state.apps.marketplace.latest.map((app: AppMarketplaceApp) => appToCard(app))
 
 export const subscribedSelector = (state: RootState): CardItems[] =>
-  state.apps.marketplace.subscribed.map((app) => appToCard(app))
+  state.apps.marketplace.subscribed.map((app: AppMarketplaceApp) =>
+    appToCard(app)
+  )
 
 const Slice = { slice }
 

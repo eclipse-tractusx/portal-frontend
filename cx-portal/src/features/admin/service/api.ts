@@ -1,6 +1,7 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
-import { PAGE_SIZE, PaginResult } from 'types/MainTypes'
+import { PaginResult } from 'types/MainTypes'
+import { PAGE_SIZE } from 'types/Constants'
 import { HttpClient } from 'utils/HttpClient'
 import {
   ServiceAccount,
