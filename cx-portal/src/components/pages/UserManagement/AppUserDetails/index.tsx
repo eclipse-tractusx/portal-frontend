@@ -20,9 +20,6 @@ export default function AppUserDetails() {
   const [open, setOpen] = useState(false)
   const appId = useParams().appId
 
-  console.log('roles', roles)
-  console.log('error', error)
-
   useEffect(() => {
     if (appId) {
       dispatch(fetchRoles(appId))
