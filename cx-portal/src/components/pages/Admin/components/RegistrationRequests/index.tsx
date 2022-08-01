@@ -95,13 +95,14 @@ export default function RegistrationRequests() {
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
       
-      
+      // Page header title and background color
       <PageHeader
         title={t('content.admin.registration-requests.headertitle')}
         topPage={false}
         headerHeight={200}
       />
       
+      // Adding additional text to introduce the page function
         <Typography variant="body2" mt={3} align="center">
           {t('content.admin.registration-requests.introText1')}
         </Typography>
@@ -109,7 +110,7 @@ export default function RegistrationRequests() {
           {t('content.admin.registration-requests.introText2')}
         </Typography>
       
-      </div>
+      // Table component
       <div className={'table-container'}>
         <Table
           {...{
