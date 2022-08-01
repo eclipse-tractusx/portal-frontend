@@ -34,6 +34,13 @@ dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
 
+const NotificationGroupTitle = ({ label }: { label: string }) => {
+  const date = dayjs(label)
+  if (date.isToday()) return <>t('global.date.today')</>
+  if (date.isYesterday()) return <>t('global.date.yesterday')</>
+  return <>date.fromNow()</>
+}
+
 const NotificationGroup = ({
   label,
   items,
@@ -41,16 +48,10 @@ const NotificationGroup = ({
   label: string
   items: CXNotification[]
 }) => {
-  const { t } = useTranslation()
-  const date = dayjs(label)
   return (
     <>
       <div className="divider">
-        {date.isToday()
-          ? t('global.date.today')
-          : date.isYesterday()
-          ? t('global.date.yesterday')
-          : date.fromNow()}
+        <NotificationGroupTitle label={label} />
       </div>
       <ul className="group">
         {items.map((item: CXNotification) => (
