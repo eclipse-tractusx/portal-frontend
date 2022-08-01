@@ -109,7 +109,7 @@ const CompanyDetailOverlay = ({
                     variableName: `${t(
                       'content.admin.registration-requests.overlay.taxid'
                     )}`,
-                    value: selectedCompany?.taxId,
+                    value: selectedCompany?.taxId || '',
                   }}
                 />
                 <Grid
@@ -126,21 +126,25 @@ const CompanyDetailOverlay = ({
                   key="Street"
                   {...{
                     variableName: 'Street',
-                    value: `${selectedCompany?.streetname} ${selectedCompany?.streetnumber}`,
+                    value: `${selectedCompany?.streetName || ''} ${
+                      selectedCompany?.streetNumber || ''
+                    }`,
                   }}
                 />
                 <DetailGridRow
                   key="PLZ / City"
                   {...{
                     variableName: 'PLZ / City',
-                    value: `${selectedCompany?.zipcode} ${selectedCompany?.city}`,
+                    value: `${selectedCompany?.zipCode || ''} ${
+                      selectedCompany?.city || ''
+                    }`,
                   }}
                 />
                 <DetailGridRow
                   key="Country"
                   {...{
                     variableName: 'Country',
-                    value: selectedCompany?.countryDe,
+                    value: selectedCompany?.countryDe || '',
                   }}
                 />
               </Grid>

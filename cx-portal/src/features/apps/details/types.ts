@@ -8,7 +8,7 @@ export type AppDetails = AppMarketplaceApp & {
   contactNumber: string
   detailPictureUris: string[]
   longDescription: string
-  isSubscribed: boolean
+  isSubscribed: string
   tags: string[]
   languages: string[]
 }
@@ -32,7 +32,7 @@ export const AppDetailInitial = {
   contactNumber: '',
   detailPictureUris: [''],
   longDescription: '',
-  isSubscribed: false,
+  isSubscribed: '',
   tags: [''],
   languages: [''],
 }

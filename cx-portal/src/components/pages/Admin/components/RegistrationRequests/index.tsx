@@ -1,38 +1,85 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Table, Typography, PageHeader } from 'cx-portal-shared-components'
+import {
+  Table,
+  Typography,
+  PageHeader,
+  Button,
+} from 'cx-portal-shared-components'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchRegistrationRequests,
   fetchCompanyDetail,
+  approveRequest,
+  declineRequest,
 } from 'features/admin/registration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 
+import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
+
 export default function RegistrationRequests() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const columns = RegistrationRequestsTableColumns(useTranslation)
+
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
-  const { loading, registrationRequests } = useSelector(
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [pageSize] = useState<number>(10)
+
+  const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false)
+
+  const [selectedRequestId, setSelectedRequestId] = useState<string>()
+  const [actionType, setActionType] = useState<string>('approve')
+
+  const { loading, registrationRequests, paginationData } = useSelector(
     adminRegistrationSelector
   )
 
   useEffect(() => {
-    dispatch(fetchRegistrationRequests())
-  }, [dispatch])
+    const params = { size: pageSize, page: currentPage }
+    dispatch(fetchRegistrationRequests({ params }))
+  }, [dispatch, currentPage, pageSize])
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      dispatch(fetchCompanyDetail('0195a85f-e465-4571-b980-d1351dd76a9f'))
+      dispatch(fetchCompanyDetail(params.id.toString()))
       setOverlayOpen(true)
     }
   }
+
+  const onApproveClick = (id: string) => {
+    setConfirmModalOpen(true)
+    setSelectedRequestId(id)
+  }
+
+  const onDeclineClick = (id: string) => {
+    setConfirmModalOpen(true)
+    setActionType('decline')
+    setSelectedRequestId(id)
+  }
+
+  const makeActionSelectedRequest = async () => {
+    if (actionType === 'approve' && selectedRequestId)
+      await dispatch(approveRequest(selectedRequestId))
+    if (actionType === 'decline' && selectedRequestId)
+      await dispatch(declineRequest(selectedRequestId))
+
+    const params = { size: pageSize, page: 0 }
+    dispatch(fetchRegistrationRequests({ params }))
+
+    setConfirmModalOpen(false)
+  }
+
+  const columns = RegistrationRequestsTableColumns(
+    useTranslation,
+    onApproveClick,
+    onDeclineClick
+  )
 
   return (
     <main className="page-main-container">
@@ -41,6 +88,11 @@ export default function RegistrationRequests() {
           openDialog: overlayOpen,
           handleOverlayClose: () => setOverlayOpen(false),
         }}
+      />
+      <ConfirmationOverlay
+        openDialog={confirmModalOpen}
+        handleOverlayClose={() => setConfirmModalOpen(false)}
+        handleConfirmClick={() => makeActionSelectedRequest()}
       />
       <PageHeader
         title={t('content.admin.registration-requests.headertitle')}
@@ -63,7 +115,7 @@ export default function RegistrationRequests() {
             rows: registrationRequests,
             columns: columns,
             rowsCount: registrationRequests.length,
-            title: `${t('content.admin.registration-requests.tabletitle')}`,
+            title: t('content.admin.registration-requests.tabletitle'),
             headerHeight: 76,
             rowHeight: 100,
             hideFooter: true,
@@ -74,8 +126,6 @@ export default function RegistrationRequests() {
             disableSelectionOnClick: true,
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
             toolbar: {
-              onSearch: () => {},
-              onFilter: () => {},
               filter: [
                 {
                   name: 'state',
@@ -109,6 +159,17 @@ export default function RegistrationRequests() {
           }}
           getRowId={(row) => row.applicationId}
         />
+      </div>
+      <div className="load-more-button-container">
+        {paginationData.totalElements > pageSize * (currentPage + 1) &&
+          paginationData.totalElements! > pageSize && (
+            <Button
+              size="medium"
+              onClick={() => setCurrentPage((prevState) => prevState + 1)}
+            >
+              {t('content.partnernetwork.loadmore')}
+            </Button>
+          )}
       </div>
     </main>
   )

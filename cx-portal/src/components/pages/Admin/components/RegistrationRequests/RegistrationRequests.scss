@@ -33,7 +33,17 @@
 }
 
 .table-container {
-  margin: 0 10% 70px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.documents-column--cell {
+  display: block !important;
+  overflow: auto !important;
+}
+
+.load-more-button-container {
+  margin: 20px auto;
 }
 
 .document-cell-container {

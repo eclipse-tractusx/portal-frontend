@@ -16,6 +16,8 @@ import {
 import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'features/store'
+import { PaginationData } from '../../connector/types'
+import uniq from 'lodash.uniq'
 
 export const slice = createSlice({
   name,
@@ -23,22 +25,32 @@ export const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchRegistrationRequests.pending, (state) => {
-      state.registrationRequests = []
+      state.paginationData = {} as PaginationData
       state.loading = true
       state.error = ''
     })
     builder.addCase(
       fetchRegistrationRequests.fulfilled,
       (state, { payload }) => {
-        const payloadList = payload as Array<RegistrationRequestAPIResponse>
-        state.registrationRequests =
-          mapRegistrationRequestResponseToDataGrid(payloadList) || []
+        const payloadList = payload as unknown as RegistrationRequestAPIResponse
+
+        state.paginationData = {
+          totalElements: payloadList.meta.totalElements,
+          page: payloadList.meta.page,
+        } as PaginationData
+
+        state.registrationRequests = uniq(
+          state.registrationRequests.concat(
+            mapRegistrationRequestResponseToDataGrid(payloadList?.content) || []
+          )
+        )
+
         state.loading = false
         state.error = ''
       }
     )
     builder.addCase(fetchRegistrationRequests.rejected, (state, action) => {
-      state.registrationRequests = []
+      state.paginationData = {} as PaginationData
       state.loading = false
       state.error = action.error.message as string
     })
