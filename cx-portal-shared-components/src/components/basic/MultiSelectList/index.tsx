@@ -1,15 +1,24 @@
-import { Box, Chip, Popper, TextFieldProps } from '@mui/material'
+import { Chip, Popper, TextFieldProps } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
-import { Input } from '../Input'
+import { SelectInput } from './Components/SelectInput'
+import { SelectOptions } from './Components/SelectOptions'
+import uniqueId from 'lodash/uniqueId'
 
-interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
+export type PartsType = {
+  text: string
+  highlight: boolean 
+}
+
+export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
   label: string
   placeholder: string
   popperHeight?: number
   variant?: 'filled'
+  clearText?: string
+  noOptionsText?: string
   onAddItem: (items: any[]) => void
 }
 
@@ -24,6 +33,8 @@ export const MultiSelectList = ({
   error = false,
   disabled,
   popperHeight = 0,
+  clearText = 'Clear',
+  noOptionsText = 'No Options',
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
@@ -31,6 +42,8 @@ export const MultiSelectList = ({
     <Autocomplete
       id="selectList"
       sx={{ width: '100%' }}
+      clearText={clearText}
+      noOptionsText={noOptionsText}
       PopperComponent={({ style, ...props }) => (
         <Popper {...props} style={{ ...style, height: 0 }} />
       )}
@@ -40,7 +53,6 @@ export const MultiSelectList = ({
       options={items.map((item) => item)}
       getOptionLabel={(option) => option.title}
       renderTags={(value: string[], getTagProps) => {
-        onAddItem(value)
         return value.map((option: any, index: number) => (
           <Chip
             variant="filled"
@@ -59,63 +71,31 @@ export const MultiSelectList = ({
           />
         ))
       }}
-      renderInput={(params) => (
-        <Box
-          sx={{
-            '.MuiFilledInput-root': {
-              paddingTop: '0px !important',
-              minHeight: '55px',
-            },
-          }}
-        >
-          <Input
-            {...params}
-            label={label}
-            placeholder={placeholder}
-            variant={variant}
-            helperText={helperText}
-            error={error}
-            margin={margin}
-            focused={focused}
-            disabled={disabled}
-          />
-        </Box>
+      renderInput={(param) => (
+        <SelectInput
+          params={param}
+          label={label}
+          placeholder={placeholder}
+          variant={variant}
+          margin={margin}
+          focused={focused}
+          helperText={helperText}
+          error={error}
+          disabled={disabled}
+        />
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue)
-        const parts = parse(option.title, matches)
-
+        const parts: PartsType[] = parse(option.title, matches)
         return (
-          <li
-            {...props}
-            style={{
-              paddingBottom: '0px',
-              marginLeft: '5px',
-              marginRight: '5px',
-              marginTop: '-1px',
-            }}
-          >
-            <Box
-              sx={{
-                borderBottom: '1px solid #f2f2f2 !important',
-                width: '100%',
-                paddingBottom: '10px',
-              }}
-            >
-              {parts.map((part: any, index: any) => (
-                <span
-                  key={index}
-                  style={{
-                    fontWeight: part.highlight ? 700 : 400,
-                  }}
-                >
-                  {part.text}
-                </span>
-              ))}
-            </Box>
-          </li>
+          <SelectOptions
+            props={props}
+            parts={parts}
+            key={uniqueId('multi-select-option')}
+          />
         )
       }}
+      onChange={(_, reason: any[]) => onAddItem(reason)}
     />
   )
 }
