@@ -1,9 +1,10 @@
 import { Box } from '@mui/material'
 import { HTMLAttributes } from 'react'
+import { PartsType } from '..'
 
 interface SelectOptionsProps {
   props: HTMLAttributes<HTMLElement>
-  parts: any[]
+  parts: PartsType[]
 }
 
 export const SelectOptions = ({ props, parts }: SelectOptionsProps) => {
@@ -24,7 +25,7 @@ export const SelectOptions = ({ props, parts }: SelectOptionsProps) => {
           paddingBottom: '10px',
         }}
       >
-        {parts.map((part: any, index: any) => (
+        {parts.map((part: PartsType, index: number) => (
           <span
             key={index}
             style={{

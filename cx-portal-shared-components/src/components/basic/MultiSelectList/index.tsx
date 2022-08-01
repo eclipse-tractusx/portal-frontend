@@ -6,6 +6,11 @@ import { SelectInput } from './Components/SelectInput'
 import { SelectOptions } from './Components/SelectOptions'
 import uniqueId from 'lodash/uniqueId'
 
+export type PartsType = {
+  text: string
+  highlight: boolean 
+}
+
 export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
   label: string
@@ -81,7 +86,7 @@ export const MultiSelectList = ({
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue)
-        const parts = parse(option.title, matches)
+        const parts: PartsType[] = parse(option.title, matches)
         return (
           <SelectOptions
             props={props}
