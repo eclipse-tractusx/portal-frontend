@@ -10,7 +10,10 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { useForm } from 'react-hook-form'
 import { DefaultFormFieldValuesType } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay'
-import { ServiceAccountType, useAddServiceAccountMutation } from 'features/admin/service/apiSlice'
+import {
+  ServiceAccountType,
+  useAddServiceAccountMutation,
+} from 'features/admin/service/apiSlice'
 import { TechnicalUserAddForm } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay/components/TechnicalUserAddForm'
 import { UserDetails } from 'components/shared/basic/UserDetails'
 import './AddTechnicalUser.scss'
@@ -24,12 +27,10 @@ export const AddTechnicalUser = () => {
     '607818be-4978-41f4-bf63-fa8d2de51156',
     '607818be-4978-41f4-bf63-fa8d2de51157',
   ]
-  
+
   const [addServiceAccount] = useAddServiceAccountMutation()
-  
-  const handleConfirm = async (
-    formValues: DefaultFormFieldValuesType
-  ) => {
+
+  const handleConfirm = async (formValues: DefaultFormFieldValuesType) => {
     console.log('Form data: ', formValues)
     try {
       const result = await addServiceAccount({
@@ -42,9 +43,8 @@ export const AddTechnicalUser = () => {
     } catch (err) {
       console.log(err)
     }
-  //openAddTechnicalUserResponseOverlay()
-}
-
+    //openAddTechnicalUserResponseOverlay()
+  }
 
   const userDetailsData = [
     {
@@ -90,35 +90,33 @@ export const AddTechnicalUser = () => {
   return (
     <>
       <DialogHeader
-          title={t('content.addUser.technicalUserHeadline')}
-          intro={t('content.addUser.technicalUserSubheadline')}
-          closeWithIcon={true}
-          onCloseWithIcon={() => dispatch(closeOverlay())}
-        />
-        <DialogContent className="w-100">
-          <TechnicalUserAddForm
-            {...{ handleSubmit, control, errors, trigger }}
+        title={t('content.addUser.technicalUserHeadline')}
+        intro={t('content.addUser.technicalUserSubheadline')}
+        closeWithIcon={true}
+        onCloseWithIcon={() => dispatch(closeOverlay())}
+      />
+      <DialogContent className="w-100">
+        <TechnicalUserAddForm {...{ handleSubmit, control, errors, trigger }} />
+        <Box>
+          <UserDetails
+            columns={1}
+            userDetailsCards={userDetailsData}
+            variant="wide"
           />
-          <Box>
-            <UserDetails
-              columns={1}
-              userDetailsCards={userDetailsData}
-              variant="wide"
-            />
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-            {t('global.actions.cancel')}
-          </Button>
-          <Button
-            variant="contained"
-            onClick={onFormSubmit}
-            disabled={formHasErrors()}
-          >
-            {t('global.actions.confirm')}
-          </Button>
-        </DialogActions>
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+          {t('global.actions.cancel')}
+        </Button>
+        <Button
+          variant="contained"
+          onClick={onFormSubmit}
+          disabled={formHasErrors()}
+        >
+          {t('global.actions.confirm')}
+        </Button>
+      </DialogActions>
     </>
   )
 }

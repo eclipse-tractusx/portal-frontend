@@ -82,7 +82,9 @@ export default function TechnicalUserManagement() {
         onCloseWithIcon={closeAddTechnicalUserResponseOverlay}
       />
       <PageHeader
-        title={t('content.usermanagement.technicalUser.headline', {company: UserService.getCompany()})}
+        title={t('content.usermanagement.technicalUser.headline', {
+          company: UserService.getCompany(),
+        })}
         topPage={true}
         headerHeight={314}
       >

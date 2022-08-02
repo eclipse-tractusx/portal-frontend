@@ -35,7 +35,9 @@ const ROLE_IDS = [
 ]
 
 export default function Test() {
-  const roles = useFetchUserAppRolesQuery('5cf74ef8-e0b7-4984-a872-474828beb5d8').data
+  const roles = useFetchUserAppRolesQuery(
+    '5cf74ef8-e0b7-4984-a872-474828beb5d8'
+  ).data
   //useFetchServiceAccountDetailQuery c0c52362-4a18-4dc7-a2bb-68880198204a
   const { data } = useFetchServiceAccountListQuery(0)
 

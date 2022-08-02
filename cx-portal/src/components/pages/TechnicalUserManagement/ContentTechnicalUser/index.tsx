@@ -32,7 +32,7 @@ export const ContentTechnicalUser = ({
           <div className="content-technical-user-title">
             <SubHeaderTitle
               title={'content.usermanagement.technicalUser.descriptionHeader'}
-              params={{company: UserService.getCompany()}}
+              params={{ company: UserService.getCompany() }}
               variant="h3"
             />
 

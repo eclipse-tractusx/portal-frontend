@@ -21,7 +21,7 @@
 import { IconButton, PageLoadingTable } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
@@ -32,7 +32,7 @@ import { show } from 'features/control/overlay/actions'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const onDetailsClick = (userId: string, name: string) => {
@@ -65,9 +65,7 @@ export const TechnicalUserTable = () => {
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <IconButton
                 color="secondary"
-                onClick={() =>
-                  onDetailsClick(row.serviceAccountId, row.name)
-                }
+                onClick={() => onDetailsClick(row.serviceAccountId, row.name)}
               >
                 <ArrowForwardIcon />
               </IconButton>

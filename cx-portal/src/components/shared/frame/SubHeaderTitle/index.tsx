@@ -40,7 +40,7 @@ export default function SubHeaderTitle({
       variant={variant}
       className="section-title"
     >
-      {t(title,params)}
+      {t(title, params)}
     </Typography>
   )
 }
