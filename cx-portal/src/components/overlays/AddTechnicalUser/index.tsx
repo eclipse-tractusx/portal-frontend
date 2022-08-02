@@ -96,7 +96,7 @@ export const AddTechnicalUser = () => {
       />
       <DialogContent className="w-100">
         <TechnicalUserAddForm {...{ handleSubmit, control, errors, trigger }} />
-        <Box sx={{paddingTop: '25px'}}>
+        <Box sx={{ paddingTop: '25px' }}>
           <UserDetails
             columns={1}
             userDetailsCards={userDetailsData}
@@ -116,28 +116,31 @@ export const AddTechnicalUser = () => {
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>
-      {response && <AddTechnicalUserResponseOverlay 
+      {response && (
+        <AddTechnicalUserResponseOverlay
           title={t('content.addUser.technicalUserHeadline')}
           intro={t('content.addUser.technicalUserSubheadlineSuccess')}
-          dialogOpen={true}><UserDetails
-              columns={1}
-              userDetailsCards={[
-                {
-                  cardContentItems: {
-                    clientId: { label: 'Client ID', value: '1237856' },
-                    clientSecret: {
-                      label: 'Client Secret',
-                      value: 'asdds9g89897ds5f6njk234hf8zs9d',
-                    },
-                    userName: { label: 'UserName', value: 'max_mustermann23' },
-                    authType: { label: 'Auth Type', value: 'oauth2' },
+          dialogOpen={true}
+        >
+          <UserDetails
+            columns={1}
+            userDetailsCards={[
+              {
+                cardContentItems: {
+                  clientId: { label: 'Client ID', value: '1237856' },
+                  clientSecret: {
+                    label: 'Client Secret',
+                    value: 'asdds9g89897ds5f6njk234hf8zs9d',
                   },
+                  userName: { label: 'UserName', value: 'max_mustermann23' },
+                  authType: { label: 'Auth Type', value: 'oauth2' },
                 },
-              ]}
-              variant="wide"
-            /></AddTechnicalUserResponseOverlay>
-
-        }
+              },
+            ]}
+            variant="wide"
+          />
+        </AddTechnicalUserResponseOverlay>
+      )}
     </>
   )
 }

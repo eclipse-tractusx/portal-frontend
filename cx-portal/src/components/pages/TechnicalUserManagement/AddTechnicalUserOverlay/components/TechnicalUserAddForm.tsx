@@ -79,7 +79,7 @@ const TechnicalUserAddFormTextfield = ({
   placeholder,
   name,
   rules,
-  limit = 80
+  limit = 80,
 }: any) => {
   return (
     <Controller
@@ -173,7 +173,7 @@ export const TechnicalUserAddForm = ({
               helperText: t(
                 'content.addUser.technicalUser.addOverlay.error.description'
               ),
-              limit: 120
+              limit: 120,
             }}
           />
         </div>

@@ -32,9 +32,7 @@ export const AddTechnicalUserResponseOverlay = ({
           onCloseWithIcon={() => setOpen(false)}
         />
         <DialogContent>
-          <Box>
-            {children}
-          </Box>
+          <Box>{children}</Box>
         </DialogContent>
       </Dialog>
     </div>
