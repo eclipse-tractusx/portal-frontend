@@ -23,7 +23,6 @@ import {
   ServiceAccountType,
   useRemoveServiceAccountMutation,
   useAddServiceAccountMutation,
-  useFetchServiceAccountDetailQuery,
   useFetchServiceAccountListQuery,
 } from 'features/admin/service/apiSlice'
 import { sample } from 'lodash'
