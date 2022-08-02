@@ -104,7 +104,9 @@ export const AppUserDetailsTable = ({
             },
           ]}
           rows={tenantUsers}
-          getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
+          getRowId={(row: { [key: string]: string }) =>
+            uniqueId(row.companyUserId)
+          }
           disableColumnMenu
           hideFooter
         />

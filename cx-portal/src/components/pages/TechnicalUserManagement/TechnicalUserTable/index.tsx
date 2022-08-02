@@ -62,7 +62,9 @@ export const TechnicalUserTable = () => {
           },
         ]}
         rows={serviceAccounts}
-        getRowId={(row: { [key: string]: string }) => uniqueId(row.serviceAccountId)}
+        getRowId={(row: { [key: string]: string }) =>
+          uniqueId(row.serviceAccountId)
+        }
         disableColumnMenu
         hideFooter
       />

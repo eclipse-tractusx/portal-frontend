@@ -222,7 +222,9 @@ export default function InviteBusinessPartner() {
           ]}
           rows={invitesTableData}
           rowsCount={invitesData.meta.totalElements}
-          getRowId={(row: { [key: string]: string }) => uniqueId(row.dateCreated)}
+          getRowId={(row: { [key: string]: string }) =>
+            uniqueId(row.dateCreated)
+          }
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
