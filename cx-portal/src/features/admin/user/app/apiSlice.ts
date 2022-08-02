@@ -19,20 +19,27 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { TenantUser } from 'features/admin/user/types'
-import { PaginResult } from 'types/MainTypes'
-import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
+export type AppRole = {
+  roleId: string
+  role: string
+  description?: string
+}
+
+export type AppRoleCreate = {
+  companyUserId: string
+  roles: string[]
+}
+
 export const apiSlice = createApi({
-  reducerPath: 'rtk/admin/users',
+  reducerPath: 'rtk/admin/user/app',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchUsers: builder.query<PaginResult<TenantUser>, number | void>({
-      query: (page = 0) =>
-        `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${page}`,
+    fetchUserAppRoles: builder.query<AppRole[], string>({
+      query: (id: string) => `/api/administration/user/app/${id}/roles`,
     }),
   }),
 })
 
-export const { useFetchUsersQuery } = apiSlice
+export const { useFetchUserAppRolesQuery } = apiSlice
