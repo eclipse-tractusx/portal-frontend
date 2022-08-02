@@ -26,15 +26,18 @@ import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
 } from 'features/admin/service/apiSlice'
+import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const onUserDetailsClick = (userId: string, name: string) => {
-    navigate('/usermanagement/technicaluser/userdetails/' + userId, {
-      state: { name: name },
-    })
+  const onDetailsClick = (userId: string, name: string) => {
+    //navigate(`/technicaluser/userdetails/${userId}`, { state: { name }, })
+    dispatch(show(OVERLAYS.TECHUSER, userId))
   }
 
   return (
@@ -42,6 +45,8 @@ export const TechnicalUserTable = () => {
       <PageLoadingTable<ServiceAccountListEntry>
         title={t('content.usermanagement.technicalUser.tableHeader')}
         loadLabel={t('global.more')}
+        fetch={useFetchServiceAccountListQuery}
+        getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
         columns={[
           {
             field: 'name',
@@ -61,7 +66,7 @@ export const TechnicalUserTable = () => {
               <IconButton
                 color="secondary"
                 onClick={() =>
-                  onUserDetailsClick(row.serviceAccountId, row.name)
+                  onDetailsClick(row.serviceAccountId, row.name)
                 }
               >
                 <ArrowForwardIcon />
@@ -69,8 +74,6 @@ export const TechnicalUserTable = () => {
             ),
           },
         ]}
-        fetch={useFetchServiceAccountListQuery}
-        getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
       />
     </div>
   )

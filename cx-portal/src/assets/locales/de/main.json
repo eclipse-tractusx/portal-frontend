@@ -40,11 +40,12 @@
     "appreleaseprocess": "App Release Process",
     "appuserdetails": "App Benutzer Details",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technical Benutzer"
+    "technicaluser": "Technische Benutzer Verwaltung"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
-    "add_user": "Neuen Benutzer hinzu fügen"
+    "add_user": "Neuen Benutzer hinzufügen",
+    "add_techuser": "Neuen technischen Benutzer hinzufügen"
   },
   "actions": {
     "SignOut": "Abmelden",

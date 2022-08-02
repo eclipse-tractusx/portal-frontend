@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
 import '../AddTechnicalUserOverlay.scss'
+import { AppRole, useFetchUserAppRolesQuery } from 'features/admin/user/app/apiSlice'
 
 const TechnicalUserAddFormSelect = ({
   control,
@@ -18,7 +19,8 @@ const TechnicalUserAddFormSelect = ({
   rules,
 }: any) => {
   const { t } = useTranslation()
-
+  const roles = useFetchUserAppRolesQuery('5cf74ef8-e0b7-4984-a872-474828beb5d8').data
+  
   return (
     <Controller
       render={({ field: { onChange, value } }) => (
@@ -42,8 +44,8 @@ const TechnicalUserAddFormSelect = ({
             <MenuItem disabled value="none">
               {t('global.actions.pleaseSelect')}
             </MenuItem>
-            <MenuItem value="digitaltwin">Digital Twin</MenuItem>
-            <MenuItem value="semantichub">Semantic Hub</MenuItem>
+            { roles?.map((role: AppRole) => 
+              <MenuItem key={role.roleId} value={role.role}>{role.role}</MenuItem>)}
           </Select>
           {!!errors[name] && (
             <FormHelperText

@@ -6,6 +6,9 @@ import { TechnicalUserTable } from '../TechnicalUserTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetNotification } from 'features/notification/actions'
 import { notificationSelector } from 'features/notification/slice'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
+import UserService from 'services/UserService'
 
 interface ContentTechnicalUserProps {
   openAddTechnicalUserOverlay: React.MouseEventHandler
@@ -29,6 +32,7 @@ export const ContentTechnicalUser = ({
           <div className="content-technical-user-title">
             <SubHeaderTitle
               title={'content.usermanagement.technicalUser.descriptionHeader'}
+              params={{company: UserService.getCompany()}}
               variant="h3"
             />
 
@@ -40,7 +44,7 @@ export const ContentTechnicalUser = ({
           <Button
             size="small"
             startIcon={<AddCircleOutlineIcon />}
-            onClick={openAddTechnicalUserOverlay}
+            onClick={() => dispatch(show(OVERLAYS.ADD_TECHUSER))}
           >
             {t('content.usermanagement.technicalUser.create')}
           </Button>

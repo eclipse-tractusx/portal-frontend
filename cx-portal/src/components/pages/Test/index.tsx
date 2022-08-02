@@ -25,6 +25,7 @@ import {
   useAddServiceAccountMutation,
   useFetchServiceAccountListQuery,
 } from 'features/admin/service/apiSlice'
+import { useFetchUserAppRolesQuery } from 'features/admin/user/app/apiSlice'
 import { sample } from 'lodash'
 
 const ROLE_IDS = [
@@ -34,7 +35,7 @@ const ROLE_IDS = [
 ]
 
 export default function Test() {
-  //useFetchUserAppRolesQuery 5cf74ef8-e0b7-4984-a872-474828beb5d8
+  const roles = useFetchUserAppRolesQuery('5cf74ef8-e0b7-4984-a872-474828beb5d8').data
   //useFetchServiceAccountDetailQuery c0c52362-4a18-4dc7-a2bb-68880198204a
   const { data } = useFetchServiceAccountListQuery(0)
 
@@ -71,6 +72,7 @@ export default function Test() {
     <main>
       <Button onClick={handleAdd}>Add</Button>
       <Button onClick={handleRemove}>Remove</Button>
+      <pre>{JSON.stringify(roles, null, 2)}</pre>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </main>
   )

@@ -17,6 +17,8 @@ import {
   userMenuFull,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
+import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
+import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -67,8 +69,12 @@ export const getOverlay = (overlay: OverlayState) => {
   switch (overlay.type) {
     case OVERLAYS.ADD_USER:
       return <AddUser />
+    case OVERLAYS.ADD_TECHUSER:
+      return <AddTechnicalUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
+    case OVERLAYS.TECHUSER:
+      return <TechnicalUserInfo id={overlay.id} />
     case OVERLAYS.NEWS:
       return <NewsDetail id={overlay.id} />
     case OVERLAYS.ADD_BPN:

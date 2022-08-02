@@ -29,6 +29,7 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { PageHeader } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import UserService from 'services/UserService'
 
 export default function TechnicalUserManagement() {
   const [open, setOpen] = useState(false)
@@ -81,7 +82,7 @@ export default function TechnicalUserManagement() {
         onCloseWithIcon={closeAddTechnicalUserResponseOverlay}
       />
       <PageHeader
-        title={t('content.usermanagement.technicalUser.headline')}
+        title={t('content.usermanagement.technicalUser.headline', {company: UserService.getCompany()})}
         topPage={true}
         headerHeight={314}
       >
