@@ -65,7 +65,10 @@ export const RegistrationRequestsTableColumns = (
         <div className="document-cell-container">
           {params?.value?.map((contract) => {
             return (
-              <div className="document-cell-line" key={uniqueId(contract?.documentHash)}>
+              <div
+                className="document-cell-line"
+                key={uniqueId(contract?.documentHash)}
+              >
                 <ArticleOutlinedIcon />
                 <a href={contract?.documentHash} rel="noreferrer">
                   {contract?.documentType}

@@ -80,7 +80,7 @@ export default function RegistrationRequests() {
     onApproveClick,
     onDeclineClick
   )
-console.log('registrationRequests', registrationRequests)
+  console.log('registrationRequests', registrationRequests)
   return (
     <main className="page-main-container">
       <CompanyDetailOverlay
