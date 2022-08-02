@@ -8,7 +8,7 @@ import uniqueId from 'lodash/uniqueId'
 
 export type PartsType = {
   text: string
-  highlight: boolean 
+  highlight: boolean
 }
 
 export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
