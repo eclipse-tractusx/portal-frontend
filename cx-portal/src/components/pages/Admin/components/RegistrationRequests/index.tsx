@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Table,
   Typography,
+  PageHeader,
   Button,
 } from 'cx-portal-shared-components'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
@@ -94,22 +95,23 @@ export default function RegistrationRequests() {
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
       
-        <Typography variant="body2" align="center">
-          {t('content.registration-requests.introText1')}
+      { /* Page header title and background color */ }
+      <PageHeader
+        title={t('content.admin.registration-requests.headertitle')}
+        topPage={false}
+        headerHeight={200}
+      />
+      
+      { /* Adding additional text to introduce the page function */ }
+        <Typography variant="body2" mt={3} align="center">
+          {t('content.admin.registration-requests.introText1')}
         </Typography>
         <Typography variant="body2" mb={3} align="center">
-          {t('content.registration-requests.introText2')}
+          {t('content.admin.registration-requests.introText2')}
         </Typography>
       
-      <div className="page-title-container">
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h3"
-          className="page-title"
-        >
-          {t('content.admin.registration-requests.pagetitle')}
-        </Typography>
-      </div>
+    
+      { /* Table component */ }
       <div className={'table-container'}>
         <Table
           {...{
