@@ -64,7 +64,8 @@
           "state": "State"
         },
         "headertitle": "User Registration Requests",
-        "pagetitle": "Requests Overview",
+        "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
+        "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "tabletitle": "Registration requests",
         "pending": "pending",
         "buttonconfirm": "confirm",
@@ -75,6 +76,10 @@
           "title": "Company Detail",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
+        },
+        "confirmmodal": {
+          "title": "Confirm action",
+          "description": "Are you sure to make action on selected request?"
         }
       }
     },
@@ -370,6 +375,12 @@
           "headline": "Identity Management",
           "title": "User List",
           "add": "Add Role"
+        },
+        "roles": {
+          "error": {
+            "title": "Error",
+            "message": "Incorrect Application Id"
+          }
         }
       },
       "technicalUser": {
@@ -569,6 +580,11 @@
       "title": "Oops, Something went wrong.",
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
       "additionalDescription": "Please contact your admin."
+    },
+    "date": {
+      "yesterday": "yesterday",
+      "today": "today",
+      "tomorrow": "tomorrow"
     }
   },
   "servicemarketplace": {

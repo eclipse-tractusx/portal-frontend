@@ -45,6 +45,7 @@ export { MultiSelectList } from './basic/MultiSelectList'
 export { ProcessList } from './basic/ProcessList'
 export { CircleProgress } from './basic/Progress/CircleProgress'
 export { Stepper } from './basic/Stepper'
+export { SelectList } from './basic/SelectList'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { AdminAppRoleState, AppRole, initialState, name } from './types'
-import { fetchItems } from './actions'
+import { fetchRoles } from './actions'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 
@@ -9,21 +9,21 @@ export const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchItems.pending, (state) => ({
+    builder.addCase(fetchRoles.pending, (state) => ({
       ...state,
-      items: [],
+      roles: [],
       request: RequestState.SUBMIT,
       error: '',
     }))
-    builder.addCase(fetchItems.fulfilled, (state, { payload }) => ({
+    builder.addCase(fetchRoles.fulfilled, (state, { payload }) => ({
       ...state,
-      items: payload || [],
+      roles: payload || [],
       request: RequestState.OK,
       error: '',
     }))
-    builder.addCase(fetchItems.rejected, (state, action) => ({
+    builder.addCase(fetchRoles.rejected, (state, action) => ({
       ...state,
-      items: [],
+      roles: [],
       request: RequestState.ERROR,
       error: action.error.message as string,
     }))
@@ -33,8 +33,8 @@ export const slice = createSlice({
 export const stateSelector = (state: RootState): AdminAppRoleState =>
   state.admin.approle
 
-export const itemSelector = (state: RootState): AppRole[] =>
-  state.admin.approle.items
+export const roleSelector = (state: RootState): AppRole[] =>
+  state.admin.approle.roles
 
 const Slice = { slice }
 

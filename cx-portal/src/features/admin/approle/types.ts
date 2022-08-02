@@ -8,13 +8,13 @@ export type AppRole = {
 }
 
 export interface AdminAppRoleState {
-  items: Array<AppRole>
+  roles: Array<AppRole>
   request: RequestState
   error: string
 }
 
 export const initialState: AdminAppRoleState = {
-  items: [],
+  roles: [],
   request: RequestState.NONE,
   error: '',
 }

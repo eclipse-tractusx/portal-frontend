@@ -2,9 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { TenantUser } from 'features/admin/user/types'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
-import { PAGE_SIZE, PaginResult } from 'types/MainTypes'
+import { PaginResult } from 'types/MainTypes'
+import { PAGE_SIZE } from 'types/Constants'
 
 export const apiSlice = createApi({
+  reducerPath: 'rtk/admin/users',
   baseQuery: fetchBaseQuery({
     baseUrl: getApiBase(),
     prepareHeaders: (headers) => {

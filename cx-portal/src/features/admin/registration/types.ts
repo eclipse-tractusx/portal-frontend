@@ -11,18 +11,8 @@ export type InviteData = {
 }
 
 export type RegistrationRequestAPIResponse = {
-  application_id: string
-  changed_date: Date
-  Company_name: string
-  user_email: string
-  BPN: string
-  contracts: Array<RegistrationRequestContract>
-  street: string
-  house_number: string
-  plz: string
-  city: string
-  country: string
-  status: string
+  content: Array<RegistrationRequest>
+  meta: PaginationData
 }
 
 export type CompanyDetail = {
@@ -30,35 +20,45 @@ export type CompanyDetail = {
   name: string
   bpn: string
   taxId: string
-  streetname: string
-  streetnumber: string
-  zipcode: string
+  streetName: string
+  streetNumber: string
+  zipCode: string
   city: string
   countryDe: string
 }
 
-export type RegistrationRequestContract = {
-  name: string
-  document: string
+export type RegistrationRequestDocument = {
+  documentType: string
+  documentHash: string
 }
 
 export type CompanyApplicationInfo = {
   companyName: string
-  userEmail: string
+  email: string
   bpn: string
+}
+
+export type RegistrationRequest = {
+  applicationId: string
+  dateCreated: Date
+  companyName: string
+  email: string
+  bpn: string
+  documents: Array<RegistrationRequestDocument>
+  applicationStatus: string
 }
 
 export type RegistrationRequestDataGrid = {
   applicationId: string
-  changedDate: Date
+  dateCreated: Date
   companyInfo: CompanyApplicationInfo
-  contracts: Array<RegistrationRequestContract>
-  street: string
-  houseNumber: string
-  plz: string
-  city: string
-  country: string
+  documents: Array<RegistrationRequestDocument>
   status: string
+}
+
+export type PaginationData = {
+  totalElements: number
+  page: number
 }
 
 export interface AdminRegistrationState {
@@ -69,6 +69,7 @@ export interface AdminRegistrationState {
   error: string
   request: RequestState
   data: PaginResult<InvitesDataGrid>
+  paginationData: PaginationData
 }
 
 export const initialState: AdminRegistrationState = {
@@ -79,6 +80,7 @@ export const initialState: AdminRegistrationState = {
   error: '',
   request: RequestState.NONE,
   data: initialPaginResult,
+  paginationData: {} as PaginationData,
 }
 
 export type InvitesDataGrid = {
