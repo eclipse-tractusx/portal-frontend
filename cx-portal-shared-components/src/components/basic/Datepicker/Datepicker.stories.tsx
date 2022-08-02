@@ -1,4 +1,5 @@
 import { ComponentStory } from '@storybook/react'
+import { Box } from '@mui/material'
 
 import { Datepicker as Component } from '.'
 
@@ -9,7 +10,9 @@ export default {
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
+  <Box sx={{ width: '320px' }}>
+    <Component {...args} />
+  </Box>
 )
 
 export const DatePicker = Template.bind({})
@@ -21,9 +24,10 @@ DatePicker.args = {
   error: false,
   margin: 'dense',
   variant: 'filled',
-  focused: false,
   locale: 'en',
   defaultValue: new Date(),
   readOnly: false,
+  daySelectedColor: '#0F71CB',
+  todayColor: '#939393',
   onChangeItem: (date: any) => console.log('date:', date),
 }
