@@ -648,8 +648,8 @@ export const theme = createTheme({
             paddingTop: '0px !important',
             minHeight: '55px',
           },
-        }
+        },
       },
-    }
+    },
   },
 })

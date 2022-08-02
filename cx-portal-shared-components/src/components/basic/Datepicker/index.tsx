@@ -86,7 +86,7 @@ export const Datepicker = ({
         adapterLocale={localeMap[locale]}
       >
         <DatePicker
-          className='date-picker'
+          className="date-picker"
           value={value}
           open={open}
           disabled={disabled}
@@ -109,24 +109,30 @@ export const Datepicker = ({
                 onClick={handleOpen}
                 inputProps={{
                   ...params.inputProps,
-                  placeholder: placeholder
+                  placeholder: placeholder,
                 }}
               />
             </Box>
           )}
-          renderDay={(day: Date, _selectedDays: Date[], pickersDayProps: PickersDayProps<Date>) => {
+          renderDay={(
+            day: Date,
+            _selectedDays: Date[],
+            pickersDayProps: PickersDayProps<Date>
+          ) => {
             const bgColor = pickersDayProps.today ? todayColor : '#fff'
-            const bgSelected = pickersDayProps.selected ? daySelectedColor : bgColor
+            const bgSelected = pickersDayProps.selected
+              ? daySelectedColor
+              : bgColor
             const colorSelected = pickersDayProps.selected ? '#fff' : '#202020'
             const isBold = pickersDayProps.today ? '500' : '400'
-            
+
             return (
               <Box key={uniqueId('pickers-day')}>
-                {day ?
+                {day ? (
                   <Button
                     sx={{
-                      width:'36px !important',
-                      minWidth:'36px !important',
+                      width: '36px !important',
+                      minWidth: '36px !important',
                       height: '36px !important',
                       margin: '0 2px',
                       padding: '0',
@@ -138,14 +144,15 @@ export const Datepicker = ({
                       fontWeight: isBold,
                       ':hover': {
                         backgroundColor: '#f2f2f2',
-                      }
+                      },
                     }}
                     onClick={() => handleChange(pickersDayProps.day)}
                   >
                     {new Date(pickersDayProps.day).getDate()}
-                  </Button> :
+                  </Button>
+                ) : (
                   <div></div>
-                }
+                )}
               </Box>
             )
           }}
