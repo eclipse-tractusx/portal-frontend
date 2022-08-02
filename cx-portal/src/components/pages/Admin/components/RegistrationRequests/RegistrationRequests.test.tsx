@@ -16,7 +16,6 @@ beforeAll(() => {
 })
 
 test('Control page is correctly rendered', async () => {
-
   // Check table component rendered correctly via one of the table column
   expect(
     screen.getByText(

@@ -17,6 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
@@ -52,7 +53,17 @@ export const PageLoadingTable = function <T>({
         {...props}
       />
       {hasMore && (
-        <Button onClick={nextPage}>{loadLabel || 'load more'}</Button>
+        <Box
+          sx={{
+            width: '100%',
+            height: '100px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Button onClick={nextPage}>{loadLabel || 'load more'}</Button>
+        </Box>
       )}
     </>
   )
