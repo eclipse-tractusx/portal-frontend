@@ -3,8 +3,8 @@ import { Cards, Button, Typography } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchLatest } from 'features/apps/marketplace/actions'
-import { latestSelector } from 'features/apps/marketplace/slice'
+import { fetchLatest } from 'features/apps/marketplaceDeprecated/actions'
+import { latestSelector } from 'features/apps/marketplaceDeprecated/slice'
 import './app-store-section.scss'
 
 export default function AppStoreSection() {
