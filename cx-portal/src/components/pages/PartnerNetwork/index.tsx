@@ -15,6 +15,7 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'features/partnerNetwork/types'
+import uniqueId from 'lodash/uniqueId'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -142,7 +143,7 @@ const PartnerNetwork = () => {
             },
             loading,
           }}
-          getRowId={(row) => row.bpn}
+          getRowId={(row) => uniqueId(row.bpn)}
         />
       </div>
       <div className="load-more-button-container">

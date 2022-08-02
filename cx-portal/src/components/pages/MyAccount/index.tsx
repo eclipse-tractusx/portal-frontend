@@ -144,7 +144,7 @@ export default function MyAccount() {
           ]}
           rows={userAppRoles}
           rowsCount={userAppRoles.length}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { fetchPage } from 'features/admin/service/actions'
 import { itemsSelector } from 'features/admin/service/slist'
 import { ServiceAccount } from 'features/admin/service/types'
+import uniqueId from 'lodash/uniqueId'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
@@ -61,7 +62,7 @@ export const TechnicalUserTable = () => {
           },
         ]}
         rows={serviceAccounts}
-        getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
+        getRowId={(row: { [key: string]: string }) => uniqueId(row.serviceAccountId)}
         disableColumnMenu
         hideFooter
       />

@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
+import uniqueId from 'lodash/uniqueId'
 
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
@@ -221,7 +222,7 @@ export default function InviteBusinessPartner() {
           ]}
           rows={invitesTableData}
           rowsCount={invitesData.meta.totalElements}
-          getRowId={(row: { [key: string]: string }) => row.dateCreated}
+          getRowId={(row: { [key: string]: string }) => uniqueId(row.dateCreated)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
