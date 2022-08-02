@@ -26,7 +26,7 @@
     "build:storybook": "mkdirp public && build-storybook -s public && rimraf ../cx-portal/public/_storybook && mv ./storybook-static ../cx-portal/public/_storybook"
   },
   "dependencies": {
-    "@mui/x-data-grid": "^5.6.0",
+    "@mui/x-data-grid": "^5.15.0",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/react-slick": "^0.23.8",
     "autosuggest-highlight": "^3.2.1",
