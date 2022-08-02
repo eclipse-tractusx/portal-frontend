@@ -18,6 +18,7 @@ interface AddTechnicalUserOverlayProps {
 }
 
 export type DefaultFormFieldValuesType = {
+  TechnicalUserName: string
   TechnicalUserService: string
   TechnicalUserDescription: string
 }
@@ -39,6 +40,7 @@ export const AddTechnicalUserOverlay = ({
     },
   ]
   const defaultFormFieldValues = {
+    TechnicalUserName: '',
     TechnicalUserService: 'none',
     TechnicalUserDescription: '',
   }

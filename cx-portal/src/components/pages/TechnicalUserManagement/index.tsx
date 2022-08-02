@@ -19,68 +19,17 @@
  ********************************************************************************/
 
 import './TechnicalUserManagement.scss'
-import {
-  AddTechnicalUserOverlay,
-  DefaultFormFieldValuesType,
-} from './AddTechnicalUserOverlay'
-import { AddTechnicalUserResponseOverlay } from './AddTechnicalUserResponseOverlay'
 import { ContentTechnicalUser } from './ContentTechnicalUser'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { PageHeader } from 'cx-portal-shared-components'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import UserService from 'services/UserService'
 
 export default function TechnicalUserManagement() {
-  const [open, setOpen] = useState(false)
-  const [openResponse, setOpenResponse] = useState(false)
   const { t } = useTranslation()
-
-  const openAddTechnicalUserOverlay = () => {
-    setOpen(true)
-  }
-
-  const closeAddTechnicalUserOverlay = () => {
-    setOpen(false)
-  }
-
-  const openAddTechnicalUserResponseOverlay = () => {
-    setOpen(false)
-    setOpenResponse(true)
-  }
-
-  const closeAddTechnicalUserResponseOverlay = () => {
-    setOpenResponse(false)
-  }
-
-  const handleAddTechnicalUserConfirm = (
-    formValues: DefaultFormFieldValuesType
-  ) => {
-    openAddTechnicalUserResponseOverlay()
-
-    console.log('Form data: ', formValues)
-
-    // TODO: use above formValues for API call/Redux
-    // dispatch(
-    //     addItem({
-    //       name: `testaccount-${Date.now()}`,
-    //       description: 'another test account',
-    //       authenticationType: 'SECRET',
-    //     })
-    //   )
-  }
 
   return (
     <main className="technical-user-management">
-      <AddTechnicalUserOverlay
-        dialogOpen={open}
-        handleClose={closeAddTechnicalUserOverlay}
-        handleConfirm={handleAddTechnicalUserConfirm}
-      />
-      <AddTechnicalUserResponseOverlay
-        dialogOpen={openResponse}
-        onCloseWithIcon={closeAddTechnicalUserResponseOverlay}
-      />
       <PageHeader
         title={t('content.usermanagement.technicalUser.headline', {
           company: UserService.getCompany(),
@@ -90,9 +39,7 @@ export default function TechnicalUserManagement() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-      <ContentTechnicalUser
-        openAddTechnicalUserOverlay={openAddTechnicalUserOverlay}
-      />
+      <ContentTechnicalUser />
     </main>
   )
 }

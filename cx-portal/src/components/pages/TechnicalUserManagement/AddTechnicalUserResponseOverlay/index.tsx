@@ -1,55 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
 } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
-import { UserDetails } from 'components/shared/basic/UserDetails'
 
 interface AddTechnicalUserOverlayProps {
+  title: string
+  intro?: string
   dialogOpen: boolean
-  onCloseWithIcon?: (event: React.MouseEvent) => void
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const AddTechnicalUserResponseOverlay = ({
+  title,
+  intro,
   dialogOpen,
-  onCloseWithIcon,
+  children,
 }: AddTechnicalUserOverlayProps) => {
-  const { t } = useTranslation()
-
-  const userDataResponse = [
-    {
-      cardContentItems: {
-        clientId: { label: 'Client ID', value: '1237856' },
-        clientSecret: {
-          label: 'Client Secret',
-          value: 'asdds9g89897ds5f6njk234hf8zs9d',
-        },
-        userName: { label: 'UserName', value: 'max_mustermann23' },
-        authType: { label: 'Auth Type', value: 'oauth2' },
-      },
-    },
-  ]
+  const [open, setOpen] = useState<boolean>(dialogOpen)
 
   return (
     <div>
-      <Dialog open={dialogOpen}>
+      <Dialog open={open}>
         <DialogHeader
-          title={t('content.addUser.technicalUserHeadline')}
-          intro={t('content.addUser.technicalUserSubheadlineSuccess')}
+          title={title}
+          intro={intro}
           closeWithIcon={true}
           icon={true}
-          onCloseWithIcon={onCloseWithIcon}
+          onCloseWithIcon={() => setOpen(false)}
         />
         <DialogContent>
           <Box>
-            <UserDetails
-              columns={1}
-              userDetailsCards={userDataResponse}
-              variant="wide"
-            />
+            {children}
           </Box>
         </DialogContent>
       </Dialog>

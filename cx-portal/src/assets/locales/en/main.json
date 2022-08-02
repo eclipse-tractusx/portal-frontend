@@ -418,6 +418,7 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
+          "username": "Username",
           "description": "Description",
           "spocHeadline": "Single Point of Contact (SPoC):",
           "error": {

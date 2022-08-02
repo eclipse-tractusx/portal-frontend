@@ -11,35 +11,32 @@ import { closeOverlay } from 'features/control/overlay/actions'
 import { useForm } from 'react-hook-form'
 import { DefaultFormFieldValuesType } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay'
 import {
+  ServiceAccountDetail,
   ServiceAccountType,
   useAddServiceAccountMutation,
 } from 'features/admin/service/apiSlice'
 import { TechnicalUserAddForm } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay/components/TechnicalUserAddForm'
 import { UserDetails } from 'components/shared/basic/UserDetails'
-import './AddTechnicalUser.scss'
+import { useState } from 'react'
+import { AddTechnicalUserResponseOverlay } from 'components/pages/TechnicalUserManagement/AddTechnicalUserResponseOverlay'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
-  const ROLE_IDS = [
-    '607818be-4978-41f4-bf63-fa8d2de51155',
-    '607818be-4978-41f4-bf63-fa8d2de51156',
-    '607818be-4978-41f4-bf63-fa8d2de51157',
-  ]
-
+  const [response, setResponse] = useState<ServiceAccountDetail>()
   const [addServiceAccount] = useAddServiceAccountMutation()
 
   const handleConfirm = async (formValues: DefaultFormFieldValuesType) => {
     console.log('Form data: ', formValues)
     try {
       const result = await addServiceAccount({
-        name: `testaccount-${Math.random()}`,
-        description: 'none',
+        name: formValues.TechnicalUserName,
+        description: formValues.TechnicalUserDescription,
         authenticationType: ServiceAccountType.SECRET,
-        roleIds: [ROLE_IDS[0]],
+        roleIds: [formValues.TechnicalUserService],
       }).unwrap()
       console.log(result)
+      setResponse(result)
     } catch (err) {
       console.log(err)
     }
@@ -57,6 +54,7 @@ export const AddTechnicalUser = () => {
     },
   ]
   const defaultFormFieldValues = {
+    TechnicalUserName: '',
     TechnicalUserService: 'none',
     TechnicalUserDescription: '',
   }
@@ -73,6 +71,7 @@ export const AddTechnicalUser = () => {
 
   const onFormSubmit = async () => {
     const validateFields = await trigger([
+      'TechnicalUserName',
       'TechnicalUserService',
       'TechnicalUserDescription',
     ])
@@ -97,7 +96,7 @@ export const AddTechnicalUser = () => {
       />
       <DialogContent className="w-100">
         <TechnicalUserAddForm {...{ handleSubmit, control, errors, trigger }} />
-        <Box>
+        <Box sx={{paddingTop: '25px'}}>
           <UserDetails
             columns={1}
             userDetailsCards={userDetailsData}
@@ -117,6 +116,28 @@ export const AddTechnicalUser = () => {
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>
+      {response && <AddTechnicalUserResponseOverlay 
+          title={t('content.addUser.technicalUserHeadline')}
+          intro={t('content.addUser.technicalUserSubheadlineSuccess')}
+          dialogOpen={true}><UserDetails
+              columns={1}
+              userDetailsCards={[
+                {
+                  cardContentItems: {
+                    clientId: { label: 'Client ID', value: '1237856' },
+                    clientSecret: {
+                      label: 'Client Secret',
+                      value: 'asdds9g89897ds5f6njk234hf8zs9d',
+                    },
+                    userName: { label: 'UserName', value: 'max_mustermann23' },
+                    authType: { label: 'Auth Type', value: 'oauth2' },
+                  },
+                },
+              ]}
+              variant="wide"
+            /></AddTechnicalUserResponseOverlay>
+
+        }
     </>
   )
 }

@@ -10,13 +10,7 @@ import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import UserService from 'services/UserService'
 
-interface ContentTechnicalUserProps {
-  openAddTechnicalUserOverlay: React.MouseEventHandler
-}
-
-export const ContentTechnicalUser = ({
-  openAddTechnicalUserOverlay,
-}: ContentTechnicalUserProps) => {
+export const ContentTechnicalUser = () => {
   const { t } = useTranslation()
   const notification = useSelector(notificationSelector)
   const dispatch = useDispatch()

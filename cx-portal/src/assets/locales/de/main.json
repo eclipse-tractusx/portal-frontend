@@ -417,8 +417,9 @@
       "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst*",
-          "description": "Beschreibung*",
+          "service": "Dienst",
+          "username": "Username",
+          "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC):",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
