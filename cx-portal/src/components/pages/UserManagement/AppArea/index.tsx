@@ -1,19 +1,32 @@
-import { Card, Carousel } from 'cx-portal-shared-components'
+import { Card, CardItems, Carousel } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { fetchSubscribed } from 'features/apps/marketplace/actions'
-import { subscribedSelector } from 'features/apps/marketplace/slice'
+import {
+  fetchActive,
+  fetchSubscriptionStatus,
+} from 'features/apps/marketplace/actions'
+import {
+  activeSelector,
+  subscribedStatusSelector,
+  subscribedAppsSelector,
+} from 'features/apps/marketplace/slice'
 import uniqueId from 'lodash/uniqueId'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
 export const AppArea = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const items = useSelector(subscribedSelector)
+  const items = useSelector(activeSelector)
+  const appsStatus = useSelector(subscribedStatusSelector)
+  const apps = useSelector(subscribedAppsSelector)
+  console.log('items', items)
+  console.log('appsStatus', appsStatus)
+  console.log('apps', apps)
 
   useEffect(() => {
-    dispatch(fetchSubscribed(true))
+    dispatch(fetchSubscriptionStatus())
+    dispatch(fetchActive())
   }, [dispatch])
 
   return (
@@ -25,13 +38,11 @@ export const AppArea = () => {
         />
       </div>
       <Carousel gapToDots={5}>
-        {items.map((item) => {
+        {items.map((item: CardItems) => {
           return (
             <Card
+              {...item}
               key={uniqueId(item.title)}
-              title={item.title}
-              subtitle={item.subtitle}
-              image={item.image}
               buttonText="Details"
               imageSize="small"
               imageShape="round"

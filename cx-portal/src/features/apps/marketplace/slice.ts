@@ -1,12 +1,13 @@
 import { CardItems } from 'cx-portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
-import { fetchActive, fetchLatest, fetchSubscribed } from './actions'
+import { fetchActive, fetchLatest, fetchSubscriptionStatus } from './actions'
 import {
   AppMarketplaceApp,
   AppMarketplaceState,
   initialState,
   name,
+  SubscribedApps,
 } from './types'
 import { appToCard } from './mapper'
 
@@ -51,21 +52,24 @@ export const slice = createSlice({
       loading: false,
       error: action.error.message as string,
     }))
-    builder.addCase(fetchSubscribed.pending, (state) => ({
+    builder.addCase(fetchSubscriptionStatus.pending, (state) => ({
       ...state,
-      subscribed: [],
+      subscribedApps: [],
       loading: true,
       error: '',
     }))
-    builder.addCase(fetchSubscribed.fulfilled, (state, { payload }) => ({
+    builder.addCase(
+      fetchSubscriptionStatus.fulfilled,
+      (state, { payload }) => ({
+        ...state,
+        subscribedApps: payload || [],
+        loading: false,
+        error: '',
+      })
+    )
+    builder.addCase(fetchSubscriptionStatus.rejected, (state, action) => ({
       ...state,
-      subscribed: payload || [],
-      loading: false,
-      error: '',
-    }))
-    builder.addCase(fetchSubscribed.rejected, (state, action) => ({
-      ...state,
-      subscribed: [],
+      subscribedApps: [],
       loading: false,
       error: action.error.message as string,
     }))
@@ -81,10 +85,25 @@ export const activeSelector = (state: RootState): CardItems[] =>
 export const latestSelector = (state: RootState): CardItems[] =>
   state.apps.marketplace.latest.map((app: AppMarketplaceApp) => appToCard(app))
 
-export const subscribedSelector = (state: RootState): CardItems[] =>
-  state.apps.marketplace.subscribed.map((app: AppMarketplaceApp) =>
-    appToCard(app)
-  )
+export const subscribedStatusSelector = (state: RootState) =>
+  state.apps.marketplace.subscribedApps
+
+export const subscribedAppsSelector = (state: RootState) =>
+  state.apps.marketplace.items
+    .filter((item: AppMarketplaceApp) => {
+      return state.apps.marketplace.subscribedApps.find(
+        (app: SubscribedApps) => {
+          return (
+            item['id'] === app['appId'] &&
+            app['appSubscriptionStatus'] === 'ACTIVE'
+          )
+        }
+      )
+    })
+    .forEach((result: AppMarketplaceApp) => {
+      console.log('result', appToCard(result))
+      return appToCard(result)
+    })
 
 const Slice = { slice }
 
