@@ -31,11 +31,10 @@ const ConnectorTypeSelection = () => {
             <Typography variant="body2" style={{ margin: '5px 0px 16px 30px' }}>
               This is the only value available now
             </Typography>
-            
+
             <Typography variant="body2" style={{ marginLeft: '30px' }}>
-              Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen
-              nyck till fysoras. Gaskapet prelaras, syning diheten alltså
-              piporat
+              Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen nyck
+              till fysoras. Gaskapet prelaras, syning diheten alltså piporat
             </Typography>
           </Grid>
           <Grid
@@ -52,7 +51,10 @@ const ConnectorTypeSelection = () => {
               }
               disabled
             />
-            <Typography variant="body2" style={{ margin: '5px 0px 16px 30px', color: palette.grey.A400 }}>
+            <Typography
+              variant="body2"
+              style={{ margin: '5px 0px 16px 30px', color: palette.grey.A400 }}
+            >
               This option NOT AVAILABLE yet
             </Typography>
 
@@ -60,9 +62,9 @@ const ConnectorTypeSelection = () => {
               variant="body2"
               style={{ marginLeft: '30px', color: palette.grey.A400 }}
             >
-              Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen
-              nyck till fysoras. Gaskapet prelaras, syning diheten alltså
-              piporat. Kinas
+              Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen nyck
+              till fysoras. Gaskapet prelaras, syning diheten alltså piporat.
+              Kinas
             </Typography>
           </Grid>
         </Grid>

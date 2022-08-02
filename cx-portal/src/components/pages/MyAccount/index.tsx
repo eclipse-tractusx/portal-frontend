@@ -161,9 +161,7 @@ export default function MyAccount() {
           <Typography>{t('content.account.token')}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginBottom: '20px' }}>
-          <Typography>
-            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
-          </Typography>
+          <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
         </AccordionDetails>
       </Accordion>
     </main>
