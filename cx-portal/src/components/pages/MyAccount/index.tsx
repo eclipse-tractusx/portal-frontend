@@ -71,8 +71,6 @@ export default function MyAccount() {
     })
   }
 
-  console.log('render')
-
   return (
     <main className="my-account">
       <PageHeader
@@ -129,22 +127,25 @@ export default function MyAccount() {
               field: 'appName',
               headerName: t('content.account.appPermissionTable.appName'),
               flex: 1,
+              hide: false,
             },
             {
               field: 'appProvider',
               headerName: t('content.account.appPermissionTable.appProvider'),
               flex: 1,
+              hide: false,
             },
             {
               field: 'role',
               headerName: t('global.field.role'),
               flex: 1,
+              hide: false,
               renderCell: ({ row }) => renderChips(row),
             },
           ]}
           rows={userAppRoles}
           rowsCount={userAppRoles.length}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
@@ -161,9 +162,7 @@ export default function MyAccount() {
           <Typography>{t('content.account.token')}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginBottom: '20px' }}>
-          <Typography>
-            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
-          </Typography>
+          <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
         </AccordionDetails>
       </Accordion>
     </main>

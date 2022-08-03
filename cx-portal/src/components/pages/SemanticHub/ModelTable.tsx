@@ -31,6 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import { InputLabel, MenuItem, FormControl, Select, Box } from '@mui/material'
+import uniqueId from 'lodash/uniqueId'
 
 interface ModelTableProps {
   onModelSelect: (id: string) => void
@@ -225,7 +226,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         }}
         columns={columns}
         rows={models}
-        getRowId={(row) => `${row.urn}`}
+        getRowId={(row) => uniqueId(row.urn)}
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== modelList.currentPage + 1 && (
