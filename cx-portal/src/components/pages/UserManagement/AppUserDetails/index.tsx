@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AddUserRightOverlay from '../AddUserRightOverlay'
-import { PageHeader, PageNotifications } from 'cx-portal-shared-components'
+import { PageHeader } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { roleSelector, stateSelector } from 'features/admin/approle/slice'
 import { fetchRoles } from 'features/admin/approle/actions'
@@ -51,25 +51,8 @@ export default function AppUserDetails() {
       >
         <PageBreadcrumb />
       </PageHeader>
-
-      {roles.length > 0 && (
-        <>
-          <AppUserDetailsHeader roles={roles} />
-          <AppUserDetailsTable onAddUserButtonClick={openAddUserRightLayout} />
-        </>
-      )}
-      <div className="errorMsg">
-        {error && (
-          <PageNotifications
-            description={t(
-              'content.usermanagement.appUserDetails.roles.error.message'
-            )}
-            open
-            severity="error"
-            title={t('content.usermanagement.appUserDetails.roles.error.title')}
-          />
-        )}
-      </div>
+      <AppUserDetailsHeader roles={roles} error={error} />
+      <AppUserDetailsTable onAddUserButtonClick={openAddUserRightLayout} />
     </main>
   )
 }

@@ -37,7 +37,7 @@ export const AppUserDetailsTable = ({
 
   return (
     <>
-      <section style={{ paddingTop: '100px' }}>
+      <section className="management-section">
         <SubHeaderTitle
           title="content.usermanagement.appUserDetails.table.headline"
           variant="h3"
