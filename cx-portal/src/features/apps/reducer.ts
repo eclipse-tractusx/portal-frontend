@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { slice as details } from './details/slice'
 import { slice as favorites } from './favorites/slice'
-import { slice as marketplace } from './marketplaceDeprecated/slice'
+import { slice as marketplace } from './marketplace/slice'
 
 export const reducer = combineReducers({
   details: details.reducer,
