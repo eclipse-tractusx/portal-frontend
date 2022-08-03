@@ -12,8 +12,9 @@ import { fetchTenantUsers } from 'features/admin/user/actions'
 import { tenantUsersSelector } from 'features/admin/user/slice'
 import { TenantUser } from 'features/admin/user/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import './AppUserDetailsTable.scss'
 import { useNavigate } from 'react-router-dom'
+import uniqueId from 'lodash/uniqueId'
+import './AppUserDetailsTable.scss'
 
 interface ActiveUserTableProps {
   onAddUserButtonClick?: () => void
@@ -37,7 +38,7 @@ export const AppUserDetailsTable = ({
 
   return (
     <>
-      <section style={{ paddingTop: '100px' }}>
+      <section className="management-section">
         <SubHeaderTitle
           title="content.usermanagement.appUserDetails.table.headline"
           variant="h3"
@@ -103,7 +104,9 @@ export const AppUserDetailsTable = ({
             },
           ]}
           rows={tenantUsers}
-          getRowId={(row: { [key: string]: string }) => row.companyUserId}
+          getRowId={(row: { [key: string]: string }) =>
+            uniqueId(row.companyUserId)
+          }
           disableColumnMenu
           hideFooter
         />

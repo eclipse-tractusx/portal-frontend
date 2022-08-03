@@ -12,6 +12,7 @@ import {
   RegistrationRequestDocument,
 } from 'features/admin/registration/types'
 import dayjs from 'dayjs'
+import uniqueId from 'lodash/uniqueId'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
@@ -64,7 +65,10 @@ export const RegistrationRequestsTableColumns = (
         <div className="document-cell-container">
           {params?.value?.map((contract) => {
             return (
-              <div className="document-cell-line">
+              <div
+                className="document-cell-line"
+                key={uniqueId(contract?.documentHash)}
+              >
                 <ArticleOutlinedIcon />
                 <a href={contract?.documentHash} rel="noreferrer">
                   {contract?.documentType}

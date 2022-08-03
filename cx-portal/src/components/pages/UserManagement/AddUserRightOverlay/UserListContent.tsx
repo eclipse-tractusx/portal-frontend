@@ -2,6 +2,7 @@ import { StatusTag, Table } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { tenantUsersSelector } from 'features/admin/user/slice'
+import uniqueId from 'lodash/uniqueId'
 
 export default function UserListContent() {
   const { t } = useTranslation()
@@ -36,7 +37,7 @@ export default function UserListContent() {
         },
       ]}
       rows={tenantUsers}
-      getRowId={(row: { [key: string]: string }) => row.companyUserId}
+      getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
       disableColumnMenu
       hideFooter
       checkboxSelection
