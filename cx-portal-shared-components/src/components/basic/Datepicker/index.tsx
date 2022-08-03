@@ -19,8 +19,7 @@ export interface DatepickerProps extends Omit<TextFieldProps, 'variant'> {
 export const Datepicker = () => {
   return (
     <Box>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}></LocalizationProvider>
     </Box>
   )
 }
