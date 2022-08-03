@@ -69,6 +69,7 @@ export const Datepicker = ({
   const handleClose = () => {
     setOpen(false)
   }
+
   const iconColor = open ? daySelectedColor : '#939393'
   return (
     <Box
@@ -95,6 +96,7 @@ export const Datepicker = ({
           views={['year', 'month', 'day']}
           onChange={(newValue) => handleChange(newValue)}
           onClose={() => handleClose()}
+          inputFormat={'yyyy-MM-dd'}
           renderInput={(params) => (
             <Box>
               <Input
