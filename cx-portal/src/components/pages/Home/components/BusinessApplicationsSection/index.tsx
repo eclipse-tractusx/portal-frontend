@@ -4,18 +4,18 @@ import uniqueId from 'lodash/uniqueId'
 import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeSelector } from 'features/apps/marketplaceDeprecated/slice'
-import { fetchActive } from 'features/apps/marketplaceDeprecated/actions'
+import { subscribedSelector } from 'features/apps/marketplace/slice'
+import { fetchSubscribed } from 'features/apps/marketplace/actions'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const items = useSelector(activeSelector)
+  const items = useSelector(subscribedSelector)
 
   useEffect(() => {
-    dispatch(fetchActive())
+    dispatch(fetchSubscribed())
   }, [dispatch])
 
   const reference = PageService.registerReference(label, useRef(null))
@@ -38,8 +38,10 @@ export default function BusinessApplicationsSection() {
           {items.map((item) => {
             return (
               <Card
-                {...item}
                 key={uniqueId(item.title)}
+                title={item.title}
+                subtitle={item.subtitle}
+                image={item.image}
                 buttonText="Details"
                 imageSize="small"
                 imageShape="round"

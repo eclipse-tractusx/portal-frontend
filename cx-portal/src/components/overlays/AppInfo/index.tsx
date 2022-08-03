@@ -1,14 +1,11 @@
-import AppDetailContentDetails from 'components/pages/AppDetail/AppDetailContentDetails'
+import AppDetailContent from 'components/pages/AppDetail/AppDetailContent'
 import { DialogContent, DialogHeader } from 'cx-portal-shared-components'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { show } from 'features/control/overlay/actions'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 
 export default function AppInfo({ id }: { id: string }) {
   const dispatch = useDispatch()
-  const { data } = useFetchAppDetailsQuery(id)
-
   return (
     <>
       <DialogHeader
@@ -20,7 +17,7 @@ export default function AppInfo({ id }: { id: string }) {
       />
 
       <DialogContent>
-        {data && <AppDetailContentDetails item={data} />}
+        <AppDetailContent id={id} />
       </DialogContent>
     </>
   )

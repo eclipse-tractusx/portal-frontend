@@ -13,7 +13,6 @@ import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
 import { apiSlice as userApiSlice } from './admin/user/apiSlice'
 import { apiSlice as notificationApiSlice } from './notification/apiSlice'
-import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 
 export const reducers = {
   admin,
@@ -29,7 +28,6 @@ export const reducers = {
   error: ErrorSlice.reducer,
   [userApiSlice.reducerPath]: userApiSlice.reducer,
   [notificationApiSlice.reducerPath]: notificationApiSlice.reducer,
-  [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
 }
 
 export const store = configureStore({
@@ -37,8 +35,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(userApiSlice.middleware)
-      .concat(notificationApiSlice.middleware)
-      .concat(appMarketplaceSlice.middleware),
+      .concat(notificationApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>
