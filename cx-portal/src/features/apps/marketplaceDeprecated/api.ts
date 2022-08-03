@@ -1,6 +1,6 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { AppMarketplaceApp } from './types'
+import { AppMarketplaceApp, SubscribedApps } from './types'
 import { getHeaders } from 'services/RequestService'
 
 export class Api extends HttpClient {
@@ -23,9 +23,9 @@ export class Api extends HttpClient {
   public getLatest = () =>
     this.instance.get<AppMarketplaceApp[]>(`/api/apps/latest`, getHeaders())
 
-  public getSubscribed = (all?: boolean) =>
-    this.instance.get<AppMarketplaceApp[]>(
-      `/api/apps/subscribed${all ? '?all===true' : ''}`,
+  public getSubscriptionStatus = () =>
+    this.instance.get<SubscribedApps[]>(
+      `/api/Apps/subscribed/subscription-status`,
       getHeaders()
     )
 }
