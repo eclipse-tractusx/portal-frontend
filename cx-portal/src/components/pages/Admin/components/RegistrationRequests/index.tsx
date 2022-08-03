@@ -18,8 +18,8 @@ import { RegistrationRequestsTableColumns } from 'components/pages/Admin/compone
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
-
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
+import uniqueId from 'lodash/uniqueId'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -160,7 +160,7 @@ export default function RegistrationRequests() {
               ],
             },
           }}
-          getRowId={(row) => row.applicationId}
+          getRowId={(row) => uniqueId(row.applicationId)}
         />
       </div>
       <div className="load-more-button-container">

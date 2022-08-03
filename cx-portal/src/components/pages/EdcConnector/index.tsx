@@ -23,6 +23,7 @@ import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverla
 import './EdcConnector.scss'
 import { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
+import uniqueId from 'lodash/uniqueId'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -187,7 +188,7 @@ const EdcConnector = () => {
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
             loading,
           }}
-          getRowId={(row) => row.id}
+          getRowId={(row) => uniqueId(row.id)}
         />
       </div>
       <div className="load-more-button-container">

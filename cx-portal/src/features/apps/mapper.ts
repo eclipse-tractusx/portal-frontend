@@ -1,6 +1,10 @@
 import { CardItems, ImageType } from 'cx-portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
-import { AppMarketplaceApp } from './types'
+import {
+  AppMarketplaceApp,
+  SubscriptionStatus,
+  SubscriptionStatusItem,
+} from './apiSlice'
 
 const baseAssets = getAssetBase()
 
@@ -31,3 +35,25 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
     ? () => window.open(app.link, '_blank')?.focus()
     : undefined,
 })
+
+export const filterSubscribed = (
+  apps: AppMarketplaceApp[],
+  subscriptionStatus: SubscriptionStatusItem[]
+) => {
+  if (
+    !apps ||
+    apps.length === 0 ||
+    !subscriptionStatus ||
+    subscriptionStatus.length === 0
+  )
+    return []
+  const subscribed = subscriptionStatus
+    .filter(
+      (status: SubscriptionStatusItem) =>
+        status.appSubscriptionStatus === SubscriptionStatus.ACTIVE
+    )
+    .map((status: SubscriptionStatusItem) => status.appId)
+  return apps
+    .filter((app: AppMarketplaceApp) => subscribed?.includes(app.id))
+    .map(appToCard)
+}
