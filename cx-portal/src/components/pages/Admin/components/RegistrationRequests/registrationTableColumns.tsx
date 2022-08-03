@@ -137,7 +137,7 @@ export const RegistrationRequestsTableColumns = (
               <StatusTag
                 color={params.value === 'CONFIRMED' ? 'confirmed' : 'declined'}
                 label={t(
-                  `content.admin.registration-requests.cell${params.value.toLowerCase()}`
+                  `content.admin.registration-requests.cell${params?.value?.toLowerCase()}`
                 )}
               />
             </div>
