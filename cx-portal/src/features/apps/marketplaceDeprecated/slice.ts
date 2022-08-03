@@ -9,7 +9,7 @@ import {
   name,
   SubscribedApps,
 } from './types'
-import { appToCard } from './mapper'
+import { appToCard } from '../mapper'
 
 export const slice = createSlice({
   name,

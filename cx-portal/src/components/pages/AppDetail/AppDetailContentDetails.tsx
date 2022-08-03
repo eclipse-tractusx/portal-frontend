@@ -25,7 +25,7 @@ import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailHowToUse from './components/AppDetailHowToUse'
 import AppDetailProvider from './components/AppDetailProvider'
 import AppDetailTags from './components/AppDetailTags'
-import { getAppImage } from 'features/apps/marketplaceDeprecated/mapper'
+import { getAppImage } from 'features/apps/mapper'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
 
