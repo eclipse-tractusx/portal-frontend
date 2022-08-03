@@ -47,22 +47,18 @@ export default function AppUserDetailsHeader({
             )
           })}
       </div>
-      {
-        <div className="errorMsg">
-          {error && (
-            <PageNotifications
-              description={t(
-                'content.usermanagement.appUserDetails.roles.error.message'
-              )}
-              open
-              severity="error"
-              title={t(
-                'content.usermanagement.appUserDetails.roles.error.title'
-              )}
-            />
-          )}
-        </div>
-      }
+      <div className="errorMsg">
+        {error && (
+          <PageNotifications
+            description={t(
+              'content.usermanagement.appUserDetails.roles.error.message'
+            )}
+            open
+            severity="error"
+            title={t('content.usermanagement.appUserDetails.roles.error.title')}
+          />
+        )}
+      </div>
     </section>
   )
 }
