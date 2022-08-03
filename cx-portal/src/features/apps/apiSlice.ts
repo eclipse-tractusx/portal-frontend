@@ -20,6 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import i18next from 'i18next'
+import { getAssetBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type AppMarketplaceApp = {
@@ -71,6 +72,9 @@ export const apiSlice = createApi({
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/active`,
     }),
+    fetchLatestApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `${getAssetBase()}/api/apps/latest.json`,
+    }),
     fetchSubscriptionStatus: builder.query<SubscriptionStatusItem[], void>({
       query: () => `/api/apps/subscribed/subscription-status`,
     }),
@@ -80,5 +84,6 @@ export const apiSlice = createApi({
 export const {
   useFetchAppDetailsQuery,
   useFetchActiveAppsQuery,
+  useFetchLatestAppsQuery,
   useFetchSubscriptionStatusQuery,
 } = apiSlice
