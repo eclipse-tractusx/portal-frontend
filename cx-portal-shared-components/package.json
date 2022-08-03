@@ -26,10 +26,13 @@
     "build:storybook": "mkdirp public && build-storybook -s public && rimraf ../cx-portal/public/_storybook && mv ./storybook-static ../cx-portal/public/_storybook"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.14.0",
+    "@mui/x-date-pickers": "^5.0.0-beta.3",
     "@mui/x-data-grid": "^5.15.0",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/react-slick": "^0.23.8",
     "autosuggest-highlight": "^3.2.1",
+    "date-fns": "^2.29.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-slick": "^0.28.1",

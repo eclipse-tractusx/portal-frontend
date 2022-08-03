@@ -625,5 +625,31 @@ export const theme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          marginLeft: '16px',
+          borderRadius: '6px',
+          '.MuiCalendarPicker-viewTransitionContainer': {
+            borderTop: `1px solid ${palette.border.border01}`,
+          },
+          '.MuiIconButton-root': {
+            color: '#939393',
+          },
+          '.MuiTypography-root': {
+            fontWeight: 'bold',
+            fontSize: '14px',
+          },
+          '.PrivatePickersFadeTransitionGroup-root': {
+            fontWeight: 'bold',
+            fontSize: '16px',
+          },
+          '.MuiFilledInput-root': {
+            paddingTop: '0px !important',
+            minHeight: '55px',
+          },
+        },
+      },
+    },
   },
 })
