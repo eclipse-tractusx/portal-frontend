@@ -1,26 +1,17 @@
-import { StatusTag, Table } from 'cx-portal-shared-components'
+import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { tenantUsersSelector } from 'features/admin/user/slice'
 import uniqueId from 'lodash/uniqueId'
+import { TenantUser } from 'features/admin/user/types'
+import { useFetchUsersQuery } from 'features/admin/user/apiSlice'
 
 export default function UserListContent() {
   const { t } = useTranslation()
-  const tenantUsers = useSelector(tenantUsersSelector)
-
-  console.log(tenantUsers)
-
   return (
-    <Table
+    <PageLoadingTable<TenantUser>
       title={t('content.usermanagement.table.title')}
-      toolbar={{
-        onSearch: () => {
-          console.log('search user right function')
-        },
-        onFilter: () => {
-          console.log('filter user right function')
-        },
-      }}
+      loadLabel={t('global.actions.loadmore')}
+      fetch={useFetchUsersQuery}
+      getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
       columns={[
         { field: 'name', headerName: t('global.field.name'), flex: 2 },
         { field: 'email', headerName: t('global.field.email'), flex: 2 },
@@ -36,10 +27,6 @@ export default function UserListContent() {
           },
         },
       ]}
-      rows={tenantUsers}
-      getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
-      disableColumnMenu
-      hideFooter
       checkboxSelection
     />
   )

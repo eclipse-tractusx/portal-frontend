@@ -1,56 +1,32 @@
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { setUserRolesToAdd } from 'features/admin/user/actions'
+import { useParams } from 'react-router-dom'
+import { useFetchRolesQuery } from 'features/admin/approle/apiSlice'
 
 interface UserRolesProps {
   headline?: string
 }
 
 export const UserRoles = ({ headline }: UserRolesProps) => {
-  const { t } = useTranslation()
   let [roles, setRoles] = useState<string[]>([])
+  const appId = useParams().appId
   const dispatch = useDispatch()
-  const userRoles = [
-    {
-      id: 'itAdmin',
-      title: t('global.userRoles.itAdmin'),
-    },
-    {
-      id: 'businessAdmin',
-      title: t('global.userRoles.businessAdmin'),
-    },
-    {
-      id: 'cxUser',
-      title: t('global.userRoles.cxUser'),
-    },
-    {
-      id: 'dataSpecialist',
-      title: t('global.userRoles.dataSpecialist'),
-    },
-    {
-      id: 'appDeveloper',
-      title: t('global.userRoles.appDeveloper'),
-    },
-    {
-      id: 'appAdmin',
-      title: t('global.userRoles.appAdmin'),
-    },
-  ]
+  const { data } = useFetchRolesQuery(appId!)
 
   useEffect(() => {
     dispatch(setUserRolesToAdd(roles))
   }, [roles, dispatch])
 
-  const onInputChange = ({ e, title }: { e: any; title: string }) => {
-    if (!roles.includes(title) && e.target.checked) {
-      setRoles([...roles, title])
+  const onInputChange = ({ e, role }: { e: any; role: string }) => {
+    if (!roles.includes(role) && e.target.checked) {
+      setRoles([...roles, role])
     } else {
       const oldRoles = [...roles]
-      oldRoles.splice(oldRoles.indexOf(title), 1)
+      oldRoles.splice(oldRoles.indexOf(role), 1)
       setRoles([...oldRoles])
     }
   }
@@ -74,13 +50,14 @@ export const UserRoles = ({ headline }: UserRolesProps) => {
       )}
 
       <div className="checkbox-section">
-        {userRoles.map(({ title, id }) => (
-          <Checkbox
-            label={title}
-            key={id}
-            onChange={(e) => onInputChange({ e, title })}
-          />
-        ))}
+        {data &&
+          data.map(({ roleId, role }) => (
+            <Checkbox
+              label={role}
+              key={roleId}
+              onChange={(e) => onInputChange({ e, role })}
+            />
+          ))}
       </div>
     </Box>
   )
