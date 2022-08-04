@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   SearchInput,
@@ -7,13 +7,13 @@ import {
 } from 'cx-portal-shared-components'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchActive } from 'features/apps/marketplace/actions'
-import { activeSelector } from 'features/apps/marketplace/slice'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
 import { itemsSelector } from 'features/apps/favorites/slice'
 import { addItem, removeItem } from 'features/apps/favorites/actions'
+import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
+import { appToCard } from 'features/apps/mapper'
 
 export const label = 'AppList'
 
@@ -21,7 +21,8 @@ export default function AppListSection() {
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const cards = useSelector(activeSelector)
+  const { data } = useFetchActiveAppsQuery()
+  const cards = (data || []).map((app) => appToCard(app))
   const { t } = useTranslation()
 
   const favoriteItems = useSelector(itemsSelector)
@@ -51,10 +52,6 @@ export default function AppListSection() {
       onButtonClick: setView,
     },
   ]
-
-  useEffect(() => {
-    dispatch(fetchActive())
-  }, [dispatch])
 
   return (
     <Box ref={reference} className="overview-section">
