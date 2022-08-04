@@ -20,7 +20,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import i18next from 'i18next'
-import { getAssetBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type AppRole = {
