@@ -1,4 +1,5 @@
 import { RequestState } from 'types/MainTypes'
+import { TenantUser } from '../userApiSlice'
 
 export const name = 'admin/user'
 
@@ -8,15 +9,6 @@ export type InviteData = {
   lastName: string
   email: string
   organisationName: string
-}
-
-export type TenantUser = {
-  userEntityId: string
-  companyUserId: string
-  status: string
-  firstName: string
-  lastName: string
-  email: string
 }
 
 export type AddUser = {

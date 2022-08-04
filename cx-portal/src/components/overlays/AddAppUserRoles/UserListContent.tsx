@@ -1,8 +1,8 @@
 import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
-import { TenantUser } from 'features/admin/user/types'
-import { useFetchUsersQuery } from 'features/admin/user/apiSlice'
+import { TenantUser } from 'features/admin/userApiSlice'
+import { useFetchUsersQuery } from 'features/admin/userApiSlice'
 
 export default function UserListContent() {
   const { t } = useTranslation()

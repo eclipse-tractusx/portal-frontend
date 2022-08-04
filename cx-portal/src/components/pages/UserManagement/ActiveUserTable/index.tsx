@@ -4,21 +4,20 @@ import {
   IconButton,
   StatusTag,
   PageLoadingTable,
+  Button,
 } from 'cx-portal-shared-components'
-import { TenantUser } from 'features/admin/user/types'
+import { TenantUser } from 'features/admin/userApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useFetchUsersQuery } from 'features/admin/user/apiSlice'
+import { useFetchUsersQuery } from 'features/admin/userApiSlice'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 
-interface ActiveUserTableProps {
-  onAddUserButtonClick?: () => void
-}
-
-export const ActiveUserTable = ({
-  onAddUserButtonClick,
-}: ActiveUserTableProps) => {
+export const ActiveUserTable = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onUserDetailsClick = (userId: string) => {
     navigate('/usermanagement/userdetails/' + userId)
@@ -30,15 +29,31 @@ export const ActiveUserTable = ({
         title="content.usermanagement.table.headline"
         variant="h3"
       />
+      <Button
+        onClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+        size="medium"
+        sx={{ margin: '0 auto 25px auto', display: 'block' }}
+      >
+        {t('content.usermanagement.table.add')}
+      </Button>
       <PageLoadingTable<TenantUser>
+        title={t('content.usermanagement.table.title')}
+        loadLabel={t('global.actions.more')}
+        fetch={useFetchUsersQuery}
+        getRowId={(row: { [key: string]: string }) => row.companyUserId}
         columns={[
-          { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
-          { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
-          { field: 'email', headerName: t('global.field.email'), flex: 2 },
+          {
+            field: 'firstName',
+            headerName: t('global.field.name'),
+            flex: 3,
+            valueGetter: ({ row }: { row: TenantUser }) =>
+              `${row.firstName} ${row.lastName}`,
+          },
+          { field: 'email', headerName: t('global.field.email'), flex: 3 },
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 1,
+            flex: 2,
             renderCell: ({ value: status }) => {
               const label = status ? 'active' : 'inactive'
               return (
@@ -46,11 +61,27 @@ export const ActiveUserTable = ({
               )
             },
           },
-          { field: 'role', headerName: t('global.field.role'), flex: 1 },
+          {
+            field: 'roles',
+            headerName: t('global.field.role'),
+            flex: 4,
+            renderCell: ({ value: roles }) => {
+              return roles.length
+                ? roles.map((role: string) => (
+                    <StatusTag
+                      key={role}
+                      color="label"
+                      label={role}
+                      className="statusTag"
+                    />
+                  ))
+                : ''
+            },
+          },
           {
             field: 'details',
-            headerName: t('content.usermanagement.table.details'),
-            flex: 1,
+            headerName: t('global.field.details'),
+            flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton
                 color="secondary"
@@ -61,18 +92,6 @@ export const ActiveUserTable = ({
             ),
           },
         ]}
-        getRowId={(row: { [key: string]: string }) => row.companyUserId}
-        headerHeight={57}
-        disableColumnMenu
-        hideFooter
-        rowHeight={57}
-        loadLabel={t('global.actions.more')}
-        fetch={useFetchUsersQuery}
-        title={t('content.usermanagement.table.title')}
-        toolbar={{
-          buttonLabel: t('content.usermanagement.table.add'),
-          onButtonClick: onAddUserButtonClick,
-        }}
       />
     </section>
   )

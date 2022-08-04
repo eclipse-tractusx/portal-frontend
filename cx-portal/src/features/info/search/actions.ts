@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
-import { Api as UserApi } from 'features/admin/user/api'
+import { Api as UserApi } from 'features/admin/userDeprecated/api'
 import { Api as NewsApi } from 'features/info/news/api'
 import {
   actionToSearchItem,
@@ -20,7 +20,7 @@ import {
   BusinessPartner,
   BusinessPartnerResponse,
 } from 'features/partnerNetwork/types'
-import { TenantUser } from 'features/admin/user/types'
+import { TenantUser } from 'features/admin/userApiSlice'
 import I18nService from 'services/I18nService'
 import {
   hasAccess,

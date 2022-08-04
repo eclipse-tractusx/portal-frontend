@@ -2,7 +2,8 @@ import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { PaginResult } from 'types/MainTypes'
 import { HttpClient } from 'utils/HttpClient'
-import { TenantUser, AddUser } from './types'
+import { TenantUser } from '../userApiSlice'
+import { AddUser } from './types'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

@@ -1,14 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  TenantUser,
-  AdminUserState,
-  AddUser,
-  name,
-  initialState,
-} from './types'
+import { AdminUserState, AddUser, name, initialState } from './types'
 import { addTenantUsers, fetchTenantUsers } from './actions'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
+import { TenantUser } from '../userApiSlice'
 
 export const slice = createSlice({
   name,

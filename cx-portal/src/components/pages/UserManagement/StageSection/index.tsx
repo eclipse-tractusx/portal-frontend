@@ -1,7 +1,7 @@
 import { Button, MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { openAdd } from 'features/admin/user/actions'
+import { openAdd } from 'features/admin/userDeprecated/actions'
 
 export default function SearchSection() {
   const { t } = useTranslation()

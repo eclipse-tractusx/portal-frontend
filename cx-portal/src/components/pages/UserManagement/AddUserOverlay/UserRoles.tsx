@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { setUserRolesToAdd } from 'features/admin/user/actions'
+import { setUserRolesToAdd } from 'features/admin/userDeprecated/actions'
 import { useParams } from 'react-router-dom'
-import { useFetchRolesQuery } from 'features/admin/approle/apiSlice'
+import { useFetchRolesQuery } from 'features/admin/appuserApiSlice'
 
 interface UserRolesProps {
   headline?: string

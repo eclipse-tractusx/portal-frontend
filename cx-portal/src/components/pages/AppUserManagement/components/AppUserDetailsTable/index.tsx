@@ -1,40 +1,42 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import {
   IconButton,
   StatusTag,
-  Table,
   Button,
+  PageLoadingTable,
 } from 'cx-portal-shared-components'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { fetchTenantUsers } from 'features/admin/user/actions'
-import { tenantUsersSelector } from 'features/admin/user/slice'
-import { TenantUser } from 'features/admin/user/types'
+import { TenantUser } from 'features/admin/userApiSlice'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { useNavigate } from 'react-router-dom'
-import uniqueId from 'lodash/uniqueId'
+import { useFetchUsersQuery } from 'features/admin/userApiSlice'
+import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
 import './AppUserDetailsTable.scss'
 
-interface ActiveUserTableProps {
-  onAddUserButtonClick?: () => void
-}
-
-export const AppUserDetailsTable = ({
-  onAddUserButtonClick,
-}: ActiveUserTableProps) => {
+export const AppUserDetailsTable = ({ appId }: { appId: string }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const tenantUsers = useSelector(tenantUsersSelector)
-  const navigate = useNavigate()
-
-  const onUserDetailsClick = (userId: string) => {
-    navigate('/usermanagement/userdetails/' + userId)
-  }
-
-  useEffect(() => {
-    dispatch(fetchTenantUsers())
-  }, [dispatch])
 
   return (
     <>
@@ -43,16 +45,18 @@ export const AppUserDetailsTable = ({
           title="content.usermanagement.appUserDetails.table.headline"
           variant="h3"
         />
-
-        <Table
+        <Button
+          onClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
+          size="medium"
+          sx={{ margin: '0 auto 25px auto', display: 'block' }}
+        >
+          {t('content.usermanagement.appUserDetails.table.add')}
+        </Button>
+        <PageLoadingTable<TenantUser>
           title={t('content.usermanagement.appUserDetails.table.title')}
-          toolbar={{
-            onSearch: () => {
-              console.log('search function')
-            },
-            buttonLabel: t('content.usermanagement.appUserDetails.table.add'),
-            onButtonClick: onAddUserButtonClick,
-          }}
+          loadLabel={t('global.actions.more')}
+          fetch={useFetchUsersQuery}
+          getRowId={(row: { [key: string]: string }) => row.companyUserId}
           columns={[
             {
               field: 'firstName',
@@ -97,32 +101,19 @@ export const AppUserDetailsTable = ({
               renderCell: ({ row }: { row: TenantUser }) => (
                 <IconButton
                   color="secondary"
-                  onClick={() => onUserDetailsClick(row.companyUserId)}
+                  onClick={() =>
+                    dispatch(
+                      show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId)
+                    )
+                  }
                 >
                   <ArrowForwardIcon />
                 </IconButton>
               ),
             },
           ]}
-          rows={tenantUsers}
-          getRowId={(row: { [key: string]: string }) =>
-            uniqueId(row.companyUserId)
-          }
-          disableColumnMenu
-          hideFooter
         />
       </section>
-
-      <div className="load-more-button-container">
-        <Button
-          size="medium"
-          onClick={() => {
-            console.log('load more')
-          }}
-        >
-          {t('content.partnernetwork.loadmore')}
-        </Button>
-      </div>
     </>
   )
 }

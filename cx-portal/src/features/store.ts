@@ -11,9 +11,9 @@ import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
-import { apiSlice as userApiSlice } from './admin/user/apiSlice'
+import { apiSlice as userApiSlice } from './admin/userApiSlice'
 import { apiSlice as notificationApiSlice } from './notification/apiSlice'
-import { apiSlice as appRolesSlice } from './admin/approle/apiSlice'
+import { apiSlice as appRolesSlice } from './admin/appuserApiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 
 export const reducers = {

@@ -19,9 +19,9 @@ import {
   addOpenSelector,
   addRequestStateSelector,
   usersToAddSelector,
-} from 'features/admin/user/slice'
+} from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTenantUsers, closeAdd } from 'features/admin/user/actions'
+import { addTenantUsers, closeAdd } from 'features/admin/userDeprecated/actions'
 import { RequestState } from 'types/MainTypes'
 import './AddUserOverlay.scss'
 

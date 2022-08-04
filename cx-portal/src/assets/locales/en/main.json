@@ -38,7 +38,7 @@
     "appmanagement": "App Management",
     "appoverview": "App Overview",
     "appreleaseprocess": "App Release Process",
-    "appuserdetails": "App User Details",
+    "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User"
   },
@@ -366,7 +366,7 @@
         "add": "Add user"
       },
       "appUserDetails": {
-        "headline": "App Access Management - <1>App-Title</1>",
+        "headline": "App Access Management - {{app}}",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."

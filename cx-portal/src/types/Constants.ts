@@ -30,7 +30,7 @@ export enum PAGES {
   TECHNICAL_SETUP = 'technicalsetup',
   TECHNICAL_USER_DETAILS = 'userdetails',
   APPLICATION_REQUESTS = 'applicationrequests',
-  APP_USER_DETAILS = 'appuserdetails',
+  APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
   HELP = 'help',
@@ -54,6 +54,8 @@ export enum PAGES {
 export enum OVERLAYS {
   NONE = 'none',
   ADD_USER = 'add_user',
+  ADD_APP_USER_ROLES = 'add_app_user_roles',
+  EDIT_APP_USER_ROLES = 'edit_app_user_roles',
   USER = 'user',
   NEWS = 'news',
   ADD_BPN = 'add_bpn',

@@ -1,33 +1,28 @@
 import {
-  Dialog,
   DialogActions,
   DialogContent,
   DialogHeader,
   Button,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { UserRoles } from '../AddUserOverlay/UserRoles'
+import { UserRoles } from '../../pages/UserManagement/AddUserOverlay/UserRoles'
 import UserListContent from './UserListContent'
-import './AddUserOverlay.scss'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
+import './AddAppUserRoles.scss'
 
-export interface AddUserRightOverlayProps {
-  openDialog?: boolean
-  handleClose: React.MouseEventHandler
-  handleConfirm: React.MouseEventHandler
-}
-
-export default function AddUserRightOverlay({
-  openDialog = false,
-  handleClose,
-  handleConfirm,
-}: AddUserRightOverlayProps) {
+export default function AddAppUserRoles({ id }: { id: string }) {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   return (
-    <Dialog open={openDialog}>
+    <>
       <DialogHeader
         title={t('content.addUserRight.headline')}
         intro={t('content.addUserRight.subheadline')}
+        closeWithIcon={true}
+        onCloseWithIcon={() => dispatch(show(OVERLAYS.NONE, ''))}
       />
 
       <DialogContent className="add-user-overlay-content">
@@ -41,13 +36,16 @@ export default function AddUserRightOverlay({
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={handleClose}>
-          {`${t('global.actions.cancel')}`}
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(show(OVERLAYS.NONE))}
+        >
+          {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={handleConfirm}>
-          {`${t('global.actions.confirm')}`}
+        <Button variant="contained" onClick={() => console.log('confirm')}>
+          {t('global.actions.confirm')}
         </Button>
       </DialogActions>
-    </Dialog>
+    </>
   )
 }
