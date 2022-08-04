@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
-import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
+import { Api as AppsApi } from 'features/apps/marketplace/api'
 import { Api as UserApi } from 'features/admin/user/api'
 import { Api as NewsApi } from 'features/info/news/api'
 import {
@@ -15,7 +15,7 @@ import {
 import { name, SearchItem } from './types'
 import { CardItems } from 'cx-portal-shared-components'
 import { Patterns } from 'types/Patterns'
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { AppMarketplaceApp } from 'features/apps/marketplace/types'
 import {
   BusinessPartner,
   BusinessPartnerResponse,

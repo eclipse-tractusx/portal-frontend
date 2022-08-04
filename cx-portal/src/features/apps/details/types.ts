@@ -1,4 +1,4 @@
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { AppMarketplaceApp } from 'features/apps/marketplace/types'
 
 export const name = 'apps/details'
 
