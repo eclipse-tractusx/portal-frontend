@@ -81,6 +81,7 @@ export const AppUserDetailsTable = ({
                 return roles.length
                   ? roles.map((role: string) => (
                       <StatusTag
+                        key={role}
                         color="label"
                         label={role}
                         className="statusTag"
