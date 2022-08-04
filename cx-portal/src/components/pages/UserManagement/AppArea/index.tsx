@@ -1,20 +1,38 @@
-import { Card, Carousel } from 'cx-portal-shared-components'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+import { Card, CardItems, Carousel } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
-import { fetchSubscribed } from 'features/apps/marketplace/actions'
-import { subscribedSelector } from 'features/apps/marketplace/slice'
 import uniqueId from 'lodash/uniqueId'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import {
+  useFetchActiveAppsQuery,
+  useFetchSubscriptionStatusQuery,
+} from 'features/apps/apiSlice'
+import { filterSubscribed } from 'features/apps/mapper'
 
 export const AppArea = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const items = useSelector(subscribedSelector)
-
-  useEffect(() => {
-    dispatch(fetchSubscribed(true))
-  }, [dispatch])
+  const subscriptionStatus = useFetchSubscriptionStatusQuery().data
+  const { data } = useFetchActiveAppsQuery()
+  const cards = filterSubscribed(data!, subscriptionStatus!)
 
   return (
     <section id="access-management-id">
@@ -25,13 +43,11 @@ export const AppArea = () => {
         />
       </div>
       <Carousel gapToDots={5}>
-        {items.map((item) => {
+        {cards?.map((item: CardItems) => {
           return (
             <Card
+              {...item}
               key={uniqueId(item.title)}
-              title={item.title}
-              subtitle={item.subtitle}
-              image={item.image}
               buttonText="Details"
               imageSize="small"
               imageShape="round"
