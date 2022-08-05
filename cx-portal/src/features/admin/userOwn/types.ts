@@ -18,7 +18,7 @@ export const InitialUserDetail = {
   firstName: '',
   lastName: '',
   email: '',
-  bpn: [''],
+  bpn: [],
   created: '',
   company: '',
   status: '',
