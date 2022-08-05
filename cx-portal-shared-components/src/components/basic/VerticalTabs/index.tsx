@@ -1,7 +1,7 @@
 import { Box, useTheme } from '@mui/material'
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import { useState } from 'react';
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import { useState } from 'react'
 import uniqueId from 'lodash/uniqueId'
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos'
 
@@ -16,16 +16,16 @@ interface VerticalTabsProps {
 }
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+  children?: React.ReactNode
+  index: number
+  value: number
 }
 
 function a11yProps(index: number) {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
-  };
+  }
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -39,11 +39,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   )
 }
@@ -59,7 +55,7 @@ export const VerticalTabs = ({ items }: VerticalTabsProps) => {
     <Box
       sx={{
         flexGrow: 1,
-        display: 'flex'
+        display: 'flex',
       }}
     >
       <Tabs
@@ -70,7 +66,7 @@ export const VerticalTabs = ({ items }: VerticalTabsProps) => {
         sx={{
           '.Mui-selected': {
             color: `${theme.palette.text.primary} !important`,
-            fontWeight : 'bold',
+            fontWeight: 'bold',
             '.MuiSvgIcon-root': {
               color: theme.palette.border.border04,
             },
@@ -82,13 +78,17 @@ export const VerticalTabs = ({ items }: VerticalTabsProps) => {
             {...a11yProps(item.id)}
             label={item.label}
             key={uniqueId('vertical-tabs-tab-item')}
-            icon={<ArrowForwardIos sx={{color: '#EAF1FE'}} />}
+            icon={<ArrowForwardIos sx={{ color: '#EAF1FE' }} />}
             iconPosition="start"
           />
         ))}
       </Tabs>
       {items.map((item: TabPanelType) => (
-        <TabPanel value={value} index={item.id - 1} key={uniqueId('vertical-tabs-tab-panel')}>
+        <TabPanel
+          value={value}
+          index={item.id - 1}
+          key={uniqueId('vertical-tabs-tab-panel')}
+        >
           {item.description}
         </TabPanel>
       ))}

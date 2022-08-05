@@ -660,13 +660,13 @@ export const theme = createTheme({
             minHeight: '50px',
             alignItems: 'flex-start',
             color: palette.text.tertiary,
-            paddingRight: '50px'
+            paddingRight: '50px',
           },
-          '.MuiTabs-indicator' : {
+          '.MuiTabs-indicator': {
             backgroundColor: palette.common.white,
           },
-        }
-      }
+        },
+      },
     },
   },
 })
