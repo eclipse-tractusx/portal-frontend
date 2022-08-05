@@ -71,7 +71,7 @@ export const MultiSelectList = ({
                 height: '26px !important',
                 paddingTop: '2px',
                 paddingLeft: '0px',
-                order: '2'
+                order: '2',
               },
               '.MuiChip-deleteIcon': {
                 paddingLeft: '10px',
