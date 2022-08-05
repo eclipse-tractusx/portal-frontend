@@ -187,29 +187,29 @@ export default function InviteBusinessPartner() {
           columns={[
             {
               field: 'companyName',
-              headerName: `${t('content.invite.columns.companyName')}`,
+              headerName: t('content.invite.columns.companyName'),
               flex: 1,
             },
             {
               field: 'firstAndLastName',
-              headerName: `${t('content.invite.columns.firstAndLastName')}`,
+              headerName: t('content.invite.columns.firstAndLastName'),
               flex: 1,
             },
             {
               field: 'dateCreated',
-              headerName: `${t('content.invite.columns.date')}`,
+              headerName: t('content.invite.columns.date'),
               flex: 1,
-              renderCell: ({ row }: { row: InvitesDataGrid }) =>
+              valueGetter: ({ row }: { row: InvitesDataGrid }) =>
                 dayjs(row.dateCreated).format('YYYY-MM-DD'),
             },
             {
               field: 'applicationStatus',
-              headerName: `${t('content.invite.columns.status')}`,
+              headerName: t('content.invite.columns.status'),
               flex: 1,
             },
             {
               field: 'details',
-              headerName: `${t('content.invite.columns.details')}`,
+              headerName: t('content.invite.columns.details'),
               flex: 1,
               sortable: false,
               renderCell: ({ row }: { row: InvitesDataGrid }) => (

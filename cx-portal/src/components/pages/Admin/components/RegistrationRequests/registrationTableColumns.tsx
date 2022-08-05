@@ -52,19 +52,17 @@ export const RegistrationRequestsTableColumns = (
       cellClassName: 'documents-column--cell',
       renderCell: ({ row }: { row: RegistrationRequestDataGrid }) => (
         <div className="document-cell-container">
-          {row.documents.map((contract) => {
-            return (
-              <div
-                className="document-cell-line"
-                key={uniqueId(contract?.documentHash)}
-              >
-                <ArticleOutlinedIcon />
-                <a href={contract?.documentHash} rel="noreferrer">
-                  {contract?.documentType}
-                </a>
-              </div>
-            )
-          })}
+          {row.documents.map((contract) => 
+            <div
+              className="document-cell-line"
+              key={uniqueId(contract?.documentHash)}
+            >
+              <ArticleOutlinedIcon />
+              <a href={contract?.documentHash} rel="noreferrer">
+                {contract?.documentType}
+              </a>
+            </div>
+          )}
         </div>
       ),
     },
