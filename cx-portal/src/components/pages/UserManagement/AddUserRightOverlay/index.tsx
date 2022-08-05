@@ -25,10 +25,14 @@ export default function AddUserRightOverlay({
 
   return (
     <Dialog open={openDialog}>
-      <DialogHeader
-        title={t('content.addUserRight.headline')}
-        intro={t('content.addUserRight.subheadline')}
-      />
+      <div className="add-roles-main">
+        <DialogHeader
+          title={t('content.addUserRight.headline')}
+          intro={t('content.addUserRight.subheadline')}
+          closeWithIcon={true}
+          onCloseWithIcon={handleClose}
+        />
+      </div>
 
       <DialogContent className="add-user-overlay-content">
         <div className="add-user-overlay-content-roles">
