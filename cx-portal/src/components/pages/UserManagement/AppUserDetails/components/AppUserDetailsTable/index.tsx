@@ -45,8 +45,7 @@ export const AppUserDetailsTable = ({
           title="content.usermanagement.appUserDetails.table.headline"
           variant="h3"
         />
-        {
-          tenantUsers &&
+        {tenantUsers && (
           <Table
             title={t('content.usermanagement.appUserDetails.table.title')}
             toolbar={{
@@ -72,7 +71,10 @@ export const AppUserDetailsTable = ({
                 renderCell: ({ value: status }) => {
                   const label = status ? 'active' : 'inactive'
                   return (
-                    <StatusTag color="label" label={t(`global.field.${label}`)} />
+                    <StatusTag
+                      color="label"
+                      label={t(`global.field.${label}`)}
+                    />
                   )
                 },
               },
@@ -83,13 +85,13 @@ export const AppUserDetailsTable = ({
                 renderCell: ({ value: roles }) => {
                   return roles.length
                     ? roles.map((role: string) => (
-                      <StatusTag
-                        key={role}
-                        color="label"
-                        label={role}
-                        className="statusTag"
-                      />
-                    ))
+                        <StatusTag
+                          key={role}
+                          color="label"
+                          label={role}
+                          className="statusTag"
+                        />
+                      ))
                     : ''
                 },
               },
@@ -114,7 +116,7 @@ export const AppUserDetailsTable = ({
             disableColumnMenu
             hideFooter
           />
-        }
+        )}
       </section>
 
       <div className="load-more-button-container">
