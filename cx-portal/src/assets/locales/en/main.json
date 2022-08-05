@@ -461,6 +461,10 @@
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
+      "resetPswrdSuccessMsg": "Password Reset Successfully",
+      "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
+      "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
+      "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
         "title": "App User Permissions",
         "appName": "App Name",
