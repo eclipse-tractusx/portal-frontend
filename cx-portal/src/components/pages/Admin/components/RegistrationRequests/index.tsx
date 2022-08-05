@@ -47,7 +47,7 @@ export default function RegistrationRequests() {
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      dispatch(fetchCompanyDetail(params.id.toString()))
+      dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
     }
   }
