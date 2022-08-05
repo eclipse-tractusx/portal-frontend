@@ -199,7 +199,8 @@ export default function InviteBusinessPartner() {
               field: 'dateCreated',
               headerName: `${t('content.invite.columns.date')}`,
               flex: 1,
-              renderCell: ({ row }: { row: InvitesDataGrid }) => dayjs(row.dateCreated).format('YYYY-MM-DD')
+              renderCell: ({ row }: { row: InvitesDataGrid }) =>
+                dayjs(row.dateCreated).format('YYYY-MM-DD'),
             },
             {
               field: 'applicationStatus',
@@ -214,7 +215,12 @@ export default function InviteBusinessPartner() {
               renderCell: ({ row }: { row: InvitesDataGrid }) => (
                 <IconButton
                   color="secondary"
-                  onClick={() => console.log('on details click: Company Name', row.companyName)}
+                  onClick={() =>
+                    console.log(
+                      'on details click: Company Name',
+                      row.companyName
+                    )
+                  }
                 >
                   <ArrowForwardIcon />
                 </IconButton>
