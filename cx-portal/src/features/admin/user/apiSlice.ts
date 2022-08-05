@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { AppUser, TenantUser } from 'features/admin/user/types'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
-import { PaginResult } from 'types/MainTypes'
 import { PAGE_SIZE } from 'types/Constants'
 
 export const apiSlice = createApi({

@@ -1,6 +1,6 @@
+import { PaginResult } from 'cx-portal-shared-components'
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
-import { PaginResult } from 'types/MainTypes'
 import { PAGE_SIZE } from 'types/Constants'
 import { HttpClient } from 'utils/HttpClient'
 import {

@@ -10,6 +10,7 @@ import {
   Table,
   Chip,
   PageHeader,
+  PageNotifications,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
@@ -35,16 +36,13 @@ export default function UserDetails() {
 
   let errorMsg = ''
   if (resetStatus) {
-    errorMsg = 'Password Reset Successfully'
-  } else if (error === 401) {
-    errorMsg =
-      'The maximum amount of errors is triggered already. Please try it later again'
-  } else if (error === 500) {
-    errorMsg =
-      'The password reset was unsuccessful. An issue occurred. Please try It later again'
-  } else if (error === 404) {
-    errorMsg =
-      'Reset of the password was unsuccessful due to missing permissions.'
+    errorMsg = t('content.account.resetPswrdSuccessMsg')
+  } else if (parseInt(error) === 400) {
+    errorMsg = t('content.account.resetPswrdMaxLimitError')
+  } else if (parseInt(error) === 500) {
+    errorMsg = t('content.account.resetPswrdUnsuccessfulError')
+  } else if (parseInt(error) === 404) {
+    errorMsg = t('content.account.resetPswrdPermissionsError')
   }
 
   const dispatch = useDispatch()
@@ -158,9 +156,14 @@ export default function UserDetails() {
         </Box>
         <div className="errorMsg">
           {error && (
-            <>
-              <Typography variant="h5">{errorMsg}</Typography>
-            </>
+            <PageNotifications
+              title={t(
+                'content.usermanagement.appUserDetails.roles.error.title'
+              )}
+              description={errorMsg}
+              open
+              severity="error"
+            />
           )}
         </div>
         {userDetail && (

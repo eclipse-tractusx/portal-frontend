@@ -1,4 +1,5 @@
-import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
+import { PaginResult } from 'cx-portal-shared-components'
+import { initialPaginResult, RequestState } from 'types/MainTypes'
 
 export const name = 'admin/registration'
 

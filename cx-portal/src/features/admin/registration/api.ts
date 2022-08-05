@@ -2,10 +2,10 @@ import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 import { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
-import { PaginResult } from 'types/MainTypes'
 import { PAGE_SIZE } from 'types/Constants'
 import { SearchParams } from '../../connector/types'
 import qs from 'querystring'
+import { PaginResult } from 'cx-portal-shared-components'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
