@@ -1,15 +1,15 @@
 import {
   IconButton,
   StatusTag,
+  Table,
   Button,
-  PageLoadingTable,
 } from 'cx-portal-shared-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { fetchTenantUsers } from 'features/admin/user/actions'
-import { AppUser, TenantUser } from 'features/admin/user/types'
+import { TenantUser } from 'features/admin/user/types'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { useNavigate, useParams } from 'react-router-dom'
 import uniqueId from 'lodash/uniqueId'
@@ -28,7 +28,6 @@ export const AppUserDetailsTable = ({
   const navigate = useNavigate()
   const { appId } = useParams()
   const { data } = useFetchAppUsersQuery(appId!)
-  console.log('data', data)
   const tenantUsers = data && data.content
 
   const onUserDetailsClick = (userId: string) => {
@@ -46,8 +45,9 @@ export const AppUserDetailsTable = ({
           title="content.usermanagement.appUserDetails.table.headline"
           variant="h3"
         />
-        {tenantUsers && (
-          <PageLoadingTable<AppUser>
+        {
+          tenantUsers &&
+          <Table
             title={t('content.usermanagement.appUserDetails.table.title')}
             toolbar={{
               onSearch: () => {
@@ -72,10 +72,7 @@ export const AppUserDetailsTable = ({
                 renderCell: ({ value: status }) => {
                   const label = status ? 'active' : 'inactive'
                   return (
-                    <StatusTag
-                      color="label"
-                      label={t(`global.field.${label}`)}
-                    />
+                    <StatusTag color="label" label={t(`global.field.${label}`)} />
                   )
                 },
               },
@@ -86,13 +83,13 @@ export const AppUserDetailsTable = ({
                 renderCell: ({ value: roles }) => {
                   return roles.length
                     ? roles.map((role: string) => (
-                        <StatusTag
-                          key={role}
-                          color="label"
-                          label={role}
-                          className="statusTag"
-                        />
-                      ))
+                      <StatusTag
+                        key={role}
+                        color="label"
+                        label={role}
+                        className="statusTag"
+                      />
+                    ))
                     : ''
                 },
               },
@@ -110,18 +107,14 @@ export const AppUserDetailsTable = ({
                 ),
               },
             ]}
-            fetch={useFetchAppUsersQuery}
-            id={appId}
+            rows={tenantUsers}
             getRowId={(row: { [key: string]: string }) =>
               uniqueId(row.companyUserId)
             }
-            headerHeight={57}
             disableColumnMenu
             hideFooter
-            rowHeight={57}
-            loadLabel={t('global.actions.more')}
           />
-        )}
+        }
       </section>
 
       <div className="load-more-button-container">

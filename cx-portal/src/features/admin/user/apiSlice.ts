@@ -19,11 +19,8 @@ export const apiSlice = createApi({
       query: (page = 0) =>
         `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${page}`,
     }),
-    fetchAppUsers: builder.query<
-      PaginResult<AppUser>,
-      { page: number; appId: string }
-    >({
-      query: ({ page, appId }) =>
+    fetchAppUsers: builder.query<PaginResult<AppUser>, string>({
+      query: (appId, page = 0) =>
         `/api/administration/user/owncompany/apps/${appId}/users?size=${PAGE_SIZE}&page=${page}`,
     }),
   }),
