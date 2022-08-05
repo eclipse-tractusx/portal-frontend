@@ -47,7 +47,7 @@ export default function AppMarketCard() {
 
     useEffect(() => {
         window.onscroll = () => (
-            window.pageYOffset === 0 ? setPageScrolled(false) : setPageScrolled(true)
+            window.scrollY === 0 ? setPageScrolled(false) : setPageScrolled(true)
         )
     }, []);
 
@@ -160,14 +160,12 @@ export default function AppMarketCard() {
                             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
                             <Button
                                 variant="outlined"
-                                onClick={() => { }}
                                 sx={{ mr: 1 }}
                             >
                                 {t('content.apprelease.appMarketCard.help')}
                             </Button>
                             <IconButton
                                 color="secondary"
-                                onClick={() => { }}
                             >
                                 <LeftArrowIcon />
                             </IconButton>

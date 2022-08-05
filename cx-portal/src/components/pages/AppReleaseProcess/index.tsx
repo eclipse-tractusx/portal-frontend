@@ -15,7 +15,6 @@ export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const [createApp, setCreateApp] = useState(false)
 
-  //TODO: hardcoded currentActiveStep to be changed 
   const currentActiveStep = 1
 
   const stepsLists = [
