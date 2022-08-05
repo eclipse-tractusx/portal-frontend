@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
 import uniqueId from 'lodash/uniqueId'
+import dayjs from 'dayjs'
 
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
@@ -186,34 +187,40 @@ export default function InviteBusinessPartner() {
           columns={[
             {
               field: 'companyName',
-              headerName: `${t('content.invite.columns.companyName')}`,
+              headerName: t('content.invite.columns.companyName'),
               flex: 1,
             },
             {
               field: 'firstAndLastName',
-              headerName: `${t('content.invite.columns.firstAndLastName')}`,
+              headerName: t('content.invite.columns.firstAndLastName'),
               flex: 1,
             },
             {
               field: 'dateCreated',
-              headerName: `${t('content.invite.columns.date')}`,
+              headerName: t('content.invite.columns.date'),
               flex: 1,
-              // renderCell: rowData => moment(rowData.dateCreated).format('DD-MM-YYYY')
+              valueGetter: ({ row }: { row: InvitesDataGrid }) =>
+                dayjs(row.dateCreated).format('YYYY-MM-DD'),
             },
             {
               field: 'applicationStatus',
-              headerName: `${t('content.invite.columns.status')}`,
+              headerName: t('content.invite.columns.status'),
               flex: 1,
             },
             {
               field: 'details',
-              headerName: `${t('content.invite.columns.details')}`,
+              headerName: t('content.invite.columns.details'),
               flex: 1,
               sortable: false,
-              renderCell: () => (
+              renderCell: ({ row }: { row: InvitesDataGrid }) => (
                 <IconButton
                   color="secondary"
-                  onClick={() => console.log('on details click')}
+                  onClick={() =>
+                    console.log(
+                      'on details click: Company Name',
+                      row.companyName
+                    )
+                  }
                 >
                   <ArrowForwardIcon />
                 </IconButton>
