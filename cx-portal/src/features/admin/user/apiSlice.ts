@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { TenantUser } from 'features/admin/user/types'
+import { AppUser, TenantUser } from 'features/admin/user/types'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { PaginResult } from 'types/MainTypes'
@@ -19,7 +19,14 @@ export const apiSlice = createApi({
       query: (page = 0) =>
         `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${page}`,
     }),
+    fetchAppUsers: builder.query<
+      PaginResult<AppUser>,
+      { page: number; appId: string }
+    >({
+      query: ({ page, appId }) =>
+        `/api/administration/user/owncompany/apps/${appId}/users?size=${PAGE_SIZE}&page=${page}`,
+    }),
   }),
 })
 
-export const { useFetchUsersQuery } = apiSlice
+export const { useFetchUsersQuery, useFetchAppUsersQuery } = apiSlice

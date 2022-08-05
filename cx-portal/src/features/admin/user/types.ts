@@ -19,6 +19,15 @@ export type TenantUser = {
   email: string
 }
 
+export type AppUser = {
+  companyUserId: string
+  email: string
+  firstName: string
+  lastName: string
+  roles: string[]
+  status: string
+}
+
 export type AddUser = {
   userName: string
   email: string
