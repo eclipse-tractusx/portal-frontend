@@ -651,5 +651,22 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          paddingTop: '50px',
+          minWidth: 'fit-content',
+          '.MuiTab-textColorPrimary': {
+            minHeight: '50px',
+            alignItems: 'flex-start',
+            color: palette.text.tertiary,
+            paddingRight: '50px'
+          },
+          '.MuiTabs-indicator' : {
+            backgroundColor: palette.common.white,
+          },
+        }
+      }
+    },
   },
 })
