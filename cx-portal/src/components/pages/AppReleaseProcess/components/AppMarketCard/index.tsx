@@ -18,177 +18,180 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, Input, Typography, IconButton } from 'cx-portal-shared-components'
+import { Button, Input, Typography, IconButton, CardHorizontal, Card } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, InputLabel, Divider, Box } from '@mui/material'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import LeftArrowIcon from '@mui/icons-material/ArrowLeft'
 import './AppMarketCard.scss'
 
 export default function AppMarketCard() {
-    const { t } = useTranslation()
-    const [pageScrolled, setPageScrolled] = useState(false)
-    const [formData, setFormData] = useState({
-        appTitle: "",
-        appProvider: "",
-        shortDescriptionEN: "",
-        shortDescriptionDE: "",
-        useCaseCategory: "",
-        appLanguage: "",
-        pricingInformation: "",
-        uploadImage: {
-            src: "",
-            alt: ""
-        }
+  const { t } = useTranslation()
+  const [pageScrolled, setPageScrolled] = useState(false)
+  const [formData, setFormData] = useState({
+    appTitle: '',
+    appProvider: '',
+    shortDescriptionEN: '',
+    shortDescriptionDE: '',
+    useCaseCategory: '',
+    appLanguage: '',
+    pricingInformation: '',
+    uploadImage: {
+      src: '',
+      alt: '',
+    },
+  })
+
+  window.onscroll = () => setPageScrolled(window.scrollY !== 0)
+
+  const handleChange = (event: any) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
     })
+  }
 
-    useEffect(() => {
-        window.onscroll = () => (
-            window.scrollY === 0 ? setPageScrolled(false) : setPageScrolled(true)
-        )
-    }, []);
-
-    const handleChange = (event: any) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        })
-    }
-
-    return (
+  return (
+    <>
+      {!pageScrolled && (
         <>
-            {!pageScrolled &&
-                <>
-                    <Typography variant="h3" mt={10} mb={4} align="center">
-                        {t('content.apprelease.appMarketCard.headerTitle')}
-                    </Typography>
-                    <Typography variant="body2" className="header-description" align="center">
-                        {t('content.apprelease.appMarketCard.headerDescription')}
-                    </Typography>
-                </>
-            }
-            <Grid container spacing={2} sx={{ mt: pageScrolled ? 10 : 0 }}>
-                <Grid item
-                    md={pageScrolled ? 3 : 7}
-                    sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-                    className={`${pageScrolled ? "card" : ""}`}
-                >
-                    <Card sx={{ display: `${pageScrolled ? "" : "flex"}` }}>
-                        <CardMedia
-                            component="img"
-                            sx={{ width: 213, height: 164 }}
-                            className="form-card"
-                            image={formData.uploadImage.src === "" ? "https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png" : formData.uploadImage.src}
-                            alt={formData.uploadImage.alt === "" ? t('content.apprelease.appMarketCard.defaultCardAppImageAlt') : formData.uploadImage.alt}
-                        />
-                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                            <CardContent sx={{ flex: '1 0 auto' }}>
-                                <Typography variant="body1" fontSize="14px">
-                                    {formData.appProvider === "" ? t('content.apprelease.appMarketCard.defaultCardAppProvider') : formData.appProvider}
-                                </Typography>
-                                <Typography variant="h5">
-                                    {formData.appTitle === "" ? t('content.apprelease.appMarketCard.defaultCardAppTitle') : formData.appTitle}
-                                </Typography>
-                                <Typography variant="body1" fontSize="14px">
-                                    {formData.shortDescriptionEN === "" ? t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN') : formData.shortDescriptionEN}
-                                </Typography>
-                            </CardContent>
-                        </Box>
-                    </Card>
-                </Grid>
-                <Grid item md={pageScrolled ? 9 : 8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
-                    <form>
-                        <Input
-                            label={t('content.apprelease.appMarketCard.appTitle')}
-                            name={'appTitle'}
-                            placeholder={'name@domain.com'}
-                            value={formData.appTitle}
-                            onChange={(e) => handleChange(e)}
-                            className="form-field"
-                        />
-                        <Input
-                            label={t('content.apprelease.appMarketCard.appProvider')}
-                            name={'appProvider'}
-                            placeholder={'prefill: [company name]'}
-                            value={formData.appProvider}
-                            className="form-field"
-                            onChange={(e) => handleChange(e)}
-                        />
-                        <InputLabel >{t('content.apprelease.appMarketCard.shortDescriptionEN')}</InputLabel>
-                        <textarea
-                            name="shortDescriptionEN"
-                            value={formData.shortDescriptionEN}
-                            rows={4}
-                            maxLength={100}
-                            className="text-area form-field"
-                            onChange={(e) => handleChange(e)}
-                        />
-                        <InputLabel>{t('content.apprelease.appMarketCard.shortDescriptionDE')}</InputLabel>
-                        <textarea
-                            name="shortDescriptionDE"
-                            value={formData.shortDescriptionDE}
-                            rows={4}
-                            maxLength={100}
-                            className="text-area form-field"
-                            onChange={(e) => handleChange(e)}
-                        />
-                        <InputLabel id="Use Case /Category">
-                            {t('content.apprelease.appMarketCard.useCaseCategory')}
-                        </InputLabel>
-                        <InputLabel id="App Language">
-                            {t('content.apprelease.appMarketCard.appLanguage')}
-                        </InputLabel>
-                        <Input
-                            label={t('content.apprelease.appMarketCard.pricingInformation')}
-                            name={'pricingInformation'}
-                            placeholder={'Pricing Information'}
-                            value={formData.pricingInformation}
-                            className="form-field"
-                            onChange={(e) => handleChange(e)}
-                        />
-                        <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-                            {t('content.apprelease.appMarketCard.note')}
-                        </Typography>
-                        <Typography variant="body2" mb={3}>
-                            {t('content.apprelease.appMarketCard.OnlyOneFileAllowed')}
-                        </Typography>
-
-                        <Box mb={2}>
-                            <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-                            <Button
-                                variant="outlined"
-                                sx={{ mr: 1 }}
-                            >
-                                {t('content.apprelease.appMarketCard.help')}
-                            </Button>
-                            <IconButton
-                                color="secondary"
-                            >
-                                <LeftArrowIcon />
-                            </IconButton>
-
-                            <Button
-                                variant="outlined"
-                                disabled={true}
-                                sx={{ float: 'right' }}
-                            >
-                                {t('content.apprelease.appMarketCard.saveAndProceed')}
-                            </Button>
-                            <Button
-                                variant="outlined"
-                                name="send"
-                                className={"form-buttons"}
-                                sx={{ float: 'right', mr: 1 }}
-                            >
-                                {t('content.apprelease.appMarketCard.save')}
-                            </Button>
-                        </Box>
-                    </form>
-                </Grid>
-            </Grid>
+          <Typography variant="h3" mt={10} mb={4} align="center">
+            {t('content.apprelease.appMarketCard.headerTitle')}
+          </Typography>
+          <Typography
+            variant="body2"
+            className="header-description"
+            align="center"
+          >
+            {t('content.apprelease.appMarketCard.headerDescription')}
+          </Typography>
         </>
-    )
+      )}
+      <Grid container spacing={2} sx={{ mt: pageScrolled ? 10 : 0 }}>
+        <Grid
+          item
+          md={pageScrolled ? 3 : 7}
+          sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
+          className={`${pageScrolled ? 'card' : ''}`}
+        >
+          {pageScrolled ? (
+            <Card
+              image={{
+                src: formData.uploadImage.src || 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
+                alt: formData.uploadImage.alt || t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
+              }}
+              title={formData.appTitle || t('content.apprelease.appMarketCard.defaultCardAppTitle')}
+              subtitle={formData.appProvider || t('content.apprelease.appMarketCard.defaultCardAppProvider')}
+              description={formData.shortDescriptionEN || t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')}
+              imageSize="normal"
+              imageShape="square"
+              variant="text-details"
+              expandOnHover={false}
+              filledBackground={true}
+              buttonText={''}
+            />
+          ) : (
+            <CardHorizontal
+              label={formData.appProvider || t('content.apprelease.appMarketCard.defaultCardAppProvider')}
+              title={formData.appTitle || t('content.apprelease.appMarketCard.defaultCardAppTitle')}
+              imagePath={formData.uploadImage.src || 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png'}
+              imageAlt={formData.uploadImage.alt || t('content.apprelease.appMarketCard.defaultCardAppImageAlt')}
+              borderRadius={0}
+              description={formData.shortDescriptionEN || t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')}
+            />
+          )}
+        </Grid>
+        <Grid
+          item
+          md={pageScrolled ? 9 : 8}
+          sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}
+        >
+          <form>
+            <Input
+              label={t('content.apprelease.appMarketCard.appTitle')}
+              name={'appTitle'}
+              placeholder={'name@domain.com'}
+              value={formData.appTitle}
+              onChange={handleChange}
+              className="form-field"
+            />
+            <Input
+              label={t('content.apprelease.appMarketCard.appProvider')}
+              name={'appProvider'}
+              placeholder={'prefill: [company name]'}
+              value={formData.appProvider}
+              className="form-field"
+              onChange={handleChange}
+            />
+            <InputLabel>
+              {t('content.apprelease.appMarketCard.shortDescriptionEN')}
+            </InputLabel>
+            <textarea
+              name="shortDescriptionEN"
+              value={formData.shortDescriptionEN}
+              rows={4}
+              maxLength={100}
+              className="text-area form-field"
+              onChange={handleChange}
+            />
+            <InputLabel>
+              {t('content.apprelease.appMarketCard.shortDescriptionDE')}
+            </InputLabel>
+            <textarea
+              name="shortDescriptionDE"
+              value={formData.shortDescriptionDE}
+              rows={4}
+              maxLength={100}
+              className="text-area form-field"
+              onChange={handleChange}
+            />
+            <InputLabel id="use_case_category">
+              {t('content.apprelease.appMarketCard.useCaseCategory')}
+            </InputLabel>
+            <InputLabel id="app_language">
+              {t('content.apprelease.appMarketCard.appLanguage')}
+            </InputLabel>
+            <Input
+              label={t('content.apprelease.appMarketCard.pricingInformation')}
+              name={'pricingInformation'}
+              placeholder={'Pricing Information'}
+              value={formData.pricingInformation}
+              className="form-field"
+              onChange={handleChange}
+            />
+            <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+              {t('content.apprelease.appMarketCard.note')}
+            </Typography>
+            <Typography variant="body2" mb={3}>
+              {t('content.apprelease.appMarketCard.OnlyOneFileAllowed')}
+            </Typography>
+            <Box mb={2}>
+              <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+              <Button variant="outlined" sx={{ mr: 1 }}>
+                {t('content.apprelease.appMarketCard.help')}
+              </Button>
+              <IconButton color="secondary">
+                <LeftArrowIcon />
+              </IconButton>
+              <Button
+                variant="outlined"
+                disabled={true}
+                sx={{ float: 'right' }}
+              >
+                {t('content.apprelease.appMarketCard.saveAndProceed')}
+              </Button>
+              <Button
+                variant="outlined"
+                name="send"
+                className={'form-buttons'}
+                sx={{ float: 'right', mr: 1 }}
+              >
+                {t('content.apprelease.appMarketCard.save')}
+              </Button>
+            </Box>
+          </form>
+        </Grid>
+      </Grid>
+    </>
+  )
 }

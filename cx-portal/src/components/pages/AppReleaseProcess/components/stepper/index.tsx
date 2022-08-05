@@ -22,31 +22,34 @@ import { Stepper } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function AppReleaseStepper() {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    const stepsList = [
-        {
-            headline: t('content.apprelease.stepper.appMarketCard'),
-            step: 1,
-        }, {
-            headline: t('content.apprelease.stepper.contractAndConsent'),
-            step: 2,
-        }, {
-            headline: t('content.apprelease.stepper.technicalIntegration'),
-            step: 3,
-        }, {
-            headline: t('content.apprelease.stepper.betaTest'),
-            step: 4,
-        }, {
-            headline: t('content.apprelease.stepper.validateAndPublish'),
-            step: 5,
-        }, {
-            headline: t('content.apprelease.stepper.verifyYourCompanyData'),
-            step: 6,
-        },
-    ]
+  const stepsList = [
+    {
+      headline: t('content.apprelease.stepper.appMarketCard'),
+      step: 1,
+    },
+    {
+      headline: t('content.apprelease.stepper.contractAndConsent'),
+      step: 2,
+    },
+    {
+      headline: t('content.apprelease.stepper.technicalIntegration'),
+      step: 3,
+    },
+    {
+      headline: t('content.apprelease.stepper.betaTest'),
+      step: 4,
+    },
+    {
+      headline: t('content.apprelease.stepper.validateAndPublish'),
+      step: 5,
+    },
+    {
+      headline: t('content.apprelease.stepper.verifyYourCompanyData'),
+      step: 6,
+    },
+  ]
 
-    return (
-        <Stepper list={stepsList} showSteps={6} activeStep={1} />
-    )
+  return <Stepper list={stepsList} showSteps={6} activeStep={1} />
 }

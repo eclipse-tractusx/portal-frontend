@@ -65,16 +65,14 @@ export default function AppReleaseProcess() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-      {createApp ?
+      {createApp ? (
         <div className="create-app-section">
           <div className="container">
             <AppReleaseStepper />
-            {currentActiveStep === 1 && (
-              <AppMarketCard />
-            )}
+            {currentActiveStep === 1 && <AppMarketCard />}
           </div>
         </div>
-        :
+      ) : (
         <>
           <div className="desc-section">
             <div className="container">
@@ -90,7 +88,7 @@ export default function AppReleaseProcess() {
                   color="primary"
                   size="small"
                   className="create-btn"
-                  onClick={() => { setCreateApp(true) }}
+                  onClick={() => setCreateApp(true)}
                 >
                   {t('content.apprelease.startCreatingButton')}
                 </Button>
@@ -123,7 +121,12 @@ export default function AppReleaseProcess() {
                   </Typography>
                 </div>
                 <div className="text-center">
-                  <Button color="primary" size="small" className="create-btn" onClick={() => { setCreateApp(true) }}>
+                  <Button
+                    color="primary"
+                    size="small"
+                    className="create-btn"
+                    onClick={() => setCreateApp(true)}
+                  >
                     {t('content.apprelease.startCreatingButton')}
                   </Button>
                   <Typography variant="h3" className="marketplace-heading">
@@ -133,27 +136,47 @@ export default function AppReleaseProcess() {
                 <div className="marketplace-main">
                   <ul>
                     <li>
-                      <Button color="secondary" size="small" className="neu-btn">
+                      <Button
+                        color="secondary"
+                        size="small"
+                        className="neu-btn"
+                      >
                         {t('content.apprelease.neuButton')}
                       </Button>
                       <span>
-                        <Typography variant="body2" className="marketplace-title1">
+                        <Typography
+                          variant="body2"
+                          className="marketplace-title1"
+                        >
                           {t('content.apprelease.marketplaceTitle')}
                         </Typography>
-                        <Typography variant="body2" className="marketplace-title1">
+                        <Typography
+                          variant="body2"
+                          className="marketplace-title1"
+                        >
                           {t('content.apprelease.marketplaceExplanation')}
                         </Typography>
                       </span>
                     </li>
                     <li>
-                      <Button color="secondary" size="small" className="neu-btn">
+                      <Button
+                        color="secondary"
+                        size="small"
+                        className="neu-btn"
+                      >
                         {t('content.apprelease.neuButton')}
                       </Button>
                       <span>
-                        <Typography variant="body2" className="marketplace-title1">
+                        <Typography
+                          variant="body2"
+                          className="marketplace-title1"
+                        >
                           {t('content.apprelease.marketplaceTitle')}
                         </Typography>
-                        <Typography variant="body2" className="marketplace-title1">
+                        <Typography
+                          variant="body2"
+                          className="marketplace-title1"
+                        >
                           {t('content.apprelease.marketplaceExplanation')}
                         </Typography>
                       </span>
@@ -164,7 +187,7 @@ export default function AppReleaseProcess() {
             </div>
           </div>
         </>
-      }
+      )}
     </div>
   )
 }
