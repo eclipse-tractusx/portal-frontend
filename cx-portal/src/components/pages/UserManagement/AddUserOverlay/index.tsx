@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTenantUsers, closeAdd } from 'features/admin/user/actions'
 import { RequestState } from 'types/MainTypes'
 import './AddUserOverlay.scss'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 
 export const AddUserOverlay = () => {
   const { t } = useTranslation()
@@ -54,8 +56,12 @@ export const AddUserOverlay = () => {
     <div className={'add-user-overlay'}>
       <Dialog open={addOpen}>
         <DialogHeader
-          title={t('content.addUser.headline')}
-          intro={t('content.addUser.subheadline')}
+          {...{
+            title: t('content.addUser.headline'),
+            intro: t('content.addUser.subheadline'),
+            closeWithIcon: true,
+            onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+          }}
         />
 
         <DialogContent className="w-100">
