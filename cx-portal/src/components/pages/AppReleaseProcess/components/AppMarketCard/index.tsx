@@ -68,13 +68,13 @@ export default function AppMarketCard() {
         </>
       )}
       <Grid container spacing={2} sx={{ mt: pageScrolled ? 10 : 0 }}>
-        <Grid
-          item
-          md={pageScrolled ? 3 : 7}
-          sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-          className={`${pageScrolled ? 'card' : ''}`}
-        >
-          {pageScrolled ? (
+        {pageScrolled ? (
+          <Grid
+            item
+            md={3}
+            sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
+            className={'card'}
+          >
             <Card
               image={{
                 src: formData.uploadImage.src || 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
@@ -90,7 +90,13 @@ export default function AppMarketCard() {
               filledBackground={true}
               buttonText={''}
             />
-          ) : (
+          </Grid>
+        ) : (
+          <Grid
+            item
+            md={7}
+            sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
+          >
             <CardHorizontal
               label={formData.appProvider || t('content.apprelease.appMarketCard.defaultCardAppProvider')}
               title={formData.appTitle || t('content.apprelease.appMarketCard.defaultCardAppTitle')}
@@ -99,8 +105,8 @@ export default function AppMarketCard() {
               borderRadius={0}
               description={formData.shortDescriptionEN || t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')}
             />
-          )}
-        </Grid>
+          </Grid>
+        )}
         <Grid
           item
           md={pageScrolled ? 9 : 8}
