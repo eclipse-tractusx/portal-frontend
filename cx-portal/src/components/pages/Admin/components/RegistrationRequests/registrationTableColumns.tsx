@@ -52,7 +52,7 @@ export const RegistrationRequestsTableColumns = (
       cellClassName: 'documents-column--cell',
       renderCell: ({ row }: { row: RegistrationRequestDataGrid }) => (
         <div className="document-cell-container">
-          {row.documents.map((contract) => 
+          {row.documents.map((contract) => (
             <div
               className="document-cell-line"
               key={uniqueId(contract?.documentHash)}
@@ -62,7 +62,7 @@ export const RegistrationRequestsTableColumns = (
                 {contract?.documentType}
               </a>
             </div>
-          )}
+          ))}
         </div>
       ),
     },
