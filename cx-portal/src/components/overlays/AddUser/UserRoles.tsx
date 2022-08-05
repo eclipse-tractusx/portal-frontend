@@ -1,40 +1,29 @@
-import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { useFetchUserRolesQuery } from 'features/admin/userApiSlice'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
+import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
-interface UserRolesProps {
-  headline?: string
-}
-
-export const UserRoles = ({ headline }: UserRolesProps) => {
+export const UserRoles = () => {
   const { t } = useTranslation()
-  const userRoles = [
-    {
-      id: 'itAdmin',
-      title: t('global.userRoles.itAdmin'),
-    },
-    {
-      id: 'businessAdmin',
-      title: t('global.userRoles.businessAdmin'),
-    },
-    {
-      id: 'cxUser',
-      title: t('global.userRoles.cxUser'),
-    },
-    {
-      id: 'dataSpecialist',
-      title: t('global.userRoles.dataSpecialist'),
-    },
-    {
-      id: 'appDeveloper',
-      title: t('global.userRoles.appDeveloper'),
-    },
-    {
-      id: 'appAdmin',
-      title: t('global.userRoles.appAdmin'),
-    },
-  ]
+  const dispatch = useDispatch()
+  const roles = useSelector(rolesToAddSelector)
+  const { data } = useFetchUserRolesQuery()
+
+  const selectRole = (role: string, select: boolean) => {
+    const isSelected = roles.includes(role)
+    if (!isSelected && select) {
+      dispatch(setRolesToAdd([...roles, role]))
+    } else if (isSelected && !select) {
+      const oldRoles = [...roles]
+      oldRoles.splice(oldRoles.indexOf(role), 1)
+      dispatch(setRolesToAdd([...oldRoles]))
+    }
+  }
 
   return (
     <Box
@@ -48,16 +37,23 @@ export const UserRoles = ({ headline }: UserRolesProps) => {
         },
       }}
     >
-      {headline && (
-        <div className="add-user-title">
-          <SubHeaderTitle title={headline} variant="body1" />
-        </div>
-      )}
+      <div className="add-user-title">
+        <SubHeaderTitle
+          title={t('content.addUser.chooseUserRole')}
+          variant="body1"
+        />
+      </div>
 
       <div className="checkbox-section">
-        {userRoles.map(({ title, id }) => (
-          <Checkbox label={title} key={id} />
-        ))}
+        {data &&
+          data.map((role) => (
+            <Checkbox
+              checked={Array.isArray(roles) && roles.includes(role)}
+              label={role}
+              key={role}
+              onChange={(e) => selectRole(role, e.target.checked)}
+            />
+          ))}
       </div>
     </Box>
   )

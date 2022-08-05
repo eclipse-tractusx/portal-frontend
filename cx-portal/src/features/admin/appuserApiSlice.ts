@@ -32,11 +32,11 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/apps/roles',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchRoles: builder.query<AppRole[], string>({
+    fetchAppRoles: builder.query<AppRole[], string>({
       query: (appId: string) =>
         `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
     }),
   }),
 })
 
-export const { useFetchRolesQuery } = apiSlice
+export const { useFetchAppRolesQuery } = apiSlice

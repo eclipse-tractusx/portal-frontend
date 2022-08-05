@@ -19,14 +19,23 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { PaginResult } from 'cx-portal-shared-components'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
+import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 
 export interface UserAppRoles {
   appId: string
   roles: string[]
+}
+
+export type AddUser = {
+  userName: string
+  email: string
+  firstName: string
+  lastName: string
+  roles?: string[]
+  message: string
 }
 
 export interface UserBase {
@@ -59,14 +68,37 @@ export const apiSlice = createApi({
     },
   }),
   endpoints: (builder) => ({
-    fetchUsers: builder.query<PaginResult<TenantUser>, number | void>({
-      query: (page: number = 0) =>
-        `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${page}`,
+    addTenantUsers: builder.mutation<void, AddUser[]>({
+      query: (body) => ({
+        url: `/api/administration/user/owncompany/users`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    removeTenantUser: builder.mutation<void, string[]>({
+      query: (body) => ({
+        url: `/api/administration/user/owncompany/users`,
+        method: 'DELETE',
+        body,
+      }),
+    }),
+    fetchUserRoles: builder.query<string[], void>({
+      query: () => `/api/registration/rolesComposite`,
+    }),
+    fetchUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
+      query: (fetchArgs) =>
+        `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${fetchArgs.page}`,
     }),
     fetchUserDetails: builder.query<TenantUserDetails, string>({
-      query: (id: string) => `/api/administration/user/owncompany/users/${id}`,
+      query: (id) => `/api/administration/user/owncompany/users/${id}`,
     }),
   }),
 })
 
-export const { useFetchUsersQuery, useFetchUserDetailsQuery } = apiSlice
+export const {
+  useFetchUserRolesQuery,
+  useFetchUsersQuery,
+  useFetchUserDetailsQuery,
+  useAddTenantUsersMutation,
+  useRemoveTenantUserMutation,
+} = apiSlice

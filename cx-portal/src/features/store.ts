@@ -11,9 +11,10 @@ import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
-import { apiSlice as userApiSlice } from './admin/user/apiSlice'
+import { apiSlice as userApiSlice } from './admin/userApiSlice'
+import { apiSlice as serviceApiSlice } from './admin/serviceApiSlice'
 import { apiSlice as notificationApiSlice } from './notification/apiSlice'
-import { apiSlice as appRolesSlice } from './admin/approle/apiSlice'
+import { apiSlice as appRolesSlice } from './admin/appuserApiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 
 export const reducers = {
@@ -29,6 +30,7 @@ export const reducers = {
   notification: notificationSlice.reducer,
   error: ErrorSlice.reducer,
   [userApiSlice.reducerPath]: userApiSlice.reducer,
+  [serviceApiSlice.reducerPath]: serviceApiSlice.reducer,
   [notificationApiSlice.reducerPath]: notificationApiSlice.reducer,
   [appRolesSlice.reducerPath]: appRolesSlice.reducer,
   [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
@@ -39,6 +41,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(userApiSlice.middleware)
+      .concat(serviceApiSlice.middleware)
       .concat(notificationApiSlice.middleware)
       .concat(appRolesSlice.middleware)
       .concat(appMarketplaceSlice.middleware),

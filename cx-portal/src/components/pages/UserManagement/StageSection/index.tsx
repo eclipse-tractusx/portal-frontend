@@ -1,7 +1,8 @@
 import { Button, MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { openAdd } from 'features/admin/user/actions'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -19,7 +20,7 @@ export default function SearchSection() {
       >
         <Button
           sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => dispatch(openAdd())}
+          onClick={() => dispatch(show(OVERLAYS.ADD_USER))}
         >
           {t('content.usermanagement.table.add')}
         </Button>

@@ -62,6 +62,7 @@ export type {
   PageLoadingTableProps,
   PaginMeta,
   PaginResult,
+  PaginFetchArgs,
 } from './basic/Table/PageLoadingTable'
 export type { CardItems } from './content/Cards'
 export type { NavigationProps } from './content/Navigation'

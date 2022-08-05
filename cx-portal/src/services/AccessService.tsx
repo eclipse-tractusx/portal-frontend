@@ -17,6 +17,8 @@ import {
   userMenuFull,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
+import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
+import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -69,6 +71,10 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
+    case OVERLAYS.ADD_APP_USER_ROLES:
+      return <AddAppUserRoles id={overlay.id} />
+    case OVERLAYS.EDIT_APP_USER_ROLES:
+      return <EditAppUserRoles id={overlay.id} />
     case OVERLAYS.NEWS:
       return <NewsDetail id={overlay.id} />
     case OVERLAYS.ADD_BPN:

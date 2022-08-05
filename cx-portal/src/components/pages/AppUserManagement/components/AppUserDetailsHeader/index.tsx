@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Typography, PageNotifications } from 'cx-portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { AppRole } from 'features/admin/approle/types'
+import { AppRole } from 'features/admin/appuserApiSlice'
 import './AppUserDetailsHeader.scss'
 
 export interface AppUserDetailsHeaderProps {

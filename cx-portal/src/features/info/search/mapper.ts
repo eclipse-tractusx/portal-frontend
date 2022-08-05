@@ -1,5 +1,5 @@
 import { CardItems } from 'cx-portal-shared-components'
-import { TenantUser } from 'features/admin/user/types'
+import { TenantUser } from 'features/admin/userApiSlice'
 import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
 import { BusinessPartner } from 'features/partnerNetwork/types'
 import { SearchCategory, SearchItem } from './types'
