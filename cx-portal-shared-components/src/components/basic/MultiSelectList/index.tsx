@@ -1,4 +1,4 @@
-import { Chip, Popper, TextFieldProps } from '@mui/material'
+import { Chip, Popper, TextFieldProps, useTheme } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
@@ -38,6 +38,8 @@ export const MultiSelectList = ({
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
+  const theme = useTheme()
+
   return (
     <Autocomplete
       id="selectList"
@@ -55,19 +57,30 @@ export const MultiSelectList = ({
       renderTags={(value: string[], getTagProps) => {
         return value.map((option: any, index: number) => (
           <Chip
+            {...getTagProps({ index })}
             variant="filled"
             label={option.title}
             sx={{
               borderRadius: '16px',
-              border: '2px solid #d1d1d1 !important',
+              border: `1px solid ${theme.palette.accent.accent03} !important`,
+              backgroundColor: `${theme.palette.accent.accent02}`,
+              color: theme.palette.accent.accent03,
+              fontWeight: 'bold',
               span: {
-                borderRight: '2px solid #d1d1d1 !important',
                 marginRight: '10px !important',
                 height: '26px !important',
                 paddingTop: '2px',
+                paddingLeft: '0px',
+                order: '2'
+              },
+              '.MuiChip-deleteIcon': {
+                paddingLeft: '10px',
+                color: theme.palette.accent.accent03,
+              },
+              '.MuiChip-deleteIcon:hover': {
+                color: theme.palette.accent.accent01,
               },
             }}
-            {...getTagProps({ index })}
           />
         ))
       }}
