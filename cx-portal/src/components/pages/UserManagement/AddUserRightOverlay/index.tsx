@@ -9,9 +9,6 @@ import { useTranslation } from 'react-i18next'
 import { UserRoles } from '../AddUserOverlay/UserRoles'
 import UserListContent from './UserListContent'
 import './AddUserOverlay.scss'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
-import { useDispatch } from 'react-redux'
 
 export interface AddUserRightOverlayProps {
   openDialog?: boolean
@@ -25,7 +22,6 @@ export default function AddUserRightOverlay({
   handleConfirm,
 }: AddUserRightOverlayProps) {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   return (
     <Dialog open={openDialog}>
       <DialogHeader
