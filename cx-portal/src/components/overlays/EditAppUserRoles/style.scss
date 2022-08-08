@@ -1,9 +1,12 @@
-.roles-heading > * {
-  padding-bottom: 15px;
+.roles-heading>div>h2 {
+  font-size: 18px !important;
 }
-.roles_content_main {
-  .sub-heading {
-    font-weight: normal !important;
-    text-align: center;
-  }
+
+.roles-heading>div>p {
+  font-weight: normal !important;
+}
+
+.roles-list {
+  display: flex;
+  justify-content: center;
 }
