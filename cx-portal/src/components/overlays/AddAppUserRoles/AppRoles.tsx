@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { useFetchUserRolesQuery } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'

@@ -18,7 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, Input, Typography, IconButton, CardHorizontal, Card } from 'cx-portal-shared-components'
+import {
+  Button,
+  Input,
+  Typography,
+  IconButton,
+  CardHorizontal,
+  Card,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, InputLabel, Divider, Box } from '@mui/material'
 import { useState } from 'react'
@@ -77,12 +84,27 @@ export default function AppMarketCard() {
           >
             <Card
               image={{
-                src: formData.uploadImage.src || 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
-                alt: formData.uploadImage.alt || t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
+                src:
+                  formData.uploadImage.src ||
+                  'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
+                alt:
+                  formData.uploadImage.alt ||
+                  t('content.apprelease.appMarketCard.defaultCardAppImageAlt'),
               }}
-              title={formData.appTitle || t('content.apprelease.appMarketCard.defaultCardAppTitle')}
-              subtitle={formData.appProvider || t('content.apprelease.appMarketCard.defaultCardAppProvider')}
-              description={formData.shortDescriptionEN || t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')}
+              title={
+                formData.appTitle ||
+                t('content.apprelease.appMarketCard.defaultCardAppTitle')
+              }
+              subtitle={
+                formData.appProvider ||
+                t('content.apprelease.appMarketCard.defaultCardAppProvider')
+              }
+              description={
+                formData.shortDescriptionEN ||
+                t(
+                  'content.apprelease.appMarketCard.defaultCardShortDescriptionEN'
+                )
+              }
               imageSize="normal"
               imageShape="square"
               variant="text-details"
@@ -92,18 +114,31 @@ export default function AppMarketCard() {
             />
           </Grid>
         ) : (
-          <Grid
-            item
-            md={7}
-            sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-          >
+          <Grid item md={7} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
-              label={formData.appProvider || t('content.apprelease.appMarketCard.defaultCardAppProvider')}
-              title={formData.appTitle || t('content.apprelease.appMarketCard.defaultCardAppTitle')}
-              imagePath={formData.uploadImage.src || 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png'}
-              imageAlt={formData.uploadImage.alt || t('content.apprelease.appMarketCard.defaultCardAppImageAlt')}
+              label={
+                formData.appProvider ||
+                t('content.apprelease.appMarketCard.defaultCardAppProvider')
+              }
+              title={
+                formData.appTitle ||
+                t('content.apprelease.appMarketCard.defaultCardAppTitle')
+              }
+              imagePath={
+                formData.uploadImage.src ||
+                'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png'
+              }
+              imageAlt={
+                formData.uploadImage.alt ||
+                t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
+              }
               borderRadius={0}
-              description={formData.shortDescriptionEN || t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')}
+              description={
+                formData.shortDescriptionEN ||
+                t(
+                  'content.apprelease.appMarketCard.defaultCardShortDescriptionEN'
+                )
+              }
             />
           </Grid>
         )}

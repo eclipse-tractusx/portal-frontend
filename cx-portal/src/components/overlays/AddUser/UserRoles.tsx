@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
