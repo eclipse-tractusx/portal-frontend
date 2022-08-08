@@ -5,7 +5,7 @@ import { CardChip, CardChipProps } from './CardChip'
 import { CardContent, CardContentProps } from './CardContent'
 import { CardImage, CardImageProps } from './CardImage'
 
-type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only'
+type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only' | 'text-details'
 
 export interface CardProps
   extends CardContentProps,
@@ -70,6 +70,9 @@ export const Card = ({
       case 'expanded':
       case 'preview':
         setContent({ title, subtitle, rating, price, description })
+        break
+      case 'text-details':
+        setContent({ title, subtitle, description })
         break
       default:
         setContent({ title, subtitle })
