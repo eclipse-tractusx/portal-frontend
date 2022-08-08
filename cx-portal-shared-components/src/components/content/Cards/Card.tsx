@@ -5,7 +5,13 @@ import { CardChip, CardChipProps } from './CardChip'
 import { CardContent, CardContentProps } from './CardContent'
 import { CardImage, CardImageProps } from './CardImage'
 
-type Variants = 'minimal' | 'compact' | 'expanded' | 'preview' | 'text-only' | 'text-details'
+type Variants =
+  | 'minimal'
+  | 'compact'
+  | 'expanded'
+  | 'preview'
+  | 'text-only'
+  | 'text-details'
 
 export interface CardProps
   extends CardContentProps,

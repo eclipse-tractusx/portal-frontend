@@ -1,5 +1,7 @@
 import { Box, Chip, Popper, TextFieldProps, useTheme } from '@mui/material'
-import Autocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autocomplete'
+import Autocomplete, {
+  AutocompleteRenderInputParams,
+} from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
 import { SelectInput } from './Components/SelectInput'
@@ -63,7 +65,7 @@ export const MultiSelectList = ({
 
   return (
     <Box>
-      {!showItems ?
+      {!showItems ? (
         <Autocomplete
           id="selectList"
           sx={{ width: '100%' }}
@@ -133,10 +135,12 @@ export const MultiSelectList = ({
               />
             )
           }}
-          onChange={(_, selectedItems: MultiSelectItemType[]) => handleChange(selectedItems)}
+          onChange={(_, selectedItems: MultiSelectItemType[]) =>
+            handleChange(selectedItems)
+          }
           onBlur={() => setShowItems(true)}
         />
-        :
+      ) : (
         <SelectAddMore
           selected={selected}
           notItemsText={notItemsText}
@@ -144,8 +148,7 @@ export const MultiSelectList = ({
           label={label}
           handleShowItems={() => handleViewAddMore()}
         />
-      }
-
+      )}
     </Box>
   )
 }

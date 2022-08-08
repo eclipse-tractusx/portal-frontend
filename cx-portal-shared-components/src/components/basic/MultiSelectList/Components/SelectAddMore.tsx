@@ -27,7 +27,7 @@ export const SelectAddMore = ({
         variant="body1"
         fontSize="14px"
         sx={{
-          marginBottom: '10px'
+          marginBottom: '10px',
         }}
       >
         {label}
@@ -35,12 +35,19 @@ export const SelectAddMore = ({
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'row'
+          flexDirection: 'row',
         }}
       >
-        <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%'}}>
-          {selected.length > 0 ?
-            selected.map((item: MultiSelectItemType) =>(
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            width: '80%',
+          }}
+        >
+          {selected.length > 0 ? (
+            selected.map((item: MultiSelectItemType) => (
               <Typography
                 key={uniqueId(item.title)}
                 sx={{
@@ -57,8 +64,8 @@ export const SelectAddMore = ({
               >
                 {item.title}
               </Typography>
-            )) 
-            :
+            ))
+          ) : (
             <Typography
               variant="body1"
               fontSize="18px"
@@ -69,16 +76,16 @@ export const SelectAddMore = ({
               }}
             >
               {notItemsText}
-            </Typography>  
-          }
+            </Typography>
+          )}
         </Box>
-        <Box sx={{height: '40px', width: '20%'}}>
+        <Box sx={{ height: '40px', width: '20%' }}>
           <Button
-            sx={{width: 'fit-content', float: 'right'}}
-            size='medium'
-            color='secondary'
+            sx={{ width: 'fit-content', float: 'right' }}
+            size="medium"
+            color="secondary"
             onClick={() => handleShowItems()}
-            >
+          >
             {buttonAddMore}
           </Button>
         </Box>

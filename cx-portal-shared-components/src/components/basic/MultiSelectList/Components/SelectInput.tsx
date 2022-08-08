@@ -3,7 +3,10 @@ import { MultiSelectListProps } from '..'
 import { Input } from '../../Input'
 
 interface SelectInputProps
-  extends Omit<MultiSelectListProps, 'items' | 'onAddItem' | 'buttonAddMore' | 'notItemsText'> {
+  extends Omit<
+    MultiSelectListProps,
+    'items' | 'onAddItem' | 'buttonAddMore' | 'notItemsText'
+  > {
   params: AutocompleteRenderInputParams
   autoFocus?: boolean
 }
