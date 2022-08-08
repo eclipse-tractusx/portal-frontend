@@ -80,8 +80,8 @@ export const MultiSelectList = ({
           options={items.map((item) => item)}
           getOptionLabel={(option) => option.title}
           value={selected}
-          renderTags={(selectedItems: MultiSelectItemType[], getTagProps) => {
-            return selectedItems.map((option: any, index: number) => (
+          renderTags={(selectedItems: MultiSelectItemType[], getTagProps) => 
+            selectedItems.map((option: any, index: number) => (
               <Chip
                 {...getTagProps({ index })}
                 variant="filled"
@@ -109,7 +109,7 @@ export const MultiSelectList = ({
                 }}
               />
             ))
-          }}
+          }
           renderInput={(param: AutocompleteRenderInputParams) => (
             <SelectInput
               params={param}
