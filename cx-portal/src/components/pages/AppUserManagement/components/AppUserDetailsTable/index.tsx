@@ -24,13 +24,13 @@ import {
   Button,
   PageLoadingTable,
 } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 import './AppUserDetailsTable.scss'
 
 export const AppUserDetailsTable = ({ appId }: { appId: string }) => {

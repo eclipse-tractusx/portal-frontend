@@ -2,31 +2,32 @@ import { Dialog } from 'cx-portal-shared-components'
 import { stateSelector } from 'features/control/overlay/slice'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getAction, getOverlay } from 'services/AccessService'
 import { OVERLAYS } from 'types/Constants'
 
 export default function MainOverlay() {
-  const overlay = useSelector(stateSelector)
+  const { overlay } = useParams()
+  const ov = useSelector(stateSelector)
   const navigate = useNavigate()
 
   useEffect(() => {
-    navigate({
-      search:
-        overlay.type === OVERLAYS.NONE
-          ? ''
-          : `?overlay=${overlay.type}${overlay.id ? ':' + overlay.id : ''}`,
-    })
-  }, [navigate, overlay])
+    if (overlay) {
+      navigate({
+        search:
+          ov.type === OVERLAYS.NONE
+            ? ''
+            : `?overlay=${ov.type}${ov.id ? ':' + ov.id : ''}`,
+      })
+    }
+  }, [navigate, overlay, ov])
 
   return (
     <>
-      {overlay.type === OVERLAYS.NONE && getAction(overlay.id) ? (
-        getAction(overlay.id)?.element
+      {ov.type === OVERLAYS.NONE && getAction(ov.id) ? (
+        getAction(ov.id)?.element
       ) : (
-        <Dialog open={overlay.type !== OVERLAYS.NONE}>
-          {getOverlay(overlay)}
-        </Dialog>
+        <Dialog open={ov.type !== OVERLAYS.NONE}>{getOverlay(ov)}</Dialog>
       )}
     </>
   )

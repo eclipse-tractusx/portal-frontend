@@ -18,8 +18,8 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { appId } = useParams()
-  const appDetails = useFetchAppDetailsQuery(appId!).data
-  const appRoles = useFetchAppRolesQuery(appId!).data
+  const appDetails = useFetchAppDetailsQuery(appId ?? '').data
+  const appRoles = useFetchAppRolesQuery(appId ?? '').data
   const { data } = useFetchUserDetailsQuery(id)
 
   return (
