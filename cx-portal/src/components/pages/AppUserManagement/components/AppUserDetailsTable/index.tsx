@@ -31,6 +31,10 @@ export const AppUserDetailsTable = () => {
   const { appId } = useParams()
   return (
     <UserList
+      sectionTitle={'content.usermanagement.appUserDetails.subheadline'}
+      addButtonLabel={'content.usermanagement.appUserDetails.table.add'}
+      addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
+      tableLabel={'content.usermanagement.appUserDetails.table.title'}
       fetchHook={useFetchAppUsersQuery}
       fetchHookArgs={{ appId }}
       onDetailsClick={(row: TenantUser) =>

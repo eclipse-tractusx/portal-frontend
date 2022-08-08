@@ -21,11 +21,19 @@
 import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { UserList } from 'components/shared/frame/UserList'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 
 export const ActiveUserTable = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   return (
     <UserList
+      sectionTitle={'content.usermanagement.table.headline'}
+      addButtonLabel={'content.usermanagement.table.add'}
+      addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+      tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersQuery}
       onDetailsClick={(row: TenantUser) =>
         navigate(`/usermanagement/userdetails/${row.companyUserId}`)

@@ -29,45 +29,46 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
 import './style.scss'
 
 export const UserList = ({
+  sectionTitle,
+  addButtonLabel,
+  addButtonClick,
+  tableLabel,
   onDetailsClick,
   fetchHook,
   fetchHookArgs,
 }: {
+  sectionTitle: string
+  addButtonLabel: string
+  addButtonClick: () => void
+  tableLabel: string
   onDetailsClick: (row: TenantUser) => void
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
 }) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
 
   return (
     <section id="identity-management-id">
-      <SubHeaderTitle
-        title="content.usermanagement.table.headline"
-        variant="h3"
-      />
+      <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
       <Button
-        onClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+        onClick={addButtonClick}
         size="medium"
         sx={{ margin: '0 auto 25px auto', display: 'block' }}
       >
-        {t('content.usermanagement.table.add')}
+        {t(addButtonLabel)}
       </Button>
       <PageLoadingTable<TenantUser>
-        title={t('content.usermanagement.table.title')}
+        title={t(tableLabel)}
         loadLabel={t('global.actions.more')}
         fetchHook={fetchHook}
         fetchHookArgs={fetchHookArgs}
         getRowId={(row: { [key: string]: string }) => row.companyUserId}
         columns={[
           {
-            field: 'firstName',
+            field: 'name',
             headerName: t('global.field.name'),
             flex: 3,
             valueGetter: ({ row }: { row: TenantUser }) =>
