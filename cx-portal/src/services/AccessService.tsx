@@ -72,7 +72,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
-      return <AddAppUserRoles id={overlay.id} />
+      return <AddAppUserRoles />
     case OVERLAYS.EDIT_APP_USER_ROLES:
       return <EditAppUserRoles id={overlay.id} />
     case OVERLAYS.NEWS:

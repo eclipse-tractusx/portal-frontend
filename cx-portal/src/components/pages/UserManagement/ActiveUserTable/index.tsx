@@ -6,10 +6,9 @@ import {
   PageLoadingTable,
   Button,
 } from 'cx-portal-shared-components'
-import { TenantUser } from 'features/admin/userApiSlice'
+import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useFetchUsersQuery } from 'features/admin/userApiSlice'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'

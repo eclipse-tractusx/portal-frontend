@@ -12,7 +12,7 @@ import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddAppUserRoles.scss'
 
-export default function AddAppUserRoles({ id }: { id: string }) {
+export default function AddAppUserRoles() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
