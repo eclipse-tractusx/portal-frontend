@@ -13,11 +13,12 @@ import {
   fetchCompanyDetail,
   fetchPage,
 } from './actions'
-import { initialPaginResult, PaginResult, RequestState } from 'types/MainTypes'
+import { initialPaginResult, RequestState } from 'types/MainTypes'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'features/store'
 import { PaginationData } from '../../connector/types'
 import uniq from 'lodash.uniq'
+import { PaginResult } from 'cx-portal-shared-components'
 
 export const slice = createSlice({
   name,

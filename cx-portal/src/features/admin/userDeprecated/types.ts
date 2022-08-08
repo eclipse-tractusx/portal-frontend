@@ -1,4 +1,5 @@
 import { RequestState } from 'types/MainTypes'
+import { TenantUser } from '../userApiSlice'
 
 export const name = 'admin/user'
 
@@ -8,15 +9,6 @@ export type InviteData = {
   lastName: string
   email: string
   organisationName: string
-}
-
-export type TenantUser = {
-  userEntityId: string
-  companyUserId: string
-  status: string
-  firstName: string
-  lastName: string
-  email: string
 }
 
 export type AddUser = {
@@ -40,6 +32,7 @@ export interface AdminUserState {
   addTechnicalUserOpen: boolean
   tenantUsers: Array<TenantUser>
   usersToAdd: AddUser
+  rolesToAdd: string[]
   addRequest: RequestState
   getRequest: RequestState
   error: string
@@ -57,6 +50,7 @@ export const InitialAddUser = {
 export const initialState: AdminUserState = {
   tenantUsers: [],
   usersToAdd: InitialAddUser,
+  rolesToAdd: [],
   getRequest: RequestState.NONE,
   addRequest: RequestState.NONE,
   addOpen: false,

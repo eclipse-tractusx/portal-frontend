@@ -22,18 +22,37 @@ import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
 
+export type PaginFetchArgs = {
+  page: number
+  args?: Array<string | number | boolean>
+}
+
+export type PaginMeta = {
+  totalElements: number
+  totalPages: number
+  page: number
+  contentSize: number
+}
+
+export type PaginResult<T> = {
+  meta: PaginMeta
+  content: T[]
+}
+
 export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   loadLabel: string
-  fetch: (page: number) => any
+  fetch: (paginArgs: PaginFetchArgs) => any
+  fetchArgs?: Array<string | number | boolean>
 }
 
 export const PageLoadingTable = function <T>({
   loadLabel,
   fetch,
+  fetchArgs,
   ...props
 }: PageLoadingTableProps) {
   const [page, setPage] = useState(0)
-  const { data, isFetching, isSuccess } = fetch(page)
+  const { data, isFetching, isSuccess } = fetch({ page: 0, args: fetchArgs })
   const [items, setItems] = useState<T[]>([])
   const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
   const nextPage = () => setPage(page + 1)

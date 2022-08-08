@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { PaginResult } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import {
   AsyncDataState,
   initialPaginResult,
-  PaginResult,
   RequestState,
 } from 'types/MainTypes'
 import { fetchPage } from './actions'

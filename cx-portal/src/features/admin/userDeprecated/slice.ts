@@ -1,14 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  TenantUser,
-  AdminUserState,
-  AddUser,
-  name,
-  initialState,
-} from './types'
+import { AdminUserState, AddUser, name, initialState } from './types'
 import { addTenantUsers, fetchTenantUsers } from './actions'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
+import { TenantUser } from '../userApiSlice'
 
 export const slice = createSlice({
   name,
@@ -27,9 +22,9 @@ export const slice = createSlice({
       ...state,
       usersToAdd: { ...state.usersToAdd, ...action.payload },
     }),
-    setUserRolesToAdd: (state, action) => ({
+    setRolesToAdd: (state, action) => ({
       ...state,
-      usersToAdd: { ...state.usersToAdd, roles: action.payload },
+      rolesToAdd: [...action.payload],
     }),
   },
   extraReducers: (builder) => {
@@ -80,6 +75,9 @@ export const tenantUsersSelector = (state: RootState): TenantUser[] =>
 
 export const usersToAddSelector = (state: RootState): AddUser =>
   state.admin.user.usersToAdd
+
+export const rolesToAddSelector = (state: RootState): string[] =>
+  state.admin.user.rolesToAdd
 
 export const getRequestStateSelector = (state: RootState): RequestState =>
   state.admin.user.getRequest
