@@ -12,12 +12,18 @@ export default function UserListContent() {
       fetchHook={useFetchUsersQuery}
       getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
       columns={[
-        { field: 'name', headerName: t('global.field.name'), flex: 2 },
-        { field: 'email', headerName: t('global.field.email'), flex: 2 },
+        {
+          field: 'name',
+          headerName: t('global.field.name'),
+          flex: 4,
+          valueGetter: ({ row }: { row: TenantUser }) =>
+            `${row.firstName} ${row.lastName}`,
+        },
+        { field: 'email', headerName: t('global.field.email'), flex: 5 },
         {
           field: 'enabled',
           headerName: t('global.field.status'),
-          flex: 1,
+          flex: 2,
           renderCell: ({ value: enabled }) => {
             const label = enabled ? 'active' : 'inactive'
             return (

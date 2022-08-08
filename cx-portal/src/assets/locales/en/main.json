@@ -367,13 +367,14 @@
       },
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
+        "subheadline": "App Access Management",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
         },
         "table": {
           "headline": "Identity Management",
-          "title": "User List",
+          "title": "App Users",
           "add": "Add Role"
         },
         "roles": {

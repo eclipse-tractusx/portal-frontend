@@ -367,6 +367,7 @@
       },
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
+        "subheadline": "App Zugriffsmanagement",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
