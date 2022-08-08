@@ -31,8 +31,8 @@ import './AppUserManagement.scss'
 export default function AppUserManagement() {
   const { t } = useTranslation()
   const appId = useParams().appId
-  const appDetails = useFetchAppDetailsQuery(appId!).data
-  const { data, isError } = useFetchAppRolesQuery(appId!)
+  const appDetails = useFetchAppDetailsQuery(appId ?? '').data
+  const { data, isError } = useFetchAppRolesQuery(appId ?? '')
 
   return (
     <main className="app-user-management">
@@ -45,11 +45,13 @@ export default function AppUserManagement() {
       >
         <PageBreadcrumb />
       </PageHeader>
-      <AppUserDetailsHeader
-        roles={data!}
-        error={isError ? JSON.stringify(data) : ''}
-      />
-      <AppUserDetailsTable appId={appId!} />
+      {data && (
+        <AppUserDetailsHeader
+          roles={data}
+          error={isError ? JSON.stringify(data) : ''}
+        />
+      )}
+      {appId && <AppUserDetailsTable appId={appId} />}
     </main>
   )
 }

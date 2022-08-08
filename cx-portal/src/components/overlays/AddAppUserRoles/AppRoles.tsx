@@ -13,7 +13,7 @@ export const AppRoles = () => {
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
   const { appId } = useParams()
-  const { data } = useFetchAppRolesQuery(appId!)
+  const { data } = useFetchAppRolesQuery(appId ?? '')
 
   const selectRole = (roleId: string, select: boolean) => {
     const isSelected = roles.includes(roleId)
