@@ -51,7 +51,7 @@ export default function AppUserManagement() {
           error={isError ? JSON.stringify(data) : ''}
         />
       )}
-      {appId && <AppUserDetailsTable appId={appId} />}
+      <AppUserDetailsTable />
     </main>
   )
 }

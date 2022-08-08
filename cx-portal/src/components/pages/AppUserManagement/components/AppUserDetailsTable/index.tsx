@@ -26,16 +26,19 @@ import {
 } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
+import { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
+import { useFetchAppUsersQuery } from 'features/admin/appuserApiSlice'
+import { useParams } from 'react-router-dom'
 import './AppUserDetailsTable.scss'
 
-export const AppUserDetailsTable = ({ appId }: { appId: string }) => {
+export const AppUserDetailsTable = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { appId } = useParams()
 
   return (
     <>
@@ -54,7 +57,8 @@ export const AppUserDetailsTable = ({ appId }: { appId: string }) => {
         <PageLoadingTable<TenantUser>
           title={t('content.usermanagement.appUserDetails.table.title')}
           loadLabel={t('global.actions.more')}
-          fetch={useFetchUsersQuery}
+          fetch={useFetchAppUsersQuery}
+          fetchArgs={{ appId }}
           getRowId={(row: { [key: string]: string }) => row.companyUserId}
           columns={[
             {
@@ -75,6 +79,22 @@ export const AppUserDetailsTable = ({ appId }: { appId: string }) => {
                   <StatusTag color="label" label={t(`global.field.${label}`)} />
                 )
               },
+            },
+            {
+              field: 'roles',
+              headerName: t('global.field.role'),
+              flex: 4,
+              renderCell: ({ value: roles }) =>
+                roles.length
+                  ? roles.map((role: string) => (
+                      <StatusTag
+                        key={role}
+                        color="label"
+                        label={role}
+                        className="statusTag"
+                      />
+                    ))
+                  : '',
             },
             {
               field: 'details',

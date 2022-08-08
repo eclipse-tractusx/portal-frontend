@@ -84,8 +84,8 @@ export const ActiveUserTable = () => {
             field: 'roles',
             headerName: t('global.field.role'),
             flex: 4,
-            renderCell: ({ value: roles }) => {
-              return roles.length
+            renderCell: ({ value: roles }) =>
+              roles.length
                 ? roles.map((role: string) => (
                     <StatusTag
                       key={role}
@@ -94,8 +94,7 @@ export const ActiveUserTable = () => {
                       className="statusTag"
                     />
                   ))
-                : ''
-            },
+                : '',
           },
           {
             field: 'details',
