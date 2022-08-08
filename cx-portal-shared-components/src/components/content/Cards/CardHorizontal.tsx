@@ -9,6 +9,7 @@ interface CardHorizontalProps extends CardChipProps {
   borderRadius: number
   imagePath: string
   imageAlt: string
+  description?: string
 }
 
 export const CardHorizontal = ({
@@ -17,6 +18,7 @@ export const CardHorizontal = ({
   borderRadius = 0,
   imagePath,
   imageAlt,
+  description,
   status,
   statusText,
 }: CardHorizontalProps) => {
@@ -88,8 +90,26 @@ export const CardHorizontal = ({
         >
           {title}
         </Typography>
+        <Typography
+          variant="caption2"
+          sx={{
+            color: theme.palette.text.tertiary,
+            fontWeight: '600',
+            height: '24px',
+          }}
+        >
+          {description}
+        </Typography>
 
-        <CardChip status={status} statusText={statusText} />
+        {statusText && (
+          <Box
+            sx={{
+              marginTop: '21px',
+            }}
+          >
+            <CardChip status={status} statusText={statusText} />
+          </Box>
+        )}
       </Box>
     </Box>
   )

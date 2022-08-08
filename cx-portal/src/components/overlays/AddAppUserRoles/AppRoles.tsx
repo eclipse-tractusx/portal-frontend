@@ -1,25 +1,27 @@
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { useFetchUserRolesQuery } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
+import { useParams } from 'react-router-dom'
 
-export const UserRoles = () => {
+export const AppRoles = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
-  const { data } = useFetchUserRolesQuery()
+  const { appId } = useParams()
+  const { data } = useFetchAppRolesQuery(appId ?? '')
 
-  const selectRole = (role: string, select: boolean) => {
-    const isSelected = roles.includes(role)
+  const selectRole = (roleId: string, select: boolean) => {
+    const isSelected = roles.includes(roleId)
     if (!isSelected && select) {
-      dispatch(setRolesToAdd([...roles, role]))
+      dispatch(setRolesToAdd([...roles, roleId]))
     } else if (isSelected && !select) {
       const oldRoles = [...roles]
-      oldRoles.splice(oldRoles.indexOf(role), 1)
+      oldRoles.splice(oldRoles.indexOf(roleId), 1)
       dispatch(setRolesToAdd([...oldRoles]))
     }
   }
@@ -47,10 +49,9 @@ export const UserRoles = () => {
         {data &&
           data.map((role) => (
             <Checkbox
-              checked={Array.isArray(roles) && roles.includes(role)}
-              label={role}
-              key={role}
-              onChange={(e) => selectRole(role, e.target.checked)}
+              label={role.role}
+              key={role.roleId}
+              onChange={(e) => selectRole(role.roleId, e.target.checked)}
             />
           ))}
       </div>

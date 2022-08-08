@@ -59,7 +59,12 @@ export { CircularProgress } from './basic/CircularProgress'
 export { Datepicker } from './basic/Datepicker'
 
 export type { TableProps } from './basic/Table'
-export type { PageLoadingTableProps } from './basic/Table/PageLoadingTable'
+export type {
+  PageLoadingTableProps,
+  PaginMeta,
+  PaginResult,
+  PaginFetchArgs,
+} from './basic/Table/PageLoadingTable'
 export type { CardItems } from './content/Cards'
 export type { NavigationProps } from './content/Navigation'
 export type { PageNotificationsProps } from './basic/Notifications/PageNotification'

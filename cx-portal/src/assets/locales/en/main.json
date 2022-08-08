@@ -38,7 +38,7 @@
     "appmanagement": "App Management",
     "appoverview": "App Overview",
     "appreleaseprocess": "App Release Process",
-    "appuserdetails": "App User Details",
+    "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User"
   },
@@ -366,7 +366,7 @@
         "add": "Add user"
       },
       "appUserDetails": {
-        "headline": "App Access Management - <1>App-Title</1>",
+        "headline": "App Access Management - {{app}}",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
@@ -520,7 +520,37 @@
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "Neu",
       "marketplaceTitle": "Requirement Lorem ipsum",
-      "marketplaceExplanation": "Expalanation of the requirement"
+      "marketplaceExplanation": "Expalanation of the requirement",
+      "stepper": {
+        "appMarketCard": "App Market Card",
+        "contractAndConsent": "Contract & Consent",
+        "technicalIntegration": "Technical Integration",
+        "betaTest": "Beta Test",
+        "validateAndPublish": "Validate & Publish",
+        "verifyYourCompanyData": "Verify your company data"
+      },
+      "appMarketCard": {
+        "headerTitle": "Create App",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppProvider": "Catena-X",
+        "defaultCardAppTitle": "Digital Twin Aspect Debugger",
+        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo.",
+        "appTitle": "App title*",
+        "appProvider": "App provider*",
+        "shortDescriptionEN": "Short Description - EN*",
+        "shortDescriptionDE": "Short Description - DE*",
+        "useCaseCategory": "Use Case /Category*",
+        "appLanguage": "App Language*",
+        "pricingInformation": "Pricing Information*",
+        "uploadTitle": "Drag & drop your files here",
+        "uploadSubTitle": "or browse files on your computer.",
+        "note": "Note:",
+        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "help": "Help",
+        "saveAndProceed": "save & proceed",
+        "save": "Save"
+      }
     }
   },
   "navigation": {

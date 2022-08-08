@@ -3,16 +3,17 @@ import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUsersToAdd } from 'features/admin/user/actions'
+import { setUsersToAdd } from 'features/admin/userDeprecated/actions'
 import debounce from 'lodash.debounce'
 import { IHashMap, UserInput } from 'types/MainTypes'
+import Patterns from 'types/Patterns'
 
 const InputDefinitions = {
   firstname: {
     key: 'firstname',
     i18n: 'global.field.first',
     helperText: '',
-    pattern: /^([a-zÀ-ÿ-,.']{2,40}[ ]?){1,8}$/i,
+    pattern: Patterns.NAME,
     value: '',
     valid: false,
   },
@@ -20,7 +21,7 @@ const InputDefinitions = {
     key: 'lastname',
     i18n: 'global.field.last',
     helperText: '',
-    pattern: /^([a-zÀ-ÿ-,.']{2,40}[ ]?){1,8}$/i,
+    pattern: Patterns.NAME,
     value: '',
     valid: false,
   },
@@ -28,8 +29,7 @@ const InputDefinitions = {
     key: 'email',
     i18n: 'global.field.email',
     helperText: '',
-    pattern:
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    pattern: Patterns.MAIL,
     value: '',
     valid: false,
   },

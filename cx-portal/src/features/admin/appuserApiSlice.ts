@@ -18,19 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import { reducer as service } from './service/reducer'
-import { slice as registration } from './registration/slice'
-import { slice as user } from './userDeprecated/slice'
-import { slice as userOwn } from './userOwn/slice'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import i18next from 'i18next'
+import { apiBaseQuery } from 'utils/rtkUtil'
 
-export const reducer = combineReducers({
-  service,
-  user: user.reducer,
-  registration: registration.reducer,
-  userOwn: userOwn.reducer,
+export type AppRole = {
+  roleId: string
+  role: string
+  description: string
+}
+
+export const apiSlice = createApi({
+  reducerPath: 'rtk/apps/roles',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    fetchAppRoles: builder.query<AppRole[], string>({
+      query: (appId: string) =>
+        `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
+    }),
+  }),
 })
 
-const Reducer = { reducer }
-
-export default Reducer
+export const { useFetchAppRolesQuery } = apiSlice

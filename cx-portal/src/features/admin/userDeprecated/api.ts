@@ -1,8 +1,9 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
-import { PaginResult } from 'types/MainTypes'
+import { PaginResult } from 'cx-portal-shared-components'
 import { HttpClient } from 'utils/HttpClient'
-import { TenantUser, AddUser } from './types'
+import { TenantUser } from '../userApiSlice'
+import { AddUser } from './types'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
