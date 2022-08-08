@@ -53,7 +53,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
         <div className="roles-list">
           <ul>
             {
-              appRoles && appRoles.map((role, index) =>
+              appRoles && appRoles.map((role) =>
                 <li key={role.roleId} >
                   <Checkbox
                     label={role.role}
