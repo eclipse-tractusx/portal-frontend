@@ -58,7 +58,7 @@ export const ActiveUserTable = () => {
       <PageLoadingTable<TenantUser>
         title={t('content.usermanagement.table.title')}
         loadLabel={t('global.actions.more')}
-        fetch={useFetchUsersQuery}
+        fetchHook={useFetchUsersQuery}
         getRowId={(row: { [key: string]: string }) => row.companyUserId}
         columns={[
           {

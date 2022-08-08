@@ -57,8 +57,8 @@ export const AppUserDetailsTable = () => {
         <PageLoadingTable<TenantUser>
           title={t('content.usermanagement.appUserDetails.table.title')}
           loadLabel={t('global.actions.more')}
-          fetch={useFetchAppUsersQuery}
-          fetchArgs={{ appId }}
+          fetchHook={useFetchAppUsersQuery}
+          fetchHookArgs={{ appId }}
           getRowId={(row: { [key: string]: string }) => row.companyUserId}
           columns={[
             {

@@ -9,7 +9,7 @@ export default function UserListContent() {
     <PageLoadingTable<TenantUser>
       title={t('content.usermanagement.table.title')}
       loadLabel={t('global.actions.loadmore')}
-      fetch={useFetchUsersQuery}
+      fetchHook={useFetchUsersQuery}
       getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
       columns={[
         { field: 'name', headerName: t('global.field.name'), flex: 2 },
