@@ -19,8 +19,11 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
 import i18next from 'i18next'
+import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { TenantUser } from './userApiSlice'
 
 export type AppRole = {
   roleId: string
@@ -36,7 +39,13 @@ export const apiSlice = createApi({
       query: (appId: string) =>
         `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
     }),
+    fetchAppUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
+      query: (fetchArgs) =>
+        `/api/administration/user/owncompany/apps/${
+          fetchArgs.args!.appId
+        }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
+    }),
   }),
 })
 
-export const { useFetchAppRolesQuery } = apiSlice
+export const { useFetchAppRolesQuery, useFetchAppUsersQuery } = apiSlice

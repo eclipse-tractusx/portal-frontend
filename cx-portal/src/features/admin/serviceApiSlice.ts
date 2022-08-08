@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { PAGE_SIZE } from 'types/Constants'
-import { PaginResult } from 'cx-portal-shared-components'
+import { PaginFetchArgs, PaginResult } from 'cx-portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum ServiceAccountType {
@@ -80,10 +80,10 @@ export const apiSlice = createApi({
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,
-      number | void
+      PaginFetchArgs
     >({
-      query: (page: number = 0) =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${PAGE_SIZE}&page=${page}`,
+      query: (fetchArgs) =>
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
     }),
     fetchServiceAccountDetail: builder.query<ServiceAccountDetail, string>({
       query: (id: string) =>
