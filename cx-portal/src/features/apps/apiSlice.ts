@@ -72,6 +72,9 @@ export const apiSlice = createApi({
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/active`,
     }),
+    fetchFavoriteApps: builder.query<string[], void>({
+      query: () => `/api/apps/favourites`,
+    }),
     fetchLatestApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `${getAssetBase()}/api/apps/latest.json`,
     }),
@@ -84,6 +87,7 @@ export const apiSlice = createApi({
 export const {
   useFetchAppDetailsQuery,
   useFetchActiveAppsQuery,
+  useFetchFavoriteAppsQuery,
   useFetchLatestAppsQuery,
   useFetchSubscriptionStatusQuery,
 } = apiSlice

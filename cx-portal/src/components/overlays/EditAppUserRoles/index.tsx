@@ -42,8 +42,12 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       <div className="roles-heading">
         <DialogHeader
           {...{
-            title: t('content.usermanagement.appUserDetails.editRoles.title') + appDetails?.title,
-            intro: t('content.usermanagement.appUserDetails.editRoles.subtitle'),
+            title:
+              t('content.usermanagement.appUserDetails.editRoles.title') +
+              appDetails?.title,
+            intro: t(
+              'content.usermanagement.appUserDetails.editRoles.subtitle'
+            ),
             closeWithIcon: true,
             onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
           }}
@@ -52,16 +56,16 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       <DialogContent>
         <div className="roles-list">
           <ul>
-            {
-              appRoles && appRoles.map((role) =>
-                <li key={role.roleId} >
+            {appRoles &&
+              appRoles.map((role) => (
+                <li key={role.roleId}>
                   <Checkbox
                     label={role.role}
                     checked={assignedRoles?.indexOf(role.role) !== -1}
                     onChange={(e) => selectRole(role.roleId, e.target.checked)}
                   />
                 </li>
-              )}
+              ))}
           </ul>
         </div>
       </DialogContent>

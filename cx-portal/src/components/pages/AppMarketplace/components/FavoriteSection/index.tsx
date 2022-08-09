@@ -1,24 +1,19 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { CarouselBox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import FavoriteItem from './FavoriteItem'
-import { activeSelector } from 'features/apps/marketplaceDeprecated/slice'
-import { fetchItems } from 'features/apps/favorites/actions'
-import { itemsSelector as favoriteSelector } from 'features/apps/favorites/slice'
 import EmptyFavorites from './EmptyFavorites'
+import {
+  useFetchActiveAppsQuery,
+  useFetchFavoriteAppsQuery,
+} from 'features/apps/apiSlice'
+import { appToCard } from 'features/apps/mapper'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const active = useSelector(activeSelector)
-  const favorites = useSelector(favoriteSelector)
+  const active = useFetchActiveAppsQuery().data || []
+  const favorites = useFetchFavoriteAppsQuery().data || []
   const favoriteSectionPosition = favorites.length === 0 ? 30 : 45
-
-  useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
 
   return (
     <Box
@@ -40,6 +35,7 @@ export default function FavoriteSection() {
         >
           {active
             .filter((item) => favorites.includes(item.id!))
+            .map((item) => appToCard(item))
             .map((item) => (
               <FavoriteItem
                 key={item.id}
