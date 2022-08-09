@@ -28,13 +28,13 @@ const ConnectorTypeSelection = () => {
               }
               checked
             />
+            <Typography variant="body2" style={{ margin: '5px 0px 16px 30px' }}>
+              This is the only value available now
+            </Typography>
+
             <Typography variant="body2" style={{ marginLeft: '30px' }}>
-              <p>This is the only value available now</p>
-              <p>
-                Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen
-                nyck till fysoras. Gaskapet prelaras, syning diheten alltså
-                piporat
-              </p>
+              Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen nyck
+              till fysoras. Gaskapet prelaras, syning diheten alltså piporat
             </Typography>
           </Grid>
           <Grid
@@ -53,14 +53,18 @@ const ConnectorTypeSelection = () => {
             />
             <Typography
               variant="body2"
+              style={{ margin: '5px 0px 16px 30px', color: palette.grey.A400 }}
+            >
+              This option NOT AVAILABLE yet
+            </Typography>
+
+            <Typography
+              variant="body2"
               style={{ marginLeft: '30px', color: palette.grey.A400 }}
             >
-              <p>This option NOT AVAILABLE yet</p>
-              <p>
-                Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen
-                nyck till fysoras. Gaskapet prelaras, syning diheten alltså
-                piporat. Kinas
-              </p>
+              Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen nyck
+              till fysoras. Gaskapet prelaras, syning diheten alltså piporat.
+              Kinas
             </Typography>
           </Grid>
         </Grid>

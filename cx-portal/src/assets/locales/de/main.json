@@ -5,7 +5,10 @@
     "registration": "Onboarding Registrierung",
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
+    "marketplace": "Marketplace",
     "appmarketplace": "App Marketplace",
+    "servicemarketplace": "Service Marketplace",
+    "dataspacemarketplace": "Dataspace Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
     "datacatalog": "Datenkatalog",
@@ -34,11 +37,15 @@
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
     "appoverview": "App Overview",
-    "appreleaseprocess": "App Release Process"
+    "appreleaseprocess": "App Release Process",
+    "appusermanagement": "App Benutzer Verwaltung",
+    "userdetails": "Benutzer Details",
+    "technicaluser": "Technische Benutzer Verwaltung"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
-    "add_user": "Neuen Benutzer hinzu fügen"
+    "add_user": "Neuen Benutzer hinzufügen",
+    "add_techuser": "Neuen technischen Benutzer hinzufügen"
   },
   "actions": {
     "SignOut": "Abmelden",
@@ -58,7 +65,8 @@
           "state": "Zustand"
         },
         "headertitle": "Anfragen zur Benutzerregistrierung",
-        "pagetitle": "Übersicht über Anfragen",
+        "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
+        "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
         "pending": "anstehend",
         "buttonconfirm": "bestätigen",
@@ -69,6 +77,10 @@
           "title": "Firmendetails",
           "companydatatitle": "Firmendaten",
           "taxid": "Steuernummer"
+        },
+        "confirmmodal": {
+          "title": "Aktion bestätigen",
+          "description": "Möchten Sie die ausgewählte Anfrage wirklich ausführen?"
         }
       }
     },
@@ -99,7 +111,9 @@
         "appButton": "App Übersicht"
       },
       "favoriteSection": {
-        "title": "Meine Favoriten"
+        "title": "Meine Favoriten",
+        "myFavorite": "Meine Favoriten",
+        "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind."
       },
       "appOverviewSection": {
         "title": "App Übersicht",
@@ -354,6 +368,7 @@
       },
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
+        "subheadline": "App Zugriffsmanagement",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
@@ -362,6 +377,16 @@
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
           "add": "Benutzerrolle hinzufügen"
+        },
+        "roles": {
+          "error": {
+            "title": "Error",
+            "message": "Incorrect Application Id"
+          }
+        },
+        "editRoles": {
+          "title": "Manage roles for ",
+          "subtitle": "The user cannot enter his account until he has set a new password."
         }
       },
       "technicalUser": {
@@ -398,8 +423,9 @@
       "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst*",
-          "description": "Beschreibung*",
+          "service": "Dienst",
+          "username": "Username",
+          "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC):",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
@@ -481,6 +507,10 @@
       "deleteAccount": "Benutzer löschen",
       "suspendAccount": "Benutzer aussetzen",
       "resetPswrdAccount": "Passwort zurücksetzen",
+      "resetPswrdSuccessMsg": "Password Reset Successfully",
+      "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
+      "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
+      "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
         "title": "Nutzerbrechtigungen pro Applikation",
         "appName": "App Name",
@@ -506,6 +536,8 @@
       "usecase": "Use Case",
       "language": "Verfügbare App Sprachen",
       "subscribe": "Abonnieren",
+      "subscribed": "Abonniert",
+      "pending": "Angefragt",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden."
@@ -534,7 +566,37 @@
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "Neu",
       "marketplaceTitle": "Requirement Lorem ipsum",
-      "marketplaceExplanation": "Expalanation of the requirement"
+      "marketplaceExplanation": "Expalanation of the requirement",
+      "stepper": {
+        "appMarketCard": "App Market Card",
+        "contractAndConsent": "Contract & Consent",
+        "technicalIntegration": "Technical Integration",
+        "betaTest": "Beta Test",
+        "validateAndPublish": "Validate & Publish",
+        "verifyYourCompanyData": "Verify your company data"
+      },
+      "appMarketCard": {
+        "headerTitle": "Create App",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppProvider": "Catena-X",
+        "defaultCardAppTitle": "Digital Twin Aspect Debugger",
+        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo.",
+        "appTitle": "App title*",
+        "appProvider": "App provider*",
+        "shortDescriptionEN": "Short Description - EN*",
+        "shortDescriptionDE": "Short Description - DE*",
+        "useCaseCategory": "Use Case /Category*",
+        "appLanguage": "App Language*",
+        "pricingInformation": "Pricing Information*",
+        "uploadTitle": "Drag & drop your files here",
+        "uploadSubTitle": "or browse files on your computer.",
+        "note": "Note:",
+        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "help": "Help",
+        "saveAndProceed": "save & proceed",
+        "save": "Save"
+      }
     }
   },
   "navigation": {
@@ -564,6 +626,7 @@
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
+      "loadmore": "Mehr laden",
       "details": "Details",
       "close": "Schließen",
       "back": "Zurück",
@@ -598,6 +661,22 @@
       "title": "Oops, Etwas ist schief gelaufen.",
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
+    },
+    "date": {
+      "yesterday": "gestern",
+      "today": "heute",
+      "tomorrow": "morgen"
     }
+  },
+  "servicemarketplace": {
+    "title": "Service Marketplace",
+    "message": "Service Marketplace Description"
+  },
+  "dataspacemarketplace": {
+    "title": "Dataspace Marketplace",
+    "message": "Dataspace Marketplace Description"
+  },
+  "hints": {
+    "coming_soon": "coming soon"
   }
 }

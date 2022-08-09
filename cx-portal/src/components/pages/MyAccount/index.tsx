@@ -20,7 +20,7 @@ import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import { useEffect } from 'react'
 import { fetchOwn } from 'features/admin/userOwn/actions'
 import './MyAccount.scss'
-import { ownUserSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { UserDetails } from 'components/shared/basic/UserDetails'
 
@@ -28,7 +28,7 @@ export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
-  const ownUser = useSelector(ownUserSelector)
+  const userDetail = useSelector(UserdetailSelector)
 
   const dispatch = useDispatch()
 
@@ -71,8 +71,6 @@ export default function MyAccount() {
     })
   }
 
-  console.log('render')
-
   return (
     <main className="my-account">
       <PageHeader
@@ -111,10 +109,9 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        {ownUser && (
+        {userDetail && (
           <UserDetails
-            userDetailsCards={userDetailsToCards(ownUser)}
-            userInfo={ownUser}
+            userDetailsCards={userDetailsToCards(userDetail)}
             columns={3}
           />
         )}
@@ -130,22 +127,25 @@ export default function MyAccount() {
               field: 'appName',
               headerName: t('content.account.appPermissionTable.appName'),
               flex: 1,
+              hide: false,
             },
             {
               field: 'appProvider',
               headerName: t('content.account.appPermissionTable.appProvider'),
               flex: 1,
+              hide: false,
             },
             {
               field: 'role',
               headerName: t('global.field.role'),
               flex: 1,
+              hide: false,
               renderCell: ({ row }) => renderChips(row),
             },
           ]}
           rows={userAppRoles}
           rowsCount={userAppRoles.length}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
@@ -162,9 +162,7 @@ export default function MyAccount() {
           <Typography>{t('content.account.token')}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginBottom: '20px' }}>
-          <Typography>
-            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
-          </Typography>
+          <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
         </AccordionDetails>
       </Accordion>
     </main>

@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import Redirect from 'components/actions/Redirect'
 import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
@@ -12,6 +32,7 @@ import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
 import DataCatalog from 'components/pages/DataCatalog'
 import DataManagement from 'components/pages/DataManagement'
+import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
@@ -27,17 +48,19 @@ import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
+import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
 import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
+import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
-import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
 import UserDetails from 'components/pages/UserManagement/UserDetails'
 import { Route } from 'react-router-dom'
-import { ACTIONS, OVERLAYS, PAGES, ROLES } from './Constants'
+import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import { IAction, IOverlay, IPage } from './MainTypes'
+import AppUserManagement from 'components/pages/AppUserManagement'
 
 /**
  * ALL_PAGES
@@ -55,9 +78,24 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
   { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
+    name: PAGES.MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW,
+    element: <AppMarketplace />,
+  },
+  {
     name: PAGES.APP_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
+  },
+  {
+    name: PAGES.SERVICE_MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+    element: <ServiceMarketplace />,
+  },
+  {
+    name: PAGES.DATASPACE_MARKETPLACE,
+    role: ROLES.APPSTORE_VIEW_DATASPACES,
+    element: <DataspaceMarketplace />,
   },
   {
     name: PAGES.APP_DETAIL,
@@ -148,27 +186,18 @@ export const ALL_PAGES: IPage[] = [
     element: <UserManagement />,
   },
   {
-    name: PAGES.TECHNICAL_USER_MANAGEMENT,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.TECHNICAL_USER_MANAGEMENT}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}`}
-        element={<TechnicalUserManagement />}
-      >
-        <Route path=":appId" element={<TechnicalUserManagement />} />
-      </Route>
-    ),
+    name: PAGES.TECHUSER_MANAGEMENT,
+    role: ROLES.TECHUSER_VIEW,
+    element: <TechnicalUserManagement />,
   },
   {
-    name: PAGES.TECHNICAL_USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
+    name: PAGES.TECHUSER_DETAILS,
+    role: ROLES.TECHUSER_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.TECHNICAL_USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_DETAILS}`}
+        key={PAGES.TECHUSER_DETAILS}
+        path={`${PAGES.TECHUSER_MANAGEMENT}/${PAGES.TECHUSER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
@@ -177,7 +206,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+    role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
     element: (
       <Route
@@ -185,21 +214,21 @@ export const ALL_PAGES: IPage[] = [
         path={`${PAGES.USER_MANAGEMENT}/${PAGES.USER_DETAILS}`}
         element={<UserDetails />}
       >
-        <Route path=":appId" element={<UserDetails />} />
+        <Route path=":userId" element={<UserDetails />} />
       </Route>
     ),
   },
   {
-    name: PAGES.APP_USER_DETAILS,
+    name: PAGES.APP_USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.APP_USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.APP_USER_DETAILS}`}
-        element={<AppUserDetails />}
+        key={PAGES.APP_USER_MANAGEMENT}
+        path={PAGES.APP_USER_MANAGEMENT}
+        element={<AppUserManagement />}
       >
-        <Route path=":appId" element={<AppUserDetails />} />
+        <Route path=":appId" element={<AppUserManagement />} />
       </Route>
     ),
   },
@@ -224,6 +253,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
   { name: PAGES.TERMS, element: <Terms /> },
+  { name: PAGES.TEST, element: <Test /> },
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
   {
@@ -243,6 +273,18 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.ADD_USER,
     role: ROLES.USERMANAGEMENT_ADD,
   },
+  {
+    name: OVERLAYS.ADD_TECHUSER,
+    role: ROLES.TECHUSER_ADD,
+  },
+  {
+    name: OVERLAYS.ADD_APP_USER_ROLES,
+    role: ROLES.USERMANAGEMENT_ADD,
+  },
+  {
+    name: OVERLAYS.EDIT_APP_USER_ROLES,
+    role: ROLES.USERMANAGEMENT_ADD,
+  },
   { name: OVERLAYS.APP, role: ROLES.APPSTORE_VIEW },
   { name: OVERLAYS.NEWS },
   {
@@ -251,7 +293,11 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.USER,
-    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+    role: ROLES.USERMANAGEMENT_VIEW,
+  },
+  {
+    name: OVERLAYS.TECHUSER,
+    role: ROLES.TECHUSER_VIEW,
   },
 ]
 
@@ -269,7 +315,14 @@ export const ALL_ACTIONS: IAction[] = [
  */
 export const mainMenuFullTree = [
   { name: PAGES.HOME },
-  { name: PAGES.APP_MARKETPLACE },
+  {
+    name: PAGES.MARKETPLACE,
+    children: [
+      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
+    ],
+  },
   {
     name: PAGES.DATA_MANAGEMENT,
     children: [

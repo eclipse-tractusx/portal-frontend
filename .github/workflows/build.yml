@@ -10,6 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  COMMIT_SHA: ${{ github.sha }}
 
 jobs:
   build-and-push-image:
@@ -55,9 +56,34 @@ jobs:
           context: .
           file: .conf/Dockerfile.prebuilt
           push: true
-          # build tag :dev
-          tags: ${{ steps.meta.outputs.tags }}
+          # build tag :dev and commit-sha
+          tags: ${{ steps.meta.outputs.tags }}_${{ env.COMMIT_SHA }}
           # build tag :latest
           # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
 
+  auth-and-dispatch:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v1
+        with:
+          application_id: ${{ secrets.ORG_PORTAL_DISPATCH_APPID }}
+          application_private_key: ${{ secrets.ORG_PORTAL_DISPATCH_KEY }}
+
+      # The triggered workflow isn't enabled for branch names / github.ref_name containing special characters like '/' for example 'feature/...'
+      - name: Trigger workflow
+        id: call_action
+        env:
+          TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        run: |
+          curl -v \
+            --request POST \
+            --url https://api.github.com/repos/catenax-ng/product-portal-cd/actions/workflows/portal-image-update.yml/dispatches \
+            --header "authorization: Bearer $TOKEN" \
+            --header "Accept: application/vnd.github.v3+json" \
+            --data '{"ref":"main", "inputs": { "new-image":"${{ github.ref_name }}_${{ env.COMMIT_SHA }}" }}' \
+            --fail

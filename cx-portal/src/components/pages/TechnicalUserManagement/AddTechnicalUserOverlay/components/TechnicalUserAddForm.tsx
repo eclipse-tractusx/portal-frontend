@@ -8,7 +8,7 @@ import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import '../AddTechnicalUserOverlay.scss'
+import { AppRole, useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 
 const TechnicalUserAddFormSelect = ({
   control,
@@ -18,6 +18,9 @@ const TechnicalUserAddFormSelect = ({
   rules,
 }: any) => {
   const { t } = useTranslation()
+  const roles = useFetchAppRolesQuery(
+    '5cf74ef8-e0b7-4984-a872-474828beb5d8'
+  ).data
 
   return (
     <Controller
@@ -42,8 +45,11 @@ const TechnicalUserAddFormSelect = ({
             <MenuItem disabled value="none">
               {t('global.actions.pleaseSelect')}
             </MenuItem>
-            <MenuItem value="digitaltwin">Digital Twin</MenuItem>
-            <MenuItem value="semantichub">Semantic Hub</MenuItem>
+            {roles?.map((role: AppRole) => (
+              <MenuItem key={role.roleId} value={role.roleId}>
+                {role.role}
+              </MenuItem>
+            ))}
           </Select>
           {!!errors[name] && (
             <FormHelperText
@@ -70,9 +76,8 @@ const TechnicalUserAddFormTextfield = ({
   placeholder,
   name,
   rules,
+  limit = 80,
 }: any) => {
-  const CHARACTER_LIMIT = 120
-
   return (
     <Controller
       render={({ field: { onChange, value } }) => (
@@ -84,10 +89,10 @@ const TechnicalUserAddFormTextfield = ({
             error={!!errors[name]}
             fullWidth
             helperText={
-              !!errors[name] ? helperText : `${value.length}/${CHARACTER_LIMIT}`
+              !!errors[name] ? helperText : `${value.length}/${limit}`
             }
             inputProps={{
-              maxLength: CHARACTER_LIMIT,
+              maxLength: limit,
             }}
             multiline
             onChange={(event) => {
@@ -129,16 +134,22 @@ export const TechnicalUserAddForm = ({
     <Box sx={{ marginBottom: '23px' }}>
       <form onSubmit={handleSubmit}>
         <div className="form-input">
-          <TechnicalUserAddFormSelect
+          <TechnicalUserAddFormTextfield
             {...{
               control,
               errors,
               trigger,
-              name: 'TechnicalUserService',
+              name: 'TechnicalUserName',
               rules: {
                 required: true,
-                validate: (value: string) => value !== 'none',
               },
+              placeholder: t(
+                'content.addUser.technicalUser.addOverlay.username'
+              ),
+              label: t('content.addUser.technicalUser.addOverlay.username'),
+              helperText: t(
+                'content.addUser.technicalUser.addOverlay.error.description'
+              ),
             }}
           />
         </div>
@@ -159,6 +170,21 @@ export const TechnicalUserAddForm = ({
               helperText: t(
                 'content.addUser.technicalUser.addOverlay.error.description'
               ),
+              limit: 120,
+            }}
+          />
+        </div>
+        <div className="form-input">
+          <TechnicalUserAddFormSelect
+            {...{
+              control,
+              errors,
+              trigger,
+              name: 'TechnicalUserService',
+              rules: {
+                required: true,
+                validate: (value: string) => value !== 'none',
+              },
             }}
           />
         </div>

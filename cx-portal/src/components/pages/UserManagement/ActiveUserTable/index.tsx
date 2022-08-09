@@ -1,83 +1,43 @@
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { IconButton, StatusTag, Table } from 'cx-portal-shared-components'
-import { fetchTenantUsers } from 'features/admin/user/actions'
-import { tenantUsersSelector } from 'features/admin/user/slice'
-import { TenantUser } from 'features/admin/user/types'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
 import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { UserList } from 'components/shared/frame/UserList'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 
-interface ActiveUserTableProps {
-  onAddUserButtonClick?: () => void
-}
-
-export const ActiveUserTable = ({
-  onAddUserButtonClick,
-}: ActiveUserTableProps) => {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
+export const ActiveUserTable = () => {
   const navigate = useNavigate()
-  const tenantUsers = useSelector(tenantUsersSelector)
-
-  const onUserDetailsClick = (userId: string) => {
-    navigate('/usermanagement/userdetails/' + userId)
-  }
-
-  useEffect(() => {
-    dispatch(fetchTenantUsers())
-  }, [dispatch])
-
+  const dispatch = useDispatch()
   return (
-    <section id="identity-management-id">
-      <SubHeaderTitle
-        title="content.usermanagement.table.headline"
-        variant="h3"
-      />
-      <Table
-        columns={[
-          { field: 'lastName', headerName: t('global.field.last'), flex: 1 },
-          { field: 'firstName', headerName: t('global.field.first'), flex: 1 },
-          { field: 'email', headerName: t('global.field.email'), flex: 2 },
-          {
-            field: 'status',
-            headerName: t('global.field.status'),
-            flex: 1,
-            renderCell: ({ value: status }) => {
-              const label = status ? 'active' : 'inactive'
-              return (
-                <StatusTag color="label" label={t(`global.field.${label}`)} />
-              )
-            },
-          },
-          { field: 'role', headerName: t('global.field.role'), flex: 1 },
-          {
-            field: 'details',
-            headerName: t('content.usermanagement.table.details'),
-            flex: 1,
-            renderCell: ({ row }: { row: TenantUser }) => (
-              <IconButton
-                color="secondary"
-                onClick={() => onUserDetailsClick(row.companyUserId)}
-              >
-                <ArrowForwardIcon />
-              </IconButton>
-            ),
-          },
-        ]}
-        getRowId={(row: { [key: string]: string }) => row.companyUserId}
-        headerHeight={57}
-        disableColumnMenu
-        hideFooter
-        rowHeight={57}
-        rows={tenantUsers}
-        title={t('content.usermanagement.table.title')}
-        toolbar={{
-          buttonLabel: t('content.usermanagement.table.add'),
-          onButtonClick: onAddUserButtonClick,
-        }}
-      />
-    </section>
+    <UserList
+      sectionTitle={'content.usermanagement.table.headline'}
+      addButtonLabel={'content.usermanagement.table.add'}
+      addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+      tableLabel={'content.usermanagement.table.title'}
+      fetchHook={useFetchUsersQuery}
+      onDetailsClick={(row: TenantUser) =>
+        navigate(`/usermanagement/userdetails/${row.companyUserId}`)
+      }
+    />
   )
 }

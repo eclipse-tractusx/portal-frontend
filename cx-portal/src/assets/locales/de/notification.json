@@ -1,0 +1,66 @@
+{
+  "WelcomeInvite": {
+    "title": "Willkommen bei Catena-X!",
+    "content": "Hallo {{you}}! Ihr Unternehmen ist jetzt offiziell im Netzwerk registriert und Sie können jetzt Ihre technische Onboarding-Reise beginnen."
+  },
+  "WelcomeUser": {
+    "title": "Willkommen bei Catena-X!",
+    "content": "Hallo {{you}}! Du wurdest zu Catena-X hinzugefügt. Die Community heißt Sie herzlich willkommen und freut sich auf Ihre Beiträge."
+  },
+  "WelcomeAppMarketplace": {
+    "title": "Schauen Sie sich den App Marketplace an",
+    "content": "Erhalten Sie einen ersten Einblick in verfügbare Apps, folgen Sie uns einfach zum Marktplatz für Apps."
+  },
+  "NoConnector": {
+    "title": "Kein Konnektor registriert",
+    "content": "Sie haben bisher keinen registrierten Connector. Registrieren Sie Ihren Konnektor und nehmen Sie am Netzwerk teil."
+  },
+  "ConnectorRegistered": {
+    "title": "Connector erfolgreich registriert",
+    "content": "Der Konnektor {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
+  },
+  "NoUseCase": {
+    "title": "Anwendungsfälle auswählen",
+    "content": "Wählen Sie Ihre bevorzugten Anwendungsfälle aus, um das Netzwerk an Ihre Bedürfnisse anzupassen."
+  },
+  "PersonalMessage": {
+    "title": "Persönliche Nachricht",
+    "content": "{{user}} schreibt"
+  },
+  "AppRequestSubmitted": {
+    "title": "App-Anfrage eingereicht",
+    "content": "Hallo {{you}}, danke für deine Anfrage zur Genehmigung der App {{app}}. Wir werden Sie wissen lassen, wann es verarbeitet wurde."
+  },
+  "AppRequestReceived": {
+    "title": "App-Anfrage empfangen",
+    "content": "Hey {{you}}, {{user}} hat die App {{app}} zur Genehmigung angefordert."
+  },
+  "AppRequestApproved": {
+    "title": "App-Anfrage genehmigt",
+    "content": "Ihre Anforderung für App {{app}} wurde erfolgreich genehmigt. Sie können nun damit beginnen, Benutzerberechtigungen über das Benutzerverwaltungspanel zuzuweisen."
+  },
+  "AppRequestRejeced": {
+    "title": "App-Anfrage abgelehnt",
+    "content": "Ihre Anfrage für App {{app}} wurde abgelehnt. Bei Fragen wenden Sie sich bitte an {{user}}."
+  },
+  "AppTermsChange": {
+    "title": "Geänderte Geschäftsbedingungen",
+    "content": "App {{app}} ist dabei, seine Allgemeinen Geschäftsbedingungen bis Ende des Monats zu ändern. Bitte werfen Sie einen Blick auf die aktualisierten AGB. Es bedarf keiner Einigung. Wenn Sie den App-Nutzungsvertrag nicht vor {{date}} kündigen, gelten automatisch die neuen Geschäftsbedingungen."
+  },
+  "AppSubscriptionSubmitted": {
+    "title": "App-Abonnement eingereicht",
+    "content": "Hey {{you}}, deine Anfrage für das Abonnement der App {{app}} war erfolgreich."
+  },
+  "AppSubscriptionReceived": {
+    "title": "App-Abonnement anfordern",
+    "content": "Hey {{you}}, {{user}} ist daran interessiert, App {{app}} zu abonnieren und schreibt:"
+  },
+  "link": {
+    "appmarketplace": "Zum App Marketplace",
+    "technicalsetup": "Zur Konnektor Konfiguration",
+    "home": "Zur Startseite",
+    "app": "Zur App",
+    "user": "Zum Benutzer",
+    "usecases": "Zu den Use Cases"
+  }
+}

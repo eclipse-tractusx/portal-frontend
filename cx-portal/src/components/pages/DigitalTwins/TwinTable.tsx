@@ -26,6 +26,7 @@ import { fetchDigitalTwins } from 'features/digitalTwins/actions'
 import { twinsSelector } from 'features/digitalTwins/slice'
 import { ShellDescriptor } from 'features/digitalTwins/types'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
+import uniqueId from 'lodash/uniqueId'
 
 interface TwinTableProps {
   onTwinSelect: (id: string) => void
@@ -71,7 +72,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         }}
         columns={columns}
         rows={twins}
-        getRowId={(row) => `${row.identification}_${row.idShort}`}
+        getRowId={(row) => uniqueId(row.idShort)}
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (

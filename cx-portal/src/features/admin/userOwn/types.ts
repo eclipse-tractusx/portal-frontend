@@ -2,7 +2,7 @@ import { RequestState } from 'types/MainTypes'
 
 export const name = 'admin/userOwn'
 
-export type OwnUser = {
+export type UserDetail = {
   companyUserId: string
   firstName: string
   lastName: string
@@ -13,27 +13,27 @@ export type OwnUser = {
   status: string
 }
 
-export const InitialOwnUser = {
+export const InitialUserDetail = {
   companyUserId: '',
   firstName: '',
   lastName: '',
   email: '',
-  bpn: [''],
+  bpn: [],
   created: '',
   company: '',
   status: '',
 }
 
-export type AdminOwnUserState = {
+export type AdminUserDetailState = {
   resetStatus: null
-  data: OwnUser
+  data: UserDetail
   request: RequestState
   error: string
 }
 
-export const initialState: AdminOwnUserState = {
+export const initialState: AdminUserDetailState = {
   resetStatus: null,
-  data: InitialOwnUser,
+  data: InitialUserDetail,
   request: RequestState.NONE,
   error: '',
 }

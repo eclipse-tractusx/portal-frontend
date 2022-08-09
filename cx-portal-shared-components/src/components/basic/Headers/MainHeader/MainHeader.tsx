@@ -94,7 +94,7 @@ export const MainHeader = ({
 
       <Box
         sx={{
-          maxWidth: '1200px',
+          width: '100%',
           padding: '0px 100px',
           margin: '0px',
           paddingTop: '150px',
@@ -109,7 +109,7 @@ export const MainHeader = ({
           subTitleWidth={subTitleWidth}
         />
 
-        {children}
+        <div className="children-header">{children}</div>
       </Box>
     </Box>
   )

@@ -10,6 +10,7 @@ import {
   Table,
   Chip,
   PageHeader,
+  PageNotifications,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
 import { useTranslation } from 'react-i18next'
@@ -17,33 +18,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import uniqueId from 'lodash/uniqueId'
 import { useParams } from 'react-router-dom'
-import { ownUserSelector, resetSelector } from 'features/admin/userOwn/slice'
+import { UserdetailSelector, resetSelector } from 'features/admin/userOwn/slice'
 import { useEffect } from 'react'
 import { fetchOwn, putResetPassword } from 'features/admin/userOwn/actions'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { UserDetails as UserDetailsComponent } from 'components/shared/basic/UserDetails'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 
 export default function UserDetails() {
   const { t } = useTranslation()
   const { appId } = useParams()
   console.log(`TODO: get user details for ${appId}`)
 
-  const ownUser = useSelector(ownUserSelector)
+  const userDetail = useSelector(UserdetailSelector)
 
   const { resetStatus, error } = useSelector(resetSelector)
 
   let errorMsg = ''
   if (resetStatus) {
-    errorMsg = 'Password Reset Successfully'
-  } else if (error === 401) {
-    errorMsg =
-      'The maximum amount of errors is triggered already. Please try it later again'
-  } else if (error === 500) {
-    errorMsg =
-      'The password reset was unsuccessful. An issue occurred. Please try It later again'
-  } else if (error === 404) {
-    errorMsg =
-      'Reset of the password was unsuccessful due to missing permissions.'
+    errorMsg = t('content.account.resetPswrdSuccessMsg')
+  } else if (parseInt(error) === 400) {
+    errorMsg = t('content.account.resetPswrdMaxLimitError')
+  } else if (parseInt(error) === 500) {
+    errorMsg = t('content.account.resetPswrdUnsuccessfulError')
+  } else if (parseInt(error) === 404) {
+    errorMsg = t('content.account.resetPswrdPermissionsError')
   }
 
   const dispatch = useDispatch()
@@ -79,7 +78,7 @@ export default function UserDetails() {
   }
 
   const handleResetPasswordForUser = () => {
-    dispatch(putResetPassword(ownUser.companyUserId))
+    dispatch(putResetPassword(userDetail.companyUserId))
   }
 
   const renderChips = (row: GridRowModel) => {
@@ -104,7 +103,9 @@ export default function UserDetails() {
         title={t('content.account.userAccount')}
         topPage={false}
         headerHeight={200}
-      />
+      >
+        <PageBreadcrumb />
+      </PageHeader>
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
@@ -155,15 +156,19 @@ export default function UserDetails() {
         </Box>
         <div className="errorMsg">
           {error && (
-            <>
-              <Typography variant="h5">{errorMsg}</Typography>
-            </>
+            <PageNotifications
+              title={t(
+                'content.usermanagement.appUserDetails.roles.error.title'
+              )}
+              description={errorMsg}
+              open
+              severity="error"
+            />
           )}
         </div>
-        {ownUser && (
+        {userDetail && (
           <UserDetailsComponent
-            userDetailsCards={userDetailsToCards(ownUser)}
-            userInfo={ownUser}
+            userDetailsCards={userDetailsToCards(userDetail)}
             columns={3}
           />
         )}
@@ -204,7 +209,7 @@ export default function UserDetails() {
           ]}
           rows={userAppRoles}
           rowsCount={userAppRoles.length}
-          getRowId={(row: { [key: string]: string }) => row.id}
+          getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter

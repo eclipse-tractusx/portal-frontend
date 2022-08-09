@@ -31,6 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import { InputLabel, MenuItem, FormControl, Select, Box } from '@mui/material'
+import uniqueId from 'lodash/uniqueId'
 
 interface ModelTableProps {
   onModelSelect: (id: string) => void
@@ -47,7 +48,6 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const [nameFilter, setNameFilter] = useState<string>('')
   const [objectType, setObjectType] = useState<string>('')
   const rowCount = 10
-  const modelListHasItems = () => modelList.items.length > 0
   const filter = [
     {
       name: 'status',
@@ -59,6 +59,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         {
           value: 'DRAFT',
           label: 'Draft',
+        },
+        {
+          value: 'DEPRECATED',
+          label: 'Deprecated',
         },
       ],
     },
@@ -86,8 +90,9 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   }, [uploadedModel])
 
   useEffect(() => {
-    if (modelListHasItems() && modelList.currentPage > 0) {
-      setModels((prevModels) => prevModels.concat(modelList.items))
+    if (models.length > 0 && pageNumber > 0) {
+      if (modelList.items.length > 0)
+        setModels((prevModels) => prevModels.concat(modelList.items))
     } else {
       setModels(modelList.items)
     }
@@ -206,7 +211,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         </Button>
       </Box>
       <Table
-        rowsCount={models.length}
+        rowsCount={modelList.totalItems}
         hideFooter
         loading={loadingModelList}
         disableSelectionOnClick={true}
@@ -221,7 +226,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         }}
         columns={columns}
         rows={models}
-        getRowId={(row) => `${row.urn}`}
+        getRowId={(row) => uniqueId(row.urn)}
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== modelList.currentPage + 1 && (
