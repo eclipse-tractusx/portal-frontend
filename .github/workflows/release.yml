@@ -80,11 +80,11 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.git-tag.outputs.git-version }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Publish Shared Components to npm
-        working-directory: ./cx-portal-shared-components
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+#      - name: Publish Shared Components to npm
+#        working-directory: ./cx-portal-shared-components
+#        run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 
   auth-and-dispatch:
     needs: build-and-push-release
