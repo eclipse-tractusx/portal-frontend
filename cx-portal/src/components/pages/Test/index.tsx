@@ -46,7 +46,7 @@ export default function Test() {
   const handleAdd = async () => {
     try {
       const result = await addServiceAccount({
-        name: `testaccount-${Math.random()}`,
+        name: `testaccount`,
         description: 'none',
         authenticationType: ServiceAccountType.SECRET,
         roleIds: [sample(ROLE_IDS)!],
