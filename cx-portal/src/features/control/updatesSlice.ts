@@ -18,17 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export const Patterns = {
-  BPN: /^BPNL[0-9A-Z]{12}$/i,
-  URL: /^((https?):\/\/([^:/\s]+))/,
-  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
-  UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
-  prefix: {
-    BPN: /^BPNL/i,
-    URL: /^https?:/i,
-    MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
-  },
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
+import { IHashMap } from 'types/MainTypes'
+
+const name = 'control/update'
+
+export enum UPDATES {
+  USER_LIST = 'USER_LIST',
+  TECHUSER_LIST = 'TECHUSER_LIST',
 }
 
-export default Patterns
+const initialState: IHashMap<number> = {}
+initialState[UPDATES.USER_LIST] = 0
+initialState[UPDATES.TECHUSER_LIST] = 0
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    updateData: (state, action: PayloadAction<string>) => {
+      state[action.payload]++
+    },
+  },
+})
+
+export const { updateData } = slice.actions
+
+export const updateUserSelector = (state: RootState): number =>
+  state.control.update[UPDATES.USER_LIST]
+
+export const updateTechuserSelector = (state: RootState): number =>
+  state.control.update[UPDATES.TECHUSER_LIST]
+
+export default slice.reducer

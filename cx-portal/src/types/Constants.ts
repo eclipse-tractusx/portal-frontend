@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 export const PAGE_SIZE = 10
 
 export const INTERVAL_CHECK_NOTIFICATIONS = 60000
@@ -26,9 +46,9 @@ export enum PAGES {
   ORGANIZATION = 'organization',
   PARTNER_NETWORK = 'partnernetwork',
   USER_MANAGEMENT = 'usermanagement',
-  TECHNICAL_USER_MANAGEMENT = 'technicaluser',
   TECHNICAL_SETUP = 'technicalsetup',
-  TECHNICAL_USER_DETAILS = 'userdetails',
+  TECHUSER_MANAGEMENT = 'technicaluser',
+  TECHUSER_DETAILS = 'userdetails',
   APPLICATION_REQUESTS = 'applicationrequests',
   APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
@@ -57,12 +77,13 @@ export enum OVERLAYS {
   ADD_APP_USER_ROLES = 'add_app_user_roles',
   EDIT_APP_USER_ROLES = 'edit_app_user_roles',
   USER = 'user',
+  ADD_TECHUSER = 'add_techuser',
+  TECHUSER = 'techuser',
   NEWS = 'news',
   ADD_BPN = 'add_bpn',
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
-  TECHUSER = 'techuser',
 }
 
 export enum ACTIONS {
@@ -97,7 +118,9 @@ export enum ROLES {
   USERMANAGEMENT_VIEW = 'view_user_management',
   USERMANAGEMENT_ADD = 'add_user_account',
   USERMANAGEMENT_DELETE = 'delete_user_account',
-  USERMANAGEMENT_VIEW_USER_ACCOUNT = 'view_user_account',
+  TECHUSER_VIEW = 'view_tech_user_management',
+  TECHUSER_ADD = 'add_tech_user_management',
+  TECHUSER_DELETE = 'delete_tech_user_management',
   MODIFY_USER_ACCOUNT = 'modify_user_account',
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',

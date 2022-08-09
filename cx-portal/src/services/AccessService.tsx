@@ -17,6 +17,8 @@ import {
   userMenuFull,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
+import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
+import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 
@@ -69,8 +71,12 @@ export const getOverlay = (overlay: OverlayState) => {
   switch (overlay.type) {
     case OVERLAYS.ADD_USER:
       return <AddUser />
+    case OVERLAYS.ADD_TECHUSER:
+      return <AddTechnicalUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
+    case OVERLAYS.TECHUSER:
+      return <TechnicalUserInfo id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
     case OVERLAYS.EDIT_APP_USER_ROLES:

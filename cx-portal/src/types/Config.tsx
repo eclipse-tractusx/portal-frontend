@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import Redirect from 'components/actions/Redirect'
 import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
@@ -166,27 +186,18 @@ export const ALL_PAGES: IPage[] = [
     element: <UserManagement />,
   },
   {
-    name: PAGES.TECHNICAL_USER_MANAGEMENT,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.TECHNICAL_USER_MANAGEMENT}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}`}
-        element={<TechnicalUserManagement />}
-      >
-        <Route path=":appId" element={<TechnicalUserManagement />} />
-      </Route>
-    ),
+    name: PAGES.TECHUSER_MANAGEMENT,
+    role: ROLES.TECHUSER_VIEW,
+    element: <TechnicalUserManagement />,
   },
   {
-    name: PAGES.TECHNICAL_USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
+    name: PAGES.TECHUSER_DETAILS,
+    role: ROLES.TECHUSER_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.TECHNICAL_USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_MANAGEMENT}/${PAGES.TECHNICAL_USER_DETAILS}`}
+        key={PAGES.TECHUSER_DETAILS}
+        path={`${PAGES.TECHUSER_MANAGEMENT}/${PAGES.TECHUSER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
@@ -195,7 +206,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+    role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
     element: (
       <Route
@@ -203,7 +214,7 @@ export const ALL_PAGES: IPage[] = [
         path={`${PAGES.USER_MANAGEMENT}/${PAGES.USER_DETAILS}`}
         element={<UserDetails />}
       >
-        <Route path=":appId" element={<UserDetails />} />
+        <Route path=":userId" element={<UserDetails />} />
       </Route>
     ),
   },
@@ -263,6 +274,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.USERMANAGEMENT_ADD,
   },
   {
+    name: OVERLAYS.ADD_TECHUSER,
+    role: ROLES.TECHUSER_ADD,
+  },
+  {
     name: OVERLAYS.ADD_APP_USER_ROLES,
     role: ROLES.USERMANAGEMENT_ADD,
   },
@@ -278,7 +293,11 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.USER,
-    role: ROLES.USERMANAGEMENT_VIEW_USER_ACCOUNT,
+    role: ROLES.USERMANAGEMENT_VIEW,
+  },
+  {
+    name: OVERLAYS.TECHUSER,
+    role: ROLES.TECHUSER_VIEW,
   },
 ]
 

@@ -40,11 +40,12 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technical Benutzer"
+    "technicaluser": "Technische Benutzer Verwaltung"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
-    "add_user": "Neuen Benutzer hinzu fügen"
+    "add_user": "Neuen Benutzer hinzufügen",
+    "add_techuser": "Neuen technischen Benutzer hinzufügen"
   },
   "actions": {
     "SignOut": "Abmelden",
@@ -422,8 +423,9 @@
       "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst*",
-          "description": "Beschreibung*",
+          "service": "Dienst",
+          "username": "Username",
+          "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC):",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",

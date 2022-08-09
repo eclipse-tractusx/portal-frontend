@@ -19,13 +19,11 @@
  ********************************************************************************/
 
 import { combineReducers } from 'redux'
-import { reducer as service } from './service/reducer'
 import { slice as registration } from './registration/slice'
 import { slice as user } from './userDeprecated/slice'
 import { slice as userOwn } from './userOwn/slice'
 
 export const reducer = combineReducers({
-  service,
   user: user.reducer,
   registration: registration.reducer,
   userOwn: userOwn.reducer,

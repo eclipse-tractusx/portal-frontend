@@ -43,33 +43,52 @@ export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   loadLabel: string
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
+  fetchHookRefresh?: number
 }
 
 export const PageLoadingTable = function <T>({
   loadLabel,
   fetchHook,
   fetchHookArgs,
+  fetchHookRefresh = 0,
   ...props
 }: PageLoadingTableProps) {
   const [page, setPage] = useState(0)
+  const [clear, setClear] = useState(true)
+  const [loaded, setLoaded] = useState(0)
+  const [items, setItems] = useState<T[]>([])
   const { data, isFetching, isSuccess } = fetchHook({
     page: page,
-    args: fetchHookArgs,
+    args: {
+      ...fetchHookArgs,
+      v: loaded,
+    },
   })
-  const [items, setItems] = useState<T[]>([])
-  const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
   const nextPage = () => setPage(page + 1)
+  const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
 
   useEffect(() => {
-    if (isSuccess && !isFetching) {
-      setItems((i) => i.concat(data.content))
+    if (loaded < fetchHookRefresh) {
+      setLoaded(fetchHookRefresh)
+      setClear(true)
     }
-  }, [isSuccess, isFetching, data])
+  }, [fetchHookRefresh, loaded])
+
+  useEffect(() => {
+    if (isSuccess && !isFetching && data && data.content) {
+      if (clear) {
+        setItems([])
+        setClear(false)
+      } else {
+        setItems((i) => i.concat(data.content))
+      }
+    }
+  }, [isSuccess, isFetching, data, clear, loaded])
 
   return (
     <>
       <Table
-        rowCount={props.rowCount || 100}
+        rowsCount={items.length}
         hideFooter={items.length < (props.rowCount || 100)}
         loading={isFetching}
         rows={items}
