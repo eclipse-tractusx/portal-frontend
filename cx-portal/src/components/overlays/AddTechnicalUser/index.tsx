@@ -96,7 +96,7 @@ export const AddTechnicalUser = () => {
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
-      <DialogContent className="w-100">
+      <DialogContent>
         <TechnicalUserAddForm {...{ handleSubmit, control, errors, trigger }} />
         <Box sx={{ paddingTop: '25px' }}>
           <UserDetails
