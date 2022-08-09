@@ -1,21 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { Cards, Button, Typography } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchLatest } from 'features/apps/marketplace/actions'
-import { latestSelector } from 'features/apps/marketplace/slice'
+import { useFetchLatestAppsQuery } from 'features/apps/apiSlice'
+import { appToCard } from 'features/apps/mapper'
 import './app-store-section.scss'
 
 export default function AppStoreSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const items = useSelector(latestSelector)
-
-  useEffect(() => {
-    dispatch(fetchLatest())
-  }, [dispatch])
+  const { data } = useFetchLatestAppsQuery()
+  const items = data?.map((app) => appToCard(app)) || []
 
   return (
     <section className="app-store-section">

@@ -1,12 +1,14 @@
 import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
+import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
+import AppDetailContentDetails from './AppDetailContentDetails'
 import './AppDetail.scss'
-import AppDetailContent from './AppDetailContent'
 
 export default function AppDetail() {
   const navigate = useNavigate()
   const { appId } = useParams()
+  const { data } = useFetchAppDetailsQuery(appId!)
 
   return (
     <main className="appdetail-main">
@@ -17,7 +19,7 @@ export default function AppDetail() {
       >
         {t('global.actions.back')}
       </Button>
-      <AppDetailContent id={appId!} />
+      {data && <AppDetailContentDetails item={data} />}
     </main>
   )
 }

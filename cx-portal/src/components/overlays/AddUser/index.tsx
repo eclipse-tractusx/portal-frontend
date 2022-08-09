@@ -12,23 +12,35 @@ import {
 import { UserRoles } from './UserRoles'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import { usersToAddSelector } from 'features/admin/user/slice'
+import {
+  rolesToAddSelector,
+  usersToAddSelector,
+} from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTenantUsers, closeAdd } from 'features/admin/user/actions'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddUserOverlay.scss'
-import { MultipleUserContent } from 'components/pages/UserManagement/AddUserOverlay/MultipleUserContent'
-import { SingleUserContent } from 'components/pages/UserManagement/AddUserOverlay/SingleUserContent'
+import { MultipleUserContent } from './MultipleUserContent'
+import { SingleUserContent } from './SingleUserContent'
+import { useAddTenantUsersMutation } from 'features/admin/userApiSlice'
 
 export const AddUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const usersToAdd = useSelector(usersToAddSelector)
+  const rolesToAdd = useSelector(rolesToAddSelector)
+  const [addTenantUsers] = useAddTenantUsersMutation()
   const [activeTab, setActiveTab] = useState(0)
 
-  const handleConfirm = () => {
-    dispatch(addTenantUsers([usersToAdd]))
+  const handleConfirm = async () => {
+    const addUser = { ...usersToAdd, roles: rolesToAdd }
+    console.log(addUser)
+    try {
+      const result = await addTenantUsers([addUser]).unwrap()
+      console.log(result)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const handleTabSwitch = (
@@ -45,7 +57,7 @@ export const AddUser = () => {
           title: t('content.addUser.headline'),
           intro: t('content.addUser.subheadline'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE)),
         }}
       />
 
@@ -74,11 +86,14 @@ export const AddUser = () => {
         <TabPanel value={activeTab} index={1}>
           <MultipleUserContent />
         </TabPanel>
-        <UserRoles headline="content.addUser.chooseUserRole" />
+        <UserRoles />
       </DialogContent>
 
       <DialogActions helperText={t('content.addUser.helperText')}>
-        <Button variant="outlined" onClick={() => dispatch(closeAdd())}>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(show(OVERLAYS.NONE))}
+        >
           {t('global.actions.cancel')}
         </Button>
         <Button

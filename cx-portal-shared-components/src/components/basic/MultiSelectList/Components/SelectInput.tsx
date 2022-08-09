@@ -3,8 +3,12 @@ import { MultiSelectListProps } from '..'
 import { Input } from '../../Input'
 
 interface SelectInputProps
-  extends Omit<MultiSelectListProps, 'items' | 'onAddItem'> {
+  extends Omit<
+    MultiSelectListProps,
+    'items' | 'onAddItem' | 'buttonAddMore' | 'notItemsText'
+  > {
   params: AutocompleteRenderInputParams
+  autoFocus?: boolean
 }
 
 export const SelectInput = ({
@@ -17,6 +21,7 @@ export const SelectInput = ({
   helperText,
   error = false,
   disabled,
+  autoFocus,
 }: SelectInputProps) => {
   return (
     <Box
@@ -37,6 +42,7 @@ export const SelectInput = ({
         margin={margin}
         focused={focused}
         disabled={disabled}
+        autoFocus={autoFocus}
       />
     </Box>
   )

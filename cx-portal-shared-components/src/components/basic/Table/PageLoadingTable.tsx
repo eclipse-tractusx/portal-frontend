@@ -17,42 +17,95 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
 
+export type PaginFetchArgs = {
+  page: number
+  args?: any
+}
+
+export type PaginMeta = {
+  totalElements: number
+  totalPages: number
+  page: number
+  contentSize: number
+}
+
+export type PaginResult<T> = {
+  meta: PaginMeta
+  content: T[]
+}
+
 export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   loadLabel: string
-  fetch: (page: number) => any
+  fetchHook: (paginArgs: PaginFetchArgs) => any
+  fetchHookArgs?: any
+  fetchHookRefresh?: number
 }
 
 export const PageLoadingTable = function <T>({
   loadLabel,
-  fetch,
+  fetchHook,
+  fetchHookArgs,
+  fetchHookRefresh = 0,
   ...props
 }: PageLoadingTableProps) {
   const [page, setPage] = useState(0)
-  const { data, isFetching, isSuccess } = fetch(page)
+  const [clear, setClear] = useState(true)
+  const [loaded, setLoaded] = useState(0)
   const [items, setItems] = useState<T[]>([])
-  const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
+  const { data, isFetching, isSuccess } = fetchHook({
+    page: page,
+    args: {
+      ...fetchHookArgs,
+      v: loaded,
+    },
+  })
   const nextPage = () => setPage(page + 1)
+  const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
+
   useEffect(() => {
-    if (isSuccess && !isFetching) {
-      setItems((i) => i.concat(data.content))
+    if (loaded < fetchHookRefresh) {
+      setLoaded(fetchHookRefresh)
+      setClear(true)
     }
-  }, [isSuccess, isFetching, data])
+  }, [fetchHookRefresh, loaded])
+
+  useEffect(() => {
+    if (isSuccess && !isFetching && data && data.content) {
+      if (clear) {
+        setItems([])
+        setClear(false)
+      } else {
+        setItems((i) => i.concat(data.content))
+      }
+    }
+  }, [isSuccess, isFetching, data, clear, loaded])
 
   return (
     <>
       <Table
-        rowCount={props.rowCount || 100}
+        rowsCount={items.length}
         hideFooter={items.length < (props.rowCount || 100)}
         loading={isFetching}
         rows={items}
         {...props}
       />
       {hasMore && (
-        <Button onClick={nextPage}>{loadLabel || 'load more'}</Button>
+        <Box
+          sx={{
+            width: '100%',
+            height: '100px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Button onClick={nextPage}>{loadLabel || 'load more'}</Button>
+        </Box>
       )}
     </>
   )

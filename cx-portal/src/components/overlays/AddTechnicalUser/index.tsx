@@ -14,11 +14,12 @@ import {
   ServiceAccountDetail,
   ServiceAccountType,
   useAddServiceAccountMutation,
-} from 'features/admin/service/apiSlice'
+} from 'features/admin/serviceApiSlice'
 import { TechnicalUserAddForm } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay/components/TechnicalUserAddForm'
 import { UserDetails } from 'components/shared/basic/UserDetails'
 import { useState } from 'react'
 import { AddTechnicalUserResponseOverlay } from 'components/pages/TechnicalUserManagement/AddTechnicalUserResponseOverlay'
+import { updateData, UPDATES } from 'features/control/updatesSlice'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -37,6 +38,7 @@ export const AddTechnicalUser = () => {
       }).unwrap()
       console.log(result)
       setResponse(result)
+      dispatch(updateData(UPDATES.TECHUSER_LIST))
     } catch (err) {
       console.log(err)
     }

@@ -38,7 +38,7 @@
     "appmanagement": "App Management",
     "appoverview": "App Overview",
     "appreleaseprocess": "App Release Process",
-    "appuserdetails": "App Benutzer Details",
+    "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung"
   },
@@ -65,7 +65,8 @@
           "state": "Zustand"
         },
         "headertitle": "Anfragen zur Benutzerregistrierung",
-        "pagetitle": "Übersicht über Anfragen",
+        "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
+        "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
         "pending": "anstehend",
         "buttonconfirm": "bestätigen",
@@ -367,6 +368,7 @@
       },
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
+        "subheadline": "App Zugriffsmanagement",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
@@ -501,6 +503,10 @@
       "deleteAccount": "Benutzer löschen",
       "suspendAccount": "Benutzer aussetzen",
       "resetPswrdAccount": "Passwort zurücksetzen",
+      "resetPswrdSuccessMsg": "Password Reset Successfully",
+      "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
+      "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
+      "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
         "title": "Nutzerbrechtigungen pro Applikation",
         "appName": "App Name",
@@ -556,7 +562,37 @@
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "Neu",
       "marketplaceTitle": "Requirement Lorem ipsum",
-      "marketplaceExplanation": "Expalanation of the requirement"
+      "marketplaceExplanation": "Expalanation of the requirement",
+      "stepper": {
+        "appMarketCard": "App Market Card",
+        "contractAndConsent": "Contract & Consent",
+        "technicalIntegration": "Technical Integration",
+        "betaTest": "Beta Test",
+        "validateAndPublish": "Validate & Publish",
+        "verifyYourCompanyData": "Verify your company data"
+      },
+      "appMarketCard": {
+        "headerTitle": "Create App",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppProvider": "Catena-X",
+        "defaultCardAppTitle": "Digital Twin Aspect Debugger",
+        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo.",
+        "appTitle": "App title*",
+        "appProvider": "App provider*",
+        "shortDescriptionEN": "Short Description - EN*",
+        "shortDescriptionDE": "Short Description - DE*",
+        "useCaseCategory": "Use Case /Category*",
+        "appLanguage": "App Language*",
+        "pricingInformation": "Pricing Information*",
+        "uploadTitle": "Drag & drop your files here",
+        "uploadSubTitle": "or browse files on your computer.",
+        "note": "Note:",
+        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "help": "Help",
+        "saveAndProceed": "save & proceed",
+        "save": "Save"
+      }
     }
   },
   "navigation": {
@@ -586,6 +622,7 @@
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "more": "Mehr",
+      "loadmore": "Mehr laden",
       "details": "Details",
       "close": "Schließen",
       "back": "Zurück",

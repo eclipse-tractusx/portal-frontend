@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { TechnicalUserDetailsGrid } from '../TechnicalUserDetails/TechnicalUserDetailsGrid'
 import { Box } from '@mui/material'
-import { ServiceAccountDetail } from 'features/admin/service/apiSlice'
+import { ServiceAccountDetail } from 'features/admin/serviceApiSlice'
 
 export default function Render({ item }: { item: ServiceAccountDetail }) {
   const { t } = useTranslation()

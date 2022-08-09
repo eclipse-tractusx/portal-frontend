@@ -46,6 +46,7 @@ export { ProcessList } from './basic/ProcessList'
 export { CircleProgress } from './basic/Progress/CircleProgress'
 export { Stepper } from './basic/Stepper'
 export { SelectList } from './basic/SelectList'
+export { VerticalTabs } from './basic/VerticalTabs'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
@@ -55,12 +56,21 @@ export { Navigation } from './content/Navigation'
 export { UserMenu } from './content/UserMenu'
 export { UserNav } from './content/UserNav'
 export { CircularProgress } from './basic/CircularProgress'
+export { Datepicker } from './basic/Datepicker'
 
 export type { TableProps } from './basic/Table'
-export type { PageLoadingTableProps } from './basic/Table/PageLoadingTable'
+export type {
+  PageLoadingTableProps,
+  PaginMeta,
+  PaginResult,
+  PaginFetchArgs,
+} from './basic/Table/PageLoadingTable'
 export type { CardItems } from './content/Cards'
 export type { NavigationProps } from './content/Navigation'
 export type { PageNotificationsProps } from './basic/Notifications/PageNotification'
 export type { TableType } from './basic/StaticTable/types'
 export type { ImageType } from './basic/ImageGallery/types'
+export type { DateType } from './basic/Datepicker'
 export { StatusVariants } from './content/Cards/CardChip'
+export type { TabPanelType } from './basic/VerticalTabs'
+export type { MultiSelectItemType } from './basic/MultiSelectList'

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export const PAGE_SIZE = 12
+export const PAGE_SIZE = 10
 
 export const INTERVAL_CHECK_NOTIFICATIONS = 60000
 
@@ -50,7 +50,7 @@ export enum PAGES {
   TECHUSER_MANAGEMENT = 'technicaluser',
   TECHUSER_DETAILS = 'userdetails',
   APPLICATION_REQUESTS = 'applicationrequests',
-  APP_USER_DETAILS = 'appuserdetails',
+  APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
   HELP = 'help',
@@ -74,6 +74,8 @@ export enum PAGES {
 export enum OVERLAYS {
   NONE = 'none',
   ADD_USER = 'add_user',
+  ADD_APP_USER_ROLES = 'add_app_user_roles',
+  EDIT_APP_USER_ROLES = 'edit_app_user_roles',
   USER = 'user',
   ADD_TECHUSER = 'add_techuser',
   TECHUSER = 'techuser',

@@ -38,7 +38,7 @@
     "appmanagement": "App Management",
     "appoverview": "App Overview",
     "appreleaseprocess": "App Release Process",
-    "appuserdetails": "App User Details",
+    "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User Management"
   },
@@ -65,7 +65,8 @@
           "state": "State"
         },
         "headertitle": "User Registration Requests",
-        "pagetitle": "Requests Overview",
+        "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
+        "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "tabletitle": "Registration requests",
         "pending": "pending",
         "buttonconfirm": "confirm",
@@ -366,14 +367,15 @@
         "add": "Add user"
       },
       "appUserDetails": {
-        "headline": "App Access Management - <1>App-Title</1>",
+        "headline": "App Access Management - {{app}}",
+        "subheadline": "App Access Management",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
         },
         "table": {
           "headline": "Identity Management",
-          "title": "User List",
+          "title": "App Users",
           "add": "Add Role"
         },
         "roles": {
@@ -462,6 +464,10 @@
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
+      "resetPswrdSuccessMsg": "Password Reset Successfully",
+      "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
+      "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
+      "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
         "title": "App User Permissions",
         "appName": "App Name",
@@ -517,7 +523,37 @@
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "Neu",
       "marketplaceTitle": "Requirement Lorem ipsum",
-      "marketplaceExplanation": "Expalanation of the requirement"
+      "marketplaceExplanation": "Expalanation of the requirement",
+      "stepper": {
+        "appMarketCard": "App Market Card",
+        "contractAndConsent": "Contract & Consent",
+        "technicalIntegration": "Technical Integration",
+        "betaTest": "Beta Test",
+        "validateAndPublish": "Validate & Publish",
+        "verifyYourCompanyData": "Verify your company data"
+      },
+      "appMarketCard": {
+        "headerTitle": "Create App",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppProvider": "Catena-X",
+        "defaultCardAppTitle": "Digital Twin Aspect Debugger",
+        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo.",
+        "appTitle": "App title*",
+        "appProvider": "App provider*",
+        "shortDescriptionEN": "Short Description - EN*",
+        "shortDescriptionDE": "Short Description - DE*",
+        "useCaseCategory": "Use Case /Category*",
+        "appLanguage": "App Language*",
+        "pricingInformation": "Pricing Information*",
+        "uploadTitle": "Drag & drop your files here",
+        "uploadSubTitle": "or browse files on your computer.",
+        "note": "Note:",
+        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "help": "Help",
+        "saveAndProceed": "save & proceed",
+        "save": "Save"
+      }
     }
   },
   "navigation": {
@@ -547,6 +583,7 @@
       "cancel": "Cancel",
       "confirm": "Confirm",
       "more": "More",
+      "loadmore": "Load more",
       "details": "Details",
       "close": "Close",
       "back": "Back",

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useFetchServiceAccountDetailQuery } from 'features/admin/service/apiSlice'
+import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
 import { useParams } from 'react-router-dom'
 import Render from './Render'
 

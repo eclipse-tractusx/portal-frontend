@@ -181,7 +181,7 @@ export const CarouselBox = ({
       <Slider {...settings}>
         {Children.map(arrayChildren, (child) => {
           return (
-            <div key={uniqueId('cax-carousel')}>
+            <div key={uniqueId('box-carousel')}>
               <Box sx={{ display: 'flex' }}>
                 <Box sx={{ width: '12px' }}></Box>
                 <Box

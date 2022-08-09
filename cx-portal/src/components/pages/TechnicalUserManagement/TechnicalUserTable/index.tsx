@@ -21,54 +21,77 @@
 import { IconButton, PageLoadingTable } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-//import { useNavigate } from 'react-router-dom'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
-} from 'features/admin/service/apiSlice'
-import { useDispatch } from 'react-redux'
+  useRemoveServiceAccountMutation,
+} from 'features/admin/serviceApiSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
+import {
+  updateData,
+  UPDATES,
+  updateTechuserSelector,
+} from 'features/control/updatesSlice'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
-  //const navigate = useNavigate()
   const dispatch = useDispatch()
+  const update = useSelector(updateTechuserSelector)
+  const [removeServiceAccount] = useRemoveServiceAccountMutation()
 
-  const onDetailsClick = (userId: string, name: string) => {
-    //navigate(`/technicaluser/userdetails/${userId}`, { state: { name }, })
-    dispatch(show(OVERLAYS.TECHUSER, userId))
+  const handleRemove = async (id: string) => {
+    try {
+      await removeServiceAccount(id).unwrap()
+      dispatch(updateData(UPDATES.TECHUSER_LIST))
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry>
         title={t('content.usermanagement.technicalUser.tableHeader')}
-        loadLabel={t('global.more')}
-        fetch={useFetchServiceAccountListQuery}
+        loadLabel={t('global.actions.more')}
+        fetchHook={useFetchServiceAccountListQuery}
+        fetchHookRefresh={update}
         getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
         columns={[
           {
             field: 'name',
             headerName: t('global.field.userName'),
-            flex: 2,
+            flex: 3,
           },
           {
             field: 'clientId',
             headerName: t('global.field.clientId'),
-            flex: 1,
+            flex: 2,
           },
           {
             field: 'details',
             headerName: t('global.field.details'),
             flex: 1,
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
-              <IconButton
-                color="secondary"
-                onClick={() => onDetailsClick(row.serviceAccountId, row.name)}
-              >
-                <ArrowForwardIcon />
-              </IconButton>
+              <>
+                <IconButton
+                  sx={{ marginRight: '8px' }}
+                  color="secondary"
+                  onClick={() =>
+                    dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
+                  }
+                >
+                  <ArrowForwardIcon />
+                </IconButton>
+                <IconButton
+                  color="secondary"
+                  onClick={() => handleRemove(row.serviceAccountId)}
+                >
+                  <DeleteForeverIcon />
+                </IconButton>
+              </>
             ),
           },
         ]}

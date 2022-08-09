@@ -20,7 +20,7 @@ import { OVERLAYS } from 'types/Constants'
 export default function AddBPN({ id }: { id: string }) {
   const dispatch = useDispatch()
   const userInfo = useSelector(UserdetailSelector)
-  const [bpnValues, setBpnValues] = useState([''])
+  const [bpnValues, setBpnValues] = useState<string[]>([])
   const [inputBPN, setInputBPN] = useState('')
   const [bpnErrorMsg, setBpnErrorMessage] = useState('')
 
@@ -60,27 +60,6 @@ export default function AddBPN({ id }: { id: string }) {
       />
 
       <DialogContent>
-        {/*
-        {bpnValues.map((bpn, i) => {
-          return (
-            <li key={i}>
-              {bpn} <a href="a#">Delete</a>
-            </li>
-          )
-        })}
-        <Input
-          name="bpn"
-          label="Add a new BPN"
-          placeholder="Placeholder Text"
-          onChange={(e) => addInputBPN(e.target.value)}
-          onKeyPress={(event) => {
-            if (event.key === 'Enter') {
-              addBPN()
-            }
-          }}
-        />
-        <p style={{ color: 'red' }}>{bpnErrorMsg}</p>
-        */}
         <div className="manageBPN">
           <ul className="bpnListing">
             {bpnValues.map((bpn, i) => {

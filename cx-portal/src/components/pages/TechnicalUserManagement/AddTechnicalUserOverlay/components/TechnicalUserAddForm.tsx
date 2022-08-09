@@ -8,10 +8,7 @@ import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import {
-  AppRole,
-  useFetchUserAppRolesQuery,
-} from 'features/admin/user/app/apiSlice'
+import { AppRole, useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 
 const TechnicalUserAddFormSelect = ({
   control,
@@ -21,7 +18,7 @@ const TechnicalUserAddFormSelect = ({
   rules,
 }: any) => {
   const { t } = useTranslation()
-  const roles = useFetchUserAppRolesQuery(
+  const roles = useFetchAppRolesQuery(
     '5cf74ef8-e0b7-4984-a872-474828beb5d8'
   ).data
 

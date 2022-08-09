@@ -61,7 +61,7 @@ export const UserDetailCard = ({
           : value?.value}
       </span>
       <span>
-        {value?.label === 'BPN' && (
+        {companyUserId && value?.label === 'BPN' && (
           <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
         )}
       </span>

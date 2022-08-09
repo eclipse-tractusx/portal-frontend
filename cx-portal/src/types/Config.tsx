@@ -56,11 +56,11 @@ import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
-import AppUserDetails from 'components/pages/UserManagement/AppUserDetails'
 import UserDetails from 'components/pages/UserManagement/UserDetails'
 import { Route } from 'react-router-dom'
 import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import { IAction, IOverlay, IPage } from './MainTypes'
+import AppUserManagement from 'components/pages/AppUserManagement'
 
 /**
  * ALL_PAGES
@@ -219,16 +219,16 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.APP_USER_DETAILS,
+    name: PAGES.APP_USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.APP_USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.APP_USER_DETAILS}`}
-        element={<AppUserDetails />}
+        key={PAGES.APP_USER_MANAGEMENT}
+        path={PAGES.APP_USER_MANAGEMENT}
+        element={<AppUserManagement />}
       >
-        <Route path=":appId" element={<AppUserDetails />} />
+        <Route path=":appId" element={<AppUserManagement />} />
       </Route>
     ),
   },
@@ -276,6 +276,14 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_TECHUSER,
     role: ROLES.TECHUSER_ADD,
+  },
+  {
+    name: OVERLAYS.ADD_APP_USER_ROLES,
+    role: ROLES.USERMANAGEMENT_ADD,
+  },
+  {
+    name: OVERLAYS.EDIT_APP_USER_ROLES,
+    role: ROLES.USERMANAGEMENT_ADD,
   },
   { name: OVERLAYS.APP, role: ROLES.APPSTORE_VIEW },
   { name: OVERLAYS.NEWS },

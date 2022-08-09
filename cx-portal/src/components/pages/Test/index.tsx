@@ -19,13 +19,13 @@
  ********************************************************************************/
 
 import { Button } from 'cx-portal-shared-components'
+import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 import {
   ServiceAccountType,
   useRemoveServiceAccountMutation,
   useAddServiceAccountMutation,
   useFetchServiceAccountListQuery,
-} from 'features/admin/service/apiSlice'
-import { useFetchUserAppRolesQuery } from 'features/admin/user/app/apiSlice'
+} from 'features/admin/serviceApiSlice'
 import { sample } from 'lodash'
 
 const ROLE_IDS = [
@@ -35,14 +35,13 @@ const ROLE_IDS = [
 ]
 
 export default function Test() {
-  const roles = useFetchUserAppRolesQuery(
+  const roles = useFetchAppRolesQuery(
     '5cf74ef8-e0b7-4984-a872-474828beb5d8'
   ).data
   //useFetchServiceAccountDetailQuery c0c52362-4a18-4dc7-a2bb-68880198204a
-  const { data } = useFetchServiceAccountListQuery(0)
+  const { data } = useFetchServiceAccountListQuery({ page: 0 })
 
   const [addServiceAccount] = useAddServiceAccountMutation()
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
 
   const handleAdd = async () => {
     try {
@@ -57,6 +56,8 @@ export default function Test() {
       console.log(err)
     }
   }
+
+  const [removeServiceAccount] = useRemoveServiceAccountMutation()
 
   const handleRemove = async () => {
     if (!data || !data.content) return

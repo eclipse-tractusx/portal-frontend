@@ -31,10 +31,11 @@ import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
-import { apiSlice as adminServiceApi } from './admin/service/apiSlice'
-import { apiSlice as adminUserApi } from './admin/user/apiSlice'
-import { apiSlice as adminUserAppApi } from './admin/user/app/apiSlice'
-import { apiSlice as notificationApi } from './notification/apiSlice'
+import { apiSlice as userApiSlice } from './admin/userApiSlice'
+import { apiSlice as serviceApiSlice } from './admin/serviceApiSlice'
+import { apiSlice as notificationApiSlice } from './notification/apiSlice'
+import { apiSlice as appRolesSlice } from './admin/appuserApiSlice'
+import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 
 export const reducers = {
   admin,
@@ -48,20 +49,22 @@ export const reducers = {
   connector: connectorSlice.reducer,
   notification: notificationSlice.reducer,
   error: ErrorSlice.reducer,
-  [adminServiceApi.reducerPath]: adminServiceApi.reducer,
-  [adminUserApi.reducerPath]: adminUserApi.reducer,
-  [adminUserAppApi.reducerPath]: adminUserAppApi.reducer,
-  [notificationApi.reducerPath]: notificationApi.reducer,
+  [userApiSlice.reducerPath]: userApiSlice.reducer,
+  [serviceApiSlice.reducerPath]: serviceApiSlice.reducer,
+  [notificationApiSlice.reducerPath]: notificationApiSlice.reducer,
+  [appRolesSlice.reducerPath]: appRolesSlice.reducer,
+  [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
 }
 
 export const store = configureStore({
   reducer: combineReducers(reducers),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(adminServiceApi.middleware)
-      .concat(adminUserApi.middleware)
-      .concat(adminUserAppApi.middleware)
-      .concat(notificationApi.middleware),
+      .concat(userApiSlice.middleware)
+      .concat(serviceApiSlice.middleware)
+      .concat(notificationApiSlice.middleware)
+      .concat(appRolesSlice.middleware)
+      .concat(appMarketplaceSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

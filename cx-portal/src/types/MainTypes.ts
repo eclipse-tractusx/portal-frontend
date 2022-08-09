@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageNotificationsProps } from 'cx-portal-shared-components'
+import { PageNotificationsProps, PaginMeta } from 'cx-portal-shared-components'
 import { ErrorServiceState } from 'features/error/types'
 
 export type Nullable<T> = T | null
@@ -79,23 +79,11 @@ export const InitialListState = {
   error: '',
 }
 
-export type PaginMeta = {
-  totalElements: number
-  totalPages: number
-  page: number
-  contentSize: number
-}
-
 export const initialPaginMeta: PaginMeta = {
   totalElements: 0,
   totalPages: 0,
   page: 0,
   contentSize: 0,
-}
-
-export type PaginResult<T> = {
-  meta: PaginMeta
-  content: T[]
 }
 
 export const initialPaginResult = { meta: { ...initialPaginMeta }, content: [] }

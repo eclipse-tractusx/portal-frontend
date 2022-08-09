@@ -18,8 +18,8 @@ import { RegistrationRequestsTableColumns } from 'components/pages/Admin/compone
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
-
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
+import uniqueId from 'lodash/uniqueId'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -47,7 +47,7 @@ export default function RegistrationRequests() {
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      dispatch(fetchCompanyDetail(params.id.toString()))
+      dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
     }
   }
@@ -94,20 +94,23 @@ export default function RegistrationRequests() {
         handleOverlayClose={() => setConfirmModalOpen(false)}
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
+
+      {/* Page header title and background color */}
       <PageHeader
         title={t('content.admin.registration-requests.headertitle')}
         topPage={false}
         headerHeight={200}
       />
-      <div className="page-title-container">
-        <Typography
-          sx={{ fontFamily: 'LibreFranklin-Light' }}
-          variant="h3"
-          className="page-title"
-        >
-          {t('content.admin.registration-requests.pagetitle')}
-        </Typography>
-      </div>
+
+      {/* Adding additional text to introduce the page function */}
+      <Typography variant="body2" mt={3} align="center">
+        {t('content.admin.registration-requests.introText1')}
+      </Typography>
+      <Typography variant="body2" mb={3} align="center">
+        {t('content.admin.registration-requests.introText2')}
+      </Typography>
+
+      {/* Table component */}
       <div className={'table-container'}>
         <Table
           {...{
@@ -157,7 +160,7 @@ export default function RegistrationRequests() {
               ],
             },
           }}
-          getRowId={(row) => row.applicationId}
+          getRowId={(row) => uniqueId(row.applicationId)}
         />
       </div>
       <div className="load-more-button-container">
