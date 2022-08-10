@@ -8,7 +8,7 @@ export default function SearchSection() {
   const { t } = useTranslation()
 
   return (
-    <div className="stage-app-store stage-section">
+    <div className="stage-app-store">
       <MainHeader
         title={t('content.appstore.stage.title')}
         subTitle={t('content.appstore.stage.subtitle')}
