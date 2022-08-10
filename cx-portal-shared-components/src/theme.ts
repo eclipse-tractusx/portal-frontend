@@ -632,13 +632,13 @@ export const theme = createTheme({
           borderRadius: '6px',
           '.MuiCalendarPicker-viewTransitionContainer': {
             borderTop: `1px solid ${palette.border.border01}`,
+            '.MuiTypography-root': {
+              fontWeight: 'bold',
+              fontSize: '14px',
+            },
           },
           '.MuiIconButton-root': {
             color: '#939393',
-          },
-          '.MuiTypography-root': {
-            fontWeight: 'bold',
-            fontSize: '14px',
           },
           '.PrivatePickersFadeTransitionGroup-root': {
             fontWeight: 'bold',
