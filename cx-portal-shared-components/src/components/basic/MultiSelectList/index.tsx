@@ -10,34 +10,30 @@ import { SelectAddMore } from './Components/SelectAddMore'
 import uniqueId from 'lodash/uniqueId'
 import { useState } from 'react'
 
-export type MultiSelectItemType = {
-  id: number
-  title: string
-  value: string
-}
-
 export type PartsType = {
   text: string
   highlight: boolean
 }
 
 export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
-  items: MultiSelectItemType[]
+  items: any[]
   label: string
   placeholder: string
+  keyTitle: string
   popperHeight?: number
   variant?: 'filled'
   clearText?: string
   noOptionsText?: string
   buttonAddMore: string
   notItemsText: string
-  onAddItem: (items: MultiSelectItemType[]) => void
+  onAddItem: (items: any[]) => void
 }
 
 export const MultiSelectList = ({
   items,
   label,
   placeholder,
+  keyTitle,
   variant,
   margin,
   focused,
@@ -53,9 +49,9 @@ export const MultiSelectList = ({
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
   const theme = useTheme()
-  const [selected, setSelected] = useState<MultiSelectItemType[]>([])
+  const [selected, setSelected] = useState<any[]>([])
   const [showItems, setShowItems] = useState(false)
-  const handleChange = (selectedItems: MultiSelectItemType[]) => {
+  const handleChange = (selectedItems: any[]) => {
     onAddItem(selectedItems)
     setSelected(selectedItems)
   }
@@ -78,14 +74,14 @@ export const MultiSelectList = ({
           multiple
           disabled={disabled}
           options={items.map((item) => item)}
-          getOptionLabel={(option) => option.title}
+          getOptionLabel={(option) => option[keyTitle]}
           value={selected}
-          renderTags={(selectedItems: MultiSelectItemType[], getTagProps) =>
+          renderTags={(selectedItems: any[], getTagProps) =>
             selectedItems.map((option: any, index: number) => (
               <Chip
                 {...getTagProps({ index })}
                 variant="filled"
-                label={option.title}
+                label={option[keyTitle]}
                 sx={{
                   borderRadius: '16px',
                   border: `1px solid ${theme.palette.accent.accent03} !important`,
@@ -121,12 +117,13 @@ export const MultiSelectList = ({
               helperText={helperText}
               error={error}
               disabled={disabled}
-              autoFocus={!showItems}
+              autoFocus={!showItems} 
+              keyTitle={keyTitle}            
             />
           )}
           renderOption={(props, option, { inputValue }) => {
-            const matches = match(option.title, inputValue)
-            const parts: PartsType[] = parse(option.title, matches)
+            const matches = match(option[keyTitle], inputValue)
+            const parts: PartsType[] = parse(option[keyTitle], matches)
             return (
               <SelectOptions
                 props={props}
@@ -135,7 +132,7 @@ export const MultiSelectList = ({
               />
             )
           }}
-          onChange={(_, selectedItems: MultiSelectItemType[]) =>
+          onChange={(_, selectedItems: any[]) =>
             handleChange(selectedItems)
           }
           onBlur={() => setShowItems(true)}
@@ -146,6 +143,7 @@ export const MultiSelectList = ({
           notItemsText={notItemsText}
           buttonAddMore={buttonAddMore}
           label={label}
+          keyTitle={keyTitle}
           handleShowItems={() => handleViewAddMore()}
         />
       )}

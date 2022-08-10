@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react'
 
-import { MultiSelectItemType, MultiSelectList as Component } from '.'
+import { MultiSelectList as Component } from '.'
 
 export default {
   title: 'Form',
@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 }
 
-const items: MultiSelectItemType[] = [
+const items: any[] = [
   {
     id: 1,
     title: 'Dismantler App',
@@ -76,5 +76,6 @@ MultiSelectList.args = {
   noOptionsText: 'No Options',
   buttonAddMore: 'Add More',
   notItemsText: 'not items selected',
+  keyTitle: 'title',
   onAddItem: (item: any) => console.log('items:', item),
 }

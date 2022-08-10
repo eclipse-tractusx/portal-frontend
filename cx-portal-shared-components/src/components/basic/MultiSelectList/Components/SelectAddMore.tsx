@@ -1,14 +1,14 @@
 import { Box, useTheme } from '@mui/material'
-import { MultiSelectItemType } from '..'
 import uniqueId from 'lodash/uniqueId'
 import { Button } from '../../Button'
 import { Typography } from '../../Typography'
 
 interface SelectAddMoreProps {
-  selected: MultiSelectItemType[]
+  selected: any[]
   buttonAddMore: string
   notItemsText: string
   label: string
+  keyTitle: string
   handleShowItems: () => void
 }
 
@@ -17,6 +17,7 @@ export const SelectAddMore = ({
   buttonAddMore,
   notItemsText,
   label,
+  keyTitle,
   handleShowItems,
 }: SelectAddMoreProps) => {
   const theme = useTheme()
@@ -47,13 +48,12 @@ export const SelectAddMore = ({
           }}
         >
           {selected.length > 0 ? (
-            selected.map((item: MultiSelectItemType) => (
-              <Typography
-                key={uniqueId(item.title)}
+            selected.map((item: any) => {
+              return <Typography
+                key={uniqueId(item[keyTitle])}
                 sx={{
-                  height: '24px',
                   width: 'fit-content',
-                  padding: '18px',
+                  padding: '16px 18px',
                   marginRight: '10px',
                   marginBottom: '10px',
                   borderRadius: '10px',
@@ -62,9 +62,9 @@ export const SelectAddMore = ({
                   backgroundColor: theme.palette.accent.accent02,
                 }}
               >
-                {item.title}
+                {item[keyTitle]}
               </Typography>
-            ))
+            })
           ) : (
             <Typography
               variant="body1"
