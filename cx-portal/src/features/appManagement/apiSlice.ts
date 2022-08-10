@@ -17,32 +17,35 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
-
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.text-area {
-  width: 100%;
-  background: #f7f7f7 !important;
-  border: 0;
-  outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 400;
-  resize: none;
-}
-
-.text-area:focus {
-  border-bottom: 2px solid #0f71cb !important
-}
+ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+ import { apiBaseQuery } from 'utils/rtkUtil'
+ 
+ export type useCasesItem = {
+     useCaseId: string
+     name: string
+     shortname: string
+ }
+ 
+ export type appLanguagesItem = {
+     languageShortName: string
+     languageLongNames: {
+         de: string
+         en: string
+     }
+ }
+ 
+ export const apiSlice = createApi({
+     reducerPath: 'rtk/appManagement',
+     baseQuery: fetchBaseQuery(apiBaseQuery()),
+     endpoints: (builder) => ({
+         fetchUseCases: builder.query<useCasesItem[], void>({
+             query: () => `/api/administration/staticdata/usecases`,
+         }),
+         fetchAppLanguages: builder.query<appLanguagesItem[], void>({
+             query: () => `/api/administration/staticdata/languagetags`,
+         }),
+     }),
+ })
+ 
+ export const { useFetchUseCasesQuery, useFetchAppLanguagesQuery } = apiSlice

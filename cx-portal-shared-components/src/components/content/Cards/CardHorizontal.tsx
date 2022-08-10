@@ -10,6 +10,7 @@ interface CardHorizontalProps extends CardChipProps {
   imagePath: string
   imageAlt: string
   description?: string
+  backgroundColor?: string
 }
 
 export const CardHorizontal = ({
@@ -21,11 +22,13 @@ export const CardHorizontal = ({
   description,
   status,
   statusText,
+  backgroundColor,
 }: CardHorizontalProps) => {
   const theme = useTheme()
   return (
     <Box
       sx={{
+        backgroundColor: backgroundColor || 'common.white',
         height: '160px',
         display: 'flex',
         flexDirection: 'row',
