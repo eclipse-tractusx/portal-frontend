@@ -34,6 +34,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useFetchUseCasesQuery, useFetchAppLanguagesQuery, useCasesItem, appLanguagesItem } from 'features/appManagement/apiSlice'
 import './AppMarketCard.scss'
+import { useNavigate } from 'react-router-dom'
 
 type FormDataType = {
   appTitle: string
@@ -51,6 +52,8 @@ type FormDataType = {
 
 export default function AppMarketCard() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+
   const [pageScrolled, setPageScrolled] = useState(false)
   const [shortDescriptionENCount, setShortDescriptionENCount] = useState(0)
   const [shortDescriptionDECount, setShortDescriptionDECount] = useState(0)
@@ -175,13 +178,13 @@ export default function AppMarketCard() {
               name="shortDescriptionEN"
               value={formData.shortDescriptionEN}
               rows={4}
-              maxLength={200}
+              maxLength={255}
               className="text-area"
               style={{ fontFamily: 'LibreFranklin-Light' }}
               onChange={handleChange}
             />
             <Typography variant="body2" className="form-field" align='right'>
-              {`${shortDescriptionENCount}/200`}
+              {`${shortDescriptionENCount}/255`}
             </Typography>
 
             <InputLabel>
@@ -191,13 +194,13 @@ export default function AppMarketCard() {
               name="shortDescriptionDE"
               value={formData.shortDescriptionDE}
               rows={4}
-              maxLength={200}
+              maxLength={255}
               className="text-area"
               style={{ fontFamily: 'LibreFranklin-Light' }}
               onChange={handleChange}
             />
             <Typography variant="body2" className="form-field" align='right'>
-              {`${shortDescriptionDECount}/200`}
+              {`${shortDescriptionDECount}/255`}
             </Typography>
             <div className="form-field">
               <MultiSelectList
@@ -205,8 +208,8 @@ export default function AppMarketCard() {
                 label={t('content.apprelease.appMarketCard.useCaseCategory')}
                 placeholder={t('content.apprelease.appMarketCard.useCaseCategoryPlaceholder')}
                 keyTitle="name"
-                buttonAddMore={'Add More'}
-                notItemsText={'No Items Selected'}
+                buttonAddMore={t('content.apprelease.appMarketCard.addMore')}
+                notItemsText={t('content.apprelease.appMarketCard.noItemsSelected')}
                 onAddItem={(items: useCasesItem[]) => handleUseCaseChange(items, "useCaseCategory")}
               />
             </div>
@@ -217,8 +220,8 @@ export default function AppMarketCard() {
                 placeholder={t('content.apprelease.appMarketCard.appLanguagePlaceholder')}
                 onAddItem={(items: appLanguagesItem[]) => handleUseCaseChange(items, "appLanguage")}
                 keyTitle='languageShortName'
-                buttonAddMore={'Add More'}
-                notItemsText={'No Items Selected'}
+                buttonAddMore={t('content.apprelease.appMarketCard.addMore')}
+                notItemsText={t('content.apprelease.appMarketCard.noItemsSelected')}
               />
             </div>
             <Input
@@ -243,7 +246,7 @@ export default function AppMarketCard() {
                 </IconButton>
                 {t('content.apprelease.appMarketCard.help')}
               </Button>
-              <IconButton color="secondary">
+              <IconButton color="secondary" onClick={() => navigate('/appmanagement')}>
                 <KeyboardArrowLeftIcon />
               </IconButton>
               <Button
