@@ -114,7 +114,7 @@ export default function AppMarketCard() {
             item
             md={3}
             sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-            className={'card'}
+            className={'app-markt-card'}
           >
             <Card
               image={{
