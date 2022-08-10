@@ -276,8 +276,6 @@ const typography = createTypography(palette, {
   },
 })
 
-
-
 export const theme = createTheme({
   breakpoints: {
     values: breakpoints,
