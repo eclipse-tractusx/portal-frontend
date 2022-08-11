@@ -420,7 +420,7 @@
       "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
       "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
       "chooseUserRole": "Select CX Portal User Role",
-      "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
+      "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
