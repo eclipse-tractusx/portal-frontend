@@ -1,7 +1,7 @@
 import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button'
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
-  color?: 'primary' | 'secondary' | 'success'
+  color?: 'primary' | 'secondary' | 'success' | 'error'
 }
 
 export const Button = ({
