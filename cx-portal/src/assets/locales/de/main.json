@@ -40,7 +40,8 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technische Benutzer Verwaltung"
+    "technicaluser": "Technische Benutzer Verwaltung",
+    "techuserdetails": "Technischer Benutzer Details"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -403,8 +404,8 @@
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
-        "confirmDeleteUser": "Sind Sie sicher, dass Sie OBJECT_NAME löschen möchten?",
-        "noteDeleteUser": "Hinweis: Fügen Sie hier beliebige Notizen hinzu!",
+        "confirmDeleteUser": "Sind Sie sicher, dass Sie user {{ user }} löschen möchten?",
+        "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
       }
@@ -601,8 +602,8 @@
         "help": "Help",
         "saveAndProceed": "save & proceed",
         "save": "Save",
-        "addMore":"Add More",
-        "noItemsSelected":"No Items Selected"
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected"
       }
     }
   },

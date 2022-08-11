@@ -18,27 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './TechnicalUserManagement.scss'
 import { ContentTechnicalUser } from './ContentTechnicalUser'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { PageHeader } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
-import UserService from 'services/UserService'
+import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
+import { PAGES } from 'types/Constants'
+import './TechnicalUserManagement.scss'
 
 export default function TechnicalUserManagement() {
-  const { t } = useTranslation()
-
   return (
     <main className="technical-user-management">
-      <PageHeader
-        title={t('content.usermanagement.technicalUser.headline', {
-          company: UserService.getCompany(),
-        })}
-        topPage={true}
-        headerHeight={314}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeaderWithCrumbs
+        crumbs={[PAGES.USER_MANAGEMENT, PAGES.TECHUSER_MANAGEMENT]}
+      />
       <ContentTechnicalUser />
     </main>
   )

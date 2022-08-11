@@ -67,7 +67,7 @@ export const store = configureStore({
       .concat(notificationApiSlice.middleware)
       .concat(appRolesSlice.middleware)
       .concat(appMarketplaceSlice.middleware)
-      .concat(appManagementSlice.middleware)
+      .concat(appManagementSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

@@ -197,7 +197,7 @@ export const ALL_PAGES: IPage[] = [
     element: (
       <Route
         key={PAGES.TECHUSER_DETAILS}
-        path={`${PAGES.TECHUSER_MANAGEMENT}/${PAGES.TECHUSER_DETAILS}`}
+        path={`/${PAGES.TECHUSER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
@@ -211,7 +211,7 @@ export const ALL_PAGES: IPage[] = [
     element: (
       <Route
         key={PAGES.USER_DETAILS}
-        path={`${PAGES.USER_MANAGEMENT}/${PAGES.USER_DETAILS}`}
+        path={`/${PAGES.USER_DETAILS}`}
         element={<UserDetails />}
       >
         <Route path=":userId" element={<UserDetails />} />

@@ -48,7 +48,7 @@ export enum PAGES {
   USER_MANAGEMENT = 'usermanagement',
   TECHNICAL_SETUP = 'technicalsetup',
   TECHUSER_MANAGEMENT = 'technicaluser',
-  TECHUSER_DETAILS = 'userdetails',
+  TECHUSER_DETAILS = 'techuserdetails',
   APPLICATION_REQUESTS = 'applicationrequests',
   APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',

@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import {
   Dialog,
   DialogActions,
@@ -7,49 +27,50 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
+import { ServiceAccountDetail } from 'features/admin/serviceApiSlice'
 
 interface RemoveTechnicalUserOverlayProps {
-  name: string
+  serviceaccount: ServiceAccountDetail
   dialogOpen: boolean
   handleClose: React.MouseEventHandler
   deleteUser: React.MouseEventHandler
 }
 
 export const RemoveTechnicalUserOverlay = ({
-  name,
+  serviceaccount,
   dialogOpen,
   handleClose,
   deleteUser,
 }: RemoveTechnicalUserOverlayProps) => {
   const { t } = useTranslation()
-
-  const confirmDeleteUserText = () => {
-    const text = t('content.usermanagement.technicalUser.confirmDeleteUser')
-    return text.replace('OBJECT_NAME', name)
-  }
-
-  const noteDeleteUserText = () => {
-    const text = t('content.usermanagement.technicalUser.noteDeleteUser')
-    return text.replace('OBJECT_NAME', name)
-  }
+  const confirmDeleteUserText = t(
+    'content.usermanagement.technicalUser.confirmDeleteUser',
+    { user: serviceaccount.name }
+  )
+  const noteDeleteUserText = t(
+    'content.usermanagement.technicalUser.noteDeleteUser',
+    { user: serviceaccount.name }
+  )
 
   return (
     <Dialog open={dialogOpen}>
-      <DialogHeader title={t('global.actions.delete') + ' ' + name} />
+      <DialogHeader
+        title={`${t('global.actions.delete')} ${serviceaccount.name}`}
+      />
 
       <DialogContent>
         <div className="remove-technical-user-content">
-          <SubHeaderTitle title={confirmDeleteUserText()} variant="h6" />
-          <SubHeaderTitle title={noteDeleteUserText()} variant="h5" />
+          <SubHeaderTitle title={confirmDeleteUserText} variant="h6" />
+          <SubHeaderTitle title={noteDeleteUserText} variant="h5" />
         </div>
       </DialogContent>
 
       <DialogActions>
         <Button variant="outlined" onClick={handleClose}>
-          {`${t('global.actions.cancel')}`}
+          {t('global.actions.cancel')}
         </Button>
         <Button variant="contained" onClick={deleteUser}>
-          {`${t('global.actions.delete')}`}
+          {t('global.actions.delete')}
         </Button>
       </DialogActions>
     </Dialog>

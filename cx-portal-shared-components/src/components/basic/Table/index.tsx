@@ -7,6 +7,7 @@ export { StatusTag }
 export interface TableProps extends DataGridProps {
   title: string
   rowsCount?: number
+  rowsCountMax?: number
   toolbar?: ToolbarProps
 }
 
@@ -17,6 +18,7 @@ export const Table = ({
   headerHeight = 57, // Default header height from base design
   rowHeight = 57, // Default row height from base design
   rowsCount = 0,
+  rowsCountMax,
   title,
   toolbar,
   checkboxSelection,
@@ -25,7 +27,9 @@ export const Table = ({
   <DataGrid
     getRowId={(row) => row.id}
     components={{
-      Toolbar: () => <Toolbar title={title} {...toolbar} {...{ rowsCount }} />,
+      Toolbar: () => (
+        <Toolbar title={title} {...toolbar} {...{ rowsCount, rowsCountMax }} />
+      ),
     }}
     {...{
       rows,

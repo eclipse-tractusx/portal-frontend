@@ -28,17 +28,19 @@ import {
   useRemoveServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, PAGES } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import {
   updateData,
   UPDATES,
   updateTechuserSelector,
 } from 'features/control/updatesSlice'
+import { useNavigate } from 'react-router-dom'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const update = useSelector(updateTechuserSelector)
   const [removeServiceAccount] = useRemoveServiceAccountMutation()
 
@@ -80,7 +82,10 @@ export const TechnicalUserTable = () => {
                   sx={{ marginRight: '8px' }}
                   color="secondary"
                   onClick={() =>
-                    dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
+                    //dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
+                    navigate(
+                      `/${PAGES.TECHUSER_DETAILS}/${row.serviceAccountId}`
+                    )
                   }
                 >
                   <ArrowForwardIcon />

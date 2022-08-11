@@ -48,8 +48,8 @@ export const SelectAddMore = ({
           }}
         >
           {selected.length > 0 ? (
-            selected.map((item: any) => {
-              return <Typography
+            selected.map((item: any) => (
+              <Typography
                 key={uniqueId(item[keyTitle])}
                 sx={{
                   width: 'fit-content',
@@ -64,7 +64,7 @@ export const SelectAddMore = ({
               >
                 {item[keyTitle]}
               </Typography>
-            })
+            ))
           ) : (
             <Typography
               variant="body1"

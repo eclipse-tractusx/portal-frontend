@@ -117,8 +117,8 @@ export const MultiSelectList = ({
               helperText={helperText}
               error={error}
               disabled={disabled}
-              autoFocus={!showItems} 
-              keyTitle={keyTitle}            
+              autoFocus={!showItems}
+              keyTitle={keyTitle}
             />
           )}
           renderOption={(props, option, { inputValue }) => {
@@ -132,9 +132,7 @@ export const MultiSelectList = ({
               />
             )
           }}
-          onChange={(_, selectedItems: any[]) =>
-            handleChange(selectedItems)
-          }
+          onChange={(_, selectedItems: any[]) => handleChange(selectedItems)}
           onBlur={() => setShowItems(true)}
         />
       ) : (
