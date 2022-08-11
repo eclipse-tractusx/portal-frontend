@@ -77,5 +77,6 @@ MultiSelectList.args = {
   buttonAddMore: 'Add More',
   notItemsText: 'not items selected',
   keyTitle: 'title',
+  tagSize: 'medium',
   onAddItem: (item: any) => console.log('items:', item),
 }

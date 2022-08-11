@@ -252,6 +252,8 @@ export default function AppMarketCard() {
                 onAddItem={(items: useCasesItem[]) =>
                   handleUseCaseChange(items, 'useCaseCategory')
                 }
+                tagSize="small"
+                margin="none"
               />
             </div>
             <div className="form-field">
@@ -269,6 +271,8 @@ export default function AppMarketCard() {
                 notItemsText={t(
                   'content.apprelease.appMarketCard.noItemsSelected'
                 )}
+                tagSize="small"
+                margin="none"
               />
             </div>
             <Input
@@ -289,7 +293,11 @@ export default function AppMarketCard() {
             </Typography>
             <Box mb={2}>
               <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <Button variant="outlined" sx={{ mr: 1 }} startIcon={<HelpOutlineIcon />}>
+              <Button
+                variant="outlined"
+                sx={{ mr: 1 }}
+                startIcon={<HelpOutlineIcon />}
+              >
                 {t('content.apprelease.appMarketCard.help')}
               </Button>
               <IconButton
