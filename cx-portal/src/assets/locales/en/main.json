@@ -561,9 +561,9 @@
         "OnlyOneFileAllowed": "Only one file for upload allowed",
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save",        
-        "addMore":"Add More",
-        "noItemsSelected":"No Items Selected"
+        "save": "Save",
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected"
       }
     }
   },

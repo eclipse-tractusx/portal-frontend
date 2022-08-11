@@ -32,7 +32,7 @@ export const SelectAddMore = ({
       <Typography
         variant="label3"
         fontSize="14px"
-        fontWeight='400'
+        fontWeight="400"
         sx={{
           marginBottom: '10px',
         }}
@@ -55,13 +55,13 @@ export const SelectAddMore = ({
           }}
         >
           {selected.length > 0 ? (
-            selected.map((item: any) => 
+            selected.map((item: any) => (
               <SelectedTag
                 title={item[keyTitle]}
                 size={tagSize}
                 key={uniqueId(item[keyTitle])}
               />
-            )
+            ))
           ) : (
             <Typography
               variant="body1"

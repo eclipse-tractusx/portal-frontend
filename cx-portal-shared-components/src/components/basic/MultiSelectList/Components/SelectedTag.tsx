@@ -17,14 +17,14 @@ export const SelectedTag = ({ title, size }: SelectedTagProps) => {
 
   useEffect(() => {
     switch (size) {
-      case 'small' :
-        setTagStyle({ padding: '10px 18px', fontSize: '14px'})
+      case 'small':
+        setTagStyle({ padding: '10px 18px', fontSize: '14px' })
         break
-      case 'medium' :
-      setTagStyle({ padding: '14px', fontSize: '18px'})
+      case 'medium':
+        setTagStyle({ padding: '14px', fontSize: '18px' })
         break
-      case 'large' :
-      setTagStyle({ padding: '16px 28px', fontSize: '18px'})
+      case 'large':
+        setTagStyle({ padding: '16px 28px', fontSize: '18px' })
     }
   }, [size])
 
