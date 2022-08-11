@@ -211,6 +211,8 @@ export default function AppMarketCard() {
                 buttonAddMore={t('content.apprelease.appMarketCard.addMore')}
                 notItemsText={t('content.apprelease.appMarketCard.noItemsSelected')}
                 onAddItem={(items: useCasesItem[]) => handleUseCaseChange(items, "useCaseCategory")}
+                tagSize='small'
+                margin='none'
               />
             </div>
             <div className="form-field">
@@ -222,6 +224,8 @@ export default function AppMarketCard() {
                 keyTitle='languageShortName'
                 buttonAddMore={t('content.apprelease.appMarketCard.addMore')}
                 notItemsText={t('content.apprelease.appMarketCard.noItemsSelected')}
+                tagSize='small'
+                margin='none'
               />
             </div>
             <Input
