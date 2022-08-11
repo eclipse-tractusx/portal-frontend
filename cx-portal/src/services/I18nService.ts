@@ -34,6 +34,7 @@ const init = (): void => {
     .init({
       resources,
       fallbackLng: 'en',
+      supportedLngs: ['de', 'en'],
       interpolation: {
         escapeValue: false,
       },
