@@ -18,34 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
- import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
- import { apiBaseQuery } from 'utils/rtkUtil'
- 
- export type useCasesItem = {
-     useCaseId: string
-     name: string
-     shortname: string
- }
- 
- export type appLanguagesItem = {
-     languageShortName: string
-     languageLongNames: {
-         de: string
-         en: string
-     }
- }
- 
- export const apiSlice = createApi({
-     reducerPath: 'rtk/appManagement',
-     baseQuery: fetchBaseQuery(apiBaseQuery()),
-     endpoints: (builder) => ({
-         fetchUseCases: builder.query<useCasesItem[], void>({
-             query: () => `/api/administration/staticdata/usecases`,
-         }),
-         fetchAppLanguages: builder.query<appLanguagesItem[], void>({
-             query: () => `/api/administration/staticdata/languagetags`,
-         }),
-     }),
- })
- 
- export const { useFetchUseCasesQuery, useFetchAppLanguagesQuery } = apiSlice
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
+
+export type useCasesItem = {
+  useCaseId: string
+  name: string
+  shortname: string
+}
+
+export type appLanguagesItem = {
+  languageShortName: string
+  languageLongNames: {
+    de: string
+    en: string
+  }
+}
+
+export const apiSlice = createApi({
+  reducerPath: 'rtk/appManagement',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    fetchUseCases: builder.query<useCasesItem[], void>({
+      query: () => `/api/administration/staticdata/usecases`,
+    }),
+    fetchAppLanguages: builder.query<appLanguagesItem[], void>({
+      query: () => `/api/administration/staticdata/languagetags`,
+    }),
+  }),
+})
+
+export const { useFetchUseCasesQuery, useFetchAppLanguagesQuery } = apiSlice

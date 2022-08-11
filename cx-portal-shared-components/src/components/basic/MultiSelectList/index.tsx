@@ -10,12 +10,14 @@ import { SelectAddMore } from './Components/SelectAddMore'
 import uniqueId from 'lodash/uniqueId'
 import { useState } from 'react'
 
+export type TagSizeType = 'small' | 'medium' | 'large'
 export type PartsType = {
   text: string
   highlight: boolean
 }
 
-export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
+export interface MultiSelectListProps
+  extends Omit<TextFieldProps, 'variant' | 'size'> {
   items: any[]
   label: string
   placeholder: string
@@ -26,6 +28,7 @@ export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
   noOptionsText?: string
   buttonAddMore: string
   notItemsText: string
+  tagSize?: TagSizeType
   onAddItem: (items: any[]) => void
 }
 
@@ -45,6 +48,7 @@ export const MultiSelectList = ({
   noOptionsText = 'No Options',
   buttonAddMore,
   notItemsText,
+  tagSize,
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
@@ -96,7 +100,7 @@ export const MultiSelectList = ({
                     order: '2',
                   },
                   '.MuiChip-deleteIcon': {
-                    paddingLeft: '10px',
+                    marginLeft: '10px',
                     color: theme.palette.accent.accent03,
                   },
                   '.MuiChip-deleteIcon:hover': {
@@ -117,8 +121,8 @@ export const MultiSelectList = ({
               helperText={helperText}
               error={error}
               disabled={disabled}
-              autoFocus={!showItems} 
-              keyTitle={keyTitle}            
+              autoFocus={!showItems}
+              keyTitle={keyTitle}
             />
           )}
           renderOption={(props, option, { inputValue }) => {
@@ -132,9 +136,7 @@ export const MultiSelectList = ({
               />
             )
           }}
-          onChange={(_, selectedItems: any[]) =>
-            handleChange(selectedItems)
-          }
+          onChange={(_, selectedItems: any[]) => handleChange(selectedItems)}
           onBlur={() => setShowItems(true)}
         />
       ) : (
@@ -144,6 +146,8 @@ export const MultiSelectList = ({
           buttonAddMore={buttonAddMore}
           label={label}
           keyTitle={keyTitle}
+          margin={margin}
+          tagSize={tagSize}
           handleShowItems={() => handleViewAddMore()}
         />
       )}
