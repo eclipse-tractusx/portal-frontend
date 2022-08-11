@@ -13,7 +13,17 @@ interface LoadingButtonProps extends ButtonProps {
   onButtonClick: React.MouseEventHandler
 }
 
-export const LoadingButton = ({ label, loadIndicator, loading, onButtonClick, helperText, size, color, helperTextColor, ...props }: LoadingButtonProps) => {
+export const LoadingButton = ({
+  label,
+  loadIndicator,
+  loading,
+  onButtonClick,
+  helperText,
+  size,
+  color,
+  helperTextColor,
+  ...props
+}: LoadingButtonProps) => {
   const theme = useTheme()
   const [tagStyle, setTagStyle] = useState({
     padding: '10px 24px',
@@ -39,43 +49,50 @@ export const LoadingButton = ({ label, loadIndicator, loading, onButtonClick, he
 
   return (
     <Box>
-      {!loading ?
-        <Box sx={{display: 'flex', flexDirection: 'column'}}>
+      {!loading ? (
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Button
             size={size}
             color={color}
             onClick={handleClick}
-            sx={{width: 'fit-content'}}
+            sx={{ width: 'fit-content' }}
             {...props}
           >
             {label}
           </Button>
-          {helperText &&
-            <Typography variant="label2"
+          {helperText && (
+            <Typography
+              variant="label2"
               sx={{
                 padding: tagStyle.padding,
                 fontSize: tagStyle.fontSize,
-                color: helperTextColor === 'error' ? theme.palette.danger.danger : theme.palette.success.main
-              }}>
+                color:
+                  helperTextColor === 'error'
+                    ? theme.palette.danger.danger
+                    : theme.palette.success.main,
+              }}
+            >
               {helperText}
             </Typography>
-          }
+          )}
         </Box>
-      :
+      ) : (
         <Button
           size={size}
           color={color}
-          startIcon={<CircleProgress
-            thickness={5}
-            size={20}
-            variant='indeterminate'
-            colorVariant='secondary'
-          />}
+          startIcon={
+            <CircleProgress
+              thickness={5}
+              size={20}
+              variant="indeterminate"
+              colorVariant="secondary"
+            />
+          }
           {...props}
         >
           {loadIndicator}
         </Button>
-      }
+      )}
     </Box>
   )
 }
