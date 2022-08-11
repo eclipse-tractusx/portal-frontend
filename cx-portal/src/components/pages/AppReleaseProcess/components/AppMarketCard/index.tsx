@@ -289,8 +289,7 @@ export default function AppMarketCard() {
             </Typography>
             <Box mb={2}>
               <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <Button variant="outlined" sx={{ mr: 1 }}>
-                <HelpOutlineIcon />
+              <Button variant="outlined" sx={{ mr: 1 }} startIcon={<HelpOutlineIcon />}>
                 {t('content.apprelease.appMarketCard.help')}
               </Button>
               <IconButton

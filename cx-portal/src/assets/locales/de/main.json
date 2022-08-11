@@ -421,7 +421,7 @@
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
-      "helperText": "Please enter all required information before proceeding.",
+      "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "technicalUser": {
         "addOverlay": {
           "service": "Dienst",
