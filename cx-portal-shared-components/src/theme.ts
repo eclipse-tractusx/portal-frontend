@@ -631,7 +631,6 @@ export const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          marginLeft: '16px',
           borderRadius: '6px',
           '.MuiCalendarPicker-viewTransitionContainer': {
             borderTop: `1px solid ${palette.border.border01}`,
