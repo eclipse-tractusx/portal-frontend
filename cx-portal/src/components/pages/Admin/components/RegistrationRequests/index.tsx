@@ -118,6 +118,7 @@ export default function RegistrationRequests() {
             rows: registrationRequests,
             columns: columns,
             rowsCount: registrationRequests.length,
+            toolbarVariant: 'premium',
             title: t('content.admin.registration-requests.tabletitle'),
             headerHeight: 76,
             rowHeight: 100,
