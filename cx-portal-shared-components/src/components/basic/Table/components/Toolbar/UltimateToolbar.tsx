@@ -58,18 +58,18 @@ export const UltimateToolbar = ({
     }
     return isSelected
   }
-  const headerHeight = () => onSearch || onFilter ? 100 : 0
+  const headerHeight = () => (onSearch || onFilter ? 100 : 0)
   return (
     <Box
       sx={{
-        minHeight: {headerHeight},
+        minHeight: { headerHeight },
         padding: spacing(1, 4),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}
     >
-      {onSearch &&
+      {onSearch && (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           <SearchInput
             value={searchInput}
@@ -83,7 +83,7 @@ export const UltimateToolbar = ({
             }}
           />
         </Box>
-      }
+      )}
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         {onFilter &&
           filter?.map(({ name, values }) => (
