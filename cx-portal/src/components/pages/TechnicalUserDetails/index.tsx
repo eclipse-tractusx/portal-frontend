@@ -18,65 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, PageNotificationsProps } from 'cx-portal-shared-components'
+import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { TechnicalUserDetailsGrid } from './TechnicalUserDetailsGrid'
 import { Box } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { RemoveTechnicalUserOverlay } from './RemoveTechnicalUserOverlay'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setNotification } from 'features/notification/actions'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
-import { PAGES } from 'types/Constants'
+import { OVERLAYS, PAGES } from 'types/Constants'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay/actions'
+import { KeyValueView } from './KeyValueView'
 
 export default function TechnicalUserDetails() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { userId } = useParams()
   const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
-  const [open, setOpen] = useState(false)
-
-  const openAddTechnicalUserOverlay = () => {
-    setOpen(true)
-  }
-  const closeAddTechnicalUserOverlay = () => {
-    setOpen(false)
-  }
-
-  const deleteUserIsSuccess = () => {
-    // Add delete user logic:
-    // If delete is success then show notification:
-    const notification: PageNotificationsProps = {
-      open: true,
-      severity: 'success',
-      title:
-        'content.usermanagement.technicalUser.confirmDeleteNotificationTitle',
-      description:
-        'content.usermanagement.technicalUser.confirmDeleteNotificationDescription',
-    }
-
-    dispatch(setNotification(notification))
-  }
-
-  const removeTechnicalUser = () => {
-    console.log('TODO: Remove technical user function!')
-    openAddTechnicalUserOverlay()
-  }
-
   return (
-    <main className="technical-user-details">
+    <main>
       {data && (
         <>
-          <RemoveTechnicalUserOverlay
-            serviceaccount={data}
-            dialogOpen={open}
-            handleClose={closeAddTechnicalUserOverlay}
-            deleteUser={deleteUserIsSuccess}
-          />
-
           <PageHeaderWithCrumbs
             crumbs={[
               PAGES.USER_MANAGEMENT,
@@ -90,7 +53,7 @@ export default function TechnicalUserDetails() {
               size="small"
               variant="outlined"
               startIcon={<HighlightOffIcon />}
-              onClick={removeTechnicalUser}
+              onClick={() => dispatch(show(OVERLAYS.DELETE_TECHUSER, userId))}
             >
               {t('content.usermanagement.technicalUser.delete')}
             </Button>
@@ -104,20 +67,37 @@ export default function TechnicalUserDetails() {
                 width: '100%',
               }}
             >
-              <TechnicalUserDetailsGrid
-                items={['Client ID', 'Auth Type', 'Client Secret']}
+              <KeyValueView
+                cols={2}
                 title={t(
                   'content.usermanagement.technicalUser.detailsPage.userDetails'
                 )}
+                items={[
+                  {
+                    key: t('ID'),
+                    value: data.serviceAccountId,
+                    copy: true,
+                  },
+                  {
+                    key: t('Service Account Name'),
+                    value: data.name,
+                    copy: true,
+                  },
+                  { key: t('Client ID'), value: data.clientId },
+                  {
+                    key: t('Auth Type'),
+                    value: data.authenticationType,
+                  },
+                  { key: t('Client Secret'), value: data.secret, copy: true },
+                ]}
               />
 
-              <TechnicalUserDetailsGrid
-                items={[
-                  'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis nat',
-                ]}
+              <KeyValueView
+                cols={1}
                 title={t(
                   'content.usermanagement.technicalUser.detailsPage.description'
                 )}
+                items={{ key: t('Description'), value: data.description }}
               />
 
               <TechnicalUserDetailsGrid

@@ -89,6 +89,9 @@ export const apiSlice = createApi({
       query: (id: string) =>
         `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
     }),
+    fetchServiceAccountRoles: builder.query<ServiceAccountRole[], void>({
+      query: () => `/api/administration/serviceaccount/user/roles`,
+    }),
   }),
 })
 
@@ -97,4 +100,5 @@ export const {
   useRemoveServiceAccountMutation,
   useFetchServiceAccountListQuery,
   useFetchServiceAccountDetailQuery,
+  useFetchServiceAccountRolesQuery,
 } = apiSlice

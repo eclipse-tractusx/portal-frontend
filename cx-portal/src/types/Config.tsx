@@ -50,7 +50,7 @@ import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
-import TechnicalUserDetails from 'components/pages/TechnicalUserManagement/TechnicalUserDetails'
+import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
 import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import Test from 'components/pages/Test'
@@ -276,6 +276,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_TECHUSER,
     role: ROLES.TECHUSER_ADD,
+  },
+  {
+    name: OVERLAYS.DELETE_TECHUSER,
+    role: ROLES.TECHUSER_DELETE,
   },
   {
     name: OVERLAYS.ADD_APP_USER_ROLES,
