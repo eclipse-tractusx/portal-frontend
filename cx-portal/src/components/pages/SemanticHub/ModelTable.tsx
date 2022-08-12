@@ -220,7 +220,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         disableColumnSelector={true}
         disableDensitySelector={true}
         title={t('content.semantichub.table.title')}
-        toolbarVariant='premium'
+        toolbarVariant="premium"
         toolbar={{
           onFilter: onFilter,
           filter: filter,

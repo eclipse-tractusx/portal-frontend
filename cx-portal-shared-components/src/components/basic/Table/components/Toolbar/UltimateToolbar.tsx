@@ -31,7 +31,7 @@ export const UltimateToolbar = ({
     }
   }
 
-  const onFilterChange = ( value: string, name: string) => {
+  const onFilterChange = (value: string, name: string) => {
     const checked = !checkIsSelected(name, value)
 
     setSelectedFilter(
@@ -77,13 +77,13 @@ export const UltimateToolbar = ({
           placeholder={placeholder}
           sx={{
             '.MuiInputBase-input': {
-              padding: '10px'
-            }
+              padding: '10px',
+            },
           }}
         />
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        {onFilter && 
+        {onFilter &&
           filter?.map(({ name, values }) => (
             <Box
               key={name}
@@ -98,17 +98,18 @@ export const UltimateToolbar = ({
                     id={`${name}${value}`}
                     name={name}
                     onClick={() => onFilterChange(value, name)}
-                    size='small'
-                    color='secondary'
-                    variant={checkIsSelected(name, value) ? 'contained' : 'text'}
+                    size="small"
+                    color="secondary"
+                    variant={
+                      checkIsSelected(name, value) ? 'contained' : 'text'
+                    }
                   >
                     {label || value}
                   </Button>
                 </Box>
               ))}
             </Box>
-          ))
-        }
+          ))}
       </Box>
     </Box>
   )

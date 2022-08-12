@@ -5,7 +5,7 @@ import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 
 export { StatusTag }
-export type toolbarType=  'basic' | 'premium' | 'ultimate'
+export type toolbarType = 'basic' | 'premium' | 'ultimate'
 
 export interface TableProps extends DataGridProps {
   title: string
@@ -38,7 +38,14 @@ export const Table = ({
       case 'premium':
         return <Toolbar title={title} {...toolbar} {...{ rowsCount }} />
       case 'ultimate':
-        return <UltimateToolbar title={title} {...toolbar} {...{ rowsCount }} placeholder={searchPlaceholder}/>
+        return (
+          <UltimateToolbar
+            title={title}
+            {...toolbar}
+            {...{ rowsCount }}
+            placeholder={searchPlaceholder}
+          />
+        )
     }
   }
 
@@ -47,7 +54,7 @@ export const Table = ({
       sx={{
         '.MuiDataGrid-columnHeaders': {
           backgroundColor: columnHeadersBackgroundColor,
-        }
+        },
       }}
     >
       <DataGrid
@@ -66,4 +73,5 @@ export const Table = ({
         {...props}
       />
     </Box>
-)}
+  )
+}

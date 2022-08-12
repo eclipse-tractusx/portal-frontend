@@ -67,7 +67,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         disableColumnSelector={true}
         disableDensitySelector={true}
         title={t('content.digitaltwin.table.title')}
-        toolbarVariant='premium'
+        toolbarVariant="premium"
         toolbar={{
           onSearch: onSearch,
         }}
