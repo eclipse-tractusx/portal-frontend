@@ -185,6 +185,7 @@ const EdcConnector = () => {
             disableColumnSelector: true,
             disableDensitySelector: true,
             disableSelectionOnClick: true,
+            toolbarVariant:'basic',
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
             loading,
           }}

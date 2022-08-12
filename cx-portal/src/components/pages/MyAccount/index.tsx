@@ -149,6 +149,7 @@ export default function MyAccount() {
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
+          toolbarVariant='basic'
         />
       </section>
 

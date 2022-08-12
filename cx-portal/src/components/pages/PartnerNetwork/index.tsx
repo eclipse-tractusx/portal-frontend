@@ -123,6 +123,7 @@ const PartnerNetwork = () => {
             disableDensitySelector: true,
             disableSelectionOnClick: true,
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
+            toolbarVariant:'premium',
             toolbar: {
               onFilter: () => {},
               filter: [

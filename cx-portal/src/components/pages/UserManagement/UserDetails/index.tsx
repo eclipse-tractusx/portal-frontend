@@ -212,6 +212,7 @@ export default function UserDetails() {
           getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
+          toolbarVariant='basic'
           hideFooter
         />
       </section>
