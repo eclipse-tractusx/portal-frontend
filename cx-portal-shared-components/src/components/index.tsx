@@ -47,6 +47,7 @@ export { CircleProgress } from './basic/Progress/CircleProgress'
 export { Stepper } from './basic/Stepper'
 export { SelectList } from './basic/SelectList'
 export { VerticalTabs } from './basic/VerticalTabs'
+export { LoadingButton } from './basic/LoadingButton'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
