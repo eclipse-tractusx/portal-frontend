@@ -20,10 +20,9 @@
 
 import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { TechnicalUserDetailsGrid } from './TechnicalUserDetailsGrid'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import { ServiceAccountDetail } from 'features/admin/serviceApiSlice'
+import { ServiceAccountDetail, ServiceAccountRole } from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
@@ -79,29 +78,19 @@ export default function TechnicalUserDetailsContent({
               key: t('Auth Type'),
               value: data.authenticationType,
             },
-            { key: t('Client Secret'), value: data.secret, copy: true },
+            { key: t('global.field.secret'), value: data.secret, copy: true },
+            { key: t('global.field.description'), value: data.description },
           ]}
         />
 
         <KeyValueView
           cols={1}
           title={t(
-            'content.usermanagement.technicalUser.detailsPage.description'
+            'global.field.permission'
           )}
-          items={{ key: t('Description'), value: data.description }}
+          items={data.roles.map((role: ServiceAccountRole) => ({value: role.roleName}))}
         />
 
-        <TechnicalUserDetailsGrid
-          items={['Organisation name', 'User Name', 'admin@gmail.com']}
-          title={t('content.usermanagement.technicalUser.detailsPage.spoc')}
-        />
-
-        <TechnicalUserDetailsGrid
-          items={['load registry data', 'view registry data', 'access_xy']}
-          title={t(
-            'content.usermanagement.technicalUser.detailsPage.permission'
-          )}
-        />
       </Box>
     </section>
   ) : null

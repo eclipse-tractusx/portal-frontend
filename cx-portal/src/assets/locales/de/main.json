@@ -628,7 +628,10 @@
       "details": "Details",
       "userName": "Benutzername",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Beschreibung",
+      "secret": "Secret",
+      "permission": "Berechtigung"
     },
     "actions": {
       "cancel": "Abbrechen",
