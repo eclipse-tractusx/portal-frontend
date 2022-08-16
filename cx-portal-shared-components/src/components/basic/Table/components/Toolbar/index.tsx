@@ -36,8 +36,8 @@ export interface ToolbarProps {
 
 export const Toolbar = ({
   title,
-  rowsCount,
-  rowsCountMax,
+  rowsCount = 0,
+  rowsCountMax = 0,
   buttonLabel,
   onButtonClick,
   onSearch,

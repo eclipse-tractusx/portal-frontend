@@ -24,7 +24,7 @@ export const Table = ({
   headerHeight = 57, // Default header height from base design
   rowHeight = 57, // Default row height from base design
   rowsCount = 0,
-  rowsCountMax,
+  rowsCountMax = 0,
   title,
   toolbar,
   checkboxSelection,
@@ -36,15 +36,21 @@ export const Table = ({
   const toolbarView = () => {
     switch (toolbarVariant) {
       case 'basic':
-        return <Toolbar title={title} {...{ rowsCount }} />
+        return <Toolbar title={title} {...{ rowsCount, rowsCountMax }} />
       case 'premium':
-        return <Toolbar title={title} {...toolbar} {...{ rowsCount }} />
+        return (
+          <Toolbar
+            title={title}
+            {...toolbar}
+            {...{ rowsCount, rowsCountMax }}
+          />
+        )
       case 'ultimate':
         return (
           <UltimateToolbar
             title={title}
             {...toolbar}
-            {...{ rowsCount }}
+            {...{ rowsCount, rowsCountMax }}
             placeholder={searchPlaceholder}
           />
         )
