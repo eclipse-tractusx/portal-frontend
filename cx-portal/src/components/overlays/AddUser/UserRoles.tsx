@@ -1,20 +1,18 @@
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import {
-  useFetchUserAppRolesQuery,
-  UserAppRole,
-} from 'features/admin/userApiSlice'
+import { AppRole } from 'features/admin/appuserApiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
-  const { data } = useFetchUserAppRolesQuery()
+  const { data } = useFetchAppRolesQuery('5cf74ef8-e0b7-4984-a872-474828beb5d9')
 
   const selectRole = (role: string, select: boolean) => {
     const isSelected = roles.includes(role)
@@ -48,7 +46,7 @@ export const UserRoles = () => {
 
       <div className="checkbox-section">
         {data &&
-          data.map((role: UserAppRole) => (
+          data.map((role: AppRole) => (
             <Checkbox
               checked={Array.isArray(roles) && roles.includes(role.role)}
               label={role.role}

@@ -29,12 +29,6 @@ export interface UserAppRoles {
   roles: string[]
 }
 
-export interface UserAppRole {
-  roleId: string
-  role: string
-  description: string
-}
-
 export type AddUser = {
   userName: string
   email: string
@@ -91,10 +85,6 @@ export const apiSlice = createApi({
     fetchUserRoles: builder.query<string[], void>({
       query: () => `/api/registration/rolesComposite`,
     }),
-    fetchUserAppRoles: builder.query<UserAppRole[], void>({
-      query: () =>
-        `api/administration/user/app/5cf74ef8-e0b7-4984-a872-474828beb5d9/roles`,
-    }),
     fetchUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
       query: (fetchArgs) =>
         `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${fetchArgs.page}`,
@@ -107,7 +97,6 @@ export const apiSlice = createApi({
 
 export const {
   useFetchUserRolesQuery,
-  useFetchUserAppRolesQuery,
   useFetchUsersQuery,
   useFetchUserDetailsQuery,
   useAddTenantUsersMutation,
