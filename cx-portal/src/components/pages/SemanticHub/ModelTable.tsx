@@ -53,7 +53,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const [objectType, setObjectType] = useState<string>('')
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
-    status: ['RELEASED', 'DRAFT','DEPRECATED'],
+    status: ['RELEASED', 'DRAFT', 'DEPRECATED'],
   })
   const rowCount = 10
   const filter = [
@@ -220,11 +220,12 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           </Select>
         </FormControl>
         {filterHasValues() && (
-          <Button 
-          onClick={() => {
-            onFilterReset()
-          }}
-          sx={{ ml: 1 }}>
+          <Button
+            onClick={() => {
+              onFilterReset()
+            }}
+            sx={{ ml: 1 }}
+          >
             {t('content.semantichub.table.filter.resetButton')}
           </Button>
         )}

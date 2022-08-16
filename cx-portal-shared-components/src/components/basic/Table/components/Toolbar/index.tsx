@@ -7,7 +7,7 @@ import { Typography } from '../../../Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
 import { Checkbox } from '../../../Checkbox'
-import { getSelectedFilterUpdate, initSelectedFilter } from './helper'
+import { getSelectedFilterUpdate } from './helper'
 
 interface FilterValue {
   value: string
@@ -46,13 +46,12 @@ export const Toolbar = ({
   onFilter,
   openFilterSection,
   onOpenFilterSection,
-  selectedFilter
+  selectedFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
   const [openSearch, setOpenSearch] = useState<boolean>(false)
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>('')
-  
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -66,7 +65,15 @@ export const Toolbar = ({
 
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = target
-    onFilter && onFilter(getSelectedFilterUpdate(selectedFilter as SelectedFilter, name, value, checked))
+    onFilter &&
+      onFilter(
+        getSelectedFilterUpdate(
+          selectedFilter as SelectedFilter,
+          name,
+          value,
+          checked
+        )
+      )
   }
 
   useEffect(() => {
@@ -130,7 +137,9 @@ export const Toolbar = ({
                 alignSelf: 'center',
                 color: openFilter ? 'primary' : 'text.tertiary',
               }}
-              onClick={() => onOpenFilterSection && onOpenFilterSection(!openFilter)}
+              onClick={() =>
+                onOpenFilterSection && onOpenFilterSection(!openFilter)
+              }
             >
               <FilterIcon />
             </IconButton>
@@ -156,7 +165,9 @@ export const Toolbar = ({
                   name={name}
                   value={value}
                   label={label || value}
-                  checked={(selectedFilter as SelectedFilter)[name]?.includes(value)}
+                  checked={(selectedFilter as SelectedFilter)[name]?.includes(
+                    value
+                  )}
                   onChange={onFilterChange}
                 />
               </Box>
