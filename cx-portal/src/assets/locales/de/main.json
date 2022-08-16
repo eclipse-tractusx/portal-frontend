@@ -311,12 +311,7 @@
       },
       "message": "Inhalte vom Partner Netzwerk",
       "loadmore": "Mehr Laden",
-      "bpnsearchplaceholder": "Bitte geben Sie die BPN-Nummer des Unternehmens ein",
-      "bpnsearchlabel": "BPN Nummer",
-      "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
-      "companynamesearchlabel": "Name der Firma",
-      "searchbycompanyorbpnplaceholder": "Suchen Sie nach Firmennamen oder BPN",
-      "searchbycompanyorbpnlabel": "",
+      "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",

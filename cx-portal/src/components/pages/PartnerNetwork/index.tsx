@@ -25,8 +25,9 @@ const validateSearchText = (text: string): boolean => {
 }
 
 const checkIfBPNLNumber = (text: string) => {
-  const SUB_STRING = 'bpn'
-  return text.toLowerCase().includes(SUB_STRING)
+  // regex to validate the BPN number pattern
+  const bpnPattern = /^BPNL[a-z0-9]{12}$/i
+  return bpnPattern.test(text.trim())
 }
 
 const PartnerNetwork = () => {
@@ -78,11 +79,7 @@ const PartnerNetwork = () => {
 
       // There is two different endpoint for BPN search and for the field search
       // Detect which api call to make a request
-      if (
-        searchText !== '' &&
-        searchText.length === 16 &&
-        checkIfBPNLNumber(searchText)
-      ) {
+      if (searchText !== '' && checkIfBPNLNumber(searchText)) {
         dispatch(getOneBusinessPartner({ bpn: searchText }))
       }
       // Reset current page to default everytime user search some term
