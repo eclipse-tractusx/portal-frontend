@@ -48,7 +48,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
   return (
     <Box
       sx={{
-        width: `${cols * 353 + (cols - 1) * 24}px`,
+        width: `${cols * 353 + (cols - 1) * 31}px`,
         marginRight: '31px',
         marginBottom: '92px',
       }}

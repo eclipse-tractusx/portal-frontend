@@ -37,6 +37,7 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
+import './style.scss'
 
 export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -72,7 +73,6 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
       console.log(err)
     }
   }
-
   return data ? (
     <>
       <DialogHeader title={`${t('global.actions.delete')} ${data.name}`} />

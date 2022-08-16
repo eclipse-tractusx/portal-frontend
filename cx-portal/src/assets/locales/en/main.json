@@ -399,7 +399,7 @@
         "tableHeader": "Technical User List",
         "detailsHeader": "Technical User: USER_NAME",
         "detailsPage": {
-          "userDetails": "User Details",
+          "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
           "permission": "Permission"
