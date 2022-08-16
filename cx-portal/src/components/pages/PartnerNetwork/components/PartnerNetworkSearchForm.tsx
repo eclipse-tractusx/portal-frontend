@@ -1,53 +1,44 @@
 import React from 'react'
-import { Button, Input } from 'cx-portal-shared-components'
+import { IconButton, SearchInput } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
+import MicIcon from '@mui/icons-material/Mic'
+
 type SearchFormProps = {
-  onBpnFieldChange: (
+  onSearchTextChange: (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void
-  onCompanyNameChange: (
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => void
-  onSearchClick: () => void
-  bpnValue: string
-  companyName: string
+  searchError: string | null
+  searchText: string
 }
 
 const PartnerNetworkSearchForm = ({
-  onBpnFieldChange,
-  onCompanyNameChange,
-  onSearchClick,
-  bpnValue,
-  companyName,
+  onSearchTextChange,
+  searchText,
+  searchError,
 }: SearchFormProps) => {
   const { t } = useTranslation()
 
   return (
     <div className="advance-search-fields-container">
       <div className="identifier-fields-container">
-        <Input
-          label={t('content.partnernetwork.bpnsearchlabel')}
-          variant="filled"
-          placeholder={t('content.partnernetwork.bpnsearchplaceholder')}
+        <SearchInput
+          label={t('content.partnernetwork.searchbycompanyorbpnlabel')}
+          variant="outlined"
+          placeholder={t(
+            'content.partnernetwork.searchbycompanyorbpnplaceholder'
+          )}
           margin="dense"
-          onChange={(e) => onBpnFieldChange(e)}
-          value={bpnValue}
+          onChange={(e) => onSearchTextChange(e)}
+          value={searchText}
+          error={Boolean(searchError)}
+          helperText={searchError}
+          endAndorment={
+            <IconButton>
+              <MicIcon sx={{ color: '#939393' }} />
+            </IconButton>
+          }
         />
-        <span className="or-span">OR</span>
-        <Input
-          label={t('content.partnernetwork.companynamesearchlabel')}
-          variant="filled"
-          placeholder={t('content.partnernetwork.companynamesearchplaceholder')}
-          margin="dense"
-          onChange={(e) => onCompanyNameChange(e)}
-          value={companyName}
-        />
-      </div>
-      <div className="search-button">
-        <Button size="medium" onClick={() => onSearchClick()}>
-          {t('content.partnernetwork.searchbuttonlabel')}
-        </Button>
       </div>
     </div>
   )

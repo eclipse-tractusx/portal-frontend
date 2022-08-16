@@ -1,4 +1,7 @@
 import { ComponentStory } from '@storybook/react'
+import { IconButton } from '../IconButton'
+
+import MicIcon from '@mui/icons-material/Mic'
 
 import { SearchInput as Component } from '.'
 
@@ -13,4 +16,10 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 )
 
 export const SearchInput = Template.bind({})
-SearchInput.args = {}
+SearchInput.args = {
+  endAndorment: (
+    <IconButton>
+      <MicIcon sx={{ color: '#939393' }} />
+    </IconButton>
+  ),
+}

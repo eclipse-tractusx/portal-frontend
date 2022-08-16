@@ -315,6 +315,8 @@
       "bpnsearchlabel": "BPN Nummer",
       "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
       "companynamesearchlabel": "Name der Firma",
+      "searchbycompanyorbpnplaceholder": "Suchen Sie nach Firmennamen oder BPN",
+      "searchbycompanyorbpnlabel": "",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",

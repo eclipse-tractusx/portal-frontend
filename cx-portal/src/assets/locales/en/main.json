@@ -316,6 +316,8 @@
       "companynamesearchplaceholder": "Please type company name",
       "companynamesearchlabel": "Company Name",
       "searchbuttonlabel": "Search",
+      "searchbycompanyorbpnplaceholder": "Search by company name or BPN",
+      "searchbycompanyorbpnlabel": "",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",
