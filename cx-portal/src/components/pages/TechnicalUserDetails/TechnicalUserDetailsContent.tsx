@@ -27,7 +27,7 @@ import { ServiceAccountDetail } from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
-import { KeyValueView } from '../../shared/basic/KeyValueView'
+import { KeyValueView } from 'components/shared/basic/KeyValueView'
 
 export default function TechnicalUserDetailsContent({
   data,
@@ -37,74 +37,72 @@ export default function TechnicalUserDetailsContent({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   return data ? (
-    <>
-      <section>
-        <Button
-          size="small"
-          variant="outlined"
-          startIcon={<HighlightOffIcon />}
-          onClick={() =>
-            dispatch(show(OVERLAYS.DELETE_TECHUSER, data.serviceAccountId))
-          }
-        >
-          {t('content.usermanagement.technicalUser.delete')}
-        </Button>
+    <section>
+      <Button
+        size="small"
+        variant="outlined"
+        startIcon={<HighlightOffIcon />}
+        onClick={() =>
+          dispatch(show(OVERLAYS.DELETE_TECHUSER, data.serviceAccountId))
+        }
+      >
+        {t('content.usermanagement.technicalUser.delete')}
+      </Button>
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            marginTop: '130px',
-            marginBottom: '92px',
-            width: '100%',
-          }}
-        >
-          <KeyValueView
-            cols={2}
-            title={t(
-              'content.usermanagement.technicalUser.detailsPage.userDetails'
-            )}
-            items={[
-              {
-                key: t('ID'),
-                value: data.serviceAccountId,
-                copy: true,
-              },
-              {
-                key: t('Service Account Name'),
-                value: data.name,
-                copy: true,
-              },
-              { key: t('Client ID'), value: data.clientId },
-              {
-                key: t('Auth Type'),
-                value: data.authenticationType,
-              },
-              { key: t('Client Secret'), value: data.secret, copy: true },
-            ]}
-          />
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          marginTop: '80px',
+          marginBottom: '92px',
+          width: '100%',
+        }}
+      >
+        <KeyValueView
+          cols={2}
+          title={t(
+            'content.usermanagement.technicalUser.detailsPage.userDetails'
+          )}
+          items={[
+            {
+              key: t('ID'),
+              value: data.serviceAccountId,
+              copy: true,
+            },
+            {
+              key: t('Service Account Name'),
+              value: data.name,
+              copy: true,
+            },
+            { key: t('Client ID'), value: data.clientId, copy: true },
+            {
+              key: t('Auth Type'),
+              value: data.authenticationType,
+            },
+            { key: t('Client Secret'), value: data.secret, copy: true },
+          ]}
+        />
 
-          <KeyValueView
-            cols={1}
-            title={t(
-              'content.usermanagement.technicalUser.detailsPage.description'
-            )}
-            items={{ key: t('Description'), value: data.description }}
-          />
+        <KeyValueView
+          cols={1}
+          title={t(
+            'content.usermanagement.technicalUser.detailsPage.description'
+          )}
+          items={{ key: t('Description'), value: data.description }}
+        />
 
-          <TechnicalUserDetailsGrid
-            items={['Organisation name', 'User Name', 'admin@gmail.com']}
-            title={t('content.usermanagement.technicalUser.detailsPage.spoc')}
-          />
+        <TechnicalUserDetailsGrid
+          items={['Organisation name', 'User Name', 'admin@gmail.com']}
+          title={t('content.usermanagement.technicalUser.detailsPage.spoc')}
+        />
 
-          <TechnicalUserDetailsGrid
-            items={['load registry data', 'view registry data', 'access_xy']}
-            title={t(
-              'content.usermanagement.technicalUser.detailsPage.permission'
-            )}
-          />
-        </Box>
-      </section>
-    </>
+        <TechnicalUserDetailsGrid
+          items={['load registry data', 'view registry data', 'access_xy']}
+          title={t(
+            'content.usermanagement.technicalUser.detailsPage.permission'
+          )}
+        />
+      </Box>
+    </section>
   ) : null
 }

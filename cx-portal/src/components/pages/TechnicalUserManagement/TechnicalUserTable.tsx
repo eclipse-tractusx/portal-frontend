@@ -21,20 +21,17 @@
 import { IconButton, PageLoadingTable } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { useSelector } from 'react-redux'
+import { PAGES } from 'types/Constants'
 import { updateTechuserSelector } from 'features/control/updatesSlice'
 import { useNavigate } from 'react-router-dom'
-import { show } from 'features/control/overlay/actions'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const update = useSelector(updateTechuserSelector)
 
@@ -74,16 +71,6 @@ export const TechnicalUserTable = () => {
                   }
                 >
                   <ArrowForwardIcon />
-                </IconButton>
-                <IconButton
-                  color="secondary"
-                  onClick={() =>
-                    dispatch(
-                      show(OVERLAYS.DELETE_TECHUSER, row.serviceAccountId)
-                    )
-                  }
-                >
-                  <DeleteForeverIcon />
                 </IconButton>
               </>
             ),

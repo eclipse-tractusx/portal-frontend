@@ -1,12 +1,18 @@
 .remove-technical-user-content {
+  max-width: 930px;
+
+  * {
+    width: fit-content;
+    text-align: center;
+  }
+
   h6 {
     font-weight: bold !important;
-    width: fit-content;
     margin: 0 auto;
   }
 
   h5 {
-    width: fit-content;
-    margin: 20px auto 0 auto !important;
+    padding: 20px;
+    margin: 20px auto 20px auto !important;
   }
 }
