@@ -574,8 +574,8 @@ export const theme = createTheme({
     MuiDialog: {
       styleOverrides: {
         paper: {
-          width: 930,
-          maxWidth: 930,
+          minWidth: 930,
+          maxWidth: 1416,
           borderRadius: 40,
         },
       },

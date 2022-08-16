@@ -399,7 +399,7 @@
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
-          "userDetails": "Benutzer Details",
+          "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
           "permission": "Berechtigungen"
@@ -641,7 +641,15 @@
       "delete": "Löschen",
       "pleaseSelect": "Bitte auswählen",
       "reload": "Seite neuladen",
-      "homepage": "Startseite"
+      "homepage": "Startseite",
+      "deleteTitle": "Löschen von {{ object }} {{ name }}",
+      "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
+      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+    },
+    "objects": {
+      "app": "App",
+      "user": "Benutzer",
+      "techuser": "Technischer Account"
     },
     "search": {
       "less": "weniger anzeigen",

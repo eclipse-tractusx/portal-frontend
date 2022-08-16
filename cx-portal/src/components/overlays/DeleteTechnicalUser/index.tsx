@@ -37,6 +37,7 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
+import './style.scss'
 
 export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -72,26 +73,29 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
       console.log(err)
     }
   }
-
   return data ? (
     <>
-      <DialogHeader title={`${t('global.actions.delete')} ${data.name}`} />
+      <DialogHeader
+        title={`${t('global.actions.delete')} ${t('global.objects.techuser')} ${
+          data.name
+        }`}
+      />
 
-      <DialogContent>
-        <div className="remove-technical-user-content">
-          <SubHeaderTitle
-            title={t('content.usermanagement.technicalUser.confirmDeleteUser', {
-              user: data.name,
-            })}
-            variant="h6"
-          />
-          <SubHeaderTitle
-            title={t('content.usermanagement.technicalUser.noteDeleteUser', {
-              user: data.name,
-            })}
-            variant="h5"
-          />
-        </div>
+      <DialogContent className="remove-technical-user-content">
+        <SubHeaderTitle
+          className="confirm"
+          title={t('global.actions.confirmDelete', {
+            object: t('global.objects.techuser'),
+            name: data.name,
+          })}
+          variant="h6"
+        />
+        <SubHeaderTitle
+          title={t('global.actions.noteDelete', {
+            object: t('global.objects.techuser'),
+          })}
+          variant="h5"
+        />
       </DialogContent>
 
       <DialogActions>

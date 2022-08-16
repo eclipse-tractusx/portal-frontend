@@ -16,7 +16,7 @@ interface KeyValueViewProps {
 }
 
 const renderValue = (value: string | number | JSX.Element) => (
-  <Typography sx={{ color: 'gray', margin: 'auto 0px' }}>
+  <Typography sx={{ fontSize: '14px', color: 'gray', margin: 'auto 0px' }}>
     {isValidElement(value) ? value : value.toString()}
   </Typography>
 )
@@ -27,28 +27,35 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
   const renderValueItem = (item: ValueItem) =>
     item.copy ? (
       <Box
-        sx={{ cursor: 'pointer', display: 'flex' }}
+        sx={{
+          cursor: 'pointer',
+          display: 'flex',
+          color: copied === item.key ? '#00cc00' : '#eeeeee',
+          ':hover': {
+            color: copied === item.key ? '#00cc00' : '#cccccc',
+          },
+        }}
         onClick={async () => {
           await navigator.clipboard.writeText(item.value.toString())
           setCopied(item.key)
+          setTimeout(() => setCopied(''), 1000)
         }}
       >
         {renderValue(item.value.toString())}
         <ContentCopyIcon
           sx={{
-            color: copied === item.key ? '#00aa00' : 'lightgray',
             marginLeft: '10px',
           }}
         />
       </Box>
     ) : (
-      renderValue(item.value)
+      <Box sx={{ marginRight: '34px' }}>{renderValue(item.value)}</Box>
     )
 
   return (
     <Box
       sx={{
-        width: `${cols * 353 + (cols - 1) * 24}px`,
+        width: `${cols * 353 + (cols - 1) * 31}px`,
         marginRight: '31px',
         marginBottom: '92px',
       }}
@@ -61,7 +68,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           padding: '18px 24px',
         }}
       >
-        {title}
+        <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>
+          {title}
+        </Typography>
       </Box>
       <Box>
         {Array.isArray(items) ? (
@@ -76,7 +85,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
                 borderBottom: '1px solid #EDF0F4',
               }}
             >
-              <Box sx={{ fontWeight: 'bold' }}>{item.key}</Box>
+              <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>
+                {item.key}
+              </Typography>
               {renderValueItem(item)}
             </Box>
           ))

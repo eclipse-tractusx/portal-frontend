@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import TechnicalUserDetailsContent from 'components/pages/TechnicalUserDetails/TechnicalUserDetailsContent'
 import {
   Button,
   DialogActions,
@@ -39,14 +40,16 @@ export default function TechnicalUserInfo({ id }: { id: string }) {
     <>
       <DialogHeader
         {...{
-          title: t('content.account.userAccount'),
+          title: t(
+            'content.usermanagement.technicalUser.detailsPage.userDetails'
+          ),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
       />
 
       <DialogContent>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        {data && <TechnicalUserDetailsContent data={data} />}
       </DialogContent>
 
       <DialogActions>
