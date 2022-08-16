@@ -1,12 +1,11 @@
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { AppRole } from 'features/admin/appuserApiSlice'
+import { AppRole, useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
-import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
