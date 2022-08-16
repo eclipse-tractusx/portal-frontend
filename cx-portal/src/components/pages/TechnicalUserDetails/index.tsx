@@ -23,10 +23,11 @@ import { PAGES } from 'types/Constants'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import TechnicalUserDetailsContent from './TechnicalUserDetailsContent'
 import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
+import { Loading } from 'components/shared/basic/Loading'
 
 export default function TechnicalUserDetails() {
   const { userId } = useParams()
-  const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
+  const { data, isLoading } = useFetchServiceAccountDetailQuery(userId ?? '')
   return (
     <main>
       <PageHeaderWithCrumbs
@@ -36,8 +37,11 @@ export default function TechnicalUserDetails() {
           PAGES.TECHUSER_DETAILS,
         ]}
       />
-
-      {data && <TechnicalUserDetailsContent data={data} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        data && <TechnicalUserDetailsContent data={data} />
+      )}
     </main>
   )
 }
