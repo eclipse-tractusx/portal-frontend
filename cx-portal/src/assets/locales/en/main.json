@@ -40,7 +40,8 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
-    "technicaluser": "Technical User Management"
+    "technicaluser": "Technical User Management",
+    "techuserdetails": "Technical User Details"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -403,8 +404,8 @@
           "spoc": "SPOC",
           "permission": "Permission"
         },
-        "confirmDeleteUser": "Are you sure you want to delete OBJECT_NAME ?",
-        "noteDeleteUser": "Note: add any note information here - e.g. if the deletion is getting confirmed, the user wont be able to reactivate the OBJECT_NAME",
+        "confirmDeleteUser": "Are you sure you want to delete {{ user }}?",
+        "noteDeleteUser": "Confirming this will permanently remove the service account. Undo is not possible.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }

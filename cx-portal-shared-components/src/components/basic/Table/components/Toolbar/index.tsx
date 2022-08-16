@@ -26,6 +26,7 @@ export type SelectedFilter = {
 export interface ToolbarProps {
   title?: string
   rowsCount?: number
+  rowsCountMax?: number
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   onSearch?: (value: string) => void
@@ -36,6 +37,7 @@ export interface ToolbarProps {
 export const Toolbar = ({
   title,
   rowsCount,
+  rowsCountMax,
   buttonLabel,
   onButtonClick,
   onSearch,
@@ -94,10 +96,11 @@ export const Toolbar = ({
               sx={{
                 typography: 'body1',
                 color: 'text.tertiary',
-                marginLeft: 0.5,
+                marginLeft: 1,
               }}
             >
-              ({rowsCount})
+              ({rowsCount || 0}
+              {rowsCountMax !== rowsCount && `/${rowsCountMax || 0}`})
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (

@@ -9,16 +9,16 @@ import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { useForm } from 'react-hook-form'
-import { DefaultFormFieldValuesType } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay'
+import { DefaultFormFieldValuesType } from './TechnicalUserAddForm'
 import {
   ServiceAccountDetail,
   ServiceAccountType,
   useAddServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
-import { TechnicalUserAddForm } from 'components/pages/TechnicalUserManagement/AddTechnicalUserOverlay/components/TechnicalUserAddForm'
+import { TechnicalUserAddForm } from 'components/overlays/AddTechnicalUser/TechnicalUserAddForm'
 import { UserDetails } from 'components/shared/basic/UserDetails'
 import { useState } from 'react'
-import { AddTechnicalUserResponseOverlay } from 'components/pages/TechnicalUserManagement/AddTechnicalUserResponseOverlay'
+import { TechnicalUserAddResponseOverlay } from './TechnicalUserAddResponseOverlay'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 
 export const AddTechnicalUser = () => {
@@ -119,7 +119,7 @@ export const AddTechnicalUser = () => {
         </Button>
       </DialogActions>
       {response && (
-        <AddTechnicalUserResponseOverlay
+        <TechnicalUserAddResponseOverlay
           title={t('content.addUser.technicalUserHeadline')}
           intro={t('content.addUser.technicalUserSubheadlineSuccess')}
           dialogOpen={true}
@@ -129,19 +129,22 @@ export const AddTechnicalUser = () => {
             userDetailsCards={[
               {
                 cardContentItems: {
-                  clientId: { label: 'Client ID', value: '1237856' },
+                  clientId: { label: 'Client ID', value: response.clientId },
+                  userName: { label: 'UserName', value: response.name },
+                  authType: {
+                    label: 'Auth Type',
+                    value: response.authenticationType,
+                  },
                   clientSecret: {
                     label: 'Client Secret',
-                    value: 'asdds9g89897ds5f6njk234hf8zs9d',
+                    value: response.secret,
                   },
-                  userName: { label: 'UserName', value: 'max_mustermann23' },
-                  authType: { label: 'Auth Type', value: 'oauth2' },
                 },
               },
             ]}
             variant="wide"
           />
-        </AddTechnicalUserResponseOverlay>
+        </TechnicalUserAddResponseOverlay>
       )}
     </>
   )

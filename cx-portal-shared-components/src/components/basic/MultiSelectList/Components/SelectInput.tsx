@@ -22,28 +22,26 @@ export const SelectInput = ({
   error = false,
   disabled,
   autoFocus,
-}: SelectInputProps) => {
-  return (
-    <Box
-      sx={{
-        '.MuiFilledInput-root': {
-          paddingTop: '0px !important',
-          minHeight: '55px',
-        },
-      }}
-    >
-      <Input
-        {...params}
-        label={label}
-        placeholder={placeholder}
-        variant={variant}
-        helperText={helperText}
-        error={error}
-        margin={margin}
-        focused={focused}
-        disabled={disabled}
-        autoFocus={autoFocus}
-      />
-    </Box>
-  )
-}
+}: SelectInputProps) => (
+  <Box
+    sx={{
+      '.MuiFilledInput-root': {
+        paddingTop: '0px !important',
+        minHeight: '55px',
+      },
+    }}
+  >
+    <Input
+      {...params}
+      label={label}
+      placeholder={placeholder}
+      variant={variant}
+      helperText={helperText}
+      error={error}
+      margin={margin}
+      focused={focused}
+      disabled={disabled}
+      autoFocus={autoFocus}
+    />
+  </Box>
+)

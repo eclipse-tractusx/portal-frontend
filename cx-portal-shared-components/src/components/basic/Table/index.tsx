@@ -10,6 +10,7 @@ export type toolbarType = 'basic' | 'premium' | 'ultimate'
 export interface TableProps extends DataGridProps {
   title: string
   rowsCount?: number
+  rowsCountMax?: number
   toolbar?: ToolbarProps
   columnHeadersBackgroundColor?: string
   toolbarVariant?: toolbarType
@@ -23,6 +24,7 @@ export const Table = ({
   headerHeight = 57, // Default header height from base design
   rowHeight = 57, // Default row height from base design
   rowsCount = 0,
+  rowsCountMax,
   title,
   toolbar,
   checkboxSelection,
