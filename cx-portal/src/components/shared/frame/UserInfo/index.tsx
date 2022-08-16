@@ -26,7 +26,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
     title: t(`pages.${link}`),
   }))
 
-  const openMenu = () => setMenuOpen(true)
+  const openCloseMenu = () => setMenuOpen((prevVal) => !prevVal)
   const onClickAway = (e: MouseEvent | TouchEvent) => {
     if (!avatar.current?.contains(e.target as HTMLDivElement)) {
       setMenuOpen(false)
@@ -36,7 +36,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
   return (
     <div className="UserInfo">
       <div ref={avatar}>
-        <UserAvatar onClick={openMenu} notificationCount={data} />
+        <UserAvatar onClick={openCloseMenu} notificationCount={data} />
       </div>
       <UserMenu
         open={menuOpen}
@@ -45,7 +45,12 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
-        <UserNav component={Link} divider items={menu} />
+        <UserNav
+          component={Link}
+          onClick={openCloseMenu}
+          divider
+          items={menu}
+        />
         <LanguageSwitch
           current={i18next.language}
           languages={I18nService.supportedLanguages.map((key) => ({ key }))}
