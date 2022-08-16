@@ -36,7 +36,7 @@ export const ActiveUserTable = () => {
       tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersQuery}
       onDetailsClick={(row: TenantUser) =>
-        navigate(`/usermanagement/userdetails/${row.companyUserId}`)
+        navigate(`/userdetails/${row.companyUserId}`)
       }
     />
   )

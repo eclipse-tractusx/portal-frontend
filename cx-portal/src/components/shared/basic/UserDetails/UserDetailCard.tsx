@@ -40,11 +40,11 @@ export const UserDetailCard = ({
   cardContentItems,
   variant,
 }: UserCardProps) => {
-  const { appId: companyUserId } = useParams()
+  const { userId } = useParams()
   const dispatch = useDispatch()
 
   const openEditOverlay = () => {
-    dispatch(show(OVERLAYS.ADD_BPN, companyUserId))
+    dispatch(show(OVERLAYS.ADD_BPN, userId))
   }
 
   const renderValue = (value: UserItemsTranslation | undefined) => (
@@ -61,7 +61,7 @@ export const UserDetailCard = ({
           : value?.value}
       </span>
       <span>
-        {companyUserId && value?.label === 'BPN' && (
+        {userId && value?.label === 'BPN' && (
           <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
         )}
       </span>
