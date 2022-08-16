@@ -22,7 +22,10 @@ import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import { ServiceAccountDetail, ServiceAccountRole } from 'features/admin/serviceApiSlice'
+import {
+  ServiceAccountDetail,
+  ServiceAccountRole,
+} from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
@@ -85,12 +88,11 @@ export default function TechnicalUserDetailsContent({
 
         <KeyValueView
           cols={1}
-          title={t(
-            'global.field.permission'
-          )}
-          items={data.roles.map((role: ServiceAccountRole) => ({value: role.roleName}))}
+          title={t('global.field.permission')}
+          items={data.roles.map((role: ServiceAccountRole) => ({
+            value: role.roleName,
+          }))}
         />
-
       </Box>
     </section>
   ) : null
