@@ -21,7 +21,7 @@ import debounce from 'lodash.debounce'
 
 // fucntion to check whether the text matched only letters, spaces, "!", "?", "&", "@", ".", "_", "-" and numbers
 const validateSearchText = (text: string): boolean =>
-  /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]*$/.test(text)
+  /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/.test(text.trim())
 
 // function to check whether the text matches the BPN pattern
 const checkIfBPNLNumber = (text: string): boolean =>
@@ -58,6 +58,8 @@ const PartnerNetwork = () => {
   const onSearchTextChange = (e: ChangeEvent) => {
     const inputElem = e.target as HTMLInputElement
     setSearchText(inputElem.value)
+
+    if (inputElem.value.length < 3) return
 
     const isValidText = validateSearchText(inputElem.value)
 
