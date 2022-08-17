@@ -49,7 +49,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
         />
       </Box>
     ) : (
-      <Box sx={{ marginRight: '34px' }}>{renderValue(item.value)}</Box>
+      <Box sx={{ marginRight: '34px', textAlign: 'right' }}>
+        {renderValue(item.value)}
+      </Box>
     )
 
   return (
@@ -80,12 +82,18 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                height: '60px',
+                minHeight: '60px',
                 padding: '18px 24px',
                 borderBottom: '1px solid #EDF0F4',
               }}
             >
-              <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  marginRight: '20px',
+                }}
+              >
                 {item.key}
               </Typography>
               {renderValueItem(item)}
