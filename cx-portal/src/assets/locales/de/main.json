@@ -312,6 +312,7 @@
       "message": "Inhalte vom Partner Netzwerk",
       "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
+      "searchfielderrormessage": "ungültige Daten",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",

@@ -9,12 +9,12 @@ import {
 
 interface SearchProps extends Omit<TextFieldProps, 'variant'> {
   variant?: 'outlined'
-  endAndorment?: IconProps
+  endAdornment?: IconProps
 }
 
 export const SearchInput = ({
   variant,
-  endAndorment,
+  endAdornment,
   ...props
 }: SearchProps) => {
   const theme = useTheme()
@@ -31,7 +31,7 @@ export const SearchInput = ({
         type="search"
         InputProps={{
           startAdornment: <SearchIcon sx={{ color: icon01, marginRight: 2 }} />,
-          endAdornment: endAndorment || null,
+          endAdornment: endAdornment || null,
         }}
         {...props}
       />

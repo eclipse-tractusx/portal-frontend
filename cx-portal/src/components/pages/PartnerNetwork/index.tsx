@@ -15,20 +15,17 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'features/partnerNetwork/types'
+import Patterns from 'types/Patterns'
 import uniqueId from 'lodash/uniqueId'
 import debounce from 'lodash.debounce'
 
-const validateSearchText = (text: string): boolean => {
-  //regex to accept only letters, spaces, "!", "?", "&", "@", ".", "_", "-" and numbers
-  let regex: RegExp = /^[a-zA-Z0-9 !?@&_\-.]*$/
-  return regex.test(text)
-}
+// fucntion to check whether the text matched only letters, spaces, "!", "?", "&", "@", ".", "_", "-" and numbers
+const validateSearchText = (text: string): boolean =>
+  /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]*$/.test(text)
 
-const checkIfBPNLNumber = (text: string) => {
-  // regex to validate the BPN number pattern
-  const bpnPattern = /^BPNL[a-z0-9]{12}$/i
-  return bpnPattern.test(text.trim())
-}
+// function to check whether the text matches the BPN pattern
+const checkIfBPNLNumber = (text: string): boolean =>
+  Patterns.BPN.test(text.trim())
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -62,13 +59,13 @@ const PartnerNetwork = () => {
     const inputElem = e.target as HTMLInputElement
     setSearchText(inputElem.value)
 
-    let isValidText = validateSearchText(inputElem.value)
+    const isValidText = validateSearchText(inputElem.value)
 
     if (isValidText) {
       setSearchError(null)
       return debounceSearch(inputElem.value)
     } else {
-      return setSearchError('Invalid data')
+      return setSearchError(t('content.partnernetwork.searchfielderrormessage'))
     }
   }
 
