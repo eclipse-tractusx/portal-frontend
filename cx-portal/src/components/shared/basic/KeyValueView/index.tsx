@@ -30,9 +30,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
         sx={{
           cursor: 'pointer',
           display: 'flex',
-          color: copied === item.key ? '#00cc00' : '#eeeeee',
+          color: copied === item.value ? '#00cc00' : '#eeeeee',
           ':hover': {
-            color: copied === item.key ? '#00cc00' : '#cccccc',
+            color: copied === item.value ? '#00cc00' : '#cccccc',
           },
         }}
         onClick={async () => {
@@ -74,9 +74,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
       </Box>
       <Box>
         {Array.isArray(items) ? (
-          items.map((item) => (
+          items.map((item, i) => (
             <Box
-              key={item.key}
+              key={i}
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -93,6 +93,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           ))
         ) : (
           <Box
+            key={items.value.toString()}
             sx={{
               padding: '18px 24px',
               borderBottom: '1px solid #EDF0F4',
