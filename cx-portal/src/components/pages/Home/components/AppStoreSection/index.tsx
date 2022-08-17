@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Cards, Button, Typography } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
-import { useFetchLatestAppsQuery } from 'features/apps/apiSlice'
+import { useFetchLatestAppsQuery } from 'features/apps/apiSliceTest'
 import { appToCard } from 'features/apps/mapper'
 import './app-store-section.scss'
 

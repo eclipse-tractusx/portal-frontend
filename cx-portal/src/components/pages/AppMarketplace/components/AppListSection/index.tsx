@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   SearchInput,
@@ -11,22 +11,29 @@ import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
 import { itemsSelector } from 'features/apps/favorites/slice'
-import { addItem, removeItem } from 'features/apps/favorites/actions'
+import {
+  addItem,
+  fetchItems,
+  removeItem,
+} from 'features/apps/favorites/actions'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
 
 export const label = 'AppList'
 
 export default function AppListSection() {
+  const { t } = useTranslation()
   const [group, setGroup] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
   const cards = (data || []).map((app) => appToCard(app))
-  const { t } = useTranslation()
-
   const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
+
+  useEffect(() => {
+    dispatch(fetchItems())
+  }, [dispatch])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)

@@ -28,11 +28,13 @@ const name = 'control/update'
 export enum UPDATES {
   USER_LIST = 'USER_LIST',
   TECHUSER_LIST = 'TECHUSER_LIST',
+  APPS_ACTIVE_LIST = 'APPS_ACTIVE_LIST',
+  APPS_FAVORITE_LIST = 'APPS_FAVORITE_LIST',
+  APPS_SUBSCRIBED_LIST = 'APPS_SUBSCRIBED_LIST',
 }
 
 const initialState: IHashMap<number> = {}
-initialState[UPDATES.USER_LIST] = 0
-initialState[UPDATES.TECHUSER_LIST] = 0
+Object.keys(UPDATES).forEach((key) => (initialState[key] = 0))
 
 export const slice = createSlice({
   name,
@@ -51,5 +53,14 @@ export const updateUserSelector = (state: RootState): number =>
 
 export const updateTechuserSelector = (state: RootState): number =>
   state.control.update[UPDATES.TECHUSER_LIST]
+
+export const updateActiveAppsSelector = (state: RootState): number =>
+  state.control.update[UPDATES.APPS_ACTIVE_LIST]
+
+export const updateFavoriteAppsSelector = (state: RootState): number =>
+  state.control.update[UPDATES.APPS_FAVORITE_LIST]
+
+export const updateSubscribedAppsSelector = (state: RootState): number =>
+  state.control.update[UPDATES.APPS_SUBSCRIBED_LIST]
 
 export default slice.reducer

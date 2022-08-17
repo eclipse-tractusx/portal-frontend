@@ -1,23 +1,32 @@
+import { useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
-import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
-import { useDispatch, useSelector } from 'react-redux'
-import { activeSelector } from 'features/apps/marketplaceDeprecated/slice'
-import { fetchActive } from 'features/apps/marketplaceDeprecated/actions'
+import { appToCard } from 'features/apps/mapper'
+import {
+  AppMarketplaceApp,
+  SubscriptionStatus,
+  SubscriptionStatusItem,
+  useFetchActiveAppsQuery,
+  useFetchSubscriptionStatusQuery,
+} from 'features/apps/apiSlice'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const items = useSelector(activeSelector)
-
-  useEffect(() => {
-    dispatch(fetchActive())
-  }, [dispatch])
-
+  const navigate = useNavigate()
+  const active = useFetchActiveAppsQuery().data || []
+  const cards = active.map((app: AppMarketplaceApp) => appToCard(app))
+  const subscriptions = useFetchSubscriptionStatusQuery().data || []
+  const subscribed = subscriptions
+    .filter(
+      (item: SubscriptionStatusItem) =>
+        item.appSubscriptionStatus === SubscriptionStatus.ACTIVE
+    )
+    .map((item: SubscriptionStatusItem) => item.appId)
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
@@ -35,8 +44,8 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {items.map((item) => {
-            return (
+          {cards.map((item) =>
+            item.id && subscribed.includes(item.id) ? (
               <Card
                 {...item}
                 key={uniqueId(item.title)}
@@ -46,10 +55,10 @@ export default function BusinessApplicationsSection() {
                 variant="minimal"
                 expandOnHover={false}
                 filledBackground={true}
-                onClick={item.onClick}
+                onClick={() => item.id && navigate(`/appdetail/${item.id}`)}
               />
-            )
-          })}
+            ) : null
+          )}
         </Carousel>
       </section>
     </div>
