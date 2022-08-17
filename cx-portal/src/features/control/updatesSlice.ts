@@ -34,7 +34,7 @@ export enum UPDATES {
 }
 
 const initialState: IHashMap<number> = {}
-Object.keys(UPDATES).map((key) => (initialState[key] = 0))
+Object.keys(UPDATES).forEach((key) => (initialState[key] = 0))
 
 export const slice = createSlice({
   name,
