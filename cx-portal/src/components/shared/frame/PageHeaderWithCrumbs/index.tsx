@@ -30,6 +30,7 @@ export default function PageHeaderWithCrumbs({ crumbs }: { crumbs: string[] }) {
           ))
           .concat(
             <NavLink
+              key={page}
               style={{
                 display: 'block',
                 marginBottom: '2px',
@@ -42,7 +43,7 @@ export default function PageHeaderWithCrumbs({ crumbs }: { crumbs: string[] }) {
               {title}
             </NavLink>
           )}
-        onBackButtonClick={() => navigate(-1)}
+        onBackButtonClick={() => navigate(`/${path[path.length - 1]}`)}
       />
     </PageHeader>
   )
