@@ -4,18 +4,27 @@ import uniqueId from 'lodash/uniqueId'
 import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeSelector } from 'features/apps/marketplaceDeprecated/slice'
-import { fetchActive } from 'features/apps/marketplaceDeprecated/actions'
+import { useNavigate } from 'react-router-dom'
+import {
+  AppMarketplaceApp,
+  useFetchActiveAppsQuery,
+} from 'features/apps/apiSlice'
+import { activeItemsSelector } from 'features/apps/subscribed/slice'
+import { fetchItems } from 'features/apps/subscribed/actions'
+import { appToCard } from 'features/apps/mapper'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const items = useSelector(activeSelector)
+  const navigate = useNavigate()
+  const { data } = useFetchActiveAppsQuery()
+  const cards = (data || []).map((app: AppMarketplaceApp) => appToCard(app))
+  const subscribed = useSelector(activeItemsSelector)
 
   useEffect(() => {
-    dispatch(fetchActive())
+    dispatch(fetchItems())
   }, [dispatch])
 
   const reference = PageService.registerReference(label, useRef(null))
@@ -35,8 +44,8 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {items.map((item) => {
-            return (
+          {cards.map((item) =>
+            item.id && subscribed.includes(item.id) ? (
               <Card
                 {...item}
                 key={uniqueId(item.title)}
@@ -46,10 +55,10 @@ export default function BusinessApplicationsSection() {
                 variant="minimal"
                 expandOnHover={false}
                 filledBackground={true}
-                onClick={item.onClick}
+                onClick={() => item.id && navigate(`/appdetail/${item.id}`)}
               />
-            )
-          })}
+            ) : null
+          )}
         </Carousel>
       </section>
     </div>
