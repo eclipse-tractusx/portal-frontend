@@ -1,13 +1,9 @@
 import { Chip, Typography } from 'cx-portal-shared-components'
+import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetailTags.scss'
 
-export default function AppDetailTags() {
-  const tags = [
-    'Digital Debugger',
-    'Lorem Ipsum Dolores',
-    'Lorem Ipsum Dolores',
-    'Lorem Ipsum Dolores',
-  ]
+export default function AppDetailTags({ item }: { item: AppDetails }) {
+  const tags = item.tags
   return (
     <div className="appdetail-tags">
       <Typography>Tags:</Typography>
