@@ -1,32 +1,32 @@
+import { useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
-import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { appToCard } from 'features/apps/mapper'
 import {
   AppMarketplaceApp,
+  SubscriptionStatus,
+  SubscriptionStatusItem,
   useFetchActiveAppsQuery,
+  useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
-import { activeItemsSelector } from 'features/apps/subscribed/slice'
-import { fetchItems } from 'features/apps/subscribed/actions'
-import { appToCard } from 'features/apps/mapper'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { data } = useFetchActiveAppsQuery()
-  const cards = (data || []).map((app: AppMarketplaceApp) => appToCard(app))
-  const subscribed = useSelector(activeItemsSelector)
-
-  useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
-
+  const active = useFetchActiveAppsQuery().data || []
+  const cards = active.map((app: AppMarketplaceApp) => appToCard(app))
+  const subscriptions = useFetchSubscriptionStatusQuery().data || []
+  const subscribed = subscriptions
+    .filter(
+      (item: SubscriptionStatusItem) =>
+        item.appSubscriptionStatus === SubscriptionStatus.ACTIVE
+    )
+    .map((item: SubscriptionStatusItem) => item.appId)
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
