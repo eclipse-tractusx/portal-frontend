@@ -49,6 +49,7 @@ export const Toolbar = ({
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>('')
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
+  const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -100,8 +101,7 @@ export const Toolbar = ({
               }}
             >
               ({rowsCount || 0}
-              {rowsCountMax && rowsCountMax !== rowsCount && `/${rowsCountMax}`}
-              )
+              {showMaxRows && `/${rowsCountMax}`})
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (
