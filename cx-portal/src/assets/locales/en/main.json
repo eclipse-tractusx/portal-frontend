@@ -391,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Service Account",
         "create": "Create technical user",
         "delete": "Delete this technical User",
         "headline": "Technical user management {{company}}",

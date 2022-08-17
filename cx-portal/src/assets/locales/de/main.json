@@ -391,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
         "headline": "Technical user management COMPANY_NAME",

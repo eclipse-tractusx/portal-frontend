@@ -67,18 +67,24 @@ export default function TechnicalUserDetailsContent({
           )}
           items={[
             {
-              key: t('ID'),
+              key: 'ID',
               value: data.serviceAccountId,
               copy: true,
             },
             {
-              key: t('Service Account Name'),
+              key: `${t(
+                'content.usermanagement.technicalUser.serviceaccount'
+              )} ${t('global.field.name')}`,
               value: data.name,
               copy: true,
             },
-            { key: t('Client ID'), value: data.clientId, copy: true },
             {
-              key: t('Auth Type'),
+              key: t('global.field.clientId'),
+              value: data.clientId,
+              copy: true,
+            },
+            {
+              key: t('global.field.authType'),
               value: data.authenticationType,
             },
             { key: t('global.field.secret'), value: data.secret, copy: true },
