@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
+import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetailProvider.scss'
 
-export default function AppDetailProvider() {
+export default function AppDetailProvider({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.providerInformation',
   })
@@ -10,10 +11,10 @@ export default function AppDetailProvider() {
   const tableData: TableType = {
     head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
-      ['Catena-X'],
-      ['https://catena-x.net'],
-      ['contact@catena-x.net'],
-      ['+49555667788'],
+      [item.provider ?? 'ERROR'],
+      [item.providerUri],
+      [item.contactEmail],
+      [item.contactNumber],
     ],
   }
 
@@ -22,9 +23,6 @@ export default function AppDetailProvider() {
       <div className="provider-content">
         <Typography variant="h4">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
-        <a href="/#" className="product-desc">
-          + more
-        </a>
       </div>
       <StaticTable data={tableData} horizontal={true} />
     </div>

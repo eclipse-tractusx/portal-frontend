@@ -48,8 +48,8 @@ export default function AppDetailContentDetails({
         />
         <AppDetailPrivacy />
         <AppDetailHowToUse />
-        <AppDetailProvider />
-        <AppDetailTags />
+        <AppDetailProvider item={item} />
+        <AppDetailTags item={item} />
       </>
     )
   )
