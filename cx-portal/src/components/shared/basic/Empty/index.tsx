@@ -18,26 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useParams } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
-import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import TechnicalUserDetailsContent from './TechnicalUserDetailsContent'
-import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
-import { Empty } from 'components/shared/basic/Empty'
+import { Box } from '@mui/material'
 
-export default function TechnicalUserDetails() {
-  const { userId } = useParams()
-  const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
-  return (
-    <main>
-      <PageHeaderWithCrumbs
-        crumbs={[
-          PAGES.USER_MANAGEMENT,
-          PAGES.TECHUSER_MANAGEMENT,
-          PAGES.TECHUSER_DETAILS,
-        ]}
-      />
-      {data ? <TechnicalUserDetailsContent data={data} /> : <Empty />}
-    </main>
-  )
-}
+/**
+ * used to show whitespace while data is loading
+ *
+ * usage:
+ *
+ *   const { data } = useFetchStuffQuery()
+ *   return (
+ *     <main>
+ *       {data ? <RenderStuff data={data} /> : <Empty />}
+ *     </main>
+ *   )
+ */
+
+export const Empty = () => <Box sx={{ height: '100vh' }} />

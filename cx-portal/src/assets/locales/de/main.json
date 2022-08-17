@@ -391,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
         "headline": "Technical user management COMPANY_NAME",
@@ -628,7 +629,10 @@
       "details": "Details",
       "userName": "Benutzername",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Beschreibung",
+      "secret": "Secret",
+      "permission": "Berechtigung"
     },
     "actions": {
       "cancel": "Abbrechen",

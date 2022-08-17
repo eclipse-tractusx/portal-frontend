@@ -20,10 +20,12 @@
 
 import { Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { TechnicalUserDetailsGrid } from './TechnicalUserDetailsGrid'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import { ServiceAccountDetail } from 'features/admin/serviceApiSlice'
+import {
+  ServiceAccountDetail,
+  ServiceAccountRole,
+} from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
@@ -65,42 +67,37 @@ export default function TechnicalUserDetailsContent({
           )}
           items={[
             {
-              key: t('ID'),
+              key: 'ID',
               value: data.serviceAccountId,
               copy: true,
             },
             {
-              key: t('Service Account Name'),
+              key: `${t(
+                'content.usermanagement.technicalUser.serviceaccount'
+              )} ${t('global.field.name')}`,
               value: data.name,
               copy: true,
             },
-            { key: t('Client ID'), value: data.clientId, copy: true },
             {
-              key: t('Auth Type'),
+              key: t('global.field.clientId'),
+              value: data.clientId,
+              copy: true,
+            },
+            {
+              key: t('global.field.authType'),
               value: data.authenticationType,
             },
-            { key: t('Client Secret'), value: data.secret, copy: true },
+            { key: t('global.field.secret'), value: data.secret, copy: true },
+            { key: t('global.field.description'), value: data.description },
           ]}
         />
 
         <KeyValueView
           cols={1}
-          title={t(
-            'content.usermanagement.technicalUser.detailsPage.description'
-          )}
-          items={{ key: t('Description'), value: data.description }}
-        />
-
-        <TechnicalUserDetailsGrid
-          items={['Organisation name', 'User Name', 'admin@gmail.com']}
-          title={t('content.usermanagement.technicalUser.detailsPage.spoc')}
-        />
-
-        <TechnicalUserDetailsGrid
-          items={['load registry data', 'view registry data', 'access_xy']}
-          title={t(
-            'content.usermanagement.technicalUser.detailsPage.permission'
-          )}
+          title={t('global.field.permission')}
+          items={data.roles.map((role: ServiceAccountRole) => ({
+            value: role.roleName,
+          }))}
         />
       </Box>
     </section>

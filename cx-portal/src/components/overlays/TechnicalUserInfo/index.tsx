@@ -34,7 +34,6 @@ export default function TechnicalUserInfo({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { data } = useFetchServiceAccountDetailQuery(id)
-  const handleConfirm = () => console.log('confirm')
 
   return (
     <>
@@ -56,8 +55,8 @@ export default function TechnicalUserInfo({ id }: { id: string }) {
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {`${t('global.actions.cancel')}`}
         </Button>
-        <Button variant="contained" onClick={handleConfirm}>
-          {`${t('global.actions.confirm')}`}
+        <Button variant="contained" onClick={() => dispatch(closeOverlay())}>
+          {`${t('global.actions.close')}`}
         </Button>
       </DialogActions>
     </>

@@ -391,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Service Account",
         "create": "Create technical user",
         "delete": "Delete this technical User",
         "headline": "Technical user management {{company}}",
@@ -589,7 +590,10 @@
       "details": "Details",
       "userName": "Username",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Description",
+      "secret": "Secret",
+      "permission": "Permission"
     },
     "actions": {
       "cancel": "Cancel",

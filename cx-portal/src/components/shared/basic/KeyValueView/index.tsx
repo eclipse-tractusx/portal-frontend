@@ -4,7 +4,7 @@ import { isValidElement, useState } from 'react'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 interface ValueItem {
-  key: string
+  key?: string
   value: string | number | JSX.Element
   copy?: boolean
 }
@@ -37,7 +37,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
         }}
         onClick={async () => {
           await navigator.clipboard.writeText(item.value.toString())
-          setCopied(item.key)
+          setCopied(item.value.toString())
           setTimeout(() => setCopied(''), 1000)
         }}
       >
