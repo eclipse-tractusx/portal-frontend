@@ -100,7 +100,8 @@ export const Toolbar = ({
               }}
             >
               ({rowsCount || 0}
-              {rowsCountMax !== rowsCount && `/${rowsCountMax || 0}`})
+              {rowsCountMax && rowsCountMax !== rowsCount && `/${rowsCountMax}`}
+              )
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (

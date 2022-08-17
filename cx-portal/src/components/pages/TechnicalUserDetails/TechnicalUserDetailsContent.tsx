@@ -88,8 +88,15 @@ export default function TechnicalUserDetailsContent({
               value: data.authenticationType,
             },
             { key: t('global.field.secret'), value: data.secret, copy: true },
-            { key: t('global.field.description'), value: data.description },
           ]}
+        />
+
+        <KeyValueView
+          cols={1}
+          title={t('global.field.description')}
+          items={data.roles.map((role: ServiceAccountRole) => ({
+            value: data.description,
+          }))}
         />
 
         <KeyValueView
