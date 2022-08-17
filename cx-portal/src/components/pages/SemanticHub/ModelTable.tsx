@@ -142,9 +142,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     dispatch(fetchSemanticModels({ filter: searchFilter }))
   }
 
-  const onOpenFilter = (value: boolean) => {
-    setOpenFilter(value)
-  }
+  const onOpenFilter = (value: boolean) => setOpenFilter(value)
 
   const onFilter = (selectedFilter: any) => {
     setSelectedFilter(selectedFilter)
