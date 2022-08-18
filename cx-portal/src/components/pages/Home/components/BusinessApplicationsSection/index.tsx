@@ -1,23 +1,18 @@
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
-import { useEffect, useRef } from 'react'
 import PageService from 'services/PageService'
-import { useDispatch, useSelector } from 'react-redux'
-import { activeSelector } from 'features/apps/marketplaceDeprecated/slice'
-import { fetchActive } from 'features/apps/marketplaceDeprecated/actions'
+import { appToCard } from 'features/apps/mapper'
+import { AppMarketplaceApp } from 'features/apps/apiSlice'
+import { useFetchSubscribedAppsQuery } from 'features/apps/apiSliceTest'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const items = useSelector(activeSelector)
-
-  useEffect(() => {
-    dispatch(fetchActive())
-  }, [dispatch])
-
+  const subscribed = useFetchSubscribedAppsQuery().data || []
+  const cards = subscribed.map((app: AppMarketplaceApp) => appToCard(app))
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
@@ -35,21 +30,19 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {items.map((item) => {
-            return (
-              <Card
-                {...item}
-                key={uniqueId(item.title)}
-                buttonText="Details"
-                imageSize="small"
-                imageShape="round"
-                variant="minimal"
-                expandOnHover={false}
-                filledBackground={true}
-                onClick={item.onClick}
-              />
-            )
-          })}
+          {cards.map((item) => (
+            <Card
+              {...item}
+              key={uniqueId(item.title)}
+              buttonText="Details"
+              imageSize="small"
+              imageShape="round"
+              variant="minimal"
+              expandOnHover={false}
+              filledBackground={true}
+              onClick={item.onClick}
+            />
+          ))}
         </Carousel>
       </section>
     </div>

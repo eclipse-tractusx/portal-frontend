@@ -27,7 +27,9 @@ export default function MainOverlay() {
       {ov.type === OVERLAYS.NONE && getAction(ov.id) ? (
         getAction(ov.id)?.element
       ) : (
-        <Dialog open={ov.type !== OVERLAYS.NONE}>{getOverlay(ov)}</Dialog>
+        <Dialog modalBorderRadius={50} open={ov.type !== OVERLAYS.NONE}>
+          {getOverlay(ov)}
+        </Dialog>
       )}
     </>
   )

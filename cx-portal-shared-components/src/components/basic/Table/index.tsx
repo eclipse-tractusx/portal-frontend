@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
+import { theme } from '../../../theme'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate'
@@ -10,10 +11,12 @@ export type toolbarType = 'basic' | 'premium' | 'ultimate'
 export interface TableProps extends DataGridProps {
   title: string
   rowsCount?: number
+  rowsCountMax?: number
   toolbar?: ToolbarProps
   columnHeadersBackgroundColor?: string
   toolbarVariant?: toolbarType
   searchPlaceholder?: string
+  hasBorder?: boolean
 }
 
 export const Table = ({
@@ -23,26 +26,34 @@ export const Table = ({
   headerHeight = 57, // Default header height from base design
   rowHeight = 57, // Default row height from base design
   rowsCount = 0,
+  rowsCountMax = 0,
   title,
   toolbar,
   checkboxSelection,
   columnHeadersBackgroundColor = '#E9E9E9',
   toolbarVariant = 'basic',
   searchPlaceholder,
+  hasBorder = true,
   ...props
 }: TableProps) => {
   const toolbarView = () => {
     switch (toolbarVariant) {
       case 'basic':
-        return <Toolbar title={title} {...{ rowsCount }} />
+        return <Toolbar title={title} {...{ rowsCount, rowsCountMax }} />
       case 'premium':
-        return <Toolbar title={title} {...toolbar} {...{ rowsCount }} />
+        return (
+          <Toolbar
+            title={title}
+            {...toolbar}
+            {...{ rowsCount, rowsCountMax }}
+          />
+        )
       case 'ultimate':
         return (
           <UltimateToolbar
             title={title}
             {...toolbar}
-            {...{ rowsCount }}
+            {...{ rowsCount, rowsCountMax }}
             placeholder={searchPlaceholder}
           />
         )
@@ -55,6 +66,9 @@ export const Table = ({
         '.MuiDataGrid-columnHeaders': {
           backgroundColor: columnHeadersBackgroundColor,
         },
+        '.MuiDataGrid-root': {
+          border: hasBorder ? `1px solid ${theme.palette.border.border01}` : 'none',
+        }
       }}
     >
       <DataGrid

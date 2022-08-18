@@ -18,26 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
-import { useNavigate } from 'react-router-dom'
-import { UserList } from 'components/shared/frame/UserList'
-import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
+// Content technical user
+.content-technical-user {
+  display: flex;
+}
 
-export const ActiveUserTable = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  return (
-    <UserList
-      sectionTitle={'content.usermanagement.table.headline'}
-      addButtonLabel={'content.usermanagement.table.add'}
-      addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
-      tableLabel={'content.usermanagement.table.title'}
-      fetchHook={useFetchUsersQuery}
-      onDetailsClick={(row: TenantUser) =>
-        navigate(`/userdetails/${row.companyUserId}`)
-      }
-    />
-  )
+.content-technical-user-description {
+  width: 50%;
+}
+
+.content-technical-user-image {
+  width: 50%;
+  img {
+    width: max-content;
+    margin-left: 93px;
+  }
+}
+
+.content-technical-user-title {
+  h3 {
+    margin-bottom: 16px !important;
+    text-align: left !important;
+  }
+
+  p {
+    margin-bottom: 16px !important;
+    text-align: left !important;
+  }
+
+  .section-title::after {
+    border-bottom: none !important;
+  }
 }

@@ -40,7 +40,8 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
-    "technicaluser": "Technical User Management"
+    "technicaluser": "Technical User Management",
+    "techuserdetails": "Technical User Details"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -390,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Service Account",
         "create": "Create technical user",
         "delete": "Delete this technical User",
         "headline": "Technical user management {{company}}",
@@ -398,13 +400,13 @@
         "tableHeader": "Technical User List",
         "detailsHeader": "Technical User: USER_NAME",
         "detailsPage": {
-          "userDetails": "User Details",
+          "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
           "permission": "Permission"
         },
-        "confirmDeleteUser": "Are you sure you want to delete OBJECT_NAME ?",
-        "noteDeleteUser": "Note: add any note information here - e.g. if the deletion is getting confirmed, the user wont be able to reactivate the OBJECT_NAME",
+        "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
+        "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }
@@ -588,7 +590,10 @@
       "details": "Details",
       "userName": "Username",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Description",
+      "secret": "Secret",
+      "permission": "Permission"
     },
     "actions": {
       "cancel": "Cancel",
@@ -601,7 +606,14 @@
       "delete": "Delete",
       "pleaseSelect": "Please select",
       "reload": "Reload Page",
-      "homepage": "Homepage"
+      "homepage": "Homepage",
+      "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+    },
+    "objects": {
+      "app": "app",
+      "user": "user",
+      "techuser": "technical user"
     },
     "search": {
       "less": "show less",

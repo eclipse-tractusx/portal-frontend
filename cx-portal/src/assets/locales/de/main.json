@@ -40,7 +40,8 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technische Benutzer Verwaltung"
+    "technicaluser": "Technische Benutzer Verwaltung",
+    "techuserdetails": "Technischer Benutzer Details"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -390,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
         "headline": "Technical user management COMPANY_NAME",
@@ -398,13 +400,13 @@
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
-          "userDetails": "Benutzer Details",
+          "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
-        "confirmDeleteUser": "Sind Sie sicher, dass Sie OBJECT_NAME löschen möchten?",
-        "noteDeleteUser": "Hinweis: Fügen Sie hier beliebige Notizen hinzu!",
+        "confirmDeleteUser": "Sind Sie sicher, dass Sie user {{ user }} löschen möchten?",
+        "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
       }
@@ -627,7 +629,10 @@
       "details": "Details",
       "userName": "Benutzername",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Beschreibung",
+      "secret": "Secret",
+      "permission": "Berechtigung"
     },
     "actions": {
       "cancel": "Abbrechen",
@@ -640,7 +645,15 @@
       "delete": "Löschen",
       "pleaseSelect": "Bitte auswählen",
       "reload": "Seite neuladen",
-      "homepage": "Startseite"
+      "homepage": "Startseite",
+      "deleteTitle": "Löschen von {{ object }} {{ name }}",
+      "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
+      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+    },
+    "objects": {
+      "app": "App",
+      "user": "Benutzer",
+      "techuser": "Technischer Account"
     },
     "search": {
       "less": "weniger anzeigen",

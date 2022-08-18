@@ -18,26 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
-import { useNavigate } from 'react-router-dom'
-import { UserList } from 'components/shared/frame/UserList'
-import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getAssetBase } from 'services/EnvironmentService'
+import { AppMarketplaceApp } from './apiSlice'
 
-export const ActiveUserTable = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  return (
-    <UserList
-      sectionTitle={'content.usermanagement.table.headline'}
-      addButtonLabel={'content.usermanagement.table.add'}
-      addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
-      tableLabel={'content.usermanagement.table.title'}
-      fetchHook={useFetchUsersQuery}
-      onDetailsClick={(row: TenantUser) =>
-        navigate(`/userdetails/${row.companyUserId}`)
-      }
-    />
-  )
-}
+export const apiSlice = createApi({
+  reducerPath: 'rtk/apps/marketplace/test',
+  baseQuery: fetchBaseQuery({
+    baseUrl: getAssetBase(),
+  }),
+  endpoints: (builder) => ({
+    fetchLatestApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/latest.json`,
+    }),
+    fetchSubscribedApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/subscribed.json`,
+    }),
+  }),
+})
+
+export const { useFetchLatestAppsQuery, useFetchSubscribedAppsQuery } = apiSlice

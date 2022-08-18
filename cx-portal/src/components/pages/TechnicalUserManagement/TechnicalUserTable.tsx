@@ -21,35 +21,19 @@
 import { IconButton, PageLoadingTable } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
-  useRemoveServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay/actions'
-import {
-  updateData,
-  UPDATES,
-  updateTechuserSelector,
-} from 'features/control/updatesSlice'
+import { useSelector } from 'react-redux'
+import { PAGES } from 'types/Constants'
+import { updateTechuserSelector } from 'features/control/updatesSlice'
+import { useNavigate } from 'react-router-dom'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const update = useSelector(updateTechuserSelector)
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
-
-  const handleRemove = async (id: string) => {
-    try {
-      await removeServiceAccount(id).unwrap()
-      dispatch(updateData(UPDATES.TECHUSER_LIST))
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   return (
     <div style={{ paddingTop: '30px' }}>
@@ -80,16 +64,13 @@ export const TechnicalUserTable = () => {
                   sx={{ marginRight: '8px' }}
                   color="secondary"
                   onClick={() =>
-                    dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
+                    //dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
+                    navigate(
+                      `/${PAGES.TECHUSER_DETAILS}/${row.serviceAccountId}`
+                    )
                   }
                 >
                   <ArrowForwardIcon />
-                </IconButton>
-                <IconButton
-                  color="secondary"
-                  onClick={() => handleRemove(row.serviceAccountId)}
-                >
-                  <DeleteForeverIcon />
                 </IconButton>
               </>
             ),

@@ -26,6 +26,7 @@ export type SelectedFilter = {
 export interface ToolbarProps {
   title?: string
   rowsCount?: number
+  rowsCountMax?: number
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   onSearch?: (value: string) => void
@@ -38,7 +39,8 @@ export interface ToolbarProps {
 
 export const Toolbar = ({
   title,
-  rowsCount,
+  rowsCount = 0,
+  rowsCountMax = 0,
   buttonLabel,
   onButtonClick,
   onSearch,
@@ -52,6 +54,8 @@ export const Toolbar = ({
   const [openSearch, setOpenSearch] = useState<boolean>(false)
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>('')
+  const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
+  const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -100,10 +104,11 @@ export const Toolbar = ({
               sx={{
                 typography: 'body1',
                 color: 'text.tertiary',
-                marginLeft: 0.5,
+                marginLeft: 1,
               }}
             >
-              ({rowsCount})
+              ({rowsCount || 0}
+              {showMaxRows && `/${rowsCountMax}`})
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (

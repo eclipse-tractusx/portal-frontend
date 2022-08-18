@@ -65,6 +65,7 @@ const basicArgs = {
   searchPlaceholder: 'Search by username',
   rows,
   columns,
+  hasBorder: true,
 }
 
 export const Table = Template.bind({})

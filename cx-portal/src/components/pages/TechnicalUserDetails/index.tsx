@@ -18,59 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.technical-user-management {
-  width: 100%;
-  padding: 0;
-}
+import { useParams } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
+import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
+import TechnicalUserDetailsContent from './TechnicalUserDetailsContent'
+import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
+import { Empty } from 'components/shared/basic/Empty'
 
-// Content technical user
-.content-technical-user {
-  display: flex;
-}
-
-.content-technical-user-description {
-  width: 50%;
-}
-
-.content-technical-user-image {
-  width: 50%;
-  img {
-    width: max-content;
-    margin-left: 93px;
-  }
-}
-
-.content-technical-user-title {
-  h3 {
-    margin-bottom: 16px !important;
-    text-align: left !important;
-  }
-
-  p {
-    margin-bottom: 16px !important;
-    text-align: left !important;
-  }
-
-  .section-title::after {
-    border-bottom: none !important;
-  }
-}
-
-// technical user details
-.technical-user-details {
-  width: 100%;
-  padding: 0;
-}
-
-.remove-technical-user-content {
-  h6 {
-    font-weight: bold !important;
-    width: fit-content;
-    margin: 0 auto;
-  }
-
-  h5 {
-    width: fit-content;
-    margin: 20px auto 0 auto !important;
-  }
+export default function TechnicalUserDetails() {
+  const { userId } = useParams()
+  const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
+  return (
+    <main>
+      <PageHeaderWithCrumbs
+        crumbs={[
+          PAGES.USER_MANAGEMENT,
+          PAGES.TECHUSER_MANAGEMENT,
+          PAGES.TECHUSER_DETAILS,
+        ]}
+      />
+      {data ? <TechnicalUserDetailsContent data={data} /> : <Empty />}
+    </main>
+  )
 }

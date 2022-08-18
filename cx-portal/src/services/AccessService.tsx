@@ -21,6 +21,7 @@ import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
 import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
+import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -71,12 +72,14 @@ export const getOverlay = (overlay: OverlayState) => {
   switch (overlay.type) {
     case OVERLAYS.ADD_USER:
       return <AddUser />
-    case OVERLAYS.ADD_TECHUSER:
-      return <AddTechnicalUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
     case OVERLAYS.TECHUSER:
       return <TechnicalUserInfo id={overlay.id} />
+    case OVERLAYS.ADD_TECHUSER:
+      return <AddTechnicalUser />
+    case OVERLAYS.DELETE_TECHUSER:
+      return <DeleteTechnicalUser id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
     case OVERLAYS.EDIT_APP_USER_ROLES:
