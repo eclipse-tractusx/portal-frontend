@@ -30,6 +30,7 @@ import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
+import { useState } from 'react'
 
 export const UserList = ({
   sectionTitle,
@@ -39,6 +40,7 @@ export const UserList = ({
   onDetailsClick,
   fetchHook,
   fetchHookArgs,
+  onSearch,
 }: {
   sectionTitle: string
   addButtonLabel: string
@@ -47,9 +49,10 @@ export const UserList = ({
   onDetailsClick: (row: TenantUser) => void
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
+  onSearch?: (search: string) => void
 }) => {
   const { t } = useTranslation()
-
+  const [refresh, setRefresh] = useState<number>(0)
   return (
     <section id="identity-management-id">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
@@ -60,11 +63,21 @@ export const UserList = ({
       >
         {t(addButtonLabel)}
       </Button>
+
       <PageLoadingTable<TenantUser>
+        toolbarVariant="premium"
+        searchPlaceholder={t('global.table.search')}
+        onSearch={(expr: string) => {
+          if (!onSearch) return
+          setRefresh(Date.now())
+          onSearch(expr)
+        }}
+        searchDebounce={2000}
         title={t(tableLabel)}
         loadLabel={t('global.actions.more')}
         fetchHook={fetchHook}
         fetchHookArgs={fetchHookArgs}
+        fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.companyUserId}
         columns={[
           {

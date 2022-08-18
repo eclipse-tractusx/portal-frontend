@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Box, useTheme } from '@mui/material'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Box, debounce, useTheme } from '@mui/material'
 import { Button } from '../../../Button'
 import { IconButton } from '../../../IconButton'
 import { SearchInput } from '../../../SearchInput'
@@ -8,6 +8,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
 import { Checkbox } from '../../../Checkbox'
 import { getSelectedFilterUpdate, initSelectedFilter } from './helper'
+import { isConstructorDeclaration } from 'typescript'
 
 interface FilterValue {
   value: string
@@ -30,6 +31,9 @@ export interface ToolbarProps {
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   onSearch?: (value: string) => void
+  searchExpr?: string
+  searchPlaceholder?: string
+  searchDebounce?: number
   filter?: Filter[]
   onFilter?: (selectedFilter: SelectedFilter) => void
 }
@@ -41,24 +45,44 @@ export const Toolbar = ({
   buttonLabel,
   onButtonClick,
   onSearch,
+  searchExpr,
+  searchPlaceholder,
+  searchDebounce = 500,
   filter,
   onFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
   const [openSearch, setOpenSearch] = useState<boolean>(false)
   const [openFilter, setOpenFilter] = useState<boolean>(false)
-  const [searchInput, setSearchInput] = useState<string>('')
+  const [searchInput, setSearchInput] = useState<string>(searchExpr ?? '')
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
   const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
 
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((expr: string) => {
+        onSearch && onSearch(expr)
+      }, searchDebounce),
+    []
+  )
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
+
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
+    const inputLen = e.target.value.length
+    if (inputLen === 0 || inputLen > 2) {
+      onSearch && doSearch(e.target.value)
+    }
   }
 
-  const onSearchInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && onSearch) {
-      onSearch(searchInput)
-    }
+  const onSearchInputKeyPress = (_e: React.KeyboardEvent<HTMLInputElement>) => {
+    //console.log(e.key)
   }
 
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,6 +142,7 @@ export const Toolbar = ({
               onChange={onSearchInputChange}
               onKeyPress={onSearchInputKeyPress}
               onBlur={() => setOpenSearch(false)}
+              placeholder={searchPlaceholder}
             />
           ) : (
             onSearch && (

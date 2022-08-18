@@ -11,10 +11,13 @@ export interface TableProps extends DataGridProps {
   title: string
   rowsCount?: number
   rowsCountMax?: number
+  toolbarVariant?: toolbarType
   toolbar?: ToolbarProps
   columnHeadersBackgroundColor?: string
-  toolbarVariant?: toolbarType
+  onSearch?: (value: string) => void
+  searchExpr?: string
   searchPlaceholder?: string
+  searchDebounce?: number
 }
 
 export const Table = ({
@@ -26,34 +29,31 @@ export const Table = ({
   rowsCount = 0,
   rowsCountMax = 0,
   title,
+  toolbarVariant = 'basic',
   toolbar,
   checkboxSelection,
   columnHeadersBackgroundColor = '#E9E9E9',
-  toolbarVariant = 'basic',
+  onSearch,
+  searchExpr,
   searchPlaceholder,
+  searchDebounce,
   ...props
 }: TableProps) => {
+  const toolbarProps = {
+    rowsCount,
+    rowsCountMax,
+    onSearch,
+    searchDebounce,
+    searchPlaceholder,
+  }
   const toolbarView = () => {
     switch (toolbarVariant) {
       case 'basic':
-        return <Toolbar title={title} {...{ rowsCount, rowsCountMax }} />
+        return <Toolbar title={title} {...toolbarProps} />
       case 'premium':
-        return (
-          <Toolbar
-            title={title}
-            {...toolbar}
-            {...{ rowsCount, rowsCountMax }}
-          />
-        )
+        return <Toolbar title={title} {...toolbar} {...toolbarProps} />
       case 'ultimate':
-        return (
-          <UltimateToolbar
-            title={title}
-            {...toolbar}
-            {...{ rowsCount, rowsCountMax }}
-            placeholder={searchPlaceholder}
-          />
-        )
+        return <UltimateToolbar title={title} {...toolbar} {...toolbarProps} />
     }
   }
 
