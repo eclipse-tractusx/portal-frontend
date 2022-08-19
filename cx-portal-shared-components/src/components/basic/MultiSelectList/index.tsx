@@ -1,6 +1,7 @@
 import { Box, Chip, Popper, TextFieldProps, useTheme } from '@mui/material'
 import Autocomplete, {
   AutocompleteRenderInputParams,
+  createFilterOptions
 } from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
@@ -29,6 +30,7 @@ export interface MultiSelectListProps
   buttonAddMore: string
   notItemsText: string
   tagSize?: TagSizeType
+  filterOptionsArgs?: {}
   onAddItem: (items: any[]) => void
 }
 
@@ -49,6 +51,7 @@ export const MultiSelectList = ({
   buttonAddMore,
   notItemsText,
   tagSize,
+  filterOptionsArgs = {},
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
@@ -62,6 +65,14 @@ export const MultiSelectList = ({
   const handleViewAddMore = () => {
     setShowItems(false)
   }
+
+  const filterOptions = createFilterOptions(
+    Object.keys(filterOptionsArgs).length > 0 ? filterOptionsArgs :
+      {
+        matchFrom: 'any',
+        stringify: (option: any) => option[keyTitle]
+      }
+  )
 
   return (
     <Box>
@@ -80,6 +91,7 @@ export const MultiSelectList = ({
           options={items.map((item) => item)}
           getOptionLabel={(option) => option[keyTitle]}
           value={selected}
+          filterOptions={filterOptions}
           renderTags={(selectedItems: any[], getTagProps) =>
             selectedItems.map((option: any, index: number) => (
               <Chip
