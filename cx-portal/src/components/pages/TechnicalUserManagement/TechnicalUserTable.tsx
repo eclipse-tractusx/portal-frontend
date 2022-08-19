@@ -24,6 +24,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
+  useRemoveServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
 import { useSelector } from 'react-redux'
 import { PAGES } from 'types/Constants'
@@ -34,6 +35,17 @@ export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const update = useSelector(updateTechuserSelector)
+
+  const [removeServiceAccount] = useRemoveServiceAccountMutation()
+
+  const handleRemove = async (id: string) => {
+    try {
+      const response = await removeServiceAccount(id).unwrap()
+      console.log(response)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <div style={{ paddingTop: '30px' }}>
@@ -72,6 +84,15 @@ export const TechnicalUserTable = () => {
                 >
                   <ArrowForwardIcon />
                 </IconButton>
+                {
+                  <IconButton
+                    sx={{ marginRight: '8px' }}
+                    color="secondary"
+                    onClick={() => handleRemove(row.serviceAccountId)}
+                  >
+                    <ArrowForwardIcon />
+                  </IconButton>
+                }
               </>
             ),
           },

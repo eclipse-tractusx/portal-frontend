@@ -5,7 +5,7 @@ import { PreviewItem } from './PreviewItem'
 export const Preview = ({
   files,
   itemPreview = (file) => (
-    <PreviewItem>
+    <PreviewItem key={file.name}>
       <FilePreviewItem file={file} />
     </PreviewItem>
   ),

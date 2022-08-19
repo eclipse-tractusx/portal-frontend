@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import DropArea from './components/DropArea'
-import { FilePreviewItem } from './components/FilePreviewItem'
 import { IHashMap } from 'types/MainTypes'
 import { Preview } from './components/Preview'
 
@@ -18,17 +17,16 @@ export const Dropzone = ({
 
   const onDrop = useCallback(
     (files: File[]) => {
-      const newDropped = files.reduce(
-        (map: any, file: File) => {
-          map[file.name] = file
-          return map
-        },
-        { ...dropped }
+      setDropped(
+        files.reduce(
+          (map: any, file: File) => {
+            map[file.name] = file
+            return map
+          },
+          { ...dropped }
+        )
       )
-
-      setDropped(newDropped)
       onFileDrop(files)
-      console.log('dropped', dropped)
     },
     [dropped, onFileDrop]
   )

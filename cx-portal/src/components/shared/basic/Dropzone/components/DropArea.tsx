@@ -34,10 +34,10 @@ export const DropArea = () => {
             marginTop: '24px',
           }}
         >
-          {'Drop Files to upload'}
+          {'Drop files to upload'}
         </Typography>
         <Typography variant="body1" sx={{ display: 'block' }}>
-          {'Input Content Subtitle'}
+          {'or click to select files'}
         </Typography>
       </label>
     </Box>

@@ -1,0 +1,144 @@
+import { Box } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
+import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled'
+import { IconButton } from 'cx-portal-shared-components'
+import { useEffect, useState } from 'react'
+
+export default function ItemProcessor({
+  items,
+  process = (item) => ({ ...item }),
+  autostart = true,
+}: {
+  items: any[]
+  process?: (item: any) => any
+  autostart?: boolean
+}) {
+  const [processed, setProcessed] = useState<any[]>([])
+  const [cancelled, setCancelled] = useState<any[]>([])
+  const [success, setSuccess] = useState<any[]>([])
+  const [failure, setFailure] = useState<any[]>([])
+  const [queueItems, setQueueItems] = useState<any[]>(items)
+
+  /*
+  useEffect(() => {
+    console.log('success', success)
+  }, [success]);
+
+  useEffect(() => {
+    console.log('failure', failure)
+  }, [failure]);
+  */
+
+  const cancelItem = (item: any) => {
+    setQueueItems(queueItems.filter((i) => i !== item))
+    setCancelled([...cancelled, item])
+  }
+
+  const startItem = async (item: any) => {
+    if (!item) return
+    if (processed.includes(item)) return
+    try {
+      const pitem = { data: 'ok' }
+      //const pitem = await process(item)
+      if (pitem.data) setSuccess([...success, item])
+      else setFailure([...failure, item])
+    } catch (error) {
+      setFailure([...failure, item])
+    }
+    setProcessed([...processed, item])
+  }
+
+  const processNextItem = async () => {
+    if (queueItems.length === 0) return
+    const item = queueItems[0]
+    await startItem(item)
+    await new Promise((f) => setTimeout(f, 1500))
+    setQueueItems(queueItems.slice(1))
+  }
+
+  useEffect(() => {
+    if (autostart) processNextItem()
+    // eslint-disable-next-line
+  }, [queueItems])
+
+  useEffect(() => {
+    setQueueItems([
+      ...new Set([
+        ...items.filter((item) => !processed.includes(item)),
+        ...queueItems.filter((item) => !processed.includes(item)),
+      ]),
+    ])
+    // eslint-disable-next-line
+  }, [items])
+
+  const renderItem = (item: any, i?: number) =>
+    item ? (
+      <Box
+        key={i}
+        sx={{
+          position: 'relative',
+          padding: '10px',
+          overflow: 'hidden',
+          margin: '10px',
+          width: '240px',
+          height: '160px',
+          fontSize: '7px',
+          border: '1px solid lightgray',
+          borderRadius: '10px',
+          backgroundColor: success.includes(item)
+            ? '#dff0d8'
+            : failure.includes(item)
+            ? '#f2dede'
+            : '#fff',
+          cursor: 'pointer',
+          '> button': {
+            display: 'none',
+          },
+          '&:hover': {
+            '> button': {
+              display: 'block',
+            },
+            border: '1px solid gray',
+          },
+        }}
+      >
+        <pre>{JSON.stringify(item, null, 2)}</pre>
+        {!processed.includes(item) && (
+          <>
+            <IconButton
+              className="cancel"
+              aria-label="close"
+              onClick={() => cancelItem(item)}
+              sx={{
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: 'red',
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <IconButton
+              className="start"
+              aria-label="close"
+              onClick={() => startItem(item)}
+              sx={{
+                margin: 'auto auto',
+                color: 'green',
+              }}
+            >
+              <PlayCircleFilledIcon />
+            </IconButton>
+          </>
+        )}
+      </Box>
+    ) : null
+
+  return (
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      {processed.map(renderItem)}
+      {cancelled.map(renderItem)}
+      {queueItems.filter((item) => !processed.includes(item)).map(renderItem)}
+    </Box>
+  )
+}
