@@ -1,82 +1,64 @@
-/********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
- *
- * See the NOTICE file(s) distributed with this work for additional
- * information regarding copyright ownership.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Apache License, Version 2.0 which is available at
- * https://www.apache.org/licenses/LICENSE-2.0.
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
- ********************************************************************************/
-
-import { Button } from 'cx-portal-shared-components'
-import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
-import {
-  ServiceAccountType,
-  useRemoveServiceAccountMutation,
-  useAddServiceAccountMutation,
-  useFetchServiceAccountListQuery,
-} from 'features/admin/serviceApiSlice'
-import { sample } from 'lodash'
-
-const ROLE_IDS = [
-  '607818be-4978-41f4-bf63-fa8d2de51155',
-  '607818be-4978-41f4-bf63-fa8d2de51156',
-  '607818be-4978-41f4-bf63-fa8d2de51157',
-]
+import { Dropzone } from 'components/shared/basic/Dropzone'
+import DropArea from 'components/shared/basic/Dropzone/components/DropArea'
+import { Box } from '@mui/material'
+import { isString } from 'lodash'
+import { useCallback, useState } from 'react'
+import { Cards } from 'cx-portal-shared-components'
+import { appToCard } from 'features/apps/mapper'
 
 export default function Test() {
-  const roles = useFetchAppRolesQuery(
-    'ac1cf001-7fbc-1f2f-817f-bce05744000b'
-  ).data
-  //useFetchServiceAccountDetailQuery c0c52362-4a18-4dc7-a2bb-68880198204a
-  const { data } = useFetchServiceAccountListQuery({ page: 0 })
+  const [items, setItems] = useState([])
 
-  const [addServiceAccount] = useAddServiceAccountMutation()
+  const onFileDrop = (files: File[]) => {
+    files.forEach((file: File) => {
+      console.log('file', file)
+      /*
+      const reader = new FileReader()
 
-  const handleAdd = async () => {
-    try {
-      const result = await addServiceAccount({
-        name: `testaccount`,
-        description: 'none',
-        authenticationType: ServiceAccountType.SECRET,
-        roleIds: [sample(ROLE_IDS)!],
-      }).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
+      reader.onabort = () => console.log('file reading was aborted')
+      reader.onerror = () => console.log('file reading has failed')
+      reader.onload = () => {
+        const binaryStr = reader.result
+        console.log(binaryStr)
+      }
+      reader.readAsArrayBuffer(file)
+      */
+    })
   }
 
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
-
-  const handleRemove = async () => {
-    if (!data || !data.content) return
-    try {
-      const result = await removeServiceAccount(
-        data.content[0].serviceAccountId
-      ).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const jsonPreview = (files: File[]) => (
+    <>
+      {files
+        .filter((file: File) => file.type === 'application/json')
+        .map((file: File) => {
+          const reader = new FileReader()
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+            const str = reader.result
+            if (isString(str)) setItems(JSON.parse(str))
+          }
+          const json = reader.readAsText(file)
+        })}
+    </>
+  )
 
   return (
     <main>
-      <Button onClick={handleAdd}>Add</Button>
-      <Button onClick={handleRemove}>Remove</Button>
-      <pre>{JSON.stringify(roles, null, 2)}</pre>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <section>
+        <Dropzone onFileDrop={jsonPreview}>
+          <Cards
+            columns={4}
+            buttonText={'click'}
+            items={items.map(appToCard)}
+          />
+        </Dropzone>
+      </section>
     </main>
   )
 }
+/*
+<Box sx={{display: 'flex', flexWrap: 'wrap'}}>
+  {items.map((item,i) => <pre key={i} style={{overflow: 'hidden', margin: '10px', width: '200px', fontSize: '7px', border: '1px solid lightgray'}}>{JSON.stringify(item, null, 2)}</pre>)}
+</Box>
+*/

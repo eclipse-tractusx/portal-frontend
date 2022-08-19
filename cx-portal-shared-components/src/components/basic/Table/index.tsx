@@ -67,8 +67,10 @@ export const Table = ({
           backgroundColor: columnHeadersBackgroundColor,
         },
         '.MuiDataGrid-root': {
-          border: hasBorder ? `1px solid ${theme.palette.border.border01}` : 'none',
-        }
+          border: hasBorder
+            ? `1px solid ${theme.palette.border.border01}`
+            : 'none',
+        },
       }}
     >
       <DataGrid
