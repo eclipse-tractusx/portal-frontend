@@ -210,6 +210,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
+        "searchfielddefaulttext":"Search by Name/Identifier",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
