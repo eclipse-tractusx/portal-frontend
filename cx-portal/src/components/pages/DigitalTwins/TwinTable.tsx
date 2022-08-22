@@ -67,13 +67,15 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         disableColumnSelector={true}
         disableDensitySelector={true}
         title={t('content.digitaltwin.table.title')}
-        toolbarVariant="premium"
+        toolbarVariant="basic"
         toolbar={{
           onSearch: onSearch,
         }}
         columns={columns}
         rows={twins}
         getRowId={(row) => uniqueId(row.idShort)}
+        rowHeight={50}
+        hasBorder={false}
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (
