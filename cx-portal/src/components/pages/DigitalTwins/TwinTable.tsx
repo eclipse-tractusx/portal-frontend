@@ -59,7 +59,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   return (
     <section>
       <Table
-        sx={{ '.MuiTextField-root': {marginLeft: '-30px'} }}
+        sx={{ '.MuiTextField-root': { marginLeft: '-30px' } }}
         rowsCount={twinList.totalItems}
         disableColumnMenu
         hideFooter
@@ -69,7 +69,9 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         disableDensitySelector={true}
         columnHeadersBackgroundColor={'#ffffff'}
         title={t('content.digitaltwin.table.title')}
-        searchPlaceholder={t('content.digitaltwin.table.searchfielddefaulttext')}
+        searchPlaceholder={t(
+          'content.digitaltwin.table.searchfielddefaulttext'
+        )}
         toolbarVariant="ultimate"
         toolbar={{
           onSearch: onSearch,
