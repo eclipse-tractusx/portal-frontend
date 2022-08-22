@@ -135,6 +135,8 @@ export interface PaginationData {
 export interface PartnerNetworkInitialState {
   paginationData: PaginationData
   mappedPartnerList: Array<PartnerNetworkDataGrid>
+  membershipData: string[]
+  membershipError: string
   loading: boolean
   error: string
 }

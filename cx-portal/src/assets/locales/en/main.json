@@ -315,6 +315,8 @@
       "searchbuttonlabel": "Search",
       "searchfielddefaulttext": "Search by company name or BPN",
       "searchfielderrormessage": "Invalid Data",
+      "membershipnotificationtitle": "Membership flag cannot be fetched.",
+      "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",
