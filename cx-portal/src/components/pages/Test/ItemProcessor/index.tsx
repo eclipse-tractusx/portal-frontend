@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { Box } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled'
@@ -31,6 +51,7 @@ export default function ItemProcessor({
 
   const cancelItem = (item: any) => {
     setQueueItems(queueItems.filter((i) => i !== item))
+    setProcessed([...processed, item])
     setCancelled([...cancelled, item])
   }
 
@@ -38,8 +59,8 @@ export default function ItemProcessor({
     if (!item) return
     if (processed.includes(item)) return
     try {
-      const pitem = { data: 'ok' }
-      //const pitem = await process(item)
+      //const pitem = { data: 'ok' }
+      const pitem = await process(item)
       if (pitem.data) setSuccess([...success, item])
       else setFailure([...failure, item])
     } catch (error) {
@@ -138,7 +159,11 @@ export default function ItemProcessor({
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {processed.map(renderItem)}
       {cancelled.map(renderItem)}
-      {queueItems.filter((item) => !processed.includes(item)).map(renderItem)}
+      {queueItems
+        .filter(
+          (item) => !processed.includes(item) && !cancelled.includes(item)
+        )
+        .map(renderItem)}
     </Box>
   )
 }

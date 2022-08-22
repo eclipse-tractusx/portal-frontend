@@ -1,5 +1,27 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Cards } from 'cx-portal-shared-components'
 import { useAddServiceAccountMutation } from 'features/admin/serviceApiSlice'
+import { appToCard } from 'features/apps/mapper'
 import { isString } from 'lodash'
 import { useState } from 'react'
 import ItemProcessor from './ItemProcessor'
@@ -34,11 +56,35 @@ export default function Test() {
         reader.readAsText(file)
       })
 
+  const appPreview = (files: File[]) =>
+    files
+      .filter((file: File) => file.type === 'application/json')
+      .forEach((file: File) => {
+        const reader = new FileReader()
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.log('file reading has failed')
+        reader.onload = () => {
+          const str = reader.result
+          if (!isString(str)) return
+          const dropItems = JSON.parse(str)
+          setItems([...new Set([...items, ...dropItems])])
+        }
+        reader.readAsText(file)
+      })
+
   return (
     <main>
       <section>
         <Dropzone onFileDrop={csvPreview} />
-        <ItemProcessor items={items} process={addServiceAccount} />
+        <ItemProcessor
+          items={items}
+          process={addServiceAccount}
+          autostart={true}
+        />
+      </section>
+      <section>
+        <Dropzone onFileDrop={appPreview} />
+        <Cards columns={4} buttonText={'click'} items={items.map(appToCard)} />
       </section>
     </main>
   )
@@ -48,12 +94,4 @@ export default function Test() {
 <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
   {items.map((item,i) => <pre key={i} style={{overflow: 'hidden', margin: '10px', width: '200px', fontSize: '7px', border: '1px solid lightgray'}}>{JSON.stringify(item, null, 2)}</pre>)}
 </Box>
-*/
-
-/*
-  <Cards
-    columns={4}
-    buttonText={'click'}
-    items={items.map(appToCard)}
-  />
 */
