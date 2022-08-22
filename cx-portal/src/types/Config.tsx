@@ -114,6 +114,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.DATA_MANAGEMENT,
+    role: ROLES.DIGITALTWIN_VIEW,
+    element: <DataManagement />,
+  },
+  {
+    name: PAGES.DATA_MANAGEMENT,
+    role: ROLES.SEMANTICHUB_VIEW,
     element: <DataManagement />,
   },
   {
@@ -151,13 +157,18 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.CONNECTOR_SETUP,
     element: <Connector />,
   },
-  { name: PAGES.ACCOUNT, element: <MyAccount /> },
+  {
+    name: PAGES.ACCOUNT,
+    role: ROLES.MY_USER_ACCOUNT,
+    element: <MyAccount />
+  },
   {
     name: PAGES.NOTIFICATIONS,
     element: <NotificationCenter />,
   },
   {
     name: PAGES.ORGANIZATION,
+    role: ROLES.PARTNER_NETWORK_VIEW,
     element: <Organization />,
   },
   {
