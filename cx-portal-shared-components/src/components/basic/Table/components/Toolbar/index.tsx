@@ -7,7 +7,7 @@ import { Typography } from '../../../Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
 import { Checkbox } from '../../../Checkbox'
-import { getSelectedFilterUpdate, initSelectedFilter } from './helper'
+import { getSelectedFilterUpdate } from './helper'
 
 interface FilterValue {
   value: string
@@ -32,6 +32,9 @@ export interface ToolbarProps {
   onSearch?: (value: string) => void
   filter?: Filter[]
   onFilter?: (selectedFilter: SelectedFilter) => void
+  openFilterSection?: boolean
+  onOpenFilterSection?: (value: boolean) => void
+  selectedFilter?: SelectedFilter
 }
 
 export const Toolbar = ({
@@ -43,12 +46,14 @@ export const Toolbar = ({
   onSearch,
   filter,
   onFilter,
+  openFilterSection,
+  onOpenFilterSection,
+  selectedFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
   const [openSearch, setOpenSearch] = useState<boolean>(false)
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>('')
-  const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
   const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,19 +68,20 @@ export const Toolbar = ({
 
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = target
-
-    setSelectedFilter(
-      getSelectedFilterUpdate(selectedFilter, name, value, checked)
-    )
+    onFilter &&
+      onFilter(
+        getSelectedFilterUpdate(
+          selectedFilter as SelectedFilter,
+          name,
+          value,
+          checked
+        )
+      )
   }
 
   useEffect(() => {
-    setSelectedFilter(initSelectedFilter(filter))
-  }, [filter])
-
-  useEffect(() => {
-    onFilter && onFilter(selectedFilter)
-  }, [onFilter, selectedFilter])
+    openFilterSection && setOpenFilter(openFilterSection)
+  }, [openFilterSection])
 
   return (
     <Box>
@@ -135,7 +141,9 @@ export const Toolbar = ({
                 alignSelf: 'center',
                 color: openFilter ? 'primary' : 'text.tertiary',
               }}
-              onClick={() => setOpenFilter(!openFilter)}
+              onClick={() =>
+                onOpenFilterSection && onOpenFilterSection(!openFilter)
+              }
             >
               <FilterIcon />
             </IconButton>
@@ -161,7 +169,9 @@ export const Toolbar = ({
                   name={name}
                   value={value}
                   label={label || value}
-                  checked={selectedFilter[name]?.includes(value)}
+                  checked={(selectedFilter as SelectedFilter)[name]?.includes(
+                    value
+                  )}
                   onChange={onFilterChange}
                 />
               </Box>
