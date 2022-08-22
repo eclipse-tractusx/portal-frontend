@@ -1,6 +1,4 @@
 import { Box } from '@mui/material'
-//import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-//import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import { Typography, FileIcon } from 'cx-portal-shared-components'
 
 export const FilePreviewItem = ({ file }: { file: File }) => {
