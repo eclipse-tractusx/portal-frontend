@@ -89,9 +89,3 @@ export default function Test() {
     </main>
   )
 }
-
-/*
-<Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-  {items.map((item,i) => <pre key={i} style={{overflow: 'hidden', margin: '10px', width: '200px', fontSize: '7px', border: '1px solid lightgray'}}>{JSON.stringify(item, null, 2)}</pre>)}
-</Box>
-*/
