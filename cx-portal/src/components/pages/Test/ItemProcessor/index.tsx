@@ -39,16 +39,6 @@ export default function ItemProcessor({
   const [failure, setFailure] = useState<any[]>([])
   const [queueItems, setQueueItems] = useState<any[]>(items)
 
-  /*
-  useEffect(() => {
-    console.log('success', success)
-  }, [success]);
-
-  useEffect(() => {
-    console.log('failure', failure)
-  }, [failure]);
-  */
-
   const cancelItem = (item: any) => {
     setQueueItems(queueItems.filter((i) => i !== item))
     setProcessed([...processed, item])
@@ -59,7 +49,6 @@ export default function ItemProcessor({
     if (!item) return
     if (processed.includes(item)) return
     try {
-      //const pitem = { data: 'ok' }
       const pitem = await process(item)
       if (pitem.data) setSuccess([...success, item])
       else setFailure([...failure, item])

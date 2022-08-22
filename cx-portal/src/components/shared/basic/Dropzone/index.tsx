@@ -1,6 +1,6 @@
+import { DropArea } from 'cx-portal-shared-components'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import DropArea from './components/DropArea'
 import { IHashMap } from 'types/MainTypes'
 import { Preview } from './components/Preview'
 
