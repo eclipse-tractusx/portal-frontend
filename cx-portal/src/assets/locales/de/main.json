@@ -210,6 +210,7 @@
     "digitaltwin": {
       "table": {
         "title": "Übersicht Digitale Zwillinge",
+        "searchfielddefaulttext": "Suche nach Name/Kennung",
         "columns": {
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",

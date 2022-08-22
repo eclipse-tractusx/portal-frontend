@@ -5,7 +5,11 @@ import { Input } from '../../Input'
 interface SelectInputProps
   extends Omit<
     MultiSelectListProps,
-    'items' | 'onAddItem' | 'buttonAddMore' | 'notItemsText' | 'filterOptionsArgs'
+    | 'items'
+    | 'onAddItem'
+    | 'buttonAddMore'
+    | 'notItemsText'
+    | 'filterOptionsArgs'
   > {
   params: AutocompleteRenderInputParams
   autoFocus?: boolean

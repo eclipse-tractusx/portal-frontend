@@ -275,7 +275,10 @@ export default function AppMarketCard() {
                 margin="none"
                 filterOptionsArgs={{
                   matchFrom: 'any',
-                  stringify: (option: any) => (option.languageShortName + option.languageLongNames.de + option.languageLongNames.en)
+                  stringify: (option: any) =>
+                    option.languageShortName +
+                    option.languageLongNames.de +
+                    option.languageLongNames.en,
                 }}
               />
             </div>
