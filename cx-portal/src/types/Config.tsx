@@ -31,7 +31,6 @@ import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
 import DataCatalog from 'components/pages/DataCatalog'
-import DataManagement from 'components/pages/DataManagement'
 import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
@@ -42,7 +41,6 @@ import Imprint from 'components/pages/Imprint'
 import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
 import Logout from 'components/pages/Logout'
 import MyAccount from 'components/pages/MyAccount'
-import NotFound from 'components/pages/NotFound'
 import NotificationCenter from 'components/pages/NotificationCenter'
 import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
@@ -114,13 +112,8 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.DATA_MANAGEMENT,
-    role: ROLES.DIGITALTWIN_VIEW,
-    element: <DataManagement />,
-  },
-  {
-    name: PAGES.DATA_MANAGEMENT,
     role: ROLES.SEMANTICHUB_VIEW,
-    element: <DataManagement />,
+    element: <SemanticHub />,
   },
   {
     name: PAGES.DATACATALOG,
@@ -160,7 +153,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.ACCOUNT,
     role: ROLES.MY_USER_ACCOUNT,
-    element: <MyAccount />
+    element: <MyAccount />,
   },
   {
     name: PAGES.NOTIFICATIONS,
@@ -179,7 +172,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APP_MANAGEMENT,
     // role: ROLES.VIEW_APP_RELEASE,
-    element: <NotFound />,
+    element: <AppOverview />,
   },
   {
     name: PAGES.APPOVERVIEW,
