@@ -19,7 +19,8 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Typography, CloudUploadIcon } from 'cx-portal-shared-components'
+import { Typography } from '../../Typography'
+import { CloudUploadIcon } from '../../CustomIcons/CloudUploadIcon'
 
 export const DropArea = ({
   title = 'Drop files to upload',

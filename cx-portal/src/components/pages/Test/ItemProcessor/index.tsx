@@ -66,6 +66,12 @@ export default function ItemProcessor({
     setQueueItems(queueItems.slice(1))
   }
 
+  const getStatusColor = (item: any) => {
+    if (success.includes(item)) return '#dff0d8'
+    if (failure.includes(item)) return '#f2dede'
+    return '#fff'
+  }
+
   useEffect(() => {
     if (autostart) processNextItem()
     // eslint-disable-next-line
@@ -95,11 +101,7 @@ export default function ItemProcessor({
           fontSize: '7px',
           border: '1px solid lightgray',
           borderRadius: '10px',
-          backgroundColor: success.includes(item)
-            ? '#dff0d8'
-            : failure.includes(item)
-            ? '#f2dede'
-            : '#fff',
+          backgroundColor: getStatusColor(item),
           cursor: 'pointer',
           '> button': {
             display: 'none',
