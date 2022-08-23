@@ -45,7 +45,21 @@ export const apiSlice = createApi({
           fetchArgs.args!.appId
         }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
     }),
+    fetchAppUsersSearch: builder.query<PaginResult<TenantUser>, PaginFetchArgs>(
+      {
+        query: (fetchArgs) =>
+          `/api/administration/user/owncompany/apps/${
+            fetchArgs.args!.appId
+          }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}${
+            fetchArgs.args!.expr && `&email=${fetchArgs.args!.expr}`
+          }`,
+      }
+    ),
   }),
 })
 
-export const { useFetchAppRolesQuery, useFetchAppUsersQuery } = apiSlice
+export const {
+  useFetchAppRolesQuery,
+  useFetchAppUsersQuery,
+  useFetchAppUsersSearchQuery,
+} = apiSlice

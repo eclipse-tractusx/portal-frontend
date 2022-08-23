@@ -6,6 +6,10 @@ import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate'
+export type SearchInputState = {
+  open: boolean
+  text: string
+}
 
 export interface TableProps extends DataGridProps {
   title: string
@@ -18,6 +22,7 @@ export interface TableProps extends DataGridProps {
   searchExpr?: string
   searchPlaceholder?: string
   searchDebounce?: number
+  searchInputData?: any
 }
 
 export const Table = ({
@@ -37,6 +42,7 @@ export const Table = ({
   searchExpr,
   searchPlaceholder,
   searchDebounce,
+  searchInputData,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -44,6 +50,7 @@ export const Table = ({
     rowsCountMax,
     onSearch,
     searchDebounce,
+    searchInputData,
     searchPlaceholder,
   }
   const toolbarView = () => {

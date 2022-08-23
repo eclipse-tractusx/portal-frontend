@@ -25,12 +25,15 @@ import {
   Button,
   PaginFetchArgs,
 } from 'cx-portal-shared-components'
+import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 import { useState } from 'react'
+import { setSearchInput } from 'features/appManagement/actions'
+import { appManagementSelector } from 'features/appManagement/slice'
 
 export const UserList = ({
   sectionTitle,
@@ -52,7 +55,16 @@ export const UserList = ({
   onSearch?: (search: string) => void
 }) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
+  const searchInputData = useSelector(appManagementSelector)
+
+  const validateSearchText = (expr: string) => {
+    const validateExpr = /^[ A-Za-z0-9._!@-]*$/.test(expr)
+    if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
+    return validateExpr
+  }
+
   return (
     <section id="identity-management-id">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
@@ -67,8 +79,9 @@ export const UserList = ({
       <PageLoadingTable<TenantUser>
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.search')}
+        searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (!onSearch) return
+          if (!onSearch || !validateSearchText(expr)) return
           setRefresh(Date.now())
           onSearch(expr)
         }}

@@ -8,7 +8,6 @@ import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
 import { Checkbox } from '../../../Checkbox'
 import { getSelectedFilterUpdate, initSelectedFilter } from './helper'
-import { isConstructorDeclaration } from 'typescript'
 
 interface FilterValue {
   value: string
@@ -24,6 +23,11 @@ export type SelectedFilter = {
   [name: string]: string[]
 }
 
+interface SearchInputState {
+  open: boolean
+  text: string
+}
+
 export interface ToolbarProps {
   title?: string
   rowsCount?: number
@@ -34,6 +38,7 @@ export interface ToolbarProps {
   searchExpr?: string
   searchPlaceholder?: string
   searchDebounce?: number
+  searchInputData?: any
   filter?: Filter[]
   onFilter?: (selectedFilter: SelectedFilter) => void
 }
@@ -48,13 +53,16 @@ export const Toolbar = ({
   searchExpr,
   searchPlaceholder,
   searchDebounce = 500,
+  searchInputData,
   filter,
   onFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
-  const [openSearch, setOpenSearch] = useState<boolean>(false)
+  const [openSearch, setOpenSearch] = useState<boolean>(searchInputData.open)
   const [openFilter, setOpenFilter] = useState<boolean>(false)
-  const [searchInput, setSearchInput] = useState<string>(searchExpr ?? '')
+  const [searchInput, setSearchInput] = useState<string>(
+    searchExpr ?? searchInputData.text
+  )
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
   const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
 
