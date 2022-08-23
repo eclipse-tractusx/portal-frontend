@@ -23,11 +23,6 @@ export type SelectedFilter = {
   [name: string]: string[]
 }
 
-interface SearchInputState {
-  open: boolean
-  text: string
-}
-
 export interface ToolbarProps {
   title?: string
   rowsCount?: number
