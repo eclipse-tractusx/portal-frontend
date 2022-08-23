@@ -23,6 +23,11 @@ export type SelectedFilter = {
   [name: string]: string[]
 }
 
+interface SearchInputState {
+  open: boolean
+  text: string
+}
+
 export interface ToolbarProps {
   title?: string
   rowsCount?: number
@@ -33,7 +38,7 @@ export interface ToolbarProps {
   searchExpr?: string
   searchPlaceholder?: string
   searchDebounce?: number
-  searchInputData?: any
+  searchInputData?: SearchInputState
   filter?: Filter[]
   onFilter?: (selectedFilter: SelectedFilter) => void
 }
@@ -53,10 +58,12 @@ export const Toolbar = ({
   onFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
-  const [openSearch, setOpenSearch] = useState<boolean>(searchInputData.open)
+  const [openSearch, setOpenSearch] = useState<boolean>(
+    searchInputData ? searchInputData.open : false
+  )
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>(
-    searchExpr ?? searchInputData.text
+    searchExpr ?? (searchInputData ? searchInputData.text : '')
   )
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
   const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
