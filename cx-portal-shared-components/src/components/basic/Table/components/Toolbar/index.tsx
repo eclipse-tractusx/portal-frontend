@@ -71,7 +71,6 @@ export const Toolbar = ({
   const [searchInput, setSearchInput] = useState<string>(
     searchExpr ?? (searchInputData ? searchInputData.text : '')
   )
-  const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
   const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
 
   const debouncedSearch = useMemo(

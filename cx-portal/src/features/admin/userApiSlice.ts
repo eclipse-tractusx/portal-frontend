@@ -93,7 +93,7 @@ export const apiSlice = createApi({
       query: (fetchArgs) =>
         `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${
           fetchArgs.page
-        }${fetchArgs.args!.expr && `&email=${fetchArgs.args!.expr}`}`,
+        }&email=${fetchArgs.args!.expr}`,
     }),
     fetchUserDetails: builder.query<TenantUserDetails, string>({
       query: (id) => `/api/administration/user/owncompany/users/${id}`,
