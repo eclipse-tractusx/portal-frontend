@@ -21,84 +21,84 @@
 .notifications {
   margin: 0;
   padding: 0;
-}
 
-ul {
-  margin: auto;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
-  margin-block-start: 0;
-  list-style-type: none;
-}
+  ul {
+    margin: auto;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    margin-block-start: 0;
+    list-style-type: none;
+  }
 
-.group > li {
-  border-radius: 8px;
-  margin: 12px 120px;
-  padding: 6px 8px;
-  border: 1px solid #eee;
-  box-shadow: 2px 2px 4px 2px #f4f4f4;
-}
+  .group > li {
+    border-radius: 8px;
+    margin: 12px 120px;
+    padding: 6px 8px;
+    border: 1px solid #eee;
+    box-shadow: 2px 2px 4px 2px #f4f4f4;
+  }
 
-.divider {
-  display: block;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  color: #aaa;
-  margin: 40px 120px 12px 120px;
-}
+  .divider {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #aaa;
+    margin: 40px 120px 12px 120px;
+  }
 
-.item {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
+  .item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
 
-.item:hover {
-  background-color: #f8f8f8;
-}
+  .item:hover {
+    background-color: #f8f8f8;
+  }
 
-.created {
-  margin: 2px;
-  min-width: 60px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  font-weight: bold;
-  color: #aaa;
-}
+  .created {
+    margin: 2px;
+    min-width: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: bold;
+    color: #aaa;
+  }
 
-.title {
-  font-weight: bold;
-  font-size: 16px;
-}
+  .title {
+    font-weight: bold;
+    font-size: 16px;
+  }
 
-.title.read {
-  color: #aaa;
-}
+  .title.read {
+    color: #aaa;
+  }
 
-.title.unread {
-  color: #444;
-}
+  .title.unread {
+    color: #444;
+  }
 
-.content {
-  padding: 8px 12px 0px 64px;
-  font-size: 16px;
-  color: #444;
-}
+  .content {
+    padding: 8px 12px 0px 64px;
+    font-size: 16px;
+    color: #444;
+  }
 
-.message {
-  margin-top: 6px;
-  font-style: italic;
-}
+  .message {
+    margin-top: 6px;
+    font-style: italic;
+  }
 
-.links {
-  margin-top: 6px;
-}
+  .links {
+    margin-top: 6px;
+  }
 
-.links span {
-  cursor: pointer;
-  margin-right: 20px;
-  color: #0f71cb;
-  text-decoration: underline;
+  .links span {
+    cursor: pointer;
+    margin-right: 20px;
+    color: #0f71cb;
+    text-decoration: underline;
+  }
 }

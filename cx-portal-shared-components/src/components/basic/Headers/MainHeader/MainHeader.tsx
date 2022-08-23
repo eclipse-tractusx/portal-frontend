@@ -92,27 +92,25 @@ export const MainHeader = ({
         </Box>
       )}
 
-      <section>
-        <Box
-          sx={{
-            width: '100%',
-            padding: 0,
-            margin: 0,
-            paddingTop: '150px',
-            zIndex: 1,
-            position: 'absolute',
-            top: '0px',
-          }}
-        >
-          <MainHeaderTitle
-            title={title}
-            subTitle={subTitle}
-            subTitleWidth={subTitleWidth}
-          />
+      <Box
+        sx={{
+          width: '100%',
+          padding: '0px 100px',
+          margin: '0px',
+          paddingTop: '150px',
+          zIndex: 1,
+          position: 'absolute',
+          top: '0px',
+        }}
+      >
+        <MainHeaderTitle
+          title={title}
+          subTitle={subTitle}
+          subTitleWidth={subTitleWidth}
+        />
 
-          <div className="children-header">{children}</div>
-        </Box>
-      </section>
+        <div className="children-header">{children}</div>
+      </Box>
     </Box>
   )
 }

@@ -354,7 +354,6 @@ export const mainMenuFullTree = [
  */
 export const userMenuFull = [
   PAGES.ACCOUNT,
-  PAGES.ORGANIZATION,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.TECHNICAL_SETUP,

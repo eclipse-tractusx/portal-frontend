@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'features/info/licenses/actions'
 import { itemsSelector } from 'features/info/licenses/slice'
 import debounce from 'lodash.debounce'
+import StageHeader from 'components/shared/frame/StageHeader'
 
 export default function ThirdPartyLicenses() {
   const { t } = useTranslation('footer', { keyPrefix: 'licenses' })
@@ -35,28 +36,31 @@ export default function ThirdPartyLicenses() {
 
   return (
     <main>
-      <h2>{t('title')}</h2>
-      <p>{t('message')}</p>
-      <SearchInput
-        margin="normal"
-        autoFocus={true}
-        value={filterExpr}
-        onChange={(event) => doFilter(event.target.value)}
-      />
-      <ul>
-        {items?.data.body
-          .filter(
-            (pkg: string[]) =>
-              filter.test(pkg[0]) || filter.test(pkg[2]) || filter.test(pkg[5])
-          )
-          .map((pkg: string[], i: number) => (
-            <li key={i}>
-              <a href={`https://www.npmjs.com/package/${pkg[0]}`}>{pkg[0]}</a>
-              <span> {pkg[1]} </span>
-              <span> {pkg[2]} </span>
-            </li>
-          ))}
-      </ul>
+      <StageHeader title={t('title')} />
+      <section>
+        <SearchInput
+          margin="normal"
+          autoFocus={true}
+          value={filterExpr}
+          onChange={(event) => doFilter(event.target.value)}
+        />
+        <ul>
+          {items?.data.body
+            .filter(
+              (pkg: string[]) =>
+                filter.test(pkg[0]) ||
+                filter.test(pkg[2]) ||
+                filter.test(pkg[5])
+            )
+            .map((pkg: string[], i: number) => (
+              <li key={i}>
+                <a href={`https://www.npmjs.com/package/${pkg[0]}`}>{pkg[0]}</a>
+                <span> {pkg[1]} </span>
+                <span> {pkg[2]} </span>
+              </li>
+            ))}
+        </ul>
+      </section>
     </main>
   )
 }
