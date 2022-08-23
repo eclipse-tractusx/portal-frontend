@@ -1,6 +1,6 @@
 # Release Notes
 
-New features, fixed bugs, known defects and other noteworthy contributions to each release of the Catena-X Portal Frontend.
+New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
 ### 0.5.2 (2022-08-23)
@@ -8,7 +8,7 @@ New features, fixed bugs, known defects and other noteworthy contributions to ea
 * Feature - Added Release Notes ;)
 * Feature - Technical User details page
 * Feature - Search in User and App User table
-* Feature - New lightweight and more flexible dropzone component
+* Feature - New components date picker, table style, lightweight dropzone
 * Bugfix - Business Apps displayed correcty and links working
 * Bugfix - Restrict supported languages to 'en' and 'de' without local variants
 * Bugfix - Removed empty 'Organization' option from user menu
@@ -18,7 +18,10 @@ New features, fixed bugs, known defects and other noteworthy contributions to ea
 
 ### Older
 
-* Defect - Partner Network not working on dev (but int)
+* Defect - No roles available when adding a user
+* Defect - Page reloads when the auth token is renewed
+* Defect - Partner Network not working on localhost and dev (only int)
 * Defect - Notifications are static
 * Defect - Latest apps are static
+* Defect - Some footer pages and menu items are empty
 
