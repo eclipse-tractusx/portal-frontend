@@ -210,6 +210,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
+        "searchfielddefaulttext": "Search by Name/Identifier",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -312,11 +313,9 @@
       },
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
-      "bpnsearchplaceholder": "Please type BPN number of company",
-      "bpnsearchlabel": "BPN Number",
-      "companynamesearchplaceholder": "Please type company name",
-      "companynamesearchlabel": "Company Name",
       "searchbuttonlabel": "Search",
+      "searchfielddefaulttext": "Search by company name or BPN",
+      "searchfielderrormessage": "Invalid Data",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",

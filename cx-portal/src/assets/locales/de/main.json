@@ -210,6 +210,7 @@
     "digitaltwin": {
       "table": {
         "title": "Übersicht Digitale Zwillinge",
+        "searchfielddefaulttext": "Suche nach Name/Kennung",
         "columns": {
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
@@ -312,10 +313,8 @@
       },
       "message": "Inhalte vom Partner Netzwerk",
       "loadmore": "Mehr Laden",
-      "bpnsearchplaceholder": "Bitte geben Sie die BPN-Nummer des Unternehmens ein",
-      "bpnsearchlabel": "BPN Nummer",
-      "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
-      "companynamesearchlabel": "Name der Firma",
+      "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
+      "searchfielderrormessage": "ungültige Daten",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",

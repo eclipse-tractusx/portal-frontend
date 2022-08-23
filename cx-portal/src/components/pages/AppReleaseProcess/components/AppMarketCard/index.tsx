@@ -273,6 +273,13 @@ export default function AppMarketCard() {
                 )}
                 tagSize="small"
                 margin="none"
+                filterOptionsArgs={{
+                  matchFrom: 'any',
+                  stringify: (option: any) =>
+                    option.languageShortName +
+                    option.languageLongNames.de +
+                    option.languageLongNames.en,
+                }}
               />
             </div>
             <Input

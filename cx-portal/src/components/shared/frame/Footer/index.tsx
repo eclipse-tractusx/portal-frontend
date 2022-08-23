@@ -29,7 +29,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   }, [])
 
   return (
-    <div className="Footer">
+    <footer>
       {showScrollToTop && (
         <IconButton
           color="secondary"
@@ -48,6 +48,6 @@ export const Footer = ({ pages }: { pages: string[] }) => {
         <Navigation unstyled items={items} component={NavLink} />
         <span className="copyright">{`${t('content.footer.copyright')}`}</span>
       </div>
-    </div>
+    </footer>
   )
 }

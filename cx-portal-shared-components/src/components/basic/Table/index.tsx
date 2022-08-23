@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
+import { theme } from '../../../theme'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate'
@@ -23,6 +24,7 @@ export interface TableProps extends DataGridProps {
   searchPlaceholder?: string
   searchDebounce?: number
   searchInputData?: SearchInputState
+  hasBorder?: boolean
 }
 
 export const Table = ({
@@ -43,6 +45,7 @@ export const Table = ({
   searchPlaceholder,
   searchDebounce,
   searchInputData,
+  hasBorder = true,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -69,6 +72,11 @@ export const Table = ({
       sx={{
         '.MuiDataGrid-columnHeaders': {
           backgroundColor: columnHeadersBackgroundColor,
+        },
+        '.MuiDataGrid-root': {
+          border: hasBorder
+            ? `1px solid ${theme.palette.border.border01}`
+            : 'none',
         },
       }}
     >
