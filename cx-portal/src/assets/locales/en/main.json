@@ -646,6 +646,9 @@
       "yesterday": "yesterday",
       "today": "today",
       "tomorrow": "tomorrow"
+    },
+    "table": {
+      "search": "Enter email to search"
     }
   },
   "servicemarketplace": {
