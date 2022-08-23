@@ -78,7 +78,7 @@ export const Toolbar = ({
       debounce((expr: string) => {
         onSearch && onSearch(expr)
       }, searchDebounce),
-    []
+    [onSearch, searchDebounce]
   )
 
   const doSearch = useCallback(

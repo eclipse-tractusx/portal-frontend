@@ -21,38 +21,19 @@
 import { IconButton, PageLoadingTable } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import {
   ServiceAccountListEntry,
   useFetchServiceAccountListQuery,
-  useRemoveServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { PAGES } from 'types/Constants'
-import {
-  updateData,
-  UPDATES,
-  updateTechuserSelector,
-} from 'features/control/updatesSlice'
+import { updateTechuserSelector } from 'features/control/updatesSlice'
 import { useNavigate } from 'react-router-dom'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const update = useSelector(updateTechuserSelector)
-
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
-
-  const handleRemove = async (id: string) => {
-    try {
-      const response = await removeServiceAccount(id).unwrap()
-      console.log(response)
-      dispatch(updateData(UPDATES.TECHUSER_LIST))
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   return (
     <div style={{ paddingTop: '30px' }}>
@@ -90,16 +71,6 @@ export const TechnicalUserTable = () => {
                   }
                 >
                   <ArrowForwardIcon />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    marginRight: '8px',
-                    color: 'white',
-                    '&:hover': { color: 'red' },
-                  }}
-                  onClick={() => handleRemove(row.serviceAccountId)}
-                >
-                  <DeleteForeverIcon />
                 </IconButton>
               </>
             ),
