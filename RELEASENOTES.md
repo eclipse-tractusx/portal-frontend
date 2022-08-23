@@ -11,7 +11,9 @@ New features, fixed bugs, known defects and other noteworthy contributions to ea
 * Feature - New lightweight and more flexible dropzone component
 * Bugfix - Business Apps displayed correcty and links working
 * Bugfix - Restrict supported languages to 'en' and 'de' without local variants
+' Bugfix - Removed empty 'Organization' option from user menu
 * Bugfix - Footer fixed to bottom of window
+* Bugfix - Some alignment and content fixes
 
 
 ### Older
