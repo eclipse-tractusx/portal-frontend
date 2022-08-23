@@ -5,6 +5,7 @@ New features, fixed bugs, known defects and other noteworthy contributions to ea
 
 ### 0.5.2 (2022-08-23)
 
+* Feature - Added Release Notes ;)
 * Feature - Technical User details page
 * Feature - Search in User and App User table
 * Feature - New lightweight and more flexible dropzone component
