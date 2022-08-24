@@ -3,6 +3,11 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.3
+
+* ...
+
+
 ### 0.5.2 (2022-08-23)
 
 * Feature - Added Release Notes ;)
