@@ -154,6 +154,7 @@ export default function AppMarketCard() {
 
     try {
       const result = await addCreateApp(saveData).unwrap()
+      console.log('result', result)
     } catch (err) {
       console.log('err', err)
     }
