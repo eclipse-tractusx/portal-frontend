@@ -27,6 +27,7 @@ import connectorSlice from './connector/slice'
 import notificationSlice from './notification/slice'
 import ErrorSlice from './error/slice'
 import { reducer as admin } from './admin/reducer'
+import managementSlice from './appManagement/slice'
 import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
@@ -44,6 +45,7 @@ export const reducers = {
   apps,
   control,
   info,
+  management: managementSlice.reducer,
   semanticModels: modelsSlice.reducer,
   user: userSlice,
   twins: twinsSlice.reducer,

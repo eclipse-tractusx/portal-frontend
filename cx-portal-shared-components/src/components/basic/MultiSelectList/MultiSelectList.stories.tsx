@@ -79,4 +79,5 @@ MultiSelectList.args = {
   keyTitle: 'title',
   tagSize: 'medium',
   onAddItem: (item: any) => console.log('items:', item),
+  filterOptionsArgs: {},
 }

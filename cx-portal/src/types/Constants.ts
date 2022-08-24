@@ -129,6 +129,7 @@ export enum ROLES {
   TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
+  MY_USER_ACCOUNT = 'my_user_account',
 }
 
 export enum HINTS {
