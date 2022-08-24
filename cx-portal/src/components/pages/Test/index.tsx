@@ -18,65 +18,74 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
-import {
-  ServiceAccountType,
-  useRemoveServiceAccountMutation,
-  useAddServiceAccountMutation,
-  useFetchServiceAccountListQuery,
-} from 'features/admin/serviceApiSlice'
-import { sample } from 'lodash'
-
-const ROLE_IDS = [
-  '607818be-4978-41f4-bf63-fa8d2de51155',
-  '607818be-4978-41f4-bf63-fa8d2de51156',
-  '607818be-4978-41f4-bf63-fa8d2de51157',
-]
+import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Cards } from 'cx-portal-shared-components'
+import { useAddServiceAccountMutation } from 'features/admin/serviceApiSlice'
+import { appToCard } from 'features/apps/mapper'
+import { isString } from 'lodash'
+import { useState } from 'react'
+import ItemProcessor from './ItemProcessor'
 
 export default function Test() {
-  const roles = useFetchAppRolesQuery(
-    '5cf74ef8-e0b7-4984-a872-474828beb5d8'
-  ).data
-  //useFetchServiceAccountDetailQuery c0c52362-4a18-4dc7-a2bb-68880198204a
-  const { data } = useFetchServiceAccountListQuery({ page: 0 })
-
   const [addServiceAccount] = useAddServiceAccountMutation()
 
-  const handleAdd = async () => {
-    try {
-      const result = await addServiceAccount({
-        name: `testaccount`,
-        description: 'none',
-        authenticationType: ServiceAccountType.SECRET,
-        roleIds: [sample(ROLE_IDS)!],
-      }).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const [items, setItems] = useState<any[]>([])
 
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
+  const techUserRowToJson = (row: string) =>
+    ((cols: string[]) =>
+      cols.length === 3 && {
+        name: cols[1],
+        authenticationType: 'SECRET',
+        description: cols[2],
+        roleIds: [cols[0]],
+      })(row.split(','))
 
-  const handleRemove = async () => {
-    if (!data || !data.content) return
-    try {
-      const result = await removeServiceAccount(
-        data.content[0].serviceAccountId
-      ).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const csvPreview = (files: File[]) =>
+    files
+      .filter((file: File) => file.type === 'text/csv')
+      .forEach((file: File) => {
+        const reader = new FileReader()
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.log('file reading has failed')
+        reader.onload = () => {
+          const str = reader.result
+          if (!isString(str)) return
+          const techusers = str.split('\n').map(techUserRowToJson)
+          setItems([...new Set([...items, ...techusers])])
+        }
+        reader.readAsText(file)
+      })
+
+  const appPreview = (files: File[]) =>
+    files
+      .filter((file: File) => file.type === 'application/json')
+      .forEach((file: File) => {
+        const reader = new FileReader()
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.log('file reading has failed')
+        reader.onload = () => {
+          const str = reader.result
+          if (!isString(str)) return
+          const dropItems = JSON.parse(str)
+          setItems([...new Set([...items, ...dropItems])])
+        }
+        reader.readAsText(file)
+      })
 
   return (
     <main>
-      <Button onClick={handleAdd}>Add</Button>
-      <Button onClick={handleRemove}>Remove</Button>
-      <pre>{JSON.stringify(roles, null, 2)}</pre>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <section>
+        <Dropzone onFileDrop={csvPreview} />
+        <ItemProcessor
+          items={items}
+          process={addServiceAccount}
+          autostart={true}
+        />
+      </section>
+      <section>
+        <Dropzone onFileDrop={appPreview} />
+        <Cards columns={4} buttonText={'click'} items={items.map(appToCard)} />
+      </section>
     </main>
   )
 }

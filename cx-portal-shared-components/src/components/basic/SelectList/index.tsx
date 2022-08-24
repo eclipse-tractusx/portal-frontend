@@ -63,6 +63,7 @@ export const SelectList = ({
             helperText={helperText}
             error={error}
             disabled={disabled}
+            keyTitle={''}
           />
         )
       }}

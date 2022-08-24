@@ -18,59 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.technical-user-management {
-  width: 100%;
-  padding: 0;
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
+
+export type useCasesItem = {
+  useCaseId: string
+  name: string
+  shortname: string
 }
 
-// Content technical user
-.content-technical-user {
-  display: flex;
-}
-
-.content-technical-user-description {
-  width: 50%;
-}
-
-.content-technical-user-image {
-  width: 50%;
-  img {
-    width: max-content;
-    margin-left: 93px;
+export type appLanguagesItem = {
+  languageShortName: string
+  languageLongNames: {
+    de: string
+    en: string
   }
 }
 
-.content-technical-user-title {
-  h3 {
-    margin-bottom: 16px !important;
-    text-align: left !important;
-  }
+export const apiSlice = createApi({
+  reducerPath: 'rtk/appManagement',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    fetchUseCases: builder.query<useCasesItem[], void>({
+      query: () => `/api/administration/staticdata/usecases`,
+    }),
+    fetchAppLanguages: builder.query<appLanguagesItem[], void>({
+      query: () => `/api/administration/staticdata/languagetags`,
+    }),
+  }),
+})
 
-  p {
-    margin-bottom: 16px !important;
-    text-align: left !important;
-  }
-
-  .section-title::after {
-    border-bottom: none !important;
-  }
-}
-
-// technical user details
-.technical-user-details {
-  width: 100%;
-  padding: 0;
-}
-
-.remove-technical-user-content {
-  h6 {
-    font-weight: bold !important;
-    width: fit-content;
-    margin: 0 auto;
-  }
-
-  h5 {
-    width: fit-content;
-    margin: 20px auto 0 auto !important;
-  }
-}
+export const { useFetchUseCasesQuery, useFetchAppLanguagesQuery } = apiSlice

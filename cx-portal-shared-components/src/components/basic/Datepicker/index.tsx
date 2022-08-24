@@ -158,6 +158,9 @@ export const Datepicker = ({
               </Box>
             )
           }}
+          PaperProps={{
+            sx: { marginLeft: '16px' },
+          }}
         />
       </LocalizationProvider>
     </Box>

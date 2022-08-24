@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent, useMemo, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import partnerNetworkSlice, {
   partnerNetworkSelector,
@@ -15,14 +15,24 @@ import PartnerNetworkSearchForm from './components/PartnerNetworkSearchForm'
 import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
 import { GridCellParams } from '@mui/x-data-grid'
 import { PartnerNetworkDataGrid } from 'features/partnerNetwork/types'
+import Patterns from 'types/Patterns'
 import uniqueId from 'lodash/uniqueId'
+import debounce from 'lodash.debounce'
+
+// fucntion to check whether the text matched only letters, spaces, "!", "?", "&", "@", ".", "_", "-" and numbers
+const validateSearchText = (text: string): boolean =>
+  /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/.test(text.trim())
+
+// function to check whether the text matches the BPN pattern
+const checkIfBPNLNumber = (text: string): boolean =>
+  Patterns.BPN.test(text.trim())
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
   const columns = PartnerNetworksTableColumns(useTranslation)
   const dispatch = useDispatch()
-  const [bpnValue, setBpnValue] = useState<string>('')
-  const [companyName, setCompanyName] = useState<string>('')
+  const [searchText, setSearchText] = useState<string>('')
+  const [searchError, setSearchError] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [pageSize] = useState<number>(100)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
@@ -45,37 +55,55 @@ const PartnerNetwork = () => {
     dispatch(partnerNetworkSlice.actions.resetPartnerNetworkState())
   }, [dispatch])
 
-  const onBpnFieldChange = (e: ChangeEvent) => {
+  const onSearchTextChange = (e: ChangeEvent) => {
     const inputElem = e.target as HTMLInputElement
-    setBpnValue(inputElem.value)
-  }
+    setSearchText(inputElem.value)
 
-  const onCompanyNameChange = (e: ChangeEvent) => {
-    const inputElem = e.target as HTMLInputElement
-    setCompanyName(inputElem.value)
-  }
+    if (inputElem.value.length < 3) return
 
-  const onSearchClick = () => {
-    // Reset previous data set before loading search results
-    dispatch(partnerNetworkSlice.actions.resetPartnerNetworkState())
+    const isValidText = validateSearchText(inputElem.value)
 
-    // There is two different endpoint for BPN search and for the field search
-    // Detect which api call to make a request
-    if (bpnValue !== '') dispatch(getOneBusinessPartner({ bpn: bpnValue }))
-    // Reset current page to default everytime user search some term
-    else {
-      const params = {
-        ...{ size: pageSize, page: 0 },
-        ...(companyName !== '' && { name: companyName }),
-      }
-      dispatch(
-        fetchBusinessPartners({
-          params,
-        })
-      )
+    if (isValidText) {
+      setSearchError(null)
+      return debounceSearch(inputElem.value)
+    } else {
+      return setSearchError(t('content.partnernetwork.searchfielderrormessage'))
     }
   }
 
+  const onSearchClick = useCallback(
+    (searchText: string) => {
+      // Reset previous data set before loading search results
+      dispatch(partnerNetworkSlice.actions.resetPartnerNetworkState())
+
+      // There is two different endpoint for BPN search and for the field search
+      // Detect which api call to make a request
+      if (searchText !== '' && checkIfBPNLNumber(searchText)) {
+        dispatch(getOneBusinessPartner({ bpn: searchText }))
+      }
+      // Reset current page to default everytime user search some term
+      else {
+        const params = {
+          ...{ size: pageSize, page: 0 },
+          ...(searchText !== '' && { name: searchText }),
+        }
+        dispatch(
+          fetchBusinessPartners({
+            params,
+          })
+        )
+      }
+    },
+    [dispatch, pageSize]
+  )
+
+  const debounceSearch = useMemo(
+    () =>
+      debounce((args: string) => {
+        onSearchClick(args)
+      }, 2000),
+    [onSearchClick]
+  )
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
@@ -101,21 +129,19 @@ const PartnerNetwork = () => {
 
       <PartnerNetworkSearchForm
         {...{
-          onBpnFieldChange,
-          onCompanyNameChange,
-          onSearchClick,
-          bpnValue,
-          companyName,
+          searchText,
+          onSearchTextChange,
+          searchError,
         }}
       />
-      <div className="partner-network-table-container">
+      <section>
         <Table
           {...{
             rows: mappedPartnerList,
             rowsCount: paginationData.totalElements,
             columns: columns,
             title: t('content.partnernetwork.tabletitle'),
-            rowHeight: 100,
+            rowHeight: 75,
             hideFooter: true,
             disableColumnFilter: true,
             disableColumnMenu: true,
@@ -123,6 +149,7 @@ const PartnerNetwork = () => {
             disableDensitySelector: true,
             disableSelectionOnClick: true,
             onCellClick: (params: GridCellParams) => onTableCellClick(params),
+            toolbarVariant: 'premium',
             toolbar: {
               onFilter: () => {},
               filter: [
@@ -145,7 +172,7 @@ const PartnerNetwork = () => {
           }}
           getRowId={(row) => uniqueId(row.bpn)}
         />
-      </div>
+      </section>
       <div className="load-more-button-container">
         {paginationData.totalElements > pageSize * currentPage &&
           paginationData.totalElements! > pageSize && (

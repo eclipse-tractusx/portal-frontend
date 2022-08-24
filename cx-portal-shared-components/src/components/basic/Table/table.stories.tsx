@@ -61,20 +61,25 @@ const basicArgs = {
   disableSelectionOnClick: true,
   checkboxSelection: true,
   loading: false,
+  columnHeadersBackgroundColor: '#fff',
+  searchPlaceholder: 'Search by username',
   rows,
   columns,
+  hasBorder: true,
 }
 
 export const Table = Template.bind({})
 Table.args = {
   ...basicArgs,
   title: 'Basic table',
+  toolbarVariant: 'basic',
 }
 
 export const TableToolbar = Template.bind({})
 TableToolbar.args = {
   ...basicArgs,
   title: 'Table with toolbar',
+  toolbarVariant: 'premium',
   toolbar: {
     buttonLabel: 'Add user',
     onButtonClick: () => console.log('on button click'),

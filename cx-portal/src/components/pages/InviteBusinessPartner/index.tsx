@@ -235,6 +235,7 @@ export default function InviteBusinessPartner() {
           sx={{ marginTop: '80px' }}
           disableColumnMenu
           hideFooter
+          toolbarVariant="premium"
           toolbar={{
             onSearch: () => {
               console.log('search function')

@@ -37,6 +37,10 @@ interface ModelTableProps {
   onModelSelect: (id: string) => void
 }
 
+type SelectedFilter = {
+  [name: string]: string[]
+}
+
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -47,6 +51,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const [namespaceFilter, setNamespaceFilter] = useState<string>('')
   const [nameFilter, setNameFilter] = useState<string>('')
   const [objectType, setObjectType] = useState<string>('')
+  const [openFilter, setOpenFilter] = useState<boolean>(false)
+  const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
+    status: ['RELEASED', 'DRAFT', 'DEPRECATED'],
+  })
   const rowCount = 10
   const filter = [
     {
@@ -102,10 +110,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const filterHasValues = () =>
     `${namespaceFilter}${nameFilter}${objectType}`.length > 0
 
-  const onFilterReset = () => {
-    setNamespaceFilter('')
-    setNameFilter('')
-    setObjectType('')
+  const onFilterReset = (skipReset?: boolean) => {
+    if (!skipReset) {
+      setNamespaceFilter('')
+      setNameFilter('')
+      setObjectType('')
+      setOpenFilter(false)
+    }
     dispatch(
       fetchSemanticModels({ filter: { page: pageNumber, pageSize: rowCount } })
     )
@@ -131,7 +142,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     dispatch(fetchSemanticModels({ filter: searchFilter }))
   }
 
+  const onOpenFilter = (value: boolean) => setOpenFilter(value)
+
   const onFilter = (selectedFilter: any) => {
+    setSelectedFilter(selectedFilter)
     if (selectedFilter.status && selectedFilter.status.length === 1) {
       dispatch(
         fetchSemanticModels({
@@ -142,6 +156,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           },
         })
       )
+    } else {
+      onFilterReset(true)
     }
   }
   const columns = SemanticModelTableColumns(t, onModelSelect)
@@ -202,7 +218,12 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           </Select>
         </FormControl>
         {filterHasValues() && (
-          <Button onClick={onFilterReset} sx={{ ml: 1 }}>
+          <Button
+            onClick={() => {
+              onFilterReset()
+            }}
+            sx={{ ml: 1 }}
+          >
             {t('content.semantichub.table.filter.resetButton')}
           </Button>
         )}
@@ -220,9 +241,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         disableColumnSelector={true}
         disableDensitySelector={true}
         title={t('content.semantichub.table.title')}
+        toolbarVariant="premium"
         toolbar={{
           onFilter: onFilter,
           filter: filter,
+          openFilterSection: openFilter,
+          onOpenFilterSection: onOpenFilter,
+          selectedFilter: selectedFilter,
         }}
         columns={columns}
         rows={models}

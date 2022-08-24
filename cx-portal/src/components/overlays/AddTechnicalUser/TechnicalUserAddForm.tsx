@@ -8,7 +8,16 @@ import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import { AppRole, useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
+import {
+  ServiceAccountRole,
+  useFetchServiceAccountRolesQuery,
+} from 'features/admin/serviceApiSlice'
+
+export type DefaultFormFieldValuesType = {
+  TechnicalUserName: string
+  TechnicalUserService: string
+  TechnicalUserDescription: string
+}
 
 const TechnicalUserAddFormSelect = ({
   control,
@@ -18,9 +27,7 @@ const TechnicalUserAddFormSelect = ({
   rules,
 }: any) => {
   const { t } = useTranslation()
-  const roles = useFetchAppRolesQuery(
-    '5cf74ef8-e0b7-4984-a872-474828beb5d8'
-  ).data
+  const roles = useFetchServiceAccountRolesQuery().data
 
   return (
     <Controller
@@ -45,9 +52,9 @@ const TechnicalUserAddFormSelect = ({
             <MenuItem disabled value="none">
               {t('global.actions.pleaseSelect')}
             </MenuItem>
-            {roles?.map((role: AppRole) => (
+            {roles?.map((role: ServiceAccountRole) => (
               <MenuItem key={role.roleId} value={role.roleId}>
-                {role.role}
+                {role.roleName}
               </MenuItem>
             ))}
           </Select>

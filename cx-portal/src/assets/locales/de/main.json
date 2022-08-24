@@ -40,7 +40,8 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technische Benutzer Verwaltung"
+    "technicaluser": "Technische Benutzer Verwaltung",
+    "techuserdetails": "Technischer Benutzer Details"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -127,7 +128,8 @@
           "circulareconomy": "Kreislaufwirtschaft",
           "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
           "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
-          "traceability": "Rückverfolgbarkeit"
+          "traceability": "Rückverfolgbarkeit",
+          "manufacturingasaservice": "Produzieren als Dienst"
         }
       }
     },
@@ -209,6 +211,7 @@
     "digitaltwin": {
       "table": {
         "title": "Übersicht Digitale Zwillinge",
+        "searchfielddefaulttext": "Suche nach Name/Kennung",
         "columns": {
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
@@ -311,10 +314,8 @@
       },
       "message": "Inhalte vom Partner Netzwerk",
       "loadmore": "Mehr Laden",
-      "bpnsearchplaceholder": "Bitte geben Sie die BPN-Nummer des Unternehmens ein",
-      "bpnsearchlabel": "BPN Nummer",
-      "companynamesearchplaceholder": "Bitte geben Sie den Firmennamen ein",
-      "companynamesearchlabel": "Name der Firma",
+      "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
+      "searchfielderrormessage": "ungültige Daten",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",
@@ -390,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
         "headline": "Technical user management COMPANY_NAME",
@@ -398,13 +400,13 @@
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
-          "userDetails": "Benutzer Details",
+          "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
-        "confirmDeleteUser": "Sind Sie sicher, dass Sie OBJECT_NAME löschen möchten?",
-        "noteDeleteUser": "Hinweis: Fügen Sie hier beliebige Notizen hinzu!",
+        "confirmDeleteUser": "Sind Sie sicher, dass Sie user {{ user }} löschen möchten?",
+        "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
       }
@@ -420,7 +422,7 @@
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
-      "helperText": "Please enter all required information before proceeding.",
+      "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "technicalUser": {
         "addOverlay": {
           "service": "Dienst",
@@ -581,21 +583,28 @@
         "defaultCardAppImageAlt": "Part Chain",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
-        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo.",
+        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title*",
+        "appTitlePlaceholder": "name@domain.com",
         "appProvider": "App provider*",
+        "appProviderPlaceholder": "prefill: [company name]",
         "shortDescriptionEN": "Short Description - EN*",
         "shortDescriptionDE": "Short Description - DE*",
         "useCaseCategory": "Use Case /Category*",
+        "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
         "appLanguage": "App Language*",
+        "appLanguagePlaceholder": "Choose App Language",
         "pricingInformation": "Pricing Information*",
+        "pricingInformationPlaceholder": "Please select a pricing type*",
         "uploadTitle": "Drag & drop your files here",
         "uploadSubTitle": "or browse files on your computer.",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save"
+        "save": "Save",
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected"
       }
     }
   },
@@ -620,7 +629,10 @@
       "details": "Details",
       "userName": "Benutzername",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Beschreibung",
+      "secret": "Secret",
+      "permission": "Berechtigung"
     },
     "actions": {
       "cancel": "Abbrechen",
@@ -633,7 +645,15 @@
       "delete": "Löschen",
       "pleaseSelect": "Bitte auswählen",
       "reload": "Seite neuladen",
-      "homepage": "Startseite"
+      "homepage": "Startseite",
+      "deleteTitle": "Löschen von {{ object }} {{ name }}",
+      "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
+      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+    },
+    "objects": {
+      "app": "App",
+      "user": "Benutzer",
+      "techuser": "Technischer Account"
     },
     "search": {
       "less": "weniger anzeigen",
@@ -666,6 +686,9 @@
       "yesterday": "gestern",
       "today": "heute",
       "tomorrow": "morgen"
+    },
+    "table": {
+      "search": "Enter email to search"
     }
   },
   "servicemarketplace": {

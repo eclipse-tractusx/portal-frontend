@@ -6,19 +6,19 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 
-interface AddTechnicalUserOverlayProps {
+interface TechnicalUserAddOverlayProps {
   title: string
   intro?: string
   dialogOpen: boolean
   children?: JSX.Element | JSX.Element[]
 }
 
-export const AddTechnicalUserResponseOverlay = ({
+export const TechnicalUserAddResponseOverlay = ({
   title,
   intro,
   dialogOpen,
   children,
-}: AddTechnicalUserOverlayProps) => {
+}: TechnicalUserAddOverlayProps) => {
   const [open, setOpen] = useState<boolean>(dialogOpen)
 
   return (

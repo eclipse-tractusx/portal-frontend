@@ -27,8 +27,8 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 
 export default function UserDetails() {
   const { t } = useTranslation()
-  const { appId } = useParams()
-  console.log(`TODO: get user details for ${appId}`)
+  const { userId } = useParams()
+  console.log(`TODO: get user details for ${userId}`)
 
   const userDetail = useSelector(UserdetailSelector)
 
@@ -212,6 +212,7 @@ export default function UserDetails() {
           getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
           sx={{ marginTop: '80px' }}
           disableColumnMenu
+          toolbarVariant="basic"
           hideFooter
         />
       </section>

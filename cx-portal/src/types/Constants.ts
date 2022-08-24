@@ -48,7 +48,7 @@ export enum PAGES {
   USER_MANAGEMENT = 'usermanagement',
   TECHNICAL_SETUP = 'technicalsetup',
   TECHUSER_MANAGEMENT = 'technicaluser',
-  TECHUSER_DETAILS = 'userdetails',
+  TECHUSER_DETAILS = 'techuserdetails',
   APPLICATION_REQUESTS = 'applicationrequests',
   APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
@@ -77,8 +77,9 @@ export enum OVERLAYS {
   ADD_APP_USER_ROLES = 'add_app_user_roles',
   EDIT_APP_USER_ROLES = 'edit_app_user_roles',
   USER = 'user',
-  ADD_TECHUSER = 'add_techuser',
   TECHUSER = 'techuser',
+  ADD_TECHUSER = 'add_techuser',
+  DELETE_TECHUSER = 'delete_techuser',
   NEWS = 'news',
   ADD_BPN = 'add_bpn',
   INVITE = 'invite',
@@ -128,6 +129,7 @@ export enum ROLES {
   TECHNICAL_SETUP_VIEW = 'view_technical_setup',
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
+  MY_USER_ACCOUNT = 'my_user_account',
 }
 
 export enum HINTS {

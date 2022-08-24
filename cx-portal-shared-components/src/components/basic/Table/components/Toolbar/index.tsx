@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Box, useTheme } from '@mui/material'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Box, debounce, useTheme } from '@mui/material'
 import { Button } from '../../../Button'
 import { IconButton } from '../../../IconButton'
 import { SearchInput } from '../../../SearchInput'
@@ -7,7 +7,7 @@ import { Typography } from '../../../Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
 import { Checkbox } from '../../../Checkbox'
-import { getSelectedFilterUpdate, initSelectedFilter } from './helper'
+import { getSelectedFilterUpdate } from './helper'
 
 interface FilterValue {
   value: string
@@ -23,56 +23,99 @@ export type SelectedFilter = {
   [name: string]: string[]
 }
 
+interface SearchInputState {
+  open: boolean
+  text: string
+}
+
 export interface ToolbarProps {
   title?: string
   rowsCount?: number
+  rowsCountMax?: number
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   onSearch?: (value: string) => void
+  searchExpr?: string
+  searchPlaceholder?: string
+  searchDebounce?: number
+  searchInputData?: SearchInputState
   filter?: Filter[]
   onFilter?: (selectedFilter: SelectedFilter) => void
+  openFilterSection?: boolean
+  onOpenFilterSection?: (value: boolean) => void
+  selectedFilter?: SelectedFilter
 }
 
 export const Toolbar = ({
   title,
-  rowsCount,
+  rowsCount = 0,
+  rowsCountMax = 0,
   buttonLabel,
   onButtonClick,
   onSearch,
+  searchExpr,
+  searchPlaceholder,
+  searchDebounce = 500,
+  searchInputData,
   filter,
   onFilter,
+  openFilterSection,
+  onOpenFilterSection,
+  selectedFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
-  const [openSearch, setOpenSearch] = useState<boolean>(false)
+  const [openSearch, setOpenSearch] = useState<boolean>(
+    searchInputData ? searchInputData.open : false
+  )
   const [openFilter, setOpenFilter] = useState<boolean>(false)
-  const [searchInput, setSearchInput] = useState<string>('')
-  const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
+  const [searchInput, setSearchInput] = useState<string>(
+    searchExpr ?? (searchInputData ? searchInputData.text : '')
+  )
+  const showMaxRows = rowsCountMax > 0 && rowsCount < rowsCountMax
+
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((expr: string) => {
+        onSearch && onSearch(expr)
+      }, searchDebounce),
+    [onSearch, searchDebounce]
+  )
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
+    const inputLen = e.target.value.length
+    if (inputLen === 0 || inputLen > 2) {
+      onSearch && doSearch(e.target.value)
+    }
   }
 
-  const onSearchInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && onSearch) {
-      onSearch(searchInput)
-    }
+  const onSearchInputKeyPress = (_e: React.KeyboardEvent<HTMLInputElement>) => {
+    //console.log(e.key)
   }
 
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = target
-
-    setSelectedFilter(
-      getSelectedFilterUpdate(selectedFilter, name, value, checked)
-    )
+    onFilter &&
+      onFilter(
+        getSelectedFilterUpdate(
+          selectedFilter as SelectedFilter,
+          name,
+          value,
+          checked
+        )
+      )
   }
 
   useEffect(() => {
-    setSelectedFilter(initSelectedFilter(filter))
-  }, [filter])
-
-  useEffect(() => {
-    onFilter && onFilter(selectedFilter)
-  }, [onFilter, selectedFilter])
+    openFilterSection && setOpenFilter(openFilterSection)
+  }, [openFilterSection])
 
   return (
     <Box>
@@ -94,10 +137,11 @@ export const Toolbar = ({
               sx={{
                 typography: 'body1',
                 color: 'text.tertiary',
-                marginLeft: 0.5,
+                marginLeft: 1,
               }}
             >
-              ({rowsCount})
+              ({rowsCount || 0}
+              {showMaxRows && `/${rowsCountMax}`})
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (
@@ -114,6 +158,7 @@ export const Toolbar = ({
               onChange={onSearchInputChange}
               onKeyPress={onSearchInputKeyPress}
               onBlur={() => setOpenSearch(false)}
+              placeholder={searchPlaceholder}
             />
           ) : (
             onSearch && (
@@ -131,7 +176,9 @@ export const Toolbar = ({
                 alignSelf: 'center',
                 color: openFilter ? 'primary' : 'text.tertiary',
               }}
-              onClick={() => setOpenFilter(!openFilter)}
+              onClick={() =>
+                onOpenFilterSection && onOpenFilterSection(!openFilter)
+              }
             >
               <FilterIcon />
             </IconButton>
@@ -157,7 +204,9 @@ export const Toolbar = ({
                   name={name}
                   value={value}
                   label={label || value}
-                  checked={selectedFilter[name]?.includes(value)}
+                  checked={(selectedFilter as SelectedFilter)[name]?.includes(
+                    value
+                  )}
                   onChange={onFilterChange}
                 />
               </Box>

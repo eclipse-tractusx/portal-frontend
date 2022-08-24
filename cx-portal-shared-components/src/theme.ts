@@ -65,6 +65,9 @@ const palette = createPalette({
     info: '#676BC6',
     warning: '#FFA600',
   },
+  success: {
+    main: '#00aa55',
+  },
   icon: {
     icon01: '#939393',
     icon02: '#B6B6B6',
@@ -571,8 +574,8 @@ export const theme = createTheme({
     MuiDialog: {
       styleOverrides: {
         paper: {
-          width: 930,
-          maxWidth: 930,
+          minWidth: 930,
+          maxWidth: 1416,
           borderRadius: 40,
         },
       },
@@ -628,17 +631,16 @@ export const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          marginLeft: '16px',
           borderRadius: '6px',
           '.MuiCalendarPicker-viewTransitionContainer': {
             borderTop: `1px solid ${palette.border.border01}`,
+            '.MuiTypography-root': {
+              fontWeight: 'bold',
+              fontSize: '14px',
+            },
           },
           '.MuiIconButton-root': {
             color: '#939393',
-          },
-          '.MuiTypography-root': {
-            fontWeight: 'bold',
-            fontSize: '14px',
           },
           '.PrivatePickersFadeTransitionGroup-root': {
             fontWeight: 'bold',

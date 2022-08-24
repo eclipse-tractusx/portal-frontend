@@ -18,25 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { TenantUser } from 'features/admin/userApiSlice'
 import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { UserList } from 'components/shared/frame/UserList'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
-import { useFetchAppUsersQuery } from 'features/admin/appuserApiSlice'
-import { useParams } from 'react-router-dom'
-import { UserList } from 'components/shared/frame/UserList'
+import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
+import { TenantUser } from 'features/admin/userApiSlice'
 
 export const AppUserDetailsTable = () => {
   const dispatch = useDispatch()
   const { appId } = useParams()
+  const [expr, setExpr] = useState<string>('')
+
   return (
     <UserList
       sectionTitle={'content.usermanagement.appUserDetails.subheadline'}
       addButtonLabel={'content.usermanagement.appUserDetails.table.add'}
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
       tableLabel={'content.usermanagement.appUserDetails.table.title'}
-      fetchHook={useFetchAppUsersQuery}
-      fetchHookArgs={{ appId }}
+      fetchHook={useFetchAppUsersSearchQuery}
+      fetchHookArgs={{ appId, expr }}
+      onSearch={setExpr}
       onDetailsClick={(row: TenantUser) =>
         dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
       }

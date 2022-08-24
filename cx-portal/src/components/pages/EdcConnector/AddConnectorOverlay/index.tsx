@@ -44,6 +44,7 @@ const AddConnectorOverlay = ({
     control,
     trigger,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: formFields,
     mode: 'onChange',
@@ -90,11 +91,23 @@ const AddConnectorOverlay = ({
           )}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+              reset(formFields)
+            }}
+          >
             {`${t('global.actions.cancel')}`}
           </Button>
           <Button
             variant="contained"
+            disabled={
+              connectorStep === 1 &&
+              (control._formValues.ConnectorName === '' ||
+                control._formValues.ConnectorURL === '' ||
+                Object.keys(errors).length > 0)
+            }
             onClick={(e) =>
               connectorStep === 0 ? handleConfirmClick(e) : onFormSubmit()
             }

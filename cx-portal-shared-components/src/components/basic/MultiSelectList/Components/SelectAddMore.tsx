@@ -1,14 +1,18 @@
-import { Box, useTheme } from '@mui/material'
-import { MultiSelectItemType } from '..'
+import { Box } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 import { Button } from '../../Button'
 import { Typography } from '../../Typography'
+import { SelectedTag } from './SelectedTag'
+import { TagSizeType } from '..'
 
 interface SelectAddMoreProps {
-  selected: MultiSelectItemType[]
+  selected: any[]
   buttonAddMore: string
   notItemsText: string
   label: string
+  keyTitle: string
+  margin?: 'normal' | 'none' | 'dense'
+  tagSize?: TagSizeType
   handleShowItems: () => void
 }
 
@@ -17,15 +21,18 @@ export const SelectAddMore = ({
   buttonAddMore,
   notItemsText,
   label,
+  keyTitle,
+  margin,
+  tagSize,
   handleShowItems,
 }: SelectAddMoreProps) => {
-  const theme = useTheme()
-
+  const marginTop = margin === 'normal' ? '16px' : '8px'
   return (
     <Box>
       <Typography
-        variant="body1"
+        variant="label3"
         fontSize="14px"
+        fontWeight="400"
         sx={{
           marginBottom: '10px',
         }}
@@ -36,6 +43,7 @@ export const SelectAddMore = ({
         sx={{
           display: 'flex',
           flexDirection: 'row',
+          marginTop: margin === 'none' ? '' : marginTop,
         }}
       >
         <Box
@@ -47,23 +55,12 @@ export const SelectAddMore = ({
           }}
         >
           {selected.length > 0 ? (
-            selected.map((item: MultiSelectItemType) => (
-              <Typography
-                key={uniqueId(item.title)}
-                sx={{
-                  height: '24px',
-                  width: 'fit-content',
-                  padding: '18px',
-                  marginRight: '10px',
-                  marginBottom: '10px',
-                  borderRadius: '10px',
-                  fontWeight: 'bold',
-                  color: theme.palette.accent.accent03,
-                  backgroundColor: theme.palette.accent.accent02,
-                }}
-              >
-                {item.title}
-              </Typography>
+            selected.map((item: any) => (
+              <SelectedTag
+                title={item[keyTitle]}
+                size={tagSize}
+                key={uniqueId(item[keyTitle])}
+              />
             ))
           ) : (
             <Typography
@@ -82,7 +79,7 @@ export const SelectAddMore = ({
         <Box sx={{ height: '40px', width: '20%' }}>
           <Button
             sx={{ width: 'fit-content', float: 'right' }}
-            size="medium"
+            size={tagSize}
             color="secondary"
             onClick={() => handleShowItems()}
           >

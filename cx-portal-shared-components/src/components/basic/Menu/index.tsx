@@ -8,7 +8,13 @@ export interface MenuProps extends BoxProps {
   divider?: boolean
 }
 
-export const Menu = ({ items, divider, component, ...props }: MenuProps) => {
+export const Menu = ({
+  items,
+  divider,
+  component,
+  onClick,
+  ...props
+}: MenuProps) => {
   const { spacing } = useTheme()
 
   return (
@@ -20,6 +26,7 @@ export const Menu = ({ items, divider, component, ...props }: MenuProps) => {
             component={component}
             menuProps={props}
             Menu={Menu}
+            onClick={onClick}
             key={uniqueId('Menu')}
           />
         ))}

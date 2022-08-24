@@ -40,7 +40,8 @@
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
-    "technicaluser": "Technical User Management"
+    "technicaluser": "Technical User Management",
+    "techuserdetails": "Technical User Details"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -127,7 +128,8 @@
           "circulareconomy": "Circular Economy",
           "quality&demandmanagement": "Demand & Quality Management",
           "demandandcapacitymanagement": "Demand & Capacity Management",
-          "traceability": "Traceability"
+          "traceability": "Traceability",
+          "manufacturingasaservice": "Manufacturing as a Service"
         }
       }
     },
@@ -209,6 +211,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
+        "searchfielddefaulttext": "Search by Name/Identifier",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -311,11 +314,9 @@
       },
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
-      "bpnsearchplaceholder": "Please type BPN number of company",
-      "bpnsearchlabel": "BPN Number",
-      "companynamesearchplaceholder": "Please type company name",
-      "companynamesearchlabel": "Company Name",
       "searchbuttonlabel": "Search",
+      "searchfielddefaulttext": "Search by company name or BPN",
+      "searchfielderrormessage": "Invalid Data",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",
@@ -390,6 +391,7 @@
         }
       },
       "technicalUser": {
+        "serviceaccount": "Service Account",
         "create": "Create technical user",
         "delete": "Delete this technical User",
         "headline": "Technical user management {{company}}",
@@ -398,13 +400,13 @@
         "tableHeader": "Technical User List",
         "detailsHeader": "Technical User: USER_NAME",
         "detailsPage": {
-          "userDetails": "User Details",
+          "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
           "permission": "Permission"
         },
-        "confirmDeleteUser": "Are you sure you want to delete OBJECT_NAME ?",
-        "noteDeleteUser": "Note: add any note information here - e.g. if the deletion is getting confirmed, the user wont be able to reactivate the OBJECT_NAME",
+        "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
+        "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }
@@ -420,7 +422,7 @@
       "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
       "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
       "chooseUserRole": "Select CX Portal User Role",
-      "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
+      "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
@@ -542,21 +544,28 @@
         "defaultCardAppImageAlt": "Part Chain",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
-        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo.",
+        "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title*",
+        "appTitlePlaceholder": "name@domain.com",
         "appProvider": "App provider*",
+        "appProviderPlaceholder": "prefill: [company name]",
         "shortDescriptionEN": "Short Description - EN*",
         "shortDescriptionDE": "Short Description - DE*",
         "useCaseCategory": "Use Case /Category*",
+        "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
         "appLanguage": "App Language*",
+        "appLanguagePlaceholder": "Choose App Language",
         "pricingInformation": "Pricing Information*",
+        "pricingInformationPlaceholder": "Please select a pricing type*",
         "uploadTitle": "Drag & drop your files here",
         "uploadSubTitle": "or browse files on your computer.",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save"
+        "save": "Save",
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected"
       }
     }
   },
@@ -581,7 +590,10 @@
       "details": "Details",
       "userName": "Username",
       "clientId": "Client ID",
-      "authType": "Auth Type"
+      "authType": "Auth Type",
+      "description": "Description",
+      "secret": "Secret",
+      "permission": "Permission"
     },
     "actions": {
       "cancel": "Cancel",
@@ -594,7 +606,14 @@
       "delete": "Delete",
       "pleaseSelect": "Please select",
       "reload": "Reload Page",
-      "homepage": "Homepage"
+      "homepage": "Homepage",
+      "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+    },
+    "objects": {
+      "app": "app",
+      "user": "user",
+      "techuser": "technical user"
     },
     "search": {
       "less": "show less",
@@ -627,6 +646,9 @@
       "yesterday": "yesterday",
       "today": "today",
       "tomorrow": "tomorrow"
+    },
+    "table": {
+      "search": "Enter email to search"
     }
   },
   "servicemarketplace": {

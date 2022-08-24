@@ -1,53 +1,34 @@
 import React from 'react'
-import { Button, Input } from 'cx-portal-shared-components'
+import { SearchInput } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 type SearchFormProps = {
-  onBpnFieldChange: (
+  onSearchTextChange: (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void
-  onCompanyNameChange: (
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => void
-  onSearchClick: () => void
-  bpnValue: string
-  companyName: string
+  searchError: string | null
+  searchText: string
 }
 
 const PartnerNetworkSearchForm = ({
-  onBpnFieldChange,
-  onCompanyNameChange,
-  onSearchClick,
-  bpnValue,
-  companyName,
+  onSearchTextChange,
+  searchText,
+  searchError,
 }: SearchFormProps) => {
   const { t } = useTranslation()
 
   return (
     <div className="advance-search-fields-container">
       <div className="identifier-fields-container">
-        <Input
-          label={t('content.partnernetwork.bpnsearchlabel')}
-          variant="filled"
-          placeholder={t('content.partnernetwork.bpnsearchplaceholder')}
+        <SearchInput
+          variant="outlined"
+          placeholder={t('content.partnernetwork.searchfielddefaulttext')}
           margin="dense"
-          onChange={(e) => onBpnFieldChange(e)}
-          value={bpnValue}
+          onChange={(e) => onSearchTextChange(e)}
+          value={searchText}
+          error={Boolean(searchError)}
+          helperText={searchError}
         />
-        <span className="or-span">OR</span>
-        <Input
-          label={t('content.partnernetwork.companynamesearchlabel')}
-          variant="filled"
-          placeholder={t('content.partnernetwork.companynamesearchplaceholder')}
-          margin="dense"
-          onChange={(e) => onCompanyNameChange(e)}
-          value={companyName}
-        />
-      </div>
-      <div className="search-button">
-        <Button size="medium" onClick={() => onSearchClick()}>
-          {t('content.partnernetwork.searchbuttonlabel')}
-        </Button>
       </div>
     </div>
   )

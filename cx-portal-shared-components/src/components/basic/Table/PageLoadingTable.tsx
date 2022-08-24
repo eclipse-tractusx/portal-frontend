@@ -66,10 +66,12 @@ export const PageLoadingTable = function <T>({
   })
   const nextPage = () => setPage(page + 1)
   const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
+  const maxRows = data?.meta?.totalElements ?? 0
 
   useEffect(() => {
-    if (loaded < fetchHookRefresh) {
+    if (loaded !== fetchHookRefresh) {
       setLoaded(fetchHookRefresh)
+      setPage(0)
       setClear(true)
     }
   }, [fetchHookRefresh, loaded])
@@ -89,6 +91,7 @@ export const PageLoadingTable = function <T>({
     <>
       <Table
         rowsCount={items.length}
+        rowsCountMax={maxRows}
         hideFooter={items.length < (props.rowCount || 100)}
         loading={isFetching}
         rows={items}

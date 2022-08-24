@@ -1,6 +1,7 @@
 import { Box, Chip, Popper, TextFieldProps, useTheme } from '@mui/material'
 import Autocomplete, {
   AutocompleteRenderInputParams,
+  createFilterOptions,
 } from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
@@ -10,34 +11,34 @@ import { SelectAddMore } from './Components/SelectAddMore'
 import uniqueId from 'lodash/uniqueId'
 import { useState } from 'react'
 
-export type MultiSelectItemType = {
-  id: number
-  title: string
-  value: string
-}
-
+export type TagSizeType = 'small' | 'medium' | 'large'
 export type PartsType = {
   text: string
   highlight: boolean
 }
 
-export interface MultiSelectListProps extends Omit<TextFieldProps, 'variant'> {
-  items: MultiSelectItemType[]
+export interface MultiSelectListProps
+  extends Omit<TextFieldProps, 'variant' | 'size'> {
+  items: any[]
   label: string
   placeholder: string
+  keyTitle: string
   popperHeight?: number
   variant?: 'filled'
   clearText?: string
   noOptionsText?: string
   buttonAddMore: string
   notItemsText: string
-  onAddItem: (items: MultiSelectItemType[]) => void
+  tagSize?: TagSizeType
+  filterOptionsArgs?: {}
+  onAddItem: (items: any[]) => void
 }
 
 export const MultiSelectList = ({
   items,
   label,
   placeholder,
+  keyTitle,
   variant,
   margin,
   focused,
@@ -49,19 +50,30 @@ export const MultiSelectList = ({
   noOptionsText = 'No Options',
   buttonAddMore,
   notItemsText,
+  tagSize,
+  filterOptionsArgs = {},
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
   const theme = useTheme()
-  const [selected, setSelected] = useState<MultiSelectItemType[]>([])
+  const [selected, setSelected] = useState<any[]>([])
   const [showItems, setShowItems] = useState(false)
-  const handleChange = (selectedItems: MultiSelectItemType[]) => {
+  const handleChange = (selectedItems: any[]) => {
     onAddItem(selectedItems)
     setSelected(selectedItems)
   }
   const handleViewAddMore = () => {
     setShowItems(false)
   }
+
+  const filterOptions = createFilterOptions(
+    Object.keys(filterOptionsArgs).length > 0
+      ? filterOptionsArgs
+      : {
+          matchFrom: 'any',
+          stringify: (option: any) => option[keyTitle],
+        }
+  )
 
   return (
     <Box>
@@ -78,14 +90,15 @@ export const MultiSelectList = ({
           multiple
           disabled={disabled}
           options={items.map((item) => item)}
-          getOptionLabel={(option) => option.title}
+          getOptionLabel={(option) => option[keyTitle]}
           value={selected}
-          renderTags={(selectedItems: MultiSelectItemType[], getTagProps) =>
+          filterOptions={filterOptions}
+          renderTags={(selectedItems: any[], getTagProps) =>
             selectedItems.map((option: any, index: number) => (
               <Chip
                 {...getTagProps({ index })}
                 variant="filled"
-                label={option.title}
+                label={option[keyTitle]}
                 sx={{
                   borderRadius: '16px',
                   border: `1px solid ${theme.palette.accent.accent03} !important`,
@@ -100,7 +113,7 @@ export const MultiSelectList = ({
                     order: '2',
                   },
                   '.MuiChip-deleteIcon': {
-                    paddingLeft: '10px',
+                    marginLeft: '10px',
                     color: theme.palette.accent.accent03,
                   },
                   '.MuiChip-deleteIcon:hover': {
@@ -122,11 +135,12 @@ export const MultiSelectList = ({
               error={error}
               disabled={disabled}
               autoFocus={!showItems}
+              keyTitle={keyTitle}
             />
           )}
           renderOption={(props, option, { inputValue }) => {
-            const matches = match(option.title, inputValue)
-            const parts: PartsType[] = parse(option.title, matches)
+            const matches = match(option[keyTitle], inputValue)
+            const parts: PartsType[] = parse(option[keyTitle], matches)
             return (
               <SelectOptions
                 props={props}
@@ -135,9 +149,7 @@ export const MultiSelectList = ({
               />
             )
           }}
-          onChange={(_, selectedItems: MultiSelectItemType[]) =>
-            handleChange(selectedItems)
-          }
+          onChange={(_, selectedItems: any[]) => handleChange(selectedItems)}
           onBlur={() => setShowItems(true)}
         />
       ) : (
@@ -146,6 +158,9 @@ export const MultiSelectList = ({
           notItemsText={notItemsText}
           buttonAddMore={buttonAddMore}
           label={label}
+          keyTitle={keyTitle}
+          margin={margin}
+          tagSize={tagSize}
           handleShowItems={() => handleViewAddMore()}
         />
       )}
