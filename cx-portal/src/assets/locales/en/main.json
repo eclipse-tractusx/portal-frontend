@@ -146,6 +146,7 @@
       },
       "table": {
         "title": "Semantic Data Models",
+        "searchfielddefaulttext": "Search by name",
         "filter": {
           "namespaceLabel": "Namespace",
           "namespacePlaceholder": "Enter a namespace to filter",

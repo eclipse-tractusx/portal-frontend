@@ -63,7 +63,7 @@ export const Table = ({
       case 'premium':
         return <Toolbar title={title} {...toolbar} {...toolbarProps} />
       case 'ultimate':
-        return <UltimateToolbar title={title} {...toolbar} {...toolbarProps} />
+        return <UltimateToolbar title={title} {...toolbarProps} {...toolbar} />
     }
   }
 

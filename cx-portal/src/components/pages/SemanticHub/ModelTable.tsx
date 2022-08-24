@@ -18,19 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, Table, Input } from 'cx-portal-shared-components'
+import { Button, Table } from 'cx-portal-shared-components'
 import { fetchSemanticModels } from 'features/semanticModels/actions'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import {
   FilterParams,
-  SearchType,
   SemanticModel,
+  DefaultStatus,
 } from 'features/semanticModels/types'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
-import { InputLabel, MenuItem, FormControl, Select, Box } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 
 interface ModelTableProps {
@@ -48,18 +47,18 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
-  const [namespaceFilter, setNamespaceFilter] = useState<string>('')
-  const [nameFilter, setNameFilter] = useState<string>('')
-  const [objectType, setObjectType] = useState<string>('')
-  const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
-    status: ['RELEASED', 'DRAFT', 'DEPRECATED'],
+    status: [DefaultStatus],
   })
   const rowCount = 10
   const filter = [
     {
       name: 'status',
       values: [
+        {
+          value: DefaultStatus,
+          label: 'All',
+        },
         {
           value: 'RELEASED',
           label: 'Released',
@@ -75,12 +74,17 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       ],
     },
   ]
-  const searchTypes = Object.entries(SearchType)
 
   useEffect(() => {
-    dispatch(
-      fetchSemanticModels({ filter: { page: pageNumber, pageSize: rowCount } })
-    )
+    const filter = {
+      page: pageNumber,
+      pageSize: rowCount,
+      ...(selectedFilter.status[0] !== DefaultStatus && {
+        status: selectedFilter.status[0],
+      }),
+    }
+    dispatch(fetchSemanticModels({ filter }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, pageNumber])
 
   useEffect(() => {
@@ -107,46 +111,29 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelList])
 
-  const filterHasValues = () =>
-    `${namespaceFilter}${nameFilter}${objectType}`.length > 0
-
-  const onFilterReset = (skipReset?: boolean) => {
-    if (!skipReset) {
-      setNamespaceFilter('')
-      setNameFilter('')
-      setObjectType('')
-      setOpenFilter(false)
-    }
+  const onFilterReset = () => {
     dispatch(
       fetchSemanticModels({ filter: { page: pageNumber, pageSize: rowCount } })
     )
   }
 
-  const onEnterInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && onSearch) {
-      onSearch()
+  const onSearch = (value: string) => {
+    setModels([])
+    const filter: FilterParams = {
+      page: 0,
+      pageSize: rowCount,
+      namespaceFilter: value,
+      ...(selectedFilter.status[0] !== DefaultStatus && {
+        status: selectedFilter.status[0],
+      }),
     }
+    dispatch(fetchSemanticModels({ filter }))
   }
-
-  const onSearch = () => {
-    const searchFilter: FilterParams = { page: 0, pageSize: rowCount }
-    if (namespaceFilter.length > 0) {
-      searchFilter.namespaceFilter = namespaceFilter
-    }
-    if (nameFilter.length > 0) {
-      searchFilter.nameFilter = nameFilter
-    }
-    if (objectType.length > 0) {
-      searchFilter.nameType = encodeURIComponent(objectType)
-    }
-    dispatch(fetchSemanticModels({ filter: searchFilter }))
-  }
-
-  const onOpenFilter = (value: boolean) => setOpenFilter(value)
 
   const onFilter = (selectedFilter: any) => {
+    setModels([])
     setSelectedFilter(selectedFilter)
-    if (selectedFilter.status && selectedFilter.status.length === 1) {
+    if (selectedFilter.status[0] !== DefaultStatus) {
       dispatch(
         fetchSemanticModels({
           filter: {
@@ -157,81 +144,15 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         })
       )
     } else {
-      onFilterReset(true)
+      onFilterReset()
     }
   }
   const columns = SemanticModelTableColumns(t, onModelSelect)
 
   return (
     <section>
-      <Box
-        display="flex"
-        alignItems="flex-end"
-        justifyContent="flex-end"
-        sx={{
-          mb: 2,
-          width: '100%',
-        }}
-      >
-        <Input
-          value={namespaceFilter}
-          onChange={(e) => setNamespaceFilter(e.target.value)}
-          onKeyDown={onEnterInput}
-          label={t('content.semantichub.table.filter.namespaceLabel')}
-          placeholder={t(
-            'content.semantichub.table.filter.namespacePlaceholder'
-          )}
-          variant="filled"
-          sx={{ minWidth: '320px' }}
-        />
-        <Box sx={{ ml: 1 }}>
-          <Input
-            value={nameFilter}
-            onChange={(e) => setNameFilter(e.target.value)}
-            onKeyDown={onEnterInput}
-            label={t('content.semantichub.table.filter.objNameLabel')}
-            placeholder={t(
-              'content.semantichub.table.filter.objNamePlaceholder'
-            )}
-            variant="filled"
-            sx={{ minWidth: '320px' }}
-          />
-        </Box>
-        <FormControl variant="outlined" sx={{ ml: 1 }}>
-          <InputLabel id="table-select-label">
-            {t('content.semantichub.table.filter.selectLabel')}
-          </InputLabel>
-          <Select
-            labelId="table-select-label"
-            id="table-select"
-            value={objectType}
-            label={t('content.semantichub.table.filter.selectLabel')}
-            onChange={(e) => setObjectType(e.target.value)}
-            variant="filled"
-            sx={{ minWidth: '200px' }}
-          >
-            {searchTypes.map((item) => (
-              <MenuItem key={item[0]} value={item[0]}>
-                {item[1]}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        {filterHasValues() && (
-          <Button
-            onClick={() => {
-              onFilterReset()
-            }}
-            sx={{ ml: 1 }}
-          >
-            {t('content.semantichub.table.filter.resetButton')}
-          </Button>
-        )}
-        <Button onClick={onSearch} sx={{ ml: 1 }}>
-          {t('content.semantichub.table.filter.button')}
-        </Button>
-      </Box>
       <Table
+        sx={{ '.MuiTextField-root': { marginLeft: '-30px' } }}
         rowsCount={modelList.totalItems}
         hideFooter
         loading={loadingModelList}
@@ -240,18 +161,22 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         disableColumnMenu={true}
         disableColumnSelector={true}
         disableDensitySelector={true}
+        columnHeadersBackgroundColor={'#ffffff'}
         title={t('content.semantichub.table.title')}
-        toolbarVariant="premium"
+        searchPlaceholder={t(
+          'content.semantichub.table.searchfielddefaulttext'
+        )}
+        toolbarVariant="ultimate"
         toolbar={{
+          onSearch: onSearch,
           onFilter: onFilter,
           filter: filter,
-          openFilterSection: openFilter,
-          onOpenFilterSection: onOpenFilter,
           selectedFilter: selectedFilter,
         }}
         columns={columns}
         rows={models}
         getRowId={(row) => uniqueId(row.urn)}
+        hasBorder={false}
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== modelList.currentPage + 1 && (
