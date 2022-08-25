@@ -78,7 +78,6 @@ export default function UserDetail() {
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
         >
           <Box>
-            {/* TODO: Cannot use 'lable3' here due to error tracked in CPLP-1016 */}
             <Typography
               variant="h6"
               display="block"
