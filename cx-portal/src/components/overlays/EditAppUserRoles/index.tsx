@@ -9,7 +9,7 @@ import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { show } from 'features/control/overlay/actions'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -24,17 +24,37 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const appDetails = useFetchAppDetailsQuery(appId ?? '').data
   const appRoles = useFetchAppRolesQuery(appId ?? '').data
   const { data } = useFetchUserDetailsQuery(id)
-  const assignedRoles = data && data.assignedRoles[0].roles
+  const assignedRoles = data && data.assignedRoles.filter(assignedRole => assignedRole.appId === appId)[0].roles
 
-  const selectRole = (roleId: string, select: boolean) => {
-    const isSelected = roles.includes(roleId)
+  useEffect(()=> {
+    setRoles(assignedRoles!)
+  }, [assignedRoles])
+
+  useEffect(()=> {
+    console.log('assignedRoles', assignedRoles)
+    console.log('roles', roles)
+  }, [roles])
+
+  const selectRole = (role: string, select: boolean) => {
+    const isSelected = roles.includes(role)
+    console.log('isSelected', isSelected)
+    console.log('role', role)
+    console.log('select', select)
     if (!isSelected && select) {
-      dispatch(setRoles([...roles, roleId]))
+      setRoles([...roles, role])
     } else if (isSelected && !select) {
       const oldRoles = [...roles]
-      oldRoles.splice(oldRoles.indexOf(roleId), 1)
-      dispatch(setRoles([...oldRoles]))
+      oldRoles.splice(oldRoles.indexOf(role), 1)
+      setRoles([...oldRoles])
     }
+  }
+
+  const saveRoles = () => {
+    console.log('^^^^^')
+  }
+
+  const checkConfirmBtn = () => {
+    return assignedRoles && roles && assignedRoles.length === roles.length && assignedRoles.every(function(value, index) { return value === roles[index]})
   }
 
   return (
@@ -56,13 +76,13 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       <DialogContent>
         <div className="roles-list">
           <ul>
-            {appRoles &&
+            {appRoles && roles && 
               appRoles.map((role) => (
                 <li key={role.roleId}>
                   <Checkbox
                     label={role.role}
-                    checked={assignedRoles?.indexOf(role.role) !== -1}
-                    onChange={(e) => selectRole(role.roleId, e.target.checked)}
+                    checked={roles.indexOf(role.role) !== -1}
+                    onChange={(e) => selectRole(role.role, e.target.checked)}
                   />
                 </li>
               ))}
@@ -77,7 +97,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={() => console.log('confirm')}>
+        <Button variant="contained" onClick={saveRoles} disabled={checkConfirmBtn()}>
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>
