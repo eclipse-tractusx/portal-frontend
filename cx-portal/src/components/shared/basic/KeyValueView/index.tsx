@@ -4,7 +4,7 @@ import { isValidElement, useState } from 'react'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 interface ValueItem {
-  key?: string
+  key?: string | number | JSX.Element
   value: string | number | JSX.Element
   copy?: boolean
 }

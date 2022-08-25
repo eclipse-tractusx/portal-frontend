@@ -79,15 +79,19 @@ export default function TechnicalUserDetailsContent({
               copy: true,
             },
             {
-              key: t('global.field.clientId'),
+              key: `${t('global.field.clientId')}`,
               value: data.clientId,
               copy: true,
             },
             {
-              key: t('global.field.authType'),
+              key: `${t('global.field.authType')}`,
               value: data.authenticationType,
             },
-            { key: t('global.field.secret'), value: data.secret, copy: true },
+            {
+              key: `${t('global.field.secret')}`,
+              value: data.secret,
+              copy: true,
+            },
           ]}
         />
 
