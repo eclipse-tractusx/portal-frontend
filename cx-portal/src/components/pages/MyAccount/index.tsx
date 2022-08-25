@@ -23,7 +23,6 @@ import {
   Button,
   UserAvatar,
   Typography,
-  Chip,
   PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
@@ -34,61 +33,18 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
-import uniqueId from 'lodash/uniqueId'
-import { userDetailsToCards } from 'features/admin/userOwn/mapper'
-import { UserDetails } from 'components/shared/basic/UserDetails'
-import {
-  useFetchOwnUserDetailsQuery,
-  UserAppRoles,
-} from 'features/admin/userApiSlice'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
-import { useNavigate } from 'react-router-dom'
-
-const RenderAppName = ({ id }: { id: string }) => {
-  const navigate = useNavigate()
-  const { data } = useFetchAppDetailsQuery(id)
-  return (
-    <span
-      style={{ lineHeight: 2.2, cursor: 'pointer' }}
-      onClick={() => navigate(`/appdetail/${id}`)}
-    >
-      {data ? data.title : id}
-      <span style={{ marginLeft: '20px', color: '#cccccc' }}>
-        {data && data.provider}
-      </span>
-    </span>
-  )
-}
+import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
+import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
-  const appRoles = data
-    ? data.assignedRoles.filter((app) => app.roles.length > 0)
-    : []
 
   const handleDeleteUser = () => {
     console.log('Delete user method')
   }
-
-  const renderChips = (row: UserAppRoles) => (
-    <>
-      {row.roles.map((i: string) => (
-        <Chip
-          key={uniqueId(i)}
-          color="secondary"
-          label={i}
-          type="plain"
-          variant="filled"
-          withIcon={false}
-          sx={{ marginRight: '10px' }}
-        />
-      ))}
-    </>
-  )
 
   return (
     <main className="my-account">
@@ -128,25 +84,7 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        {data && (
-          <>
-            <UserDetails
-              userDetailsCards={userDetailsToCards(data)}
-              columns={3}
-            />
-
-            <div style={{ marginTop: '80px' }}></div>
-
-            <KeyValueView
-              cols={3}
-              title={t('content.account.appPermissionTable.title')}
-              items={appRoles.map((app) => ({
-                key: <RenderAppName id={app.appId} />,
-                value: renderChips(app),
-              }))}
-            />
-          </>
-        )}
+        {data && <UserDetailInfo user={data} />}
       </section>
 
       {/* TODO: DEV only needs to be removed when going PROD */}
