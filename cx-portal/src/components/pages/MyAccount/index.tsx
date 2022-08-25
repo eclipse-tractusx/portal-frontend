@@ -43,10 +43,22 @@ import {
 } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
+import { useNavigate } from 'react-router-dom'
 
 const RenderAppName = ({ id }: { id: string }) => {
+  const navigate = useNavigate()
   const { data } = useFetchAppDetailsQuery(id)
-  return <>{data ? data.title : id}</>
+  return (
+    <span
+      style={{ lineHeight: 2.2, cursor: 'pointer' }}
+      onClick={() => navigate(`/appdetail/${id}`)}
+    >
+      {data ? data.title : id}
+      <span style={{ marginLeft: '20px', color: '#cccccc' }}>
+        {data && data.provider}
+      </span>
+    </span>
+  )
 }
 
 export default function MyAccount() {
