@@ -35,8 +35,6 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
-  useCasesItem,
-  appLanguagesItem,
   useAddCreateAppMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
@@ -58,6 +56,68 @@ type FormDataType = {
   }
   providerCompanyId: string
 }
+
+const ConnectorFormInputField = ({
+  control,
+  trigger,
+  errors,
+  label,
+  placeholder,
+  name,
+  rules,
+  type,
+  textarea,
+  items,
+  keyTitle,
+  saveKeyTitle,
+  notItemsText,
+  buttonAddMore,
+  filterOptionsArgs,
+}: any) => (
+  <Controller
+    name={name}
+    control={control}
+    rules={rules}
+    render={({ field: { onChange, value } }) => {
+      return type === 'input' ? (
+        <Input
+          label={label}
+          placeholder={placeholder}
+          error={!!errors[name]}
+          helperText={errors && errors[name] && errors[name].message}
+          value={value}
+          onChange={(event) => {
+            trigger(name)
+            onChange(event)
+          }}
+          multiline={textarea && true}
+          minRows={textarea && 3}
+          maxRows={textarea && 3}
+          sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
+        />
+      ) : (
+        <MultiSelectList
+          label={label}
+          placeholder={placeholder}
+          error={!!errors[name]}
+          helperText={errors && errors[name] && errors[name].message}
+          value={value}
+          items={items}
+          keyTitle={keyTitle}
+          onAddItem={(items: any[]) => {
+            trigger(name)
+            onChange(items?.map((item) => item[saveKeyTitle]))
+          }}
+          notItemsText={notItemsText}
+          buttonAddMore={buttonAddMore}
+          tagSize="small"
+          margin="none"
+          filterOptionsArgs={filterOptionsArgs}
+        />
+      )
+    }}
+  />
+)
 
 export default function AppMarketCard() {
   const { t } = useTranslation()
@@ -222,173 +282,149 @@ export default function AppMarketCard() {
         >
           <form>
             <div className="form-field">
-              <Controller
-                name={'title'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.appTitle'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
-                  },
-                  minLength: {
-                    value: 5,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.minimum'
-                    )} 5 ${t(
-                      'content.apprelease.appMarketCard.charactersRequired'
-                    )}`,
-                  },
-                  pattern: {
-                    value: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Za-z0-9.:_- @&`,
-                  },
-                  maxLength: {
-                    value: 40,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.maximum'
-                    )} 40 ${t(
-                      'content.apprelease.appMarketCard.charactersAllowed'
-                    )}`,
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'title',
+                  label: t('content.apprelease.appMarketCard.appTitle') + '*',
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.appTitlePlaceholder'
+                  ),
+                  type: 'input',
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.appTitle'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    minLength: {
+                      value: 5,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.minimum'
+                      )} 5 ${t(
+                        'content.apprelease.appMarketCard.charactersRequired'
+                      )}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Za-z0-9.:_- @&`,
+                    },
+                    maxLength: {
+                      value: 40,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.maximum'
+                      )} 40 ${t(
+                        'content.apprelease.appMarketCard.charactersAllowed'
+                      )}`,
+                    },
                   },
                 }}
-                render={({ field: { onChange, value } }) => (
-                  <Input
-                    error={!!errors['title']}
-                    helperText={errors?.title?.message}
-                    label={t('content.apprelease.appMarketCard.appTitle') + '*'}
-                    placeholder={t(
-                      'content.apprelease.appMarketCard.appTitlePlaceholder'
-                    )}
-                    onChange={(event) => {
-                      trigger('title')
-                      onChange(event)
-                    }}
-                    value={value}
-                  />
-                )}
+              />
+            </div>
+            <div className="form-field">
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'provider',
+                  label:
+                    t('content.apprelease.appMarketCard.appProvider') + '*',
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.appProviderPlaceholder'
+                  ),
+                  type: 'input',
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.appProvider'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    minLength: {
+                      value: 3,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.minimum'
+                      )} 3 ${t(
+                        'content.apprelease.appMarketCard.charactersRequired'
+                      )}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z ]){3,30}$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Z a-z`,
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.maximum'
+                      )} 30 ${t(
+                        'content.apprelease.appMarketCard.charactersAllowed'
+                      )}`,
+                    },
+                  },
+                }}
               />
             </div>
 
             <div className="form-field">
-              <Controller
-                name={'provider'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.appProvider'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'shortDescriptionEN',
+                  label: (
+                    <>
+                      {t(
+                        'content.apprelease.appMarketCard.shortDescriptionEN'
+                      ) + '*'}
+                      <IconButton sx={{ color: '#939393' }} size="small">
+                        <HelpOutlineIcon />
+                      </IconButton>
+                    </>
+                  ),
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.shortDescriptionEN'
+                  ),
+                  type: 'input',
+                  textarea: true,
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.shortDescriptionEN'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    minLength: {
+                      value: 10,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.minimum'
+                      )} 10 ${t(
+                        'content.apprelease.appMarketCard.charactersRequired'
+                      )}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z.:@0-9& ]){10,255}$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Za-z0-9.: @&`,
+                    },
+                    maxLength: {
+                      value: 255,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.maximum'
+                      )} 255 ${t(
+                        'content.apprelease.appMarketCard.charactersAllowed'
+                      )}`,
+                    },
                   },
-                  minLength: {
-                    value: 3,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.minimum'
-                    )} 3 ${t(
-                      'content.apprelease.appMarketCard.charactersRequired'
-                    )}`,
-                  },
-                  pattern: {
-                    value: /^([A-Za-z ]){3,30}$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Z a-z`,
-                  },
-                  maxLength: {
-                    value: 30,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.maximum'
-                    )} 30 ${t(
-                      'content.apprelease.appMarketCard.charactersAllowed'
-                    )}`,
-                  },
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <Input
-                    error={!!errors['provider']}
-                    helperText={errors?.provider?.message}
-                    label={
-                      t('content.apprelease.appMarketCard.appProvider') + '*'
-                    }
-                    placeholder={t(
-                      'content.apprelease.appMarketCard.appProviderPlaceholder'
-                    )}
-                    onChange={(event) => {
-                      trigger('provider')
-                      onChange(event)
-                    }}
-                    value={value}
-                  />
-                )}
-              />
-            </div>
-
-            <div className="form-field">
-              <Controller
-                name={'shortDescriptionEN'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.shortDescriptionEN'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
-                  },
-                  minLength: {
-                    value: 10,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.minimum'
-                    )} 10 ${t(
-                      'content.apprelease.appMarketCard.charactersRequired'
-                    )}`,
-                  },
-                  pattern: {
-                    value: /^([A-Za-z.:@0-9& ]){10,255}$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Za-z0-9.: @&`,
-                  },
-                  maxLength: {
-                    value: 255,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.maximum'
-                    )} 255 ${t(
-                      'content.apprelease.appMarketCard.charactersAllowed'
-                    )}`,
-                  },
-                }}
-                render={({ field: { onChange, value } }) => {
-                  return (
-                    <Input
-                      error={!!errors['shortDescriptionEN']}
-                      helperText={errors?.shortDescriptionEN?.message}
-                      label={
-                        <>
-                          {t(
-                            'content.apprelease.appMarketCard.shortDescriptionEN'
-                          )}
-                          <IconButton sx={{ color: '#939393' }} size="small">
-                            {' '}
-                            <HelpOutlineIcon />{' '}
-                          </IconButton>
-                        </>
-                      }
-                      placeholder={'Short Description - EN'}
-                      onChange={(event) => {
-                        trigger('shortDescriptionEN')
-                        onChange(event)
-                      }}
-                      value={value}
-                      multiline
-                      minRows={3}
-                      maxRows={3}
-                      sx={{ '.MuiFilledInput-root': { padding: 0 } }}
-                    />
-                  )
                 }}
               />
               <Typography variant="body2" className="form-field" align="right">
@@ -397,66 +433,58 @@ export default function AppMarketCard() {
             </div>
 
             <div className="form-field">
-              <Controller
-                name={'shortDescriptionDE'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.shortDescriptionDE'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
-                  },
-                  minLength: {
-                    value: 10,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.minimum'
-                    )} 10 ${t(
-                      'content.apprelease.appMarketCard.charactersRequired'
-                    )}`,
-                  },
-                  pattern: {
-                    value: /^([A-Za-z.:@0-9& ]){10,255}$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Za-z0-9.: @&`,
-                  },
-                  maxLength: {
-                    value: 255,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.maximum'
-                    )} 255 ${t(
-                      'content.apprelease.appMarketCard.charactersAllowed'
-                    )}`,
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'shortDescriptionDE',
+                  label: (
+                    <>
+                      {t(
+                        'content.apprelease.appMarketCard.shortDescriptionDE'
+                      ) + '*'}
+                      <IconButton sx={{ color: '#939393' }} size="small">
+                        <HelpOutlineIcon />
+                      </IconButton>
+                    </>
+                  ),
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.shortDescriptionDE'
+                  ),
+                  type: 'input',
+                  textarea: true,
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.shortDescriptionDE'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    minLength: {
+                      value: 10,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.minimum'
+                      )} 10 ${t(
+                        'content.apprelease.appMarketCard.charactersRequired'
+                      )}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z.:@0-9& ]){10,255}$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Za-z0-9.: @&`,
+                    },
+                    maxLength: {
+                      value: 255,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.maximum'
+                      )} 255 ${t(
+                        'content.apprelease.appMarketCard.charactersAllowed'
+                      )}`,
+                    },
                   },
                 }}
-                render={({ field: { onChange, value } }) => (
-                  <Input
-                    error={!!errors['shortDescriptionDE']}
-                    helperText={errors?.shortDescriptionDE?.message}
-                    label={
-                      <>
-                        {t(
-                          'content.apprelease.appMarketCard.shortDescriptionDE'
-                        )}
-                        <IconButton sx={{ color: '#939393' }} size="small">
-                          {' '}
-                          <HelpOutlineIcon />{' '}
-                        </IconButton>
-                      </>
-                    }
-                    placeholder={'Short Description - EN'}
-                    onChange={(event) => {
-                      trigger('shortDescriptionDE')
-                      onChange(event)
-                    }}
-                    value={value}
-                    multiline
-                    minRows={3}
-                    maxRows={3}
-                    sx={{ '.MuiFilledInput-root': { padding: 0 } }}
-                  />
-                )}
               />
               <Typography variant="body2" className="form-field" align="right">
                 {`${getValues().shortDescriptionDE.length}/255`}
@@ -464,166 +492,131 @@ export default function AppMarketCard() {
             </div>
 
             <div className="form-field">
-              <Controller
-                name={'useCaseCategory'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.useCaseCategory'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'useCaseCategory',
+                  label:
+                    t('content.apprelease.appMarketCard.useCaseCategory') + '*',
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
+                  ),
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.useCaseCategory'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z])$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Za-z`,
+                    },
                   },
-                  pattern: {
-                    value: /^([A-Za-z])$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Za-z`,
-                  },
+                  items: useCasesList,
+                  keyTitle: 'name',
+                  saveKeyTitle: 'useCaseId',
+                  notItemsText: t(
+                    'content.apprelease.appMarketCard.noItemsSelected'
+                  ),
+                  buttonAddMore: t('content.apprelease.appMarketCard.addMore'),
                 }}
-                render={({ field: { onChange, value } }) => (
-                  <MultiSelectList
-                    label={
-                      t('content.apprelease.appMarketCard.useCaseCategory') +
-                      '*'
-                    }
-                    placeholder={t(
-                      'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
-                    )}
-                    error={!!errors['useCaseCategory']}
-                    helperText={`${t(
-                      'content.apprelease.appMarketCard.useCaseCategory'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`}
-                    value={value}
-                    items={useCasesList}
-                    keyTitle="name"
-                    buttonAddMore={t(
-                      'content.apprelease.appMarketCard.addMore'
-                    )}
-                    notItemsText={t(
-                      'content.apprelease.appMarketCard.noItemsSelected'
-                    )}
-                    onAddItem={(items: useCasesItem[]) => {
-                      trigger('useCaseCategory')
-                      onChange(items.map((item) => item.useCaseId))
-                    }}
-                    tagSize="small"
-                    margin="none"
-                  />
-                )}
               />
             </div>
 
             <div className="form-field">
-              <Controller
-                name={'appLanguage'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.appLanguage'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'appLanguage',
+                  label:
+                    t('content.apprelease.appMarketCard.appLanguage') + '*',
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.appLanguagePlaceholder'
+                  ),
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.appLanguage'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z ])$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Z a-z`,
+                    },
                   },
-                  pattern: {
-                    value: /^([A-Za-z ])$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Z a-z`,
+                  items: appLanguagesList,
+                  keyTitle: 'languageShortName',
+                  saveKeyTitle: 'languageShortName',
+                  notItemsText: t(
+                    'content.apprelease.appMarketCard.noItemsSelected'
+                  ),
+                  buttonAddMore: t('content.apprelease.appMarketCard.addMore'),
+                  filterOptionsArgs: {
+                    matchFrom: 'any',
+                    stringify: (option: any) =>
+                      option.languageShortName +
+                      option.languageLongNames.de +
+                      option.languageLongNames.en,
                   },
                 }}
-                render={({ field: { onChange, value } }) => (
-                  <MultiSelectList
-                    label={
-                      t('content.apprelease.appMarketCard.appLanguage') + '*'
-                    }
-                    placeholder={t(
-                      'content.apprelease.appMarketCard.appLanguagePlaceholder'
-                    )}
-                    items={appLanguagesList}
-                    onAddItem={(items: appLanguagesItem[]) => {
-                      trigger('appLanguage')
-                      onChange(items)
-                      onChange(items.map((item) => item.languageShortName))
-                    }}
-                    keyTitle="languageShortName"
-                    buttonAddMore={t(
-                      'content.apprelease.appMarketCard.addMore'
-                    )}
-                    notItemsText={t(
-                      'content.apprelease.appMarketCard.noItemsSelected'
-                    )}
-                    tagSize="small"
-                    margin="none"
-                    filterOptionsArgs={{
-                      matchFrom: 'any',
-                      stringify: (option: any) =>
-                        option.languageShortName +
-                        option.languageLongNames.de +
-                        option.languageLongNames.en,
-                    }}
-                    error={!!errors['appLanguage']}
-                    helperText={`${t(
-                      'content.apprelease.appMarketCard.appLanguage'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`}
-                    value={value}
-                  />
-                )}
               />
             </div>
 
             <div className="form-field">
-              <Controller
-                name={'price'}
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.shortDescriptionEN'
-                    )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
-                  },
-                  minLength: {
-                    value: 1,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.minimum'
-                    )} 1 ${t(
-                      'content.apprelease.appMarketCard.charactersRequired'
-                    )}`,
-                  },
-                  pattern: {
-                    value: /^([A-Za-z0-9/€ ]){1,15}$/,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.validCharactersIncludes'
-                    )} A-Za-z0-9/ €`,
-                  },
-                  maxLength: {
-                    value: 15,
-                    message: `${t(
-                      'content.apprelease.appMarketCard.maximum'
-                    )} 15 ${t(
-                      'content.apprelease.appMarketCard.charactersAllowed'
-                    )}`,
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'price',
+                  label:
+                    t('content.apprelease.appMarketCard.pricingInformation') +
+                    '*',
+                  placeholder: t(
+                    'content.apprelease.appMarketCard.pricingInformationPlaceholder'
+                  ),
+                  type: 'input',
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.pricingInformation'
+                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                    },
+                    minLength: {
+                      value: 1,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.minimum'
+                      )} 1 ${t(
+                        'content.apprelease.appMarketCard.charactersRequired'
+                      )}`,
+                    },
+                    pattern: {
+                      value: /^([A-Za-z0-9/€ ]){1,15}$/,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                      )} A-Za-z0-9/ €`,
+                    },
+                    maxLength: {
+                      value: 15,
+                      message: `${t(
+                        'content.apprelease.appMarketCard.maximum'
+                      )} 15 ${t(
+                        'content.apprelease.appMarketCard.charactersAllowed'
+                      )}`,
+                    },
                   },
                 }}
-                render={({ field: { onChange, value } }) => (
-                  <Input
-                    error={!!errors['price']}
-                    helperText={errors?.price?.message}
-                    label={
-                      t('content.apprelease.appMarketCard.pricingInformation') +
-                      '*'
-                    }
-                    placeholder={t(
-                      'content.apprelease.appMarketCard.pricingInformationPlaceholder'
-                    )}
-                    onChange={(event) => {
-                      trigger('price')
-                      onChange(event)
-                    }}
-                    value={value}
-                  />
-                )}
               />
             </div>
 
