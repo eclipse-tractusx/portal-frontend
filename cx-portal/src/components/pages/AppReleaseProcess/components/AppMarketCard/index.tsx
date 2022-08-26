@@ -90,7 +90,7 @@ const ConnectorFormInputField = ({
             trigger(name)
             onChange(event)
           }}
-          multiline={textarea && true}
+          multiline={textarea}
           minRows={textarea && 3}
           maxRows={textarea && 3}
           sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
@@ -374,121 +374,75 @@ export default function AppMarketCard() {
             </div>
 
             <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'shortDescriptionEN',
-                  label: (
-                    <>
-                      {t(
-                        'content.apprelease.appMarketCard.shortDescriptionEN'
-                      ) + '*'}
-                      <IconButton sx={{ color: '#939393' }} size="small">
-                        <HelpOutlineIcon />
-                      </IconButton>
-                    </>
-                  ),
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.shortDescriptionEN'
-                  ),
-                  type: 'input',
-                  textarea: true,
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.shortDescriptionEN'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
-                    },
-                    minLength: {
-                      value: 10,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.minimum'
-                      )} 10 ${t(
-                        'content.apprelease.appMarketCard.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: /^([A-Za-z.:@0-9& ]){10,255}$/,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
-                      )} A-Za-z0-9.: @&`,
-                    },
-                    maxLength: {
-                      value: 255,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.maximum'
-                      )} 255 ${t(
-                        'content.apprelease.appMarketCard.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-              <Typography variant="body2" className="form-field" align="right">
-                {`${getValues().shortDescriptionEN.length}/255`}
-              </Typography>
-            </div>
-
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'shortDescriptionDE',
-                  label: (
-                    <>
-                      {t(
-                        'content.apprelease.appMarketCard.shortDescriptionDE'
-                      ) + '*'}
-                      <IconButton sx={{ color: '#939393' }} size="small">
-                        <HelpOutlineIcon />
-                      </IconButton>
-                    </>
-                  ),
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.shortDescriptionDE'
-                  ),
-                  type: 'input',
-                  textarea: true,
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.shortDescriptionDE'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
-                    },
-                    minLength: {
-                      value: 10,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.minimum'
-                      )} 10 ${t(
-                        'content.apprelease.appMarketCard.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: /^([A-Za-z.:@0-9& ]){10,255}$/,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
-                      )} A-Za-z0-9.: @&`,
-                    },
-                    maxLength: {
-                      value: 255,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.maximum'
-                      )} 255 ${t(
-                        'content.apprelease.appMarketCard.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-              <Typography variant="body2" className="form-field" align="right">
-                {`${getValues().shortDescriptionDE.length}/255`}
-              </Typography>
+              {['shortDescriptionEN', 'shortDescriptionDE'].map(
+                (item: string) => (
+                  <>
+                    <ConnectorFormInputField
+                      {...{
+                        control,
+                        trigger,
+                        errors,
+                        name: item,
+                        label: (
+                          <>
+                            {t(`content.apprelease.appMarketCard.${item}`) +
+                              '*'}
+                            <IconButton sx={{ color: '#939393' }} size="small">
+                              <HelpOutlineIcon />
+                            </IconButton>
+                          </>
+                        ),
+                        placeholder: t(
+                          `content.apprelease.appMarketCard.${item}`
+                        ),
+                        type: 'input',
+                        textarea: true,
+                        rules: {
+                          required: {
+                            value: true,
+                            message: `${t(
+                              `content.apprelease.appMarketCard.${item}`
+                            )} ${t(
+                              'content.apprelease.appMarketCard.isMandatory'
+                            )}`,
+                          },
+                          minLength: {
+                            value: 10,
+                            message: `${t(
+                              'content.apprelease.appMarketCard.minimum'
+                            )} 10 ${t(
+                              'content.apprelease.appMarketCard.charactersRequired'
+                            )}`,
+                          },
+                          pattern: {
+                            value: /^([A-Za-z.:@0-9& ]){10,255}$/,
+                            message: `${t(
+                              'content.apprelease.appMarketCard.validCharactersIncludes'
+                            )} A-Za-z0-9.: @&`,
+                          },
+                          maxLength: {
+                            value: 255,
+                            message: `${t(
+                              'content.apprelease.appMarketCard.maximum'
+                            )} 255 ${t(
+                              'content.apprelease.appMarketCard.charactersAllowed'
+                            )}`,
+                          },
+                        },
+                      }}
+                    />
+                    <Typography
+                      variant="body2"
+                      className="form-field"
+                      align="right"
+                    >
+                      {item === 'shortDescriptionEN'
+                        ? getValues().shortDescriptionEN.length
+                        : getValues().shortDescriptionDE.length + `/255`}
+                    </Typography>
+                  </>
+                )
+              )}
             </div>
 
             <div className="form-field">
