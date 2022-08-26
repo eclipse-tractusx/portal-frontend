@@ -19,19 +19,41 @@
  ********************************************************************************/
 
 import dayjs from 'dayjs'
-import { fetchAny } from 'features/admin/userOwn/actions'
-import { UserdetailSelector } from 'features/admin/userOwn/slice'
-import { fetch } from 'features/apps/details/actions'
-import { itemSelector } from 'features/apps/details/slice'
-import { show } from 'features/control/overlay/actions'
+import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
+import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
+import { useSetNotificationReadMutation } from 'features/notification/apiSlice'
 import { CXNotification, NotificationType } from 'features/notification/types'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
-import { OVERLAYS } from 'types/Constants'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
+
+dayjs.extend(relativeTime)
+
+const NameLink = ({
+  fetchHook,
+  id,
+  path,
+  renderName,
+}: {
+  fetchHook: any
+  id?: string
+  path: string
+  renderName: (item: any) => string
+}) => {
+  const { data } = fetchHook(id)
+  return <NavLink to={`/${path}/${id}`}>{data ? renderName(data) : id}</NavLink>
+}
+
+const getDueState = (dueDate?: dayjs.Dayjs) => {
+  if (!dueDate) return ''
+  const today = dayjs()
+  if (dueDate.isBefore(today)) return 'over'
+  if (dueDate.isBefore(today.add(8, 'days'))) return 'soon'
+  return 'okay'
+}
 
 const NotificationContent = ({
   item,
@@ -40,53 +62,58 @@ const NotificationContent = ({
   item: CXNotification
   navlinks?: string[]
 }) => {
-  const tn = useTranslation('notification', {
-    keyPrefix: item.notificationTypeId,
-  }).t
   const { t } = useTranslation('notification')
-  const userData = useSelector(UserdetailSelector)
-  const appData = useSelector(itemSelector)
-  const dispatch = useDispatch()
   const message = item.contentParsed?.message
-  const app = item.contentParsed?.appId
-  const user = item.creatorId
+  const userId = item.contentParsed?.userId
+  const appId = item.contentParsed?.appId
   const you = UserService.getName()
-
-  useEffect(() => {
-    if (user) {
-      dispatch(fetchAny(user))
-    }
-    if (app) {
-      dispatch(fetch(app))
-    }
-  }, [app, user, dispatch])
+  const dueDate = dayjs(item.dueDate)
+  const dueState = getDueState(dueDate)
 
   return (
     <>
+      {dueDate && (
+        <div className={`due ${dueState}`} style={{ marginBottom: '8px' }}>
+          {t('due')} {dueDate.format('YYYY-MM-DD')} ({dueDate.fromNow()})
+        </div>
+      )}
       <div>
-        {tn('content', {
-          you,
-          user: appData ? `${userData.firstName} ${userData.lastName}` : user,
-          app: appData ? appData.title : app,
-        })}
+        <Trans
+          ns="notification"
+          i18nKey={`${item.typeId}.content`}
+          values={{ you }}
+        >
+          <NameLink
+            fetchHook={useFetchUserDetailsQuery}
+            id={userId}
+            path={'userdetails'}
+            renderName={(item: any) => `${item.firstName} ${item.lastName}`}
+          />
+          <NameLink
+            fetchHook={useFetchAppDetailsQuery}
+            id={appId}
+            path={'appdetail'}
+            renderName={(item: any) => item.title}
+          />
+        </Trans>
       </div>
       {message && <div className="message">{message}</div>}
-      {(app || user || navlinks) && (
+      {(appId || userId || navlinks) && (
         <div className="links">
           {navlinks?.map((nav) => (
             <NavLink key={nav} to={`/${nav}`}>
               {t(`link.${nav}`)}
             </NavLink>
           ))}
-          {app && (
-            <span onClick={() => dispatch(show(OVERLAYS.APP, app))}>
-              {t('link.app')}
-            </span>
+          {appId && (
+            <NavLink key={appId} to={`/appdetail/${appId}`}>
+              {t(`link.app`)}
+            </NavLink>
           )}
-          {user && (
-            <span onClick={() => dispatch(show(OVERLAYS.USER, user))}>
-              {t('link.user')}
-            </span>
+          {userId && (
+            <NavLink key={userId} to={`/userdetails/${userId}`}>
+              {t(`link.user`)}
+            </NavLink>
           )}
         </div>
       )}
@@ -95,26 +122,20 @@ const NotificationContent = ({
 }
 
 const NotificationConfig = ({ item }: { item: CXNotification }) => {
-  switch (item.notificationTypeId) {
-    case NotificationType.PersonalMessage:
-    case NotificationType.AppRequestSubmitted:
-    case NotificationType.AppRequestReceived:
-    case NotificationType.AppRequestApproved:
-    case NotificationType.AppRequestRejected:
-    case NotificationType.AppSubscriptionSubmitted:
-    case NotificationType.AppSubscriptionReceived:
-    case NotificationType.AppSubscriptionApproved:
-    case NotificationType.AppSubscriptionRejected:
+  switch (item.typeId) {
+    case NotificationType.APP_SUBSCRIPTION_REQUEST:
+    case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
       return <NotificationContent item={item} />
-    case NotificationType.WelcomeInvite:
-    case NotificationType.WelcomeUser:
+    case NotificationType.WELCOME:
       return <NotificationContent item={item} navlinks={['home']} />
-    case NotificationType.WelcomeAppMarketplace:
+    case NotificationType.WELCOME_APP_MARKETPLACE:
       return <NotificationContent item={item} navlinks={['appmarketplace']} />
-    case NotificationType.NoConnector:
+    case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
       return <NotificationContent item={item} navlinks={['technicalsetup']} />
-    case NotificationType.NoUseCase:
+    case NotificationType.WELCOME_USE_CASES:
       return <NotificationContent item={item} navlinks={['usecases']} />
+    case NotificationType.WELCOME_SERVICE_PROVIDER:
+      return <NotificationContent item={item} navlinks={['serviceprovider']} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -123,20 +144,34 @@ const NotificationConfig = ({ item }: { item: CXNotification }) => {
 export default function NotificationItem({ item }: { item: CXNotification }) {
   const { t } = useTranslation('notification')
   const [open, setOpen] = useState<boolean>(false)
-  const toggle = () => {
+  const [setNotificationRead] = useSetNotificationReadMutation()
+  const dueDate = dayjs(item.dueDate)
+  const dueState = getDueState(dueDate)
+
+  const setRead = async (id: string) => {
+    try {
+      await setNotificationRead(id)
+    } catch (error: unknown) {
+      console.log(error)
+    }
+  }
+
+  const toggle = async () => {
     const nextState = !open
-    if (nextState && !item.read) {
-      console.log('set notification to read', item.id)
+    if (nextState && !item.isRead) {
+      setRead(item.id)
     }
     setOpen(nextState)
   }
+
   return (
     <li>
       <div onClick={toggle} className="item">
         <div className="created">{dayjs(item.created).format('HH:mm')}</div>
-        <div className={`title ${item.read ? 'read' : 'unread'}`}>
-          {t(`${item.notificationTypeId}.title`)}
+        <div className={`title ${item.isRead ? 'read' : 'unread'}`}>
+          {t(`${item.typeId}.title`)}
         </div>
+        {item.dueDate && <div className={`due ${dueState}`}>!</div>}
       </div>
       {open && (
         <div className="content">
