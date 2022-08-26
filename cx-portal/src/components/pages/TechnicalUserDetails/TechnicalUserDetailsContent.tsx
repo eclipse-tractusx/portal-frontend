@@ -38,7 +38,37 @@ export default function TechnicalUserDetailsContent({
 }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  return data ? (
+
+  const displayData = [
+    {
+      key: 'ID',
+      value: data.serviceAccountId,
+      copy: true,
+    },
+    {
+      key: `${t('content.usermanagement.technicalUser.serviceaccount')} ${t(
+        'global.field.name'
+      )}`,
+      value: data.name,
+      copy: true,
+    },
+    {
+      key: t('global.field.clientId'),
+      value: data.clientId,
+      copy: true,
+    },
+    {
+      key: t('global.field.authType'),
+      value: data.authenticationType,
+    },
+    {
+      key: t('global.field.secret'),
+      value: data.secret,
+      copy: true,
+    },
+  ]
+
+  return (
     <section>
       <Button
         size="small"
@@ -65,30 +95,7 @@ export default function TechnicalUserDetailsContent({
           title={t(
             'content.usermanagement.technicalUser.detailsPage.userDetails'
           )}
-          items={[
-            {
-              key: 'ID',
-              value: data.serviceAccountId,
-              copy: true,
-            },
-            {
-              key: `${t(
-                'content.usermanagement.technicalUser.serviceaccount'
-              )} ${t('global.field.name')}`,
-              value: data.name,
-              copy: true,
-            },
-            {
-              key: t('global.field.clientId'),
-              value: data.clientId,
-              copy: true,
-            },
-            {
-              key: t('global.field.authType'),
-              value: data.authenticationType,
-            },
-            { key: t('global.field.secret'), value: data.secret, copy: true },
-          ]}
+          items={displayData}
         />
 
         <KeyValueView
@@ -108,5 +115,5 @@ export default function TechnicalUserDetailsContent({
         />
       </Box>
     </section>
-  ) : null
+  )
 }

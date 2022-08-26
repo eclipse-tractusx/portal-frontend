@@ -475,7 +475,7 @@
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
-        "title": "App User Permissions",
+        "title": "App Permissions",
         "appName": "App Name",
         "appProvider": "App Provider"
       }
