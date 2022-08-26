@@ -234,6 +234,14 @@
         "protocol_endpoint": "Aspekt Endpunkt:"
       }
     },
+    "organization": {
+      "company": {
+        "title": "Firmendetails"
+      },
+      "subscriptions": {
+        "title": "App-Abonnements"
+      }
+    },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
     },

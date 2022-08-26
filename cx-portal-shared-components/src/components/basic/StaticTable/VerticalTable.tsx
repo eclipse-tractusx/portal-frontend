@@ -21,17 +21,20 @@ export const VerticalTable = ({ data }: { data: TableType }) => (
     <tbody>
       {data.body.map((row, r) => (
         <tr key={r}>
-          {row.map((col, c) => (
-            <td
-              key={c}
-              style={{
-                padding: '10px 15px',
-                borderBottom: '1px solid #f1f1f1',
-              }}
-            >
-              {col}
-            </td>
-          ))}
+          {row.map((CustomComp, c) => {
+            const isStringTypeProp = typeof CustomComp === 'string'
+            return (
+              <td
+                key={c}
+                style={{
+                  padding: '10px 15px',
+                  borderBottom: '1px solid #f1f1f1',
+                }}
+              >
+                {isStringTypeProp ? CustomComp : <CustomComp />}
+              </td>
+            )
+          })}
         </tr>
       ))}
     </tbody>
