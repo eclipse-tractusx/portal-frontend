@@ -98,6 +98,9 @@ export const apiSlice = createApi({
     fetchUserDetails: builder.query<TenantUserDetails, string>({
       query: (id) => `/api/administration/user/owncompany/users/${id}`,
     }),
+    fetchOwnUserDetails: builder.query<TenantUserDetails, void>({
+      query: () => `/api/administration/user/ownUser`,
+    }),
   }),
 })
 
@@ -106,6 +109,7 @@ export const {
   useFetchUsersQuery,
   useFetchUsersSearchQuery,
   useFetchUserDetailsQuery,
+  useFetchOwnUserDetailsQuery,
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
 } = apiSlice
