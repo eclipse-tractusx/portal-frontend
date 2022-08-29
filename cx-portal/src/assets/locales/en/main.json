@@ -648,7 +648,8 @@
       "tomorrow": "tomorrow"
     },
     "table": {
-      "search": "Enter email to search"
+      "search": "Enter email to search",
+      "searchName": "Enter name to search"
     }
   },
   "servicemarketplace": {
