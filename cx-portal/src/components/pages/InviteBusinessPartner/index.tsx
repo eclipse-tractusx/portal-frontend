@@ -11,11 +11,8 @@ import {
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { fetchPage } from 'features/admin/registration/actions'
 import { InviteData } from 'features/admin/registration/types'
-import { itemsSelector } from 'features/admin/registration/slice'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
@@ -23,15 +20,10 @@ import { ActiveInviteTable } from './components/ActiveInviteTable'
 
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
   const [processing, setProcessing] = useState<string>('input')
-
-  useEffect(() => {
-    dispatch(fetchPage(pageNumber))
-  }, [dispatch, pageNumber])
 
   useEffect(() => {
     // close success overlay/dialog after 5 seconds
