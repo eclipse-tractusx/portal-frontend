@@ -24,12 +24,10 @@ import { ActiveInviteTable } from './components/ActiveInviteTable'
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const invitesData = useSelector(itemsSelector)
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
   const [processing, setProcessing] = useState<string>('input')
-  const [pageNumber, setPageNumber] = useState<number>(0)
 
   useEffect(() => {
     dispatch(fetchPage(pageNumber))
@@ -146,7 +144,7 @@ export default function InviteBusinessPartner() {
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
-      <Typography variant="h3" mb={3} align="center">
+        <Typography variant="h3" mb={3} align="center">
           {t('content.invite.subHeaderTitle')}
         </Typography>
         <Typography variant="body2" align="center">

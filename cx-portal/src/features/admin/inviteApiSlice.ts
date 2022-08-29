@@ -24,17 +24,17 @@ import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum CompanyInviteStatus {
-  PENDING = "PENDING",
-  CONFIRMED = "CONFIRMED"
+  PENDING = 'PENDING',
+  CONFIRMED = 'CONFIRMED',
 }
 
 export interface CompanyInvite {
-  applicationId: string,
-  applicationStatus: CompanyInviteStatus,
-  dateCreated: Date,
-  companyName: string,
-  email: string,
-  firstName: string,
+  applicationId: string
+  applicationStatus: CompanyInviteStatus
+  dateCreated: Date
+  companyName: string
+  email: string
+  firstName: string
   lastName: string
 }
 
@@ -42,13 +42,16 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/admin/invite',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchInviteSearch: builder.query<PaginResult<CompanyInvite>, PaginFetchArgs>({
+    fetchInviteSearch: builder.query<
+      PaginResult<CompanyInvite>,
+      PaginFetchArgs
+    >({
       query: (fetchArgs) =>
-      `api/administration/registration/applicationsWithStatus?page=${fetchArgs.page}&size=${PAGE_SIZE}&companyName=${fetchArgs.args!.expr}`
+        `api/administration/registration/applicationsWithStatus?page=${
+          fetchArgs.page
+        }&size=${PAGE_SIZE}&companyName=${fetchArgs.args!.expr}`,
     }),
   }),
 })
 
-export const {
-  useFetchInviteSearchQuery,
-} = apiSlice
+export const { useFetchInviteSearchQuery } = apiSlice

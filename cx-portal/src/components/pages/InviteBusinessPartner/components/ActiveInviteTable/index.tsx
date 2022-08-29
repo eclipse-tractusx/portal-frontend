@@ -18,19 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-  import { useState } from 'react'
-  import { InviteList } from '../InviteList'
-  import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
+import { useState } from 'react'
+import { InviteList } from '../InviteList'
+import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
 
-  export const ActiveInviteTable = () => {
-    const [expr, setExpr] = useState<string>('')
+export const ActiveInviteTable = () => {
+  const [expr, setExpr] = useState<string>('')
 
-    return (
-      <InviteList
-        fetchHook={useFetchInviteSearchQuery}
-        fetchHookArgs={{ expr }}
-        onSearch={setExpr}
-      />
-    )
-  }
-  
+  return (
+    <InviteList
+      fetchHook={useFetchInviteSearchQuery}
+      fetchHookArgs={{ expr }}
+      onSearch={setExpr}
+    />
+  )
+}

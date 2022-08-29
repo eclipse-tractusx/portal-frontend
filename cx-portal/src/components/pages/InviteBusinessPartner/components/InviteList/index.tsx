@@ -21,7 +21,7 @@
 import {
   IconButton,
   PageLoadingTable,
-  PaginFetchArgs
+  PaginFetchArgs,
 } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -46,7 +46,6 @@ export const InviteList = ({
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(appManagementSelector)
-  
 
   const validateSearchText = (expr: string) => {
     const validateExpr = /^[ A-Za-z0-9._!@-]*$/.test(expr)
@@ -110,10 +109,7 @@ export const InviteList = ({
               <IconButton
                 color="secondary"
                 onClick={() =>
-                  console.log(
-                    'on details click: Company Name',
-                    row.companyName
-                  )
+                  console.log('on details click: Company Name', row.companyName)
                 }
               >
                 <ArrowForwardIcon />
