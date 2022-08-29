@@ -1,4 +1,36 @@
 {
+  "WELCOME": {
+    "title": "Willkommen bei Catena-X!",
+    "content": "Hallo {{you}}! Du wurdest zu Catena-X hinzugefügt. Die Community heißt Sie herzlich willkommen und freut sich auf Ihre Beiträge."
+  },
+  "WELCOME_USE_CASES": {
+    "title": "Häufige Anwendungsfälle",
+    "content": "Hey {{you}}, schau dir die Anwendungsfälle an."
+  },
+  "WELCOME_SERVICE_PROVIDER": {
+    "title": "Service Provider warten auf Sie",
+    "content": "Schauen Sie sich die Dienstleister an."
+  },
+  "WELCOME_CONNECTOR_REGISTRATION": {
+    "title": "Registrieren eines Connectors",
+    "content": "Sie haben bisher keinen registrierten Connector. Werfen Sie einen Blick auf die Angebote und verbinden Sie Ihren Konnektor."
+  },
+  "WELCOME_APP_MARKETPLACE": {
+    "title": "Schauen Sie sich den App Marketplace an",
+    "content": "Erhalten Sie einen ersten Einblick in verfügbare Apps, folgen Sie uns einfach zum Marktplatz für Apps."
+  },
+  "APP_SUBSCRIPTION_REQUEST": {
+    "title": "App-Abonnement angefordert",
+    "content": "{{user}} mag es, App {{app}} zu abonnieren"
+  },
+  "APP_SUBSCRIPTION_ACTIVATION": {
+    "title": "App-Anfrage aktiviert",
+    "content": "Ihr Abonnement für {{app}} ist jetzt aktiv"
+  },
+  "CONNECTOR_REGISTERED": {
+    "title": "Connector erfolgreich registriert",
+    "content": "Der Konnektor {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
+  },
   "WelcomeInvite": {
     "title": "Willkommen bei Catena-X!",
     "content": "Hallo {{you}}! Ihr Unternehmen ist jetzt offiziell im Netzwerk registriert und Sie können jetzt Ihre technische Onboarding-Reise beginnen."
@@ -62,5 +94,6 @@
     "app": "Zur App",
     "user": "Zum Benutzer",
     "usecases": "Zu den Use Cases"
-  }
+  },
+  "due": "fällig"
 }

@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Feature - App Release Process Step 1 implementation with api binding
 * Feature - Show app roles in user details
+* Feature - Connect Notifications API
 
 
 ### 0.5.2 (2022-08-23)
