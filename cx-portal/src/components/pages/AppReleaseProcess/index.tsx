@@ -70,19 +70,7 @@ export default function AppReleaseProcess() {
         <div className="create-app-section">
           <div className="container">
             <AppReleaseStepper />
-            {currentActiveStep === 1 ? (
-              <AppMarketCard />
-            ) : currentActiveStep === 2 ? (
-              <></>
-            ) : currentActiveStep === 3 ? (
-              <></>
-            ) : currentActiveStep === 4 ? (
-              <></>
-            ) : currentActiveStep === 5 ? (
-              <BetaTest />
-            ) : (
-              <></>
-            )}
+            {currentActiveStep === 1 ? <AppMarketCard /> : <BetaTest />}
           </div>
         </div>
       ) : (
