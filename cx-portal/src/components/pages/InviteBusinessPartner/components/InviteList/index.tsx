@@ -29,9 +29,9 @@ import { CompanyInvite } from 'features/admin/inviteApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 import { useState } from 'react'
-import { appManagementSelector } from 'features/appManagement/slice'
 import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
+import { updateInviteSelector } from 'features/control/updatesSlice'
 
 export const InviteList = ({
   fetchHook,
@@ -45,10 +45,10 @@ export const InviteList = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
-  const searchInputData = useSelector(appManagementSelector)
+  const searchInputData = useSelector(updateInviteSelector)
 
   const validateSearchText = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9._!@-]*$/.test(expr)
+    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
