@@ -327,7 +327,7 @@ export const mainMenuFullTree = [
     name: PAGES.MARKETPLACE,
     children: [
       { name: PAGES.APP_MARKETPLACE },
-      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
       { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
     ],
   },
