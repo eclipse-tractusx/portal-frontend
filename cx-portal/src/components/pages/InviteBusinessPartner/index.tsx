@@ -16,7 +16,8 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
-import { ActiveInviteTable } from './components/ActiveInviteTable'
+import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
+import { InviteList } from './components/InviteList'
 
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
@@ -24,6 +25,7 @@ export default function InviteBusinessPartner() {
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
   const [processing, setProcessing] = useState<string>('input')
+  const [expr, setExpr] = useState<string>('')
 
   useEffect(() => {
     // close success overlay/dialog after 5 seconds
@@ -152,7 +154,11 @@ export default function InviteBusinessPartner() {
         >
           {t('content.invite.invite')}
         </Button>
-        <ActiveInviteTable />
+        <InviteList
+          fetchHook={useFetchInviteSearchQuery}
+          fetchHookArgs={{ expr }}
+          onSearch={setExpr}
+        />
       </section>
     </main>
   )

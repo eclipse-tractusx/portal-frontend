@@ -26,6 +26,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Removed empty 'Organization' option from user menu
 * Bugfix - Footer fixed to bottom of window
 * Bugfix - Some alignment and content fixes
+* Feature - Search functionality added in Invite Business Partner page
 
 
 ### Older
