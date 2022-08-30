@@ -559,9 +559,6 @@
         "pricingInformationPlaceholder": "Please select a pricing type",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
-        "help": "Help",
-        "saveAndProceed": "save & proceed",
-        "save": "Save",
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",
         "isMandatory": " is mandatory",
@@ -590,6 +587,15 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Customer Contact E-Mail*",
         "providerPhoneContact": "Provider Phone Contact"
+      },
+      "betaTest": {
+        "headerTitle": "Beta Test",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "footerButtons": {
+        "help": "Help",
+        "saveAndProceed": "save & proceed",
+        "save": "Save"
       }
     }
   },
