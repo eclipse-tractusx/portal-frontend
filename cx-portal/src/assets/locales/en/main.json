@@ -421,6 +421,16 @@
         }
       }
     },
+    "idpdetail": {
+      "title": "Identity Provider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Display Name",
+      "authType": "IDP Type",
+      "authURL": "Authentication URL",
+      "authMethod": "Authentication Method",
+      "mappers": "Mappers"
+    },
     "addUser": {
       "headline": "Add User Account",
       "subheadline": "tbd",

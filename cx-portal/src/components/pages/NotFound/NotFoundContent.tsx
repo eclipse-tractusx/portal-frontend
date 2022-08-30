@@ -18,20 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useParams } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
-import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import IDPDetailContent from './IDPDetailContent'
-import { Empty } from 'components/shared/basic/Empty'
-import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
+import { useTranslation } from 'react-i18next'
 
-export default function IDPDetail() {
-  const { idpId } = useParams()
-  const { data } = useFetchIDPDetailQuery(idpId ?? '')
+export default function NotFoundContent() {
+  const { t } = useTranslation()
   return (
-    <main>
-      <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT, PAGES.IDP_DETAIL]} />
-      <section>{data ? <IDPDetailContent idp={data} /> : <Empty />}</section>
-    </main>
+    <>
+      <p>{t('content.notfound.message')}</p>
+      <ul>
+        <li>{t('content.notfound.reason.nopermission')}</li>
+        <li>{t('content.notfound.reason.notexisting')}</li>
+        <li>{t('content.notfound.reason.notimplemented')}</li>
+      </ul>
+      <p>{t('content.notfound.further')}</p>
+    </>
   )
 }
