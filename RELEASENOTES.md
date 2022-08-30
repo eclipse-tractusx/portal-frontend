@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Show app roles in user details
 * Feature - Connect Notifications API
 * Feature - App Release Process Step 5 - Beta Test
+* Feature - Search functionality added in Invite Business Partner page
 
 
 ### 0.5.2 (2022-08-23)
@@ -27,7 +28,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Removed empty 'Organization' option from user menu
 * Bugfix - Footer fixed to bottom of window
 * Bugfix - Some alignment and content fixes
-* Feature - Search functionality added in Invite Business Partner page
 
 
 ### Older
