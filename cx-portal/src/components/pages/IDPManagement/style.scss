@@ -18,31 +18,58 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification } from './types'
+// Content technical user
+.idp-management-header {
+  display: flex;
+}
 
-export const apiSlice = createApi({
-  reducerPath: 'info/notifications',
-  baseQuery: fetchBaseQuery(apiBaseQuery()),
-  endpoints: (builder) => ({
-    getNotificationCount: builder.query<number, boolean>({
-      query: (read) => `/api/notification/count?isRead=${read}`,
-    }),
-    getNotifications: builder.query<CXNotification[], null>({
-      query: () => '/api/notification',
-    }),
-    setNotificationRead: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/api/notification/${id}/read`,
-        method: 'PUT',
-      }),
-    }),
-  }),
-})
+.idp-management-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: 100px;
+}
 
-export const {
-  useGetNotificationCountQuery,
-  useGetNotificationsQuery,
-  useSetNotificationReadMutation,
-} = apiSlice
+.idp-list {
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  .idp-list-item {
+    cursor: pointer;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
+    background-color: #f8f8f8;
+    padding: 10px 30px;
+    font-weight: bold;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+
+    .category,
+    .name,
+    .state {
+      display: inline-block;
+    }
+
+    .category {
+      width: 280px;
+    }
+
+    .name {
+      width: 360px;
+    }
+
+    .state {
+      width: 180px;
+      line-height: 30px;
+      background-color: #aaaaaa;
+      text-align: center;
+      text-transform: uppercase;
+      border-radius: 20px;
+    }
+  }
+}

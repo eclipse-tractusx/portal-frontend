@@ -18,31 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification } from './types'
+import {
+  IdentityProvider,
+  useFetchIDPListQuery,
+} from 'features/admin/idpApiSlice'
+import { useTranslation } from 'react-i18next'
+import './style.scss'
 
-export const apiSlice = createApi({
-  reducerPath: 'info/notifications',
-  baseQuery: fetchBaseQuery(apiBaseQuery()),
-  endpoints: (builder) => ({
-    getNotificationCount: builder.query<number, boolean>({
-      query: (read) => `/api/notification/count?isRead=${read}`,
-    }),
-    getNotifications: builder.query<CXNotification[], null>({
-      query: () => '/api/notification',
-    }),
-    setNotificationRead: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/api/notification/${id}/read`,
-        method: 'PUT',
-      }),
-    }),
-  }),
-})
+export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
+  const { t } = useTranslation()
+  const state = idp.enabled ? 'enabled' : 'disabled'
+  return (
+    <div className="idp-list-item">
+      <span className="category">
+        {t(
+          `content.idpmanagement.idp.category.${idp.identityProviderCategoryId}`
+        )}
+      </span>
+      <span className="name">{idp.displayName || idp.alias}</span>
+      <span className="state">{t(`global.state.${state}`)}</span>
+    </div>
+  )
+}
 
-export const {
-  useGetNotificationCountQuery,
-  useGetNotificationsQuery,
-  useSetNotificationReadMutation,
-} = apiSlice
+export const IDPList = () => {
+  const { data } = useFetchIDPListQuery()
+
+  return (
+    <ul className="idp-list">
+      {data &&
+        data.map((idp) => (
+          <li key={idp.identityProviderId}>
+            <IDPListItem idp={idp} />
+          </li>
+        ))}
+    </ul>
+  )
+}

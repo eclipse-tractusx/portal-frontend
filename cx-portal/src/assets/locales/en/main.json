@@ -21,6 +21,7 @@
     "organization": "My Organization",
     "notifications": "Notifications",
     "usermanagement": "User Management",
+    "idpmanagement": "Identity Provider (IDP)",
     "technicalsetup": "Technical Integration",
     "applicationrequests": "Application Requests",
     "admin": "Administration",
@@ -411,6 +412,15 @@
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }
     },
+    "idpmanagement": {
+      "create": "Create Identity Provider",
+      "idp": {
+        "category": {
+          "KEYCLOAK_SHARED": "Shared Keycloak",
+          "OWN": "Own IDP"
+        }
+      }
+    },
     "addUser": {
       "headline": "Add User Account",
       "subheadline": "tbd",
@@ -639,6 +649,10 @@
       "homepage": "Homepage",
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+    },
+    "state": {
+      "enabled": "enabled",
+      "disabled": "disabled"
     },
     "objects": {
       "app": "app",
