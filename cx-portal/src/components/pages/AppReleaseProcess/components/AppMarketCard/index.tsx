@@ -609,7 +609,7 @@ export default function AppMarketCard() {
                 sx={{ mr: 1 }}
                 startIcon={<HelpOutlineIcon />}
               >
-                {t('content.apprelease.appMarketCard.help')}
+                {t('content.apprelease.footerButtons.help')}
               </Button>
               <IconButton
                 color="secondary"
@@ -623,7 +623,7 @@ export default function AppMarketCard() {
                 sx={{ float: 'right' }}
                 onClick={handleSubmit(onSubmit)}
               >
-                {t('content.apprelease.appMarketCard.saveAndProceed')}
+                {t('content.apprelease.footerButtons.saveAndProceed')}
               </Button>
               <Button
                 variant="outlined"
@@ -632,7 +632,7 @@ export default function AppMarketCard() {
                 sx={{ float: 'right', mr: 1 }}
                 onClick={handleSubmit(onSubmit)}
               >
-                {t('content.apprelease.appMarketCard.save')}
+                {t('content.apprelease.footerButtons.save')}
               </Button>
             </Box>
           </form>
