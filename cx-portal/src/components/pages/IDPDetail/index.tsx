@@ -22,12 +22,12 @@ import { useParams } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import IDPDetailContent from './IDPDetailContent'
-import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
 import { Empty } from 'components/shared/basic/Empty'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
 export default function IDPDetail() {
-  const { userId } = useParams()
-  const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
+  const { idpId } = useParams()
+  const { data } = useFetchIDPDetailQuery(idpId ?? '')
   return (
     <main>
       <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT, PAGES.IDP_DETAIL]} />

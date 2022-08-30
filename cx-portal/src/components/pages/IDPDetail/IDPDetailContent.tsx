@@ -18,102 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
-import { Box } from '@mui/material'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import {
-  ServiceAccountDetail,
-  ServiceAccountRole,
-} from 'features/admin/serviceApiSlice'
-import { OVERLAYS } from 'types/Constants'
-import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
+import { IdentityProvider } from 'features/admin/idpApiSlice'
 
-export default function IDPDetailContent({
-  data,
-}: {
-  data: ServiceAccountDetail
-}) {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
-
-  const displayData = [
-    {
-      key: 'ID',
-      value: data.serviceAccountId,
-      copy: true,
-    },
-    {
-      key: `${t('content.usermanagement.technicalUser.serviceaccount')} ${t(
-        'global.field.name'
-      )}`,
-      value: data.name,
-      copy: true,
-    },
-    {
-      key: t('global.field.clientId'),
-      value: data.clientId,
-      copy: true,
-    },
-    {
-      key: t('global.field.authType'),
-      value: data.authenticationType,
-    },
-    {
-      key: t('global.field.secret'),
-      value: data.secret,
-      copy: true,
-    },
-  ]
-
+export default function IDPDetailContent({ data }: { data: IdentityProvider }) {
   return (
     <section>
-      <Button
-        size="small"
-        variant="outlined"
-        startIcon={<HighlightOffIcon />}
-        onClick={() =>
-          dispatch(show(OVERLAYS.DELETE_TECHUSER, data.serviceAccountId))
-        }
-      >
-        {t('content.usermanagement.technicalUser.delete')}
-      </Button>
-
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          marginTop: '80px',
-          marginBottom: '92px',
-          width: '100%',
-        }}
-      >
-        <KeyValueView
-          cols={2}
-          title={t(
-            'content.usermanagement.technicalUser.detailsPage.userDetails'
-          )}
-          items={displayData}
-        />
-
-        <KeyValueView
-          cols={1}
-          title={t('global.field.description')}
-          items={data.roles.map((role: ServiceAccountRole) => ({
-            value: data.description,
-          }))}
-        />
-
-        <KeyValueView
-          cols={1}
-          title={t('global.field.permission')}
-          items={data.roles.map((role: ServiceAccountRole) => ({
-            value: role.roleName,
-          }))}
-        />
-      </Box>
+      <div>{JSON.stringify(data, null, 2)}</div>
     </section>
   )
 }
