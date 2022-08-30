@@ -18,31 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification } from './types'
+import { useParams } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
+import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
+import IDPDetailContent from './IDPDetailContent'
+import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
+import { Empty } from 'components/shared/basic/Empty'
 
-export const apiSlice = createApi({
-  reducerPath: 'info/notifications',
-  baseQuery: fetchBaseQuery(apiBaseQuery()),
-  endpoints: (builder) => ({
-    getNotificationCount: builder.query<number, boolean>({
-      query: (read) => `/api/notification/count?isRead=${read}`,
-    }),
-    getNotifications: builder.query<CXNotification[], null>({
-      query: () => '/api/notification',
-    }),
-    setNotificationRead: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/api/notification/${id}/read`,
-        method: 'PUT',
-      }),
-    }),
-  }),
-})
-
-export const {
-  useGetNotificationCountQuery,
-  useGetNotificationsQuery,
-  useSetNotificationReadMutation,
-} = apiSlice
+export default function IDPDetail() {
+  const { userId } = useParams()
+  const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
+  return (
+    <main>
+      <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT, PAGES.IDP_DETAIL]} />
+      {data ? <IDPDetailContent data={data} /> : <Empty />}
+    </main>
+  )
+}
