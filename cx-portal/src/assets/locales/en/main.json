@@ -21,7 +21,7 @@
     "organization": "My Organization",
     "notifications": "Notifications",
     "usermanagement": "User Management",
-    "idpmanagement": "Identity Provider",
+    "idpmanagement": "Identity Provider (IDP)",
     "technicalsetup": "Technical Integration",
     "applicationrequests": "Application Requests",
     "admin": "Administration",
