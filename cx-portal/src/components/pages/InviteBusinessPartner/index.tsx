@@ -1,57 +1,31 @@
 import './InviteBusinessPartner.scss'
 import { Api } from 'features/admin/registration/api'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   Button,
   Dialog,
   DialogContent,
   IconButton,
   PageHeader,
-  Table,
   Typography,
 } from 'cx-portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { fetchPage } from 'features/admin/registration/actions'
-import { InviteData, InvitesDataGrid } from 'features/admin/registration/types'
-import { itemsSelector } from 'features/admin/registration/slice'
+import { InviteData } from 'features/admin/registration/types'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
-import uniqueId from 'lodash/uniqueId'
-import dayjs from 'dayjs'
+import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
+import { InviteList } from './components/InviteList'
 
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const invitesData = useSelector(itemsSelector)
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
-  const [invitesTableData, setInvitesTableData] = useState(
-    [] as InvitesDataGrid[]
-  )
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
   const [processing, setProcessing] = useState<string>('input')
-  const [pageNumber, setPageNumber] = useState<number>(0)
-
-  useEffect(() => {
-    // Adding "firstAndLastName" column to the invites table data
-    setInvitesTableData((prevInvites) => {
-      return prevInvites.concat(
-        invitesData.content?.map((item: InvitesDataGrid) => ({
-          ...item,
-          firstAndLastName: `${item.firstName} ${item.lastName}`,
-        }))
-      )
-    })
-  }, [invitesData])
-
-  useEffect(() => {
-    dispatch(fetchPage(pageNumber))
-  }, [dispatch, pageNumber])
+  const [expr, setExpr] = useState<string>('')
 
   useEffect(() => {
     // close success overlay/dialog after 5 seconds
@@ -163,7 +137,6 @@ export default function InviteBusinessPartner() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-
       <section>
         <Typography variant="h3" mb={3} align="center">
           {t('content.invite.subHeaderTitle')}
@@ -181,81 +154,11 @@ export default function InviteBusinessPartner() {
         >
           {t('content.invite.invite')}
         </Button>
-
-        <Table
-          title={t('content.invite.tabletitle')}
-          columns={[
-            {
-              field: 'companyName',
-              headerName: t('content.invite.columns.companyName'),
-              flex: 1,
-            },
-            {
-              field: 'firstAndLastName',
-              headerName: t('content.invite.columns.firstAndLastName'),
-              flex: 1,
-            },
-            {
-              field: 'dateCreated',
-              headerName: t('content.invite.columns.date'),
-              flex: 1,
-              valueGetter: ({ row }: { row: InvitesDataGrid }) =>
-                dayjs(row.dateCreated).format('YYYY-MM-DD'),
-            },
-            {
-              field: 'applicationStatus',
-              headerName: t('content.invite.columns.status'),
-              flex: 1,
-            },
-            {
-              field: 'details',
-              headerName: t('content.invite.columns.details'),
-              flex: 1,
-              sortable: false,
-              renderCell: ({ row }: { row: InvitesDataGrid }) => (
-                <IconButton
-                  color="secondary"
-                  onClick={() =>
-                    console.log(
-                      'on details click: Company Name',
-                      row.companyName
-                    )
-                  }
-                >
-                  <ArrowForwardIcon />
-                </IconButton>
-              ),
-            },
-          ]}
-          rows={invitesTableData}
-          rowsCount={invitesData.meta.totalElements}
-          getRowId={(row: { [key: string]: string }) =>
-            uniqueId(row.dateCreated)
-          }
-          sx={{ marginTop: '80px' }}
-          disableColumnMenu
-          hideFooter
-          toolbarVariant="premium"
-          toolbar={{
-            onSearch: () => {
-              console.log('search function')
-            },
-            onFilter: () => {
-              console.log('filter function')
-            },
-          }}
+        <InviteList
+          fetchHook={useFetchInviteSearchQuery}
+          fetchHookArgs={{ expr }}
+          onSearch={setExpr}
         />
-        <div className="load-more-button-container">
-          {invitesData.meta.totalPages !== invitesData.meta.page + 1 && (
-            <Button
-              size="medium"
-              sx={{ mt: 15 }}
-              onClick={() => setPageNumber((prevState) => prevState + 1)}
-            >
-              {t('content.invite.load_button')}
-            </Button>
-          )}
-        </div>
       </section>
     </main>
   )

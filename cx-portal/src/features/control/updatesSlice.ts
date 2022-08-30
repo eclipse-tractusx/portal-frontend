@@ -22,6 +22,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 import { IHashMap } from 'types/MainTypes'
+import { SearchInputState } from 'features/appManagement/types'
 
 const name = 'control/update'
 
@@ -32,6 +33,7 @@ export enum UPDATES {
   APPS_ACTIVE_LIST = 'APPS_ACTIVE_LIST',
   APPS_FAVORITE_LIST = 'APPS_FAVORITE_LIST',
   APPS_SUBSCRIBED_LIST = 'APPS_SUBSCRIBED_LIST',
+  INVITE_LIST = 'INVITE_LIST',
 }
 
 const initialState: IHashMap<number> = {}
@@ -66,5 +68,8 @@ export const updateFavoriteAppsSelector = (state: RootState): number =>
 
 export const updateSubscribedAppsSelector = (state: RootState): number =>
   state.control.update[UPDATES.APPS_SUBSCRIBED_LIST]
+
+export const updateInviteSelector = (state: RootState): SearchInputState =>
+  state.management
 
 export default slice.reducer
