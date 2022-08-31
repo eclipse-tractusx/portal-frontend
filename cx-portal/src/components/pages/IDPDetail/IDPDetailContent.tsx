@@ -18,12 +18,45 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IdentityProvider } from 'features/admin/idpApiSlice'
+import { Input } from 'cx-portal-shared-components'
+import { IdentityProvider, IDPAuthType } from 'features/admin/idpApiSlice'
+import { useTranslation } from 'react-i18next'
+import './style.scss'
 
-export default function IDPDetailContent({ data }: { data: IdentityProvider }) {
+export default function IDPDetailContent({ idp }: { idp: IdentityProvider }) {
+  const { t } = useTranslation('', { keyPrefix: 'content.idpdetail' })
+  const authType = idp.saml ? IDPAuthType.SAML : IDPAuthType.OIDC
+  const authTypeData = idp.oidc || idp.saml
+  const state = idp.enabled ? 'enabled' : 'disabled'
+
+  const Field = ({ name, value }: { name: string; value: string }) => (
+    <div style={{ margin: '12px 0' }}>
+      <Input label={name} value={value} disabled={true} />
+    </div>
+  )
+
   return (
-    <section>
-      <div>{JSON.stringify(data, null, 2)}</div>
-    </section>
+    <div className="idp-detail-content">
+      <div className="idp-name-row">
+        <Field name={t('alias')} value={idp.alias} />
+        <Field name={t('displayName')} value={idp.displayName || ''} />
+      </div>
+      <div className="idp-name-row">
+        <Field name={t('authType')} value={authType} />
+        <Field name={t('status')} value={state} />
+      </div>
+      <Field name={t('authURL')} value={authTypeData?.authorizationUrl || ''} />
+      <Field
+        name={t('authMethod')}
+        value={authTypeData?.clientAuthMethod || ''}
+      />
+      <ul>
+        {idp.mappers.map((mapper) => (
+          <li key={mapper.id}>
+            <Field name={mapper.type} value={mapper.name} />
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

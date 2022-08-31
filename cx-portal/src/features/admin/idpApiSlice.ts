@@ -26,6 +26,11 @@ export enum IDPCategory {
   OWN = 'OWN',
 }
 
+export enum IDPAuthType {
+  OIDC = 'OIDC',
+  SAML = 'SAML',
+}
+
 export enum IDPMapperType {
   OIDC_USERNAME = 'OIDC_USERNAME',
   HARDCODED_ATTRIBUTE = 'HARDCODED_ATTRIBUTE',
@@ -39,6 +44,10 @@ export enum OIDCAuthMethod {
   SECRET_BASIC = 'SECRET_BASIC',
 }
 
+export enum SAMLAuthMethod {
+  SECRET = 'SECRET',
+}
+
 export interface IDPMapperConfig {
   syncMode: IDPSyncModeType
 }
@@ -50,10 +59,16 @@ export interface IDPMapper {
   config: IDPMapperConfig
 }
 
-export interface OIDCType {
+interface BaseAuthType {
   authorizationUrl: string
   clientId: string
+}
+export interface OIDCType extends BaseAuthType {
   clientAuthMethod: OIDCAuthMethod
+}
+
+export interface SAMLType extends BaseAuthType {
+  clientAuthMethod: SAMLAuthMethod
 }
 
 export interface IdentityProvider {
@@ -64,7 +79,8 @@ export interface IdentityProvider {
   redirectUrl: string
   enabled: boolean
   mappers: Array<IDPMapper>
-  oidc: OIDCType
+  oidc?: OIDCType
+  saml?: SAMLType
 }
 
 export const apiSlice = createApi({

@@ -18,47 +18,45 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import IDPDetailContent from 'components/pages/IDPDetail/IDPDetailContent'
 import {
-  IdentityProvider,
-  useFetchIDPListQuery,
-} from 'features/admin/idpApiSlice'
-import { show } from 'features/control/overlay/actions'
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
+} from 'cx-portal-shared-components'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
+import { closeOverlay } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import './style.scss'
 
-export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
+export default function IDPDetailInfo({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const state = idp.enabled ? 'enabled' : 'disabled'
-  return (
-    <div
-      className="idp-list-item"
-      onClick={() => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))}
-    >
-      <span className="category">
-        {t(
-          `content.idpmanagement.idp.category.${idp.identityProviderCategoryId}`
-        )}
-      </span>
-      <span className="name">{idp.displayName || idp.alias}</span>
-      <span className="state">{t(`global.state.${state}`)}</span>
-    </div>
-  )
-}
+  const { data } = useFetchIDPDetailQuery(id)
 
-export const IDPList = () => {
-  const { data } = useFetchIDPListQuery()
+  const handleConfirm = () => console.log('confirm')
 
   return (
-    <ul className="idp-list">
-      {data &&
-        data.map((idp) => (
-          <li key={idp.identityProviderId}>
-            <IDPListItem idp={idp} />
-          </li>
-        ))}
-    </ul>
+    <>
+      <DialogHeader
+        {...{
+          title: t('content.idpdetail.title'),
+          closeWithIcon: true,
+          onCloseWithIcon: () => dispatch(closeOverlay()),
+        }}
+      />
+
+      <DialogContent>{data && <IDPDetailContent idp={data} />}</DialogContent>
+
+      <DialogActions>
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+          {`${t('global.actions.cancel')}`}
+        </Button>
+        <Button variant="contained" onClick={handleConfirm}>
+          {`${t('global.actions.confirm')}`}
+        </Button>
+      </DialogActions>
+    </>
   )
 }
