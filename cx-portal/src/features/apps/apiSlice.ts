@@ -22,6 +22,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import i18next from 'i18next'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
+export type ImageType = {
+  src: string
+  alt?: string
+}
+
 export type AppMarketplaceApp = {
   id: string
   title: string
@@ -32,11 +37,14 @@ export type AppMarketplaceApp = {
   price: string
   rating?: number
   link?: string
+  status?: SubscriptionStatus
+  image?: ImageType
 }
 
 export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
+  INACTIVE = 'INACTIVE',
 }
 
 export type SubscriptionStatusItem = {

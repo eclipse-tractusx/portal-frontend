@@ -8,14 +8,22 @@ import { show } from 'features/control/overlay/actions'
 import './Organization.scss'
 import { OVERLAYS } from 'types/Constants'
 import { useTheme, CircularProgress } from '@mui/material'
+import {
+  useFetchActiveAppsQuery,
+  useFetchSubscriptionStatusQuery,
+} from 'features/apps/apiSlice'
+import { appToStatus } from 'features/apps/mapper'
 
 export default function Organization() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()
-
-  const handleClick = (id: string) => {
-    dispatch(show(OVERLAYS.APP, id, 'Company Details'))
+  const subscriptionStatus = useFetchSubscriptionStatusQuery().data
+  const { data } = useFetchActiveAppsQuery()
+  const appSubscribedData =
+    subscriptionStatus && appToStatus(data!, subscriptionStatus!)
+  const handleClick = (id: string | undefined) => {
+    dispatch(show(OVERLAYS.APP, id, t('content.organization.company.title')))
   }
 
   const organizationTableData: TableType = {
@@ -28,24 +36,25 @@ export default function Organization() {
       [() => <CompanyDetails head="BPN: " data="This company name" />],
     ],
   }
+  // let appSubscriptionsTableBody;
+  const appSubscriptionsTableBody =
+    appSubscribedData?.map((app) => [
+      () => (
+        <AppSubscriptions
+          image={app.image}
+          onButtonClick={() => handleClick(app.id)}
+          name={app.title}
+          provider={app.provider}
+          status={app.status}
+        />
+      ),
+    ]) || []
 
   const appSubscriptionsTableData: TableType = {
     head: [t('content.organization.subscriptions.title')],
-    body: [
-      [
-        () => (
-          <AppSubscriptions
-            onButtonClick={() =>
-              handleClick('ac1cf001-7fbc-1f2f-817f-bce05744000b')
-            }
-            name="App Name "
-            provider="App Provider Name"
-            status="In Porgress"
-          />
-        ),
-      ],
-    ],
+    body: appSubscriptionsTableBody,
   }
+
   return (
     <main>
       <PageHeader
@@ -54,37 +63,31 @@ export default function Organization() {
         headerHeight={200}
       ></PageHeader>
       <div className="organization-main">
-        {false ? (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '50vh',
-            }}
-          >
-            <CircularProgress
-              size={50}
-              sx={{
-                color: theme.palette.primary.main,
-                zIndex: 1,
-                position: 'absolute',
+        <div className="organization-content">
+          <StaticTable data={organizationTableData} horizontal={false} />
+        </div>
+        <div className="organization-content">
+          <StaticTable data={appSubscriptionsTableData} horizontal={false} />
+          {!subscriptionStatus && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '50vh',
               }}
-            />
-          </div>
-        ) : (
-          <>
-            <div className="organization-content">
-              <StaticTable data={organizationTableData} horizontal={false} />
-            </div>
-            <div className="organization-content">
-              <StaticTable
-                data={appSubscriptionsTableData}
-                horizontal={false}
+            >
+              <CircularProgress
+                size={50}
+                sx={{
+                  color: theme.palette.primary.main,
+                  zIndex: 1,
+                  position: 'absolute',
+                }}
               />
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </main>
   )
