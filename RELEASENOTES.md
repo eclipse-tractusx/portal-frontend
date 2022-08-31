@@ -5,7 +5,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.5.3
 
-* ...
+* Feature - App Release Process Step 1 implementation with api binding
+* Feature - Show app roles in user details
+* Feature - Connect Notifications API
+* Feature - App Release Process Step 5 - Beta Test
+* Feature - Search functionality added in Invite Business Partner page
+* Feature - Identity Provider List
 
 
 ### 0.5.2 (2022-08-23)

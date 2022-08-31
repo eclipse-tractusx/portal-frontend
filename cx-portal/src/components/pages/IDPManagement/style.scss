@@ -17,22 +17,59 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
+
+// Content technical user
+.idp-management-header {
+  display: flex;
 }
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
+.idp-management-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: 100px;
 }
 
-.form-field {
-  margin-bottom: 29px !important;
-}
+.idp-list {
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+  .idp-list-item {
+    cursor: pointer;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
+    background-color: #f8f8f8;
+    padding: 10px 30px;
+    font-weight: bold;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+
+    .category,
+    .name,
+    .state {
+      display: inline-block;
+    }
+
+    .category {
+      width: 280px;
+    }
+
+    .name {
+      width: 360px;
+    }
+
+    .state {
+      width: 180px;
+      line-height: 30px;
+      background-color: #aaaaaa;
+      text-align: center;
+      text-transform: uppercase;
+      border-radius: 20px;
+    }
+  }
 }

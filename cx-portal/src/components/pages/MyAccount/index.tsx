@@ -1,74 +1,49 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { Box } from '@mui/material'
 import {
   Button,
   UserAvatar,
   Typography,
-  Table,
-  Chip,
   PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
-import uniqueId from 'lodash/uniqueId'
-import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
-import { useEffect } from 'react'
-import { fetchOwn } from 'features/admin/userOwn/actions'
-import './MyAccount.scss'
-import { UserdetailSelector } from 'features/admin/userOwn/slice'
-import { userDetailsToCards } from 'features/admin/userOwn/mapper'
-import { UserDetails } from 'components/shared/basic/UserDetails'
+import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
+import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
-  const userDetail = useSelector(UserdetailSelector)
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchOwn())
-  }, [dispatch])
-
-  const userAppRoles = [
-    {
-      id: '1',
-      appName: 'AppName',
-      appProvider: 'AppProvider',
-      role: ['Editor'],
-    },
-    {
-      id: '2',
-      appName: 'AppName 2',
-      appProvider: 'AppProvider 2',
-      role: ['Admin', 'Editor'],
-    },
-  ]
+  const { data } = useFetchOwnUserDetailsQuery()
 
   const handleDeleteUser = () => {
     console.log('Delete user method')
-  }
-
-  const renderChips = (row: GridRowModel) => {
-    return row.role.map((i: string) => {
-      return (
-        <Chip
-          key={uniqueId(i)}
-          color="secondary"
-          label={i}
-          type="plain"
-          variant="filled"
-          withIcon={false}
-          sx={{ marginRight: '10px' }}
-        />
-      )
-    })
   }
 
   return (
@@ -109,63 +84,24 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        {userDetail && (
-          <UserDetails
-            userDetailsCards={userDetailsToCards(userDetail)}
-            columns={3}
-          />
-        )}
-
-        <Table
-          title={t('content.account.appPermissionTable.title')}
-          columns={[
-            {
-              field: 'id',
-              hide: true,
-            },
-            {
-              field: 'appName',
-              headerName: t('content.account.appPermissionTable.appName'),
-              flex: 1,
-              hide: false,
-            },
-            {
-              field: 'appProvider',
-              headerName: t('content.account.appPermissionTable.appProvider'),
-              flex: 1,
-              hide: false,
-            },
-            {
-              field: 'role',
-              headerName: t('global.field.role'),
-              flex: 1,
-              hide: false,
-              renderCell: ({ row }) => renderChips(row),
-            },
-          ]}
-          rows={userAppRoles}
-          rowsCount={userAppRoles.length}
-          getRowId={(row: { [key: string]: string }) => uniqueId(row.id)}
-          sx={{ marginTop: '80px' }}
-          disableColumnMenu
-          hideFooter
-          toolbarVariant="basic"
-        />
+        {data && <UserDetailInfo user={data} />}
       </section>
 
       {/* TODO: DEV only needs to be removed when going PROD */}
-      <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
-          <Typography>{t('content.account.token')}</Typography>
-        </AccordionSummary>
-        <AccordionDetails sx={{ marginBottom: '20px' }}>
-          <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
-        </AccordionDetails>
-      </Accordion>
+      <section>
+        <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            <Typography>{t('content.account.token')}</Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ marginBottom: '20px' }}>
+            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
+          </AccordionDetails>
+        </Accordion>
+      </section>
     </main>
   )
 }

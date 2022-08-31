@@ -17,22 +17,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+import { IdentityProvider } from 'features/admin/idpApiSlice'
 
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+export default function IDPDetailContent({ data }: { data: IdentityProvider }) {
+  return (
+    <section>
+      <div>{JSON.stringify(data, null, 2)}</div>
+    </section>
+  )
 }

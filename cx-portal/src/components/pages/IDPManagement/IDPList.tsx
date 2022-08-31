@@ -17,22 +17,41 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
+
+import {
+  IdentityProvider,
+  useFetchIDPListQuery,
+} from 'features/admin/idpApiSlice'
+import { useTranslation } from 'react-i18next'
+import './style.scss'
+
+export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
+  const { t } = useTranslation()
+  const state = idp.enabled ? 'enabled' : 'disabled'
+  return (
+    <div className="idp-list-item">
+      <span className="category">
+        {t(
+          `content.idpmanagement.idp.category.${idp.identityProviderCategoryId}`
+        )}
+      </span>
+      <span className="name">{idp.displayName || idp.alias}</span>
+      <span className="state">{t(`global.state.${state}`)}</span>
+    </div>
+  )
 }
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+export const IDPList = () => {
+  const { data } = useFetchIDPListQuery()
 
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+  return (
+    <ul className="idp-list">
+      {data &&
+        data.map((idp) => (
+          <li key={idp.identityProviderId}>
+            <IDPListItem idp={idp} />
+          </li>
+        ))}
+    </ul>
+  )
 }
