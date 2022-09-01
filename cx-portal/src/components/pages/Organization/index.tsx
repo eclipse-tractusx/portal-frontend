@@ -18,7 +18,11 @@ export default function Organization() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()
-  const subscriptionStatus = useFetchSubscriptionStatusQuery().data
+  const {
+    data: subscriptionStatus,
+    isError,
+    isLoading,
+  } = useFetchSubscriptionStatusQuery()
   const { data } = useFetchActiveAppsQuery()
   const appSubscribedData =
     subscriptionStatus && appToStatus(data!, subscriptionStatus!)
@@ -68,7 +72,7 @@ export default function Organization() {
         </div>
         <div className="organization-content">
           <StaticTable data={appSubscriptionsTableData} horizontal={false} />
-          {!subscriptionStatus && (
+          {isLoading ? (
             <div className="organization-loader">
               <CircularProgress
                 size={50}
@@ -79,7 +83,10 @@ export default function Organization() {
                 }}
               />
             </div>
-          )}
+          ) : null}
+          {isError ? (
+            <div className="organization-error">error - no data found</div>
+          ) : null}
         </div>
       </div>
     </main>
