@@ -22,10 +22,7 @@ export default function AppSubscriptions({
   ].find((e) => e.name === status)?.code
 
   return (
-    <div
-      style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-      onClick={onButtonClick}
-    >
+    <div className="organization-subscriptions" onClick={onButtonClick}>
       <Box sx={{ paddingRight: 2 }}>
         <Box
           component="img"

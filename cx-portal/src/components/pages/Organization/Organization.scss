@@ -12,5 +12,16 @@
     div {
       color: #969696;
     }
+    .organization-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+    }
+    .organization-subscriptions {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
   }
 }

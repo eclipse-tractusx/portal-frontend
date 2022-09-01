@@ -69,14 +69,7 @@ export default function Organization() {
         <div className="organization-content">
           <StaticTable data={appSubscriptionsTableData} horizontal={false} />
           {!subscriptionStatus && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '50vh',
-              }}
-            >
+            <div className="organization-loader">
               <CircularProgress
                 size={50}
                 sx={{
