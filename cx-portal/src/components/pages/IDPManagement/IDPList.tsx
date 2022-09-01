@@ -24,32 +24,49 @@ import {
 } from 'features/admin/idpApiSlice'
 import { show } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Button } from 'cx-portal-shared-components'
 import './style.scss'
+import { updateIDPSelector } from 'features/control/updatesSlice'
 
 export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const state = idp.enabled ? 'enabled' : 'disabled'
+
+  const doDelete = () => {
+    console.log('delete ', idp.identityProviderId)
+  }
+
   return (
     <div
       className="idp-list-item"
       onClick={() => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))}
     >
       <span className="category">
-        {t(
-          `content.idpmanagement.idp.category.${idp.identityProviderCategoryId}`
-        )}
+        {idp.identityProviderCategoryId}
       </span>
       <span className="name">{idp.displayName || idp.alias}</span>
-      <span className="state">{t(`global.state.${state}`)}</span>
+      <span className={`state ${state}`}>{t(`global.state.${state}`)}</span>
+      <span className="action">
+      {idp.enabled ||
+      <Button
+              size="small"
+              startIcon={<DeleteForeverIcon />}
+              onClick={doDelete}
+            />
+      }
+      </span>
     </div>
   )
 }
 
 export const IDPList = () => {
-  const { data } = useFetchIDPListQuery()
+
+  const update = useSelector(updateIDPSelector)
+  const { data } = useFetchIDPListQuery(update)
 
   return (
     <ul className="idp-list">

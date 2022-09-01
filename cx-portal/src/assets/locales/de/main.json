@@ -413,13 +413,7 @@
       }
     },
     "idpmanagement": {
-      "create": "Identitätsprovider anlegen",
-      "idp": {
-        "category": {
-          "KEYCLOAK_SHARED": "Gemeinsamer Keycloak",
-          "OWN": "Eignener IDP"
-        }
-      }
+      "create": "OIDC Identitätsprovider anlegen"
     },
     "idpdetail": {
       "title": "Identitätsprovider Details",

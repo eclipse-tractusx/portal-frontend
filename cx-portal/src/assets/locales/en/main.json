@@ -413,13 +413,7 @@
       }
     },
     "idpmanagement": {
-      "create": "Create Identity Provider",
-      "idp": {
-        "category": {
-          "KEYCLOAK_SHARED": "Shared Keycloak",
-          "OWN": "Own IDP"
-        }
-      }
+      "create": "Create OIDC Identity Provider"
     },
     "idpdetail": {
       "title": "Identity Provider Details",

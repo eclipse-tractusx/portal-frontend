@@ -87,15 +87,24 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/admin/idp',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchIDPList: builder.query<Array<IdentityProvider>, void>({
-      query: () =>
-        `/api/administration/identityprovider/owncompany/identityproviders`,
+    fetchIDPList: builder.query<Array<IdentityProvider>, number | null>({
+      query: (update: number) =>
+        `/api/administration/identityprovider/owncompany/identityproviders${update ? '?' + update : ''}`,
     }),
     fetchIDPDetail: builder.query<IdentityProvider, string>({
       query: (id: string) =>
         `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
     }),
+    addIDP: builder.mutation<
+      IdentityProvider,
+      IDPAuthType
+    >({
+      query: (protocol: IDPAuthType) => ({
+        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${protocol}`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
-export const { useFetchIDPListQuery, useFetchIDPDetailQuery } = apiSlice
+export const { useFetchIDPListQuery, useFetchIDPDetailQuery, useAddIDPMutation } = apiSlice

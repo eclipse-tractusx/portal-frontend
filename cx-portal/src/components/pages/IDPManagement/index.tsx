@@ -33,14 +33,25 @@ import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
 import './style.scss'
+import { IDPAuthType, useAddIDPMutation } from 'features/admin/idpApiSlice'
 
 export default function IDPManagement() {
   const { t } = useTranslation()
   const notification = useSelector(notificationSelector)
   const dispatch = useDispatch()
+  const [addIdp] = useAddIDPMutation()
 
   const handleCloseNotification = () => {
     dispatch(resetNotification())
+  }
+
+  const doCreateIDP = async (type: IDPAuthType) => {
+    try {
+      const idp = await addIdp(type).unwrap()
+      console.log(JSON.stringify(idp))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -58,7 +69,7 @@ export default function IDPManagement() {
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
-              onClick={() => dispatch(show(OVERLAYS.ADD_TECHUSER))}
+              onClick={() => doCreateIDP(IDPAuthType.OIDC)}
             >
               {t('content.idpmanagement.create')}
             </Button>

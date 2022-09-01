@@ -18,73 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Dropzone } from 'components/shared/basic/Dropzone'
-import { Cards } from 'cx-portal-shared-components'
-import { useAddServiceAccountMutation } from 'features/admin/serviceApiSlice'
-import { appToCard } from 'features/apps/mapper'
-import { isString } from 'lodash'
-import { useState } from 'react'
-import ItemProcessor from './ItemProcessor'
+import { useApiGet } from 'utils/useApiGet'
 
 export default function Test() {
-  const [addServiceAccount] = useAddServiceAccountMutation()
-
-  const [items, setItems] = useState<any[]>([])
-
-  const techUserRowToJson = (row: string) =>
-    ((cols: string[]) =>
-      cols.length === 3 && {
-        name: cols[1],
-        authenticationType: 'SECRET',
-        description: cols[2],
-        roleIds: [cols[0]],
-      })(row.split(','))
-
-  const csvPreview = (files: File[]) =>
-    files
-      .filter((file: File) => file.type === 'text/csv')
-      .forEach((file: File) => {
-        const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
-        reader.onload = () => {
-          const str = reader.result
-          if (!isString(str)) return
-          const techusers = str.split('\n').map(techUserRowToJson)
-          setItems([...new Set([...items, ...techusers])])
-        }
-        reader.readAsText(file)
-      })
-
-  const appPreview = (files: File[]) =>
-    files
-      .filter((file: File) => file.type === 'application/json')
-      .forEach((file: File) => {
-        const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
-        reader.onload = () => {
-          const str = reader.result
-          if (!isString(str)) return
-          const dropItems = JSON.parse(str)
-          setItems([...new Set([...items, ...dropItems])])
-        }
-        reader.readAsText(file)
-      })
+  const data = useApiGet('https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration')
 
   return (
     <main>
       <section>
-        <Dropzone onFileDrop={csvPreview} />
-        <ItemProcessor
-          items={items}
-          process={addServiceAccount}
-          autostart={true}
-        />
-      </section>
-      <section>
-        <Dropzone onFileDrop={appPreview} />
-        <Cards columns={4} buttonText={'click'} items={items.map(appToCard)} />
+        <pre>{JSON.stringify(data, null, 2)}</pre>
       </section>
     </main>
   )
