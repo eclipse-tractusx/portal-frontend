@@ -5,7 +5,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.5.4
 
-* Feature - ...
+* Feature - Create, enable and delete Identity Providers
 
 
 ### 0.5.3
