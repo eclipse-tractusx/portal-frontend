@@ -20,13 +20,12 @@
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { PAGES } from 'types/Constants'
 import {
   Button,
   PageNotifications,
   Typography,
 } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
 import { resetNotification } from 'features/notification/actions'
 import { notificationSelector } from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
