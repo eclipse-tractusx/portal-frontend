@@ -20,51 +20,73 @@
 
 import {
   IdentityProvider,
+  useEnableIDPMutation,
   useFetchIDPListQuery,
+  useRemoveIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { show } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Button } from 'cx-portal-shared-components'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { IconButton } from 'cx-portal-shared-components'
+import {
+  updateData,
+  updateIDPSelector,
+  UPDATES,
+} from 'features/control/updatesSlice'
 import './style.scss'
-import { updateIDPSelector } from 'features/control/updatesSlice'
 
 export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const [removeIDP] = useRemoveIDPMutation()
+  const [enableIDP] = useEnableIDPMutation()
   const state = idp.enabled ? 'enabled' : 'disabled'
 
-  const doDelete = () => {
-    console.log('delete ', idp.identityProviderId)
+  const doDetails = () => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))
+
+  const doDelete = async () => {
+    try {
+      await removeIDP(idp.identityProviderId)
+      dispatch(updateData(UPDATES.IDP_LIST))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const doEnableToggle = async () => {
+    try {
+      await enableIDP({ id: idp.identityProviderId, enabled: !idp.enabled })
+      dispatch(updateData(UPDATES.IDP_LIST))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
-    <div
-      className="idp-list-item"
-      onClick={() => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))}
-    >
-      <span className="category">
-        {idp.identityProviderCategoryId}
-      </span>
+    <div className="idp-list-item">
+      <span className="category">{idp.identityProviderCategoryId}</span>
       <span className="name">{idp.displayName || idp.alias}</span>
-      <span className={`state ${state}`}>{t(`global.state.${state}`)}</span>
+      <span className={`state ${state}`} onClick={doEnableToggle}>
+        {t(`global.state.${state}`)}
+      </span>
       <span className="action">
-      {idp.enabled ||
-      <Button
-              size="small"
-              startIcon={<DeleteForeverIcon />}
-              onClick={doDelete}
-            />
-      }
+        <IconButton color="secondary" onClick={doDetails}>
+          <ArrowForwardIcon />
+        </IconButton>
+        {idp.enabled || (
+          <IconButton color="secondary" onClick={doDelete}>
+            <DeleteForeverIcon />
+          </IconButton>
+        )}
       </span>
     </div>
   )
 }
 
 export const IDPList = () => {
-
   const update = useSelector(updateIDPSelector)
   const { data } = useFetchIDPListQuery(update)
 

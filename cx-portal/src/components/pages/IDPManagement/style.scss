@@ -38,7 +38,6 @@
   padding-inline-start: 0;
 
   .idp-list-item {
-    cursor: pointer;
     border: 1px solid #eeeeee;
     border-radius: 20px;
     background-color: #f8f8f8;
@@ -66,6 +65,7 @@
     }
 
     .state {
+      cursor: pointer;
       width: 180px;
       line-height: 30px;
       background-color: #aaaaaa;
@@ -79,7 +79,11 @@
     }
 
     .action {
-      width: 30px;
+      margin-left: 30px;
+
+      button {
+        margin-left: 10px;
+      }
     }
   }
 }

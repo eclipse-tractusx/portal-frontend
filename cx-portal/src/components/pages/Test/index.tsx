@@ -21,7 +21,9 @@
 import { useApiGet } from 'utils/useApiGet'
 
 export default function Test() {
-  const data = useApiGet('https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration')
+  const data = useApiGet(
+    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
+  )
 
   return (
     <main>

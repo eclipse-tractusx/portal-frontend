@@ -52,6 +52,11 @@ export interface IDPMapperConfig {
   syncMode: IDPSyncModeType
 }
 
+export interface IDPStatus {
+  id: string
+  enabled: boolean
+}
+
 export interface IDPMapper {
   id: string
   name: string
@@ -89,22 +94,39 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchIDPList: builder.query<Array<IdentityProvider>, number | null>({
       query: (update: number) =>
-        `/api/administration/identityprovider/owncompany/identityproviders${update ? '?' + update : ''}`,
+        `/api/administration/identityprovider/owncompany/identityproviders${
+          update ? '?' + update : ''
+        }`,
     }),
     fetchIDPDetail: builder.query<IdentityProvider, string>({
       query: (id: string) =>
         `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
     }),
-    addIDP: builder.mutation<
-      IdentityProvider,
-      IDPAuthType
-    >({
+    addIDP: builder.mutation<IdentityProvider, IDPAuthType>({
       query: (protocol: IDPAuthType) => ({
         url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${protocol}`,
+        method: 'POST',
+      }),
+    }),
+    removeIDP: builder.mutation<IdentityProvider, string>({
+      query: (id: string) => ({
+        url: `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+    enableIDP: builder.mutation<IdentityProvider, IDPStatus>({
+      query: (status: IDPStatus) => ({
+        url: `/api/administration/identityprovider/owncompany/identityproviders/${status.id}/status?enabled=${status.enabled}`,
         method: 'POST',
       }),
     }),
   }),
 })
 
-export const { useFetchIDPListQuery, useFetchIDPDetailQuery, useAddIDPMutation } = apiSlice
+export const {
+  useFetchIDPListQuery,
+  useFetchIDPDetailQuery,
+  useAddIDPMutation,
+  useRemoveIDPMutation,
+  useEnableIDPMutation,
+} = apiSlice

@@ -34,6 +34,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
 import './style.scss'
 import { IDPAuthType, useAddIDPMutation } from 'features/admin/idpApiSlice'
+import { updateData, UPDATES } from 'features/control/updatesSlice'
 
 export default function IDPManagement() {
   const { t } = useTranslation()
@@ -49,6 +50,7 @@ export default function IDPManagement() {
     try {
       const idp = await addIdp(type).unwrap()
       console.log(JSON.stringify(idp))
+      dispatch(updateData(UPDATES.IDP_LIST))
     } catch (error) {
       console.log(error)
     }
