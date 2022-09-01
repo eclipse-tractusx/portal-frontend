@@ -21,6 +21,7 @@
     "organization": "Meine Organisation",
     "notifications": "Benachrichtigungen",
     "usermanagement": "Benutzerverwaltung",
+    "idpmanagement": "Identitätsprovider (IDP)",
     "technicalsetup": "Technische Integration",
     "applicationrequests": "Beitrittsanträge",
     "admin": "Verwaltung",
@@ -411,6 +412,25 @@
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
       }
     },
+    "idpmanagement": {
+      "create": "Identitätsprovider anlegen",
+      "idp": {
+        "category": {
+          "KEYCLOAK_SHARED": "Gemeinsamer Keycloak",
+          "OWN": "Eignener IDP"
+        }
+      }
+    },
+    "idpdetail": {
+      "title": "Identitätsprovider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Anzeigename",
+      "authType": "IDP Typ",
+      "authURL": "Authentisierungs URL",
+      "authMethod": "Authentisierungsart",
+      "mappers": "Mapper"
+    },
     "addUser": {
       "headline": "Erstelle einen neuen User",
       "subheadline": "tbd",
@@ -514,7 +534,7 @@
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
-        "title": "Nutzerbrechtigungen pro Applikation",
+        "title": "Applikation Berechtigungen",
         "appName": "App Name",
         "appProvider": "App Anbieter"
       }
@@ -584,27 +604,57 @@
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
-        "appTitle": "App title*",
+        "appTitle": "App title",
         "appTitlePlaceholder": "name@domain.com",
-        "appProvider": "App provider*",
+        "appProvider": "App provider",
         "appProviderPlaceholder": "prefill: [company name]",
-        "shortDescriptionEN": "Short Description - EN*",
-        "shortDescriptionDE": "Short Description - DE*",
-        "useCaseCategory": "Use Case /Category*",
+        "shortDescriptionEN": "Short Description - EN",
+        "shortDescriptionDE": "Short Description - DE",
+        "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
-        "appLanguage": "App Language*",
+        "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information*",
-        "pricingInformationPlaceholder": "Please select a pricing type*",
-        "uploadTitle": "Drag & drop your files here",
-        "uploadSubTitle": "or browse files on your computer.",
+        "pricingInformation": "Pricing Information",
+        "pricingInformationPlaceholder": "Please select a pricing type",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected",
+        "isMandatory": " is mandatory",
+        "fileUploadIsMandatory": "File upload is mandatory",
+        "minimum": "Minimum",
+        "charactersRequired": " characters required",
+        "maximum": "Maximum",
+        "charactersAllowed": " characters allowed",
+        "validCharactersIncludes": "Valid characters includes: "
+      },
+      "appPage": {
+        "headerTitle": "Create App",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "longDescriptionEN": "Long Description - EN*",
+        "longDescriptionDE": "Long Description - DE*",
+        "images": "Images*",
+        "note": "Note:",
+        "maxThreeImages": "Max.3 Images",
+        "connectData": "Connect Data*",
+        "dataSecurityInformation": "Data Security Information*",
+        "uploadDataPrerequisits": "Upload 'Data Prerequisits'*",
+        "uploadTechnicalGuide": "Upload 'Technical Guide'*",
+        "uploadDataContract": "Upload 'Data Contract'*",
+        "uploadAppContract": "Upload 'App Contract'*",
+        "providerDetails": "Provider Details",
+        "providerHomePage": "Provider Homepage",
+        "providerContactEmail": "Customer Contact E-Mail*",
+        "providerPhoneContact": "Provider Phone Contact"
+      },
+      "betaTest": {
+        "headerTitle": "Beta Test",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "footerButtons": {
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save",
-        "addMore": "Add More",
-        "noItemsSelected": "No Items Selected"
+        "save": "Save"
       }
     }
   },
@@ -650,6 +700,10 @@
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
     },
+    "state": {
+      "enabled": "aktiv",
+      "disabled": "inaktiv"
+    },
     "objects": {
       "app": "App",
       "user": "Benutzer",
@@ -688,7 +742,8 @@
       "tomorrow": "morgen"
     },
     "table": {
-      "search": "Enter email to search"
+      "search": "Enter email to search",
+      "searchName": "Enter name to search"
     }
   },
   "servicemarketplace": {

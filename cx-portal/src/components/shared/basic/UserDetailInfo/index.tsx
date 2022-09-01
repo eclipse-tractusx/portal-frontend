@@ -18,18 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
-import { useTranslation } from 'react-i18next'
-import NotFoundContent from './NotFoundContent'
+import { Box, useTheme } from '@mui/material'
+import { UserDetailCard } from './UserDetailCard'
+import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { TenantUserDetails } from 'features/admin/userApiSlice'
+import { AppPermissions } from 'components/shared/frame/AppPermissions'
 
-export default function NotFound() {
-  const { t } = useTranslation()
+export const UserDetailInfo = ({ user }: { user: TenantUserDetails }) => {
+  const { spacing } = useTheme()
+
+  const userDetailsCards = userDetailsToCards(user)
+  const columns = 3
+
   return (
-    <main>
-      <StageHeader title={t('pages.notfound')} />
-      <section>
-        <NotFoundContent />
-      </section>
-    </main>
+    <>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: spacing(8, 3),
+          gridTemplateColumns: `repeat(${columns}, 1fr)`,
+          marginBottom: '80px',
+        }}
+      >
+        {userDetailsCards.map((card, i) => (
+          <UserDetailCard
+            cardCategory={card.cardCategory}
+            cardContentItems={card.cardContentItems}
+            key={i}
+          />
+        ))}
+      </Box>
+      <AppPermissions user={user} />
+    </>
   )
 }

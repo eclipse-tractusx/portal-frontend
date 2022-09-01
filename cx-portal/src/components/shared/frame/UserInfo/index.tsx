@@ -12,13 +12,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import './UserInfo.scss'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
-import { useGetCountQuery } from 'features/notification/apiSlice'
+import { useGetNotificationCountQuery } from 'features/notification/apiSlice'
 
 export const UserInfo = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
-  const { data } = useGetCountQuery(null, {
+  const { data } = useGetNotificationCountQuery(false, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
   })
   const menu = pages.map((link) => ({

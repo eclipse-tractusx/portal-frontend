@@ -1,4 +1,36 @@
 {
+  "WELCOME": {
+    "title": "Welcome to Catena-X!",
+    "content": "Hello {{you}}! You have been added to Catena-X. The community welcomes you and is looking forward to your contributions."
+  },
+  "WELCOME_USE_CASES": {
+    "title": "Browse common Use Cases",
+    "content": "Hey {{you}}, check out use cases."
+  },
+  "WELCOME_SERVICE_PROVIDER": {
+    "title": "Service Providers are waiting for you",
+    "content": "Check out service providers."
+  },
+  "WELCOME_CONNECTOR_REGISTRATION": {
+    "title": "Register a Connector",
+    "content": "You do not have any registered Connector so far. Have a look at the connector offers and get your connector to participate."
+  },
+  "WELCOME_APP_MARKETPLACE": {
+    "title": "Check out the App Marketplace",
+    "content": "Get a first insight into available apps, just follow us to the marketplace for apps."
+  },
+  "APP_SUBSCRIPTION_REQUEST": {
+    "title": "Request for app subscription",
+    "content": "<0>{{user}}</0> likes to subscribe for app <1>{{app}}</1>. Please take the time and review their request."
+  },
+  "APP_SUBSCRIPTION_ACTIVATION": {
+    "title": "App request activated",
+    "content": "Your subscription for {{app}} is now active"
+  },
+  "CONNECTOR_REGISTERED": {
+    "title": "Connector registered successfully",
+    "content": "The connector {{connector}} was successfully created and you can assign users now."
+  },
   "WelcomeInvite": {
     "title": "Welcome to Catena-X!",
     "content": "Hello {{you}}! Your company is now officially registered to the network and you can start your technical onboarding journey now."
@@ -61,6 +93,8 @@
     "home": "Go to home page",
     "app": "Go to app",
     "user": "Go to user",
-    "usecases": "Go to use cases"
-  }
+    "usecases": "Go to use cases",
+    "serviceprovider": "Go to service provider"
+  },
+  "due": "due"
 }

@@ -17,22 +17,21 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+import { useParams } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
+import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
+import IDPDetailContent from './IDPDetailContent'
+import { Empty } from 'components/shared/basic/Empty'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+export default function IDPDetail() {
+  const { idpId } = useParams()
+  const { data } = useFetchIDPDetailQuery(idpId ?? '')
+  return (
+    <main>
+      <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT, PAGES.IDP_DETAIL]} />
+      <section>{data ? <IDPDetailContent idp={data} /> : <Empty />}</section>
+    </main>
+  )
 }

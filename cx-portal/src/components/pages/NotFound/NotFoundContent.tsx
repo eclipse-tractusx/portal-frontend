@@ -17,22 +17,20 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+import { useTranslation } from 'react-i18next'
 
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+export default function NotFoundContent() {
+  const { t } = useTranslation()
+  return (
+    <>
+      <p>{t('content.notfound.message')}</p>
+      <ul>
+        <li>{t('content.notfound.reason.nopermission')}</li>
+        <li>{t('content.notfound.reason.notexisting')}</li>
+        <li>{t('content.notfound.reason.notimplemented')}</li>
+      </ul>
+      <p>{t('content.notfound.further')}</p>
+    </>
+  )
 }
