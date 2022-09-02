@@ -305,7 +305,7 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City",
+        "city": "PLZ/City",
         "cxparticipant": "CX Member"
       },
       "filters": {
@@ -318,7 +318,7 @@
       "searchfielddefaulttext": "Search by company name or BPN",
       "searchfielderrormessage": "Invalid Data",
       "overlay": {
-        "title": "Company Detail",
+        "title": "Company Data",
         "companydatatitle": "Company Data",
         "legalform": "Legal Form"
       }

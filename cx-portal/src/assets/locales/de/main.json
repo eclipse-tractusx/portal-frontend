@@ -305,7 +305,7 @@
         "country": "Land",
         "street": "Straße",
         "zipcode": "PLZ",
-        "city": "Stadt",
+        "city": "PLZ/Stadt",
         "cxparticipant": "CX Zertifiziert"
       },
       "filters": {
@@ -318,7 +318,7 @@
       "searchfielderrormessage": "ungültige Daten",
       "searchbuttonlabel": "Suche",
       "overlay": {
-        "title": "Firmendetails",
+        "title": "Firmen Data",
         "companydatatitle": "Firmen Data",
         "legalform": "Rechtsform"
       }
