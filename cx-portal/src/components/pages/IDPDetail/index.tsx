@@ -18,18 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useApiGet } from 'utils/useApiGet'
+import { useParams } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
+import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
+import IDPDetailContent from './IDPDetailContent'
+import { Empty } from 'components/shared/basic/Empty'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
-export default function Test() {
-  const data = useApiGet(
-    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
-  )
-
+export default function IDPDetail() {
+  const { idpId } = useParams()
+  const { data } = useFetchIDPDetailQuery(idpId ?? '')
   return (
     <main>
-      <section>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </section>
+      <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT, PAGES.IDP_DETAIL]} />
+      <section>{data ? <IDPDetailContent idp={data} /> : <Empty />}</section>
     </main>
   )
 }

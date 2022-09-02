@@ -21,6 +21,7 @@
     "organization": "Meine Organisation",
     "notifications": "Benachrichtigungen",
     "usermanagement": "Benutzerverwaltung",
+    "idpmanagement": "Identitätsprovider (IDP)",
     "technicalsetup": "Technische Integration",
     "applicationrequests": "Beitrittsanträge",
     "admin": "Verwaltung",
@@ -411,6 +412,19 @@
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
       }
     },
+    "idpmanagement": {
+      "create": "OIDC Identitätsprovider anlegen"
+    },
+    "idpdetail": {
+      "title": "Identitätsprovider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Anzeigename",
+      "authType": "IDP Typ",
+      "authURL": "Authentisierungs URL",
+      "authMethod": "Authentisierungsart",
+      "mappers": "Mapper"
+    },
     "addUser": {
       "headline": "Erstelle einen neuen User",
       "subheadline": "tbd",
@@ -679,6 +693,10 @@
       "deleteTitle": "Löschen von {{ object }} {{ name }}",
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+    },
+    "state": {
+      "enabled": "aktiv",
+      "disabled": "inaktiv"
     },
     "objects": {
       "app": "App",

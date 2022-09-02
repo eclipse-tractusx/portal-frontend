@@ -18,18 +18,44 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
+import NotFoundContent from 'components/pages/NotFound/NotFoundContent'
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
+} from 'cx-portal-shared-components'
+import { closeOverlay } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
-import NotFoundContent from './NotFoundContent'
+import { useDispatch } from 'react-redux'
 
 export default function NotFound() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const close = () => dispatch(closeOverlay())
+
   return (
-    <main>
-      <StageHeader title={t('pages.notfound')} />
-      <section>
+    <>
+      <DialogHeader
+        {...{
+          title: t('pages.notfound'),
+          closeWithIcon: true,
+          onCloseWithIcon: close,
+        }}
+      />
+
+      <DialogContent>
         <NotFoundContent />
-      </section>
-    </main>
+      </DialogContent>
+
+      <DialogActions>
+        <Button variant="outlined" onClick={close}>
+          {`${t('global.actions.cancel')}`}
+        </Button>
+        <Button variant="contained" onClick={close}>
+          {`${t('global.actions.close')}`}
+        </Button>
+      </DialogActions>
+    </>
   )
 }
