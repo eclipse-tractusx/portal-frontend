@@ -40,7 +40,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
-import './AppMarketCard.scss'
+import '../ReleaseProcessSteps.scss'
 
 type FormDataType = {
   title: string
@@ -57,7 +57,7 @@ type FormDataType = {
   providerCompanyId: string
 }
 
-const ConnectorFormInputField = ({
+export const ConnectorFormInputField = ({
   control,
   trigger,
   errors,
@@ -221,7 +221,7 @@ export default function AppMarketCard() {
   }
 
   return (
-    <>
+    <div className="app-market-card">
       {!pageScrolled && (
         <>
           <Typography variant="h3" mt={10} mb={4} align="center">
@@ -243,7 +243,7 @@ export default function AppMarketCard() {
             item
             md={3}
             sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-            className={'app-market-card'}
+            className={'app-card'}
           >
             <Card
               image={{
@@ -298,28 +298,28 @@ export default function AppMarketCard() {
                       value: true,
                       message: `${t(
                         'content.apprelease.appMarketCard.appTitle'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     minLength: {
                       value: 5,
                       message: `${t(
-                        'content.apprelease.appMarketCard.minimum'
+                        'content.apprelease.appReleaseForm.minimum'
                       )} 5 ${t(
-                        'content.apprelease.appMarketCard.charactersRequired'
+                        'content.apprelease.appReleaseForm.charactersRequired'
                       )}`,
                     },
                     pattern: {
                       value: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
                       message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                        'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9.:_- @&`,
                     },
                     maxLength: {
                       value: 40,
                       message: `${t(
-                        'content.apprelease.appMarketCard.maximum'
+                        'content.apprelease.appReleaseForm.maximum'
                       )} 40 ${t(
-                        'content.apprelease.appMarketCard.charactersAllowed'
+                        'content.apprelease.appReleaseForm.charactersAllowed'
                       )}`,
                     },
                   },
@@ -344,28 +344,28 @@ export default function AppMarketCard() {
                       value: true,
                       message: `${t(
                         'content.apprelease.appMarketCard.appProvider'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     minLength: {
                       value: 3,
                       message: `${t(
-                        'content.apprelease.appMarketCard.minimum'
+                        'content.apprelease.appReleaseForm.minimum'
                       )} 3 ${t(
-                        'content.apprelease.appMarketCard.charactersRequired'
+                        'content.apprelease.appReleaseForm.charactersRequired'
                       )}`,
                     },
                     pattern: {
                       value: /^([A-Za-z ]){3,30}$/,
                       message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                        'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Z a-z`,
                     },
                     maxLength: {
                       value: 30,
                       message: `${t(
-                        'content.apprelease.appMarketCard.maximum'
+                        'content.apprelease.appReleaseForm.maximum'
                       )} 30 ${t(
-                        'content.apprelease.appMarketCard.charactersAllowed'
+                        'content.apprelease.appReleaseForm.charactersAllowed'
                       )}`,
                     },
                   },
@@ -403,29 +403,29 @@ export default function AppMarketCard() {
                             message: `${t(
                               `content.apprelease.appMarketCard.${item}`
                             )} ${t(
-                              'content.apprelease.appMarketCard.isMandatory'
+                              'content.apprelease.appReleaseForm.isMandatory'
                             )}`,
                           },
                           minLength: {
                             value: 10,
                             message: `${t(
-                              'content.apprelease.appMarketCard.minimum'
+                              'content.apprelease.appReleaseForm.minimum'
                             )} 10 ${t(
-                              'content.apprelease.appMarketCard.charactersRequired'
+                              'content.apprelease.appReleaseForm.charactersRequired'
                             )}`,
                           },
                           pattern: {
                             value: /^([A-Za-z.:@0-9& ]){10,255}$/,
                             message: `${t(
-                              'content.apprelease.appMarketCard.validCharactersIncludes'
+                              'content.apprelease.appReleaseForm.validCharactersIncludes'
                             )} A-Za-z0-9.: @&`,
                           },
                           maxLength: {
                             value: 255,
                             message: `${t(
-                              'content.apprelease.appMarketCard.maximum'
+                              'content.apprelease.appReleaseForm.maximum'
                             )} 255 ${t(
-                              'content.apprelease.appMarketCard.charactersAllowed'
+                              'content.apprelease.appReleaseForm.charactersAllowed'
                             )}`,
                           },
                         },
@@ -436,9 +436,9 @@ export default function AppMarketCard() {
                       className="form-field"
                       align="right"
                     >
-                      {item === 'shortDescriptionEN'
+                      {(item === 'shortDescriptionEN'
                         ? getValues().shortDescriptionEN.length
-                        : getValues().shortDescriptionDE.length + `/255`}
+                        : getValues().shortDescriptionDE.length) + `/255`}
                     </Typography>
                   </>
                 )
@@ -462,12 +462,12 @@ export default function AppMarketCard() {
                       value: true,
                       message: `${t(
                         'content.apprelease.appMarketCard.useCaseCategory'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
                       value: /^([A-Za-z])$/,
                       message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                        'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z`,
                     },
                   },
@@ -475,9 +475,9 @@ export default function AppMarketCard() {
                   keyTitle: 'name',
                   saveKeyTitle: 'useCaseId',
                   notItemsText: t(
-                    'content.apprelease.appMarketCard.noItemsSelected'
+                    'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
-                  buttonAddMore: t('content.apprelease.appMarketCard.addMore'),
+                  buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
                 }}
               />
             </div>
@@ -499,12 +499,12 @@ export default function AppMarketCard() {
                       value: true,
                       message: `${t(
                         'content.apprelease.appMarketCard.appLanguage'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
                       value: /^([A-Za-z ])$/,
                       message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                        'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Z a-z`,
                     },
                   },
@@ -512,9 +512,9 @@ export default function AppMarketCard() {
                   keyTitle: 'languageShortName',
                   saveKeyTitle: 'languageShortName',
                   notItemsText: t(
-                    'content.apprelease.appMarketCard.noItemsSelected'
+                    'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
-                  buttonAddMore: t('content.apprelease.appMarketCard.addMore'),
+                  buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
                   filterOptionsArgs: {
                     matchFrom: 'any',
                     stringify: (option: any) =>
@@ -545,28 +545,28 @@ export default function AppMarketCard() {
                       value: true,
                       message: `${t(
                         'content.apprelease.appMarketCard.pricingInformation'
-                      )} ${t('content.apprelease.appMarketCard.isMandatory')}`,
+                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     minLength: {
                       value: 1,
                       message: `${t(
-                        'content.apprelease.appMarketCard.minimum'
+                        'content.apprelease.appReleaseForm.minimum'
                       )} 1 ${t(
-                        'content.apprelease.appMarketCard.charactersRequired'
+                        'content.apprelease.appReleaseForm.charactersRequired'
                       )}`,
                     },
                     pattern: {
                       value: /^([A-Za-z0-9/€ ]){1,15}$/,
                       message: `${t(
-                        'content.apprelease.appMarketCard.validCharactersIncludes'
+                        'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9/ €`,
                     },
                     maxLength: {
                       value: 15,
                       message: `${t(
-                        'content.apprelease.appMarketCard.maximum'
+                        'content.apprelease.appReleaseForm.maximum'
                       )} 15 ${t(
-                        'content.apprelease.appMarketCard.charactersAllowed'
+                        'content.apprelease.appReleaseForm.charactersAllowed'
                       )}`,
                     },
                   },
@@ -591,15 +591,15 @@ export default function AppMarketCard() {
             />
             {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
               <p className="file-error-msg">
-                {t('content.apprelease.appMarketCard.fileUploadIsMandatory')}
+                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
               </p>
             )}
 
             <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-              {t('content.apprelease.appMarketCard.note')}
+              {t('content.apprelease.appReleaseForm.note')}
             </Typography>
             <Typography variant="body2" mb={3}>
-              {t('content.apprelease.appMarketCard.OnlyOneFileAllowed')}
+              {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
             </Typography>
 
             <Box mb={2}>
@@ -628,7 +628,6 @@ export default function AppMarketCard() {
               <Button
                 variant="outlined"
                 name="send"
-                className={'form-buttons'}
                 sx={{ float: 'right', mr: 1 }}
                 onClick={handleSubmit(onSubmit)}
               >
@@ -638,6 +637,6 @@ export default function AppMarketCard() {
           </form>
         </Grid>
       </Grid>
-    </>
+    </div>
   )
 }

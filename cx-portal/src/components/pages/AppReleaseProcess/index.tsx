@@ -11,12 +11,13 @@ import { useState } from 'react'
 import AppMarketCard from './components/AppMarketCard'
 import AppReleaseStepper from './components/stepper'
 import BetaTest from './components/BetaTest'
+import AppPage from './components/AppPage'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const [createApp, setCreateApp] = useState(false)
 
-  let currentActiveStep = 5
+  let currentActiveStep = 2
 
   const stepsLists = [
     {
@@ -70,7 +71,13 @@ export default function AppReleaseProcess() {
         <div className="create-app-section">
           <div className="container">
             <AppReleaseStepper />
-            {currentActiveStep === 1 ? <AppMarketCard /> : <BetaTest />}
+            {currentActiveStep === 1 ? (
+              <AppMarketCard />
+            ) : currentActiveStep === 2 ? (
+              <AppPage />
+            ) : (
+              <BetaTest />
+            )}
           </div>
         </div>
       ) : (
