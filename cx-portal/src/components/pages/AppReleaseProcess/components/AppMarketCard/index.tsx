@@ -79,50 +79,55 @@ export const ConnectorFormInputField = ({
     control={control}
     rules={rules}
     render={({ field: { onChange, value } }) => {
-      return type === 'input' ? (
-        <Input
-          label={label}
-          placeholder={placeholder}
-          error={!!errors[name]}
-          helperText={errors && errors[name] && errors[name].message}
-          value={value}
-          onChange={(event) => {
-            trigger(name)
-            onChange(event)
-          }}
-          multiline={textarea}
-          minRows={textarea && 3}
-          maxRows={textarea && 3}
-          sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
-        />
-      ) : type === 'dropzone' ? (
-        <Dropzone
-          onFileDrop={(files: any) => {
-            console.log(files[0].name)
-            trigger(name)
-            onChange(files[0].name)
-          }}
-        />
-      ) : (
-        <MultiSelectList
-          label={label}
-          placeholder={placeholder}
-          error={!!errors[name]}
-          helperText={errors && errors[name] && errors[name].message}
-          value={value}
-          items={items}
-          keyTitle={keyTitle}
-          onAddItem={(items: any[]) => {
-            trigger(name)
-            onChange(items?.map((item) => item[saveKeyTitle]))
-          }}
-          notItemsText={notItemsText}
-          buttonAddMore={buttonAddMore}
-          tagSize="small"
-          margin="none"
-          filterOptionsArgs={filterOptionsArgs}
-        />
-      )
+      if (type === 'input') {
+        return (
+          <Input
+            label={label}
+            placeholder={placeholder}
+            error={!!errors[name]}
+            helperText={errors && errors[name] && errors[name].message}
+            value={value}
+            onChange={(event) => {
+              trigger(name)
+              onChange(event)
+            }}
+            multiline={textarea}
+            minRows={textarea && 3}
+            maxRows={textarea && 3}
+            sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
+          />
+        )
+      } else if (type === 'dropzone') {
+        return (
+          <Dropzone
+            onFileDrop={(files: any) => {
+              console.log(files[0].name)
+              trigger(name)
+              onChange(files[0].name)
+            }}
+          />
+        )
+      } else
+        return (
+          <MultiSelectList
+            label={label}
+            placeholder={placeholder}
+            error={!!errors[name]}
+            helperText={errors && errors[name] && errors[name].message}
+            value={value}
+            items={items}
+            keyTitle={keyTitle}
+            onAddItem={(items: any[]) => {
+              trigger(name)
+              onChange(items?.map((item) => item[saveKeyTitle]))
+            }}
+            notItemsText={notItemsText}
+            buttonAddMore={buttonAddMore}
+            tagSize="small"
+            margin="none"
+            filterOptionsArgs={filterOptionsArgs}
+          />
+        )
     }}
   />
 )
