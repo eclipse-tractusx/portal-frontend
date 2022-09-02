@@ -215,113 +215,67 @@ export default function AppPage() {
               </Typography>
             </div>
 
-            <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-            <div className="form-field">
-              <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t('content.apprelease.appPage.uploadDataPrerequisits') + '*'}
-              </InputLabel>
-              <Controller
-                name={'uploadDataPrerequisits'}
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <Dropzone
-                    onFileDrop={(files: File[]) => {
-                      onChange(files[0].name)
-                      trigger('uploadDataPrerequisits')
+            {[
+              'uploadDataPrerequisits',
+              'uploadTechnicalGuide',
+              'uploadDataContract',
+              'uploadAppContract',
+            ].map((item: string) => (
+              <>
+                <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+                <div className="form-field">
+                  <InputLabel sx={{ mb: 3, mt: 3 }}>
+                    {t(`content.apprelease.appPage.${item}`) + '*'}
+                  </InputLabel>
+                  <ConnectorFormInputField
+                    {...{
+                      control,
+                      trigger,
+                      errors,
+                      name: item,
+                      type: 'dropzone',
+                      rules: {
+                        required: {
+                          value: true,
+                        },
+                      },
                     }}
                   />
-                )}
-              />
-              {errors?.uploadDataPrerequisits?.type === 'required' && (
-                <p className="file-error-msg">
-                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-                </p>
-              )}
-            </div>
-
-            <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-            <div className="form-field">
-              <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t('content.apprelease.appPage.uploadTechnicalGuide') + '*'}
-              </InputLabel>
-              <Controller
-                name={'uploadTechnicalGuide'}
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <Dropzone
-                    onFileDrop={(files: File[]) => {
-                      onChange(files[0].name)
-                      trigger('uploadTechnicalGuide')
-                    }}
-                  />
-                )}
-              />
-              {errors?.uploadTechnicalGuide?.type === 'required' && (
-                <p className="file-error-msg">
-                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-                </p>
-              )}
-            </div>
-
-            <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-            <div className="form-field">
-              <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t('content.apprelease.appPage.uploadDataContract') + '*'}
-              </InputLabel>
-              <Controller
-                name={'uploadDataContract'}
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <Dropzone
-                    onFileDrop={(files: File[]) => {
-                      onChange(files[0].name)
-                      trigger('uploadDataContract')
-                    }}
-                  />
-                )}
-              />
-              {errors?.uploadDataContract?.type === 'required' && (
-                <p className="file-error-msg">
-                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-                </p>
-              )}
-            </div>
-
-            <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-            <div className="form-field">
-              <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t('content.apprelease.appPage.uploadAppContract') + '*'}
-              </InputLabel>
-              <Controller
-                name={'uploadAppContract'}
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <Dropzone
-                    onFileDrop={(files: File[]) => {
-                      onChange(files[0].name)
-                      trigger('uploadAppContract')
-                    }}
-                  />
-                )}
-              />
-              {errors?.uploadAppContract?.type === 'required' && (
-                <p className="file-error-msg">
-                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-                </p>
-              )}
-            </div>
+                  {item === 'uploadDataPrerequisits' &&
+                    errors?.uploadDataPrerequisits?.type === 'required' && (
+                      <p className="file-error-msg">
+                        {t(
+                          'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+                        )}
+                      </p>
+                    )}
+                  {item === 'uploadTechnicalGuide' &&
+                    errors?.uploadTechnicalGuide?.type === 'required' && (
+                      <p className="file-error-msg">
+                        {t(
+                          'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+                        )}
+                      </p>
+                    )}
+                  {item === 'uploadDataContract' &&
+                    errors?.uploadDataContract?.type === 'required' && (
+                      <p className="file-error-msg">
+                        {t(
+                          'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+                        )}
+                      </p>
+                    )}
+                  {item === 'uploadAppContract' &&
+                    errors?.uploadAppContract?.type === 'required' && (
+                      <p className="file-error-msg">
+                        {t(
+                          'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+                        )}
+                      </p>
+                    )}
+                </div>
+              </>
+            ))}
 
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <InputLabel sx={{ mb: 3 }}>
@@ -407,7 +361,7 @@ export default function AppPage() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^\+4[0-9] \(0\d+\) \d{9,}$/,
+                      value: /^\+4[\d] \(0\d+\) \d{9,}$/,
                       message: t(
                         'content.apprelease.appPage.PleaseEnterValidContact'
                       ),
@@ -433,7 +387,7 @@ export default function AppPage() {
                 <KeyboardArrowLeftIcon />
               </IconButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 disabled={!isValid}
                 sx={{ float: 'right' }}
                 onClick={handleSubmit(onSubmit)}

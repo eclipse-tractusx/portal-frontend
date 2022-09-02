@@ -58,6 +58,12 @@ export default function AppReleaseProcess() {
     },
   ]
 
+  const activeStep = () => {
+    if (currentActiveStep === 1) return <AppMarketCard />
+    else if (currentActiveStep === 2) return <AppPage />
+    else if (currentActiveStep === 5) return <BetaTest />
+  }
+
   return (
     <div className="appoverview-main">
       <PageHeader
@@ -71,13 +77,7 @@ export default function AppReleaseProcess() {
         <div className="create-app-section">
           <div className="container">
             <AppReleaseStepper />
-            {currentActiveStep === 1 ? (
-              <AppMarketCard />
-            ) : currentActiveStep === 2 ? (
-              <AppPage />
-            ) : (
-              <BetaTest />
-            )}
+            {activeStep()}
           </div>
         </div>
       ) : (

@@ -95,6 +95,14 @@ export const ConnectorFormInputField = ({
           maxRows={textarea && 3}
           sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
         />
+      ) : type === 'dropzone' ? (
+        <Dropzone
+          onFileDrop={(files: any) => {
+            console.log(files[0].name)
+            trigger(name)
+            onChange(files[0].name)
+          }}
+        />
       ) : (
         <MultiSelectList
           label={label}
@@ -326,6 +334,7 @@ export default function AppMarketCard() {
                 }}
               />
             </div>
+
             <div className="form-field">
               <ConnectorFormInputField
                 {...{
@@ -574,20 +583,19 @@ export default function AppMarketCard() {
               />
             </div>
 
-            <Controller
-              name={'uploadImage.leadPictureUri'}
-              control={control}
-              rules={{
-                required: true,
+            <ConnectorFormInputField
+              {...{
+                control,
+                trigger,
+                errors,
+                name: 'uploadImage.leadPictureUri',
+                type: 'dropzone',
+                rules: {
+                  required: {
+                    value: true,
+                  },
+                },
               }}
-              render={({ field: { onChange, value } }) => (
-                <Dropzone
-                  onFileDrop={(files: File[]) => {
-                    onChange(files[0].name)
-                    trigger('uploadImage.leadPictureUri')
-                  }}
-                />
-              )}
             />
             {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
               <p className="file-error-msg">
@@ -618,7 +626,7 @@ export default function AppMarketCard() {
                 <KeyboardArrowLeftIcon />
               </IconButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 disabled={!isValid}
                 sx={{ float: 'right' }}
                 onClick={handleSubmit(onSubmit)}
