@@ -7,17 +7,18 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import './Organization.scss'
 import { OVERLAYS } from 'types/Constants'
-import { useTheme, CircularProgress } from '@mui/material'
 import {
   useFetchActiveAppsQuery,
   useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
 import { appToStatus } from 'features/apps/mapper'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import LoadingError from './LoadingError'
+import { companyDetailsToCards } from 'features/admin/mapper'
 
 export default function Organization() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const theme = useTheme()
   const {
     data: subscriptionStatus,
     isError,
@@ -26,21 +27,28 @@ export default function Organization() {
   const { data } = useFetchActiveAppsQuery()
   const appSubscribedData =
     subscriptionStatus && appToStatus(data!, subscriptionStatus!)
+  const {
+    data: companyDetails,
+    isError: companyDetailsError,
+    isLoading: companyDetailsLoading,
+  } = useFetchOwnCompanyDetailsQuery()
+  const companyDetailsData =
+    companyDetails && companyDetailsToCards(companyDetails)
+
   const handleClick = (id: string | undefined) => {
     dispatch(show(OVERLAYS.APP, id, t('content.organization.company.title')))
   }
 
+  const companyDetailsTableBody =
+    companyDetailsData?.map((details) => [
+      () => <CompanyDetails head={t(details.head)} data={details.data} />,
+    ]) || []
+
   const organizationTableData: TableType = {
     head: [t('content.organization.company.title')],
-    body: [
-      [() => <CompanyDetails head="Company Name: " data="This company name" />],
-      [() => <CompanyDetails head="Address: " data="This company name" />],
-      [() => <CompanyDetails head="City: " data="This company name" />],
-      [() => <CompanyDetails head="Company Name: " data="This company name" />],
-      [() => <CompanyDetails head="BPN: " data="This company name" />],
-    ],
+    body: companyDetailsTableBody,
   }
-  // let appSubscriptionsTableBody;
+
   const appSubscriptionsTableBody =
     appSubscribedData?.map((app) => [
       () => (
@@ -69,24 +77,19 @@ export default function Organization() {
       <div className="organization-main">
         <div className="organization-content">
           <StaticTable data={organizationTableData} horizontal={false} />
+          <LoadingError
+            isLoading={companyDetailsLoading}
+            isError={companyDetailsError}
+            errorText={t('content.organization.company.error')}
+          />
         </div>
         <div className="organization-content">
           <StaticTable data={appSubscriptionsTableData} horizontal={false} />
-          {isLoading ? (
-            <div className="organization-loader">
-              <CircularProgress
-                size={50}
-                sx={{
-                  color: theme.palette.primary.main,
-                  zIndex: 1,
-                  position: 'absolute',
-                }}
-              />
-            </div>
-          ) : null}
-          {isError ? (
-            <div className="organization-error">error - no data found</div>
-          ) : null}
+          <LoadingError
+            isLoading={isLoading}
+            isError={isError}
+            errorText={t('content.organization.subscriptions.error')}
+          />
         </div>
       </div>
     </main>

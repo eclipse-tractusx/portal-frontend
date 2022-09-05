@@ -237,10 +237,16 @@
     },
     "organization": {
       "company": {
-        "title": "Company Details"
+        "title": "Company Details",
+        "error": "error - no data found",
+        "name": "Company Name: ",
+        "address": "Address: ",
+        "city": "City: ",
+        "bpn": "BPN: "
       },
       "subscriptions": {
-        "title": "App Subscriptions"
+        "title": "App Subscriptions",
+        "error": "error - no data found"
       }
     },
     "datamanagement": {
