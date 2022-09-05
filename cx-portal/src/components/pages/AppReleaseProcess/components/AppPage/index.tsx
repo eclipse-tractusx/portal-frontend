@@ -52,7 +52,7 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [notification, setNotification] = useState(false)
+  const [appPageNotification, setAppPageNotification] = useState(false)
 
   const defaultValues = {
     longDescriptionEN: '',
@@ -78,7 +78,7 @@ export default function AppPage() {
     mode: 'onChange',
   })
 
-  const onSubmit = async (data: FormDataType) => {
+  const onAppPageSubmit = async (data: FormDataType) => {
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
@@ -98,7 +98,7 @@ export default function AppPage() {
 
   const handleSave = async (data: FormDataType) => {
     console.log('data', data)
-    setNotification(true)
+    setAppPageNotification(true)
   }
 
   return (
@@ -390,7 +390,7 @@ export default function AppPage() {
                 variant="contained"
                 disabled={!isValid}
                 sx={{ float: 'right' }}
-                onClick={handleSubmit(onSubmit)}
+                onClick={handleSubmit(onAppPageSubmit)}
               >
                 {t('content.apprelease.footerButtons.saveAndProceed')}
               </Button>
@@ -398,16 +398,18 @@ export default function AppPage() {
                 variant="outlined"
                 name="send"
                 sx={{ float: 'right', mr: 1 }}
-                onClick={handleSubmit(onSubmit)}
+                onClick={handleSubmit(onAppPageSubmit)}
               >
                 {t('content.apprelease.footerButtons.save')}
               </Button>
             </Box>
-            {notification && (
+            {appPageNotification && (
               <div className="errorMsg">
                 <PageNotifications
                   title={t('content.apprelease.appReleaseForm.error.title')}
-                  description={t('content.apprelease.appReleaseForm.error.message')}
+                  description={t(
+                    'content.apprelease.appReleaseForm.error.message'
+                  )}
                   open
                   severity="error"
                 />

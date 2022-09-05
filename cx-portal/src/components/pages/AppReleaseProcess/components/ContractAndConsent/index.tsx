@@ -18,7 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, IconButton, PageNotifications, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  IconButton,
+  PageNotifications,
+  Typography,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -41,7 +46,6 @@ export default function ContractAndConsent() {
 
   const {
     handleSubmit,
-    getValues,
     control,
     trigger,
     formState: { errors, isValid },
@@ -51,9 +55,7 @@ export default function ContractAndConsent() {
   })
 
   const onContractConsentSubmit = async (data: FormDataType) => {
-    const validateFields = await trigger([
-      'agreements',
-    ])
+    const validateFields = await trigger(['agreements'])
     if (validateFields) {
       handleSave(data)
     }
@@ -65,14 +67,14 @@ export default function ContractAndConsent() {
   }
 
   return (
-    <div className='contract-consent'>
+    <div className="contract-consent">
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.contractAndConsent.headerTitle')}
       </Typography>
       <Typography variant="body2" className="header-description" align="center">
         {t('content.apprelease.contractAndConsent.headerDescription')}
       </Typography>
-      <form className='header-description'>
+      <form className="header-description">
         <div className="form-field">
           <ConnectorFormInputField
             {...{
@@ -80,16 +82,21 @@ export default function ContractAndConsent() {
               trigger,
               errors,
               name: '1',
-              label: `${t('content.apprelease.contractAndConsent.headerDescription')} ${t('content.apprelease.contractAndConsent.headerDescription')}`,
+              label: `${t(
+                'content.apprelease.contractAndConsent.headerDescription'
+              )} ${t(
+                'content.apprelease.contractAndConsent.headerDescription'
+              )}`,
               type: 'checkbox',
               rules: {
                 required: {
                   value: true,
-                  message: t('content.apprelease.contractAndConsent.allAgreementsMandatory')
+                  message: t(
+                    'content.apprelease.contractAndConsent.allAgreementsMandatory'
+                  ),
                 },
-              }
-            }
-            }
+              },
+            }}
           />
         </div>
       </form>
