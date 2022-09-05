@@ -76,7 +76,7 @@
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
         "overlay": {
-          "title": "Firmendetails",
+          "title": "Firmendaten",
           "companydatatitle": "Firmendaten",
           "taxid": "Steuernummer"
         },
@@ -319,7 +319,7 @@
       "searchfielderrormessage": "ungültige Daten",
       "searchbuttonlabel": "Suche",
       "overlay": {
-        "title": "Firmen Data",
+        "title": "Firmendetails",
         "companydatatitle": "Firmen Data",
         "legalform": "Rechtsform"
       }
