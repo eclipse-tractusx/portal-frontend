@@ -31,7 +31,7 @@ export default function IDPDetail() {
   return (
     <main>
       <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT, PAGES.IDP_DETAIL]} />
-      {data ? <IDPDetailContent data={data} /> : <Empty />}
+      <section>{data ? <IDPDetailContent idp={data} /> : <Empty />}</section>
     </main>
   )
 }

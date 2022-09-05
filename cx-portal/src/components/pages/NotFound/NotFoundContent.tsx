@@ -18,18 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useApiGet } from 'utils/useApiGet'
+import { useTranslation } from 'react-i18next'
 
-export default function Test() {
-  const data = useApiGet(
-    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
-  )
-
+export default function NotFoundContent() {
+  const { t } = useTranslation()
   return (
-    <main>
-      <section>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </section>
-    </main>
+    <>
+      <p>{t('content.notfound.message')}</p>
+      <ul>
+        <li>{t('content.notfound.reason.nopermission')}</li>
+        <li>{t('content.notfound.reason.notexisting')}</li>
+        <li>{t('content.notfound.reason.notimplemented')}</li>
+      </ul>
+      <p>{t('content.notfound.further')}</p>
+    </>
   )
 }

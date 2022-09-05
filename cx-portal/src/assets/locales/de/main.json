@@ -421,13 +421,17 @@
       }
     },
     "idpmanagement": {
-      "create": "Identitätsprovider anlegen",
-      "idp": {
-        "category": {
-          "KEYCLOAK_SHARED": "Gemeinsamer Keycloak",
-          "OWN": "Eignener IDP"
-        }
-      }
+      "create": "OIDC Identitätsprovider anlegen"
+    },
+    "idpdetail": {
+      "title": "Identitätsprovider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Anzeigename",
+      "authType": "IDP Typ",
+      "authURL": "Authentisierungs URL",
+      "authMethod": "Authentisierungsart",
+      "mappers": "Mapper"
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",

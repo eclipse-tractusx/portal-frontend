@@ -329,6 +329,14 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.TECHUSER,
     role: ROLES.TECHUSER_VIEW,
   },
+  {
+    name: OVERLAYS.IDP,
+    role: ROLES.IDP_VIEW,
+  },
+  {
+    name: OVERLAYS.NOT_FOUND,
+    role: ROLES.IDP_VIEW,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

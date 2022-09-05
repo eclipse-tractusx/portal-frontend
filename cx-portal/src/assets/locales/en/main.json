@@ -421,13 +421,17 @@
       }
     },
     "idpmanagement": {
-      "create": "Create Identity Provider",
-      "idp": {
-        "category": {
-          "KEYCLOAK_SHARED": "Shared Keycloak",
-          "OWN": "Own IDP"
-        }
-      }
+      "create": "Create OIDC Identity Provider"
+    },
+    "idpdetail": {
+      "title": "Identity Provider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Display Name",
+      "authType": "IDP Type",
+      "authURL": "Authentication URL",
+      "authMethod": "Authentication Method",
+      "mappers": "Mappers"
     },
     "addUser": {
       "headline": "Add User Account",
