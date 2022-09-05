@@ -380,10 +380,7 @@ export default function AppPage() {
               >
                 {t('content.apprelease.footerButtons.help')}
               </Button>
-              <IconButton
-                color="secondary"
-                onClick={() => navigate('/appmanagement')}
-              >
+              <IconButton color="secondary">
                 <KeyboardArrowLeftIcon />
               </IconButton>
               <Button
