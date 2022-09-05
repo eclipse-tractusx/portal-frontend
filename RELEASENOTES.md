@@ -6,6 +6,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### 0.5.4
 
 * Feature - Create, enable and delete Identity Providers
+* Feature - App Release Process Step 2
+* Feature - App Release Process Step 3
 
 
 ### 0.5.3
