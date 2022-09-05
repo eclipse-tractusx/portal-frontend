@@ -6,10 +6,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### 0.5.4
 
 * Feature - Create, enable and delete Identity Providers
+* Feature - App Release Process Step 2
+* Feature - App Release Process Step 3
 * Bugs - Show loader on clicking decline or confirm from application request screen
 * Bugs - Show error popup on failure of approve or decline request
 * Bugs - Text updates on company data overlay
-
 
 ### 0.5.3
 

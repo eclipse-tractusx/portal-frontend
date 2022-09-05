@@ -50,12 +50,7 @@ export default function BetaTest() {
         <Button variant="contained" sx={{ float: 'right' }}>
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          className={'form-buttons'}
-          sx={{ float: 'right', mr: 1 }}
-        >
+        <Button variant="outlined" name="send" sx={{ float: 'right', mr: 1 }}>
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
