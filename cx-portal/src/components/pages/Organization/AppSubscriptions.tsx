@@ -38,9 +38,9 @@ export default function AppSubscriptions({
       </Box>
 
       <span>
-        {name} - by {provider}
+        {name} - by {provider} -
       </span>
-      <span style={{ color: colorCode }}> - {status}</span>
+      <span style={{ color: colorCode }}> {'\u00a0' + status}</span>
     </div>
   )
 }

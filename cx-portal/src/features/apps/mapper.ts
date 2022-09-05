@@ -63,9 +63,9 @@ export const appToStatus = (
   subscriptionStatus: SubscriptionStatusItem[]
 ): AppMarketplaceApp[] => {
   return apps?.map((app: AppMarketplaceApp) => {
-    const status = subscriptionStatus?.find(
-      (e) => e.appId === app.id
-    )?.appSubscriptionStatus || SubscriptionStatus.INACTIVE
+    const status =
+      subscriptionStatus?.find((e) => e.appId === app.id)
+        ?.appSubscriptionStatus || SubscriptionStatus.INACTIVE
     const image = {
       src: getAppLeadImage(app),
       alt: app.title,
