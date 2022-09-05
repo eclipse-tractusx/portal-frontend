@@ -26,6 +26,7 @@ import {
   CardHorizontal,
   Card,
   MultiSelectList,
+  Checkbox,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -104,6 +105,17 @@ export const ConnectorFormInputField = ({
               console.log(files[0].name)
               trigger(name)
               onChange(files[0].name)
+            }}
+          />
+        )
+      } else if (type === 'checkbox') {
+        return (
+          <Checkbox
+            label={label}
+            checked={value}
+            onChange={(event) => {
+              trigger(name)
+              onChange(event.target.checked)
             }}
           />
         )
@@ -471,6 +483,7 @@ export default function AppMarketCard() {
                   placeholder: t(
                     'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
                   ),
+                  type: 'multiSelectList',
                   rules: {
                     required: {
                       value: true,
@@ -508,6 +521,7 @@ export default function AppMarketCard() {
                   placeholder: t(
                     'content.apprelease.appMarketCard.appLanguagePlaceholder'
                   ),
+                  type: 'multiSelectList',
                   rules: {
                     required: {
                       value: true,

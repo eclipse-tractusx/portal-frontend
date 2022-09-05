@@ -406,8 +406,8 @@ export default function AppPage() {
             {notification && (
               <div className="errorMsg">
                 <PageNotifications
-                  title={t('content.apprelease.appPage.error.title')}
-                  description={t('content.apprelease.appPage.error.message')}
+                  title={t('content.apprelease.appReleaseForm.error.title')}
+                  description={t('content.apprelease.appReleaseForm.error.message')}
                   open
                   severity="error"
                 />

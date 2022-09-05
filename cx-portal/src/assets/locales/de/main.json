@@ -630,11 +630,12 @@
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
         "PleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "PleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX",
-        "error": {
-          "title": "Error",
-          "message": "Error"
-        }
+        "PleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX"
+      },
+      "contractAndConsent": {
+        "headerTitle": "Consent & Contract",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "allAgreementsMandatory": "All agreements are mandatory"
       },
       "betaTest": {
         "headerTitle": "Beta Test",
@@ -652,7 +653,11 @@
         "charactersAllowed": " characters allowed",
         "validCharactersIncludes": "Valid characters includes: ",
         "isMandatory": " is mandatory",
-        "fileUploadIsMandatory": "File upload is mandatory"
+        "fileUploadIsMandatory": "File upload is mandatory",
+        "error": {
+          "title": "Error",
+          "message": "Error"
+        }
       },
       "footerButtons": {
         "help": "Help",
