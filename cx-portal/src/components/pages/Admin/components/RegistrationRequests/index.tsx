@@ -5,14 +5,13 @@ import {
   Typography,
   PageHeader,
   Button,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchRegistrationRequests,
   fetchCompanyDetail,
-  approveRequest,
-  declineRequest,
 } from 'features/admin/registration/actions'
 import { RegistrationRequestsTableColumns } from 'components/pages/Admin/components/RegistrationRequests/registrationTableColumns'
 import './RegistrationRequests.scss'
@@ -20,9 +19,14 @@ import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import uniqueId from 'lodash/uniqueId'
+import {
+  useApproveRequestMutation,
+  useDeclineRequestMutation,
+} from 'features/admin/applicationRequestApiSlice'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
+
   const dispatch = useDispatch()
 
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
@@ -38,6 +42,13 @@ export default function RegistrationRequests() {
   const { loading, registrationRequests, paginationData } = useSelector(
     adminRegistrationSelector
   )
+
+  const [approveRequest] = useApproveRequestMutation()
+  const [declineRequest] = useDeclineRequestMutation()
+
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const [showErrorAlert, setShowErrorAlert] = useState<string>('')
 
   useEffect(() => {
     const params = { size: pageSize, page: currentPage }
@@ -63,26 +74,48 @@ export default function RegistrationRequests() {
     setSelectedRequestId(id)
   }
 
-  const makeActionSelectedRequest = async () => {
-    if (actionType === 'approve' && selectedRequestId)
-      await dispatch(approveRequest(selectedRequestId))
-    if (actionType === 'decline' && selectedRequestId)
-      await dispatch(declineRequest(selectedRequestId))
+  const onErrorAlertClose = () => {
+    setShowErrorAlert('')
+  }
 
+  const makeActionSelectedRequest = async () => {
+    setIsLoading(true)
+    setConfirmModalOpen(false)
+    if (actionType === 'approve' && selectedRequestId) {
+      await approveRequest(selectedRequestId)
+        .unwrap()
+        .then((payload) => console.log('fulfilled', payload))
+        .catch((error) => setShowErrorAlert(error.data.title))
+    } else if (actionType === 'decline' && selectedRequestId) {
+      await declineRequest(selectedRequestId)
+        .unwrap()
+        .then((payload) => console.log('fulfilled', payload))
+        .catch((error) => setShowErrorAlert(error.data.title))
+    }
     const params = { size: pageSize, page: 0 }
     dispatch(fetchRegistrationRequests({ params }))
-
-    setConfirmModalOpen(false)
+    setIsLoading(false)
   }
 
   const columns = RegistrationRequestsTableColumns(
     useTranslation,
     onApproveClick,
-    onDeclineClick
+    onDeclineClick,
+    isLoading
   )
 
   return (
     <main className="page-main-container">
+      <PageSnackbar
+        open={showErrorAlert !== ''}
+        onCloseNotification={onErrorAlertClose}
+        severity="error"
+        title={t('content.semantichub.alerts.alertErrorTitle')}
+        description={showErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
       <CompanyDetailOverlay
         {...{
           openDialog: overlayOpen,
@@ -91,7 +124,10 @@ export default function RegistrationRequests() {
       />
       <ConfirmationOverlay
         openDialog={confirmModalOpen}
-        handleOverlayClose={() => setConfirmModalOpen(false)}
+        handleOverlayClose={() => {
+          setIsLoading(false)
+          setConfirmModalOpen(false)
+        }}
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
 

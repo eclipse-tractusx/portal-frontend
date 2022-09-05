@@ -76,7 +76,7 @@
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
         "overlay": {
-          "title": "Company Detail",
+          "title": "Company Data",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
         },
@@ -306,7 +306,7 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City",
+        "city": "PLZ/City",
         "cxparticipant": "CX Member"
       },
       "filters": {

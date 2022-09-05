@@ -1,18 +1,26 @@
-import { IconButton, StatusTag, Chip } from 'cx-portal-shared-components'
+import {
+  IconButton,
+  StatusTag,
+  Chip,
+  CircleProgress,
+} from 'cx-portal-shared-components'
 import { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { RegistrationRequestDataGrid } from 'features/admin/registration/types'
 import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
+import { useState } from 'react'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
   translationHook: any,
   onApproveClick: (id: string) => void,
-  onDeclineClick: (id: string) => void
+  onDeclineClick: (id: string) => void,
+  isLoading: boolean
 ): Array<GridColDef> => {
   const { t } = translationHook()
+  const [selectedRowId, setSelectedRowId] = useState<string>('')
 
   return [
     {
@@ -94,27 +102,50 @@ export const RegistrationRequestsTableColumns = (
         if (row.status === 'SUBMITTED')
           return (
             <div className="state-cell-container">
-              <Chip
-                {...{
-                  color: 'secondary',
-                  variant: 'filled',
-                  label: t('content.admin.registration-requests.buttondecline'),
-                  type: 'decline',
-                  onClick: () => onDeclineClick(row.applicationId),
-                  withIcon: true,
-                }}
-              />
+              {selectedRowId === row.applicationId && isLoading ? (
+                <CircleProgress
+                  size={40}
+                  step={1}
+                  interval={0.1}
+                  colorVariant={'primary'}
+                  variant={'indeterminate'}
+                  thickness={8}
+                />
+              ) : (
+                <>
+                  <Chip
+                    {...{
+                      color: 'secondary',
+                      variant: 'filled',
+                      label: t(
+                        'content.admin.registration-requests.buttondecline'
+                      ),
+                      type: 'decline',
+                      onClick: () => {
+                        setSelectedRowId(row.applicationId)
+                        onDeclineClick(row.applicationId)
+                      },
+                      withIcon: true,
+                    }}
+                  />
 
-              <Chip
-                {...{
-                  color: 'secondary',
-                  variant: 'filled',
-                  label: t('content.admin.registration-requests.buttonconfirm'),
-                  type: 'confirm',
-                  onClick: () => onApproveClick(row.applicationId),
-                  withIcon: true,
-                }}
-              />
+                  <Chip
+                    {...{
+                      color: 'secondary',
+                      variant: 'filled',
+                      label: t(
+                        'content.admin.registration-requests.buttonconfirm'
+                      ),
+                      type: 'confirm',
+                      onClick: () => {
+                        setSelectedRowId(row.applicationId)
+                        onApproveClick(row.applicationId)
+                      },
+                      withIcon: true,
+                    }}
+                  />
+                </>
+              )}
             </div>
           )
         else

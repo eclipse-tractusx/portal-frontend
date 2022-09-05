@@ -41,6 +41,7 @@ import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
+import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
 
 export const reducers = {
   admin,
@@ -64,6 +65,7 @@ export const reducers = {
   [appMarketplaceSliceTest.reducerPath]: appMarketplaceSliceTest.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
+  [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
 }
 
 export const store = configureStore({
@@ -78,7 +80,8 @@ export const store = configureStore({
       .concat(appMarketplaceSlice.middleware)
       .concat(appMarketplaceSliceTest.middleware)
       .concat(appManagementSlice.middleware)
-      .concat(inviteApiSlice.middleware),
+      .concat(inviteApiSlice.middleware)
+      .concat(applicationRequestApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>
