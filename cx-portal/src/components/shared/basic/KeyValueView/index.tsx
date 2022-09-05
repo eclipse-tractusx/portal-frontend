@@ -3,9 +3,11 @@ import { Typography } from 'cx-portal-shared-components'
 import { isValidElement, useState } from 'react'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
+type DataValue = string | number | JSX.Element
+
 interface ValueItem {
-  key?: string
-  value: string | number | JSX.Element
+  key?: DataValue
+  value: DataValue
   copy?: boolean
 }
 
@@ -15,7 +17,7 @@ interface KeyValueViewProps {
   items: ValueItem | Array<ValueItem>
 }
 
-const renderValue = (value: string | number | JSX.Element) => (
+const renderValue = (value: DataValue) => (
   <Typography sx={{ fontSize: '14px', color: 'gray', margin: 'auto 0px' }}>
     {isValidElement(value) ? value : value.toString()}
   </Typography>

@@ -20,11 +20,11 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-import userSlice from './user/slice'
+import userSliceDep from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
 import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
-import notificationSlice from './notification/slice'
+import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
 import { reducer as admin } from './admin/reducer'
 import managementSlice from './appManagement/slice'
@@ -32,13 +32,15 @@ import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
-import { apiSlice as userApiSlice } from './admin/userApiSlice'
-import { apiSlice as serviceApiSlice } from './admin/serviceApiSlice'
-import { apiSlice as notificationApiSlice } from './notification/apiSlice'
+import { apiSlice as idpSlice } from './admin/idpApiSlice'
+import { apiSlice as userSlice } from './admin/userApiSlice'
+import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
+import { apiSlice as notificationSlice } from './notification/apiSlice'
 import { apiSlice as appRolesSlice } from './admin/appuserApiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
+import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 
 export const reducers = {
   admin,
@@ -47,32 +49,36 @@ export const reducers = {
   info,
   management: managementSlice.reducer,
   semanticModels: modelsSlice.reducer,
-  user: userSlice,
+  user: userSliceDep,
   twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
   connector: connectorSlice.reducer,
-  notification: notificationSlice.reducer,
+  notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
-  [userApiSlice.reducerPath]: userApiSlice.reducer,
-  [serviceApiSlice.reducerPath]: serviceApiSlice.reducer,
-  [notificationApiSlice.reducerPath]: notificationApiSlice.reducer,
+  [idpSlice.reducerPath]: idpSlice.reducer,
+  [userSlice.reducerPath]: userSlice.reducer,
+  [serviceSlice.reducerPath]: serviceSlice.reducer,
+  [notificationSlice.reducerPath]: notificationSlice.reducer,
   [appRolesSlice.reducerPath]: appRolesSlice.reducer,
   [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
   [appMarketplaceSliceTest.reducerPath]: appMarketplaceSliceTest.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
+  [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
 }
 
 export const store = configureStore({
   reducer: combineReducers(reducers),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(userApiSlice.middleware)
-      .concat(serviceApiSlice.middleware)
-      .concat(notificationApiSlice.middleware)
+      .concat(idpSlice.middleware)
+      .concat(userSlice.middleware)
+      .concat(serviceSlice.middleware)
+      .concat(notificationSlice.middleware)
       .concat(appRolesSlice.middleware)
       .concat(appMarketplaceSlice.middleware)
       .concat(appMarketplaceSliceTest.middleware)
-      .concat(appManagementSlice.middleware),
+      .concat(appManagementSlice.middleware)
+      .concat(inviteApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

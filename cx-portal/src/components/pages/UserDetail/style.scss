@@ -18,18 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useApiGet } from 'utils/useApiGet'
-
-export default function Test() {
-  const data = useApiGet(
-    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
-  )
-
-  return (
-    <main>
-      <section>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </section>
-    </main>
-  )
+.user-details {
+  width: 100%;
+  padding: 0;
+  .errorMsg {
+    margin-bottom: 20px;
+  }
+  button:hover {
+    box-shadow: 0px 0px 0px 3px rgb(15 113 203 / 40%) !important;
+  }
+  button:focus {
+    box-shadow: none;
+  }
 }

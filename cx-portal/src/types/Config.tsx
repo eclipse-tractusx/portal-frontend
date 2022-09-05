@@ -54,11 +54,13 @@ import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
-import UserDetails from 'components/pages/UserManagement/UserDetails'
+import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
+import IDPManagement from 'components/pages/IDPManagement'
+import IDPDetail from 'components/pages/IDPDetail'
 
 /**
  * ALL_PAGES
@@ -190,6 +192,20 @@ export const ALL_PAGES: IPage[] = [
     element: <UserManagement />,
   },
   {
+    name: PAGES.USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.USER_DETAILS}
+        path={`/${PAGES.USER_DETAILS}`}
+        element={<UserDetails />}
+      >
+        <Route path=":userId" element={<UserDetails />} />
+      </Route>
+    ),
+  },
+  {
     name: PAGES.TECHUSER_MANAGEMENT,
     role: ROLES.TECHUSER_VIEW,
     element: <TechnicalUserManagement />,
@@ -209,20 +225,6 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.USER_DETAILS}
-        path={`/${PAGES.USER_DETAILS}`}
-        element={<UserDetails />}
-      >
-        <Route path=":userId" element={<UserDetails />} />
-      </Route>
-    ),
-  },
-  {
     name: PAGES.APP_USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
@@ -236,6 +238,26 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  {
+    name: PAGES.IDP_MANAGEMENT,
+    role: ROLES.IDP_VIEW,
+    element: <IDPManagement />,
+  },
+  {
+    name: PAGES.IDP_DETAIL,
+    role: ROLES.IDP_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.IDP_DETAIL}
+        path={`/${PAGES.IDP_DETAIL}`}
+        element={<IDPDetail />}
+      >
+        <Route path=":idpId" element={<IDPDetail />} />
+      </Route>
+    ),
+  },
+
   {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,
@@ -307,6 +329,14 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.TECHUSER,
     role: ROLES.TECHUSER_VIEW,
   },
+  {
+    name: OVERLAYS.IDP,
+    role: ROLES.IDP_VIEW,
+  },
+  {
+    name: OVERLAYS.NOT_FOUND,
+    role: ROLES.IDP_VIEW,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -356,10 +386,10 @@ export const userMenuFull = [
   PAGES.ACCOUNT,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
+  PAGES.IDP_MANAGEMENT,
   PAGES.TECHNICAL_SETUP,
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
-  PAGES.ADMINISTRATION,
   PAGES.LOGOUT,
 ]
 

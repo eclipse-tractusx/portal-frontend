@@ -18,18 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useApiGet } from 'utils/useApiGet'
+import { Box, useTheme } from '@mui/material'
+import { UserDetailCard } from './UserDetailCard'
+import { userDetailsToCards } from 'features/admin/userOwn/mapper'
+import { TenantUserDetails } from 'features/admin/userApiSlice'
+import { AppPermissions } from 'components/shared/frame/AppPermissions'
 
-export default function Test() {
-  const data = useApiGet(
-    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
-  )
+export const UserDetailInfo = ({ user }: { user: TenantUserDetails }) => {
+  const { spacing } = useTheme()
+
+  const userDetailsCards = userDetailsToCards(user)
+  const columns = 3
 
   return (
-    <main>
-      <section>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </section>
-    </main>
+    <>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: spacing(8, 3),
+          gridTemplateColumns: `repeat(${columns}, 1fr)`,
+          marginBottom: '80px',
+        }}
+      >
+        {userDetailsCards.map((card, i) => (
+          <UserDetailCard
+            cardCategory={card.cardCategory}
+            cardContentItems={card.cardContentItems}
+            key={i}
+          />
+        ))}
+      </Box>
+      <AppPermissions user={user} />
+    </>
   )
 }

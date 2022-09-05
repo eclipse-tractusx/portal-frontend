@@ -19,30 +19,39 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
+import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification } from './types'
+
+export enum CompanyInviteStatus {
+  PENDING = 'PENDING',
+  CONFIRMED = 'CONFIRMED',
+}
+
+export interface CompanyInvite {
+  applicationId: string
+  applicationStatus: CompanyInviteStatus
+  dateCreated: Date
+  companyName: string
+  email: string
+  firstName: string
+  lastName: string
+}
 
 export const apiSlice = createApi({
-  reducerPath: 'info/notifications',
+  reducerPath: 'rtk/admin/invite',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    getNotificationCount: builder.query<number, boolean>({
-      query: (read) => `/api/notification/count?isRead=${read}`,
-    }),
-    getNotifications: builder.query<CXNotification[], null>({
-      query: () => '/api/notification',
-    }),
-    setNotificationRead: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/api/notification/${id}/read`,
-        method: 'PUT',
-      }),
+    fetchInviteSearch: builder.query<
+      PaginResult<CompanyInvite>,
+      PaginFetchArgs
+    >({
+      query: (fetchArgs) =>
+        `api/administration/registration/applicationsWithStatus?page=${
+          fetchArgs.page
+        }&size=${PAGE_SIZE}&companyName=${fetchArgs.args!.expr}`,
     }),
   }),
 })
 
-export const {
-  useGetNotificationCountQuery,
-  useGetNotificationsQuery,
-  useSetNotificationReadMutation,
-} = apiSlice
+export const { useFetchInviteSearchQuery } = apiSlice
