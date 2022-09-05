@@ -28,7 +28,6 @@ import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box, InputLabel } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import Patterns from 'types/Patterns'
@@ -51,7 +50,6 @@ type FormDataType = {
 
 export default function AppPage() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const [appPageNotification, setAppPageNotification] = useState(false)
 
   const defaultValues = {
