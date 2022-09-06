@@ -57,8 +57,8 @@ export const RequestList = ({
     isLoading
   )
 
-  const validateSearchText = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
+  const onValidate = (expr: string) => {
+    const validateExpr = /^[ A-Za-z]*$/.test(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
@@ -72,7 +72,7 @@ export const RequestList = ({
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (!onSearch || !validateSearchText(expr)) return
+          if (!onSearch || !onValidate(expr)) return
           setRefresh(Date.now())
           onSearch(expr)
         }}
