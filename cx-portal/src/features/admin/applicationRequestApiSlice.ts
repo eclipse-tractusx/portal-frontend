@@ -17,22 +17,27 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
 
-.form-field {
-  margin-bottom: 29px !important;
-}
+export const apiSlice = createApi({
+  reducerPath: 'rtk/admin/applicationRequest',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    approveRequest: builder.mutation<boolean, string>({
+      query: (applicationId) => ({
+        url: `/api/administration/registration/application/${applicationId}/approveRequest`,
+        method: 'PUT',
+      }),
+    }),
+    declineRequest: builder.mutation<boolean, string>({
+      query: (applicationId) => ({
+        url: `/api/administration/registration/application/${applicationId}/declineRequest`,
+        method: 'PUT',
+      }),
+    }),
+  }),
+})
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
-}
+export const { useApproveRequestMutation, useDeclineRequestMutation } = apiSlice

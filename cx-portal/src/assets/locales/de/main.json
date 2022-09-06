@@ -76,7 +76,7 @@
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
         "overlay": {
-          "title": "Firmendetails",
+          "title": "Firmendaten",
           "companydatatitle": "Firmendaten",
           "taxid": "Steuernummer"
         },
@@ -314,7 +314,7 @@
         "country": "Land",
         "street": "Straße",
         "zipcode": "PLZ",
-        "city": "Stadt",
+        "city": "PLZ/Stadt",
         "cxparticipant": "CX Zertifiziert"
       },
       "filters": {
@@ -617,41 +617,55 @@
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
         "pricingInformation": "Pricing Information",
-        "pricingInformationPlaceholder": "Please select a pricing type",
-        "note": "Note:",
-        "OnlyOneFileAllowed": "Only one file for upload allowed",
-        "addMore": "Add More",
-        "noItemsSelected": "No Items Selected",
-        "isMandatory": " is mandatory",
-        "fileUploadIsMandatory": "File upload is mandatory",
-        "minimum": "Minimum",
-        "charactersRequired": " characters required",
-        "maximum": "Maximum",
-        "charactersAllowed": " characters allowed",
-        "validCharactersIncludes": "Valid characters includes: "
+        "pricingInformationPlaceholder": "Please select a pricing type"
       },
       "appPage": {
-        "headerTitle": "Create App",
+        "headerTitle": "App Details",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "longDescriptionEN": "Long Description - EN*",
-        "longDescriptionDE": "Long Description - DE*",
-        "images": "Images*",
+        "longDescriptionEN": "Long Description - EN",
+        "longDescriptionDE": "Long Description - DE",
+        "images": "Images",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images",
         "connectData": "Connect Data*",
         "dataSecurityInformation": "Data Security Information*",
-        "uploadDataPrerequisits": "Upload 'Data Prerequisits'*",
-        "uploadTechnicalGuide": "Upload 'Technical Guide'*",
-        "uploadDataContract": "Upload 'Data Contract'*",
-        "uploadAppContract": "Upload 'App Contract'*",
+        "uploadDataPrerequisits": "Upload “Data Prerequisits”",
+        "uploadTechnicalGuide": "Upload “Technical Guide”",
+        "uploadDataContract": "Upload “Data Contract”",
+        "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",
         "providerHomePage": "Provider Homepage",
-        "providerContactEmail": "Customer Contact E-Mail*",
-        "providerPhoneContact": "Provider Phone Contact"
+        "providerContactEmail": "Customer Contact E-Mail",
+        "providerPhoneContact": "Provider Phone Contact",
+        "PleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+        "PleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX"
+      },
+      "contractAndConsent": {
+        "headerTitle": "Consent & Contract",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "allAgreementsMandatory": "All agreements are mandatory"
       },
       "betaTest": {
         "headerTitle": "Beta Test",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "appReleaseForm": {
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected",
+        "note": "Note:",
+        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "max3Images": "Max. 3 Images",
+        "minimum": "Minimum",
+        "charactersRequired": " characters required",
+        "maximum": "Maximum",
+        "charactersAllowed": " characters allowed",
+        "validCharactersIncludes": "Valid characters includes: ",
+        "isMandatory": " is mandatory",
+        "fileUploadIsMandatory": "File upload is mandatory",
+        "error": {
+          "title": "Error",
+          "message": "Error"
+        }
       },
       "footerButtons": {
         "help": "Help",
