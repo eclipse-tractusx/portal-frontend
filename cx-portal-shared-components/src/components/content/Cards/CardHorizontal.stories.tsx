@@ -23,5 +23,5 @@ CardHorizontal.args = {
   status: StatusVariants.release,
   statusText: 'In Release',
   buttonText: 'Details',
-  onBtnClick: () => {}
+  onBtnClick: () => {},
 }

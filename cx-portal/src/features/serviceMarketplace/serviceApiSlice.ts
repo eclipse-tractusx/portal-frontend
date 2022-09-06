@@ -39,6 +39,4 @@ export const apiSlice = createApi({
   }),
 })
 
-export const {
-  useFetchServicesQuery
-} = apiSlice
+export const { useFetchServicesQuery } = apiSlice

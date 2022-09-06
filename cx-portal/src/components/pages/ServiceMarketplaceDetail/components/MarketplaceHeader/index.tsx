@@ -27,13 +27,15 @@ export default function MarketplaceHeader({ item }: MarketplaceHeaderProps) {
   }, [dispatch, appId])
 
   const getSubscribeBtn = () => {
-    return <Button 
-              color="primary" 
-              className="subscribe-btn"
-              onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST))}
-            >
-              {t('content.appdetail.subscribe')}
-            </Button>
+    return (
+      <Button
+        color="primary"
+        className="subscribe-btn"
+        onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST))}
+      >
+        {t('content.appdetail.subscribe')}
+      </Button>
+    )
   }
 
   return (

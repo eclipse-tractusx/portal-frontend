@@ -17,7 +17,6 @@ export default function ServicesElements() {
 
   console.log('data', data)
 
-
   return (
     <div className="marketplace-section">
       <Grid container>
@@ -25,7 +24,7 @@ export default function ServicesElements() {
           item
           xs={5}
           sx={{
-            margin: '10px'
+            margin: '10px',
           }}
         >
           <CardHorizontal
@@ -36,14 +35,14 @@ export default function ServicesElements() {
             buttonText="Details"
             onBtnClick={() => handleClick('test')}
             title="Dataspace Setup"
-            backgroundColor='#f7f7f7'
+            backgroundColor="#f7f7f7"
           />
         </Grid>
         <Grid
           item
           xs={5}
           sx={{
-            margin: '10px'
+            margin: '10px',
           }}
         >
           <CardHorizontal
@@ -54,14 +53,14 @@ export default function ServicesElements() {
             buttonText="Details"
             onBtnClick={() => handleClick('test')}
             title="Dataspace Setup"
-            backgroundColor='#f7f7f7'
+            backgroundColor="#f7f7f7"
           />
         </Grid>
         <Grid
           item
           xs={5}
           sx={{
-            margin: '10px'
+            margin: '10px',
           }}
         >
           <CardHorizontal
@@ -72,7 +71,7 @@ export default function ServicesElements() {
             buttonText="Details"
             onBtnClick={() => handleClick('test')}
             title="Dataspace Setup"
-            backgroundColor='#f7f7f7'
+            backgroundColor="#f7f7f7"
           />
         </Grid>
       </Grid>

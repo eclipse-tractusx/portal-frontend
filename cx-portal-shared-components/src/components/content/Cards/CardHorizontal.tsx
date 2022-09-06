@@ -109,9 +109,7 @@ export const CardHorizontal = ({
           {description}
         </Typography>
         <Grid container>
-          <Grid
-            xs={4}
-          >
+          <Grid xs={4}>
             {statusText && (
               <Box
                 sx={{
@@ -122,23 +120,15 @@ export const CardHorizontal = ({
               </Box>
             )}
           </Grid>
-          <Grid
-            xs={4}
-          ></Grid>
-          <Grid
-            xs={4}
-          >
+          <Grid xs={4}></Grid>
+          <Grid xs={4}>
             {buttonText && (
-              <Button
-                size="small"
-                onClick={onBtnClick}
-              >
-                { buttonText }
+              <Button size="small" onClick={onBtnClick}>
+                {buttonText}
               </Button>
             )}
           </Grid>
         </Grid>
-
       </Box>
     </Box>
   )
