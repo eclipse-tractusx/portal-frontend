@@ -44,7 +44,7 @@ export default function Organization() {
   } = useFetchSubscriptionStatusQuery()
   const { data } = useFetchActiveAppsQuery()
   const appSubscribedData =
-    subscriptionStatus && appToStatus(data!, subscriptionStatus!)
+    data && subscriptionStatus && appToStatus(data, subscriptionStatus)
   const handleClick = (id: string | undefined) => {
     dispatch(show(OVERLAYS.APP, id, t('content.organization.company.title')))
   }
@@ -59,7 +59,7 @@ export default function Organization() {
       [() => <CompanyDetails head="BPN: " data="This company name" />],
     ],
   }
-  // let appSubscriptionsTableBody;
+
   const appSubscriptionsTableBody =
     appSubscribedData?.map((app) => [
       () => (
