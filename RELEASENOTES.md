@@ -11,6 +11,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugs - Show loader on clicking decline or confirm from application request screen
 * Bugs - Show error popup on failure of approve or decline request
 * Bugs - Text updates on company data overlay
+* Feature - Add "CX Membership" flag in Partner Network
 
 ### 0.5.3
 
