@@ -139,7 +139,7 @@ const PartnerNetwork = () => {
         }}
       />
 
-      <div className="partner-network-table-container">
+      <section className="partner-network-table-container">
         <div className="partner-network-table-notification">
           <PageNotifications
             open={Boolean(membershipError)}
