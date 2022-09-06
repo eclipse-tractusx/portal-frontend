@@ -10,12 +10,15 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { useState } from 'react'
 import AppMarketCard from './components/AppMarketCard'
 import AppReleaseStepper from './components/stepper'
+import BetaTest from './components/BetaTest'
+import AppPage from './components/AppPage'
+import ContractAndConsent from './components/ContractAndConsent'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const [createApp, setCreateApp] = useState(false)
 
-  const currentActiveStep = 1
+  let currentActiveStep = 3
 
   const stepsLists = [
     {
@@ -56,6 +59,13 @@ export default function AppReleaseProcess() {
     },
   ]
 
+  const activeStep = () => {
+    if (currentActiveStep === 1) return <AppMarketCard />
+    else if (currentActiveStep === 2) return <AppPage />
+    else if (currentActiveStep === 3) return <ContractAndConsent />
+    else if (currentActiveStep === 5) return <BetaTest />
+  }
+
   return (
     <div className="appoverview-main">
       <PageHeader
@@ -69,7 +79,7 @@ export default function AppReleaseProcess() {
         <div className="create-app-section">
           <div className="container">
             <AppReleaseStepper />
-            {currentActiveStep === 1 && <AppMarketCard />}
+            {activeStep()}
           </div>
         </div>
       ) : (

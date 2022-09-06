@@ -69,7 +69,7 @@ export const PageLoadingTable = function <T>({
   const maxRows = data?.meta?.totalElements ?? 0
 
   useEffect(() => {
-    if (loaded < fetchHookRefresh) {
+    if (loaded !== fetchHookRefresh) {
       setLoaded(fetchHookRefresh)
       setPage(0)
       setClear(true)

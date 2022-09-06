@@ -1,10 +1,11 @@
+import StageHeader from 'components/shared/frame/StageHeader'
 import { useTranslation } from 'react-i18next'
 
 export default function Help() {
   const { t } = useTranslation('footer', { keyPrefix: 'help' })
 
   const general = () => (
-    <>
+    <section>
       <h3>{t('general.title')}</h3>
       <ul>
         {['what', 'goal', 'Contract Term Change'].map((topic) => (
@@ -14,13 +15,12 @@ export default function Help() {
           </li>
         ))}
       </ul>
-    </>
+    </section>
   )
 
   return (
     <main>
-      <h2>{t('title')}</h2>
-      <p>{t('message')}</p>
+      <StageHeader title={t('title')} />
       {general()}
     </main>
   )

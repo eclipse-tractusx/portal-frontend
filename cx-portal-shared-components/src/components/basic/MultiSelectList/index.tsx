@@ -1,7 +1,7 @@
 import { Box, Chip, Popper, TextFieldProps, useTheme } from '@mui/material'
 import Autocomplete, {
   AutocompleteRenderInputParams,
-  createFilterOptions
+  createFilterOptions,
 } from '@mui/material/Autocomplete'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
@@ -67,11 +67,12 @@ export const MultiSelectList = ({
   }
 
   const filterOptions = createFilterOptions(
-    Object.keys(filterOptionsArgs).length > 0 ? filterOptionsArgs :
-      {
-        matchFrom: 'any',
-        stringify: (option: any) => option[keyTitle]
-      }
+    Object.keys(filterOptionsArgs).length > 0
+      ? filterOptionsArgs
+      : {
+          matchFrom: 'any',
+          stringify: (option: any) => option[keyTitle],
+        }
   )
 
   return (

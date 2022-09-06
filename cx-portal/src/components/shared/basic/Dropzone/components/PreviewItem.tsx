@@ -17,32 +17,33 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-markt-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+import { Box } from '@mui/material'
 
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.text-area {
-  width: 100%;
-  background: #f7f7f7 !important;
-  border: 0;
-  outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 400;
-  resize: none;
-}
-
-.text-area:focus {
-  border-bottom: 2px solid #0f71cb !important;
+export const PreviewItem = ({ children }: { children: JSX.Element }) => {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        margin: '32px 0',
+        progress: {
+          width: ' 100%',
+          height: '4px',
+          backgroundColor: 'textField.backgroundHover',
+          '&::-webkit-progress-bar': {
+            borderRadius: '40px',
+          },
+          '&::-webkit-progress-value': {
+            backgroundColor: 'support.success',
+            borderRadius: '40px',
+          },
+          '&.error::-webkit-progress-value': {
+            backgroundColor: 'danger.danger',
+          },
+        },
+      }}
+    >
+      {children}
+    </Box>
+  )
 }

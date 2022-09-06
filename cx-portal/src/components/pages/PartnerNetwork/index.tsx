@@ -190,7 +190,7 @@ const PartnerNetwork = () => {
           }}
           getRowId={(row) => uniqueId(row.bpn)}
         />
-      </div>
+      </section>
       <div className="load-more-button-container">
         {paginationData.totalElements > pageSize * currentPage &&
           paginationData.totalElements! > pageSize && (

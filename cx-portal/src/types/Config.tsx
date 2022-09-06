@@ -31,7 +31,6 @@ import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
 import DataCatalog from 'components/pages/DataCatalog'
-import DataManagement from 'components/pages/DataManagement'
 import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
@@ -42,7 +41,6 @@ import Imprint from 'components/pages/Imprint'
 import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
 import Logout from 'components/pages/Logout'
 import MyAccount from 'components/pages/MyAccount'
-import NotFound from 'components/pages/NotFound'
 import NotificationCenter from 'components/pages/NotificationCenter'
 import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
@@ -56,11 +54,13 @@ import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
-import UserDetails from 'components/pages/UserManagement/UserDetails'
+import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
+import IDPManagement from 'components/pages/IDPManagement'
+import IDPDetail from 'components/pages/IDPDetail'
 
 /**
  * ALL_PAGES
@@ -114,7 +114,8 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.DATA_MANAGEMENT,
-    element: <DataManagement />,
+    role: ROLES.SEMANTICHUB_VIEW,
+    element: <SemanticHub />,
   },
   {
     name: PAGES.DATACATALOG,
@@ -151,13 +152,18 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.CONNECTOR_SETUP,
     element: <Connector />,
   },
-  { name: PAGES.ACCOUNT, element: <MyAccount /> },
+  {
+    name: PAGES.ACCOUNT,
+    role: ROLES.MY_USER_ACCOUNT,
+    element: <MyAccount />,
+  },
   {
     name: PAGES.NOTIFICATIONS,
     element: <NotificationCenter />,
   },
   {
     name: PAGES.ORGANIZATION,
+    role: ROLES.PARTNER_NETWORK_VIEW,
     element: <Organization />,
   },
   {
@@ -168,7 +174,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APP_MANAGEMENT,
     // role: ROLES.VIEW_APP_RELEASE,
-    element: <NotFound />,
+    element: <AppOverview />,
   },
   {
     name: PAGES.APPOVERVIEW,
@@ -184,6 +190,20 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     element: <UserManagement />,
+  },
+  {
+    name: PAGES.USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.USER_DETAILS}
+        path={`/${PAGES.USER_DETAILS}`}
+        element={<UserDetails />}
+      >
+        <Route path=":userId" element={<UserDetails />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.TECHUSER_MANAGEMENT,
@@ -205,20 +225,6 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.USER_DETAILS}
-        path={`/${PAGES.USER_DETAILS}`}
-        element={<UserDetails />}
-      >
-        <Route path=":userId" element={<UserDetails />} />
-      </Route>
-    ),
-  },
-  {
     name: PAGES.APP_USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
@@ -232,6 +238,26 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  {
+    name: PAGES.IDP_MANAGEMENT,
+    role: ROLES.IDP_VIEW,
+    element: <IDPManagement />,
+  },
+  {
+    name: PAGES.IDP_DETAIL,
+    role: ROLES.IDP_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.IDP_DETAIL}
+        path={`/${PAGES.IDP_DETAIL}`}
+        element={<IDPDetail />}
+      >
+        <Route path=":idpId" element={<IDPDetail />} />
+      </Route>
+    ),
+  },
+
   {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,
@@ -303,6 +329,14 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.TECHUSER,
     role: ROLES.TECHUSER_VIEW,
   },
+  {
+    name: OVERLAYS.IDP,
+    role: ROLES.IDP_VIEW,
+  },
+  {
+    name: OVERLAYS.NOT_FOUND,
+    role: ROLES.IDP_VIEW,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -350,13 +384,12 @@ export const mainMenuFullTree = [
  */
 export const userMenuFull = [
   PAGES.ACCOUNT,
-  PAGES.ORGANIZATION,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
+  PAGES.IDP_MANAGEMENT,
   PAGES.TECHNICAL_SETUP,
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
-  PAGES.ADMINISTRATION,
   PAGES.LOGOUT,
 ]
 

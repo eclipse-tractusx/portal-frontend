@@ -76,14 +76,16 @@ export default function NotificationCenter() {
   return (
     <main className="notifications">
       <StageHeader title={t('pages.notifications')} />
-      <ul>
-        {groups &&
-          Object.entries(groups).map((entry: any) => (
-            <li key={entry[0]}>
-              <NotificationGroup label={entry[0]} items={entry[1]} />
-            </li>
-          ))}
-      </ul>
+      <section>
+        <ul>
+          {groups &&
+            Object.entries(groups).map((entry: any) => (
+              <li key={entry[0]}>
+                <NotificationGroup label={entry[0]} items={entry[1]} />
+              </li>
+            ))}
+        </ul>
+      </section>
     </main>
   )
 }

@@ -11,7 +11,8 @@ export const UserRoles = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
-  const { data } = useFetchAppRolesQuery('5cf74ef8-e0b7-4984-a872-474828beb5d9')
+  // workaround approlefetch - getting replaced toll release
+  const { data } = useFetchAppRolesQuery('9b957704-3505-4445-822c-d7ef80f27fcd')
 
   const selectRole = (role: string, select: boolean) => {
     const isSelected = roles.includes(role)

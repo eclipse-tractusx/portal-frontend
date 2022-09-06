@@ -21,6 +21,7 @@
     "organization": "My Organization",
     "notifications": "Notifications",
     "usermanagement": "User Management",
+    "idpmanagement": "Identity Provider (IDP)",
     "technicalsetup": "Technical Integration",
     "applicationrequests": "Application Requests",
     "admin": "Administration",
@@ -75,7 +76,7 @@
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
         "overlay": {
-          "title": "Company Detail",
+          "title": "Company Data",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
         },
@@ -128,7 +129,8 @@
           "circulareconomy": "Circular Economy",
           "quality&demandmanagement": "Demand & Quality Management",
           "demandandcapacitymanagement": "Demand & Capacity Management",
-          "traceability": "Traceability"
+          "traceability": "Traceability",
+          "manufacturingasaservice": "Manufacturing as a Service"
         }
       }
     },
@@ -210,6 +212,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
+        "searchfielddefaulttext": "Search by Name/Identifier",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -303,7 +306,7 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City",
+        "city": "PLZ/City",
         "cxparticipant": "CX Member"
       },
       "filters": {
@@ -411,6 +414,19 @@
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }
     },
+    "idpmanagement": {
+      "create": "Create OIDC Identity Provider"
+    },
+    "idpdetail": {
+      "title": "Identity Provider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Display Name",
+      "authType": "IDP Type",
+      "authURL": "Authentication URL",
+      "authMethod": "Authentication Method",
+      "mappers": "Mappers"
+    },
     "addUser": {
       "headline": "Add User Account",
       "subheadline": "tbd",
@@ -475,7 +491,7 @@
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
-        "title": "App User Permissions",
+        "title": "App Permissions",
         "appName": "App Name",
         "appProvider": "App Provider"
       }
@@ -545,27 +561,71 @@
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
-        "appTitle": "App title*",
+        "appTitle": "App title",
         "appTitlePlaceholder": "name@domain.com",
-        "appProvider": "App provider*",
+        "appProvider": "App provider",
         "appProviderPlaceholder": "prefill: [company name]",
-        "shortDescriptionEN": "Short Description - EN*",
-        "shortDescriptionDE": "Short Description - DE*",
-        "useCaseCategory": "Use Case /Category*",
+        "shortDescriptionEN": "Short Description - EN",
+        "shortDescriptionDE": "Short Description - DE",
+        "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
-        "appLanguage": "App Language*",
+        "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information*",
-        "pricingInformationPlaceholder": "Please select a pricing type*",
-        "uploadTitle": "Drag & drop your files here",
-        "uploadSubTitle": "or browse files on your computer.",
+        "pricingInformation": "Pricing Information",
+        "pricingInformationPlaceholder": "Please select a pricing type"
+      },
+      "appPage": {
+        "headerTitle": "App Details",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "longDescriptionEN": "Long Description - EN",
+        "longDescriptionDE": "Long Description - DE",
+        "images": "Images",
+        "note": "Note:",
+        "maxThreeImages": "Max.3 Images",
+        "connectData": "Connect Data*",
+        "dataSecurityInformation": "Data Security Information*",
+        "uploadDataPrerequisits": "Upload “Data Prerequisits”",
+        "uploadTechnicalGuide": "Upload “Technical Guide”",
+        "uploadDataContract": "Upload “Data Contract”",
+        "uploadAppContract": "Upload “App Contract”",
+        "providerDetails": "Provider Details",
+        "providerHomePage": "Provider Homepage",
+        "providerContactEmail": "Customer Contact E-Mail",
+        "providerPhoneContact": "Provider Phone Contact",
+        "PleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+        "PleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX"
+      },
+      "contractAndConsent": {
+        "headerTitle": "Consent & Contract",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "allAgreementsMandatory": "All agreements are mandatory"
+      },
+      "betaTest": {
+        "headerTitle": "Beta Test",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "appReleaseForm": {
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "max3Images": "Max. 3 Images",
+        "minimum": "Minimum",
+        "charactersRequired": " characters required",
+        "maximum": "Maximum",
+        "charactersAllowed": " characters allowed",
+        "validCharactersIncludes": "Valid characters includes: ",
+        "isMandatory": " is mandatory",
+        "fileUploadIsMandatory": "File upload is mandatory",
+        "error": {
+          "title": "Error",
+          "message": "Error"
+        }
+      },
+      "footerButtons": {
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save",
-        "addMore": "Add More",
-        "noItemsSelected": "No Items Selected"
+        "save": "Save"
       }
     }
   },
@@ -610,6 +670,10 @@
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
     },
+    "state": {
+      "enabled": "enabled",
+      "disabled": "disabled"
+    },
     "objects": {
       "app": "app",
       "user": "user",
@@ -646,6 +710,10 @@
       "yesterday": "yesterday",
       "today": "today",
       "tomorrow": "tomorrow"
+    },
+    "table": {
+      "search": "Enter email to search",
+      "searchName": "Enter name to search"
     }
   },
   "servicemarketplace": {

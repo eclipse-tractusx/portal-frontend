@@ -18,65 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
-import {
-  ServiceAccountType,
-  useRemoveServiceAccountMutation,
-  useAddServiceAccountMutation,
-  useFetchServiceAccountListQuery,
-} from 'features/admin/serviceApiSlice'
-import { sample } from 'lodash'
-
-const ROLE_IDS = [
-  '607818be-4978-41f4-bf63-fa8d2de51155',
-  '607818be-4978-41f4-bf63-fa8d2de51156',
-  '607818be-4978-41f4-bf63-fa8d2de51157',
-]
+import { useApiGet } from 'utils/useApiGet'
 
 export default function Test() {
-  const roles = useFetchAppRolesQuery(
-    'ac1cf001-7fbc-1f2f-817f-bce05744000b'
-  ).data
-  //useFetchServiceAccountDetailQuery c0c52362-4a18-4dc7-a2bb-68880198204a
-  const { data } = useFetchServiceAccountListQuery({ page: 0 })
-
-  const [addServiceAccount] = useAddServiceAccountMutation()
-
-  const handleAdd = async () => {
-    try {
-      const result = await addServiceAccount({
-        name: `testaccount`,
-        description: 'none',
-        authenticationType: ServiceAccountType.SECRET,
-        roleIds: [sample(ROLE_IDS)!],
-      }).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
-
-  const handleRemove = async () => {
-    if (!data || !data.content) return
-    try {
-      const result = await removeServiceAccount(
-        data.content[0].serviceAccountId
-      ).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const data = useApiGet(
+    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
+  )
 
   return (
     <main>
-      <Button onClick={handleAdd}>Add</Button>
-      <Button onClick={handleRemove}>Remove</Button>
-      <pre>{JSON.stringify(roles, null, 2)}</pre>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <section>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </section>
     </main>
   )
 }
