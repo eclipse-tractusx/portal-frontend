@@ -22,6 +22,7 @@ import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
+import ServiceRequest from 'components/overlays/ServiceRequest'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -92,6 +93,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <BusinessPartnerDetail id={overlay.id} />
     case OVERLAYS.APP:
       return <AppInfo id={overlay.id} />
+    case OVERLAYS.SERVICE_REQUEST:
+      return <ServiceRequest />
     default:
       return null
   }

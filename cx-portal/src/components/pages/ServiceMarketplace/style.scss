@@ -1,25 +1,13 @@
-.banner {
-  position: absolute;
-  width: 100%;
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
-.header-box {
-  width: 100%;
-  padding-top: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
-  position: relative;
+.banner-heading  h4{
+  width: 25%;
+  font-weight: bold;
 }
-.heading1 {
-  float: right;
-  width: 180px;
-  height: 160px;
-}
-.heading2 {
-  float: right;
-  width: 180px;
-}
-.heading3 {
-  float: right;
-  width: 180px;
+
+.marketplace-section{
+  margin-top: 100px;
 }

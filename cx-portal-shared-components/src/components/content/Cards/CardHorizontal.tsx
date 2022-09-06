@@ -1,5 +1,6 @@
-import { Box, useTheme } from '@mui/material'
+import { Box, Grid, useTheme } from '@mui/material'
 import { LogoGrayData } from '../../basic/Logo'
+import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
 import { CardChip, CardChipProps } from './CardChip'
 
@@ -11,6 +12,8 @@ interface CardHorizontalProps extends CardChipProps {
   imageAlt: string
   description?: string
   backgroundColor?: string
+  buttonText?: string
+  onBtnClick?: React.MouseEventHandler
 }
 
 export const CardHorizontal = ({
@@ -22,6 +25,8 @@ export const CardHorizontal = ({
   description,
   status,
   statusText,
+  buttonText,
+  onBtnClick,
   backgroundColor,
 }: CardHorizontalProps) => {
   const theme = useTheme()
@@ -103,16 +108,37 @@ export const CardHorizontal = ({
         >
           {description}
         </Typography>
-
-        {statusText && (
-          <Box
-            sx={{
-              marginTop: '21px',
-            }}
+        <Grid container>
+          <Grid
+            xs={4}
           >
-            <CardChip status={status} statusText={statusText} />
-          </Box>
-        )}
+            {statusText && (
+              <Box
+                sx={{
+                  marginTop: '21px',
+                }}
+              >
+                <CardChip status={status} statusText={statusText} />
+              </Box>
+            )}
+          </Grid>
+          <Grid
+            xs={4}
+          ></Grid>
+          <Grid
+            xs={4}
+          >
+            {buttonText && (
+              <Button
+                size="small"
+                onClick={onBtnClick}
+              >
+                { buttonText }
+              </Button>
+            )}
+          </Grid>
+        </Grid>
+
       </Box>
     </Box>
   )

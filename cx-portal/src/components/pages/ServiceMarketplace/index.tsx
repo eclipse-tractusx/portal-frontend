@@ -7,16 +7,18 @@ import ServicesElements from './ServicesElements'
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
   return (
-    <main>
-      <PageHeader
-        title={t('servicemarketplace.title')}
-        hasSubtract={false}
-        headerHeight={200}
-      />
+    <div>
+      <div className="banner-heading">
+        <PageHeader
+          title={t('servicemarketplace.title')}
+          hasSubtract={false}
+          headerHeight={250}
+        />
+      </div>
       <Box
         sx={{
           position: 'absolute',
-          top: '180px',
+          top: '200px',
           right: `0px !important`,
           fontWeight: 'bold',
         }}
@@ -57,6 +59,9 @@ export default function ServiceMarketplace() {
           </Grid>
         </Grid>
       </Box>
-    </main>
+      <div className="container">
+        <ServicesElements />
+      </div>
+    </div>
   )
 }

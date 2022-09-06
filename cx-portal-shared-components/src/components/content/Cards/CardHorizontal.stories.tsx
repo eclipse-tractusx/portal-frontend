@@ -22,4 +22,6 @@ CardHorizontal.args = {
   imageAlt: 'App Card ',
   status: StatusVariants.release,
   statusText: 'In Release',
+  buttonText: 'Details',
+  onBtnClick: () => {}
 }
