@@ -3,6 +3,15 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.4
+
+* Feature - Create, enable and delete Identity Providers
+* Feature - App Release Process Step 2
+* Feature - App Release Process Step 3
+* Bugs - Show loader on clicking decline or confirm from application request screen
+* Bugs - Show error popup on failure of approve or decline request
+* Bugs - Text updates on company data overlay
+
 ### 0.5.3
 
 * Feature - App Release Process Step 1 implementation with api binding
@@ -10,10 +19,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Connect Notifications API
 * Feature - App Release Process Step 5 - Beta Test
 * Feature - Search functionality added in Invite Business Partner page
-* Feature - Identity Provider List
+* Feature - Identity provider list and detail view
 
 
-### 0.5.2 (2022-08-23)
+### 0.5.2
 
 * Feature - Added Release Notes ;)
 * Feature - Technical User details page

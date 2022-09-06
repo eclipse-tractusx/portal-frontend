@@ -74,6 +74,7 @@ export enum PAGES {
 }
 
 export enum OVERLAYS {
+  NOT_FOUND = 'notfound',
   NONE = 'none',
   ADD_USER = 'add_user',
   ADD_APP_USER_ROLES = 'add_app_user_roles',
@@ -87,6 +88,7 @@ export enum OVERLAYS {
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
+  IDP = 'idp',
 }
 
 export enum ACTIONS {

@@ -17,22 +17,19 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+.idp-detail-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 900px;
 
-.form-field {
-  margin-bottom: 29px !important;
-}
+  .idp-name-row {
+    display: flex;
+    justify-content: space-between;
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+    input {
+      width: 400px;
+    }
+  }
 }

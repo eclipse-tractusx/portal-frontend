@@ -18,18 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useApiGet } from 'utils/useApiGet'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
 
-export default function Test() {
-  const data = useApiGet(
-    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
-  )
+export const apiSlice = createApi({
+  reducerPath: 'rtk/admin/applicationRequest',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    approveRequest: builder.mutation<boolean, string>({
+      query: (applicationId) => ({
+        url: `/api/administration/registration/application/${applicationId}/approveRequest`,
+        method: 'PUT',
+      }),
+    }),
+    declineRequest: builder.mutation<boolean, string>({
+      query: (applicationId) => ({
+        url: `/api/administration/registration/application/${applicationId}/declineRequest`,
+        method: 'PUT',
+      }),
+    }),
+  }),
+})
 
-  return (
-    <main>
-      <section>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </section>
-    </main>
-  )
-}
+export const { useApproveRequestMutation, useDeclineRequestMutation } = apiSlice
