@@ -6,10 +6,7 @@ import {
   PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import {
-  fetchRegistrationRequests,
-  fetchCompanyDetail,
-} from 'features/admin/registration/actions'
+import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './RegistrationRequests.scss'
 import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
@@ -28,8 +25,6 @@ export default function RegistrationRequests() {
 
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
-  const [pageSize] = useState<number>(10)
-
   const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false)
 
   const [selectedRequestId, setSelectedRequestId] = useState<string>()
@@ -44,17 +39,7 @@ export default function RegistrationRequests() {
 
   const [showErrorAlert, setShowErrorAlert] = useState<string>('')
 
-  // const [loaded, setLoaded] = useState<boolean>(false)
-
-  // const { data } = useFetchCompanySearchQuery({
-  //   page: 0,
-  //   args: {
-  //     expr: '',
-  //     v: loaded,
-  //   },
-  // })
-
-  // console.log("data = = =", data)
+  const [loaded, setLoaded] = useState<number>(0)
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
@@ -93,9 +78,7 @@ export default function RegistrationRequests() {
         .then((payload) => console.log('fulfilled', payload))
         .catch((error) => setShowErrorAlert(error.data.title))
     }
-    const params = { size: pageSize, page: 0 }
-    dispatch(fetchRegistrationRequests({ params }))
-    // setLoaded(true)
+    setLoaded(Date.now())
     setIsLoading(false)
   }
 
@@ -151,6 +134,7 @@ export default function RegistrationRequests() {
           onDeclineClick={onDeclineClick}
           isLoading={isLoading}
           onTableCellClick={onTableCellClick}
+          loaded={loaded}
         />
       </div>
     </main>

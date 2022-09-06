@@ -27,6 +27,7 @@ import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
 import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
+import { useEffect } from 'react'
 
 export const RequestList = ({
   fetchHook,
@@ -36,6 +37,7 @@ export const RequestList = ({
   onDeclineClick,
   isLoading,
   onTableCellClick,
+  loaded,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
@@ -44,6 +46,7 @@ export const RequestList = ({
   onDeclineClick: (id: string) => void
   isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
+  loaded: number
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -56,6 +59,10 @@ export const RequestList = ({
     onDeclineClick,
     isLoading
   )
+
+  useEffect(() => {
+    if (loaded !== 0) setRefresh(Date.now())
+  }, [loaded])
 
   const onValidate = (expr: string) => {
     const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
