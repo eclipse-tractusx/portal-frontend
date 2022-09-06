@@ -72,4 +72,8 @@ export const updateSubscribedAppsSelector = (state: RootState): number =>
 export const updateInviteSelector = (state: RootState): SearchInputState =>
   state.management
 
+export const updateApplicationRequestSelector = (
+  state: RootState
+): SearchInputState => state.management
+
 export default slice.reducer
