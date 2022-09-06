@@ -66,9 +66,11 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (fetchArgs) =>
-        `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
-          fetchArgs.page
-        }${fetchArgs.args!.expr && `&companyName=${fetchArgs.args!.expr}`}`,
+        fetchArgs.args && fetchArgs.args.expr
+          ? `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+              fetchArgs.page
+            }&companyName=${fetchArgs.args!.expr}`
+          : `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
     }),
   }),
 })

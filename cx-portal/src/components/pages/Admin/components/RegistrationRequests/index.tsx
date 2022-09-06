@@ -44,6 +44,18 @@ export default function RegistrationRequests() {
 
   const [showErrorAlert, setShowErrorAlert] = useState<string>('')
 
+  // const [loaded, setLoaded] = useState<boolean>(false)
+
+  // const { data } = useFetchCompanySearchQuery({
+  //   page: 0,
+  //   args: {
+  //     expr: '',
+  //     v: loaded,
+  //   },
+  // })
+
+  // console.log("data = = =", data)
+
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
@@ -83,6 +95,7 @@ export default function RegistrationRequests() {
     }
     const params = { size: pageSize, page: 0 }
     dispatch(fetchRegistrationRequests({ params }))
+    // setLoaded(true)
     setIsLoading(false)
   }
 
