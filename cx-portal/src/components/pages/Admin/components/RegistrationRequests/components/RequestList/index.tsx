@@ -21,13 +21,12 @@
 import { PageLoadingTable, PaginFetchArgs } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
 import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
-import { useEffect } from 'react'
 
 export const RequestList = ({
   fetchHook,
