@@ -20,6 +20,30 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
+import { PAGE_SIZE } from 'types/Constants'
+
+export enum ApplicationRequestStatus {
+  CREATED = 'CREATED',
+  CONFIRMED = 'CONFIRMED',
+  DECLINED = 'DECLINED',
+  SUBMITTED = 'SUBMITTED',
+}
+
+export interface DocumentMapper {
+  documentType: string
+  documentHash: string
+}
+
+export interface ApplicationRequest {
+  applicationId: string
+  applicationStatus: ApplicationRequestStatus
+  dateCreated: string
+  companyName: string
+  email: string
+  bpn: string
+  documents: Array<DocumentMapper>
+}
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/applicationRequest',
@@ -37,7 +61,22 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    fetchCompanySearch: builder.query<
+      PaginResult<ApplicationRequest>,
+      PaginFetchArgs
+    >({
+      query: (fetchArgs) =>
+        fetchArgs.args && fetchArgs.args.expr
+          ? `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+              fetchArgs.page
+            }&companyName=${fetchArgs.args!.expr}`
+          : `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
+    }),
   }),
 })
 
-export const { useApproveRequestMutation, useDeclineRequestMutation } = apiSlice
+export const {
+  useApproveRequestMutation,
+  useDeclineRequestMutation,
+  useFetchCompanySearchQuery,
+} = apiSlice
