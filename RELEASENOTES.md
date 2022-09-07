@@ -12,6 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugs - Show error popup on failure of approve or decline request
 * Bugs - Text updates on company data overlay
 * Feature - My Organization page
+* Feature - Search functionality added in Register Request table
 
 ### 0.5.3
 
