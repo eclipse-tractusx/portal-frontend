@@ -23,6 +23,10 @@ export const getCentralIdp = () => {
     return 'https://centralidp-pen.dev.demo.catena-x.net/auth'
   if (hostname === 'portal.catena-x.net')
     return 'https://centralidp.catena-x.net/auth'
+  if (hostname === 'portal.beta.demo.catena-x.net')
+    return 'https://centralidp.beta.demo.catena-x.net/auth'
+  if (hostname === 'portal.pre-prod.demo.catena-x.net')
+    return 'https://centralidp.pre-prod.demo.catena-x.net/auth'
   return 'https://centralidp.dev.demo.catena-x.net/auth'
 }
 
