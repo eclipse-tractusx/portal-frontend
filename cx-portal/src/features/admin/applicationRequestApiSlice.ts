@@ -72,6 +72,15 @@ export const apiSlice = createApi({
             }&companyName=${fetchArgs.args!.expr}`
           : `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
     }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/registration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -79,4 +88,5 @@ export const {
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
+  useFetchDocumentByIdMutation,
 } = apiSlice

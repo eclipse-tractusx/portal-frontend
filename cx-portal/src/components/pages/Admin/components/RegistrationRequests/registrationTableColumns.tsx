@@ -17,7 +17,8 @@ export const RegistrationRequestsTableColumns = (
   translationHook: any,
   onApproveClick: (id: string) => void,
   onDeclineClick: (id: string) => void,
-  isLoading: boolean
+  isLoading: boolean,
+  handleDownloadDocument: (documentId: string, documentType: string) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')
@@ -66,9 +67,17 @@ export const RegistrationRequestsTableColumns = (
               key={uniqueId(contract?.documentHash)}
             >
               <ArticleOutlinedIcon />
-              <a href={contract?.documentHash} rel="noreferrer">
+              <button
+                className="document-button-link"
+                onClick={() =>
+                  handleDownloadDocument(
+                    contract.documentHash,
+                    contract.documentType
+                  )
+                }
+              >
                 {contract?.documentType}
-              </a>
+              </button>
             </div>
           ))}
         </div>

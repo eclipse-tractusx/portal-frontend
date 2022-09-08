@@ -64,6 +64,13 @@
       padding-left: 5px;
     }
   }
+
+  .document-button-link {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .state-cell-container {
