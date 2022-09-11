@@ -95,7 +95,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.PARTNER:
       return <BusinessPartnerDetail id={overlay.id} />
     case OVERLAYS.APP:
-      return <AppInfo id={overlay.id} />
+      return <AppInfo id={overlay.id} title={overlay.title} />
     default:
       return <NotFound />
   }

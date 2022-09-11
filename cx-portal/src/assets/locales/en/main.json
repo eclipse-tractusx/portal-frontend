@@ -235,6 +235,14 @@
         "protocol_endpoint": "Aspect Endpoint:"
       }
     },
+    "organization": {
+      "company": {
+        "title": "Company Details"
+      },
+      "subscriptions": {
+        "title": "App Subscriptions"
+      }
+    },
     "datamanagement": {
       "message": "Contents of Data Management"
     },

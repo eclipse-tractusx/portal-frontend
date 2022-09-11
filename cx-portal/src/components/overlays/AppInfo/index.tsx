@@ -5,7 +5,7 @@ import { show } from 'features/control/overlay/actions'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 
-export default function AppInfo({ id }: { id: string }) {
+export default function AppInfo({ id, title }: { id: string; title?: string }) {
   const dispatch = useDispatch()
   const { data } = useFetchAppDetailsQuery(id)
 
@@ -13,7 +13,7 @@ export default function AppInfo({ id }: { id: string }) {
     <>
       <DialogHeader
         {...{
-          title: '',
+          title: title || '',
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
