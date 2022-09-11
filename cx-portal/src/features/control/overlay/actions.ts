@@ -9,12 +9,16 @@ const closeOverlay = createAction(`${name}/closeOverlay`, () => ({
   },
 }))
 
-const show = createAction(`${name}/show`, (type: OVERLAYS, id?: string) => ({
-  payload: {
-    type,
-    id,
-  },
-}))
+const show = createAction(
+  `${name}/show`,
+  (type: OVERLAYS, id?: string, title?: string) => ({
+    payload: {
+      type,
+      id,
+      title,
+    },
+  })
+)
 
 const exec = createAction(`${name}/exec`, (id: string) => ({
   payload: {
