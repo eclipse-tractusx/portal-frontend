@@ -1,7 +1,7 @@
 import qs from 'querystring'
 import { HttpClient } from 'utils/HttpClient'
 import { BusinessPartnerResponse, BusinessPartner } from './types'
-import { getBpdmApiBase } from 'services/EnvironmentService'
+import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { SearchParams } from 'types/MainTypes'
 
@@ -30,6 +30,12 @@ export class PartnerNetworkApi extends HttpClient {
   public getBusinessPartnerByBpn = (bpn: string) =>
     this.instance.get<BusinessPartner>(
       `/catena/business-partner/${bpn}?idType=BPN`,
+      getHeaders()
+    )
+
+  public getAllMemberCompanies = () =>
+    this.instance.get<string[]>(
+      `${getApiBase()}/api/administration/partnernetwork/memberCompanies`,
       getHeaders()
     )
 }

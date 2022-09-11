@@ -1,6 +1,9 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { Box } from '@mui/material'
+
+import smallLogo from '../../../assets/logo/cx-logo-short.svg'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksTableColumns = (
@@ -26,6 +29,17 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.cxparticipant'),
       flex: 1,
       sortable: false,
+      renderCell: (params) =>
+        params.value ? (
+          <Box
+            component="img"
+            padding=".5rem"
+            src={smallLogo}
+            alt="membershipFlag"
+          />
+        ) : (
+          ''
+        ),
     },
     {
       field: 'country',

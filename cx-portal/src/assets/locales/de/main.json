@@ -331,6 +331,8 @@
       "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
+      "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
+      "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",
