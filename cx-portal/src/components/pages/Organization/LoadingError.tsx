@@ -18,32 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.organization-main {
-  width: 100%;
-  padding: 30px 0;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1140px;
-  .organization-content {
-    margin-bottom: 30px;
-    div {
-      color: #969696;
-    }
-    .organization-loader {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50vh;
-    }
-    .organization-subscriptions {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-    }
-    .organization-error {
-      padding: 10px;
-    }
-  }
+import { useTheme, CircularProgress } from '@mui/material'
+export default function LoadingError({
+  isLoading,
+  isError,
+  errorText,
+}: {
+  isLoading: boolean
+  isError: boolean
+  errorText: string
+}) {
+  const theme = useTheme()
+  return (
+    <>
+      {isLoading ? (
+        <div className="organization-loader">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+              zIndex: 1,
+              position: 'absolute',
+            }}
+          />
+        </div>
+      ) : null}
+      {isError ? <div className="organization-error">{errorText}</div> : null}
+    </>
+  )
 }
