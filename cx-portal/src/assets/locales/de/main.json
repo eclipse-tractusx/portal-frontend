@@ -147,6 +147,7 @@
       },
       "table": {
         "title": "Semantische Datenmodelle",
+        "searchfielddefaulttext": "Suche mit Name",
         "filter": {
           "namespaceLabel": "Namespace",
           "namespacePlaceholder": "Filtern der Modelle nach Namespace",
