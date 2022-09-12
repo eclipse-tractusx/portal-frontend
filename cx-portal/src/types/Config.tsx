@@ -374,7 +374,6 @@ export const mainMenuFullTree = [
     name: PAGES.APP_MANAGEMENT,
     children: [{ name: PAGES.APPOVERVIEW }, { name: PAGES.APPRELEASEPROCESS }],
   },
-  { name: PAGES.ORGANIZATION },
 ]
 
 /**
@@ -385,6 +384,7 @@ export const mainMenuFullTree = [
  */
 export const userMenuFull = [
   PAGES.ACCOUNT,
+  PAGES.ORGANIZATION,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,

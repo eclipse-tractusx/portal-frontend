@@ -41,6 +41,10 @@ export default function AppSubscriptions({
     { name: SubscriptionStatus.ACTIVE, code: 'green' },
   ].find((e) => e.name === status)?.code
 
+  function capitalizeFirstLetter(text: string) {
+    return text.charAt(0).toUpperCase() + text.slice(1)
+  }
+
   return (
     <div className="organization-subscriptions" onClick={onButtonClick}>
       <Box sx={{ paddingRight: 2 }}>
@@ -60,7 +64,12 @@ export default function AppSubscriptions({
       <span>
         {name} - by {provider} -
       </span>
-      <span style={{ color: colorCode }}> {'\u00a0' + status}</span>
+      {status ? (
+        <span style={{ color: colorCode }}>
+          {' '}
+          {'\u00a0' + capitalizeFirstLetter(status.toLocaleLowerCase())}
+        </span>
+      ) : null}
     </div>
   )
 }

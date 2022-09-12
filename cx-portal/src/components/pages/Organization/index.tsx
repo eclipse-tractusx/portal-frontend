@@ -20,7 +20,6 @@
 
 import { PageHeader, StaticTable, TableType } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import CompanyDetails from './CompanyDetails'
 import AppSubscriptions from './AppSubscriptions'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
@@ -33,7 +32,8 @@ import {
 import { appToStatus } from 'features/apps/mapper'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import LoadingError from './LoadingError'
-import { companyDetailsToCards } from 'features/admin/mapper'
+import { CompanyDetailsToCards } from 'features/admin/mapper'
+import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 
 export default function Organization() {
   const { t } = useTranslation()
@@ -52,20 +52,10 @@ export default function Organization() {
     isLoading: companyDetailsLoading,
   } = useFetchOwnCompanyDetailsQuery()
   const companyDetailsData =
-    companyDetails && companyDetailsToCards(companyDetails)
+    companyDetails && CompanyDetailsToCards(companyDetails)
 
   const handleClick = (id: string | undefined) => {
     dispatch(show(OVERLAYS.APP, id, t('content.organization.company.title')))
-  }
-
-  const companyDetailsTableBody =
-    companyDetailsData?.map((details) => [
-      () => <CompanyDetails head={t(details.head)} data={details.data} />,
-    ]) || []
-
-  const organizationTableData: TableType = {
-    head: [t('content.organization.company.title')],
-    body: companyDetailsTableBody,
   }
 
   const appSubscriptionsTableBody =
@@ -95,7 +85,12 @@ export default function Organization() {
       />
       <div className="organization-main">
         <div className="organization-content">
-          <StaticTable data={organizationTableData} horizontal={false} />
+          {companyDetailsData ? (
+            <UserDetailCard
+              cardCategory={companyDetailsData?.cardCategory}
+              cardContentItems={companyDetailsData?.cardContentItems}
+            />
+          ) : null}
           <LoadingError
             isLoading={companyDetailsLoading}
             isError={companyDetailsError}
