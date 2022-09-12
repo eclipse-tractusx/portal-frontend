@@ -19,22 +19,17 @@
  ********************************************************************************/
 
 import { CompanyDetails } from './userApiSlice'
-
-export const companyDetailsToCards = (data: CompanyDetails) => [
-  {
-    head: 'content.organization.company.name',
-    data: data.name,
-  },
-  {
-    head: 'content.organization.company.address',
-    data: data.streetName,
-  },
-  {
-    head: 'content.organization.company.city',
-    data: data.city,
-  },
-  {
-    head: 'content.organization.company.bpn',
-    data: data.bpn,
-  },
-]
+export const CompanyDetailsToCards = (data: CompanyDetails) => {
+  return {
+    cardCategory: 'Company Details',
+    cardContentItems: {
+      name: { label: 'Company Name', value: data.name },
+      address: {
+        label: 'Address',
+        value: `${data.streetName} ${data.streetNumber}`,
+      },
+      city: { label: 'City', value: data.city },
+      bpn: { label: 'BPN', value: data.bpn },
+    },
+  }
+}

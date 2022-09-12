@@ -49,7 +49,7 @@ export enum SubscriptionStatus {
 
 export type SubscriptionStatusItem = {
   appId: string
-  appSubscriptionStatus: SubscriptionStatus
+  offerSubscriptionStatus: SubscriptionStatus
 }
 
 export type AppDetails = AppMarketplaceApp & {
