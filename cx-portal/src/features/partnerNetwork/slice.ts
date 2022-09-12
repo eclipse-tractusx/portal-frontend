@@ -7,7 +7,11 @@ import {
   PartnerNetworkInitialState,
 } from './types'
 import { RootState } from 'features/store'
-import { getOneBusinessPartner, fetchBusinessPartners } from './actions'
+import {
+  getOneBusinessPartner,
+  fetchBusinessPartners,
+  fetchMemberCompaniesData,
+} from './actions'
 import {
   mapSingleBusinessPartnerToDataGrid,
   mapBusinessPartnerToDataGrid,
@@ -16,6 +20,8 @@ import {
 const initialState: PartnerNetworkInitialState = {
   paginationData: {} as PaginationData,
   mappedPartnerList: [],
+  membershipData: [],
+  membershipError: '',
   loading: true,
   error: '',
 }
@@ -26,6 +32,9 @@ const partnerNetworkSlice = createSlice({
   reducers: {
     resetPartnerNetworkState: (state) => {
       state.mappedPartnerList = []
+    },
+    clearNotification: (state) => {
+      state.membershipError = ''
     },
   },
   extraReducers: (builder) => {
@@ -61,7 +70,7 @@ const partnerNetworkSlice = createSlice({
       try {
         state.mappedPartnerList = [
           ...state.mappedPartnerList,
-          ...mapBusinessPartnerToDataGrid(payloadList),
+          ...mapBusinessPartnerToDataGrid(payloadList, state.membershipData),
         ]
         state.loading = false
         state.paginationData = {
@@ -79,6 +88,21 @@ const partnerNetworkSlice = createSlice({
     builder.addCase(fetchBusinessPartners.rejected, (state, action) => {
       state.loading = false
       state.error = action.error.message as string
+    })
+    builder.addCase(fetchMemberCompaniesData.pending, (state, action) => {
+      state.membershipData = []
+      state.membershipError = ''
+    })
+    builder.addCase(
+      fetchMemberCompaniesData.fulfilled,
+      (state, { payload }) => {
+        state.membershipData = payload as string[]
+        state.membershipError = ''
+      }
+    )
+    builder.addCase(fetchMemberCompaniesData.rejected, (state, action) => {
+      state.membershipData = []
+      state.membershipError = action.error.message as string
     })
   },
 })

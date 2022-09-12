@@ -237,10 +237,16 @@
     },
     "organization": {
       "company": {
-        "title": "Firmendetails"
+        "title": "Firmendetails",
+        "error": "Fehler - keine Daten gefunden",
+        "name": "Name der Firma: ",
+        "address": "Adresse: ",
+        "city": "Stadt: ",
+        "bpn": "BPN: "
       },
       "subscriptions": {
-        "title": "App-Abonnements"
+        "title": "App-Abonnements",
+        "error": "Fehler - keine Daten gefunden"
       }
     },
     "datamanagement": {
@@ -325,6 +331,8 @@
       "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
+      "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
+      "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",

@@ -18,32 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.organization-main {
-  width: 100%;
-  padding: 30px 0;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1140px;
-  .organization-content {
-    margin-bottom: 30px;
-    div {
-      color: #969696;
-    }
-    .organization-loader {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50vh;
-    }
-    .organization-subscriptions {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-    }
-    .organization-error {
-      padding: 10px;
-    }
-  }
-}
+import { CompanyDetails } from './userApiSlice'
+
+export const companyDetailsToCards = (data: CompanyDetails) => [
+  {
+    head: 'content.organization.company.name',
+    data: data.name,
+  },
+  {
+    head: 'content.organization.company.address',
+    data: data.streetName,
+  },
+  {
+    head: 'content.organization.company.city',
+    data: data.city,
+  },
+  {
+    head: 'content.organization.company.bpn',
+    data: data.bpn,
+  },
+]

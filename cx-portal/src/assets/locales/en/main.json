@@ -237,10 +237,16 @@
     },
     "organization": {
       "company": {
-        "title": "Company Details"
+        "title": "Company Details",
+        "error": "error - no data found",
+        "name": "Company Name: ",
+        "address": "Address: ",
+        "city": "City: ",
+        "bpn": "BPN: "
       },
       "subscriptions": {
-        "title": "App Subscriptions"
+        "title": "App Subscriptions",
+        "error": "error - no data found"
       }
     },
     "datamanagement": {
@@ -326,6 +332,8 @@
       "searchbuttonlabel": "Search",
       "searchfielddefaulttext": "Search by company name or BPN",
       "searchfielderrormessage": "Invalid Data",
+      "membershipnotificationtitle": "Membership flag cannot be fetched.",
+      "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",
