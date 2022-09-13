@@ -29,6 +29,7 @@ import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './PartnerNetworksBPNTableColumns'
 import { useFetchBusinessPartnerAddressMutation } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
+import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 
 export const PartnerList = ({
   fetchHook,
@@ -60,8 +61,9 @@ export const PartnerList = ({
         onCellClick={onTableCellClick}
         additionalHooks={{
           mutation: useFetchBusinessPartnerAddressMutation,
-          query: useFetchBusinessPartnerAddressMutation,
-          isBPDM: true,
+          query: useFetchMemberCompaniesQuery,
+          addCountryAttribute: true,
+          checkForMember: true,
         }}
         toolbarVariant="premium"
         searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}

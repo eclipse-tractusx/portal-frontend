@@ -113,6 +113,7 @@ export interface BusinessPartner {
   roles: Array<BpdmTypeCommonKeyValuePair>
   relations: Array<BpdmTypeRelation>
   country?: any
+  member?: boolean
 }
 
 export interface BusinessPartnerSearchResponse {

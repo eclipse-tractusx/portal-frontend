@@ -36,7 +36,10 @@ export const PartnerNetworksTableColumns = (
       flex: 1.5,
       sortable: false,
       renderCell: (params) =>
-        params.value ? (
+        params &&
+        params.row &&
+        params.row.legalEntity &&
+        params.row.legalEntity.member ? (
           <Box
             component="img"
             padding=".5rem"

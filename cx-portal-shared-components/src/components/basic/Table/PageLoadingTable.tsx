@@ -67,6 +67,8 @@ export const PageLoadingTable = function <T>({
   })
   const [mutationRequest] =
     additionalHooks && additionalHooks?.mutation && additionalHooks?.mutation() //should be a hook with POST request
+  const { queryData } =
+    additionalHooks && additionalHooks?.query && additionalHooks?.query() //should be a hook with GET request
   const nextPage = () => setPage(page + 1)
   const hasMore =
     data?.page < data?.totalPages - 1 ||
@@ -107,10 +109,15 @@ export const PageLoadingTable = function <T>({
     await mutationRequest(result)
       .unwrap()
       .then((payload: any) => {
-        if (additionalHooks?.isBPDM) {
+        //update for country attribute && update member info
+        if (
+          additionalHooks?.addCountryAttribute &&
+          additionalHooks?.checkForMember
+        ) {
           let finalObj = flag
             ? JSON.parse(JSON.stringify(data?.content))
             : JSON.parse(JSON.stringify(data))
+
           flag
             ? finalObj.forEach((x: any) => {
                 payload.forEach((y: any) => {
@@ -121,6 +128,22 @@ export const PageLoadingTable = function <T>({
               })
             : (finalObj.country = payload[0].legalAddress.country)
 
+          flag && queryData && queryData.length > 0
+            ? finalObj.forEach((x: any) => {
+                queryData.forEach((y: string) => {
+                  if (x.legalEntity.bpn === y) {
+                    x.legalEntity.member = true
+                  } else {
+                    x.legalEntity.member = false
+                  }
+                })
+              })
+            : (finalObj.member =
+                queryData && queryData.length
+                  ? finalObj.bpn === queryData[0]
+                  : false)
+
+          //set the final data
           flag ? setItems((i) => i.concat(finalObj)) : setItems([finalObj])
         }
       })

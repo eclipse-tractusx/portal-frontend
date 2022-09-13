@@ -247,8 +247,7 @@ export default function AppMarketCard() {
     try {
       await addCreateApp(saveData).unwrap()
       dispatch(increment())
-    } catch (err) {
-    }
+    } catch (err) {}
   }
 
   return (
