@@ -20,7 +20,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import Patterns from 'types/Patterns'
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',
