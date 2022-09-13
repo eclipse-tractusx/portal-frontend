@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
-import { AppDetails } from 'features/apps/apiSlice'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceProvider.scss'
 
-export default function MarketplaceProvider({ item }: { item: AppDetails }) {
+export default function MarketplaceProvider({ item }: { item: ServiceRequest }) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.providerInformation',
   })
@@ -12,9 +12,9 @@ export default function MarketplaceProvider({ item }: { item: AppDetails }) {
     head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
       [item.provider],
-      [item.providerUri === 'ERROR' ? '' : item.providerUri],
+      ['test'],
       [item.contactEmail],
-      [item.contactNumber],
+      ['0987654321'],
     ],
   }
 

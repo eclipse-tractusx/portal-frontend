@@ -21,20 +21,20 @@
 import { Typography } from 'cx-portal-shared-components'
 import MarketplaceHeader from './components/MarketplaceHeader'
 import MarketplaceProvider from './components/MarketplaceProvider'
-import { AppDetails } from 'features/apps/apiSlice'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './Marketplace.scss'
 
 export default function MarketplaceContentDetails({
   item,
 }: {
-  item: AppDetails
+  item: ServiceRequest
 }) {
   return (
     item && (
       <>
         <MarketplaceHeader item={item} />
         <div className="product-description">
-          <Typography variant="body2">{item.longDescription}</Typography>
+          <Typography variant="body2">{item.description}</Typography>
         </div>
         <MarketplaceProvider item={item} />
       </>

@@ -94,7 +94,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.APP:
       return <AppInfo id={overlay.id} />
     case OVERLAYS.SERVICE_REQUEST:
-      return <ServiceRequest />
+      return <ServiceRequest id={overlay.id} />
     default:
       return null
   }

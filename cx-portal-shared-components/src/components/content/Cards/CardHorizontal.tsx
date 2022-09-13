@@ -39,7 +39,7 @@ export const CardHorizontal = ({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '0px',
-        maxWidth: '539px',
+        width: '100%',
         borderRadius: `${borderRadius}px`,
         ':hover': {
           boxShadow: theme.shadows['20'],
@@ -67,7 +67,7 @@ export const CardHorizontal = ({
         sx={{
           width: '299px',
           height: '160px',
-          margin: '0px 0px 0px auto ',
+          margin: '0px 0px 0px 20px',
           paddingTop: '20px',
         }}
       >
@@ -121,7 +121,7 @@ export const CardHorizontal = ({
             )}
           </Grid>
           <Grid xs={4}></Grid>
-          <Grid xs={4}>
+          <Grid xs={3}>
             {buttonText && (
               <Button size="small" onClick={onBtnClick}>
                 {buttonText}

@@ -1,16 +1,15 @@
 import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import MarketplaceContentDetails from './MarketplaceContentDetails'
 import './Marketplace.scss'
+import { useFetchServiceQuery } from 'features/serviceMarketplace/serviceApiSlice'
 
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()
   const { serviceId } = useParams()
-  const { data } = useFetchAppDetailsQuery(
-    '5cf74ef8-e0b7-4984-a872-474828beb5d3'!
-  )
+
+  const { data } = useFetchServiceQuery(serviceId ?? '')
 
   return (
     <main>

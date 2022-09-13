@@ -24,7 +24,7 @@ export default function ServiceMarketplace() {
         }}
       >
         <Grid container>
-          <Grid xs={2}></Grid>
+          <Grid xs={2} item></Grid>
           <Grid
             item
             xs={3}
