@@ -19,25 +19,14 @@
  ********************************************************************************/
 import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { Table, TableProps } from '.'
-import { Button } from '../Button'
+import {
+  Table,
+  Button,
+  TableProps,
+  PaginFetchArgs,
+} from 'cx-portal-shared-components'
+import _ from 'lodash'
 
-export type PaginFetchArgs = {
-  page: number
-  args?: any
-}
-
-export type PaginMeta = {
-  totalElements: number
-  totalPages: number
-  page: number
-  contentSize: number
-}
-
-export type PaginResult<T> = {
-  meta: PaginMeta
-  content: T[]
-}
 export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   loadLabel: string
   fetchHook: (paginArgs: PaginFetchArgs) => any
@@ -46,7 +35,7 @@ export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   mutationHook?: any //this is for making a POST request incase
 }
 
-export const PageLoadingTable = function <T>({
+export const MyPageTable = function <T>({
   loadLabel,
   fetchHook,
   fetchHookArgs,
@@ -89,10 +78,9 @@ export const PageLoadingTable = function <T>({
         if (mutationHook) {
           fetchAndApply(data)
         } else {
-          // Search for BPN does response with an object. No content or meta properties available
           data.content
             ? setItems((i) => i.concat(data.content))
-            : setItems([data])
+            : setItems([data]) // Search for BPN does response with an object. No content or meta properties available
         }
       }
     }

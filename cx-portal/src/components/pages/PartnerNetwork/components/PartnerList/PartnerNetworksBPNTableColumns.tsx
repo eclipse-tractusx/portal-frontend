@@ -1,32 +1,29 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
+import { BusinessPartner } from 'features/newPartnerNetwork/types'
 
 // Columns definitions of Partner Network page Data Grid
-export const PartnerNetworksTableColumns = (
+export const PartnerNetworksBPNTableColumns = (
   translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
   return [
     {
-      field: 'legalEntity.names',
+      field: 'names',
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity && row?.legalEntity?.names
-          ? row.legalEntity.names[0].value
-          : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) =>
+        row.names ? row.names[0].value : null,
     },
     {
-      field: 'legalEntity.bpn',
+      field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.bpn : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) => row.bpn,
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
@@ -39,8 +36,8 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.country?.name : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) =>
+        row ? row.country?.name : '',
     },
     {
       field: 'detail',
