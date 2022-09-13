@@ -301,7 +301,7 @@ export default function AppPage() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z.:@&0-9 !]){1,}$/,
+                      value: /^([A-Za-z.:@&0-9 !])+$/,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z.:@&0-9 !`,

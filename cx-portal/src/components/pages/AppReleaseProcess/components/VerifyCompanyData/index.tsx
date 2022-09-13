@@ -33,7 +33,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 
-export default function TechnicalIntegration() {
+export default function VerifyCompanyData() {
   const { t } = useTranslation()
   const [
     technicalIntegrationNotification,
@@ -57,7 +57,7 @@ export default function TechnicalIntegration() {
   }
 
   return (
-    <div className="techhnical-integration">
+    <div className="verify-company-data">
       <Typography variant="h3" mt={10} mb={4} align="center">
         {'Technical Integration'}
       </Typography>

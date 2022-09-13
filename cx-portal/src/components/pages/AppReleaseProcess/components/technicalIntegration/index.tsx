@@ -41,13 +41,12 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const dispatch = useDispatch()
 
-  const defaultValues = {}
 
   const {
     handleSubmit,
     formState: { isValid },
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues: {},
     mode: 'onChange',
   })
 
@@ -57,7 +56,7 @@ export default function TechnicalIntegration() {
   }
 
   return (
-    <div className="techhnical-integration">
+    <div className="technical-integration">
       <Typography variant="h3" mt={10} mb={4} align="center">
         {'Technical Integration'}
       </Typography>
