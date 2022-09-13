@@ -41,7 +41,6 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const dispatch = useDispatch()
 
-
   const {
     handleSubmit,
     formState: { isValid },

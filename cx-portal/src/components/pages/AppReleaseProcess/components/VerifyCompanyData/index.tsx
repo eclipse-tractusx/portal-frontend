@@ -35,10 +35,7 @@ import { decrement, increment } from 'features/appManagement/slice'
 
 export default function VerifyCompanyData() {
   const { t } = useTranslation()
-  const [
-    companyDataNotification,
-    setCompanyDataNotification,
-  ] = useState(false)
+  const [companyDataNotification, setCompanyDataNotification] = useState(false)
   const dispatch = useDispatch()
 
   const defaultValues = {}
@@ -51,18 +48,18 @@ export default function VerifyCompanyData() {
     mode: 'onChange',
   })
 
-  const onIntegrationSubmit = async (data: any) => {
+  const onCompanyDataSubmit = async (data: any) => {
     console.log('data', data)
     setCompanyDataNotification(true)
   }
 
   return (
     <div className="verify-company-data">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {'Technical Integration'}
+      <Typography variant="h4" mt={10} mb={4} align="center">
+        {t('content.apprelease.verifycompanyData.headerTitle')}
       </Typography>
       <Typography variant="body2" className="header-description" align="center">
-        {'In progress'}
+        In Progress
       </Typography>
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
@@ -88,7 +85,7 @@ export default function VerifyCompanyData() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onIntegrationSubmit)}
+          onClick={handleSubmit(onCompanyDataSubmit)}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>
@@ -100,9 +97,7 @@ export default function VerifyCompanyData() {
             description={t('content.apprelease.appReleaseForm.error.message')}
             open
             severity="error"
-            onCloseNotification={() =>
-              setCompanyDataNotification(false)
-            }
+            onCloseNotification={() => setCompanyDataNotification(false)}
           />
         </div>
       )}
