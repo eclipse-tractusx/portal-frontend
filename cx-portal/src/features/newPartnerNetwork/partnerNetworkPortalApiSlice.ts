@@ -20,12 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
-import { BusinessPartnerResponse, BusinessPartnerSearchResponse } from './types'
 import Patterns from 'types/Patterns'
-
-const checkIfBPNLNumber = (text: string): boolean =>
-  Patterns.BPN.test(text.trim())
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',
