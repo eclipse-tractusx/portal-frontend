@@ -362,7 +362,7 @@ export default function AppPage() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^\+(\d{2})\s+(\([0-9]{3}\))?\s?\d{9,}$/,
+                      value: /^\+(\d{2})\s+(\([\d]{3}\))?\s?\d{9,}$/,
                       message: t(
                         'content.apprelease.appPage.PleaseEnterValidContact'
                       ),
