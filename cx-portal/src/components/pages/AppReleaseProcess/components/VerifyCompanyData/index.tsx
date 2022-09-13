@@ -36,8 +36,8 @@ import { decrement, increment } from 'features/appManagement/slice'
 export default function VerifyCompanyData() {
   const { t } = useTranslation()
   const [
-    technicalIntegrationNotification,
-    setTechnicalIntegrationNotification,
+    companyDataNotification,
+    setCompanyDataNotification,
   ] = useState(false)
   const dispatch = useDispatch()
 
@@ -53,7 +53,7 @@ export default function VerifyCompanyData() {
 
   const onIntegrationSubmit = async (data: any) => {
     console.log('data', data)
-    setTechnicalIntegrationNotification(true)
+    setCompanyDataNotification(true)
   }
 
   return (
@@ -93,7 +93,7 @@ export default function VerifyCompanyData() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {technicalIntegrationNotification && (
+      {companyDataNotification && (
         <div className="errorMsg">
           <PageNotifications
             title={t('content.apprelease.appReleaseForm.error.title')}
@@ -101,7 +101,7 @@ export default function VerifyCompanyData() {
             open
             severity="error"
             onCloseNotification={() =>
-              setTechnicalIntegrationNotification(false)
+              setCompanyDataNotification(false)
             }
           />
         </div>
