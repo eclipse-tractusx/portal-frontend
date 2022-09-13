@@ -50,8 +50,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchServices: builder.query<ServiceRequestAPIResponse, number>({
-      query: (page) =>
-        `/api/services/active?size=${PAGE_SIZE}&page=${page}`,
+      query: (page) => `/api/services/active?size=${PAGE_SIZE}&page=${page}`,
     }),
     fetchService: builder.query<ServiceRequest, string>({
       query: (serviceId) =>
@@ -60,14 +59,14 @@ export const apiSlice = createApi({
     addSubscribeService: builder.mutation<void, string>({
       query: (serviceId) => ({
         url: `/api/services/${serviceId}/subscribe`,
-        method: 'POST'
+        method: 'POST',
       }),
     }),
   }),
 })
 
-export const { 
+export const {
   useFetchServicesQuery,
   useFetchServiceQuery,
-  useAddSubscribeServiceMutation
+  useAddSubscribeServiceMutation,
 } = apiSlice

@@ -11,7 +11,10 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
-import { useAddSubscribeServiceMutation, useFetchServiceQuery } from 'features/serviceMarketplace/serviceApiSlice'
+import {
+  useAddSubscribeServiceMutation,
+  useFetchServiceQuery,
+} from 'features/serviceMarketplace/serviceApiSlice'
 
 export default function ServiceRequest({ id }: { id: string }) {
   console.log('id', id)
@@ -21,17 +24,16 @@ export default function ServiceRequest({ id }: { id: string }) {
   const [response, setResponse] = useState<any>()
 
   const { data } = useFetchServiceQuery(id ?? '')
-  const [ addSubscribeService ] = useAddSubscribeServiceMutation()
+  const [addSubscribeService] = useAddSubscribeServiceMutation()
 
-  const handleConfirm = async (id:string) => {
-    try{
+  const handleConfirm = async (id: string) => {
+    try {
       const result = await addSubscribeService(id).unwrap()
       console.log('result', result)
       setResponse(result)
-    }catch (err){
+    } catch (err) {
       console.log('error', err)
     }
-   
   }
 
   return (
@@ -48,7 +50,11 @@ export default function ServiceRequest({ id }: { id: string }) {
           sx={{ margin: '30px 0 10px', textAlign: 'center' }}
           variant="h5"
         >
-          { data && t('content.serviceMarketplace.description').replace('{serviceName}', data.title)}
+          {data &&
+            t('content.serviceMarketplace.description').replace(
+              '{serviceName}',
+              data.title
+            )}
         </Typography>
       </DialogContent>
 
