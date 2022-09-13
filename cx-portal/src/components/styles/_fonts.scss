@@ -2,7 +2,8 @@
   $font-family,
   $filename,
   $font-weight: normal,
-  $font-display: block
+  $font-display: fallback
+    //to load font asyncronously, https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
 ) {
   @font-face {
     font-family: '#{$font-family}';
