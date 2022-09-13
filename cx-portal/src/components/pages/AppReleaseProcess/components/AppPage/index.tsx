@@ -351,7 +351,7 @@ export default function AppPage() {
                   label:
                     t('content.apprelease.appPage.providerPhoneContact') + '*',
                   placeholder: t(
-                    'content.apprelease.appPage.providerPhoneContact'
+                    'content.apprelease.appPage.providerPhoneContactPlaceholder'
                   ),
                   type: 'input',
                   rules: {
@@ -360,6 +360,12 @@ export default function AppPage() {
                       message: `${t(
                         'content.apprelease.appPage.providerPhoneContact'
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                    },
+                    pattern: {
+                      value: /^\+(\d{2})\s+(\([0-9]{3}\))?\s?\d{9,}$/,
+                      message: t(
+                        'content.apprelease.appPage.PleaseEnterValidContact'
+                      ),
                     },
                   },
                 }}
