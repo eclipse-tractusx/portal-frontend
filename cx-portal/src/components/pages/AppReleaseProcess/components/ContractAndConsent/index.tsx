@@ -31,6 +31,8 @@ import { Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { ConnectorFormInputField } from '../AppMarketCard'
+import { useDispatch } from 'react-redux'
+import { decrement, increment } from 'features/appManagement/slice'
 
 type FormDataType = {
   agreements: any[]
@@ -39,6 +41,37 @@ type FormDataType = {
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
+  const dispatch = useDispatch()
+
+  const consentData = {
+    agreements: [
+      {
+        agreementId: '1',
+        name: 'App Publishing Consent1',
+      },
+      {
+        agreementId: '2',
+        name: 'App Publishing Consent2',
+      },
+    ],
+  }
+
+  const consent = {
+    agreements: [
+      {
+        agreementId: '1',
+        consentStatus: 'ACTIVE',
+      },
+      {
+        agreementId: '2',
+        consentStatus: 'INACTIVE',
+      },
+    ],
+  }
+
+  const agreementData = consentData.agreements.map((item: any, index: number) =>
+    Object.assign({}, item, consent.agreements[index])
+  )
 
   const defaultValues = {
     agreements: [],
@@ -64,6 +97,7 @@ export default function ContractAndConsent() {
   const handleSave = async (data: FormDataType) => {
     console.log('data', data)
     setContractNotification(true)
+    dispatch(increment())
   }
 
   return (
@@ -75,30 +109,30 @@ export default function ContractAndConsent() {
         {t('content.apprelease.contractAndConsent.headerDescription')}
       </Typography>
       <form className="header-description">
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: '1',
-              label: `${t(
-                'content.apprelease.contractAndConsent.headerDescription'
-              )} ${t(
-                'content.apprelease.contractAndConsent.headerDescription'
-              )}`,
-              type: 'checkbox',
-              rules: {
-                required: {
-                  value: true,
-                  message: t(
-                    'content.apprelease.contractAndConsent.allAgreementsMandatory'
-                  ),
-                },
-              },
-            }}
-          />
-        </div>
+        {agreementData?.map((item) => {
+          return (
+            <div className="form-field">
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: item.agreementId,
+                  label: item.name,
+                  type: 'checkbox',
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${item.name} ${t(
+                        'content.apprelease.appReleaseForm.isMandatory'
+                      )}`,
+                    },
+                  },
+                }}
+              />
+            </div>
+          )
+        })}
       </form>
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
@@ -109,7 +143,7 @@ export default function ContractAndConsent() {
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton color="secondary">
+        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button

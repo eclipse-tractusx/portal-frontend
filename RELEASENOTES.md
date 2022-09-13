@@ -7,7 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Feature - Create, enable and delete Identity Providers
 * Feature - App Release Process Step 2
-* Feature - App Release Process Step 3
+* Feature - App Release Process Step 3 with api binding
 * Feature - Add "CX Membership" flag in Partner Network
 * Feature - My Organization page
 * Feature - Search functionality added in Register Request table
