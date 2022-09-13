@@ -30,109 +30,36 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { ConnectorFormInputField } from '../AppMarketCard'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 
-type FormDataType = {
-  agreements: any[]
-}
-
-export default function ContractAndConsent() {
+export default function VerifyCompanyData() {
   const { t } = useTranslation()
-  const [contractNotification, setContractNotification] = useState(false)
+  const [companyDataNotification, setCompanyDataNotification] = useState(false)
   const dispatch = useDispatch()
 
-  const consentData = {
-    agreements: [
-      {
-        agreementId: '1',
-        name: 'App Publishing Consent1',
-      },
-      {
-        agreementId: '2',
-        name: 'App Publishing Consent2',
-      },
-    ],
-  }
-
-  const consent = {
-    agreements: [
-      {
-        agreementId: '1',
-        consentStatus: 'ACTIVE',
-      },
-      {
-        agreementId: '2',
-        consentStatus: 'INACTIVE',
-      },
-    ],
-  }
-
-  const agreementData = consentData.agreements.map((item: any, index: number) =>
-    Object.assign({}, item, consent.agreements[index])
-  )
-
-  const defaultValues = {
-    agreements: [],
-  }
+  const defaultValues = {}
 
   const {
     handleSubmit,
-    control,
-    trigger,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
 
-  const onContractConsentSubmit = async (data: FormDataType) => {
-    const validateFields = await trigger(['agreements'])
-    if (validateFields) {
-      handleSave(data)
-    }
-  }
-
-  const handleSave = async (data: FormDataType) => {
-    setContractNotification(true)
-    dispatch(increment())
+  const onCompanyDataSubmit = async (data: any) => {
+    setCompanyDataNotification(true)
   }
 
   return (
-    <div className="contract-consent">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.contractAndConsent.headerTitle')}
+    <div className="verify-company-data">
+      <Typography variant="h4" mt={10} mb={4} align="center">
+        {t('content.apprelease.verifycompanyData.headerTitle')}
       </Typography>
       <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.contractAndConsent.headerDescription')}
+        In Progress
       </Typography>
-      <form className="header-description">
-        {agreementData?.map((item) => {
-          return (
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: item.agreementId,
-                  label: item.name,
-                  type: 'checkbox',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${item.name} ${t(
-                        'content.apprelease.appReleaseForm.isMandatory'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-            </div>
-          )
-        })}
-      </form>
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
@@ -149,7 +76,7 @@ export default function ContractAndConsent() {
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onContractConsentSubmit)}
+          onClick={() => dispatch(increment())}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -157,19 +84,19 @@ export default function ContractAndConsent() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onContractConsentSubmit)}
+          onClick={handleSubmit(onCompanyDataSubmit)}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {contractNotification && (
+      {companyDataNotification && (
         <div className="errorMsg">
           <PageNotifications
             title={t('content.apprelease.appReleaseForm.error.title')}
             description={t('content.apprelease.appReleaseForm.error.message')}
             open
             severity="error"
-            onCloseNotification={() => setContractNotification(false)}
+            onCloseNotification={() => setCompanyDataNotification(false)}
           />
         </div>
       )}

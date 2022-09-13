@@ -67,6 +67,19 @@ export const apiSlice = createApi({
         body,
       }),
     }),
+    fetchConsentData: builder.query<any[], void>({
+      query: () => `/api/apps/consentData`,
+    }),
+    fetchConsent: builder.query<any[], void>({
+      query: () => `/api/apps/consent`,
+    }),
+    addContractConsent: builder.mutation<void, any>({
+      query: (body: any) => ({
+        url: `/api/apps/createapp`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 })
 
@@ -74,4 +87,7 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
+  useFetchConsentDataQuery,
+  useFetchConsentQuery,
+  useAddContractConsentMutation,
 } = apiSlice

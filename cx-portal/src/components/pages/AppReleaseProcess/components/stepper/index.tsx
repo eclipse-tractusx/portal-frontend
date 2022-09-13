@@ -21,7 +21,11 @@
 import { Stepper } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
-export default function AppReleaseStepper() {
+export default function AppReleaseStepper({
+  activePage,
+}: {
+  activePage: number
+}) {
   const { t } = useTranslation()
 
   const stepsList = [
@@ -30,19 +34,19 @@ export default function AppReleaseStepper() {
       step: 1,
     },
     {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
+      headline: 'App Page',
       step: 2,
     },
     {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
+      headline: t('content.apprelease.stepper.contractAndConsent'),
       step: 3,
     },
     {
-      headline: t('content.apprelease.stepper.betaTest'),
+      headline: t('content.apprelease.stepper.technicalIntegration'),
       step: 4,
     },
     {
-      headline: t('content.apprelease.stepper.validateAndPublish'),
+      headline: t('content.apprelease.stepper.betaTest'),
       step: 5,
     },
     {
@@ -51,5 +55,5 @@ export default function AppReleaseStepper() {
     },
   ]
 
-  return <Stepper list={stepsList} showSteps={6} activeStep={1} />
+  return <Stepper list={stepsList} showSteps={6} activeStep={activePage} />
 }

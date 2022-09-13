@@ -619,6 +619,11 @@
         "headerTitle": "Beta Test",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
       },
+      "verifyCompanyData": {
+        "headerTitle": "Verify your app data for submit",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "appCardDetails": "App Card Details"
+      },
       "appReleaseForm": {
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",

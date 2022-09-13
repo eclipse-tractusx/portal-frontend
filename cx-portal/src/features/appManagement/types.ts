@@ -1,11 +1,19 @@
 export const name = 'admin/appManagement'
 
-export interface SearchInputState {
+export type SearchInputState = {
   open: boolean
   text: string
 }
 
-export const initialState: SearchInputState = {
-  open: false,
-  text: '',
+export interface AppManagementState {
+  searchInput: SearchInputState
+  currentActiveStep: number
+}
+
+export const initialState: AppManagementState = {
+  searchInput: {
+    open: false,
+    text: '',
+  },
+  currentActiveStep: 1,
 }
