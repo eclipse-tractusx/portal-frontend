@@ -43,7 +43,7 @@ export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
   fetchHookRefresh?: number
-  mutationHook?: any //this is for making a POST request incase
+  additionalHooks?: any
 }
 
 export const PageLoadingTable = function <T>({
@@ -51,7 +51,7 @@ export const PageLoadingTable = function <T>({
   fetchHook,
   fetchHookArgs,
   fetchHookRefresh = 0,
-  mutationHook,
+  additionalHooks,
   ...props
 }: PageLoadingTableProps) {
   const [page, setPage] = useState(0)
@@ -65,7 +65,8 @@ export const PageLoadingTable = function <T>({
       v: loaded,
     },
   })
-  const [mutationRequest] = mutationHook() //should be a hook with POST request
+  const [mutationRequest] =
+    additionalHooks && additionalHooks?.mutation && additionalHooks?.mutation() //should be a hook with POST request
   const nextPage = () => setPage(page + 1)
   const hasMore =
     data?.page < data?.totalPages - 1 ||
@@ -86,42 +87,42 @@ export const PageLoadingTable = function <T>({
         setItems([])
         setClear(false)
       } else {
-        if (mutationHook) {
+        if (additionalHooks?.mutation) {
           fetchAndApply(data)
         } else {
-          // Search for BPN does response with an object. No content or meta properties available
           data.content
             ? setItems((i) => i.concat(data.content))
-            : setItems([data])
+            : setItems([data]) // Search for legal entity based on BPN responses with an object. No content or meta properties available
         }
       }
     }
-  }, [isSuccess, isFetching, data, clear, loaded])
+  }, [isSuccess, isFetching, data, clear, loaded, additionalHooks])
 
   //POST request call
   const fetchAndApply = async (data: any) => {
-    const result =
-      data && data.content
-        ? data.content.map((x: any) => x.legalEntity.bpn)
-        : [data.bpn]
+    let flag = data && data.content
+    const result = flag
+      ? data.content.map((x: any) => x.legalEntity.bpn)
+      : [data.bpn]
     await mutationRequest(result)
       .unwrap()
       .then((payload: any) => {
-        //TODO : Should not be in the component. As of now, this logic is for mutating an object to add country property
-        let finalObj =
-          data && data.content
+        if (additionalHooks?.isBPDM) {
+          let finalObj = flag
             ? JSON.parse(JSON.stringify(data?.content))
             : JSON.parse(JSON.stringify(data))
-        data && data.content
-          ? finalObj.map((x: any) => {
-              payload.map((y: any) => {
-                if (x.legalEntity.bpn === y.legalEntity) {
-                  x.legalEntity.country = y.legalAddress.country
-                }
+          flag
+            ? finalObj.forEach((x: any) => {
+                payload.forEach((y: any) => {
+                  if (x.legalEntity.bpn === y.legalEntity) {
+                    x.legalEntity.country = y.legalAddress.country
+                  }
+                })
               })
-            })
-          : (finalObj.country = payload[0].legalAddress.country)
-        setItems((i) => i.concat(finalObj))
+            : (finalObj.country = payload[0].legalAddress.country)
+
+          flag ? setItems((i) => i.concat(finalObj)) : setItems([finalObj])
+        }
       })
       .catch((error: any) => {
         setItems((i) => i.concat(data.content))

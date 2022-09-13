@@ -58,7 +58,11 @@ export const PartnerList = ({
     <section id="identity-management-id">
       <PageLoadingTable<BusinessPartner>
         onCellClick={onTableCellClick}
-        mutationHook={useFetchBusinessPartnerAddressMutation}
+        additionalHooks={{
+          mutation: useFetchBusinessPartnerAddressMutation,
+          query: useFetchBusinessPartnerAddressMutation,
+          isBPDM: true,
+        }}
         toolbarVariant="premium"
         searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
         searchInputData={searchInputData}
@@ -74,11 +78,8 @@ export const PartnerList = ({
         fetchHook={fetchHook}
         fetchHookArgs={fetchHookArgs}
         fetchHookRefresh={refresh}
-        getRowId={
-          !showBPNColumn
-            ? (row: { legalEntity: any }) =>
-                row && row.legalEntity ? row.legalEntity.bpn : ''
-            : (row: { [key: string]: string }) => row.bpn
+        getRowId={(row: { legalEntity: any }) =>
+          row && row.legalEntity ? row.legalEntity.bpn : ''
         }
         columns={!showBPNColumn ? columns : bpnColumns}
       />
