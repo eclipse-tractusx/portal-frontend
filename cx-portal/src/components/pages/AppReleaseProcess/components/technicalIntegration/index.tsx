@@ -50,7 +50,6 @@ export default function TechnicalIntegration() {
   })
 
   const onIntegrationSubmit = async (data: any) => {
-    console.log('data', data)
     setTechnicalIntegrationNotification(true)
   }
 

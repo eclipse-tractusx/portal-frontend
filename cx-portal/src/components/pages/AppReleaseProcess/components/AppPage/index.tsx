@@ -98,7 +98,6 @@ export default function AppPage() {
   }
 
   const handleSave = async (data: FormDataType) => {
-    console.log('data', data)
     dispatch(increment())
     setAppPageNotification(true)
   }

@@ -104,7 +104,6 @@ export const ConnectorFormInputField = ({
         return (
           <Dropzone
             onFileDrop={(files: any) => {
-              console.log(files[0].name)
               trigger(name)
               onChange(files[0].name)
             }}
@@ -246,11 +245,9 @@ export default function AppMarketCard() {
     }
 
     try {
-      const result = await addCreateApp(saveData).unwrap()
-      console.log('result', result)
+      await addCreateApp(saveData).unwrap()
       dispatch(increment())
     } catch (err) {
-      console.log('err', err)
     }
   }
 

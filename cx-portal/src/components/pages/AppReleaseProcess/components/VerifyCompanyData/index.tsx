@@ -49,7 +49,6 @@ export default function VerifyCompanyData() {
   })
 
   const onCompanyDataSubmit = async (data: any) => {
-    console.log('data', data)
     setCompanyDataNotification(true)
   }
 

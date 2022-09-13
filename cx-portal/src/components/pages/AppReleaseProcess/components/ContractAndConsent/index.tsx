@@ -95,7 +95,6 @@ export default function ContractAndConsent() {
   }
 
   const handleSave = async (data: FormDataType) => {
-    console.log('data', data)
     setContractNotification(true)
     dispatch(increment())
   }
