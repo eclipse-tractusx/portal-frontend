@@ -29,7 +29,6 @@ import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './PartnerNetworksBPNTableColumns'
 import { useFetchBusinessPartnerAddressMutation } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
-import { MyPageTable } from './MyPageTable'
 
 export const PartnerList = ({
   fetchHook,
@@ -57,7 +56,7 @@ export const PartnerList = ({
 
   return (
     <section id="identity-management-id">
-      <MyPageTable<BusinessPartner>
+      <PageLoadingTable<BusinessPartner>
         onCellClick={onTableCellClick}
         mutationHook={useFetchBusinessPartnerAddressMutation}
         toolbarVariant="premium"
