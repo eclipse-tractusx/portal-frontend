@@ -34,6 +34,8 @@ import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useState } from 'react'
 import '../ReleaseProcessSteps.scss'
+import { useDispatch } from 'react-redux'
+import { decrement, increment } from 'features/appManagement/slice'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -51,6 +53,7 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const [appPageNotification, setAppPageNotification] = useState(false)
+  const dispatch = useDispatch()
 
   const defaultValues = {
     longDescriptionEN: '',
@@ -95,7 +98,7 @@ export default function AppPage() {
   }
 
   const handleSave = async (data: FormDataType) => {
-    console.log('data', data)
+    dispatch(increment())
     setAppPageNotification(true)
   }
 
@@ -297,7 +300,7 @@ export default function AppPage() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z.:@&0-9 !])$/,
+                      value: /^([A-Za-z.:@&0-9 !])+$/,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z.:@&0-9 !`,
@@ -358,12 +361,6 @@ export default function AppPage() {
                         'content.apprelease.appPage.providerPhoneContact'
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
-                    pattern: {
-                      value: /^\+4[^\\d] \(0\d+\) \d{9,}$/,
-                      message: t(
-                        'content.apprelease.appPage.PleaseEnterValidContact'
-                      ),
-                    },
                   },
                 }}
               />
@@ -378,7 +375,10 @@ export default function AppPage() {
               >
                 {t('content.apprelease.footerButtons.help')}
               </Button>
-              <IconButton color="secondary">
+              <IconButton
+                color="secondary"
+                onClick={() => dispatch(decrement())}
+              >
                 <KeyboardArrowLeftIcon />
               </IconButton>
               <Button

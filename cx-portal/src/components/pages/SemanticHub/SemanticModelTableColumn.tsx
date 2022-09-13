@@ -28,11 +28,11 @@ export const SemanticModelTableColumns = (
   t: any,
   onDetailClick: (id: string) => void
 ): Array<GridColDef> => {
-  const columnIds = ['name', 'status', 'type', 'version', 'src']
+  const columnIds = ['name', 'type', 'version', 'status']
   return [
     ...columnIds.map((item) => ({
       field: item,
-      flex: item === 'name' || item === 'status' ? 3 : 2,
+      flex: 2,
       headerName: t(`content.semantichub.table.columns.${item}`),
     })),
     {
@@ -40,7 +40,7 @@ export const SemanticModelTableColumns = (
       headerName: `Detail`,
       flex: 1,
       align: 'center',
-      minWidth: 100,
+      headerAlign: 'center',
       sortable: false,
       filterable: false,
       renderCell: ({ row }: { row: SemanticModel }) => (
@@ -48,7 +48,6 @@ export const SemanticModelTableColumns = (
           onClick={() => onDetailClick(row.urn)}
           color="secondary"
           size="small"
-          style={{ alignSelf: 'center' }}
         >
           <ArrowForwardIcon />
         </IconButton>

@@ -18,42 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
-
-export default function AppReleaseStepper({
-  activePage,
-}: {
-  activePage: number
-}) {
-  const { t } = useTranslation()
-
-  const stepsList = [
-    {
-      headline: t('content.apprelease.stepper.appMarketCard'),
-      step: 1,
+import { CompanyDetails } from './userApiSlice'
+export const CompanyDetailsToCards = (data: CompanyDetails) => {
+  return {
+    cardCategory: 'Company Details',
+    cardContentItems: {
+      name: { label: 'Company Name', value: data.name },
+      address: {
+        label: 'Address',
+        value: `${data.streetName} ${data.streetNumber}`,
+      },
+      city: { label: 'City', value: data.city },
+      bpn: { label: 'BPN', value: data.bpn },
     },
-    {
-      headline: 'App Page',
-      step: 2,
-    },
-    {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
-      step: 3,
-    },
-    {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
-      step: 4,
-    },
-    {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
-      headline: t('content.apprelease.stepper.verifyYourCompanyData'),
-      step: 6,
-    },
-  ]
-
-  return <Stepper list={stepsList} showSteps={6} activeStep={activePage} />
+  }
 }

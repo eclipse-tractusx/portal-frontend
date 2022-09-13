@@ -147,6 +147,7 @@
       },
       "table": {
         "title": "Semantische Datenmodelle",
+        "searchfielddefaulttext": "Suche mit Name",
         "filter": {
           "namespaceLabel": "Namespace",
           "namespacePlaceholder": "Filtern der Modelle nach Namespace",
@@ -235,6 +236,20 @@
         "protocol_endpoint": "Aspekt Endpunkt:"
       }
     },
+    "organization": {
+      "company": {
+        "title": "Firmendetails",
+        "error": "Fehler - keine Daten gefunden",
+        "name": "Name der Firma: ",
+        "address": "Adresse: ",
+        "city": "Stadt: ",
+        "bpn": "BPN: "
+      },
+      "subscriptions": {
+        "title": "App-Abonnements",
+        "error": "Fehler - keine Daten gefunden"
+      }
+    },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
     },
@@ -317,6 +332,8 @@
       "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
+      "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
+      "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",
@@ -640,6 +657,11 @@
       "betaTest": {
         "headerTitle": "Beta Test",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "verifyCompanyData": {
+        "headerTitle": "Verify your app data for submit",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "appCardDetails": "App Card Details"
       },
       "appReleaseForm": {
         "addMore": "Add More",

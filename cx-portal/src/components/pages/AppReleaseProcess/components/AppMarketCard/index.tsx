@@ -42,6 +42,8 @@ import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
+import { useDispatch } from 'react-redux'
+import { increment } from 'features/appManagement/slice'
 
 type FormDataType = {
   title: string
@@ -102,7 +104,6 @@ export const ConnectorFormInputField = ({
         return (
           <Dropzone
             onFileDrop={(files: any) => {
-              console.log(files[0].name)
               trigger(name)
               onChange(files[0].name)
             }}
@@ -110,14 +111,19 @@ export const ConnectorFormInputField = ({
         )
       } else if (type === 'checkbox') {
         return (
-          <Checkbox
-            label={label}
-            checked={value}
-            onChange={(event) => {
-              trigger(name)
-              onChange(event.target.checked)
-            }}
-          />
+          <>
+            <Checkbox
+              label={label}
+              checked={value}
+              onChange={(event) => {
+                trigger(name)
+                onChange(event.target.checked)
+              }}
+            />
+            {!!errors[name] && (
+              <p className="file-error-msg">{errors[name].message}</p>
+            )}
+          </>
         )
       } else
         return (
@@ -147,6 +153,7 @@ export const ConnectorFormInputField = ({
 export default function AppMarketCard() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [pageScrolled, setPageScrolled] = useState(false)
   const useCasesList = useFetchUseCasesQuery().data || []
@@ -238,10 +245,9 @@ export default function AppMarketCard() {
     }
 
     try {
-      const result = await addCreateApp(saveData).unwrap()
-      console.log('result', result)
+      await addCreateApp(saveData).unwrap()
+      dispatch(increment())
     } catch (err) {
-      console.log('err', err)
     }
   }
 

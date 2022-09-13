@@ -7,18 +7,26 @@ import {
 import { useTranslation } from 'react-i18next'
 import './AppReleaseProcess.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppMarketCard from './components/AppMarketCard'
 import AppReleaseStepper from './components/stepper'
 import BetaTest from './components/BetaTest'
 import AppPage from './components/AppPage'
 import ContractAndConsent from './components/ContractAndConsent'
+import { currentActiveStep } from 'features/appManagement/slice'
+import { useSelector } from 'react-redux'
+import TechnicalIntegration from './components/technicalIntegration'
+import VerifyCompanyData from './components/VerifyCompanyData'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const [createApp, setCreateApp] = useState(false)
 
-  let currentActiveStep = 3
+  let activePage = useSelector(currentActiveStep)
+
+  useEffect(() => {
+    activeStep()
+  }, [activePage])
 
   const stepsLists = [
     {
@@ -60,10 +68,12 @@ export default function AppReleaseProcess() {
   ]
 
   const activeStep = () => {
-    if (currentActiveStep === 1) return <AppMarketCard />
-    else if (currentActiveStep === 2) return <AppPage />
-    else if (currentActiveStep === 3) return <ContractAndConsent />
-    else if (currentActiveStep === 5) return <BetaTest />
+    if (activePage === 1) return <AppMarketCard />
+    else if (activePage === 2) return <AppPage />
+    else if (activePage === 3) return <ContractAndConsent />
+    else if (activePage === 4) return <TechnicalIntegration />
+    else if (activePage === 5) return <BetaTest />
+    else if (activePage === 6) return <VerifyCompanyData />
   }
 
   return (
@@ -78,7 +88,7 @@ export default function AppReleaseProcess() {
       {createApp ? (
         <div className="create-app-section">
           <div className="container">
-            <AppReleaseStepper />
+            <AppReleaseStepper activePage={activePage} />
             {activeStep()}
           </div>
         </div>

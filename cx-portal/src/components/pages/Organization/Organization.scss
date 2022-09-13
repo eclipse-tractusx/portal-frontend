@@ -18,42 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
-
-export default function AppReleaseStepper({
-  activePage,
-}: {
-  activePage: number
-}) {
-  const { t } = useTranslation()
-
-  const stepsList = [
-    {
-      headline: t('content.apprelease.stepper.appMarketCard'),
-      step: 1,
-    },
-    {
-      headline: 'App Page',
-      step: 2,
-    },
-    {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
-      step: 3,
-    },
-    {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
-      step: 4,
-    },
-    {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
-      headline: t('content.apprelease.stepper.verifyYourCompanyData'),
-      step: 6,
-    },
-  ]
-
-  return <Stepper list={stepsList} showSteps={6} activeStep={activePage} />
+.organization-main {
+  width: 100%;
+  padding: 30px 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1140px;
+  .organization-content {
+    margin-bottom: 30px;
+    div {
+      color: #969696;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+    }
+    .organization-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+    }
+    .organization-subscriptions {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .organization-error {
+      padding: 10px;
+    }
+  }
 }

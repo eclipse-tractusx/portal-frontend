@@ -12,13 +12,15 @@ import {
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
-  bpResponse: BusinessPartnerResponse
+  bpResponse: BusinessPartnerResponse,
+  membershipData: string[]
 ): Array<PartnerNetworkDataGrid> => {
   return bpResponse?.content?.map((bp: BusinessPartnerSearchResponse) => {
     const bpAddress = bp.businessPartner.addresses[0]
     return {
       bpn: bp.businessPartner.bpn,
       legalForm: bp.businessPartner.legalForm?.name || '',
+      cxmember: membershipData.includes(bp.businessPartner.bpn),
       name: bp.businessPartner.names.filter(
         (name) =>
           name.type.technicalKey === 'INTERNATIONAL' ||

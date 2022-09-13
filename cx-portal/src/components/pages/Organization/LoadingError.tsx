@@ -18,42 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
-
-export default function AppReleaseStepper({
-  activePage,
+import { useTheme, CircularProgress } from '@mui/material'
+export default function LoadingError({
+  isLoading,
+  isError,
+  errorText,
 }: {
-  activePage: number
+  isLoading: boolean
+  isError: boolean
+  errorText: string
 }) {
-  const { t } = useTranslation()
-
-  const stepsList = [
-    {
-      headline: t('content.apprelease.stepper.appMarketCard'),
-      step: 1,
-    },
-    {
-      headline: 'App Page',
-      step: 2,
-    },
-    {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
-      step: 3,
-    },
-    {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
-      step: 4,
-    },
-    {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
-      headline: t('content.apprelease.stepper.verifyYourCompanyData'),
-      step: 6,
-    },
-  ]
-
-  return <Stepper list={stepsList} showSteps={6} activeStep={activePage} />
+  const theme = useTheme()
+  return (
+    <>
+      {isLoading ? (
+        <div className="organization-loader">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+              zIndex: 1,
+              position: 'absolute',
+            }}
+          />
+        </div>
+      ) : null}
+      {isError ? <div className="organization-error">{errorText}</div> : null}
+    </>
+  )
 }
