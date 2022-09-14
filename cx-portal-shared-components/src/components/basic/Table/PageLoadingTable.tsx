@@ -102,55 +102,81 @@ export const PageLoadingTable = function <T>({
 
   //POST request call
   const fetchAndApply = async (data: any) => {
-    let flag = data && data.content
-    const result = flag
-      ? data.content.map((x: any) => x.legalEntity.bpn)
-      : [data.bpn]
-    await mutationRequest(result)
-      .unwrap()
-      .then((payload: any) => {
-        //update for country attribute && update member info
-        if (
-          additionalHooks?.addCountryAttribute &&
-          additionalHooks?.checkForMember
-        ) {
-          let finalObj = flag
-            ? JSON.parse(JSON.stringify(data?.content))
-            : JSON.parse(JSON.stringify(data))
-
-          flag
-            ? finalObj.forEach((x: any) => {
+    //BPDM response does not has content attribute. Check for it and proceed
+    let flag = data && data.content ? true : false
+    if (flag) {
+      const result = data.content.map((x: any) => x.legalEntity.bpn)
+      await mutationRequest(result)
+        .unwrap()
+        .then((payload: any) => {
+          //update for country attribute && update member info
+          if (
+            additionalHooks?.addCountryAttribute &&
+            additionalHooks?.checkForMember
+          ) {
+            let finalObj = JSON.parse(JSON.stringify(data?.content))
+            if (finalObj) {
+              finalObj.forEach((x: any) => {
                 payload.forEach((y: any) => {
                   if (x.legalEntity.bpn === y.legalEntity) {
                     x.legalEntity.country = y.legalAddress.country
                   }
                 })
               })
-            : (finalObj.country = payload[0].legalAddress.country)
-
-          flag && queryData && queryData.length > 0
-            ? finalObj.forEach((x: any) => {
-                queryData.forEach((y: string) => {
-                  if (x.legalEntity.bpn === y) {
-                    x.legalEntity.member = true
-                  } else {
-                    x.legalEntity.member = false
-                  }
+              if (queryData && queryData.length > 0) {
+                finalObj.forEach((x: any) => {
+                  queryData.forEach((y: string) => {
+                    if (x.legalEntity.bpn === y) {
+                      x.legalEntity.member = true
+                    } else {
+                      x.legalEntity.member = false
+                    }
+                  })
                 })
-              })
-            : (finalObj.member =
-                queryData && queryData.length
-                  ? finalObj.bpn === queryData[0]
-                  : false)
+              }
+              setItems((i) => i.concat(finalObj))
+            }
+          } else {
+            setItems((i) => i.concat(data.content))
+          }
+        })
+        .catch((error: any) => {
+          setItems((i) => i.concat(data.content))
+          console.log(error)
+        })
+    } else {
+      const result = [data.bpn]
+      await mutationRequest(result)
+        .unwrap()
+        .then((payload: any) => {
+          //update for country attribute && update member info
+          if (
+            additionalHooks?.addCountryAttribute &&
+            additionalHooks?.checkForMember
+          ) {
+            let finalObj = JSON.parse(JSON.stringify(data))
+            if (finalObj) {
+              finalObj.country = payload[0].legalAddress.country
+              if (
+                queryData &&
+                queryData.length > 0 &&
+                finalObj.bpn === queryData[0]
+              ) {
+                finalObj.member = true
+              }
 
-          //set the final data
-          flag ? setItems((i) => i.concat(finalObj)) : setItems([finalObj])
-        }
-      })
-      .catch((error: any) => {
-        setItems((i) => i.concat(data.content))
-        console.log(error)
-      })
+              //set the final data
+              setItems([finalObj])
+            } else {
+              setItems((i) => i.concat([data]))
+            }
+          }
+        })
+        .catch((error: any) => {
+          setItems((i) => i.concat([data]))
+          console.log(error)
+        })
+    }
   }
 
   return (

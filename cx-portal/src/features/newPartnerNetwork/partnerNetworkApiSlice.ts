@@ -21,8 +21,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBpdmQuery } from 'utils/rtkUtil'
 import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
-import { BusinessPartnerResponse, BusinessPartnerSearchResponse } from './types'
+import { BusinessPartnerSearchResponse } from './types'
 import Patterns from 'types/Patterns'
+import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
 
 const checkIfBPNLNumber = (text: string): boolean =>
   Patterns.BPN.test(text.trim())

@@ -58,15 +58,18 @@ export const PartnerNetworksBPNTableColumns = (
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',
-      renderCell: () => (
-        <IconButton
-          color="secondary"
-          size="small"
-          style={{ alignSelf: 'center' }}
-        >
-          <ArrowForwardIcon />
-        </IconButton>
-      ),
+      renderCell: (params) =>
+        params && params.row && params.row.bpn ? (
+          <IconButton
+            color="secondary"
+            size="small"
+            style={{ alignSelf: 'center' }}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        ) : (
+          <></>
+        ),
     },
   ]
 }
