@@ -22,10 +22,13 @@ import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
 import {
-  canUpdate,
   isContentPresent,
   isQueryDataPresent,
-} from './components/Toolbar/helper'
+  addNewAttributes,
+  hasMorePages,
+  getMaxRows,
+  getRequestMethod,
+} from './components/Helper/helper'
 
 export type PaginFetchArgs = {
   page: number
@@ -70,15 +73,11 @@ export const PageLoadingTable = function <T>({
       v: loaded,
     },
   })
-  const [mutationRequest] =
-    additionalHooks && additionalHooks?.mutation && additionalHooks?.mutation() //should be a hook with POST request
-  const { queryData } =
-    additionalHooks && additionalHooks?.query && additionalHooks?.query() //should be a hook with GET request
+  const [mutationRequest] = getRequestMethod(additionalHooks, 'mutation') //should be a hook with POST request
+  const { queryData } = getRequestMethod(additionalHooks, 'query') //should be a hook with GET request
   const nextPage = () => setPage(page + 1)
-  const hasMore =
-    data?.page < data?.totalPages - 1 ||
-    (data?.meta && data.meta.page < data.meta.totalPages - 1)
-  const maxRows = data?.totalElements ?? data?.meta?.totalElements ?? 0 // Check for top level attributes as BPDM does not has meta attirbute in the response
+  const hasMore = hasMorePages(data)
+  const maxRows = getMaxRows(data) // Check for top level attributes as BPDM does not has meta attirbute in the response
 
   useEffect(() => {
     if (loaded !== fetchHookRefresh) {
@@ -114,28 +113,9 @@ export const PageLoadingTable = function <T>({
         .unwrap()
         .then((payload: any) => {
           //new country attribute && member attributes based on the response
-          if (canUpdate(additionalHooks)) {
-            let finalObj = JSON.parse(JSON.stringify(data?.content))
-            finalObj.forEach((x: any) => {
-              payload.forEach((y: any) => {
-                if (x.legalEntity.bpn === y.legalEntity) {
-                  x.legalEntity.country = y.legalAddress.country
-                }
-              })
-            })
-            if (isQueryDataPresent(queryData)) {
-              finalObj.forEach((x: any) => {
-                queryData.forEach((y: string) => {
-                  if (x.legalEntity.bpn === y) {
-                    x.legalEntity.member = true
-                  } else {
-                    x.legalEntity.member = false
-                  }
-                })
-              })
-            }
-            setItems((i) => i.concat(finalObj))
-          }
+          let finalObj = JSON.parse(JSON.stringify(data?.content))
+          finalObj = addNewAttributes(finalObj, payload, queryData)
+          setItems((i) => i.concat(finalObj))
         })
         .catch(() => {
           setItems((i) => i.concat(data.content))
@@ -146,19 +126,13 @@ export const PageLoadingTable = function <T>({
         .unwrap()
         .then((payload: any) => {
           //update for country attribute && update member info
-          if (canUpdate(additionalHooks)) {
-            let finalObj = JSON.parse(JSON.stringify(data))
-            finalObj.country = payload[0].legalAddress.country
-            if (
-              isQueryDataPresent(queryData) &&
-              finalObj.bpn === queryData[0]
-            ) {
-              finalObj.member = true
-            }
-
-            //set the final data
-            setItems([finalObj])
+          let finalObj = JSON.parse(JSON.stringify(data))
+          finalObj.country = payload[0].legalAddress.country
+          if (isQueryDataPresent(queryData) && finalObj.bpn === queryData[0]) {
+            finalObj.member = true
           }
+          //set the final data
+          setItems([finalObj])
         })
         .catch(() => {
           setItems((i) => i.concat([data]))
