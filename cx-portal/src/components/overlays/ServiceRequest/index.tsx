@@ -1,9 +1,29 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 import {
   DialogActions,
   DialogContent,
   DialogHeader,
   Button,
   Typography,
+  Checkbox,
 } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -15,22 +35,25 @@ import {
   useAddSubscribeServiceMutation,
   useFetchServiceQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
+import { setSuccessType } from 'features/serviceMarketplace/slice'
 
 export default function ServiceRequest({ id }: { id: string }) {
-  console.log('id', id)
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const [response, setResponse] = useState<any>()
+  const [termsChecked, setTermsChecked] = useState<boolean>(false)
 
   const { data } = useFetchServiceQuery(id ?? '')
-  const [addSubscribeService] = useAddSubscribeServiceMutation()
+  const [addSubscribeService, { isSuccess }] = useAddSubscribeServiceMutation()
+
+  if (isSuccess) {
+    dispatch(setSuccessType(true))
+    dispatch(show(OVERLAYS.NONE, ''))
+  }
 
   const handleConfirm = async (id: string) => {
     try {
-      const result = await addSubscribeService(id).unwrap()
-      console.log('result', result)
-      setResponse(result)
+      addSubscribeService(id).unwrap()
     } catch (err) {
       console.log('error', err)
     }
@@ -56,6 +79,13 @@ export default function ServiceRequest({ id }: { id: string }) {
               data.title
             )}
         </Typography>
+        <Checkbox
+          label="Terms & Conditions"
+          onChange={(e) => {
+            setTermsChecked(e.target.checked)
+          }}
+          onFocusVisible={function noRefCheck() {}}
+        />
       </DialogContent>
 
       <DialogActions>
@@ -65,7 +95,11 @@ export default function ServiceRequest({ id }: { id: string }) {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={() => handleConfirm(id)}>
+        <Button
+          variant="contained"
+          onClick={() => handleConfirm(id)}
+          disabled={termsChecked ? false : true}
+        >
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

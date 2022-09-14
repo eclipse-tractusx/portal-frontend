@@ -31,6 +31,8 @@ export type ServiceRequest = {
   contactEmail: string
   description: string
   price: string
+  website: string
+  phone: string
 }
 
 export type PaginationData = {

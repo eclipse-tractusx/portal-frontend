@@ -18,28 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import MarketplaceHeader from './components/MarketplaceHeader'
-import MarketplaceProvider from './components/MarketplaceProvider'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './Marketplace.scss'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export default function MarketplaceContentDetails({
-  item,
-  success,
-}: {
-  item: ServiceRequest
-  success: boolean
-}) {
-  return (
-    item && (
-      <>
-        <MarketplaceHeader item={item} success={success} />
-        <div className="product-description">
-          <Typography variant="body2">{item.description}</Typography>
-        </div>
-        <MarketplaceProvider item={item} />
-      </>
-    )
-  )
+const name = 'admin/servicemarketplace'
+
+export interface ServiceMarketplaceState {
+  isSuccess: boolean
 }
+
+export const initialState: ServiceMarketplaceState = {
+  isSuccess: false,
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentSuccessType = (state: RootState): any =>
+  state.serviceMarketplace.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

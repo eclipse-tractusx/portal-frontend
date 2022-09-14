@@ -120,8 +120,8 @@ export const CardHorizontal = ({
               </Box>
             )}
           </Grid>
-          <Grid xs={4}></Grid>
-          <Grid xs={3}>
+          <Grid xs={3}></Grid>
+          <Grid xs={4}>
             {buttonText && (
               <Button size="small" onClick={onBtnClick}>
                 {buttonText}
