@@ -105,36 +105,42 @@ export const PageLoadingTable = function <T>({
     //BPDM response does not has content attribute. Check for it and proceed
     if (isContentPresent(data)) {
       const result = data.content.map((x: any) => x.legalEntity.bpn)
-      if(additionalHooks) {
-        await additionalHooks.mutationRequest(result)
-        .unwrap()
-        .then((payload: any) => {
-          //new country attribute && member attributes based on the response
-          let finalObj = JSON.parse(JSON.stringify(data?.content))
-          finalObj = addNewAttributes(finalObj, payload, additionalHooks.queryData)
-          setItems((i) => i.concat(finalObj))
-        })
-        .catch(() => {
-          setItems((i) => i.concat(data.content))
-        })
+      if (additionalHooks) {
+        await additionalHooks
+          .mutationRequest(result)
+          .unwrap()
+          .then((payload: any) => {
+            //new country attribute && member attributes based on the response
+            let finalObj = JSON.parse(JSON.stringify(data?.content))
+            finalObj = addNewAttributes(
+              finalObj,
+              payload,
+              additionalHooks.queryData
+            )
+            setItems((i) => i.concat(finalObj))
+          })
+          .catch(() => {
+            setItems((i) => i.concat(data.content))
+          })
       }
     } else {
       const result = [data.bpn]
-      if(additionalHooks) {
-        await additionalHooks.mutationRequest(result)
-        .unwrap()
-        .then((payload: any) => {
-          //update for country attribute && update member info
-          let finalObj = JSON.parse(JSON.stringify(data))
-          finalObj.country = payload[0].legalAddress.country
-          if (isQueryDataPresent(additionalHooks.queryData)) {
-            finalObj.member = additionalHooks.queryData.includes(finalObj.bpn)
-          }
-          setItems([finalObj])
-        })
-        .catch(() => {
-          setItems((i) => i.concat([data]))
-        })
+      if (additionalHooks) {
+        await additionalHooks
+          .mutationRequest(result)
+          .unwrap()
+          .then((payload: any) => {
+            //update for country attribute && update member info
+            let finalObj = JSON.parse(JSON.stringify(data))
+            finalObj.country = payload[0].legalAddress.country
+            if (isQueryDataPresent(additionalHooks.queryData)) {
+              finalObj.member = additionalHooks.queryData.includes(finalObj.bpn)
+            }
+            setItems([finalObj])
+          })
+          .catch(() => {
+            setItems((i) => i.concat([data]))
+          })
       }
     }
   }
