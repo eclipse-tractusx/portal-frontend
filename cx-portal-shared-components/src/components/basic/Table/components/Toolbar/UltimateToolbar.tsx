@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Box, useTheme } from '@mui/material'
 import { Button } from '../../../Button'
 import { SearchInput } from '../../../SearchInput'
+import { ToolbarProps } from '.'
 
-import { getSelectedFilterUpdate, initSelectedFilter } from './helper'
-import { SelectedFilter, ToolbarProps } from '.'
-
+export type SelectedFilter = {
+  [name: string]: string[]
+}
 export interface UltimateToolbarProps extends ToolbarProps {
   placeholder?: string
   onFilter?: (selectedFilter: SelectedFilter) => void
+  selectedFilter?: SelectedFilter
 }
 
 export const UltimateToolbar = ({
   onSearch,
   filter,
   onFilter,
-  placeholder,
+  searchPlaceholder,
+  selectedFilter,
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
   const [searchInput, setSearchInput] = useState<string>('')
-  const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({})
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -32,32 +34,11 @@ export const UltimateToolbar = ({
   }
 
   const onFilterChange = (value: string, name: string) => {
-    const checked = !checkIsSelected(name, value)
-
-    setSelectedFilter(
-      getSelectedFilterUpdate(selectedFilter, name, value, checked)
-    )
-  }
-
-  useEffect(() => {
-    setSelectedFilter(initSelectedFilter(filter))
-  }, [filter])
-
-  useEffect(() => {
-    onFilter && onFilter(selectedFilter)
-  }, [onFilter, selectedFilter])
-
-  const checkIsSelected = (name: string, value: string) => {
-    let isSelected = false
-    if (selectedFilter[name]) {
-      selectedFilter[name].forEach((item: string) => {
-        if (item === value) {
-          isSelected = true
-        }
-      })
+    if (onFilter) {
+      onFilter({ [name]: [value] })
     }
-    return isSelected
   }
+
   const headerHeight = () => (onSearch || onFilter ? 100 : 0)
   return (
     <Box
@@ -75,7 +56,7 @@ export const UltimateToolbar = ({
             value={searchInput}
             onChange={onSearchInputChange}
             onKeyPress={onSearchInputKeyPress}
-            placeholder={placeholder}
+            placeholder={searchPlaceholder}
             sx={{
               '.MuiInputBase-input': {
                 padding: '10px',
@@ -103,7 +84,9 @@ export const UltimateToolbar = ({
                     size="small"
                     color="secondary"
                     variant={
-                      checkIsSelected(name, value) ? 'contained' : 'text'
+                      (selectedFilter as SelectedFilter)[name]?.includes(value)
+                        ? 'contained'
+                        : 'text'
                     }
                   >
                     {label || value}

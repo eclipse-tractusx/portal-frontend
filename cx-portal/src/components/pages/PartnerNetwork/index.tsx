@@ -7,7 +7,12 @@ import {
   fetchBusinessPartners,
   getOneBusinessPartner,
 } from 'features/partnerNetwork/actions'
-import { Table, Button, PageHeader } from 'cx-portal-shared-components'
+import {
+  Table,
+  Button,
+  PageHeader,
+  PageNotifications,
+} from 'cx-portal-shared-components'
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { useTranslation } from 'react-i18next'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
@@ -39,9 +44,8 @@ const PartnerNetwork = () => {
   const [selectedBPN, setSelectedBPN] = useState<PartnerNetworkDataGrid>(
     {} as PartnerNetworkDataGrid
   )
-  const { mappedPartnerList, loading, paginationData } = useSelector(
-    partnerNetworkSelector
-  )
+  const { mappedPartnerList, loading, paginationData, membershipError } =
+    useSelector(partnerNetworkSelector)
 
   useEffect(() => {
     const params = {
@@ -134,7 +138,21 @@ const PartnerNetwork = () => {
           searchError,
         }}
       />
-      <section>
+
+      <section className="partner-network-table-container">
+        <div className="partner-network-table-notification">
+          <PageNotifications
+            open={Boolean(membershipError)}
+            title={t('content.partnernetwork.membershipnotificationtitle')}
+            description={t(
+              'content.partnernetwork.membershipnotificationdescription'
+            )}
+            onCloseNotification={() =>
+              dispatch(partnerNetworkSlice.actions.clearNotification())
+            }
+            severity="warning"
+          ></PageNotifications>
+        </div>
         <Table
           {...{
             rows: mappedPartnerList,

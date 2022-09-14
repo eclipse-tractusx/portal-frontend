@@ -1,4 +1,36 @@
 {
+  "WELCOME": {
+    "title": "Willkommen bei Catena-X!",
+    "content": "Willkommen im Catena-X Netzwerk. Um Ihnen das Onboarding zu erleichtern, wurde eine Reihe von Benachrichtigungen / Onboarding-Schritten definiert. Bitte lesen Sie die folgenden Nachrichten und starten Sie die Konfiguration Ihres Unternehmensbereichs im Portal, um ein Netzwerkerlebnis nach Ihren Bedürfnissen zu erhalten."
+  },
+  "WELCOME_USE_CASES": {
+    "title": "Häufige Anwendungsfälle",
+    "content": "Das CX-Netzwerk ist groß, wir möchten sicherstellen, dass Sie sich vorwiegend auf Ihre bevorzugten Anwendungsfälle konzentrieren können. Wählen Sie Ihren bevorzugten Anwendungsfall aus der folgenden Tabelle aus....."
+  },
+  "WELCOME_SERVICE_PROVIDER": {
+    "title": "Service Provider warten auf Sie",
+    "content": "Wenn Sie einen Dienstanbieter benötigen, der Ihnen bei der Einrichtung Ihres Datenraums oder eines EDC hilft, folgen Sie uns einfach zum Dienstanbieter-Marktplatz."
+  },
+  "WELCOME_CONNECTOR_REGISTRATION": {
+    "title": "Registrieren eines Connectors",
+    "content": "Sie haben noch keinen registrierten Connector – schauen Sie sich die Connector-Angebote an und sichern Sie sich Ihren Connector zur Teilnahme."
+  },
+  "WELCOME_APP_MARKETPLACE": {
+    "title": "Schauen Sie sich den App Marketplace an",
+    "content": "Erhalten Sie einen ersten Einblick in verfügbare Apps, folgen Sie uns einfach zum Marktplatz für Apps."
+  },
+  "APP_SUBSCRIPTION_REQUEST": {
+    "title": "App-Abonnement angefordert",
+    "content": "{{user}} mag es, App {{app}} zu abonnieren"
+  },
+  "APP_SUBSCRIPTION_ACTIVATION": {
+    "title": "App-Anfrage aktiviert",
+    "content": "Ihr Abonnement für {{app}} ist jetzt aktiv"
+  },
+  "CONNECTOR_REGISTERED": {
+    "title": "Connector erfolgreich registriert",
+    "content": "Der Konnektor {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
+  },
   "WelcomeInvite": {
     "title": "Willkommen bei Catena-X!",
     "content": "Hallo {{you}}! Ihr Unternehmen ist jetzt offiziell im Netzwerk registriert und Sie können jetzt Ihre technische Onboarding-Reise beginnen."
@@ -62,5 +94,6 @@
     "app": "Zur App",
     "user": "Zum Benutzer",
     "usecases": "Zu den Use Cases"
-  }
+  },
+  "due": "fällig"
 }

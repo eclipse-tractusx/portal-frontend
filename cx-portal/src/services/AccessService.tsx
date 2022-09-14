@@ -23,6 +23,8 @@ import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
 import ServiceRequest from 'components/overlays/ServiceRequest'
+import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
+import NotFound from 'components/overlays/NotFound'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -68,7 +70,7 @@ export const getAction = (action: string) =>
 
 export const getOverlay = (overlay: OverlayState) => {
   if (!hasAccessOverlay(overlay.type)) {
-    return null
+    return <NotFound />
   }
   switch (overlay.type) {
     case OVERLAYS.ADD_USER:
@@ -81,6 +83,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddTechnicalUser />
     case OVERLAYS.DELETE_TECHUSER:
       return <DeleteTechnicalUser id={overlay.id} />
+    case OVERLAYS.IDP:
+      return <IDPDetailInfo id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
     case OVERLAYS.EDIT_APP_USER_ROLES:
@@ -92,11 +96,11 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.PARTNER:
       return <BusinessPartnerDetail id={overlay.id} />
     case OVERLAYS.APP:
-      return <AppInfo id={overlay.id} />
+      return <AppInfo id={overlay.id} title={overlay.title} />
     case OVERLAYS.SERVICE_REQUEST:
       return <ServiceRequest id={overlay.id} />
     default:
-      return null
+      return <NotFound />
   }
 }
 

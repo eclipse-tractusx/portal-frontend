@@ -1,4 +1,36 @@
 {
+  "WELCOME": {
+    "title": "Welcome to Catena-X!",
+    "content": "Welcome to the Catena- X Network. To easily get you onboarded, a number of notifications / onboarding steps have been defined. Please check your notifications and start the configuration of your company area inside the portal to have a network experience based on your need."
+  },
+  "WELCOME_USE_CASES": {
+    "title": "Browse common Use Cases",
+    "content": "The network is quite huge, we want to ensure that you can focus on your preferred use cases. Select your preferred use case from the table below....."
+  },
+  "WELCOME_SERVICE_PROVIDER": {
+    "title": "Service Providers are waiting for you",
+    "content": "If you need a service provider to help you with setting up your dataspace or an EDC, just follow us to the Service Provider Marketplace."
+  },
+  "WELCOME_CONNECTOR_REGISTRATION": {
+    "title": "Register a Connector",
+    "content": "You do not have any registered Connector so far – have a look at the connector offers and get your connector to participate."
+  },
+  "WELCOME_APP_MARKETPLACE": {
+    "title": "Check out the App Marketplace",
+    "content": "Get a first insight into available apps, just follow us to the app marketplace."
+  },
+  "APP_SUBSCRIPTION_REQUEST": {
+    "title": "Request for app subscription",
+    "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
+  },
+  "APP_SUBSCRIPTION_ACTIVATION": {
+    "title": "App request activated",
+    "content": "Your subscription for {{app}} is now active"
+  },
+  "CONNECTOR_REGISTERED": {
+    "title": "Connector registered successfully",
+    "content": "The connector {{connector}} was successfully created and you can assign users now."
+  },
   "WelcomeInvite": {
     "title": "Welcome to Catena-X!",
     "content": "Hello {{you}}! Your company is now officially registered to the network and you can start your technical onboarding journey now."
@@ -61,6 +93,8 @@
     "home": "Go to home page",
     "app": "Go to app",
     "user": "Go to user",
-    "usecases": "Go to use cases"
-  }
+    "usecases": "Go to use cases",
+    "serviceprovider": "Go to service provider"
+  },
+  "due": "due"
 }

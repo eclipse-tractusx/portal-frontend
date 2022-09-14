@@ -5,6 +5,7 @@ import {
 import TestAPIData from '../../public/testdata/partnerNetwork/businessPartnersAPIResult.json'
 import TestSingleData from '../../public/testdata/partnerNetwork/businessPartnersSingleResult.json'
 import TestDataGridData from '../../public/testdata/partnerNetwork/businessPartnersDataGrid.json'
+import TestMembershipData from '../../public/testdata/partnerNetwork/membershipData.json'
 import TestSingleDataGridData from '../../public/testdata/partnerNetwork/businessPartnersSingleDataGrid.json'
 import {
   BusinessPartner,
@@ -15,7 +16,8 @@ describe('DataMapperTest', () => {
   it('mapBusinessPartnerToDataGrid maps correctly', () => {
     const mockListToDataGridFunc = jest.fn(mapBusinessPartnerToDataGrid)
     const mapDataGridResult = mockListToDataGridFunc(
-      TestAPIData as unknown as BusinessPartnerResponse
+      TestAPIData as unknown as BusinessPartnerResponse,
+      TestMembershipData
     )
 
     // Make sure function called one time

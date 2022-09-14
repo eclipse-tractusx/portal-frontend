@@ -50,6 +50,8 @@ export enum PAGES {
   TECHNICAL_SETUP = 'technicalsetup',
   TECHUSER_MANAGEMENT = 'technicaluser',
   TECHUSER_DETAILS = 'techuserdetails',
+  IDP_MANAGEMENT = 'idpmanagement',
+  IDP_DETAIL = 'idpdetail',
   APPLICATION_REQUESTS = 'applicationrequests',
   APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
@@ -73,6 +75,7 @@ export enum PAGES {
 }
 
 export enum OVERLAYS {
+  NOT_FOUND = 'notfound',
   NONE = 'none',
   ADD_USER = 'add_user',
   ADD_APP_USER_ROLES = 'add_app_user_roles',
@@ -87,6 +90,7 @@ export enum OVERLAYS {
   PARTNER = 'partner',
   APP = 'app',
   SERVICE_REQUEST = 'service_request',
+  IDP = 'idp',
 }
 
 export enum ACTIONS {
@@ -125,6 +129,11 @@ export enum ROLES {
   TECHUSER_VIEW = 'view_tech_user_management',
   TECHUSER_ADD = 'add_tech_user_management',
   TECHUSER_DELETE = 'delete_tech_user_management',
+  IDP_VIEW = 'view_idp',
+  IDP_ADD = 'add_idp',
+  IDP_DELETE = 'delete_idp',
+  IDP_SETUP = 'setup_idp',
+  IDP_DISABLE = 'disable_idp',
   MODIFY_USER_ACCOUNT = 'modify_user_account',
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',

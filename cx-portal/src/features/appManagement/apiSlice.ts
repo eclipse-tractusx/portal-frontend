@@ -35,6 +35,21 @@ export type appLanguagesItem = {
   }
 }
 
+export type CreateAppStep1Item = {
+  title: string
+  provider: string
+  leadPictureUri: string
+  providerCompanyId: string
+  useCaseIds: string[]
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  supportedLanguageCodes: string[]
+  price: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -45,7 +60,34 @@ export const apiSlice = createApi({
     fetchAppLanguages: builder.query<appLanguagesItem[], void>({
       query: () => `/api/administration/staticdata/languagetags`,
     }),
+    addCreateApp: builder.mutation<void, CreateAppStep1Item>({
+      query: (body: CreateAppStep1Item) => ({
+        url: `/api/apps/createapp`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    fetchConsentData: builder.query<any[], void>({
+      query: () => `/api/apps/consentData`,
+    }),
+    fetchConsent: builder.query<any[], void>({
+      query: () => `/api/apps/consent`,
+    }),
+    addContractConsent: builder.mutation<void, any>({
+      query: (body: any) => ({
+        url: `/api/apps/createapp`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 })
 
-export const { useFetchUseCasesQuery, useFetchAppLanguagesQuery } = apiSlice
+export const {
+  useFetchUseCasesQuery,
+  useFetchAppLanguagesQuery,
+  useAddCreateAppMutation,
+  useFetchConsentDataQuery,
+  useFetchConsentQuery,
+  useAddContractConsentMutation,
+} = apiSlice

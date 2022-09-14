@@ -40,7 +40,7 @@ export type FilterParams = {
   pageSize: number
   nameFilter?: string
   namespaceFilter?: string
-  status?: Status
+  status?: Status | string
   nameType?: string
 }
 
@@ -71,6 +71,8 @@ export enum Status {
   Draft = 'DRAFT',
   Released = 'RELEASED',
 }
+
+export const DefaultStatus = 'ALL'
 
 export enum SearchType {
   '_NAME_' = 'Name',

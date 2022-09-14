@@ -39,13 +39,18 @@ export const slice = createSlice({
           totalElements: payloadList.meta.totalElements,
           page: payloadList.meta.page,
         } as PaginationData
-
-        state.registrationRequests = uniq(
-          state.registrationRequests.concat(
+        if (payloadList.meta.page !== 0) {
+          state.registrationRequests = uniq(
+            state.registrationRequests.concat(
+              mapRegistrationRequestResponseToDataGrid(payloadList?.content) ||
+                []
+            )
+          )
+        } else {
+          state.registrationRequests = uniq(
             mapRegistrationRequestResponseToDataGrid(payloadList?.content) || []
           )
-        )
-
+        }
         state.loading = false
         state.error = ''
       }

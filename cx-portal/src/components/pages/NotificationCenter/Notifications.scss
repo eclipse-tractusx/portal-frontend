@@ -52,10 +52,10 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-  }
 
-  .item:hover {
-    background-color: #f8f8f8;
+    &:hover {
+      background-color: #f8f8f8;
+    }
   }
 
   .created {
@@ -70,20 +70,43 @@
   .title {
     font-weight: bold;
     font-size: 16px;
+    width: 100%;
   }
 
-  .title.read {
+  .read {
     color: #aaa;
   }
 
-  .title.unread {
+  .unread {
     color: #444;
+  }
+
+  .due.okay {
+    color: green;
+  }
+
+  .due.soon {
+    color: orange;
+  }
+
+  .due.over {
+    color: red;
   }
 
   .content {
     padding: 8px 12px 0px 64px;
     font-size: 16px;
     color: #444;
+
+    .NameLink {
+      cursor: pointer;
+      font-weight: bold;
+      color: #888888;
+
+      :hover {
+        color: black;
+      }
+    }
   }
 
   .message {
@@ -95,10 +118,7 @@
     margin-top: 6px;
   }
 
-  .links span {
-    cursor: pointer;
+  .links > a {
     margin-right: 20px;
-    color: #0f71cb;
-    text-decoration: underline;
   }
 }

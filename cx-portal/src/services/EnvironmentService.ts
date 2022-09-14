@@ -21,6 +21,10 @@ export const getCentralIdp = () => {
     return 'https://centralidp.demo.catena-x.net/auth'
   if (hostname === 'portal-pen.dev.demo.catena-x.net')
     return 'https://centralidp-pen.dev.demo.catena-x.net/auth'
+  if (hostname === 'portal.beta.demo.catena-x.net')
+    return 'https://centralidp.beta.demo.catena-x.net/auth'
+  if (hostname === 'portal.pre-prod.demo.catena-x.net')
+    return 'https://centralidp.pre-prod.demo.catena-x.net/auth'
   if (hostname === 'portal.catena-x.net')
     return 'https://centralidp.catena-x.net/auth'
   return 'https://centralidp.dev.demo.catena-x.net/auth'
@@ -46,6 +50,10 @@ export const getSemanticApiBase = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net')
     return 'https://semantics.int.demo.catena-x.net/'
+  if (hostname === 'portal.beta.demo.catena-x.net')
+    return 'https://semantics.beta.demo.catena-x.net/'
+  if (hostname === 'portal.pre-prod.demo.catena-x.net')
+    return 'https://semantics.pre-prod.demo.catena-x.net/'
   return 'https://semantics.dev.demo.catena-x.net/'
 }
 
