@@ -46,14 +46,17 @@ export const apiSlice = createApi({
       PaginResult<BusinessPartnerSearchResponse>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) =>
-        fetchArgs.args.expr && !checkIfBPNLNumber(fetchArgs.args.expr)
-          ? `/catena/legal-entities?page=${fetchArgs.page}&size=10&name=${
-              fetchArgs.args!.expr
-            }`
-          : checkIfBPNLNumber(fetchArgs.args.expr)
-          ? `/catena/legal-entities/${fetchArgs.args!.expr}`
-          : `/catena/legal-entities?page=${fetchArgs.page}&size=10`,
+      query: (fetchArgs) => {
+        if (fetchArgs.args.expr && !checkIfBPNLNumber(fetchArgs.args.expr)) {
+          return `/catena/legal-entities?page=${fetchArgs.page}&size=10&name=${
+            fetchArgs.args!.expr
+          }`
+        } else if (checkIfBPNLNumber(fetchArgs.args.expr)) {
+          return `/catena/legal-entities/${fetchArgs.args!.expr}`
+        } else {
+          return `/catena/legal-entities?page=${fetchArgs.page}&size=10`
+        }
+      },
     }),
   }),
 })

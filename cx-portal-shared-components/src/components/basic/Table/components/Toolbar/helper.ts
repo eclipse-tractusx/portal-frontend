@@ -25,3 +25,15 @@ export const getSelectedFilterUpdate = (
       : selectedFilter[name].filter((entry) => entry !== value),
   }
 }
+
+export const canUpdate = (additionalHooks: any) => {
+  return additionalHooks?.addCountryAttribute && additionalHooks?.checkForMember
+}
+
+export const isQueryDataPresent = (queryData: any) => {
+  return queryData && queryData.length > 0
+}
+
+export const isContentPresent = (data: any) => {
+  return data && data.content ? true : false
+}

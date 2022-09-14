@@ -21,6 +21,11 @@ import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
+import {
+  canUpdate,
+  isContentPresent,
+  isQueryDataPresent,
+} from './components/Toolbar/helper'
 
 export type PaginFetchArgs = {
   page: number
@@ -103,46 +108,37 @@ export const PageLoadingTable = function <T>({
   //POST request call
   const fetchAndApply = async (data: any) => {
     //BPDM response does not has content attribute. Check for it and proceed
-    let flag = data && data.content ? true : false
-    if (flag) {
+    if (isContentPresent(data)) {
       const result = data.content.map((x: any) => x.legalEntity.bpn)
       await mutationRequest(result)
         .unwrap()
         .then((payload: any) => {
-          //update for country attribute && update member info
-          if (
-            additionalHooks?.addCountryAttribute &&
-            additionalHooks?.checkForMember
-          ) {
+          //new country attribute && member attributes based on the response
+          if (canUpdate(additionalHooks)) {
             let finalObj = JSON.parse(JSON.stringify(data?.content))
-            if (finalObj) {
+            finalObj.forEach((x: any) => {
+              payload.forEach((y: any) => {
+                if (x.legalEntity.bpn === y.legalEntity) {
+                  x.legalEntity.country = y.legalAddress.country
+                }
+              })
+            })
+            if (isQueryDataPresent(queryData)) {
               finalObj.forEach((x: any) => {
-                payload.forEach((y: any) => {
-                  if (x.legalEntity.bpn === y.legalEntity) {
-                    x.legalEntity.country = y.legalAddress.country
+                queryData.forEach((y: string) => {
+                  if (x.legalEntity.bpn === y) {
+                    x.legalEntity.member = true
+                  } else {
+                    x.legalEntity.member = false
                   }
                 })
               })
-              if (queryData && queryData.length > 0) {
-                finalObj.forEach((x: any) => {
-                  queryData.forEach((y: string) => {
-                    if (x.legalEntity.bpn === y) {
-                      x.legalEntity.member = true
-                    } else {
-                      x.legalEntity.member = false
-                    }
-                  })
-                })
-              }
-              setItems((i) => i.concat(finalObj))
             }
-          } else {
-            setItems((i) => i.concat(data.content))
+            setItems((i) => i.concat(finalObj))
           }
         })
-        .catch((error: any) => {
+        .catch(() => {
           setItems((i) => i.concat(data.content))
-          console.log(error)
         })
     } else {
       const result = [data.bpn]
@@ -150,31 +146,22 @@ export const PageLoadingTable = function <T>({
         .unwrap()
         .then((payload: any) => {
           //update for country attribute && update member info
-          if (
-            additionalHooks?.addCountryAttribute &&
-            additionalHooks?.checkForMember
-          ) {
+          if (canUpdate(additionalHooks)) {
             let finalObj = JSON.parse(JSON.stringify(data))
-            if (finalObj) {
-              finalObj.country = payload[0].legalAddress.country
-              if (
-                queryData &&
-                queryData.length > 0 &&
-                finalObj.bpn === queryData[0]
-              ) {
-                finalObj.member = true
-              }
-
-              //set the final data
-              setItems([finalObj])
-            } else {
-              setItems((i) => i.concat([data]))
+            finalObj.country = payload[0].legalAddress.country
+            if (
+              isQueryDataPresent(queryData) &&
+              finalObj.bpn === queryData[0]
+            ) {
+              finalObj.member = true
             }
+
+            //set the final data
+            setItems([finalObj])
           }
         })
-        .catch((error: any) => {
+        .catch(() => {
           setItems((i) => i.concat([data]))
-          console.log(error)
         })
     }
   }
