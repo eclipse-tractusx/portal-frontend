@@ -128,8 +128,8 @@ export const PageLoadingTable = function <T>({
           //update for country attribute && update member info
           let finalObj = JSON.parse(JSON.stringify(data))
           finalObj.country = payload[0].legalAddress.country
-          if (isQueryDataPresent(queryData) && finalObj.bpn === queryData[0]) {
-            finalObj.member = true
+          if (isQueryDataPresent(queryData)) {
+            finalObj.member = queryData.includes(finalObj.bpn)
           }
           //set the final data
           setItems([finalObj])

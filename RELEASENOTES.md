@@ -14,6 +14,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugs - Show loader on clicking decline or confirm from application request screen
 * Bugs - Show error popup on failure of approve or decline request
 * Bugs - Text updates on company data overlay
+* Bugs - Connect Partner Network to BPDM
+* Feature - Search funcationality added in Partner Network table using both company name and BPN
+* Feature - Show country information in the Partner Network table
+* Feature - Show CX Member info in the Partner Network table
 
 
 ### 0.5.3
