@@ -27,7 +27,6 @@ import {
   addNewAttributes,
   hasMorePages,
   getMaxRows,
-  getRequestMethod,
 } from './components/Helper/helper'
 
 export type PaginFetchArgs = {
@@ -73,8 +72,6 @@ export const PageLoadingTable = function <T>({
       v: loaded,
     },
   })
-  const [mutationRequest] = getRequestMethod(additionalHooks, 'mutation') //should be a hook with POST request
-  const { queryData } = getRequestMethod(additionalHooks, 'query') //should be a hook with GET request
   const nextPage = () => setPage(page + 1)
   const hasMore = hasMorePages(data)
   const maxRows = getMaxRows(data) // Check for top level attributes as BPDM does not has meta attirbute in the response
@@ -93,7 +90,7 @@ export const PageLoadingTable = function <T>({
         setItems([])
         setClear(false)
       } else {
-        if (additionalHooks?.mutation) {
+        if (additionalHooks) {
           fetchAndApply(data)
         } else {
           data.content
@@ -102,41 +99,43 @@ export const PageLoadingTable = function <T>({
         }
       }
     }
-  }, [isSuccess, isFetching, data, clear, loaded, additionalHooks])
+  }, [isSuccess, isFetching, data, clear, loaded])
 
-  //POST request call
   const fetchAndApply = async (data: any) => {
     //BPDM response does not has content attribute. Check for it and proceed
     if (isContentPresent(data)) {
       const result = data.content.map((x: any) => x.legalEntity.bpn)
-      await mutationRequest(result)
+      if(additionalHooks) {
+        await additionalHooks.mutationRequest(result)
         .unwrap()
         .then((payload: any) => {
           //new country attribute && member attributes based on the response
           let finalObj = JSON.parse(JSON.stringify(data?.content))
-          finalObj = addNewAttributes(finalObj, payload, queryData)
+          finalObj = addNewAttributes(finalObj, payload, additionalHooks.queryData)
           setItems((i) => i.concat(finalObj))
         })
         .catch(() => {
           setItems((i) => i.concat(data.content))
         })
+      }
     } else {
       const result = [data.bpn]
-      await mutationRequest(result)
+      if(additionalHooks) {
+        await additionalHooks.mutationRequest(result)
         .unwrap()
         .then((payload: any) => {
           //update for country attribute && update member info
           let finalObj = JSON.parse(JSON.stringify(data))
           finalObj.country = payload[0].legalAddress.country
-          if (isQueryDataPresent(queryData)) {
-            finalObj.member = queryData.includes(finalObj.bpn)
+          if (isQueryDataPresent(additionalHooks.queryData)) {
+            finalObj.member = additionalHooks.queryData.includes(finalObj.bpn)
           }
-          //set the final data
           setItems([finalObj])
         })
         .catch(() => {
           setItems((i) => i.concat([data]))
         })
+      }
     }
   }
 

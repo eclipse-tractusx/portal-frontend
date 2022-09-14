@@ -49,21 +49,22 @@ export const PartnerList = ({
   const bpnColumns = PartnerNetworksBPNTableColumns(useTranslation)
   const [showBPNColumn, setShowBPNColumn] = useState<boolean>(false)
 
+  const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
+  const { data } = useFetchMemberCompaniesQuery([])
+
   const validateSearchText = (text: string): boolean =>
     /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/.test(text.trim())
 
   const checkIfBPNLNumber = (text: string): boolean =>
-    Patterns.BPN.test(text.trim())
+    Patterns.BPN.test(text.trim()) || Patterns.CAX.test(text.trim())
 
   return (
     <section id="identity-management-id">
       <PageLoadingTable<BusinessPartner>
         onCellClick={onTableCellClick}
         additionalHooks={{
-          mutation: useFetchBusinessPartnerAddressMutation,
-          query: useFetchMemberCompaniesQuery,
-          addCountryAttribute: true,
-          checkForMember: true,
+          mutationRequest: mutationRequest,
+          queryData: data,
         }}
         toolbarVariant="premium"
         searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}

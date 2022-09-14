@@ -70,17 +70,3 @@ export const hasMorePages = (data: any) => {
 export const getMaxRows = (data: any) => {
   return data?.totalElements ?? data?.meta?.totalElements ?? 0
 }
-
-export const getRequestMethod = (additionalHooks: any, str: string) => {
-  if (str === 'mutation') {
-    return (
-      additionalHooks &&
-      additionalHooks?.mutation &&
-      additionalHooks?.mutation()
-    )
-  } else {
-    return (
-      additionalHooks && additionalHooks?.mutation && additionalHooks?.query()
-    )
-  }
-}
