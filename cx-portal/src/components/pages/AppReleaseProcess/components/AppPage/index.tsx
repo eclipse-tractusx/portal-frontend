@@ -25,7 +25,7 @@ import {
   PageNotifications,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { Divider, Box, InputLabel } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
@@ -135,9 +135,9 @@ export default function AppPage() {
                   rules: {
                     required: {
                       value: true,
-                      message: `${t(`content.apprelease.appPage.${item}`)} ${t(
-                        'content.apprelease.appReleaseForm.isMandatory'
-                      )}`,
+                      message:
+                        t(`content.apprelease.appPage.${item}`) +
+                        t('content.apprelease.appReleaseForm.isMandatory'),
                     },
                     minLength: {
                       value: 10,
