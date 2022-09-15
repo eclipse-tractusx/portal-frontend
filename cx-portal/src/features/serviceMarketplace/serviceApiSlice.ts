@@ -23,6 +23,17 @@ import i18next from 'i18next'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
 
+export type SubscriptionRequest = {
+  offerId: string,
+  offerName: string,
+  status: string
+}
+
+export type SubscriptionData = {
+  offerSubscriptionId: string
+  offerSubscriptionStatus: string
+}
+
 export type ServiceRequest = {
   id: string
   title: string
@@ -33,6 +44,7 @@ export type ServiceRequest = {
   price: string
   website: string
   phone: string
+  offerSubscriptionDetailData: Array<SubscriptionData>
 }
 
 export type PaginationData = {
@@ -64,6 +76,10 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    fetchSubscription: builder.query<SubscriptionRequest, string>({
+      query: (subscriptionId) =>
+        `/api/services/subscription/${subscriptionId}`,
+    }),
   }),
 })
 
@@ -71,4 +87,5 @@ export const {
   useFetchServicesQuery,
   useFetchServiceQuery,
   useAddSubscribeServiceMutation,
+  useFetchSubscriptionQuery,
 } = apiSlice

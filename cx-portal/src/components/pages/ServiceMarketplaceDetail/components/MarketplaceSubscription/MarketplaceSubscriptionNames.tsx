@@ -18,31 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import MarketplaceHeader from './components/MarketplaceHeader'
-import MarketplaceProvider from './components/MarketplaceProvider'
-import MarketplaceSubscription from './components/MarketplaceSubscription'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './Marketplace.scss'
+ import { SubscriptionData } from 'features/serviceMarketplace/serviceApiSlice'
+ import { useFetchSubscriptionQuery } from 'features/serviceMarketplace/serviceApiSlice'
+ import './MarketplaceSubscription.scss'
+ 
+ export default function MarketplaceSubscriptionNames({
+    subscription,
+    index
+ }: {
+        subscription: SubscriptionData
+        index: number
+ }) {
 
-export default function MarketplaceContentDetails({
-  item,
-  success,
-}: {
-  item: ServiceRequest
-  success: boolean
-}) {
-  return (
-    item.offerSubscriptionDetailData && (
-      <>
-        <MarketplaceHeader item={item} success={success} />
-        { item.offerSubscriptionDetailData.length >=3 && 
-          <MarketplaceSubscription item={item} /> }
-        <div className="product-description">
-          <Typography variant="body2">{item.description}</Typography>
-        </div>
-        <MarketplaceProvider item={item} />
-      </>
-    )
-  )
-}
+    const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
+ 
+     return (
+        <li key={index}>
+            {'#' + index}
+            <span className="subscription-name">
+                { data && data.offerName.charAt(0).toUpperCase() + data.offerName.slice(1) }
+            </span>
+        </li>
+     )
+ }
+ 

@@ -1,0 +1,19 @@
+.marketplace-subscriptions{
+    p{
+        font-weight: 700;
+        color: #0d55af;
+    }
+    .subscriptions-content{
+        border: 1px solid #000;
+        background-color: #d7d7d7;
+        margin-top: 10px;
+        ul{
+            li{
+                list-style: none;
+                .subscription-name{
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+}

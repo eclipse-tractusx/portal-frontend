@@ -18,31 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
-import MarketplaceHeader from './components/MarketplaceHeader'
-import MarketplaceProvider from './components/MarketplaceProvider'
-import MarketplaceSubscription from './components/MarketplaceSubscription'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './Marketplace.scss'
+import './MarketplaceSubscription.scss'
+import MarketplaceSubscriptionNames from './MarketplaceSubscriptionNames'
 
-export default function MarketplaceContentDetails({
-  item,
-  success,
+export default function MarketplaceSubscription({
+    item,
 }: {
-  item: ServiceRequest
-  success: boolean
+    item: ServiceRequest
 }) {
-  return (
-    item.offerSubscriptionDetailData && (
-      <>
-        <MarketplaceHeader item={item} success={success} />
-        { item.offerSubscriptionDetailData.length >=3 && 
-          <MarketplaceSubscription item={item} /> }
-        <div className="product-description">
-          <Typography variant="body2">{item.description}</Typography>
+    const { t } = useTranslation()
+
+    return (
+        <div className="marketplace-subscriptions">
+            <Typography variant="body2">{t('content.serviceMarketplace.subscriptionHeading').replace(
+              '{serviceName}',
+              item.title
+            )}</Typography>
+            <div className="subscriptions-content">
+                <ul>
+                    {
+                        item.offerSubscriptionDetailData.map((data, index) =>
+                            <MarketplaceSubscriptionNames subscription={data} index={index}/>
+                        )
+                    }
+                </ul>
+            </div>
         </div>
-        <MarketplaceProvider item={item} />
-      </>
     )
-  )
 }
