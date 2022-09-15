@@ -20,7 +20,7 @@ export const UltimateToolbar = ({
   onFilter,
   searchPlaceholder,
   selectedFilter,
-  searchDebounce = 500
+  searchDebounce = 500,
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
   const [searchInput, setSearchInput] = useState<string>('')
