@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { SubscriptionData, useFetchSubscriptionQuery } from 'features/serviceMarketplace/serviceApiSlice'
+import {
+  SubscriptionData,
+  useFetchSubscriptionQuery,
+} from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceSubscription.scss'
 
 export default function MarketplaceSubscriptionNames({
