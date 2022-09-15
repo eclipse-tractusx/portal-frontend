@@ -108,30 +108,28 @@ export default function ContractAndConsent() {
         {t('content.apprelease.contractAndConsent.headerDescription')}
       </Typography>
       <form className="header-description">
-        {agreementData?.map((item) => {
-          return (
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: item.agreementId,
-                  label: item.name,
-                  type: 'checkbox',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${item.name} ${t(
-                        'content.apprelease.appReleaseForm.isMandatory'
-                      )}`,
-                    },
+        {agreementData?.map((item) => (
+          <div className="form-field">
+            <ConnectorFormInputField
+              {...{
+                control,
+                trigger,
+                errors,
+                name: item.agreementId,
+                label: item.name,
+                type: 'checkbox',
+                rules: {
+                  required: {
+                    value: true,
+                    message: `${item.name} ${t(
+                      'content.apprelease.appReleaseForm.isMandatory'
+                    )}`,
                   },
-                }}
-              />
-            </div>
-          )
-        })}
+                },
+              }}
+            />
+          </div>
+        ))}
       </form>
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />

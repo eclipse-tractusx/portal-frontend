@@ -18,6 +18,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Search funcationality added in Partner Network table using both company name and BPN
 * Feature - Show country information in the Partner Network table
 * Feature - Show CX Member info in the Partner Network table
+* Feature - App Release Process Step 6
 
 
 ### 0.5.3
