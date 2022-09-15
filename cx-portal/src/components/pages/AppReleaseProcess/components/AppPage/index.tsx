@@ -135,9 +135,7 @@ export default function AppPage() {
                   rules: {
                     required: {
                       value: true,
-                      message: `${t(
-                        `content.apprelease.appPage.${item}`
-                      )} ${t(
+                      message: `${t(`content.apprelease.appPage.${item}`)} ${t(
                         'content.apprelease.appReleaseForm.isMandatory'
                       )}`,
                     },
@@ -352,7 +350,7 @@ export default function AppPage() {
                   )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                 },
                 pattern: {
-                  value: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,}$/,
+                  value: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,50}$/,
                   message: t(
                     'content.apprelease.appPage.pleaseEnterValidContact'
                   ),
