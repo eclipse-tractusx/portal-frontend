@@ -23,9 +23,9 @@ export const UltimateToolbar = ({
   searchDebounce = 500,
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
-  const [searchInput, setSearchInput] = useState<string>('')
+  const [searchText, setSearchText] = useState<string>('')
 
-  const debouncedSearch = useMemo(
+  const debounceSearch = useMemo(
     () =>
       debounce((expr: string) => {
         onSearch && onSearch(expr)
@@ -33,24 +33,24 @@ export const UltimateToolbar = ({
     [onSearch, searchDebounce]
   )
 
-  const doSearch = useCallback(
+  const doOnSearch = useCallback(
     (expr: string) => {
-      debouncedSearch(expr)
+      debounceSearch(expr)
     },
-    [debouncedSearch]
+    [debounceSearch]
   )
 
-  const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value)
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value)
     const inputLen = e.target.value.length
     if (inputLen === 0 || inputLen > 2) {
-      onSearch && doSearch(e.target.value)
+      onSearch && doOnSearch(e.target.value)
     }
   }
 
   const onSearchInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && onSearch) {
-      onSearch(searchInput)
+      onSearch(searchText)
     }
   }
 
@@ -74,8 +74,8 @@ export const UltimateToolbar = ({
       {onSearch && (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           <SearchInput
-            value={searchInput}
-            onChange={onSearchInputChange}
+            value={searchText}
+            onChange={onSearchChange}
             onKeyPress={onSearchInputKeyPress}
             placeholder={searchPlaceholder}
             sx={{
