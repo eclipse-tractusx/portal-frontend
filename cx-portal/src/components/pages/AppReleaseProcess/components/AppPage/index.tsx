@@ -135,7 +135,9 @@ export default function AppPage() {
                   rules: {
                     required: {
                       value: true,
-                      message: `${t(`content.apprelease.appPage.${item}`)} ${t(
+                      message: `${t(
+                        `content.apprelease.appPage.${item}`
+                      )} ${t(
                         'content.apprelease.appReleaseForm.isMandatory'
                       )}`,
                     },
