@@ -30,7 +30,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
-import './style.scss'
 import {
   useAddSubscribeServiceMutation,
   useFetchServiceQuery,
