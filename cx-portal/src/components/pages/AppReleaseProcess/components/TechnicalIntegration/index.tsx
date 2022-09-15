@@ -41,11 +41,13 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const dispatch = useDispatch()
 
+  const defaultValues = {}
+
   const {
     handleSubmit,
     formState: { isValid },
   } = useForm({
-    defaultValues: {},
+    defaultValues: defaultValues,
     mode: 'onChange',
   })
 
