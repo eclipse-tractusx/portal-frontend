@@ -59,6 +59,9 @@ export const PartnerNetworksBPNTableColumns = (
             padding=".5rem"
             src={smallLogo}
             alt="membershipFlag"
+            sx={{
+              width: 40,
+            }}
           />
         ) : (
           ''

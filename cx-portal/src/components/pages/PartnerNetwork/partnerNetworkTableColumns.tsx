@@ -45,6 +45,9 @@ export const PartnerNetworksTableColumns = (
             padding=".5rem"
             src={smallLogo}
             alt="membershipFlag"
+            sx={{
+              width: 40,
+            }}
           />
         ) : (
           ''

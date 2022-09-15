@@ -18,15 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export const isQueryDataPresent = (queryData: any) => {
-  return queryData && queryData.length > 0
-}
+export const isQueryDataPresent = (queryData: any) =>
+  queryData && queryData.length > 0
 
-export const isContentPresent = (data: any) => {
-  return data && data.content ? true : false
-}
+export const isContentPresent = (data: any) => data && data.content
 
-export const addCountryAttributes = (finalObj: any, payload: any) => {
+export const addCountryAttribute = (finalObj: any, payload: any) => {
   finalObj.forEach((x: any) => {
     payload.forEach((y: any) => {
       if (x.legalEntity.bpn === y.legalEntity) {
@@ -37,26 +34,12 @@ export const addCountryAttributes = (finalObj: any, payload: any) => {
   return finalObj
 }
 
-export const addNewAttributes = (
-  finalObj: any,
-  payload: any,
-  queryData: any
-) => {
-  finalObj = addCountryAttributes(finalObj, payload)
-  if (isQueryDataPresent(queryData)) {
-    finalObj = addMemberAttribute(finalObj, queryData)
-  }
-  return finalObj
-}
-
 export const addMemberAttribute = (finalObj: any, queryData: any) => {
-  finalObj.forEach((x: any) => {
-    if (queryData.includes(finalObj.legalEntity.bpn)) {
-      x.legalEntity.member = true
-    } else {
-      x.legalEntity.member = false
-    }
-  })
+  if (queryData) {
+    finalObj.forEach((x: any) => {
+      x.legalEntity.member = queryData.includes(x.legalEntity.bpn)
+    })
+  }
   return finalObj
 }
 

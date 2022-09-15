@@ -26,7 +26,7 @@ import Patterns from 'types/Patterns'
 import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
 
 const checkIfBPNLNumber = (text: string): boolean =>
-  Patterns.BPN.test(text.trim()) || Patterns.CAX.test(text.trim())
+  Patterns.BPN.test(text.trim())
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',

@@ -50,13 +50,14 @@ export const PartnerList = ({
   const [showBPNColumn, setShowBPNColumn] = useState<boolean>(false)
 
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
-  const { data } = useFetchMemberCompaniesQuery([])
+
+  const { data } = useFetchMemberCompaniesQuery()
 
   const validateSearchText = (text: string): boolean =>
-    /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/.test(text.trim())
+    Patterns.SEARCH.test(text.trim())
 
   const checkIfBPNLNumber = (text: string): boolean =>
-    Patterns.BPN.test(text.trim()) || Patterns.CAX.test(text.trim())
+    Patterns.BPN.test(text.trim())
 
   return (
     <section id="identity-management-id">
@@ -66,7 +67,9 @@ export const PartnerList = ({
           mutationRequest: mutationRequest,
           queryData: data,
         }}
-        toolbarVariant="premium"
+        toolbarVariant={'ultimate'}
+        hasBorder={false}
+        columnHeadersBackgroundColor={'transparent'}
         searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {

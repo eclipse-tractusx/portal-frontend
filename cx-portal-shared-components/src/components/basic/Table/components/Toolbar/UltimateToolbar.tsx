@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Box, useTheme } from '@mui/material'
+import React, { useState, useMemo, useCallback } from 'react'
+import { Box, useTheme, debounce } from '@mui/material'
 import { Button } from '../../../Button'
 import { SearchInput } from '../../../SearchInput'
 import { ToolbarProps } from '.'
@@ -11,6 +11,7 @@ export interface UltimateToolbarProps extends ToolbarProps {
   placeholder?: string
   onFilter?: (selectedFilter: SelectedFilter) => void
   selectedFilter?: SelectedFilter
+  searchDebounce?: number
 }
 
 export const UltimateToolbar = ({
@@ -19,12 +20,32 @@ export const UltimateToolbar = ({
   onFilter,
   searchPlaceholder,
   selectedFilter,
+  searchDebounce = 500
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
   const [searchInput, setSearchInput] = useState<string>('')
 
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((expr: string) => {
+        onSearch && onSearch(expr)
+      }, searchDebounce),
+    [onSearch, searchDebounce]
+  )
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
+
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
+    const inputLen = e.target.value.length
+    if (inputLen === 0 || inputLen > 2) {
+      onSearch && doSearch(e.target.value)
+    }
   }
 
   const onSearchInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {

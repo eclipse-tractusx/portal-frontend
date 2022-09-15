@@ -74,7 +74,9 @@ export const RequestList = ({
       <PageLoadingTable<ApplicationRequest>
         rowHeight={80}
         onCellClick={onTableCellClick}
-        toolbarVariant="premium"
+        toolbarVariant={'ultimate'}
+        hasBorder={false}
+        columnHeadersBackgroundColor={'transparent'}
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {

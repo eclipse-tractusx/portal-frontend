@@ -22,10 +22,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export const apiSlice = createApi({
-  reducerPath: 'rtk/admin/partnerNetwork',
+  reducerPath: 'rtk/admin/partnerNetworkPortal',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchMemberCompanies: builder.query<void, string[]>({
+    fetchMemberCompanies: builder.query<Array<string | null>, void>({
       query: () => `api/administration/partnernetwork/memberCompanies`,
     }),
   }),

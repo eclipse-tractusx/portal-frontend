@@ -117,12 +117,14 @@ export default function RegistrationRequests() {
       />
 
       {/* Adding additional text to introduce the page function */}
-      <Typography variant="body2" mt={3} align="center">
-        {t('content.admin.registration-requests.introText1')}
-      </Typography>
-      <Typography variant="body2" mb={3} align="center">
-        {t('content.admin.registration-requests.introText2')}
-      </Typography>
+      <div className={'padding-r-80'}>
+        <Typography variant="body2" mt={3} align="center">
+          {t('content.admin.registration-requests.introText1')}
+        </Typography>
+        <Typography variant="body2" mb={3} align="center">
+          {t('content.admin.registration-requests.introText2')}
+        </Typography>
+      </div>
 
       {/* Table component */}
       <div className={'table-container'}>

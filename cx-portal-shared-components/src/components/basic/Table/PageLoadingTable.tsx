@@ -24,9 +24,10 @@ import { Button } from '../Button'
 import {
   isContentPresent,
   isQueryDataPresent,
-  addNewAttributes,
+  addCountryAttribute,
   hasMorePages,
   getMaxRows,
+  addMemberAttribute,
 } from './components/Helper/helper'
 
 export type PaginFetchArgs = {
@@ -112,16 +113,11 @@ export const PageLoadingTable = function <T>({
           .then((payload: any) => {
             //new country attribute && member attributes based on the response
             let finalObj = JSON.parse(JSON.stringify(data?.content))
-            finalObj = addNewAttributes(
-              finalObj,
-              payload,
-              additionalHooks.queryData
-            )
+            finalObj = addCountryAttribute(finalObj, payload)
+            finalObj = addMemberAttribute(finalObj, additionalHooks.queryData)
             setItems((i) => i.concat(finalObj))
           })
-          .catch(() => {
-            setItems((i) => i.concat(data.content))
-          })
+          .catch(() => setItems((i) => i.concat(data.content)))
       }
     } else {
       const result = [data.bpn]
@@ -138,9 +134,7 @@ export const PageLoadingTable = function <T>({
             }
             setItems([finalObj])
           })
-          .catch(() => {
-            setItems((i) => i.concat([data]))
-          })
+          .catch(() => setItems((i) => i.concat([data])))
       }
     }
   }
