@@ -24,8 +24,8 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
 
 export type SubscriptionRequest = {
-  offerId: string,
-  offerName: string,
+  offerId: string
+  offerName: string
   status: string
 }
 
@@ -77,8 +77,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchSubscription: builder.query<SubscriptionRequest, string>({
-      query: (subscriptionId) =>
-        `/api/services/subscription/${subscriptionId}`,
+      query: (subscriptionId) => `/api/services/subscription/${subscriptionId}`,
     }),
   }),
 })

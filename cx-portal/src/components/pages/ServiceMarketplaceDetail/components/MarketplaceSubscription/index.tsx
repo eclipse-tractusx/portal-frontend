@@ -25,27 +25,27 @@ import './MarketplaceSubscription.scss'
 import MarketplaceSubscriptionNames from './MarketplaceSubscriptionNames'
 
 export default function MarketplaceSubscription({
-    item,
+  item,
 }: {
-    item: ServiceRequest
+  item: ServiceRequest
 }) {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    return (
-        <div className="marketplace-subscriptions">
-            <Typography variant="body2">{t('content.serviceMarketplace.subscriptionHeading').replace(
-              '{serviceName}',
-              item.title
-            )}</Typography>
-            <div className="subscriptions-content">
-                <ul>
-                    {
-                        item.offerSubscriptionDetailData.map((data, index) =>
-                            <MarketplaceSubscriptionNames subscription={data} index={index}/>
-                        )
-                    }
-                </ul>
-            </div>
-        </div>
-    )
+  return (
+    <div className="marketplace-subscriptions">
+      <Typography variant="body2">
+        {t('content.serviceMarketplace.subscriptionHeading').replace(
+          '{serviceName}',
+          item.title
+        )}
+      </Typography>
+      <div className="subscriptions-content">
+        <ul>
+          {item.offerSubscriptionDetailData.map((data, index) => (
+            <MarketplaceSubscriptionNames subscription={data} index={index} />
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
 }
