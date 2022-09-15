@@ -135,7 +135,9 @@ export default function AppPage() {
                   rules: {
                     required: {
                       value: true,
-                      message: `${t(`content.apprelease.appPage.${item}`)} ${t(
+                      message: `${t(
+                        `content.apprelease.appPage.${item}`
+                      )} ${t(
                         'content.apprelease.appReleaseForm.isMandatory'
                       )}`,
                     },
@@ -363,19 +365,19 @@ export default function AppPage() {
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
-          variant="outlined"
           sx={{ mr: 1 }}
+          variant="outlined"
           startIcon={<HelpOutlineIcon />}
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
+        <IconButton onClick={() => dispatch(decrement())} color="secondary">
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
+          sx={{ float: 'right' }}
           variant="contained"
           disabled={!isValid}
-          sx={{ float: 'right' }}
           onClick={handleSubmit(onAppPageSubmit)}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}

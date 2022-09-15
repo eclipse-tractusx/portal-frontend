@@ -123,6 +123,12 @@ export default function VerifyCompanyData() {
     setCompanyDataNotification(true)
   }
 
+  const providerDetailsValues = (item: string) => {
+    if (item === 'providerHomePage') return defaultValues.providerUri
+    else if (item === 'providerContactEmail') return defaultValues.contactEmail
+    else return defaultValues.contactNumber
+  }
+
   return (
     <div className="verify-company-data">
       <Typography variant="h3" mt={10} mb={4} align="center">
@@ -320,23 +326,15 @@ export default function VerifyCompanyData() {
             'providerHomePage',
             'providerContactEmail',
             'providerPhoneContact',
-          ].map((item: string) => {
-            const value =
-              item === 'providerHomePage'
-                ? defaultValues.providerUri
-                : item === 'providerContactEmail'
-                ? defaultValues.contactEmail
-                : defaultValues.contactNumber
-            return (
-              <div className="form-field">
-                <Input
-                  label={t(`content.apprelease.appPage.${item}`) + ' *'}
-                  value={value}
-                  disabled={true}
-                />
-              </div>
-            )
-          })}
+          ].map((item: string) => (
+            <div className="form-field">
+              <Input
+                label={t(`content.apprelease.appPage.${item}`) + ' *'}
+                value={providerDetailsValues(item)}
+                disabled={true}
+              />
+            </div>
+          ))}
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           <Typography variant="h4" align="center" sx={{ mb: 4 }}>
             {t('content.apprelease.contractAndConsent.headerTitle')}
