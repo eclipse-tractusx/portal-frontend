@@ -5,7 +5,7 @@ import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import scss from 'rollup-plugin-scss'
 import svg from 'rollup-plugin-svg'
-import dts from 'rollup-plugin-dts'
+import cxp from './dts/index.js'
 
 import packageJson from "./package.json";
 
@@ -40,7 +40,7 @@ const rollupConfig = [
         input: 'dist/types/index.d.ts',
         output: [{ file: 'dist/index.d.ts', format: "esm" }],
         external: [/\.s?css$/,/\.css$/],
-        plugins: [dts()],
+        plugins: [cxp()],
     },
 
 ];
