@@ -328,7 +328,7 @@ class NF {
     return { namespaces, itemTypes: items }
   }
   fix() {
-    var _a
+    let _a
     let code = this.sourceFile.getFullText()
     const { namespaces, itemTypes } = this.fn()
     for (const ns of namespaces) {
@@ -726,7 +726,7 @@ function pp({ sourceFile }) {
   }
 }
 function fixModifiers(code, node) {
-  var _a
+  let _a
   let hasDeclare = false
   const needsDeclare =
     ts.isClassDeclaration(node) ||
@@ -814,7 +814,7 @@ class DeclarationScope {
     }
   }
   pushTypeVariable(id) {
-    var _a
+    let _a
     const name = id.getText()
     ;(_a = this.scopes[this.scopes.length - 1]) === null || _a === void 0
       ? void 0
