@@ -374,9 +374,9 @@ export default function ValidateAndPublish() {
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
+          startIcon={<HelpOutlineIcon />}
           variant="outlined"
           sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
@@ -384,10 +384,10 @@ export default function ValidateAndPublish() {
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
+          onClick={handleSubmit(onValidatePublishSubmit)}
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onValidatePublishSubmit)}
         >
           {t('content.apprelease.footerButtons.submit')}
         </Button>
