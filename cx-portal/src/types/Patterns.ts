@@ -29,6 +29,7 @@ export const Patterns = {
     URL: /^https?:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
+  PHONE: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
 }
 
 export default Patterns

@@ -16,7 +16,7 @@ import ContractAndConsent from './components/ContractAndConsent'
 import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'
 import TechnicalIntegration from './components/TechnicalIntegration'
-import VerifyCompanyData from './components/VerifyCompanyData'
+import ValidateAndPublish from './components/ValidateAndPublish'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
@@ -74,7 +74,7 @@ export default function AppReleaseProcess() {
     else if (activePage === 3) return <ContractAndConsent />
     else if (activePage === 4) return <TechnicalIntegration />
     else if (activePage === 5) return <BetaTest />
-    else if (activePage === 6) return <VerifyCompanyData />
+    else if (activePage === 6) return <ValidateAndPublish />
   }
 
   return (

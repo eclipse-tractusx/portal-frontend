@@ -44,6 +44,8 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch } from 'react-redux'
 import { increment } from 'features/appManagement/slice'
+import { setAppId } from 'features/appManagement/actions'
+import { isString } from 'lodash'
 
 type FormDataType = {
   title: string
@@ -171,7 +173,7 @@ export default function AppMarketCard() {
     useCaseCategory: [],
     appLanguage: [],
     //To do: to be changed once api is available
-    providerCompanyId: '220330ac-170d-4e22-8d72-9467ed042149',
+    providerCompanyId: '2dc4249f-b5ca-4d42-bef1-7a7a950a4f87',
     shortDescriptionEN: '',
     shortDescriptionDE: '',
     uploadImage: {
@@ -248,10 +250,13 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
-    try {
-      await addCreateApp(saveData).unwrap()
-      dispatch(increment())
-    } catch (err) {}
+    await addCreateApp(saveData)
+      .unwrap()
+      .then((result) => {
+        isString(result) && dispatch(setAppId(result))
+        dispatch(increment())
+      })
+      .catch((error) => {})
   }
 
   return (
