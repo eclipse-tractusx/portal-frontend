@@ -59,7 +59,7 @@ export const PartnerNetworksTableColumns = (
       flex: 1.5,
       sortable: false,
       valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.country?.name : '',
+        row?.legalEntity ? row.legalEntity.legalAddress?.country?.name : '',
     },
     {
       field: 'detail',

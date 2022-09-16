@@ -73,7 +73,7 @@ export const PartnerNetworksBPNTableColumns = (
       flex: 1.5,
       sortable: false,
       valueGetter: ({ row }: { row: BusinessPartner }) =>
-        row ? row.country?.name : '',
+        row ? row.legalAddress?.country?.name : '',
     },
     {
       field: 'detail',

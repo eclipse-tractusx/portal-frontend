@@ -27,7 +27,7 @@ export const addCountryAttribute = (finalObj: any, payload: any) => {
   finalObj.forEach((x: any) => {
     payload.forEach((y: any) => {
       if (x.legalEntity.bpn === y.legalEntity) {
-        x.legalEntity.country = y.legalAddress.country
+        x.legalEntity.legalAddress = y.legalAddress
       }
     })
   })

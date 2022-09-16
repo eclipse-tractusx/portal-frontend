@@ -42,7 +42,7 @@ export interface BusinessPartner {
   bankAccounts: Array<BpdmTypeBankAccount>
   roles: Array<BpdmTypeCommonKeyValuePair>
   relations: Array<BpdmTypeRelation>
-  country?: any
+  legalAddress?: any
   member?: boolean
 }
 

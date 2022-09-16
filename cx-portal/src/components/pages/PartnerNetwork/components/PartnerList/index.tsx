@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
-import { BusinessPartner } from 'features/newPartnerNetwork/types'
+import { BusinessPartner, BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
 import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './PartnerNetworksBPNTableColumns'
@@ -36,17 +36,16 @@ import {
   addCountryAttribute,
   addMemberAttribute,
 } from './helper'
+import BusinessPartnerDetailOverlay from '../../BusinessPartnerDetailOverlay'
 
 export const PartnerList = ({
   fetchHook,
   fetchHookArgs,
   onSearch,
-  onTableCellClick,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
   onSearch?: (search: string) => void
-  onTableCellClick: (params: GridCellParams) => void
 }) => {
   const { t } = useTranslation()
   const [refresh, setRefresh] = useState<number>(0)
@@ -58,6 +57,21 @@ export const PartnerList = ({
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
 
   const { data } = useFetchMemberCompaniesQuery()
+
+  const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const [selectedBPN, setSelectedBPN] = useState<any>({})
+
+  const onTableCellClick = (params: GridCellParams) => {
+    // Show overlay only when detail field clicked
+    if (params.field === 'detail') {
+      if(params.row && params.row.legalEntity) {
+        setSelectedBPN(params.row as BusinessPartnerSearchResponse)
+      } else {
+        setSelectedBPN(params.row as BusinessPartner)
+      }
+      setOverlayOpen(true)
+    }
+  }
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
@@ -100,6 +114,13 @@ export const PartnerList = ({
 
   return (
     <section id="identity-management-id">
+      <BusinessPartnerDetailOverlay
+        {...{
+          selectedRowBPN: selectedBPN,
+          openDialog: overlayOpen,
+          handleOverlayClose: () => setOverlayOpen(false),
+        }}
+      />
       <PageLoadingTable<BusinessPartner>
         onCellClick={onTableCellClick}
         toolbarVariant={'ultimate'}
