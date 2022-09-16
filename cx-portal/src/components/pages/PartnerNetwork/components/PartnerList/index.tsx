@@ -24,7 +24,10 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
-import { BusinessPartner, BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
+import {
+  BusinessPartner,
+  BusinessPartnerSearchResponse,
+} from 'features/newPartnerNetwork/types'
 import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './PartnerNetworksBPNTableColumns'
@@ -64,7 +67,7 @@ export const PartnerList = ({
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
-      if(params.row && params.row.legalEntity) {
+      if (params.row && params.row.legalEntity) {
         setSelectedBPN(params.row as BusinessPartnerSearchResponse)
       } else {
         setSelectedBPN(params.row as BusinessPartner)

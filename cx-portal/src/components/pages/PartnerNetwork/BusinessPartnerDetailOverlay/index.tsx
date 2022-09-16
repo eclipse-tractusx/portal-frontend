@@ -6,9 +6,7 @@ import {
   DialogHeader,
   Typography,
 } from 'cx-portal-shared-components'
-import {
-  BpdmTypeUUIDKeyPair,
-} from 'features/partnerNetwork/types'
+import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
 import { Box, Grid, useTheme } from '@mui/material'
 import DetailGridRow from './DetailGridRow'
 
@@ -21,12 +19,12 @@ interface BusinessPartnerDetailOverlayProps {
 const BusinessPartnerDetailOverlay = ({
   openDialog = false,
   selectedRowBPN,
-  handleOverlayClose
+  handleOverlayClose,
 }: BusinessPartnerDetailOverlayProps) => {
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
-  
+
   return (
     <div className={'business-partner-overlay'}>
       <Dialog
@@ -64,22 +62,26 @@ const BusinessPartnerDetailOverlay = ({
                 <Typography variant="h5">
                   {t('content.partnernetwork.overlay.companydatatitle')}
                 </Typography>
-              </Grid>              
+              </Grid>
               <DetailGridRow
                 key={t('content.partnernetwork.columns.name') as string}
                 {...{
                   variableName: `${t('content.partnernetwork.columns.name')}`,
-                  value: selectedRowBPN.legalEntity ? selectedRowBPN.legalEntity.names[0].value : '',
+                  value: selectedRowBPN.legalEntity
+                    ? selectedRowBPN.legalEntity.names[0].value
+                    : '',
                 }}
               />
               <DetailGridRow
                 key={t('content.partnernetwork.columns.bpn') as string}
                 {...{
                   variableName: `${t('content.partnernetwork.columns.bpn')}`,
-                  value: selectedRowBPN.legalEntity ? selectedRowBPN.legalEntity.bpn : '',
+                  value: selectedRowBPN.legalEntity
+                    ? selectedRowBPN.legalEntity.bpn
+                    : '',
                 }}
               />
-             
+
               {/* {selectedRowBPN.legalForm && (
                 <DetailGridRow
                   key={t('content.partnernetwork.overlay.legalform') as string}
@@ -114,7 +116,12 @@ const BusinessPartnerDetailOverlay = ({
               /> */}
               <DetailGridRow
                 key="Country"
-                {...{ variableName: 'Country', value: selectedRowBPN.legalEntity ? selectedRowBPN.legalEntity.legalAddress.country.name : '' }}
+                {...{
+                  variableName: 'Country',
+                  value: selectedRowBPN.legalEntity
+                    ? selectedRowBPN.legalEntity.legalAddress.country.name
+                    : '',
+                }}
               />
               <Grid
                 xs={12}
@@ -126,21 +133,22 @@ const BusinessPartnerDetailOverlay = ({
               >
                 <Typography variant="h5">Identifiers</Typography>
               </Grid>
-              {selectedRowBPN.legalEntity && selectedRowBPN.legalEntity.identifiers?.map(
-                (identifier: BpdmTypeUUIDKeyPair) => {
-                  return (
-                    <DetailGridRow
-                      key={identifier.type?.name}
-                      {...{
-                        variableName:
-                          identifier.type?.name ||
-                          identifier.type?.technicalKey,
-                        value: identifier.value,
-                      }}
-                    />
-                  )
-                }
-              )}
+              {selectedRowBPN.legalEntity &&
+                selectedRowBPN.legalEntity.identifiers?.map(
+                  (identifier: BpdmTypeUUIDKeyPair) => {
+                    return (
+                      <DetailGridRow
+                        key={identifier.type?.name}
+                        {...{
+                          variableName:
+                            identifier.type?.name ||
+                            identifier.type?.technicalKey,
+                          value: identifier.value,
+                        }}
+                      />
+                    )
+                  }
+                )}
             </Grid>
           </Box>
         </DialogContent>
