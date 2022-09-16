@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageLoadingTable, PaginFetchArgs } from 'cx-portal-shared-components'
+import { PaginFetchArgs, PageLoadingTable } from 'cx-portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
@@ -30,6 +30,12 @@ import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './PartnerNetworksBPNTableColumns'
 import { useFetchBusinessPartnerAddressMutation } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
+import {
+  isContentPresent,
+  isQueryDataPresent,
+  addCountryAttribute,
+  addMemberAttribute,
+} from './helper'
 
 export const PartnerList = ({
   fetchHook,
@@ -59,14 +65,43 @@ export const PartnerList = ({
   const checkIfBPNLNumber = (text: string): boolean =>
     Patterns.BPN.test(text.trim())
 
+  const [allItems, setAllItems] = useState<any>({})
+
+  const fetchAndApply = async (cData: any) => {
+    //BPDM response does not has content attribute. Check for it and proceed
+    if (isContentPresent(cData)) {
+      const result = cData.content.map((x: any) => x.legalEntity.bpn)
+      await mutationRequest(result)
+        .unwrap()
+        .then((payload: any) => {
+          //new country attribute && member attributes based on the response
+          let finalObj = JSON.parse(JSON.stringify(cData?.content))
+          finalObj = addCountryAttribute(finalObj, payload)
+          finalObj = addMemberAttribute(finalObj, data)
+          setAllItems(finalObj)
+        })
+        .catch(() => {})
+    } else {
+      const result = [cData.bpn]
+      await mutationRequest(result)
+        .unwrap()
+        .then((payload: any) => {
+          //update for country attribute && update member info
+          let finalObj = JSON.parse(JSON.stringify(cData))
+          finalObj.country = payload[0].legalAddress.country
+          if (isQueryDataPresent(data)) {
+            finalObj.member = data && data.includes(finalObj.bpn)
+          }
+          setAllItems(finalObj)
+        })
+        .catch(() => {})
+    }
+  }
+
   return (
     <section id="identity-management-id">
       <PageLoadingTable<BusinessPartner>
         onCellClick={onTableCellClick}
-        additionalHooks={{
-          mutationRequest: mutationRequest,
-          queryData: data,
-        }}
         toolbarVariant={'ultimate'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
@@ -88,6 +123,8 @@ export const PartnerList = ({
           row && row.legalEntity ? row.legalEntity.bpn : ''
         }
         columns={!showBPNColumn ? columns : bpnColumns}
+        callbackToPage={fetchAndApply}
+        allItems={allItems}
       />
     </section>
   )

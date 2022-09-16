@@ -17,13 +17,28 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-export const hasMorePages = (data: any) => {
-  return (
-    data?.page < data?.totalPages - 1 ||
-    (data?.meta && data.meta.page < data.meta.totalPages - 1)
-  )
+
+export const isQueryDataPresent = (queryData: any) =>
+  queryData && queryData.length > 0
+
+export const isContentPresent = (data: any) => data && data.content
+
+export const addCountryAttribute = (finalObj: any, payload: any) => {
+  finalObj.forEach((x: any) => {
+    payload.forEach((y: any) => {
+      if (x.legalEntity.bpn === y.legalEntity) {
+        x.legalEntity.country = y.legalAddress.country
+      }
+    })
+  })
+  return finalObj
 }
 
-export const getMaxRows = (data: any) => {
-  return data?.totalElements ?? data?.meta?.totalElements ?? 0
+export const addMemberAttribute = (finalObj: any, queryData: any) => {
+  if (queryData) {
+    finalObj.forEach((x: any) => {
+      x.legalEntity.member = queryData.includes(x.legalEntity.bpn)
+    })
+  }
+  return finalObj
 }
