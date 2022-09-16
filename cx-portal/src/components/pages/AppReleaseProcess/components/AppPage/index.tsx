@@ -61,6 +61,7 @@ export default function AppPage() {
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const appId = useSelector(appIdSelector)
+  const longDescriptionMaxLength = 2000
 
   const defaultValues = {
     longDescriptionEN: '',
@@ -178,16 +179,16 @@ export default function AppPage() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z.:@0-9&_ -]){10,2000}$/,
+                      value: Patterns.appPage.longDescription,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9.: @&`,
                     },
                     maxLength: {
-                      value: 2000,
+                      value: longDescriptionMaxLength,
                       message: `${t(
                         'content.apprelease.appReleaseForm.maximum'
-                      )} 2000 ${t(
+                      )} ${longDescriptionMaxLength} ${t(
                         'content.apprelease.appReleaseForm.charactersAllowed'
                       )}`,
                     },
@@ -197,7 +198,8 @@ export default function AppPage() {
               <Typography variant="body2" className="form-field" align="right">
                 {(item === 'longDescriptionEN'
                   ? getValues().longDescriptionEN.length
-                  : getValues().longDescriptionDE.length) + `/2000`}
+                  : getValues().longDescriptionDE.length) +
+                  `/${longDescriptionMaxLength}`}
               </Typography>
             </>
           ))}
@@ -320,7 +322,7 @@ export default function AppPage() {
                   )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                 },
                 pattern: {
-                  value: /^([A-Za-z.:@&0-9 !])+$/,
+                  value: Patterns.appPage.providerHomePage,
                   message: `${t(
                     'content.apprelease.appReleaseForm.validCharactersIncludes'
                   )} A-Za-z.:@&0-9 !`,
@@ -380,7 +382,7 @@ export default function AppPage() {
                   )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                 },
                 pattern: {
-                  value: Patterns.PHONE,
+                  value: Patterns.appPage.phone,
                   message: t(
                     'content.apprelease.appPage.pleaseEnterValidContact'
                   ),

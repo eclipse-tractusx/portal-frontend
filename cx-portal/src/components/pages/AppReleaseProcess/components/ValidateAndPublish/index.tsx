@@ -120,9 +120,8 @@ export default function ValidateAndPublish() {
     mode: 'onChange',
   })
 
-  const onValidatePublishSubmit = async (data: any) => {
+  const onValidatePublishSubmit = async (data: any) =>
     setValidatePublishNotification(true)
-  }
 
   const providerDetailsValues = (item: string) => {
     if (item === 'providerHomePage') return defaultValues.providerUri

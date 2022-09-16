@@ -50,7 +50,8 @@ export const appManagementSelector = (state: RootState): SearchInputState =>
 export const currentActiveStep = (state: RootState): any =>
   state.management.currentActiveStep
 
-export const appIdSelector = (state: RootState): any => state.management.appId
+export const appIdSelector = (state: RootState): string =>
+  state.management.appId
 
 export const { increment, decrement } = managementSlice.actions
 
