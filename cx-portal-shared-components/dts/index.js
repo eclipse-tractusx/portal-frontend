@@ -239,7 +239,7 @@ class NF {
             for (const decl of stmt.exportClause.elements) {
               if (
                 decl.propertyName &&
-                decl.propertyName.getText() == decl.name.getText()
+                decl.propertyName.getText() === decl.name.getText()
               ) {
                 namespaces.unshift({
                   name: '',
@@ -472,7 +472,7 @@ function ce(node) {
   }
   if (ts.isIdentifier(node)) {
     return createIdentifier(node)
-  } else if (node.kind == ts.SyntaxKind.NullKeyword) {
+  } else if (node.kind === ts.SyntaxKind.NullKeyword) {
     return { type: 'Literal', value: null }
   } else {
     throw new UnsupportedSyntaxError(node)
@@ -539,7 +539,7 @@ function pp({ sourceFile }) {
         }
       }
       fixModifiers(code, node)
-      if (declarations.length == 1) {
+      if (declarations.length === 1) {
         const decl = declarations[0]
         if (ts.isIdentifier(decl.name)) {
           pushNamedNode(decl.name.getText(), [getStart(node), getEnd(node)])
@@ -641,7 +641,7 @@ function pp({ sourceFile }) {
     const { line } = sourceFile.getLineAndCharacterOfPosition(ref.pos)
     const start = lineStarts[line]
     let end = sourceFile.getLineEndOfPosition(ref.pos)
-    if (code.slice(end, end + 1) == '\n') {
+    if (code.slice(end, end + 1) === '\n') {
       end += 1
     }
     code.remove(start, end)
@@ -654,7 +654,7 @@ function pp({ sourceFile }) {
     const { line } = sourceFile.getLineAndCharacterOfPosition(ref.pos)
     const start = lineStarts[line]
     let end = sourceFile.getLineEndOfPosition(ref.pos)
-    if (code.slice(end, end + 1) == '\n') {
+    if (code.slice(end, end + 1) === '\n') {
       end += 1
     }
     code.remove(start, end)
@@ -741,6 +741,8 @@ function fixModifiers(code, node) {
         break
       case ts.SyntaxKind.DeclareKeyword:
         hasDeclare = true
+        break
+      default:
     }
   }
   if (needsDeclare && !hasDeclare) {
@@ -773,7 +775,7 @@ function getEnd(node) {
   return end + (newlineAt(node, end) ? 1 : 0)
 }
 function newlineAt(node, idx) {
-  return node.getSourceFile().getFullText()[idx] == '\n'
+  return node.getSourceFile().getFullText()[idx] === '\n'
 }
 const IGNORE_TYPENODES = new Set([
   ts.SyntaxKind.LiteralType,
@@ -1195,7 +1197,7 @@ class Transformer {
       existingScope.pir(id)
       existingScope.declaration.end = range.end
       let selfIdx = this.ast.body.findIndex(
-        (node) => node == existingScope.declaration
+        (node) => node === existingScope.declaration
       )
       for (let i = selfIdx + 1; i < this.ast.body.length; i++) {
         const decl = this.ast.body[i]
@@ -1229,7 +1231,7 @@ class Transformer {
     if (ts.isModuleDeclaration(node)) {
       return this.cnd(node)
     }
-    if (node.kind == ts.SyntaxKind.NamespaceExportDeclaration) {
+    if (node.kind === ts.SyntaxKind.NamespaceExportDeclaration) {
       return this.rs(node)
     }
     if (ts.isImportDeclaration(node) || ts.isImportEqualsDeclaration(node)) {
@@ -1457,7 +1459,7 @@ const transform = () => {
       return {
         ...options,
         onwarn(warning, warn) {
-          if (warning.code != 'CIRCULAR_DEPENDENCY') {
+          if (warning.code !== 'CIRCULAR_DEPENDENCY') {
             if (onwarn) {
               onwarn(warning, warn)
             } else {
