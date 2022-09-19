@@ -32,6 +32,7 @@ export enum PAGES {
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
+  SERVICE_MARKETPLACE_DETAIL = 'servicemarketplacedetail',
   DATASPACE_MARKETPLACE = 'dataspacemarketplace',
   APP_DETAIL = 'appdetail',
   DATACATALOG = 'datacatalog',
@@ -88,6 +89,7 @@ export enum OVERLAYS {
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
+  SERVICE_REQUEST = 'service_request',
   IDP = 'idp',
 }
 
@@ -106,7 +108,8 @@ export enum ROLES {
   SETUP_IDP = 'setup_idp',
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
-  APPSTORE_VIEW_SERVICES = 'view_services',
+  APPSTORE_VIEW_SERVICES = 'view_service_marketplace',
+  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service_marketplace',
   APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',
@@ -143,4 +146,5 @@ export enum ROLES {
 
 export enum HINTS {
   COMING_SOON = 'coming_soon',
+  NEW = 'new',
 }
