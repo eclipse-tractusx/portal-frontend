@@ -322,7 +322,9 @@
         "street": "Straße",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Zertifiziert"
+        "cxparticipant": "CX Zertifiziert",
+        "address": "Anschrift",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Deutschland",

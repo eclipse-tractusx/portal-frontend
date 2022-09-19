@@ -322,7 +322,9 @@
         "street": "Street",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member"
+        "cxparticipant": "CX Member",
+        "address": "Address",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Germany",

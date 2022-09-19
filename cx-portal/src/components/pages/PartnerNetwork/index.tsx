@@ -1,6 +1,9 @@
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { useTranslation } from 'react-i18next'
-import { useFetchBusinessPartnersQuery } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
+import {
+  useFetchBusinessPartnersQuery,
+  useFetchBusinessPartnerAddressMutation,
+} from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { PageHeader, PageLoadingTable } from 'cx-portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -13,7 +16,6 @@ import {
 import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './PartnerList/PartnerNetworksBPNTableColumns'
-import { useFetchBusinessPartnerAddressMutation } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {
   isContentPresent,
