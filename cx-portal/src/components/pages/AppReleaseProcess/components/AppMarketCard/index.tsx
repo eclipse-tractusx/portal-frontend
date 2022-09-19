@@ -97,7 +97,11 @@ export const ConnectorFormInputField = ({
             multiline={textarea}
             minRows={textarea && 3}
             maxRows={textarea && 3}
-            sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
+            sx={
+              textarea && {
+                '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
+              }
+            }
           />
         )
       } else if (type === 'dropzone') {
@@ -273,7 +277,7 @@ export default function AppMarketCard() {
             item
             md={3}
             sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-            className={'app-card'}
+            className={'app-release-card'}
           >
             <Card
               image={{
@@ -318,7 +322,7 @@ export default function AppMarketCard() {
                   trigger,
                   errors,
                   name: 'title',
-                  label: t('content.apprelease.appMarketCard.appTitle') + '*',
+                  label: t('content.apprelease.appMarketCard.appTitle') + ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.appTitlePlaceholder'
                   ),
@@ -365,7 +369,7 @@ export default function AppMarketCard() {
                   errors,
                   name: 'provider',
                   label:
-                    t('content.apprelease.appMarketCard.appProvider') + '*',
+                    t('content.apprelease.appMarketCard.appProvider') + ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.appProviderPlaceholder'
                   ),
@@ -417,7 +421,7 @@ export default function AppMarketCard() {
                         label: (
                           <>
                             {t(`content.apprelease.appMarketCard.${item}`) +
-                              '*'}
+                              ' *'}
                             <IconButton sx={{ color: '#939393' }} size="small">
                               <HelpOutlineIcon />
                             </IconButton>
@@ -484,7 +488,8 @@ export default function AppMarketCard() {
                   errors,
                   name: 'useCaseCategory',
                   label:
-                    t('content.apprelease.appMarketCard.useCaseCategory') + '*',
+                    t('content.apprelease.appMarketCard.useCaseCategory') +
+                    ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
                   ),
@@ -522,7 +527,7 @@ export default function AppMarketCard() {
                   errors,
                   name: 'appLanguage',
                   label:
-                    t('content.apprelease.appMarketCard.appLanguage') + '*',
+                    t('content.apprelease.appMarketCard.appLanguage') + ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.appLanguagePlaceholder'
                   ),
@@ -568,7 +573,7 @@ export default function AppMarketCard() {
                   name: 'price',
                   label:
                     t('content.apprelease.appMarketCard.pricingInformation') +
-                    '*',
+                    ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.pricingInformationPlaceholder'
                   ),
@@ -633,42 +638,42 @@ export default function AppMarketCard() {
             <Typography variant="body2" mb={3}>
               {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
             </Typography>
-
-            <Box mb={2}>
-              <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <Button
-                variant="outlined"
-                sx={{ mr: 1 }}
-                startIcon={<HelpOutlineIcon />}
-              >
-                {t('content.apprelease.footerButtons.help')}
-              </Button>
-              <IconButton
-                color="secondary"
-                onClick={() => navigate('/appmanagement')}
-              >
-                <KeyboardArrowLeftIcon />
-              </IconButton>
-              <Button
-                variant="contained"
-                disabled={!isValid}
-                sx={{ float: 'right' }}
-                onClick={handleSubmit(onSubmit)}
-              >
-                {t('content.apprelease.footerButtons.saveAndProceed')}
-              </Button>
-              <Button
-                variant="outlined"
-                name="send"
-                sx={{ float: 'right', mr: 1 }}
-                onClick={handleSubmit(onSubmit)}
-              >
-                {t('content.apprelease.footerButtons.save')}
-              </Button>
-            </Box>
           </form>
         </Grid>
       </Grid>
+
+      <Box mb={2}>
+        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+        <Button
+          variant="outlined"
+          sx={{ mr: 1 }}
+          startIcon={<HelpOutlineIcon />}
+        >
+          {t('content.apprelease.footerButtons.help')}
+        </Button>
+        <IconButton
+          color="secondary"
+          onClick={() => navigate('/appmanagement')}
+        >
+          <KeyboardArrowLeftIcon />
+        </IconButton>
+        <Button
+          variant="contained"
+          disabled={!isValid}
+          sx={{ float: 'right' }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {t('content.apprelease.footerButtons.saveAndProceed')}
+        </Button>
+        <Button
+          variant="outlined"
+          name="send"
+          sx={{ float: 'right', mr: 1 }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {t('content.apprelease.footerButtons.save')}
+        </Button>
+      </Box>
     </div>
   )
 }

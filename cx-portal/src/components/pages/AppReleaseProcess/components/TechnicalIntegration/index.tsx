@@ -41,11 +41,13 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const dispatch = useDispatch()
 
+  const defaultValues = {}
+
   const {
     handleSubmit,
     formState: { isValid },
   } = useForm({
-    defaultValues: {},
+    defaultValues: defaultValues,
     mode: 'onChange',
   })
 
@@ -65,8 +67,8 @@ export default function TechnicalIntegration() {
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
-          sx={{ mr: 1 }}
           startIcon={<HelpOutlineIcon />}
+          sx={{ mr: 1 }}
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
@@ -74,10 +76,10 @@ export default function TechnicalIntegration() {
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
+          onClick={() => dispatch(increment())}
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={() => dispatch(increment())}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>

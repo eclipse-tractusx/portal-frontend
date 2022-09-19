@@ -15,7 +15,7 @@ import AppPage from './components/AppPage'
 import ContractAndConsent from './components/ContractAndConsent'
 import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'
-import TechnicalIntegration from './components/technicalIntegration'
+import TechnicalIntegration from './components/TechnicalIntegration'
 import VerifyCompanyData from './components/VerifyCompanyData'
 
 export default function AppReleaseProcess() {
@@ -45,7 +45,7 @@ export default function AppReleaseProcess() {
     {
       description:
         'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Contrac & Consent',
+      headline: 'Contract & Consent',
       step: 3,
     },
     {
