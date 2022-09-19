@@ -9,15 +9,15 @@ import {
 import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
 import { Box, Grid, useTheme } from '@mui/material'
 import DetailGridRow from './DetailGridRow'
-import { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
+import { BusinessPartner } from 'features/newPartnerNetwork/types'
 
 interface BusinessPartnerDetailOverlayProps {
   openDialog?: boolean
-  selectedRowBPN: BusinessPartnerSearchResponse
+  selectedRowBPN: BusinessPartner
   handleOverlayClose: React.MouseEventHandler
 }
 
-const BusinessPartnerDetailOverlay = ({
+const BusinessPartnerDetailBpnOverlay = ({
   openDialog = false,
   selectedRowBPN,
   handleOverlayClose,
@@ -25,6 +25,8 @@ const BusinessPartnerDetailOverlay = ({
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
+
+  console.log('selectedRowBPN = = ', selectedRowBPN)
 
   return (
     <div className={'business-partner-overlay'}>
@@ -68,8 +70,8 @@ const BusinessPartnerDetailOverlay = ({
                 key={t('content.partnernetwork.columns.name') as string}
                 {...{
                   variableName: `${t('content.partnernetwork.columns.name')}`,
-                  value: selectedRowBPN.legalEntity
-                    ? selectedRowBPN.legalEntity.names[0].value
+                  value: selectedRowBPN?.names
+                    ? selectedRowBPN.names[0].value
                     : '',
                 }}
               />
@@ -77,9 +79,7 @@ const BusinessPartnerDetailOverlay = ({
                 key={t('content.partnernetwork.columns.bpn') as string}
                 {...{
                   variableName: `${t('content.partnernetwork.columns.bpn')}`,
-                  value: selectedRowBPN.legalEntity
-                    ? selectedRowBPN.legalEntity.bpn
-                    : '',
+                  value: selectedRowBPN ? selectedRowBPN.bpn : '',
                 }}
               />
 
@@ -119,9 +119,10 @@ const BusinessPartnerDetailOverlay = ({
                 key="Country"
                 {...{
                   variableName: 'Country',
-                  value: selectedRowBPN.legalEntity
-                    ? selectedRowBPN.legalEntity.legalAddress.country.name
-                    : '',
+                  value:
+                    selectedRowBPN && selectedRowBPN.legalAddress
+                      ? selectedRowBPN.legalAddress.country.name
+                      : '',
                 }}
               />
               <Grid
@@ -134,8 +135,8 @@ const BusinessPartnerDetailOverlay = ({
               >
                 <Typography variant="h5">Identifiers</Typography>
               </Grid>
-              {selectedRowBPN.legalEntity &&
-                selectedRowBPN.legalEntity.identifiers?.map(
+              {selectedRowBPN &&
+                selectedRowBPN.identifiers?.map(
                   (identifier: BpdmTypeUUIDKeyPair) => {
                     return (
                       <DetailGridRow
@@ -158,4 +159,4 @@ const BusinessPartnerDetailOverlay = ({
   )
 }
 
-export default BusinessPartnerDetailOverlay
+export default BusinessPartnerDetailBpnOverlay

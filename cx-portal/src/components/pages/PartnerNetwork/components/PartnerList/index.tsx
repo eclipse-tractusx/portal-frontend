@@ -40,6 +40,7 @@ import {
   addMemberAttribute,
 } from './helper'
 import BusinessPartnerDetailOverlay from '../../BusinessPartnerDetailOverlay'
+import BusinessPartnerDetailBpnOverlay from '../../BusinessPartnerDetailOverlay/BusinessPartnerDetailBpnOverlay'
 
 export const PartnerList = ({
   fetchHook,
@@ -61,18 +62,22 @@ export const PartnerList = ({
 
   const { data } = useFetchMemberCompaniesQuery()
 
-  const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const [overlayLegalEntityOpen, setLegalEntityOverlayOpen] =
+    useState<boolean>(false)
+  const [selectedLegalEntity, setSelectedLegalEntity] = useState<any>({})
+  const [bpnOverlayOpen, setBPNOverlayOpen] = useState<boolean>(false)
   const [selectedBPN, setSelectedBPN] = useState<any>({})
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
       if (params.row && params.row.legalEntity) {
-        setSelectedBPN(params.row as BusinessPartnerSearchResponse)
+        setSelectedLegalEntity(params.row as BusinessPartnerSearchResponse)
+        setLegalEntityOverlayOpen(true)
       } else {
         setSelectedBPN(params.row as BusinessPartner)
+        setBPNOverlayOpen(true)
       }
-      setOverlayOpen(true)
     }
   }
 
@@ -105,7 +110,7 @@ export const PartnerList = ({
         .then((payload: any) => {
           //update for country attribute && update member info
           let finalObj = JSON.parse(JSON.stringify(cData))
-          finalObj.country = payload[0].legalAddress.country
+          finalObj.legalAddress = payload[0].legalAddress
           if (isQueryDataPresent(data)) {
             finalObj.member = data && data.includes(finalObj.bpn)
           }
@@ -119,9 +124,16 @@ export const PartnerList = ({
     <section id="identity-management-id">
       <BusinessPartnerDetailOverlay
         {...{
+          selectedRowBPN: selectedLegalEntity,
+          openDialog: overlayLegalEntityOpen,
+          handleOverlayClose: () => setLegalEntityOverlayOpen(false),
+        }}
+      />
+      <BusinessPartnerDetailBpnOverlay
+        {...{
           selectedRowBPN: selectedBPN,
-          openDialog: overlayOpen,
-          handleOverlayClose: () => setOverlayOpen(false),
+          openDialog: bpnOverlayOpen,
+          handleOverlayClose: () => setBPNOverlayOpen(false),
         }}
       />
       <PageLoadingTable<BusinessPartner>
