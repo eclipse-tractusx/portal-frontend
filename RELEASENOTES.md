@@ -15,6 +15,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugs - Show error popup on failure of approve or decline request
 * Bugs - Text updates on company data overlay
 * Feature - App Release Process Step 6
+* Feature - App Release Process Step 2 - business logic
 
 
 ### 0.5.3

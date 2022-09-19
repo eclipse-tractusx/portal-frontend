@@ -34,8 +34,13 @@ import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useState } from 'react'
 import '../ReleaseProcessSteps.scss'
-import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
+import { useUpdateappMutation } from 'features/appManagement/apiSlice'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -54,6 +59,9 @@ export default function AppPage() {
   const { t } = useTranslation()
   const [appPageNotification, setAppPageNotification] = useState(false)
   const dispatch = useDispatch()
+  const [updateapp] = useUpdateappMutation()
+  const appId = useSelector(appIdSelector)
+  const longDescriptionMaxLength = 2000
 
   const defaultValues = {
     longDescriptionEN: '',
@@ -98,8 +106,31 @@ export default function AppPage() {
   }
 
   const handleSave = async (data: FormDataType) => {
-    dispatch(increment())
-    setAppPageNotification(true)
+    const saveData = {
+      descriptions: [
+        {
+          languageCode: 'en',
+          longDescription: data.longDescriptionEN,
+          shortDescription: '',
+        },
+        {
+          languageCode: 'de',
+          longDescription: data.longDescriptionDE,
+          shortDescription: '',
+        },
+      ],
+      images: [data.images],
+      providerUri: data.providerHomePage,
+      contactEmail: data.providerContactEmail,
+      contactNumber: data.providerPhoneContact,
+      appId: appId,
+    }
+
+    try {
+      await updateapp(saveData).unwrap()
+      dispatch(increment())
+      setAppPageNotification(true)
+    } catch (err) {}
   }
 
   return (
@@ -148,16 +179,16 @@ export default function AppPage() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z.:@0-9&_ -]){10,200}$/,
+                      value: Patterns.appPage.longDescription,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9.: @&`,
                     },
                     maxLength: {
-                      value: 200,
+                      value: longDescriptionMaxLength,
                       message: `${t(
                         'content.apprelease.appReleaseForm.maximum'
-                      )} 200 ${t(
+                      )} ${longDescriptionMaxLength} ${t(
                         'content.apprelease.appReleaseForm.charactersAllowed'
                       )}`,
                     },
@@ -167,7 +198,8 @@ export default function AppPage() {
               <Typography variant="body2" className="form-field" align="right">
                 {(item === 'longDescriptionEN'
                   ? getValues().longDescriptionEN.length
-                  : getValues().longDescriptionDE.length) + `/200`}
+                  : getValues().longDescriptionDE.length) +
+                  `/${longDescriptionMaxLength}`}
               </Typography>
             </>
           ))}
@@ -290,7 +322,7 @@ export default function AppPage() {
                   )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                 },
                 pattern: {
-                  value: /^([A-Za-z.:@&0-9 !])+$/,
+                  value: Patterns.appPage.providerHomePage,
                   message: `${t(
                     'content.apprelease.appReleaseForm.validCharactersIncludes'
                   )} A-Za-z.:@&0-9 !`,
@@ -350,7 +382,7 @@ export default function AppPage() {
                   )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                 },
                 pattern: {
-                  value: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,50}$/,
+                  value: Patterns.appPage.phone,
                   message: t(
                     'content.apprelease.appPage.pleaseEnterValidContact'
                   ),
