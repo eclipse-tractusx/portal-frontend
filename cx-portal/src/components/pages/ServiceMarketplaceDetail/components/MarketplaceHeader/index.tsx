@@ -61,8 +61,8 @@ export default function MarketplaceHeader({
           className="subscribe-btn"
           disabled={
             UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
-              ? true
-              : false
+              ? false
+              : true
           }
           onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
         >
