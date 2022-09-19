@@ -8,6 +8,7 @@ export type SearchInputState = {
 export interface AppManagementState {
   searchInput: SearchInputState
   currentActiveStep: number
+  appId: string
 }
 
 export const initialState: AppManagementState = {
@@ -16,4 +17,5 @@ export const initialState: AppManagementState = {
     text: '',
   },
   currentActiveStep: 1,
+  appId: '',
 }
