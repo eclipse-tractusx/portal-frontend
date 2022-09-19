@@ -20,6 +20,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Show CX Member info in the Partner Network table
 * Feature - App Release Process Step 6
 * Bug - Partner network detail overlay implemented
+* Feature - App Release Process Step 2 - business logic
 
 
 ### 0.5.3
