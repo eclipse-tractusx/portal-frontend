@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme } from '@mui/material'
 import { Box, Grid, useTheme } from '@mui/material'
 import { LogoGrayData } from '../../basic/Logo'
 import { Button } from '../../basic/Button'
