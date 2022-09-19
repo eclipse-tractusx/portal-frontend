@@ -59,6 +59,11 @@ export type ServiceRequestAPIResponse = {
   meta: PaginationData
 }
 
+export type AgreementRequest = {
+  agreementId: string
+  name: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/roles',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -79,6 +84,9 @@ export const apiSlice = createApi({
     fetchSubscription: builder.query<SubscriptionRequest, string>({
       query: (subscriptionId) => `/api/services/subscription/${subscriptionId}`,
     }),
+    fetchAgreements: builder.query<AgreementRequest[], void>({
+      query: () => `/api/services/serviceAgreementData/`,
+    }),
   }),
 })
 
@@ -87,4 +95,5 @@ export const {
   useFetchServiceQuery,
   useAddSubscribeServiceMutation,
   useFetchSubscriptionQuery,
+  useFetchAgreementsQuery,
 } = apiSlice

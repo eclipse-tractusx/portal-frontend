@@ -32,9 +32,11 @@ import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import {
   useAddSubscribeServiceMutation,
+  useFetchAgreementsQuery,
   useFetchServiceQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
+import './ServiceRequest.scss'
 
 export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -43,6 +45,7 @@ export default function ServiceRequest({ id }: { id: string }) {
   const [termsChecked, setTermsChecked] = useState<boolean>(false)
 
   const { data } = useFetchServiceQuery(id ?? '')
+  const { data: agreements } = useFetchAgreementsQuery()
   const [addSubscribeService, { isSuccess }] = useAddSubscribeServiceMutation()
 
   if (isSuccess) {
@@ -78,13 +81,20 @@ export default function ServiceRequest({ id }: { id: string }) {
               data.title
             )}
         </Typography>
-        <Checkbox
-          label="Terms & Conditions"
-          onChange={(e) => {
-            setTermsChecked(e.target.checked)
-          }}
-          onFocusVisible={function noRefCheck() {}}
-        />
+        <ul className="agreements-list">
+          {agreements &&
+            agreements.map((agreement, index) => (
+              <li key={index}>
+                <Checkbox
+                  label={agreement.name}
+                  onChange={(e) => {
+                    setTermsChecked(e.target.checked)
+                  }}
+                  onFocusVisible={function noRefCheck() {}}
+                />
+              </li>
+            ))}
+        </ul>
       </DialogContent>
 
       <DialogActions>
