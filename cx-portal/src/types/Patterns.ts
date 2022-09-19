@@ -29,6 +29,19 @@ export const Patterns = {
     URL: /^https?:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
+  appMarketCard: {
+    appTitle: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
+    appProvider: /^([A-Za-z ]){3,30}$/,
+    shortDescription: /^([A-Za-z.:@0-9& ]){10,255}$/,
+    useCaseCategory: /^([A-Za-z])$/,
+    appLanguage: /^([A-Za-z ])$/,
+    pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
+  },
+  appPage: {
+    longDescription: /^([A-Za-z.:@0-9&_ -]){10,2000}$/,
+    providerHomePage: /^([A-Za-z.:@&0-9 !])+$/,
+    phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
+  },
 }
 
 export default Patterns
