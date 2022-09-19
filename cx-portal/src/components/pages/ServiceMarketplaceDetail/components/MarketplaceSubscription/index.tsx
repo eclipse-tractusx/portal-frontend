@@ -18,39 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Box, Grid } from '@mui/material'
-import ServicesElements from './ServicesElements'
-import './style.scss'
+import { Typography } from 'cx-portal-shared-components'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import './MarketplaceSubscription.scss'
+import MarketplaceSubscriptionNames from './MarketplaceSubscriptionNames'
 
-export default function ServiceMarketplace() {
+export default function MarketplaceSubscription({
+  item,
+}: {
+  item: ServiceRequest
+}) {
   const { t } = useTranslation()
+
   return (
-    <div>
-      <div className="banner-heading">
-        <PageHeader
-          title={t('servicemarketplace.title')}
-          hasSubtract={false}
-          headerHeight={250}
-        />
-      </div>
-      <Box className="box-container">
-        <Grid container>
-          <Grid xs={2} item></Grid>
-          <Grid item xs={3} className="grid-heading">
-            Explore available service offers
-          </Grid>
-          <Grid item xs={3} className="grid-heading">
-            Select & Contact interesting offers
-          </Grid>
-          <Grid item xs={3} className="grid-heading border-none">
-            Get your dataspace connected
-          </Grid>
-        </Grid>
-      </Box>
-      <div className="container">
-        <ServicesElements />
+    <div className="marketplace-subscriptions">
+      <Typography variant="body2">
+        {t('content.serviceMarketplace.subscriptionHeading').replace(
+          '{serviceName}',
+          item.title
+        )}
+      </Typography>
+      <div className="subscriptions-content">
+        <ol>
+          {item.offerSubscriptionDetailData.map((data, index) => (
+            <MarketplaceSubscriptionNames subscription={data} index={index} />
+          ))}
+        </ol>
       </div>
     </div>
   )

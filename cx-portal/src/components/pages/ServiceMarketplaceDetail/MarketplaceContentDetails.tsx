@@ -18,30 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory } from '@storybook/react'
-import { StatusVariants } from './CardChip'
+import { Typography } from 'cx-portal-shared-components'
+import MarketplaceHeader from './components/MarketplaceHeader'
+import MarketplaceProvider from './components/MarketplaceProvider'
+import MarketplaceSubscription from './components/MarketplaceSubscription'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import './Marketplace.scss'
 
-import { CardHorizontal as Component } from './CardHorizontal'
-
-export default {
-  title: 'Cards',
-  component: Component,
-  argTypes: {},
-}
-
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
-
-export const CardHorizontal = Template.bind({})
-CardHorizontal.args = {
-  label: 'Catena-X',
-  title: 'Digital Twin Debugger',
-  borderRadius: 20,
-  imagePath: '',
-  imageAlt: 'App Card ',
-  status: StatusVariants.release,
-  statusText: 'In Release',
-  buttonText: 'Details',
-  onBtnClick: () => {},
+export default function MarketplaceContentDetails({
+  item,
+  success,
+}: {
+  item: ServiceRequest
+  success: boolean
+}) {
+  return (
+    item.offerSubscriptionDetailData && (
+      <>
+        <MarketplaceHeader item={item} success={success} />
+        {item.offerSubscriptionDetailData.length >= 3 && (
+          <MarketplaceSubscription item={item} />
+        )}
+        <div className="product-description">
+          <Typography variant="body2">{item.description}</Typography>
+        </div>
+        <MarketplaceProvider item={item} />
+      </>
+    )
+  )
 }

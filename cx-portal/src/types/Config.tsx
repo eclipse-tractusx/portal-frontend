@@ -47,6 +47,7 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
+import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
@@ -91,6 +92,21 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.SERVICE_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW_SERVICES,
     element: <ServiceMarketplace />,
+  },
+  {
+    name: PAGES.SERVICE_MARKETPLACE_DETAIL,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICE_MARKETPLACE_DETAIL}
+        path={PAGES.SERVICE_MARKETPLACE_DETAIL}
+        element={<ServiceMarketplaceDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":serviceId" element={<ServiceMarketplaceDetail />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.DATASPACE_MARKETPLACE,
@@ -330,6 +346,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.TECHUSER_VIEW,
   },
   {
+    name: OVERLAYS.SERVICE_REQUEST,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+  },
+  {
     name: OVERLAYS.IDP,
     role: ROLES.IDP_VIEW,
   },
@@ -357,7 +377,7 @@ export const mainMenuFullTree = [
     name: PAGES.MARKETPLACE,
     children: [
       { name: PAGES.APP_MARKETPLACE },
-      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
       { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
     ],
   },

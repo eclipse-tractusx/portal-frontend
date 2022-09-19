@@ -17,31 +17,21 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
-import { ComponentStory } from '@storybook/react'
-import { StatusVariants } from './CardChip'
-
-import { CardHorizontal as Component } from './CardHorizontal'
-
-export default {
-  title: 'Cards',
-  component: Component,
-  argTypes: {},
+.back-btn {
+  margin: 50px 0px 0px 90px !important;
 }
-
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
-
-export const CardHorizontal = Template.bind({})
-CardHorizontal.args = {
-  label: 'Catena-X',
-  title: 'Digital Twin Debugger',
-  borderRadius: 20,
-  imagePath: '',
-  imageAlt: 'App Card ',
-  status: StatusVariants.release,
-  statusText: 'In Release',
-  buttonText: 'Details',
-  onBtnClick: () => {},
+.marketplace-main {
+  width: 100%;
+  padding: 30px 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  .product-description {
+    margin-bottom: 42px;
+    p {
+      margin-bottom: 12px;
+    }
+  }
 }

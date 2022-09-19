@@ -18,30 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory } from '@storybook/react'
-import { StatusVariants } from './CardChip'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-import { CardHorizontal as Component } from './CardHorizontal'
+const name = 'admin/servicemarketplace'
 
-export default {
-  title: 'Cards',
-  component: Component,
-  argTypes: {},
+export interface ServiceMarketplaceState {
+  isSuccess: boolean
 }
 
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
-
-export const CardHorizontal = Template.bind({})
-CardHorizontal.args = {
-  label: 'Catena-X',
-  title: 'Digital Twin Debugger',
-  borderRadius: 20,
-  imagePath: '',
-  imageAlt: 'App Card ',
-  status: StatusVariants.release,
-  statusText: 'In Release',
-  buttonText: 'Details',
-  onBtnClick: () => {},
+export const initialState: ServiceMarketplaceState = {
+  isSuccess: false,
 }
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentSuccessType = (state: RootState): any =>
+  state.serviceMarketplace.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

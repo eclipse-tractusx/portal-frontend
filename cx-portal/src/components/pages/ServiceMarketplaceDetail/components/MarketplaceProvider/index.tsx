@@ -18,40 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Box, Grid } from '@mui/material'
-import ServicesElements from './ServicesElements'
-import './style.scss'
+import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import './MarketplaceProvider.scss'
 
-export default function ServiceMarketplace() {
-  const { t } = useTranslation()
+export default function MarketplaceProvider({
+  item,
+}: {
+  item: ServiceRequest
+}) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'content.appdetail.providerInformation',
+  })
+
+  const tableData: TableType = {
+    head: [t('appProvider'), t('website'), t('email'), t('phone')],
+    body: [[item.provider], [item.website], [item.contactEmail], [item.phone]],
+  }
+
   return (
-    <div>
-      <div className="banner-heading">
-        <PageHeader
-          title={t('servicemarketplace.title')}
-          hasSubtract={false}
-          headerHeight={250}
-        />
+    <div className="marketplace-provider">
+      <div className="marketplace-content">
+        <Typography variant="h4">{t('heading')}</Typography>
+        <Typography variant="body2">{t('message')}</Typography>
       </div>
-      <Box className="box-container">
-        <Grid container>
-          <Grid xs={2} item></Grid>
-          <Grid item xs={3} className="grid-heading">
-            Explore available service offers
-          </Grid>
-          <Grid item xs={3} className="grid-heading">
-            Select & Contact interesting offers
-          </Grid>
-          <Grid item xs={3} className="grid-heading border-none">
-            Get your dataspace connected
-          </Grid>
-        </Grid>
-      </Box>
-      <div className="container">
-        <ServicesElements />
-      </div>
+      <StaticTable data={tableData} horizontal={true} />
     </div>
   )
 }

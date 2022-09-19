@@ -18,30 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory } from '@storybook/react'
-import { StatusVariants } from './CardChip'
+import {
+  SubscriptionData,
+  useFetchSubscriptionQuery,
+} from 'features/serviceMarketplace/serviceApiSlice'
+import './MarketplaceSubscription.scss'
 
-import { CardHorizontal as Component } from './CardHorizontal'
+export default function MarketplaceSubscriptionNames({
+  subscription,
+  index,
+}: {
+  subscription: SubscriptionData
+  index: number
+}) {
+  const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
 
-export default {
-  title: 'Cards',
-  component: Component,
-  argTypes: {},
-}
-
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
-
-export const CardHorizontal = Template.bind({})
-CardHorizontal.args = {
-  label: 'Catena-X',
-  title: 'Digital Twin Debugger',
-  borderRadius: 20,
-  imagePath: '',
-  imageAlt: 'App Card ',
-  status: StatusVariants.release,
-  statusText: 'In Release',
-  buttonText: 'Details',
-  onBtnClick: () => {},
+  return (
+    <li key={index}>
+      <span className="subscription-name">
+        {data &&
+          data.offerName.charAt(0).toUpperCase() + data.offerName.slice(1)}
+      </span>
+    </li>
+  )
 }

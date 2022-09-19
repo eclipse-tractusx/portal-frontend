@@ -19,7 +19,9 @@
  ********************************************************************************/
 
 import { Box, useTheme } from '@mui/material'
+import { Box, Grid, useTheme } from '@mui/material'
 import { LogoGrayData } from '../../basic/Logo'
+import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
 import { CardChip, CardChipProps } from './CardChip'
 
@@ -31,6 +33,8 @@ interface CardHorizontalProps extends CardChipProps {
   imageAlt: string
   description?: string
   backgroundColor?: string
+  buttonText?: string
+  onBtnClick?: React.MouseEventHandler
 }
 
 export const CardHorizontal = ({
@@ -42,6 +46,8 @@ export const CardHorizontal = ({
   description,
   status,
   statusText,
+  buttonText,
+  onBtnClick,
   backgroundColor,
 }: CardHorizontalProps) => {
   const theme = useTheme()
@@ -54,7 +60,7 @@ export const CardHorizontal = ({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '0px',
-        maxWidth: '539px',
+        width: '100%',
         borderRadius: `${borderRadius}px`,
         ':hover': {
           boxShadow: theme.shadows['20'],
@@ -82,7 +88,7 @@ export const CardHorizontal = ({
         sx={{
           width: '299px',
           height: '160px',
-          margin: '0px 0px 0px auto ',
+          margin: '0px 0px 0px 20px',
           paddingTop: '20px',
         }}
       >
@@ -123,16 +129,27 @@ export const CardHorizontal = ({
         >
           {description}
         </Typography>
-
-        {statusText && (
-          <Box
-            sx={{
-              marginTop: '21px',
-            }}
-          >
-            <CardChip status={status} statusText={statusText} />
-          </Box>
-        )}
+        <Grid container>
+          <Grid xs={4}>
+            {statusText && (
+              <Box
+                sx={{
+                  marginTop: '21px',
+                }}
+              >
+                <CardChip status={status} statusText={statusText} />
+              </Box>
+            )}
+          </Grid>
+          <Grid xs={3}></Grid>
+          <Grid xs={4}>
+            {buttonText && (
+              <Button size="small" onClick={onBtnClick}>
+                {buttonText}
+              </Button>
+            )}
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   )
