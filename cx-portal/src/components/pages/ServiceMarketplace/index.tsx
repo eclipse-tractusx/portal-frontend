@@ -1,8 +1,8 @@
 import { PageHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
-import './style.scss'
 import ServicesElements from './ServicesElements'
+import './style.scss'
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
@@ -15,46 +15,16 @@ export default function ServiceMarketplace() {
           headerHeight={250}
         />
       </div>
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '200px',
-          right: `0px !important`,
-          fontWeight: 'bold',
-        }}
-      >
+      <Box className="box-container">
         <Grid container>
           <Grid xs={2} item></Grid>
-          <Grid
-            item
-            xs={3}
-            sx={{
-              padding: '0px 10px',
-              textAlign: 'center',
-              borderRight: '3px solid white',
-            }}
-          >
+          <Grid item xs={3} className="grid-heading">
             Explore available service offers
           </Grid>
-          <Grid
-            item
-            xs={3}
-            sx={{
-              padding: '0px 10px',
-              textAlign: 'center',
-              borderRight: '3px solid white',
-            }}
-          >
+          <Grid item xs={3} className="grid-heading">
             Select & Contact interesting offers
           </Grid>
-          <Grid
-            item
-            xs={3}
-            sx={{
-              padding: '0px 10px',
-              textAlign: 'center',
-            }}
-          >
+          <Grid item xs={3} className="grid-heading border-none">
             Get your dataspace connected
           </Grid>
         </Grid>

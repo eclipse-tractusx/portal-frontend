@@ -28,14 +28,13 @@ import {
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
 import {
   useAddSubscribeServiceMutation,
   useFetchAgreementsQuery,
   useFetchServiceQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
+import { closeOverlay } from 'features/control/overlay/actions'
 import './ServiceRequest.scss'
 
 export default function ServiceRequest({ id }: { id: string }) {
@@ -50,7 +49,7 @@ export default function ServiceRequest({ id }: { id: string }) {
 
   if (isSuccess) {
     dispatch(setSuccessType(true))
-    dispatch(show(OVERLAYS.NONE, ''))
+    dispatch(closeOverlay())
   }
 
   const handleConfirm = async (id: string) => {
@@ -67,14 +66,11 @@ export default function ServiceRequest({ id }: { id: string }) {
         title={t('content.serviceMarketplace.headline')}
         intro={''}
         closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(show(OVERLAYS.NONE, ''))}
+        onCloseWithIcon={() => dispatch(closeOverlay())}
       />
 
       <DialogContent className="marketplace-overlay-content">
-        <Typography
-          sx={{ margin: '30px 0 10px', textAlign: 'center' }}
-          variant="h5"
-        >
+        <Typography className="service-description" variant="h5">
           {data &&
             t('content.serviceMarketplace.description').replace(
               '{serviceName}',
@@ -98,16 +94,17 @@ export default function ServiceRequest({ id }: { id: string }) {
       </DialogContent>
 
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE))}
-        >
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
         <Button
           variant="contained"
           onClick={() => handleConfirm(id)}
-          disabled={termsChecked ? false : true}
+          disabled={
+            termsChecked || (agreements && agreements.length <= 0)
+              ? false
+              : true
+          }
         >
           {t('global.actions.confirm')}
         </Button>

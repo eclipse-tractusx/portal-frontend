@@ -50,7 +50,7 @@ export default function ServiceMarketplaceDetail() {
         color="secondary"
         size="small"
         onClick={() => navigate('/servicemarketplace')}
-        sx={{ margin: '50px 0px 0px 90px' }}
+        className="back-btn"
       >
         {t('global.actions.back')}
       </Button>

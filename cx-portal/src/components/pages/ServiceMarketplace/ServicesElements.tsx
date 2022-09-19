@@ -39,7 +39,7 @@ export default function ServicesElements() {
   return (
     <div className="marketplace-section">
       {services && services.length ? (
-        <Box sx={{ width: '100%' }}>
+        <Box>
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}

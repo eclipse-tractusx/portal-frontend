@@ -49,11 +49,7 @@ export default function MarketplaceHeader({
         <Button
           color="success"
           className="subscribe-btn"
-          onClick={() =>
-            UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
-              ? dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))
-              : ''
-          }
+          onClick={() => console.log('click function')}
         >
           {t('content.appdetail.subscribe')}
         </Button>
@@ -63,11 +59,12 @@ export default function MarketplaceHeader({
         <Button
           color="primary"
           className="subscribe-btn"
-          onClick={() =>
+          disabled={
             UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
-              ? dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))
-              : ''
+              ? true
+              : false
           }
+          onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
         >
           {t('content.appdetail.subscribe')}
         </Button>

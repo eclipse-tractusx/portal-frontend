@@ -35,7 +35,6 @@ export default function MarketplaceSubscriptionNames({
 
   return (
     <li key={index}>
-      {'#' + index}
       <span className="subscription-name">
         {data &&
           data.offerName.charAt(0).toUpperCase() + data.offerName.slice(1)}
