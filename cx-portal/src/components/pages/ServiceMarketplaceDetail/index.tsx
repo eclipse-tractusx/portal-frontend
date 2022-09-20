@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { Button, PageSnackbar } from 'cx-portal-shared-components'
+import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
 import { useSelector } from 'react-redux'
@@ -32,17 +32,14 @@ export default function ServiceMarketplaceDetail() {
   const { serviceId } = useParams()
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
 
-  const { data } = useFetchServiceQuery(serviceId ?? '')
+  const { data, refetch } = useFetchServiceQuery(serviceId ?? '')
 
   const success = useSelector(currentSuccessType)
 
   useEffect(() => {
     success && setShowSuccessAlert(true)
+    refetch()
   }, [success])
-
-  const onSuccessAlertClose = () => {
-    setShowSuccessAlert(false)
-  }
 
   return (
     <main>
@@ -57,18 +54,6 @@ export default function ServiceMarketplaceDetail() {
       <div className="marketplace-main">
         {data && <MarketplaceContentDetails item={data} success={success} />}
       </div>
-      <PageSnackbar
-        contactLinks=""
-        contactText=""
-        description="Service Subscribed successfully"
-        open={showSuccessAlert}
-        onCloseNotification={onSuccessAlertClose}
-        severity="success"
-        showIcon
-        title="Success"
-        vertical={'bottom'}
-        horizontal={'right'}
-      />
     </main>
   )
 }

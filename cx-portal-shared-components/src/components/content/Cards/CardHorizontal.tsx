@@ -109,8 +109,8 @@ export const CardHorizontal = ({
           {description}
         </Typography>
         <Grid container>
-          <Grid xs={4}>
-            {statusText && (
+          {statusText && (
+            <Grid xs={4}>
               <Box
                 sx={{
                   marginTop: '21px',
@@ -118,16 +118,20 @@ export const CardHorizontal = ({
               >
                 <CardChip status={status} statusText={statusText} />
               </Box>
-            )}
-          </Grid>
-          <Grid xs={3}></Grid>
-          <Grid xs={4}>
-            {buttonText && (
+            </Grid>
+          )}
+          {buttonText && (
+            <Grid
+              xs={4}
+              sx={{
+                marginLeft: 'auto',
+              }}
+            >
               <Button size="small" onClick={onBtnClick}>
                 {buttonText}
               </Button>
-            )}
-          </Grid>
+            </Grid>
+          )}
         </Grid>
       </Box>
     </Box>

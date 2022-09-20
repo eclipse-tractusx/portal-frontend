@@ -17,6 +17,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+.MuiPaper-root {
+  min-width: auto;
+  max-width: 800px !important;
+}
 .service-description {
   margin: '30px 0 10px';
   text-align: 'center';
