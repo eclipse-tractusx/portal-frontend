@@ -91,7 +91,7 @@ export const PageLoadingTable = function <T>({
 
   useEffect(() => {
     //reset loading
-    if(isFetching && !loading) {
+    if (isFetching && !loading) {
       setLoading(true)
     }
     if (isSuccess && !isFetching && data && (data.content || data.bpn)) {
