@@ -222,7 +222,7 @@ export default function ValidateAndPublish() {
               disabled={true}
             />
           </div>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2, mt: 8 }} />
+          <Divider className="form-divider" />
           <Typography variant="h4" align="center" sx={{ mb: 4 }}>
             {t('content.apprelease.appPage.headerTitle')}
           </Typography>
@@ -262,7 +262,7 @@ export default function ValidateAndPublish() {
             </div>
           ))}
 
-          <Divider sx={{ mb: 2, mr: -2, ml: -2, mt: 8 }} />
+          <Divider className="form-divider" />
           <div className="form-field">
             <InputLabel sx={{ mb: 3, mt: 3 }}>
               {t('content.apprelease.appPage.images') + ' *'}
@@ -275,7 +275,7 @@ export default function ValidateAndPublish() {
               {t('content.apprelease.appReleaseForm.max3Images')}
             </Typography>
           </div>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2, mt: 8 }} />
+          <Divider className="form-divider" />
 
           {['connectData', 'dataSecurityInformation'].map((item) => (
             <div className="form-field">

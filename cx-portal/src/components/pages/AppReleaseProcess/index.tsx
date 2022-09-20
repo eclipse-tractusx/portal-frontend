@@ -37,6 +37,7 @@ import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'
 import TechnicalIntegration from './components/TechnicalIntegration'
 import ValidateAndPublish from './components/ValidateAndPublish'
+import { Box } from '@mui/material'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
@@ -161,7 +162,7 @@ export default function AppReleaseProcess() {
                     {t('content.apprelease.dividerText')}
                   </Typography>
                 </div>
-                <div className="text-center">
+                <Box textAlign="center">
                   <Button
                     color="primary"
                     size="small"
@@ -173,7 +174,7 @@ export default function AppReleaseProcess() {
                   <Typography variant="h3" className="marketplace-heading">
                     {t('content.apprelease.marketplaceHeading')}
                   </Typography>
-                </div>
+                </Box>
                 <div className="marketplace-main">
                   <ul>
                     <li>

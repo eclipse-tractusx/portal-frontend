@@ -23,10 +23,6 @@
   margin: 0 auto;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .appoverview-main {
   .desc-section {
     text-align: center;
@@ -64,6 +60,7 @@
         text-align: center;
         margin-bottom: 132px;
       }
+
       .lr-text-divider {
         margin-top: 104px;
         display: flex;
@@ -90,10 +87,12 @@
         margin-top: 48px;
         text-align: center;
       }
+
       .marketplace-heading {
         max-width: 690px;
         margin: 158px auto 60px;
       }
+
       .marketplace-main {
         ul {
           list-style: none;
@@ -102,18 +101,23 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+
           li {
             display: flex;
             margin-bottom: 30px;
+
             button {
               margin-right: 36px;
             }
+
             span {
               flex: 1;
             }
+
             :last-child {
               margin-bottom: 0;
             }
+
             .neu-btn {
               height: 36px;
               width: 51px;
