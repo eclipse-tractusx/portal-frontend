@@ -44,6 +44,9 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch } from 'react-redux'
 import { increment } from 'features/appManagement/slice'
+import { setAppId } from 'features/appManagement/actions'
+import { isString } from 'lodash'
+import Patterns from 'types/Patterns'
 
 type FormDataType = {
   title: string
@@ -97,7 +100,11 @@ export const ConnectorFormInputField = ({
             multiline={textarea}
             minRows={textarea && 3}
             maxRows={textarea && 3}
-            sx={textarea && { '.MuiFilledInput-root': { padding: 0 } }}
+            sx={
+              textarea && {
+                '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
+              }
+            }
           />
         )
       } else if (type === 'dropzone') {
@@ -167,7 +174,7 @@ export default function AppMarketCard() {
     useCaseCategory: [],
     appLanguage: [],
     //To do: to be changed once api is available
-    providerCompanyId: '220330ac-170d-4e22-8d72-9467ed042149',
+    providerCompanyId: '2dc4249f-b5ca-4d42-bef1-7a7a950a4f87',
     shortDescriptionEN: '',
     shortDescriptionDE: '',
     uploadImage: {
@@ -244,10 +251,13 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
-    try {
-      await addCreateApp(saveData).unwrap()
-      dispatch(increment())
-    } catch (err) {}
+    await addCreateApp(saveData)
+      .unwrap()
+      .then((result) => {
+        isString(result) && dispatch(setAppId(result))
+        dispatch(increment())
+      })
+      .catch((error) => {})
   }
 
   return (
@@ -273,7 +283,7 @@ export default function AppMarketCard() {
             item
             md={3}
             sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-            className={'app-card'}
+            className={'app-release-card'}
           >
             <Card
               image={{
@@ -318,7 +328,7 @@ export default function AppMarketCard() {
                   trigger,
                   errors,
                   name: 'title',
-                  label: t('content.apprelease.appMarketCard.appTitle') + '*',
+                  label: t('content.apprelease.appMarketCard.appTitle') + ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.appTitlePlaceholder'
                   ),
@@ -339,7 +349,7 @@ export default function AppMarketCard() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
+                      value: Patterns.appMarketCard.appTitle,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9.:_- @&`,
@@ -365,7 +375,7 @@ export default function AppMarketCard() {
                   errors,
                   name: 'provider',
                   label:
-                    t('content.apprelease.appMarketCard.appProvider') + '*',
+                    t('content.apprelease.appMarketCard.appProvider') + ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.appProviderPlaceholder'
                   ),
@@ -386,7 +396,7 @@ export default function AppMarketCard() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z ]){3,30}$/,
+                      value: Patterns.appMarketCard.appProvider,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Z a-z`,
@@ -417,7 +427,7 @@ export default function AppMarketCard() {
                         label: (
                           <>
                             {t(`content.apprelease.appMarketCard.${item}`) +
-                              '*'}
+                              ' *'}
                             <IconButton sx={{ color: '#939393' }} size="small">
                               <HelpOutlineIcon />
                             </IconButton>
@@ -446,7 +456,7 @@ export default function AppMarketCard() {
                             )}`,
                           },
                           pattern: {
-                            value: /^([A-Za-z.:@0-9& ]){10,255}$/,
+                            value: Patterns.appMarketCard.shortDescription,
                             message: `${t(
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
                             )} A-Za-z0-9.: @&`,
@@ -484,7 +494,8 @@ export default function AppMarketCard() {
                   errors,
                   name: 'useCaseCategory',
                   label:
-                    t('content.apprelease.appMarketCard.useCaseCategory') + '*',
+                    t('content.apprelease.appMarketCard.useCaseCategory') +
+                    ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
                   ),
@@ -497,7 +508,7 @@ export default function AppMarketCard() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z])$/,
+                      value: Patterns.appMarketCard.useCaseCategory,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z`,
@@ -522,7 +533,7 @@ export default function AppMarketCard() {
                   errors,
                   name: 'appLanguage',
                   label:
-                    t('content.apprelease.appMarketCard.appLanguage') + '*',
+                    t('content.apprelease.appMarketCard.appLanguage') + ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.appLanguagePlaceholder'
                   ),
@@ -535,7 +546,7 @@ export default function AppMarketCard() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z ])$/,
+                      value: Patterns.appMarketCard.appLanguage,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Z a-z`,
@@ -568,7 +579,7 @@ export default function AppMarketCard() {
                   name: 'price',
                   label:
                     t('content.apprelease.appMarketCard.pricingInformation') +
-                    '*',
+                    ' *',
                   placeholder: t(
                     'content.apprelease.appMarketCard.pricingInformationPlaceholder'
                   ),
@@ -589,7 +600,7 @@ export default function AppMarketCard() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z0-9/€ ]){1,15}$/,
+                      value: Patterns.appMarketCard.pricingInformation,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9/ €`,
@@ -633,42 +644,42 @@ export default function AppMarketCard() {
             <Typography variant="body2" mb={3}>
               {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
             </Typography>
-
-            <Box mb={2}>
-              <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <Button
-                variant="outlined"
-                sx={{ mr: 1 }}
-                startIcon={<HelpOutlineIcon />}
-              >
-                {t('content.apprelease.footerButtons.help')}
-              </Button>
-              <IconButton
-                color="secondary"
-                onClick={() => navigate('/appmanagement')}
-              >
-                <KeyboardArrowLeftIcon />
-              </IconButton>
-              <Button
-                variant="contained"
-                disabled={!isValid}
-                sx={{ float: 'right' }}
-                onClick={handleSubmit(onSubmit)}
-              >
-                {t('content.apprelease.footerButtons.saveAndProceed')}
-              </Button>
-              <Button
-                variant="outlined"
-                name="send"
-                sx={{ float: 'right', mr: 1 }}
-                onClick={handleSubmit(onSubmit)}
-              >
-                {t('content.apprelease.footerButtons.save')}
-              </Button>
-            </Box>
           </form>
         </Grid>
       </Grid>
+
+      <Box mb={2}>
+        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+        <Button
+          variant="outlined"
+          sx={{ mr: 1 }}
+          startIcon={<HelpOutlineIcon />}
+        >
+          {t('content.apprelease.footerButtons.help')}
+        </Button>
+        <IconButton
+          color="secondary"
+          onClick={() => navigate('/appmanagement')}
+        >
+          <KeyboardArrowLeftIcon />
+        </IconButton>
+        <Button
+          variant="contained"
+          disabled={!isValid}
+          sx={{ float: 'right' }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {t('content.apprelease.footerButtons.saveAndProceed')}
+        </Button>
+        <Button
+          variant="outlined"
+          name="send"
+          sx={{ float: 'right', mr: 1 }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {t('content.apprelease.footerButtons.save')}
+        </Button>
+      </Box>
     </div>
   )
 }

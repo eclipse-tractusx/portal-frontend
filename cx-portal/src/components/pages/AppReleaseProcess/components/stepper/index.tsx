@@ -34,7 +34,7 @@ export default function AppReleaseStepper({
       step: 1,
     },
     {
-      headline: 'App Page',
+      headline: t('content.apprelease.stepper.appPage'),
       step: 2,
     },
     {
@@ -50,7 +50,7 @@ export default function AppReleaseStepper({
       step: 5,
     },
     {
-      headline: t('content.apprelease.stepper.verifyYourCompanyData'),
+      headline: t('content.apprelease.stepper.validateAndPublish'),
       step: 6,
     },
   ]

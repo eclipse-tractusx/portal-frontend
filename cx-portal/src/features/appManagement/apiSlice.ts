@@ -80,6 +80,13 @@ export const apiSlice = createApi({
         body,
       }),
     }),
+    updateapp: builder.mutation<void, any>({
+      query: (body: any) => ({
+        url: `/api/apps/appreleaseprocess/updateapp/${body.appId}`,
+        method: 'PUT',
+        body,
+      }),
+    }),
   }),
 })
 
@@ -90,4 +97,5 @@ export const {
   useFetchConsentDataQuery,
   useFetchConsentQuery,
   useAddContractConsentMutation,
+  useUpdateappMutation,
 } = apiSlice
