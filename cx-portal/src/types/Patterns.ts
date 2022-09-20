@@ -28,6 +28,7 @@ export const Patterns = {
     BPN: /^BPNL/i,
     URL: /^https?:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
+    URNID: /^urn:uuid:[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$/i,
   },
 }
 
