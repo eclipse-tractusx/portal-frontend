@@ -69,12 +69,14 @@ export const PageLoadingTable = function <T>({
       v: loaded,
     },
   })
+  const [loading, setLoading] = useState(true)
   const nextPage = () => setPage(page + 1)
   const hasMore = hasMorePages(data)
   const maxRows = getMaxRows(data)
 
   useEffect(() => {
-    if (allItems) {
+    if (allItems?.length > 0) {
+      setLoading(false)
       setItems((i) => i.concat(allItems))
     }
   }, [allItems])
@@ -88,6 +90,10 @@ export const PageLoadingTable = function <T>({
   }, [fetchHookRefresh, loaded])
 
   useEffect(() => {
+    //reset loading
+    if(isFetching && !loading) {
+      setLoading(true)
+    }
     if (isSuccess && !isFetching && data && (data.content || data.bpn)) {
       if (clear) {
         setItems([])
@@ -96,6 +102,7 @@ export const PageLoadingTable = function <T>({
         if (callbackToPage) {
           callbackToPage(data)
         } else {
+          setLoading(false)
           data.content
             ? setItems((i) => i.concat(data.content))
             : setItems([data]) // Search for legal entity based on BPN responses with an object. No content or meta properties available
@@ -110,11 +117,11 @@ export const PageLoadingTable = function <T>({
         rowsCount={items.length}
         rowsCountMax={maxRows}
         hideFooter={items.length < (props.rowCount || 100)}
-        loading={isFetching}
+        loading={loading}
         rows={items}
         {...props}
       />
-      {hasMore && (
+      {items.length > 0 && hasMore && (
         <Box
           sx={{
             width: '100%',
