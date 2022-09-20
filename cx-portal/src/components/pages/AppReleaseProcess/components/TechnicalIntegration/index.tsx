@@ -66,9 +66,12 @@ export default function TechnicalIntegration() {
     mode: 'onChange',
   })
 
-  const onIntegrationSubmit = async (data: any) => {
+  const clientIdValue = getValues().clientId
+  const URLValue = getValues().URL
+
+  const onIntegrationSubmit = async (data: any) =>
     setTechnicalIntegrationNotification(true)
-  }
+
   useEffect(() => {
     if (
       getValues().clientId !== '' &&
@@ -78,7 +81,8 @@ export default function TechnicalIntegration() {
     )
       setDisableCreateClient(false)
     else setDisableCreateClient(true)
-  }, [getValues().clientId, getValues().URL])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clientIdValue, URLValue])
 
   return (
     <div className="technical-integration">
