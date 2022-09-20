@@ -21,7 +21,7 @@ import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import MarketplaceContentDetails from './MarketplaceContentDetails'
 import './Marketplace.scss'
 import { useFetchServiceQuery } from 'features/serviceMarketplace/serviceApiSlice'
@@ -30,16 +30,14 @@ import { currentSuccessType } from 'features/serviceMarketplace/slice'
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()
   const { serviceId } = useParams()
-  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
 
   const { data, refetch } = useFetchServiceQuery(serviceId ?? '')
 
   const success = useSelector(currentSuccessType)
 
   useEffect(() => {
-    success && setShowSuccessAlert(true)
     refetch()
-  }, [success])
+  }, [success, refetch])
 
   return (
     <main>

@@ -26,19 +26,14 @@ import './MarketplaceSubscription.scss'
 
 export default function MarketplaceSubscriptionNames({
   subscription,
-  index,
 }: {
   subscription: SubscriptionData
-  index: number
 }) {
   const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
 
   return (
-    <li key={index}>
-      <span className="subscription-name">
-        {data &&
-          data.offerName.charAt(0).toUpperCase() + data.offerName.slice(1)}
-      </span>
-    </li>
+    <span className="subscription-name">
+      {data && data.offerName.charAt(0).toUpperCase() + data.offerName.slice(1)}
+    </span>
   )
 }
