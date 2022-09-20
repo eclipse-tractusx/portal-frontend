@@ -390,14 +390,6 @@ export default function ValidateAndPublish() {
         >
           {t('content.apprelease.footerButtons.submit')}
         </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          disabled
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
       </Box>
       {validatePublishNotification && (
         <div className="errorMsg">

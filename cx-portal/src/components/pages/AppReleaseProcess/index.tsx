@@ -47,8 +47,9 @@ export default function AppReleaseProcess() {
 
   useEffect(() => {
     activeStep()
+    window.scrollTo(0, 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage])
+  }, [activePage, createApp])
 
   const stepsLists = [
     {
