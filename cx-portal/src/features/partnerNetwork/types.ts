@@ -21,12 +21,12 @@
 import { GeographicCoordinate } from 'types/MainTypes'
 
 //region Common Key Value pairs type
-interface BpdmTypeNameObject {
+export interface BpdmTypeNameObject {
   name: string
   url?: string
 }
 
-interface BpdmTypeCommonKeyValuePair extends BpdmTypeNameObject {
+export interface BpdmTypeCommonKeyValuePair extends BpdmTypeNameObject {
   technicalKey: string
 }
 
@@ -38,30 +38,30 @@ export interface BpdmTypeUUIDKeyPair {
   status?: BpdmTypeCommonKeyValuePair
 }
 
-interface BpdmTypeLanguagePair extends BpdmTypeUUIDKeyPair {
+export interface BpdmTypeLanguagePair extends BpdmTypeUUIDKeyPair {
   language: BpdmTypeCommonKeyValuePair
 }
 
 //endregion
 
 //region Bpdm Address Types
-interface BpdmAddressVersion {
+export interface BpdmAddressVersion {
   characterSet: BpdmTypeCommonKeyValuePair
   language: BpdmTypeCommonKeyValuePair
 }
 
-interface BpdmTypeWithShortName extends BpdmTypeLanguagePair {
+export interface BpdmTypeWithShortName extends BpdmTypeLanguagePair {
   shortName: string
   fipsCode?: string
 }
 
-interface BpdmTypeThoroughfare extends BpdmTypeWithShortName {
+export interface BpdmTypeThoroughfare extends BpdmTypeWithShortName {
   name?: string
   number?: string // Consider as street number and can be string
   direction?: string
 }
 
-interface BpdmAddresses {
+export interface BpdmAddresses {
   uuid: string
   version: BpdmAddressVersion
   careOf: string
@@ -79,7 +79,7 @@ interface BpdmAddresses {
 //endregion
 
 //region Bpdm Bank Account Type
-interface BpdmTypeBankAccount {
+export interface BpdmTypeBankAccount {
   uuid: string
   trustScores: Array<number>
   currency: BpdmTypeCommonKeyValuePair
@@ -91,7 +91,7 @@ interface BpdmTypeBankAccount {
 //endregion
 
 //region Other Bpdm Types
-interface BpdmTypeRelation {
+export interface BpdmTypeRelation {
   uuid: string
   relationClass: BpdmTypeCommonKeyValuePair
   type: BpdmTypeCommonKeyValuePair
@@ -101,17 +101,17 @@ interface BpdmTypeRelation {
   endedAt?: Date
 }
 
-interface BpdmProfileClassification extends BpdmTypeUUIDKeyPair {
+export interface BpdmProfileClassification extends BpdmTypeUUIDKeyPair {
   code?: string
 }
 
-interface BpdmLegalFormObject extends BpdmTypeCommonKeyValuePair {
+export interface BpdmLegalFormObject extends BpdmTypeCommonKeyValuePair {
   mainAbbreviation: string
   language: BpdmTypeCommonKeyValuePair
   categories: Array<BpdmTypeNameObject>
 }
 
-interface BpdmBusinessStatus {
+export interface BpdmBusinessStatus {
   uuid: string
   officialDenotation: string
   validFrom: Date

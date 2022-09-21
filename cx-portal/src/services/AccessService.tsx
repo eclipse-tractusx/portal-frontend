@@ -25,7 +25,6 @@ import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
 import { AddUser } from 'components/overlays/AddUser'
 import NewsDetail from 'components/overlays/NewsDetail'
-import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import UserInfo from 'components/overlays/UserInfo'
 import { OverlayState } from 'features/control/overlay/types'
 import {
@@ -45,6 +44,7 @@ import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
 import ServiceRequest from 'components/overlays/ServiceRequest'
 import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
 import NotFound from 'components/overlays/NotFound'
+import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -89,10 +89,12 @@ export const getAction = (action: string) =>
   hasAccessAction(action) ? actionMap[action] : null
 
 export const getOverlay = (overlay: OverlayState) => {
-  if (!hasAccessOverlay(overlay.type)) {
+  if (overlay.type !== OVERLAYS.NONE && !hasAccessOverlay(overlay.type)) {
     return <NotFound />
   }
   switch (overlay.type) {
+    case OVERLAYS.NONE:
+      return null
     case OVERLAYS.ADD_USER:
       return <AddUser />
     case OVERLAYS.USER:
@@ -114,7 +116,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.ADD_BPN:
       return <AddBPN id={overlay.id} />
     case OVERLAYS.PARTNER:
-      return <BusinessPartnerDetail id={overlay.id} />
+      return <BusinessPartnerInfo id={overlay.id} />
     case OVERLAYS.APP:
       return <AppInfo id={overlay.id} title={overlay.title} />
     case OVERLAYS.SERVICE_REQUEST:
