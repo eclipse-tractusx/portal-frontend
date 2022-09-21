@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import {
   Button,
   PageHeader,
@@ -7,16 +27,29 @@ import {
 import { useTranslation } from 'react-i18next'
 import './AppReleaseProcess.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppMarketCard from './components/AppMarketCard'
 import AppReleaseStepper from './components/stepper'
 import BetaTest from './components/BetaTest'
+import AppPage from './components/AppPage'
+import ContractAndConsent from './components/ContractAndConsent'
+import { currentActiveStep } from 'features/appManagement/slice'
+import { useSelector } from 'react-redux'
+import TechnicalIntegration from './components/TechnicalIntegration'
+import ValidateAndPublish from './components/ValidateAndPublish'
+import { Box } from '@mui/material'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const [createApp, setCreateApp] = useState(false)
 
-  let currentActiveStep = 5
+  let activePage = useSelector(currentActiveStep)
+
+  useEffect(() => {
+    activeStep()
+    window.scrollTo(0, 0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePage, createApp])
 
   const stepsLists = [
     {
@@ -34,7 +67,7 @@ export default function AppReleaseProcess() {
     {
       description:
         'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Contrac & Consent',
+      headline: 'Contract & Consent',
       step: 3,
     },
     {
@@ -57,6 +90,15 @@ export default function AppReleaseProcess() {
     },
   ]
 
+  const activeStep = () => {
+    if (activePage === 1) return <AppMarketCard />
+    else if (activePage === 2) return <AppPage />
+    else if (activePage === 3) return <ContractAndConsent />
+    else if (activePage === 4) return <TechnicalIntegration />
+    else if (activePage === 5) return <BetaTest />
+    else if (activePage === 6) return <ValidateAndPublish />
+  }
+
   return (
     <div className="appoverview-main">
       <PageHeader
@@ -69,8 +111,8 @@ export default function AppReleaseProcess() {
       {createApp ? (
         <div className="create-app-section">
           <div className="container">
-            <AppReleaseStepper />
-            {currentActiveStep === 1 ? <AppMarketCard /> : <BetaTest />}
+            <AppReleaseStepper activePage={activePage} />
+            {activeStep()}
           </div>
         </div>
       ) : (
@@ -121,7 +163,7 @@ export default function AppReleaseProcess() {
                     {t('content.apprelease.dividerText')}
                   </Typography>
                 </div>
-                <div className="text-center">
+                <Box textAlign="center">
                   <Button
                     color="primary"
                     size="small"
@@ -133,7 +175,7 @@ export default function AppReleaseProcess() {
                   <Typography variant="h3" className="marketplace-heading">
                     {t('content.apprelease.marketplaceHeading')}
                   </Typography>
-                </div>
+                </Box>
                 <div className="marketplace-main">
                   <ul>
                     <li>

@@ -5512,9 +5512,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001317:
-  version "1.0.30001319"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001319.tgz#eb4da4eb3ecdd409f7ba1907820061d56096e88f"
-  integrity sha512-xjlIAFHucBRSMUo1kb5D4LYgcN1M45qdKP++lhqowDpwJwGkpIRTt5qQqnhxjj1vHcI7nrJxWhCC1ATrCEBTcw==
+  version "1.0.30001406"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001406.tgz"
+  integrity sha512-bWTlaXUy/rq0BBtYShc/jArYfBPjEV95euvZ8JVtO43oQExEN/WquoqpufFjNu4kSpi5cy5kMbNvzztWDfv1Jg==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -10222,13 +10222,6 @@ magic-string@^0.25.0, magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-magic-string@^0.26.1:
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.1.tgz#ba9b651354fa9512474199acecf9c6dbe93f97fd"
-  integrity sha512-ndThHmvgtieXe8J/VGPjG+Apu7v7ItcD5mhEIvOscWjPF/ccOiLxHaSuCAS2G+3x4GKsAbT8u7zdyamupui8Tg==
-  dependencies:
-    sourcemap-codec "^1.4.8"
-
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-2.1.0.tgz#5f0310e18b8be898cc07009295a30ae41e91e6f5"
@@ -13054,15 +13047,6 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
-
-rollup-plugin-dts@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-dts/-/rollup-plugin-dts-4.2.0.tgz#f7ae4646f5b3aec07560bc341c0dc4a85f8a0dff"
-  integrity sha512-lx6irWVhz/x4//tIqRhzk4FOqGQ0n37ZM2wpPCn4uafl/EmiV92om7ZdAsq7Bzho6C+Xh5GfsyuP9H+Udv72Lg==
-  dependencies:
-    magic-string "^0.26.1"
-  optionalDependencies:
-    "@babel/code-frame" "^7.16.7"
 
 rollup-plugin-peer-deps-external@^2.2.4:
   version "2.2.4"

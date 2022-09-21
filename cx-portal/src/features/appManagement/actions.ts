@@ -22,5 +22,6 @@ import { createAction } from '@reduxjs/toolkit'
 import { name, SearchInputState } from './types'
 
 const setSearchInput = createAction<SearchInputState>(`${name}/setSearchOpen`)
+const setAppId = createAction<string>(`${name}/setApplicationId`)
 
-export { setSearchInput }
+export { setSearchInput, setAppId }

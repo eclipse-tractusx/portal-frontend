@@ -17,22 +17,33 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
 
-.app-market-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
-
-.form-field {
-  margin-bottom: 29px !important;
-}
-
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+import { useTheme, CircularProgress } from '@mui/material'
+export default function LoadingError({
+  isLoading,
+  isError,
+  errorText,
+}: {
+  isLoading: boolean
+  isError: boolean
+  errorText: string
+}) {
+  const theme = useTheme()
+  return (
+    <>
+      {isLoading ? (
+        <div className="organization-loader">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+              zIndex: 1,
+              position: 'absolute',
+            }}
+          />
+        </div>
+      ) : null}
+      {isError ? <div className="organization-error">{errorText}</div> : null}
+    </>
+  )
 }

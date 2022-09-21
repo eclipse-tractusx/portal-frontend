@@ -18,14 +18,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, IconButton, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  IconButton,
+  PageNotifications,
+  Typography,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box } from '@mui/material'
+import { decrement, increment } from 'features/appManagement/slice'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
 export default function BetaTest() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const [betaTestNotification, setBetaTestNotification] = useState(false)
 
   return (
     <>
@@ -44,21 +54,31 @@ export default function BetaTest() {
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton color="secondary">
+        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
           <KeyboardArrowLeftIcon />
         </IconButton>
-        <Button variant="contained" sx={{ float: 'right' }}>
+        <Button
+          variant="contained"
+          sx={{ float: 'right' }}
+          onClick={() => dispatch(increment())}
+        >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          className={'form-buttons'}
-          sx={{ float: 'right', mr: 1 }}
-        >
+        <Button variant="outlined" name="send" sx={{ float: 'right', mr: 1 }}>
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
+      {betaTestNotification && (
+        <div className="errorMsg">
+          <PageNotifications
+            title={t('content.apprelease.appReleaseForm.error.title')}
+            description={t('content.apprelease.appReleaseForm.error.message')}
+            open
+            severity="error"
+            onCloseNotification={() => setBetaTestNotification(false)}
+          />
+        </div>
+      )}
     </>
   )
 }

@@ -3,6 +3,21 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.4
+
+* Feature - Service Marketplace
+* Feature - Identity Providers
+* Feature - My Organization page
+* Feature - App Release Process Steps 2 with business logic, 3 with api binding, 6 with UI, 4 with UI
+* Feature - Search functionality added in Register Request table
+* Feature - Add "CX Membership" flag in Partner Network
+* Bugfix - Show loader on clicking decline or confirm from application request screen
+* Bugfix - Show error popup on failure of approve or decline request
+* Bugfix - Text updates on company data overlay
+* Bugfix - Fixed modal width, subscribe refetch and services loading effect
+* Bugfix - User Management - AddUser Roles missing
+
+
 ### 0.5.3
 
 * Feature - App Release Process Step 1 implementation with api binding
@@ -13,7 +28,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Identity provider list and detail view
 
 
-### 0.5.2 (2022-08-23)
+### 0.5.2
 
 * Feature - Added Release Notes ;)
 * Feature - Technical User details page

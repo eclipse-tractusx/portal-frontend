@@ -76,7 +76,7 @@
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
         "overlay": {
-          "title": "Company Detail",
+          "title": "Company Data",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
         },
@@ -147,6 +147,7 @@
       },
       "table": {
         "title": "Semantic Data Models",
+        "searchfielddefaulttext": "Search by name",
         "filter": {
           "namespaceLabel": "Namespace",
           "namespacePlaceholder": "Enter a namespace to filter",
@@ -235,6 +236,20 @@
         "protocol_endpoint": "Aspect Endpoint:"
       }
     },
+    "organization": {
+      "company": {
+        "title": "Company Details",
+        "error": "error - no data found",
+        "name": "Company Name: ",
+        "address": "Address: ",
+        "city": "City: ",
+        "bpn": "BPN: "
+      },
+      "subscriptions": {
+        "title": "App Subscriptions",
+        "error": "error - no data found"
+      }
+    },
     "datamanagement": {
       "message": "Contents of Data Management"
     },
@@ -306,7 +321,7 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City",
+        "city": "PLZ/City",
         "cxparticipant": "CX Member"
       },
       "filters": {
@@ -318,6 +333,8 @@
       "searchbuttonlabel": "Search",
       "searchfielddefaulttext": "Search by company name or BPN",
       "searchfielderrormessage": "Invalid Data",
+      "membershipnotificationtitle": "Membership flag cannot be fetched.",
+      "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",
@@ -413,13 +430,7 @@
       }
     },
     "idpmanagement": {
-      "create": "Create Identity Provider",
-      "idp": {
-        "category": {
-          "KEYCLOAK_SHARED": "Shared Keycloak",
-          "OWN": "Own IDP"
-        }
-      }
+      "create": "Create OIDC Identity Provider"
     },
     "idpdetail": {
       "title": "Identity Provider Details",
@@ -508,6 +519,9 @@
     },
     "notfound": {
       "message": "The content could not be found. This can happen because of various reasons - either",
+      "title": "Something went wrong.",
+      "description": "You don't have access to this page or the page doesn't exist. Please contact your admin.",
+      "button": "HomePage",
       "reason": {
         "nopermission": "you have no permission to view this content or",
         "notexisting": "the page doesn't exist in the Catena-X portal or",
@@ -552,11 +566,11 @@
       "marketplaceExplanation": "Expalanation of the requirement",
       "stepper": {
         "appMarketCard": "App Market Card",
+        "appPage": "App Page",
         "contractAndConsent": "Contract & Consent",
         "technicalIntegration": "Technical Integration",
         "betaTest": "Beta Test",
-        "validateAndPublish": "Validate & Publish",
-        "verifyYourCompanyData": "Verify your company data"
+        "validateAndPublish": "Validate & Publish"
       },
       "appMarketCard": {
         "headerTitle": "Create App",
@@ -576,47 +590,97 @@
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
         "pricingInformation": "Pricing Information",
-        "pricingInformationPlaceholder": "Please select a pricing type",
-        "note": "Note:",
-        "OnlyOneFileAllowed": "Only one file for upload allowed",
-        "addMore": "Add More",
-        "noItemsSelected": "No Items Selected",
-        "isMandatory": " is mandatory",
-        "fileUploadIsMandatory": "File upload is mandatory",
-        "minimum": "Minimum",
-        "charactersRequired": " characters required",
-        "maximum": "Maximum",
-        "charactersAllowed": " characters allowed",
-        "validCharactersIncludes": "Valid characters includes: "
+        "pricingInformationPlaceholder": "Please select a pricing type"
       },
       "appPage": {
-        "headerTitle": "Create App",
+        "headerTitle": "App Details",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "longDescriptionEN": "Long Description - EN*",
-        "longDescriptionDE": "Long Description - DE*",
-        "images": "Images*",
+        "longDescriptionEN": "Long Description - EN",
+        "longDescriptionDE": "Long Description - DE",
+        "images": "Images",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images",
-        "connectData": "Connect Data*",
-        "dataSecurityInformation": "Data Security Information*",
-        "uploadDataPrerequisits": "Upload 'Data Prerequisits'*",
-        "uploadTechnicalGuide": "Upload 'Technical Guide'*",
-        "uploadDataContract": "Upload 'Data Contract'*",
-        "uploadAppContract": "Upload 'App Contract'*",
+        "connectData": "Connect Data",
+        "dataSecurityInformation": "Data Security Information",
+        "uploadDataPrerequisits": "Upload “Data Prerequisits”",
+        "uploadTechnicalGuide": "Upload “Technical Guide”",
+        "uploadDataContract": "Upload “Data Contract”",
+        "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",
         "providerHomePage": "Provider Homepage",
-        "providerContactEmail": "Customer Contact E-Mail*",
-        "providerPhoneContact": "Provider Phone Contact"
+        "providerContactEmail": "Customer Contact E-Mail",
+        "providerPhoneContact": "Provider Phone Contact",
+        "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
+        "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
+      },
+      "contractAndConsent": {
+        "headerTitle": "Consent & Contract",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "allAgreementsMandatory": "All agreements are mandatory"
+      },
+      "technicalIntegration": {
+        "headerTitle": "Technical Integration",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "clientID": "Client ID",
+        "URL": "URL",
+        "pleaseEnterValidURL": "Please enter a valid URL",
+        "URLPlaceholder": "http://www.loremipsum.de",
+        "clientCreated": "Client created",
+        "step2Header": "2. Upload App Roles",
+        "createThoseForYourApp": "Create those for your App",
+        "step3Header": "3. Enable your Identity Management Solution",
+        "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "step4Header": "4. Get Test Users to Test Integration",
+        "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
+        "createClient": "Create Client",
+        "createTestUser": "Create Test User",
+        "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
+        "password": "Password",
+        "username": "Username"
       },
       "betaTest": {
         "headerTitle": "Beta Test",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
       },
+      "validateAndPublish": {
+        "headerTitle": "Verify your app data for submit",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "appCardDetails": "App Card Details"
+      },
+      "appReleaseForm": {
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected",
+        "note": "Note:",
+        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "max3Images": "Max. 3 Images",
+        "minimum": "Minimum",
+        "charactersRequired": " characters required",
+        "maximum": "Maximum",
+        "charactersAllowed": " characters allowed",
+        "validCharactersIncludes": "Valid characters includes: ",
+        "isMandatory": " is mandatory",
+        "fileUploadIsMandatory": "File upload is mandatory",
+        "error": {
+          "title": "Error",
+          "message": "Error"
+        }
+      },
       "footerButtons": {
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save"
+        "save": "Save",
+        "submit": "Submit"
       }
+    },
+    "serviceMarketplace": {
+      "headline": "Purchase Service Request",
+      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully"
     }
   },
   "navigation": {
@@ -707,14 +771,14 @@
     }
   },
   "servicemarketplace": {
-    "title": "Service Marketplace",
-    "message": "Service Marketplace Description"
+    "title": "Service Provider Marketplace"
   },
   "dataspacemarketplace": {
     "title": "Dataspace Marketplace",
     "message": "Dataspace Marketplace Description"
   },
   "hints": {
-    "coming_soon": "coming soon"
+    "coming_soon": "Coming soon",
+    "new": "New"
   }
 }
