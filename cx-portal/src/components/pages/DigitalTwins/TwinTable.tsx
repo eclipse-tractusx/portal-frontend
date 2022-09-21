@@ -50,9 +50,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
     setTwins((prevTwins) => prevTwins.concat(twinList.items))
   }, [twinList])
 
-  const onSearch = (value: string) => {
-    onTwinSelect(value)
-  }
+  const onSearch = (value: string) => {}
 
   const columns = DigitalTwinsTableColumns(useTranslation, onTwinSelect)
 

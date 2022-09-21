@@ -17,7 +17,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
 import { PageHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
