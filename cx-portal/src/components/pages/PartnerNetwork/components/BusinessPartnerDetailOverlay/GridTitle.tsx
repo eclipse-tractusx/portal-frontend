@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,21 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'
-import UserService from 'services/UserService'
+import { Grid, useTheme } from '@mui/material'
+import { Typography } from 'cx-portal-shared-components'
 
-export const apiBaseQuery = () => ({
-  baseUrl: getApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+const GridTitle = ({ title }: { title: string }) => {
+  const theme = useTheme()
+  const { spacing } = theme
 
-export const apiBpdmQuery = () => ({
-  baseUrl: getBpdmApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+  return (
+    <>
+      <Grid
+        xs={12}
+        item
+        style={{
+          backgroundColor: theme.palette.grey['100'],
+          padding: spacing(2),
+        }}
+      >
+        <Typography variant="h5">{title}</Typography>
+      </Grid>
+    </>
+  )
+}
+
+export default GridTitle
