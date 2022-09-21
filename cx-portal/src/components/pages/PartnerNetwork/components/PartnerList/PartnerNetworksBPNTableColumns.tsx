@@ -23,7 +23,7 @@ import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'
-import smallLogo from '../../../../assets/logo/cx-logo-short.svg'
+import smallLogo from '../../../../../assets/logo/cx-logo-short.svg'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksBPNTableColumns = (

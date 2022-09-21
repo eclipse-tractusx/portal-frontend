@@ -25,60 +25,38 @@ import {
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { PageHeader, PageLoadingTable } from 'cx-portal-shared-components'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
-import {
-  BusinessPartner,
-  BusinessPartnerSearchResponse,
-} from 'features/newPartnerNetwork/types'
+import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
-import { PartnerNetworksBPNTableColumns } from './PartnerList/PartnerNetworksBPNTableColumns'
+import { PartnerNetworksBPNTableColumns } from './components/PartnerList/PartnerNetworksBPNTableColumns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {
   isContentPresent,
   isQueryDataPresent,
   addCountryAttribute,
   addMemberAttribute,
-} from './PartnerList/helper'
-import BusinessPartnerDetailOverlay from './BusinessPartnerDetailOverlay'
-import BusinessPartnerDetailBpnOverlay from './BusinessPartnerDetailOverlay/BusinessPartnerDetailBpnOverlay'
+} from './components/PartnerList/helper'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
-
+  const dispatch = useDispatch()
   const [expr, setExpr] = useState<string>('')
-
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updatePartnerSelector)
   const columns = PartnerNetworksTableColumns(useTranslation)
   const bpnColumns = PartnerNetworksBPNTableColumns(useTranslation)
   const [showBPNColumn, setShowBPNColumn] = useState<boolean>(false)
-
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
-
   const { data } = useFetchMemberCompaniesQuery()
 
-  const [overlayLegalEntityOpen, setLegalEntityOverlayOpen] =
-    useState<boolean>(false)
-  const [selectedLegalEntity, setSelectedLegalEntity] = useState<any>({})
-  const [bpnOverlayOpen, setBPNOverlayOpen] = useState<boolean>(false)
-  const [selectedBPN, setSelectedBPN] = useState<any>({})
-
-  const onTableCellClick = (params: GridCellParams) => {
-    // Show overlay only when detail field clicked
-    if (params.field === 'detail') {
-      if (params.row && params.row.legalEntity) {
-        setSelectedLegalEntity(params.row as BusinessPartnerSearchResponse)
-        setLegalEntityOverlayOpen(true)
-      } else {
-        setSelectedBPN(params.row as BusinessPartner)
-        setBPNOverlayOpen(true)
-      }
-    }
-  }
+  const onTableCellClick = (params: GridCellParams) =>
+    dispatch(show(OVERLAYS.PARTNER, params.id || params.row.bpn))
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
@@ -131,50 +109,32 @@ const PartnerNetwork = () => {
         headerHeight={200}
       ></PageHeader>
 
-      <section>
-        <section id="identity-management-id">
-          <BusinessPartnerDetailOverlay
-            {...{
-              selectedRowBPN: selectedLegalEntity,
-              openDialog: overlayLegalEntityOpen,
-              handleOverlayClose: () => setLegalEntityOverlayOpen(false),
-            }}
-          />
-          <BusinessPartnerDetailBpnOverlay
-            {...{
-              selectedRowBPN: selectedBPN,
-              openDialog: bpnOverlayOpen,
-              handleOverlayClose: () => setBPNOverlayOpen(false),
-            }}
-          />
-          <PageLoadingTable<BusinessPartner>
-            onCellClick={onTableCellClick}
-            toolbarVariant={'ultimate'}
-            hasBorder={false}
-            columnHeadersBackgroundColor={'transparent'}
-            searchPlaceholder={t(
-              'content.partnernetwork.searchfielddefaulttext'
-            )}
-            searchInputData={searchInputData}
-            onSearch={(expr: string) => {
-              if (!validateSearchText(expr)) return
-              setRefresh(Date.now())
-              setExpr(expr)
-            }}
-            searchDebounce={1000}
-            title={t('content.partnernetwork.tabletitle')}
-            loadLabel={t('global.actions.more')}
-            fetchHook={useFetchBusinessPartnersQuery}
-            fetchHookArgs={{ expr }}
-            fetchHookRefresh={refresh}
-            getRowId={(row: { legalEntity: any }) =>
-              row && row.legalEntity ? row.legalEntity.bpn : ''
-            }
-            columns={!showBPNColumn ? columns : bpnColumns}
-            callbackToPage={fetchAndApply}
-            allItems={allItems}
-          />
-        </section>
+      <section id="identity-management-id">
+        <PageLoadingTable<BusinessPartner>
+          onCellClick={onTableCellClick}
+          toolbarVariant={'ultimate'}
+          hasBorder={false}
+          columnHeadersBackgroundColor={'transparent'}
+          searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
+          searchInputData={searchInputData}
+          onSearch={(expr: string) => {
+            if (!validateSearchText(expr)) return
+            setRefresh(Date.now())
+            setExpr(expr)
+          }}
+          searchDebounce={1000}
+          title={t('content.partnernetwork.tabletitle')}
+          loadLabel={t('global.actions.more')}
+          fetchHook={useFetchBusinessPartnersQuery}
+          fetchHookArgs={{ expr }}
+          fetchHookRefresh={refresh}
+          getRowId={(row: { legalEntity: any }) =>
+            row && row.legalEntity ? row.legalEntity.bpn : ''
+          }
+          columns={!showBPNColumn ? columns : bpnColumns}
+          callbackToPage={fetchAndApply}
+          allItems={allItems}
+        />
       </section>
     </main>
   )
