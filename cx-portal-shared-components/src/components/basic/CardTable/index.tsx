@@ -15,9 +15,16 @@ import Accordion, {
 interface CustomAccordianProps {
   hover?: boolean
   row: any[]
+  activeLabel: string
+  inactiveLabel: string
 }
 
-export function CardTable({ hover = false, row }: CustomAccordianProps) {
+export function CardTable({
+  hover = false,
+  row,
+  activeLabel = 'ENABLED',
+  inactiveLabel = 'DISABLED',
+}: CustomAccordianProps) {
   const [expanded, setExpanded] = React.useState<string | false>(false)
 
   const handleChange =
@@ -59,7 +66,7 @@ export function CardTable({ hover = false, row }: CustomAccordianProps) {
                 variant="contained"
                 size="small"
               >
-                {isActive ? 'ENABLED' : 'DISABLED'}
+                {isActive ? activeLabel : inactiveLabel}
               </StyledAccordianButton>
             </StyledAccordianSummary>
             <StyledAccordianDetails>

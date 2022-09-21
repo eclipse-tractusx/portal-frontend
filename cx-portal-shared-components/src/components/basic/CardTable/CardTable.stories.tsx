@@ -82,4 +82,6 @@ export const CardTable = Template.bind({})
 CardTable.args = {
   hover: true,
   row: SAMPLE_ROW,
+  // activeLabel: 'ACTIVE',
+  // inactiveLabel: 'INACTIVE',
 }
