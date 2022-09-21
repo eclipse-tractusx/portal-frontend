@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { createSlice } from '@reduxjs/toolkit'
 import {
   BusinessPartner,
@@ -7,7 +27,11 @@ import {
   PartnerNetworkInitialState,
 } from './types'
 import { RootState } from 'features/store'
-import { getOneBusinessPartner, fetchBusinessPartners } from './actions'
+import {
+  getOneBusinessPartner,
+  fetchBusinessPartners,
+  fetchMemberCompaniesData,
+} from './actions'
 import {
   mapSingleBusinessPartnerToDataGrid,
   mapBusinessPartnerToDataGrid,
@@ -16,6 +40,8 @@ import {
 const initialState: PartnerNetworkInitialState = {
   paginationData: {} as PaginationData,
   mappedPartnerList: [],
+  membershipData: [],
+  membershipError: '',
   loading: true,
   error: '',
 }
@@ -26,6 +52,9 @@ const partnerNetworkSlice = createSlice({
   reducers: {
     resetPartnerNetworkState: (state) => {
       state.mappedPartnerList = []
+    },
+    clearNotification: (state) => {
+      state.membershipError = ''
     },
   },
   extraReducers: (builder) => {
@@ -61,7 +90,7 @@ const partnerNetworkSlice = createSlice({
       try {
         state.mappedPartnerList = [
           ...state.mappedPartnerList,
-          ...mapBusinessPartnerToDataGrid(payloadList),
+          ...mapBusinessPartnerToDataGrid(payloadList, state.membershipData),
         ]
         state.loading = false
         state.paginationData = {
@@ -79,6 +108,21 @@ const partnerNetworkSlice = createSlice({
     builder.addCase(fetchBusinessPartners.rejected, (state, action) => {
       state.loading = false
       state.error = action.error.message as string
+    })
+    builder.addCase(fetchMemberCompaniesData.pending, (state, action) => {
+      state.membershipData = []
+      state.membershipError = ''
+    })
+    builder.addCase(
+      fetchMemberCompaniesData.fulfilled,
+      (state, { payload }) => {
+        state.membershipData = payload as string[]
+        state.membershipError = ''
+      }
+    )
+    builder.addCase(fetchMemberCompaniesData.rejected, (state, action) => {
+      state.membershipData = []
+      state.membershipError = action.error.message as string
     })
   },
 })

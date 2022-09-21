@@ -1,5 +1,26 @@
-import { Box, useTheme } from '@mui/material'
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+import { Box, Grid, useTheme } from '@mui/material'
 import { LogoGrayData } from '../../basic/Logo'
+import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
 import { CardChip, CardChipProps } from './CardChip'
 
@@ -11,6 +32,8 @@ interface CardHorizontalProps extends CardChipProps {
   imageAlt: string
   description?: string
   backgroundColor?: string
+  buttonText?: string
+  onBtnClick?: React.MouseEventHandler
 }
 
 export const CardHorizontal = ({
@@ -22,6 +45,8 @@ export const CardHorizontal = ({
   description,
   status,
   statusText,
+  buttonText,
+  onBtnClick,
   backgroundColor,
 }: CardHorizontalProps) => {
   const theme = useTheme()
@@ -34,7 +59,7 @@ export const CardHorizontal = ({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '0px',
-        maxWidth: '539px',
+        width: '100%',
         borderRadius: `${borderRadius}px`,
         ':hover': {
           boxShadow: theme.shadows['20'],
@@ -62,7 +87,7 @@ export const CardHorizontal = ({
         sx={{
           width: '299px',
           height: '160px',
-          margin: '0px 0px 0px auto ',
+          margin: '0px 0px 0px 20px',
           paddingTop: '20px',
         }}
       >
@@ -103,16 +128,27 @@ export const CardHorizontal = ({
         >
           {description}
         </Typography>
-
-        {statusText && (
-          <Box
-            sx={{
-              marginTop: '21px',
-            }}
-          >
-            <CardChip status={status} statusText={statusText} />
-          </Box>
-        )}
+        <Grid container>
+          <Grid xs={4}>
+            {statusText && (
+              <Box
+                sx={{
+                  marginTop: '21px',
+                }}
+              >
+                <CardChip status={status} statusText={statusText} />
+              </Box>
+            )}
+          </Grid>
+          <Grid xs={3}></Grid>
+          <Grid xs={4}>
+            {buttonText && (
+              <Button size="small" onClick={onBtnClick}>
+                {buttonText}
+              </Button>
+            )}
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   )

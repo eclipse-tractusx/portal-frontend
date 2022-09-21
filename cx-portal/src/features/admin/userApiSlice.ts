@@ -58,6 +58,22 @@ export interface TenantUserDetails extends TenantUser {
   assignedRoles: UserAppRoles[]
 }
 
+export interface CompanyDetails {
+  bpn: string
+  city: string
+  companyId: string
+  countryAlpha2Code: string
+  countryDe: string
+  name: string
+  region: string
+  shortName: string
+  streetAdditional: string
+  streetName: string
+  streetNumber: string
+  taxId: string
+  zipCode: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/users',
   baseQuery: fetchBaseQuery({
@@ -101,6 +117,9 @@ export const apiSlice = createApi({
     fetchOwnUserDetails: builder.query<TenantUserDetails, void>({
       query: () => `/api/administration/user/ownUser`,
     }),
+    fetchOwnCompanyDetails: builder.query<CompanyDetails, void>({
+      query: () => `/api/administration/companydata/ownCompanyDetails`,
+    }),
   }),
 })
 
@@ -112,4 +131,5 @@ export const {
   useFetchOwnUserDetailsQuery,
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
+  useFetchOwnCompanyDetailsQuery,
 } = apiSlice

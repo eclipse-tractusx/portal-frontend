@@ -69,7 +69,7 @@ export const UserDetailCard = ({
 
   const renderValue = (value: UserItemsTranslation | undefined) => (
     <>
-      <span>{value?.label}:</span>&nbsp;
+      <strong>{value?.label}:</strong>&nbsp;
       <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
         {Array.isArray(value?.value)
           ? value?.value.map((bpn, i) => (

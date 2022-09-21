@@ -5,13 +5,16 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.5.4
 
-* Feature - Create, enable and delete Identity Providers
-* Feature - App Release Process Step 2
-* Feature - App Release Process Step 3
+* Feature - Service Marketplace
+* Feature - Identity Providers
+* Feature - My Organization page
+* Feature - App Release Process Steps 2 with business logic, 3 with api binding, 6 with UI, 4 with UI
+* Feature - Search functionality added in Register Request table
+* Feature - Add "CX Membership" flag in Partner Network
 * Bugs - Show loader on clicking decline or confirm from application request screen
 * Bugs - Show error popup on failure of approve or decline request
 * Bugs - Text updates on company data overlay
-* Feature - Search functionality added in Register Request table
+
 
 ### 0.5.3
 

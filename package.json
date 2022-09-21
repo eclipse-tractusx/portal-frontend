@@ -44,5 +44,6 @@
     "mkdirp": "^1.0.4",
     "rimraf": "^3.0.2",
     "yarn": "^1.22.18"
-  }
+  },
+  "dependencies": {}
 }

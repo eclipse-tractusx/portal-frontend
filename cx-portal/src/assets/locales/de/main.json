@@ -147,6 +147,7 @@
       },
       "table": {
         "title": "Semantische Datenmodelle",
+        "searchfielddefaulttext": "Suche mit Name",
         "filter": {
           "namespaceLabel": "Namespace",
           "namespacePlaceholder": "Filtern der Modelle nach Namespace",
@@ -235,6 +236,20 @@
         "protocol_endpoint": "Aspekt Endpunkt:"
       }
     },
+    "organization": {
+      "company": {
+        "title": "Firmendetails",
+        "error": "Fehler - keine Daten gefunden",
+        "name": "Name der Firma: ",
+        "address": "Adresse: ",
+        "city": "Stadt: ",
+        "bpn": "BPN: "
+      },
+      "subscriptions": {
+        "title": "App-Abonnements",
+        "error": "Fehler - keine Daten gefunden"
+      }
+    },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
     },
@@ -317,6 +332,8 @@
       "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
+      "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
+      "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
       "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Firmendetails",
@@ -585,11 +602,11 @@
       "marketplaceExplanation": "Expalanation of the requirement",
       "stepper": {
         "appMarketCard": "App Market Card",
+        "appPage": "App Page",
         "contractAndConsent": "Contract & Consent",
         "technicalIntegration": "Technical Integration",
         "betaTest": "Beta Test",
-        "validateAndPublish": "Validate & Publish",
-        "verifyYourCompanyData": "Verify your company data"
+        "validateAndPublish": "Validate & Publish"
       },
       "appMarketCard": {
         "headerTitle": "Create App",
@@ -619,8 +636,8 @@
         "images": "Images",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images",
-        "connectData": "Connect Data*",
-        "dataSecurityInformation": "Data Security Information*",
+        "connectData": "Connect Data",
+        "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
         "uploadDataContract": "Upload “Data Contract”",
@@ -629,17 +646,45 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
-        "PleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "PleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX"
+        "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
+        "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
       },
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "allAgreementsMandatory": "All agreements are mandatory"
       },
+      "technicalIntegration": {
+        "headerTitle": "Technical Integration",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "clientID": "Client ID",
+        "URL": "URL",
+        "pleaseEnterValidURL": "Please enter a valid URL",
+        "URLPlaceholder": "http://www.loremipsum.de",
+        "clientCreated": "Client created",
+        "step2Header": "2. Upload App Roles",
+        "createThoseForYourApp": "Create those for your App",
+        "step3Header": "3. Enable your Identity Management Solution",
+        "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "step4Header": "4. Get Test Users to Test Integration",
+        "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
+        "createClient": "Create Client",
+        "createTestUser": "Create Test User",
+        "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
+        "password": "Password",
+        "username": "Username"
+      },
       "betaTest": {
         "headerTitle": "Beta Test",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "validateAndPublish": {
+        "headerTitle": "Verify your app data for submit",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "appCardDetails": "App Card Details"
       },
       "appReleaseForm": {
         "addMore": "Add More",
@@ -662,8 +707,16 @@
       "footerButtons": {
         "help": "Help",
         "saveAndProceed": "save & proceed",
-        "save": "Save"
+        "save": "Save",
+        "submit": "Submit"
       }
+    },
+    "serviceMarketplace": {
+      "headline": "Purchase Service Request",
+      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully"
     }
   },
   "navigation": {
@@ -755,14 +808,14 @@
     }
   },
   "servicemarketplace": {
-    "title": "Service Marketplace",
-    "message": "Service Marketplace Description"
+    "title": "Service Provider Marketplace"
   },
   "dataspacemarketplace": {
     "title": "Dataspace Marketplace",
     "message": "Dataspace Marketplace Description"
   },
   "hints": {
-    "coming_soon": "coming soon"
+    "coming_soon": "Coming soon",
+    "new": "New"
   }
 }
