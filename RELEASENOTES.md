@@ -3,6 +3,11 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.5
+
+* ...
+
+
 ### 0.5.4
 
 * Feature - Service Marketplace
