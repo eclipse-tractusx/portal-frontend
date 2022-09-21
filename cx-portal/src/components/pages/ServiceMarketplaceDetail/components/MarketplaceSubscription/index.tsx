@@ -42,7 +42,9 @@ export default function MarketplaceSubscription({
       <div className="subscriptions-content">
         <ol>
           {item.offerSubscriptionDetailData.map((data, index) => (
-            <MarketplaceSubscriptionNames subscription={data} index={index} />
+            <li key={index}>
+              <MarketplaceSubscriptionNames subscription={data} />
+            </li>
           ))}
         </ol>
       </div>

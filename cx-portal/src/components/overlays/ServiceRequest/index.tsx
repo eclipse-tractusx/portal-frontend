@@ -44,7 +44,7 @@ export default function ServiceRequest({ id }: { id: string }) {
   const [termsChecked, setTermsChecked] = useState<boolean>(false)
 
   const { data } = useFetchServiceQuery(id ?? '')
-  const { data: agreements } = useFetchAgreementsQuery()
+  const { data: agreements } = useFetchAgreementsQuery(id ?? '')
   const [addSubscribeService, { isSuccess }] = useAddSubscribeServiceMutation()
 
   if (isSuccess) {

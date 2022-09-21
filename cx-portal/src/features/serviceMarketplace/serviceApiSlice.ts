@@ -84,8 +84,8 @@ export const apiSlice = createApi({
     fetchSubscription: builder.query<SubscriptionRequest, string>({
       query: (subscriptionId) => `/api/services/subscription/${subscriptionId}`,
     }),
-    fetchAgreements: builder.query<AgreementRequest[], void>({
-      query: () => `/api/services/serviceAgreementData/`,
+    fetchAgreements: builder.query<AgreementRequest[], string>({
+      query: (serviceId) => `/api/services/serviceAgreementData/${serviceId}`,
     }),
   }),
 })

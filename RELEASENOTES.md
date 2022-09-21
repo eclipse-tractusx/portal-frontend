@@ -11,10 +11,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Release Process Steps 2 with business logic, 3 with api binding, 6 with UI, 4 with UI
 * Feature - Search functionality added in Register Request table
 * Feature - Add "CX Membership" flag in Partner Network
-* Bugs - Show loader on clicking decline or confirm from application request screen
-* Bugs - Show error popup on failure of approve or decline request
-* Bugs - Text updates on company data overlay
-* Bugs - User Management - AddUser Roles missing
+* Bugfix - Show loader on clicking decline or confirm from application request screen
+* Bugfix - Show error popup on failure of approve or decline request
+* Bugfix - Text updates on company data overlay
+* Bugfix - Fixed modal width, subscribe refetch and services loading effect
+* Bugfix - User Management - AddUser Roles missing
 
 
 ### 0.5.3

@@ -51,7 +51,7 @@ export default function MarketplaceHeader({
           className="subscribe-btn"
           onClick={() => console.log('click function')}
         >
-          {t('content.appdetail.subscribe')}
+          {t('content.appdetail.subscribed')}
         </Button>
       )
     } else {

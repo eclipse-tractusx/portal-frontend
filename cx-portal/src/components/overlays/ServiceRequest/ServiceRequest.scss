@@ -17,10 +17,14 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.service-description {
-  margin: '30px 0 10px';
-  text-align: 'center';
-}
-.agreements-list {
-  list-style: none;
+.marketplace-overlay-content {
+  min-width: auto;
+  max-width: 915px;
+  .service-description {
+    margin: '30px 0 10px';
+    text-align: 'center';
+  }
+  .agreements-list {
+    list-style: none;
+  }
 }
