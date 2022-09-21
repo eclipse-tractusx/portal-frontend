@@ -40,7 +40,7 @@ export default function AppOverview() {
   const { t } = useTranslation()
   const [group, setGroup] = useState<string>('')
   const { data } = useFetchActiveAppsQuery() //// TODO: Replace to Recently changed apps api
-  const items = appCardStatus(data!)
+  const items = data && appCardStatus(data!)
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
