@@ -124,6 +124,15 @@ export const Toolbar = ({
     openFilterSection && setOpenFilter(openFilterSection)
   }, [openFilterSection])
 
+  const endAdornment =
+    onClearSearch && searchInput ? (
+      <IconButton onClick={handleSearchClear}>
+        <ClearIcon />
+      </IconButton>
+    ) : (
+      {}
+    )
+
   return (
     <Box>
       <Box
@@ -161,15 +170,7 @@ export const Toolbar = ({
           {openSearch ? (
             <SearchInput
               autoFocus
-              {...(onClearSearch && searchInput
-                ? {
-                    endAdornment: (
-                      <IconButton onClick={handleSearchClear}>
-                        <ClearIcon />
-                      </IconButton>
-                    ),
-                  }
-                : {})}
+              endAdornment={endAdornment}
               type="text"
               value={searchInput}
               onChange={onSearchInputChange}

@@ -52,6 +52,16 @@ export const UltimateToolbar = ({
   }
 
   const headerHeight = () => (onSearch || onFilter ? 100 : 0)
+
+  const endAdornment =
+    onClearSearch && searchInput ? (
+      <IconButton onClick={handleSearchClear}>
+        <ClearIcon />
+      </IconButton>
+    ) : (
+      {}
+    )
+
   return (
     <Box
       sx={{
@@ -65,15 +75,7 @@ export const UltimateToolbar = ({
       {onSearch && (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           <SearchInput
-            {...(onClearSearch && searchInput
-              ? {
-                  endAdornment: (
-                    <IconButton onClick={handleSearchClear}>
-                      <ClearIcon />
-                    </IconButton>
-                  ),
-                }
-              : {})}
+            endAdornment={endAdornment}
             type="text"
             value={searchInput}
             onChange={onSearchInputChange}
