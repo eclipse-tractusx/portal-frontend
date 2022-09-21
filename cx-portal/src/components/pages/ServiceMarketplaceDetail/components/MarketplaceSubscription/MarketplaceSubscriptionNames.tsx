@@ -31,9 +31,5 @@ export default function MarketplaceSubscriptionNames({
 }) {
   const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
 
-  return (
-    <span className="subscription-name">
-      {data && data.offerName}
-    </span>
-  )
+  return <span className="subscription-name">{data && data.offerName}</span>
 }
