@@ -40,9 +40,11 @@ export const Footer = ({ pages }: { pages: string[] }) => {
       behavior: 'smooth',
     })
   }
-  const isAppOverviewPage = [PAGES.APPOVERVIEW, PAGES.APP_MANAGEMENT, PAGES.APPRELEASEPROCESS].find(
-    (e) => location.pathname.split('/').includes(e)
-  )
+  const isAppOverviewPage = [
+    PAGES.APPOVERVIEW,
+    PAGES.APP_MANAGEMENT,
+    PAGES.APPRELEASEPROCESS,
+  ].find((e) => location.pathname.split('/').includes(e))
 
   const [showScrollToTop, setShowScrollToTop] = useState(false)
 
