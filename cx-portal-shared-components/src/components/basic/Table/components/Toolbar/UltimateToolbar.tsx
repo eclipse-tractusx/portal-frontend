@@ -92,7 +92,7 @@ export const UltimateToolbar = ({
       }}
     >
       {onSearch && (
-        <Box sx={{ display: 'flex', alignItems: 'center', height: '40px' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           <SearchInput
             value={searchText}
             onChange={onSearchChange}
@@ -100,7 +100,7 @@ export const UltimateToolbar = ({
             placeholder={searchPlaceholder}
             sx={{
               '.MuiInputBase-input': {
-                padding: '10px',
+                padding: '4px 10px',
                 width: '300px',
               },
             }}

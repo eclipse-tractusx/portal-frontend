@@ -107,7 +107,6 @@ export const Table = ({
               outline: 'none',
             },
         }}
-        disableSelectionOnClick
         getRowId={(row) => row.id}
         components={{
           Toolbar: () => toolbarView(),
