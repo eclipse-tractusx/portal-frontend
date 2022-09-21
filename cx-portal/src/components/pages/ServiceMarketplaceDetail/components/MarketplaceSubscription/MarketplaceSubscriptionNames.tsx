@@ -33,7 +33,7 @@ export default function MarketplaceSubscriptionNames({
 
   return (
     <span className="subscription-name">
-      {data && data.offerName.charAt(0).toUpperCase() + data.offerName.slice(1)}
+      {data && data.offerName}
     </span>
   )
 }
