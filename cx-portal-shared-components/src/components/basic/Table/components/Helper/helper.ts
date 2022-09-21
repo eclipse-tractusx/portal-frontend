@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -17,22 +17,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+export const hasMorePages = (data: any) => {
+  return (
+    data?.page < data?.totalPages - 1 ||
+    (data?.meta && data.meta.page < data.meta.totalPages - 1)
+  )
+}
 
-import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'
-import UserService from 'services/UserService'
-
-export const apiBaseQuery = () => ({
-  baseUrl: getApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
-
-export const apiBpdmQuery = () => ({
-  baseUrl: getBpdmApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+export const getMaxRows = (data: any) => {
+  return data?.totalElements ?? data?.meta?.totalElements ?? 0
+}

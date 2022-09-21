@@ -21,6 +21,7 @@ import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
+import { hasMorePages, getMaxRows } from './components/Helper/helper'
 
 export type PaginFetchArgs = {
   page: number
@@ -44,6 +45,8 @@ export interface PageLoadingTableProps extends Omit<TableProps, 'rows'> {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
   fetchHookRefresh?: number
+  allItems?: any
+  callbackToPage?: any
 }
 
 export const PageLoadingTable = function <T>({
@@ -51,6 +54,8 @@ export const PageLoadingTable = function <T>({
   fetchHook,
   fetchHookArgs,
   fetchHookRefresh = 0,
+  allItems,
+  callbackToPage,
   ...props
 }: PageLoadingTableProps) {
   const [page, setPage] = useState(0)
@@ -64,9 +69,17 @@ export const PageLoadingTable = function <T>({
       v: loaded,
     },
   })
+  const [loading, setLoading] = useState(true)
   const nextPage = () => setPage(page + 1)
-  const hasMore = data?.meta && data.meta.page < data.meta.totalPages - 1
-  const maxRows = data?.meta?.totalElements ?? 0
+  const hasMore = hasMorePages(data)
+  const maxRows = getMaxRows(data)
+
+  useEffect(() => {
+    if (allItems?.length > 0) {
+      setLoading(false)
+      setItems((i) => i.concat(allItems))
+    }
+  }, [allItems])
 
   useEffect(() => {
     if (loaded !== fetchHookRefresh) {
@@ -76,13 +89,25 @@ export const PageLoadingTable = function <T>({
     }
   }, [fetchHookRefresh, loaded])
 
+  /* eslint react-hooks/exhaustive-deps: "off" */
   useEffect(() => {
-    if (isSuccess && !isFetching && data && data.content) {
+    //reset loading
+    if (isFetching && !loading) {
+      setLoading(true)
+    }
+    if (isSuccess && !isFetching && data && (data.content || data.bpn)) {
       if (clear) {
         setItems([])
         setClear(false)
       } else {
-        setItems((i) => i.concat(data.content))
+        if (callbackToPage) {
+          callbackToPage(data)
+        } else {
+          setLoading(false)
+          data.content
+            ? setItems((i) => i.concat(data.content))
+            : setItems([data]) // Search for legal entity based on BPN responses with an object. No content or meta properties available
+        }
       }
     }
   }, [isSuccess, isFetching, data, clear, loaded])
@@ -93,11 +118,11 @@ export const PageLoadingTable = function <T>({
         rowsCount={items.length}
         rowsCountMax={maxRows}
         hideFooter={items.length < (props.rowCount || 100)}
-        loading={isFetching}
+        loading={loading}
         rows={items}
         {...props}
       />
-      {hasMore && (
+      {items.length > 0 && hasMore && (
         <Box
           sx={{
             width: '100%',
