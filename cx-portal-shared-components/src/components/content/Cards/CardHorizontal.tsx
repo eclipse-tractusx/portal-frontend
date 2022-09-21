@@ -128,7 +128,7 @@ export const CardHorizontal = ({
         >
           {description}
         </Typography>
-        <Grid container>
+        <Grid container sx={{ paddingRight: '15px' }}>
           {statusText && (
             <Grid xs={4}>
               <Box
@@ -141,16 +141,15 @@ export const CardHorizontal = ({
             </Grid>
           )}
           {buttonText && (
-            <Grid
-              xs={4}
+            <Button
+              size="small"
+              onClick={onBtnClick}
               sx={{
                 marginLeft: 'auto',
               }}
             >
-              <Button size="small" onClick={onBtnClick}>
-                {buttonText}
-              </Button>
-            </Grid>
+              {buttonText}
+            </Button>
           )}
         </Grid>
       </Box>
