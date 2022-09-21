@@ -89,6 +89,7 @@ export const PageLoadingTable = function <T>({
     }
   }, [fetchHookRefresh, loaded])
 
+  /* eslint react-hooks/exhaustive-deps: "off" */
   useEffect(() => {
     //reset loading
     if (isFetching && !loading) {
