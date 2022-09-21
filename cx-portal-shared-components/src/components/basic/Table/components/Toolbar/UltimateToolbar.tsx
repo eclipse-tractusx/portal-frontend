@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Box, useTheme } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
 import { Button } from '../../../Button'
 import { SearchInput } from '../../../SearchInput'
+import { IconButton } from '../../../IconButton'
 import { ToolbarProps } from '.'
 
 export type SelectedFilter = {
@@ -19,9 +21,14 @@ export const UltimateToolbar = ({
   onFilter,
   searchPlaceholder,
   selectedFilter,
+  searchExpr,
+  searchInputData,
+  onClearSearch,
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
-  const [searchInput, setSearchInput] = useState<string>('')
+  const [searchInput, setSearchInput] = useState<string>(
+    searchExpr ?? (searchInputData ? searchInputData.text : '')
+  )
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -39,6 +46,11 @@ export const UltimateToolbar = ({
     }
   }
 
+  const handleSearchClear = () => {
+    onClearSearch && onClearSearch()
+    setSearchInput('')
+  }
+
   const headerHeight = () => (onSearch || onFilter ? 100 : 0)
   return (
     <Box
@@ -53,6 +65,16 @@ export const UltimateToolbar = ({
       {onSearch && (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           <SearchInput
+            {...(onClearSearch && searchInput
+              ? {
+                  endAdornment: (
+                    <IconButton onClick={handleSearchClear}>
+                      <ClearIcon />
+                    </IconButton>
+                  ),
+                }
+              : {})}
+            type="text"
             value={searchInput}
             onChange={onSearchInputChange}
             onKeyPress={onSearchInputKeyPress}

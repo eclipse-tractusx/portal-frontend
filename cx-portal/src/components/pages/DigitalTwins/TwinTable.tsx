@@ -42,6 +42,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   const { twinList, loading } = useSelector(twinsSelector)
   const [twins, setTwins] = useState<ShellDescriptor[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
+  const [searchValue, setsearchValue] = useState<string>('')
   const rowCount = 10
 
   useEffect(() => {
@@ -57,8 +58,6 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   const checkForKeyType = (
     search: string
   ): 'globalAssetId' | 'PartInstanceID' => {
-    console.log(Patterns.prefix.URNID.test(search))
-
     return Patterns.prefix.URNID.test(search)
       ? 'globalAssetId'
       : 'PartInstanceID'
@@ -66,8 +65,16 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
 
   const onSearch = (value: string) => {
     setTwins([])
+    setsearchValue(value)
     const key = checkForKeyType(value)
     dispatch(fetchTwinForSearch({ key, value }))
+  }
+
+  const clearSearch = () => {
+    setsearchValue('')
+    dispatch(
+      fetchDigitalTwins({ filter: { page: pageNumber, pageSize: rowCount } })
+    )
   }
 
   const columns = DigitalTwinsTableColumns(useTranslation, onTwinSelect)
@@ -91,6 +98,8 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         toolbarVariant="ultimate"
         toolbar={{
           onSearch: onSearch,
+          searchExpr: searchValue,
+          onClearSearch: clearSearch,
         }}
         columns={columns}
         rows={twins}

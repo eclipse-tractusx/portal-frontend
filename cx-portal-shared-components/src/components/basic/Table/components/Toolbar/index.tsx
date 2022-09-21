@@ -6,6 +6,7 @@ import { SearchInput } from '../../../SearchInput'
 import { Typography } from '../../../Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
+import ClearIcon from '@mui/icons-material/Clear'
 import { Checkbox } from '../../../Checkbox'
 import { getSelectedFilterUpdate } from './helper'
 
@@ -44,6 +45,7 @@ export interface ToolbarProps {
   openFilterSection?: boolean
   onOpenFilterSection?: (value: boolean) => void
   selectedFilter?: SelectedFilter
+  onClearSearch?: () => void
 }
 
 export const Toolbar = ({
@@ -62,6 +64,7 @@ export const Toolbar = ({
   openFilterSection,
   onOpenFilterSection,
   selectedFilter,
+  onClearSearch,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
   const [openSearch, setOpenSearch] = useState<boolean>(
@@ -98,6 +101,10 @@ export const Toolbar = ({
 
   const onSearchInputKeyPress = (_e: React.KeyboardEvent<HTMLInputElement>) => {
     //console.log(e.key)
+  }
+
+  const handleSearchClear = () => {
+    onClearSearch && onClearSearch()
   }
 
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,6 +161,16 @@ export const Toolbar = ({
           {openSearch ? (
             <SearchInput
               autoFocus
+              {...(onClearSearch && searchInput
+                ? {
+                    endAdornment: (
+                      <IconButton onClick={handleSearchClear}>
+                        <ClearIcon />
+                      </IconButton>
+                    ),
+                  }
+                : {})}
+              type="text"
               value={searchInput}
               onChange={onSearchInputChange}
               onKeyPress={onSearchInputKeyPress}
