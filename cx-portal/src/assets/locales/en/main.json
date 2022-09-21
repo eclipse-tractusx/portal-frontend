@@ -519,6 +519,9 @@
     },
     "notfound": {
       "message": "The content could not be found. This can happen because of various reasons - either",
+      "title": "Something went wrong.",
+      "description": "You don't have access to this page or the page doesn't exist. Please contact your admin.",
+      "button": "HomePage",
       "reason": {
         "nopermission": "you have no permission to view this content or",
         "notexisting": "the page doesn't exist in the Catena-X portal or",
