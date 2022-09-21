@@ -65,7 +65,7 @@ export type AgreementRequest = {
 }
 
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/roles',
+  reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchServices: builder.query<ServiceRequestAPIResponse, number>({
