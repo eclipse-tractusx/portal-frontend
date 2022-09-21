@@ -101,6 +101,13 @@ export const Table = ({
       }}
     >
       <DataGrid
+        sx={{
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus':
+            {
+              outline: 'none',
+            },
+        }}
+        disableSelectionOnClick
         getRowId={(row) => row.id}
         components={{
           Toolbar: () => toolbarView(),
