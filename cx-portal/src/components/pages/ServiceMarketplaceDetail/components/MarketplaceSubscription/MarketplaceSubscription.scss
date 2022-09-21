@@ -29,6 +29,7 @@
     ol {
       li {
         .subscription-name {
+          text-transform: capitalize;
           padding-left: 10px;
         }
       }

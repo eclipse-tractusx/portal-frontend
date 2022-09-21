@@ -18,18 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
+import { ErrorPage } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import NotFoundContent from './NotFoundContent'
+import { useNavigate } from 'react-router-dom'
 
 export default function NotFound() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+
   return (
     <main>
-      <StageHeader title={t('pages.notfound')} />
-      <section>
-        <NotFoundContent />
-      </section>
+      <ErrorPage
+        header={t('content.notfound.title')}
+        title={t('content.notfound.description')}
+        reloadButtonTitle={t('content.notfound.button')}
+        onReloadClick={() => navigate('/')}
+      />
     </main>
   )
 }
