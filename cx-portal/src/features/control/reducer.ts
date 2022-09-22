@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { format } from 'path'
 import { combineReducers } from 'redux'
 import { slice as overlay } from './overlay/slice'
 import { slice as form } from './formSlice'
