@@ -44,6 +44,9 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch } from 'react-redux'
 import { increment } from 'features/appManagement/slice'
+import { setAppId } from 'features/appManagement/actions'
+import { isString } from 'lodash'
+import Patterns from 'types/Patterns'
 
 type FormDataType = {
   title: string
@@ -171,7 +174,7 @@ export default function AppMarketCard() {
     useCaseCategory: [],
     appLanguage: [],
     //To do: to be changed once api is available
-    providerCompanyId: '220330ac-170d-4e22-8d72-9467ed042149',
+    providerCompanyId: '2dc4249f-b5ca-4d42-bef1-7a7a950a4f87',
     shortDescriptionEN: '',
     shortDescriptionDE: '',
     uploadImage: {
@@ -248,10 +251,13 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
-    try {
-      await addCreateApp(saveData).unwrap()
-      dispatch(increment())
-    } catch (err) {}
+    await addCreateApp(saveData)
+      .unwrap()
+      .then((result) => {
+        isString(result) && dispatch(setAppId(result))
+        dispatch(increment())
+      })
+      .catch((error) => {})
   }
 
   return (
@@ -343,7 +349,7 @@ export default function AppMarketCard() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
+                      value: Patterns.appMarketCard.appTitle,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9.:_- @&`,
@@ -390,7 +396,7 @@ export default function AppMarketCard() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z ]){3,30}$/,
+                      value: Patterns.appMarketCard.appProvider,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Z a-z`,
@@ -450,7 +456,7 @@ export default function AppMarketCard() {
                             )}`,
                           },
                           pattern: {
-                            value: /^([A-Za-z.:@0-9& ]){10,255}$/,
+                            value: Patterns.appMarketCard.shortDescription,
                             message: `${t(
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
                             )} A-Za-z0-9.: @&`,
@@ -502,7 +508,7 @@ export default function AppMarketCard() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z])$/,
+                      value: Patterns.appMarketCard.useCaseCategory,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z`,
@@ -540,7 +546,7 @@ export default function AppMarketCard() {
                       )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z ])$/,
+                      value: Patterns.appMarketCard.appLanguage,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Z a-z`,
@@ -594,7 +600,7 @@ export default function AppMarketCard() {
                       )}`,
                     },
                     pattern: {
-                      value: /^([A-Za-z0-9/€ ]){1,15}$/,
+                      value: Patterns.appMarketCard.pricingInformation,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
                       )} A-Za-z0-9/ €`,

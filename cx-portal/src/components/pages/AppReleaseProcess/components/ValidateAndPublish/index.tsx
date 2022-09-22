@@ -37,9 +37,10 @@ import { useDispatch } from 'react-redux'
 import { decrement } from 'features/appManagement/slice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 
-export default function VerifyCompanyData() {
+export default function ValidateAndPublish() {
   const { t } = useTranslation()
-  const [companyDataNotification, setCompanyDataNotification] = useState(false)
+  const [validatePublishNotification, setValidatePublishNotification] =
+    useState(false)
   const dispatch = useDispatch()
 
   const defaultValues = {
@@ -119,9 +120,8 @@ export default function VerifyCompanyData() {
     mode: 'onChange',
   })
 
-  const onCompanyDataSubmit = async (data: any) => {
-    setCompanyDataNotification(true)
-  }
+  const onValidatePublishSubmit = async (data: any) =>
+    setValidatePublishNotification(true)
 
   const providerDetailsValues = (item: string) => {
     if (item === 'providerHomePage') return defaultValues.providerUri
@@ -130,15 +130,15 @@ export default function VerifyCompanyData() {
   }
 
   return (
-    <div className="verify-company-data">
+    <div className="validate-and-publish">
       <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.verifyCompanyData.headerTitle')}
+        {t('content.apprelease.validateAndPublish.headerTitle')}
       </Typography>
       <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.verifyCompanyData.headerDescription')}
+        {t('content.apprelease.validateAndPublish.headerDescription')}
       </Typography>
       <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-        {t('content.apprelease.verifyCompanyData.appCardDetails')}
+        {t('content.apprelease.validateAndPublish.appCardDetails')}
       </Typography>
 
       <Grid container spacing={2}>
@@ -222,7 +222,7 @@ export default function VerifyCompanyData() {
               disabled={true}
             />
           </div>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2, mt: 8 }} />
+          <Divider className="form-divider" />
           <Typography variant="h4" align="center" sx={{ mb: 4 }}>
             {t('content.apprelease.appPage.headerTitle')}
           </Typography>
@@ -257,12 +257,12 @@ export default function VerifyCompanyData() {
                     defaultValues?.descriptions[2]?.longDescription?.length
                   : defaultValues?.descriptions &&
                     defaultValues?.descriptions[3]?.longDescription?.length) +
-                  `/255`}
+                  `/2000`}
               </Typography>
             </div>
           ))}
 
-          <Divider sx={{ mb: 2, mr: -2, ml: -2, mt: 8 }} />
+          <Divider className="form-divider" />
           <div className="form-field">
             <InputLabel sx={{ mb: 3, mt: 3 }}>
               {t('content.apprelease.appPage.images') + ' *'}
@@ -275,7 +275,7 @@ export default function VerifyCompanyData() {
               {t('content.apprelease.appReleaseForm.max3Images')}
             </Typography>
           </div>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2, mt: 8 }} />
+          <Divider className="form-divider" />
 
           {['connectData', 'dataSecurityInformation'].map((item) => (
             <div className="form-field">
@@ -373,9 +373,9 @@ export default function VerifyCompanyData() {
       <Box mb={2}>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
+          startIcon={<HelpOutlineIcon />}
           variant="outlined"
           sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
@@ -383,30 +383,22 @@ export default function VerifyCompanyData() {
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
+          onClick={handleSubmit(onValidatePublishSubmit)}
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onCompanyDataSubmit)}
         >
           {t('content.apprelease.footerButtons.submit')}
         </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          disabled
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
       </Box>
-      {companyDataNotification && (
+      {validatePublishNotification && (
         <div className="errorMsg">
           <PageNotifications
             title={t('content.apprelease.appReleaseForm.error.title')}
             description={t('content.apprelease.appReleaseForm.error.message')}
             open
             severity="error"
-            onCloseNotification={() => setCompanyDataNotification(false)}
+            onCloseNotification={() => setValidatePublishNotification(false)}
           />
         </div>
       )}

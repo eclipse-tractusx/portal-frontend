@@ -322,7 +322,9 @@
         "street": "Straße",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Zertifiziert"
+        "cxparticipant": "CX Zertifiziert",
+        "address": "Anschrift",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Deutschland",
@@ -557,6 +559,9 @@
       "message": "Wir melden Sie nun ab... Wir freuen uns Sie bald wieder hier zu sehen!"
     },
     "notfound": {
+      "title": "Etwas ist schief gelaufen.",
+      "description": "Sie haben keinen Zugriff auf diese Seite oder die Seite existiert nicht. Bitte wenden Sie sich an Ihren Administrator.",
+      "button": "Startseite",
       "message": "Der Inhalt wurde nicht gefunden. Dies kann verschiedene Ursachen haben - entweder",
       "reason": {
         "nopermission": "Sie haben keine Berechtigung diesen Inhalt zu sehen oder",
@@ -606,7 +611,7 @@
         "contractAndConsent": "Contract & Consent",
         "technicalIntegration": "Technical Integration",
         "betaTest": "Beta Test",
-        "verifyYourCompanyData": "Verify your company data"
+        "validateAndPublish": "Validate & Publish"
       },
       "appMarketCard": {
         "headerTitle": "Create App",
@@ -657,13 +662,31 @@
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "clientID": "Client ID",
+        "URL": "URL",
+        "pleaseEnterValidURL": "Please enter a valid URL",
+        "URLPlaceholder": "http://www.loremipsum.de",
+        "clientCreated": "Client created",
+        "step2Header": "2. Upload App Roles",
+        "createThoseForYourApp": "Create those for your App",
+        "step3Header": "3. Enable your Identity Management Solution",
+        "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "step4Header": "4. Get Test Users to Test Integration",
+        "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
+        "createClient": "Create Client",
+        "createTestUser": "Create Test User",
+        "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
+        "password": "Password",
+        "username": "Username"
       },
       "betaTest": {
         "headerTitle": "Beta Test",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
       },
-      "verifyCompanyData": {
+      "validateAndPublish": {
         "headerTitle": "Verify your app data for submit",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "appCardDetails": "App Card Details"
@@ -692,6 +715,13 @@
         "save": "Save",
         "submit": "Submit"
       }
+    },
+    "serviceMarketplace": {
+      "headline": "Purchase Service Request",
+      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully"
     }
   },
   "navigation": {
@@ -783,14 +813,14 @@
     }
   },
   "servicemarketplace": {
-    "title": "Service Marketplace",
-    "message": "Service Marketplace Description"
+    "title": "Service Provider Marketplace"
   },
   "dataspacemarketplace": {
     "title": "Dataspace Marketplace",
     "message": "Dataspace Marketplace Description"
   },
   "hints": {
-    "coming_soon": "coming soon"
+    "coming_soon": "Coming soon",
+    "new": "New"
   }
 }

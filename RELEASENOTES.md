@@ -3,18 +3,24 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.5
+
+* Bugfix - Connect Partner Network to BPDM
+
+
 ### 0.5.4
 
-* Feature - Create, enable and delete Identity Providers
-* Feature - App Release Process Step 2
-* Feature - App Release Process Step 3 with api binding
-* Feature - Add "CX Membership" flag in Partner Network
+* Feature - Service Marketplace
+* Feature - Identity Providers
 * Feature - My Organization page
+* Feature - App Release Process Steps 2 with business logic, 3 with api binding, 6 with UI, 4 with UI
 * Feature - Search functionality added in Register Request table
-* Bugs - Show loader on clicking decline or confirm from application request screen
-* Bugs - Show error popup on failure of approve or decline request
-* Bugs - Text updates on company data overlay
-* Feature - App Release Process Step 6
+* Feature - Add "CX Membership" flag in Partner Network
+* Bugfix - Show loader on clicking decline or confirm from application request screen
+* Bugfix - Show error popup on failure of approve or decline request
+* Bugfix - Text updates on company data overlay
+* Bugfix - Fixed modal width, subscribe refetch and services loading effect
+* Bugfix - User Management - AddUser Roles missing
 
 
 ### 0.5.3
@@ -47,10 +53,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Older
 
-* Defect - No roles available when adding a user
 * Defect - Page reloads when the auth token is renewed
-* Defect - Partner Network not working on localhost and dev (only int)
-* Defect - Notifications are static
 * Defect - Latest apps are static
 * Defect - Some footer pages and menu items are empty
-

@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
@@ -5,7 +25,6 @@ import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
 import { AddUser } from 'components/overlays/AddUser'
 import NewsDetail from 'components/overlays/NewsDetail'
-import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import UserInfo from 'components/overlays/UserInfo'
 import { OverlayState } from 'features/control/overlay/types'
 import {
@@ -22,8 +41,10 @@ import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
+import ServiceRequest from 'components/overlays/ServiceRequest'
 import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
 import NotFound from 'components/overlays/NotFound'
+import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -68,10 +89,12 @@ export const getAction = (action: string) =>
   hasAccessAction(action) ? actionMap[action] : null
 
 export const getOverlay = (overlay: OverlayState) => {
-  if (!hasAccessOverlay(overlay.type)) {
+  if (overlay.type !== OVERLAYS.NONE && !hasAccessOverlay(overlay.type)) {
     return <NotFound />
   }
   switch (overlay.type) {
+    case OVERLAYS.NONE:
+      return null
     case OVERLAYS.ADD_USER:
       return <AddUser />
     case OVERLAYS.USER:
@@ -93,9 +116,11 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.ADD_BPN:
       return <AddBPN id={overlay.id} />
     case OVERLAYS.PARTNER:
-      return <BusinessPartnerDetail id={overlay.id} />
+      return <BusinessPartnerInfo id={overlay.id} />
     case OVERLAYS.APP:
       return <AppInfo id={overlay.id} title={overlay.title} />
+    case OVERLAYS.SERVICE_REQUEST:
+      return <ServiceRequest id={overlay.id} />
     default:
       return <NotFound />
   }
