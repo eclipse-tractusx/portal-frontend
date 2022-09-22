@@ -150,7 +150,7 @@ export const Toolbar = ({
         <ClearIcon />
       </IconButton>
     ) : (
-      {}
+      <></>
     )
 
   return (
