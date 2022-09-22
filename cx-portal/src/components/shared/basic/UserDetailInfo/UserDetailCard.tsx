@@ -25,7 +25,8 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 
 export type UserDetail = {
   companyUserId: string
@@ -60,29 +61,33 @@ export const UserDetailCard = ({
   cardContentItems,
   variant,
 }: UserCardProps) => {
-  const { userId } = useParams()
   const dispatch = useDispatch()
+  const [userId, setUserId] = useState<string | undefined>('')
+  const { data = { companyUserId: '' } } = useFetchOwnUserDetailsQuery()
 
-  const openEditOverlay = () => {
-    dispatch(show(OVERLAYS.ADD_BPN, userId))
-  }
+  useEffect(() => {
+    setUserId(data['companyUserId'])
+  }, [data])
+
+  const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
 
   const renderValue = (value: UserItemsTranslation | undefined) => (
     <>
       <strong>{value?.label}:</strong>&nbsp;
-      <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-        {Array.isArray(value?.value)
-          ? value?.value.map((bpn, i) => (
-              <span key={i}>
-                {bpn}
-                <br />
-              </span>
-            ))
-          : value?.value}
-      </span>
       <span>
-        {userId && value?.label === 'BPN' && (
+        {userId && value?.label === 'BPN' ? (
           <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
+        ) : (
+          <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+            {Array.isArray(value?.value)
+              ? value?.value.map((bpn, i) => (
+                  <span key={i}>
+                    {bpn}
+                    <br />
+                  </span>
+                ))
+              : value?.value}
+          </span>
         )}
       </span>
     </>
@@ -143,6 +148,7 @@ export const UserDetailCard = ({
               color: 'text.tertiary',
               fontFamily: 'LibreFranklin-Light',
               padding: k === 'status' ? '14.5px 20px' : '20px',
+              justifyContent: k === 'bpn' ? 'space-between' : '',
             }}
           >
             {renderContentSwitch(k, v)}
