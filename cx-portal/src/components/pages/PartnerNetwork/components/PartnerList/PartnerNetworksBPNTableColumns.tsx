@@ -1,5 +1,5 @@
 /********************************************************************************
- * 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -21,34 +21,31 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
+import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'
-import smallLogo from '../../../assets/logo/cx-logo-short.svg'
+import smallLogo from '../../../../../assets/logo/cx-logo-short.svg'
 
 // Columns definitions of Partner Network page Data Grid
-export const PartnerNetworksTableColumns = (
+export const PartnerNetworksBPNTableColumns = (
   translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
   return [
     {
-      field: 'legalEntity.names',
+      field: 'names',
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity && row?.legalEntity?.names
-          ? row.legalEntity.names[0].value
-          : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) =>
+        row.names ? row.names[0].value : null,
     },
     {
-      field: 'legalEntity.bpn',
+      field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.bpn : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) => row.bpn,
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
@@ -56,10 +53,7 @@ export const PartnerNetworksTableColumns = (
       flex: 1.5,
       sortable: false,
       renderCell: (params) =>
-        params &&
-        params.row &&
-        params.row.legalEntity &&
-        params.row.legalEntity.member ? (
+        params && params.row && params.row.member ? (
           <Box
             component="img"
             padding=".5rem"
@@ -78,8 +72,8 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.legalAddress?.country?.name : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) =>
+        row ? row.legalAddress?.country?.name : '',
     },
     {
       field: 'detail',
@@ -87,15 +81,18 @@ export const PartnerNetworksTableColumns = (
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',
-      renderCell: () => (
-        <IconButton
-          color="secondary"
-          size="small"
-          style={{ alignSelf: 'center' }}
-        >
-          <ArrowForwardIcon />
-        </IconButton>
-      ),
+      renderCell: (params) =>
+        params && params.row && params.row.bpn ? (
+          <IconButton
+            color="secondary"
+            size="small"
+            style={{ alignSelf: 'center' }}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        ) : (
+          <></>
+        ),
     },
   ]
 }

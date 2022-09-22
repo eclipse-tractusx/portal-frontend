@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,21 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'
-import UserService from 'services/UserService'
+export const isQueryDataPresent = (queryData: any) =>
+  queryData && queryData.length > 0
 
-export const apiBaseQuery = () => ({
-  baseUrl: getApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+export const isContentPresent = (data: any) => data && data.content
 
-export const apiBpdmQuery = () => ({
-  baseUrl: getBpdmApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+export const addCountryAttribute = (finalObj: any, payload: any) => {
+  finalObj.forEach((x: any) => {
+    payload.forEach((y: any) => {
+      if (x.legalEntity.bpn === y.legalEntity) {
+        x.legalEntity.legalAddress = y.legalAddress
+      }
+    })
+  })
+  return finalObj
+}
+
+export const addMemberAttribute = (finalObj: any, queryData: any) => {
+  if (queryData) {
+    finalObj.forEach((x: any) => {
+      x.legalEntity.member = queryData.includes(x.legalEntity.bpn)
+    })
+  }
+  return finalObj
+}

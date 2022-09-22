@@ -5,10 +5,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.5.5
 
+* Bugfix - Connect Partner Network to BPDM
+* Bugfix - UI updates in UltimateToolbar component
+* Bugfix - Registration table UI fixes
+* Bugfix - App Release Process - Fixed browser back button issue
+* Bugfix - App Release Process - Fixed user directing to bottom of the page
 * Bugfix - Services Card Responsive UI Fix
-
-* ...
-
 
 ### 0.5.4
 
@@ -55,10 +57,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Older
 
-* Defect - No roles available when adding a user
 * Defect - Page reloads when the auth token is renewed
-* Defect - Partner Network not working on localhost and dev (only int)
-* Defect - Notifications are static
 * Defect - Latest apps are static
 * Defect - Some footer pages and menu items are empty
-

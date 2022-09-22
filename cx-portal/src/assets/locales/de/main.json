@@ -322,7 +322,9 @@
         "street": "Straße",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Zertifiziert"
+        "cxparticipant": "CX Zertifiziert",
+        "address": "Anschrift",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Deutschland",
@@ -690,6 +692,7 @@
         "appCardDetails": "App Card Details"
       },
       "appReleaseForm": {
+        "headerTitle": "Create App",
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",
         "note": "Note:",
