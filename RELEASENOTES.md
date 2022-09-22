@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### 0.5.5
 
 * Bugfix - Connect Partner Network to BPDM
+* Bugfix - Registration table UI fixes
 
 
 ### 0.5.4
