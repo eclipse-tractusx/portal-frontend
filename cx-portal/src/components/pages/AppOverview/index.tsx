@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
@@ -29,20 +29,57 @@ import {
   SearchInput,
   CardAddService,
   CardHorizontal,
+  CardItems,
 } from 'cx-portal-shared-components'
 import { appCardStatus } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import uniqueId from 'lodash/uniqueId'
+import { useDispatch } from 'react-redux'
+import debounce from 'lodash.debounce'
 
 export default function AppOverview() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [group, setGroup] = useState<string>('')
   const { data } = useFetchActiveAppsQuery() //// TODO: Replace to Recently changed apps api
   const items = data && appCardStatus(data)
+  const [filterItem, setFilterItem] = useState<CardItems[]>()
+  const [searchExpr, setSearchExpr] = useState<string>('')
+
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((expr: string) => {
+        if (expr.length > 2) {
+          const filterItem = items?.filter((item) =>
+            item.title.toLocaleLowerCase().includes(expr.toLocaleLowerCase())
+          )
+          setFilterItem(filterItem)
+        } else if (expr.length === 0) {
+          setFilterItem(items)
+        }
+      }, 400),
+    // eslint-disable-next-line
+    [dispatch]
+  )
+
+  useEffect(() => {
+    if (items) {
+      setFilterItem(items)
+    }
+    // eslint-disable-next-line
+  }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value) {
+      const filterItem = items?.filter(
+        (item: any) => item.status === e.currentTarget.value
+      )
+      setFilterItem(filterItem)
+    } else {
+      setFilterItem(items)
+    }
     setGroup(e.currentTarget.value)
   }
 
@@ -54,20 +91,32 @@ export default function AppOverview() {
     },
     {
       buttonText: t('content.appoverview.filter.active'),
-      buttonValue: 'useCases',
+      buttonValue: 'active',
       onButtonClick: setView,
     },
     {
       buttonText: t('content.appoverview.filter.inactive'),
-      buttonValue: 'useCases',
+      buttonValue: 'inactive',
       onButtonClick: setView,
     },
     {
       buttonText: t('content.appoverview.filter.wip'),
-      buttonValue: 'useCases',
+      buttonValue: 'wip',
       onButtonClick: setView,
     },
   ]
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      const validateExpr = /^[ A-Za-z]*$/.test(expr)
+      if (!validateExpr) {
+        return
+      }
+      setSearchExpr(expr)
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
 
   return (
     <div className="appoverview-app">
@@ -114,6 +163,8 @@ export default function AppOverview() {
               <SearchInput
                 sx={{ minWidth: '544px' }}
                 margin={'normal'}
+                value={searchExpr}
+                onChange={(e) => doSearch(e.target.value)}
                 placeholder={t('content.appoverview.inputPlaceholder')}
               />
             </Box>
@@ -132,7 +183,7 @@ export default function AppOverview() {
               title={t('content.appoverview.addbtn')}
             />
           </div>
-          {items?.map((item: any) => {
+          {filterItem?.map((item: any) => {
             return (
               <div className="app-child" key={uniqueId(item.title)}>
                 <CardHorizontal

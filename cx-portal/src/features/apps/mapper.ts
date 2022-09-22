@@ -103,9 +103,12 @@ export const appToStatus = (
 export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {
   if (!apps || apps.length === 0) return []
   return apps
-    ?.map((app: AppMarketplaceApp) => {
-      const status = StatusVariants.active as any
-      const statusText = 'Active'
+    ?.map((app: AppMarketplaceApp, index: number) => {
+      const status =
+        index === 0
+          ? (StatusVariants.inactive as any)
+          : (StatusVariants.active as any)
+      const statusText = index === 0 ? 'Inactive' : 'Active'
       return { ...app, status, statusText }
     })
     .filter((e) => e.status)

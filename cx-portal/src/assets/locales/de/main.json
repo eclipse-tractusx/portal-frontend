@@ -270,8 +270,8 @@
       "filter": {
         "all": "Alle",
         "active": "Aktiv",
-        "inactive": "inaktiv",
-        "wip": "abwischen"
+        "inactive": "Inaktiv",
+        "wip": "In Arbeit"
       },
       "addbtn": "Neue App erstellen"
     },
