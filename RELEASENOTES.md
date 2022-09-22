@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Bugfix - Connect Partner Network to BPDM
 * Bugfix - UI updates in UltimateToolbar component
+* Bugfix - Registration table UI fixes
 * Bugfix - App Release Process - Fixed browser back button issue
 * Bugfix - App Release Process - Fixed user directing to bottom of the page
 
