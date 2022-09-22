@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### 0.5.5
 
 * Bugfix - Connect Partner Network to BPDM
+* Bugfix - UI updates in UltimateToolbar component
 
 
 ### 0.5.4
@@ -21,7 +22,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Text updates on company data overlay
 * Bugfix - Fixed modal width, subscribe refetch and services loading effect
 * Bugfix - User Management - AddUser Roles missing
-* Bugfix - UI updates in UltimateToolbar component
 
 
 ### 0.5.3
