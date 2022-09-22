@@ -653,6 +653,7 @@
         "appCardDetails": "App Card Details"
       },
       "appReleaseForm": {
+        "headerTitle": "Create App",
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",
         "note": "Note:",
