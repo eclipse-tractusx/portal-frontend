@@ -10,6 +10,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Registration table UI fixes
 * Bugfix - App Release Process - Fixed browser back button issue
 * Bugfix - App Release Process - Fixed user directing to bottom of the page
+* Bugfix - User Management Main Page Style fix
 
 ### 0.5.4
 

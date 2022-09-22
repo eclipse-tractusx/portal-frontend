@@ -179,6 +179,12 @@ export const Toolbar = ({
               onKeyPress={onSearchInputKeyPress}
               onBlur={() => setOpenSearch(false)}
               placeholder={searchPlaceholder}
+              sx={{
+                '.MuiInputBase-input': {
+                  padding: '10px',
+                  width: '250px',
+                },
+              }}
             />
           ) : (
             onSearch && (

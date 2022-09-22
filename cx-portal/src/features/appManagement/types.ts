@@ -21,7 +21,7 @@
 export const name = 'admin/appManagement'
 
 export type SearchInputState = {
-  open: boolean
+  open: true
   text: string
 }
 
