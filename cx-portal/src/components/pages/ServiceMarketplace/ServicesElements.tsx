@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { CardHorizontal, PageNotifications } from 'cx-portal-shared-components'
-import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
+import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
