@@ -62,6 +62,7 @@ import { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
+import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 
 /**
  * ALL_PAGES
@@ -201,6 +202,16 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPRELEASEPROCESS,
     //role: ROLES.VIEW_APP_RELEASE,
     element: <AppReleaseProcess />,
+  },
+  {
+    name: PAGES.APP_RELEASE_PROCESS_FORM,
+    isRoute: true,
+    element: (
+      <Route
+        path={`${PAGES.APPRELEASEPROCESS}/form`}
+        element={<AppReleaseProcessForm />}
+      />
+    ),
   },
   {
     name: PAGES.USER_MANAGEMENT,
