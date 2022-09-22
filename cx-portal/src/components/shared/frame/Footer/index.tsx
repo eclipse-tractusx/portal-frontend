@@ -22,11 +22,13 @@ import { useEffect, useState } from 'react'
 import { Navigation, IconButton } from 'cx-portal-shared-components'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './Footer.scss'
+import { PAGES } from 'types/Constants'
 
 export const Footer = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
+  const location = useLocation()
   const items = pages.map((page) => ({
     to: page,
     title: t(`pages.${page}`),
@@ -37,6 +39,11 @@ export const Footer = ({ pages }: { pages: string[] }) => {
       behavior: 'smooth',
     })
   }
+  const isAppOverviewPage = [
+    PAGES.APPOVERVIEW,
+    PAGES.APP_MANAGEMENT,
+    PAGES.APPRELEASEPROCESS,
+  ].find((e) => location.pathname.split('/').includes(e))
 
   const [showScrollToTop, setShowScrollToTop] = useState(false)
 
@@ -49,7 +56,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   }, [])
 
   return (
-    <footer>
+    <footer style={{ background: isAppOverviewPage ? '#F9F9F9' : '' }}>
       {showScrollToTop && (
         <IconButton
           color="secondary"

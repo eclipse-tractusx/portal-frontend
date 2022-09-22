@@ -13,6 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Service Marketplace
 * Feature - Identity Providers
 * Feature - My Organization page
+* Feature - App Overview page
 * Feature - App Release Process Steps 2 with business logic, 3 with api binding, 6 with UI, 4 with UI
 * Feature - Search functionality added in Register Request table
 * Feature - Add "CX Membership" flag in Partner Network

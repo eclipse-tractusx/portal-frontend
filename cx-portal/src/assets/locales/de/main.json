@@ -37,7 +37,7 @@
     "logout": "Abmelden",
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
-    "appoverview": "App Overview",
+    "appoverview": "App-Übersicht",
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
@@ -260,7 +260,20 @@
       "message": "Inhalte vom Entwickler Hub"
     },
     "appoverview": {
-      "message": "App Overview Message"
+      "headerTitle": "Meine Applikationen",
+      "title": "App-Übersicht",
+      "inputPlaceholder": "Suchen Sie nach Apps",
+      "recently": {
+        "header": "Kürzlich gewechselt",
+        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "filter": {
+        "all": "Alle",
+        "active": "Aktiv",
+        "inactive": "inaktiv",
+        "wip": "abwischen"
+      },
+      "addbtn": "Neue App erstellen"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
