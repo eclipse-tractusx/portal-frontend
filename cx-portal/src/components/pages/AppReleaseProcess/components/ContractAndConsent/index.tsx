@@ -22,6 +22,7 @@ import {
   Button,
   IconButton,
   PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -40,7 +41,8 @@ type FormDataType = {
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
-  const [contractNotification, setContractNotification] = useState(false)
+  const [showContractErrorAlert, setShowContractErrorAlert] =
+    useState<string>('')
   const dispatch = useDispatch()
 
   const consentData = {
@@ -95,7 +97,6 @@ export default function ContractAndConsent() {
   }
 
   const handleSave = async (data: FormDataType) => {
-    setContractNotification(true)
     dispatch(increment())
   }
 
@@ -160,17 +161,16 @@ export default function ContractAndConsent() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {contractNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-            onCloseNotification={() => setContractNotification(false)}
-          />
-        </div>
-      )}
+      <PageSnackbar
+        open={showContractErrorAlert !== ''}
+        onCloseNotification={() => setShowContractErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showContractErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }

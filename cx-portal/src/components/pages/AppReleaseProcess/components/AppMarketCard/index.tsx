@@ -27,6 +27,7 @@ import {
   Card,
   MultiSelectList,
   Checkbox,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -166,6 +167,7 @@ export default function AppMarketCard() {
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
+  const [showErrorAlert, setShowErrorAlert] = useState<string>('')
 
   const defaultValues = {
     title: '',
@@ -257,7 +259,9 @@ export default function AppMarketCard() {
         isString(result) && dispatch(setAppId(result))
         dispatch(increment())
       })
-      .catch((error) => {})
+      .catch((error) => {
+        setShowErrorAlert('Error')
+      })
   }
 
   return (
@@ -680,6 +684,16 @@ export default function AppMarketCard() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
+      <PageSnackbar
+        open={showErrorAlert !== ''}
+        onCloseNotification={() => setShowErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }
