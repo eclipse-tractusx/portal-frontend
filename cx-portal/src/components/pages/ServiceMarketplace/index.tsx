@@ -48,7 +48,7 @@ export default function ServiceMarketplace() {
           </Grid>
         </Grid>
       </Box>
-      <div className="container">
+      <div className="services-row">
         <ServicesElements />
       </div>
     </div>

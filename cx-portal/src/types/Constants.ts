@@ -72,6 +72,7 @@ export enum PAGES {
   APP_MANAGEMENT = 'appmanagement',
   APPOVERVIEW = 'appoverview',
   APPRELEASEPROCESS = 'appreleaseprocess',
+  APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
 }
 
 export enum OVERLAYS {

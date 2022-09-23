@@ -24,7 +24,7 @@ import {
   Checkbox,
   IconButton,
   Input,
-  PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -39,8 +39,9 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 
 export default function ValidateAndPublish() {
   const { t } = useTranslation()
-  const [validatePublishNotification, setValidatePublishNotification] =
-    useState(false)
+  const [showValidatePublishErrorAlert, setShowValidatePublishErrorAlert] =
+    useState<string>('')
+
   const dispatch = useDispatch()
 
   const defaultValues = {
@@ -121,7 +122,7 @@ export default function ValidateAndPublish() {
   })
 
   const onValidatePublishSubmit = async (data: any) =>
-    setValidatePublishNotification(true)
+    setShowValidatePublishErrorAlert('Error')
 
   const providerDetailsValues = (item: string) => {
     if (item === 'providerHomePage') return defaultValues.providerUri
@@ -391,17 +392,16 @@ export default function ValidateAndPublish() {
           {t('content.apprelease.footerButtons.submit')}
         </Button>
       </Box>
-      {validatePublishNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-            onCloseNotification={() => setValidatePublishNotification(false)}
-          />
-        </div>
-      )}
+      <PageSnackbar
+        open={showValidatePublishErrorAlert !== ''}
+        onCloseNotification={() => setShowValidatePublishErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showValidatePublishErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }
