@@ -11,6 +11,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App Release Process - Fixed browser back button issue
 * Bugfix - App Release Process - Fixed user directing to bottom of the page
 * Bugfix - User Management Main Page Style fix
+* Bugfix - Services Card Responsive UI Fix
 
 ### 0.5.4
 
