@@ -453,8 +453,12 @@
       "status": "Status",
       "displayName": "Anzeigename",
       "authType": "IDP Typ",
-      "authURL": "Authentisierungs URL",
-      "authMethod": "Authentisierungsart",
+      "authorizationUrl": "Authentisierungs URL",
+      "metadataUrl": "Metadaten URL",
+      "clientId": "Client ID",
+      "secret": "Secret",
+      "signatureAlgorithm": "Signatur Algorithmus",
+      "clientAuthMethod": "Authentisierungsart",
       "mappers": "Mapper"
     },
     "addUser": {
@@ -771,6 +775,7 @@
       "loadmore": "Mehr laden",
       "details": "Details",
       "close": "Schließen",
+      "save": "Speichern",
       "back": "Zurück",
       "delete": "Löschen",
       "pleaseSelect": "Bitte auswählen",
