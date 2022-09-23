@@ -157,6 +157,7 @@ export default function RegistrationRequests() {
           isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
+          searchExpr={expr}
         />
       </div>
     </main>

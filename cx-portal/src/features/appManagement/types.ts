@@ -21,7 +21,7 @@
 export const name = 'admin/appManagement'
 
 export type SearchInputState = {
-  open: true
+  open: boolean
   text: string
 }
 
@@ -33,7 +33,7 @@ export interface AppManagementState {
 
 export const initialState: AppManagementState = {
   searchInput: {
-    open: true,
+    open: false,
     text: '',
   },
   currentActiveStep: 1,

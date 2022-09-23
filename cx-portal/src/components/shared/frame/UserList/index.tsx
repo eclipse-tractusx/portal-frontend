@@ -67,7 +67,7 @@ export const UserList = ({
   }
 
   return (
-    <section id="identity-management-id">
+    <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
       <PageLoadingTable<TenantUser>
         onButtonClick={addButtonClick}
