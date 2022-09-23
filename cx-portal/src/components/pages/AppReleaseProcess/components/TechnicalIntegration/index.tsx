@@ -21,7 +21,7 @@
 import {
   Button,
   IconButton,
-  PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -39,10 +39,8 @@ import DoneIcon from '@mui/icons-material/Done'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
-  const [
-    technicalIntegrationNotification,
-    setTechnicalIntegrationNotification,
-  ] = useState(false)
+  const [showIntegrationErrorAlert, setShowIntegrationErrorAlert] =
+    useState<string>('')
   const dispatch = useDispatch()
   const [disableCreateClient, setDisableCreateClient] = useState(true)
   const [createClientSuccess, setCreateClientSuccess] = useState(false)
@@ -70,7 +68,7 @@ export default function TechnicalIntegration() {
   const URLValue = getValues().URL
 
   const onIntegrationSubmit = async (data: any) =>
-    setTechnicalIntegrationNotification(true)
+    setShowIntegrationErrorAlert('')
 
   useEffect(() => {
     if (
@@ -288,19 +286,16 @@ export default function TechnicalIntegration() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {technicalIntegrationNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-            onCloseNotification={() =>
-              setTechnicalIntegrationNotification(false)
-            }
-          />
-        </div>
-      )}
+      <PageSnackbar
+        open={showIntegrationErrorAlert !== ''}
+        onCloseNotification={() => setShowIntegrationErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showIntegrationErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }
