@@ -21,7 +21,6 @@
 import {
   Button,
   IconButton,
-  PageNotifications,
   PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
