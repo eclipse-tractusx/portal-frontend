@@ -439,10 +439,13 @@
       "alias": "Alias",
       "status": "Status",
       "displayName": "Display Name",
-      "authType": "IDP Type",
-      "authURL": "Authentication URL",
-      "authMethod": "Authentication Method",
-      "mappers": "Mappers"
+      "authType": "IDP Typ",
+      "authorizationUrl": "Authorization URL",
+      "metadataUrl": "Metadata URL",
+      "clientId": "Client ID",
+      "secret": "Secret",
+      "signatureAlgorithm": "Signature algorithm",
+      "clientAuthMethod": "Authentication Method"
     },
     "addUser": {
       "headline": "Add User Account",
@@ -719,6 +722,7 @@
       "loadmore": "Load more",
       "details": "Details",
       "close": "Close",
+      "save": "Save",
       "back": "Back",
       "delete": "Delete",
       "pleaseSelect": "Please select",
