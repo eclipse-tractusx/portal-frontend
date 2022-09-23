@@ -260,7 +260,20 @@
       "message": "Contents of Developer Hub"
     },
     "appoverview": {
-      "message": "App Overview Message"
+      "headerTitle": "My Apps",
+      "title": "App Overview",
+      "inputPlaceholder": "Search for Apps",
+      "recently": {
+        "header": "Recently changed",
+        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "filter": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive",
+        "wip": "WIP"
+      },
+      "addbtn": "Create new App"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
