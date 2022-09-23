@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { CardHorizontal, PageNotifications } from 'cx-portal-shared-components'
-import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
+import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
@@ -55,28 +55,22 @@ export default function ServicesElements() {
   return (
     <div className="marketplace-section">
       {services && services.length ? (
-        <Box>
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {services.map((service: any) => (
-              <Grid item xs={4} key={service.id}>
-                <CardHorizontal
-                  borderRadius={0}
-                  imageAlt="App Card"
-                  imagePath={service.leadPictureUri}
-                  label={service.provider}
-                  buttonText="Details"
-                  onBtnClick={() => handleClick(service.id)}
-                  title={service.title}
-                  backgroundColor="#f7f7f7"
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+        <Grid container spacing={2}>
+          {services.map((service: any) => (
+            <Grid item xs={12} sm={6} md={4} key={service.id}>
+              <CardHorizontal
+                borderRadius={0}
+                imageAlt="App Card"
+                imagePath={service.leadPictureUri}
+                label={service.provider}
+                buttonText="Details"
+                onBtnClick={() => handleClick(service.id)}
+                title={service.title}
+                backgroundColor="#f7f7f7"
+              />
+            </Grid>
+          ))}
+        </Grid>
       ) : (
         <div className="service-progress">
           <CircularProgress
