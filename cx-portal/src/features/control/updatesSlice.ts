@@ -76,4 +76,7 @@ export const updateApplicationRequestSelector = (
   state: RootState
 ): SearchInputState => state.management
 
+export const updatePartnerSelector = (state: RootState): SearchInputState =>
+  state.management
+
 export default slice.reducer

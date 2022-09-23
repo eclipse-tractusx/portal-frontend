@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -23,37 +23,52 @@ import {
   DialogContent,
   DialogHeader,
 } from 'cx-portal-shared-components'
-import { useSelector } from 'react-redux'
-import { twinsSelector } from 'features/digitalTwins/slice'
-import { TwinDetails } from './TwinDetails'
-import { Box, useTheme, CircularProgress } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 
-interface TwinDialogProps {
-  show: boolean
-  onClose: () => void
+interface DailogContainerProps {
+  openDialog?: boolean
+  dialogHeaderTitle: string
+  handleOverlayClose: React.MouseEventHandler
+  children: JSX.Element
 }
-const DigitalTwinDetailDialog = ({ show, onClose }: TwinDialogProps) => {
-  const { twin, loading } = useSelector(twinsSelector)
-  const theme = useTheme()
 
+const DialogContainer = ({
+  openDialog = false,
+  dialogHeaderTitle,
+  handleOverlayClose,
+  children,
+}: DailogContainerProps) => {
   return (
-    <Dialog open={show}>
-      <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
-      <DialogContent>
-        {twin && <TwinDetails twin={twin} />}
-        {loading && (
-          <Box sx={{ textAlign: 'center' }}>
-            <CircularProgress
-              size={35}
-              sx={{
-                color: theme.palette.primary.main,
-              }}
-            />
-          </Box>
-        )}
+    <Dialog
+      open={openDialog}
+      // sx={{
+      //   '.MuiDialog-paper': {
+      //     maxWidth: 700,
+      //   },
+      // }}
+    >
+      <DialogHeader
+        {...{
+          title: dialogHeaderTitle,
+          closeWithIcon: true,
+          onCloseWithIcon: handleOverlayClose,
+        }}
+      />
+
+      <DialogContent
+        sx={{
+          padding: '0 30px',
+          marginBottom: 5,
+        }}
+      >
+        <Box sx={{ width: '100%' }}>
+          <Grid container spacing={1.5} style={{ marginTop: 0 }}>
+            {children}
+          </Grid>
+        </Box>
       </DialogContent>
     </Dialog>
   )
 }
 
-export default DigitalTwinDetailDialog
+export default DialogContainer

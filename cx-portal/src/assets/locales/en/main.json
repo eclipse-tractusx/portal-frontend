@@ -335,7 +335,9 @@
         "street": "Street",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member"
+        "cxparticipant": "CX Member",
+        "address": "Address",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Germany",
@@ -344,7 +346,7 @@
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
       "searchbuttonlabel": "Search",
-      "searchfielddefaulttext": "Search by company name or BPN",
+      "searchfielddefaulttext": "Search by name or BPN",
       "searchfielderrormessage": "Invalid Data",
       "membershipnotificationtitle": "Membership flag cannot be fetched.",
       "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
@@ -532,6 +534,9 @@
     },
     "notfound": {
       "message": "The content could not be found. This can happen because of various reasons - either",
+      "title": "Something went wrong.",
+      "description": "You don't have access to this page or the page doesn't exist. Please contact your admin.",
+      "button": "HomePage",
       "reason": {
         "nopermission": "you have no permission to view this content or",
         "notexisting": "the page doesn't exist in the Catena-X portal or",
@@ -661,6 +666,7 @@
         "appCardDetails": "App Card Details"
       },
       "appReleaseForm": {
+        "headerTitle": "Create App",
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",
         "note": "Note:",

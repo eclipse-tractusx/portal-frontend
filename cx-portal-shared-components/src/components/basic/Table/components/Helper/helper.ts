@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -17,27 +17,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
-import Main from 'components/Main'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NotFound from 'components/pages/NotFound'
-import AccessService from 'services/AccessService'
-import ScrollToTop from '../utils/ScrollToTop'
-import ErrorBoundary from 'components/pages/ErrorBoundary'
-
-const AuthorizingRouter = () => {
+export const hasMorePages = (data: any) => {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="error" element={<ErrorBoundary />} />
-        <Route path="/" element={<Main />}>
-          {AccessService.permittedRoutes()}
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    data?.page < data?.totalPages - 1 ||
+    (data?.meta && data.meta.page < data.meta.totalPages - 1)
   )
 }
 
-export default AuthorizingRouter
+export const getMaxRows = (data: any) => {
+  return data?.totalElements ?? data?.meta?.totalElements ?? 0
+}

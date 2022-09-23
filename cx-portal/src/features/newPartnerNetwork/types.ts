@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,35 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.form-field {
-  margin-bottom: 29px !important;
+import {
+  BpdmBusinessStatus,
+  BpdmLegalFormObject,
+  BpdmProfileClassification,
+  BpdmTypeRelation,
+  BpdmTypeBankAccount,
+  BpdmTypeCommonKeyValuePair,
+  BpdmTypeUUIDKeyPair,
+  BpdmTypeLanguagePair,
+  BpdmAddresses,
+} from '../partnerNetwork/types'
+
+export interface BusinessPartner {
+  bpn: string // Unique identifier
+  identifiers: Array<BpdmTypeUUIDKeyPair>
+  names: Array<BpdmTypeLanguagePair>
+  legalForm: BpdmLegalFormObject
+  status: BpdmBusinessStatus
+  addresses: Array<BpdmAddresses>
+  profileClassifications: Array<BpdmProfileClassification>
+  types: Array<BpdmTypeCommonKeyValuePair>
+  bankAccounts: Array<BpdmTypeBankAccount>
+  roles: Array<BpdmTypeCommonKeyValuePair>
+  relations: Array<BpdmTypeRelation>
+  legalAddress?: any
+  member?: boolean
 }
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
-}
-
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
-
-.app-release-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
-
-.form-divider {
-  margin: 64px -16px 16px -16px !important;
-}
-
-.create-app-section {
-  margin-top: 112px;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
+export interface BusinessPartnerSearchResponse {
+  score: number
+  legalEntity: BusinessPartner
 }

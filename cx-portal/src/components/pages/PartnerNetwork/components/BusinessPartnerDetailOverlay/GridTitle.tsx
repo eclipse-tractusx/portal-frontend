@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,26 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Main from 'components/Main'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NotFound from 'components/pages/NotFound'
-import AccessService from 'services/AccessService'
-import ScrollToTop from '../utils/ScrollToTop'
-import ErrorBoundary from 'components/pages/ErrorBoundary'
+import { Grid, useTheme } from '@mui/material'
+import { Typography } from 'cx-portal-shared-components'
 
-const AuthorizingRouter = () => {
+const GridTitle = ({ title }: { title: string }) => {
+  const theme = useTheme()
+  const { spacing } = theme
+
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="error" element={<ErrorBoundary />} />
-        <Route path="/" element={<Main />}>
-          {AccessService.permittedRoutes()}
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <Grid
+        xs={12}
+        item
+        style={{
+          backgroundColor: theme.palette.grey['100'],
+          padding: spacing(2),
+        }}
+      >
+        <Typography variant="h5">{title}</Typography>
+      </Grid>
+    </>
   )
 }
 
-export default AuthorizingRouter
+export default GridTitle

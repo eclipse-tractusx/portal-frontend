@@ -17,11 +17,11 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { Button, PageSnackbar } from 'cx-portal-shared-components'
+import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import MarketplaceContentDetails from './MarketplaceContentDetails'
 import './Marketplace.scss'
 import { useFetchServiceQuery } from 'features/serviceMarketplace/serviceApiSlice'
@@ -30,19 +30,14 @@ import { currentSuccessType } from 'features/serviceMarketplace/slice'
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()
   const { serviceId } = useParams()
-  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
 
-  const { data } = useFetchServiceQuery(serviceId ?? '')
+  const { data, refetch } = useFetchServiceQuery(serviceId ?? '')
 
   const success = useSelector(currentSuccessType)
 
   useEffect(() => {
-    success && setShowSuccessAlert(true)
-  }, [success])
-
-  const onSuccessAlertClose = () => {
-    setShowSuccessAlert(false)
-  }
+    refetch()
+  }, [success, refetch])
 
   return (
     <main>
@@ -57,18 +52,6 @@ export default function ServiceMarketplaceDetail() {
       <div className="marketplace-main">
         {data && <MarketplaceContentDetails item={data} success={success} />}
       </div>
-      <PageSnackbar
-        contactLinks=""
-        contactText=""
-        description="Service Subscribed successfully"
-        open={showSuccessAlert}
-        onCloseNotification={onSuccessAlertClose}
-        severity="success"
-        showIcon
-        title="Success"
-        vertical={'bottom'}
-        horizontal={'right'}
-      />
     </main>
   )
 }
