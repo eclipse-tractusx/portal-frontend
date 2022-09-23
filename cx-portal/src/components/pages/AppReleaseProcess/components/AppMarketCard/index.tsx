@@ -259,8 +259,8 @@ export default function AppMarketCard() {
         isString(result) && dispatch(setAppId(result))
         dispatch(increment())
       })
-      .catch((error) => {
-        setShowErrorAlert('Error')
+      .catch((error: any) => {
+        setShowErrorAlert(error && error?.data?.title)
       })
   }
 

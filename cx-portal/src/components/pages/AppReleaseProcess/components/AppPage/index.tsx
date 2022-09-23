@@ -128,8 +128,8 @@ export default function AppPage() {
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       dispatch(increment())
-    } catch (error) {
-      setShowAppPageErrorAlert('Error')
+    } catch (error: any) {
+      setShowAppPageErrorAlert(error && error?.data?.title)
     }
   }
 
