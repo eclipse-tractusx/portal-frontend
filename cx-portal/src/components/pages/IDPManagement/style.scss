@@ -51,17 +51,26 @@
 
     .category,
     .name,
+    .alias,
     .state,
     .action {
       display: inline-block;
     }
 
     .category {
-      width: 280px;
+      color: #888;
+      width: 220px;
+      font-weight: normal;
     }
 
     .name {
-      width: 320px;
+      width: 240px;
+    }
+
+    .alias {
+      color: #888;
+      width: 240px;
+      font-weight: normal;
     }
 
     .state {

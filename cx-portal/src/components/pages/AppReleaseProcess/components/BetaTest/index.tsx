@@ -21,7 +21,7 @@
 import {
   Button,
   IconButton,
-  PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -35,7 +35,8 @@ import { useState } from 'react'
 export default function BetaTest() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [betaTestNotification, setBetaTestNotification] = useState(false)
+  const [showBetaTestErrorAlert, setShowBetaTestErrorAlert] =
+    useState<string>('')
 
   return (
     <>
@@ -68,17 +69,16 @@ export default function BetaTest() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {betaTestNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-            onCloseNotification={() => setBetaTestNotification(false)}
-          />
-        </div>
-      )}
+      <PageSnackbar
+        open={showBetaTestErrorAlert !== ''}
+        onCloseNotification={() => setShowBetaTestErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showBetaTestErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </>
   )
 }
