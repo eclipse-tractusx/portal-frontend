@@ -61,7 +61,7 @@ const PartnerNetwork = () => {
 
   const fetchAndApply = async (cData: any) => {
     //BPDM response does not has content attribute. Check for it and proceed
-    if (cData.content.length === 0) {
+    if (isContentPresent(cData) && cData.content.length === 0) {
       console.log(cData)
       setAllItems([])
       return

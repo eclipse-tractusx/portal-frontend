@@ -29,9 +29,11 @@ export const getMaxRows = (data: any) => {
 }
 
 export const canShowRows = (data: any, text: string) => {
+  let flag = false
   if (text === 'present' && data?.length > 0) {
-    return true
+    flag = true
   } else if (text === 'nodata' && data?.length === 0) {
-    return true
+    flag = true
   }
+  return flag
 }
