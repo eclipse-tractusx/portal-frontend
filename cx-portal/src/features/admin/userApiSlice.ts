@@ -161,11 +161,11 @@ const slice = createSlice({
   },
 })
 
-export const currentAddUserSuccess = (state: RootState): any => {
+export const currentAddUserSuccess = (state: RootState): boolean => {
   return state.userAdd.isSuccess
 }
 
-export const currentAddUserError = (state: RootState): any =>
+export const currentAddUserError = (state: RootState): boolean =>
   state.userAdd.isError
 
 export const { setAddUserSuccess, setAddUserError } = slice.actions
