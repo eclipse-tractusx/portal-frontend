@@ -37,30 +37,42 @@ import {
   usersToAddSelector,
 } from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddUserOverlay.scss'
 import { MultipleUserContent } from './MultipleUserContent'
 import { SingleUserContent } from './SingleUserContent'
-import { useAddTenantUsersMutation } from 'features/admin/userApiSlice'
+import {
+  setAddUserError,
+  setAddUserSuccess,
+  useAddTenantUsersMutation,
+} from 'features/admin/userApiSlice'
 
 export const AddUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const usersToAdd = useSelector(usersToAddSelector)
   const rolesToAdd = useSelector(rolesToAddSelector)
-  const [addTenantUsers] = useAddTenantUsersMutation()
+  const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
   const [activeTab, setActiveTab] = useState(0)
 
+  if (isSuccess) {
+    dispatch(setAddUserSuccess(isSuccess))
+    dispatch(closeOverlay())
+  }
+
+  if (isError) {
+    dispatch(setAddUserError(isError))
+    dispatch(closeOverlay())
+  }
+
   const handleConfirm = async () => {
+    dispatch(setAddUserSuccess(false))
+    dispatch(setAddUserError(false))
     const addUser = { ...usersToAdd, roles: rolesToAdd }
-    console.log(addUser)
     try {
-      const result = await addTenantUsers([addUser]).unwrap()
-      console.log(result)
-    } catch (err) {
-      console.log(err)
-    }
+      await addTenantUsers([addUser]).unwrap()
+    } catch (err) {}
   }
 
   const handleTabSwitch = (

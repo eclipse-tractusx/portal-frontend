@@ -18,19 +18,53 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { ActiveUserTable } from './ActiveUserTable'
 import StageSection from './StageSection'
 import { AppArea } from './AppArea'
 import { StageSubNavigation } from './StageSubNavigation/StageSubNavigation'
+import {
+  currentAddUserError,
+  currentAddUserSuccess,
+} from 'features/admin/userApiSlice'
+import { PageSnackbar } from 'cx-portal-shared-components'
 import './UserManagement.scss'
 
 export default function UserManagement() {
+  const [showAlert, setShowAlert] = useState<boolean>(false)
+
+  const isSuccess = useSelector(currentAddUserSuccess)
+  const isError = useSelector(currentAddUserError)
+
+  useEffect(() => {
+    setShowAlert(isSuccess ? isSuccess : isError)
+  }, [isSuccess, isError])
+
+  const onAlertClose = () => {
+    setShowAlert(false)
+  }
+
   return (
     <main className="UserManagement">
       <StageSection />
       <StageSubNavigation />
       <AppArea />
       <ActiveUserTable />
+      <PageSnackbar
+        contactLinks=""
+        contactText=""
+        description={
+          isSuccess ? 'User added successfully' : 'User was not added'
+        }
+        open={showAlert}
+        onCloseNotification={onAlertClose}
+        severity={isSuccess ? 'success' : 'error'}
+        showIcon
+        title={isSuccess ? 'Success' : 'Error'}
+        vertical={'bottom'}
+        horizontal={'right'}
+      />
     </main>
   )
 }
