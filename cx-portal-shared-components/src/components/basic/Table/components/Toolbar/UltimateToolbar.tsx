@@ -32,6 +32,7 @@ export interface UltimateToolbarProps extends ToolbarProps {
   onFilter?: (selectedFilter: SelectedFilter) => void
   selectedFilter?: SelectedFilter
   searchDebounce?: number
+  searchExpr?: string
 }
 
 export const UltimateToolbar = ({
@@ -41,9 +42,12 @@ export const UltimateToolbar = ({
   searchPlaceholder,
   selectedFilter,
   searchDebounce = 500,
+  searchExpr,
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
-  const [searchText, setSearchText] = useState<string>('')
+  const [searchText, setSearchText] = useState<string>(
+    searchExpr ? searchExpr : ''
+  )
 
   const debounceSearch = useMemo(
     () =>

@@ -18,35 +18,46 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.form-field {
-  margin-bottom: 29px !important;
-}
+.appoverview-app {
+  .desc-recently {
+    text-align: left;
+    margin-top: 72px;
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
-}
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
 
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
+    .desc-heading {
+      max-width: 550px;
+    }
 
-.app-release-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+    .desc-message {
+      max-width: 733px;
+      margin-top: 20px;
+    }
 
-.form-divider {
-  margin: 64px -16px 16px -16px !important;
-}
+    .desc-card {
+      margin-top: 80px;
+    }
+  }
 
-.create-app-section {
-  margin-top: 112px;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
+  .view-selector {
+    margin-top: 40px;
+  }
+  .app-main {
+    background-color: #f9f9f9;
+    .app-detail {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 1140px;
+      margin: 0px auto;
+      padding-bottom: 40px;
+      .app-child {
+        width: 48%;
+      }
+    }
+  }
 }

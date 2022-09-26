@@ -18,35 +18,41 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.form-field {
-  margin-bottom: 29px !important;
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
+import { IHashMap } from 'types/MainTypes'
+
+const name = 'control/form'
+
+export enum FORMS {
+  IDP_FORM = 'IDP_FORM',
 }
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
+export type StoreFormType = {
+  form: string
+  att: { [name: string]: string }
 }
 
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
+const initialState: IHashMap<any> = {}
+initialState[FORMS.IDP_FORM] = {}
 
-.app-release-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    storeForm: (state, action: PayloadAction<StoreFormType>) => {
+      state[action.payload.form] = {
+        ...state[action.payload.form],
+        ...action.payload.att,
+      }
+    },
+  },
+})
 
-.form-divider {
-  margin: 64px -16px 16px -16px !important;
-}
+export const { storeForm } = slice.actions
 
-.create-app-section {
-  margin-top: 112px;
-}
+export const editIDPSelector = (state: RootState): any =>
+  state.control.form[FORMS.IDP_FORM]
 
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-}
+export default slice.reducer
