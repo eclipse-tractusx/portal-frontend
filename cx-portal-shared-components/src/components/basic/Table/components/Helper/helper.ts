@@ -27,13 +27,3 @@ export const hasMorePages = (data: any) => {
 export const getMaxRows = (data: any) => {
   return data?.totalElements ?? data?.meta?.totalElements ?? 0
 }
-
-export const canShowRows = (data: any, text: string) => {
-  let flag = false
-  if (text === 'present' && data?.length > 0) {
-    flag = true
-  } else if (text === 'nodata' && data?.length === 0) {
-    flag = true
-  }
-  return flag
-}
