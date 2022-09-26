@@ -61,6 +61,10 @@ const PartnerNetwork = () => {
 
   const fetchAndApply = async (cData: any) => {
     //BPDM response does not has content attribute. Check for it and proceed
+    if (isContentPresent(cData) && cData.content.length === 0) {
+      setAllItems([])
+      return
+    }
     if (isContentPresent(cData)) {
       const result = cData.content.map((x: any) => x.legalEntity.bpn)
       await mutationRequest(result)
@@ -111,7 +115,7 @@ const PartnerNetwork = () => {
           searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
-            if (!validateSearchText(expr)) return
+            if (expr !== '' && !validateSearchText(expr)) return
             setRefresh(Date.now())
             setExpr(expr)
           }}
