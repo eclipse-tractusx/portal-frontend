@@ -18,17 +18,46 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import { slice as overlay } from './overlay/slice'
-import { slice as form } from './formSlice'
-import { slice as update } from './updatesSlice'
+.appoverview-app {
+  .desc-recently {
+    text-align: left;
+    margin-top: 72px;
 
-export const reducer = combineReducers({
-  overlay: overlay.reducer,
-  update: update.reducer,
-  form: form.reducer,
-})
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
 
-const Reducer = { reducer }
+    .desc-heading {
+      max-width: 550px;
+    }
 
-export default Reducer
+    .desc-message {
+      max-width: 733px;
+      margin-top: 20px;
+    }
+
+    .desc-card {
+      margin-top: 80px;
+    }
+  }
+
+  .view-selector {
+    margin-top: 40px;
+  }
+  .app-main {
+    background-color: #f9f9f9;
+    .app-detail {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 1140px;
+      margin: 0px auto;
+      padding-bottom: 40px;
+      .app-child {
+        width: 48%;
+      }
+    }
+  }
+}

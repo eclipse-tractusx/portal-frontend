@@ -42,6 +42,12 @@ export enum IDPSyncModeType {
 
 export enum OIDCAuthMethod {
   SECRET_BASIC = 'SECRET_BASIC',
+  JWT = 'JWT',
+}
+
+export enum OIDCSignatureAlgorithm {
+  ES256 = 'ES256',
+  RS256 = 'RS256',
 }
 
 export enum SAMLAuthMethod {
@@ -65,15 +71,29 @@ export interface IDPMapper {
 }
 
 interface BaseAuthType {
-  authorizationUrl: string
+  authorizationUrl?: string
   clientId: string
 }
 export interface OIDCType extends BaseAuthType {
   clientAuthMethod: OIDCAuthMethod
+  signatureAlgorithm?: OIDCSignatureAlgorithm
+  metadataUrl?: string
+  secret?: string
 }
 
 export interface SAMLType extends BaseAuthType {
   clientAuthMethod: SAMLAuthMethod
+  signatureAlgorithm?: string
+}
+
+export interface IdentityProviderUpdateBody {
+  displayName?: string
+  oidc?: OIDCType
+  saml?: OIDCType
+}
+export interface IdentityProviderUpdate {
+  identityProviderId: string
+  body: IdentityProviderUpdateBody
 }
 
 export interface IdentityProvider {
@@ -85,7 +105,7 @@ export interface IdentityProvider {
   enabled: boolean
   mappers: Array<IDPMapper>
   oidc?: OIDCType
-  saml?: SAMLType
+  saml?: OIDCType
 }
 
 export const apiSlice = createApi({
@@ -108,6 +128,13 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    updateIDP: builder.mutation<IdentityProvider, IdentityProviderUpdate>({
+      query: (idpUpdate: IdentityProviderUpdate) => ({
+        url: `/api/administration/identityprovider/owncompany/identityproviders/${idpUpdate.identityProviderId}`,
+        method: 'PUT',
+        body: idpUpdate.body,
+      }),
+    }),
     removeIDP: builder.mutation<IdentityProvider, string>({
       query: (id: string) => ({
         url: `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
@@ -127,6 +154,7 @@ export const {
   useFetchIDPListQuery,
   useFetchIDPDetailQuery,
   useAddIDPMutation,
+  useUpdateIDPMutation,
   useRemoveIDPMutation,
   useEnableIDPMutation,
 } = apiSlice

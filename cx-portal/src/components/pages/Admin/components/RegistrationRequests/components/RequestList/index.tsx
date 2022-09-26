@@ -37,6 +37,7 @@ export const RequestList = ({
   isLoading,
   onTableCellClick,
   loaded,
+  searchExpr,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
@@ -46,6 +47,7 @@ export const RequestList = ({
   isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
+  searchExpr?: string
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -72,6 +74,7 @@ export const RequestList = ({
   return (
     <section id="identity-management-id">
       <PageLoadingTable<ApplicationRequest>
+        searchExpr={searchExpr}
         rowHeight={80}
         onCellClick={onTableCellClick}
         toolbarVariant={'ultimate'}

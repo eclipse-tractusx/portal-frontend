@@ -25,12 +25,11 @@ import {
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { PageHeader, PageLoadingTable } from 'cx-portal-shared-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
-import { GridCellParams } from '@mui/x-data-grid'
 import Patterns from 'types/Patterns'
 import { PartnerNetworksBPNTableColumns } from './components/PartnerList/PartnerNetworksBPNTableColumns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
@@ -40,12 +39,9 @@ import {
   addCountryAttribute,
   addMemberAttribute,
 } from './components/PartnerList/helper'
-import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay/actions'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updatePartnerSelector)
@@ -54,9 +50,6 @@ const PartnerNetwork = () => {
   const [showBPNColumn, setShowBPNColumn] = useState<boolean>(false)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
   const { data } = useFetchMemberCompaniesQuery()
-
-  const onTableCellClick = (params: GridCellParams) =>
-    dispatch(show(OVERLAYS.PARTNER, params.id || params.row.bpn))
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
@@ -68,6 +61,10 @@ const PartnerNetwork = () => {
 
   const fetchAndApply = async (cData: any) => {
     //BPDM response does not has content attribute. Check for it and proceed
+    if (isContentPresent(cData) && cData.content.length === 0) {
+      setAllItems([])
+      return
+    }
     if (isContentPresent(cData)) {
       const result = cData.content.map((x: any) => x.legalEntity.bpn)
       await mutationRequest(result)
@@ -111,14 +108,14 @@ const PartnerNetwork = () => {
 
       <section id="identity-management-id">
         <PageLoadingTable<BusinessPartner>
-          onCellClick={onTableCellClick}
+          searchExpr={expr}
           toolbarVariant={'ultimate'}
           hasBorder={false}
           columnHeadersBackgroundColor={'transparent'}
           searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
-            if (!validateSearchText(expr)) return
+            if (expr !== '' && !validateSearchText(expr)) return
             setRefresh(Date.now())
             setExpr(expr)
           }}
