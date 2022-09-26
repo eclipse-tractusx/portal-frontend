@@ -71,6 +71,7 @@ export { Stepper } from './basic/Stepper'
 export { SelectList } from './basic/SelectList'
 export { VerticalTabs } from './basic/VerticalTabs'
 export { LoadingButton } from './basic/LoadingButton'
+export { CardTable } from './basic/CardTable'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'

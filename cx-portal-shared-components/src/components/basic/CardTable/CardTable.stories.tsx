@@ -61,15 +61,17 @@ const SampleAccordianBody = () => {
 
 const SAMPLE_ROW = [
   {
-    title: 'Keyclock Shared',
-    title2: 'SAP',
-    isActive: true,
+    identityProviderId: 1,
+    identityProviderCategoryId: 'Keyclock Shared',
+    displayName: 'SAP',
+    enabled: true,
     body: <SampleAccordianBody />,
   },
   {
-    title: 'OIDC',
-    title2: 'SAP Comp.',
-    isActive: false,
+    identityProviderId: 2,
+    identityProviderCategoryId: 'OIDC',
+    displayName: 'SAP Comp.',
+    enabled: false,
     body: <SampleAccordianBody />,
   },
 ]

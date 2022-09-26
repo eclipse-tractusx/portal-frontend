@@ -30,75 +30,82 @@ import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { IconButton } from 'cx-portal-shared-components'
+import { IconButton, CardTable } from 'cx-portal-shared-components'
 import {
   updateData,
   updateIDPSelector,
   UPDATES,
 } from 'features/control/updatesSlice'
 import './style.scss'
+import IDPDetailInfo from './IDPDetailsInfo'
 
-export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const [removeIDP] = useRemoveIDPMutation()
-  const [enableIDP] = useEnableIDPMutation()
-  const state = idp.enabled ? 'enabled' : 'disabled'
+// export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
+//   const { t } = useTranslation()
+//   const dispatch = useDispatch()
+//   const [removeIDP] = useRemoveIDPMutation()
+//   const [enableIDP] = useEnableIDPMutation()
+//   const state = idp.enabled ? 'enabled' : 'disabled'
 
-  const doDetails = () => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))
+//   const doDetails = () => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))
 
-  const doDelete = async () => {
-    try {
-      await removeIDP(idp.identityProviderId)
-      dispatch(updateData(UPDATES.IDP_LIST))
-    } catch (error) {
-      console.log(error)
-    }
-  }
+//   const doDelete = async () => {
+//     try {
+//       await removeIDP(idp.identityProviderId)
+//       dispatch(updateData(UPDATES.IDP_LIST))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
 
-  const doEnableToggle = async () => {
-    try {
-      await enableIDP({ id: idp.identityProviderId, enabled: !idp.enabled })
-      dispatch(updateData(UPDATES.IDP_LIST))
-    } catch (error) {
-      console.log(error)
-    }
-  }
+//   const doEnableToggle = async () => {
+//     try {
+//       await enableIDP({ id: idp.identityProviderId, enabled: !idp.enabled })
+//       dispatch(updateData(UPDATES.IDP_LIST))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
 
-  return (
-    <div className="idp-list-item">
-      <span className="category">{idp.identityProviderCategoryId}</span>
-      <span className="name">{idp.displayName || '-'}</span>
-      <span className="alias">{idp.alias}</span>
-      <span className={`state ${state}`} onClick={doEnableToggle}>
-        {t(`global.state.${state}`)}
-      </span>
-      <span className="action">
-        <IconButton color="secondary" onClick={doDetails}>
-          <ArrowForwardIcon />
-        </IconButton>
-        {idp.enabled || (
-          <IconButton color="secondary" onClick={doDelete}>
-            <DeleteForeverIcon />
-          </IconButton>
-        )}
-      </span>
-    </div>
-  )
-}
+//   return (
+//     <div className="idp-list-item">
+//       <span className="category">{idp.identityProviderCategoryId}</span>
+//       <span className="name">{idp.displayName || '-'}</span>
+//       <span className="alias">{idp.alias}</span>
+//       <span className={`state ${state}`} onClick={doEnableToggle}>
+//         {t(`global.state.${state}`)}
+//       </span>
+//       <span className="action">
+//         <IconButton color="secondary" onClick={doDetails}>
+//           <ArrowForwardIcon />
+//         </IconButton>
+//         {idp.enabled || (
+//           <IconButton color="secondary" onClick={doDelete}>
+//             <DeleteForeverIcon />
+//           </IconButton>
+//         )}
+//       </span>
+//     </div>
+//   )
+// }
 
 export const IDPList = () => {
   const update = useSelector(updateIDPSelector)
   const { data } = useFetchIDPListQuery(update)
 
+  const updatedData = data
+    ? data.map((info) => {
+        return {
+          ...info,
+          body: <IDPDetailInfo id={info.identityProviderId}></IDPDetailInfo>,
+        }
+      })
+    : []
+
   return (
-    <ul className="idp-list">
-      {data &&
-        data.map((idp) => (
-          <li key={idp.identityProviderId}>
-            <IDPListItem idp={idp} />
-          </li>
-        ))}
-    </ul>
+    <CardTable
+      row={updatedData as any}
+      activeLabel="ENABLED"
+      inactiveLabel="DISABLED"
+    ></CardTable>
   )
 }
