@@ -21,7 +21,10 @@
 import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
-import { TenantUser, useFetchUsersSearchQuery } from 'features/admin/userApiSlice'
+import {
+  TenantUser,
+  useFetchUsersSearchQuery,
+} from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -36,7 +39,7 @@ export default function UserListContent() {
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
-  
+
   return (
     <PageLoadingTable<TenantUser>
       toolbarVariant={'premium'}

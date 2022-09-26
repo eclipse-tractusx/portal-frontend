@@ -16,6 +16,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
 * Bugfix - Services Card Responsive UI Fix
 * Bugfix - Partner netowrk search issue fix
+* Feature - Add User Role Overlay (refactoring)
 
 ### 0.5.4
 
