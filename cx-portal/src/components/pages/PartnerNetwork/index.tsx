@@ -61,6 +61,11 @@ const PartnerNetwork = () => {
 
   const fetchAndApply = async (cData: any) => {
     //BPDM response does not has content attribute. Check for it and proceed
+    if (cData.content.length === 0) {
+      console.log(cData)
+      setAllItems([])
+      return
+    }
     if (isContentPresent(cData)) {
       const result = cData.content.map((x: any) => x.legalEntity.bpn)
       await mutationRequest(result)

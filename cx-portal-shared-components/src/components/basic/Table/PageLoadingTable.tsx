@@ -21,7 +21,11 @@ import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
 import { Button } from '../Button'
-import { hasMorePages, getMaxRows } from './components/Helper/helper'
+import {
+  hasMorePages,
+  getMaxRows,
+  canShowRows,
+} from './components/Helper/helper'
 
 export type PaginFetchArgs = {
   page: number
@@ -75,9 +79,12 @@ export const PageLoadingTable = function <T>({
   const maxRows = getMaxRows(data)
 
   useEffect(() => {
-    if (allItems?.length > 0) {
+    if (canShowRows(allItems, 'present')) {
       setLoading(false)
       setItems((i) => i.concat(allItems))
+    } else if (canShowRows(allItems, 'nodata')) {
+      setLoading(false)
+      setItems([])
     }
   }, [allItems])
 
