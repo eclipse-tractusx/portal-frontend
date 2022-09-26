@@ -15,6 +15,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Management Main Page Style fix
 * Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
 * Bugfix - Services Card Responsive UI Fix
+* Bugfix - Partner netowrk search issue fix
 
 ### 0.5.4
 
