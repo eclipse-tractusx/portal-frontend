@@ -118,7 +118,7 @@ const PartnerNetwork = () => {
           searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
-            if (!validateSearchText(expr)) return
+            if (expr !== '' && !validateSearchText(expr)) return
             setRefresh(Date.now())
             setExpr(expr)
           }}
