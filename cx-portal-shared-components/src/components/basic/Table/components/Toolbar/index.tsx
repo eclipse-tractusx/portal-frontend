@@ -85,12 +85,10 @@ export const Toolbar = ({
   selectedFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
+  const isSearchText = searchExpr && searchExpr !== ''
+  const isSearchData = searchInputData ? searchInputData.open : false
   const [openSearch, setOpenSearch] = useState<boolean>(
-    searchExpr && searchExpr !== ''
-      ? true
-      : searchInputData
-      ? searchInputData.open
-      : false
+    isSearchText ? isSearchText : isSearchData
   )
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>(
