@@ -21,15 +21,40 @@
 import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
-import { TenantUser, useFetchUsersQuery } from 'features/admin/userApiSlice'
+import { TenantUser, useFetchUsersSearchQuery } from 'features/admin/userApiSlice'
+import { updatePartnerSelector } from 'features/control/updatesSlice'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import Patterns from 'types/Patterns'
 
 export default function UserListContent() {
   const { t } = useTranslation()
+
+  const [expr, setExpr] = useState<string>('')
+  const [refresh, setRefresh] = useState<number>(0)
+  const searchInputData = useSelector(updatePartnerSelector)
+
+  const validateSearchText = (text: string): boolean =>
+    Patterns.SEARCH.test(text.trim())
+  
   return (
     <PageLoadingTable<TenantUser>
+      toolbarVariant={'premium'}
+      columnHeadersBackgroundColor={'transparent'}
+      searchExpr={expr}
+      searchPlaceholder={t('global.table.search')}
+      searchInputData={searchInputData}
+      onSearch={(expr: string) => {
+        if (expr !== '' && !validateSearchText(expr)) return
+        setRefresh(Date.now())
+        setExpr(expr)
+      }}
+      searchDebounce={1000}
       title={t('content.usermanagement.table.title')}
       loadLabel={t('global.actions.loadmore')}
-      fetchHook={useFetchUsersQuery}
+      fetchHook={useFetchUsersSearchQuery}
+      fetchHookArgs={{ expr }}
+      fetchHookRefresh={refresh}
       getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
       columns={[
         {
@@ -41,11 +66,11 @@ export default function UserListContent() {
         },
         { field: 'email', headerName: t('global.field.email'), flex: 5 },
         {
-          field: 'enabled',
+          field: 'status',
           headerName: t('global.field.status'),
           flex: 2,
-          renderCell: ({ value: enabled }) => {
-            const label = enabled ? 'active' : 'inactive'
+          renderCell: ({ value: status }) => {
+            const label = status ? 'active' : 'inactive'
             return (
               <StatusTag color="label" label={t(`global.field.${label}`)} />
             )
