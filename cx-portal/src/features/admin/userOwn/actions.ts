@@ -54,6 +54,17 @@ const putResetPassword = createAsyncThunk(
   }
 )
 
+const deleteUserBpn = createAsyncThunk(
+  `${name}/deleteBpn`,
+  async ({ companyUserId, bpn }: { companyUserId: string; bpn: string }) => {
+    try {
+      return await Api.getInstance().deleteBpn(companyUserId, bpn)
+    } catch (error: any) {
+      throw Error(JSON.stringify(error.response.status))
+    }
+  }
+)
+
 const putBusinessPartnerNumber = createAsyncThunk(
   `${name}/putBusinessPartnerNumber`,
   async ({
@@ -74,4 +85,10 @@ const putBusinessPartnerNumber = createAsyncThunk(
   }
 )
 
-export { fetchOwn, fetchAny, putResetPassword, putBusinessPartnerNumber }
+export {
+  fetchOwn,
+  fetchAny,
+  putResetPassword,
+  putBusinessPartnerNumber,
+  deleteUserBpn,
+}
