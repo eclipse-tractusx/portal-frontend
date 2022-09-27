@@ -32,7 +32,7 @@ export enum ApplicationRequestStatus {
 
 export interface DocumentMapper {
   documentType: string
-  documentHash: string
+  documentId: string
 }
 
 export interface ApplicationRequest {

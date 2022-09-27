@@ -81,17 +81,22 @@ export const RegistrationRequestsTableColumns = (
       cellClassName: 'documents-column--cell',
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <div className="document-cell-container">
-          {row.documents.map((contract) => (
+          {[
+            {
+              documentType: 'CX_FRAME_CONTRACT',
+              documentId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+            },
+          ].map((contract) => (
             <div
               className="document-cell-line"
-              key={uniqueId(contract?.documentHash)}
+              key={uniqueId(contract?.documentId)}
             >
               <ArticleOutlinedIcon />
               <button
                 className="document-button-link"
                 onClick={() =>
                   handleDownloadDocument(
-                    contract.documentHash,
+                    contract.documentId,
                     contract.documentType
                   )
                 }
