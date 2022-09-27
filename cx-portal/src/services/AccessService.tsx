@@ -45,7 +45,6 @@ import ServiceRequest from 'components/overlays/ServiceRequest'
 import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
 import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
-import Confirm from 'components/overlays/IDPConfirm'
 import IDPConfirm from 'components/overlays/IDPConfirm'
 
 let pageMap: { [page: string]: IPage }
@@ -124,7 +123,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.SERVICE_REQUEST:
       return <ServiceRequest id={overlay.id} />
     case OVERLAYS.IDP_CONFIRM:
-      return <IDPConfirm id={overlay.id} />
+      return <IDPConfirm id={overlay.id} title={overlay.title} />
     default:
       return <NotFound />
   }

@@ -32,6 +32,7 @@ export interface DialogHeaderProps {
   icon?: boolean
   closeWithIcon?: boolean
   onCloseWithIcon?: (event: React.MouseEvent) => void
+  iconComponent?: React.ReactElement
 }
 
 export const DialogHeader = ({
@@ -39,6 +40,9 @@ export const DialogHeader = ({
   intro,
   icon,
   closeWithIcon,
+  iconComponent = (
+    <CheckCircleOutlineOutlinedIcon sx={{ fontSize: 60 }} color="success" />
+  ),
   onCloseWithIcon,
 }: DialogHeaderProps) => {
   const { spacing, palette } = useTheme()
@@ -46,14 +50,7 @@ export const DialogHeader = ({
   return (
     <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
       <MuiDialogTitle>
-        {icon && (
-          <Box>
-            <CheckCircleOutlineOutlinedIcon
-              sx={{ fontSize: 60 }}
-              color="success"
-            />
-          </Box>
-        )}
+        {icon && <Box>{iconComponent}</Box>}
         {title}
         {closeWithIcon && (
           <IconButton

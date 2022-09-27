@@ -19,7 +19,11 @@ export interface CustomAccordianProps {
   row: any
   activeLabel: string
   inactiveLabel: string
-  menuOptions: { label: string; onClickEvent?: (args: any) => void }[]
+  menuOptions: {
+    key: string
+    label: string
+    onClickEvent?: (args: any) => void
+  }[]
 }
 
 export interface rowProp {
@@ -106,12 +110,13 @@ const CardHorizontalTable = ({
                       open={open}
                       onClose={handleClose}
                     >
-                      {menuOptions.map(({ label, onClickEvent }) => (
+                      {menuOptions.map(({ key, label, onClickEvent }) => (
                         <MenuItem
                           key={label}
                           onClick={(e) =>
                             handleItemClick(e, onClickEvent, {
                               identityProviderId,
+                              displayName,
                             })
                           }
                         >

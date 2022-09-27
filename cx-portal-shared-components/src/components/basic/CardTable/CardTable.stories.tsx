@@ -1,7 +1,7 @@
 import { Box, TextField, Grid, Button } from '@mui/material'
 
 import { ComponentStory } from '@storybook/react'
-import { CardTable as Component } from '.'
+import { CardHorizontalTable as Component } from '.'
 
 export default {
   title: 'Card Table',
@@ -59,6 +59,11 @@ const SampleAccordianBody = () => {
   )
 }
 
+const menuItems = [
+  { key: 'name', label: 'Catena X' },
+  { key: 'name1', label: 'Catena X' },
+]
+
 const SAMPLE_ROW = [
   {
     identityProviderId: 1,
@@ -84,6 +89,7 @@ export const CardTable = Template.bind({})
 CardTable.args = {
   hover: true,
   row: SAMPLE_ROW,
+  menuOptions: menuItems,
   // activeLabel: 'ACTIVE',
   // inactiveLabel: 'INACTIVE',
 }

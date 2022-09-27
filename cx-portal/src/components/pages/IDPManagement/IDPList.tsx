@@ -93,6 +93,8 @@ export const IDPList = () => {
   const { data } = useFetchIDPListQuery(update)
   const dispatch = useDispatch()
 
+  const { t } = useTranslation()
+
   const updatedData = data
     ? data.map((info) => {
         return {
@@ -103,20 +105,22 @@ export const IDPList = () => {
     : []
 
   const onDeleteClick = (args: any) =>
-    dispatch(show(OVERLAYS.IDP_CONFIRM, args.identityProviderId))
+    dispatch(
+      show(OVERLAYS.IDP_CONFIRM, args.identityProviderId, args.displayName)
+    )
 
   const menuItems = [
-    { label: 'Edit' },
-    { label: 'User Managment' },
-    { label: 'Enable' },
-    { label: 'Delete', onClickEvent: onDeleteClick },
+    { key: 'edit', label: 'Edit' },
+    { key: 'user_managment', label: 'User Managment' },
+    { key: 'status', label: 'Enable' },
+    { key: 'delete', label: 'Delete', onClickEvent: onDeleteClick },
   ]
 
   return (
     <CardHorizontalTable
       row={updatedData as any}
-      activeLabel="ENABLED"
-      inactiveLabel="DISABLED"
+      activeLabel={t('global.state.enabled')}
+      inactiveLabel={t('global.state.disabled')}
       menuOptions={menuItems}
     ></CardHorizontalTable>
   )
