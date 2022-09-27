@@ -17,6 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Services Card Responsive UI Fix
 * Feature - User Management - Success/Fail Message
 * Bugfix - Partner netowrk search issue fix
+* Feature - Add User Role Overlay (refactoring)
 
 ### 0.5.4
 
