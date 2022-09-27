@@ -25,8 +25,7 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
-import { useEffect, useState } from 'react'
-import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
+import { useParams } from 'react-router-dom'
 
 export type UserDetail = {
   companyUserId: string
@@ -62,32 +61,25 @@ export const UserDetailCard = ({
   variant,
 }: UserCardProps) => {
   const dispatch = useDispatch()
-  const [userId, setUserId] = useState<string | undefined>('')
-  const { data = { companyUserId: '' } } = useFetchOwnUserDetailsQuery()
-
-  useEffect(() => {
-    setUserId(data['companyUserId'])
-  }, [data])
-
+  const { userId } = useParams()
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
 
   const renderValue = (value: UserItemsTranslation | undefined) => (
     <>
       <strong>{value?.label}:</strong>&nbsp;
+      <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+        {Array.isArray(value?.value)
+          ? value?.value.map((bpn, i) => (
+              <span key={i}>
+                {bpn}
+                <br />
+              </span>
+            ))
+          : value?.value}
+      </span>
       <span>
-        {userId && value?.label === 'BPN' ? (
+        {userId && value?.label === 'BPN' && (
           <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
-        ) : (
-          <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
-            {Array.isArray(value?.value)
-              ? value?.value.map((bpn, i) => (
-                  <span key={i}>
-                    {bpn}
-                    <br />
-                  </span>
-                ))
-              : value?.value}
-          </span>
         )}
       </span>
     </>
