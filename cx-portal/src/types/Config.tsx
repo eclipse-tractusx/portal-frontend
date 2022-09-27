@@ -368,6 +368,14 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.NOT_FOUND,
     role: ROLES.IDP_VIEW,
   },
+  {
+    name: OVERLAYS.IDP_CONFIRM,
+    role: ROLES.IDP_DELETE,
+  },
+  {
+    name: OVERLAYS.IDP_CONFIRM,
+    role: ROLES.IDP_DISABLE,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

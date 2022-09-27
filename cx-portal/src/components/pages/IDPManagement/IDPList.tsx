@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { IconButton, CardHorizontalTable } from 'cx-portal-shared-components'
 import {
   IdentityProvider,
   useEnableIDPMutation,
@@ -30,7 +31,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { IconButton, CardTable } from 'cx-portal-shared-components'
 import {
   updateData,
   updateIDPSelector,
@@ -91,6 +91,7 @@ import IDPDetailInfo from './IDPDetailsInfo'
 export const IDPList = () => {
   const update = useSelector(updateIDPSelector)
   const { data } = useFetchIDPListQuery(update)
+  const dispatch = useDispatch()
 
   const updatedData = data
     ? data.map((info) => {
@@ -101,11 +102,22 @@ export const IDPList = () => {
       })
     : []
 
+  const onDeleteClick = (args: any) =>
+    dispatch(show(OVERLAYS.IDP_CONFIRM, args.identityProviderId))
+
+  const menuItems = [
+    { label: 'Edit' },
+    { label: 'User Managment' },
+    { label: 'Enable' },
+    { label: 'Delete', onClickEvent: onDeleteClick },
+  ]
+
   return (
-    <CardTable
+    <CardHorizontalTable
       row={updatedData as any}
       activeLabel="ENABLED"
       inactiveLabel="DISABLED"
-    ></CardTable>
+      menuOptions={menuItems}
+    ></CardHorizontalTable>
   )
 }

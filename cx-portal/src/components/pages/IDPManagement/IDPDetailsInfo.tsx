@@ -31,7 +31,6 @@ import {
   useUpdateIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { editIDPSelector } from 'features/control/formSlice'
-import { closeOverlay } from 'features/control/overlay/actions'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -62,8 +61,7 @@ export default function IDPDetailInfo({ id }: { id: string }) {
       },
     }
     try {
-      const response = await updateIDP(update).unwrap()
-      console.log(response)
+      await updateIDP(update).unwrap()
       dispatch(updateData(UPDATES.IDP_LIST))
     } catch (err) {
       console.log(err)
@@ -81,9 +79,6 @@ export default function IDPDetailInfo({ id }: { id: string }) {
       <DialogContent>{data && <IDPDetailContent idp={data} />}</DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {`${t('global.actions.cancel')}`}
-        </Button>
         <Button variant="contained" onClick={submitForm}>
           {`${t('global.actions.save')}`}
         </Button>

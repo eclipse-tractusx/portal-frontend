@@ -14,14 +14,15 @@ import Accordion, {
   StyledAccordianButton,
 } from './CardTable'
 
-interface CustomAccordianProps {
+export interface CustomAccordianProps {
   hover?: boolean
   row: any
   activeLabel: string
   inactiveLabel: string
+  menuOptions: { label: string; onClickEvent?: (args: any) => void }[]
 }
 
-interface rowProp {
+export interface rowProp {
   identityProviderCategoryId: string
   displayName: string
   enabled: boolean
@@ -29,13 +30,12 @@ interface rowProp {
   body: React.ReactElement
 }
 
-const option = ['Edit', 'User Managment', 'Enable', 'Delete']
-
-export const CardTable = ({
+const CardHorizontalTable = ({
   hover = false,
   row,
   activeLabel = 'ENABLED',
   inactiveLabel = 'DISABLED',
+  menuOptions,
 }: CustomAccordianProps) => {
   const [expanded, setExpanded] = React.useState<string | false>(false)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -60,9 +60,10 @@ export const CardTable = ({
 
   const handleItemClick = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    option: string
+    onClickEvent?: (args: any) => void,
+    args?: any
   ) => {
-    alert(`${option} clicked`)
+    onClickEvent && onClickEvent(args)
     handleClose(e)
   }
 
@@ -105,12 +106,16 @@ export const CardTable = ({
                       open={open}
                       onClose={handleClose}
                     >
-                      {option.map((option) => (
+                      {menuOptions.map(({ label, onClickEvent }) => (
                         <MenuItem
-                          key={option}
-                          onClick={(e) => handleItemClick(e, option)}
+                          key={label}
+                          onClick={(e) =>
+                            handleItemClick(e, onClickEvent, {
+                              identityProviderId,
+                            })
+                          }
                         >
-                          {option}
+                          {label}
                         </MenuItem>
                       ))}
                     </Menu>
@@ -146,3 +151,5 @@ export const CardTable = ({
     </>
   )
 }
+
+export { CardHorizontalTable }
