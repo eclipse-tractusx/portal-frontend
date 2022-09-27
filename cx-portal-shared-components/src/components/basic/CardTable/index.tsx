@@ -14,36 +14,44 @@ import Accordion, {
   StyledAccordianButton,
 } from './CardTable'
 
-export interface CustomAccordianProps {
-  hover?: boolean
-  row: any
-  activeLabel: string
-  inactiveLabel: string
-  menuOptions: {
-    key: string
-    label: string
-    onClickEvent?: (args: any) => void
-  }[]
-}
-
-export interface rowProp {
+interface DataProp {
   identityProviderCategoryId: string
   displayName: string
   enabled: boolean
   identityProviderId: string
   body: React.ReactElement
+  menuOptions: {
+    key: string
+    label: string
+  }[]
+}
+export interface CustomAccordianProps {
+  hover?: boolean
+  data: DataProp
+  activeLabel: string
+  inactiveLabel: string
+  onMenuClick: (key: string) => void
 }
 
 const CardHorizontalTable = ({
   hover = false,
-  row,
+  data,
   activeLabel = 'ENABLED',
   inactiveLabel = 'DISABLED',
-  menuOptions,
+  onMenuClick,
 }: CustomAccordianProps) => {
   const [expanded, setExpanded] = React.useState<string | false>(false)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+
+  const {
+    identityProviderCategoryId,
+    displayName,
+    enabled,
+    identityProviderId,
+    body,
+    menuOptions,
+  } = data
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -62,98 +70,76 @@ const CardHorizontalTable = ({
     setAnchorEl(null)
   }
 
-  const handleItemClick = (
+  const handleMenuClick = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    onClickEvent?: (args: any) => void,
-    args?: any
+    key: string
   ) => {
-    onClickEvent && onClickEvent(args)
+    onMenuClick(key)
     handleClose(e)
   }
 
   return (
-    <>
-      {row.map(
-        ({
-          identityProviderCategoryId,
-          displayName,
-          enabled,
-          identityProviderId,
-          body,
-        }: rowProp) => {
-          return (
-            <Accordion
-              expanded={expanded === identityProviderId}
-              onChange={handleChange(identityProviderId)}
-              TransitionProps={{ unmountOnExit: true }}
+    <Accordion
+      expanded={expanded === identityProviderId}
+      onChange={handleChange(identityProviderId)}
+      TransitionProps={{ unmountOnExit: true }}
+    >
+      <StyledAccordianSummary
+        expanded={expanded === identityProviderId}
+        hover={hover}
+        expandIcon={
+          <>
+            <IconButton
+              id="long-button"
+              aria-controls={open ? 'long-menu' : undefined}
+              aria-expanded={open ? 'true' : undefined}
+              aria-haspopup="true"
+              onClick={handleMoreOptionClick}
             >
-              <StyledAccordianSummary
-                expanded={expanded === identityProviderId}
-                hover={hover}
-                expandIcon={
-                  <>
-                    <IconButton
-                      id="long-button"
-                      aria-controls={open ? 'long-menu' : undefined}
-                      aria-expanded={open ? 'true' : undefined}
-                      aria-haspopup="true"
-                      onClick={handleMoreOptionClick}
-                    >
-                      <MoreVertIcon />
-                    </IconButton>
-                    <Menu
-                      id="long-menu"
-                      MenuListProps={{
-                        'aria-labelledby': 'long-button',
-                      }}
-                      anchorEl={anchorEl}
-                      open={open}
-                      onClose={handleClose}
-                    >
-                      {menuOptions.map(({ key, label, onClickEvent }) => (
-                        <MenuItem
-                          key={label}
-                          onClick={(e) =>
-                            handleItemClick(e, onClickEvent, {
-                              identityProviderId,
-                              displayName,
-                            })
-                          }
-                        >
-                          {label}
-                        </MenuItem>
-                      ))}
-                    </Menu>
-                  </>
-                }
-              >
-                <Typography width="25%" textAlign="start">
-                  {identityProviderCategoryId}
-                </Typography>
-                <Typography width="25%" textAlign="start">
-                  {displayName}
-                </Typography>
-                <StyledAccordianButton
-                  disableElevation
-                  variant="contained"
-                  size="small"
-                >
-                  {enabled ? activeLabel : inactiveLabel}
-                </StyledAccordianButton>
-              </StyledAccordianSummary>
-              <StyledAccordianDetails>
-                <Box p={1} display="flex" justifyContent="flex-end">
-                  <IconButton onClick={(e) => setExpanded(false)}>
-                    <CloseIcon />
-                  </IconButton>
-                </Box>
-                {body}
-              </StyledAccordianDetails>
-            </Accordion>
-          )
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="long-menu"
+              MenuListProps={{
+                'aria-labelledby': 'long-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              disableAutoFocusItem
+            >
+              {menuOptions.map(({ key, label }) => (
+                <MenuItem key={key} onClick={(e) => handleMenuClick(e, key)}>
+                  {label}
+                </MenuItem>
+              ))}
+            </Menu>
+          </>
         }
-      )}
-    </>
+      >
+        <Typography width="25%" textAlign="start">
+          {identityProviderCategoryId}
+        </Typography>
+        <Typography width="25%" textAlign="start">
+          {displayName}
+        </Typography>
+        <StyledAccordianButton
+          disableElevation
+          variant="contained"
+          size="small"
+        >
+          {enabled ? activeLabel : inactiveLabel}
+        </StyledAccordianButton>
+      </StyledAccordianSummary>
+      <StyledAccordianDetails>
+        <Box p={1} display="flex" justifyContent="flex-end">
+          <IconButton onClick={(e) => setExpanded(false)}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        {body}
+      </StyledAccordianDetails>
+    </Accordion>
   )
 }
 

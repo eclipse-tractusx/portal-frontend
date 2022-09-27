@@ -88,8 +88,15 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const CardTable = Template.bind({})
 CardTable.args = {
   hover: true,
-  row: SAMPLE_ROW,
-  menuOptions: menuItems,
-  // activeLabel: 'ACTIVE',
-  // inactiveLabel: 'INACTIVE',
+  data: {
+    identityProviderCategoryId: 'categoryId',
+    displayName: 'Deep',
+    enabled: true,
+    identityProviderId: '9069378354',
+    body: <SampleAccordianBody />,
+    menuOptions: menuItems,
+  },
+  onMenuClick: (key) => console.log(key),
+  activeLabel: 'ACTIVE',
+  inactiveLabel: 'INACTIVE',
 }
