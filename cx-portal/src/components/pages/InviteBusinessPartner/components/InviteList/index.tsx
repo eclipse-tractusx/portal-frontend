@@ -37,10 +37,12 @@ export const InviteList = ({
   fetchHook,
   fetchHookArgs,
   onSearch,
+  searchExpr,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
   onSearch?: (search: string) => void
+  searchExpr?: string
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -56,6 +58,7 @@ export const InviteList = ({
   return (
     <section id="identity-management-id">
       <PageLoadingTable<CompanyInvite>
+        searchExpr={searchExpr}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}

@@ -22,7 +22,7 @@ import {
   Button,
   Typography,
   IconButton,
-  PageNotifications,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel } from '@mui/material'
@@ -57,7 +57,7 @@ type FormDataType = {
 
 export default function AppPage() {
   const { t } = useTranslation()
-  const [appPageNotification, setAppPageNotification] = useState(false)
+  const [showAppPageErrorAlert, setShowAppPageErrorAlert] = useState<string>('')
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const appId = useSelector(appIdSelector)
@@ -123,14 +123,14 @@ export default function AppPage() {
       providerUri: data.providerHomePage,
       contactEmail: data.providerContactEmail,
       contactNumber: data.providerPhoneContact,
-      appId: appId,
     }
 
     try {
-      await updateapp(saveData).unwrap()
+      await updateapp({ body: saveData, appId: appId }).unwrap()
       dispatch(increment())
-      setAppPageNotification(true)
-    } catch (err) {}
+    } catch (error: any) {
+      setShowAppPageErrorAlert(error && error?.data?.title)
+    }
   }
 
   return (
@@ -421,16 +421,16 @@ export default function AppPage() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {appPageNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-          />
-        </div>
-      )}
+      <PageSnackbar
+        open={showAppPageErrorAlert !== ''}
+        onCloseNotification={() => setShowAppPageErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showAppPageErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }

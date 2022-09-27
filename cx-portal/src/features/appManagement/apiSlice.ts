@@ -81,11 +81,14 @@ export const apiSlice = createApi({
       }),
     }),
     updateapp: builder.mutation<void, any>({
-      query: (body: any) => ({
-        url: `/api/apps/appreleaseprocess/updateapp/${body.appId}`,
-        method: 'PUT',
-        body,
-      }),
+      query: (data: any) => {
+        const { body, appId } = data
+        return {
+          url: `/api/apps/appreleaseprocess/updateapp/${appId}`,
+          method: 'PUT',
+          body,
+        }
+      },
     }),
   }),
 })

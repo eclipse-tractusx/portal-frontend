@@ -54,7 +54,7 @@ export const CardHorizontal = ({
     <Box
       sx={{
         backgroundColor: backgroundColor || 'common.white',
-        height: '160px',
+        height: 'auto',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -69,15 +69,18 @@ export const CardHorizontal = ({
       <Box
         sx={{
           display: 'flex',
+          flex: '0 0 33.333333%',
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
           padding: 0,
           margin: 0,
           width: '160px',
-          height: '160px',
+          height: 'auto',
+          maxWidth: '33.333333%',
           background: theme.palette.accent.accent02,
           borderRadius: `${borderRadius}px`,
+          objectFit: 'contain',
         }}
         component="img"
         src={imagePath || LogoGrayData}
@@ -85,10 +88,11 @@ export const CardHorizontal = ({
       />
       <Box
         sx={{
-          width: '299px',
-          height: '160px',
-          margin: '0px 0px 0px 20px',
-          paddingTop: '20px',
+          width: 'auto',
+          height: 'auto',
+          margin: '0',
+          padding: '15px',
+          flex: '1',
         }}
       >
         <Typography
@@ -129,8 +133,8 @@ export const CardHorizontal = ({
           {description}
         </Typography>
         <Grid container>
-          <Grid xs={4}>
-            {statusText && (
+          {statusText && (
+            <Grid xs={4}>
               <Box
                 sx={{
                   marginTop: '21px',
@@ -138,16 +142,19 @@ export const CardHorizontal = ({
               >
                 <CardChip status={status} statusText={statusText} />
               </Box>
-            )}
-          </Grid>
-          <Grid xs={3}></Grid>
-          <Grid xs={4}>
-            {buttonText && (
-              <Button size="small" onClick={onBtnClick}>
-                {buttonText}
-              </Button>
-            )}
-          </Grid>
+            </Grid>
+          )}
+          {buttonText && (
+            <Button
+              size="small"
+              onClick={onBtnClick}
+              sx={{
+                marginLeft: 'auto',
+              }}
+            >
+              {buttonText}
+            </Button>
+          )}
         </Grid>
       </Box>
     </Box>

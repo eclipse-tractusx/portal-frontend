@@ -33,8 +33,8 @@ const AuthorizingRouter = () => {
         <Route path="error" element={<ErrorBoundary />} />
         <Route path="/" element={<Main />}>
           {AccessService.permittedRoutes()}
-          <Route path="*" element={NotFound()} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

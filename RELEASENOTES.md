@@ -3,6 +3,20 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.5
+
+* Feature - App Overview page
+* Feature - Add and edit Identity Provider details
+* Bugfix - Connect Partner Network to BPDM
+* Bugfix - UI updates in UltimateToolbar component
+* Bugfix - Registration table UI fixes
+* Bugfix - App Release Process - Fixed browser back button issue
+* Bugfix - App Release Process - Fixed user directing to bottom of the page
+* Bugfix - User Management Main Page Style fix
+* Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
+* Bugfix - Services Card Responsive UI Fix
+* Bugfix - Partner netowrk search issue fix
+
 ### 0.5.4
 
 * Feature - Service Marketplace
@@ -11,9 +25,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Release Process Steps 2 with business logic, 3 with api binding, 6 with UI, 4 with UI
 * Feature - Search functionality added in Register Request table
 * Feature - Add "CX Membership" flag in Partner Network
-* Bugs - Show loader on clicking decline or confirm from application request screen
-* Bugs - Show error popup on failure of approve or decline request
-* Bugs - Text updates on company data overlay
+* Bugfix - Show loader on clicking decline or confirm from application request screen
+* Bugfix - Show error popup on failure of approve or decline request
+* Bugfix - Text updates on company data overlay
+* Bugfix - Fixed modal width, subscribe refetch and services loading effect
+* Bugfix - User Management - AddUser Roles missing
 
 
 ### 0.5.3
@@ -46,10 +62,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Older
 
-* Defect - No roles available when adding a user
 * Defect - Page reloads when the auth token is renewed
-* Defect - Partner Network not working on localhost and dev (only int)
-* Defect - Notifications are static
 * Defect - Latest apps are static
 * Defect - Some footer pages and menu items are empty
-
