@@ -18,17 +18,41 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import { slice as overlay } from './overlay/slice'
-import { slice as form } from './formSlice'
-import { slice as update } from './updatesSlice'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
+import { IHashMap } from 'types/MainTypes'
 
-export const reducer = combineReducers({
-  overlay: overlay.reducer,
-  update: update.reducer,
-  form: form.reducer,
+const name = 'control/form'
+
+export enum FORMS {
+  IDP_FORM = 'IDP_FORM',
+}
+
+export type StoreFormType = {
+  form: string
+  att: { [name: string]: string }
+}
+
+const initialState: IHashMap<any> = {}
+initialState[FORMS.IDP_FORM] = {}
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    storeForm: (state, action: PayloadAction<StoreFormType>) => {
+      state[action.payload.form] = {
+        ...state[action.payload.form],
+        ...action.payload.att,
+      }
+    },
+  },
 })
 
-const Reducer = { reducer }
+export const { storeForm } = slice.actions
 
-export default Reducer
+export const editIDPSelector = (state: RootState): any =>
+  state.control.form[FORMS.IDP_FORM]
+
+export default slice.reducer

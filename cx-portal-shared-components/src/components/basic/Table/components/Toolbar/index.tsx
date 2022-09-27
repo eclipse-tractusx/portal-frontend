@@ -28,6 +28,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
 import { Checkbox } from '../../../Checkbox'
 import { getSelectedFilterUpdate } from './helper'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 interface FilterValue {
   value: string
@@ -84,8 +85,10 @@ export const Toolbar = ({
   selectedFilter,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
+  const isSearchText = searchExpr && searchExpr !== ''
+  const isSearchData = searchInputData ? searchInputData.open : false
   const [openSearch, setOpenSearch] = useState<boolean>(
-    searchInputData ? searchInputData.open : false
+    isSearchText ? isSearchText : isSearchData
   )
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>(
@@ -165,7 +168,12 @@ export const Toolbar = ({
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (
-            <Button size="small" onClick={onButtonClick} sx={{ marginLeft: 3 }}>
+            <Button
+              startIcon={<AddCircleOutlineIcon />}
+              size="small"
+              onClick={onButtonClick}
+              sx={{ marginLeft: 15 }}
+            >
               {buttonLabel}
             </Button>
           )}
@@ -177,8 +185,14 @@ export const Toolbar = ({
               value={searchInput}
               onChange={onSearchInputChange}
               onKeyPress={onSearchInputKeyPress}
-              onBlur={() => setOpenSearch(false)}
+              onBlur={() => {}}
               placeholder={searchPlaceholder}
+              sx={{
+                '.MuiInputBase-input': {
+                  padding: '10px',
+                  width: '250px',
+                },
+              }}
             />
           ) : (
             onSearch && (

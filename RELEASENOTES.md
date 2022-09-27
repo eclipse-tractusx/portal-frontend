@@ -6,12 +6,18 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### 0.5.5
 
 * Feature - App Overview page
+* Feature - Add and edit Identity Provider details
 * Bugfix - Connect Partner Network to BPDM
 * Bugfix - UI updates in UltimateToolbar component
 * Bugfix - Registration table UI fixes
 * Bugfix - App Release Process - Fixed browser back button issue
+* Bugfix - App Release Process - Fixed user directing to bottom of the page
+* Bugfix - User Management Main Page Style fix
 * Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
 * Bugfix - Services Card Responsive UI Fix
+* Feature - User Management - Success/Fail Message
+* Bugfix - Partner netowrk search issue fix
+* Feature - Add User Role Overlay (refactoring)
 
 ### 0.5.4
 

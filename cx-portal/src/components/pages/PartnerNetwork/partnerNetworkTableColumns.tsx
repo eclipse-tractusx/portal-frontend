@@ -24,12 +24,16 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'
 import smallLogo from '../../../assets/logo/cx-logo-short.svg'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
+import { useDispatch } from 'react-redux'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksTableColumns = (
   translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
+  const dispatch = useDispatch()
 
   return [
     {
@@ -87,15 +91,21 @@ export const PartnerNetworksTableColumns = (
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',
-      renderCell: () => (
-        <IconButton
-          color="secondary"
-          size="small"
-          style={{ alignSelf: 'center' }}
-        >
-          <ArrowForwardIcon />
-        </IconButton>
-      ),
+      renderCell: (params) =>
+        params && params.row && params.row.legalEntity ? (
+          <IconButton
+            color="secondary"
+            size="small"
+            style={{ alignSelf: 'center' }}
+            onClick={() =>
+              dispatch(show(OVERLAYS.PARTNER, params.row.legalEntity.bpn))
+            }
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        ) : (
+          <></>
+        ),
     },
   ]
 }

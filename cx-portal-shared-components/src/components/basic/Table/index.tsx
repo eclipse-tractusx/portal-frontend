@@ -45,6 +45,8 @@ export interface TableProps extends DataGridProps {
   searchDebounce?: number
   searchInputData?: SearchInputState
   hasBorder?: boolean
+  buttonLabel?: string
+  onButtonClick?: React.MouseEventHandler
 }
 
 export const Table = ({
@@ -66,6 +68,8 @@ export const Table = ({
   searchDebounce,
   searchInputData,
   hasBorder = true,
+  buttonLabel,
+  onButtonClick,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -75,6 +79,9 @@ export const Table = ({
     searchDebounce,
     searchInputData,
     searchPlaceholder,
+    buttonLabel,
+    onButtonClick,
+    searchExpr,
   }
   const toolbarView = () => {
     switch (toolbarVariant) {
