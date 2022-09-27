@@ -81,12 +81,7 @@ export const RegistrationRequestsTableColumns = (
       cellClassName: 'documents-column--cell',
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <div className="document-cell-container">
-          {[
-            {
-              documentType: 'CX_FRAME_CONTRACT',
-              documentId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            },
-          ].map((contract) => (
+          {row.documents.map((contract) => (
             <div
               className="document-cell-line"
               key={uniqueId(contract?.documentId)}
