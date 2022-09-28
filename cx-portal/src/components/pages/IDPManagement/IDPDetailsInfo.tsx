@@ -36,7 +36,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function IDPDetailInfo({ id }: { id: string }) {
+export default function IDPDetailForm({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { data, refetch } = useFetchIDPDetailQuery(id)

@@ -28,7 +28,7 @@ import { TFunction, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import { updateIDPSelector } from 'features/control/updatesSlice'
-import IDPDetailInfo from './IDPDetailsInfo'
+import IDPDetailForm from './IDPDetailsInfo'
 import './style.scss'
 
 interface MenuItems {
@@ -84,7 +84,7 @@ export const IDPList = () => {
   const updatedData = data?.map((row, index, rows) => {
     return {
       ...row,
-      body: <IDPDetailInfo id={row.identityProviderId}></IDPDetailInfo>,
+      body: <IDPDetailForm id={row.identityProviderId}></IDPDetailForm>,
       menuOptions: mapMenuItems(row, rows, t),
     }
   })
