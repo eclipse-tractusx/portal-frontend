@@ -28,8 +28,7 @@ import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Controller, useForm } from 'react-hook-form'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useState } from 'react'
@@ -210,20 +209,24 @@ export default function AppPage() {
           <InputLabel sx={{ mb: 3, mt: 3 }}>
             {t('content.apprelease.appPage.images') + ' *'}
           </InputLabel>
-          <Controller
-            name={'images'}
-            control={control}
-            rules={{
-              required: true,
+          <ConnectorFormInputField
+            {...{
+              control,
+              trigger,
+              errors,
+              name: 'images',
+              type: 'dropzone',
+              acceptFormat: {
+                'image/png': [],
+                'image/jpeg': [],
+              },
+              maxFilesToUpload: 3,
+              rules: {
+                required: {
+                  value: true,
+                },
+              },
             }}
-            render={({ field: { onChange, value } }) => (
-              <Dropzone
-                onFileDrop={(files: File[]) => {
-                  onChange(files[0].name)
-                  trigger('images')
-                }}
-              />
-            )}
           />
           {errors?.images?.type === 'required' && (
             <p className="file-error-msg">
@@ -257,6 +260,11 @@ export default function AppPage() {
                   errors,
                   name: item,
                   type: 'dropzone',
+                  acceptFormat: {
+                    'image/png': [],
+                    'image/jpeg': [],
+                  },
+                  maxFilesToUpload: 1,
                   rules: {
                     required: {
                       value: true,

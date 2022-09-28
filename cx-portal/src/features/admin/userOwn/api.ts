@@ -62,4 +62,10 @@ export class Api extends HttpClient {
       {},
       getHeaders()
     )
+
+  public deleteBpn = (companyUserId: string, bpn: string) =>
+    this.instance.delete<any>(
+      `/api/administration/user/ownCompany/users/${companyUserId}/businessPartnerNumbers/${bpn}`,
+      getHeaders()
+    )
 }

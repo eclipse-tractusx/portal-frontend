@@ -389,7 +389,11 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APP_MARKETPLACE },
       { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
-      { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      {
+        name: PAGES.DATASPACE_MARKETPLACE,
+        hint: HINTS.COMING_SOON,
+        disable: true,
+      },
     ],
   },
   {

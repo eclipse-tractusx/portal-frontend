@@ -80,6 +80,10 @@ export const ConnectorFormInputField = ({
   notItemsText,
   buttonAddMore,
   filterOptionsArgs,
+  acceptFormat,
+  maxFilesToUpload,
+  previewFiles,
+  showPreviewAlone,
 }: any) => (
   <Controller
     name={name}
@@ -115,6 +119,10 @@ export const ConnectorFormInputField = ({
               trigger(name)
               onChange(files[0].name)
             }}
+            acceptFormat={acceptFormat}
+            maxFilesToUpload={maxFilesToUpload}
+            previewFiles={previewFiles}
+            showPreviewAlone={showPreviewAlone}
           />
         )
       } else if (type === 'checkbox') {
@@ -629,6 +637,11 @@ export default function AppMarketCard() {
                 errors,
                 name: 'uploadImage.leadPictureUri',
                 type: 'dropzone',
+                acceptFormat: {
+                  'image/png': [],
+                  'image/jpeg': [],
+                },
+                maxFilesToUpload: 1,
                 rules: {
                   required: {
                     value: true,
