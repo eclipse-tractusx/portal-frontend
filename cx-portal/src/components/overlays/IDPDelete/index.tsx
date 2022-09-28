@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import {
   Button,
   DialogActions,
-  DialogContent,
   DialogHeader,
   LoadingButton,
 } from 'cx-portal-shared-components'
@@ -11,13 +10,13 @@ import {
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { useRemoveIDPMutation } from 'features/admin/idpApiSlice'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
+
+import './idpdelete.scss'
 
 interface Status {
   error: boolean
@@ -33,7 +32,7 @@ const getIcon = (status: Status) => {
     return <CheckCircleOutlinedIcon sx={{ fontSize: 60 }} color="success" />
   }
 
-  return null
+  return <></>
 }
 
 const getTitle = (status: Status) => {
@@ -48,19 +47,28 @@ const getTitle = (status: Status) => {
   return 'overlays.idp_delete_info_title'
 }
 
-const getIntro = (status: Status) => {
+const getIntro = (status: Status, retry: () => void) => {
   if (status.error) {
-    return 'overlays.idp_delete_error_intro'
+    return (
+      <Trans i18nKey="[span]overlays.idp_delete_error_intro">
+        Please{' '}
+        <span className="idp-retry-link" onClick={retry}>
+          {' '}
+          retry
+        </span>{' '}
+        or contact an administrator if the failure persist.
+      </Trans>
+    )
   }
 
   if (status.success) {
-    return 'overlays.idp_delete_success_intro'
+    return <Trans i18nKey="overlays.idp_delete_success_intro"></Trans>
   }
 
-  return 'overlays.idp_delete_info_intro'
+  return <Trans i18nKey="overlays.idp_delete_info_intro"></Trans>
 }
 
-function IDPConfirm({ id, title }: { id: string; title?: string }) {
+function IDPDelete({ id, title }: { id: string; title?: string }) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [removeIDP, { isLoading }] = useRemoveIDPMutation()
@@ -71,18 +79,20 @@ function IDPConfirm({ id, title }: { id: string; title?: string }) {
 
   const handleDelete = async () => {
     try {
-      // await removeIDP(id)
+      await removeIDP(id)
       dispatch(updateData(UPDATES.IDP_LIST))
       setStatus({ success: true, error: false })
 
-      //to close the overlay on success after few seconds
+      //to close the overlay on success after three seconds
       setTimeout(() => {
         dispatch(closeOverlay())
       }, 3000)
     } catch (error) {
-      setStatus({ error: true, success: true })
+      setStatus({ error: true, success: false })
     }
   }
+
+  const retry = () => handleDelete()
 
   return (
     <>
@@ -93,7 +103,7 @@ function IDPConfirm({ id, title }: { id: string; title?: string }) {
           icon: true,
           iconComponent: getIcon(status),
           onCloseWithIcon: () => dispatch(closeOverlay()),
-          intro: t(`${getIntro(status)}`),
+          intro: getIntro(status, retry),
         }}
       />
 
@@ -116,4 +126,4 @@ function IDPConfirm({ id, title }: { id: string; title?: string }) {
   )
 }
 
-export default IDPConfirm
+export default IDPDelete

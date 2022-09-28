@@ -48,12 +48,13 @@
     "invite": "Neuen Geschäftspartner einladen",
     "add_user": "Neuen Benutzer hinzufügen",
     "add_techuser": "Neuen technischen Benutzer hinzufügen",
-    "idp_delete_info_title": "Deletion of the identity provider.",
-    "idp_delete_info_intro": "Please note, all users which are not migrated to the new iDP wii get irreversible deleted.",
-    "idp_delete_success_title": "Identity provider {{name}} was successfully deleted.",
-    "idp_delete_success_intro": "The window will close automatically. In case it doesn't, please use the 'close' button in on the top right.",
-    "idp_delete_error_title": "The identity provider did not got deleted.",
-    "idp_delete_error_intro": "Please retry or contact an administrator if the failure persist."
+    "idp_delete_info_title": "Löschung des Identitätsanbieters.",
+    "idp_delete_info_intro": "Bitte beachten Sie, dass alle Benutzer, die nicht auf das neue iDP migriert werden, unwiderruflich gelöscht werden.",
+    "idp_delete_success_title": "Identitätsanbieter {{name}} wurde erfolgreich gelöscht.",
+    "idp_delete_success_intro": "Das Fenster wird automatisch geschlossen. Falls dies nicht der Fall ist, verwenden Sie bitte die Schaltfläche 'Schließen' oben rechts.",
+    "idp_delete_error_title": "Der Identitätsanbieter wurde nicht gelöscht.",
+    "idp_delete_error_intro": "Bitte versuchen Sie es erneut oder wenden Sie sich an einen Administrator, falls der Fehler weiterhin auftritt.",
+    "idp_delete_tooltip_info": "Bitte deaktivieren Sie zuerst den Dienst oder stellen Sie sicher, dass einer der Dienste für das folgende Unternehmen funktioniert."
   },
   "actions": {
     "SignOut": "Abmelden",

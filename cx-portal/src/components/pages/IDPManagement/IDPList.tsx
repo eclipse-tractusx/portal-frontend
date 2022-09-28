@@ -18,75 +18,61 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, CardHorizontalTable } from 'cx-portal-shared-components'
+import { CardHorizontalTable, DataProp } from 'cx-portal-shared-components'
 import {
   IdentityProvider,
-  useEnableIDPMutation,
   useFetchIDPListQuery,
-  useRemoveIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { show } from 'features/control/overlay/actions'
-import { useTranslation } from 'react-i18next'
+import { TFunction, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import {
-  updateData,
-  updateIDPSelector,
-  UPDATES,
-} from 'features/control/updatesSlice'
-import './style.scss'
+import { updateIDPSelector } from 'features/control/updatesSlice'
 import IDPDetailInfo from './IDPDetailsInfo'
+import './style.scss'
 
-// export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
-//   const { t } = useTranslation()
-//   const dispatch = useDispatch()
-//   const [removeIDP] = useRemoveIDPMutation()
-//   const [enableIDP] = useEnableIDPMutation()
-//   const state = idp.enabled ? 'enabled' : 'disabled'
+interface MenuItems {
+  key: string
+  label: string
+  isDisable: boolean
+  tooltipTitle: string
+}
 
-//   const doDetails = () => dispatch(show(OVERLAYS.IDP, idp.identityProviderId))
+const MENU_KEYS = {
+  DELETE: 'delete',
+  ENABLE: 'enable',
+  DISABLE: 'disable',
+}
 
-//   const doDelete = async () => {
-//     try {
-//       await removeIDP(idp.identityProviderId)
-//       dispatch(updateData(UPDATES.IDP_LIST))
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
+const checkIfDeleteAvailable = (
+  row: IdentityProvider,
+  rows: IdentityProvider[]
+) => {
+  const { enabled: status, displayName } = row
+  return (
+    status && rows.filter((row) => row.displayName === displayName).length === 1
+  )
+}
 
-//   const doEnableToggle = async () => {
-//     try {
-//       await enableIDP({ id: idp.identityProviderId, enabled: !idp.enabled })
-//       dispatch(updateData(UPDATES.IDP_LIST))
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
+const mapMenuItems = (
+  row: IdentityProvider,
+  rows: IdentityProvider[],
+  t: TFunction<'translation', undefined>
+) => {
+  let menuOptions: MenuItems[] = []
 
-//   return (
-//     <div className="idp-list-item">
-//       <span className="category">{idp.identityProviderCategoryId}</span>
-//       <span className="name">{idp.displayName || '-'}</span>
-//       <span className="alias">{idp.alias}</span>
-//       <span className={`state ${state}`} onClick={doEnableToggle}>
-//         {t(`global.state.${state}`)}
-//       </span>
-//       <span className="action">
-//         <IconButton color="secondary" onClick={doDetails}>
-//           <ArrowForwardIcon />
-//         </IconButton>
-//         {idp.enabled || (
-//           <IconButton color="secondary" onClick={doDelete}>
-//             <DeleteForeverIcon />
-//           </IconButton>
-//         )}
-//       </span>
-//     </div>
-//   )
-// }
+  menuOptions = [
+    ...menuOptions,
+    {
+      key: MENU_KEYS.DELETE,
+      label: 'Delete',
+      isDisable: checkIfDeleteAvailable(row, rows),
+      tooltipTitle: t('overlays.idp_delete_tooltip_info'),
+    },
+  ]
+
+  return menuOptions
+}
 
 export const IDPList = () => {
   const update = useSelector(updateIDPSelector)
@@ -95,33 +81,38 @@ export const IDPList = () => {
 
   const { t } = useTranslation()
 
-  const updatedData = data
-    ? data.map((info) => {
-        return {
-          ...info,
-          body: <IDPDetailInfo id={info.identityProviderId}></IDPDetailInfo>,
-        }
-      })
-    : []
+  const updatedData = data?.map((row, index, rows) => {
+    return {
+      ...row,
+      body: <IDPDetailInfo id={row.identityProviderId}></IDPDetailInfo>,
+      menuOptions: mapMenuItems(row, rows, t),
+    }
+  })
 
-  const onDeleteClick = (args: any) =>
-    dispatch(
-      show(OVERLAYS.IDP_CONFIRM, args.identityProviderId, args.displayName)
-    )
+  const handleMenuClick = (key: string, args: DataProp) => {
+    switch (key) {
+      case MENU_KEYS.DELETE:
+        dispatch(
+          show(OVERLAYS.IDP_CONFIRM, args.identityProviderId, args.displayName)
+        )
+        break
 
-  const menuItems = [
-    { key: 'edit', label: 'Edit' },
-    { key: 'user_managment', label: 'User Managment' },
-    { key: 'status', label: 'Enable' },
-    { key: 'delete', label: 'Delete', onClickEvent: onDeleteClick },
-  ]
+      default:
+        break
+    }
+  }
 
   return (
-    <CardHorizontalTable
-      row={updatedData as any}
-      activeLabel={t('global.state.enabled')}
-      inactiveLabel={t('global.state.disabled')}
-      menuOptions={menuItems}
-    ></CardHorizontalTable>
+    <>
+      {updatedData?.map((row) => (
+        <CardHorizontalTable
+          key={row.identityProviderId}
+          data={row}
+          inactiveLabel={t('global.state.disabled')}
+          activeLabel={t('global.state.enabled')}
+          onMenuClick={(key, row) => handleMenuClick(key, row)}
+        />
+      ))}
+    </>
   )
 }

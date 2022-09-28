@@ -28,11 +28,11 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 
 export interface DialogHeaderProps {
   title: string
-  intro?: string
+  intro?: string | JSX.Element
   icon?: boolean
   closeWithIcon?: boolean
   onCloseWithIcon?: (event: React.MouseEvent) => void
-  iconComponent?: React.ReactElement
+  iconComponent?: JSX.Element
 }
 
 export const DialogHeader = ({

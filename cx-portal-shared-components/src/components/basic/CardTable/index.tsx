@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import Box from '@mui/material/Box'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import { Tooltip } from '@mui/material'
 
 import Accordion, {
   StyledAccordianDetails,
@@ -14,15 +15,17 @@ import Accordion, {
   StyledAccordianButton,
 } from './CardTable'
 
-interface DataProp {
+export interface DataProp {
   identityProviderCategoryId: string
-  displayName: string
+  displayName?: string
   enabled: boolean
   identityProviderId: string
   body: React.ReactElement
   menuOptions: {
     key: string
     label: string
+    isDisable: boolean
+    tooltipTitle?: string
   }[]
 }
 export interface CustomAccordianProps {
@@ -30,7 +33,7 @@ export interface CustomAccordianProps {
   data: DataProp
   activeLabel: string
   inactiveLabel: string
-  onMenuClick: (key: string) => void
+  onMenuClick: (key: string, row: DataProp) => void
 }
 
 const CardHorizontalTable = ({
@@ -67,14 +70,16 @@ const CardHorizontalTable = ({
 
   const handleClose = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     e.stopPropagation()
+    e.preventDefault()
     setAnchorEl(null)
   }
 
   const handleMenuClick = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    key: string
+    key: string,
+    row: DataProp
   ) => {
-    onMenuClick(key)
+    onMenuClick(key, row)
     handleClose(e)
   }
 
@@ -106,13 +111,37 @@ const CardHorizontalTable = ({
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
+              onClick={(e) => e.stopPropagation()}
               disableAutoFocusItem
             >
-              {menuOptions.map(({ key, label }) => (
-                <MenuItem key={key} onClick={(e) => handleMenuClick(e, key)}>
-                  {label}
-                </MenuItem>
-              ))}
+              {menuOptions.map(({ key, label, isDisable, tooltipTitle }) => {
+                if (isDisable) {
+                  return (
+                    <Tooltip arrow title={tooltipTitle ? tooltipTitle : ''}>
+                      {/* to fire the action of tooltip need to pass ref to div tag, bcuz tooltip cannot be passed to disable components */}
+                      <div>
+                        <MenuItem
+                          key={key}
+                          disabled={isDisable}
+                          onClick={(e) => handleMenuClick(e, key, data)}
+                        >
+                          {label}
+                        </MenuItem>
+                      </div>
+                    </Tooltip>
+                  )
+                }
+
+                return (
+                  <MenuItem
+                    key={key}
+                    disabled={isDisable}
+                    onClick={(e) => handleMenuClick(e, key, data)}
+                  >
+                    {label}
+                  </MenuItem>
+                )
+              })}
             </Menu>
           </>
         }
@@ -121,7 +150,7 @@ const CardHorizontalTable = ({
           {identityProviderCategoryId}
         </Typography>
         <Typography width="25%" textAlign="start">
-          {displayName}
+          {displayName && displayName}
         </Typography>
         <StyledAccordianButton
           disableElevation
