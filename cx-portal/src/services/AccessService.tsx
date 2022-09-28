@@ -46,6 +46,7 @@ import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
 import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 import IDPDelete from 'components/overlays/IDPDelete'
+import IDPStatusChange from 'components/overlays/IDPStatusChange'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -124,6 +125,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <ServiceRequest id={overlay.id} />
     case OVERLAYS.IDP_CONFIRM:
       return <IDPDelete id={overlay.id} title={overlay.title} />
+    case OVERLAYS.IDP_STATUS:
+      return <IDPStatusChange id={overlay.id} title={overlay.title} />
     default:
       return <NotFound />
   }

@@ -35,7 +35,7 @@ interface MenuItems {
   key: string
   label: string
   isDisable: boolean
-  tooltipTitle: string
+  tooltipTitle?: string
 }
 
 const MENU_KEYS = {
@@ -60,6 +60,30 @@ const mapMenuItems = (
   t: TFunction<'translation', undefined>
 ) => {
   let menuOptions: MenuItems[] = []
+
+  if (row.enabled) {
+    menuOptions = [
+      ...menuOptions,
+      {
+        key: MENU_KEYS.DISABLE,
+        label: 'Disable',
+        isDisable: checkIfDeleteAvailable(row, rows),
+        tooltipTitle: 'This idp cannot be deleted',
+      },
+    ]
+  }
+
+  if (!row.enabled) {
+    menuOptions = [
+      ...menuOptions,
+      {
+        key: MENU_KEYS.ENABLE,
+        label: 'Enable',
+        isDisable: checkIfDeleteAvailable(row, rows),
+        tooltipTitle: 'This idp cannot be deleted',
+      },
+    ]
+  }
 
   menuOptions = [
     ...menuOptions,
@@ -99,11 +123,10 @@ export const IDPList = () => {
 
       //adding few switch case to remove code smell
       case MENU_KEYS.DISABLE:
-        console.log(key)
-        break
-
       case MENU_KEYS.ENABLE:
-        console.log(key)
+        dispatch(
+          show(OVERLAYS.IDP_STATUS, args.identityProviderId, args.displayName)
+        )
         break
 
       default:
