@@ -37,6 +37,7 @@ export const RequestList = ({
   isLoading,
   onTableCellClick,
   loaded,
+  handleDownloadDocument,
   searchExpr,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
@@ -47,6 +48,7 @@ export const RequestList = ({
   isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
+  handleDownloadDocument: (documentId: string, documentType: string) => void
   searchExpr?: string
 }) => {
   const { t } = useTranslation()
@@ -58,7 +60,8 @@ export const RequestList = ({
     useTranslation,
     onApproveClick,
     onDeclineClick,
-    isLoading
+    isLoading,
+    handleDownloadDocument
   )
 
   useEffect(() => {
