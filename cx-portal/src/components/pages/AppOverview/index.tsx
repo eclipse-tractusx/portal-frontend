@@ -85,35 +85,32 @@ export default function AppOverview() {
     // eslint-disable-next-line
   }, [data])
 
-  const setView = (value: string) => {
-    setGroup(value)
-    debouncedSearch(searchExpr, items, value)
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    const viewValue = e.currentTarget.value
+    setGroup(viewValue)
+    debouncedSearch(searchExpr, items, viewValue)
   }
 
   const categoryViews = [
     {
       buttonText: t('content.appoverview.filter.all'),
       buttonValue: '',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
-        setView(e.currentTarget.value),
+      onButtonClick: setView,
     },
     {
       buttonText: t('content.appoverview.filter.active'),
       buttonValue: 'active',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
-        setView(e.currentTarget.value),
+      onButtonClick: setView,
     },
     {
       buttonText: t('content.appoverview.filter.inactive'),
       buttonValue: 'inactive',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
-        setView(e.currentTarget.value),
+      onButtonClick: setView,
     },
     {
       buttonText: t('content.appoverview.filter.wip'),
       buttonValue: 'wip',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
-        setView(e.currentTarget.value),
+      onButtonClick: setView,
     },
   ]
 
