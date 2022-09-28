@@ -37,26 +37,33 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function IDPDetailForm({ id }: { id: string }) {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
   const { data, refetch } = useFetchIDPDetailQuery(id)
-  const [updateIDP] = useUpdateIDPMutation()
+  const dispatch = useDispatch()
+  const { t } = useTranslation()
   const formData = useSelector(editIDPSelector)
+  const [updateIDP] = useUpdateIDPMutation()
 
-  useEffect(() => refetch(), [refetch])
+  const {
+    displayName,
+    metadataUrl,
+    clientAuthMethod,
+    clientId,
+    secret,
+    signatureAlgorithm,
+  } = formData
 
   const submitForm = async () => {
     if (!formData) return
     const update: IdentityProviderUpdate = {
       identityProviderId: id,
       body: {
-        displayName: formData.displayName,
+        displayName: displayName,
         oidc: {
-          metadataUrl: formData.metadataUrl,
-          clientAuthMethod: formData.clientAuthMethod,
-          clientId: formData.clientId,
-          secret: formData.secret,
-          signatureAlgorithm: formData.signatureAlgorithm,
+          clientId: clientId,
+          secret: secret,
+          signatureAlgorithm: signatureAlgorithm,
+          metadataUrl: metadataUrl,
+          clientAuthMethod: clientAuthMethod,
         },
       },
     }
@@ -67,6 +74,8 @@ export default function IDPDetailForm({ id }: { id: string }) {
       console.log(err)
     }
   }
+
+  useEffect(() => refetch(), [refetch])
 
   return (
     <>
