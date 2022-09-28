@@ -24,16 +24,16 @@ import { PreviewItem } from './PreviewItem'
 
 export const Preview = ({
   files,
+  showPreviewAlone,
   itemPreview = (file) => (
     <PreviewItem key={file.name}>
       <FilePreviewItem file={file} showPreviewAlone={showPreviewAlone} />
     </PreviewItem>
   ),
-  showPreviewAlone,
 }: {
   files: File[]
-  itemPreview?: (file: File) => JSX.Element | Element
   showPreviewAlone?: boolean
+  itemPreview?: (file: File) => JSX.Element | Element
 }) => {
   return <Box>{files && files.map(itemPreview)}</Box>
 }

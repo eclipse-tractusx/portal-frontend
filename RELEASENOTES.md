@@ -35,6 +35,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Management - AddUser Roles missing
 * Feature - App Release Process - upload
 
+
 ### 0.5.3
 
 * Feature - App Release Process Step 1 implementation with api binding
