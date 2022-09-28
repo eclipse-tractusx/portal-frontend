@@ -18,6 +18,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - BPN add/delete flow in User Account Screen
 * Feature - User Management - Success/Fail Message
 * Bugfix - Partner netowrk search issue fix
+* Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
 
 ### 0.5.4
