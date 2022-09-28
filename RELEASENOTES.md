@@ -20,6 +20,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Partner netowrk search issue fix
 * Bugfix - CardHorizontal - Height issue fix
 * feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
 
 ### 0.5.4
@@ -36,6 +37,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Fixed modal width, subscribe refetch and services loading effect
 * Bugfix - User Management - AddUser Roles missing
 * Feature - App Release Process - upload
+
 
 ### 0.5.3
 
