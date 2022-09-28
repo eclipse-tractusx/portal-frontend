@@ -97,6 +97,15 @@ export const IDPList = () => {
         )
         break
 
+      //adding few switch case to remove code smell
+      case MENU_KEYS.DISABLE:
+        console.log(key)
+        break
+
+      case MENU_KEYS.ENABLE:
+        console.log(key)
+        break
+
       default:
         break
     }

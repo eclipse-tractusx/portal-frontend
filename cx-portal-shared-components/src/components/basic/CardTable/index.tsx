@@ -150,7 +150,7 @@ const CardHorizontalTable = ({
           {identityProviderCategoryId}
         </Typography>
         <Typography width="25%" textAlign="start">
-          {displayName && displayName}
+          {displayName}
         </Typography>
         <StyledAccordianButton
           disableElevation
