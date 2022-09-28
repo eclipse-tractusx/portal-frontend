@@ -19,6 +19,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - User Management - Success/Fail Message
 * Bugfix - Partner netowrk search issue fix
 * Feature - Add User Role Overlay (refactoring)
+* Bugfix - Bind app subscribe status in my organization page
 
 ### 0.5.4
 
