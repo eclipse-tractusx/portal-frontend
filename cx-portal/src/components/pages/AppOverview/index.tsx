@@ -34,7 +34,7 @@ import {
 import { appCardStatus } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
-import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
 import uniqueId from 'lodash/uniqueId'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
@@ -43,25 +43,39 @@ export default function AppOverview() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [group, setGroup] = useState<string>('')
-  const { data } = useFetchActiveAppsQuery() //// TODO: Replace to Recently changed apps api
+  const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
   const debouncedSearch = useMemo(
     () =>
-      debounce((expr: string) => {
+      debounce((expr: string, data: CardItems[] | undefined, group: string) => {
+        if (group) {
+          data = data?.filter((item: any) => item.status === group)
+        }
         if (expr.length > 2) {
-          const filterItem = items?.filter((item) =>
-            item.title.toLocaleLowerCase().includes(expr.toLocaleLowerCase())
+          const filterItems = data?.filter(
+            (item) =>
+              item.title
+                .toLocaleLowerCase()
+                .includes(expr.toLocaleLowerCase()) ||
+              item.subtitle
+                ?.toLocaleLowerCase()
+                .includes(expr.toLocaleLowerCase()) ||
+              item.statusText
+                ?.toLocaleLowerCase()
+                .includes(expr.toLocaleLowerCase())
           )
-          setFilterItem(filterItem)
+          setFilterItem(filterItems)
+        } else if (group) {
+          setFilterItem(data)
         } else if (expr.length === 0) {
           setFilterItem(items)
         }
       }, 400),
     // eslint-disable-next-line
-    [dispatch]
+    [dispatch, filterItem, group]
   )
 
   useEffect(() => {
@@ -71,38 +85,35 @@ export default function AppOverview() {
     // eslint-disable-next-line
   }, [data])
 
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value) {
-      const filterItem = items?.filter(
-        (item: any) => item.status === e.currentTarget.value
-      )
-      setFilterItem(filterItem)
-    } else {
-      setFilterItem(items)
-    }
-    setGroup(e.currentTarget.value)
+  const setView = (value: string) => {
+    setGroup(value)
+    debouncedSearch(searchExpr, items, value)
   }
 
   const categoryViews = [
     {
       buttonText: t('content.appoverview.filter.all'),
       buttonValue: '',
-      onButtonClick: setView,
+      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
+        setView(e.currentTarget.value),
     },
     {
       buttonText: t('content.appoverview.filter.active'),
       buttonValue: 'active',
-      onButtonClick: setView,
+      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
+        setView(e.currentTarget.value),
     },
     {
       buttonText: t('content.appoverview.filter.inactive'),
       buttonValue: 'inactive',
-      onButtonClick: setView,
+      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
+        setView(e.currentTarget.value),
     },
     {
       buttonText: t('content.appoverview.filter.wip'),
       buttonValue: 'wip',
-      onButtonClick: setView,
+      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) =>
+        setView(e.currentTarget.value),
     },
   ]
 
@@ -113,9 +124,9 @@ export default function AppOverview() {
         return
       }
       setSearchExpr(expr)
-      debouncedSearch(expr)
+      debouncedSearch(expr, items, group)
     },
-    [debouncedSearch]
+    [debouncedSearch, items, group]
   )
 
   return (

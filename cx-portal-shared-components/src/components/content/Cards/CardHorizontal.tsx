@@ -85,6 +85,10 @@ export const CardHorizontal = ({
         component="img"
         src={imagePath || LogoGrayData}
         alt={imageAlt}
+        onError={(e: any) => {
+          e.currentTarget.onerror = null // prevents looping
+          e.currentTarget.src = LogoGrayData
+        }}
       />
       <Box
         sx={{
