@@ -16,6 +16,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
 * Bugfix - Services Card Responsive UI Fix
 * Bugfix - Partner netowrk search issue fix
+* Bugfix - CardHorizontal - Height issue fix
+* feature - Expand on hover feature added to  CardHorizontal component.
 
 ### 0.5.4
 
