@@ -89,6 +89,13 @@
       text-decoration: none;
     }
   }
+
+  .document-button-link {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .state-cell-container {
