@@ -72,9 +72,8 @@ export const TransitionChip = ({
   }, [enableClick])
 
   const onButtonClick = () => {
-    if(enableClick)
-    onClick()
-}
+    if (enableClick) onClick()
+  }
   return (
     <MuiChip
       onMouseEnter={handleMouseEnter}
