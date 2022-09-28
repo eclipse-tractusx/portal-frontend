@@ -184,6 +184,8 @@ export default function TechnicalIntegration() {
                 trigger,
                 errors,
                 name: 'uploadAppRoles',
+                acceptFormat: { 'text/csv': ['.csv'] },
+                maxFilesToUpload: 1,
                 type: 'dropzone',
                 rules: {
                   required: {
