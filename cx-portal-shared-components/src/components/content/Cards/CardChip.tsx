@@ -26,12 +26,16 @@ export enum StatusVariants {
   release = 'release',
   active = 'active',
   inactive = 'inactive',
+  created = 'created',
+  inReview = 'in_review',
 }
 
 export type Variants =
   | StatusVariants.release
   | StatusVariants.active
   | StatusVariants.inactive
+  | StatusVariants.created
+  | StatusVariants.inReview
 
 export interface CardChipProps {
   status?: Variants
@@ -57,6 +61,17 @@ export const CardChip = ({ status, statusText }: CardChipProps) => {
         setChipColor(theme.palette.chip.inactive)
         setChipBackground(theme.palette.chip.bgInactive)
         break
+      case StatusVariants.created:
+        setChipColor(theme.palette.chip.created)
+        setChipBackground(theme.palette.chip.bgCreated)
+        break
+      case StatusVariants.inReview:
+        setChipColor(theme.palette.chip.inReview)
+        setChipBackground(theme.palette.chip.bgInReview)
+        break
+      default:
+        setChipColor(theme.palette.chip.default)
+        setChipBackground(theme.palette.chip.bgDefault)
     }
   }, [status, theme])
 
