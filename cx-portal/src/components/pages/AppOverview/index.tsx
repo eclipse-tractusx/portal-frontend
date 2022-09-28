@@ -31,7 +31,7 @@ import {
   CardHorizontal,
   CardItems,
 } from 'cx-portal-shared-components'
-import { appCardStatus } from 'features/apps/mapper'
+import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
@@ -45,6 +45,7 @@ export default function AppOverview() {
   const [group, setGroup] = useState<string>('')
   const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
+  const recentlyChangedApps = data && appCardRecentlyApps(data)
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
@@ -135,27 +136,27 @@ export default function AppOverview() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-      <div className="desc-recently">
-        <div className="container">
-          <Typography variant="h4" className="desc-heading">
-            {t('content.appoverview.recently.header')}
-          </Typography>
-          <Typography variant="body2" className="desc-message">
-            {t('content.appoverview.recently.subheader')}
-          </Typography>
-          <div className="desc-card">
-            {items ? (
+      {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
+        <div className="desc-recently">
+          <div className="container">
+            <Typography variant="h4" className="desc-heading">
+              {t('content.appoverview.recently.header')}
+            </Typography>
+            <Typography variant="body2" className="desc-message">
+              {t('content.appoverview.recently.subheader')}
+            </Typography>
+            <div className="desc-card">
               <Cards
-                items={items.slice(0, 4)}
+                items={recentlyChangedApps}
                 columns={4}
                 buttonText="Details"
                 variant="minimal"
                 filledBackground={true}
               />
-            ) : null}
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
       <div className="app-main">
         <Box sx={{ marginTop: '20px' }} className="overview-section">
           <section className="overview-section-content">
