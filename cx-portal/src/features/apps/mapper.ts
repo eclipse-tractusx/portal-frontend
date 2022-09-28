@@ -121,7 +121,7 @@ export const appCardRecentlyApps = (apps: AppMarketplaceApp[]): CardItems[] => {
       const timestamp = new Date(e.lastChanged as string).getTime()
       return { ...e, timestamp }
     })
-    .sort((a, b) => (b.timestamp as number) - (a.timestamp as number))
+    .sort((a, b) => b.timestamp - a.timestamp)
     .slice(0, 4)
   return appCardStatus(recentlyData)
 }
