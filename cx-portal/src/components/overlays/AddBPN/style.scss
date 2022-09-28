@@ -32,9 +32,15 @@
         margin: 3px auto 3px 0;
         padding-right: 15px;
         word-break: break-all;
+        &.redActive {
+          color: red;
+        }
       }
       .deleteIcon {
         cursor: pointer;
+        &:hover {
+          color: red;
+        }
       }
     }
   }
