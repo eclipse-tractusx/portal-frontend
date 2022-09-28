@@ -18,11 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Grid, useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { LogoGrayData } from '../../basic/Logo'
 import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
 import { CardChip, CardChipProps } from './CardChip'
+import { useState, useEffect, useRef } from 'react'
 
 interface CardHorizontalProps extends CardChipProps {
   label: string
@@ -34,6 +35,7 @@ interface CardHorizontalProps extends CardChipProps {
   backgroundColor?: string
   buttonText?: string
   onBtnClick?: React.MouseEventHandler
+  expandOnHover?: boolean
 }
 
 export const CardHorizontal = ({
@@ -48,13 +50,29 @@ export const CardHorizontal = ({
   buttonText,
   onBtnClick,
   backgroundColor,
+  expandOnHover = false,
 }: CardHorizontalProps) => {
   const theme = useTheme()
+  const [variant, setVariant] = useState('preview')
+  const [boxHeight, setBoxHeight] = useState<number | undefined>()
+  const boxRef = useRef<HTMLDivElement>(null)
+
+  const onMouseEnter = () => {
+    if (expandOnHover) setVariant('expanded')
+  }
+
+  useEffect(() => {
+    setBoxHeight(boxRef.current?.getBoundingClientRect().height)
+  }, [variant])
+
+  const onMouseLeave = () => setVariant('preview')
+
   return (
     <Box
+      ref={boxRef}
       sx={{
         backgroundColor: backgroundColor || 'common.white',
-        height: 'auto',
+        height: variant === 'expanded' ? 'auto' : '180px',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -65,9 +83,13 @@ export const CardHorizontal = ({
           boxShadow: theme.shadows['20'],
         },
       }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <Box
         sx={{
+          width: boxHeight ? `${boxHeight}px` : '180px',
+          height: boxHeight ? `${boxHeight}px` : '180px',
           display: 'flex',
           flex: '0 0 33.333333%',
           flexDirection: 'row',
@@ -75,25 +97,18 @@ export const CardHorizontal = ({
           alignItems: 'center',
           padding: 0,
           margin: 0,
-          width: '160px',
-          height: 'auto',
           maxWidth: '33.333333%',
           background: theme.palette.accent.accent02,
           borderRadius: `${borderRadius}px`,
-          objectFit: 'contain',
-        }}
-        component="img"
-        src={imagePath || LogoGrayData}
-        alt={imageAlt}
-        onError={(e: any) => {
-          e.currentTarget.onerror = null // prevents looping
-          e.currentTarget.src = LogoGrayData
+          backgroundImage: `url(${imagePath || LogoGrayData})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
         }}
       />
       <Box
         sx={{
           width: 'auto',
-          height: 'auto',
+          height: variant === 'expanded' ? 'auto' : '180px',
           margin: '0',
           padding: '15px',
           flex: '1',
@@ -126,27 +141,25 @@ export const CardHorizontal = ({
         >
           {title}
         </Typography>
-        <Typography
-          variant="caption2"
-          sx={{
-            color: theme.palette.text.tertiary,
-            fontWeight: '600',
-            height: '24px',
-          }}
-        >
-          {description}
-        </Typography>
-        <Grid container>
+        {description && (
+          <Typography
+            variant="caption2"
+            sx={{
+              color: theme.palette.text.tertiary,
+              fontWeight: '600',
+              height: '24px',
+            }}
+          >
+            {variant === 'preview'
+              ? `${description.substring(0, 35)}...`
+              : description}
+          </Typography>
+        )}
+        <Box p={1} display="flex" justifyContent="space-between">
           {statusText && (
-            <Grid xs={4}>
-              <Box
-                sx={{
-                  marginTop: '21px',
-                }}
-              >
-                <CardChip status={status} statusText={statusText} />
-              </Box>
-            </Grid>
+            <Box>
+              <CardChip status={status} statusText={statusText} />
+            </Box>
           )}
           {buttonText && (
             <Button
@@ -159,7 +172,7 @@ export const CardHorizontal = ({
               {buttonText}
             </Button>
           )}
-        </Grid>
+        </Box>
       </Box>
     </Box>
   )
