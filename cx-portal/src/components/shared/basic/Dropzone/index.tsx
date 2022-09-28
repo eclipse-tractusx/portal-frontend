@@ -26,12 +26,22 @@ import { Preview } from './components/Preview'
 
 export const Dropzone = ({
   onFileDrop,
-  preview = (files) => <Preview files={files} />,
+  preview = (files) => (
+    <Preview files={files} showPreviewAlone={showPreviewAlone} />
+  ),
   children,
+  acceptFormat = { 'image/*': [] },
+  maxFilesToUpload = 1,
+  previewFiles,
+  showPreviewAlone = false,
 }: {
   onFileDrop: (files: File[]) => void
   preview?: (files: File[]) => JSX.Element
   children?: JSX.Element[] | JSX.Element
+  acceptFormat?: any
+  maxFilesToUpload?: number
+  previewFiles?: any
+  showPreviewAlone?: boolean
 }) => {
   const [dropped, setDropped] = useState<IHashMap<File>>({})
 
@@ -51,13 +61,22 @@ export const Dropzone = ({
     [dropped, onFileDrop]
   )
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    disabled:
+      maxFilesToUpload === Object.keys(dropped)?.length || showPreviewAlone,
+    maxFiles: maxFilesToUpload,
+    accept: acceptFormat,
+  })
 
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <DropArea />
-      {preview(Object.values(dropped))}
+      {!showPreviewAlone && <DropArea />}
+      {(previewFiles &&
+        Object.keys(previewFiles)?.length > 0 &&
+        preview(Object.values(previewFiles))) ||
+        preview(Object.values(dropped))}
       {children}
     </div>
   )
