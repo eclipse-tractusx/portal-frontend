@@ -22,6 +22,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
 * Feature - App Release Process - upload functionality
+* User Experience - delete request id from registration admin board
 
 ### 0.5.4
 
