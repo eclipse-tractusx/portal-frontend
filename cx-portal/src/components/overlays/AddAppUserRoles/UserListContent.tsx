@@ -55,7 +55,7 @@ export default function UserListContent() {
         setExpr(expr)
       }}
       searchDebounce={1000}
-      onSelection={(id: string) => {
+      onSelection={(id) => {
         dispatch(setSelectedUserToAdd(id))
       }}
       title={t('content.usermanagement.table.title')}
