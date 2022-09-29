@@ -44,14 +44,6 @@ export const RegistrationRequestsTableColumns = (
   const [selectedRowId, setSelectedRowId] = useState<string>('')
 
   return [
-    /*{
-      field: 'applicationId',
-      headerName: t('content.admin.registration-requests.columns.request'),
-      description: t(
-        'content.admin.registration-requests.columns.requestDescription'
-      ),
-      flex: 2,
-    },*/
     {
       field: 'dateCreated',
       headerName: t('content.admin.registration-requests.columns.date'),
