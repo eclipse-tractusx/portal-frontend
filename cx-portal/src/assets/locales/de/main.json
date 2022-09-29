@@ -58,8 +58,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Anfrage",
-          "requestDescription": "ID der Benutzeranfrage",
           "date": "Datum",
           "companyinfo": "Bewerbungsinformationen des Unternehmens",
           "documents": "Unterlagen",
