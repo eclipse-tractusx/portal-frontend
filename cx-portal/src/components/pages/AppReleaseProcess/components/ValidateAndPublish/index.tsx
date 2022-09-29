@@ -268,7 +268,18 @@ export default function ValidateAndPublish() {
             <InputLabel sx={{ mb: 3, mt: 3 }}>
               {t('content.apprelease.appPage.images') + ' *'}
             </InputLabel>
-            <Dropzone onFileDrop={(files: any) => {}} />
+            <Dropzone
+              onFileDrop={(files: any) => {}}
+              showPreviewAlone={true}
+              previewFiles={{
+                'image.png': {
+                  name: 'image.png',
+                },
+                'image.jpg': {
+                  name: 'image.jpg',
+                },
+              }}
+            />
             <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
               {t('content.apprelease.appReleaseForm.note')}
             </Typography>
@@ -314,7 +325,15 @@ export default function ValidateAndPublish() {
                 <InputLabel sx={{ mb: 3, mt: 3 }}>
                   {t(`content.apprelease.appPage.${item}`) + ' *'}
                 </InputLabel>
-                <Dropzone onFileDrop={(files: any) => {}} />
+                <Dropzone
+                  onFileDrop={(files: any) => {}}
+                  showPreviewAlone={true}
+                  previewFiles={{
+                    'image.png': {
+                      name: 'image.png',
+                    },
+                  }}
+                />
               </div>
             </>
           ))}

@@ -27,6 +27,7 @@ import {
   InitialUserDetail,
 } from './types'
 import {
+  deleteUserBpn,
   fetchAny,
   fetchOwn,
   putBusinessPartnerNumber,
@@ -96,8 +97,12 @@ export const slice = createSlice({
       request: RequestState.SUBMIT,
       error: '',
     }))
-    builder.addCase(putBusinessPartnerNumber.fulfilled, (state) => ({
+    builder.addCase(putBusinessPartnerNumber.fulfilled, (state, action) => ({
       ...state,
+      data: {
+        ...state.data,
+        bpn: [...state.data.bpn, action.meta.arg.inputBPN],
+      },
       request: RequestState.OK,
       error: '',
     }))
@@ -106,6 +111,13 @@ export const slice = createSlice({
       request: RequestState.ERROR,
       error: action.error.message as string,
     }))
+    builder.addCase(deleteUserBpn.fulfilled, (state, action) => {
+      state.request = RequestState.OK
+      state.data = {
+        ...state.data,
+        bpn: state.data.bpn.filter((item) => item !== action.meta.arg.bpn),
+      }
+    })
   },
 })
 

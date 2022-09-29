@@ -18,16 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  CardItems,
-  ImageType,
-  StatusVariants,
-} from 'cx-portal-shared-components'
+import { CardItems, ImageType } from 'cx-portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
   AppMarketplaceApp,
   SubscriptionStatus,
   SubscriptionStatusItem,
+  SubscriptionStatusText,
 } from './apiSlice'
 
 const baseAssets = getAssetBase()
@@ -104,9 +101,13 @@ export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {
   if (!apps || apps.length === 0) return []
   return apps
     ?.map((app: AppMarketplaceApp) => {
-      const status = StatusVariants.active as any
-      const statusText = 'Active'
-      return { ...app, status, statusText }
+      const status = app.status?.toLocaleLowerCase() as
+        | SubscriptionStatus
+        | undefined
+      const statusText =
+        SubscriptionStatusText[app.status as SubscriptionStatus] || app.status
+      const title = app.name as string
+      return { ...app, title, status, statusText }
     })
     .filter((e) => e.status)
     .map(appToCard)

@@ -20,6 +20,7 @@
 
 import {
   Button,
+  Chip,
   IconButton,
   PageSnackbar,
   Typography,
@@ -28,7 +29,7 @@ import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
@@ -36,6 +37,8 @@ import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import DoneIcon from '@mui/icons-material/Done'
+import { Dropzone } from 'components/shared/basic/Dropzone'
+import { isString } from 'lodash'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -45,7 +48,9 @@ export default function TechnicalIntegration() {
   const [disableCreateClient, setDisableCreateClient] = useState(true)
   const [createClientSuccess, setCreateClientSuccess] = useState(false)
   const [enableUploadAppRoles, setEnableUploadAppRoles] = useState(false)
+  const [enableTestUserButton, setEnableTestUserButton] = useState(false)
   const [showUserButton, setShowUserButton] = useState(true)
+  const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
 
   const defaultValues = {
     clientId: '',
@@ -81,6 +86,26 @@ export default function TechnicalIntegration() {
     else setDisableCreateClient(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clientIdValue, URLValue])
+
+  const csvPreview = (files: File[]) => {
+    return files
+      .filter((file: File) => file.type === 'text/csv')
+      .forEach((file: File) => {
+        const reader = new FileReader()
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.log('file reading has failed')
+        reader.onload = () => {
+          const str = reader.result
+          if (!isString(str)) return
+          const roles = str
+            ?.split('\n')
+            .filter((item) => item !== '')
+            .map((item) => item.substring(0, item.indexOf(';')))
+          setRolesPreviews(roles)
+        }
+        reader.readAsText(file)
+      })
+  }
 
   return (
     <div className="technical-integration">
@@ -178,24 +203,50 @@ export default function TechnicalIntegration() {
         </Typography>
         {enableUploadAppRoles && (
           <>
-            <ConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-                name: 'uploadAppRoles',
-                type: 'dropzone',
-                rules: {
-                  required: {
-                    value: true,
-                  },
-                },
+            <Controller
+              name={'uploadAppRoles'}
+              control={control}
+              rules={{
+                required: true,
               }}
+              render={({ field: { onChange, value } }) => (
+                <Dropzone
+                  onFileDrop={(files: File[]) => {
+                    onChange(files[0].name)
+                    trigger('uploadAppRoles')
+                    csvPreview(files)
+                  }}
+                  acceptFormat={{ 'text/csv': ['.csv'] }}
+                  maxFilesToUpload={1}
+                />
+              )}
             />
             {errors?.uploadAppRoles?.type === 'required' && (
               <p className="file-error-msg">
                 {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
               </p>
+            )}
+            {rolesPreviews?.length > 0 && (
+              <>
+                <Typography variant="h6" mb={2} textAlign="center">
+                  {t('content.apprelease.technicalIntegration.rolesPreview')}
+                </Typography>
+                <Grid container xs={12}>
+                  {rolesPreviews?.map((role: string, index: number) => (
+                    <Grid xs={6}>
+                      <Chip
+                        key={index}
+                        label={role}
+                        withIcon={false}
+                        type="plain"
+                        variant="filled"
+                        color="secondary"
+                        sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </>
             )}
           </>
         )}
@@ -205,7 +256,11 @@ export default function TechnicalIntegration() {
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
             disabled={!createClientSuccess}
-            onClick={() => setEnableUploadAppRoles(true)}
+            onClick={() => {
+              getValues().uploadAppRoles === ''
+                ? setEnableUploadAppRoles(true)
+                : setEnableTestUserButton(true)
+            }}
           >
             {getValues().uploadAppRoles === ''
               ? t(
@@ -237,7 +292,7 @@ export default function TechnicalIntegration() {
             <Button
               variant="contained"
               sx={{ mr: 2 }}
-              disabled={getValues().uploadAppRoles === ''}
+              disabled={!enableTestUserButton}
               onClick={() => setShowUserButton(false)}
             >
               {t('content.apprelease.technicalIntegration.createTestUser')}

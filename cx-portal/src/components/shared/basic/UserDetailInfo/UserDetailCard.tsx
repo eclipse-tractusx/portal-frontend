@@ -60,12 +60,9 @@ export const UserDetailCard = ({
   cardContentItems,
   variant,
 }: UserCardProps) => {
-  const { userId } = useParams()
   const dispatch = useDispatch()
-
-  const openEditOverlay = () => {
-    dispatch(show(OVERLAYS.ADD_BPN, userId))
-  }
+  const { userId } = useParams()
+  const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
 
   const renderValue = (value: UserItemsTranslation | undefined) => (
     <>
@@ -143,6 +140,7 @@ export const UserDetailCard = ({
               color: 'text.tertiary',
               fontFamily: 'LibreFranklin-Light',
               padding: k === 'status' ? '14.5px 20px' : '20px',
+              justifyContent: k === 'bpn' ? 'space-between' : '',
             }}
           >
             {renderContentSwitch(k, v)}

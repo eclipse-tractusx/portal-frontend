@@ -39,12 +39,23 @@ export type AppMarketplaceApp = {
   link?: string
   status?: SubscriptionStatus
   image?: ImageType
+  name?: string
 }
 
 export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
   INACTIVE = 'INACTIVE',
+  IN_REVIEW = 'IN_REVIEW',
+  CREATED = 'CREATED',
+}
+
+export enum SubscriptionStatusText {
+  ACTIVE = 'Active',
+  PENDING = 'Pending',
+  INACTIVE = 'Inactive',
+  IN_REVIEW = 'In Review',
+  CREATED = 'In Progress',
 }
 
 export type SubscriptionStatusItem = {
@@ -85,6 +96,9 @@ export const apiSlice = createApi({
     fetchSubscriptionStatus: builder.query<SubscriptionStatusItem[], void>({
       query: () => `/api/apps/subscribed/subscription-status`,
     }),
+    fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/provided`,
+    }),
   }),
 })
 
@@ -93,4 +107,5 @@ export const {
   useFetchActiveAppsQuery,
   useFetchFavoriteAppsQuery,
   useFetchSubscriptionStatusQuery,
+  useFetchProvidedAppsQuery,
 } = apiSlice

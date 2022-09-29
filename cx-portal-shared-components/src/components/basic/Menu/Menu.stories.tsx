@@ -40,7 +40,12 @@ Menu.args = {
       children: [
         { href: '/1/1', title: 'Submenu Item 1' },
         { href: '/1/2', title: 'Submenu Item 2' },
-        { href: '/1/3', title: 'Submenu Item 3', hint: 'coming soon' },
+        {
+          href: '/1/3',
+          title: 'Submenu Item 3',
+          hint: 'coming soon',
+          disable: true,
+        },
       ],
     },
     { href: '/2', title: 'Menu Item 2' },
