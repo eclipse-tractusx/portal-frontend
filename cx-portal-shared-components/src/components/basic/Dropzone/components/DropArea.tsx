@@ -26,10 +26,12 @@ export const DropArea = ({
   title = 'Drop files to upload',
   subtitle = 'or click to select files',
   children,
+  disabled = false,
 }: {
   title?: string
   subtitle?: string
   children?: JSX.Element | JSX.Element[]
+  disabled?: boolean
 }) => (
   <Box
     sx={{
@@ -48,7 +50,7 @@ export const DropArea = ({
         left: 0,
         right: 0,
         bottom: 0,
-        cursor: 'pointer',
+        cursor: disabled ? 'default' : 'pointer',
       },
     }}
   >

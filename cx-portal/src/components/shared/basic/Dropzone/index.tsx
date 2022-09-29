@@ -72,7 +72,11 @@ export const Dropzone = ({
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      {!showPreviewAlone && <DropArea />}
+      {!showPreviewAlone && (
+        <DropArea
+          disabled={maxFilesToUpload === Object.keys(dropped)?.length}
+        />
+      )}
       {(previewFiles &&
         Object.keys(previewFiles)?.length > 0 &&
         preview(Object.values(previewFiles))) ||
