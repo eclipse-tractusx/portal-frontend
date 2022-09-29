@@ -26,7 +26,7 @@ export type OverlayState = {
   type: OVERLAYS
   id: string
   title?: string
-  displayName?: string
+  status?: boolean
 }
 
 export const initialState = {

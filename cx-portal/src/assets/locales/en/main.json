@@ -54,7 +54,13 @@
     "idp_delete_success_intro": "The window will close automatically. In case it doesn't, please use the 'close' button in on the top right.",
     "idp_delete_error_title": "The identity provider did not got deleted.",
     "idp_delete_error_intro": "Please retry or contact an administrator if the failure persist.",
-    "idp_delete_tooltip_info": "Please disable the service first or make sure if any one of the service for following company is working."
+    "idp_delete_tooltip_info": "Please disable the service first or make sure if any one of the service for following company is working.",
+    "idp_status_change_success": "Identity Provider {{ name }} was successfully {{ status }}",
+    "idp_status_change_error": "The indentity provider was not {{ status }}",
+    "idp_status_change_info": "{{status}} identity provider",
+    "idp_status_change_intro2": "Are you sure you want to enable this idp?",
+    "idp_status_change_intro1": "Disable the idp will always result into the deactivation, but not deletion. You can always enable it again",
+    "idp_status_tooltip_info": "Atleast one company service needs to enabled"
   },
   "actions": {
     "SignOut": "Sign out",
@@ -753,7 +759,9 @@
     },
     "state": {
       "enabled": "enabled",
-      "disabled": "disabled"
+      "disabled": "disabled",
+      "enable": "Enable",
+      "disable": "Disable"
     },
     "objects": {
       "app": "app",

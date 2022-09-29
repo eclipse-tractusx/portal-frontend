@@ -54,6 +54,20 @@ const checkIfDeleteAvailable = (
   )
 }
 
+const checkIfStatusChangeAvailable = (
+  row: IdentityProvider,
+  rows: IdentityProvider[]
+) => {
+  const { displayName } = row
+
+  return (
+    row.enabled &&
+    rows
+      .filter((row) => row.displayName === displayName)
+      .every((row) => row.enabled)
+  )
+}
+
 const mapMenuItems = (
   row: IdentityProvider,
   rows: IdentityProvider[],
@@ -67,8 +81,8 @@ const mapMenuItems = (
       {
         key: MENU_KEYS.DISABLE,
         label: 'Disable',
-        isDisable: checkIfDeleteAvailable(row, rows),
-        tooltipTitle: 'This idp cannot be deleted',
+        isDisable: checkIfStatusChangeAvailable(row, rows),
+        tooltipTitle: t('overlays.idp_status_tooltip_info'),
       },
     ]
   }
@@ -79,8 +93,8 @@ const mapMenuItems = (
       {
         key: MENU_KEYS.ENABLE,
         label: 'Enable',
-        isDisable: checkIfDeleteAvailable(row, rows),
-        tooltipTitle: 'This idp cannot be deleted',
+        isDisable: checkIfStatusChangeAvailable(row, rows),
+        tooltipTitle: t('overlays.idp_status_tooltip_info'),
       },
     ]
   }
@@ -121,11 +135,15 @@ export const IDPList = () => {
         )
         break
 
-      //adding few switch case to remove code smell
       case MENU_KEYS.DISABLE:
       case MENU_KEYS.ENABLE:
         dispatch(
-          show(OVERLAYS.IDP_STATUS, args.identityProviderId, args.displayName)
+          show(
+            OVERLAYS.IDP_STATUS,
+            args.identityProviderId,
+            args.displayName,
+            args.enabled
+          )
         )
         break
 

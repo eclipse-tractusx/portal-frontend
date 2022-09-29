@@ -126,7 +126,13 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.IDP_CONFIRM:
       return <IDPDelete id={overlay.id} title={overlay.title} />
     case OVERLAYS.IDP_STATUS:
-      return <IDPStatusChange id={overlay.id} title={overlay.title} />
+      return (
+        <IDPStatusChange
+          id={overlay.id}
+          title={overlay.title}
+          idpStatus={overlay.status}
+        />
+      )
     default:
       return <NotFound />
   }
