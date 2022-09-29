@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
@@ -26,12 +28,12 @@ import {
   useFetchUsersSearchQuery,
 } from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
 import Patterns from 'types/Patterns'
 
 export default function UserListContent() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
@@ -53,6 +55,9 @@ export default function UserListContent() {
         setExpr(expr)
       }}
       searchDebounce={1000}
+      onSelection={(id: string) => {
+        dispatch(setSelectedUserToAdd(id))
+      }}
       title={t('content.usermanagement.table.title')}
       loadLabel={t('global.actions.loadmore')}
       fetchHook={useFetchUsersSearchQuery}

@@ -53,6 +53,7 @@ export interface AdminUserState {
   tenantUsers: Array<TenantUser>
   usersToAdd: AddUser
   rolesToAdd: string[]
+  selectedUser: string
   addRequest: RequestState
   getRequest: RequestState
   error: string
@@ -71,6 +72,7 @@ export const initialState: AdminUserState = {
   tenantUsers: [],
   usersToAdd: InitialAddUser,
   rolesToAdd: [],
+  selectedUser: '',
   getRequest: RequestState.NONE,
   addRequest: RequestState.NONE,
   addOpen: false,

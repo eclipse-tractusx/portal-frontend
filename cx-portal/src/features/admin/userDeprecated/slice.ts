@@ -46,6 +46,10 @@ export const slice = createSlice({
       ...state,
       rolesToAdd: [...action.payload],
     }),
+    setSelectedUserToAdd: (state, action) => ({
+      ...state,
+      selectedUser: action.payload,
+    }),
   },
   extraReducers: (builder) => {
     builder.addCase(addTenantUsers.pending, (state) => ({
@@ -98,6 +102,9 @@ export const usersToAddSelector = (state: RootState): AddUser =>
 
 export const rolesToAddSelector = (state: RootState): string[] =>
   state.admin.user.rolesToAdd
+
+export const selectedUserSelector = (state: RootState): string =>
+  state.admin.user.selectedUser[0]
 
 export const getRequestStateSelector = (state: RootState): RequestState =>
   state.admin.user.getRequest
