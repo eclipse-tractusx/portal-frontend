@@ -47,6 +47,7 @@ export interface TableProps extends DataGridProps {
   hasBorder?: boolean
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
+  onSelection?: any
 }
 
 export const Table = ({
@@ -70,6 +71,7 @@ export const Table = ({
   hasBorder = true,
   buttonLabel,
   onButtonClick,
+  onSelection,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -81,6 +83,7 @@ export const Table = ({
     searchPlaceholder,
     buttonLabel,
     onButtonClick,
+    onSelection,
     searchExpr,
   }
   const toolbarView = () => {
@@ -118,6 +121,10 @@ export const Table = ({
         components={{
           Toolbar: () => toolbarView(),
         }}
+        onSelectionModelChange={(newSelectionRow) => {
+          onSelection(newSelectionRow)
+        }}
+        //selectionModel={selectionRow}
         {...{
           rows,
           columns,

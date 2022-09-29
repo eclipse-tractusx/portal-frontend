@@ -26,6 +26,9 @@ const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)
 const setUsersToAdd = createAction<AddUser | {}>(`${name}/setUsersToAdd`)
 const setRolesToAdd = createAction<string[]>(`${name}/setRolesToAdd`)
+const setSelectedUserToAdd = createAction<string>(
+  `${name}/setSelectedUserToAdd`
+)
 
 const addTenantUsers = createAsyncThunk(
   `${name}/add`,
@@ -53,6 +56,7 @@ export {
   closeAdd,
   setUsersToAdd,
   setRolesToAdd,
+  setSelectedUserToAdd,
   addTenantUsers,
   fetchTenantUsers,
 }
