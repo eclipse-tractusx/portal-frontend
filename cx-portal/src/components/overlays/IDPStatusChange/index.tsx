@@ -125,7 +125,7 @@ function IDPStatusChange({
     try {
       await enableIDP({ id, enabled: !idpStatus })
       dispatch(updateData(UPDATES.IDP_LIST))
-      setStatus({ success: false, error: true })
+      setStatus({ success: true, error: false })
     } catch (error) {
       console.log(error)
       setStatus({ success: false, error: true })
