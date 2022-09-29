@@ -49,9 +49,6 @@ export default function AddAppUserRoles() {
   const roles = useSelector(rolesToAddSelector)
   const user = useSelector(selectedUserSelector)
 
-  console.log('roles', roles)
-  console.log('user', user)
-
   const [addUserRoles] = useAddUserRolesMutation()
 
   const handleConfirm = async () => {
@@ -63,10 +60,8 @@ export default function AddAppUserRoles() {
         roles,
       },
     }
-    console.log('data', data)
     try {
-      const response = await addUserRoles(data).unwrap()
-      console.log(response)
+      await addUserRoles(data).unwrap()
     } catch (err) {
       console.log(err)
     }

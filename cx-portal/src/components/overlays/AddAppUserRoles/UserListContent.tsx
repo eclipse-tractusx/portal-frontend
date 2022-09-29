@@ -37,7 +37,6 @@ export default function UserListContent() {
 
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
-  //const [selectedRowId, setSelectedRowId] = useState<string>()
   const searchInputData = useSelector(updatePartnerSelector)
 
   const validateSearchText = (text: string): boolean =>
