@@ -21,6 +21,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
+import { GridRowId } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
 import {
@@ -55,7 +56,7 @@ export default function UserListContent() {
         setExpr(expr)
       }}
       searchDebounce={1000}
-      onSelection={(id: string) => {
+      onSelection={(id: GridRowId[]) => {
         dispatch(setSelectedUserToAdd(id))
       }}
       title={t('content.usermanagement.table.title')}
