@@ -67,10 +67,6 @@ export const TransitionChip = ({
     setEnableClick(false)
   }
 
-  useEffect(() => {
-    console.log(enableClick)
-  }, [enableClick])
-
   const onButtonClick = () => {
     if (enableClick) onClick()
   }
