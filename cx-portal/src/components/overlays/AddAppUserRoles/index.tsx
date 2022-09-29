@@ -25,16 +25,47 @@ import {
   Button,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 import { AppRoles } from './AppRoles'
 import UserListContent from './UserListContent'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddAppUserRoles.scss'
+import {
+  rolesToAddSelector,
+  selectedUserSelector,
+} from 'features/admin/userDeprecated/slice'
+import {
+  useAddUserRolesMutation,
+  UserRoleRequest,
+} from 'features/admin/appuserApiSlice'
 
 export default function AddAppUserRoles() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { appId } = useParams()
+
+  const roles = useSelector(rolesToAddSelector)
+  const user = useSelector(selectedUserSelector)
+
+  const [addUserRoles] = useAddUserRolesMutation()
+
+  const handleConfirm = async () => {
+    if (!appId || !user || roles.length <= 0) return
+    const data: UserRoleRequest = {
+      appId: appId,
+      body: {
+        companyUserId: user, // under refactoring
+        roles,
+      },
+    }
+    try {
+      await addUserRoles(data).unwrap()
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -62,7 +93,7 @@ export default function AddAppUserRoles() {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={() => console.log('confirm')}>
+        <Button variant="contained" onClick={() => handleConfirm()}>
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

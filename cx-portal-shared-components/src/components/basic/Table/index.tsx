@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DataGrid, DataGridProps } from '@mui/x-data-grid'
+import { DataGrid, DataGridProps, GridRowId } from '@mui/x-data-grid'
 import { Box } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
@@ -47,6 +47,7 @@ export interface TableProps extends DataGridProps {
   hasBorder?: boolean
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
+  onSelection?: (value: GridRowId[]) => void
 }
 
 export const Table = ({
@@ -70,6 +71,7 @@ export const Table = ({
   hasBorder = true,
   buttonLabel,
   onButtonClick,
+  onSelection,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -81,6 +83,7 @@ export const Table = ({
     searchPlaceholder,
     buttonLabel,
     onButtonClick,
+    onSelection,
     searchExpr,
   }
   const toolbarView = () => {
@@ -117,6 +120,9 @@ export const Table = ({
         getRowId={(row) => row.id}
         components={{
           Toolbar: () => toolbarView(),
+        }}
+        onSelectionModelChange={(newSelectionRow) => {
+          onSelection && onSelection(newSelectionRow)
         }}
         {...{
           rows,
