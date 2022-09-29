@@ -21,7 +21,7 @@
 import MuiChip, { ChipProps } from '@mui/material/Chip'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { theme } from '../../../theme'
 
 interface ChipCustomProps extends ChipProps {
