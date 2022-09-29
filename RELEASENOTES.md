@@ -11,14 +11,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - UI updates in UltimateToolbar component
 * Bugfix - Registration table UI fixes
 * Bugfix - App Release Process - Fixed browser back button issue
-* Bugfix - App Release Process - Fixed user directing to bottom of the page
 * Bugfix - User Management Main Page Style fix
 * Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
 * Bugfix - Services Card Responsive UI Fix
 * Feature - BPN add/delete flow in User Account Screen
 * Feature - User Management - Success/Fail Message
 * Bugfix - Partner netowrk search issue fix
+* Bugfix - CardHorizontal - Height issue fix
+* feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
+* Feature - App Release Process - upload functionality
 
 ### 0.5.4
 
@@ -33,7 +36,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Text updates on company data overlay
 * Bugfix - Fixed modal width, subscribe refetch and services loading effect
 * Bugfix - User Management - AddUser Roles missing
-* Feature - App Release Process - upload
+
 
 ### 0.5.3
 

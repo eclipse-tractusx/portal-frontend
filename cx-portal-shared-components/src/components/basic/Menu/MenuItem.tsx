@@ -35,11 +35,13 @@ export interface MenuItemProps extends LinkItem {
   menuProps?: BoxProps
   onClick?: React.MouseEventHandler
   Menu?: MenuType
+  disable?: boolean
 }
 
 export const MenuItem = ({
   title,
   hint,
+  disable,
   children,
   divider,
   component = Link,
@@ -70,7 +72,8 @@ export const MenuItem = ({
       <Link
         component={component}
         sx={{
-          color: 'text.primary',
+          color: `${disable ? 'text.disabled' : 'text.primary'}`,
+          pointerEvents: `${disable ? 'none' : 'auto'}`,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',

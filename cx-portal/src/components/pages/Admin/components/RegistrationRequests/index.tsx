@@ -35,8 +35,10 @@ import {
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
+  useFetchDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
+import { download } from 'utils/downloadUtils'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -54,6 +56,7 @@ export default function RegistrationRequests() {
 
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineRequestMutation()
+  const [getDocumentById] = useFetchDocumentByIdMutation()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -100,6 +103,22 @@ export default function RegistrationRequests() {
     }
     setLoaded(Date.now())
     setIsLoading(false)
+  }
+
+  const handleDownloadClick = async (
+    documentId: string,
+    documentType: string
+  ) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+
+      return download(file, fileType, documentType)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
   }
 
   return (
@@ -157,6 +176,7 @@ export default function RegistrationRequests() {
           isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
+          handleDownloadDocument={handleDownloadClick}
           searchExpr={expr}
         />
       </div>
