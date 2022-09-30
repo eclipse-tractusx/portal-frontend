@@ -65,12 +65,12 @@ export default function BetaTest() {
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
-          sx={{ mr: 1 }}
           startIcon={<HelpOutlineIcon />}
+          sx={{ mr: 1 }}
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
+        <IconButton onClick={() => dispatch(decrement())} color="secondary">
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
