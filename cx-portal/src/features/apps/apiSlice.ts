@@ -40,6 +40,8 @@ export type AppMarketplaceApp = {
   status?: SubscriptionStatus
   image?: ImageType
   name?: string
+  lastChanged?: string
+  timestamp?: number
 }
 
 export enum SubscriptionStatus {
