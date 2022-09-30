@@ -79,9 +79,7 @@ export default function IDPDetailContent({
 }) {
   const { t } = useTranslation('', { keyPrefix: 'content.idpdetail' })
   const dispatch = useDispatch()
-  // const authType = idp.saml ? IDPAuthType.SAML : IDPAuthType.OIDC
   const authTypeData = idp.oidc || idp.saml
-  // const state = idp.enabled ? 'enabled' : 'disabled'
   const [activeTab, setActiveTab] = useState(0)
 
   const [isDisabledConfirmBtn, setIsDisabledConfirmBtn] = useState(true)
@@ -170,7 +168,7 @@ export default function IDPDetailContent({
         ...fieldErrors,
         ...{
           clientId: {
-            message: t('overlays.client_id_required_error'),
+            message: t('client_id_required_error'),
             valid: true,
           },
         },
@@ -180,7 +178,7 @@ export default function IDPDetailContent({
         ...fieldErrors,
         ...{
           clientId: {
-            message: t('overlays.client_id_invalid_error'),
+            message: t('client_id_invalid_error'),
             valid: true,
           },
         },
@@ -207,7 +205,7 @@ export default function IDPDetailContent({
         ...fieldErrors,
         ...{
           clientSecret: {
-            message: t('overlays.client_secret_required_error'),
+            message: t('client_secret_required_error'),
             valid: true,
           },
         },
@@ -217,7 +215,7 @@ export default function IDPDetailContent({
         ...fieldErrors,
         ...{
           clientSecret: {
-            message: t('overlays.client_secret_invalid_error'),
+            message: t('client_secret_invalid_error'),
             valid: true,
           },
         },
@@ -244,7 +242,7 @@ export default function IDPDetailContent({
         ...fieldErrors,
         ...{
           metaDataUrl: {
-            message: t('overlays.metadata_url_required_error'),
+            message: t('metadata_url_required_error'),
             valid: false,
           },
         },
@@ -254,7 +252,7 @@ export default function IDPDetailContent({
         ...fieldErrors,
         ...{
           metaDataUrl: {
-            message: t('overlays.metadata_url_invalid_error'),
+            message: t('metadata_url_invalid_error'),
             valid: false,
           },
         },
@@ -275,6 +273,14 @@ export default function IDPDetailContent({
     setLoadBtnObj({ ...loadBtnObj, loading: true })
     // Add api call here
     setLoadBtnObj({ ...loadBtnObj, loading: false, success: true })
+  }
+
+  const getButtonLabel = () => {
+    if (loadBtnObj.success) return t('done')
+
+    if (loadBtnObj.initial) return 'Load'
+
+    return 'Loading'
   }
 
   return (
@@ -342,7 +348,7 @@ export default function IDPDetailContent({
                   {fieldErrors.metaDataUrl.message}
                 </span>
               </div>
-              <p>{t('overlays.idp_meta_description')}</p>
+              <p>{t('idp_meta_description')}</p>
               <div className="loading-btn">
                 <LoadingButton
                   loading={loadBtnObj.loading}
@@ -351,13 +357,7 @@ export default function IDPDetailContent({
                   onButtonClick={handleSubmit}
                   sx={{ marginLeft: '10px' }}
                   loadIndicator="Loading..."
-                  label={
-                    loadBtnObj.success
-                      ? `${t('done')}`
-                      : loadBtnObj.initial
-                      ? `${'load'}`
-                      : `${'loading'}`
-                  }
+                  label={getButtonLabel()}
                   size={'small'}
                   disabled={!fieldErrors.metaDataUrl.valid}
                 ></LoadingButton>

@@ -71,8 +71,7 @@
     "idp_test_username_label": "Geben Sie den Benutzernamen im neuen IDP ein",
     "idp_test_userid_label": "Geben Sie die Benutzer-ID im neuen IDP ein",
     "idp_form_userId_error": "Bitte geben Sie eine gültige Benutzer-ID ein",
-    "idp_form_username_error": "Bitte geben Sie einen gültigen Benutzername ein",
-    "idp_meta_description": "Fügen Sie hier Ihre Metadaten-URL hinzu, um automatisch alle für die IDP-Integration relevanten Metadaten einzurichten. Wenn Sie auf Laden klicken, wird die Metadatendatei geladen und die entsprechenden Werte werden unten angezeigt."
+    "idp_form_username_error": "Bitte geben Sie einen gültigen Benutzername ein"
   },
   "actions": {
     "SignOut": "Abmelden",
@@ -492,7 +491,14 @@
       "loading": "Wird geladen",
       "load": "Belastung",
       "selectIpsText": "Wählen Sie den IdP-Typ aus, der neu erstellt werden soll",
-      "addMetaDataText": "Fügen Sie hier Ihre Metadaten-URL hinzu, um automatisch alle für die IDP-Integration relevanten Metadaten einzurichten. Beim Klicken laden. dann wird die Metadatendatei geladen und die entsprechenden Werte werden unten angezeigt."
+      "addMetaDataText": "Fügen Sie hier Ihre Metadaten-URL hinzu, um automatisch alle für die IDP-Integration relevanten Metadaten einzurichten. Beim Klicken laden. dann wird die Metadatendatei geladen und die entsprechenden Werte werden unten angezeigt.",
+      "idp_meta_description": "Fügen Sie hier Ihre Metadaten-URL hinzu, um automatisch alle für die IDP-Integration relevanten Metadaten einzurichten. Wenn Sie auf Laden klicken, wird die Metadatendatei geladen und die entsprechenden Werte werden unten angezeigt.",
+      "client_id_required_error": "Client-ID ist erforderlich",
+      "client_id_invalid_error": "Bitte geben Sie eine gültige Client-ID ein",
+      "client_secret_required_error": "Clientgeheimnis ist erforderlich",
+      "client_secret_invalid_error": "Bitte geben Sie ein gültiges Client-Secret ein",
+      "metadata_url_required_error": "Metadaten-URL ist erforderlich",
+      "metadata_url_invalid_error": "Bitte geben Sie eine gültige Metadaten-URL ein"
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",

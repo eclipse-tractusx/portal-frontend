@@ -71,14 +71,7 @@
     "idp_test_username_label": "Enter the username inside the new idp",
     "idp_test_userid_label": "Enter the user id inside the new idp",
     "idp_form_userId_error": "Please enter a valid user Id",
-    "idp_form_username_error": "Please enter a valid username",
-    "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
-    "client_id_required_error": "Client id is required",
-    "client_id_invalid_error": "Please enter valid client id",
-    "client_secret_required_error": "Client secret is required",
-    "client_secret_invalid_error": "Please enter valid client secret",
-    "metadata_url_required_error": "Metadata url is required",
-    "metadata_url_invalid_error": "Please enter valid metadata url"
+    "idp_form_username_error": "Please enter a valid username"
   },
   "actions": {
     "SignOut": "Sign out",
@@ -497,7 +490,14 @@
       "loading": "Loading",
       "load": "Load",
       "selectIpsText": "Select the type of IdP which should get newly created",
-      "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below."
+      "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
+      "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
+      "client_id_required_error": "Client id is required",
+      "client_id_invalid_error": "Please enter valid client id",
+      "client_secret_required_error": "Client secret is required",
+      "client_secret_invalid_error": "Please enter valid client secret",
+      "metadata_url_required_error": "Metadata url is required",
+      "metadata_url_invalid_error": "Please enter valid metadata url"
     },
     "addUser": {
       "headline": "Add User Account",
