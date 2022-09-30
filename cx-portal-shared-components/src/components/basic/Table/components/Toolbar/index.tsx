@@ -69,6 +69,10 @@ export interface ToolbarProps {
   onClearSearch?: () => void
 }
 
+const getIconColor = (openFilter: boolean) => {
+  return openFilter ? 'primary' : 'text.tertiary'
+}
+
 export const Toolbar = ({
   title,
   rowsCount = 0,
@@ -147,14 +151,15 @@ export const Toolbar = ({
     openFilterSection && setOpenFilter(openFilterSection)
   }, [openFilterSection])
 
-  const endAdornment =
-    onClearSearch && searchInput ? (
-      <IconButton onClick={handleSearchClear}>
-        <ClearIcon />
-      </IconButton>
-    ) : (
-      <></>
-    )
+  const getEndAdornment = () => {
+    if (onClearSearch && searchInput) {
+      return (
+        <IconButton onClick={handleSearchClear}>
+          <ClearIcon />
+        </IconButton>
+      )
+    }
+  }
 
   return (
     <Box>
@@ -198,7 +203,7 @@ export const Toolbar = ({
           {openSearch ? (
             <SearchInput
               autoFocus
-              endAdornment={endAdornment}
+              endAdornment={getEndAdornment()}
               type="text"
               value={searchInput}
               onChange={onSearchInputChange}
@@ -226,7 +231,7 @@ export const Toolbar = ({
             <IconButton
               sx={{
                 alignSelf: 'center',
-                color: openFilter ? 'primary' : 'text.tertiary',
+                color: getIconColor(openFilter),
               }}
               onClick={() =>
                 onOpenFilterSection && onOpenFilterSection(!openFilter)
