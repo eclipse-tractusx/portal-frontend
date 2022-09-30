@@ -12,7 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Registration table UI fixes
 * Bugfix - App Release Process - Fixed browser back button issue
 * Bugfix - User Management Main Page Style fix
-* Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
+* Bugfix - App Release Process - Fixed user directing to bottom of the page
 * Bugfix - Services Card Responsive UI Fix
 * Feature - BPN add/delete flow in User Account Screen
 * Feature - User Management - Success/Fail Message
@@ -28,6 +28,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Detail - Fetch Documents
 * User Experience - delete request id from registration admin board
 * Feature - TrasmissionChip button component
+* Feature - App Release Process - Business Logic & API - Submit App for review
+
 
 ### 0.5.4
 

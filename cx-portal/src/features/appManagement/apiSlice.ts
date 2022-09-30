@@ -90,6 +90,12 @@ export const apiSlice = createApi({
         }
       },
     }),
+    submitapp: builder.mutation<any, string>({
+      query: (appId) => ({
+        url: `/api/apps/${appId}/submit`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -101,4 +107,5 @@ export const {
   useFetchConsentQuery,
   useAddContractConsentMutation,
   useUpdateappMutation,
+  useSubmitappMutation,
 } = apiSlice

@@ -22,7 +22,7 @@ import {
   Button,
   Chip,
   IconButton,
-  PageSnackbar,
+  PageNotifications,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -42,8 +42,10 @@ import { isString } from 'lodash'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
-  const [showIntegrationErrorAlert, setShowIntegrationErrorAlert] =
-    useState<string>('')
+  const [
+    technicalIntegrationNotification,
+    setTechnicalIntegrationNotification,
+  ] = useState(false)
   const dispatch = useDispatch()
   const [disableCreateClient, setDisableCreateClient] = useState(true)
   const [createClientSuccess, setCreateClientSuccess] = useState(false)
@@ -73,7 +75,7 @@ export default function TechnicalIntegration() {
   const URLValue = getValues().URL
 
   const onIntegrationSubmit = async (data: any) =>
-    setShowIntegrationErrorAlert('')
+    setTechnicalIntegrationNotification(true)
 
   useEffect(() => {
     if (
@@ -313,6 +315,24 @@ export default function TechnicalIntegration() {
       </form>
 
       <Box mb={2}>
+        {technicalIntegrationNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() =>
+                  setTechnicalIntegrationNotification(false)
+                }
+              />
+            </Grid>
+          </Grid>
+        )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           startIcon={<HelpOutlineIcon />}
@@ -341,16 +361,6 @@ export default function TechnicalIntegration() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      <PageSnackbar
-        open={showIntegrationErrorAlert !== ''}
-        onCloseNotification={() => setShowIntegrationErrorAlert('')}
-        severity="error"
-        title={t('content.apprelease.appReleaseForm.error.title')}
-        description={showIntegrationErrorAlert}
-        showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
-      />
     </div>
   )
 }
