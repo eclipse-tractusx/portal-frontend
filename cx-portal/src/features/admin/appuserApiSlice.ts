@@ -25,6 +25,26 @@ import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { TenantUser } from './userApiSlice'
 
+export interface UserRoleRequestBody {
+  companyUserId: string
+  roles: string[]
+}
+
+export interface UserRoleRequest {
+  appId: string
+  body: UserRoleRequestBody
+}
+
+export interface ResponseInfo {
+  name: string
+  info: string
+}
+
+export interface UserRoleResponse {
+  success: Array<ResponseInfo>
+  warning: Array<ResponseInfo>
+}
+
 export type AppRole = {
   roleId: string
   role: string
@@ -55,6 +75,13 @@ export const apiSlice = createApi({
           }`,
       }
     ),
+    addUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
+      query: (data: UserRoleRequest) => ({
+        url: `/api/administration/user/app/${data.appId}/roles`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -62,4 +89,5 @@ export const {
   useFetchAppRolesQuery,
   useFetchAppUsersQuery,
   useFetchAppUsersSearchQuery,
+  useAddUserRolesMutation,
 } = apiSlice

@@ -33,6 +33,7 @@ export interface UltimateToolbarProps extends ToolbarProps {
   onFilter?: (selectedFilter: SelectedFilter) => void
   selectedFilter?: SelectedFilter
   searchDebounce?: number
+  searchExpr?: string
 }
 
 export const UltimateToolbar = ({
@@ -106,7 +107,7 @@ export const UltimateToolbar = ({
     <Box
       sx={{
         minHeight: { headerHeight },
-        padding: spacing(1, 4),
+        padding: spacing(2, 0, 6, 0),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -123,7 +124,8 @@ export const UltimateToolbar = ({
             placeholder={searchPlaceholder}
             sx={{
               '.MuiInputBase-input': {
-                padding: '10px',
+                padding: '4px 10px',
+                width: '300px',
               },
             }}
           />

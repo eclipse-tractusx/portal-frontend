@@ -22,7 +22,6 @@ import {
   IconButton,
   StatusTag,
   PageLoadingTable,
-  Button,
   PaginFetchArgs,
 } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
@@ -44,6 +43,7 @@ export const UserList = ({
   fetchHook,
   fetchHookArgs,
   onSearch,
+  searchExpr,
 }: {
   sectionTitle: string
   addButtonLabel: string
@@ -53,6 +53,7 @@ export const UserList = ({
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
   onSearch?: (search: string) => void
+  searchExpr?: string
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -66,26 +67,22 @@ export const UserList = ({
   }
 
   return (
-    <section id="identity-management-id">
+    <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
-      <Button
-        onClick={addButtonClick}
-        size="medium"
-        sx={{ margin: '0 auto 25px auto', display: 'block' }}
-      >
-        {t(addButtonLabel)}
-      </Button>
-
       <PageLoadingTable<TenantUser>
+        onButtonClick={addButtonClick}
+        buttonLabel={t(addButtonLabel)}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.search')}
+        columnHeadersBackgroundColor={'#FFFFFF'}
         searchInputData={searchInputData}
+        searchExpr={searchExpr}
         onSearch={(expr: string) => {
           if (!onSearch || !validateSearchText(expr)) return
           setRefresh(Date.now())
           onSearch(expr)
         }}
-        searchDebounce={2000}
+        searchDebounce={1000}
         title={t(tableLabel)}
         loadLabel={t('global.actions.more')}
         fetchHook={fetchHook}
@@ -139,6 +136,7 @@ export const UserList = ({
             ),
           },
         ]}
+        disableColumnMenu
       />
     </section>
   )

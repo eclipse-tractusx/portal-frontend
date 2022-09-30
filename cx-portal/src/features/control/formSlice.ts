@@ -18,34 +18,41 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.manageBPN {
-  padding: 0 50px 0 50px;
-  .bpnListing {
-    list-style: none;
-    display: inline-block;
-    margin: 0 0 50px 0;
-    padding: 0;
-    li {
-      display: flex;
-      align-items: center;
-      p {
-        margin: 3px auto 3px 0;
-        padding-right: 15px;
-        word-break: break-all;
-        &.redActive {
-          color: red;
-        }
-      }
-      .deleteIcon {
-        cursor: pointer;
-        &:hover {
-          color: red;
-        }
-      }
-    }
-  }
-  .bpnInput {
-    max-width: 85%;
-    margin: 0 auto;
-  }
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
+import { IHashMap } from 'types/MainTypes'
+
+const name = 'control/form'
+
+export enum FORMS {
+  IDP_FORM = 'IDP_FORM',
 }
+
+export type StoreFormType = {
+  form: string
+  att: { [name: string]: string }
+}
+
+const initialState: IHashMap<any> = {}
+initialState[FORMS.IDP_FORM] = {}
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    storeForm: (state, action: PayloadAction<StoreFormType>) => {
+      state[action.payload.form] = {
+        ...state[action.payload.form],
+        ...action.payload.att,
+      }
+    },
+  },
+})
+
+export const { storeForm } = slice.actions
+
+export const editIDPSelector = (state: RootState): any =>
+  state.control.form[FORMS.IDP_FORM]
+
+export default slice.reducer

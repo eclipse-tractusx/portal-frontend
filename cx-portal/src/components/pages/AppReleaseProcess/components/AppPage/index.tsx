@@ -22,14 +22,13 @@ import {
   Button,
   Typography,
   IconButton,
-  PageNotifications,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Controller, useForm } from 'react-hook-form'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useState } from 'react'
@@ -57,7 +56,7 @@ type FormDataType = {
 
 export default function AppPage() {
   const { t } = useTranslation()
-  const [appPageNotification, setAppPageNotification] = useState(false)
+  const [showAppPageErrorAlert, setShowAppPageErrorAlert] = useState<string>('')
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const appId = useSelector(appIdSelector)
@@ -123,14 +122,14 @@ export default function AppPage() {
       providerUri: data.providerHomePage,
       contactEmail: data.providerContactEmail,
       contactNumber: data.providerPhoneContact,
-      appId: appId,
     }
 
     try {
-      await updateapp(saveData).unwrap()
+      await updateapp({ body: saveData, appId: appId }).unwrap()
       dispatch(increment())
-      setAppPageNotification(true)
-    } catch (err) {}
+    } catch (error: any) {
+      setShowAppPageErrorAlert(error && error?.data?.title)
+    }
   }
 
   return (
@@ -210,20 +209,24 @@ export default function AppPage() {
           <InputLabel sx={{ mb: 3, mt: 3 }}>
             {t('content.apprelease.appPage.images') + ' *'}
           </InputLabel>
-          <Controller
-            name={'images'}
-            control={control}
-            rules={{
-              required: true,
+          <ConnectorFormInputField
+            {...{
+              control,
+              trigger,
+              errors,
+              name: 'images',
+              type: 'dropzone',
+              acceptFormat: {
+                'image/png': [],
+                'image/jpeg': [],
+              },
+              maxFilesToUpload: 3,
+              rules: {
+                required: {
+                  value: true,
+                },
+              },
             }}
-            render={({ field: { onChange, value } }) => (
-              <Dropzone
-                onFileDrop={(files: File[]) => {
-                  onChange(files[0].name)
-                  trigger('images')
-                }}
-              />
-            )}
           />
           {errors?.images?.type === 'required' && (
             <p className="file-error-msg">
@@ -257,6 +260,11 @@ export default function AppPage() {
                   errors,
                   name: item,
                   type: 'dropzone',
+                  acceptFormat: {
+                    'image/png': [],
+                    'image/jpeg': [],
+                  },
+                  maxFilesToUpload: 1,
                   rules: {
                     required: {
                       value: true,
@@ -421,16 +429,16 @@ export default function AppPage() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {appPageNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-          />
-        </div>
-      )}
+      <PageSnackbar
+        open={showAppPageErrorAlert !== ''}
+        onCloseNotification={() => setShowAppPageErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showAppPageErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DataGrid, DataGridProps } from '@mui/x-data-grid'
+import { DataGrid, DataGridProps, GridRowId } from '@mui/x-data-grid'
 import { Box } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
@@ -45,6 +45,9 @@ export interface TableProps extends DataGridProps {
   searchDebounce?: number
   searchInputData?: SearchInputState
   hasBorder?: boolean
+  buttonLabel?: string
+  onButtonClick?: React.MouseEventHandler
+  onSelection?: (value: GridRowId[]) => void
 }
 
 export const Table = ({
@@ -66,6 +69,9 @@ export const Table = ({
   searchDebounce,
   searchInputData,
   hasBorder = true,
+  buttonLabel,
+  onButtonClick,
+  onSelection,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -75,6 +81,10 @@ export const Table = ({
     searchDebounce,
     searchInputData,
     searchPlaceholder,
+    buttonLabel,
+    onButtonClick,
+    onSelection,
+    searchExpr,
   }
   const toolbarView = () => {
     switch (toolbarVariant) {
@@ -101,9 +111,18 @@ export const Table = ({
       }}
     >
       <DataGrid
+        sx={{
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus':
+            {
+              outline: 'none',
+            },
+        }}
         getRowId={(row) => row.id}
         components={{
           Toolbar: () => toolbarView(),
+        }}
+        onSelectionModelChange={(newSelectionRow) => {
+          onSelection && onSelection(newSelectionRow)
         }}
         {...{
           rows,

@@ -78,6 +78,9 @@ export const PageLoadingTable = function <T>({
     if (allItems?.length > 0) {
       setLoading(false)
       setItems((i) => i.concat(allItems))
+    } else if (allItems?.length === 0) {
+      setLoading(false)
+      setItems([])
     }
   }, [allItems])
 

@@ -27,6 +27,7 @@ import {
   Card,
   MultiSelectList,
   Checkbox,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -79,6 +80,10 @@ export const ConnectorFormInputField = ({
   notItemsText,
   buttonAddMore,
   filterOptionsArgs,
+  acceptFormat,
+  maxFilesToUpload,
+  previewFiles,
+  showPreviewAlone,
 }: any) => (
   <Controller
     name={name}
@@ -114,6 +119,10 @@ export const ConnectorFormInputField = ({
               trigger(name)
               onChange(files[0].name)
             }}
+            acceptFormat={acceptFormat}
+            maxFilesToUpload={maxFilesToUpload}
+            previewFiles={previewFiles}
+            showPreviewAlone={showPreviewAlone}
           />
         )
       } else if (type === 'checkbox') {
@@ -166,6 +175,7 @@ export default function AppMarketCard() {
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
+  const [showErrorAlert, setShowErrorAlert] = useState<string>('')
 
   const defaultValues = {
     title: '',
@@ -257,7 +267,9 @@ export default function AppMarketCard() {
         isString(result) && dispatch(setAppId(result))
         dispatch(increment())
       })
-      .catch((error) => {})
+      .catch((error: any) => {
+        setShowErrorAlert(error && error?.data?.title)
+      })
   }
 
   return (
@@ -625,6 +637,11 @@ export default function AppMarketCard() {
                 errors,
                 name: 'uploadImage.leadPictureUri',
                 type: 'dropzone',
+                acceptFormat: {
+                  'image/png': [],
+                  'image/jpeg': [],
+                },
+                maxFilesToUpload: 1,
                 rules: {
                   required: {
                     value: true,
@@ -680,6 +697,16 @@ export default function AppMarketCard() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
+      <PageSnackbar
+        open={showErrorAlert !== ''}
+        onCloseNotification={() => setShowErrorAlert('')}
+        severity="error"
+        title={t('content.apprelease.appReleaseForm.error.title')}
+        description={showErrorAlert}
+        showIcon={true}
+        vertical={'bottom'}
+        horizontal={'left'}
+      />
     </div>
   )
 }

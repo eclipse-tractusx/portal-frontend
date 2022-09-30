@@ -24,6 +24,7 @@ import {
   AppMarketplaceApp,
   SubscriptionStatus,
   SubscriptionStatusItem,
+  SubscriptionStatusText,
 } from './apiSlice'
 
 const baseAssets = getAssetBase()
@@ -94,4 +95,20 @@ export const appToStatus = (
       return { ...app, status, image }
     })
     .filter((e) => e.status)
+}
+
+export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {
+  if (!apps || apps.length === 0) return []
+  return apps
+    ?.map((app: AppMarketplaceApp) => {
+      const status = app.status?.toLocaleLowerCase() as
+        | SubscriptionStatus
+        | undefined
+      const statusText =
+        SubscriptionStatusText[app.status as SubscriptionStatus] || app.status
+      const title = app.name as string
+      return { ...app, title, status, statusText }
+    })
+    .filter((e) => e.status)
+    .map(appToCard)
 }

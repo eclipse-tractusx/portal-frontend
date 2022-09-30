@@ -24,12 +24,14 @@ import { Typography } from '../../basic/Typography'
 interface CardAddServiceProps {
   title: string
   borderRadius: number
+  backgroundColor?: string
   onButtonClick: React.MouseEventHandler
 }
 
 export const CardAddService = ({
   title,
   borderRadius = 20,
+  backgroundColor,
   onButtonClick,
 }: CardAddServiceProps) => {
   const theme = useTheme()
@@ -38,6 +40,7 @@ export const CardAddService = ({
       sx={{
         border: `1px dashed ${theme.palette.border.border04}`,
         borderRadius: `${borderRadius}px`,
+        backgroundColor: backgroundColor || 'common.white',
         height: '160px',
         display: 'flex',
         flexDirection: 'row',

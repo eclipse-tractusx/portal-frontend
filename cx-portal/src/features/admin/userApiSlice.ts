@@ -19,6 +19,8 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
@@ -133,3 +135,38 @@ export const {
   useRemoveTenantUserMutation,
   useFetchOwnCompanyDetailsQuery,
 } = apiSlice
+
+const name = 'admin/user/add'
+
+export interface AddUserState {
+  isSuccess: boolean
+  isError: boolean
+}
+
+export const initialState: AddUserState = {
+  isSuccess: false,
+  isError: false,
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setAddUserSuccess: (state, action) => {
+      state.isSuccess = action.payload
+    },
+    setAddUserError: (state, action) => {
+      state.isError = action.payload
+    },
+  },
+})
+
+export const currentAddUserSuccess = (state: RootState): boolean => {
+  return state.userAdd.isSuccess
+}
+
+export const currentAddUserError = (state: RootState): boolean =>
+  state.userAdd.isError
+
+export const { setAddUserSuccess, setAddUserError } = slice.actions
+export default slice

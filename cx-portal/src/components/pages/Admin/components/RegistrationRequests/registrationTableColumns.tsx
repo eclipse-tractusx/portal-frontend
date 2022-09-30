@@ -37,20 +37,13 @@ export const RegistrationRequestsTableColumns = (
   translationHook: any,
   onApproveClick: (id: string) => void,
   onDeclineClick: (id: string) => void,
-  isLoading: boolean
+  isLoading: boolean,
+  handleDownloadDocument: (documentId: string, documentType: string) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')
 
   return [
-    {
-      field: 'applicationId',
-      headerName: t('content.admin.registration-requests.columns.request'),
-      description: t(
-        'content.admin.registration-requests.columns.requestDescription'
-      ),
-      flex: 2,
-    },
     {
       field: 'dateCreated',
       headerName: t('content.admin.registration-requests.columns.date'),
@@ -83,12 +76,20 @@ export const RegistrationRequestsTableColumns = (
           {row.documents.map((contract) => (
             <div
               className="document-cell-line"
-              key={uniqueId(contract?.documentHash)}
+              key={uniqueId(contract?.documentId)}
             >
               <ArticleOutlinedIcon />
-              <a href={contract?.documentHash} rel="noreferrer">
+              <button
+                className="document-button-link"
+                onClick={() =>
+                  handleDownloadDocument(
+                    contract.documentId,
+                    contract.documentType
+                  )
+                }
+              >
                 {contract?.documentType}
-              </a>
+              </button>
             </div>
           ))}
         </div>

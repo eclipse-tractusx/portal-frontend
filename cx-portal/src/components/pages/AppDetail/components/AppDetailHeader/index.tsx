@@ -51,7 +51,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       return <Button color="secondary">{t('content.appdetail.pending')}</Button>
     } else if (subscribeStatus === 'ACTIVE') {
       return (
-        <Button color="success">{t('content.appdetail.subscribed')}</Button>
+        <span className="subscribed-success-btn">
+          <Button color="success">{t('content.appdetail.subscribed')}</Button>
+        </span>
       )
     } else {
       return (

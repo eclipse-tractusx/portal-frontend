@@ -36,9 +36,7 @@ export default function MarketplaceContentDetails({
     item.offerSubscriptionDetailData && (
       <>
         <MarketplaceHeader item={item} success={success} />
-        {item.offerSubscriptionDetailData.length >= 3 && (
-          <MarketplaceSubscription item={item} />
-        )}
+        <MarketplaceSubscription item={item} />
         <div className="product-description">
           <Typography variant="body2">{item.description}</Typography>
         </div>

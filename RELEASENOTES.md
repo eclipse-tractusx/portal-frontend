@@ -5,8 +5,28 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.5.5
 
+* Feature - App Overview page
+* Feature - Add and edit Identity Provider details
 * Bugfix - Connect Partner Network to BPDM
-
+* Bugfix - UI updates in UltimateToolbar component
+* Bugfix - Registration table UI fixes
+* Bugfix - App Release Process - Fixed browser back button issue
+* Bugfix - User Management Main Page Style fix
+* Bugfix - App Release Process - Fixed user directing to bottom of the page, changed notifications
+* Bugfix - Services Card Responsive UI Fix
+* Feature - BPN add/delete flow in User Account Screen
+* Feature - User Management - Success/Fail Message
+* Bugfix - Partner netowrk search issue fix
+* Bugfix - CardHorizontal - Height issue fix
+* feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
+* Feature - Add User Role Overlay (refactoring)
+* Feature - Assign user role (refactoring)
+* Feature - Show subscription box after subscribed immediately
+* Bugfix - App Marketplace - Subscription Button update needed
+* Feature - App Release Process - upload functionality
+* User Experience - delete request id from registration admin board
+* Feature - TrasmissionChip button component
 
 ### 0.5.4
 
