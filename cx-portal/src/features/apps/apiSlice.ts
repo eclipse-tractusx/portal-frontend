@@ -63,15 +63,25 @@ export type SubscriptionStatusItem = {
   offerSubscriptionStatus: SubscriptionStatus
 }
 
+export type DocumentData = {
+  documentId: string
+  documentName: string
+}
+
 export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
   contactNumber: string
   detailPictureUris: string[]
+  documents: DocumentAppContract
   longDescription: string
   isSubscribed: string
   tags: string[]
   languages: string[]
+}
+
+export type DocumentAppContract = {
+  APP_CONTRACT: Array<DocumentData>
 }
 
 export type AppDetailsState = {
