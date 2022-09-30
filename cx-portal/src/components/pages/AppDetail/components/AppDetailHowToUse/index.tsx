@@ -21,8 +21,9 @@
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import './AppDetailHowToUse.scss'
+import { AppDetails, DocumentData } from 'features/apps/apiSlice'
 
-export default function AppDetailHowToUse() {
+export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
 
   return (
@@ -36,18 +37,15 @@ export default function AppDetailHowToUse() {
         </Typography>
       </div>
       <ul>
-        <li>
-          <a href="/#">Document 1</a>
-        </li>
-        <li>
-          <a href="/#">Document 2</a>
-        </li>
-        <li>
-          <a href="/#">Document 3</a>
-        </li>
-        <li>
-          <a href="/#">Document 4</a>
-        </li>
+        {item.documents &&
+          item.documents['APP_CONTRACT'] &&
+          item.documents['APP_CONTRACT'].map(
+            (document: DocumentData, index: number) => (
+              <li key={index}>
+                <a href="/#">{document.documentName}</a>
+              </li>
+            )
+          )}
       </ul>
     </div>
   )
