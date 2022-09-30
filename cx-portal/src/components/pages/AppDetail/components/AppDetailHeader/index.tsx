@@ -35,18 +35,10 @@ export interface AppDetailHeaderProps {
 
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const user = useSelector(userSelector)
-  const appData = useSelector(itemSelector)
-
-  useEffect(() => {
-    if (item.id) {
-      dispatch(fetch(item.id))
-    }
-  }, [item.id, dispatch])
 
   const getSubscribeBtn = () => {
-    const subscribeStatus = appData.isSubscribed
+    const subscribeStatus = item.isSubscribed
     if (subscribeStatus === 'PENDING') {
       return <Button color="secondary">{t('content.appdetail.pending')}</Button>
     } else if (subscribeStatus === 'ACTIVE') {
