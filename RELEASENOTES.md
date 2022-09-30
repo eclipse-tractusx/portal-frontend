@@ -26,6 +26,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App Marketplace - Subscription Button update needed
 * Feature - App Release Process - upload functionality
 * Feature - App Detail - Fetch Documents
+* User Experience - delete request id from registration admin board
+* Feature - TrasmissionChip button component
 
 ### 0.5.4
 

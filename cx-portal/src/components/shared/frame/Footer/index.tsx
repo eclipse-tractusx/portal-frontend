@@ -45,10 +45,24 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     PAGES.APPRELEASEPROCESS,
   ].find((e) => location.pathname.split('/').includes(e))
 
+  const isAppDarkOverviewPage = [PAGES.USER_MANAGEMENT].find((e) =>
+    location.pathname.split('/').includes(e)
+  )
+
   const [showScrollToTop, setShowScrollToTop] = useState(false)
 
   const toggleVisibility = () => {
     setShowScrollToTop(window.pageYOffset > 350)
+  }
+
+  const getPreferredColor = () => {
+    if (isAppOverviewPage) {
+      return '#F9F9F9'
+    } else if (isAppDarkOverviewPage) {
+      return '#ededed'
+    } else {
+      return ''
+    }
   }
 
   useEffect(() => {
@@ -56,7 +70,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   }, [])
 
   return (
-    <footer style={{ background: isAppOverviewPage ? '#F9F9F9' : '' }}>
+    <footer style={{ background: getPreferredColor() }}>
       {showScrollToTop && (
         <IconButton
           color="secondary"

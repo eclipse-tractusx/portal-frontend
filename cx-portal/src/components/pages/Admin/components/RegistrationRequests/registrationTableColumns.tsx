@@ -45,14 +45,6 @@ export const RegistrationRequestsTableColumns = (
 
   return [
     {
-      field: 'applicationId',
-      headerName: t('content.admin.registration-requests.columns.request'),
-      description: t(
-        'content.admin.registration-requests.columns.requestDescription'
-      ),
-      flex: 2,
-    },
-    {
       field: 'dateCreated',
       headerName: t('content.admin.registration-requests.columns.date'),
       flex: 1.5,
