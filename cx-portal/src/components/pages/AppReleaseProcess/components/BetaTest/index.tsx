@@ -21,13 +21,13 @@
 import {
   Button,
   IconButton,
-  PageSnackbar,
+  PageNotifications,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box } from '@mui/material'
+import { Divider, Box, Grid } from '@mui/material'
 import { decrement, increment } from 'features/appManagement/slice'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
@@ -35,8 +35,7 @@ import { useState } from 'react'
 export default function BetaTest() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [showBetaTestErrorAlert, setShowBetaTestErrorAlert] =
-    useState<string>('')
+  const [betaTestNotification, setBetaTestNotification] = useState(false)
 
   return (
     <>
@@ -47,6 +46,22 @@ export default function BetaTest() {
         {t('content.apprelease.betaTest.headerDescription')}
       </Typography>
       <Box mb={2}>
+        {betaTestNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setBetaTestNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
@@ -69,16 +84,6 @@ export default function BetaTest() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      <PageSnackbar
-        open={showBetaTestErrorAlert !== ''}
-        onCloseNotification={() => setShowBetaTestErrorAlert('')}
-        severity="error"
-        title={t('content.apprelease.appReleaseForm.error.title')}
-        description={showBetaTestErrorAlert}
-        showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
-      />
     </>
   )
 }
