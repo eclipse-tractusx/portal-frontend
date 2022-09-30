@@ -37,13 +37,15 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
         </Typography>
       </div>
       <ul>
-        {
-          item.documents && item.documents['APP_CONTRACT'] && item.documents['APP_CONTRACT'].map((document: DocumentData, index: number) => (
-            <li key={index}>
-              <a href="/#">{document.documentName}</a>
-            </li>
-          ))
-        }
+        {item.documents &&
+          item.documents['APP_CONTRACT'] &&
+          item.documents['APP_CONTRACT'].map(
+            (document: DocumentData, index: number) => (
+              <li key={index}>
+                <a href="/#">{document.documentName}</a>
+              </li>
+            )
+          )}
       </ul>
     </div>
   )
