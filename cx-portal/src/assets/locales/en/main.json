@@ -58,8 +58,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Request",
-          "requestDescription": "ID of user request",
           "date": "Date",
           "companyinfo": "Company Application Info",
           "documents": "Documents",
@@ -648,6 +646,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",

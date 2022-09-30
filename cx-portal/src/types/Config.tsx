@@ -407,7 +407,10 @@ export const mainMenuFullTree = [
   { name: PAGES.PARTNER_NETWORK },
   {
     name: PAGES.APP_MANAGEMENT,
-    children: [{ name: PAGES.APPOVERVIEW }, { name: PAGES.APPRELEASEPROCESS }],
+    children: [
+      { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.APPRELEASEPROCESS },
+    ],
   },
 ]
 

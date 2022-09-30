@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { GridRowId } from '@mui/x-data-grid'
 import { Api } from './api'
 import { AddUser, name } from './types'
 
@@ -26,6 +27,9 @@ const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)
 const setUsersToAdd = createAction<AddUser | {}>(`${name}/setUsersToAdd`)
 const setRolesToAdd = createAction<string[]>(`${name}/setRolesToAdd`)
+const setSelectedUserToAdd = createAction<GridRowId[]>(
+  `${name}/setSelectedUserToAdd`
+)
 
 const addTenantUsers = createAsyncThunk(
   `${name}/add`,
@@ -53,6 +57,7 @@ export {
   closeAdd,
   setUsersToAdd,
   setRolesToAdd,
+  setSelectedUserToAdd,
   addTenantUsers,
   fetchTenantUsers,
 }

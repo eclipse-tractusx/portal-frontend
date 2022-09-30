@@ -31,10 +31,10 @@ import {
   CardHorizontal,
   CardItems,
 } from 'cx-portal-shared-components'
-import { appCardStatus } from 'features/apps/mapper'
+import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
-import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
 import uniqueId from 'lodash/uniqueId'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
@@ -43,25 +43,40 @@ export default function AppOverview() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [group, setGroup] = useState<string>('')
-  const { data } = useFetchActiveAppsQuery() //// TODO: Replace to Recently changed apps api
+  const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
+  const recentlyChangedApps = data && appCardRecentlyApps(data)
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
   const debouncedSearch = useMemo(
     () =>
-      debounce((expr: string) => {
+      debounce((expr: string, data: CardItems[] | undefined, group: string) => {
+        if (group) {
+          data = data?.filter((item: any) => item.status === group)
+        }
         if (expr.length > 2) {
-          const filterItem = items?.filter((item) =>
-            item.title.toLocaleLowerCase().includes(expr.toLocaleLowerCase())
+          const filterItems = data?.filter(
+            (item) =>
+              item.title
+                .toLocaleLowerCase()
+                .includes(expr.toLocaleLowerCase()) ||
+              item.subtitle
+                ?.toLocaleLowerCase()
+                .includes(expr.toLocaleLowerCase()) ||
+              item.statusText
+                ?.toLocaleLowerCase()
+                .includes(expr.toLocaleLowerCase())
           )
-          setFilterItem(filterItem)
+          setFilterItem(filterItems)
+        } else if (group) {
+          setFilterItem(data)
         } else if (expr.length === 0) {
           setFilterItem(items)
         }
       }, 400),
     // eslint-disable-next-line
-    [dispatch]
+    [dispatch, filterItem, group]
   )
 
   useEffect(() => {
@@ -72,15 +87,9 @@ export default function AppOverview() {
   }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value) {
-      const filterItem = items?.filter(
-        (item: any) => item.status === e.currentTarget.value
-      )
-      setFilterItem(filterItem)
-    } else {
-      setFilterItem(items)
-    }
-    setGroup(e.currentTarget.value)
+    const viewValue = e.currentTarget.value
+    setGroup(viewValue)
+    debouncedSearch(searchExpr, items, viewValue)
   }
 
   const categoryViews = [
@@ -113,9 +122,9 @@ export default function AppOverview() {
         return
       }
       setSearchExpr(expr)
-      debouncedSearch(expr)
+      debouncedSearch(expr, items, group)
     },
-    [debouncedSearch]
+    [debouncedSearch, items, group]
   )
 
   return (
@@ -127,27 +136,27 @@ export default function AppOverview() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-      <div className="desc-recently">
-        <div className="container">
-          <Typography variant="h4" className="desc-heading">
-            {t('content.appoverview.recently.header')}
-          </Typography>
-          <Typography variant="body2" className="desc-message">
-            {t('content.appoverview.recently.subheader')}
-          </Typography>
-          <div className="desc-card">
-            {items ? (
+      {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
+        <div className="desc-recently">
+          <div className="container">
+            <Typography variant="h4" className="desc-heading">
+              {t('content.appoverview.recently.header')}
+            </Typography>
+            <Typography variant="body2" className="desc-message">
+              {t('content.appoverview.recently.subheader')}
+            </Typography>
+            <div className="desc-card">
               <Cards
-                items={items.slice(0, 4)}
+                items={recentlyChangedApps}
                 columns={4}
                 buttonText="Details"
                 variant="minimal"
                 filledBackground={true}
               />
-            ) : null}
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
       <div className="app-main">
         <Box sx={{ marginTop: '20px' }} className="overview-section">
           <section className="overview-section-content">
