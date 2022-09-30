@@ -60,7 +60,19 @@
     "idp_status_change_info": "{{status}} Identitätsanbieter",
     "idp_status_change_intro2": "Möchten Sie diesen Identitätsanbieter wirklich aktivieren?",
     "idp_status_change_intro1": "Das Deaktivieren des IDP führt immer zur Deaktivierung, aber nicht zum Löschen. Sie können es jederzeit wieder aktivieren",
-    "idp_status_tooltip_info": "Mindestens ein Unternehmensdienst muss aktiviert sein"
+    "idp_status_tooltip_info": "Mindestens ein Unternehmensdienst muss aktiviert sein",
+    "idp_test_intro1": "Identitätsanbieter wurde erfolgreich erstellt.",
+    "idp_test_intro2": "Der IdP ist vorerst deaktiviert und wird unten aktiviert.",
+    "idp_test_description": "Bitte beachten Sie, dass Sie vor dem Aktivieren des IDP und dem Anmeldeversuch auch die IDP-Verbindung auf Ihrer Seite einrichten und Ihren CX-Benutzer mit der IDP-Verbindung verbinden müssen. Um dies zu ermöglichen, füllen Sie bitte die folgenden Felder aus.",
+    "idp_test_step_text1": "Schritt-für-Schritt-Ansatz",
+    "idp_test_step_text2": "Richten Sie Ihren eigenen Benutzer für den neuen IDP ein, indem Sie Ihr Benutzerprofil erweitern.",
+    "idp_test_step_text3": "Aktivieren Sie den IDP.",
+    "idp_test_step_text4": "Führen Sie einen Test im Inkognito-Modus Ihres Browsers durch.",
+    "idp_test_username_label": "Geben Sie den Benutzernamen im neuen IDP ein",
+    "idp_test_userid_label": "Geben Sie die Benutzer-ID im neuen IDP ein",
+    "idp_form_userId_error": "Bitte geben Sie eine gültige Benutzer-ID ein",
+    "idp_form_username_error": "Bitte geben Sie einen gültigen Benutzername ein",
+    "idp_meta_description": "Fügen Sie hier Ihre Metadaten-URL hinzu, um automatisch alle für die IDP-Integration relevanten Metadaten einzurichten. Wenn Sie auf Laden klicken, wird die Metadatendatei geladen und die entsprechenden Werte werden unten angezeigt."
   },
   "actions": {
     "SignOut": "Abmelden",
@@ -472,7 +484,15 @@
       "secret": "Secret",
       "signatureAlgorithm": "Signatur Algorithmus",
       "clientAuthMethod": "Authentisierungsart",
-      "mappers": "Mapper"
+      "mappers": "Mapper",
+      "tokenUrl": "Token-URL",
+      "idpTypeSelection": "Auswahl des IdP-Typs",
+      "companyName": "Name der Firma",
+      "done": "Fertig",
+      "loading": "Wird geladen",
+      "load": "Belastung",
+      "selectIpsText": "Wählen Sie den IdP-Typ aus, der neu erstellt werden soll",
+      "addMetaDataText": "Fügen Sie hier Ihre Metadaten-URL hinzu, um automatisch alle für die IDP-Integration relevanten Metadaten einzurichten. Beim Klicken laden. dann wird die Metadatendatei geladen und die entsprechenden Werte werden unten angezeigt."
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",
@@ -780,7 +800,9 @@
       "authType": "Auth Type",
       "description": "Beschreibung",
       "secret": "Secret",
-      "permission": "Berechtigung"
+      "permission": "Berechtigung",
+      "userId": "Benutzeridentifikation",
+      "redirectURI": "Umleitungs-URI"
     },
     "actions": {
       "cancel": "Abbrechen",
@@ -797,7 +819,8 @@
       "homepage": "Startseite",
       "deleteTitle": "Löschen von {{ object }} {{ name }}",
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
-      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
+      "submit": "Einreichen"
     },
     "state": {
       "enabled": "aktiv",

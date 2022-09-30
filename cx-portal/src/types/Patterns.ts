@@ -43,6 +43,11 @@ export const Patterns = {
     providerHomePage: /^([A-Za-z.:@&0-9 !])+$/,
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
+  idp: {
+    clientId: /^[a-zA-Z0-9-]*$/,
+    clientSecret: /^[a-zA-Z0-9]*$/,
+    metaDataUrl: /^[a-zA-Z0-9- ]*$/,
+  },
 }
 
 export default Patterns

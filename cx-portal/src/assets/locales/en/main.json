@@ -60,7 +60,25 @@
     "idp_status_change_info": "{{status}} identity provider",
     "idp_status_change_intro2": "Are you sure you want to enable this idp?",
     "idp_status_change_intro1": "Disable the idp will always result into the deactivation, but not deletion. You can always enable it again",
-    "idp_status_tooltip_info": "Atleast one company service needs to enabled"
+    "idp_status_tooltip_info": "Atleast one company service needs to enabled",
+    "idp_test_intro1": "Identity Provider was successfully created.",
+    "idp_test_intro2": "The IdP is disabled for now and get enabled below.",
+    "idp_test_description": "Please note, before enabling the Idp and trying to login, you need to setup the Idp connection on you side as well and connect your CX user to the IdP connection. To enable the same, please fillout the fields below.",
+    "idp_test_step_text1": "Step by Step approach",
+    "idp_test_step_text2": "Setup your own user for the new idp by enhancing your user profile.",
+    "idp_test_step_text3": "Activate the idp.",
+    "idp_test_step_text4": "Run a test via incognito mode of your browser.",
+    "idp_test_username_label": "Enter the username inside the new idp",
+    "idp_test_userid_label": "Enter the user id inside the new idp",
+    "idp_form_userId_error": "Please enter a valid user Id",
+    "idp_form_username_error": "Please enter a valid username",
+    "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
+    "client_id_required_error": "Client id is required",
+    "client_id_invalid_error": "Please enter valid client id",
+    "client_secret_required_error": "Client secret is required",
+    "client_secret_invalid_error": "Please enter valid client secret",
+    "metadata_url_required_error": "Metadata url is required",
+    "metadata_url_invalid_error": "Please enter valid metadata url"
   },
   "actions": {
     "SignOut": "Sign out",
@@ -471,7 +489,15 @@
       "clientId": "Client ID",
       "secret": "Secret",
       "signatureAlgorithm": "Signature algorithm",
-      "clientAuthMethod": "Authentication Method"
+      "clientAuthMethod": "Authentication Method",
+      "tokenUrl": "Token URL",
+      "idpTypeSelection": "IdP Type Selection",
+      "companyName": "Company Name",
+      "done": "Done",
+      "loading": "Loading",
+      "load": "Load",
+      "selectIpsText": "Select the type of IdP which should get newly created",
+      "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below."
     },
     "addUser": {
       "headline": "Add User Account",
@@ -740,7 +766,9 @@
       "authType": "Auth Type",
       "description": "Description",
       "secret": "Secret",
-      "permission": "Permission"
+      "permission": "Permission",
+      "userId": "User Id",
+      "redirectURI": "Redirect URI"
     },
     "actions": {
       "cancel": "Cancel",
@@ -756,7 +784,8 @@
       "reload": "Reload Page",
       "homepage": "Homepage",
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
-      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
+      "submit": "Submit"
     },
     "state": {
       "enabled": "enabled",

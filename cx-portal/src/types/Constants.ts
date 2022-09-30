@@ -94,6 +94,7 @@ export enum OVERLAYS {
   IDP = 'idp',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',
+  IDP_TEST_RUN = 'idp_test_run',
 }
 
 export enum ACTIONS {

@@ -47,6 +47,7 @@ import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 import IDPDelete from 'components/overlays/IDPDelete'
 import IDPStatusChange from 'components/overlays/IDPStatusChange'
+import IDPTestRun from 'components/overlays/IDPTestRun'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -133,6 +134,8 @@ export const getOverlay = (overlay: OverlayState) => {
           idpStatus={overlay.status}
         />
       )
+    case OVERLAYS.IDP_TEST_RUN:
+      return <IDPTestRun />
     default:
       return <NotFound />
   }

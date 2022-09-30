@@ -376,6 +376,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.IDP_STATUS,
     role: ROLES.IDP_DISABLE,
   },
+  {
+    name: OVERLAYS.IDP_TEST_RUN,
+    role: ROLES.IDP_ADD,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
