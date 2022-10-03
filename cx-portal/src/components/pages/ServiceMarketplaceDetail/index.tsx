@@ -40,18 +40,15 @@ export default function ServiceMarketplaceDetail() {
   }, [success, refetch])
 
   return (
-    <main>
+    <main className="appdetail-main">
       <Button
         color="secondary"
         size="small"
         onClick={() => navigate('/servicemarketplace')}
-        className="back-btn"
       >
         {t('global.actions.back')}
       </Button>
-      <div className="marketplace-main">
-        {data && <MarketplaceContentDetails item={data} success={success} />}
-      </div>
+      {data && <MarketplaceContentDetails item={data} success={success} />}
     </main>
   )
 }
