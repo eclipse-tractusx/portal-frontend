@@ -40,7 +40,7 @@ export default function ServiceMarketplaceDetail() {
   }, [success, refetch])
 
   return (
-    <main className="appdetail-main">
+    <main className="marketplace-main">
       <Button
         color="secondary"
         size="small"
