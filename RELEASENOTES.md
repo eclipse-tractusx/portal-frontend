@@ -30,6 +30,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - TrasmissionChip button component
 * Feature - App Release Process - Business Logic & API - Submit App for review
 * Bugfix - Description field validation adjustment in app release process
+* Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
 
 
 ### 0.5.4
