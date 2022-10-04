@@ -21,6 +21,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * feature - Expand on hover feature added to  CardHorizontal component.
 * Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
+* Bugfix - Bind app subscribe status in my organization page
 * Feature - Assign user role (refactoring)
 * Feature - Show subscription box after subscribed immediately
 * Bugfix - App Marketplace - Subscription Button update needed
@@ -31,6 +32,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Release Process - Business Logic & API - Submit App for review
 * Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix
 * Feature - Transition button added to Registration table
+
 
 
 ### 0.5.4
