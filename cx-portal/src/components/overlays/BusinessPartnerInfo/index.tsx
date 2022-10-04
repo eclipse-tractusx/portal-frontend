@@ -48,15 +48,6 @@ export default function BusinessPartnerInfo({ id }: { id: string }) {
       <DialogContent>
         <BusinessPartnerDetail id={id} />
       </DialogContent>
-
-      <DialogActions>
-        <Button variant="outlined" onClick={handleClose}>
-          {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button variant="contained" onClick={handleClose}>
-          {`${t('global.actions.confirm')}`}
-        </Button>
-      </DialogActions>
     </>
   )
 }
