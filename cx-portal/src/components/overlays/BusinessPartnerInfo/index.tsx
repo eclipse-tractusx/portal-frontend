@@ -19,12 +19,7 @@
  ********************************************************************************/
 
 import BusinessPartnerDetail from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogHeader,
-} from 'cx-portal-shared-components'
+import { DialogContent, DialogHeader } from 'cx-portal-shared-components'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
