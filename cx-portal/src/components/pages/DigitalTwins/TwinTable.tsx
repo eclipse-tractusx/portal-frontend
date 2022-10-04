@@ -42,7 +42,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   const { twinList, loading } = useSelector(twinsSelector)
   const [twins, setTwins] = useState<ShellDescriptor[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
-  const [searchValue, setsearchValue] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('')
   const rowCount = 10
 
   useEffect(() => {
@@ -65,13 +65,13 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
 
   const onSearch = (value: string) => {
     setTwins([])
-    setsearchValue(value)
+    setSearchValue(value)
     const key = checkForKeyType(value)
     dispatch(fetchTwinForSearch({ key, value }))
   }
 
   const clearSearch = () => {
-    setsearchValue('')
+    setSearchValue('')
     dispatch(
       fetchDigitalTwins({ filter: { page: pageNumber, pageSize: rowCount } })
     )
