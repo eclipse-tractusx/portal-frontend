@@ -21,7 +21,7 @@
 import {
   IconButton,
   StatusTag,
-  Chip,
+  TransitionChip,
   CircleProgress,
 } from 'cx-portal-shared-components'
 import { GridColDef } from '@mui/x-data-grid'
@@ -134,7 +134,7 @@ export const RegistrationRequestsTableColumns = (
                 />
               ) : (
                 <>
-                  <Chip
+                  <TransitionChip
                     {...{
                       color: 'secondary',
                       variant: 'filled',
@@ -150,7 +150,7 @@ export const RegistrationRequestsTableColumns = (
                     }}
                   />
 
-                  <Chip
+                  <TransitionChip
                     {...{
                       color: 'secondary',
                       variant: 'filled',
