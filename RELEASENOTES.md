@@ -29,7 +29,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * User Experience - delete request id from registration admin board
 * Feature - TrasmissionChip button component
 * Feature - App Release Process - Business Logic & API - Submit App for review
-* Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
+* Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix
+* Feature - Transition button added to Registration table
 
 
 ### 0.5.4
