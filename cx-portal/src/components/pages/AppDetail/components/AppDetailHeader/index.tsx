@@ -18,16 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { getAppLeadImage } from 'features/apps/mapper'
-import './AppDetailHeader.scss'
-import { fetch } from 'features/apps/details/actions'
-import { itemSelector } from 'features/apps/details/slice'
 import { userSelector } from 'features/user/slice'
+import './AppDetailHeader.scss'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
