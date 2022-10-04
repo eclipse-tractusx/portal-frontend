@@ -468,10 +468,17 @@ export default function AppMarketCard() {
                             )}`,
                           },
                           pattern: {
-                            value: Patterns.appMarketCard.shortDescription,
+                            value:
+                              item === 'shortDescriptionEN'
+                                ? Patterns.appMarketCard.shortDescriptionEN
+                                : Patterns.appMarketCard.shortDescriptionDE,
                             message: `${t(
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
-                            )} A-Za-z0-9.: @&`,
+                            )} ${
+                              item === 'shortDescriptionEN'
+                                ? 'A-Za-z0-9.: @&,'
+                                : 'A-Za-z0-9.: @&,äüö'
+                            }`,
                           },
                           maxLength: {
                             value: 255,

@@ -29,6 +29,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * User Experience - delete request id from registration admin board
 * Feature - TrasmissionChip button component
 * Feature - App Release Process - Business Logic & API - Submit App for review
+* Bugfix - Description field validation adjustment in app release process
 
 
 ### 0.5.4
