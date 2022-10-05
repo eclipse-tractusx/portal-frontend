@@ -3,6 +3,12 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.6.1
+
+* ...
+
+
+
 ### 0.5.5
 
 * Feature - App Overview page
@@ -18,7 +24,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - User Management - Success/Fail Message
 * Bugfix - Partner netowrk search issue fix
 * Bugfix - CardHorizontal - Height issue fix
-* feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Expand on hover feature added to  CardHorizontal component.
 * Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
 * Bugfix - Bind app subscribe status in my organization page
