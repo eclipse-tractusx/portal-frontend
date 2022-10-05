@@ -37,6 +37,8 @@ export const RequestList = ({
   isLoading,
   onTableCellClick,
   loaded,
+  handleDownloadDocument,
+  searchExpr,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
@@ -46,6 +48,8 @@ export const RequestList = ({
   isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
+  handleDownloadDocument: (documentId: string, documentType: string) => void
+  searchExpr?: string
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -56,7 +60,8 @@ export const RequestList = ({
     useTranslation,
     onApproveClick,
     onDeclineClick,
-    isLoading
+    isLoading,
+    handleDownloadDocument
   )
 
   useEffect(() => {
@@ -72,9 +77,12 @@ export const RequestList = ({
   return (
     <section id="identity-management-id">
       <PageLoadingTable<ApplicationRequest>
+        searchExpr={searchExpr}
         rowHeight={80}
         onCellClick={onTableCellClick}
-        toolbarVariant="premium"
+        toolbarVariant={'ultimate'}
+        hasBorder={false}
+        columnHeadersBackgroundColor={'transparent'}
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {

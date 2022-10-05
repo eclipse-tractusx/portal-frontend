@@ -62,6 +62,7 @@ import { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
+import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 
 /**
  * ALL_PAGES
@@ -201,6 +202,16 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPRELEASEPROCESS,
     //role: ROLES.VIEW_APP_RELEASE,
     element: <AppReleaseProcess />,
+  },
+  {
+    name: PAGES.APP_RELEASE_PROCESS_FORM,
+    isRoute: true,
+    element: (
+      <Route
+        path={`${PAGES.APPRELEASEPROCESS}/form`}
+        element={<AppReleaseProcessForm />}
+      />
+    ),
   },
   {
     name: PAGES.USER_MANAGEMENT,
@@ -378,7 +389,11 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APP_MARKETPLACE },
       { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
-      { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      {
+        name: PAGES.DATASPACE_MARKETPLACE,
+        hint: HINTS.COMING_SOON,
+        disable: true,
+      },
     ],
   },
   {
@@ -392,7 +407,10 @@ export const mainMenuFullTree = [
   { name: PAGES.PARTNER_NETWORK },
   {
     name: PAGES.APP_MANAGEMENT,
-    children: [{ name: PAGES.APPOVERVIEW }, { name: PAGES.APPRELEASEPROCESS }],
+    children: [
+      { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.APPRELEASEPROCESS },
+    ],
   },
 ]
 

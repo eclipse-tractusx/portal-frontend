@@ -22,11 +22,15 @@ import { useEffect, useState } from 'react'
 import { Navigation, IconButton } from 'cx-portal-shared-components'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './Footer.scss'
+import { PAGES } from 'types/Constants'
+import { currentActiveStep } from 'features/appManagement/slice'
+import { useSelector } from 'react-redux'
 
 export const Footer = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
+  const location = useLocation()
   const items = pages.map((page) => ({
     to: page,
     title: t(`pages.${page}`),
@@ -37,11 +41,33 @@ export const Footer = ({ pages }: { pages: string[] }) => {
       behavior: 'smooth',
     })
   }
+  const isAppOverviewPage = [
+    PAGES.APPOVERVIEW,
+    PAGES.APP_MANAGEMENT,
+    PAGES.APPRELEASEPROCESS,
+  ].find((e) => location.pathname.split('/').includes(e))
+
+  const isAppDarkOverviewPage = [PAGES.USER_MANAGEMENT].find((e) =>
+    location.pathname.split('/').includes(e)
+  )
 
   const [showScrollToTop, setShowScrollToTop] = useState(false)
+  let activePage = useSelector(currentActiveStep)
 
   const toggleVisibility = () => {
     setShowScrollToTop(window.pageYOffset > 350)
+  }
+
+  const getPreferredColor = () => {
+    if (activePage === 7) {
+      return '#e4ebf3'
+    } else if (isAppOverviewPage) {
+      return '#F9F9F9'
+    } else if (isAppDarkOverviewPage) {
+      return '#ededed'
+    } else {
+      return ''
+    }
   }
 
   useEffect(() => {
@@ -49,7 +75,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   }, [])
 
   return (
-    <footer>
+    <footer style={{ background: getPreferredColor() }}>
       {showScrollToTop && (
         <IconButton
           color="secondary"

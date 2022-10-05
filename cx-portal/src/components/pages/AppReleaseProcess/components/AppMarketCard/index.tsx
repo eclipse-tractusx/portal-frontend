@@ -27,6 +27,7 @@ import {
   Card,
   MultiSelectList,
   Checkbox,
+  PageNotifications,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -79,6 +80,10 @@ export const ConnectorFormInputField = ({
   notItemsText,
   buttonAddMore,
   filterOptionsArgs,
+  acceptFormat,
+  maxFilesToUpload,
+  previewFiles,
+  showPreviewAlone,
 }: any) => (
   <Controller
     name={name}
@@ -114,6 +119,10 @@ export const ConnectorFormInputField = ({
               trigger(name)
               onChange(files[0].name)
             }}
+            acceptFormat={acceptFormat}
+            maxFilesToUpload={maxFilesToUpload}
+            previewFiles={previewFiles}
+            showPreviewAlone={showPreviewAlone}
           />
         )
       } else if (type === 'checkbox') {
@@ -166,6 +175,7 @@ export default function AppMarketCard() {
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
+  const [appCardNotification, setAppCardNotification] = useState(false)
 
   const defaultValues = {
     title: '',
@@ -257,7 +267,9 @@ export default function AppMarketCard() {
         isString(result) && dispatch(setAppId(result))
         dispatch(increment())
       })
-      .catch((error) => {})
+      .catch((error: any) => {
+        setAppCardNotification(true)
+      })
   }
 
   return (
@@ -456,10 +468,17 @@ export default function AppMarketCard() {
                             )}`,
                           },
                           pattern: {
-                            value: Patterns.appMarketCard.shortDescription,
+                            value:
+                              item === 'shortDescriptionEN'
+                                ? Patterns.appMarketCard.shortDescriptionEN
+                                : Patterns.appMarketCard.shortDescriptionDE,
                             message: `${t(
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
-                            )} A-Za-z0-9.: @&`,
+                            )} ${
+                              item === 'shortDescriptionEN'
+                                ? 'A-Za-z0-9.: @&,'
+                                : 'A-Za-z0-9.: @&,äüö'
+                            }`,
                           },
                           maxLength: {
                             value: 255,
@@ -625,6 +644,11 @@ export default function AppMarketCard() {
                 errors,
                 name: 'uploadImage.leadPictureUri',
                 type: 'dropzone',
+                acceptFormat: {
+                  'image/png': [],
+                  'image/jpeg': [],
+                },
+                maxFilesToUpload: 1,
                 rules: {
                   required: {
                     value: true,
@@ -649,6 +673,23 @@ export default function AppMarketCard() {
       </Grid>
 
       <Box mb={2}>
+        {appCardNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setAppCardNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
+
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"

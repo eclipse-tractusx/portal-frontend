@@ -137,6 +137,7 @@ export const Card = ({
     >
       <Box
         sx={{
+          overflow: 'hidden',
           backgroundColor: 'common.white',
           borderRadius: shape.borderRadius,
           border: '1px solid',

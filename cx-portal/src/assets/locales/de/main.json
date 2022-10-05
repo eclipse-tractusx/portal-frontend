@@ -37,7 +37,7 @@
     "logout": "Abmelden",
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
-    "appoverview": "App Overview",
+    "appoverview": "App-Übersicht",
     "appreleaseprocess": "App Release Process",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
@@ -58,8 +58,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Anfrage",
-          "requestDescription": "ID der Benutzeranfrage",
           "date": "Datum",
           "companyinfo": "Bewerbungsinformationen des Unternehmens",
           "documents": "Unterlagen",
@@ -260,7 +258,20 @@
       "message": "Inhalte vom Entwickler Hub"
     },
     "appoverview": {
-      "message": "App Overview Message"
+      "headerTitle": "Meine Applikationen",
+      "title": "App-Übersicht",
+      "inputPlaceholder": "Suchen Sie nach Apps",
+      "recently": {
+        "header": "Kürzlich gewechselt",
+        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "filter": {
+        "all": "Alle",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "wip": "In Arbeit"
+      },
+      "addbtn": "Neue App erstellen"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -322,7 +333,9 @@
         "street": "Straße",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Zertifiziert"
+        "cxparticipant": "CX Zertifiziert",
+        "address": "Anschrift",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Deutschland",
@@ -438,8 +451,12 @@
       "status": "Status",
       "displayName": "Anzeigename",
       "authType": "IDP Typ",
-      "authURL": "Authentisierungs URL",
-      "authMethod": "Authentisierungsart",
+      "authorizationUrl": "Authentisierungs URL",
+      "metadataUrl": "Metadaten URL",
+      "clientId": "Client ID",
+      "secret": "Secret",
+      "signatureAlgorithm": "Signatur Algorithmus",
+      "clientAuthMethod": "Authentisierungsart",
       "mappers": "Mapper"
     },
     "addUser": {
@@ -669,6 +686,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
@@ -689,7 +707,15 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "appCardDetails": "App Card Details"
       },
+      "submitApp": {
+        "headerTitle": "Thank you for submitting the app!",
+        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescriptionComplete": "further information on app release",
+        "yourCatenaXTeam": "Your Catena-X team",
+        "myAppsOverview": "My apps overview"
+      },
       "appReleaseForm": {
+        "headerTitle": "Create App",
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",
         "note": "Note:",
@@ -703,13 +729,13 @@
         "isMandatory": " is mandatory",
         "fileUploadIsMandatory": "File upload is mandatory",
         "error": {
-          "title": "Error",
-          "message": "Error"
+          "title": "Error - something went wrong.",
+          "message": "Please try it again"
         }
       },
       "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "save & proceed",
+        "saveAndProceed": "Save & proceed",
         "save": "Save",
         "submit": "Submit"
       }
@@ -755,6 +781,7 @@
       "loadmore": "Mehr laden",
       "details": "Details",
       "close": "Schließen",
+      "save": "Speichern",
       "back": "Zurück",
       "delete": "Löschen",
       "pleaseSelect": "Bitte auswählen",

@@ -20,8 +20,6 @@
 
 import { Checkbox } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
@@ -29,7 +27,6 @@ import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 import { useParams } from 'react-router-dom'
 
 export const AppRoles = () => {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
   const { appId } = useParams()
@@ -58,13 +55,6 @@ export const AppRoles = () => {
         },
       }}
     >
-      <div className="add-user-title">
-        <SubHeaderTitle
-          title={t('content.addUser.chooseUserRole')}
-          variant="body1"
-        />
-      </div>
-
       <div className="checkbox-section">
         {data &&
           data.map((role) => (

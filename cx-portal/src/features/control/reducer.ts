@@ -20,11 +20,13 @@
 
 import { combineReducers } from 'redux'
 import { slice as overlay } from './overlay/slice'
+import { slice as form } from './formSlice'
 import { slice as update } from './updatesSlice'
 
 export const reducer = combineReducers({
   overlay: overlay.reducer,
   update: update.reducer,
+  form: form.reducer,
 })
 
 const Reducer = { reducer }

@@ -58,8 +58,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Request",
-          "requestDescription": "ID of user request",
           "date": "Date",
           "companyinfo": "Company Application Info",
           "documents": "Documents",
@@ -260,7 +258,20 @@
       "message": "Contents of Developer Hub"
     },
     "appoverview": {
-      "message": "App Overview Message"
+      "headerTitle": "My Apps",
+      "title": "App Overview",
+      "inputPlaceholder": "Search for Apps",
+      "recently": {
+        "header": "Recently changed",
+        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "filter": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive",
+        "wip": "WIP"
+      },
+      "addbtn": "Create new App"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -322,7 +333,9 @@
         "street": "Street",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member"
+        "cxparticipant": "CX Member",
+        "address": "Address",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Germany",
@@ -331,7 +344,7 @@
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
       "searchbuttonlabel": "Search",
-      "searchfielddefaulttext": "Search by company name or BPN",
+      "searchfielddefaulttext": "Search by name or BPN",
       "searchfielderrormessage": "Invalid Data",
       "membershipnotificationtitle": "Membership flag cannot be fetched.",
       "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
@@ -437,10 +450,13 @@
       "alias": "Alias",
       "status": "Status",
       "displayName": "Display Name",
-      "authType": "IDP Type",
-      "authURL": "Authentication URL",
-      "authMethod": "Authentication Method",
-      "mappers": "Mappers"
+      "authType": "IDP Typ",
+      "authorizationUrl": "Authorization URL",
+      "metadataUrl": "Metadata URL",
+      "clientId": "Client ID",
+      "secret": "Secret",
+      "signatureAlgorithm": "Signature algorithm",
+      "clientAuthMethod": "Authentication Method"
     },
     "addUser": {
       "headline": "Add User Account",
@@ -630,6 +646,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
@@ -650,7 +667,15 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "appCardDetails": "App Card Details"
       },
+      "submitApp": {
+        "headerTitle": "Thank you for submitting the app!",
+        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescriptionComplete": "further information on app release",
+        "yourCatenaXTeam": "Your Catena-X team",
+        "myAppsOverview": "My apps overview"
+      },
       "appReleaseForm": {
+        "headerTitle": "Create App",
         "addMore": "Add More",
         "noItemsSelected": "No Items Selected",
         "note": "Note:",
@@ -664,13 +689,13 @@
         "isMandatory": " is mandatory",
         "fileUploadIsMandatory": "File upload is mandatory",
         "error": {
-          "title": "Error",
-          "message": "Error"
+          "title": "Error - something went wrong.",
+          "message": "Please try it again"
         }
       },
       "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "save & proceed",
+        "saveAndProceed": "Save & proceed",
         "save": "Save",
         "submit": "Submit"
       }
@@ -716,6 +741,7 @@
       "loadmore": "Load more",
       "details": "Details",
       "close": "Close",
+      "save": "Save",
       "back": "Back",
       "delete": "Delete",
       "pleaseSelect": "Please select",

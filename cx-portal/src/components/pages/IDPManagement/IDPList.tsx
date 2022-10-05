@@ -68,7 +68,8 @@ export const IDPListItem = ({ idp }: { idp: IdentityProvider }) => {
   return (
     <div className="idp-list-item">
       <span className="category">{idp.identityProviderCategoryId}</span>
-      <span className="name">{idp.displayName || idp.alias}</span>
+      <span className="name">{idp.displayName || '-'}</span>
+      <span className="alias">{idp.alias}</span>
       <span className={`state ${state}`} onClick={doEnableToggle}>
         {t(`global.state.${state}`)}
       </span>

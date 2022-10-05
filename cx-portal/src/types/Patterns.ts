@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 export const Patterns = {
-  BPN: /^BPNL[0-9A-Z]{12}$/i,
+  BPN: /^(BPNL|CAX)[0-9A-Z]{12}$/i,
   URL: /^((https?):\/\/([^:/\s]+))/,
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
@@ -29,16 +29,19 @@ export const Patterns = {
     URL: /^https?:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
+  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
   appMarketCard: {
     appTitle: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
     appProvider: /^([A-Za-z ]){3,30}$/,
-    shortDescription: /^([A-Za-z.:@0-9& ]){10,255}$/,
+    shortDescriptionEN: /^([A-Za-z.:@0-9& ,]){10,255}$/,
+    shortDescriptionDE: /^([A-Za-z.:@0-9& ,äüö]){10,255}$/,
     useCaseCategory: /^([A-Za-z])$/,
     appLanguage: /^([A-Za-z ])$/,
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
   },
   appPage: {
-    longDescription: /^([A-Za-z.:@0-9&_ -]){10,2000}$/,
+    longDescriptionEN: /^([A-Za-z.:@0-9&_ ,-]){10,2000}$/,
+    longDescriptionDE: /^([A-Za-z.:@0-9&_ ,äüö-]){10,2000}$/,
     providerHomePage: /^([A-Za-z.:@&0-9 !])+$/,
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },

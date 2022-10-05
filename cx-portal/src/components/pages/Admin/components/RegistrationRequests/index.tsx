@@ -35,8 +35,10 @@ import {
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
+  useFetchDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
+import { download } from 'utils/downloadUtils'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -54,6 +56,7 @@ export default function RegistrationRequests() {
 
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineRequestMutation()
+  const [getDocumentById] = useFetchDocumentByIdMutation()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -102,6 +105,22 @@ export default function RegistrationRequests() {
     setIsLoading(false)
   }
 
+  const handleDownloadClick = async (
+    documentId: string,
+    documentType: string
+  ) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+
+      return download(file, fileType, documentType)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
+
   return (
     <main className="page-main-container">
       <PageSnackbar
@@ -137,12 +156,14 @@ export default function RegistrationRequests() {
       />
 
       {/* Adding additional text to introduce the page function */}
-      <Typography variant="body2" mt={3} align="center">
-        {t('content.admin.registration-requests.introText1')}
-      </Typography>
-      <Typography variant="body2" mb={3} align="center">
-        {t('content.admin.registration-requests.introText2')}
-      </Typography>
+      <div className={'padding-r-80'}>
+        <Typography variant="body2" mt={3} align="center">
+          {t('content.admin.registration-requests.introText1')}
+        </Typography>
+        <Typography variant="body2" mb={3} align="center">
+          {t('content.admin.registration-requests.introText2')}
+        </Typography>
+      </div>
 
       {/* Table component */}
       <div className={'table-container'}>
@@ -155,6 +176,8 @@ export default function RegistrationRequests() {
           isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
+          handleDownloadDocument={handleDownloadClick}
+          searchExpr={expr}
         />
       </div>
     </main>

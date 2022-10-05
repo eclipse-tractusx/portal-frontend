@@ -178,6 +178,7 @@ export default function InviteBusinessPartner() {
           fetchHook={useFetchInviteSearchQuery}
           fetchHookArgs={{ expr }}
           onSearch={setExpr}
+          searchExpr={expr}
         />
       </section>
     </main>

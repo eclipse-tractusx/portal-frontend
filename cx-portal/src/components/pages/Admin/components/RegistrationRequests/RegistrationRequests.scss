@@ -27,7 +27,7 @@
   width: 100%;
 
   a {
-    color: color('text-secondary');
+    color: color('text-quinary');
     font-weight: 400;
   }
 }
@@ -57,6 +57,10 @@
   margin: 0 auto;
 }
 
+.padding-r-80 {
+  padding: 0px 80px;
+}
+
 .documents-column--cell {
   display: block !important;
   overflow: auto !important;
@@ -76,13 +80,21 @@
     display: flex;
 
     svg {
-      color: color('active');
-      fill: color('active');
+      color: color('text-quinary');
+      fill: color('text-quinary');
     }
 
     a {
       padding-left: 5px;
+      text-decoration: none;
     }
+  }
+
+  .document-button-link {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 

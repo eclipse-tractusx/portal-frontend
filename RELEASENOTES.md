@@ -3,6 +3,39 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.5.5
+
+* Feature - App Overview page
+* Feature - Add and edit Identity Provider details
+* Bugfix - Connect Partner Network to BPDM
+* Bugfix - UI updates in UltimateToolbar component
+* Bugfix - Registration table UI fixes
+* Bugfix - App Release Process - Fixed browser back button issue
+* Bugfix - User Management Main Page Style fix
+* Bugfix - App Release Process - Fixed user directing to bottom of the page
+* Bugfix - Services Card Responsive UI Fix
+* Feature - BPN add/delete flow in User Account Screen
+* Feature - User Management - Success/Fail Message
+* Bugfix - Partner netowrk search issue fix
+* Bugfix - CardHorizontal - Height issue fix
+* feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
+* Feature - Add User Role Overlay (refactoring)
+* Bugfix - Bind app subscribe status in my organization page
+* Feature - Assign user role (refactoring)
+* Feature - Show subscription box after subscribed immediately
+* Bugfix - App Marketplace - Subscription Button update needed
+* Feature - App Release Process - upload functionality
+* Feature - App Detail - Fetch Documents
+* User Experience - delete request id from registration admin board
+* Feature - TrasmissionChip button component
+* Feature - App Release Process - Business Logic & API - Submit App for review
+* Bugfix - Description field validation adjustment in app release process
+* Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
+* Feature - Transition button added to Registration table
+
+
+
 ### 0.5.4
 
 * Feature - Service Marketplace
@@ -48,10 +81,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Older
 
-* Defect - No roles available when adding a user
 * Defect - Page reloads when the auth token is renewed
-* Defect - Partner Network not working on localhost and dev (only int)
-* Defect - Notifications are static
 * Defect - Latest apps are static
 * Defect - Some footer pages and menu items are empty
-

@@ -18,38 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
-  Button,
   PageHeader,
-  ProcessList,
   Typography,
+  Button,
+  ProcessList,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import './AppReleaseProcess.scss'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useEffect, useState } from 'react'
-import AppMarketCard from './components/AppMarketCard'
-import AppReleaseStepper from './components/stepper'
-import BetaTest from './components/BetaTest'
-import AppPage from './components/AppPage'
-import ContractAndConsent from './components/ContractAndConsent'
-import { currentActiveStep } from 'features/appManagement/slice'
-import { useSelector } from 'react-redux'
-import TechnicalIntegration from './components/TechnicalIntegration'
-import ValidateAndPublish from './components/ValidateAndPublish'
+import { useNavigate } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
 import { Box } from '@mui/material'
+import './AppReleaseProcess.scss'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
-  const [createApp, setCreateApp] = useState(false)
-
-  let activePage = useSelector(currentActiveStep)
-
-  useEffect(() => {
-    activeStep()
-    window.scrollTo(0, 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage, createApp])
+  const navigate = useNavigate()
 
   const stepsLists = [
     {
@@ -90,15 +74,6 @@ export default function AppReleaseProcess() {
     },
   ]
 
-  const activeStep = () => {
-    if (activePage === 1) return <AppMarketCard />
-    else if (activePage === 2) return <AppPage />
-    else if (activePage === 3) return <ContractAndConsent />
-    else if (activePage === 4) return <TechnicalIntegration />
-    else if (activePage === 5) return <BetaTest />
-    else if (activePage === 6) return <ValidateAndPublish />
-  }
-
   return (
     <div className="appoverview-main">
       <PageHeader
@@ -108,129 +83,98 @@ export default function AppReleaseProcess() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-      {createApp ? (
-        <div className="create-app-section">
-          <div className="container">
-            <AppReleaseStepper activePage={activePage} />
-            {activeStep()}
+      <div className="desc-section">
+        <div className="container">
+          <Typography variant="h3" className="desc-heading">
+            {t('content.apprelease.descHeading')}
+          </Typography>
+          <Typography variant="body2" className="desc-message">
+            {t('content.apprelease.descMessage')}
+          </Typography>
+          <div>
+            <Button
+              key="create"
+              color="primary"
+              size="small"
+              className="create-btn"
+              onClick={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+            >
+              {t('content.apprelease.startCreatingButton')}
+            </Button>
+            <Button
+              key="overview"
+              color="secondary"
+              size="small"
+              className="overview-btn"
+            >
+              {t('content.apprelease.appOverviewButton')}
+            </Button>
           </div>
         </div>
-      ) : (
-        <>
-          <div className="desc-section">
-            <div className="container">
-              <Typography variant="h3" className="desc-heading">
-                {t('content.apprelease.descHeading')}
+      </div>
+      <div className="process-steps">
+        <div className="container">
+          <div className="steps-main">
+            <Typography variant="h3" className="step-heading">
+              {t('content.apprelease.stepHeading')}
+            </Typography>
+            <ProcessList
+              elementNumbers={6}
+              list={stepsLists}
+              stepsColor="#FFA600"
+              stepsFontColor="#fff"
+            />
+            <div className="lr-text-divider">
+              <Typography variant="body2" className="marketplace-title1">
+                {t('content.apprelease.dividerText')}
               </Typography>
-              <Typography variant="body2" className="desc-message">
-                {t('content.apprelease.descMessage')}
-              </Typography>
-              <div className="">
-                <Button
-                  key="create"
-                  color="primary"
-                  size="small"
-                  className="create-btn"
-                  onClick={() => setCreateApp(true)}
-                >
-                  {t('content.apprelease.startCreatingButton')}
-                </Button>
-                <Button
-                  key="overview"
-                  color="secondary"
-                  size="small"
-                  className="overview-btn"
-                >
-                  {t('content.apprelease.appOverviewButton')}
-                </Button>
-              </div>
             </div>
-          </div>
-          <div className="process-steps">
-            <div className="container">
-              <div className="steps-main">
-                <Typography variant="h3" className="step-heading">
-                  {t('content.apprelease.stepHeading')}
-                </Typography>
-                <ProcessList
-                  elementNumbers={6}
-                  list={stepsLists}
-                  stepsColor="#FFA600"
-                  stepsFontColor="#fff"
-                />
-                <div className="lr-text-divider">
-                  <Typography variant="body2" className="marketplace-title1">
-                    {t('content.apprelease.dividerText')}
-                  </Typography>
-                </div>
-                <Box textAlign="center">
-                  <Button
-                    color="primary"
-                    size="small"
-                    className="create-btn"
-                    onClick={() => setCreateApp(true)}
-                  >
-                    {t('content.apprelease.startCreatingButton')}
+            <Box textAlign="center">
+              <Button
+                color="primary"
+                size="small"
+                className="create-btn"
+                onClick={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+              >
+                {t('content.apprelease.startCreatingButton')}
+              </Button>
+              <Typography variant="h3" className="marketplace-heading">
+                {t('content.apprelease.marketplaceHeading')}
+              </Typography>
+            </Box>
+            <div className="marketplace-main">
+              <ul>
+                <li>
+                  <Button color="secondary" size="small" className="neu-btn">
+                    {t('content.apprelease.neuButton')}
                   </Button>
-                  <Typography variant="h3" className="marketplace-heading">
-                    {t('content.apprelease.marketplaceHeading')}
-                  </Typography>
-                </Box>
-                <div className="marketplace-main">
-                  <ul>
-                    <li>
-                      <Button
-                        color="secondary"
-                        size="small"
-                        className="neu-btn"
-                      >
-                        {t('content.apprelease.neuButton')}
-                      </Button>
-                      <span>
-                        <Typography
-                          variant="body2"
-                          className="marketplace-title1"
-                        >
-                          {t('content.apprelease.marketplaceTitle')}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          className="marketplace-title1"
-                        >
-                          {t('content.apprelease.marketplaceExplanation')}
-                        </Typography>
-                      </span>
-                    </li>
-                    <li>
-                      <Button
-                        color="secondary"
-                        size="small"
-                        className="neu-btn"
-                      >
-                        {t('content.apprelease.neuButton')}
-                      </Button>
-                      <span>
-                        <Typography
-                          variant="body2"
-                          className="marketplace-title1"
-                        >
-                          {t('content.apprelease.marketplaceTitle')}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          className="marketplace-title1"
-                        >
-                          {t('content.apprelease.marketplaceExplanation')}
-                        </Typography>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                  <span>
+                    <Typography variant="body2" className="marketplace-title1">
+                      {t('content.apprelease.marketplaceTitle')}
+                    </Typography>
+                    <Typography variant="body2" className="marketplace-title1">
+                      {t('content.apprelease.marketplaceExplanation')}
+                    </Typography>
+                  </span>
+                </li>
+                <li>
+                  <Button color="secondary" size="small" className="neu-btn">
+                    {t('content.apprelease.neuButton')}
+                  </Button>
+                  <span>
+                    <Typography variant="body2" className="marketplace-title1">
+                      {t('content.apprelease.marketplaceTitle')}
+                    </Typography>
+                    <Typography variant="body2" className="marketplace-title1">
+                      {t('content.apprelease.marketplaceExplanation')}
+                    </Typography>
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   )
 }

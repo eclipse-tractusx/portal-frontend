@@ -27,7 +27,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box } from '@mui/material'
+import { Divider, Box, Grid } from '@mui/material'
 import { decrement, increment } from 'features/appManagement/slice'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
@@ -46,15 +46,31 @@ export default function BetaTest() {
         {t('content.apprelease.betaTest.headerDescription')}
       </Typography>
       <Box mb={2}>
+        {betaTestNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setBetaTestNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
-          sx={{ mr: 1 }}
           startIcon={<HelpOutlineIcon />}
+          sx={{ mr: 1 }}
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
+        <IconButton onClick={() => dispatch(decrement())} color="secondary">
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
@@ -68,17 +84,6 @@ export default function BetaTest() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      {betaTestNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-            onCloseNotification={() => setBetaTestNotification(false)}
-          />
-        </div>
-      )}
     </>
   )
 }

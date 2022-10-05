@@ -33,15 +33,26 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Grid, Divider, Box, InputLabel } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { decrement } from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
+import { useSubmitappMutation } from 'features/appManagement/apiSlice'
 
-export default function ValidateAndPublish() {
+export default function ValidateAndPublish({
+  showSubmitPage,
+}: {
+  showSubmitPage: any
+}) {
+  const dispatch = useDispatch()
   const { t } = useTranslation()
   const [validatePublishNotification, setValidatePublishNotification] =
     useState(false)
-  const dispatch = useDispatch()
+  const [submitapp] = useSubmitappMutation()
+  const appId = useSelector(appIdSelector)
 
   const defaultValues = {
     title: 'Digital Twin Aspect Debugger',
@@ -120,8 +131,15 @@ export default function ValidateAndPublish() {
     mode: 'onChange',
   })
 
-  const onValidatePublishSubmit = async (data: any) =>
-    setValidatePublishNotification(true)
+  const onValidatePublishSubmit = async (data: any) => {
+    try {
+      await submitapp(appId).unwrap()
+      dispatch(increment())
+      showSubmitPage(true)
+    } catch (error: any) {
+      setValidatePublishNotification(true)
+    }
+  }
 
   const providerDetailsValues = (item: string) => {
     if (item === 'providerHomePage') return defaultValues.providerUri
@@ -167,7 +185,7 @@ export default function ValidateAndPublish() {
 
         <Grid item md={9} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           {['appTitle', 'appProvider'].map((item) => (
-            <div className="form-field">
+            <div className="form-field" key={item}>
               <Input
                 label={t(`content.apprelease.appMarketCard.${item}`) + ' *'}
                 value={
@@ -180,7 +198,7 @@ export default function ValidateAndPublish() {
             </div>
           ))}
           {['shortDescriptionEN', 'shortDescriptionDE'].map((item) => (
-            <div className="form-field">
+            <div className="form-field" key={item}>
               <Input
                 label={
                   <>
@@ -228,7 +246,7 @@ export default function ValidateAndPublish() {
           </Typography>
 
           {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
-            <div className="form-field">
+            <div className="form-field" key={item}>
               <Input
                 label={
                   <>
@@ -267,7 +285,18 @@ export default function ValidateAndPublish() {
             <InputLabel sx={{ mb: 3, mt: 3 }}>
               {t('content.apprelease.appPage.images') + ' *'}
             </InputLabel>
-            <Dropzone onFileDrop={(files: any) => {}} />
+            <Dropzone
+              onFileDrop={(files: any) => {}}
+              showPreviewAlone={true}
+              previewFiles={{
+                'image.png': {
+                  name: 'image.png',
+                },
+                'image.jpg': {
+                  name: 'image.jpg',
+                },
+              }}
+            />
             <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
               {t('content.apprelease.appReleaseForm.note')}
             </Typography>
@@ -278,7 +307,7 @@ export default function ValidateAndPublish() {
           <Divider className="form-divider" />
 
           {['connectData', 'dataSecurityInformation'].map((item) => (
-            <div className="form-field">
+            <div className="form-field" key={item}>
               <Input
                 label={
                   <>
@@ -309,11 +338,19 @@ export default function ValidateAndPublish() {
           ].map((item: string) => (
             <>
               <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <div className="form-field">
+              <div className="form-field" key={item}>
                 <InputLabel sx={{ mb: 3, mt: 3 }}>
                   {t(`content.apprelease.appPage.${item}`) + ' *'}
                 </InputLabel>
-                <Dropzone onFileDrop={(files: any) => {}} />
+                <Dropzone
+                  onFileDrop={(files: any) => {}}
+                  showPreviewAlone={true}
+                  previewFiles={{
+                    'image.png': {
+                      name: 'image.png',
+                    },
+                  }}
+                />
               </div>
             </>
           ))}
@@ -327,7 +364,7 @@ export default function ValidateAndPublish() {
             'providerContactEmail',
             'providerPhoneContact',
           ].map((item: string) => (
-            <div className="form-field">
+            <div className="form-field" key={item}>
               <Input
                 label={t(`content.apprelease.appPage.${item}`) + ' *'}
                 value={providerDetailsValues(item)}
@@ -340,9 +377,13 @@ export default function ValidateAndPublish() {
             {t('content.apprelease.contractAndConsent.headerTitle')}
           </Typography>
           <div className="form-field">
-            {defaultValues.agreements?.map((item: any) => (
+            {defaultValues.agreements?.map((item: any, index: number) => (
               <div>
-                <Checkbox label={item.name} checked={item.consentStatus} />
+                <Checkbox
+                  key={index}
+                  label={item.name}
+                  checked={item.consentStatus === 'ACTIVE'}
+                />
               </div>
             ))}
           </div>
@@ -351,26 +392,55 @@ export default function ValidateAndPublish() {
             {t('content.apprelease.technicalIntegration.headerTitle')}
           </Typography>
           <div className="form-field">
-            {defaultValues.technicalConnection?.map((item: any) => (
-              <div>
-                <Checkbox label={item.name} checked={item.consentStatus} />
-              </div>
-            ))}
+            {defaultValues.technicalConnection?.map(
+              (item: any, index: number) => (
+                <div>
+                  <Checkbox
+                    key={index}
+                    label={item.name}
+                    checked={item.consentStatus === 'ACTIVE'}
+                  />
+                </div>
+              )
+            )}
           </div>
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           <Typography variant="h4" align="center" sx={{ mb: 4 }}>
             {t('content.apprelease.betaTest.headerTitle')}
           </Typography>
           <div className="form-field">
-            {defaultValues.betaTest?.map((item: any) => (
+            {defaultValues.betaTest?.map((item: any, index: number) => (
               <div>
-                <Checkbox label={item.name} checked={item.consentStatus} />
+                <Checkbox
+                  key={index}
+                  label={item.name}
+                  checked={item.consentStatus === 'ACTIVE'}
+                />
               </div>
             ))}
           </div>
         </Grid>
       </Grid>
       <Box mb={2}>
+        {validatePublishNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() =>
+                  setValidatePublishNotification(false)
+                }
+              />
+            </Grid>
+          </Grid>
+        )}
+
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           startIcon={<HelpOutlineIcon />}
@@ -391,17 +461,6 @@ export default function ValidateAndPublish() {
           {t('content.apprelease.footerButtons.submit')}
         </Button>
       </Box>
-      {validatePublishNotification && (
-        <div className="errorMsg">
-          <PageNotifications
-            title={t('content.apprelease.appReleaseForm.error.title')}
-            description={t('content.apprelease.appReleaseForm.error.message')}
-            open
-            severity="error"
-            onCloseNotification={() => setValidatePublishNotification(false)}
-          />
-        </div>
-      )}
     </div>
   )
 }
