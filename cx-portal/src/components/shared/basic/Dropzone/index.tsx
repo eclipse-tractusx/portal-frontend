@@ -67,6 +67,7 @@ export const Dropzone = ({
       maxFilesToUpload === Object.keys(dropped)?.length || showPreviewAlone,
     maxFiles: maxFilesToUpload,
     accept: acceptFormat,
+    multiple: false,
   })
 
   return (

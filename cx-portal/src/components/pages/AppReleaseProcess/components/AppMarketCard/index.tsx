@@ -476,8 +476,8 @@ export default function AppMarketCard() {
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
                             )} ${
                               item === 'shortDescriptionEN'
-                                ? 'A-Za-z0-9.: @&,'
-                                : 'A-Za-z0-9.: @&,äüö'
+                                ? 'A-Za-z0-9.: @&_-,'
+                                : 'A-Za-z0-9.: @&_-,äüö'
                             }`,
                           },
                           maxLength: {

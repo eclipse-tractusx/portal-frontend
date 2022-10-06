@@ -24,10 +24,13 @@ import {
   PageHeader,
   Typography,
 } from 'cx-portal-shared-components'
-import { currentActiveStep } from 'features/appManagement/slice'
+import {
+  currentActiveStep,
+  setCurrentActiveStep,
+} from 'features/appManagement/slice'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AppMarketCard from './AppMarketCard'
 import AppPage from './AppPage'
 import BetaTest from './BetaTest'
@@ -43,6 +46,7 @@ export default function AppReleaseProcessForm() {
   const { t } = useTranslation()
   let activePage = useSelector(currentActiveStep)
   const [showSubmitPage, setShowSubmitPage] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     activeStep()
@@ -58,6 +62,10 @@ export default function AppReleaseProcessForm() {
     else if (activePage === 5) return <BetaTest />
     else if (activePage === 6)
       return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+  }
+  const onAppsOverviewClick = () => {
+    navigate(`/appoverview`)
+    dispatch(setCurrentActiveStep())
   }
 
   return (
@@ -79,7 +87,7 @@ export default function AppReleaseProcessForm() {
           <Typography variant="body1" sx={{ mb: 2 }}>
             {t('content.apprelease.submitApp.yourCatenaXTeam')}
           </Typography>
-          <Button onClick={() => navigate(`/appoverview`)}>
+          <Button onClick={onAppsOverviewClick}>
             {t('content.apprelease.submitApp.myAppsOverview')}
           </Button>
         </MainHeader>

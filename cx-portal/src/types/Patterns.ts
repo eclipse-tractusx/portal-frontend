@@ -33,8 +33,8 @@ export const Patterns = {
   appMarketCard: {
     appTitle: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
     appProvider: /^([A-Za-z ]){3,30}$/,
-    shortDescriptionEN: /^([A-Za-z.:@0-9& ,]){10,255}$/,
-    shortDescriptionDE: /^([A-Za-z.:@0-9& ,äüö]){10,255}$/,
+    shortDescriptionEN: /^([A-Za-z.:@0-9&_ ,-]){10,255}$/,
+    shortDescriptionDE: /^([A-Za-z.:@0-9&_ ,äüö-]){10,255}$/,
     useCaseCategory: /^([A-Za-z])$/,
     appLanguage: /^([A-Za-z ])$/,
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
