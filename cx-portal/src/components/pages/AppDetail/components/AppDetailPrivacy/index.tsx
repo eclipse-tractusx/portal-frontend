@@ -19,21 +19,11 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
+import { Typography } from 'cx-portal-shared-components'
 import './AppDetailPrivacy.scss'
 
 export default function AppDetailPrivacy() {
   const { t } = useTranslation()
-
-  const tableData: TableType = {
-    head: ['Linked to your identity', 'Linked NOT to your identity'],
-    body: [
-      ['Personal Information', 'Lorem Personal Information'],
-      ['Used Content', 'Ipsum Used Content'],
-      ['Catena X Account Data', 'Lorem Catena X Account Data'],
-      ['Diagnostic Data', ''],
-    ],
-  }
 
   return (
     <div className="appdetail-privacy">
@@ -46,7 +36,9 @@ export default function AppDetailPrivacy() {
         </Typography>
       </div>
       <div className="privacy-table">
-        <StaticTable data={tableData} horizontal={false} />
+        <Typography variant="body2" className="table-text">
+          {t('content.appdetail.privacy.notSupportedMessage')}
+        </Typography>
       </div>
     </div>
   )
