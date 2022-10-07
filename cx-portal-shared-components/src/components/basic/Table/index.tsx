@@ -24,7 +24,6 @@ import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 import { theme } from '../../../theme'
-import { useState } from 'react'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate'
