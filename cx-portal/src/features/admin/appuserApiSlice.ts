@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
 import i18next from 'i18next'
@@ -91,3 +93,30 @@ export const {
   useFetchAppUsersSearchQuery,
   useAddUserRolesMutation,
 } = apiSlice
+
+const name = 'admin/user/role/add'
+
+export interface UserRoleState {
+  userRoleResp: string
+}
+
+export const initialState: UserRoleState = {
+  userRoleResp: '',
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setUserRoleResp: (state, action) => {
+      state.userRoleResp = action.payload
+    },
+  },
+})
+
+export const currentUserRoleResp = (state: RootState): string => {
+  return state.userRole.userRoleResp
+}
+
+export const { setUserRoleResp } = slice.actions
+export default slice

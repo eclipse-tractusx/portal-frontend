@@ -22,17 +22,40 @@ import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { PageHeader } from 'cx-portal-shared-components'
+import { PageHeader, PageSnackbar } from 'cx-portal-shared-components'
 import { useParams } from 'react-router-dom'
-import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
+import {
+  currentUserRoleResp,
+  setUserRoleResp,
+  useFetchAppRolesQuery,
+} from 'features/admin/appuserApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import './AppUserManagement.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 
 export default function AppUserManagement() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const appId = useParams().appId
   const appDetails = useFetchAppDetailsQuery(appId ?? '').data
   const { data, isError } = useFetchAppRolesQuery(appId ?? '')
+
+  const userRoleResponse = useSelector(currentUserRoleResp)
+
+  const [showAlert, setShowAlert] = useState<boolean>(false)
+
+  useEffect(() => {
+    setShowAlert(userRoleResponse === 'error' || userRoleResponse === 'success')
+  }, [userRoleResponse])
+
+  useEffect(() => {
+    dispatch(setUserRoleResp(''))
+  }, [dispatch])
+
+  const onAlertClose = () => {
+    setShowAlert(false)
+  }
 
   return (
     <main className="app-user-management">
@@ -52,6 +75,22 @@ export default function AppUserManagement() {
         />
       )}
       <AppUserDetailsTable />
+      <PageSnackbar
+        contactLinks=""
+        contactText=""
+        description={
+          userRoleResponse === 'success'
+            ? 'User Role assigned successfully'
+            : 'Error while assigning user role'
+        }
+        open={showAlert}
+        onCloseNotification={onAlertClose}
+        severity={userRoleResponse === 'success' ? 'success' : 'error'}
+        showIcon
+        title={userRoleResponse === 'success' ? 'Success' : 'Error'}
+        vertical={'bottom'}
+        horizontal={'right'}
+      />
     </main>
   )
 }

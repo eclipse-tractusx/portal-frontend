@@ -24,6 +24,7 @@ import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 import { theme } from '../../../theme'
+import { useState } from 'react'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate'
@@ -86,6 +87,11 @@ export const Table = ({
     onSelection,
     searchExpr,
   }
+
+  const handleOnCellClick = (params: any) => {
+    onSelection && onSelection([params.row.companyUserId])
+  }
+
   const toolbarView = () => {
     switch (toolbarVariant) {
       case 'basic':
@@ -121,9 +127,7 @@ export const Table = ({
         components={{
           Toolbar: () => toolbarView(),
         }}
-        onSelectionModelChange={(newSelectionRow) => {
-          onSelection && onSelection(newSelectionRow)
-        }}
+        onCellClick={handleOnCellClick}
         {...{
           rows,
           columns,
