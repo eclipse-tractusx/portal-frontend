@@ -112,3 +112,16 @@ export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {
     .filter((e) => e.status)
     .map(appToCard)
 }
+
+export const appCardRecentlyApps = (apps: AppMarketplaceApp[]): CardItems[] => {
+  if (!apps || apps.length <= 6) return []
+  const recentlyData = apps
+    .filter((e) => e.lastChanged)
+    .map((e) => {
+      const timestamp = new Date(e.lastChanged as string).getTime()
+      return { ...e, timestamp }
+    })
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, 4)
+  return appCardStatus(recentlyData)
+}

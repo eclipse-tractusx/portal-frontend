@@ -17,9 +17,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.back-btn {
-  margin: 50px 0px 0px 90px !important;
-}
 .marketplace-main {
   width: 100%;
   padding: 30px 0;
@@ -27,7 +24,8 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  max-width: 900px;
+  max-width: 1140px;
+  min-height: 2000px;
   .product-description {
     margin-bottom: 42px;
     p {

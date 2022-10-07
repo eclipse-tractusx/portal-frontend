@@ -21,13 +21,13 @@
 import {
   Button,
   IconButton,
-  PageSnackbar,
+  PageNotifications,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box } from '@mui/material'
+import { Divider, Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { ConnectorFormInputField } from '../AppMarketCard'
@@ -40,8 +40,7 @@ type FormDataType = {
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
-  const [showContractErrorAlert, setShowContractErrorAlert] =
-    useState<string>('')
+  const [contractNotification, setContractNotification] = useState(false)
   const dispatch = useDispatch()
 
   const consentData = {
@@ -97,6 +96,7 @@ export default function ContractAndConsent() {
 
   const handleSave = async (data: FormDataType) => {
     dispatch(increment())
+    setContractNotification(true)
   }
 
   return (
@@ -109,7 +109,7 @@ export default function ContractAndConsent() {
       </Typography>
       <form className="header-description">
         {agreementData?.map((item) => (
-          <div className="form-field">
+          <div className="form-field" key={item}>
             <ConnectorFormInputField
               {...{
                 control,
@@ -132,6 +132,22 @@ export default function ContractAndConsent() {
         ))}
       </form>
       <Box mb={2}>
+        {contractNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setContractNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
@@ -160,16 +176,6 @@ export default function ContractAndConsent() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      <PageSnackbar
-        open={showContractErrorAlert !== ''}
-        onCloseNotification={() => setShowContractErrorAlert('')}
-        severity="error"
-        title={t('content.apprelease.appReleaseForm.error.title')}
-        description={showContractErrorAlert}
-        showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
-      />
     </div>
   )
 }

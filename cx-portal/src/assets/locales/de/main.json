@@ -58,8 +58,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Anfrage",
-          "requestDescription": "ID der Benutzeranfrage",
           "date": "Datum",
           "companyinfo": "Bewerbungsinformationen des Unternehmens",
           "documents": "Unterlagen",
@@ -709,6 +707,13 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "appCardDetails": "App Card Details"
       },
+      "submitApp": {
+        "headerTitle": "Thank you for submitting the app!",
+        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescriptionComplete": "further information on app release",
+        "yourCatenaXTeam": "Your Catena-X team",
+        "myAppsOverview": "My apps overview"
+      },
       "appReleaseForm": {
         "headerTitle": "Create App",
         "addMore": "Add More",
@@ -724,13 +729,13 @@
         "isMandatory": " is mandatory",
         "fileUploadIsMandatory": "File upload is mandatory",
         "error": {
-          "title": "Error",
-          "message": "Error"
+          "title": "Error - something went wrong.",
+          "message": "Please try it again"
         }
       },
       "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "save & proceed",
+        "saveAndProceed": "Save & proceed",
         "save": "Save",
         "submit": "Submit"
       }

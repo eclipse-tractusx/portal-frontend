@@ -87,6 +87,10 @@
     "title": "App-Abonnement anfordern",
     "content": "Hey {{you}}, {{user}} ist daran interessiert, App {{app}} zu abonnieren und schreibt:"
   },
+  "APP_RELEASE_REQUEST": {
+    "title": "App Release Anfrage",
+    "content": "Eine neue App Release Anfrage wurde gestellt. Review die Anfrage im App Release Board:"
+  },
   "link": {
     "appmarketplace": "Zum App Marketplace",
     "technicalsetup": "Zur Konnektor Konfiguration",

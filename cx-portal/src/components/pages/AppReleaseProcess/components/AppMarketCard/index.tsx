@@ -27,7 +27,7 @@ import {
   Card,
   MultiSelectList,
   Checkbox,
-  PageSnackbar,
+  PageNotifications,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -175,7 +175,7 @@ export default function AppMarketCard() {
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
-  const [showErrorAlert, setShowErrorAlert] = useState<string>('')
+  const [appCardNotification, setAppCardNotification] = useState(false)
 
   const defaultValues = {
     title: '',
@@ -268,7 +268,7 @@ export default function AppMarketCard() {
         dispatch(increment())
       })
       .catch((error: any) => {
-        setShowErrorAlert(error && error?.data?.title)
+        setAppCardNotification(true)
       })
   }
 
@@ -468,10 +468,17 @@ export default function AppMarketCard() {
                             )}`,
                           },
                           pattern: {
-                            value: Patterns.appMarketCard.shortDescription,
+                            value:
+                              item === 'shortDescriptionEN'
+                                ? Patterns.appMarketCard.shortDescriptionEN
+                                : Patterns.appMarketCard.shortDescriptionDE,
                             message: `${t(
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
-                            )} A-Za-z0-9.: @&`,
+                            )} ${
+                              item === 'shortDescriptionEN'
+                                ? 'A-Za-z0-9.: @&,'
+                                : 'A-Za-z0-9.: @&,äüö'
+                            }`,
                           },
                           maxLength: {
                             value: 255,
@@ -666,6 +673,23 @@ export default function AppMarketCard() {
       </Grid>
 
       <Box mb={2}>
+        {appCardNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setAppCardNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
+
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
@@ -697,16 +721,6 @@ export default function AppMarketCard() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      <PageSnackbar
-        open={showErrorAlert !== ''}
-        onCloseNotification={() => setShowErrorAlert('')}
-        severity="error"
-        title={t('content.apprelease.appReleaseForm.error.title')}
-        description={showErrorAlert}
-        showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
-      />
     </div>
   )
 }

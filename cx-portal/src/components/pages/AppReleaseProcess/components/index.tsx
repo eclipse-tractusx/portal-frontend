@@ -18,9 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageHeader } from 'cx-portal-shared-components'
+import {
+  Button,
+  MainHeader,
+  PageHeader,
+  Typography,
+} from 'cx-portal-shared-components'
 import { currentActiveStep } from 'features/appManagement/slice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import AppMarketCard from './AppMarketCard'
@@ -31,10 +36,13 @@ import AppReleaseStepper from './stepper'
 import TechnicalIntegration from './TechnicalIntegration'
 import ValidateAndPublish from './ValidateAndPublish'
 import './ReleaseProcessSteps.scss'
+import { useNavigate } from 'react-router-dom'
 
 export default function AppReleaseProcessForm() {
+  const navigate = useNavigate()
   const { t } = useTranslation()
   let activePage = useSelector(currentActiveStep)
+  const [showSubmitPage, setShowSubmitPage] = useState(false)
 
   useEffect(() => {
     activeStep()
@@ -48,22 +56,48 @@ export default function AppReleaseProcessForm() {
     else if (activePage === 3) return <ContractAndConsent />
     else if (activePage === 4) return <TechnicalIntegration />
     else if (activePage === 5) return <BetaTest />
-    else if (activePage === 6) return <ValidateAndPublish />
+    else if (activePage === 6)
+      return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
   }
 
   return (
     <div className="app-release-process-form">
-      <PageHeader
-        title={t('content.apprelease.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      />
-      <div className="create-app-section">
-        <div className="container">
-          <AppReleaseStepper activePage={activePage} />
-          {activeStep()}
-        </div>
-      </div>
+      {showSubmitPage ? (
+        <MainHeader
+          subTitle={t('content.apprelease.submitApp.headerTitle')}
+          headerHeight={731}
+          subTitleWidth={500}
+          background="LinearGradient1"
+          imagePath="../../submit-app-background.png"
+        >
+          <Typography variant="body1" sx={{ mt: 2 }}>
+            {t('content.apprelease.submitApp.headerDescription')}
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            {t('content.apprelease.submitApp.headerDescriptionComplete')}
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            {t('content.apprelease.submitApp.yourCatenaXTeam')}
+          </Typography>
+          <Button onClick={() => navigate(`/appoverview`)}>
+            {t('content.apprelease.submitApp.myAppsOverview')}
+          </Button>
+        </MainHeader>
+      ) : (
+        <>
+          <PageHeader
+            title={t('content.apprelease.headerTitle')}
+            topPage={true}
+            headerHeight={200}
+          />
+          <div className="create-app-section">
+            <div className="container">
+              <AppReleaseStepper activePage={activePage} />
+              {activeStep()}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
