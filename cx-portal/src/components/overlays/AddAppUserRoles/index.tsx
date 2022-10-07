@@ -58,16 +58,14 @@ export default function AddAppUserRoles() {
       appId: appId,
       body: {
         companyUserId: user, // under refactoring
-        roles: roles,
+        roles,
       },
     }
     try {
-      const resp = await addUserRoles(data).unwrap()
-      console.log('resp', resp)
+      await addUserRoles(data).unwrap()
       dispatch(setUserRoleResp('success'))
       dispatch(closeOverlay())
     } catch (err) {
-      console.log('****', err)
       dispatch(setUserRoleResp('error'))
       dispatch(closeOverlay())
     }
