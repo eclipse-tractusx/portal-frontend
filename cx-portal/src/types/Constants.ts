@@ -106,6 +106,7 @@ export enum ROLES {
   ADMIN_CONNECTOR = 'Admin - Connector Setup',
   ADMIN_USER = 'Admin - User Management',
   INVITE_NEW_PARTNER = 'invite_new_partner',
+  NOTIFICATION_VIEW = 'view_notifications',
   SETUP_IDP = 'setup_idp',
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
