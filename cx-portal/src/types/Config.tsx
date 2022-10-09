@@ -190,12 +190,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    // role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPMANAGEMENT_VIEW,
     element: <AppOverview />,
   },
   {
     name: PAGES.APPOVERVIEW,
-    //role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverview />,
   },
   {
