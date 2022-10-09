@@ -176,6 +176,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.NOTIFICATIONS,
+    role: ROLES.NOTIFICATION_VIEW,
     element: <NotificationCenter />,
   },
   {
