@@ -62,17 +62,19 @@ export const CardAddService = ({
         className="card"
       >
         <Box sx={{ textAlign: 'center' }}>
-          <Box sx={{
-            height: '120px',
-            width: '120px',
-            backgroundColor: theme.palette.accent.accent02,
-            borderRadius: '100px',
-            margin: 'auto',
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
+          <Box
+            sx={{
+              height: '120px',
+              width: '120px',
+              backgroundColor: theme.palette.accent.accent02,
+              borderRadius: '100px',
+              margin: 'auto',
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
             <svg
               width="35"
               height="35"
@@ -96,7 +98,7 @@ export const CardAddService = ({
                 display: 'box',
                 lineClamp: '2',
                 boxOrient: 'vertical',
-                paddingTop: '20px'
+                paddingTop: '20px',
               }}
             >
               {title}
