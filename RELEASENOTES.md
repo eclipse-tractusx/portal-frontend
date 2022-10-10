@@ -6,7 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### 0.6.1
 
 * Bugfix - Description field validation adjustment in app release process
-
+* Feature - App Detail Page - Privacy Policy content not supported tag added
 
 
 ### 0.5.5
