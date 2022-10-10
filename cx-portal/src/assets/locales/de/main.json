@@ -529,7 +529,8 @@
       "privacyDesc": "Für Fragen zum Thema Datenschutz und der Information, welche Daten von Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:"
     },
     "privacy": {
-      "message": "Fügen Sie hier Inhalte hinzu"
+      "message": "Fügen Sie hier Inhalte hinzu",
+      "notSupportedMessage": "Currently not yet supported"
     },
     "terms": {
       "message": "Fügen Sie hier Inhalte hinzu"

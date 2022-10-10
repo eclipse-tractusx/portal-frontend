@@ -111,6 +111,15 @@ export const apiSlice = createApi({
     fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/provided`,
     }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}?documentId=${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -120,4 +129,5 @@ export const {
   useFetchFavoriteAppsQuery,
   useFetchSubscriptionStatusQuery,
   useFetchProvidedAppsQuery,
+  useFetchDocumentByIdMutation,
 } = apiSlice
