@@ -5,6 +5,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.6.1
 * Feature - App Detail Page - Privacy Policy content not supported tag added
+* Feature - App Overview Page - Design updates
 
 
 ### 0.5.5
