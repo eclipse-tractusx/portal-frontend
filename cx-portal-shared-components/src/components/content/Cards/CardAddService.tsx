@@ -62,10 +62,20 @@ export const CardAddService = ({
         className="card"
       >
         <Box sx={{ textAlign: 'center' }}>
-          <Box>
+          <Box sx={{
+            height: '120px',
+            width: '120px',
+            backgroundColor: theme.palette.accent.accent02,
+            borderRadius: '100px',
+            margin: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}>
             <svg
-              width="50"
-              height="50"
+              width="35"
+              height="35"
               viewBox="0 0 50 50"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +96,7 @@ export const CardAddService = ({
                 display: 'box',
                 lineClamp: '2',
                 boxOrient: 'vertical',
+                paddingTop: '20px'
               }}
             >
               {title}
