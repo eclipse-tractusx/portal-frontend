@@ -24,15 +24,14 @@ import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
 import { appToCard } from 'features/apps/mapper'
-import { AppMarketplaceApp } from 'features/apps/apiSlice'
-import { useFetchSubscribedAppsQuery } from 'features/apps/apiSliceTest'
+import { AppMarketplaceApp, useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const subscribed = useFetchSubscribedAppsQuery().data || []
-  const cards = subscribed.map((app: AppMarketplaceApp) => appToCard(app))
+  const businessApps = useFetchBusinessAppsQuery().data || []
+  const cards = businessApps.map((app: AppMarketplaceApp) => appToCard(app))
   const reference = PageService.registerReference(label, useRef(null))
 
   return (

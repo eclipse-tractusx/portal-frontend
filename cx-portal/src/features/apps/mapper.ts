@@ -52,8 +52,8 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
     src: getAppLeadImage(app),
     alt: app.title,
   },
-  onClick: app.link
-    ? () => window.open(app.link, '_blank')?.focus()
+  onClick: app.uri
+    ? () => window.open(app.uri, '_blank')?.focus()
     : undefined,
 })
 
