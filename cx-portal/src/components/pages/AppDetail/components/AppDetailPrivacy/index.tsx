@@ -35,11 +35,9 @@ export default function AppDetailPrivacy() {
           {t('content.appdetail.privacy.message')}
         </Typography>
       </div>
-      <div className="privacy-table">
-        <Typography variant="body2" className="table-text">
-          {t('content.appdetail.privacy.notSupportedMessage')}
-        </Typography>
-      </div>
+      <Typography variant="body2" className="table-text">
+        {t('content.appdetail.privacy.notSupportedMessage')}
+      </Typography>
     </div>
   )
 }
