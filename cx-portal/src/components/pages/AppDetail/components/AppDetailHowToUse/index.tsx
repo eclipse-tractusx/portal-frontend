@@ -63,8 +63,8 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
           item.documents['APP_CONTRACT'].map(
             (document: DocumentData, index: number) => (
               <li key={index}>
-                <a
-                  href="#"
+                <button
+                  className="document-button-link"
                   onClick={() =>
                     handleDownloadClick(
                       document.documentId,
@@ -73,7 +73,7 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
                   }
                 >
                   {document.documentName}
-                </a>
+                </button>
               </li>
             )
           )}
