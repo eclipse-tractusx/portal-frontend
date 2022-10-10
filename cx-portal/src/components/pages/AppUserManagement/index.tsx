@@ -80,8 +80,8 @@ export default function AppUserManagement() {
         contactText=""
         description={
           userRoleResponse === 'success'
-            ? 'User Role assigned successfully'
-            : 'Error while assigning user role'
+            ? t('content.usermanagement.appUserDetails.userRoleSuccessMsg')
+            : t('content.usermanagement.appUserDetails.userRoleErrorMsg')
         }
         open={showAlert}
         onCloseNotification={onAlertClose}
