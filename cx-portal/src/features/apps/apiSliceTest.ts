@@ -30,7 +30,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchLatestApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/latest.json`,
-    })
+    }),
   }),
 })
 

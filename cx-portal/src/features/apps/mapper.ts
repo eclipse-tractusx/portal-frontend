@@ -52,9 +52,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
     src: getAppLeadImage(app),
     alt: app.title,
   },
-  onClick: app.uri
-    ? () => window.open(app.uri, '_blank')?.focus()
-    : undefined,
+  onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,
 })
 
 export const filterSubscribed = (

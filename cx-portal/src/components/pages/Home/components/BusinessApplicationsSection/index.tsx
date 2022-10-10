@@ -24,7 +24,10 @@ import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
 import { appToCard } from 'features/apps/mapper'
-import { AppMarketplaceApp, useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
+import {
+  AppMarketplaceApp,
+  useFetchBusinessAppsQuery,
+} from 'features/apps/apiSlice'
 
 export const label = 'BusinessApplictions'
 
