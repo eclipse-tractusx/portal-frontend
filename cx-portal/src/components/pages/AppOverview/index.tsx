@@ -24,18 +24,15 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import {
   PageHeader,
   Typography,
-  Cards,
   ViewSelector,
   SearchInput,
-  CardAddService,
-  CardHorizontal,
   CardItems,
+  Cards,
 } from 'cx-portal-shared-components'
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
-import uniqueId from 'lodash/uniqueId'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 
@@ -152,6 +149,7 @@ export default function AppOverview() {
                 buttonText="Details"
                 variant="minimal"
                 filledBackground={true}
+                imageSize={'small'}
               />
             </div>
           </div>
@@ -184,31 +182,21 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          <div className="app-child">
-            <CardAddService
-              borderRadius={20}
-              backgroundColor={'background.background01'}
-              onButtonClick={function noRefCheck() {}}
-              title={t('content.appoverview.addbtn')}
-            />
-          </div>
-          {filterItem?.map((item: any) => {
-            return (
-              <div className="app-child" key={uniqueId(item.title)}>
-                <CardHorizontal
-                  borderRadius={20}
-                  imageAlt={item.image.alt || ''}
-                  imagePath={item.image.src}
-                  label={item.subtitle || ''}
-                  onBtnClick={function noRefCheck() {}}
-                  statusText={item.statusText}
-                  status={item.status}
-                  title={item.title}
-                  backgroundColor={'background.background01'}
-                />
-              </div>
-            )
-          })}
+          {filterItem && filterItem?.length > 0 && (
+            <div className="desc-card">
+              <Cards
+                items={filterItem}
+                columns={4}
+                buttonText="Details"
+                variant="minimal"
+                filledBackground={false}
+                imageSize={'small'}
+                showAddNewCard={true}
+                newButtonText={t('content.appoverview.addbtn')}
+                onNewCardButton={function noRefCheck() {}}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
