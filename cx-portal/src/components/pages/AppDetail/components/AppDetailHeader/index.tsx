@@ -18,17 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { getAppLeadImage } from 'features/apps/mapper'
-import { useParams } from 'react-router-dom'
-import './AppDetailHeader.scss'
-import { fetch } from 'features/apps/details/actions'
-import { itemSelector } from 'features/apps/details/slice'
 import { userSelector } from 'features/user/slice'
+import './AppDetailHeader.scss'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -36,17 +32,10 @@ export interface AppDetailHeaderProps {
 
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const { appId } = useParams()
   const user = useSelector(userSelector)
-  const appData = useSelector(itemSelector)
-
-  useEffect(() => {
-    dispatch(fetch(appId!))
-  }, [dispatch, appId])
 
   const getSubscribeBtn = () => {
-    const subscribeStatus = appData.isSubscribed
+    const subscribeStatus = item.isSubscribed
     if (subscribeStatus === 'PENDING') {
       return <Button color="secondary">{t('content.appdetail.pending')}</Button>
     } else if (subscribeStatus === 'ACTIVE') {

@@ -178,10 +178,17 @@ export default function AppPage() {
                       )}`,
                     },
                     pattern: {
-                      value: Patterns.appPage.longDescription,
+                      value:
+                        item === 'longDescriptionEN'
+                          ? Patterns.appPage.longDescriptionEN
+                          : Patterns.appPage.longDescriptionDE,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Za-z0-9.: @&`,
+                      )} ${
+                        item === 'longDescriptionEN'
+                          ? 'A-Za-z0-9.: @&_-,'
+                          : 'A-Za-z0-9.: @&_-,äüö'
+                      }`,
                     },
                     maxLength: {
                       value: longDescriptionMaxLength,

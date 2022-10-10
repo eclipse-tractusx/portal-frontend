@@ -87,6 +87,10 @@
     "title": "Request for app subscription",
     "content": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}} and writes:"
   },
+  "APP_RELEASE_REQUEST": {
+    "title": "New app release request waiting for review",
+    "content": "A new app release request is available in the app management board. Please validate the request:"
+  },
   "link": {
     "appmarketplace": "Go to app marketplace",
     "technicalsetup": "Go to connector configuration",

@@ -3,6 +3,10 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### 0.6.1
+* Feature - App Detail Page - Privacy Policy content not supported tag added
+
+
 ### 0.5.5
 
 * Feature - App Overview page
@@ -18,9 +22,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - User Management - Success/Fail Message
 * Bugfix - Partner netowrk search issue fix
 * Bugfix - CardHorizontal - Height issue fix
-* feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Expand on hover feature added to  CardHorizontal component.
 * Feature - Add download document in application request page
 * Feature - Add User Role Overlay (refactoring)
+* Bugfix - Bind app subscribe status in my organization page
 * Feature - Assign user role (refactoring)
 * Feature - Show subscription box after subscribed immediately
 * Bugfix - App Marketplace - Subscription Button update needed
@@ -29,6 +34,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * User Experience - delete request id from registration admin board
 * Feature - TrasmissionChip button component
 * Feature - App Release Process - Business Logic & API - Submit App for review
+* Bugfix - Description field validation adjustment in app release process
+* Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
+* Feature - Transition button added to Registration table
+
 
 
 ### 0.5.4
