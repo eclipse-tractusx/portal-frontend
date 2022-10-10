@@ -86,6 +86,11 @@ export const Table = ({
     onSelection,
     searchExpr,
   }
+
+  const handleOnCellClick = (params: any) => {
+    onSelection && onSelection([params.row.companyUserId])
+  }
+
   const toolbarView = () => {
     switch (toolbarVariant) {
       case 'basic':
@@ -121,9 +126,7 @@ export const Table = ({
         components={{
           Toolbar: () => toolbarView(),
         }}
-        onSelectionModelChange={(newSelectionRow) => {
-          onSelection && onSelection(newSelectionRow)
-        }}
+        onCellClick={onSelection && handleOnCellClick}
         {...{
           rows,
           columns,

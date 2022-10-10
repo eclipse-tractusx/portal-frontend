@@ -401,6 +401,8 @@
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
         "subheadline": "App Access Management",
+        "userRoleSuccessMsg": "User Role assigned successfully",
+        "userRoleErrorMsg": "Error while assigning user role",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."

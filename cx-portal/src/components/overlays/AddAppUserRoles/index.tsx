@@ -29,7 +29,7 @@ import { useParams } from 'react-router-dom'
 import { AppRoles } from './AppRoles'
 import UserListContent from './UserListContent'
 import { useDispatch, useSelector } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddAppUserRoles.scss'
 import {
@@ -37,6 +37,7 @@ import {
   selectedUserSelector,
 } from 'features/admin/userDeprecated/slice'
 import {
+  setUserRoleResp,
   useAddUserRolesMutation,
   UserRoleRequest,
 } from 'features/admin/appuserApiSlice'
@@ -62,8 +63,11 @@ export default function AddAppUserRoles() {
     }
     try {
       await addUserRoles(data).unwrap()
+      dispatch(setUserRoleResp('success'))
+      dispatch(closeOverlay())
     } catch (err) {
-      console.log(err)
+      dispatch(setUserRoleResp('error'))
+      dispatch(closeOverlay())
     }
   }
 
