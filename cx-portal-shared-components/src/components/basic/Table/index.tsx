@@ -126,7 +126,7 @@ export const Table = ({
         components={{
           Toolbar: () => toolbarView(),
         }}
-        onCellClick={handleOnCellClick}
+        onCellClick={onSelection && handleOnCellClick}
         {...{
           rows,
           columns,
