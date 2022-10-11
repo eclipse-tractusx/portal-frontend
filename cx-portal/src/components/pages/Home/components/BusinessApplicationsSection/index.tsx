@@ -21,11 +21,14 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from 'cx-portal-shared-components'
-import Box from '@mui/material/Box';
+import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
 import { appToCard } from 'features/apps/mapper'
-import { AppMarketplaceApp, useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
+import {
+  AppMarketplaceApp,
+  useFetchBusinessAppsQuery,
+} from 'features/apps/apiSlice'
 
 export const label = 'BusinessApplictions'
 
@@ -65,34 +68,34 @@ export default function BusinessApplicationsSection() {
               onClick={item.onClick}
             />
           ))}
-          {
-            emptyCards > 0 ?
-              Array.from(Array(emptyCards), () => {
-                return <Box
-                  sx={{
-                    height: '240px',
-                    border: '3px dashed #f3f3f3',
-                    borderRadius: '15px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    padding: '15px'
-                  }}
-                >
-                  <Typography
+          {emptyCards > 0
+            ? Array.from(Array(emptyCards), () => {
+                return (
+                  <Box
                     sx={{
-                      color: '#f3f3f3'
+                      height: '240px',
+                      border: '3px dashed #f3f3f3',
+                      borderRadius: '15px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                      padding: '15px',
                     }}
-                    variant="body2"
                   >
-                    {t('content.home.emptyCards.title')}
-                  </Typography>
-                </Box>
+                    <Typography
+                      sx={{
+                        color: '#f3f3f3',
+                      }}
+                      variant="body2"
+                    >
+                      {t('content.home.emptyCards.title')}
+                    </Typography>
+                  </Box>
+                )
               })
-              : ''
-          }
+            : ''}
         </Carousel>
       </section>
     </div>
