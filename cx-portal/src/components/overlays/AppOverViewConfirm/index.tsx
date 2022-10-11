@@ -29,11 +29,14 @@ import { closeOverlay } from 'features/control/overlay/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import './AppOverviewConfirm.scss'
+import { useNavigate } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
 
 export default function AppOverViewConfirm({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
+  const navigate = useNavigate()
 
   return (
     <div className="small-confirm">
@@ -73,7 +76,10 @@ export default function AppOverViewConfirm({ id }: { id: string }) {
             minWidth: '100px',
           }}
           variant="contained"
-          onClick={close}
+          onClick={() => {
+            close()
+            navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+          }}
         >
           {`${t('global.actions.yes')}`}
         </Button>

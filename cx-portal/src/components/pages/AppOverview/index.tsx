@@ -207,7 +207,9 @@ export default function AppOverview() {
                 imageSize={'small'}
                 showAddNewCard={true}
                 newButtonText={t('content.appoverview.addbtn')}
-                onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+                onNewCardButton={() =>
+                  navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+                }
                 onCardClick={(item: any) => {
                   showOverlay(item)
                 }}
