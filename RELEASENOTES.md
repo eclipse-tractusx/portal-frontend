@@ -9,7 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Overview Page - Design updates
 * Feature - Assign User Role
 * Feature - Connect My App API on Home Page
-
+* Feature - App Release Process - Business logic & API connect for document upload
 
 ### 0.5.5
 

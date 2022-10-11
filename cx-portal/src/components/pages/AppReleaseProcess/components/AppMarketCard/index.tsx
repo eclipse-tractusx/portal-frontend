@@ -38,6 +38,7 @@ import {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
+  useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
@@ -58,7 +59,7 @@ type FormDataType = {
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: string
+    leadPictureUri: any
     alt: string
   }
   providerCompanyId: string
@@ -84,6 +85,7 @@ export const ConnectorFormInputField = ({
   maxFilesToUpload,
   previewFiles,
   showPreviewAlone,
+  maxFileSize,
 }: any) => (
   <Controller
     name={name}
@@ -117,12 +119,13 @@ export const ConnectorFormInputField = ({
           <Dropzone
             onFileDrop={(files: any) => {
               trigger(name)
-              onChange(files[0].name)
+              onChange(files[0])
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             previewFiles={previewFiles}
             showPreviewAlone={showPreviewAlone}
+            maxFileSize={maxFileSize}
           />
         )
       } else if (type === 'checkbox') {
@@ -175,6 +178,7 @@ export default function AppMarketCard() {
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
+  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [appCardNotification, setAppCardNotification] = useState(false)
 
   const defaultValues = {
@@ -242,7 +246,7 @@ export default function AppMarketCard() {
     const saveData = {
       title: data.title,
       provider: data.provider,
-      leadPictureUri: data.uploadImage.leadPictureUri,
+      leadPictureUri: data.uploadImage.leadPictureUri?.path,
       providerCompanyId: data.providerCompanyId,
       useCaseIds: data.useCaseCategory,
       descriptions: [
@@ -261,15 +265,34 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
+    const uploadImageValue = getValues().uploadImage.leadPictureUri
     await addCreateApp(saveData)
       .unwrap()
       .then((result) => {
+        isString(result) &&
+          uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
         isString(result) && dispatch(setAppId(result))
         dispatch(increment())
       })
       .catch((error: any) => {
         setAppCardNotification(true)
       })
+  }
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    try {
+      await updateDocumentUpload(data).unwrap()
+    } catch (error) {}
   }
 
   return (
@@ -645,10 +668,10 @@ export default function AppMarketCard() {
                 name: 'uploadImage.leadPictureUri',
                 type: 'dropzone',
                 acceptFormat: {
-                  'image/png': [],
-                  'image/jpeg': [],
+                  'text/pdf': ['.pdf'],
                 },
                 maxFilesToUpload: 1,
+                maxFileSize: 819200,
                 rules: {
                   required: {
                     value: true,
