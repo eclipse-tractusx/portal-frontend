@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Overview Page - Design updates
 * Feature - Assign User Role
 * Feature - Connect My App API on Home Page
+* Feature - My App User Experience
 
 
 ### 0.5.5
