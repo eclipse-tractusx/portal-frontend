@@ -668,7 +668,8 @@ export default function AppMarketCard() {
                 name: 'uploadImage.leadPictureUri',
                 type: 'dropzone',
                 acceptFormat: {
-                  'text/pdf': ['.pdf'],
+                  'image/png': [],
+                  'image/jpeg': [],
                 },
                 maxFilesToUpload: 1,
                 maxFileSize: 819200,

@@ -279,7 +279,8 @@ export default function AppPage() {
               name: 'images',
               type: 'dropzone',
               acceptFormat: {
-                'text/pdf': ['.pdf'],
+                'image/png': [],
+                'image/jpeg': [],
               },
               maxFilesToUpload: 3,
               maxFileSize: 819200,
