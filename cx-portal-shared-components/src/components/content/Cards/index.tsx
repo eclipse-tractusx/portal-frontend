@@ -43,6 +43,7 @@ interface CardsProps {
   showAddNewCard?: boolean
   newButtonText?: any
   onNewCardButton?: any
+  onCardClick?: any
 }
 
 export const Cards = ({
@@ -60,6 +61,7 @@ export const Cards = ({
   showAddNewCard = false,
   newButtonText,
   onNewCardButton,
+  onCardClick = () => {},
 }: CardsProps) => {
   const settings = {
     variant,
@@ -90,7 +92,14 @@ export const Cards = ({
         />
       )}
       {items?.map((item) => (
-        <Card {...settings} {...item} key={uniqueId('Cards')} />
+        <Card
+          {...settings}
+          {...item}
+          key={uniqueId('Cards')}
+          onClick={() => {
+            onCardClick(item)
+          }}
+        />
       ))}
     </Box>
   )

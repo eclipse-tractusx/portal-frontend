@@ -8,6 +8,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Add download document in app detail page
 * Feature - App Overview Page - Design updates
 * Feature - Assign User Role
+* Feature - App overview - Show overlay when Application status is in "in progress"
 
 
 ### 0.5.5

@@ -271,7 +271,10 @@
         "inactive": "Inaktiv",
         "wip": "In Arbeit"
       },
-      "addbtn": "Neue App erstellen"
+      "addbtn": "Neue App erstellen",
+      "confirmModal": {
+        "description": "This is currently under creation. Do you want to open the app release process to add additional information to the app?"
+      }
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -792,7 +795,9 @@
       "homepage": "Startseite",
       "deleteTitle": "Löschen von {{ object }} {{ name }}",
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
-      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
+      "no": "No",
+      "yes": "Yes"
     },
     "state": {
       "enabled": "aktiv",

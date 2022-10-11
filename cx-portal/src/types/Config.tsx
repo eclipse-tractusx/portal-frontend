@@ -368,6 +368,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.NOT_FOUND,
     role: ROLES.IDP_VIEW,
   },
+  {
+    name: OVERLAYS.APP_OVERVIEW_CONFIRM,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

@@ -271,7 +271,10 @@
         "inactive": "Inactive",
         "wip": "WIP"
       },
-      "addbtn": "Create new App"
+      "addbtn": "Create new App",
+      "confirmModal": {
+        "description": "This is currently under creation. Do you want to open the app release process to add additional information to the app?"
+      }
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -751,7 +754,9 @@
       "reload": "Reload Page",
       "homepage": "Homepage",
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
-      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
+      "no": "No",
+      "yes": "Yes"
     },
     "state": {
       "enabled": "enabled",
