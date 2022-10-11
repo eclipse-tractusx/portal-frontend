@@ -102,6 +102,9 @@
       },
       "appStoreSection": {
         "title": "New Apps"
+      },
+      "emptyCards": {
+        "title": "New apps will get added here as soon as you have any assigned"
       }
     },
     "appstore": {

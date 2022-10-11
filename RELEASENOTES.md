@@ -9,7 +9,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Overview Page - Design updates
 * Feature - Assign User Role
 * Feature - App overview - Show overlay when Application status is in "in progress"
-
+* Feature - Connect My App API on Home Page
+* Feature - My App User Experience
 
 ### 0.5.5
 
