@@ -46,6 +46,7 @@ export const CardAddService = ({
     <div ref={boxRef} style={{}} onClick={onButtonClick}>
       <Box
         sx={{
+          cursor: 'pointer',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

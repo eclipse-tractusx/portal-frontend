@@ -37,10 +37,13 @@ import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
+import { useNavigate } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
 
 export default function AppOverview() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [group, setGroup] = useState<string>('')
   const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
@@ -204,7 +207,7 @@ export default function AppOverview() {
                 imageSize={'small'}
                 showAddNewCard={true}
                 newButtonText={t('content.appoverview.addbtn')}
-                onNewCardButton={function noRefCheck() {}}
+                onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
                 onCardClick={(item: any) => {
                   showOverlay(item)
                 }}
