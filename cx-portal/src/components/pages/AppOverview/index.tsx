@@ -35,10 +35,9 @@ import './AppOverview.scss'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, PAGES } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
 
 export default function AppOverview() {
   const { t } = useTranslation()
