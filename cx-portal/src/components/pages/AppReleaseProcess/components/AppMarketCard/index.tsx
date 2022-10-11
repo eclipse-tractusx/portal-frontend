@@ -59,7 +59,7 @@ type FormDataType = {
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: any
+    leadPictureUri: File | null
     alt: string
   }
   providerCompanyId: string
@@ -192,7 +192,7 @@ export default function AppMarketCard() {
     shortDescriptionEN: '',
     shortDescriptionDE: '',
     uploadImage: {
-      leadPictureUri: '',
+      leadPictureUri: null,
       alt: '',
     },
   }
@@ -246,7 +246,10 @@ export default function AppMarketCard() {
     const saveData = {
       title: data.title,
       provider: data.provider,
-      leadPictureUri: data.uploadImage.leadPictureUri?.path,
+      leadPictureUri:
+        data.uploadImage.leadPictureUri !== null &&
+        Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
+        Object.values(data.uploadImage.leadPictureUri)[0],
       providerCompanyId: data.providerCompanyId,
       useCaseIds: data.useCaseCategory,
       descriptions: [

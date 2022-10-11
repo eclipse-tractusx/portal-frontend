@@ -47,11 +47,11 @@ import {
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: string
-  uploadDataPrerequisits: any
-  uploadTechnicalGuide: any
-  uploadDataContract: any
-  uploadAppContract: any
+  images: File | null
+  uploadDataPrerequisits: File | null
+  uploadTechnicalGuide: File | null
+  uploadDataContract: File | null
+  uploadAppContract: File | null
   providerHomePage: string
   providerContactEmail: string
   providerPhoneContact: string
@@ -69,11 +69,11 @@ export default function AppPage() {
   const defaultValues = {
     longDescriptionEN: '',
     longDescriptionDE: '',
-    images: '',
-    uploadDataPrerequisits: '',
-    uploadTechnicalGuide: '',
-    uploadDataContract: '',
-    uploadAppContract: '',
+    images: null,
+    uploadDataPrerequisits: null,
+    uploadTechnicalGuide: null,
+    uploadDataContract: null,
+    uploadAppContract: null,
     providerHomePage: '',
     providerContactEmail: '',
     providerPhoneContact: '',
@@ -97,17 +97,17 @@ export default function AppPage() {
   const imagesValue = getValues().images
 
   useEffect(() => {
-    if (getValues().uploadAppContract !== '')
+    if (getValues().uploadAppContract !== null)
       uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
   }, [uploadAppContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataContract !== '')
+    if (getValues().uploadDataContract !== null)
       uploadDocumentApi(appId, 'DATA_CONTRACT', uploadDataContractValue)
   }, [uploadDataContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataPrerequisits !== '')
+    if (getValues().uploadDataPrerequisits !== null)
       uploadDocumentApi(
         appId,
         'ADDITIONAL_DETAILS',
@@ -116,12 +116,12 @@ export default function AppPage() {
   }, [uploadDataPrerequisitsValue])
 
   useEffect(() => {
-    if (getValues().uploadTechnicalGuide !== '')
+    if (getValues().uploadTechnicalGuide !== null)
       uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', uploadTechnicalGuideValue)
   }, [uploadTechnicalGuideValue])
 
   useEffect(() => {
-    if (getValues().images !== '')
+    if (getValues().images !== null)
       uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
   }, [imagesValue])
 
