@@ -4,6 +4,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### 0.6.1
+
+* Bugfix - Description field validation adjustment in app release process
 * Feature - App Detail Page - Privacy Policy content not supported tag added
 * Feature - Add download document in app detail page
 * Feature - App Overview Page - Design updates
@@ -41,7 +43,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * User Experience - delete request id from registration admin board
 * Feature - TrasmissionChip button component
 * Feature - App Release Process - Business Logic & API - Submit App for review
-* Bugfix - Description field validation adjustment in app release process
 * Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
 * Feature - Transition button added to Registration table
 
