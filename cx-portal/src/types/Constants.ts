@@ -93,6 +93,7 @@ export enum OVERLAYS {
   SERVICE_REQUEST = 'service_request',
   IDP = 'idp',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
+  APP_DETAILS_OVERLAY = 'app_details_overlay',
 }
 
 export enum ACTIONS {

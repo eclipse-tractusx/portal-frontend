@@ -19,20 +19,18 @@
  ********************************************************************************/
 
 import {
-  Button,
-  DialogActions,
   DialogContent,
   DialogHeader,
   Typography,
 } from 'cx-portal-shared-components'
-import { closeOverlay } from 'features/control/overlay/actions'
-import { useTranslation } from 'react-i18next'
+import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
+import { show } from 'features/control/overlay/actions'
 import { useDispatch } from 'react-redux'
-import './AppOverviewConfirm.scss'
-import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
+import { useTranslation } from 'react-i18next'
+import AppOverViewDetails from 'components/pages/AppOverview/AppOverViewDetails'
 
-export default function AppOverViewConfirm({
+export default function AppDetailsOverlay({
   id,
   title,
 }: {
@@ -41,65 +39,40 @@ export default function AppOverViewConfirm({
 }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const close = () => dispatch(closeOverlay())
-  const navigate = useNavigate()
+  const { data } = useFetchAppDetailsQuery(id)
 
   return (
-    <div className="small-confirm">
+    <>
       <DialogHeader
         {...{
-          title: title
-            ? t('content.appoverview.confirmModal.title').replace(
-                '{appName}',
-                title
-              )
-            : '',
+          title: t('content.appoverview.details.title'),
           closeWithIcon: true,
-          onCloseWithIcon: close,
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
       />
 
       <DialogContent
         sx={{
-          width: '90%',
+          width: '60%',
           margin: 'auto',
           textAlign: 'center',
         }}
       >
         {title && (
-          <Typography variant="h5">
-            {t('content.appoverview.confirmModal.description').replace(
+          <Typography
+            sx={{
+              marginBottom: '40px',
+            }}
+            variant="h5"
+          >
+            {t('content.appoverview.details.description').replace(
               '{appName}',
               title
             )}
           </Typography>
         )}
+        {data && <AppOverViewDetails item={data} />}
       </DialogContent>
-
-      <DialogActions>
-        <Button
-          sx={{
-            minWidth: '100px',
-          }}
-          variant="outlined"
-          onClick={close}
-        >
-          {`${t('global.actions.no')}`}
-        </Button>
-        <Button
-          sx={{
-            mr: '2',
-            minWidth: '100px',
-          }}
-          variant="contained"
-          onClick={() => {
-            close()
-            navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
-          }}
-        >
-          {`${t('global.actions.yes')}`}
-        </Button>
-      </DialogActions>
-    </div>
+    </>
   )
 }
