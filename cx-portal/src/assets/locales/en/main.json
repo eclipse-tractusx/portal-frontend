@@ -266,7 +266,7 @@
       "inputPlaceholder": "Search for Apps",
       "recently": {
         "header": "Recently changed",
-        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+        "subheader": "Below you can find your recently changed apps. By clicking on the app, you can open up the deatils/proceed on the app release process. The sub-menu added to each app card will help you to do changes on active apps. Below the recent changed apps, a list of all by your company provided apps can get found. Please scroll down to get more details."
       },
       "filter": {
         "all": "All",
