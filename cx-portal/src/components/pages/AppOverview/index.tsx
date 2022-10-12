@@ -160,7 +160,7 @@ export default function AppOverview() {
                 variant="minimal"
                 filledBackground={true}
                 imageSize={'small'}
-                onCardClick={(item: any) => {
+                onCardClick={(item: AppInfo) => {
                   showOverlay(item)
                 }}
               />
