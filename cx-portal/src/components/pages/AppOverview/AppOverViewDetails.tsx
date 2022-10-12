@@ -18,10 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getAppImage } from 'features/apps/mapper'
 import {
   Card,
-  Cards,
   LanguageSwitch,
   Typography,
   CustomAccordion,
