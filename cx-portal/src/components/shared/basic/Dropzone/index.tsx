@@ -34,6 +34,7 @@ export const Dropzone = ({
   acceptFormat = { 'image/*': [] },
   maxFilesToUpload = 1,
   previewFiles,
+  maxFileSize,
 }: {
   onFileDrop: (files: File[]) => void
   showPreviewAlone?: boolean
@@ -42,6 +43,7 @@ export const Dropzone = ({
   acceptFormat?: any
   maxFilesToUpload?: number
   previewFiles?: any
+  maxFileSize?: number
 }) => {
   const [dropped, setDropped] = useState<IHashMap<File>>({})
 
@@ -67,6 +69,8 @@ export const Dropzone = ({
       maxFilesToUpload === Object.keys(dropped)?.length || showPreviewAlone,
     maxFiles: maxFilesToUpload,
     accept: acceptFormat,
+    multiple: false,
+    maxSize: maxFileSize,
   })
 
   return (

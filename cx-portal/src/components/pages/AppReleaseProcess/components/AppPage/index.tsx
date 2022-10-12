@@ -31,7 +31,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -39,16 +39,19 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { useUpdateappMutation } from 'features/appManagement/apiSlice'
+import {
+  useUpdateappMutation,
+  useUpdateDocumentUploadMutation,
+} from 'features/appManagement/apiSlice'
 
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: string
-  uploadDataPrerequisits: string
-  uploadTechnicalGuide: string
-  uploadDataContract: string
-  uploadAppContract: string
+  images: File | null
+  uploadDataPrerequisits: File | null
+  uploadTechnicalGuide: File | null
+  uploadDataContract: File | null
+  uploadAppContract: File | null
   providerHomePage: string
   providerContactEmail: string
   providerPhoneContact: string
@@ -59,17 +62,18 @@ export default function AppPage() {
   const [appPageNotification, setAppPageNotification] = useState(false)
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
+  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
 
   const defaultValues = {
     longDescriptionEN: '',
     longDescriptionDE: '',
-    images: '',
-    uploadDataPrerequisits: '',
-    uploadTechnicalGuide: '',
-    uploadDataContract: '',
-    uploadAppContract: '',
+    images: null,
+    uploadDataPrerequisits: null,
+    uploadTechnicalGuide: null,
+    uploadDataContract: null,
+    uploadAppContract: null,
     providerHomePage: '',
     providerContactEmail: '',
     providerPhoneContact: '',
@@ -85,6 +89,57 @@ export default function AppPage() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  const uploadAppContractValue = getValues().uploadAppContract
+  const uploadDataContractValue = getValues().uploadDataContract
+  const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
+  const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
+  const imagesValue = getValues().images
+
+  useEffect(() => {
+    if (getValues().uploadAppContract !== null)
+      uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
+  }, [uploadAppContractValue])
+
+  useEffect(() => {
+    if (getValues().uploadDataContract !== null)
+      uploadDocumentApi(appId, 'DATA_CONTRACT', uploadDataContractValue)
+  }, [uploadDataContractValue])
+
+  useEffect(() => {
+    if (getValues().uploadDataPrerequisits !== null)
+      uploadDocumentApi(
+        appId,
+        'ADDITIONAL_DETAILS',
+        uploadDataPrerequisitsValue
+      )
+  }, [uploadDataPrerequisitsValue])
+
+  useEffect(() => {
+    if (getValues().uploadTechnicalGuide !== null)
+      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', uploadTechnicalGuideValue)
+  }, [uploadTechnicalGuideValue])
+
+  useEffect(() => {
+    if (getValues().images !== null)
+      uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
+  }, [imagesValue])
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    try {
+      await updateDocumentUpload(data).unwrap()
+    } catch (error) {}
+  }
 
   const onAppPageSubmit = async (data: FormDataType) => {
     const validateFields = await trigger([
@@ -118,7 +173,7 @@ export default function AppPage() {
           shortDescription: '',
         },
       ],
-      images: [data.images],
+      images: [],
       providerUri: data.providerHomePage,
       contactEmail: data.providerContactEmail,
       contactNumber: data.providerPhoneContact,
@@ -228,6 +283,7 @@ export default function AppPage() {
                 'image/jpeg': [],
               },
               maxFilesToUpload: 3,
+              maxFileSize: 819200,
               rules: {
                 required: {
                   value: true,
@@ -268,10 +324,10 @@ export default function AppPage() {
                   name: item,
                   type: 'dropzone',
                   acceptFormat: {
-                    'image/png': [],
-                    'image/jpeg': [],
+                    'text/pdf': ['.pdf'],
                   },
                   maxFilesToUpload: 1,
+                  maxFileSize: 819200,
                   rules: {
                     required: {
                       value: true,
