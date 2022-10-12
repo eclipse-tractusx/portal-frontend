@@ -99,11 +99,13 @@ export default function AppPage() {
   useEffect(() => {
     if (getValues().uploadAppContract !== null)
       uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadAppContractValue])
 
   useEffect(() => {
     if (getValues().uploadDataContract !== null)
       uploadDocumentApi(appId, 'DATA_CONTRACT', uploadDataContractValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataContractValue])
 
   useEffect(() => {
@@ -113,16 +115,19 @@ export default function AppPage() {
         'ADDITIONAL_DETAILS',
         uploadDataPrerequisitsValue
       )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataPrerequisitsValue])
 
   useEffect(() => {
     if (getValues().uploadTechnicalGuide !== null)
       uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', uploadTechnicalGuideValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
 
   useEffect(() => {
     if (getValues().images !== null)
       uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagesValue])
 
   const uploadDocumentApi = async (
