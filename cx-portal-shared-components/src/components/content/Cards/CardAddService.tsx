@@ -23,7 +23,7 @@ import { Typography } from '../../basic/Typography'
 import { useState, useEffect, useRef } from 'react'
 
 interface CardAddServiceProps {
-  title: string
+  title?: string
   backgroundColor?: string
   onButtonClick: React.MouseEventHandler
 }
@@ -46,6 +46,7 @@ export const CardAddService = ({
     <div ref={boxRef} style={{}} onClick={onButtonClick}>
       <Box
         sx={{
+          cursor: 'pointer',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

@@ -32,13 +32,17 @@ import {
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
-import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
+import { OVERLAYS, PAGES } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
+import { useNavigate } from 'react-router-dom'
 
 export default function AppOverview() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [group, setGroup] = useState<string>('')
   const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
@@ -124,6 +128,12 @@ export default function AppOverview() {
     [debouncedSearch, items, group]
   )
 
+  const showOverlay = (item: AppInfo) => {
+    if (item.status === 'created') {
+      dispatch(show(OVERLAYS.APP_OVERVIEW_CONFIRM, item.id, item.name))
+    }
+  }
+
   return (
     <div className="appoverview-app">
       <PageHeader
@@ -150,6 +160,9 @@ export default function AppOverview() {
                 variant="minimal"
                 filledBackground={true}
                 imageSize={'small'}
+                onCardClick={(item: AppInfo) => {
+                  showOverlay(item)
+                }}
               />
             </div>
           </div>
@@ -193,7 +206,12 @@ export default function AppOverview() {
                 imageSize={'small'}
                 showAddNewCard={true}
                 newButtonText={t('content.appoverview.addbtn')}
-                onNewCardButton={function noRefCheck() {}}
+                onNewCardButton={() =>
+                  navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+                }
+                onCardClick={(item: AppInfo) => {
+                  showOverlay(item)
+                }}
               />
             </div>
           )}
