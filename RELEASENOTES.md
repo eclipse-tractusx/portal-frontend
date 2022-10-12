@@ -14,6 +14,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Connect My App API on Home Page
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
+* Bugfix - Filter & load more issue fix
 
 ### 0.5.5
 
