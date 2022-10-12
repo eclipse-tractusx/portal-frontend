@@ -36,7 +36,7 @@ export type AppMarketplaceApp = {
   useCases: string[]
   price: string
   rating?: number
-  link?: string
+  uri?: string
   status?: SubscriptionStatus
   image?: ImageType
   name?: string
@@ -111,6 +111,18 @@ export const apiSlice = createApi({
     fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/provided`,
     }),
+    fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/business`,
+    }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}?documentId=${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -120,4 +132,6 @@ export const {
   useFetchFavoriteAppsQuery,
   useFetchSubscriptionStatusQuery,
   useFetchProvidedAppsQuery,
+  useFetchBusinessAppsQuery,
+  useFetchDocumentByIdMutation,
 } = apiSlice

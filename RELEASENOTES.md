@@ -7,6 +7,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Bugfix - Description field validation adjustment in app release process
 * Feature - App Detail Page - Privacy Policy content not supported tag added
+* Feature - Add download document in app detail page
+* Feature - App Overview Page - Design updates
+* Feature - Assign User Role
+* Feature - Connect My App API on Home Page
+* Feature - App Release Process - Business logic & API connect for document upload
+* Feature - My App User Experience
+
 
 
 ### 0.5.5

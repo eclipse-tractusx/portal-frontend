@@ -22,11 +22,15 @@ import { Button, Table } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDigitalTwins } from 'features/digitalTwins/actions'
+import {
+  fetchDigitalTwins,
+  fetchTwinForSearch,
+} from 'features/digitalTwins/actions'
 import { twinsSelector } from 'features/digitalTwins/slice'
 import { ShellDescriptor } from 'features/digitalTwins/types'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
 import uniqueId from 'lodash/uniqueId'
+import Patterns from 'types/Patterns'
 
 interface TwinTableProps {
   onTwinSelect: (id: string) => void
@@ -38,6 +42,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   const { twinList, loading } = useSelector(twinsSelector)
   const [twins, setTwins] = useState<ShellDescriptor[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
+  const [searchValue, setSearchValue] = useState<string>('')
   const rowCount = 10
 
   useEffect(() => {
@@ -50,7 +55,27 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
     setTwins((prevTwins) => prevTwins.concat(twinList.items))
   }, [twinList])
 
-  const onSearch = (value: string) => {}
+  const checkForKeyType = (
+    search: string
+  ): 'globalAssetId' | 'PartInstanceID' => {
+    return Patterns.prefix.URNID.test(search)
+      ? 'globalAssetId'
+      : 'PartInstanceID'
+  }
+
+  const onSearch = (value: string) => {
+    setTwins([])
+    setSearchValue(value)
+    const key = checkForKeyType(value)
+    dispatch(fetchTwinForSearch({ key, value }))
+  }
+
+  const clearSearch = () => {
+    setSearchValue('')
+    dispatch(
+      fetchDigitalTwins({ filter: { page: pageNumber, pageSize: rowCount } })
+    )
+  }
 
   const columns = DigitalTwinsTableColumns(useTranslation, onTwinSelect)
 
@@ -72,6 +97,8 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         toolbarVariant="ultimate"
         toolbar={{
           onSearch: onSearch,
+          searchExpr: searchValue,
+          onClearSearch: clearSearch,
         }}
         columns={columns}
         rows={twins}

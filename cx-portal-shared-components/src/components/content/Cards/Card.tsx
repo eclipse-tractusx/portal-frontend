@@ -165,7 +165,7 @@ export const Card = ({
         className="card"
       >
         <Box>
-          {statusText && (
+          {statusText && imageSize !== 'small' && (
             <Box
               sx={{
                 position: 'absolute',
@@ -192,6 +192,15 @@ export const Card = ({
             }),
           }}
         >
+          {statusText && imageSize === 'small' && (
+            <Box
+              sx={{
+                marginBottom: '12px',
+              }}
+            >
+              <CardChip status={status} statusText={statusText} />
+            </Box>
+          )}
           <CardContent {...content} />
           {showButton && (
             <CardButtons

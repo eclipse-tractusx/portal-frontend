@@ -45,4 +45,24 @@ const fetchTwinById = createAsyncThunk(
   }
 )
 
-export { fetchDigitalTwins, fetchTwinById }
+const fetchTwinForSearch = createAsyncThunk(
+  'fetch twin for search',
+  async ({ key, value }: { key: string; value: string }) => {
+    try {
+      const response = await Api.getInstance().getTwinForSearch(
+        encodeURIComponent(JSON.stringify([{ key, value }]))
+      )
+
+      const mappedData = await Promise.all([
+        ...response.map((id: string) => Api.getInstance().getTwinById(id)),
+      ])
+
+      return mappedData
+    } catch (error) {
+      console.error('api call error:', error)
+      throw Error('Get twin by id for search api call error')
+    }
+  }
+)
+
+export { fetchDigitalTwins, fetchTwinById, fetchTwinForSearch }
