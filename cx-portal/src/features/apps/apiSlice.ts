@@ -27,6 +27,12 @@ export type ImageType = {
   alt?: string
 }
 
+export interface AppInfo {
+  status: string
+  id: string | undefined
+  name: string | undefined
+}
+
 export type AppMarketplaceApp = {
   id: string
   title: string

@@ -32,7 +32,7 @@ import {
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
-import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS, PAGES } from 'types/Constants'
@@ -128,9 +128,9 @@ export default function AppOverview() {
     [debouncedSearch, items, group]
   )
 
-  const showOverlay = (item: any) => {
+  const showOverlay = (item: AppInfo) => {
     if (item.status === 'created') {
-      dispatch(show(OVERLAYS.APP_OVERVIEW_CONFIRM, item.name))
+      dispatch(show(OVERLAYS.APP_OVERVIEW_CONFIRM, item.id, item.name))
     }
   }
 
@@ -209,7 +209,7 @@ export default function AppOverview() {
                 onNewCardButton={() =>
                   navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
                 }
-                onCardClick={(item: any) => {
+                onCardClick={(item: AppInfo) => {
                   showOverlay(item)
                 }}
               />

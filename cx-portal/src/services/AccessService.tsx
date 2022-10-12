@@ -123,7 +123,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.SERVICE_REQUEST:
       return <ServiceRequest id={overlay.id} />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
-      return <AppOverViewConfirm id={overlay.id} />
+      return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
 
     default:
       return <NotFound />

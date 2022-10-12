@@ -23,7 +23,7 @@ import { Typography } from '../../basic/Typography'
 import { useState, useEffect, useRef } from 'react'
 
 interface CardAddServiceProps {
-  title: string
+  title?: string
   backgroundColor?: string
   onButtonClick: React.MouseEventHandler
 }

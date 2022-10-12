@@ -41,7 +41,7 @@ interface CardsProps {
   readMoreLink?: CardProps['readMoreLink']
   addButtonClicked?: boolean
   showAddNewCard?: boolean
-  newButtonText?: any
+  newButtonText?: string
   onNewCardButton?: any
   onCardClick?: any
 }

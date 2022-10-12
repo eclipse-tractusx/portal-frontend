@@ -32,7 +32,13 @@ import './AppOverviewConfirm.scss'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 
-export default function AppOverViewConfirm({ id }: { id: string }) {
+export default function AppOverViewConfirm({
+  id,
+  title,
+}: {
+  id: string
+  title?: string
+}) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
@@ -42,7 +48,7 @@ export default function AppOverViewConfirm({ id }: { id: string }) {
     <div className="small-confirm">
       <DialogHeader
         {...{
-          title: id,
+          title: title ? title : id,
           closeWithIcon: true,
           onCloseWithIcon: close,
         }}
