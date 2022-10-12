@@ -32,8 +32,10 @@ import AppDetailHowToUse from '../AppDetail/components/AppDetailHowToUse'
 import AppDetailPrivacy from '../AppDetail/components/AppDetailPrivacy'
 import AppDetailProvider from '../AppDetail/components/AppDetailProvider'
 import AppDetailTags from '../AppDetail/components/AppDetailTags'
+import { useTranslation } from 'react-i18next'
 
 export default function AppOverViewDetails({ item }: { item: AppDetails }) {
+  const { t } = useTranslation()
   const items = [
     {
       expanded: false,
@@ -98,7 +100,9 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
                 alignItems: 'center',
               }}
             >
-              <Typography variant="h5">Language:</Typography>
+              <Typography variant="h5">
+                {t('content.appoverview.details.language')}
+              </Typography>
               <LanguageSwitch
                 current={i18next.language}
                 languages={I18nService.supportedLanguages.map((key) => ({
@@ -117,7 +121,9 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
                       alignItems: 'center',
                     }}
                   >
-                    <Typography variant="h5">Use Case:</Typography>
+                    <Typography variant="h5">
+                      {t('content.appoverview.details.useCase')}
+                    </Typography>
                     <Typography
                       sx={{
                         padding: '0px 10px',
@@ -137,7 +143,9 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
                 alignItems: 'center',
               }}
             >
-              <Typography variant="h5">Price:</Typography>
+              <Typography variant="h5">
+                {t('content.appoverview.details.price')}
+              </Typography>
               <Typography
                 sx={{
                   padding: '0px 10px',
