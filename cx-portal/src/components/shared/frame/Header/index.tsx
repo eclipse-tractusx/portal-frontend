@@ -20,10 +20,9 @@
 
 import { UserInfo } from '../UserInfo'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { Button, MainNavigation } from 'cx-portal-shared-components'
+import { Logo, Button, MainNavigation } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { MenuItem, Tree } from 'types/MainTypes'
-import { Logo } from '../Logo'
 import './Header.scss'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
@@ -46,7 +45,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   return (
     <header>
       <MainNavigation items={menu} component={NavLink}>
-        <Logo />
+        <Logo variant="text" />
         <div className="d-flex">
           <Button
             size="small"
