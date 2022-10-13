@@ -21,6 +21,7 @@
 import { Box, useTheme } from '@mui/material'
 import { Card, CardProps } from './Card'
 import uniqueId from 'lodash/uniqueId'
+import { CardAddService } from './CardAddService'
 
 export type CardItems = Omit<
   CardProps,
@@ -39,6 +40,10 @@ interface CardsProps {
   readMoreText?: CardProps['readMoreText']
   readMoreLink?: CardProps['readMoreLink']
   addButtonClicked?: boolean
+  showAddNewCard?: boolean
+  newButtonText?: string
+  onNewCardButton?: any
+  onCardClick?: any
 }
 
 export const Cards = ({
@@ -53,6 +58,10 @@ export const Cards = ({
   expandOnHover,
   filledBackground,
   addButtonClicked = false,
+  showAddNewCard = false,
+  newButtonText,
+  onNewCardButton,
+  onCardClick = () => {},
 }: CardsProps) => {
   const settings = {
     variant,
@@ -75,8 +84,22 @@ export const Cards = ({
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
       }}
     >
+      {showAddNewCard && (
+        <CardAddService
+          backgroundColor={'common.white'}
+          onButtonClick={onNewCardButton}
+          title={newButtonText}
+        />
+      )}
       {items?.map((item) => (
-        <Card {...settings} {...item} key={uniqueId('Cards')} />
+        <Card
+          {...settings}
+          {...item}
+          key={uniqueId('Cards')}
+          onClick={() => {
+            onCardClick(item)
+          }}
+        />
       ))}
     </Box>
   )

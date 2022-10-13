@@ -28,7 +28,7 @@ export class Api extends HttpClient {
   private static classInstance?: Api
 
   public constructor() {
-    super(`${getSemanticApiBase()}registry/registry/`)
+    super(`${getSemanticApiBase()}registry`)
   }
 
   public static getInstance() {
@@ -40,10 +40,16 @@ export class Api extends HttpClient {
 
   public getTwins = (filters: FilterParams) =>
     this.instance.get<TwinList>(
-      `shell-descriptors?${qs.stringify(filters)}`,
+      `/registry/shell-descriptors?${qs.stringify(filters)}`,
       getHeaders()
     )
 
   public getTwinById = (id: string) =>
-    this.instance.get<ShellDescriptor>(`shell-descriptors/${id}`, getHeaders())
+    this.instance.get<ShellDescriptor>(
+      `/registry/shell-descriptors/${id}`,
+      getHeaders()
+    )
+
+  public getTwinForSearch = (search: string) =>
+    this.instance.get(`lookup/shells?assetIds=${search}`, getHeaders())
 }
