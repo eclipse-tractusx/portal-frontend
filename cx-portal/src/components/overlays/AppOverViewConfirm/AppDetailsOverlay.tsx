@@ -24,7 +24,6 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import AppOverViewDetails from 'components/pages/AppOverview/AppOverViewDetails'
 import { closeOverlay } from 'features/control/overlay/actions'
