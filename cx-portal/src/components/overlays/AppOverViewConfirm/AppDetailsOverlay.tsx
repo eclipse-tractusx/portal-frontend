@@ -24,11 +24,10 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { show } from 'features/control/overlay/actions'
 import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
 import { useTranslation } from 'react-i18next'
 import AppOverViewDetails from 'components/pages/AppOverview/AppOverViewDetails'
+import { closeOverlay } from 'features/control/overlay/actions'
 
 export default function AppDetailsOverlay({
   id,
@@ -38,7 +37,6 @@ export default function AppDetailsOverlay({
   title?: string
 }) {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const { data } = useFetchAppDetailsQuery(id)
 
   return (
@@ -47,7 +45,7 @@ export default function AppDetailsOverlay({
         {...{
           title: t('content.appoverview.details.title'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+          onCloseWithIcon: () => closeOverlay(),
         }}
       />
 
