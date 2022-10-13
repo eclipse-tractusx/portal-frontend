@@ -214,7 +214,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Search by Name/Identifier",
+        "searchfielddefaulttext": "Search by party instance id",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -565,8 +565,8 @@
         "notSupportedMessage": "Currently not yet supported"
       },
       "howtouse": {
-        "heading": "Terms of use",
-        "message": "These terms of use regulate the relationship between app prospects and app providers. The terms of use, as well as the data models and further information can be viewed by clicking on the hyperlinks."
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "providerInformation": {
         "heading": "Provider Information",

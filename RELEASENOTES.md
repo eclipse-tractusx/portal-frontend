@@ -15,6 +15,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
 * Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
+* BugFix - Application Request Board - Correct api endpoint to display documents
 
 ### 0.5.5
 
