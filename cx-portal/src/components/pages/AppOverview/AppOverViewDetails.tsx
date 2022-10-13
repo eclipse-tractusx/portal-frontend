@@ -23,6 +23,7 @@ import {
   LanguageSwitch,
   Typography,
   CustomAccordion,
+  LogoGrayData,
 } from 'cx-portal-shared-components'
 import { Grid } from '@mui/material'
 import I18nService from 'services/I18nService'
@@ -74,7 +75,7 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
           <Grid item>
             <Card
               image={{
-                src: 'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
+                src: LogoGrayData,
               }}
               title={item.title}
               subtitle={item.provider}
