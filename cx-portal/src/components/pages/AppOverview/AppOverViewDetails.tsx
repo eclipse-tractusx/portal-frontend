@@ -75,7 +75,7 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
           <Grid item>
             <Card
               image={{
-                src: LogoGrayData,
+                src: LogoGrayData, // To-Do : Update this with actual data when new api is available
               }}
               title={item.title}
               subtitle={item.provider}
