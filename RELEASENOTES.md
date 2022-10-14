@@ -14,7 +14,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Connect My App API on Home Page
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
-* BugFix - Application Request Board - Correct api endpoint to display documents
+* Bugfix - Application Request Board - Correct api endpoint to display documents
+* Bugfix - App roles going out of the card - Break word to the next line and card height adjusted to the adjacent card
 
 ### 0.5.5
 
