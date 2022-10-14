@@ -133,6 +133,8 @@ export default function AppOverview() {
   const showOverlay = (item: AppInfo) => {
     if (item.status === 'created') {
       dispatch(show(OVERLAYS.APP_OVERVIEW_CONFIRM, item.id, item.name))
+    } else if (item.status === 'in_review') {
+      dispatch(show(OVERLAYS.APP_DETAILS_OVERLAY, item.id, item.name))
     }
   }
 

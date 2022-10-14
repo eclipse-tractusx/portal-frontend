@@ -49,6 +49,7 @@ import IDPDelete from 'components/overlays/IDPDelete'
 import IDPStatusChange from 'components/overlays/IDPStatusChange'
 import IDPTestRun from 'components/overlays/IDPTestRun'
 import AppOverViewConfirm from 'components/overlays/AppOverViewConfirm'
+import AppDetailsOverlay from 'components/overlays/AppOverViewConfirm/AppDetailsOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -139,6 +140,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <IDPTestRun />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
       return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
+    case OVERLAYS.APP_DETAILS_OVERLAY:
+      return <AppDetailsOverlay id={overlay.id} title={overlay.title} />
     default:
       return <NotFound />
   }

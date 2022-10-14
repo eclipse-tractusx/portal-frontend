@@ -53,7 +53,7 @@ export const CardAddService = ({
           overflow: 'hidden',
           backgroundColor: backgroundColor || 'common.white',
           borderRadius: shape.borderRadius,
-          border: '1px solid',
+          border: '2px dashed',
           borderColor: 'border.border01',
           ':hover': {
             boxShadow: shadows['20'],

@@ -86,6 +86,7 @@ export type AppDetails = AppMarketplaceApp & {
   isSubscribed: string
   tags: string[]
   languages: string[]
+  leadPictureUri?: ImageType
 }
 
 export type DocumentAppContract = {

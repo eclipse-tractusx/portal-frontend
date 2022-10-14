@@ -298,9 +298,17 @@
         "inactive": "Inactive",
         "wip": "WIP"
       },
-      "addbtn": "Create new App",
+      "addbtn": "Register your App",
       "confirmModal": {
-        "description": "This is currently under creation. Do you want to open the app release process to add additional information to the app?"
+        "title": "Change app {appName}",
+        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+      },
+      "details": {
+        "price": "Price:",
+        "language": "Language:",
+        "useCase": "Use Case:",
+        "title": "Submitted App Details",
+        "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       }
     },
     "appreleaseprocess": {
