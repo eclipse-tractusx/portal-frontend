@@ -31,15 +31,13 @@ import {
 } from 'cx-portal-shared-components'
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
-import './AppOverview.scss'
-import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
-import uniqueId from 'lodash/uniqueId'
 import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS, PAGES } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import { useNavigate } from 'react-router-dom'
+import './AppOverview.scss'
 
 export default function AppOverview() {
   const { t } = useTranslation()
