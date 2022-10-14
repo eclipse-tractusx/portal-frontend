@@ -55,14 +55,18 @@ export default function AppUserDetailsHeader({
         {roles &&
           roles.map((role) => {
             return (
-              <div key={role.role} className="app-user-details-header-role">
-                <Typography variant="h5">{role.role}</Typography>
-                <Typography
-                  variant="h6"
-                  className="app-user-details-header-description"
-                >
-                  {role.description}
-                </Typography>
+              <div className="wrapper">
+                <div key={role.role} className="app-user-details-header-role">
+                  <Typography variant="h5" className="app-user-details-role">
+                    {role.role}
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    className="app-user-details-header-description"
+                  >
+                    {role.description}
+                  </Typography>
+                </div>
               </div>
             )
           })}

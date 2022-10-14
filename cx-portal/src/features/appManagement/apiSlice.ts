@@ -116,6 +116,9 @@ export const apiSlice = createApi({
           : { error: response.error }
       },
     }),
+    fetchAppStatus: builder.query<any, string>({
+      query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
+    }),
   }),
 })
 
@@ -129,4 +132,5 @@ export const {
   useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
+  useFetchAppStatusQuery,
 } = apiSlice

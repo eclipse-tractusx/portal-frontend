@@ -10,7 +10,7 @@ First create a new react app and add dependencies for the library and Material U
 We are using yarn and TypeScript, if you prefer npm/npx or JavaScript use those.
 
     yarn create react-app sample-shared-components --template typescript
-    yarn add cx-portal-shared-components @emotion/react @emotion/styled @mui/icons-material @mui/material
+    yarn add cx-portal-shared-components @mui/icons-material @mui/material
 
 
 Start the development server

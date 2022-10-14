@@ -1,7 +1,7 @@
 import { Box, TextField, Grid, Button } from '@mui/material'
 
 import { ComponentStory } from '@storybook/react'
-import { CardTable as Component } from '.'
+import { CardHorizontalTable as Component } from '.'
 
 export default {
   title: 'Card Table',
@@ -59,17 +59,30 @@ const SampleAccordianBody = () => {
   )
 }
 
+const menuItems = [
+  { key: 'enable', label: 'Enable', isDisable: false },
+  { key: 'disable', label: 'Disable', isDisable: false },
+  {
+    key: 'delete',
+    label: 'Delete',
+    isDisable: true,
+    tooltipTitle: 'this is a random tooltip string',
+  },
+]
+
 const SAMPLE_ROW = [
   {
-    title: 'Keyclock Shared',
-    title2: 'SAP',
-    isActive: true,
+    identityProviderId: 1,
+    identityProviderCategoryId: 'Keyclock Shared',
+    displayName: 'SAP',
+    enabled: true,
     body: <SampleAccordianBody />,
   },
   {
-    title: 'OIDC',
-    title2: 'SAP Comp.',
-    isActive: false,
+    identityProviderId: 2,
+    identityProviderCategoryId: 'OIDC',
+    displayName: 'SAP Comp.',
+    enabled: false,
     body: <SampleAccordianBody />,
   },
 ]
@@ -81,7 +94,48 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const CardTable = Template.bind({})
 CardTable.args = {
   hover: true,
-  row: SAMPLE_ROW,
-  // activeLabel: 'ACTIVE',
-  // inactiveLabel: 'INACTIVE',
+  data: {
+    identityProviderCategoryId: 'categoryId',
+    displayName: 'Deep',
+    enabled: true,
+    identityProviderId: '9069378354',
+    body: <SampleAccordianBody />,
+    menuOptions: menuItems,
+  },
+  onMenuClick: (key) => console.log(key),
+  activeLabel: 'ACTIVE',
+  inactiveLabel: 'INACTIVE',
+}
+
+const mapMenu = (row: any, menuOptions: any) => {
+  if (row.enabled) {
+    return {
+      ...row,
+      menuOptions: menuOptions.filter((menu: any) => menu.key !== 'enable'),
+    }
+  }
+
+  if (!row.enabled) {
+    return {
+      ...row,
+      menuOptions: menuOptions.filter((menu: any) => menu.key !== 'disable'),
+    }
+  }
+}
+
+export const MultipleCardTable = () => {
+  const UPDATED_ROW = SAMPLE_ROW.map((row) => mapMenu(row, menuItems))
+
+  const handleOnMenuClick = (key: string) => {
+    console.log('key =>', key)
+  }
+
+  return UPDATED_ROW.map((row) => (
+    <Component
+      data={row}
+      onMenuClick={(key: string) => handleOnMenuClick(key)}
+      activeLabel="ENABLED"
+      inactiveLabel="DISABLED"
+    />
+  ))
 }
