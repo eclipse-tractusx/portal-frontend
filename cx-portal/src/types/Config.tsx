@@ -176,6 +176,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.NOTIFICATIONS,
+    role: ROLES.NOTIFICATION_VIEW,
     element: <NotificationCenter />,
   },
   {
@@ -190,12 +191,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    // role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPMANAGEMENT_VIEW,
     element: <AppOverview />,
   },
   {
     name: PAGES.APPOVERVIEW,
-    //role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverview />,
   },
   {
@@ -379,6 +380,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.IDP_TEST_RUN,
     role: ROLES.IDP_ADD,
+  },
+  {
+    name: OVERLAYS.APP_OVERVIEW_CONFIRM,
+    role: ROLES.APPOVERVIEW_VIEW,
   },
 ]
 

@@ -32,13 +32,13 @@ export const AppRoles = () => {
   const { appId } = useParams()
   const { data } = useFetchAppRolesQuery(appId ?? '')
 
-  const selectRole = (roleId: string, select: boolean) => {
-    const isSelected = roles.includes(roleId)
+  const selectRole = (roleName: string, select: boolean) => {
+    const isSelected = roles.includes(roleName)
     if (!isSelected && select) {
-      dispatch(setRolesToAdd([...roles, roleId]))
+      dispatch(setRolesToAdd([...roles, roleName]))
     } else if (isSelected && !select) {
       const oldRoles = [...roles]
-      oldRoles.splice(oldRoles.indexOf(roleId), 1)
+      oldRoles.splice(oldRoles.indexOf(roleName), 1)
       dispatch(setRolesToAdd([...oldRoles]))
     }
   }
@@ -61,7 +61,7 @@ export const AppRoles = () => {
             <Checkbox
               label={role.role}
               key={role.roleId}
-              onChange={(e) => selectRole(role.roleId, e.target.checked)}
+              onChange={(e) => selectRole(role.role, e.target.checked)}
             />
           ))}
       </div>

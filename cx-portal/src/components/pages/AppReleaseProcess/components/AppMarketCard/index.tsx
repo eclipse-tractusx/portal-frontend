@@ -27,7 +27,7 @@ import {
   Card,
   MultiSelectList,
   Checkbox,
-  PageSnackbar,
+  PageNotifications,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -38,6 +38,7 @@ import {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
+  useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
@@ -58,7 +59,7 @@ type FormDataType = {
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: string
+    leadPictureUri: File | null
     alt: string
   }
   providerCompanyId: string
@@ -84,6 +85,7 @@ export const ConnectorFormInputField = ({
   maxFilesToUpload,
   previewFiles,
   showPreviewAlone,
+  maxFileSize,
 }: any) => (
   <Controller
     name={name}
@@ -117,12 +119,13 @@ export const ConnectorFormInputField = ({
           <Dropzone
             onFileDrop={(files: any) => {
               trigger(name)
-              onChange(files[0].name)
+              onChange(files[0])
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             previewFiles={previewFiles}
             showPreviewAlone={showPreviewAlone}
+            maxFileSize={maxFileSize}
           />
         )
       } else if (type === 'checkbox') {
@@ -175,7 +178,8 @@ export default function AppMarketCard() {
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
-  const [showErrorAlert, setShowErrorAlert] = useState<string>('')
+  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
+  const [appCardNotification, setAppCardNotification] = useState(false)
 
   const defaultValues = {
     title: '',
@@ -188,7 +192,7 @@ export default function AppMarketCard() {
     shortDescriptionEN: '',
     shortDescriptionDE: '',
     uploadImage: {
-      leadPictureUri: '',
+      leadPictureUri: null,
       alt: '',
     },
   }
@@ -242,7 +246,10 @@ export default function AppMarketCard() {
     const saveData = {
       title: data.title,
       provider: data.provider,
-      leadPictureUri: data.uploadImage.leadPictureUri,
+      leadPictureUri:
+        data.uploadImage.leadPictureUri !== null &&
+        Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
+        Object.values(data.uploadImage.leadPictureUri)[0],
       providerCompanyId: data.providerCompanyId,
       useCaseIds: data.useCaseCategory,
       descriptions: [
@@ -261,15 +268,34 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
+    const uploadImageValue = getValues().uploadImage.leadPictureUri
     await addCreateApp(saveData)
       .unwrap()
       .then((result) => {
+        isString(result) &&
+          uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
         isString(result) && dispatch(setAppId(result))
         dispatch(increment())
       })
       .catch((error: any) => {
-        setShowErrorAlert(error && error?.data?.title)
+        setAppCardNotification(true)
       })
+  }
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    try {
+      await updateDocumentUpload(data).unwrap()
+    } catch (error) {}
   }
 
   return (
@@ -468,10 +494,17 @@ export default function AppMarketCard() {
                             )}`,
                           },
                           pattern: {
-                            value: Patterns.appMarketCard.shortDescription,
+                            value:
+                              item === 'shortDescriptionEN'
+                                ? Patterns.appMarketCard.shortDescriptionEN
+                                : Patterns.appMarketCard.shortDescriptionDE,
                             message: `${t(
                               'content.apprelease.appReleaseForm.validCharactersIncludes'
-                            )} A-Za-z0-9.: @&`,
+                            )} ${
+                              item === 'shortDescriptionEN'
+                                ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
+                                : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
+                            }`,
                           },
                           maxLength: {
                             value: 255,
@@ -642,6 +675,7 @@ export default function AppMarketCard() {
                   'image/jpeg': [],
                 },
                 maxFilesToUpload: 1,
+                maxFileSize: 819200,
                 rules: {
                   required: {
                     value: true,
@@ -666,6 +700,23 @@ export default function AppMarketCard() {
       </Grid>
 
       <Box mb={2}>
+        {appCardNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setAppCardNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
+
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
@@ -697,16 +748,6 @@ export default function AppMarketCard() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      <PageSnackbar
-        open={showErrorAlert !== ''}
-        onCloseNotification={() => setShowErrorAlert('')}
-        severity="error"
-        title={t('content.apprelease.appReleaseForm.error.title')}
-        description={showErrorAlert}
-        showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
-      />
     </div>
   )
 }

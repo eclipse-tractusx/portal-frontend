@@ -27,6 +27,12 @@ export type ImageType = {
   alt?: string
 }
 
+export interface AppInfo {
+  status: string
+  id: string | undefined
+  name: string | undefined
+}
+
 export type AppMarketplaceApp = {
   id: string
   title: string
@@ -36,10 +42,12 @@ export type AppMarketplaceApp = {
   useCases: string[]
   price: string
   rating?: number
-  link?: string
+  uri?: string
   status?: SubscriptionStatus
   image?: ImageType
   name?: string
+  lastChanged?: string
+  timestamp?: number
 }
 
 export enum SubscriptionStatus {
@@ -63,15 +71,25 @@ export type SubscriptionStatusItem = {
   offerSubscriptionStatus: SubscriptionStatus
 }
 
+export type DocumentData = {
+  documentId: string
+  documentName: string
+}
+
 export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
   contactNumber: string
   detailPictureUris: string[]
+  documents: DocumentAppContract
   longDescription: string
   isSubscribed: string
   tags: string[]
   languages: string[]
+}
+
+export type DocumentAppContract = {
+  APP_CONTRACT: Array<DocumentData>
 }
 
 export type AppDetailsState = {
@@ -99,6 +117,18 @@ export const apiSlice = createApi({
     fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/provided`,
     }),
+    fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/business`,
+    }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}?documentId=${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -108,4 +138,6 @@ export const {
   useFetchFavoriteAppsQuery,
   useFetchSubscriptionStatusQuery,
   useFetchProvidedAppsQuery,
+  useFetchBusinessAppsQuery,
+  useFetchDocumentByIdMutation,
 } = apiSlice

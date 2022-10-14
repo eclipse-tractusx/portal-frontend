@@ -152,7 +152,6 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   return (
     <section>
       <Table
-        sx={{ '.MuiTextField-root': { marginLeft: '-30px' } }}
         rowsCount={modelList.totalItems}
         hideFooter
         loading={loadingModelList}
