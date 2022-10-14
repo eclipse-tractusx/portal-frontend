@@ -92,6 +92,7 @@ export enum OVERLAYS {
   APP = 'app',
   SERVICE_REQUEST = 'service_request',
   IDP = 'idp',
+  IDP_CONFIRM = 'idp_confirm',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
 }
 
