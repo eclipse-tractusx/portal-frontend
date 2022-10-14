@@ -23,6 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 900px;
+  gap: 15px;
 
   .idp-name-row {
     display: flex;
@@ -32,4 +33,35 @@
       width: 400px;
     }
   }
+
+  .idp-details-tab {
+    border-bottom: 1px solid #ccc;
+    margin: 15px 0;
+
+    .MuiTabs-root {
+      padding: 0px;
+    }
+  }
+}
+
+.loading-btn {
+  display: flex;
+  justify-content: flex-end;
+
+  .MuiBox-root {
+    width: 150px;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
 }

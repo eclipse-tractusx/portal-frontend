@@ -370,7 +370,23 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_VIEW,
   },
   {
+    name: OVERLAYS.IDP_CONFIRM,
+    role: ROLES.IDP_DELETE,
+  },
+  {
+    name: OVERLAYS.IDP_STATUS,
+    role: ROLES.IDP_DISABLE,
+  },
+  {
+    name: OVERLAYS.IDP_TEST_RUN,
+    role: ROLES.IDP_ADD,
+  },
+  {
     name: OVERLAYS.APP_OVERVIEW_CONFIRM,
+    role: ROLES.APPOVERVIEW_VIEW,
+  },
+  {
+    name: OVERLAYS.APP_DETAILS_OVERLAY,
   },
 ]
 
