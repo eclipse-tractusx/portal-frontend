@@ -112,9 +112,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   }, [modelList])
 
   const onFilterReset = () => {
-    dispatch(
-      fetchSemanticModels({ filter: { page: pageNumber, pageSize: rowCount } })
-    )
+    //Reset PageNumber back to 0
+    dispatch(fetchSemanticModels({ filter: { page: 0, pageSize: rowCount } }))
   }
 
   const onSearch = (value: string) => {
@@ -132,6 +131,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
 
   const onFilter = (selectedFilter: any) => {
     setModels([])
+    //Reset PageNumber back to 0
+    setPageNumber(0)
     setSelectedFilter(selectedFilter)
     if (selectedFilter.status[0] !== DefaultStatus) {
       dispatch(
@@ -178,7 +179,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         hasBorder={false}
       />
       <div className="load-more-button-container">
-        {modelList.totalPages !== modelList.currentPage + 1 && (
+        {modelList.totalPages !== pageNumber && (
           <Button
             size="medium"
             sx={{ mt: 15 }}

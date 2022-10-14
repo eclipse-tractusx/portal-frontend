@@ -14,7 +14,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
 * Feature - Feature - App Overview: App detail overlay added for apps in status "in review"
-* BugFix - Application Request Board - Correct api endpoint to display documents
+* Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
 * Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now 
