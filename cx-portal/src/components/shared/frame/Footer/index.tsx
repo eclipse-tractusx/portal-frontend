@@ -25,6 +25,8 @@ import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
 import './Footer.scss'
 import { PAGES } from 'types/Constants'
+import { currentActiveStep } from 'features/appManagement/slice'
+import { useSelector } from 'react-redux'
 
 export const Footer = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
@@ -45,10 +47,27 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     PAGES.APPRELEASEPROCESS,
   ].find((e) => location.pathname.split('/').includes(e))
 
+  const isAppDarkOverviewPage = [PAGES.USER_MANAGEMENT].find((e) =>
+    location.pathname.split('/').includes(e)
+  )
+
   const [showScrollToTop, setShowScrollToTop] = useState(false)
+  let activePage = useSelector(currentActiveStep)
 
   const toggleVisibility = () => {
     setShowScrollToTop(window.pageYOffset > 350)
+  }
+
+  const getPreferredColor = () => {
+    if (activePage === 7) {
+      return '#e4ebf3'
+    } else if (isAppOverviewPage) {
+      return '#F9F9F9'
+    } else if (isAppDarkOverviewPage) {
+      return '#ededed'
+    } else {
+      return ''
+    }
   }
 
   useEffect(() => {
@@ -56,7 +75,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   }, [])
 
   return (
-    <footer style={{ background: isAppOverviewPage ? '#F9F9F9' : '' }}>
+    <footer style={{ background: getPreferredColor() }}>
       {showScrollToTop && (
         <IconButton
           color="secondary"

@@ -65,8 +65,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Request",
-          "requestDescription": "ID of user request",
           "date": "Date",
           "companyinfo": "Company Application Info",
           "documents": "Documents",
@@ -111,6 +109,9 @@
       },
       "appStoreSection": {
         "title": "New Apps"
+      },
+      "emptyCards": {
+        "title": "New apps will get added here as soon as you have any assigned"
       }
     },
     "appstore": {
@@ -220,7 +221,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Search by Name/Identifier",
+        "searchfielddefaulttext": "Search by party instance id",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -272,7 +273,7 @@
       "inputPlaceholder": "Search for Apps",
       "recently": {
         "header": "Recently changed",
-        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+        "subheader": "Below you can find your recently changed apps. By clicking on the app, you can open up the deatils/proceed on the app release process. The sub-menu added to each app card will help you to do changes on active apps. Below the recent changed apps, a list of all by your company provided apps can get found. Please scroll down to get more details."
       },
       "filter": {
         "all": "All",
@@ -280,7 +281,10 @@
         "inactive": "Inactive",
         "wip": "WIP"
       },
-      "addbtn": "Create new App"
+      "addbtn": "Create new App",
+      "confirmModal": {
+        "description": "This is currently under creation. Do you want to open the app release process to add additional information to the app?"
+      }
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -410,6 +414,8 @@
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
         "subheadline": "App Access Management",
+        "userRoleSuccessMsg": "User Role assigned successfully",
+        "userRoleErrorMsg": "Error while assigning user role",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
@@ -562,11 +568,12 @@
       "pending": "Requested",
       "privacy": {
         "heading": "Privacy Policy",
-        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "notSupportedMessage": "Currently not yet supported"
       },
       "howtouse": {
-        "heading": "Terms of use",
-        "message": "These terms of use regulate the relationship between app prospects and app providers. The terms of use, as well as the data models and further information can be viewed by clicking on the hyperlinks."
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "providerInformation": {
         "heading": "Provider Information",
@@ -655,6 +662,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
@@ -675,6 +683,13 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "appCardDetails": "App Card Details"
       },
+      "submitApp": {
+        "headerTitle": "Thank you for submitting the app!",
+        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescriptionComplete": "further information on app release",
+        "yourCatenaXTeam": "Your Catena-X team",
+        "myAppsOverview": "My apps overview"
+      },
       "appReleaseForm": {
         "headerTitle": "Create App",
         "addMore": "Add More",
@@ -690,13 +705,13 @@
         "isMandatory": " is mandatory",
         "fileUploadIsMandatory": "File upload is mandatory",
         "error": {
-          "title": "Error",
-          "message": "Error"
+          "title": "Error - something went wrong.",
+          "message": "Please try it again"
         }
       },
       "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "save & proceed",
+        "saveAndProceed": "Save & proceed",
         "save": "Save",
         "submit": "Submit"
       }
@@ -749,7 +764,9 @@
       "reload": "Reload Page",
       "homepage": "Homepage",
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
-      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
+      "no": "No",
+      "yes": "Yes"
     },
     "state": {
       "enabled": "enabled",
