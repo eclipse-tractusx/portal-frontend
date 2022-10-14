@@ -31,77 +31,64 @@ import {
   useUpdateIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { editIDPSelector } from 'features/control/formSlice'
-import { closeOverlay, show } from 'features/control/overlay/actions'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
 
-export default function IDPDetailInfo({ id }: { id: string }) {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
+export default function IDPDetailForm({ id }: { id: string }) {
   const { data, refetch } = useFetchIDPDetailQuery(id)
-  const [updateIDP] = useUpdateIDPMutation()
+  const dispatch = useDispatch()
+  const { t } = useTranslation()
   const formData = useSelector(editIDPSelector)
-  const [isDisabledConfirmBtn, setIsDisabledConfirmBtn] = useState(true)
+  const [updateIDP] = useUpdateIDPMutation()
 
-  useEffect(() => refetch(), [refetch])
+  const {
+    displayName,
+    metadataUrl,
+    clientAuthMethod,
+    clientId,
+    secret,
+    signatureAlgorithm,
+  } = formData
 
   const submitForm = async () => {
     if (!formData) return
     const update: IdentityProviderUpdate = {
       identityProviderId: id,
       body: {
-        displayName: formData.displayName,
+        displayName: displayName,
         oidc: {
-          metadataUrl: formData.metadataUrl,
-          clientAuthMethod: formData.clientAuthMethod,
-          clientId: formData.clientId,
-          secret: formData.secret,
-          signatureAlgorithm: formData.signatureAlgorithm,
+          clientId: clientId,
+          secret: secret,
+          signatureAlgorithm: signatureAlgorithm,
+          metadataUrl: metadataUrl,
+          clientAuthMethod: clientAuthMethod,
         },
       },
     }
     try {
       await updateIDP(update).unwrap()
-      //pass IDP type selection into next overlay here
-      dispatch(show(OVERLAYS.IDP_TEST_RUN))
       dispatch(updateData(UPDATES.IDP_LIST))
     } catch (err) {
-      dispatch(show(OVERLAYS.IDP_TEST_RUN))
       console.log(err)
     }
   }
+
+  useEffect(() => refetch(), [refetch])
 
   return (
     <>
       <DialogHeader
         {...{
           title: t('content.idpdetail.title'),
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
       />
 
-      <DialogContent>
-        {data && (
-          <IDPDetailContent
-            onDisabledEvent={setIsDisabledConfirmBtn}
-            idp={data}
-          />
-        )}
-      </DialogContent>
+      <DialogContent>{data && <IDPDetailContent idp={data} />}</DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={submitForm}
-          disabled={isDisabledConfirmBtn}
-        >
+        <Button variant="contained" onClick={submitForm}>
           {`${t('global.actions.save')}`}
         </Button>
       </DialogActions>

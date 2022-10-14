@@ -32,6 +32,8 @@ import {
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import uniqueId from 'lodash/uniqueId'
 import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
@@ -131,6 +133,8 @@ export default function AppOverview() {
   const showOverlay = (item: AppInfo) => {
     if (item.status === 'created') {
       dispatch(show(OVERLAYS.APP_OVERVIEW_CONFIRM, item.id, item.name))
+    } else if (item.status === 'in_review') {
+      dispatch(show(OVERLAYS.APP_DETAILS_OVERLAY, item.id, item.name))
     }
   }
 

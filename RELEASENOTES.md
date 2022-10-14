@@ -9,15 +9,16 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Add download document in app detail page
 * Feature - App Overview Page - Design updates
 * Feature - Assign User Role
-* Feature - App overview - Show overlay when Application status is in "in progress"
+* Feature - Feature - App Overview: Confirm overlay added for apps in status "in progress"
 * Feature - Connect My App API on Home Page
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
+* Feature - Feature - App Overview: App detail overlay added for apps in status "in review"
 * Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
-* BugFix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now 
+
 
 ### 0.5.5
 
@@ -32,9 +33,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Show subscription box after subscribed immediately
 * Feature - App Release Process - upload functionality
 * Feature - App Detail - Fetch Documents
-* Feature - TrasmissionChip button component
+* Feature - Shared Components - Transmission Chip button
 * Feature - App Release Process - Business Logic & API - Submit App for review
 * Feature - Transition button added to Registration table
+* Feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
+* Feature - Add User Role Overlay (refactoring)
+* Feature - App Release Process - upload functionality
 * Bugfix - Connect Partner Network to BPDM
 * Bugfix - UI updates in UltimateToolbar component
 * Bugfix - Registration table UI fixes
@@ -47,8 +52,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Bind app subscribe status in my organization page
 * Bugfix - App Marketplace - Subscription Button update needed
 * Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
-* User Experience - delete request id from registration admin board
-
+* Bugfix - User Experience - delete request id from registration admin board
 
 
 ### 0.5.4
