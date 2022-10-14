@@ -381,6 +381,10 @@
         "details": "Details"
       }
     },
+    "userAdded": {
+      "success": "User added successfully",
+      "failure": "User was not added"
+    },
     "provisionIdp": {
       "title": "Setup your company IDP",
       "send": "Submit IDP request",

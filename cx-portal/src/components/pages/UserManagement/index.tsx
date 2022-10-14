@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import CloseIcon from '@mui/icons-material/Close'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { ActiveUserTable } from './ActiveUserTable'
 import StageSection from './StageSection'
 import { AppArea } from './AppArea'
@@ -27,11 +30,17 @@ import { StageSubNavigation } from './StageSubNavigation/StageSubNavigation'
 import {
   currentAddUserError,
   currentAddUserSuccess,
+  setAddUserError,
+  setAddUserSuccess,
 } from 'features/admin/userApiSlice'
-import { PageSnackbar } from 'cx-portal-shared-components'
+import { Dialog, DialogContent, IconButton, Typography } from 'cx-portal-shared-components'
 import './UserManagement.scss'
+import { useTranslation } from 'react-i18next'
 
 export default function UserManagement() {
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   const isSuccess = useSelector(currentAddUserSuccess)
@@ -41,7 +50,9 @@ export default function UserManagement() {
     setShowAlert(isSuccess ? isSuccess : isError)
   }, [isSuccess, isError])
 
-  const onAlertClose = () => {
+  const alertClose = () => {
+    dispatch(setAddUserSuccess(false))
+    dispatch(setAddUserError(false))
     setShowAlert(false)
   }
 
@@ -51,20 +62,39 @@ export default function UserManagement() {
       <StageSubNavigation />
       <AppArea />
       <ActiveUserTable />
-      <PageSnackbar
-        contactLinks=""
-        contactText=""
-        description={
-          isSuccess ? 'User added successfully' : 'User was not added'
-        }
+      {/* success or error dialog/overlay */}
+      <Dialog
         open={showAlert}
-        onCloseNotification={onAlertClose}
-        severity={isSuccess ? 'success' : 'error'}
-        showIcon
-        title={isSuccess ? 'Success' : 'Error'}
-        vertical={'bottom'}
-        horizontal={'right'}
-      />
+        sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}
+      >
+        <DialogContent>
+          <IconButton
+            aria-label="close"
+            onClick={() => alertClose()}
+            sx={{
+              position: 'absolute',
+              right: 16,
+              top: 16,
+              color: '#939393',
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          <Typography mt={7} mb={2} variant="body2" align="center">
+            {
+              isSuccess ?
+                <CheckCircleOutlineIcon color="success" sx={{ width: 46, height: 46 }} />
+                :
+                <ErrorOutlineIcon color="error" style={{ height: 20, width: 20 }} />
+            }
+
+          </Typography>
+          <Typography mb={2} variant="h4" align="center">
+            {isSuccess ? t('content.userAdded.success') : t('content.userAdded.failure')}
+          </Typography>
+        </DialogContent>
+      </Dialog>
     </main>
   )
 }
