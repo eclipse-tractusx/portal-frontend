@@ -1,8 +1,4 @@
-yarn licenses v1.5.1
-info fsevents@2.3.2: The platform "linux" is incompatible with this module.
-info "fsevents@2.3.2" is an optional dependency and failed compatibility check. Excluding it from installation.
-info fsevents@1.2.13: The platform "linux" is incompatible with this module.
-info "fsevents@1.2.13" is an optional dependency and failed compatibility check. Excluding it from installation.
+yarn licenses v1.22.19
 ├─ (AFL-2.1 OR BSD-3-Clause)
 │  └─ json-schema@0.4.0
 │     ├─ URL: http://github.com/kriszyp/json-schema
@@ -113,11 +109,11 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: https://github.com/facebook/watchman
 │  │  ├─ VendorName: Wez Furlong
 │  │  └─ VendorUrl: https://facebook.github.io/watchman/docs/bser.html
-│  ├─ cx-portal-shared-components@0.5.4
+│  ├─ cx-portal-shared-components@0.6.1
 │  │  ├─ URL: https://github.com/catenax-ng/product-portal-frontend.git
 │  │  ├─ VendorName: Catena-X NG
 │  │  └─ VendorUrl: https://catena-x.net/
-│  ├─ cx-portal@0.5.4
+│  ├─ cx-portal@0.6.1
 │  ├─ didyoumean@1.2.2
 │  │  ├─ URL: https://github.com/dcporter/didyoumean.js.git
 │  │  ├─ VendorName: Dave Porter
@@ -202,7 +198,7 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: git://github.com/faye/websocket-extensions-node.git
 │  │  ├─ VendorName: James Coglan
 │  │  └─ VendorUrl: http://github.com/faye/websocket-extensions-node
-│  ├─ workspace-aggregator-38b1676e-1d9f-49c5-9916-0b268856a111@0.5.4
+│  ├─ workspace-aggregator-1ac53d84-31f2-42d4-b54a-0c8dec777e5e@0.6.1
 │  └─ xml-name-validator@3.0.0
 │     ├─ URL: https://github.com/jsdom/xml-name-validator.git
 │     ├─ VendorName: Domenic Denicola
@@ -435,6 +431,9 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: https://github.com/ljharb/qs.git
 │  │  └─ VendorUrl: https://github.com/ljharb/qs
 │  ├─ react-transition-group@4.4.2
+│  │  ├─ URL: https://github.com/reactjs/react-transition-group.git
+│  │  └─ VendorUrl: https://github.com/reactjs/react-transition-group#readme
+│  ├─ react-transition-group@4.4.5
 │  │  ├─ URL: https://github.com/reactjs/react-transition-group.git
 │  │  └─ VendorUrl: https://github.com/reactjs/react-transition-group#readme
 │  ├─ serialize-javascript@4.0.0
@@ -1531,6 +1530,10 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: https://github.com/babel/babel.git
 │  │  ├─ VendorName: The Babel Team
 │  │  └─ VendorUrl: https://babel.dev/docs/en/next/babel-runtime
+│  ├─ @babel/runtime@7.19.4
+│  │  ├─ URL: https://github.com/babel/babel.git
+│  │  ├─ VendorName: The Babel Team
+│  │  └─ VendorUrl: https://babel.dev/docs/en/next/babel-runtime
 │  ├─ @babel/template@7.16.7
 │  │  ├─ URL: https://github.com/babel/babel.git
 │  │  ├─ VendorName: The Babel Team
@@ -1550,16 +1553,22 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  ├─ @date-io/core@2.14.0
 │  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
 │  │  └─ VendorName: Dmitriy Kovalenko
+│  ├─ @date-io/core@2.16.0
+│  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
+│  │  └─ VendorName: Dmitriy Kovalenko
 │  ├─ @date-io/date-fns@2.14.0
 │  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
 │  │  └─ VendorName: Dmitriy Kovalenko
-│  ├─ @date-io/dayjs@2.14.0
+│  ├─ @date-io/date-fns@2.16.0
 │  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
 │  │  └─ VendorName: Dmitriy Kovalenko
-│  ├─ @date-io/luxon@2.14.0
+│  ├─ @date-io/dayjs@2.16.0
 │  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
 │  │  └─ VendorName: Dmitriy Kovalenko
-│  ├─ @date-io/moment@2.14.0
+│  ├─ @date-io/luxon@2.16.0
+│  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
+│  │  └─ VendorName: Dmitriy Kovalenko
+│  ├─ @date-io/moment@2.16.0
 │  │  ├─ URL: https://github.com/dmtrKovalenko/date-io
 │  │  └─ VendorName: Dmitriy Kovalenko
 │  ├─ @discoveryjs/json-ext@0.5.7
@@ -1716,6 +1725,10 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: https://github.com/mui/material-ui.git
 │  │  ├─ VendorName: MUI Team
 │  │  └─ VendorUrl: https://github.com/mui/material-ui/tree/master/packages/mui-types
+│  ├─ @mui/utils@5.10.9
+│  │  ├─ URL: https://github.com/mui/material-ui.git
+│  │  ├─ VendorName: MUI Team
+│  │  └─ VendorUrl: https://github.com/mui/material-ui/tree/master/packages/mui-utils
 │  ├─ @mui/utils@5.4.4
 │  │  ├─ URL: https://github.com/mui/material-ui.git
 │  │  ├─ VendorName: MUI Team
@@ -1728,8 +1741,8 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: https://github.com/mui/mui-x.git
 │  │  ├─ VendorName: MUI Team
 │  │  └─ VendorUrl: https://mui.com/x/react-data-grid/
-│  ├─ @mui/x-date-pickers@5.0.0-beta.3
-│  │  ├─ URL: https://github.com/mui-org/material-ui-x.git
+│  ├─ @mui/x-date-pickers@5.0.4
+│  │  ├─ URL: https://github.com/mui/mui-x.git
 │  │  ├─ VendorName: MUI Team
 │  │  └─ VendorUrl: https://mui.com/x/react-date-pickers/getting-started/
 │  ├─ @nodelib/fs.scandir@2.1.5
@@ -3792,6 +3805,13 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
 │  │  ├─ URL: https://github.com/jprichardson/node-fs-extra
 │  │  ├─ VendorName: JP Richardson
 │  │  └─ VendorUrl: https://github.com/jprichardson/node-fs-extra
+│  ├─ fsevents@1.2.13
+│  │  ├─ URL: https://github.com/strongloop/fsevents.git
+│  │  ├─ VendorName: Philipp Dunkel
+│  │  └─ VendorUrl: https://github.com/strongloop/fsevents
+│  ├─ fsevents@2.3.2
+│  │  ├─ URL: https://github.com/fsevents/fsevents.git
+│  │  └─ VendorUrl: https://github.com/fsevents/fsevents
 │  ├─ function-bind@1.1.1
 │  │  ├─ URL: git://github.com/Raynos/function-bind.git
 │  │  ├─ VendorName: Raynos
@@ -6892,4 +6912,4 @@ info "fsevents@1.2.13" is an optional dependency and failed compatibility check.
       ├─ URL: https://github.com/pieroxy/lz-string.git
       ├─ VendorName: pieroxy
       └─ VendorUrl: http://pieroxy.net/blog/pages/lz-string/index.html
-Done in 3.13s.
+Done in 0.73s.
