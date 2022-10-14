@@ -33,7 +33,12 @@ import {
   setAddUserError,
   setAddUserSuccess,
 } from 'features/admin/userApiSlice'
-import { Dialog, DialogContent, IconButton, Typography } from 'cx-portal-shared-components'
+import {
+  Dialog,
+  DialogContent,
+  IconButton,
+  Typography,
+} from 'cx-portal-shared-components'
 import './UserManagement.scss'
 import { useTranslation } from 'react-i18next'
 
@@ -63,10 +68,7 @@ export default function UserManagement() {
       <AppArea />
       <ActiveUserTable />
       {/* success or error dialog/overlay */}
-      <Dialog
-        open={showAlert}
-        sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}
-      >
+      <Dialog open={showAlert} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
         <DialogContent>
           <IconButton
             aria-label="close"
@@ -82,16 +84,22 @@ export default function UserManagement() {
           </IconButton>
 
           <Typography mt={7} mb={2} variant="body2" align="center">
-            {
-              isSuccess ?
-                <CheckCircleOutlineIcon color="success" sx={{ width: 46, height: 46 }} />
-                :
-                <ErrorOutlineIcon color="error" style={{ height: 20, width: 20 }} />
-            }
-
+            {isSuccess ? (
+              <CheckCircleOutlineIcon
+                color="success"
+                sx={{ width: 46, height: 46 }}
+              />
+            ) : (
+              <ErrorOutlineIcon
+                color="error"
+                style={{ height: 20, width: 20 }}
+              />
+            )}
           </Typography>
           <Typography mb={2} variant="h4" align="center">
-            {isSuccess ? t('content.userAdded.success') : t('content.userAdded.failure')}
+            {isSuccess
+              ? t('content.userAdded.success')
+              : t('content.userAdded.failure')}
           </Typography>
         </DialogContent>
       </Dialog>
