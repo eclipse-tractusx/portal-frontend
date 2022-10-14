@@ -56,9 +56,15 @@ export const getClientId = () => 'Cl2-CX-Portal'
 export const getBpdmApiBase = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net')
-    return 'https://catenax-bpdm-int.demo.catena-x.net/api'
+    return 'https://partners-pool.int.demo.catena-x.net/api'
+  if (hostname === 'portal-pen.dev.demo.catena-x.net')
+    return 'https://partners-pool-pen.dev.demo.catena-x.net/api'
+  if (hostname === 'portal.beta.demo.catena-x.net')
+    return 'https://partners-pool.beta.demo.catena-x.net/api'
+  if (hostname === 'portal.pre-prod.demo.catena-x.net')
+    return 'https://partners-pool.pre-prod.demo.catena-x.net/api'
   if (hostname === 'portal.catena-x.net')
-    return 'https://partners-pool.dev.demo.catena-x.net/api'
+    return 'https://partners-pool.catena-x.net/api'
   return 'https://partners-pool.dev.demo.catena-x.net/api'
 }
 //export const getBpdmApiBase = () =>
@@ -76,6 +82,8 @@ export const getSemanticApiBase = () => {
     return 'https://semantics.beta.demo.catena-x.net/'
   if (hostname === 'portal.pre-prod.demo.catena-x.net')
     return 'https://semantics.pre-prod.demo.catena-x.net/'
+  if (hostname === 'portal.catena-x.net')
+    return 'https://semantics.catena-x.net/'
   return 'https://semantics.dev.demo.catena-x.net/'
 }
 
