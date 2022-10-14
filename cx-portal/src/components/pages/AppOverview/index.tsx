@@ -32,6 +32,8 @@ import {
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import './AppOverview.scss'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import uniqueId from 'lodash/uniqueId'
 import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
