@@ -5,7 +5,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.6.1
 
-* Bugfix - Description field validation adjustment in app release process
 * Feature - App Detail Page - Privacy Policy content not supported tag added
 * Feature - Add download document in app detail page
 * Feature - App Overview Page - Design updates
@@ -16,11 +15,26 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - My App User Experience
 * Feature - Feature - App Overview: App detail overlay added for apps in status "in review"
 * BugFix - Application Request Board - Correct api endpoint to display documents
+* Bugfix - Application Request Board - Correct api endpoint to display documents
+* Bugfix - Description field validation adjustment in app release process
+* Bugfix - Logo image from shared components works now 
 
 ### 0.5.5
 
 * Feature - App Overview page
 * Feature - Add and edit Identity Provider details
+* Feature - BPN add/delete flow in User Account Screen
+* Feature - User Management - Success/Fail Message
+* Feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
+* Feature - Add User Role Overlay (refactoring)
+* Feature - Assign user role (refactoring)
+* Feature - Show subscription box after subscribed immediately
+* Feature - App Release Process - upload functionality
+* Feature - App Detail - Fetch Documents
+* Feature - TrasmissionChip button component
+* Feature - App Release Process - Business Logic & API - Submit App for review
+* Feature - Transition button added to Registration table
 * Bugfix - Connect Partner Network to BPDM
 * Bugfix - UI updates in UltimateToolbar component
 * Bugfix - Registration table UI fixes
@@ -28,24 +42,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Management Main Page Style fix
 * Bugfix - App Release Process - Fixed user directing to bottom of the page
 * Bugfix - Services Card Responsive UI Fix
-* Feature - BPN add/delete flow in User Account Screen
-* Feature - User Management - Success/Fail Message
-* Bugfix - Partner netowrk search issue fix
+* Bugfix - Partner network search issue fix
 * Bugfix - CardHorizontal - Height issue fix
-* Feature - Expand on hover feature added to  CardHorizontal component.
-* Feature - Add download document in application request page
-* Feature - Add User Role Overlay (refactoring)
 * Bugfix - Bind app subscribe status in my organization page
-* Feature - Assign user role (refactoring)
-* Feature - Show subscription box after subscribed immediately
 * Bugfix - App Marketplace - Subscription Button update needed
-* Feature - App Release Process - upload functionality
-* Feature - App Detail - Fetch Documents
-* User Experience - delete request id from registration admin board
-* Feature - TrasmissionChip button component
-* Feature - App Release Process - Business Logic & API - Submit App for review
 * Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
-* Feature - Transition button added to Registration table
+* User Experience - delete request id from registration admin board
 
 
 
