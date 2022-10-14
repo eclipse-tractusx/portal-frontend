@@ -35,7 +35,7 @@ interface MenuItems {
   key: string
   label: string
   isDisable: boolean
-  tooltipTitle: string
+  tooltipTitle?: string
 }
 
 const MENU_KEYS = {
@@ -54,12 +54,50 @@ const checkIfDeleteAvailable = (
   )
 }
 
+const checkIfStatusChangeAvailable = (
+  row: IdentityProvider,
+  rows: IdentityProvider[]
+) => {
+  const { displayName } = row
+
+  return (
+    row.enabled &&
+    rows
+      .filter((row) => row.displayName === displayName)
+      .every((row) => row.enabled)
+  )
+}
+
 const mapMenuItems = (
   row: IdentityProvider,
   rows: IdentityProvider[],
   t: TFunction<'translation', undefined>
 ) => {
   let menuOptions: MenuItems[] = []
+
+  if (row.enabled) {
+    menuOptions = [
+      ...menuOptions,
+      {
+        key: MENU_KEYS.DISABLE,
+        label: 'Disable',
+        isDisable: checkIfStatusChangeAvailable(row, rows),
+        tooltipTitle: t('overlays.idp_status_tooltip_info'),
+      },
+    ]
+  }
+
+  if (!row.enabled) {
+    menuOptions = [
+      ...menuOptions,
+      {
+        key: MENU_KEYS.ENABLE,
+        label: 'Enable',
+        isDisable: checkIfStatusChangeAvailable(row, rows),
+        tooltipTitle: t('overlays.idp_status_tooltip_info'),
+      },
+    ]
+  }
 
   menuOptions = [
     ...menuOptions,
@@ -97,13 +135,16 @@ export const IDPList = () => {
         )
         break
 
-      //adding few switch case to remove code smell
       case MENU_KEYS.DISABLE:
-        console.log(key)
-        break
-
       case MENU_KEYS.ENABLE:
-        console.log(key)
+        dispatch(
+          show(
+            OVERLAYS.IDP_STATUS,
+            args.identityProviderId,
+            args.displayName,
+            args.enabled
+          )
+        )
         break
 
       default:

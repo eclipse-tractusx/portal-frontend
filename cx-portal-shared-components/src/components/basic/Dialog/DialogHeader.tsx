@@ -27,7 +27,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 
 export interface DialogHeaderProps {
-  title: string
+  title: string | JSX.Element
   intro?: string | JSX.Element
   icon?: boolean
   closeWithIcon?: boolean
