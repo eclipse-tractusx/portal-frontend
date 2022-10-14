@@ -17,6 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now 
 
+
 ### 0.5.5
 
 * Feature - App Overview page
@@ -30,9 +31,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Show subscription box after subscribed immediately
 * Feature - App Release Process - upload functionality
 * Feature - App Detail - Fetch Documents
-* Feature - TrasmissionChip button component
+* Feature - Shared Components - Transmission Chip button
 * Feature - App Release Process - Business Logic & API - Submit App for review
 * Feature - Transition button added to Registration table
+* Feature - Expand on hover feature added to  CardHorizontal component.
+* Feature - Add download document in application request page
+* Feature - Add User Role Overlay (refactoring)
+* Feature - App Release Process - upload functionality
 * Bugfix - Connect Partner Network to BPDM
 * Bugfix - UI updates in UltimateToolbar component
 * Bugfix - Registration table UI fixes
@@ -45,8 +50,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Bind app subscribe status in my organization page
 * Bugfix - App Marketplace - Subscription Button update needed
 * Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
-* User Experience - delete request id from registration admin board
-
+* Bugfix - User Experience - delete request id from registration admin board
 
 
 ### 0.5.4
