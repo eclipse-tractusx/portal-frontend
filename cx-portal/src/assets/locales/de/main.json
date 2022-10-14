@@ -71,8 +71,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Anfrage",
-          "requestDescription": "ID der Benutzeranfrage",
           "date": "Datum",
           "companyinfo": "Bewerbungsinformationen des Unternehmens",
           "documents": "Unterlagen",
@@ -112,11 +110,14 @@
       "searchSection": {
         "inputPlaceholder": "Suche in Catena-X"
       },
-      "businessApplications": {
+      "businessApplicationsSection": {
         "title": "Meine Applications"
       },
       "appStoreSection": {
         "title": "Neue Apps"
+      },
+      "emptyCards": {
+        "title": "New apps will get added here as soon as you have any assigned"
       }
     },
     "appstore": {
@@ -286,7 +287,10 @@
         "inactive": "Inaktiv",
         "wip": "In Arbeit"
       },
-      "addbtn": "Neue App erstellen"
+      "addbtn": "Neue App erstellen",
+      "confirmModal": {
+        "description": "This is currently under creation. Do you want to open the app release process to add additional information to the app?"
+      }
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -416,6 +420,8 @@
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
         "subheadline": "App Zugriffsmanagement",
+        "userRoleSuccessMsg": "User Role assigned successfully",
+        "userRoleErrorMsg": "Error while assigning user role",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
@@ -544,7 +550,8 @@
       "privacyDesc": "Für Fragen zum Thema Datenschutz und der Information, welche Daten von Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:"
     },
     "privacy": {
-      "message": "Fügen Sie hier Inhalte hinzu"
+      "message": "Fügen Sie hier Inhalte hinzu",
+      "notSupportedMessage": "Currently not yet supported"
     },
     "terms": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -701,6 +708,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
@@ -721,6 +729,13 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "appCardDetails": "App Card Details"
       },
+      "submitApp": {
+        "headerTitle": "Thank you for submitting the app!",
+        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescriptionComplete": "further information on app release",
+        "yourCatenaXTeam": "Your Catena-X team",
+        "myAppsOverview": "My apps overview"
+      },
       "appReleaseForm": {
         "headerTitle": "Create App",
         "addMore": "Add More",
@@ -736,13 +751,13 @@
         "isMandatory": " is mandatory",
         "fileUploadIsMandatory": "File upload is mandatory",
         "error": {
-          "title": "Error",
-          "message": "Error"
+          "title": "Error - something went wrong.",
+          "message": "Please try it again"
         }
       },
       "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "save & proceed",
+        "saveAndProceed": "Save & proceed",
         "save": "Save",
         "submit": "Submit"
       }
@@ -796,7 +811,9 @@
       "homepage": "Startseite",
       "deleteTitle": "Löschen von {{ object }} {{ name }}",
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
-      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren."
+      "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
+      "no": "No",
+      "yes": "Yes"
     },
     "state": {
       "enabled": "aktiv",

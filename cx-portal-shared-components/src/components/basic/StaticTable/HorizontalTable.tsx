@@ -25,7 +25,7 @@ export const HorizontalTable = ({ data }: { data: TableType }) => (
     style={{
       width: '100%',
       borderCollapse: 'collapse',
-      borderTop: '1px solid #e0e1e2',
+      border: '1px solid #e0e1e2',
     }}
   >
     <tbody>

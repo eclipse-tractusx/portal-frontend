@@ -118,9 +118,15 @@ declare module '@mui/material/styles' {
     release: string
     active: string
     inactive: string
+    created: string
+    inReview: string
+    default: string
     bgRelease: string
     bgActive: string
     bgInactive: string
+    bgCreated: string
+    bgInReview: string
+    bgDefault: string
   }
   interface PaletteColor {
     shadow: string

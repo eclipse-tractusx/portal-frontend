@@ -22,16 +22,16 @@ import {
   Button,
   Typography,
   IconButton,
-  PageSnackbar,
+  PageNotifications,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, Box, InputLabel } from '@mui/material'
+import { Divider, Box, InputLabel, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -39,16 +39,19 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { useUpdateappMutation } from 'features/appManagement/apiSlice'
+import {
+  useUpdateappMutation,
+  useUpdateDocumentUploadMutation,
+} from 'features/appManagement/apiSlice'
 
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: string
-  uploadDataPrerequisits: string
-  uploadTechnicalGuide: string
-  uploadDataContract: string
-  uploadAppContract: string
+  images: File | null
+  uploadDataPrerequisits: File | null
+  uploadTechnicalGuide: File | null
+  uploadDataContract: File | null
+  uploadAppContract: File | null
   providerHomePage: string
   providerContactEmail: string
   providerPhoneContact: string
@@ -56,20 +59,21 @@ type FormDataType = {
 
 export default function AppPage() {
   const { t } = useTranslation()
-  const [showAppPageErrorAlert, setShowAppPageErrorAlert] = useState<string>('')
+  const [appPageNotification, setAppPageNotification] = useState(false)
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
+  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
 
   const defaultValues = {
     longDescriptionEN: '',
     longDescriptionDE: '',
-    images: '',
-    uploadDataPrerequisits: '',
-    uploadTechnicalGuide: '',
-    uploadDataContract: '',
-    uploadAppContract: '',
+    images: null,
+    uploadDataPrerequisits: null,
+    uploadTechnicalGuide: null,
+    uploadDataContract: null,
+    uploadAppContract: null,
     providerHomePage: '',
     providerContactEmail: '',
     providerPhoneContact: '',
@@ -85,6 +89,62 @@ export default function AppPage() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  const uploadAppContractValue = getValues().uploadAppContract
+  const uploadDataContractValue = getValues().uploadDataContract
+  const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
+  const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
+  const imagesValue = getValues().images
+
+  useEffect(() => {
+    if (getValues().uploadAppContract !== null)
+      uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadAppContractValue])
+
+  useEffect(() => {
+    if (getValues().uploadDataContract !== null)
+      uploadDocumentApi(appId, 'DATA_CONTRACT', uploadDataContractValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadDataContractValue])
+
+  useEffect(() => {
+    if (getValues().uploadDataPrerequisits !== null)
+      uploadDocumentApi(
+        appId,
+        'ADDITIONAL_DETAILS',
+        uploadDataPrerequisitsValue
+      )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadDataPrerequisitsValue])
+
+  useEffect(() => {
+    if (getValues().uploadTechnicalGuide !== null)
+      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', uploadTechnicalGuideValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadTechnicalGuideValue])
+
+  useEffect(() => {
+    if (getValues().images !== null)
+      uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imagesValue])
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    try {
+      await updateDocumentUpload(data).unwrap()
+    } catch (error) {}
+  }
 
   const onAppPageSubmit = async (data: FormDataType) => {
     const validateFields = await trigger([
@@ -118,7 +178,7 @@ export default function AppPage() {
           shortDescription: '',
         },
       ],
-      images: [data.images],
+      images: [],
       providerUri: data.providerHomePage,
       contactEmail: data.providerContactEmail,
       contactNumber: data.providerPhoneContact,
@@ -128,7 +188,7 @@ export default function AppPage() {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       dispatch(increment())
     } catch (error: any) {
-      setShowAppPageErrorAlert(error && error?.data?.title)
+      setAppPageNotification(true)
     }
   }
 
@@ -178,10 +238,17 @@ export default function AppPage() {
                       )}`,
                     },
                     pattern: {
-                      value: Patterns.appPage.longDescription,
+                      value:
+                        item === 'longDescriptionEN'
+                          ? Patterns.appPage.longDescriptionEN
+                          : Patterns.appPage.longDescriptionDE,
                       message: `${t(
                         'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Za-z0-9.: @&`,
+                      )} ${
+                        item === 'longDescriptionEN'
+                          ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                          : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                      }`,
                     },
                     maxLength: {
                       value: longDescriptionMaxLength,
@@ -221,6 +288,7 @@ export default function AppPage() {
                 'image/jpeg': [],
               },
               maxFilesToUpload: 3,
+              maxFileSize: 819200,
               rules: {
                 required: {
                   value: true,
@@ -249,7 +317,7 @@ export default function AppPage() {
         ].map((item: string) => (
           <>
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-            <div className="form-field">
+            <div className="form-field" key={item}>
               <InputLabel sx={{ mb: 3, mt: 3 }}>
                 {t(`content.apprelease.appPage.${item}`) + ' *'}
               </InputLabel>
@@ -261,10 +329,10 @@ export default function AppPage() {
                   name: item,
                   type: 'dropzone',
                   acceptFormat: {
-                    'image/png': [],
-                    'image/jpeg': [],
+                    'text/pdf': ['.pdf'],
                   },
                   maxFilesToUpload: 1,
+                  maxFileSize: 819200,
                   rules: {
                     required: {
                       value: true,
@@ -401,6 +469,22 @@ export default function AppPage() {
         </div>
       </form>
       <Box mb={2}>
+        {appPageNotification && (
+          <Grid container xs={12} sx={{ mb: 2 }}>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <PageNotifications
+                title={t('content.apprelease.appReleaseForm.error.title')}
+                description={t(
+                  'content.apprelease.appReleaseForm.error.message'
+                )}
+                open
+                severity="error"
+                onCloseNotification={() => setAppPageNotification(false)}
+              />
+            </Grid>
+          </Grid>
+        )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           sx={{ mr: 1 }}
@@ -429,16 +513,6 @@ export default function AppPage() {
           {t('content.apprelease.footerButtons.save')}
         </Button>
       </Box>
-      <PageSnackbar
-        open={showAppPageErrorAlert !== ''}
-        onCloseNotification={() => setShowAppPageErrorAlert('')}
-        severity="error"
-        title={t('content.apprelease.appReleaseForm.error.title')}
-        description={showAppPageErrorAlert}
-        showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
-      />
     </div>
   )
 }

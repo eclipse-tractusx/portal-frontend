@@ -47,6 +47,7 @@ import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 import IDPDelete from 'components/overlays/IDPDelete'
 import IDPStatusChange from 'components/overlays/IDPStatusChange'
+import AppOverViewConfirm from 'components/overlays/AppOverViewConfirm'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -133,6 +134,8 @@ export const getOverlay = (overlay: OverlayState) => {
           idpStatus={overlay.status}
         />
       )
+    case OVERLAYS.APP_OVERVIEW_CONFIRM:
+      return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
     default:
       return <NotFound />
   }
