@@ -38,7 +38,11 @@ export const ActiveUserTable = () => {
   return (
     <UserList
       sectionTitle={'content.usermanagement.table.headline'}
-      addButtonLabel={UserService.hasRole(ROLES.USERMANAGEMENT_ADD) ? 'content.usermanagement.table.add' : ''}
+      addButtonLabel={
+        UserService.hasRole(ROLES.USERMANAGEMENT_ADD)
+          ? 'content.usermanagement.table.add'
+          : ''
+      }
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
       tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersSearchQuery}
