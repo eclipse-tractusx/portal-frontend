@@ -21,6 +21,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now 
+* Feature - New Tooltip Component added
+* Feature - App Marketplace details page - Show Tooltip component on hover Subscribe and Pending button
 
 ### 0.5.5
 

@@ -132,6 +132,7 @@ const palette = createPalette({
     background11: '#EDEFF2',
     background12: '#8E8E8E1A',
     background13: '#DFE4EA',
+    background14: '#303030',
   },
   textField: {
     placeholderText: '#8D8D8D',

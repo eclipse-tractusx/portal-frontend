@@ -25,6 +25,7 @@ import { AppDetails } from 'features/apps/details/types'
 import { getAppLeadImage } from 'features/apps/mapper'
 import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
+import { Tooltips } from 'cx-portal-shared-components'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -37,12 +38,43 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const getSubscribeBtn = () => {
     const subscribeStatus = item.isSubscribed
     if (subscribeStatus === 'PENDING') {
-      return <Button color="secondary">{t('content.appdetail.pending')}</Button>
+      return (
+        <Tooltips
+          additionalStyles={{
+            curson: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="bottom-start"
+          tooltipText={t('content.appdetail.pendingTooltip')}
+          children={
+            <span>
+              <Button color="secondary">
+                {t('content.appdetail.pending')}
+              </Button>
+            </span>
+          }
+        />
+      )
     } else if (subscribeStatus === 'ACTIVE') {
       return (
-        <span className="subscribed-success-btn">
-          <Button color="success">{t('content.appdetail.subscribed')}</Button>
-        </span>
+        <Tooltips
+          additionalStyles={{
+            curson: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="bottom-start"
+          tooltipText={t('content.appdetail.subscribedTooltip').replace(
+            '{appName}',
+            item.title
+          )}
+          children={
+            <span>
+              <Button color="success">
+                {t('content.appdetail.subscribed')}
+              </Button>
+            </span>
+          }
+        />
       )
     } else {
       return (
