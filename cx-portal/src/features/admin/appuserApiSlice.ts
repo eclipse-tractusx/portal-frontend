@@ -84,6 +84,13 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    updateUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
+      query: (data: UserRoleRequest) => ({
+        url: `/api/administration/user/app/${data.appId}/roles`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -92,6 +99,7 @@ export const {
   useFetchAppUsersQuery,
   useFetchAppUsersSearchQuery,
   useAddUserRolesMutation,
+  useUpdateUserRolesMutation,
 } = apiSlice
 
 const name = 'admin/user/role/add'

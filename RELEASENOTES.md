@@ -22,6 +22,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now
 * Bugfix - App overview page - Filter business logic upddate
+* Feature - API & BL: Change role of specific user for a defined app
 
 ### 0.5.5
 

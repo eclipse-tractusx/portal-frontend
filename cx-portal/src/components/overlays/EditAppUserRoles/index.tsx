@@ -25,10 +25,15 @@ import {
   DialogContent,
   DialogHeader,
 } from 'cx-portal-shared-components'
-import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
+import {
+  setUserRoleResp,
+  useFetchAppRolesQuery,
+  UserRoleRequest,
+  useUpdateUserRolesMutation,
+} from 'features/admin/appuserApiSlice'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay/actions'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -40,26 +45,23 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { appId } = useParams()
+
   const [roles, setRoles] = useState<string[]>([])
+  const [updateUserRoles] = useUpdateUserRolesMutation()
   const appDetails = useFetchAppDetailsQuery(appId ?? '').data
   const appRoles = useFetchAppRolesQuery(appId ?? '').data
   const { data } = useFetchUserDetailsQuery(id)
-  const assignedRoles = data && data.assignedRoles.filter(assignedRole => assignedRole.appId === appId)[0].roles
+  const assignedRoles =
+    data &&
+    data.assignedRoles.filter((assignedRole) => assignedRole.appId === appId)[0]
+      ?.roles
 
-  useEffect(()=> {
+  useEffect(() => {
     setRoles(assignedRoles!)
   }, [assignedRoles])
 
-  useEffect(()=> {
-    console.log('assignedRoles', assignedRoles)
-    console.log('roles', roles)
-  }, [roles])
-
   const selectRole = (role: string, select: boolean) => {
     const isSelected = roles.includes(role)
-    console.log('isSelected', isSelected)
-    console.log('role', role)
-    console.log('select', select)
     if (!isSelected && select) {
       setRoles([...roles, role])
     } else if (isSelected && !select) {
@@ -69,12 +71,33 @@ export default function EditAppUserRoles({ id }: { id: string }) {
     }
   }
 
-  const saveRoles = () => {
-    console.log('^^^^^')
+  const saveRoles = async () => {
+    if (!appId || roles.length <= 0) return
+    const data: UserRoleRequest = {
+      appId: appId,
+      body: {
+        companyUserId: id,
+        roles,
+      },
+    }
+    try {
+      await updateUserRoles(data).unwrap()
+      dispatch(setUserRoleResp('success'))
+      dispatch(closeOverlay())
+    } catch (err) {
+      dispatch(setUserRoleResp('error'))
+      dispatch(closeOverlay())
+    }
   }
 
   const checkConfirmBtn = () => {
-    return assignedRoles && roles && assignedRoles.length === roles.length && assignedRoles.every(function(value, index) { return value === roles[index]})
+    if (!roles) return true
+    return (
+      assignedRoles &&
+      roles &&
+      assignedRoles.length === roles.length &&
+      assignedRoles.every((value) => roles.includes(value))
+    )
   }
 
   return (
@@ -96,7 +119,8 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       <DialogContent>
         <div className="roles-list">
           <ul>
-            {appRoles && roles && 
+            {appRoles &&
+              roles &&
               appRoles.map((role) => (
                 <li key={role.roleId}>
                   <Checkbox
@@ -117,7 +141,11 @@ export default function EditAppUserRoles({ id }: { id: string }) {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={saveRoles} disabled={checkConfirmBtn()}>
+        <Button
+          variant="contained"
+          onClick={saveRoles}
+          disabled={checkConfirmBtn()}
+        >
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>
