@@ -22,51 +22,20 @@ import {
   Card,
   LanguageSwitch,
   Typography,
-  CustomAccordion,
   LogoGrayData,
 } from 'cx-portal-shared-components'
 import { Grid } from '@mui/material'
 import I18nService from 'services/I18nService'
 import i18next, { changeLanguage } from 'i18next'
-import { AppDetails } from 'features/apps/apiSlice'
-import AppDetailHowToUse from '../AppDetail/components/AppDetailHowToUse'
-import AppDetailPrivacy from '../AppDetail/components/AppDetailPrivacy'
-import AppDetailProvider from '../AppDetail/components/AppDetailProvider'
-import AppDetailTags from '../AppDetail/components/AppDetailTags'
 import { useTranslation } from 'react-i18next'
+import { NewAppDetails } from 'features/appManagement/apiSlice'
 
-export default function AppOverViewDetails({ item }: { item: AppDetails }) {
+export default function AppOverViewDetails({ item }: { item: NewAppDetails }) {
   const { t } = useTranslation()
-  const items = [
-    {
-      expanded: false,
-      id: 'panel-1',
-      title: 'Privacy',
-      color: 'background.background09',
-      children: <AppDetailPrivacy />,
-    },
-    {
-      expanded: false,
-      id: 'panel-2',
-      title: 'Terms',
-      color: 'background.background09',
-      children: <AppDetailHowToUse item={item} />,
-    },
-    {
-      expanded: false,
-      id: 'panel-3',
-      title: 'Provider',
-      color: 'background.background09',
-      children: <AppDetailProvider item={item} />,
-    },
-    {
-      expanded: false,
-      id: 'panel-4',
-      title: 'Tags',
-      color: 'background.background09',
-      children: <AppDetailTags item={item} />,
-    },
-  ]
+
+  const getDescription = (item: any) => {
+    return item?.descriptions[0]?.longDescription
+  }
 
   return (
     <>
@@ -79,7 +48,7 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
               }}
               title={item.title}
               subtitle={item.provider}
-              description={item.longDescription}
+              description={getDescription(item)}
               imageSize="normal"
               imageShape="square"
               variant="text-details"
@@ -112,8 +81,8 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
                 onChange={changeLanguage}
               />
             </div>
-            {item?.useCases &&
-              item?.useCases?.map((newCase) => {
+            {item?.useCase &&
+              item?.useCase?.map((newCase) => {
                 return (
                   <div
                     style={{
@@ -160,14 +129,6 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
           </Grid>
         </Grid>
       )}
-      <div
-        style={{
-          marginTop: '50px',
-          marginBottom: '50px',
-        }}
-      >
-        <CustomAccordion items={items} />
-      </div>
     </>
   )
 }
