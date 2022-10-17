@@ -59,6 +59,7 @@ export const CardAddService = ({
             boxShadow: shadows['20'],
           },
           height: boxHeight ? `${boxHeight}px` : '89%',
+          minWidth: '260px',
         }}
         className="card"
       >

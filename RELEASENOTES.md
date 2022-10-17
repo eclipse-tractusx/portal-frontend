@@ -23,6 +23,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Logo image from shared components works now 
 * Feature - New Tooltip Component added
 * Feature - App Marketplace details page - Show Tooltip component on hover Subscribe and Pending button
+* Bugfix - Logo image from shared components works now
+* Bugfix - App overview page - Filter business logic update
 
 ### 0.5.5
 
