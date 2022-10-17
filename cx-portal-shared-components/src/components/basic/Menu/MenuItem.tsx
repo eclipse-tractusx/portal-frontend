@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { ArrowForward } from '@mui/icons-material'
 import { Box, BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
 import { useState } from 'react'
@@ -15,11 +35,13 @@ export interface MenuItemProps extends LinkItem {
   menuProps?: BoxProps
   onClick?: React.MouseEventHandler
   Menu?: MenuType
+  disable?: boolean
 }
 
 export const MenuItem = ({
   title,
   hint,
+  disable,
   children,
   divider,
   component = Link,
@@ -50,7 +72,8 @@ export const MenuItem = ({
       <Link
         component={component}
         sx={{
-          color: 'text.primary',
+          color: `${disable ? 'text.disabled' : 'text.primary'}`,
+          pointerEvents: `${disable ? 'none' : 'auto'}`,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',

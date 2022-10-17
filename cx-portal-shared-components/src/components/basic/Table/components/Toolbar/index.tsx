@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, debounce, useTheme } from '@mui/material'
 import { Button } from '../../../Button'
@@ -6,8 +26,10 @@ import { SearchInput } from '../../../SearchInput'
 import { Typography } from '../../../Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
+import ClearIcon from '@mui/icons-material/Clear'
 import { Checkbox } from '../../../Checkbox'
 import { getSelectedFilterUpdate } from './helper'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 interface FilterValue {
   value: string
@@ -44,6 +66,11 @@ export interface ToolbarProps {
   openFilterSection?: boolean
   onOpenFilterSection?: (value: boolean) => void
   selectedFilter?: SelectedFilter
+  onClearSearch?: () => void
+}
+
+const getIconColor = (openFilter: boolean) => {
+  return openFilter ? 'primary' : 'text.tertiary'
 }
 
 export const Toolbar = ({
@@ -62,10 +89,13 @@ export const Toolbar = ({
   openFilterSection,
   onOpenFilterSection,
   selectedFilter,
+  onClearSearch,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
+  const isSearchText = searchExpr && searchExpr !== ''
+  const isSearchData = searchInputData ? searchInputData.open : false
   const [openSearch, setOpenSearch] = useState<boolean>(
-    searchInputData ? searchInputData.open : false
+    isSearchText ? isSearchText : isSearchData
   )
   const [openFilter, setOpenFilter] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState<string>(
@@ -100,6 +130,10 @@ export const Toolbar = ({
     //console.log(e.key)
   }
 
+  const handleSearchClear = () => {
+    onClearSearch && onClearSearch()
+  }
+
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = target
     onFilter &&
@@ -116,6 +150,16 @@ export const Toolbar = ({
   useEffect(() => {
     openFilterSection && setOpenFilter(openFilterSection)
   }, [openFilterSection])
+
+  const getEndAdornment = () => {
+    if (onClearSearch && searchInput) {
+      return (
+        <IconButton onClick={handleSearchClear}>
+          <ClearIcon />
+        </IconButton>
+      )
+    }
+  }
 
   return (
     <Box>
@@ -145,7 +189,12 @@ export const Toolbar = ({
             </Box>
           </Typography>
           {buttonLabel && onButtonClick && (
-            <Button size="small" onClick={onButtonClick} sx={{ marginLeft: 3 }}>
+            <Button
+              startIcon={<AddCircleOutlineIcon />}
+              size="small"
+              onClick={onButtonClick}
+              sx={{ marginLeft: 15 }}
+            >
               {buttonLabel}
             </Button>
           )}
@@ -154,11 +203,19 @@ export const Toolbar = ({
           {openSearch ? (
             <SearchInput
               autoFocus
+              endAdornment={getEndAdornment()}
+              type="text"
               value={searchInput}
               onChange={onSearchInputChange}
               onKeyPress={onSearchInputKeyPress}
-              onBlur={() => setOpenSearch(false)}
+              onBlur={() => {}}
               placeholder={searchPlaceholder}
+              sx={{
+                '.MuiInputBase-input': {
+                  padding: '10px',
+                  width: '250px',
+                },
+              }}
             />
           ) : (
             onSearch && (
@@ -174,7 +231,7 @@ export const Toolbar = ({
             <IconButton
               sx={{
                 alignSelf: 'center',
-                color: openFilter ? 'primary' : 'text.tertiary',
+                color: getIconColor(openFilter),
               }}
               onClick={() =>
                 onOpenFilterSection && onOpenFilterSection(!openFilter)

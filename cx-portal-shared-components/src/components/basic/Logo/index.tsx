@@ -1,11 +1,32 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { Box } from '@mui/material'
 import CXLogo from '../../../assets/logo/cx-logo.svg'
 import CXLogoShort from '../../../assets/logo/cx-logo-short.svg'
 import CXLogoText from '../../../assets/logo/cx-logo-text.svg'
+import { Buffer } from 'buffer'
 
 interface LogoProps {
-  variant: 'standard' | 'short' | 'text'
-  altText: string
+  variant?: 'standard' | 'short' | 'text'
+  altText?: string
 }
 
 export const LogoGrayData =
@@ -13,7 +34,7 @@ export const LogoGrayData =
 
 export const Logo = ({
   variant = 'standard',
-  altText = 'Catena-X logo',
+  altText = 'Catena-X',
   ...props
 }: LogoProps) => {
   let image
@@ -29,13 +50,17 @@ export const Logo = ({
       image = CXLogo
   }
 
+  const src = `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
+    'base64'
+  )}`
+
   return (
     <Box
       component="img"
       sx={{
         maxWidth: '100%',
       }}
-      src={image}
+      src={src}
       alt={altText}
       {...props}
     />

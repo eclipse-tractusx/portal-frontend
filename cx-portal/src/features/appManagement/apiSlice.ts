@@ -35,6 +35,21 @@ export type appLanguagesItem = {
   }
 }
 
+export type CreateAppStep1Item = {
+  title: string
+  provider: string
+  leadPictureUri: string
+  providerCompanyId: string
+  useCaseIds: string[]
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  supportedLanguageCodes: string[]
+  price: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -45,7 +60,77 @@ export const apiSlice = createApi({
     fetchAppLanguages: builder.query<appLanguagesItem[], void>({
       query: () => `/api/administration/staticdata/languagetags`,
     }),
+    addCreateApp: builder.mutation<void, CreateAppStep1Item>({
+      query: (body: CreateAppStep1Item) => ({
+        url: `/api/Apps/createapp`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    fetchConsentData: builder.query<any[], void>({
+      query: () => `/api/apps/consentData`,
+    }),
+    fetchConsent: builder.query<any[], void>({
+      query: () => `/api/apps/consent`,
+    }),
+    addContractConsent: builder.mutation<void, any>({
+      query: (body: any) => ({
+        url: `/api/Apps/createapp`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    updateapp: builder.mutation<void, any>({
+      query: (data: any) => {
+        const { body, appId } = data
+        return {
+          url: `/api/apps/AppReleaseProcess/updateapp/${appId}`,
+          method: 'PUT',
+          body,
+        }
+      },
+    }),
+    submitapp: builder.mutation<any, string>({
+      query: (appId) => ({
+        url: `/api/Apps/${appId}/submit`,
+        method: 'PUT',
+      }),
+    }),
+    updateDocumentUpload: builder.mutation({
+      async queryFn(
+        data: { appId: string; documentTypeId: string; body: any },
+        _queryApi,
+        _extraOptions,
+        fetchWithBaseQuery
+      ) {
+        const formData = new FormData()
+        formData.append('document', data.body.file)
+
+        const response = await fetchWithBaseQuery({
+          url: `/api/apps/AppReleaseProcess/updateappdoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
+          method: 'PUT',
+          body: formData,
+        })
+        return response.data
+          ? { data: response.data }
+          : { error: response.error }
+      },
+    }),
+    fetchAppStatus: builder.query<any, string>({
+      query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
+    }),
   }),
 })
 
-export const { useFetchUseCasesQuery, useFetchAppLanguagesQuery } = apiSlice
+export const {
+  useFetchUseCasesQuery,
+  useFetchAppLanguagesQuery,
+  useAddCreateAppMutation,
+  useFetchConsentDataQuery,
+  useFetchConsentQuery,
+  useAddContractConsentMutation,
+  useUpdateappMutation,
+  useSubmitappMutation,
+  useUpdateDocumentUploadMutation,
+  useFetchAppStatusQuery,
+} = apiSlice

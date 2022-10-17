@@ -18,11 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase } from 'services/EnvironmentService'
+import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 
 export const apiBaseQuery = () => ({
   baseUrl: getApiBase(),
+  prepareHeaders: (headers: Headers) => {
+    headers.set('authorization', `Bearer ${UserService.getToken()}`)
+    return headers
+  },
+})
+
+export const apiBpdmQuery = () => ({
+  baseUrl: getBpdmApiBase(),
   prepareHeaders: (headers: Headers) => {
     headers.set('authorization', `Bearer ${UserService.getToken()}`)
     return headers

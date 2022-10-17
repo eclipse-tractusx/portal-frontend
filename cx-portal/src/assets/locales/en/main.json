@@ -21,6 +21,7 @@
     "organization": "My Organization",
     "notifications": "Notifications",
     "usermanagement": "User Management",
+    "idpmanagement": "Identity Provider (IDP)",
     "technicalsetup": "Technical Integration",
     "applicationrequests": "Application Requests",
     "admin": "Administration",
@@ -46,7 +47,31 @@
   "overlays": {
     "invite": "Invite new Business Partner",
     "add_user": "Add new user",
-    "add_techuser": "Add new technical user"
+    "add_techuser": "Add new technical user",
+    "idp_delete_info_title": "Deletion of the identity provider.",
+    "idp_delete_info_intro": "Please note, all users which are not migrated to the new iDP wii get irreversible deleted.",
+    "idp_delete_success_title": "Identity provider {{name}} was successfully deleted.",
+    "idp_delete_success_intro": "The window will close automatically. In case it doesn't, please use the 'close' button in on the top right.",
+    "idp_delete_error_title": "The identity provider did not got deleted.",
+    "idp_delete_error_intro": "Please retry or contact an administrator if the failure persist.",
+    "idp_delete_tooltip_info": "Please disable the service first or make sure if any one of the service for following company is working.",
+    "idp_status_change_success": "Identity Provider {{ name }} was successfully {{ status }}",
+    "idp_status_change_error": "The indentity provider was not {{ status }}",
+    "idp_status_change_info": "{{status}} identity provider",
+    "idp_status_change_intro2": "Are you sure you want to enable this idp?",
+    "idp_status_change_intro1": "Disable the idp will always result into the deactivation, but not deletion. You can always enable it again",
+    "idp_status_tooltip_info": "Atleast one company service needs to enabled",
+    "idp_test_intro1": "Identity Provider was successfully created.",
+    "idp_test_intro2": "The IdP is disabled for now and get enabled below.",
+    "idp_test_description": "Please note, before enabling the Idp and trying to login, you need to setup the Idp connection on you side as well and connect your CX user to the IdP connection. To enable the same, please fillout the fields below.",
+    "idp_test_step_text1": "Step by Step approach",
+    "idp_test_step_text2": "Setup your own user for the new idp by enhancing your user profile.",
+    "idp_test_step_text3": "Activate the idp.",
+    "idp_test_step_text4": "Run a test via incognito mode of your browser.",
+    "idp_test_username_label": "Enter the username inside the new idp",
+    "idp_test_userid_label": "Enter the user id inside the new idp",
+    "idp_form_userId_error": "Please enter a valid user Id",
+    "idp_form_username_error": "Please enter a valid username"
   },
   "actions": {
     "SignOut": "Sign out",
@@ -57,8 +82,6 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "request": "Request",
-          "requestDescription": "ID of user request",
           "date": "Date",
           "companyinfo": "Company Application Info",
           "documents": "Documents",
@@ -75,7 +98,7 @@
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
         "overlay": {
-          "title": "Company Detail",
+          "title": "Company Data",
           "companydatatitle": "Company Data",
           "taxid": "Tax ID"
         },
@@ -103,6 +126,9 @@
       },
       "appStoreSection": {
         "title": "New Apps"
+      },
+      "emptyCards": {
+        "title": "New apps will get added here as soon as you have any assigned"
       }
     },
     "appstore": {
@@ -146,6 +172,7 @@
       },
       "table": {
         "title": "Semantic Data Models",
+        "searchfielddefaulttext": "Search by name",
         "filter": {
           "namespaceLabel": "Namespace",
           "namespacePlaceholder": "Enter a namespace to filter",
@@ -211,7 +238,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Search by Name/Identifier",
+        "searchfielddefaulttext": "Search by party instance id",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -234,6 +261,20 @@
         "protocol_endpoint": "Aspect Endpoint:"
       }
     },
+    "organization": {
+      "company": {
+        "title": "Company Details",
+        "error": "error - no data found",
+        "name": "Company Name: ",
+        "address": "Address: ",
+        "city": "City: ",
+        "bpn": "BPN: "
+      },
+      "subscriptions": {
+        "title": "App Subscriptions",
+        "error": "error - no data found"
+      }
+    },
     "datamanagement": {
       "message": "Contents of Data Management"
     },
@@ -244,7 +285,31 @@
       "message": "Contents of Developer Hub"
     },
     "appoverview": {
-      "message": "App Overview Message"
+      "headerTitle": "My Apps",
+      "title": "App Overview",
+      "inputPlaceholder": "Search for Apps",
+      "recently": {
+        "header": "Recently changed",
+        "subheader": "Below you can find your recently changed apps. By clicking on the app, you can open up the deatils/proceed on the app release process. The sub-menu added to each app card will help you to do changes on active apps. Below the recent changed apps, a list of all by your company provided apps can get found. Please scroll down to get more details."
+      },
+      "filter": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive",
+        "wip": "WIP"
+      },
+      "addbtn": "Register your App",
+      "confirmModal": {
+        "title": "Change app {appName}",
+        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+      },
+      "details": {
+        "price": "Price:",
+        "language": "Language:",
+        "useCase": "Use Case:",
+        "title": "Submitted App Details",
+        "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
+      }
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -305,8 +370,10 @@
         "country": "Country",
         "street": "Street",
         "zipcode": "Zip Code",
-        "city": "City",
-        "cxparticipant": "CX Member"
+        "city": "PLZ/City",
+        "cxparticipant": "CX Member",
+        "address": "Address",
+        "identifiers": "Identifiers"
       },
       "filters": {
         "germany": "Germany",
@@ -315,8 +382,10 @@
       "message": "Contents of Partner Network",
       "loadmore": "Load More",
       "searchbuttonlabel": "Search",
-      "searchfielddefaulttext": "Search by company name or BPN",
+      "searchfielddefaulttext": "Search by name or BPN",
       "searchfielderrormessage": "Invalid Data",
+      "membershipnotificationtitle": "Membership flag cannot be fetched.",
+      "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
       "overlay": {
         "title": "Company Detail",
         "companydatatitle": "Company Data",
@@ -344,6 +413,10 @@
         "details": "Details"
       }
     },
+    "userAdded": {
+      "success": "User added successfully",
+      "failure": "User was not added"
+    },
     "provisionIdp": {
       "title": "Setup your company IDP",
       "send": "Submit IDP request",
@@ -370,6 +443,8 @@
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
         "subheadline": "App Access Management",
+        "userRoleSuccessMsg": "User Role assigned successfully",
+        "userRoleErrorMsg": "Error while assigning user role",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
@@ -410,6 +485,37 @@
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
       }
+    },
+    "idpmanagement": {
+      "create": "Create OIDC Identity Provider"
+    },
+    "idpdetail": {
+      "title": "Identity Provider Details",
+      "alias": "Alias",
+      "status": "Status",
+      "displayName": "Display Name",
+      "authType": "IDP Typ",
+      "authorizationUrl": "Authorization URL",
+      "metadataUrl": "Metadata URL",
+      "clientId": "Client ID",
+      "secret": "Secret",
+      "signatureAlgorithm": "Signature algorithm",
+      "clientAuthMethod": "Authentication Method",
+      "tokenUrl": "Token URL",
+      "idpTypeSelection": "IdP Type Selection",
+      "companyName": "Company Name",
+      "done": "Done",
+      "loading": "Loading",
+      "load": "Load",
+      "selectIpsText": "Select the type of IdP which should get newly created",
+      "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
+      "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
+      "client_id_required_error": "Client id is required",
+      "client_id_invalid_error": "Please enter valid client id",
+      "client_secret_required_error": "Client secret is required",
+      "client_secret_invalid_error": "Please enter valid client secret",
+      "metadata_url_required_error": "Metadata url is required",
+      "metadata_url_invalid_error": "Please enter valid metadata url"
     },
     "addUser": {
       "headline": "Add User Account",
@@ -475,7 +581,7 @@
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "appPermissionTable": {
-        "title": "App User Permissions",
+        "title": "App Permissions",
         "appName": "App Name",
         "appProvider": "App Provider"
       }
@@ -488,6 +594,9 @@
     },
     "notfound": {
       "message": "The content could not be found. This can happen because of various reasons - either",
+      "title": "Something went wrong.",
+      "description": "You don't have access to this page or the page doesn't exist. Please contact your admin.",
+      "button": "HomePage",
       "reason": {
         "nopermission": "you have no permission to view this content or",
         "notexisting": "the page doesn't exist in the Catena-X portal or",
@@ -503,11 +612,12 @@
       "pending": "Requested",
       "privacy": {
         "heading": "Privacy Policy",
-        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "notSupportedMessage": "Currently not yet supported"
       },
       "howtouse": {
-        "heading": "Terms of use",
-        "message": "These terms of use regulate the relationship between app prospects and app providers. The terms of use, as well as the data models and further information can be viewed by clicking on the hyperlinks."
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "providerInformation": {
         "heading": "Provider Information",
@@ -532,11 +642,11 @@
       "marketplaceExplanation": "Expalanation of the requirement",
       "stepper": {
         "appMarketCard": "App Market Card",
+        "appPage": "App Page",
         "contractAndConsent": "Contract & Consent",
         "technicalIntegration": "Technical Integration",
         "betaTest": "Beta Test",
-        "validateAndPublish": "Validate & Publish",
-        "verifyYourCompanyData": "Verify your company data"
+        "validateAndPublish": "Validate & Publish"
       },
       "appMarketCard": {
         "headerTitle": "Create App",
@@ -545,28 +655,117 @@
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
-        "appTitle": "App title*",
+        "appTitle": "App title",
         "appTitlePlaceholder": "name@domain.com",
-        "appProvider": "App provider*",
+        "appProvider": "App provider",
         "appProviderPlaceholder": "prefill: [company name]",
-        "shortDescriptionEN": "Short Description - EN*",
-        "shortDescriptionDE": "Short Description - DE*",
-        "useCaseCategory": "Use Case /Category*",
+        "shortDescriptionEN": "Short Description - EN",
+        "shortDescriptionDE": "Short Description - DE",
+        "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
-        "appLanguage": "App Language*",
+        "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information*",
-        "pricingInformationPlaceholder": "Please select a pricing type*",
-        "uploadTitle": "Drag & drop your files here",
-        "uploadSubTitle": "or browse files on your computer.",
+        "pricingInformation": "Pricing Information",
+        "pricingInformationPlaceholder": "Please select a pricing type"
+      },
+      "appPage": {
+        "headerTitle": "App Details",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "longDescriptionEN": "Long Description - EN",
+        "longDescriptionDE": "Long Description - DE",
+        "images": "Images",
+        "note": "Note:",
+        "maxThreeImages": "Max.3 Images",
+        "connectData": "Connect Data",
+        "dataSecurityInformation": "Data Security Information",
+        "uploadDataPrerequisits": "Upload “Data Prerequisits”",
+        "uploadTechnicalGuide": "Upload “Technical Guide”",
+        "uploadDataContract": "Upload “Data Contract”",
+        "uploadAppContract": "Upload “App Contract”",
+        "providerDetails": "Provider Details",
+        "providerHomePage": "Provider Homepage",
+        "providerContactEmail": "Customer Contact E-Mail",
+        "providerPhoneContact": "Provider Phone Contact",
+        "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
+        "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
+      },
+      "contractAndConsent": {
+        "headerTitle": "Consent & Contract",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "allAgreementsMandatory": "All agreements are mandatory"
+      },
+      "technicalIntegration": {
+        "headerTitle": "Technical Integration",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "clientID": "Client ID",
+        "URL": "URL",
+        "pleaseEnterValidURL": "Please enter a valid URL",
+        "URLPlaceholder": "http://www.loremipsum.de",
+        "clientCreated": "Client created",
+        "step2Header": "2. Upload App Roles",
+        "rolesPreview": "Preview of roles contained in the uploaded files:",
+        "createThoseForYourApp": "Create those for your App",
+        "step3Header": "3. Enable your Identity Management Solution",
+        "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "step4Header": "4. Get Test Users to Test Integration",
+        "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
+        "createClient": "Create Client",
+        "createTestUser": "Create Test User",
+        "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
+        "password": "Password",
+        "username": "Username"
+      },
+      "betaTest": {
+        "headerTitle": "Beta Test",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      },
+      "validateAndPublish": {
+        "headerTitle": "Verify your app data for submit",
+        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "appCardDetails": "App Card Details"
+      },
+      "submitApp": {
+        "headerTitle": "Thank you for submitting the app!",
+        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescriptionComplete": "further information on app release",
+        "yourCatenaXTeam": "Your Catena-X team",
+        "myAppsOverview": "My apps overview"
+      },
+      "appReleaseForm": {
+        "headerTitle": "Create App",
+        "addMore": "Add More",
+        "noItemsSelected": "No Items Selected",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "max3Images": "Max. 3 Images",
+        "minimum": "Minimum",
+        "charactersRequired": " characters required",
+        "maximum": "Maximum",
+        "charactersAllowed": " characters allowed",
+        "validCharactersIncludes": "Valid characters includes: ",
+        "isMandatory": " is mandatory",
+        "fileUploadIsMandatory": "File upload is mandatory",
+        "error": {
+          "title": "Error - something went wrong.",
+          "message": "Please try it again"
+        }
+      },
+      "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "save & proceed",
+        "saveAndProceed": "Save & proceed",
         "save": "Save",
-        "addMore": "Add More",
-        "noItemsSelected": "No Items Selected"
+        "submit": "Submit"
       }
+    },
+    "serviceMarketplace": {
+      "headline": "Purchase Service Request",
+      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully"
     }
   },
   "navigation": {
@@ -593,7 +792,9 @@
       "authType": "Auth Type",
       "description": "Description",
       "secret": "Secret",
-      "permission": "Permission"
+      "permission": "Permission",
+      "userId": "User Id",
+      "redirectURI": "Redirect URI"
     },
     "actions": {
       "cancel": "Cancel",
@@ -602,13 +803,23 @@
       "loadmore": "Load more",
       "details": "Details",
       "close": "Close",
+      "save": "Save",
       "back": "Back",
       "delete": "Delete",
       "pleaseSelect": "Please select",
       "reload": "Reload Page",
       "homepage": "Homepage",
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
-      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
+      "submit": "Submit",
+      "no": "No",
+      "yes": "Yes"
+    },
+    "state": {
+      "enabled": "enabled",
+      "disabled": "disabled",
+      "enable": "Enable",
+      "disable": "Disable"
     },
     "objects": {
       "app": "app",
@@ -648,18 +859,19 @@
       "tomorrow": "tomorrow"
     },
     "table": {
-      "search": "Enter email to search"
+      "search": "Enter email to search",
+      "searchName": "Enter name to search"
     }
   },
   "servicemarketplace": {
-    "title": "Service Marketplace",
-    "message": "Service Marketplace Description"
+    "title": "Service Provider Marketplace"
   },
   "dataspacemarketplace": {
     "title": "Dataspace Marketplace",
     "message": "Dataspace Marketplace Description"
   },
   "hints": {
-    "coming_soon": "coming soon"
+    "coming_soon": "Coming soon",
+    "new": "New"
   }
 }

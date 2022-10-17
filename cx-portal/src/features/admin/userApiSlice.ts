@@ -19,6 +19,8 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
@@ -56,6 +58,22 @@ export interface TenantUserDetails extends TenantUser {
   bpn: string[]
   company: string
   assignedRoles: UserAppRoles[]
+}
+
+export interface CompanyDetails {
+  bpn: string
+  city: string
+  companyId: string
+  countryAlpha2Code: string
+  countryDe: string
+  name: string
+  region: string
+  shortName: string
+  streetAdditional: string
+  streetName: string
+  streetNumber: string
+  taxId: string
+  zipCode: string
 }
 
 export const apiSlice = createApi({
@@ -98,6 +116,12 @@ export const apiSlice = createApi({
     fetchUserDetails: builder.query<TenantUserDetails, string>({
       query: (id) => `/api/administration/user/owncompany/users/${id}`,
     }),
+    fetchOwnUserDetails: builder.query<TenantUserDetails, void>({
+      query: () => `/api/administration/user/ownUser`,
+    }),
+    fetchOwnCompanyDetails: builder.query<CompanyDetails, void>({
+      query: () => `/api/administration/companydata/ownCompanyDetails`,
+    }),
   }),
 })
 
@@ -106,6 +130,43 @@ export const {
   useFetchUsersQuery,
   useFetchUsersSearchQuery,
   useFetchUserDetailsQuery,
+  useFetchOwnUserDetailsQuery,
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
+  useFetchOwnCompanyDetailsQuery,
 } = apiSlice
+
+const name = 'admin/user/add'
+
+export interface AddUserState {
+  isSuccess: boolean
+  isError: boolean
+}
+
+export const initialState: AddUserState = {
+  isSuccess: false,
+  isError: false,
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setAddUserSuccess: (state, action) => {
+      state.isSuccess = action.payload
+    },
+    setAddUserError: (state, action) => {
+      state.isError = action.payload
+    },
+  },
+})
+
+export const currentAddUserSuccess = (state: RootState): boolean => {
+  return state.userAdd.isSuccess
+}
+
+export const currentAddUserError = (state: RootState): boolean =>
+  state.userAdd.isError
+
+export const { setAddUserSuccess, setAddUserError } = slice.actions
+export default slice

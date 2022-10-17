@@ -21,7 +21,13 @@
 import { Box } from '@mui/material'
 import { Typography, FileIcon } from 'cx-portal-shared-components'
 
-export const FilePreviewItem = ({ file }: { file: File }) => {
+export const FilePreviewItem = ({
+  file,
+  showPreviewAlone,
+}: {
+  file: File
+  showPreviewAlone?: boolean
+}) => {
   return (
     <>
       <FileIcon fillColor={'#939393'} size={80} />
@@ -33,12 +39,14 @@ export const FilePreviewItem = ({ file }: { file: File }) => {
         >
           {file.name}
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{ display: 'block', '&.error': { color: 'danger.danger' } }}
-        >
-          {file.type}, {file.size} bytes
-        </Typography>
+        {!showPreviewAlone && (
+          <Typography
+            variant="body2"
+            sx={{ display: 'block', '&.error': { color: 'danger.danger' } }}
+          >
+            {file.type}, {file.size} bytes
+          </Typography>
+        )}
         <progress max={100} value={0} />
       </Box>
     </>

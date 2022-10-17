@@ -1,4 +1,24 @@
-import { DataGrid, DataGridProps } from '@mui/x-data-grid'
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+import { DataGrid, DataGridProps, GridRowId } from '@mui/x-data-grid'
 import { Box } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
@@ -25,6 +45,9 @@ export interface TableProps extends DataGridProps {
   searchDebounce?: number
   searchInputData?: SearchInputState
   hasBorder?: boolean
+  buttonLabel?: string
+  onButtonClick?: React.MouseEventHandler
+  onSelection?: (value: GridRowId[]) => void
 }
 
 export const Table = ({
@@ -46,6 +69,9 @@ export const Table = ({
   searchDebounce,
   searchInputData,
   hasBorder = true,
+  buttonLabel,
+  onButtonClick,
+  onSelection,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -55,7 +81,16 @@ export const Table = ({
     searchDebounce,
     searchInputData,
     searchPlaceholder,
+    buttonLabel,
+    onButtonClick,
+    onSelection,
+    searchExpr,
   }
+
+  const handleOnCellClick = (params: any) => {
+    onSelection && onSelection([params.row.companyUserId])
+  }
+
   const toolbarView = () => {
     switch (toolbarVariant) {
       case 'basic':
@@ -63,7 +98,7 @@ export const Table = ({
       case 'premium':
         return <Toolbar title={title} {...toolbar} {...toolbarProps} />
       case 'ultimate':
-        return <UltimateToolbar title={title} {...toolbar} {...toolbarProps} />
+        return <UltimateToolbar title={title} {...toolbarProps} {...toolbar} />
     }
   }
 
@@ -81,10 +116,17 @@ export const Table = ({
       }}
     >
       <DataGrid
+        sx={{
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus':
+            {
+              outline: 'none',
+            },
+        }}
         getRowId={(row) => row.id}
         components={{
           Toolbar: () => toolbarView(),
         }}
+        onCellClick={onSelection && handleOnCellClick}
         {...{
           rows,
           columns,

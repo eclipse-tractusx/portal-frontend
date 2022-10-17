@@ -47,6 +47,7 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
+import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
@@ -54,11 +55,14 @@ import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
-import UserDetails from 'components/pages/UserManagement/UserDetails'
+import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
+import IDPManagement from 'components/pages/IDPManagement'
+import IDPDetail from 'components/pages/IDPDetail'
+import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 
 /**
  * ALL_PAGES
@@ -89,6 +93,21 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.SERVICE_MARKETPLACE,
     role: ROLES.APPSTORE_VIEW_SERVICES,
     element: <ServiceMarketplace />,
+  },
+  {
+    name: PAGES.SERVICE_MARKETPLACE_DETAIL,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICE_MARKETPLACE_DETAIL}
+        path={PAGES.SERVICE_MARKETPLACE_DETAIL}
+        element={<ServiceMarketplaceDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":serviceId" element={<ServiceMarketplaceDetail />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.DATASPACE_MARKETPLACE,
@@ -157,6 +176,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.NOTIFICATIONS,
+    role: ROLES.NOTIFICATION_VIEW,
     element: <NotificationCenter />,
   },
   {
@@ -171,12 +191,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    // role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPMANAGEMENT_VIEW,
     element: <AppOverview />,
   },
   {
     name: PAGES.APPOVERVIEW,
-    //role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverview />,
   },
   {
@@ -185,9 +205,33 @@ export const ALL_PAGES: IPage[] = [
     element: <AppReleaseProcess />,
   },
   {
+    name: PAGES.APP_RELEASE_PROCESS_FORM,
+    isRoute: true,
+    element: (
+      <Route
+        path={`${PAGES.APPRELEASEPROCESS}/form`}
+        element={<AppReleaseProcessForm />}
+      />
+    ),
+  },
+  {
     name: PAGES.USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     element: <UserManagement />,
+  },
+  {
+    name: PAGES.USER_DETAILS,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.USER_DETAILS}
+        path={`/${PAGES.USER_DETAILS}`}
+        element={<UserDetails />}
+      >
+        <Route path=":userId" element={<UserDetails />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.TECHUSER_MANAGEMENT,
@@ -209,20 +253,6 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.USER_DETAILS}
-        path={`/${PAGES.USER_DETAILS}`}
-        element={<UserDetails />}
-      >
-        <Route path=":userId" element={<UserDetails />} />
-      </Route>
-    ),
-  },
-  {
     name: PAGES.APP_USER_MANAGEMENT,
     role: ROLES.USERMANAGEMENT_VIEW,
     isRoute: true,
@@ -236,6 +266,26 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  {
+    name: PAGES.IDP_MANAGEMENT,
+    role: ROLES.IDP_VIEW,
+    element: <IDPManagement />,
+  },
+  {
+    name: PAGES.IDP_DETAIL,
+    role: ROLES.IDP_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.IDP_DETAIL}
+        path={`/${PAGES.IDP_DETAIL}`}
+        element={<IDPDetail />}
+      >
+        <Route path=":idpId" element={<IDPDetail />} />
+      </Route>
+    ),
+  },
+
   {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,
@@ -307,6 +357,37 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.TECHUSER,
     role: ROLES.TECHUSER_VIEW,
   },
+  {
+    name: OVERLAYS.SERVICE_REQUEST,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+  },
+  {
+    name: OVERLAYS.IDP,
+    role: ROLES.IDP_VIEW,
+  },
+  {
+    name: OVERLAYS.NOT_FOUND,
+    role: ROLES.IDP_VIEW,
+  },
+  {
+    name: OVERLAYS.IDP_CONFIRM,
+    role: ROLES.IDP_DELETE,
+  },
+  {
+    name: OVERLAYS.IDP_STATUS,
+    role: ROLES.IDP_DISABLE,
+  },
+  {
+    name: OVERLAYS.IDP_TEST_RUN,
+    role: ROLES.IDP_ADD,
+  },
+  {
+    name: OVERLAYS.APP_OVERVIEW_CONFIRM,
+    role: ROLES.APPOVERVIEW_VIEW,
+  },
+  {
+    name: OVERLAYS.APP_DETAILS_OVERLAY,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -327,8 +408,12 @@ export const mainMenuFullTree = [
     name: PAGES.MARKETPLACE,
     children: [
       { name: PAGES.APP_MARKETPLACE },
-      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.COMING_SOON },
-      { name: PAGES.DATASPACE_MARKETPLACE, hint: HINTS.COMING_SOON },
+      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
+      {
+        name: PAGES.DATASPACE_MARKETPLACE,
+        hint: HINTS.COMING_SOON,
+        disable: true,
+      },
     ],
   },
   {
@@ -342,7 +427,10 @@ export const mainMenuFullTree = [
   { name: PAGES.PARTNER_NETWORK },
   {
     name: PAGES.APP_MANAGEMENT,
-    children: [{ name: PAGES.APPOVERVIEW }, { name: PAGES.APPRELEASEPROCESS }],
+    children: [
+      { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.APPRELEASEPROCESS },
+    ],
   },
 ]
 
@@ -354,12 +442,13 @@ export const mainMenuFullTree = [
  */
 export const userMenuFull = [
   PAGES.ACCOUNT,
+  PAGES.ORGANIZATION,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
+  PAGES.IDP_MANAGEMENT,
   PAGES.TECHNICAL_SETUP,
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
-  PAGES.ADMINISTRATION,
   PAGES.LOGOUT,
 ]
 

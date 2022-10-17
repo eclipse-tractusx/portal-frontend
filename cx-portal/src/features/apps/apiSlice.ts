@@ -22,6 +22,17 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import i18next from 'i18next'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
+export type ImageType = {
+  src: string
+  alt?: string
+}
+
+export interface AppInfo {
+  status: string
+  id: string | undefined
+  name: string | undefined
+}
+
 export type AppMarketplaceApp = {
   id: string
   title: string
@@ -31,17 +42,38 @@ export type AppMarketplaceApp = {
   useCases: string[]
   price: string
   rating?: number
-  link?: string
+  uri?: string
+  status?: SubscriptionStatus
+  image?: ImageType
+  name?: string
+  lastChanged?: string
+  timestamp?: number
 }
 
 export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
+  INACTIVE = 'INACTIVE',
+  IN_REVIEW = 'IN_REVIEW',
+  CREATED = 'CREATED',
+}
+
+export enum SubscriptionStatusText {
+  ACTIVE = 'Active',
+  PENDING = 'Pending',
+  INACTIVE = 'Inactive',
+  IN_REVIEW = 'In Review',
+  CREATED = 'In Progress',
 }
 
 export type SubscriptionStatusItem = {
   appId: string
-  appSubscriptionStatus: SubscriptionStatus
+  offerSubscriptionStatus: SubscriptionStatus
+}
+
+export type DocumentData = {
+  documentId: string
+  documentName: string
 }
 
 export type AppDetails = AppMarketplaceApp & {
@@ -49,10 +81,16 @@ export type AppDetails = AppMarketplaceApp & {
   contactEmail: string
   contactNumber: string
   detailPictureUris: string[]
+  documents: DocumentAppContract
   longDescription: string
   isSubscribed: string
   tags: string[]
   languages: string[]
+  leadPictureUri?: ImageType
+}
+
+export type DocumentAppContract = {
+  APP_CONTRACT: Array<DocumentData>
 }
 
 export type AppDetailsState = {
@@ -77,6 +115,21 @@ export const apiSlice = createApi({
     fetchSubscriptionStatus: builder.query<SubscriptionStatusItem[], void>({
       query: () => `/api/apps/subscribed/subscription-status`,
     }),
+    fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/provided`,
+    }),
+    fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
+      query: () => `/api/apps/business`,
+    }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}?documentId=${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -85,4 +138,7 @@ export const {
   useFetchActiveAppsQuery,
   useFetchFavoriteAppsQuery,
   useFetchSubscriptionStatusQuery,
+  useFetchProvidedAppsQuery,
+  useFetchBusinessAppsQuery,
+  useFetchDocumentByIdMutation,
 } = apiSlice

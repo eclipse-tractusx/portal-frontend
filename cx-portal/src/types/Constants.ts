@@ -32,6 +32,7 @@ export enum PAGES {
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
+  SERVICE_MARKETPLACE_DETAIL = 'servicemarketplacedetail',
   DATASPACE_MARKETPLACE = 'dataspacemarketplace',
   APP_DETAIL = 'appdetail',
   DATACATALOG = 'datacatalog',
@@ -49,6 +50,8 @@ export enum PAGES {
   TECHNICAL_SETUP = 'technicalsetup',
   TECHUSER_MANAGEMENT = 'technicaluser',
   TECHUSER_DETAILS = 'techuserdetails',
+  IDP_MANAGEMENT = 'idpmanagement',
+  IDP_DETAIL = 'idpdetail',
   APPLICATION_REQUESTS = 'applicationrequests',
   APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
@@ -69,9 +72,11 @@ export enum PAGES {
   APP_MANAGEMENT = 'appmanagement',
   APPOVERVIEW = 'appoverview',
   APPRELEASEPROCESS = 'appreleaseprocess',
+  APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
 }
 
 export enum OVERLAYS {
+  NOT_FOUND = 'notfound',
   NONE = 'none',
   ADD_USER = 'add_user',
   ADD_APP_USER_ROLES = 'add_app_user_roles',
@@ -85,6 +90,13 @@ export enum OVERLAYS {
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
+  SERVICE_REQUEST = 'service_request',
+  IDP = 'idp',
+  IDP_CONFIRM = 'idp_confirm',
+  IDP_STATUS = 'idp_status',
+  IDP_TEST_RUN = 'idp_test_run',
+  APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
+  APP_DETAILS_OVERLAY = 'app_details_overlay',
 }
 
 export enum ACTIONS {
@@ -99,15 +111,19 @@ export enum ROLES {
   ADMIN_CONNECTOR = 'Admin - Connector Setup',
   ADMIN_USER = 'Admin - User Management',
   INVITE_NEW_PARTNER = 'invite_new_partner',
+  NOTIFICATION_VIEW = 'view_notifications',
   SETUP_IDP = 'setup_idp',
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
-  APPSTORE_VIEW_SERVICES = 'view_services',
+  APPSTORE_VIEW_SERVICES = 'view_service_marketplace',
+  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service_marketplace',
   APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',
   APPSTORE_FILTER = 'filter_apps',
   APPSTORE_DELETE = 'delete_apps',
+  APPMANAGEMENT_VIEW = 'add_apps',
+  APPOVERVIEW_VIEW = 'add_apps',
   CONNECTOR_SETUP = 'setup_connector',
   DATACATALOG_VIEW = 'view_data_catalog',
   DIGITALTWIN_VIEW = 'view_digital_twin',
@@ -122,6 +138,11 @@ export enum ROLES {
   TECHUSER_VIEW = 'view_tech_user_management',
   TECHUSER_ADD = 'add_tech_user_management',
   TECHUSER_DELETE = 'delete_tech_user_management',
+  IDP_VIEW = 'view_idp',
+  IDP_ADD = 'add_idp',
+  IDP_DELETE = 'delete_idp',
+  IDP_SETUP = 'setup_idp',
+  IDP_DISABLE = 'disable_idp',
   MODIFY_USER_ACCOUNT = 'modify_user_account',
   ORGANIZATION_VIEW = 'view_organization',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
@@ -134,4 +155,5 @@ export enum ROLES {
 
 export enum HINTS {
   COMING_SOON = 'coming_soon',
+  NEW = 'new',
 }

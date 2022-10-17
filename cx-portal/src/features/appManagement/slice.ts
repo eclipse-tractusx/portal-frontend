@@ -31,10 +31,32 @@ const managementSlice = createSlice({
       open: action.payload.open,
       text: action.payload.text,
     }),
+    increment: (state) => {
+      state.currentActiveStep += 1
+    },
+    decrement: (state) => {
+      state.currentActiveStep -= 1
+    },
+    setCurrentActiveStep: (state) => {
+      state.currentActiveStep = 1
+    },
+    setApplicationId: (state, action) => ({
+      ...state,
+      appId: action.payload,
+    }),
   },
 })
 
 export const appManagementSelector = (state: RootState): SearchInputState =>
   state.management
+
+export const currentActiveStep = (state: RootState): any =>
+  state.management.currentActiveStep
+
+export const appIdSelector = (state: RootState): string =>
+  state.management.appId
+
+export const { increment, decrement, setCurrentActiveStep } =
+  managementSlice.actions
 
 export default managementSlice

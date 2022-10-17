@@ -1,3 +1,23 @@
+/********************************************************************************
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import { createTheme } from '@mui/material/styles'
 // Needs to use like this to overwrite data grid styles
 // https://mui.com/components/data-grid/getting-started/#typescript
@@ -83,9 +103,15 @@ const palette = createPalette({
     release: '#0D61AE',
     active: '#88982D',
     inactive: '#D91E18',
+    created: '#8f8013',
+    inReview: '#8f8013',
+    default: '#888888',
     bgRelease: '#EAF1FE',
     bgActive: '#F0F5D5',
     bgInactive: '#FFF7FF',
+    bgCreated: '#f5efd5',
+    bgInReview: '#f5efd5',
+    bgDefault: '#c7c5c5',
   },
   stepper: {
     stepDone: '#B3CB2D',
