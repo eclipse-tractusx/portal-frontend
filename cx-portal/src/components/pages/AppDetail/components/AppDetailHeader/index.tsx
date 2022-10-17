@@ -19,13 +19,12 @@
  ********************************************************************************/
 
 import { useSelector } from 'react-redux'
-import { Button, Typography } from 'cx-portal-shared-components'
+import { Button, Typography, Tooltips } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { getAppLeadImage } from 'features/apps/mapper'
 import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
-import { Tooltips } from 'cx-portal-shared-components'
 
 export interface AppDetailHeaderProps {
   item: AppDetails

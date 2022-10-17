@@ -39,7 +39,6 @@ interface TooltipsProps {
     | 'right-start'
     | 'top-end'
     | 'top-start'
-    | undefined
   tooltipArrow?: boolean
   arrowColor?: string
   backgroundColor?: string
@@ -79,6 +78,8 @@ export const Tooltips = ({
       color: textColor || theme.palette.common.white,
       padding: 25,
       maxWidth: 300,
+      fontSize: 14,
+      lineHeight: 20,
       ...additionalStyles,
     },
   }))
