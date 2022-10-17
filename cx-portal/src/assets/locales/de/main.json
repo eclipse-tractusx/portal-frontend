@@ -413,6 +413,10 @@
         "details": "Details"
       }
     },
+    "userAdded": {
+      "success": "User added successfully",
+      "failure": "User was not added"
+    },
     "provisionIdp": {
       "title": "Verbinden Sie Ihren IDP",
       "send": "IDP Provisionierung absenden",
