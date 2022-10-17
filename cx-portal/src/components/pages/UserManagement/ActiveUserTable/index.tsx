@@ -26,8 +26,9 @@ import { useNavigate } from 'react-router-dom'
 import { UserList } from 'components/shared/frame/UserList'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { useState } from 'react'
+import UserService from 'services/UserService'
 
 export const ActiveUserTable = () => {
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ export const ActiveUserTable = () => {
   return (
     <UserList
       sectionTitle={'content.usermanagement.table.headline'}
-      addButtonLabel={'content.usermanagement.table.add'}
+      addButtonLabel={UserService.hasRole(ROLES.USERMANAGEMENT_ADD) ? 'content.usermanagement.table.add' : ''}
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
       tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersSearchQuery}
