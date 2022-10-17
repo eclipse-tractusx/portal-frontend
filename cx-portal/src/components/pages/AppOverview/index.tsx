@@ -50,11 +50,23 @@ export default function AppOverview() {
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
+  const valueMap: any = {
+    wip: ['in_review', 'created'],
+    inactive: 'inactive',
+    active: 'active',
+  }
+
   const debouncedSearch = useMemo(
     () =>
       debounce((expr: string, data: CardItems[] | undefined, group: string) => {
         if (group) {
-          data = data?.filter((item: any) => item.status === group)
+          data = data?.filter((item: any) => {
+            if (group === 'wip') {
+              return valueMap[group].includes(item.status)
+            } else {
+              return item.status === valueMap[group]
+            }
+          })
         }
         if (expr.length > 2) {
           const filterItems = data?.filter(
