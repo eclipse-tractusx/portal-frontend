@@ -78,8 +78,8 @@ export const Tooltips = ({
       color: textColor || theme.palette.common.white,
       padding: 25,
       maxWidth: 300,
-      fontSize: 14,
-      lineHeight: 20,
+      fontSize: '14px',
+      lineHeight: '20px',
       ...additionalStyles,
     },
   }))
