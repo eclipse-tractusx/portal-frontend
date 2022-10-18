@@ -626,7 +626,9 @@
         "website": "Provider Homepage",
         "email": "Email",
         "phone": "Phone"
-      }
+      },
+      "pendingTooltip": "Application subscription is pending. The app provider is informed",
+      "subscribedTooltip": "The app is already subscribed by {appName}"
     },
     "apprelease": {
       "headerTitle": "App Release Process",

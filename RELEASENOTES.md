@@ -5,24 +5,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.6.1
 
-* Feature - App Detail Page - Privacy Policy content not supported tag added
-* Feature - Add download document in app detail page
-* Feature - App Overview Page - Design updates
+* Feature - Home Page - Connect My App API
 * Feature - Assign User Role
-* Feature - App Overview - Confirm overlay added for apps in status "in progress"
-* Feature - Connect My App API on Home Page
+* Feature - App Detail Page - Download document & tags added
+* Feature - App Overview - Confirm and detail overlays & design updates
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
-* Feature - Success/Failure Message as an overlay in Add User
-* Feature - App Overview - App detail overlay added for apps in status "in review"
-* Bugfix - Application Request Board - Correct api endpoint to display documents
-* Bugfix - Application Request Board - Correct api endpoint to display documents
-* Bugfix - App roles going out of the card - Break word to the next line and card height adjusted to the adjacent card
+* Feature - Add User - Success/Failure message as an overlay
+* Feature - Shared Components - New tooltip added
+* Feature - App Marketplace - Show tooltips
+* Bugfix - App roles - Fixed text align issues
 * Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
 * Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now
-* Bugfix - App overview page - Filter business logic upddate
+* Bugfix - App overview page - Filter business logic update
 
 ### 0.5.5
 

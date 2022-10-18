@@ -83,6 +83,7 @@ export { UserNav } from './content/UserNav'
 export { CircularProgress } from './basic/CircularProgress'
 export { Datepicker } from './basic/Datepicker'
 export { TransitionChip } from './basic/Chip/TransitionChip'
+export { Tooltips } from './basic/ToolTips'
 
 export type { TableProps } from './basic/Table'
 export type {
