@@ -57,7 +57,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       ?.roles
 
   useEffect(() => {
-    setRoles(assignedRoles!)
+    setRoles(assignedRoles ?? [])
   }, [assignedRoles])
 
   const selectRole = (role: string, select: boolean) => {

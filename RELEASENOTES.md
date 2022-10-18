@@ -9,20 +9,20 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Add download document in app detail page
 * Feature - App Overview Page - Design updates
 * Feature - Assign User Role
-* Feature - Feature - App Overview: Confirm overlay added for apps in status "in progress"
+* Feature - App Overview - Confirm overlay added for apps in status "in progress"
 * Feature - Connect My App API on Home Page
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
 * Feature - Success/Failure Message as an overlay in Add User
+* Feature - App Overview - App detail overlay added for apps in status "in review"
+* Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - App roles going out of the card - Break word to the next line and card height adjusted to the adjacent card
-* Feature - Feature - App Overview: App detail overlay added for apps in status "in review"
 * Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
 * Bugfix - Application Request Board - Correct api endpoint to display documents
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now
 * Bugfix - App overview page - Filter business logic upddate
-* Feature - API & BL: Change role of specific user for a defined app
 
 ### 0.5.5
 
