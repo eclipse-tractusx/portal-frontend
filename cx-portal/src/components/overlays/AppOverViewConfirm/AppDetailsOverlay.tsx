@@ -70,7 +70,7 @@ export default function AppDetailsOverlay({
             )}
           </Typography>
         )}
-        {data && <AppOverViewDetails item={data} />}
+        {data && <AppOverViewDetails item={data} id={id} />}
       </DialogContent>
     </>
   )

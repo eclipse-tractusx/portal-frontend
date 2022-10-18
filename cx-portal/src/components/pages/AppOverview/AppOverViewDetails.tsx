@@ -23,15 +23,54 @@ import {
   LanguageSwitch,
   Typography,
   LogoGrayData,
+  CustomAccordion,
 } from 'cx-portal-shared-components'
 import { Grid } from '@mui/material'
 import I18nService from 'services/I18nService'
 import i18next, { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { NewAppDetails } from 'features/appManagement/apiSlice'
+import AppInfo from './components/AppInfo'
 
-export default function AppOverViewDetails({ item }: { item: NewAppDetails }) {
+export default function AppOverViewDetails({
+  item,
+  id,
+}: {
+  item: NewAppDetails
+  id: string
+}) {
   const { t } = useTranslation()
+
+  const items = [
+    {
+      expanded: false,
+      id: 'panel-1',
+      title: 'App Details',
+      color: 'background.background09',
+      children: <AppInfo item={item} id={id} />,
+    },
+    {
+      expanded: false,
+      id: 'panel-2',
+      title: 'Consent',
+      color: 'background.background09',
+      children: <Typography variant="h4">To be updated</Typography>,
+    },
+    {
+      expanded: false,
+      id: 'panel-3',
+      title: 'Technical Integration',
+      color: 'background.background09',
+      children: <Typography variant="h4">To be updated</Typography>,
+    },
+    {
+      expanded: false,
+      id: 'panel-4',
+      title: 'Beta Test',
+      color: 'background.background09',
+      children: <Typography variant="h4">To be updated</Typography>,
+    },
+  ]
 
   const getDescription = (item: any) => {
     return item?.descriptions[0]?.longDescription
@@ -129,6 +168,14 @@ export default function AppOverViewDetails({ item }: { item: NewAppDetails }) {
           </Grid>
         </Grid>
       )}
+      <div
+        style={{
+          marginTop: '50px',
+          marginBottom: '50px',
+        }}
+      >
+        <CustomAccordion items={items} />
+      </div>
     </>
   )
 }
