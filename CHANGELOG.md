@@ -1,9 +1,8 @@
-# Release Notes
+# Changelog
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-
-### 0.6.1
+### 0.6.0
 
 * Feature - App Detail Page - Privacy Policy content not supported tag added
 * Feature - Add download document in app detail page
