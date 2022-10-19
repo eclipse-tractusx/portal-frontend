@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Button, Typography, Tooltips } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
@@ -35,7 +34,6 @@ export interface AppDetailHeaderProps {
 }
 
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
-  console.log('item', item)
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { appId } = useParams()

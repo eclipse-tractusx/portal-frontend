@@ -31,10 +31,9 @@ import { useEffect } from 'react'
 export default function AppDetail() {
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data, refetch } = useFetchAppDetailsQuery(appId!)
+  const { data, refetch } = useFetchAppDetailsQuery(appId ?? '')
 
   const success = useSelector(currentSuccessType)
-  console.log('success', success)
 
   useEffect(() => {
     refetch()
