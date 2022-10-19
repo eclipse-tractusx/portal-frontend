@@ -30,6 +30,7 @@ import { reducer as admin } from './admin/reducer'
 import managementSlice from './appManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
 import userAddSlice from './admin/userApiSlice'
+import userRoleSlice from './admin/appuserApiSlice'
 import { reducer as apps } from './apps/reducer'
 import { reducer as control } from './control/reducer'
 import { reducer as info } from './info/reducer'
@@ -56,6 +57,7 @@ export const reducers = {
   management: managementSlice.reducer,
   serviceMarketplace: serviceMarketplaceSlice.reducer,
   userAdd: userAddSlice.reducer,
+  userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
   user: userSliceDep,
   twins: twinsSlice.reducer,

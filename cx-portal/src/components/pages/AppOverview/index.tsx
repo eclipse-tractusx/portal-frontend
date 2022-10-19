@@ -24,24 +24,25 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import {
   PageHeader,
   Typography,
-  Cards,
   ViewSelector,
   SearchInput,
-  CardAddService,
-  CardHorizontal,
   CardItems,
+  Cards,
 } from 'cx-portal-shared-components'
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
-import './AppOverview.scss'
-import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
-import uniqueId from 'lodash/uniqueId'
+import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
+import { OVERLAYS, PAGES } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
+import { useNavigate } from 'react-router-dom'
+import './AppOverview.scss'
 
 export default function AppOverview() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [group, setGroup] = useState<string>('')
   const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
@@ -49,11 +50,23 @@ export default function AppOverview() {
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
+  const valueMap: any = {
+    wip: ['in_review', 'created'],
+    inactive: 'inactive',
+    active: 'active',
+  }
+
   const debouncedSearch = useMemo(
     () =>
       debounce((expr: string, data: CardItems[] | undefined, group: string) => {
         if (group) {
-          data = data?.filter((item: any) => item.status === group)
+          data = data?.filter((item: any) => {
+            if (group === 'wip') {
+              return valueMap[group].includes(item.status)
+            } else {
+              return item.status === valueMap[group]
+            }
+          })
         }
         if (expr.length > 2) {
           const filterItems = data?.filter(
@@ -127,6 +140,14 @@ export default function AppOverview() {
     [debouncedSearch, items, group]
   )
 
+  const showOverlay = (item: AppInfo) => {
+    if (item.status === 'created') {
+      dispatch(show(OVERLAYS.APP_OVERVIEW_CONFIRM, item.id, item.name))
+    } else if (item.status === 'in_review') {
+      dispatch(show(OVERLAYS.APP_DETAILS_OVERLAY, item.id, item.name))
+    }
+  }
+
   return (
     <div className="appoverview-app">
       <PageHeader
@@ -152,6 +173,10 @@ export default function AppOverview() {
                 buttonText="Details"
                 variant="minimal"
                 filledBackground={true}
+                imageSize={'small'}
+                onCardClick={(item: AppInfo) => {
+                  showOverlay(item)
+                }}
               />
             </div>
           </div>
@@ -184,31 +209,26 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          <div className="app-child">
-            <CardAddService
-              borderRadius={20}
-              backgroundColor={'background.background01'}
-              onButtonClick={function noRefCheck() {}}
-              title={t('content.appoverview.addbtn')}
-            />
-          </div>
-          {filterItem?.map((item: any) => {
-            return (
-              <div className="app-child" key={uniqueId(item.title)}>
-                <CardHorizontal
-                  borderRadius={20}
-                  imageAlt={item.image.alt || ''}
-                  imagePath={item.image.src}
-                  label={item.subtitle || ''}
-                  onBtnClick={function noRefCheck() {}}
-                  statusText={item.statusText}
-                  status={item.status}
-                  title={item.title}
-                  backgroundColor={'background.background01'}
-                />
-              </div>
-            )
-          })}
+          {filterItem && filterItem?.length > 0 && (
+            <div className="desc-card">
+              <Cards
+                items={filterItem}
+                columns={4}
+                buttonText="Details"
+                variant="minimal"
+                filledBackground={false}
+                imageSize={'small'}
+                showAddNewCard={true}
+                newButtonText={t('content.appoverview.addbtn')}
+                onNewCardButton={() =>
+                  navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+                }
+                onCardClick={(item: AppInfo) => {
+                  showOverlay(item)
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

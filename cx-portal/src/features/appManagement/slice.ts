@@ -37,6 +37,9 @@ const managementSlice = createSlice({
     decrement: (state) => {
       state.currentActiveStep -= 1
     },
+    setCurrentActiveStep: (state) => {
+      state.currentActiveStep = 1
+    },
     setApplicationId: (state, action) => ({
       ...state,
       appId: action.payload,
@@ -53,6 +56,7 @@ export const currentActiveStep = (state: RootState): any =>
 export const appIdSelector = (state: RootState): string =>
   state.management.appId
 
-export const { increment, decrement } = managementSlice.actions
+export const { increment, decrement, setCurrentActiveStep } =
+  managementSlice.actions
 
 export default managementSlice

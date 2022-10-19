@@ -72,6 +72,7 @@ const StyledAccordianButton = styled(MuiButton)(({ theme }) => ({
   backgroundColor: '#e3e7ee',
   color: 'black',
   borderRadius: '1px',
+  textTransform: 'uppercase',
 
   '&:hover': {
     background: '#e3e7ee',

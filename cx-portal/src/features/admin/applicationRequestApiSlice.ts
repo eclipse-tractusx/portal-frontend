@@ -74,7 +74,7 @@ export const apiSlice = createApi({
     }),
     fetchDocumentById: builder.mutation({
       query: (documentId) => ({
-        url: `/api/registration/documents/${documentId}`,
+        url: `/api/administration/Documents/${documentId}?documentId=${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

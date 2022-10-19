@@ -20,7 +20,7 @@
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import { PAGES } from 'types/Constants'
+import { OVERLAYS, PAGES } from 'types/Constants'
 import {
   Button,
   PageNotifications,
@@ -34,6 +34,7 @@ import { IDPList } from './IDPList'
 import './style.scss'
 import { IDPAuthType, useAddIDPMutation } from 'features/admin/idpApiSlice'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
+import { show } from 'features/control/overlay/actions'
 
 export default function IDPManagement() {
   const { t } = useTranslation()
@@ -48,7 +49,7 @@ export default function IDPManagement() {
   const doCreateIDP = async (type: IDPAuthType) => {
     try {
       const idp = await addIdp(type).unwrap()
-      console.log(JSON.stringify(idp))
+      dispatch(show(OVERLAYS.IDP, idp.identityProviderId))
       dispatch(updateData(UPDATES.IDP_LIST))
     } catch (error) {
       console.log(error)

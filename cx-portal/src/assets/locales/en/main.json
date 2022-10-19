@@ -47,7 +47,31 @@
   "overlays": {
     "invite": "Invite new Business Partner",
     "add_user": "Add new user",
-    "add_techuser": "Add new technical user"
+    "add_techuser": "Add new technical user",
+    "idp_delete_info_title": "Deletion of the identity provider.",
+    "idp_delete_info_intro": "Please note, all users which are not migrated to the new iDP wii get irreversible deleted.",
+    "idp_delete_success_title": "Identity provider {{name}} was successfully deleted.",
+    "idp_delete_success_intro": "The window will close automatically. In case it doesn't, please use the 'close' button in on the top right.",
+    "idp_delete_error_title": "The identity provider did not got deleted.",
+    "idp_delete_error_intro": "Please retry or contact an administrator if the failure persist.",
+    "idp_delete_tooltip_info": "Please disable the service first or make sure if any one of the service for following company is working.",
+    "idp_status_change_success": "Identity Provider {{ name }} was successfully {{ status }}",
+    "idp_status_change_error": "The indentity provider was not {{ status }}",
+    "idp_status_change_info": "{{status}} identity provider",
+    "idp_status_change_intro2": "Are you sure you want to enable this idp?",
+    "idp_status_change_intro1": "Disable the idp will always result into the deactivation, but not deletion. You can always enable it again",
+    "idp_status_tooltip_info": "Atleast one company service needs to enabled",
+    "idp_test_intro1": "Identity Provider was successfully created.",
+    "idp_test_intro2": "The IdP is disabled for now and get enabled below.",
+    "idp_test_description": "Please note, before enabling the Idp and trying to login, you need to setup the Idp connection on you side as well and connect your CX user to the IdP connection. To enable the same, please fillout the fields below.",
+    "idp_test_step_text1": "Step by Step approach",
+    "idp_test_step_text2": "Setup your own user for the new idp by enhancing your user profile.",
+    "idp_test_step_text3": "Activate the idp.",
+    "idp_test_step_text4": "Run a test via incognito mode of your browser.",
+    "idp_test_username_label": "Enter the username inside the new idp",
+    "idp_test_userid_label": "Enter the user id inside the new idp",
+    "idp_form_userId_error": "Please enter a valid user Id",
+    "idp_form_username_error": "Please enter a valid username"
   },
   "actions": {
     "SignOut": "Sign out",
@@ -102,6 +126,9 @@
       },
       "appStoreSection": {
         "title": "New Apps"
+      },
+      "emptyCards": {
+        "title": "New apps will get added here as soon as you have any assigned"
       }
     },
     "appstore": {
@@ -211,7 +238,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Search by Name/Identifier",
+        "searchfielddefaulttext": "Search by party instance id",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
@@ -271,7 +298,19 @@
         "inactive": "Inactive",
         "wip": "WIP"
       },
-      "addbtn": "Create new App"
+      "addbtn": "Register your App",
+      "confirmModal": {
+        "title": "Change app {appName}",
+        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+      },
+      "details": {
+        "longDescription": "Long Description",
+        "price": "Price:",
+        "language": "Language:",
+        "useCase": "Use Case:",
+        "title": "Submitted App Details",
+        "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
+      }
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -375,6 +414,10 @@
         "details": "Details"
       }
     },
+    "userAdded": {
+      "success": "User added successfully",
+      "failure": "User was not added"
+    },
     "provisionIdp": {
       "title": "Setup your company IDP",
       "send": "Submit IDP request",
@@ -401,6 +444,8 @@
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
         "subheadline": "App Access Management",
+        "userRoleSuccessMsg": "Roles got successfully updated.",
+        "userRoleErrorMsg": "Roles have not got updated.",
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
@@ -456,7 +501,22 @@
       "clientId": "Client ID",
       "secret": "Secret",
       "signatureAlgorithm": "Signature algorithm",
-      "clientAuthMethod": "Authentication Method"
+      "clientAuthMethod": "Authentication Method",
+      "tokenUrl": "Token URL",
+      "idpTypeSelection": "IdP Type Selection",
+      "companyName": "Company Name",
+      "done": "Done",
+      "loading": "Loading",
+      "load": "Load",
+      "selectIpsText": "Select the type of IdP which should get newly created",
+      "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
+      "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
+      "client_id_required_error": "Client id is required",
+      "client_id_invalid_error": "Please enter valid client id",
+      "client_secret_required_error": "Client secret is required",
+      "client_secret_invalid_error": "Please enter valid client secret",
+      "metadata_url_required_error": "Metadata url is required",
+      "metadata_url_invalid_error": "Please enter valid metadata url"
     },
     "addUser": {
       "headline": "Add User Account",
@@ -553,11 +613,12 @@
       "pending": "Requested",
       "privacy": {
         "heading": "Privacy Policy",
-        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "notSupportedMessage": "Currently not yet supported"
       },
       "howtouse": {
-        "heading": "Terms of use",
-        "message": "These terms of use regulate the relationship between app prospects and app providers. The terms of use, as well as the data models and further information can be viewed by clicking on the hyperlinks."
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "providerInformation": {
         "heading": "Provider Information",
@@ -566,7 +627,9 @@
         "website": "Provider Homepage",
         "email": "Email",
         "phone": "Phone"
-      }
+      },
+      "pendingTooltip": "Application subscription is pending. The app provider is informed",
+      "subscribedTooltip": "The app is already subscribed by {appName}"
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -732,7 +795,9 @@
       "authType": "Auth Type",
       "description": "Description",
       "secret": "Secret",
-      "permission": "Permission"
+      "permission": "Permission",
+      "userId": "User Id",
+      "redirectURI": "Redirect URI"
     },
     "actions": {
       "cancel": "Cancel",
@@ -748,11 +813,16 @@
       "reload": "Reload Page",
       "homepage": "Homepage",
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
-      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again."
+      "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
+      "submit": "Submit",
+      "no": "No",
+      "yes": "Yes"
     },
     "state": {
       "enabled": "enabled",
-      "disabled": "disabled"
+      "disabled": "disabled",
+      "enable": "Enable",
+      "disable": "Disable"
     },
     "objects": {
       "app": "app",

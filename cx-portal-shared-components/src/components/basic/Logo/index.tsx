@@ -22,10 +22,11 @@ import { Box } from '@mui/material'
 import CXLogo from '../../../assets/logo/cx-logo.svg'
 import CXLogoShort from '../../../assets/logo/cx-logo-short.svg'
 import CXLogoText from '../../../assets/logo/cx-logo-text.svg'
+import { Buffer } from 'buffer'
 
 interface LogoProps {
-  variant: 'standard' | 'short' | 'text'
-  altText: string
+  variant?: 'standard' | 'short' | 'text'
+  altText?: string
 }
 
 export const LogoGrayData =
@@ -33,7 +34,7 @@ export const LogoGrayData =
 
 export const Logo = ({
   variant = 'standard',
-  altText = 'Catena-X logo',
+  altText = 'Catena-X',
   ...props
 }: LogoProps) => {
   let image
@@ -49,13 +50,17 @@ export const Logo = ({
       image = CXLogo
   }
 
+  const src = `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
+    'base64'
+  )}`
+
   return (
     <Box
       component="img"
       sx={{
         maxWidth: '100%',
       }}
-      src={image}
+      src={src}
       alt={altText}
       {...props}
     />
