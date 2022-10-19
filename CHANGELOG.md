@@ -2,6 +2,10 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+### 0.7.0
+
+...
+
 ### 0.6.0
 
 * Feature - App Detail Page - Privacy Policy content not supported tag added
