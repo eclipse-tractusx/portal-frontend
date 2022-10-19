@@ -304,6 +304,7 @@
         "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
       },
       "details": {
+        "longDescription": "Long Description",
         "price": "Price:",
         "language": "Language:",
         "useCase": "Use Case:",
@@ -443,8 +444,8 @@
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
         "subheadline": "App Zugriffsmanagement",
-        "userRoleSuccessMsg": "User Role assigned successfully",
-        "userRoleErrorMsg": "Error while assigning user role",
+        "userRoleSuccessMsg": "Roles got successfully updated.",
+        "userRoleErrorMsg": "Roles have not got updated.",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
