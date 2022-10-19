@@ -1,9 +1,8 @@
-# Release Notes
+# Changelog
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-
-### 0.6.1
+### 0.6.0
 
 * Feature - Home Page - Connect My App API
 * Feature - Assign User Role
