@@ -22,51 +22,59 @@ import {
   Card,
   LanguageSwitch,
   Typography,
-  CustomAccordion,
   LogoGrayData,
+  CustomAccordion,
 } from 'cx-portal-shared-components'
 import { Grid } from '@mui/material'
 import I18nService from 'services/I18nService'
 import i18next, { changeLanguage } from 'i18next'
-import { AppDetails } from 'features/apps/apiSlice'
-import AppDetailHowToUse from '../AppDetail/components/AppDetailHowToUse'
-import AppDetailPrivacy from '../AppDetail/components/AppDetailPrivacy'
-import AppDetailProvider from '../AppDetail/components/AppDetailProvider'
-import AppDetailTags from '../AppDetail/components/AppDetailTags'
 import { useTranslation } from 'react-i18next'
+import { NewAppDetails } from 'features/appManagement/apiSlice'
+import AppInfo from './components/AppInfo'
 
-export default function AppOverViewDetails({ item }: { item: AppDetails }) {
+export default function AppOverViewDetails({
+  item,
+  id,
+}: {
+  item: NewAppDetails
+  id: string
+}) {
   const { t } = useTranslation()
+
   const items = [
     {
       expanded: false,
       id: 'panel-1',
-      title: 'Privacy',
+      title: 'App Details',
       color: 'background.background09',
-      children: <AppDetailPrivacy />,
+      children: <AppInfo item={item} id={id} />,
     },
     {
       expanded: false,
       id: 'panel-2',
-      title: 'Terms',
+      title: 'Consent',
       color: 'background.background09',
-      children: <AppDetailHowToUse item={item} />,
+      children: <Typography variant="h4">To be updated</Typography>,
     },
     {
       expanded: false,
       id: 'panel-3',
-      title: 'Provider',
+      title: 'Technical Integration',
       color: 'background.background09',
-      children: <AppDetailProvider item={item} />,
+      children: <Typography variant="h4">To be updated</Typography>,
     },
     {
       expanded: false,
       id: 'panel-4',
-      title: 'Tags',
+      title: 'Beta Test',
       color: 'background.background09',
-      children: <AppDetailTags item={item} />,
+      children: <Typography variant="h4">To be updated</Typography>,
     },
   ]
+
+  const getDescription = (item: any) => {
+    return item?.descriptions[0]?.longDescription
+  }
 
   return (
     <>
@@ -79,7 +87,7 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
               }}
               title={item.title}
               subtitle={item.provider}
-              description={item.longDescription}
+              description={getDescription(item)}
               imageSize="normal"
               imageShape="square"
               variant="text-details"
@@ -112,8 +120,8 @@ export default function AppOverViewDetails({ item }: { item: AppDetails }) {
                 onChange={changeLanguage}
               />
             </div>
-            {item?.useCases &&
-              item?.useCases?.map((newCase) => {
+            {item?.useCase &&
+              item?.useCase?.map((newCase) => {
                 return (
                   <div
                     style={{
