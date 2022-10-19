@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### 0.6.0
 
+* Feature - App Marketplace - Confirmation Subscription
+
+### 0.6.0
+
 * Feature - Home Page - Connect My App API
 * Feature - Assign User Role
 * Feature - App Detail Page - Download document & tags added
