@@ -130,6 +130,12 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    addSubscribeApp: builder.mutation<void, string>({
+      query: (appId) => ({
+        url: `/api/apps/${appId}/subscribe`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
@@ -141,4 +147,5 @@ export const {
   useFetchProvidedAppsQuery,
   useFetchBusinessAppsQuery,
   useFetchDocumentByIdMutation,
+  useAddSubscribeAppMutation,
 } = apiSlice
