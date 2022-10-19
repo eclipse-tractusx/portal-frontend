@@ -304,6 +304,7 @@
         "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
       },
       "details": {
+        "longDescription": "Long Description",
         "price": "Price:",
         "language": "Language:",
         "useCase": "Use Case:",
