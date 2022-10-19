@@ -26,7 +26,10 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useAddSubscribeAppMutation, useFetchAppDetailsQuery } from 'features/apps/apiSlice'
+import {
+  useAddSubscribeAppMutation,
+  useFetchAppDetailsQuery,
+} from 'features/apps/apiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay/actions'
 import './style.scss'
@@ -74,10 +77,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          onClick={() => handleConfirm(id)}
-        >
+        <Button variant="contained" onClick={() => handleConfirm(id)}>
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>
