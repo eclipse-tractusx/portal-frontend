@@ -147,7 +147,7 @@ export const ConfirmUserAction = ({
       setTimeout(() => {
         setError(true)
         showLoading(false)
-      }, 2000)
+      }, 1000)
     } else if (title === 'resetPassword') {
       try {
         const response = await resetPassword(id).unwrap()
@@ -180,48 +180,56 @@ export const ConfirmUserAction = ({
     }
   }
 
+  const canHideOverlay = () => {
+    if (response && !error) {
+      return false
+    } else if (error && !response) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   return (
     <>
-      {data && (
-        <>
-          <DeleteUserContent
-            header={messageMap[title].header}
-            subHeader={messageMap[title].subHeader}
-            subHeaderTitle={messageMap[title].subHeaderTitle}
-            subHeaderNote={messageMap[title].subHeaderNote}
-            subHeaderDescription={messageMap[title].subHeaderDescription}
-            handleConfirm={handleConfirm}
-            confirmTitle={
-              title === 'resetPassword' || title === 'suspend'
-                ? t('global.actions.confirm')
-                : t('global.actions.delete')
-            }
-            showLoader={loading}
-          />
-          {response && (
-            <TechnicalUserAddResponseOverlay
-              title={messageMap[title].successTitle}
-              intro={messageMap[title].successDescription}
-              dialogOpen={true}
-              handleCallback={handleCallback}
-            >
-              <Typography variant="body2"></Typography>
-            </TechnicalUserAddResponseOverlay>
-          )}
-          {error && (
-            <TechnicalUserAddResponseOverlay
-              title={messageMap[title].errorTitle}
-              intro={messageMap[title].errorDescription}
-              dialogOpen={true}
-              iconComponent={
-                <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
-              }
-              handleCallback={handleCallback}
-            >
-              <Typography variant="body2"></Typography>
-            </TechnicalUserAddResponseOverlay>
-          )}
-        </>
+      {data && canHideOverlay() && (
+        <DeleteUserContent
+          header={messageMap[title].header}
+          subHeader={messageMap[title].subHeader}
+          subHeaderTitle={messageMap[title].subHeaderTitle}
+          subHeaderNote={messageMap[title].subHeaderNote}
+          subHeaderDescription={messageMap[title].subHeaderDescription}
+          handleConfirm={handleConfirm}
+          confirmTitle={
+            title === 'resetPassword' || title === 'suspend'
+              ? t('global.actions.confirm')
+              : t('global.actions.delete')
+          }
+          showLoader={loading}
+        />
+      )}
+      {response && (
+        <TechnicalUserAddResponseOverlay
+          title={messageMap[title].successTitle}
+          intro={messageMap[title].successDescription}
+          dialogOpen={true}
+          handleCallback={handleCallback}
+        >
+          <Typography variant="body2"></Typography>
+        </TechnicalUserAddResponseOverlay>
+      )}
+      {error && (
+        <TechnicalUserAddResponseOverlay
+          title={messageMap[title].errorTitle}
+          intro={messageMap[title].errorDescription}
+          dialogOpen={true}
+          iconComponent={
+            <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
+          }
+          handleCallback={handleCallback}
+        >
+          <Typography variant="body2"></Typography>
+        </TechnicalUserAddResponseOverlay>
       )}
     </>
   )
