@@ -219,7 +219,6 @@ export default function AppPage() {
                       </IconButton>
                     </>
                   ),
-                  placeholder: t(`content.apprelease.appPage.${item}`),
                   type: 'input',
                   textarea: true,
                   rules: {
@@ -388,7 +387,6 @@ export default function AppPage() {
               errors,
               name: 'providerHomePage',
               label: t('content.apprelease.appPage.providerHomePage') + ' *',
-              placeholder: t('content.apprelease.appPage.providerHomePage'),
               type: 'input',
               rules: {
                 required: {
@@ -417,7 +415,6 @@ export default function AppPage() {
               name: 'providerContactEmail',
               label:
                 t('content.apprelease.appPage.providerContactEmail') + ' *',
-              placeholder: t('content.apprelease.appPage.providerContactEmail'),
               type: 'input',
               rules: {
                 required: {
