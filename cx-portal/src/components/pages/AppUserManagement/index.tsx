@@ -63,6 +63,7 @@ export default function AppUserManagement() {
   }, [dispatch])
 
   const onAlertClose = () => {
+    dispatch(setUserRoleResp(''))
     setShowAlert(false)
   }
 
@@ -83,7 +84,7 @@ export default function AppUserManagement() {
           error={isError ? JSON.stringify(data) : ''}
         />
       )}
-      <AppUserDetailsTable />
+      <AppUserDetailsTable userRoleResponse={userRoleResponse} />
       {/* success or error dialog/overlay */}
       <Dialog open={showAlert} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
         <DialogContent>
