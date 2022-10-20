@@ -7,6 +7,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Marketplace - Confirmation Subscription
 * Feature - API & BL: Change role of specific user for a defined app
 * Feature - App release process: Removed placeholders where not necessary
+* Bugfix - App release process: Page sizing fixed
+
+
 ### 0.6.0
 
 * Feature - Home Page - Connect My App API
