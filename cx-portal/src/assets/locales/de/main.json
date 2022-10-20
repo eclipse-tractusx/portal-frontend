@@ -485,6 +485,35 @@
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
+      },
+      "deleteUserConfirm": {
+        "header": "Delete user account",
+        "confirmDelete": "Are you sure you want to delete this users account?",
+        "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
+        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "successTitle": "User successfully deleted",
+        "successDescription": "The user is successfully deleted and all rights are disabled.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
+      },
+      "suspendUserConfirm": {
+        "header": "Suspend user account",
+        "confirmDelete": "Are you sure you want to suspend this users account?",
+        "description": "By suspending the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
+        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "successTitle": "User successfully suspended",
+        "successDescription": "The user is successfully suspended and all rights are disabled.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "Your user couldn't get suspended. Please try it later again or contact your administrator."
+      },
+      "resetPasswordConfirm": {
+        "header": "Password Reset",
+        "confirmDelete": "Are you sure you want to reset the password?",
+        "note": "The user {userName} will receive an email to reset the password.",
+        "successTitle": "Password Reset successfully triggered",
+        "successDescription": "The password reset request got send to {userName}.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "The password reset was unsuccessful. Please try it later again or contact the administrator."
       }
     },
     "idpmanagement": {
@@ -669,7 +698,7 @@
         "phone": "Telefon"
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by {appName}"
+      "subscribedTooltip": "The app is already subscribed by your company"
     },
     "apprelease": {
       "headerTitle": "App Release Process",

@@ -97,6 +97,7 @@ export enum OVERLAYS {
   IDP_TEST_RUN = 'idp_test_run',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
+  CONFIRM_USER_ACTION = 'confirm_user_action',
 }
 
 export enum ACTIONS {

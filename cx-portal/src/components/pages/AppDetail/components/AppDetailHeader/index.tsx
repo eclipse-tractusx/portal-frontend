@@ -62,10 +62,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             marginTop: '30px !important',
           }}
           tooltipPlacement="bottom-start"
-          tooltipText={t('content.appdetail.subscribedTooltip').replace(
-            '{appName}',
-            item.title
-          )}
+          tooltipText={t('content.appdetail.subscribedTooltip')}
           children={
             <span>
               <Button color="success">

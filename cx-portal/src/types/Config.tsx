@@ -388,6 +388,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.APP_DETAILS_OVERLAY,
   },
+  {
+    name: OVERLAYS.CONFIRM_USER_ACTION,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

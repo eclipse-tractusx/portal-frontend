@@ -35,16 +35,19 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
+import { useDispatch } from 'react-redux'
 
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
+  const dispatch = useDispatch()
 
-  const handleDeleteUser = () => {
-    console.log('Delete user method')
-  }
+  const handleDeleteUser = () =>
+    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, data?.companyUserId, 'admin'))
 
   return (
     <main className="my-account">
