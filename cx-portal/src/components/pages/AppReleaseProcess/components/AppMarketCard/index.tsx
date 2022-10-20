@@ -359,9 +359,6 @@ export default function AppMarketCard() {
                   errors,
                   name: 'title',
                   label: t('content.apprelease.appMarketCard.appTitle') + ' *',
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.appTitlePlaceholder'
-                  ),
                   type: 'input',
                   rules: {
                     required: {
@@ -406,9 +403,6 @@ export default function AppMarketCard() {
                   name: 'provider',
                   label:
                     t('content.apprelease.appMarketCard.appProvider') + ' *',
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.appProviderPlaceholder'
-                  ),
                   type: 'input',
                   rules: {
                     required: {
@@ -462,9 +456,6 @@ export default function AppMarketCard() {
                               <HelpOutlineIcon />
                             </IconButton>
                           </>
-                        ),
-                        placeholder: t(
-                          `content.apprelease.appMarketCard.${item}`
                         ),
                         type: 'input',
                         textarea: true,
@@ -617,9 +608,6 @@ export default function AppMarketCard() {
                   label:
                     t('content.apprelease.appMarketCard.pricingInformation') +
                     ' *',
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.pricingInformationPlaceholder'
-                  ),
                   type: 'input',
                   rules: {
                     required: {
