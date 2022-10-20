@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Feature - App Marketplace - Confirmation Subscription
 * Feature - API & BL: Change role of specific user for a defined app
+* Feature - Service Subscription Details Box changes and add status with subscription
 
 ### 0.6.0
 
