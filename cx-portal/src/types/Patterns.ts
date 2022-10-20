@@ -21,7 +21,9 @@
 export const Patterns = {
   BPN: /^(BPNL|CAX)[0-9A-Z]{12}$/i,
   URL: /^((https?):\/\/([^:/\s]+))/,
-  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i,
+  DOMAIN:
+    /^([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])){1,10}$/i,
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   prefix: {
@@ -52,5 +54,9 @@ export const Patterns = {
     metaDataUrl: /^[a-zA-Z0-9- ]*$/,
   },
 }
+
+export const isMail = (expr: string) => Patterns.MAIL.test(expr)
+export const isBPN = (expr: string) => Patterns.BPN.test(expr)
+export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 
 export default Patterns
