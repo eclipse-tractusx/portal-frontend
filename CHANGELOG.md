@@ -4,6 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### In progess
 
+* Feature - App Marketplace - Confirmation Subscription
 * Feature - API & BL: Change role of specific user for a defined app
 
 ### 0.6.0

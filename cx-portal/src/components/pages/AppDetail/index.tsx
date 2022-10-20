@@ -24,11 +24,20 @@ import { t } from 'i18next'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import AppDetailContentDetails from './AppDetailContentDetails'
 import './AppDetail.scss'
+import { useSelector } from 'react-redux'
+import { currentSuccessType } from 'features/serviceMarketplace/slice'
+import { useEffect } from 'react'
 
 export default function AppDetail() {
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data } = useFetchAppDetailsQuery(appId!)
+  const { data, refetch } = useFetchAppDetailsQuery(appId ?? '')
+
+  const success = useSelector(currentSuccessType)
+
+  useEffect(() => {
+    refetch()
+  }, [success, refetch])
 
   return (
     <main className="appdetail-main">

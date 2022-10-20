@@ -46,7 +46,7 @@ export const getAppImage = (appid: string, image: string): ImageType => ({
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
   subtitle: app.provider,
-  title: app.name ?? '',
+  title: app.title ?? app.name, // supposed to get cleaned up to an identical key value across all the endpoints with jira ticket cplp-1700
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {

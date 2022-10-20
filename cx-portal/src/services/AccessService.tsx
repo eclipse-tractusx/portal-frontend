@@ -50,6 +50,7 @@ import IDPStatusChange from 'components/overlays/IDPStatusChange'
 import IDPTestRun from 'components/overlays/IDPTestRun'
 import AppOverViewConfirm from 'components/overlays/AppOverViewConfirm'
 import AppDetailsOverlay from 'components/overlays/AppOverViewConfirm/AppDetailsOverlay'
+import AppMarketplaceSubscribeRequest from 'components/overlays/AppMarketplaceRequest'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -126,6 +127,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AppInfo id={overlay.id} title={overlay.title} />
     case OVERLAYS.SERVICE_REQUEST:
       return <ServiceRequest id={overlay.id} />
+    case OVERLAYS.APPMARKETPLACE_REQUEST:
+      return <AppMarketplaceSubscribeRequest id={overlay.id} />
     case OVERLAYS.IDP_CONFIRM:
       return <IDPDelete id={overlay.id} title={overlay.title} />
     case OVERLAYS.IDP_STATUS:
