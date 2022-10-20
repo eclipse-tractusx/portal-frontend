@@ -84,7 +84,7 @@ export default function AppUserManagement() {
           error={isError ? JSON.stringify(data) : ''}
         />
       )}
-      <AppUserDetailsTable userRoleResponse={userRoleResponse}/>
+      <AppUserDetailsTable userRoleResponse={userRoleResponse} />
       {/* success or error dialog/overlay */}
       <Dialog open={showAlert} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
         <DialogContent>
