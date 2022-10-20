@@ -300,20 +300,12 @@ export default function AppMarketCard() {
 
   return (
     <div className="app-market-card">
-      {!pageScrolled && (
-        <>
-          <Typography variant="h3" mt={10} mb={4} align="center">
-            {t('content.apprelease.appMarketCard.headerTitle')}
-          </Typography>
-          <Typography
-            variant="body2"
-            className="header-description"
-            align="center"
-          >
-            {t('content.apprelease.appMarketCard.headerDescription')}
-          </Typography>
-        </>
-      )}
+      <Typography variant="h3" mt={10} mb={4} align="center">
+        {t('content.apprelease.appMarketCard.headerTitle')}
+      </Typography>
+      <Typography variant="body2" className="header-description" align="center">
+        {t('content.apprelease.appMarketCard.headerDescription')}
+      </Typography>
 
       <Grid container spacing={2} sx={{ mt: pageScrolled ? 10 : 0 }}>
         {pageScrolled ? (
