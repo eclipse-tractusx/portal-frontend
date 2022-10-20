@@ -2,7 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### 0.6.1
+### In progess
 
 * Feature - API & BL: Change role of specific user for a defined app
 
