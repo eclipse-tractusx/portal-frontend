@@ -500,7 +500,7 @@
         "header": "Suspend user account",
         "confirmDelete": "Are you sure you want to suspend this users account?",
         "description": "By suspending the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
-        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "note": "Note: If you suspend the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully suspended",
         "successDescription": "The user is successfully suspended and all rights are disabled.",
         "errorTitle": "Something went wrong",

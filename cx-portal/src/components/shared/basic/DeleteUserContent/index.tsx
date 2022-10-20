@@ -36,7 +36,8 @@ export default function DeleteUserContent({
   header,
   subHeader,
   subHeaderTitle,
-  handleRemove,
+  subHeaderDescription,
+  handleConfirm,
   subHeaderNote,
   confirmTitle,
   showLoader = false,
@@ -44,7 +45,8 @@ export default function DeleteUserContent({
   header?: string
   subHeader?: string
   subHeaderTitle?: string
-  handleRemove?: any
+  subHeaderDescription?: string
+  handleConfirm?: any
   subHeaderNote?: string
   confirmTitle?: string
   showLoader?: boolean
@@ -62,6 +64,9 @@ export default function DeleteUserContent({
         {subHeaderTitle && (
           <SubHeaderTitle title={subHeaderTitle} variant="h5" />
         )}
+        {subHeaderDescription && (
+          <SubHeaderTitle title={subHeaderDescription} variant="h5" />
+        )}
         {subHeaderNote && <SubHeaderTitle title={subHeaderNote} variant="h5" />}
       </DialogContent>
 
@@ -72,7 +77,7 @@ export default function DeleteUserContent({
         {showLoader && (
           <Box
             sx={{
-              width: '105px',
+              width: '110px',
               display: 'flex',
               justifyContent: 'center',
             }}
@@ -88,7 +93,7 @@ export default function DeleteUserContent({
           </Box>
         )}
         {!showLoader && (
-          <Button variant="contained" onClick={handleRemove}>
+          <Button variant="contained" onClick={handleConfirm}>
             {confirmTitle}
           </Button>
         )}

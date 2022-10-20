@@ -90,7 +90,7 @@ export default function UserDetail() {
               variant="outlined"
               startIcon={<PowerSettingsNewOutlinedIcon />}
               sx={{ marginRight: '8px' }}
-              disabled={true}
+              disabled={false}
             >
               {t('content.account.suspendAccount')}
             </Button>

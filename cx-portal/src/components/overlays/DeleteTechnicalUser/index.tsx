@@ -79,7 +79,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
         subHeaderTitle={t('global.actions.noteDelete', {
           object: t('global.objects.techuser'),
         })}
-        handleRemove={handleRemove}
+        handleConfirm={handleRemove}
         confirmTitle={t('global.actions.delete')}
       />
     </>

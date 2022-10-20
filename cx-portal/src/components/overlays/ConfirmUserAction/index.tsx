@@ -54,9 +54,14 @@ export const ConfirmUserAction = ({
 
   const messageMap: any = {
     user: {
-      header: t('content.usermanagement.deleteUserConfirm.header'),
+      header: `${t('content.usermanagement.deleteUserConfirm.header')} ${
+        data?.firstName
+      } ${data?.lastName}`,
       subHeader: t('content.usermanagement.deleteUserConfirm.confirmDelete'),
       subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
+      subHeaderDescription: t(
+        'content.usermanagement.deleteUserConfirm.description'
+      ),
       successTitle: t('content.usermanagement.deleteUserConfirm.successTitle'),
       successDescription: t(
         'content.usermanagement.deleteUserConfirm.successDescription'
@@ -67,8 +72,13 @@ export const ConfirmUserAction = ({
       ),
     },
     suspend: {
-      header: t('content.usermanagement.suspendUserConfirm.header'),
+      header: `${t('content.usermanagement.suspendUserConfirm.header')} ${
+        data?.firstName
+      } ${data?.lastName}`,
       subHeader: t('content.usermanagement.suspendUserConfirm.confirmDelete'),
+      subHeaderDescription: t(
+        'content.usermanagement.suspendUserConfirm.description'
+      ),
       subHeaderNote: t('content.usermanagement.suspendUserConfirm.note'),
       successTitle: t('content.usermanagement.suspendUserConfirm.successTitle'),
       successDescription: t(
@@ -80,8 +90,13 @@ export const ConfirmUserAction = ({
       ),
     },
     admin: {
-      header: t('content.usermanagement.deleteUserConfirm.header'),
+      header: `${t('content.usermanagement.deleteUserConfirm.header')} ${
+        data?.firstName
+      } ${data?.lastName}`,
       subHeader: t('content.usermanagement.deleteUserConfirm.confirmDelete'),
+      subHeaderDescription: t(
+        'content.usermanagement.deleteUserConfirm.description'
+      ),
       subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
       successTitle: t('content.usermanagement.deleteUserConfirm.successTitle'),
       successDescription: t(
@@ -93,7 +108,9 @@ export const ConfirmUserAction = ({
       ),
     },
     resetPassword: {
-      header: t('content.usermanagement.resetPasswordConfirm.header'),
+      header: `${t('content.usermanagement.resetPasswordConfirm.header')} ${
+        data?.firstName
+      } ${data?.lastName}`,
       subHeader: t('content.usermanagement.resetPasswordConfirm.confirmDelete'),
       subHeaderNote: t(
         'content.usermanagement.resetPasswordConfirm.note'
@@ -111,7 +128,7 @@ export const ConfirmUserAction = ({
     },
   }
 
-  const handleRemove = async () => {
+  const handleConfirm = async () => {
     if (!id) return
     showLoading(true)
     if (title === 'user') {
@@ -147,7 +164,7 @@ export const ConfirmUserAction = ({
       setTimeout(() => {
         setError(true)
         showLoading(false)
-      }, 2000)
+      }, 1000)
     }
   }
 
@@ -172,9 +189,10 @@ export const ConfirmUserAction = ({
             subHeader={messageMap[title].subHeader}
             subHeaderTitle={messageMap[title].subHeaderTitle}
             subHeaderNote={messageMap[title].subHeaderNote}
-            handleRemove={handleRemove}
+            subHeaderDescription={messageMap[title].subHeaderDescription}
+            handleConfirm={handleConfirm}
             confirmTitle={
-              title === 'resetPassword'
+              title === 'resetPassword' || title === 'suspend'
                 ? t('global.actions.confirm')
                 : t('global.actions.delete')
             }
