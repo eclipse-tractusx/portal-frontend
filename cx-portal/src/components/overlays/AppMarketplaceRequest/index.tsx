@@ -32,7 +32,7 @@ import {
 } from 'features/apps/apiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay/actions'
-import './style.scss'
+import './ AppMarketplaceRequest.scss'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
