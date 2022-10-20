@@ -33,7 +33,7 @@ const TESTDATA = {
     DOMAIN: [
       'www.bmw.de',
       'BMW.COM',
-      '4chan.com',
+      '4chan.org',
       'portal.dev.demo.catena-x.net',
       'www.5555.site', //valid?
       '1.2.3', //valid?
@@ -50,6 +50,7 @@ const TESTDATA = {
     MAIL: [
       '   donald.duck@bmw.de',
       'julia.jeroch@bmw',
+      '.eins.zwei.@drei.my',
       'a@b.c',
       'not,a@valid@address.com',
       '@mickey.mouse',
@@ -62,6 +63,7 @@ const TESTDATA = {
       'das.mein.kraßße-dömäin.yo',
       'www.my domain.de',
       'invalid.domain,com',
+      '.domain.name',
       'no.underscore_allowed.is',
       '-das-.nicht.de',
       '&$%/.&()/@&./().&/',
