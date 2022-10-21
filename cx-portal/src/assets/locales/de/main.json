@@ -669,7 +669,7 @@
         "phone": "Telefon"
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by {appName}"
+      "subscribedTooltip": "The app is already subscribed by your company"
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -699,17 +699,14 @@
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title",
-        "appTitlePlaceholder": "name@domain.com",
         "appProvider": "App provider",
-        "appProviderPlaceholder": "prefill: [company name]",
         "shortDescriptionEN": "Short Description - EN",
         "shortDescriptionDE": "Short Description - DE",
         "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information",
-        "pricingInformationPlaceholder": "Please select a pricing type"
+        "pricingInformation": "Pricing Information"
       },
       "appPage": {
         "headerTitle": "App Details",
