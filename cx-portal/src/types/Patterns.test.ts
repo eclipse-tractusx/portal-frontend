@@ -78,10 +78,17 @@ const TESTDATA = {
       'http://WWW.GOOGLE.COM/',
       'https://www.bmw.com/index.html',
       'http://hostname.domain:12345',
+      'http://hostname.domain:12345/endwith/slash/',
       'https://portal.dev.demo.catena-x.net/assets/swagger/index.html',
       'https://portal.dev.demo.catena-x.net/assets/swagger/index.html?param=13&arg=value',
     ],
-    invalid: ['some string', 'ftp://my.server/file', 'https://:123/path'],
+    invalid: [
+      'some string',
+      'ftp://my.server/file',
+      'https://:123/path',
+      'https://my.domain:not_a_port/path/okay',
+      'https://user:password@host.domain:1234/not/accepted/',
+    ],
   },
 }
 
