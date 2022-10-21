@@ -40,8 +40,6 @@ export default function MarketplaceSubscriptionNames({
           <Chip
             color={data.status === 'ACTIVE' ? 'success' : 'info'}
             label={data.status}
-            onClick={function noRefCheck() {}}
-            onDelete={function noRefCheck() {}}
             type="plain"
             variant="outlined"
             size="small"
