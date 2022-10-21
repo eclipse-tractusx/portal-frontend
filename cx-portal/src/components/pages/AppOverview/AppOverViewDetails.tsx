@@ -64,7 +64,7 @@ export default function AppOverViewDetails({
       color: 'background.background09',
       children: (
         <Typography variant="h5" align="left">
-          To be updated
+          {t('global.field.toBeUpdated')}
         </Typography>
       ),
     },
@@ -75,7 +75,7 @@ export default function AppOverViewDetails({
       color: 'background.background09',
       children: (
         <Typography variant="h5" align="left">
-          To be updated
+          {t('global.field.toBeUpdated')}
         </Typography>
       ),
     },
