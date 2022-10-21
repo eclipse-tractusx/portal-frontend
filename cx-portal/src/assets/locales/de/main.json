@@ -668,7 +668,7 @@
         "phone": "Telefon"
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by {appName}"
+      "subscribedTooltip": "The app is already subscribed by your company"
     },
     "apprelease": {
       "headerTitle": "App Release Process",
