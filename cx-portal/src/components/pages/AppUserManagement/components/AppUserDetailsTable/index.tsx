@@ -27,7 +27,11 @@ import { OVERLAYS } from 'types/Constants'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
 import { TenantUser } from 'features/admin/userApiSlice'
 
-export const AppUserDetailsTable = () => {
+export const AppUserDetailsTable = ({
+  userRoleResponse,
+}: {
+  userRoleResponse: string
+}) => {
   const dispatch = useDispatch()
   const { appId } = useParams()
   const [expr, setExpr] = useState<string>('')
@@ -39,7 +43,7 @@ export const AppUserDetailsTable = () => {
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
       tableLabel={'content.usermanagement.appUserDetails.table.title'}
       fetchHook={useFetchAppUsersSearchQuery}
-      fetchHookArgs={{ appId, expr }}
+      fetchHookArgs={{ appId, expr, userRoleResponse }}
       onSearch={setExpr}
       onDetailsClick={(row: TenantUser) =>
         dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))

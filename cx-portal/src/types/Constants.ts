@@ -91,6 +91,7 @@ export enum OVERLAYS {
   PARTNER = 'partner',
   APP = 'app',
   SERVICE_REQUEST = 'service_request',
+  APPMARKETPLACE_REQUEST = 'appmarketplace_request',
   IDP = 'idp',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',

@@ -444,8 +444,8 @@
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
         "subheadline": "App Zugriffsmanagement",
-        "userRoleSuccessMsg": "User Role assigned successfully",
-        "userRoleErrorMsg": "Error while assigning user role",
+        "userRoleSuccessMsg": "Roles got successfully updated.",
+        "userRoleErrorMsg": "Roles have not got updated.",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
@@ -728,17 +728,14 @@
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title",
-        "appTitlePlaceholder": "name@domain.com",
         "appProvider": "App provider",
-        "appProviderPlaceholder": "prefill: [company name]",
         "shortDescriptionEN": "Short Description - EN",
         "shortDescriptionDE": "Short Description - DE",
         "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information",
-        "pricingInformationPlaceholder": "Please select a pricing type"
+        "pricingInformation": "Pricing Information"
       },
       "appPage": {
         "headerTitle": "App Details",
@@ -838,6 +835,10 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully"
+    },
+    "appMarketplace": {
+      "headline": "Order Business Application",
+      "description": "You have started the subscription request for app {appName}. Please note that the subscription request will trigger a service call on the provider side. The app provider will align with you all further steps. This may take up to 5 days. As soon as all queries are finalized, the app provider will be able to activate your app tenant. As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
     }
   },
   "navigation": {

@@ -362,6 +362,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.APPSTORE_VIEW_SERVICES,
   },
   {
+    name: OVERLAYS.APPMARKETPLACE_REQUEST,
+    role: ROLES.APPSTORE_VIEW,
+  },
+  {
     name: OVERLAYS.IDP,
     role: ROLES.IDP_VIEW,
   },
