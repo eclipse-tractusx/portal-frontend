@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Service Subscription Details Box changes and add status with subscription
 * Feature - App release process: Step-1 - Headline and subtext are enabled when scrolling down
 * Feature - App release process: Removed placeholders where not necessary
+* Feature - App Marketplace - Activate Search (Interim on Page)
 * Bugfix - App release process: Page sizing fixed
 
 
