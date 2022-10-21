@@ -21,10 +21,8 @@
 import { Typography } from 'cx-portal-shared-components'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ErrorIcon from '@mui/icons-material/Error'
-import { useTheme } from '@mui/material'
 
 export default function AppConsent({ agreements }: { agreements: any }) {
-  const theme = useTheme()
 
   return (
     <>
