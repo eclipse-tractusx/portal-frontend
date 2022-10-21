@@ -6,14 +6,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Feature - App Marketplace - Confirmation Subscription
 * Feature - API & BL: Change role of specific user for a defined app
-<<<<<<< HEAD
 * Feature - Service Subscription Details Box changes and add status with subscription
-=======
 * Feature - App release process: Step-1 - Headline and subtext are enabled when scrolling down
 * Feature - App release process: Removed placeholders where not necessary
 * Bugfix - App release process: Page sizing fixed
 
->>>>>>> 39679ce216293eea12b20c2bdd52dcb9a98dd117
 
 ### 0.6.0
 
