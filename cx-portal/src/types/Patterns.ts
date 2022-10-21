@@ -23,7 +23,7 @@ const DOMAIN =
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
 
 export const Patterns = {
-  BPN: /^(BPNL|CAX)[0-9A-Z]{12}$/i,
+  BPN: /^BPNL[0-9A-Z]{12}$/i,
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z0-9-]+\.)+[a-z]{2,}))$/i,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
