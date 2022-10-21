@@ -57,7 +57,7 @@ export const ConfirmUserAction = ({
       header: `${t('content.usermanagement.deleteUserConfirm.header')} ${
         data?.firstName
       } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.deleteUserConfirm.confirmDelete'),
+      subHeader: t('content.usermanagement.deleteUserConfirm.confirmTitle'),
       subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
       subHeaderDescription: t(
         'content.usermanagement.deleteUserConfirm.description'
@@ -75,7 +75,7 @@ export const ConfirmUserAction = ({
       header: `${t('content.usermanagement.suspendUserConfirm.header')} ${
         data?.firstName
       } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.suspendUserConfirm.confirmDelete'),
+      subHeader: t('content.usermanagement.suspendUserConfirm.confirmTitle'),
       subHeaderDescription: t(
         'content.usermanagement.suspendUserConfirm.description'
       ),
@@ -93,7 +93,7 @@ export const ConfirmUserAction = ({
       header: `${t('content.usermanagement.deleteUserConfirm.header')} ${
         data?.firstName
       } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.deleteUserConfirm.confirmDelete'),
+      subHeader: t('content.usermanagement.deleteUserConfirm.confirmTitle'),
       subHeaderDescription: t(
         'content.usermanagement.deleteUserConfirm.description'
       ),
@@ -111,7 +111,7 @@ export const ConfirmUserAction = ({
       header: `${t('content.usermanagement.resetPasswordConfirm.header')} ${
         data?.firstName
       } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.resetPasswordConfirm.confirmDelete'),
+      subHeader: t('content.usermanagement.resetPasswordConfirm.confirmTitle'),
       subHeaderNote: t(
         'content.usermanagement.resetPasswordConfirm.note'
       ).replace('{userName}', subTitle),

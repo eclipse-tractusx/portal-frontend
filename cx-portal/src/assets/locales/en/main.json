@@ -488,7 +488,7 @@
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
-        "confirmDelete": "Are you sure you want to delete this users account?",
+        "confirmTitle": "Are you sure you want to delete this users account?",
         "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
         "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully deleted",
@@ -498,7 +498,7 @@
       },
       "suspendUserConfirm": {
         "header": "Suspend user account",
-        "confirmDelete": "Are you sure you want to suspend this users account?",
+        "confirmTitle": "Are you sure you want to suspend this users account?",
         "description": "By suspending the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
         "note": "Note: If you suspend the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully suspended",
@@ -508,7 +508,7 @@
       },
       "resetPasswordConfirm": {
         "header": "Password Reset",
-        "confirmDelete": "Are you sure you want to reset the password?",
+        "confirmTitle": "Are you sure you want to reset the password?",
         "note": "The user {userName} will receive an email to reset the password.",
         "successTitle": "Password Reset successfully triggered",
         "successDescription": "The password reset request got send to {userName}.",
