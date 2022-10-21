@@ -18,15 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-const DOMAIN = /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
-const URLPATH = /(\/[a-z0-9-._~:/?#\[\]@!$&'()*+,;=%]{0,500}){0,20}/
+const DOMAIN =
+  /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
+const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
 
 export const Patterns = {
   BPN: /^(BPNL|CAX)[0-9A-Z]{12}$/i,
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z0-9-]+\.)+[a-z]{2,}))$/i,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
-  URL: new RegExp(`^(https?):\/\/(${DOMAIN.source})(:[0-9]{1,5})?(${URLPATH.source})?$`, 'i'),
+  URL: new RegExp(
+    `^(https?)://(${DOMAIN.source})(:[0-9]{1,5})?(${URLPATH.source})?$`,
+    'i'
+  ),
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   prefix: {

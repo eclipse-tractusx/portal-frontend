@@ -29,7 +29,7 @@ const TESTDATA = {
       'BPNL01',
       '/&§%/(§%#',
       '',
-    ]
+    ],
   },
   MAIL: {
     valid: [
@@ -48,7 +48,7 @@ const TESTDATA = {
       '@mickey.mouse',
       '&$%/&()/@&/().&/',
       '',
-    ]
+    ],
   },
   DOMAIN: {
     valid: [
@@ -70,7 +70,7 @@ const TESTDATA = {
       '-das-.nicht.de',
       '&$%/.&()/@&./().&/',
       '',
-    ]
+    ],
   },
   URL: {
     valid: [
@@ -79,14 +79,10 @@ const TESTDATA = {
       'https://www.bmw.com/index.html',
       'http://hostname.domain:12345',
       'https://portal.dev.demo.catena-x.net/assets/swagger/index.html',
-      'https://portal.dev.demo.catena-x.net/assets/swagger/index.html?param=13&arg=value'
+      'https://portal.dev.demo.catena-x.net/assets/swagger/index.html?param=13&arg=value',
     ],
-    invalid: [
-      'some string',
-      'ftp://my.server/file',
-      'https://:123/path',
-    ]
-  }
+    invalid: ['some string', 'ftp://my.server/file', 'https://:123/path'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
