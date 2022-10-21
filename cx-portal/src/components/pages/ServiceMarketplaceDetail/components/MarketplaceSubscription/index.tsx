@@ -33,7 +33,7 @@ export default function MarketplaceSubscription({
 
   return (
     <div className="marketplace-subscriptions">
-      <Typography variant="body2">
+      <Typography variant="body2" className="subscription-main-heading">
         {t('content.serviceMarketplace.subscriptionHeading').replace(
           '{serviceName}',
           item.title

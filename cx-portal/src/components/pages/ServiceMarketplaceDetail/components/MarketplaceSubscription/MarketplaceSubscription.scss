@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 .marketplace-subscriptions {
-  p {
+  .subscription-main-heading {
     font-weight: 700;
     color: #0d55af;
   }
@@ -28,9 +28,17 @@
     margin-top: 10px;
     ol {
       li {
-        .subscription-name {
+        .subscription-list {
           text-transform: capitalize;
           padding-left: 10px;
+          .subscription-name {
+            display: flex;
+            .subscription-status {
+              margin: 2px 15px;
+              height: 18px;
+              width: 8%;
+            }
+          }
         }
       }
     }
