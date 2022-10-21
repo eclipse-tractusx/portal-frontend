@@ -50,6 +50,37 @@ export type CreateAppStep1Item = {
   price: string
 }
 
+export type ImageType = {
+  src: string
+  alt?: string
+}
+
+export type DocumentData = {
+  documentId: string
+  documentName: string
+}
+
+export type DocumentAppContract = {
+  APP_CONTRACT: Array<DocumentData>
+}
+
+export type NewAppDetails = {
+  agreements: any[]
+  contactEmail: string
+  contactNumber: string
+  descriptions: string[]
+  documents: DocumentAppContract
+  images: string[]
+  leadPictureUri: ImageType
+  price: string
+  provider: string
+  providerName: string
+  providerUri: string
+  supportedLanguageCodes: string[]
+  title: string
+  useCase: string[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),

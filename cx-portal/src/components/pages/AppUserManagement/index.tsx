@@ -18,12 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import CloseIcon from '@mui/icons-material/Close'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { PageHeader, PageSnackbar } from 'cx-portal-shared-components'
-import { useParams } from 'react-router-dom'
+import {
+  Dialog,
+  DialogContent,
+  IconButton,
+  PageHeader,
+  Typography,
+} from 'cx-portal-shared-components'
 import {
   currentUserRoleResp,
   setUserRoleResp,
@@ -31,8 +42,6 @@ import {
 } from 'features/admin/appuserApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import './AppUserManagement.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
 
 export default function AppUserManagement() {
   const { t } = useTranslation()
@@ -54,6 +63,7 @@ export default function AppUserManagement() {
   }, [dispatch])
 
   const onAlertClose = () => {
+    dispatch(setUserRoleResp(''))
     setShowAlert(false)
   }
 
@@ -74,23 +84,43 @@ export default function AppUserManagement() {
           error={isError ? JSON.stringify(data) : ''}
         />
       )}
-      <AppUserDetailsTable />
-      <PageSnackbar
-        contactLinks=""
-        contactText=""
-        description={
-          userRoleResponse === 'success'
-            ? t('content.usermanagement.appUserDetails.userRoleSuccessMsg')
-            : t('content.usermanagement.appUserDetails.userRoleErrorMsg')
-        }
-        open={showAlert}
-        onCloseNotification={onAlertClose}
-        severity={userRoleResponse === 'success' ? 'success' : 'error'}
-        showIcon
-        title={userRoleResponse === 'success' ? 'Success' : 'Error'}
-        vertical={'bottom'}
-        horizontal={'right'}
-      />
+      <AppUserDetailsTable userRoleResponse={userRoleResponse} />
+      {/* success or error dialog/overlay */}
+      <Dialog open={showAlert} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
+        <DialogContent>
+          <IconButton
+            aria-label="close"
+            onClick={() => onAlertClose()}
+            sx={{
+              position: 'absolute',
+              right: 16,
+              top: 16,
+              color: '#939393',
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          <Typography mt={7} mb={2} variant="body2" align="center">
+            {userRoleResponse === 'success' ? (
+              <CheckCircleOutlineIcon
+                color="success"
+                sx={{ width: 46, height: 46 }}
+              />
+            ) : (
+              <ErrorOutlineIcon
+                color="error"
+                style={{ height: 20, width: 20 }}
+              />
+            )}
+          </Typography>
+          <Typography mb={2} variant="h4" align="center">
+            {userRoleResponse === 'success'
+              ? t('content.usermanagement.appUserDetails.userRoleSuccessMsg')
+              : t('content.usermanagement.appUserDetails.userRoleErrorMsg')}
+          </Typography>
+        </DialogContent>
+      </Dialog>
     </main>
   )
 }

@@ -30,7 +30,7 @@ import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 
@@ -65,6 +65,10 @@ export const UserList = ({
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
+
+  useEffect(() => {
+    setRefresh(Date.now())
+  }, [fetchHookArgs.userRoleResponse])
 
   return (
     <section id="identity-management-id" className="user-management-section">
