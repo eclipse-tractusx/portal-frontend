@@ -26,7 +26,7 @@ import {
   PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -37,7 +37,6 @@ import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
 
 export default function MyAccount() {
   const { t } = useTranslation()

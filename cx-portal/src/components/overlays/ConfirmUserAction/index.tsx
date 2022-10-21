@@ -144,10 +144,7 @@ export const ConfirmUserAction = ({
       }
     } else if (title === 'admin') {
       //delete admin api comes here
-      setTimeout(() => {
-        setError(true)
-        showLoading(false)
-      }, 1000)
+      dispatch(closeOverlay())
     } else if (title === 'resetPassword') {
       try {
         const response = await resetPassword(id).unwrap()
@@ -161,10 +158,7 @@ export const ConfirmUserAction = ({
       }
     } else {
       //suspend user api comes here
-      setTimeout(() => {
-        setError(true)
-        showLoading(false)
-      }, 1000)
+      dispatch(closeOverlay())
     }
   }
 
@@ -175,7 +169,6 @@ export const ConfirmUserAction = ({
         navigate('/usermanagement')
       } else if (title === 'admin') {
         UserService.doLogout({ redirectUri: `${document.location.origin}/` })
-      } else if (title === 'reset') {
       }
     }
   }
