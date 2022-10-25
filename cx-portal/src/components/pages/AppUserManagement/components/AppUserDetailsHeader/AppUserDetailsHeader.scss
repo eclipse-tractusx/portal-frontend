@@ -34,7 +34,6 @@
 
 .app-user-details-header-role {
   width: 350px;
-  height: 120px;
   border: 1px solid color(primary);
   border-radius: 8px;
   margin: 16px;
@@ -63,4 +62,16 @@
   p:after {
     border: none !important;
   }
+}
+
+.app-user-details-role {
+  width: 90%;
+  white-space: initial;
+  word-wrap: break-word;
+}
+
+.wrapper {
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
 }

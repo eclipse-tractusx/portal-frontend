@@ -27,11 +27,12 @@ import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 
 export interface DialogHeaderProps {
-  title: string
-  intro?: string
+  title: string | JSX.Element
+  intro?: string | JSX.Element
   icon?: boolean
   closeWithIcon?: boolean
   onCloseWithIcon?: (event: React.MouseEvent) => void
+  iconComponent?: JSX.Element
 }
 
 export const DialogHeader = ({
@@ -39,6 +40,9 @@ export const DialogHeader = ({
   intro,
   icon,
   closeWithIcon,
+  iconComponent = (
+    <CheckCircleOutlineOutlinedIcon sx={{ fontSize: 60 }} color="success" />
+  ),
   onCloseWithIcon,
 }: DialogHeaderProps) => {
   const { spacing, palette } = useTheme()
@@ -46,14 +50,7 @@ export const DialogHeader = ({
   return (
     <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
       <MuiDialogTitle>
-        {icon && (
-          <Box>
-            <CheckCircleOutlineOutlinedIcon
-              sx={{ fontSize: 60 }}
-              color="success"
-            />
-          </Box>
-        )}
+        {icon && <Box>{iconComponent}</Box>}
         {title}
         {closeWithIcon && (
           <IconButton

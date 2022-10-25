@@ -72,6 +72,7 @@ declare module '@mui/material/styles' {
     background11: string
     background12: string
     background13: string
+    background14: string
   }
 
   interface TypeTextField {

@@ -17,11 +17,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
+import ClearIcon from '@mui/icons-material/Clear'
 import React, { useState, useMemo, useCallback } from 'react'
 import { Box, useTheme, debounce } from '@mui/material'
 import { Button } from '../../../Button'
 import { SearchInput } from '../../../SearchInput'
+import { IconButton } from '../../../IconButton'
 import { ToolbarProps } from '.'
 
 export type SelectedFilter = {
@@ -41,12 +42,14 @@ export const UltimateToolbar = ({
   onFilter,
   searchPlaceholder,
   selectedFilter,
-  searchDebounce = 500,
   searchExpr,
+  searchInputData,
+  onClearSearch,
+  searchDebounce = 500,
 }: UltimateToolbarProps) => {
   const { spacing } = useTheme()
-  const [searchText, setSearchText] = useState<string>(
-    searchExpr ? searchExpr : ''
+  const [searchInput, setSearchInput] = useState<string>(
+    searchExpr ?? (searchInputData ? searchInputData.text : '')
   )
 
   const debounceSearch = useMemo(
@@ -65,7 +68,7 @@ export const UltimateToolbar = ({
   )
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value)
+    setSearchInput(e.target.value)
     const inputLen = e.target.value.length
     if (inputLen === 0 || inputLen > 2) {
       onSearch && doOnSearch(e.target.value)
@@ -74,7 +77,7 @@ export const UltimateToolbar = ({
 
   const onSearchInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && onSearch) {
-      onSearch(searchText)
+      onSearch(searchInput)
     }
   }
 
@@ -84,7 +87,22 @@ export const UltimateToolbar = ({
     }
   }
 
+  const handleSearchClear = () => {
+    onClearSearch && onClearSearch()
+    setSearchInput('')
+  }
+
   const headerHeight = () => (onSearch || onFilter ? 100 : 0)
+
+  const endAdornment =
+    onClearSearch && searchInput ? (
+      <IconButton onClick={handleSearchClear}>
+        <ClearIcon />
+      </IconButton>
+    ) : (
+      <></>
+    )
+
   return (
     <Box
       sx={{
@@ -98,7 +116,9 @@ export const UltimateToolbar = ({
       {onSearch && (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           <SearchInput
-            value={searchText}
+            endAdornment={endAdornment}
+            type="text"
+            value={searchInput}
             onChange={onSearchChange}
             onKeyPress={onSearchInputKeyPress}
             placeholder={searchPlaceholder}

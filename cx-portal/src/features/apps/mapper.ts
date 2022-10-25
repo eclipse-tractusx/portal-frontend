@@ -46,15 +46,14 @@ export const getAppImage = (appid: string, image: string): ImageType => ({
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
   subtitle: app.provider,
+  title: app.name ?? '',
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
     src: getAppLeadImage(app),
     alt: app.title,
   },
-  onClick: app.link
-    ? () => window.open(app.link, '_blank')?.focus()
-    : undefined,
+  onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,
 })
 
 export const filterSubscribed = (

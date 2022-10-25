@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useSelector } from 'react-redux'
-import { Button, Typography } from 'cx-portal-shared-components'
+import { Button, Typography, Tooltips } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { getAppLeadImage } from 'features/apps/mapper'
@@ -37,12 +37,43 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const getSubscribeBtn = () => {
     const subscribeStatus = item.isSubscribed
     if (subscribeStatus === 'PENDING') {
-      return <Button color="secondary">{t('content.appdetail.pending')}</Button>
+      return (
+        <Tooltips
+          additionalStyles={{
+            curson: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="bottom-start"
+          tooltipText={t('content.appdetail.pendingTooltip')}
+          children={
+            <span>
+              <Button color="secondary">
+                {t('content.appdetail.pending')}
+              </Button>
+            </span>
+          }
+        />
+      )
     } else if (subscribeStatus === 'ACTIVE') {
       return (
-        <span className="subscribed-success-btn">
-          <Button color="success">{t('content.appdetail.subscribed')}</Button>
-        </span>
+        <Tooltips
+          additionalStyles={{
+            curson: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="bottom-start"
+          tooltipText={t('content.appdetail.subscribedTooltip').replace(
+            '{appName}',
+            item.title
+          )}
+          children={
+            <span>
+              <Button color="success">
+                {t('content.appdetail.subscribed')}
+              </Button>
+            </span>
+          }
+        />
       )
     } else {
       return (

@@ -20,7 +20,7 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
-import { fetchDigitalTwins, fetchTwinById } from './actions'
+import { fetchDigitalTwins, fetchTwinById, fetchTwinForSearch } from './actions'
 import { DigitalTwinsInitialState, ShellDescriptor, TwinList } from './types'
 
 const defaultTwins: TwinList = {
@@ -58,6 +58,7 @@ const twinsSlice = createSlice({
       state.loading = false
       state.error = action.error.message as string
     })
+
     builder.addCase(fetchTwinById.pending, (state) => {
       state.twin = null
       state.loading = true
@@ -70,6 +71,22 @@ const twinsSlice = createSlice({
     })
     builder.addCase(fetchTwinById.rejected, (state, action) => {
       state.twin = null
+      state.loading = false
+      state.error = action.error.message as string
+    })
+
+    builder.addCase(fetchTwinForSearch.pending, (state, { payload }) => {
+      state.twinList = defaultTwins
+      state.loading = true
+      state.error = ''
+    })
+    builder.addCase(fetchTwinForSearch.fulfilled, (state, { payload }) => {
+      state.twinList = { ...state.twinList, currentPage: 0, items: payload }
+      state.error = ''
+      state.loading = false
+    })
+    builder.addCase(fetchTwinForSearch.rejected, (state, action) => {
+      state.twinList = { ...state.twinList, items: [] }
       state.loading = false
       state.error = action.error.message as string
     })
