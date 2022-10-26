@@ -100,6 +100,7 @@ const TESTDATA = {
   UUID: {
     valid: [
       '5c08fc78-dc45-4d1b-aa6e-58da1ad9136f',
+      '5C08fC78-DC45-4D1B-AA6E-58dA1AD9136F',
       '00000000-0000-0000-0000-000000000000',
       'ffffffff-ffff-ffff-ffff-ffffffffffff',
     ],
