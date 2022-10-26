@@ -28,14 +28,14 @@ export const Patterns = {
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
   URL: new RegExp(
-    `^(https?)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
+    `^(https)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
     'i'
   ),
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   prefix: {
     BPN: /^BPNL/i,
-    URL: /^https?:/i,
+    URL: /^https:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
     URNID: /^urn:uuid:[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$/i,
   },
@@ -65,6 +65,7 @@ export const Patterns = {
 export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)
 export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
-export const isUrl = (expr: string) => Patterns.URL.test(expr)
+export const isURL = (expr: string) => Patterns.URL.test(expr)
+export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 
 export default Patterns

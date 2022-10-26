@@ -18,17 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { isBPN, isDomain, isMail, isUrl } from './Patterns'
+import { isBPN, isDomain, isMail, isURL, isUUID } from './Patterns'
 
 const TESTDATA = {
   BPN: {
-    valid: ['BPNL000000015OHJ', 'bpnl000000000001'],
+    valid: ['BPNL000000015OHJ', 'bpnl000000000001', 'bpnlaaaaaaaaaaaa'],
     invalid: [
+      '',
+      'word',
+      'some string',
       '    BPNL000000000001  ',
       'BPNL00000000000015OHJ',
       'BPNL01',
-      '/&§%/(§%#',
-      '',
     ],
   },
   MAIL: {
@@ -40,14 +41,15 @@ const TESTDATA = {
       '222.333@444.com', // valid?
     ],
     invalid: [
+      '',
+      'word',
+      'some string',
       '   donald.duck@bmw.de',
       'julia.jeroch@bmw',
       '.eins.zwei.@drei.my',
       'a@b.c',
       'not,a@valid@address.com',
       '@mickey.mouse',
-      '&$%/&()/@&/().&/',
-      '',
     ],
   },
   DOMAIN: {
@@ -60,6 +62,9 @@ const TESTDATA = {
       '1.2.3', //valid?
     ],
     invalid: [
+      '',
+      'word',
+      'some string',
       '  no.spaces.domain.in',
       'BMW',
       'das.mein.kraßße-dömäin.yo',
@@ -68,26 +73,43 @@ const TESTDATA = {
       '.domain.name',
       'no.underscore_allowed.is',
       '-das-.nicht.de',
-      '&$%/.&()/@&./().&/',
-      '',
     ],
   },
   URL: {
     valid: [
       'https://www.bmw.com',
-      'http://WWW.GOOGLE.COM/',
+      'https://WWW.GOOGLE.COM/',
       'https://www.bmw.com/index.html',
-      'http://hostname.domain:12345',
-      'http://hostname.domain:12345/endwith/slash/',
+      'https://hostname.domain:12345',
+      'https://hostname.domain:12345/endwith/slash/',
       'https://portal.dev.demo.catena-x.net/assets/swagger/index.html',
       'https://portal.dev.demo.catena-x.net/assets/swagger/index.html?param=13&arg=value',
     ],
     invalid: [
+      '',
+      'word',
       'some string',
+      ' https://www.bmw.com',
       'ftp://my.server/file',
       'https://:123/path',
+      'http://hostname.domain:12345/endwith/slash/',
       'https://my.domain:not_a_port/path/okay',
       'https://user:password@host.domain:1234/not/accepted/',
+    ],
+  },
+  UUID: {
+    valid: [
+      '5c08fc78-dc45-4d1b-aa6e-58da1ad9136f',
+      '00000000-0000-0000-0000-000000000000',
+      'ffffffff-ffff-ffff-ffff-ffffffffffff',
+    ],
+    invalid: [
+      '',
+      'word',
+      'some string',
+      ' 5c08fc78-dc45-4d1b-aa6e-58da1ad9136f',
+      'gggggggg-dc45-4d1b-aa6e-58da1ad9136f',
+      '5c08fc78dc454d1baa6e58da1ad9136f',
     ],
   },
 }
@@ -111,7 +133,12 @@ describe('Input Pattern Tests', () => {
   })
 
   it('validates URLs', () => {
-    TESTDATA.URL.valid.forEach((expr) => expect(isUrl(expr)).toBe(true))
-    TESTDATA.URL.invalid.forEach((expr) => expect(isUrl(expr)).toBe(false))
+    TESTDATA.URL.valid.forEach((expr) => expect(isURL(expr)).toBe(true))
+    TESTDATA.URL.invalid.forEach((expr) => expect(isURL(expr)).toBe(false))
+  })
+
+  it('validates UUIDs', () => {
+    TESTDATA.UUID.valid.forEach((expr) => expect(isUUID(expr)).toBe(true))
+    TESTDATA.UUID.invalid.forEach((expr) => expect(isUUID(expr)).toBe(false))
   })
 })
