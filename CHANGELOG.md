@@ -11,6 +11,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App release process: Removed placeholders where not necessary
 * Feature - App Marketplace - Activate Search (Interim on Page)
 * Bugfix - App release process: Page sizing fixed
+* Bugfix - My Organization - BPN Address Alignment fixed
 
 
 ### 0.6.0
