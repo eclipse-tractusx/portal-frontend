@@ -287,7 +287,7 @@ export default function AppMarketCard() {
     file: any
   ) => {
     const data = {
-    appId: appId,
+      appId: appId,
       documentTypeId: documentTypeId,
       body: { file },
     }
