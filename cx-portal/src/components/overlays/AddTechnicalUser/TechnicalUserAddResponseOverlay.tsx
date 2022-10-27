@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import {
   Dialog,
@@ -31,6 +31,8 @@ interface TechnicalUserAddOverlayProps {
   intro?: string
   dialogOpen: boolean
   children?: JSX.Element | JSX.Element[]
+  handleCallback?: () => void
+  iconComponent?: JSX.Element
 }
 
 export const TechnicalUserAddResponseOverlay = ({
@@ -38,6 +40,8 @@ export const TechnicalUserAddResponseOverlay = ({
   intro,
   dialogOpen,
   children,
+  handleCallback,
+  iconComponent,
 }: TechnicalUserAddOverlayProps) => {
   const [open, setOpen] = useState<boolean>(dialogOpen)
 
@@ -49,7 +53,11 @@ export const TechnicalUserAddResponseOverlay = ({
           intro={intro}
           closeWithIcon={true}
           icon={true}
-          onCloseWithIcon={() => setOpen(false)}
+          iconComponent={iconComponent}
+          onCloseWithIcon={() => {
+            setOpen(false)
+            if (handleCallback) handleCallback()
+          }}
         />
         <DialogContent>
           <Box>{children}</Box>

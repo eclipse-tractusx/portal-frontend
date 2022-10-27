@@ -20,6 +20,7 @@
 
 .remove-technical-user-content {
   max-width: 930px;
+  margin-top: -20px;
 
   * {
     width: fit-content;
@@ -32,7 +33,6 @@
   }
 
   h5 {
-    padding: 20px;
     margin: 20px auto 20px auto !important;
   }
 }

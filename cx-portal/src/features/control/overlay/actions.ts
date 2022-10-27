@@ -31,12 +31,19 @@ const closeOverlay = createAction(`${name}/closeOverlay`, () => ({
 
 const show = createAction(
   `${name}/show`,
-  (type: OVERLAYS, id?: string, title?: string, status?: boolean) => ({
+  (
+    type: OVERLAYS,
+    id?: string,
+    title?: string,
+    status?: boolean,
+    subTitle?: string
+  ) => ({
     payload: {
       type,
       id,
       title,
       status,
+      subTitle,
     },
   })
 )
