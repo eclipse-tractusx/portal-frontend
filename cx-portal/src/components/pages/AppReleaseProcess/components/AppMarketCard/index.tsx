@@ -28,6 +28,7 @@ import {
   MultiSelectList,
   Checkbox,
   PageNotifications,
+  LogoGrayData,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -217,9 +218,7 @@ export default function AppMarketCard() {
   const cardDescription =
     getValues().shortDescriptionEN ||
     t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')
-  const cardImageSrc =
-    getValues().uploadImage.leadPictureUri ||
-    'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png'
+  const cardImageSrc = getValues().uploadImage.leadPictureUri || LogoGrayData
   const cardImageAlt =
     getValues().uploadImage.alt ||
     t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
@@ -303,18 +302,16 @@ export default function AppMarketCard() {
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.appMarketCard.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.appMarketCard.headerDescription')}
-      </Typography>
-
-      <Grid container spacing={2} sx={{ mt: pageScrolled ? 10 : 0 }}>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto' }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.appMarketCard.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} sx={{ mt: 10 }}>
         {pageScrolled ? (
-          <Grid
-            item
-            md={3}
-            sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-            className={'app-release-card'}
-          >
+          <Grid item md={3} className={'app-release-card'}>
             <Card
               image={{
                 src: cardImageSrc,
@@ -349,8 +346,8 @@ export default function AppMarketCard() {
 
         <Grid
           item
-          md={pageScrolled ? 9 : 8}
-          sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}
+          md={8}
+          sx={{ mt: 0, mr: 'auto', mb: 0, ml: pageScrolled ? 0 : 'auto' }}
         >
           <form>
             <div className="form-field">

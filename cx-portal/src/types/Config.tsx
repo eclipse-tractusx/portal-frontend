@@ -209,6 +209,7 @@ export const ALL_PAGES: IPage[] = [
     isRoute: true,
     element: (
       <Route
+        key={`${PAGES.APPRELEASEPROCESS}/form`}
         path={`${PAGES.APPRELEASEPROCESS}/form`}
         element={<AppReleaseProcessForm />}
       />
