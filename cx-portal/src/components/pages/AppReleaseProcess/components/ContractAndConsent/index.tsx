@@ -104,9 +104,13 @@ export default function ContractAndConsent() {
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.contractAndConsent.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.contractAndConsent.headerDescription')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.contractAndConsent.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
       <form className="header-description">
         {agreementData?.map((item) => (
           <div className="form-field" key={item}>
