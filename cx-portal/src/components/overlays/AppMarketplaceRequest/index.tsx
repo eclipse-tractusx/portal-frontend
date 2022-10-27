@@ -56,20 +56,31 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
 
   return (
     <>
-      <DialogHeader
-        title={t('content.appMarketplace.headline')}
-        intro={''}
-        closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(closeOverlay())}
-      />
+      <div className="subscription-overlay-header">
+        <DialogHeader
+          title={t('content.appMarketplace.headline')}
+          intro={''}
+          closeWithIcon={true}
+          onCloseWithIcon={() => dispatch(closeOverlay())}
+        />
+      </div>
 
       <DialogContent className="app-overlay-content">
         <Typography className="app-description" variant="h5">
           {data &&
-            t('content.appMarketplace.description').replace(
-              '{appName}',
-              data.title
-            )}
+            t('content.appMarketplace.desc1').replace('{appName}', data.title)}
+        </Typography>
+        <Typography className="app-description" variant="h5">
+          {data &&
+            t('content.appMarketplace.desc2').replace('{appName}', data.title)}
+        </Typography>
+        <Typography className="app-description" variant="h5">
+          {data &&
+            t('content.appMarketplace.desc3').replace('{appName}', data.title)}
+        </Typography>
+        <Typography className="app-description" variant="h5">
+          {data &&
+            t('content.appMarketplace.desc4').replace('{appName}', data.title)}
         </Typography>
       </DialogContent>
 
