@@ -329,6 +329,8 @@ export default function AppMarketCard() {
               expandOnHover={false}
               filledBackground={true}
               buttonText={''}
+              positionValue="sticky"
+              topValue={50}
             />
           </Grid>
         ) : (
