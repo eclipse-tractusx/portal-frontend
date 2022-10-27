@@ -75,6 +75,7 @@ const EdcConnector = () => {
   const { connectorList, loading, paginationData, error } =
     useSelector(connectorSelector)
 
+  const [selectedService, setSelectedService] = useState<any>({})
   useEffect(() => {
     if (token) {
       const params = { size: pageSize, page: currentPage }
@@ -108,7 +109,8 @@ const EdcConnector = () => {
     }
   }
 
-  const onConfirmClick = () => {
+  const onConfirmClick = (selected: any) => {
+    setSelectedService(selected)
     setAddConnectorOverlayCurrentStep((prevState) => {
       return prevState < 1 ? 1 : prevState
     })
@@ -116,20 +118,22 @@ const EdcConnector = () => {
 
   const onFormSubmit = async (data: FormFieldsType) => {
     closeAndResetModalState()
-    await dispatch(
-      createConnector({
-        body: {
-          name: data.ConnectorName,
-          connectorUrl: data.ConnectorURL,
-          type: 'COMPANY_CONNECTOR',
-        },
-      })
-    )
-    // After create new connector, current page should reset to initial page
-    await dispatch(connectorSlice.actions.resetConnectorState())
+    if (selectedService.type === 'COMPANY_CONNECTOR') {
+      await dispatch(
+        createConnector({
+          body: {
+            name: data.ConnectorName,
+            connectorUrl: data.ConnectorURL,
+            type: 'COMPANY_CONNECTOR',
+          },
+        })
+      )
+      //After create new connector, current page should reset to initial page
+      await dispatch(connectorSlice.actions.resetConnectorState())
 
-    const params = { size: pageSize, page: 0 }
-    dispatch(fetchConnectors({ params, token }))
+      const params = { size: pageSize, page: 0 }
+      dispatch(fetchConnectors({ params, token }))
+    }
   }
 
   const handleSnackbarClose = (

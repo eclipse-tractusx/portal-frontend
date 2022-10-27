@@ -129,7 +129,9 @@ const AddConnectorOverlay = ({
             variant="contained"
             disabled={!selected}
             onClick={(e) =>
-              connectorStep === 0 ? handleConfirmClick(e) : onFormSubmit()
+              connectorStep === 0
+                ? handleConfirmClick(selected)
+                : onFormSubmit()
             }
           >
             {`${t('global.actions.confirm')}`}

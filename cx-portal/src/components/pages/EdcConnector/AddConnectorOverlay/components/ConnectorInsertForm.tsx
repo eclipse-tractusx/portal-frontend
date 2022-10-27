@@ -22,7 +22,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
-import { Input } from 'cx-portal-shared-components'
+import { Input, Tooltips } from 'cx-portal-shared-components'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 const ConnectorFormInput = ({
   control,
@@ -33,26 +34,54 @@ const ConnectorFormInput = ({
   placeholder,
   name,
   rules,
+  tooltipMsg,
 }: any) => {
   return (
-    <Controller
-      render={({ field: { onChange, value } }) => (
-        <Input
-          error={!!errors[name]}
-          helperText={helperText}
-          label={label}
-          placeholder={placeholder}
-          onChange={(event) => {
-            trigger(name)
-            onChange(event)
+    <>
+      <div
+        style={{
+          marginLeft: '120px',
+          position: 'relative',
+          top: '25px',
+          zIndex: '9',
+        }}
+      >
+        <Tooltips
+          additionalStyles={{
+            curson: 'pointer',
+            marginTop: '30px !important',
           }}
-          value={value}
+          tooltipPlacement="bottom-start"
+          tooltipText={tooltipMsg}
+          children={
+            <span>
+              <HelpOutlineIcon fontSize={'small'} />
+            </span>
+          }
         />
-      )}
-      name={name}
-      control={control}
-      rules={rules}
-    />
+      </div>
+      <Controller
+        render={({ field: { onChange, value } }) => (
+          <Input
+            sx={{
+              paddingTop: '10px',
+            }}
+            error={!!errors[name]}
+            helperText={helperText}
+            label={label}
+            placeholder={placeholder}
+            onChange={(event) => {
+              trigger(name)
+              onChange(event)
+            }}
+            value={value}
+          />
+        )}
+        name={name}
+        control={control}
+        rules={rules}
+      />
+    </>
   )
 }
 
@@ -79,7 +108,12 @@ const ConnectorInsertForm = ({
           }}
         >
           <form onSubmit={handleSubmit} className="form">
-            <div className="form-input">
+            <div
+              className="form-input"
+              style={{
+                paddingTop: '40px',
+              }}
+            >
               <ConnectorFormInput
                 {...{
                   control,
@@ -96,6 +130,7 @@ const ConnectorInsertForm = ({
                   placeholder: t(
                     'content.edcconnector.modal.insertform.name.placeholder'
                   ),
+                  tooltipMsg: 'Own selected connector name for verification',
                 }}
               />
             </div>
@@ -118,6 +153,8 @@ const ConnectorInsertForm = ({
                   placeholder: t(
                     'content.edcconnector.modal.insertform.url.placeholder'
                   ),
+                  tooltipMsg:
+                    'URL of the connector endpoint. Only https: endpoints are allowed',
                 }}
               />
             </div>
