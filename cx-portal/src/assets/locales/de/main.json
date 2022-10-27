@@ -841,7 +841,8 @@
       "secret": "Secret",
       "permission": "Berechtigung",
       "userId": "Benutzeridentifikation",
-      "redirectURI": "Umleitungs-URI"
+      "redirectURI": "Umleitungs-URI",
+      "toBeUpdated": "To be updated"
     },
     "actions": {
       "cancel": "Abbrechen",

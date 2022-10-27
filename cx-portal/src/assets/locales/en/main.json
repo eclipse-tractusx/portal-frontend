@@ -801,7 +801,8 @@
       "secret": "Secret",
       "permission": "Permission",
       "userId": "User Id",
-      "redirectURI": "Redirect URI"
+      "redirectURI": "Redirect URI",
+      "toBeUpdated": "To be updated"
     },
     "actions": {
       "cancel": "Cancel",
