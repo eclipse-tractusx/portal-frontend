@@ -130,7 +130,9 @@ const ConnectorInsertForm = ({
                   placeholder: t(
                     'content.edcconnector.modal.insertform.name.placeholder'
                   ),
-                  tooltipMsg: 'Own selected connector name for verification',
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.name.tooltipMsg'
+                  ),
                 }}
               />
             </div>
@@ -153,8 +155,9 @@ const ConnectorInsertForm = ({
                   placeholder: t(
                     'content.edcconnector.modal.insertform.url.placeholder'
                   ),
-                  tooltipMsg:
-                    'URL of the connector endpoint. Only https: endpoints are allowed',
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.url.tooltipMsg'
+                  ),
                 }}
               />
             </div>

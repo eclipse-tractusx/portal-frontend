@@ -347,7 +347,8 @@
           "name": {
             "label": "Connector Name*",
             "placeholder": "Konnektorname",
-            "error": "Connector Name ist erforderlich"
+            "error": "Connector Name ist erforderlich",
+            "tooltipMsg": "Own selected connector name for verification"
           },
           "id": {
             "label": "Connector ID*",
@@ -357,7 +358,8 @@
           "url": {
             "label": "Konnektor URL*",
             "placeholder": "Konnektor URL",
-            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net"
+            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net",
+            "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
           }
         }
       }
