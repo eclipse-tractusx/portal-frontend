@@ -122,7 +122,7 @@ export const apiSlice = createApi({
     fetchOwnCompanyDetails: builder.query<CompanyDetails, void>({
       query: () => `/api/administration/companydata/ownCompanyDetails`,
     }),
-    deleteUser: builder.mutation<void, string>({
+    deleteMyUser: builder.mutation<void, string>({
       query: (id: string) => ({
         url: `/api/administration/user/ownUser/${id}`,
         method: 'DELETE',
@@ -146,7 +146,7 @@ export const {
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
   useFetchOwnCompanyDetailsQuery,
-  useDeleteUserMutation,
+  useDeleteMyUserMutation,
   useResetPasswordMutation,
 } = apiSlice
 

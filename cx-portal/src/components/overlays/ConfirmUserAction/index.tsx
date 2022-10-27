@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import DeleteUserContent from 'components/shared/basic/DeleteUserContent'
 import {
-  useDeleteUserMutation,
+  useRemoveTenantUserMutation,
   useFetchUserDetailsQuery,
   useResetPasswordMutation,
 } from 'features/admin/userApiSlice'
@@ -46,7 +46,7 @@ export const ConfirmUserAction = ({
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { data } = useFetchUserDetailsQuery(id ?? '')
-  const [deleteUser] = useDeleteUserMutation()
+  const [deleteTenantUser] = useRemoveTenantUserMutation()
   const [resetPassword] = useResetPasswordMutation()
   const [error, setError] = useState<boolean>(false)
   const [response, setResponse] = useState<boolean>(false)
@@ -133,7 +133,7 @@ export const ConfirmUserAction = ({
     showLoading(true)
     if (title === 'user') {
       try {
-        const response = await deleteUser(id).unwrap()
+        const response = await deleteTenantUser([id]).unwrap()
         console.log(response)
         setResponse(true)
         showLoading(false)
