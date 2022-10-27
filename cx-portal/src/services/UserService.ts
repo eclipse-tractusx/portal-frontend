@@ -29,6 +29,8 @@ import {
   getClientIdDigitalTwin,
 } from './EnvironmentService'
 import { error, info } from './LogService'
+import { store } from 'features/store'
+import { setLoggedUser } from 'features/user/slice'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
@@ -52,33 +54,38 @@ const keycloakConfigDigitalTwin: Keycloak.KeycloakConfig = {
 /* eslint @typescript-eslint/no-explicit-any: "off" */
 const KC = new (Keycloak as any)(keycloakConfig)
 
+const update = () => {
+  //info(`${getUsername()} updating token`)
+  KC.updateToken(50)
+    .then((refreshed: boolean) => {
+      refreshed && info(`${getUsername()} token refreshed ${refreshed}`)
+      store.dispatch(setLoggedUser(getLoggedUser()))
+    })
+    .catch(() => {
+      error(`${getUsername()} token refresh failed`)
+    })
+}
+
 const init = (onAuthenticatedCallback: (loggedUser: IUser) => any) => {
   KC.init({
     onLoad: 'login-required',
-    silentCheckSsoRedirectUri:
-      window.location.origin + '/silent-check-sso.html',
     pkceMethod: 'S256',
   }).then((authenticated: boolean) => {
     if (authenticated) {
       info(`${getUsername()} authenticated`)
       AccessService.init()
       onAuthenticatedCallback(getLoggedUser())
+      store.dispatch(setLoggedUser(getLoggedUser()))
+      setInterval(update, 50000)
     } else {
-      doLogin()
+      error(`${getUsername()} authentication failed`)
     }
   })
 }
 
 KC.onTokenExpired = () => {
-  KC.updateToken(50)
-    .then((refreshed: boolean) => {
-      info(`${getUsername()} refreshed ${refreshed}`)
-      //TODO: update token in redux store
-      //store.dispatch(setLoggedUser(getLoggedUser()))
-    })
-    .catch(() => {
-      error(`${getUsername()} refresh failed`)
-    })
+  info(`${getUsername()} token expired`)
+  update()
 }
 
 const doLogin = KC.login
@@ -89,9 +96,7 @@ const getToken = () => KC.token
 
 const getParsedToken = () => KC.tokenParsed
 
-const updateToken = () => KC.updateToken(5).catch(doLogin)
-
-const getUsername = () => KC.tokenParsed.preferred_username
+const getUsername = () => KC.tokenParsed?.preferred_username
 
 const getName = () => KC.tokenParsed?.name
 
@@ -142,7 +147,6 @@ const UserService = {
   init,
   isAdmin,
   isLoggedIn,
-  updateToken,
 }
 
 export default UserService

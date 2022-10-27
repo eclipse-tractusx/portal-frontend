@@ -58,7 +58,6 @@ export default function MyAccount() {
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
         >
-          {/* TODO: DEV only needs to be removed when going PROD */}
           <Button
             color="secondary"
             onClick={async () => {
