@@ -339,8 +339,8 @@
         "description": "Are you sure to delete selected connector?"
       },
       "modal": {
-        "title": "Connect company connector",
-        "intro": "Registration of a company connector which is implemented in your own company network.",
+        "title": "Register Managed Connector",
+        "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {

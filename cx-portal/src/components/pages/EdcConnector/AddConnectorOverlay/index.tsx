@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -70,11 +70,17 @@ const AddConnectorOverlay = ({
     mode: 'onChange',
   })
 
+  const [selected, setSelected] = useState<any>(undefined)
+
   const onFormSubmit = async () => {
     const validateFields = await trigger(['ConnectorName', 'ConnectorURL'])
     if (validateFields) {
       onFormConfirmClick(getValues() as FormFieldsType)
     }
+  }
+
+  const onSelect = (selected: any) => {
+    setSelected(selected)
   }
 
   return (
@@ -87,20 +93,18 @@ const AddConnectorOverlay = ({
           },
         }}
       >
-        {connectorStep === 1 && (
-          <DialogHeader
-            title={t('content.edcconnector.modal.title')}
-            intro={t('content.edcconnector.modal.intro')}
-          />
-        )}
+        <DialogHeader
+          title={t('content.edcconnector.modal.title')}
+          intro={t('content.edcconnector.modal.intro')}
+        />
         <DialogContent
           sx={{
-            padding: '40px 120px',
+            padding: '0px 120px 40px 120px',
           }}
         >
           {connectorStep === 0 ? (
             <>
-              <ConnectorTypeSelection />
+              <ConnectorTypeSelection selectedServiceCallback={onSelect} />
             </>
           ) : (
             <>
@@ -114,6 +118,7 @@ const AddConnectorOverlay = ({
           <Button
             variant="outlined"
             onClick={(e) => {
+              setSelected(undefined)
               handleOverlayClose(e)
               reset(formFields)
             }}
@@ -122,12 +127,7 @@ const AddConnectorOverlay = ({
           </Button>
           <Button
             variant="contained"
-            disabled={
-              connectorStep === 1 &&
-              (control._formValues.ConnectorName === '' ||
-                control._formValues.ConnectorURL === '' ||
-                Object.keys(errors).length > 0)
-            }
+            disabled={!selected}
             onClick={(e) =>
               connectorStep === 0 ? handleConfirmClick(e) : onFormSubmit()
             }
