@@ -24,9 +24,18 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Overview - Confirm and detail overlays & design updates
 * Feature - App Release Process - Business logic & API connect for document upload
 * Feature - My App User Experience
+* Feature - Success/Failure Message as an overlay in Add User
+* Feature - New Tooltip Component added
+* Feature - App Marketplace details page - Show Tooltip component on hover Subscribe and Pending button
+* Feature - App Overview: App detail overlay added for apps in status "in review"
 * Feature - Add User - Success/Failure message as an overlay
 * Feature - Shared Components - New tooltip added
 * Feature - App Marketplace - Show tooltips
+* Feature - User details - Suspend and Delete user flow implemented
+* Feature - User details - Reset Password flow enhanced with confirm overlay
+* Feature - My account - Delete current user flow implemented
+* Bugfix - Application Request Board - Correct api endpoint to display documents
+* Bugfix - App roles going out of the card - Break word to the next line and card height adjusted to the adjacent card
 * Bugfix - App roles - Fixed text align issues
 * Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
 * Bugfix - Application Request Board - Correct api endpoint to display documents
