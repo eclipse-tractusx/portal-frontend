@@ -19,14 +19,19 @@
  ********************************************************************************/
 
 import SignOut from 'components/actions/SignOut'
-import { useTranslation } from 'react-i18next'
+import LogoutIcon from '@mui/icons-material/Logout'
 
 export default function Logout() {
-  const { t } = useTranslation()
   return (
-    <main className="Logout">
-      <h2>{t('pages.logout')}</h2>
-      <p>{t('content.logout.message')}</p>
+    <main style={{ width: '100%', height: '100%', textAlign: 'center' }}>
+      <LogoutIcon
+        sx={{
+          color: 'lightgray',
+          marginTop: '200px',
+          width: '200px',
+          height: '200px',
+        }}
+      />
       <SignOut />
     </main>
   )

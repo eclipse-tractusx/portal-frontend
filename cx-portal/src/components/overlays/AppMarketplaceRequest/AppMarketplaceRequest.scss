@@ -17,11 +17,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+.subscription-overlay-header > div {
+  padding: 56px 112px 30px;
+}
 .app-overlay-content {
   min-width: auto;
   max-width: 915px;
   .app-description {
-    margin: 30px 0 10px;
     text-align: center;
   }
 }

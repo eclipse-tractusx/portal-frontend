@@ -809,7 +809,10 @@
     },
     "appMarketplace": {
       "headline": "Order Business Application",
-      "description": "You have started the subscription request for app {appName}. Please note that the subscription request will trigger a service call on the provider side. The app provider will align with you all further steps. This may take up to 5 days. As soon as all queries are finalized, the app provider will be able to activate your app tenant. As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
+      "desc1": "You have started the subscription request for app {appName}.",
+      "desc2": "Please note that the subscription request will trigger a service call on provider side.The app provider will align with you all further steps. This may take up to 5 days.",
+      "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
+      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
     }
   },
   "navigation": {
@@ -838,7 +841,8 @@
       "secret": "Secret",
       "permission": "Berechtigung",
       "userId": "Benutzeridentifikation",
-      "redirectURI": "Umleitungs-URI"
+      "redirectURI": "Umleitungs-URI",
+      "toBeUpdated": "To be updated"
     },
     "actions": {
       "cancel": "Abbrechen",

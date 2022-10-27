@@ -9,9 +9,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Service Subscription Details Box changes and add status with subscription
 * Feature - App release process: Step-1 - Headline and subtext are enabled when scrolling down
 * Feature - App release process: Removed placeholders where not necessary
-* Feature - App Marketplace - Activate Search (Interim on Page)
+* Feature - App release process: App card to be displayed for the user even while scrolling
 * Bugfix - App release process: Page sizing fixed
 * Bugfix - My Organization - BPN Address Alignment fixed
+* Bugfix - Accidential page reload on token refresh
+* Bugfix - Page sizing/height is fixed in app release process
 
 
 ### 0.6.0
@@ -31,6 +33,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Description field validation adjustment in app release process
 * Bugfix - Logo image from shared components works now
 * Bugfix - App overview page - Filter business logic update
+
 
 ### 0.5.5
 
