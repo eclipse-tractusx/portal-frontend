@@ -11,6 +11,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App release process: Removed placeholders where not necessary
 * Feature - App release process: App card to be displayed for the user even while scrolling
 * Feature - App release process: Corrected the app card sizing
+* Feature - Register connector modal - Enable "Company as a Service" option. Modal updates
 * Bugfix - App release process: Page sizing fixed
 * Bugfix - Accidential page reload on token refresh
 * Bugfix - Page sizing/height is fixed in app release process
