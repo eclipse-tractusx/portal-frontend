@@ -114,9 +114,13 @@ export default function TechnicalIntegration() {
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.technicalIntegration.headerDescription')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.technicalIntegration.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
 
       <form className="header-description">
         <Typography variant="h5" mb={4}>
