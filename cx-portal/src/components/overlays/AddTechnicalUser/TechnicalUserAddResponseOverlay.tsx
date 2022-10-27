@@ -31,8 +31,8 @@ interface TechnicalUserAddOverlayProps {
   intro?: string
   dialogOpen: boolean
   children?: JSX.Element | JSX.Element[]
-  handleCallback?: any
-  iconComponent?: any
+  handleCallback?: () => void
+  iconComponent?: JSX.Element
 }
 
 export const TechnicalUserAddResponseOverlay = ({

@@ -54,10 +54,10 @@ export const ConfirmUserAction = ({
 
   const messageMap: any = {
     user: {
-      header: `${t('content.usermanagement.deleteUserConfirm.header')} ${
-        data?.firstName
-      } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.deleteUserConfirm.confirmTitle'),
+      header: t('content.usermanagement.deleteUserConfirm.header'),
+      subHeader: t(
+        'content.usermanagement.deleteUserConfirm.confirmTitle'
+      ).replace('{userName}', `${data?.firstName} ${data?.lastName}`),
       subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
       subHeaderDescription: t(
         'content.usermanagement.deleteUserConfirm.description'
@@ -72,10 +72,10 @@ export const ConfirmUserAction = ({
       ),
     },
     suspend: {
-      header: `${t('content.usermanagement.suspendUserConfirm.header')} ${
-        data?.firstName
-      } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.suspendUserConfirm.confirmTitle'),
+      header: t('content.usermanagement.suspendUserConfirm.header'),
+      subHeader: t(
+        'content.usermanagement.suspendUserConfirm.confirmTitle'
+      ).replace('{userName}', `${data?.firstName} ${data?.lastName}`),
       subHeaderDescription: t(
         'content.usermanagement.suspendUserConfirm.description'
       ),
@@ -90,14 +90,14 @@ export const ConfirmUserAction = ({
       ),
     },
     admin: {
-      header: `${t('content.usermanagement.deleteUserConfirm.header')} ${
-        data?.firstName
-      } ${data?.lastName}`,
-      subHeader: t('content.usermanagement.deleteUserConfirm.confirmTitle'),
+      header: t('content.usermanagement.deleteUserConfirm.header'),
+      subHeader: t(
+        'content.usermanagement.deleteUserConfirm.confirmTitle'
+      ).replace('{userName}', `${data?.firstName} ${data?.lastName}`),
+      subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
       subHeaderDescription: t(
         'content.usermanagement.deleteUserConfirm.description'
       ),
-      subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
       successTitle: t('content.usermanagement.deleteUserConfirm.successTitle'),
       successDescription: t(
         'content.usermanagement.deleteUserConfirm.successDescription'
@@ -173,15 +173,7 @@ export const ConfirmUserAction = ({
     }
   }
 
-  const canHideOverlay = () => {
-    if (response && !error) {
-      return false
-    } else if (error && !response) {
-      return false
-    } else {
-      return true
-    }
-  }
+  const canHideOverlay = () => !!response === !!error
 
   return (
     <>
