@@ -360,6 +360,12 @@
             "placeholder": "Konnektor URL",
             "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
+          },
+          "bpn": {
+            "label": "Connector Owner*",
+            "placeholder": "BPNL's are allowed only",
+            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
+            "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           }
         }
       }

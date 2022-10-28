@@ -40,7 +40,7 @@ const ConnectorFormInput = ({
     <>
       <div
         style={{
-          marginLeft: '120px',
+          marginLeft: '125px',
           position: 'relative',
           top: '25px',
           zIndex: '9',
@@ -51,7 +51,7 @@ const ConnectorFormInput = ({
             curson: 'pointer',
             marginTop: '30px !important',
           }}
-          tooltipPlacement="bottom-start"
+          tooltipPlacement="top-start"
           tooltipText={tooltipMsg}
           children={
             <span>
@@ -92,6 +92,7 @@ const ConnectorInsertForm = ({
   errors,
   control,
   trigger,
+  selectedService,
 }: any) => {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -122,6 +123,7 @@ const ConnectorInsertForm = ({
                   name: 'ConnectorName',
                   rules: {
                     required: true,
+                    pattern: /^[a-zA-Z0-9 @)]{2,20}$/gm,
                   },
                   helperText: t(
                     'content.edcconnector.modal.insertform.name.error'
@@ -161,6 +163,32 @@ const ConnectorInsertForm = ({
                 }}
               />
             </div>
+            {selectedService && selectedService.type === 'MANAGED_CONNECTOR' && (
+              <div className="form-input">
+                <ConnectorFormInput
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                    name: 'BPN',
+                    rules: {
+                      required: true,
+                      pattern: /^(BPNL)[0-9A-Z]{12}$/i,
+                    },
+                    helperText: t(
+                      'content.edcconnector.modal.insertform.bpn.error'
+                    ),
+                    label: t('content.edcconnector.modal.insertform.bpn.label'),
+                    placeholder: t(
+                      'content.edcconnector.modal.insertform.bpn.placeholder'
+                    ),
+                    tooltipMsg: t(
+                      'content.edcconnector.modal.insertform.bpn.tooltipMsg'
+                    ),
+                  }}
+                />
+              </div>
+            )}
           </form>
         </Grid>
       </Grid>

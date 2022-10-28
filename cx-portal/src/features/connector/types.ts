@@ -63,3 +63,11 @@ export type SearchParams = {
   readonly page: number
   readonly size: number
 }
+
+export type ConnectorType = {
+  title?: string
+  type?: string
+  subTitle?: string
+  descritpion?: string
+  id?: number
+}

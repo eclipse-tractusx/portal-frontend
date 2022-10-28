@@ -41,7 +41,10 @@ import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
 import './EdcConnector.scss'
-import { ConnectorContentAPIResponse } from 'features/connector/types'
+import {
+  ConnectorContentAPIResponse,
+  ConnectorType,
+} from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
 import uniqueId from 'lodash/uniqueId'
 
@@ -109,7 +112,7 @@ const EdcConnector = () => {
     }
   }
 
-  const onConfirmClick = (selected: any) => {
+  const onConfirmClick = (selected: ConnectorType) => {
     setSelectedService(selected)
     setAddConnectorOverlayCurrentStep((prevState) => {
       return prevState < 1 ? 1 : prevState
@@ -133,6 +136,8 @@ const EdcConnector = () => {
 
       const params = { size: pageSize, page: 0 }
       dispatch(fetchConnectors({ params, token }))
+    } else if (selectedService.type === 'MANAGED_CONNECTOR') {
+      console.log('you have selected managed connector option')
     }
   }
 

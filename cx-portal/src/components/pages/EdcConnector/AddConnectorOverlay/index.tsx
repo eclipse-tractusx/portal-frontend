@@ -30,12 +30,13 @@ import {
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
+import { ConnectorType } from 'features/connector/types'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
   connectorStep: number
   handleOverlayClose: React.MouseEventHandler
-  handleConfirmClick: React.MouseEventHandler
+  handleConfirmClick: (data: ConnectorType) => void
   onFormConfirmClick: (data: FormFieldsType) => void
 }
 
@@ -70,7 +71,7 @@ const AddConnectorOverlay = ({
     mode: 'onChange',
   })
 
-  const [selected, setSelected] = useState<any>(undefined)
+  const [selected, setSelected] = useState<ConnectorType>({})
 
   const onFormSubmit = async () => {
     const validateFields = await trigger(['ConnectorName', 'ConnectorURL'])
@@ -79,8 +80,8 @@ const AddConnectorOverlay = ({
     }
   }
 
-  const onSelect = (selected: any) => {
-    setSelected(selected)
+  const onSelect = (service: ConnectorType) => {
+    setSelected(service)
   }
 
   return (
@@ -109,6 +110,7 @@ const AddConnectorOverlay = ({
           ) : (
             <>
               <ConnectorInsertForm
+                selectedService={selected}
                 {...{ handleSubmit, control, errors, trigger }}
               />
             </>
@@ -118,7 +120,7 @@ const AddConnectorOverlay = ({
           <Button
             variant="outlined"
             onClick={(e) => {
-              setSelected(undefined)
+              setSelected({})
               handleOverlayClose(e)
               reset(formFields)
             }}
@@ -127,9 +129,9 @@ const AddConnectorOverlay = ({
           </Button>
           <Button
             variant="contained"
-            disabled={!selected}
+            disabled={selected && selected.id ? false : true}
             onClick={(e) =>
-              connectorStep === 0
+              connectorStep === 0 && selected && selected.id
                 ? handleConfirmClick(selected)
                 : onFormSubmit()
             }
