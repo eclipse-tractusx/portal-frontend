@@ -31,6 +31,7 @@ import i18next, { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { NewAppDetails } from 'features/appManagement/apiSlice'
 import AppInfo from './components/AppInfo'
+import AppConsent from './components/AppConsent'
 
 export default function AppOverViewDetails({
   item,
@@ -54,21 +55,29 @@ export default function AppOverViewDetails({
       id: 'panel-2',
       title: 'Consent',
       color: 'background.background09',
-      children: <Typography variant="h4">To be updated</Typography>,
+      children: <AppConsent agreements={item.agreements} />,
     },
     {
       expanded: false,
       id: 'panel-3',
       title: 'Technical Integration',
       color: 'background.background09',
-      children: <Typography variant="h4">To be updated</Typography>,
+      children: (
+        <Typography variant="h5" align="left">
+          {t('global.field.toBeUpdated')}
+        </Typography>
+      ),
     },
     {
       expanded: false,
       id: 'panel-4',
       title: 'Beta Test',
       color: 'background.background09',
-      children: <Typography variant="h4">To be updated</Typography>,
+      children: (
+        <Typography variant="h5" align="left">
+          {t('global.field.toBeUpdated')}
+        </Typography>
+      ),
     },
   ]
 
@@ -98,7 +107,7 @@ export default function AppOverViewDetails({
           </Grid>
           <Grid
             sx={{
-              marginLeft: '20%',
+              marginLeft: '15%',
               marginTop: '5%',
             }}
           >
