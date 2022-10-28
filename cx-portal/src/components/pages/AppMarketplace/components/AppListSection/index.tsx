@@ -78,20 +78,20 @@ export default function AppListSection() {
 
   const debouncedFilter = useMemo(
     () =>
-      debounce((expr: string) => {
-        if (expr) {
+      debounce(
+        (expr: string) =>
           setCardsData(
-            cards.filter(
-              (card) =>
-                card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                (card.subtitle &&
-                  card.subtitle.toLowerCase().includes(expr.toLowerCase()))
-            )
-          )
-        } else {
-          setCardsData(cards)
-        }
-      }, 300),
+            expr
+              ? cards.filter(
+                  (card) =>
+                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                    (card.subtitle &&
+                      card.subtitle.toLowerCase().includes(expr.toLowerCase()))
+                )
+              : cards
+          ),
+        300
+      ),
     [cards]
   )
 
