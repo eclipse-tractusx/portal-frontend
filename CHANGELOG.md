@@ -16,35 +16,26 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Page sizing/height is fixed in app release process
 
 
-### 0.6.0
+## 0.6.0
 
-* Feature - Home Page - Connect My App API
-* Feature - Assign User Role
-* Feature - App Detail Page - Download document & tags added
-* Feature - App Overview - Confirm and detail overlays & design updates
-* Feature - App Release Process - Business logic & API connect for document upload
-* Feature - My App User Experience
-* Feature - Success/Failure Message as an overlay in Add User
-* Feature - New Tooltip Component added
-* Feature - App Marketplace details page - Show Tooltip component on hover Subscribe and Pending button
-* Feature - App Overview: App detail overlay added for apps in status "in review"
-* Feature - Add User - Success/Failure message as an overlay
-* Feature - Shared Components - New tooltip added
-* Feature - App Marketplace - Show tooltips
-* Feature - User details - Suspend and Delete user flow implemented
-* Feature - User details - Reset Password flow enhanced with confirm overlay
-* Feature - My account - Delete current user flow implemented
-* Bugfix - Application Request Board - Correct api endpoint to display documents
-* Bugfix - App roles going out of the card - Break word to the next line and card height adjusted to the adjacent card
-* Bugfix - App roles - Fixed text align issues
-* Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
-* Bugfix - Application Request Board - Correct api endpoint to display documents
-* Bugfix - Description field validation adjustment in app release process
-* Bugfix - Logo image from shared components works now
-* Bugfix - App overview page - Filter business logic update
+### Change
+* n/a
+
+### Feature
+* Application Management Board: Manage application request (by viewing company details and documents) and approve or cancel company applications.
+* User Management: View own company users, invite new users and assign app roles for subscribed apps. Additionally the technical user self-service got released and supports now the creation of technical users as part of the user company account.
+* App Marketplace: Enables user to search for apps, display app details and subscribe for an app. Also app favorites tags are added.
+* App Overview: App overview supports the app provider to see own published apps, check the status, progress unfinished app releases and start the registration of a new app.
+* UiComponents: SharedUiComponent library got released and is usable for other projects with a number of ui react components
+
+### Technical Support
+* n/a
+
+### Bugfix
+* n/a
 
 
-### 0.5.5
+## 0.5.5
 
 * Feature - App Overview page
 * Feature - Add and edit Identity Provider details
@@ -79,7 +70,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Experience - delete request id from registration admin board
 
 
-### 0.5.4
+## 0.5.4
 
 * Feature - Service Marketplace
 * Feature - Identity Providers
@@ -94,7 +85,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Management - AddUser Roles missing
 
 
-### 0.5.3
+## 0.5.3
 
 * Feature - App Release Process Step 1 implementation with api binding
 * Feature - Show app roles in user details
@@ -104,7 +95,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Identity provider list and detail view
 
 
-### 0.5.2
+## 0.5.2
 
 * Feature - Added Release Notes ;)
 * Feature - Technical User details page
