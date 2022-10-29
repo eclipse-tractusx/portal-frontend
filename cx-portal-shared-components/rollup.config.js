@@ -36,21 +36,22 @@ const rollupConfig = [
             {
                 file: packageJson.main,
                 format: "cjs",
-                sourcemap: true
+                sourcemap: true,
             },
             {
                 file: packageJson.module,
                 format: "esm",
-                sourcemap: true
+                sourcemap: true,
             }
         ],
         plugins: [
             peerDepsExternal(),
-            resolve(),
+            resolve({
+                preferBuiltins: true
+            }),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.build.json" }),
-            scss({
-            }),
+            scss({}),
             svg(),
             terser(),
         ],

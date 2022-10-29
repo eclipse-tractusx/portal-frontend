@@ -26,6 +26,7 @@ import { SearchInput } from '../../../SearchInput'
 import { Typography } from '../../../Typography'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterIcon from '@mui/icons-material/FilterAltOutlined'
+import ClearIcon from '@mui/icons-material/Clear'
 import { Checkbox } from '../../../Checkbox'
 import { getSelectedFilterUpdate } from './helper'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
@@ -65,6 +66,11 @@ export interface ToolbarProps {
   openFilterSection?: boolean
   onOpenFilterSection?: (value: boolean) => void
   selectedFilter?: SelectedFilter
+  onClearSearch?: () => void
+}
+
+const getIconColor = (openFilter: boolean) => {
+  return openFilter ? 'primary' : 'text.tertiary'
 }
 
 export const Toolbar = ({
@@ -83,6 +89,7 @@ export const Toolbar = ({
   openFilterSection,
   onOpenFilterSection,
   selectedFilter,
+  onClearSearch,
 }: ToolbarProps) => {
   const { spacing } = useTheme()
   const isSearchText = searchExpr && searchExpr !== ''
@@ -123,6 +130,10 @@ export const Toolbar = ({
     //console.log(e.key)
   }
 
+  const handleSearchClear = () => {
+    onClearSearch && onClearSearch()
+  }
+
   const onFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = target
     onFilter &&
@@ -139,6 +150,16 @@ export const Toolbar = ({
   useEffect(() => {
     openFilterSection && setOpenFilter(openFilterSection)
   }, [openFilterSection])
+
+  const getEndAdornment = () => {
+    if (onClearSearch && searchInput) {
+      return (
+        <IconButton onClick={handleSearchClear}>
+          <ClearIcon />
+        </IconButton>
+      )
+    }
+  }
 
   return (
     <Box>
@@ -182,6 +203,8 @@ export const Toolbar = ({
           {openSearch ? (
             <SearchInput
               autoFocus
+              endAdornment={getEndAdornment()}
+              type="text"
               value={searchInput}
               onChange={onSearchInputChange}
               onKeyPress={onSearchInputKeyPress}
@@ -208,7 +231,7 @@ export const Toolbar = ({
             <IconButton
               sx={{
                 alignSelf: 'center',
-                color: openFilter ? 'primary' : 'text.tertiary',
+                color: getIconColor(openFilter),
               }}
               onClick={() =>
                 onOpenFilterSection && onOpenFilterSection(!openFilter)

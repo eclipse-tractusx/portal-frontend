@@ -48,7 +48,7 @@ export const SearchInput = ({
           width: '100%',
         }}
         variant={variant}
-        type="search"
+        type={props.type || 'search'}
         InputProps={{
           startAdornment: <SearchIcon sx={{ color: icon01, marginRight: 2 }} />,
           endAdornment: endAdornment || null,

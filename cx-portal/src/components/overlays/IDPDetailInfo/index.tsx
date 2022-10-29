@@ -31,11 +31,12 @@ import {
   useUpdateIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { editIDPSelector } from 'features/control/formSlice'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay/actions'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
 
 export default function IDPDetailInfo({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -43,6 +44,7 @@ export default function IDPDetailInfo({ id }: { id: string }) {
   const { data, refetch } = useFetchIDPDetailQuery(id)
   const [updateIDP] = useUpdateIDPMutation()
   const formData = useSelector(editIDPSelector)
+  const [isDisabledConfirmBtn, setIsDisabledConfirmBtn] = useState(true)
 
   useEffect(() => refetch(), [refetch])
 
@@ -62,10 +64,12 @@ export default function IDPDetailInfo({ id }: { id: string }) {
       },
     }
     try {
-      const response = await updateIDP(update).unwrap()
-      console.log(response)
+      await updateIDP(update).unwrap()
+      //pass IDP type selection into next overlay here
+      dispatch(show(OVERLAYS.IDP_TEST_RUN))
       dispatch(updateData(UPDATES.IDP_LIST))
     } catch (err) {
+      dispatch(show(OVERLAYS.IDP_TEST_RUN))
       console.log(err)
     }
   }
@@ -80,13 +84,24 @@ export default function IDPDetailInfo({ id }: { id: string }) {
         }}
       />
 
-      <DialogContent>{data && <IDPDetailContent idp={data} />}</DialogContent>
+      <DialogContent>
+        {data && (
+          <IDPDetailContent
+            onDisabledEvent={setIsDisabledConfirmBtn}
+            idp={data}
+          />
+        )}
+      </DialogContent>
 
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {`${t('global.actions.cancel')}`}
         </Button>
-        <Button variant="contained" onClick={submitForm}>
+        <Button
+          variant="contained"
+          onClick={submitForm}
+          disabled={isDisabledConfirmBtn}
+        >
           {`${t('global.actions.save')}`}
         </Button>
       </DialogActions>

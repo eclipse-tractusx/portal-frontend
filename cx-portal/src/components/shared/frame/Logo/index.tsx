@@ -19,10 +19,10 @@
  ********************************************************************************/
 
 import { NavLink } from 'react-router-dom'
-import './Logo.css'
+import { Logo as L } from 'cx-portal-shared-components'
 
 export const Logo = () => (
-  <NavLink className="Logo" to="/">
-    {' '}
+  <NavLink to="/">
+    <L variant="text" />
   </NavLink>
 )
