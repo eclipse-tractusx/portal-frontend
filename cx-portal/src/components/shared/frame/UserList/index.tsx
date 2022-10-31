@@ -105,9 +105,14 @@ export const UserList = ({
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 2,
+            flex: 3,
             renderCell: ({ value: status }) => {
-              const label = status ? 'active' : 'inactive'
+              const label =
+                status === 'ACTIVE'
+                  ? 'active'
+                  : status === 'INACTIVE'
+                  ? 'inactive'
+                  : 'deleted'
               return (
                 <StatusTag color="label" label={t(`global.field.${label}`)} />
               )
