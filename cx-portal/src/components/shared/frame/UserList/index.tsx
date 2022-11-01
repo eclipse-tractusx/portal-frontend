@@ -66,6 +66,16 @@ export const UserList = ({
     return validateExpr
   }
 
+  const getStatusLabel = (status: string) => {
+    if (status === 'ACTIVE') {
+      return 'active'
+    } else if (status === 'INACTIVE') {
+      return 'inactive'
+    } else {
+      return 'deleted'
+    }
+  }
+
   useEffect(() => {
     setRefresh(Date.now())
   }, [fetchHookArgs.userRoleResponse])
@@ -107,12 +117,7 @@ export const UserList = ({
             headerName: t('global.field.status'),
             flex: 3,
             renderCell: ({ value: status }) => {
-              const label =
-                status === 'ACTIVE'
-                  ? 'active'
-                  : status === 'INACTIVE'
-                  ? 'inactive'
-                  : 'deleted'
+              const label = getStatusLabel(status)
               return (
                 <StatusTag color="label" label={t(`global.field.${label}`)} />
               )
