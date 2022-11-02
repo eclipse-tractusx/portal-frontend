@@ -24,7 +24,7 @@ import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import { Input, Tooltips } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import Patterns from 'types/Patterns'
+import Patterns, { isURL } from 'types/Patterns'
 
 const ConnectorFormInput = ({
   control,
@@ -148,7 +148,7 @@ const ConnectorInsertForm = ({
                   name: 'ConnectorURL',
                   rules: {
                     required: true,
-                    pattern: Patterns.URL,
+                    pattern: isURL,
                   },
                   helperText: t(
                     'content.edcconnector.modal.insertform.url.error'

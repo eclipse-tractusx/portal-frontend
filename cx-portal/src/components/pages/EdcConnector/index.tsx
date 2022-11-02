@@ -31,11 +31,7 @@ import {
   PageSnackbar,
 } from 'cx-portal-shared-components'
 import connectorSlice, { connectorSelector } from 'features/connector/slice'
-import {
-  createConnector,
-  deleteConnector,
-  fetchConnectors,
-} from 'features/connector/actions'
+import { fetchConnectors } from 'features/connector/actions'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
