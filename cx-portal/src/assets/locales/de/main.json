@@ -369,7 +369,7 @@
           },
           "country": {
             "label": "Place*",
-            "placeholder": "Two digit coountry code",
+            "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           }
