@@ -18,9 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
+  CardItems,
   SearchInput,
   Typography,
   ViewSelector,
@@ -38,12 +39,16 @@ import {
 } from 'features/apps/favorites/actions'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
+import debounce from 'lodash.debounce'
 
 export const label = 'AppList'
 
 export default function AppListSection() {
   const { t } = useTranslation()
   const [group, setGroup] = useState<string>('')
+  const [filterExpr, setFilterExpr] = useState<string>('')
+  const [cardsData, setCardsData] = useState<CardItems[]>([])
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
@@ -55,6 +60,12 @@ export default function AppListSection() {
     dispatch(fetchItems())
   }, [dispatch])
 
+  useEffect(() => {
+    if (cardsData && cardsData.length <= 0) {
+      setCardsData(cards)
+    }
+  }, [cards, cardsData])
+
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
   }
@@ -64,6 +75,33 @@ export default function AppListSection() {
   const addOrRemoveFavorite = (appId: string) => {
     dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
   }
+
+  const debouncedFilter = useMemo(
+    () =>
+      debounce(
+        (expr: string) =>
+          setCardsData(
+            expr
+              ? cards.filter(
+                  (card) =>
+                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                    (card.subtitle &&
+                      card.subtitle.toLowerCase().includes(expr.toLowerCase()))
+                )
+              : cards
+          ),
+        300
+      ),
+    [cards]
+  )
+
+  const doFilter = useCallback(
+    (expr: string) => {
+      setFilterExpr(expr)
+      debouncedFilter(expr)
+    },
+    [debouncedFilter]
+  )
 
   const categoryViews = [
     {
@@ -98,17 +136,21 @@ export default function AppListSection() {
             sx={{ minWidth: '544px' }}
             margin={'normal'}
             placeholder={t('content.home.searchSection.inputPlaceholder')}
+            value={filterExpr}
+            onChange={(e) => doFilter(e.target.value)}
           />
         </Box>
-        <AppListGroupView
-          items={cards.map((card) => ({
-            ...card,
-            onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
-            addButtonClicked: checkIsFavorite(card.id!),
-          }))}
-          groupKey={group}
-        />
+        {cardsData && (
+          <AppListGroupView
+            items={cardsData.map((card) => ({
+              ...card,
+              onButtonClick: () => navigate(`/appdetail/${card.id}`),
+              onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
+              addButtonClicked: checkIsFavorite(card.id!),
+            }))}
+            groupKey={group}
+          />
+        )}
       </section>
     </Box>
   )
