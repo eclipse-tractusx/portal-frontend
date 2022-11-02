@@ -25,6 +25,7 @@ import {
   useRemoveTenantUserMutation,
   useFetchUserDetailsQuery,
   useResetPasswordMutation,
+  useDeleteMyUserMutation,
 } from 'features/admin/userApiSlice'
 import { Typography } from 'cx-portal-shared-components'
 import { TechnicalUserAddResponseOverlay } from '../AddTechnicalUser/TechnicalUserAddResponseOverlay'
@@ -47,6 +48,7 @@ export const ConfirmUserAction = ({
   const dispatch = useDispatch()
   const { data } = useFetchUserDetailsQuery(id ?? '')
   const [deleteTenantUser] = useRemoveTenantUserMutation()
+  const [deleteMyUser] = useDeleteMyUserMutation()
   const [resetPassword] = useResetPasswordMutation()
   const [error, setError] = useState<boolean>(false)
   const [response, setResponse] = useState<boolean>(false)
@@ -90,21 +92,21 @@ export const ConfirmUserAction = ({
       ),
     },
     admin: {
-      header: t('content.usermanagement.deleteUserConfirm.header'),
+      header: t('content.usermanagement.adminUserConfirm.header'),
       subHeader: t(
-        'content.usermanagement.deleteUserConfirm.confirmTitle'
-      ).replace('{userName}', `${data?.firstName} ${data?.lastName}`),
-      subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
+        'content.usermanagement.adminUserConfirm.confirmTitle'
+      ).replace('{userName}', ''),
+      subHeaderNote: t('content.usermanagement.adminUserConfirm.note'),
       subHeaderDescription: t(
-        'content.usermanagement.deleteUserConfirm.description'
+        'content.usermanagement.adminUserConfirm.description'
       ),
-      successTitle: t('content.usermanagement.deleteUserConfirm.successTitle'),
+      successTitle: t('content.usermanagement.adminUserConfirm.successTitle'),
       successDescription: t(
-        'content.usermanagement.deleteUserConfirm.successDescription'
+        'content.usermanagement.adminUserConfirm.successDescription'
       ),
-      errorTitle: t('content.usermanagement.deleteUserConfirm.errorTitle'),
+      errorTitle: t('content.usermanagement.adminUserConfirm.errorTitle'),
       errorDescription: t(
-        'content.usermanagement.deleteUserConfirm.errorDescription'
+        'content.usermanagement.adminUserConfirm.errorDescription'
       ),
     },
     resetPassword: {
@@ -133,33 +135,39 @@ export const ConfirmUserAction = ({
     showLoading(true)
     if (title === 'user') {
       try {
-        const response = await deleteTenantUser([id]).unwrap()
-        console.log(response)
-        setResponse(true)
-        showLoading(false)
+        await deleteTenantUser([id]).unwrap()
+        showSuccessPopup()
       } catch (err) {
-        console.log(err)
-        setError(true)
-        showLoading(false)
+        showErrorPopup()
       }
     } else if (title === 'admin') {
-      //delete admin api comes here
-      dispatch(closeOverlay())
+      try {
+        await deleteMyUser(id).unwrap()
+        showSuccessPopup()
+      } catch (err) {
+        showErrorPopup()
+      }
     } else if (title === 'resetPassword') {
       try {
-        const response = await resetPassword(id).unwrap()
-        console.log(response)
-        setResponse(true)
-        showLoading(false)
+        await resetPassword(id).unwrap()
+        showSuccessPopup()
       } catch (err) {
-        console.log(err)
-        setError(true)
-        showLoading(false)
+        showErrorPopup()
       }
     } else {
       //suspend user api comes here
       dispatch(closeOverlay())
     }
+  }
+
+  const showSuccessPopup = () => {
+    setResponse(true)
+    showLoading(false)
+  }
+
+  const showErrorPopup = () => {
+    setError(true)
+    showLoading(false)
   }
 
   const handleCallback = () => {
