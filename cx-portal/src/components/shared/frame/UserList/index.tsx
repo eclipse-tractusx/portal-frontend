@@ -68,7 +68,7 @@ export const UserList = ({
 
   useEffect(() => {
     setRefresh(Date.now())
-  }, [fetchHookArgs.userRoleResponse])
+  }, [fetchHookArgs.userRoleResponse, fetchHookArgs.addUserResponse])
 
   return (
     <section id="identity-management-id" className="user-management-section">
