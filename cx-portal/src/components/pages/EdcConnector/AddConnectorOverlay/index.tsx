@@ -43,11 +43,13 @@ interface AddCollectorOverlayProps {
 export type FormFieldsType = {
   ConnectorName: string
   ConnectorURL: string
+  ConnectorBPN: string
 }
 
 const formFields = {
   ConnectorName: '',
   ConnectorURL: '',
+  ConnectorBPN: '',
 }
 
 const AddConnectorOverlay = ({
@@ -74,7 +76,11 @@ const AddConnectorOverlay = ({
   const [selected, setSelected] = useState<ConnectorType>({})
 
   const onFormSubmit = async () => {
-    const validateFields = await trigger(['ConnectorName', 'ConnectorURL'])
+    const validateFields = await trigger([
+      'ConnectorName',
+      'ConnectorURL',
+      'ConnectorBPN',
+    ])
     if (validateFields) {
       onFormConfirmClick(getValues() as FormFieldsType)
     }

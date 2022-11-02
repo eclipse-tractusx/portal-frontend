@@ -137,7 +137,10 @@ const EdcConnector = () => {
       const params = { size: pageSize, page: 0 }
       dispatch(fetchConnectors({ params, token }))
     } else if (selectedService.type === 'MANAGED_CONNECTOR') {
-      console.log('you have selected managed connector option')
+      console.log(
+        'you have selected MANAGED_CONNECTOR option',
+        JSON.stringify(data)
+      )
     }
   }
 

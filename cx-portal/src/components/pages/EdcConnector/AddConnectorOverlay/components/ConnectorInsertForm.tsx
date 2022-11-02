@@ -24,6 +24,7 @@ import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import { Input, Tooltips } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import Patterns from 'types/Patterns'
 
 const ConnectorFormInput = ({
   control,
@@ -48,7 +49,7 @@ const ConnectorFormInput = ({
       >
         <Tooltips
           additionalStyles={{
-            curson: 'pointer',
+            cursor: 'pointer',
             marginTop: '30px !important',
           }}
           tooltipPlacement="top-start"
@@ -123,7 +124,7 @@ const ConnectorInsertForm = ({
                   name: 'ConnectorName',
                   rules: {
                     required: true,
-                    pattern: /^[a-zA-Z0-9 @)]{2,20}$/gm,
+                    pattern: Patterns.connectors.NAME,
                   },
                   helperText: t(
                     'content.edcconnector.modal.insertform.name.error'
@@ -147,8 +148,7 @@ const ConnectorInsertForm = ({
                   name: 'ConnectorURL',
                   rules: {
                     required: true,
-                    pattern:
-                      /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/gm,
+                    pattern: Patterns.URL,
                   },
                   helperText: t(
                     'content.edcconnector.modal.insertform.url.error'
@@ -170,10 +170,10 @@ const ConnectorInsertForm = ({
                     control,
                     trigger,
                     errors,
-                    name: 'BPN',
+                    name: 'ConnectorBPN',
                     rules: {
                       required: true,
-                      pattern: /^(BPNL)[0-9A-Z]{12}$/i,
+                      pattern: Patterns.BPN,
                     },
                     helperText: t(
                       'content.edcconnector.modal.insertform.bpn.error'

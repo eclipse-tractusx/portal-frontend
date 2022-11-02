@@ -45,7 +45,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       return (
         <Tooltips
           additionalStyles={{
-            curson: 'pointer',
+            cursor: 'pointer',
             marginTop: '30px !important',
           }}
           tooltipPlacement="bottom-start"
@@ -63,7 +63,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       return (
         <Tooltips
           additionalStyles={{
-            curson: 'pointer',
+            cursor: 'pointer',
             marginTop: '30px !important',
           }}
           tooltipPlacement="bottom-start"
