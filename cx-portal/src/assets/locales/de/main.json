@@ -345,27 +345,33 @@
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {
           "name": {
-            "label": "Connector Name*",
-            "placeholder": "Konnektorname",
-            "error": "Connector Name ist erforderlich",
+            "label": "Name*",
+            "placeholder": "Connector Name",
+            "error": "Connector name is mandatory. Length should be between 2 and 20",
             "tooltipMsg": "Own selected connector name for verification"
           },
           "id": {
-            "label": "Connector ID*",
+            "label": "ID*",
             "placeholder": "Connector ID",
-            "error": "Connector ID ist erforderlich."
+            "error": "Connector ID is mandatory"
           },
           "url": {
-            "label": "Konnektor URL*",
-            "placeholder": "Konnektor URL",
-            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net",
+            "label": "URL*",
+            "placeholder": "Connector URL",
+            "error": "This field needs to be valid url eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
           },
           "bpn": {
-            "label": "Connector Owner*",
+            "label": "Owner*",
             "placeholder": "BPNL's are allowed only",
             "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
+          },
+          "country": {
+            "label": "Place*",
+            "placeholder": "Two digit coountry code",
+            "error": "Valid code eg: DE, US",
+            "tooltipMsg": "Connector Location - Message to be added"
           }
         }
       }

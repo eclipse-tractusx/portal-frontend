@@ -54,6 +54,7 @@ export const Patterns = {
   connectors: {
     NAME: /^[a-zA-Z0-9 @)]{2,20}$/i,
     URL: /^(?:https:\/\/)([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])[.]([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])*$/i,
+    COUNTRY: /^[A-Z)]{2}$/i,
   },
 }
 

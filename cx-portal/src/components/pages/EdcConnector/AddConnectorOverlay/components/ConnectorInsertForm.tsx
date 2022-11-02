@@ -41,7 +41,7 @@ const ConnectorFormInput = ({
     <>
       <div
         style={{
-          marginLeft: '125px',
+          marginLeft: '50px',
           position: 'relative',
           top: '25px',
           zIndex: '9',
@@ -159,6 +159,32 @@ const ConnectorInsertForm = ({
                   ),
                   tooltipMsg: t(
                     'content.edcconnector.modal.insertform.url.tooltipMsg'
+                  ),
+                }}
+              />
+            </div>
+            <div className="form-input">
+              <ConnectorFormInput
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'ConnectorLocation',
+                  rules: {
+                    required: true,
+                    pattern: Patterns.connectors.COUNTRY,
+                  },
+                  helperText: t(
+                    'content.edcconnector.modal.insertform.country.error'
+                  ),
+                  label: t(
+                    'content.edcconnector.modal.insertform.country.label'
+                  ),
+                  placeholder: t(
+                    'content.edcconnector.modal.insertform.country.placeholder'
+                  ),
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.country.tooltipMsg'
                   ),
                 }}
               />
