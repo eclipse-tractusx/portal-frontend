@@ -63,16 +63,3 @@ export type SearchParams = {
   readonly page: number
   readonly size: number
 }
-
-enum ConnectType {
-  MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',
-  COMPANY_CONNECTOR = 'COMPANY_CONNECTOR',
-}
-
-export type ConnectorType = {
-  title?: string
-  type?: ConnectType
-  subTitle?: string
-  descritpion?: string
-  id?: number
-}

@@ -41,12 +41,17 @@ import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
 import './EdcConnector.scss'
-import {
-  ConnectorContentAPIResponse,
-  ConnectorType,
-} from 'features/connector/types'
+import { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
 import uniqueId from 'lodash/uniqueId'
+import {
+  ConnectorType,
+  ConnectorStatusType,
+  useCreateConnectorMutation,
+  useCreateManagedConnectorMutation,
+  useDeleteConnectorMutation,
+  ConnectType,
+} from 'features/connector/connectorApiSlice'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -79,6 +84,11 @@ const EdcConnector = () => {
     useSelector(connectorSelector)
 
   const [selectedService, setSelectedService] = useState<any>({})
+  const [createConnector] = useCreateConnectorMutation()
+  const [createManagedConnector] = useCreateManagedConnectorMutation()
+  const [deleteConnector] = useDeleteConnectorMutation()
+  const [refresh, setRefresh] = useState<number>(0)
+
   useEffect(() => {
     if (token) {
       const params = { size: pageSize, page: currentPage }
@@ -121,26 +131,25 @@ const EdcConnector = () => {
 
   const onFormSubmit = async (data: FormFieldsType) => {
     closeAndResetModalState()
-    if (selectedService.type === 'COMPANY_CONNECTOR') {
-      await dispatch(
-        createConnector({
-          body: {
-            name: data.ConnectorName,
-            connectorUrl: data.ConnectorURL,
-            type: 'COMPANY_CONNECTOR',
-          },
-        })
-      )
-      //After create new connector, current page should reset to initial page
-      await dispatch(connectorSlice.actions.resetConnectorState())
-
-      const params = { size: pageSize, page: 0 }
-      dispatch(fetchConnectors({ params, token }))
-    } else if (selectedService.type === 'MANAGED_CONNECTOR') {
-      console.log(
-        'you have selected MANAGED_CONNECTOR option',
-        JSON.stringify(data)
-      )
+    if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
+      const body = {
+        name: data.ConnectorName,
+        connectorUrl: data.ConnectorURL,
+        location: data.ConnectorLocation,
+        status: ConnectorStatusType.PENDING,
+      }
+      await createConnector(body)
+      setRefresh(Date.now())
+    } else if (selectedService.type === ConnectType.MANAGED_CONNECTOR) {
+      const body = {
+        name: data.ConnectorName,
+        connectorUrl: data.ConnectorURL,
+        location: data.ConnectorLocation,
+        providerBpn: data.ConnectorBPN,
+        status: ConnectorStatusType.PENDING,
+      }
+      await createManagedConnector(body)
+      setRefresh(Date.now())
     }
   }
 
@@ -156,11 +165,7 @@ const EdcConnector = () => {
   }
 
   const deleteSelectedConnector = async () => {
-    await dispatch(deleteConnector({ connectorID: selectedConnector.id || '' }))
-    // After create new connector, current page should reset to initial page
-    dispatch(connectorSlice.actions.resetConnectorState())
-    const params = { size: pageSize, page: 0 }
-    dispatch(fetchConnectors({ params, token }))
+    await deleteConnector(selectedConnector.id || '')
     closeAndResetModalState()
     setDeleteConnectorConfirmModalOpen(false)
   }

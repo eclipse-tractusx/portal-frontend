@@ -30,7 +30,7 @@ import {
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
-import { ConnectorType } from 'features/connector/types'
+import { ConnectorType } from 'features/connector/connectorApiSlice'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -44,12 +44,14 @@ export type FormFieldsType = {
   ConnectorName: string
   ConnectorURL: string
   ConnectorBPN: string
+  ConnectorLocation: string
 }
 
 const formFields = {
   ConnectorName: '',
   ConnectorURL: '',
   ConnectorBPN: '',
+  ConnectorLocation: '',
 }
 
 const AddConnectorOverlay = ({
