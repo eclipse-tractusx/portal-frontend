@@ -20,8 +20,9 @@
 
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { AppMarketplaceApp, SubscribedApps } from './types'
+import { SubscribedApps } from './types'
 import { getHeaders } from 'services/RequestService'
+import { AppMarketplaceApp } from '../apiSlice'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
