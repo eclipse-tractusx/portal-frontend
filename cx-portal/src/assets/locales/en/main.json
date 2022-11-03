@@ -377,13 +377,13 @@
         },
         "create": {
           "successTitle": "Create connector successfully completed",
-          "description": "Create connector successfully completed.",
+          "successDescription": "Create connector successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         },
         "delete": {
           "successTitle": "Delete connector successfully completed",
-          "description": "Delete connector successfully completed.",
+          "successDescription": "Delete connector successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }

@@ -26,6 +26,7 @@ import { PaginFetchArgs, PaginResult } from 'cx-portal-shared-components'
 export enum ConnectType {
   MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',
   COMPANY_CONNECTOR = 'COMPANY_CONNECTOR',
+  CONNECTOR_AS_A_SERVICE = 'CONNECTOR_AS_A_SERVICE',
 }
 
 export type ConnectorType = {

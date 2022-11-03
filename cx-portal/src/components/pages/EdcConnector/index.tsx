@@ -18,20 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import {
-  Button,
-  Table,
   PageHeader,
+  Typography,
+  PageLoadingTable,
   PageSnackbar,
 } from 'cx-portal-shared-components'
-import connectorSlice, { connectorSelector } from 'features/connector/slice'
-import { fetchConnectors } from 'features/connector/actions'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
@@ -39,7 +36,6 @@ import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverla
 import './EdcConnector.scss'
 import { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
-import uniqueId from 'lodash/uniqueId'
 import {
   ConnectorType,
   ConnectorStatusType,
@@ -47,25 +43,19 @@ import {
   useCreateManagedConnectorMutation,
   useDeleteConnectorMutation,
   ConnectType,
+  useFetchConnectorsQuery,
+  ConnectorResponseBody,
 } from 'features/connector/connectorApiSlice'
+import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const columns = ConnectorTableColumns(useTranslation)
   const [addConnectorOverlayOpen, setAddConnectorOverlayOpen] =
     useState<boolean>(false)
-  const [currentPage, setCurrentPage] = useState<number>(0)
   const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] =
     useState<number>(0)
-  const [pageSize] = useState<number>(15)
-  const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-  const [notificationType, setNotificationType] = useState<
-    'error' | 'warning' | 'info' | 'success'
-  >('success')
-  const [notificationMessage, setNotificationMessage] = useState<string>(
-    t('content.edcconnector.snackbar.successmessage')
-  )
   const [deleteConnectorConfirmModalOpen, setDeleteConnectorConfirmModalOpen] =
     useState<boolean>(false)
   const [selectedConnector, setSelectedConnector] =
@@ -74,36 +64,23 @@ const EdcConnector = () => {
       name: '',
       type: '',
     })
-
   const token = UserService.getToken()
-  const { connectorList, loading, paginationData, error } =
-    useSelector(connectorSelector)
-
   const [selectedService, setSelectedService] = useState<any>({})
   const [createConnector] = useCreateConnectorMutation()
   const [createManagedConnector] = useCreateManagedConnectorMutation()
   const [deleteConnector] = useDeleteConnectorMutation()
   const [refresh, setRefresh] = useState<number>(0)
-
-  useEffect(() => {
-    if (token) {
-      const params = { size: pageSize, page: currentPage }
-      dispatch(fetchConnectors({ params, token }))
-    }
-
-    if (error) {
-      setNotificationType('error')
-      setNotificationMessage(t('content.edcconnector.snackbar.errormessage'))
-      setNotificationOpen(true)
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, pageSize, currentPage, error])
-
-  // Reset store data when page init
-  useEffect(() => {
-    dispatch(connectorSlice.actions.resetConnectorState())
-  }, [dispatch])
+  const [error, setError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [response, setResponse] = useState<boolean>(false)
+  const [action, setAction] = useState<string>('create')
+  const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
+  const [notificationType, setNotificationType] = useState<
+    'error' | 'warning' | 'info' | 'success'
+  >('success')
+  const [notificationMessage, setNotificationMessage] = useState<string>(
+    t('content.edcconnector.snackbar.successmessage')
+  )
 
   const closeAndResetModalState = () => {
     setAddConnectorOverlayCurrentStep(0)
@@ -126,7 +103,7 @@ const EdcConnector = () => {
   }
 
   const onFormSubmit = async (data: FormFieldsType) => {
-    closeAndResetModalState()
+    setLoading(true)
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
       const body = {
         name: data.ConnectorName,
@@ -135,7 +112,9 @@ const EdcConnector = () => {
         status: ConnectorStatusType.PENDING,
       }
       await createConnector(body)
-      setRefresh(Date.now())
+        .unwrap()
+        .then(() => showOverlay(true))
+        .catch(() => showOverlay(false))
     } else if (selectedService.type === ConnectType.MANAGED_CONNECTOR) {
       const body = {
         name: data.ConnectorName,
@@ -145,26 +124,82 @@ const EdcConnector = () => {
         status: ConnectorStatusType.PENDING,
       }
       await createManagedConnector(body)
-      setRefresh(Date.now())
+        .unwrap()
+        .then(() => showOverlay(true))
+        .catch(() => showOverlay(false))
     }
   }
 
-  const handleSnackbarClose = (
-    _event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return
+  const showOverlay = (result: boolean) => {
+    setLoading(false)
+    closeAndResetModalState()
+    if (result) {
+      setResponse(true)
+      setRefresh(Date.now())
+    } else {
+      setError(true)
     }
-
-    setNotificationOpen(false)
   }
 
   const deleteSelectedConnector = async () => {
+    setAction('delete')
+    setLoading(true)
     await deleteConnector(selectedConnector.id || '')
-    closeAndResetModalState()
-    setDeleteConnectorConfirmModalOpen(false)
+      .unwrap()
+      .then(() => {
+        setDeleteConnectorConfirmModalOpen(false)
+        showOverlay(true)
+      })
+      .catch(() => {
+        setDeleteConnectorConfirmModalOpen(false)
+        showOverlay(false)
+      })
   }
+
+  const isCreate = () => {
+    return action === 'create'
+  }
+
+  const getSuccessTitle = () => {
+    if (isCreate()) {
+      return t('content.edcconnector.modal.create.successTitle')
+    } else {
+      return t('content.edcconnector.modal.delete.successTitle')
+    }
+  }
+
+  const getErrorTitle = () => {
+    if (isCreate()) {
+      return t('content.edcconnector.modal.create.errorTitle')
+    } else {
+      return t('content.edcconnector.modal.delete.errorTitle')
+    }
+  }
+
+  const getSuccessIntro = () => {
+    if (isCreate()) {
+      return t('content.edcconnector.modal.create.successDescription')
+    } else {
+      return t('content.edcconnector.modal.delete.successDescription')
+    }
+  }
+
+  const getErrorIntro = () => {
+    if (isCreate()) {
+      return t('content.edcconnector.modal.create.errorDescription')
+    } else {
+      return t('content.edcconnector.modal.delete.errorDescription')
+    }
+  }
+
+  useEffect(() => {
+    if (!token) {
+      setNotificationType('error')
+      setNotificationMessage(t('content.edcconnector.snackbar.errormessage'))
+      setNotificationOpen(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <main className="connector-page-container">
@@ -172,7 +207,7 @@ const EdcConnector = () => {
         description={notificationMessage}
         vertical="bottom"
         horizontal="right"
-        onCloseNotification={handleSnackbarClose}
+        onCloseNotification={() => setNotificationOpen(false)}
         severity={notificationType}
         open={notificationOpen}
       />
@@ -180,6 +215,7 @@ const EdcConnector = () => {
         openDialog={deleteConnectorConfirmModalOpen}
         handleOverlayClose={() => setDeleteConnectorConfirmModalOpen(false)}
         handleConfirmClick={() => deleteSelectedConnector()}
+        loading={loading}
       />
       <AddConnectorOverlay
         openDialog={addConnectorOverlayOpen}
@@ -187,14 +223,13 @@ const EdcConnector = () => {
         connectorStep={addConnectorOverlayCurrentStep}
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={onFormSubmit}
+        loading={loading}
       />
-
       <PageHeader
         title={t('content.edcconnector.headertitle')}
         topPage={false}
         headerHeight={200}
       />
-
       <section>
         <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
       </section>
@@ -205,37 +240,41 @@ const EdcConnector = () => {
         />
       </section>
       <div className="partner-network-table-container">
-        <Table
-          {...{
-            rows: connectorList,
-            rowsCount: paginationData.totalElements,
-            columns: columns,
-            title: t('content.edcconnector.tabletitle'),
-            rowHeight: 100,
-            hideFooter: true,
-            disableColumnFilter: true,
-            disableColumnMenu: true,
-            disableColumnSelector: true,
-            disableDensitySelector: true,
-            disableSelectionOnClick: true,
-            toolbarVariant: 'basic',
-            onCellClick: (params: GridCellParams) => onTableCellClick(params),
-            loading,
-          }}
-          getRowId={(row) => uniqueId(row.id)}
+        <PageLoadingTable<ConnectorResponseBody>
+          toolbarVariant="premium"
+          title={t('content.edcconnector.tabletitle')}
+          loadLabel={t('global.actions.more')}
+          fetchHook={useFetchConnectorsQuery}
+          fetchHookArgs={{ size: 15 }}
+          fetchHookRefresh={refresh}
+          getRowId={(row: { [key: string]: string }) => row.id}
+          columns={columns}
+          onCellClick={(params: GridCellParams) => onTableCellClick(params)}
         />
       </div>
-      <div className="load-more-button-container">
-        {paginationData.totalElements > pageSize * (currentPage + 1) &&
-          paginationData.totalElements! > pageSize && (
-            <Button
-              size="medium"
-              onClick={() => setCurrentPage((prevState) => prevState + 1)}
-            >
-              {t('content.partnernetwork.loadmore')}
-            </Button>
-          )}
-      </div>
+      {response && (
+        <ServerResponseOverlay
+          title={getSuccessTitle()}
+          intro={getSuccessIntro()}
+          dialogOpen={true}
+          handleCallback={() => {}}
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
+      {error && (
+        <ServerResponseOverlay
+          title={getErrorTitle()}
+          intro={getErrorIntro()}
+          dialogOpen={true}
+          iconComponent={
+            <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
+          }
+          handleCallback={() => {}}
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
     </main>
   )
 }

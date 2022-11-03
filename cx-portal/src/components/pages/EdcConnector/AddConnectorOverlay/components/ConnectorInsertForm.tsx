@@ -24,6 +24,7 @@ import { Controller } from 'react-hook-form'
 import { Input, Tooltips } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
+import { ConnectType } from 'features/connector/connectorApiSlice'
 
 const ConnectorFormInput = ({
   control,
@@ -188,32 +189,35 @@ const ConnectorInsertForm = ({
                 }}
               />
             </div>
-            {selectedService && selectedService.type === 'MANAGED_CONNECTOR' && (
-              <div className="form-input">
-                <ConnectorFormInput
-                  {...{
-                    control,
-                    trigger,
-                    errors,
-                    name: 'ConnectorBPN',
-                    rules: {
-                      required: true,
-                      pattern: Patterns.BPN,
-                    },
-                    helperText: t(
-                      'content.edcconnector.modal.insertform.bpn.error'
-                    ),
-                    label: t('content.edcconnector.modal.insertform.bpn.label'),
-                    placeholder: t(
-                      'content.edcconnector.modal.insertform.bpn.placeholder'
-                    ),
-                    tooltipMsg: t(
-                      'content.edcconnector.modal.insertform.bpn.tooltipMsg'
-                    ),
-                  }}
-                />
-              </div>
-            )}
+            {selectedService &&
+              selectedService.type === ConnectType.MANAGED_CONNECTOR && (
+                <div className="form-input">
+                  <ConnectorFormInput
+                    {...{
+                      control,
+                      trigger,
+                      errors,
+                      name: 'ConnectorBPN',
+                      rules: {
+                        required: true,
+                        pattern: Patterns.BPN,
+                      },
+                      helperText: t(
+                        'content.edcconnector.modal.insertform.bpn.error'
+                      ),
+                      label: t(
+                        'content.edcconnector.modal.insertform.bpn.label'
+                      ),
+                      placeholder: t(
+                        'content.edcconnector.modal.insertform.bpn.placeholder'
+                      ),
+                      tooltipMsg: t(
+                        'content.edcconnector.modal.insertform.bpn.tooltipMsg'
+                      ),
+                    }}
+                  />
+                </div>
+              )}
           </form>
         </Grid>
       </Grid>
