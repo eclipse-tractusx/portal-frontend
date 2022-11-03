@@ -2,10 +2,12 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+
 ### Unreleased
 
 * ...
 * ...
+
 
 ## 0.7.0
 
@@ -31,6 +33,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * App Release Process - Page sizing fixed
 * My Organization - BPN data field allocation aligned
 * User Management - User table auto-refresh enabled after new user invite; business logic of user status inside the user table updated to display correct status
+
 
 ## 0.6.0
 
