@@ -20,6 +20,8 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import qs from 'querystring'
+import { PaginFetchArgs, PaginResult } from 'cx-portal-shared-components'
 
 export enum ConnectType {
   MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',
@@ -47,6 +49,14 @@ export type ConnectorCreateBody = {
   providerBpn?: string
 }
 
+export type ConnectorResponseBody = {
+  name: string
+  status: ConnectType
+  location: string
+  id: string
+  type: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -71,6 +81,13 @@ export const apiSlice = createApi({
         method: 'DELETE',
       }),
     }),
+    fetchConnectors: builder.query<
+      PaginResult<ConnectorResponseBody>,
+      PaginFetchArgs
+    >({
+      query: (filters) =>
+        `/api/administration/Connectors?${qs.stringify(filters)}`,
+    }),
   }),
 })
 
@@ -78,4 +95,5 @@ export const {
   useCreateConnectorMutation,
   useCreateManagedConnectorMutation,
   useDeleteConnectorMutation,
+  useFetchConnectorsQuery,
 } = apiSlice
