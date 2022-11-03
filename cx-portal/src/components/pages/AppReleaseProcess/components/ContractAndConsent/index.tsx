@@ -73,7 +73,7 @@ export default function ContractAndConsent() {
     const fetchConsent = fetchConsentData?.agreements.map(
       (item: AgreementStatusType) => ({
         ...item,
-        consentStatus: item.consentStatus === 'ACTIVE' ? true : false,
+        consentStatus: item.consentStatus === 'ACTIVE',
       })
     )
 
