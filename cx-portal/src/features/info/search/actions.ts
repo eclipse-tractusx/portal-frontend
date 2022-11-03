@@ -161,7 +161,6 @@ const fetchSearch = createAsyncThunk(
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
         await searchForExpression(trexpr)
-      console.log([pages, overlays, actions, apps, partners, news, users])
       return [
         pages
           .filter((item: string) => hasAccess(item))
