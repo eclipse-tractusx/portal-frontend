@@ -80,6 +80,24 @@ export type NewAppDetails = {
   title: string
   useCase: string[]
 }
+export type AgreementType = {
+  agreementId: string
+  name: string
+}
+
+export type AgreementStatusType = {
+  agreementId: string
+  consentStatus: string | boolean
+}
+
+export type ConsentType = {
+  agreements: AgreementStatusType[]
+}
+
+export type UpdateAgreementConsentType = {
+  appId: string
+  body: ConsentType
+}
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
@@ -97,12 +115,6 @@ export const apiSlice = createApi({
         method: 'POST',
         body,
       }),
-    }),
-    fetchConsentData: builder.query<any[], void>({
-      query: () => `/api/apps/consentData`,
-    }),
-    fetchConsent: builder.query<any[], void>({
-      query: () => `/api/apps/consent`,
     }),
     addContractConsent: builder.mutation<void, any>({
       query: (body: any) => ({
@@ -150,6 +162,21 @@ export const apiSlice = createApi({
     fetchAppStatus: builder.query<any, string>({
       query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
     }),
+    fetchAgreementData: builder.query<AgreementType[], void>({
+      query: () => `api/apps/AppReleaseProcess/agreementData`,
+    }),
+    fetchConsentData: builder.query<ConsentType, string>({
+      query: (appId: string) => `/api/apps/AppReleaseProcess/consent/${appId}`,
+    }),
+    updateAgreementConsents: builder.mutation<void, UpdateAgreementConsentType>(
+      {
+        query: (data: UpdateAgreementConsentType) => ({
+          url: `/api/apps/AppReleaseProcess/consent/${data.appId}/agreementConsents`,
+          method: 'POST',
+          body: data.body,
+        }),
+      }
+    ),
   }),
 })
 
@@ -157,11 +184,12 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
-  useFetchConsentDataQuery,
-  useFetchConsentQuery,
   useAddContractConsentMutation,
   useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
   useFetchAppStatusQuery,
+  useFetchAgreementDataQuery,
+  useFetchConsentDataQuery,
+  useUpdateAgreementConsentsMutation,
 } = apiSlice

@@ -300,13 +300,13 @@
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
-        "title": "Change app {appName}",
+        "title": "Appbeschreibung '{appName}' öffnen",
         "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
       },
       "details": {
-        "longDescription": "Long Description",
-        "price": "Price:",
-        "language": "Language:",
+        "longDescription": "Detailbeschreibung",
+        "price": "Preisinformation:",
+        "language": "Unterstütze Sprachen:",
         "useCase": "Use Case:",
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
@@ -372,7 +372,7 @@
         "street": "Straße",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Zertifiziert",
+        "cxparticipant": "CX Member",
         "address": "Anschrift",
         "identifiers": "Identifiers"
       },
@@ -399,17 +399,17 @@
       "subHeaderTitle": "Invite a new partner",
       "inviteText1": "Registration application invite process.",
       "inviteText2": "Invite a new partner to Catena-X.",
-      "invite": "Invite",
-      "success": "Business Partner Successfully Invited",
-      "successSubText": "The window will close automatically. In case it doesn't, please use the 'close' button on the top right.",
-      "failure": "Error - Business Partner was not invited",
-      "failureSubText": "An error occured. Please try it again later.",
+      "invite": "Einladung",
+      "success": "Business Partner Einladung erfolgreich gesendet.",
+      "successSubText": "Das Fenster wird automatisch geschlossen. Falls dies nicht der Fall ist, verwenden Sie bitte die Schaltfläche 'Schließen' oben rechts.",
+      "failure": "Error - Business Partner Einladung schlug fehl.",
+      "failureSubText": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
       "tabletitle": "Invites",
       "load_button": "Mehr laden",
       "columns": {
-        "companyName": "Company Name",
-        "firstAndLastName": "First and Last Name",
-        "date": "Date",
+        "companyName": "Unternehmensname",
+        "firstAndLastName": "Vor- und Nachname",
+        "date": "Datum",
         "status": "Status",
         "details": "Details"
       }
@@ -444,8 +444,8 @@
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
         "subheadline": "App Zugriffsmanagement",
-        "userRoleSuccessMsg": "Roles got successfully updated.",
-        "userRoleErrorMsg": "Roles have not got updated.",
+        "userRoleSuccessMsg": "Benutzerrollen wurden erfolgreich aktualisiert.",
+        "userRoleErrorMsg": "Etwas ist schief gelaufen. Benutzerrollen wurden nicht aktualisiert.",
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
@@ -470,9 +470,9 @@
         "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
-        "headline": "Technical user management COMPANY_NAME",
-        "descriptionHeader": "Technical user management COMPANY_NAME",
-        "descriptionText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
+        "headline": "Technical User Management {{company}}",
+        "descriptionHeader": "Technical User Management {{company}}",
+        "descriptionText": "Der technische Benutzer ist eine Identität, die ein Unternehmen verwenden kann, um sich mit CX-Backend-Diensten ohne ständige Trennung zu verbinden. Zum Beispiel ist ein technischer Run-As-Benutzer erforderlich, um sich mit der Registrierung für digitale Zwillinge oder dem semantischen Modell zu verbinden. Bitte verwenden Sie die Aktionsschaltfläche, um einen neuen technischen Benutzer mit den Rollen gemäß Ihren Anforderungen anzufordern. Oder verwalten Sie bereits vorhandene technische Benutzer, indem Sie die unten stehende Benutzerverwaltungsfunktion verwenden.",
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
@@ -481,7 +481,7 @@
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
-        "confirmDeleteUser": "Sind Sie sicher, dass Sie user {{ user }} löschen möchten?",
+        "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
@@ -560,7 +560,7 @@
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",
-      "subheadline": "tbd",
+      "subheadline": "Fügen Sie ein neues Benutzerkonto hinzu, indem Sie den Vor- und Nachnamen des Benutzers sowie die E-Mail-Adresse hinterlegen. Wählen Sie unterhalb der Eingabefelder die jeweiligen Benutzerrollen aus, die der Benutzer haben soll. Eine Rolle ist mindestens erforderlich, um dem Benutzer den Zugriff auf das Netzwerk zu ermöglichen.",
       "singleUser": "Einzel-Upload",
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
@@ -708,24 +708,24 @@
         "phone": "Telefon"
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by your company"
+      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert."
     },
     "apprelease": {
       "headerTitle": "App Release Process",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "startCreatingButton": "Start creating your app",
-      "appOverviewButton": "Overview my apps",
+      "startCreatingButton": "App Registrierung starten",
+      "appOverviewButton": "Übersicht Unternehmens-Apps",
       "stepHeading": "The process will guide your through the following steps:",
-      "dividerText": "Lets get started to publishing your app...",
+      "dividerText": "Lets get started to register your app...",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "Neu",
       "marketplaceTitle": "Requirement Lorem ipsum",
       "marketplaceExplanation": "Expalanation of the requirement",
       "stepper": {
-        "appMarketCard": "App Market Card",
-        "appPage": "App Page",
-        "contractAndConsent": "Contract & Consent",
+        "appMarketCard": "App Card",
+        "appPage": "App Detailseite",
+        "contractAndConsent": "Terms & Conditions",
         "technicalIntegration": "Technical Integration",
         "betaTest": "Beta Test",
         "validateAndPublish": "Validate & Publish"
@@ -742,10 +742,10 @@
         "shortDescriptionEN": "Short Description - EN",
         "shortDescriptionDE": "Short Description - DE",
         "useCaseCategory": "Use Case /Category",
-        "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
+        "useCaseCategoryPlaceholder": "Choose the relevant use case",
         "appLanguage": "App Language",
-        "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information"
+        "appLanguagePlaceholder": "Select app supported language",
+        "pricingInformation": "Preisinformation"
       },
       "appPage": {
         "headerTitle": "App Details",
@@ -807,10 +807,10 @@
         "appCardDetails": "App Card Details"
       },
       "submitApp": {
-        "headerTitle": "Thank you for submitting the app!",
+        "headerTitle": "App erfolgreich eingereicht!",
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
-        "yourCatenaXTeam": "Your Catena-X team",
+        "yourCatenaXTeam": "Dein Catena-X team",
         "myAppsOverview": "My apps overview"
       },
       "appReleaseForm": {
@@ -881,7 +881,7 @@
       "secret": "Secret",
       "permission": "Berechtigung",
       "userId": "Benutzeridentifikation",
-      "redirectURI": "Umleitungs-URI",
+      "redirectURI": "Redirect-URI",
       "toBeUpdated": "To be updated"
     },
     "actions": {
