@@ -26,11 +26,13 @@ import {
   Button,
   DialogActions,
   DialogHeader,
+  CircleProgress,
 } from 'cx-portal-shared-components'
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import { ConnectorType } from 'features/connector/connectorApiSlice'
+import Box from '@mui/material/Box'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -38,6 +40,7 @@ interface AddCollectorOverlayProps {
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: (data: ConnectorType) => void
   onFormConfirmClick: (data: FormFieldsType) => void
+  loading?: boolean
 }
 
 export type FormFieldsType = {
@@ -60,6 +63,7 @@ const AddConnectorOverlay = ({
   handleOverlayClose,
   handleConfirmClick,
   onFormConfirmClick,
+  loading,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
 
@@ -135,17 +139,37 @@ const AddConnectorOverlay = ({
           >
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button
-            variant="contained"
-            disabled={selected && selected.id ? false : true}
-            onClick={(e) =>
-              connectorStep === 0 && selected && selected.id
-                ? handleConfirmClick(selected)
-                : onFormSubmit()
-            }
-          >
-            {`${t('global.actions.confirm')}`}
-          </Button>
+          {!loading && (
+            <Button
+              variant="contained"
+              disabled={selected && selected.id ? false : true}
+              onClick={(e) =>
+                connectorStep === 0 && selected && selected.id
+                  ? handleConfirmClick(selected)
+                  : onFormSubmit()
+              }
+            >
+              {`${t('global.actions.confirm')}`}
+            </Button>
+          )}
+          {loading && (
+            <Box
+              sx={{
+                width: '110px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <CircleProgress
+                size={40}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            </Box>
+          )}
         </DialogActions>
       </Dialog>
     </div>

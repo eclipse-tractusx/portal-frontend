@@ -34,28 +34,28 @@ export const ConnectorTableColumns = (
     {
       field: 'name',
       headerName: t('content.edcconnector.columns.name'),
-      flex: 2,
-      sortable: false,
-    },
-    {
-      field: 'id',
-      headerName: t('content.edcconnector.columns.id'),
-      flex: 2,
+      flex: 1,
       sortable: false,
     },
     {
       field: 'type',
       headerName: t('content.edcconnector.columns.type'),
-      flex: 2.5,
+      flex: 1,
+      sortable: false,
+    },
+    {
+      field: 'location',
+      headerName: t('content.edcconnector.columns.location'),
+      flex: 1,
       sortable: false,
     },
     {
       field: 'detail',
       headerName: t('content.edcconnector.columns.details'),
-      flex: 1.5,
+      flex: 1,
       align: 'center',
       sortable: false,
-      renderCell: () => (
+      renderCell: ({ row }: { row: any }) => (
         <Container maxWidth="sm">
           <Grid container spacing={2}>
             <Grid item xs={6}>
@@ -68,16 +68,18 @@ export const ConnectorTableColumns = (
                 <DeleteOutlineIcon />
               </IconButton>
             </Grid>
-            <Grid item xs={6}>
-              <IconButton
-                color="secondary"
-                disabled
-                size="small"
-                style={{ alignSelf: 'center' }}
-              >
-                <AccessTimeIcon />
-              </IconButton>
-            </Grid>
+            {row.status === 'PENDING' && (
+              <Grid item xs={6}>
+                <IconButton
+                  color="secondary"
+                  disabled
+                  size="small"
+                  style={{ alignSelf: 'center' }}
+                >
+                  <AccessTimeIcon />
+                </IconButton>
+              </Grid>
+            )}
           </Grid>
         </Container>
       ),
