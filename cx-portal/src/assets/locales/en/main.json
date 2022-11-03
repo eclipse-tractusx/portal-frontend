@@ -323,7 +323,8 @@
         "name": "Connector Name",
         "id": "Connector_ID",
         "type": "Connector Type",
-        "details": "Details"
+        "details": "Details",
+        "location": "Location"
       },
       "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
@@ -373,6 +374,18 @@
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           }
+        },
+        "create": {
+          "successTitle": "Create connector successfully completed",
+          "description": "Create connector successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        },
+        "delete": {
+          "successTitle": "Delete connector successfully completed",
+          "description": "Delete connector successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
       }
     },
