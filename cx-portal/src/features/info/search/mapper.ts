@@ -20,7 +20,7 @@
 
 import { CardItems } from 'cx-portal-shared-components'
 import { TenantUser } from 'features/admin/userApiSlice'
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { AppMarketplaceApp } from 'features/apps/apiSlice'
 import { BusinessPartner } from 'features/partnerNetwork/types'
 import { SearchCategory, SearchItem } from './types'
 
@@ -46,6 +46,7 @@ export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
   ...item,
   category: SearchCategory.APP,
   description: item.provider,
+  title: item.name || '-',
 })
 
 export const businessPartnerToSearchItem = (
