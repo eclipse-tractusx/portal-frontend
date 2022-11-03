@@ -20,7 +20,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import qs from 'querystring'
 import { PaginFetchArgs, PaginResult } from 'cx-portal-shared-components'
 
 export enum ConnectType {
