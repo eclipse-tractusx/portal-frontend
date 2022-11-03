@@ -3,7 +3,7 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
-### In progess
+## 0.7.0
 
 * Feature - App Marketplace - Confirmation Subscription
 * Feature - API & BL: Change role of specific user for a defined app
@@ -18,6 +18,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Page sizing/height is fixed in app release process
 * Bugfix - User Management - User Table, User Status not correctly identified
 * Bugfix - User Management - User Table refresh fix
+* Bugfix - Central Search - Show results again
 
 
 ## 0.6.0
