@@ -2,6 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+
 ### In progess
 
 * Feature - App Marketplace - Confirmation Subscription
@@ -15,7 +16,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - My Organization - BPN Address Alignment fixed
 * Bugfix - Accidential page reload on token refresh
 * Bugfix - Page sizing/height is fixed in app release process
+* Bugfix - User Management - User Table, User Status not correctly identified
 * Bugfix - User Management - User Table refresh fix
+
 
 ## 0.6.0
 
