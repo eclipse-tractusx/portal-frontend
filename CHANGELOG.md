@@ -12,6 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App release process: Removed placeholders where not necessary
 * Feature - App release process: App card to be displayed for the user even while scrolling
 * Feature - App release process: Corrected the app card sizing
+* Feature - App release process: Business logic & API connect for agreements & consent
 * Bugfix - App release process: Page sizing fixed
 * Bugfix - My Organization - BPN Address Alignment fixed
 * Bugfix - Accidential page reload on token refresh

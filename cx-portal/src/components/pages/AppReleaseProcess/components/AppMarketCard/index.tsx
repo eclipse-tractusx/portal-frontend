@@ -87,6 +87,7 @@ export const ConnectorFormInputField = ({
   previewFiles,
   showPreviewAlone,
   maxFileSize,
+  defaultValues,
 }: any) => (
   <Controller
     name={name}
@@ -133,7 +134,10 @@ export const ConnectorFormInputField = ({
         return (
           <>
             <Checkbox
+              key={name}
               label={label}
+              defaultChecked={defaultValues}
+              value={defaultValues}
               checked={value}
               onChange={(event) => {
                 trigger(name)
