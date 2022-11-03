@@ -29,52 +29,73 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ConnectorFormInputField } from '../AppMarketCard'
-import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
+import {
+  AgreementStatusType,
+  ConsentType,
+  UpdateAgreementConsentType,
+  useFetchAgreementDataQuery,
+  useFetchConsentDataQuery,
+  useUpdateAgreementConsentsMutation,
+} from 'features/appManagement/apiSlice'
 
-type FormDataType = {
-  agreements: any[]
-}
+type AgreementType = {
+  agreementId: string
+  name: string
+  consentStatus?: boolean | string
+}[]
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
   const dispatch = useDispatch()
-
-  const consentData = {
-    agreements: [
-      {
-        agreementId: '1',
-        name: 'App Publishing Consent1',
-      },
-      {
-        agreementId: '2',
-        name: 'App Publishing Consent2',
-      },
-    ],
-  }
-
-  const consent = {
-    agreements: [
-      {
-        agreementId: '1',
-        consentStatus: 'ACTIVE',
-      },
-      {
-        agreementId: '2',
-        consentStatus: 'INACTIVE',
-      },
-    ],
-  }
-
-  const agreementData = consentData.agreements.map((item: any, index: number) =>
-    Object.assign({}, item, consent.agreements[index])
-  )
-
-  const defaultValues = {
+  const appId = useSelector(appIdSelector)
+  const fetchAgreementData = useFetchAgreementDataQuery().data
+  const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
+  const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
+  const [agreementData, setAgreementData] = useState<AgreementType>([])
+  const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
+  })
+
+  useEffect(() => {
+    loadData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchConsentData, fetchAgreementData])
+
+  const loadData = () => {
+    const fetchConsent = fetchConsentData?.agreements.map(
+      (item: AgreementStatusType) => ({
+        ...item,
+        consentStatus: item.consentStatus === 'ACTIVE',
+      })
+    )
+
+    const consentAgreementData: any =
+      fetchAgreementData &&
+      fetchConsent &&
+      fetchAgreementData?.map((item, index: number) =>
+        Object.assign({}, item, fetchConsent[index])
+      )
+
+    fetchAgreementData && setAgreementData(consentAgreementData)
+
+    const defaultCheckboxData = consentAgreementData?.reduce(
+      (data: any, item: AgreementStatusType) => {
+        return { ...data, [item.agreementId]: item.consentStatus }
+      },
+      {}
+    )
+
+    setDefaultValue({ ...defaultCheckboxData, agreements: agreementData })
+    reset({ ...defaultCheckboxData, agreements: agreementData })
   }
 
   const {
@@ -82,21 +103,49 @@ export default function ContractAndConsent() {
     control,
     trigger,
     formState: { errors, isValid },
+    reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues: defaultValue,
     mode: 'onChange',
   })
 
-  const onContractConsentSubmit = async (data: FormDataType) => {
+  const onContractConsentSubmit = async (data: any) => {
     const validateFields = await trigger(['agreements'])
     if (validateFields) {
       handleSave(data)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
-    dispatch(increment())
-    setContractNotification(true)
+  const handleSave = async (data: any) => {
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
+    )
+
+    const updateAgreementData = Object.entries(filteredData).map((entry) =>
+      Object.assign(
+        {},
+        {
+          agreementId: entry[0],
+          consentStatus: entry[1] === true ? 'ACTIVE' : 'INACTIVE',
+        }
+      )
+    )
+
+    const updateData: UpdateAgreementConsentType = {
+      appId: appId,
+      body: {
+        agreements: updateAgreementData,
+      },
+    }
+
+    await updateAgreementConsents(updateData)
+      .unwrap()
+      .then(() => {
+        dispatch(increment())
+      })
+      .catch(() => {
+        setContractNotification(true)
+      })
   }
 
   return (
@@ -104,18 +153,23 @@ export default function ContractAndConsent() {
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.contractAndConsent.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.contractAndConsent.headerDescription')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.contractAndConsent.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
       <form className="header-description">
         {agreementData?.map((item) => (
-          <div className="form-field" key={item}>
+          <div className="form-field" key={item.agreementId}>
             <ConnectorFormInputField
               {...{
                 control,
                 trigger,
                 errors,
                 name: item.agreementId,
+                defaultValues: item.consentStatus,
                 label: item.name,
                 type: 'checkbox',
                 rules: {

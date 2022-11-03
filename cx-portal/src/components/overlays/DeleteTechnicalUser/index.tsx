@@ -18,15 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  DialogActions,
-  DialogHeader,
-  DialogContent,
-  Button,
-  PageNotificationsProps,
-} from 'cx-portal-shared-components'
+import { PageNotificationsProps } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
   useFetchServiceAccountDetailQuery,
   useRemoveServiceAccountMutation,
@@ -37,7 +30,7 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
-import './style.scss'
+import DeleteUserContent from 'components/shared/basic/DeleteUserContent'
 
 export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -75,37 +68,20 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   }
   return data ? (
     <>
-      <DialogHeader
-        title={`${t('global.actions.delete')} ${t('global.objects.techuser')} ${
-          data.name
-        }`}
+      <DeleteUserContent
+        header={`${t('global.actions.delete')} ${t(
+          'global.objects.techuser'
+        )} ${data.name}`}
+        subHeader={t('global.actions.confirmDelete', {
+          object: t('global.objects.techuser'),
+          name: data.name,
+        })}
+        subHeaderTitle={t('global.actions.noteDelete', {
+          object: t('global.objects.techuser'),
+        })}
+        handleConfirm={handleRemove}
+        confirmTitle={t('global.actions.delete')}
       />
-
-      <DialogContent className="remove-technical-user-content">
-        <SubHeaderTitle
-          className="confirm"
-          title={t('global.actions.confirmDelete', {
-            object: t('global.objects.techuser'),
-            name: data.name,
-          })}
-          variant="h6"
-        />
-        <SubHeaderTitle
-          title={t('global.actions.noteDelete', {
-            object: t('global.objects.techuser'),
-          })}
-          variant="h5"
-        />
-      </DialogContent>
-
-      <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
-        </Button>
-        <Button variant="contained" onClick={handleRemove}>
-          {t('global.actions.delete')}
-        </Button>
-      </DialogActions>
     </>
   ) : null
 }

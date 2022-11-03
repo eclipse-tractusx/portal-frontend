@@ -24,6 +24,7 @@ import {
   Checkbox,
   IconButton,
   Input,
+  LogoGrayData,
   PageNotifications,
   Typography,
 } from 'cx-portal-shared-components'
@@ -57,8 +58,7 @@ export default function ValidateAndPublish({
   const defaultValues = {
     title: 'Digital Twin Aspect Debugger',
     provider: 'Catena-X',
-    leadPictureUri:
-      'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
+    leadPictureUri: LogoGrayData,
     providerName: 'providerName via app.providerId',
     useCase: ['use case'],
     descriptions: [
@@ -152,20 +152,19 @@ export default function ValidateAndPublish({
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.validateAndPublish.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.validateAndPublish.headerDescription')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.validateAndPublish.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
       <Typography variant="h4" align="center" sx={{ mb: 4 }}>
         {t('content.apprelease.validateAndPublish.appCardDetails')}
       </Typography>
 
       <Grid container spacing={2}>
-        <Grid
-          item
-          md={3}
-          sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-          className={'app-release-card'}
-        >
+        <Grid item md={3} className={'app-release-card'}>
           <Card
             image={{
               src: `${defaultValues.leadPictureUri}`,
@@ -183,7 +182,7 @@ export default function ValidateAndPublish({
           />
         </Grid>
 
-        <Grid item md={9} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
+        <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 0 }}>
           {['appTitle', 'appProvider'].map((item) => (
             <div className="form-field" key={item}>
               <Input

@@ -209,6 +209,7 @@ export const ALL_PAGES: IPage[] = [
     isRoute: true,
     element: (
       <Route
+        key={`${PAGES.APPRELEASEPROCESS}/form`}
         path={`${PAGES.APPRELEASEPROCESS}/form`}
         element={<AppReleaseProcessForm />}
       />
@@ -362,6 +363,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.APPSTORE_VIEW_SERVICES,
   },
   {
+    name: OVERLAYS.APPMARKETPLACE_REQUEST,
+    role: ROLES.APPSTORE_VIEW,
+  },
+  {
     name: OVERLAYS.IDP,
     role: ROLES.IDP_VIEW,
   },
@@ -387,6 +392,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.APP_DETAILS_OVERLAY,
+  },
+  {
+    name: OVERLAYS.CONFIRM_USER_ACTION,
   },
 ]
 

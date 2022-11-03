@@ -28,41 +28,39 @@ import {
   UserAvatar,
   Typography,
   PageHeader,
-  PageNotifications,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { resetSelector } from 'features/admin/userOwn/slice'
-import { putResetPassword } from 'features/admin/userOwn/actions'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
 
 export default function UserDetail() {
   const { t } = useTranslation()
   const { userId } = useParams()
   const dispatch = useDispatch()
   const { data } = useFetchUserDetailsQuery(userId ?? '')
-  const { resetStatus, error } = useSelector(resetSelector)
 
-  let errorMsg = ''
-  if (resetStatus) {
-    errorMsg = t('content.account.resetPswrdSuccessMsg')
-  } else if (parseInt(error) === 400) {
-    errorMsg = t('content.account.resetPswrdMaxLimitError')
-  } else if (parseInt(error) === 500) {
-    errorMsg = t('content.account.resetPswrdUnsuccessfulError')
-  } else if (parseInt(error) === 404) {
-    errorMsg = t('content.account.resetPswrdPermissionsError')
-  }
+  const handleSuspendUser = () =>
+    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, userId, 'suspend'))
 
-  const handleSuspendUser = () => console.log('Suspend user method')
-
-  const handleDeleteUser = () => console.log('Delete user method')
+  const handleDeleteUser = () =>
+    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, userId, 'user'))
 
   const handleResetPasswordForUser = () =>
-    data && dispatch(putResetPassword(data.companyUserId))
+    data &&
+    dispatch(
+      show(
+        OVERLAYS.CONFIRM_USER_ACTION,
+        userId,
+        'resetPassword',
+        false,
+        `${data.firstName} ${data.lastName}`
+      )
+    )
 
   return (
     <main className="user-details">
@@ -92,6 +90,7 @@ export default function UserDetail() {
               variant="outlined"
               startIcon={<PowerSettingsNewOutlinedIcon />}
               sx={{ marginRight: '8px' }}
+              disabled={true}
             >
               {t('content.account.suspendAccount')}
             </Button>
@@ -120,18 +119,6 @@ export default function UserDetail() {
             <UserAvatar size="large" />
           </Box>
         </Box>
-        <div className="errorMsg">
-          {error && (
-            <PageNotifications
-              title={t(
-                'content.usermanagement.appUserDetails.roles.error.title'
-              )}
-              description={errorMsg}
-              open
-              severity="error"
-            />
-          )}
-        </div>
         {data && <UserDetailInfo user={data} />}
       </section>
     </main>

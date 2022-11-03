@@ -26,7 +26,7 @@ import {
   PageHeader,
 } from 'cx-portal-shared-components'
 import { RootState } from 'features/store'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -35,16 +35,18 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay/actions'
 
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
+  const dispatch = useDispatch()
 
-  const handleDeleteUser = () => {
-    console.log('Delete user method')
-  }
+  const handleDeleteUser = () =>
+    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, data?.companyUserId, 'admin'))
 
   return (
     <main className="my-account">
@@ -58,7 +60,6 @@ export default function MyAccount() {
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
         >
-          {/* TODO: DEV only needs to be removed when going PROD */}
           <Button
             color="secondary"
             onClick={async () => {

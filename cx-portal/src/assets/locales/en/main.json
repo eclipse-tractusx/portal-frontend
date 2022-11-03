@@ -485,6 +485,45 @@
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
+      },
+      "deleteUserConfirm": {
+        "header": "Delete user account",
+        "confirmTitle": "Are you sure you want to delete the user account of {userName}?",
+        "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
+        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "successTitle": "User successfully deleted",
+        "successDescription": "The user is successfully deleted and all rights are disabled.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
+      },
+      "suspendUserConfirm": {
+        "header": "Suspend user account",
+        "confirmTitle": "Are you sure you want to suspend the user account of {userName}?",
+        "description": "By suspending the account, the access of this user to Catena-X as well as any permissions and data accesses will get deactivated temporarily.",
+        "note": "Note: Suspended accounts can get reactivated anytime.",
+        "successTitle": "User successfully suspended",
+        "successDescription": "The user is successfully suspended and all rights are disabled.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "Your user couldn't get suspended. Please try it later again or contact your administrator."
+      },
+      "resetPasswordConfirm": {
+        "header": "Password Reset",
+        "confirmTitle": "Are you sure you want to reset the password?",
+        "note": "The user {userName} will receive an email to reset the password.",
+        "successTitle": "Password Reset successfully triggered",
+        "successDescription": "The password reset request got send to {userName}.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "The password reset was unsuccessful. Please try it later again or contact the administrator."
+      },
+      "adminUserConfirm": {
+        "header": "Delete user account",
+        "confirmTitle": "Are you sure you want to delete the user account?",
+        "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
+        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "successTitle": "User successfully deleted",
+        "successDescription": "The user is successfully deleted and all rights are disabled.",
+        "errorTitle": "Something went wrong",
+        "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
       }
     },
     "idpmanagement": {
@@ -520,11 +559,11 @@
     },
     "addUser": {
       "headline": "Add User Account",
-      "subheadline": "tbd",
+      "subheadline": "Add a new user account by adding the user first and last name as well as the email address. Below the input fields select the respective user roles which the user should have. One role is minimum needed to enable the user to access the network.",
       "singleUser": "Single User",
       "multipleUser": "Multiple User",
       "multipleUserHeadline": "Add multiple users by file upload:",
-      "multipleUserSubheadline": "Please use this <1>upload template</1>, to add multiple users by file",
+      "multipleUserSubheadline": "Please use this <1>upload template</1>, to add multiple users via the bulk load.",
       "technicalUserHeadline": "Technical User Creation",
       "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
       "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
@@ -629,56 +668,53 @@
         "phone": "Phone"
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by {appName}"
+      "subscribedTooltip": "The app is already subscribed by your company"
     },
     "apprelease": {
       "headerTitle": "App Release Process",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
-      "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "startCreatingButton": "Start creating your app",
+      "descMessage": "Register your app and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the app release process.",
+      "startCreatingButton": "Register your app",
       "appOverviewButton": "Overview my apps",
       "stepHeading": "The process will guide your through the following steps:",
       "dividerText": "Lets get started to publishing your app...",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
-      "neuButton": "Neu",
+      "neuButton": "New",
       "marketplaceTitle": "Requirement Lorem ipsum",
       "marketplaceExplanation": "Expalanation of the requirement",
       "stepper": {
-        "appMarketCard": "App Market Card",
-        "appPage": "App Page",
+        "appMarketCard": "App Card",
+        "appPage": "App Page Details",
         "contractAndConsent": "Contract & Consent",
         "technicalIntegration": "Technical Integration",
         "betaTest": "Beta Test",
         "validateAndPublish": "Validate & Publish"
       },
       "appMarketCard": {
-        "headerTitle": "Create App",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "headerTitle": "Create App Card",
+        "headerDescription": "The following input fields and uploads are used to create your app 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer. While entering the data below, have a look at the app card on the left side which is getting autoupdated based on your input.",
         "defaultCardAppImageAlt": "Part Chain",
         "defaultCardAppProvider": "Catena-X",
-        "defaultCardAppTitle": "Digital Twin Aspect Debugger",
+        "defaultCardAppTitle": "This is the app title",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
-        "appTitle": "App title",
-        "appTitlePlaceholder": "name@domain.com",
-        "appProvider": "App provider",
-        "appProviderPlaceholder": "prefill: [company name]",
+        "appTitle": "App Title",
+        "appProvider": "App Provider",
         "shortDescriptionEN": "Short Description - EN",
         "shortDescriptionDE": "Short Description - DE",
         "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Choose App Language",
-        "pricingInformation": "Pricing Information",
-        "pricingInformationPlaceholder": "Please select a pricing type"
+        "pricingInformation": "Pricing Information (e.g. free / charged)"
       },
       "appPage": {
         "headerTitle": "App Details",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "longDescriptionEN": "Long Description - EN",
-        "longDescriptionDE": "Long Description - DE",
+        "longDescriptionEN": "Long Description (en)",
+        "longDescriptionDE": "Long Description (de)",
         "images": "Images",
         "note": "Note:",
-        "maxThreeImages": "Max.3 Images",
+        "maxThreeImages": "Max.3 Images are supported",
         "connectData": "Connect Data",
         "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
@@ -689,9 +725,9 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
-        "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
+        "providerPhoneContactPlaceholder": "Following formats are supported: +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx"
       },
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
@@ -743,7 +779,7 @@
         "noItemsSelected": "No Items Selected",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
-        "max3Images": "Max. 3 Images",
+        "max3Images": "Max. 3 Images are supported",
         "minimum": "Minimum",
         "charactersRequired": " characters required",
         "maximum": "Maximum",
@@ -769,6 +805,13 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully"
+    },
+    "appMarketplace": {
+      "headline": "Order Business Application",
+      "desc1": "You have started the subscription request for app {appName}.",
+      "desc2": "Please note that the subscription request will trigger a service call on provider side. The app provider will align with you all further steps. This may take up to 5 days.",
+      "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
+      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
     }
   },
   "navigation": {
@@ -786,8 +829,9 @@
       "company": "Company Name",
       "status": "Status",
       "role": "Role",
-      "active": "Active",
-      "inactive": "Inactive",
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
       "userName": "Username",
@@ -797,7 +841,8 @@
       "secret": "Secret",
       "permission": "Permission",
       "userId": "User Id",
-      "redirectURI": "Redirect URI"
+      "redirectURI": "Redirect URI",
+      "toBeUpdated": "To be updated"
     },
     "actions": {
       "cancel": "Cancel",

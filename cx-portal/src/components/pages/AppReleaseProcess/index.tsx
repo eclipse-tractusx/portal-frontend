@@ -142,7 +142,7 @@ export default function AppReleaseProcess() {
                 {t('content.apprelease.marketplaceHeading')}
               </Typography>
             </Box>
-            <div className="marketplace-main">
+            <div className="marketplace-requirements">
               <ul>
                 <li>
                   <Button color="secondary" size="small" className="neu-btn">

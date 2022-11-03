@@ -2,25 +2,60 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### 0.6.0
 
-* Feature - Home Page - Connect My App API
-* Feature - Assign User Role
-* Feature - App Detail Page - Download document & tags added
-* Feature - App Overview - Confirm and detail overlays & design updates
-* Feature - App Release Process - Business logic & API connect for document upload
-* Feature - My App User Experience
-* Feature - Add User - Success/Failure message as an overlay
-* Feature - Shared Components - New tooltip added
-* Feature - App Marketplace - Show tooltips
-* Bugfix - App roles - Fixed text align issues
-* Bugfix - Semantic Hub Page - Fixing filter & "load more" interaction logic
-* Bugfix - Application Request Board - Correct api endpoint to display documents
-* Bugfix - Description field validation adjustment in app release process
-* Bugfix - Logo image from shared components works now
-* Bugfix - App overview page - Filter business logic update
+### Unreleased
 
-### 0.5.5
+* ...
+* ...
+
+
+## 0.7.0
+
+### Change
+* App Release Process
+   * Added headline and subtext
+   * Removed input field placeholders where not necessary
+   * Activated app card always on viewport function inside the app card creation of the app release process
+   * Updated app card sizing
+* Service Marketplace
+   * Service subscription detail section - added subscription status
+
+### Feature
+* App Marketplace
+   * Subscription data submission to third party and enablement of terms & condition agreement/consent
+* User Management
+   * App role assignment for multiple users implemented
+
+### Technical Support
+* n/a
+
+### Bugfix
+* App Release Process - Page sizing fixed
+* My Organization - BPN data field allocation aligned
+* User Management - User table auto-refresh enabled after new user invite; business logic of user status inside the user table updated to display correct status
+* Central Search - Result list gave an issue on app title value
+
+
+## 0.6.0
+
+### Change
+* n/a
+
+### Feature
+* Application Management Board: Manage application request (by viewing company details and documents) and approve or cancel company applications.
+* User Management: View own company users, invite new users and assign app roles for subscribed apps. Additionally the technical user self-service got released and supports now the creation of technical users as part of the user company account.
+* App Marketplace: Enables user to search for apps, display app details and subscribe for an app. Also app favorites tags are added.
+* App Overview: App overview supports the app provider to see own published apps, check the status, progress unfinished app releases and start the registration of a new app.
+* UiComponents: SharedUiComponent library got released and is usable for other projects with a number of ui react components
+
+### Technical Support
+* n/a
+
+### Bugfix
+* n/a
+
+
+## 0.5.5
 
 * Feature - App Overview page
 * Feature - Add and edit Identity Provider details
@@ -55,7 +90,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Experience - delete request id from registration admin board
 
 
-### 0.5.4
+## 0.5.4
 
 * Feature - Service Marketplace
 * Feature - Identity Providers
@@ -70,7 +105,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Management - AddUser Roles missing
 
 
-### 0.5.3
+## 0.5.3
 
 * Feature - App Release Process Step 1 implementation with api binding
 * Feature - Show app roles in user details
@@ -80,7 +115,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Identity provider list and detail view
 
 
-### 0.5.2
+## 0.5.2
 
 * Feature - Added Release Notes ;)
 * Feature - Technical User details page

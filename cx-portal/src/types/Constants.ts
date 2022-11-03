@@ -91,12 +91,14 @@ export enum OVERLAYS {
   PARTNER = 'partner',
   APP = 'app',
   SERVICE_REQUEST = 'service_request',
+  APPMARKETPLACE_REQUEST = 'appmarketplace_request',
   IDP = 'idp',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',
   IDP_TEST_RUN = 'idp_test_run',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
+  CONFIRM_USER_ACTION = 'confirm_user_action',
 }
 
 export enum ACTIONS {
