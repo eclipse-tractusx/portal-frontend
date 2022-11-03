@@ -245,7 +245,6 @@ const EdcConnector = () => {
           title={t('content.edcconnector.tabletitle')}
           loadLabel={t('global.actions.more')}
           fetchHook={useFetchConnectorsQuery}
-          fetchHookArgs={{ size: 15 }}
           fetchHookRefresh={refresh}
           getRowId={(row: { [key: string]: string }) => row.id}
           columns={columns}

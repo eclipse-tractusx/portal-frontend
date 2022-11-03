@@ -87,7 +87,7 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (filters) =>
-        `/api/administration/Connectors?${qs.stringify(filters)}`,
+        `/api/administration/Connectors?page=${filters.page}&size=10`,
     }),
   }),
 })

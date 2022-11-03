@@ -38,22 +38,21 @@ export const ConnectorTableColumns = (
       sortable: false,
     },
     {
+      field: 'location',
+      headerName: t('content.edcconnector.columns.location'),
+      flex: 0.5,
+      sortable: false,
+    },
+    {
       field: 'type',
       headerName: t('content.edcconnector.columns.type'),
       flex: 1,
       sortable: false,
     },
     {
-      field: 'location',
-      headerName: t('content.edcconnector.columns.location'),
-      flex: 1,
-      sortable: false,
-    },
-    {
       field: 'detail',
-      headerName: t('content.edcconnector.columns.details'),
+      headerName: '',
       flex: 1,
-      align: 'center',
       sortable: false,
       renderCell: ({ row }: { row: any }) => (
         <Container maxWidth="sm">
