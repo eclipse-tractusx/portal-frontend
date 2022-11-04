@@ -64,14 +64,11 @@ const ConnectorTypeSelection = ({
               <Grid
                 xs={12}
                 item
-                style={{
-                  padding: spacing(2),
-                }}
                 className={'dotted-gradient'}
               >
                 <Checkbox
                   label={checkBox.title}
-                  checked={checkBox.id === selectedCheckBox.id ? true : false}
+                  checked={checkBox.id === selectedCheckBox.id}
                   onChange={(e) => {
                     setSelectedCheckBox(checkBox)
                     selectedServiceCallback(checkBox)
