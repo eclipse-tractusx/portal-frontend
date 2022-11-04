@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Checkbox } from 'cx-portal-shared-components'
-import { Box, Grid, useTheme } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 
 // Static content
 // Add Connector Button action modal first step content
@@ -31,8 +31,6 @@ const ConnectorTypeSelection = ({
   selectedServiceCallback: (selected: any) => any
 }) => {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const { spacing } = theme
 
   const checkBoxSelector = [
     {
@@ -61,11 +59,7 @@ const ConnectorTypeSelection = ({
         <Grid container spacing={1.5} style={{ marginTop: 0 }}>
           {checkBoxSelector.map((checkBox: any) => {
             return (
-              <Grid
-                xs={12}
-                item
-                className={'dotted-gradient'}
-              >
+              <Grid xs={12} item className={'dotted-gradient'}>
                 <Checkbox
                   label={checkBox.title}
                   checked={checkBox.id === selectedCheckBox.id}
