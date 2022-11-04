@@ -61,7 +61,7 @@ export const Patterns = {
     metaDataUrl: /^[a-zA-Z0-9- ]*$/,
   },
   connectors: {
-    NAME: /^[a-zA-Z0-9 @)]{2,20}$/i,
+    NAME: /^[a-z0-9 @)]{2,20}$/,
     COUNTRY: /^[A-Z)]{2}$/i,
   },
 }
