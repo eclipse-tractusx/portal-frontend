@@ -107,8 +107,16 @@ const AddConnectorOverlay = ({
         }}
       >
         <DialogHeader
-          title={t('content.edcconnector.modal.title')}
-          intro={t('content.edcconnector.modal.intro')}
+          title={
+            !selected.type || selected.type === 'COMPANY_CONNECTOR'
+              ? t('content.edcconnector.modal.company.title')
+              : t('content.edcconnector.modal.managed.title')
+          }
+          intro={
+            !selected.type || selected.type === 'COMPANY_CONNECTOR'
+              ? t('content.edcconnector.modal.company.intro')
+              : t('content.edcconnector.modal.managed.intro')
+          }
         />
         <DialogContent
           sx={{
