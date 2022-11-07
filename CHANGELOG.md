@@ -5,7 +5,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
-* ...
+* Bugfix - User Invite - New User Role preselected fix
 * ...
 
 
