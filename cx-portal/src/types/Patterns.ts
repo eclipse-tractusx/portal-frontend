@@ -61,8 +61,8 @@ export const Patterns = {
     metaDataUrl: /^[a-zA-Z0-9- ]*$/,
   },
   connectors: {
-    NAME: /^[a-zA-Z0-9 @)]{2,20}$/,
-    COUNTRY: /^[A-Z)]{2}$/i,
+    NAME: /^[a-zA-Z0-9 @]{2,20}$/,
+    COUNTRY: /^[A-Z]{2}$/,
   },
 }
 
@@ -71,5 +71,8 @@ export const isBPN = (expr: string) => Patterns.BPN.test(expr)
 export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
+export const isCName = (expr: string) => Patterns.connectors.NAME.test(expr)
+export const isCountryCode = (expr: string) =>
+  Patterns.connectors.COUNTRY.test(expr)
 
 export default Patterns

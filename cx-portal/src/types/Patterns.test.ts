@@ -18,7 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { isBPN, isDomain, isMail, isURL, isUUID } from './Patterns'
+import {
+  isBPN,
+  isDomain,
+  isMail,
+  isURL,
+  isUUID,
+  isCName,
+  isCountryCode,
+} from './Patterns'
 
 const TESTDATA = {
   BPN: {
@@ -113,6 +121,14 @@ const TESTDATA = {
       '5c08fc78dc454d1baa6e58da1ad9136f',
     ],
   },
+  CNAMES: {
+    valid: ['word', 'Some word', 'Some@word'],
+    invalid: ['some.word', 'w', '', 'some?@#$word'],
+  },
+  COUNTRY: {
+    valid: ['DE'],
+    invalid: ['', 'D', 'de', 'some string'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -141,5 +157,19 @@ describe('Input Pattern Tests', () => {
   it('validates UUIDs', () => {
     TESTDATA.UUID.valid.forEach((expr) => expect(isUUID(expr)).toBe(true))
     TESTDATA.UUID.invalid.forEach((expr) => expect(isUUID(expr)).toBe(false))
+  })
+
+  it('validates connector Names', () => {
+    TESTDATA.CNAMES.valid.forEach((expr) => expect(isCName(expr)).toBe(true))
+    TESTDATA.CNAMES.invalid.forEach((expr) => expect(isCName(expr)).toBe(false))
+  })
+
+  it('validates Country code', () => {
+    TESTDATA.COUNTRY.valid.forEach((expr) =>
+      expect(isCountryCode(expr)).toBe(true)
+    )
+    TESTDATA.COUNTRY.invalid.forEach((expr) =>
+      expect(isCountryCode(expr)).toBe(false)
+    )
   })
 })
