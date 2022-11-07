@@ -607,7 +607,8 @@
     },
     "addUserRight": {
       "headline": "Add app permissions to your company user",
-      "subheadline": "Select one or multiple user roles with the checkboxes below as well as the relevant user/s which should receive the role."
+      "subheadline": "Select one or multiple user roles with the checkboxes below as well as the relevant user/s which should receive the role.",
+      "noRolesFound": "No user roles found"
     },
     "account": {
       "userAccount": "User account",

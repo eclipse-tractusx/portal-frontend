@@ -608,7 +608,8 @@
     },
     "addUserRight": {
       "headline": "Benutzer hinzufügen",
-      "subheadline": "Auswählen und hinzufügen von Benutzern"
+      "subheadline": "Auswählen und hinzufügen von Benutzern",
+      "noRolesFound": "No user roles found"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
