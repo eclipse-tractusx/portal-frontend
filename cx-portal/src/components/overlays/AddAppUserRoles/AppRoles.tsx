@@ -18,15 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Checkbox } from 'cx-portal-shared-components'
+import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 import { useParams } from 'react-router-dom'
 
 export const AppRoles = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
   const { appId } = useParams()
@@ -55,16 +57,23 @@ export const AppRoles = () => {
         },
       }}
     >
-      <div className="checkbox-section">
-        {data &&
-          data.map((role) => (
+      {data ?
+        <div className="checkbox-section">
+          {data.map((role) => (
             <Checkbox
               label={role.role}
               key={role.roleId}
               onChange={(e) => selectRole(role.role, e.target.checked)}
             />
           ))}
-      </div>
+        </div>
+        :
+        <Alert severity="info">
+          <span>
+            {t('content.addUserRight.noRolesFound')}
+          </span>
+        </Alert>
+      }
     </Box>
   )
 }

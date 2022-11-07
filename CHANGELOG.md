@@ -6,7 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 
 * Bugfix - User Invite - New User Role preselected fix
-* ...
+* Bugfix - App User Management - Confirmation and User Role Changes
 
 
 ## 0.7.0
