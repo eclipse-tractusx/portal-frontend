@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -47,6 +47,7 @@ import {
   setAddUserSuccess,
   useAddTenantUsersMutation,
 } from 'features/admin/userApiSlice'
+import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
 export const AddUser = () => {
   const { t } = useTranslation()
@@ -65,6 +66,10 @@ export const AddUser = () => {
     dispatch(setAddUserError(isError))
     dispatch(closeOverlay())
   }
+
+  useEffect(() => {
+    dispatch(setRolesToAdd([]))
+  }, [dispatch])
 
   const handleConfirm = async () => {
     dispatch(setAddUserSuccess(false))
