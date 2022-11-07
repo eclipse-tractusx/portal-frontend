@@ -323,7 +323,8 @@
         "name": "Konnektorname",
         "id": "Konnektor-ID",
         "type": "Steckertyp",
-        "details": "Einzelheiten"
+        "details": "Einzelheiten",
+        "location": "Location"
       },
       "headertitle": "Technische Integration - Connector & IDPs",
       "subheadertitle": "Connector",
@@ -339,26 +340,58 @@
         "description": "Möchten Sie den ausgewählten Connector wirklich löschen?"
       },
       "modal": {
-        "title": "Company Connector",
-        "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
+        "company": {
+          "title": "Connect company connector",
+          "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist."
+        },
+        "managed": {
+          "title": "Register Managed Connector",
+          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+        },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {
           "name": {
-            "label": "Connector Name*",
-            "placeholder": "Konnektorname",
-            "error": "Connector Name ist erforderlich"
+            "label": "Name*",
+            "placeholder": "Connector Name",
+            "error": "Connector name is mandatory. Length should be between 2 and 20",
+            "tooltipMsg": "Own selected connector name for verification"
           },
           "id": {
-            "label": "Connector ID*",
+            "label": "ID*",
             "placeholder": "Connector ID",
-            "error": "Connector ID ist erforderlich."
+            "error": "Connector ID is mandatory"
           },
           "url": {
-            "label": "Konnektor URL*",
-            "placeholder": "Konnektor URL",
-            "error": "Dieses Feld muss eine gültige URL sein, zb: https://catena-x.net"
+            "label": "URL*",
+            "placeholder": "Connector URL",
+            "error": "This field needs to be valid url eg: https://catena-x.net",
+            "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
+          },
+          "bpn": {
+            "label": "Owner*",
+            "placeholder": "BPNL's are allowed only",
+            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
+            "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
+          },
+          "country": {
+            "label": "Place*",
+            "placeholder": "Two digit country code",
+            "error": "Valid code eg: DE, US",
+            "tooltipMsg": "Connector Location - Message to be added"
           }
+        },
+        "create": {
+          "successTitle": "Create connector successfully completed",
+          "successDescription": "Create connector successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        },
+        "delete": {
+          "successTitle": "Delete connector successfully completed",
+          "successDescription": "Delete connector successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
       }
     },
