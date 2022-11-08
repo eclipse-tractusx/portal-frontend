@@ -34,8 +34,7 @@ import {
 } from './mapper'
 import { name, SearchItem } from './types'
 import { CardItems, PaginResult } from 'cx-portal-shared-components'
-import { Patterns } from 'types/Patterns'
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { isUUID, Patterns } from 'types/Patterns'
 import {
   BusinessPartner,
   BusinessPartnerResponse,
@@ -48,6 +47,7 @@ import {
   hasAccessOverlay,
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
+import { AppMarketplaceApp } from 'features/apps/apiSlice'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -157,7 +157,7 @@ const fetchSearch = createAsyncThunk(
   async (expr: string): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
     const searchExpr = new RegExp(trexpr, 'gi')
-    const isUUID = Patterns.UUID.test(trexpr)
+    const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
         await searchForExpression(trexpr)
@@ -173,9 +173,9 @@ const fetchSearch = createAsyncThunk(
           .map((item: string) => actionToSearchItem(item)),
         apps
           .filter((item: AppMarketplaceApp) =>
-            isUUID
+            uuid
               ? item.id.match(searchExpr)
-              : item.title.match(searchExpr) || item.provider.match(searchExpr)
+              : item.name?.match(searchExpr) || item.provider.match(searchExpr)
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
         partners.content.map((item: { businessPartner: BusinessPartner }) =>
@@ -191,7 +191,7 @@ const fetchSearch = createAsyncThunk(
           .map((item: CardItems) => newsToSearchItem(item)),
         users.content
           .filter((item: TenantUser) =>
-            isUUID
+            uuid
               ? item.userEntityId?.match(searchExpr) ||
                 item.companyUserId.match(searchExpr)
               : item.firstName?.match(searchExpr) ||

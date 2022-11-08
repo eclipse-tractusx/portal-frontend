@@ -2,20 +2,42 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### In progess
 
-* Feature - App Marketplace - Confirmation Subscription
-* Feature - API & BL: Change role of specific user for a defined app
-* Feature - Service Subscription Details Box changes and add status with subscription
-* Feature - App release process: Step-1 - Headline and subtext are enabled when scrolling down
-* Feature - App release process: Removed placeholders where not necessary
-* Feature - App release process: App card to be displayed for the user even while scrolling
-* Feature - App release process: Corrected the app card sizing
-* Bugfix - App release process: Page sizing fixed
-* Bugfix - My Organization - BPN Address Alignment fixed
-* Bugfix - Accidential page reload on token refresh
-* Bugfix - Page sizing/height is fixed in app release process
-* Bugfix - User Management - User Table refresh fix
+### Unreleased
+
+* Register connector
+    * Enable "Company as a Service" option. Modal updates
+    * Validation updates. FormFields added for "Company as a Service".
+    * Create & Delete API integration with flow
+* Bugfix - User Invite - New User Role preselected fix
+* Bugfix - App User Management - Confirmation and User Role Changes
+
+## 0.7.0
+
+### Change
+* App Release Process
+   * Added headline and subtext
+   * Removed input field placeholders where not necessary
+   * Activated app card always on viewport function inside the app card creation of the app release process
+   * Updated app card sizing
+* Service Marketplace
+   * Service subscription detail section - added subscription status
+
+### Feature
+* App Marketplace
+   * Subscription data submission to third party and enablement of terms & condition agreement/consent
+* User Management
+   * App role assignment for multiple users implemented
+
+### Technical Support
+* n/a
+
+### Bugfix
+* App Release Process - Page sizing fixed
+* My Organization - BPN data field allocation aligned
+* User Management - User table auto-refresh enabled after new user invite; business logic of user status inside the user table updated to display correct status
+* Central Search - Result list gave an issue on app title value
+
 
 ## 0.6.0
 

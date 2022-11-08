@@ -28,11 +28,11 @@ import {
   useDeleteMyUserMutation,
 } from 'features/admin/userApiSlice'
 import { Typography } from 'cx-portal-shared-components'
-import { TechnicalUserAddResponseOverlay } from '../AddTechnicalUser/TechnicalUserAddResponseOverlay'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { useNavigate } from 'react-router-dom'
 import UserService from 'services/UserService'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { ServerResponseOverlay } from '../ServerResponse'
 
 export const ConfirmUserAction = ({
   id,
@@ -202,17 +202,17 @@ export const ConfirmUserAction = ({
         />
       )}
       {response && (
-        <TechnicalUserAddResponseOverlay
+        <ServerResponseOverlay
           title={messageMap[title].successTitle}
           intro={messageMap[title].successDescription}
           dialogOpen={true}
           handleCallback={handleCallback}
         >
           <Typography variant="body2"></Typography>
-        </TechnicalUserAddResponseOverlay>
+        </ServerResponseOverlay>
       )}
       {error && (
-        <TechnicalUserAddResponseOverlay
+        <ServerResponseOverlay
           title={messageMap[title].errorTitle}
           intro={messageMap[title].errorDescription}
           dialogOpen={true}
@@ -222,7 +222,7 @@ export const ConfirmUserAction = ({
           handleCallback={handleCallback}
         >
           <Typography variant="body2"></Typography>
-        </TechnicalUserAddResponseOverlay>
+        </ServerResponseOverlay>
       )}
     </>
   )

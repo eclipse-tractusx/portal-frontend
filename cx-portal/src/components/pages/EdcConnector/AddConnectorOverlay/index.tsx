@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -26,27 +26,35 @@ import {
   Button,
   DialogActions,
   DialogHeader,
+  CircleProgress,
 } from 'cx-portal-shared-components'
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
+import { ConnectorType } from 'features/connector/connectorApiSlice'
+import Box from '@mui/material/Box'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
   connectorStep: number
   handleOverlayClose: React.MouseEventHandler
-  handleConfirmClick: React.MouseEventHandler
+  handleConfirmClick: (data: ConnectorType) => void
   onFormConfirmClick: (data: FormFieldsType) => void
+  loading?: boolean
 }
 
 export type FormFieldsType = {
   ConnectorName: string
   ConnectorURL: string
+  ConnectorBPN: string
+  ConnectorLocation: string
 }
 
 const formFields = {
   ConnectorName: '',
   ConnectorURL: '',
+  ConnectorBPN: '',
+  ConnectorLocation: '',
 }
 
 const AddConnectorOverlay = ({
@@ -55,6 +63,7 @@ const AddConnectorOverlay = ({
   handleOverlayClose,
   handleConfirmClick,
   onFormConfirmClick,
+  loading,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
 
@@ -70,11 +79,21 @@ const AddConnectorOverlay = ({
     mode: 'onChange',
   })
 
+  const [selected, setSelected] = useState<ConnectorType>({})
+
   const onFormSubmit = async () => {
-    const validateFields = await trigger(['ConnectorName', 'ConnectorURL'])
+    const validateFields = await trigger([
+      'ConnectorName',
+      'ConnectorURL',
+      'ConnectorBPN',
+    ])
     if (validateFields) {
       onFormConfirmClick(getValues() as FormFieldsType)
     }
+  }
+
+  const onSelect = (service: ConnectorType) => {
+    setSelected(service)
   }
 
   return (
@@ -87,24 +106,31 @@ const AddConnectorOverlay = ({
           },
         }}
       >
-        {connectorStep === 1 && (
-          <DialogHeader
-            title={t('content.edcconnector.modal.title')}
-            intro={t('content.edcconnector.modal.intro')}
-          />
-        )}
+        <DialogHeader
+          title={
+            !selected.type || selected.type === 'COMPANY_CONNECTOR'
+              ? t('content.edcconnector.modal.company.title')
+              : t('content.edcconnector.modal.managed.title')
+          }
+          intro={
+            !selected.type || selected.type === 'COMPANY_CONNECTOR'
+              ? t('content.edcconnector.modal.company.intro')
+              : t('content.edcconnector.modal.managed.intro')
+          }
+        />
         <DialogContent
           sx={{
-            padding: '40px 120px',
+            padding: '0px 120px 40px 120px',
           }}
         >
           {connectorStep === 0 ? (
             <>
-              <ConnectorTypeSelection />
+              <ConnectorTypeSelection selectedServiceCallback={onSelect} />
             </>
           ) : (
             <>
               <ConnectorInsertForm
+                selectedService={selected}
                 {...{ handleSubmit, control, errors, trigger }}
               />
             </>
@@ -114,26 +140,44 @@ const AddConnectorOverlay = ({
           <Button
             variant="outlined"
             onClick={(e) => {
+              setSelected({})
               handleOverlayClose(e)
               reset(formFields)
             }}
           >
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button
-            variant="contained"
-            disabled={
-              connectorStep === 1 &&
-              (control._formValues.ConnectorName === '' ||
-                control._formValues.ConnectorURL === '' ||
-                Object.keys(errors).length > 0)
-            }
-            onClick={(e) =>
-              connectorStep === 0 ? handleConfirmClick(e) : onFormSubmit()
-            }
-          >
-            {`${t('global.actions.confirm')}`}
-          </Button>
+          {!loading && (
+            <Button
+              variant="contained"
+              disabled={selected && selected.id ? false : true}
+              onClick={(e) =>
+                connectorStep === 0 && selected && selected.id
+                  ? handleConfirmClick(selected)
+                  : onFormSubmit()
+              }
+            >
+              {`${t('global.actions.confirm')}`}
+            </Button>
+          )}
+          {loading && (
+            <Box
+              sx={{
+                width: '110px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <CircleProgress
+                size={40}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            </Box>
+          )}
         </DialogActions>
       </Dialog>
     </div>
