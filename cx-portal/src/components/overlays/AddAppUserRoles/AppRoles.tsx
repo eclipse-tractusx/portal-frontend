@@ -57,7 +57,7 @@ export const AppRoles = () => {
         },
       }}
     >
-      {data ?
+      {data ? (
         <div className="checkbox-section">
           {data.map((role) => (
             <Checkbox
@@ -67,13 +67,11 @@ export const AppRoles = () => {
             />
           ))}
         </div>
-        :
+      ) : (
         <Alert severity="info">
-          <span>
-            {t('content.addUserRight.noRolesFound')}
-          </span>
+          <span>{t('content.addUserRight.noRolesFound')}</span>
         </Alert>
-      }
+      )}
     </Box>
   )
 }
