@@ -21,12 +21,16 @@
 import { Box } from '@mui/material'
 import { Buffer } from 'buffer'
 
-interface SVGImageProps {
+interface BaseImageProps {
   image: string
   altText?: string
 }
 
-export const SVGImage = ({ image, altText = '', ...props }: SVGImageProps) => {
+export const BaseImage = ({
+  image,
+  altText = '',
+  ...props
+}: BaseImageProps) => {
   const src = image.trim().startsWith('<')
     ? `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
         'base64'

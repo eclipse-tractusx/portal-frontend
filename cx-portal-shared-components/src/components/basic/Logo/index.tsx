@@ -21,7 +21,7 @@
 import CXLogo from '../../../assets/logo/cx-logo.svg'
 import CXLogoShort from '../../../assets/logo/cx-logo-short.svg'
 import CXLogoText from '../../../assets/logo/cx-logo-text.svg'
-import { SVGImage } from '../SVGImage'
+import { BaseImage } from '../BaseImage'
 
 interface LogoProps {
   variant?: 'standard' | 'short' | 'text' | 'gray'
@@ -52,5 +52,5 @@ export const Logo = ({
       image = CXLogo
   }
 
-  return <SVGImage image={image} altText={altText} {...props} />
+  return <BaseImage image={image} altText={altText} {...props} />
 }

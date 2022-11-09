@@ -20,7 +20,7 @@
 
 import RobotColor from '../../../assets/errorImage/robot-color.svg'
 import RobotGray from '../../../assets/errorImage/robot-sw.svg'
-import { SVGImage } from '../../SVGImage'
+import { BaseImage } from '../../BaseImage'
 
 interface ErrorImageProps {
   variant?: 'color' | 'gray'
@@ -32,7 +32,7 @@ export const ErrorImage = ({
   altText = 'Catena-X Error',
   ...props
 }: ErrorImageProps) => (
-  <SVGImage
+  <BaseImage
     image={variant === 'color' ? RobotColor : RobotGray}
     altText={altText}
     {...props}
