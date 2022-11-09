@@ -11,6 +11,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
     * Create & Delete API integration with flow
 * Bugfix - User Invite - New User Role preselected fix
 * Bugfix - App User Management - Confirmation and User Role Changes
+* Shared Components
+   * More versatile image component
+
 
 ## 0.7.0
 
