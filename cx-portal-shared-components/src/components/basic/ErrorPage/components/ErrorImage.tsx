@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import RobotColor from '../../../assets/errorImage/robot-color.svg'
-import RobotGray from '../../../assets/errorImage/robot-sw.svg'
+import RobotColor from '../../../../assets/errorImage/robot-color.svg'
+import RobotGray from '../../../../assets/errorImage/robot-sw.svg'
 import { BaseImage } from '../../BaseImage'
 
 interface ErrorImageProps {
