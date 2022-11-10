@@ -323,7 +323,8 @@
         "name": "Connector Name",
         "id": "Connector_ID",
         "type": "Connector Type",
-        "details": "Details"
+        "details": "Details",
+        "location": "Location"
       },
       "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
@@ -339,26 +340,58 @@
         "description": "Are you sure to delete selected connector?"
       },
       "modal": {
-        "title": "Connect company connector",
-        "intro": "Registration of a company connector which is implemented in your own company network.",
+        "company": {
+          "title": "Connect company connector",
+          "intro": "Registration of a company connector which is implemented in your own company network."
+        },
+        "managed": {
+          "title": "Register Managed Connector",
+          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+        },
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {
           "name": {
-            "label": "Connector Name*",
+            "label": "Name*",
             "placeholder": "Connector Name",
-            "error": "Connector name is mandatory"
+            "error": "Connector name is mandatory. Length should be between 2 and 20",
+            "tooltipMsg": "Own selected connector name for verification"
           },
           "id": {
-            "label": "Connector ID*",
+            "label": "ID*",
             "placeholder": "Connector ID",
             "error": "Connector ID is mandatory"
           },
           "url": {
-            "label": "Connector URL*",
+            "label": "URL*",
             "placeholder": "Connector URL",
-            "error": "This field needs to be valid url eg: https://catena-x.net"
+            "error": "This field needs to be valid url eg: https://catena-x.net",
+            "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
+          },
+          "bpn": {
+            "label": "Owner*",
+            "placeholder": "BPNL's are allowed only",
+            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
+            "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
+          },
+          "country": {
+            "label": "Place*",
+            "placeholder": "Two digit country code",
+            "error": "Valid code eg: DE, US",
+            "tooltipMsg": "Connector Location - Message to be added"
           }
+        },
+        "create": {
+          "successTitle": "Create connector successfully completed",
+          "successDescription": "Create connector successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        },
+        "delete": {
+          "successTitle": "Delete connector successfully completed",
+          "successDescription": "Delete connector successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
       }
     },
@@ -515,13 +548,13 @@
         "errorTitle": "Something went wrong",
         "errorDescription": "The password reset was unsuccessful. Please try it later again or contact the administrator."
       },
-      "adminUserConfirm": {
-        "header": "Delete user account",
-        "confirmTitle": "Are you sure you want to delete the user account?",
+      "deleteOwnUserConfirm": {
+        "header": "Delete my user account",
+        "confirmTitle": "Are you sure you want to delete this user account?",
         "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
         "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully deleted",
-        "successDescription": "The user is successfully deleted and all rights are disabled.",
+        "successDescription": "Your user got successfully deleted, you will get disconnected within the following 5 seconds.",
         "errorTitle": "Something went wrong",
         "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
       }
