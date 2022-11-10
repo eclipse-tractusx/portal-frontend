@@ -21,10 +21,31 @@
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import './AppDetailHowToUse.scss'
-import { AppDetails, DocumentData } from 'features/apps/apiSlice'
+import {
+  AppDetails,
+  DocumentData,
+  useFetchDocumentByIdMutation,
+} from 'features/apps/apiSlice'
+import { download } from 'utils/downloadUtils'
 
 export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
+
+  const [getDocumentById] = useFetchDocumentByIdMutation()
+
+  const handleDownloadClick = async (
+    documentId: string,
+    documentName: string
+  ) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
 
   return (
     <div className="appdetail-howtouse">
@@ -42,7 +63,17 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
           item.documents['APP_CONTRACT'].map(
             (document: DocumentData, index: number) => (
               <li key={index}>
-                <a href="/#">{document.documentName}</a>
+                <button
+                  className="document-button-link"
+                  onClick={() =>
+                    handleDownloadClick(
+                      document.documentId,
+                      document.documentName
+                    )
+                  }
+                >
+                  {document.documentName}
+                </button>
               </li>
             )
           )}
