@@ -92,7 +92,7 @@ export const SingleUserContent = ({
     [debouncedValidation, userInputs, checkInputValid]
   )
 
-  useEffect(() => {
+  useMemo(() => {
     if (
       !userInputs.email.value ||
       !userInputs.firstname.value ||
@@ -100,6 +100,9 @@ export const SingleUserContent = ({
     ) {
       checkInputValid(true)
     }
+  }, [checkInputValid, userInputs])
+
+  useEffect(() => {
     dispatch(
       setUsersToAdd(
         inputValid
