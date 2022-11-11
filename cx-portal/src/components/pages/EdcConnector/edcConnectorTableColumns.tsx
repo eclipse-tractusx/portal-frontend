@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
@@ -29,6 +30,14 @@ export const ConnectorTableColumns = (
   translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
+  const [isHover, setIsHover] = useState(false)
+
+  const handleMouseEnter = () => {
+    setIsHover(true)
+  }
+  const handleMouseLeave = () => {
+    setIsHover(false)
+  }
 
   return [
     {
@@ -57,12 +66,20 @@ export const ConnectorTableColumns = (
       renderCell: ({ row }: { row: any }) => (
         <Container maxWidth="sm">
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <IconButton
                 color="secondary"
                 disabled
                 size="small"
-                style={{ alignSelf: 'center' }}
+                style={{
+                  alignSelf: 'center',
+                  color: isHover ? 'blue' : '#ADADAD',
+                }}
               >
                 <DeleteOutlineIcon />
               </IconButton>
