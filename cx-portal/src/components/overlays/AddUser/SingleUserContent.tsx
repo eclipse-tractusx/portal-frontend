@@ -28,38 +28,37 @@ import debounce from 'lodash.debounce'
 import { IHashMap, UserInput } from 'types/MainTypes'
 import Patterns from 'types/Patterns'
 
-const InputDefinitions = {
-  firstname: {
-    key: 'firstname',
-    i18n: 'global.field.first',
-    helperText: '',
-    pattern: Patterns.NAME,
-    value: '',
-    valid: false,
-  },
-  lastname: {
-    key: 'lastname',
-    i18n: 'global.field.last',
-    helperText: '',
-    pattern: Patterns.NAME,
-    value: '',
-    valid: false,
-  },
-  email: {
-    key: 'email',
-    i18n: 'global.field.email',
-    helperText: '',
-    pattern: Patterns.MAIL,
-    value: '',
-    valid: false,
-  },
-}
-
 export const SingleUserContent = ({
   checkInputValid,
 }: {
   checkInputValid: (value: boolean) => void
 }) => {
+  const InputDefinitions = {
+    firstname: {
+      key: 'firstname',
+      i18n: 'global.field.first',
+      helperText: '',
+      pattern: Patterns.NAME,
+      value: '',
+      valid: false,
+    },
+    lastname: {
+      key: 'lastname',
+      i18n: 'global.field.last',
+      helperText: '',
+      pattern: Patterns.NAME,
+      value: '',
+      valid: false,
+    },
+    email: {
+      key: 'email',
+      i18n: 'global.field.email',
+      helperText: '',
+      pattern: Patterns.MAIL,
+      value: '',
+      valid: false,
+    },
+  }
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [inputValid, setInputValid] = useState<boolean>(false)
@@ -90,10 +89,17 @@ export const SingleUserContent = ({
       setUserInputs(inputs)
       debouncedValidation(inputs)
     },
-    [debouncedValidation, userInputs]
+    [debouncedValidation, userInputs, checkInputValid]
   )
 
   useEffect(() => {
+    if (
+      !userInputs.email.value ||
+      !userInputs.firstname.value ||
+      !userInputs.lastname.value
+    ) {
+      checkInputValid(true)
+    }
     dispatch(
       setUsersToAdd(
         inputValid
