@@ -47,6 +47,11 @@ export interface UserRoleResponse {
   warning: Array<ResponseInfo>
 }
 
+export type CoreoffersRoles = {
+  offerId: string
+  roles: AppRole[]
+}
+
 export type AppRole = {
   roleId: string
   role: string
@@ -57,6 +62,10 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/apps/roles',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
+    fetchCoreoffersRoles: builder.query<CoreoffersRoles[], void>({
+      query: () =>
+        `/api/administration/user/owncompany/roles/coreoffers?lang=${i18next.language}`,
+    }),
     fetchAppRoles: builder.query<AppRole[], string>({
       query: (appId: string) =>
         `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
@@ -95,6 +104,7 @@ export const apiSlice = createApi({
 })
 
 export const {
+  useFetchCoreoffersRolesQuery,
   useFetchAppRolesQuery,
   useFetchAppUsersQuery,
   useFetchAppUsersSearchQuery,
