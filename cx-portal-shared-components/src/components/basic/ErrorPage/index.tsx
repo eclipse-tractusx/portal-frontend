@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Footer } from './components/Footer'
 import { ErrorDescription } from './components/ErrorDescription'
 import { ErrorActions } from './components/ErrorActions'
 import { ErrorImage } from './components/ErrorImage'
