@@ -55,7 +55,11 @@ const InputDefinitions = {
   },
 }
 
-export const SingleUserContent = () => {
+export const SingleUserContent = ({
+  checkInputValid,
+}: {
+  checkInputValid: (value: boolean) => void
+}) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [inputValid, setInputValid] = useState<boolean>(false)
@@ -79,6 +83,10 @@ export const SingleUserContent = () => {
       const inputs = { ...userInputs }
       const current = inputs[key]
       current.value = value
+      current.valid = !current.pattern.test(current.value)
+      checkInputValid(
+        inputs.email.valid || inputs.firstname.valid || inputs.lastname.valid
+      )
       setUserInputs(inputs)
       debouncedValidation(inputs)
     },
