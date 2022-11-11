@@ -44,4 +44,5 @@ ErrorPage.args = {
   homeButtonTitle: 'Homepage',
   onReloadClick: () => console.log('reload'),
   onHomeClick: () => console.log('home page'),
+  color: 'gray',
 }

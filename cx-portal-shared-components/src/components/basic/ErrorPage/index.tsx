@@ -55,37 +55,41 @@ export const ErrorPage = ({
       sx={{
         width: '100%',
         height: height,
-        marginTop: '0px',
         backgroundColor: '#F7F7F7',
       }}
     >
       <Box
         sx={{
-          width: '50%',
-          margin: `auto`,
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          margin: 'auto auto',
         }}
       >
-        <ErrorDescription
-          header={header}
-          title={title}
-          description={description}
-          additionalDescription={additionalDescription}
-        />
-        <ErrorActions
-          reloadButtonTitle={reloadButtonTitle}
-          homeButtonTitle={homeButtonTitle}
-          onReloadClick={onReloadClick}
-          onHomeClick={onHomeClick}
-        />
-      <Box
-        sx={{
-         width: '50%',
-         margin: `auto`,
-         float: 'right',
-         position: 'relative',
+        <Box
+          sx={{
+            minWidth: '400px',
           }}
         >
-          <ErrorImage />
+          <ErrorImage variant={color} />
+        </Box>
+        <Box>
+          <ErrorDescription
+            header={header}
+            title={title}
+            description={description}
+            additionalDescription={additionalDescription}
+          />
+          <ErrorActions
+            reloadButtonTitle={reloadButtonTitle}
+            homeButtonTitle={homeButtonTitle}
+            onReloadClick={onReloadClick}
+            onHomeClick={onHomeClick}
+          />
         </Box>
       </Box>
     </Box>
