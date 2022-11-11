@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Checkbox } from 'cx-portal-shared-components'
+import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
@@ -75,16 +75,22 @@ export const UserRoles = () => {
         />
       </div>
 
-      <div className="checkbox-section">
-        {allRoles.map((role: AppRole) => (
-          <Checkbox
-            checked={Array.isArray(roles) && roles.includes(role.role)}
-            label={role.role}
-            key={role.roleId}
-            onChange={(e) => selectRole(role.role, e.target.checked)}
-          />
-        ))}
-      </div>
+      {allRoles.length > 0 ? (
+        <div className="checkbox-section">
+          {allRoles.map((role: AppRole) => (
+            <Checkbox
+              checked={Array.isArray(roles) && roles.includes(role.role)}
+              label={role.role}
+              key={role.roleId}
+              onChange={(e) => selectRole(role.role, e.target.checked)}
+            />
+          ))}
+        </div>
+      ) : (
+        <Alert severity="info">
+          <span>{t('content.addUserRight.noRolesFound')}</span>
+        </Alert>
+      )}
     </Box>
   )
 }
