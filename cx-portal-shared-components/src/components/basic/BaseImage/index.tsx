@@ -18,31 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory } from '@storybook/react'
+import { Box } from '@mui/material'
+import { Buffer } from 'buffer'
 
-import { ErrorPage as Component } from '.'
-
-export default {
-  title: 'ErrorPage',
-  component: Component,
-  argTypes: {},
+interface BaseImageProps {
+  image: string
+  altText?: string
 }
 
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
+export const BaseImage = ({
+  image,
+  altText = '',
+  ...props
+}: BaseImageProps) => {
+  const src = image.trim().startsWith('<')
+    ? `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
+        'base64'
+      )}`
+    : image
 
-export const ErrorPage = Template.bind({})
-ErrorPage.args = {
-  hasNavigation: false,
-  header: '500 Internal Server Error',
-  title: 'Oops, Something went wrong.',
-  description:
-    'The server encountered an internal error or misconfiguration and was unable to complete your request.',
-  additionalDescription: 'Please contact your admin.',
-  reloadButtonTitle: 'Reload Page',
-  homeButtonTitle: 'Homepage',
-  onReloadClick: () => console.log('reload'),
-  onHomeClick: () => console.log('home page'),
-  color: 'gray',
+  return (
+    <Box
+      component="img"
+      sx={{
+        maxWidth: '100%',
+      }}
+      src={src}
+      alt={altText}
+      {...props}
+    />
+  )
 }
