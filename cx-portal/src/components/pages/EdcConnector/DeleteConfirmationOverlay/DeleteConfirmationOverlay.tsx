@@ -56,7 +56,13 @@ const DeleteConfirmationOverlay = ({
         }}
       >
         <DialogHeader title={t('content.edcconnector.deletemodal.title')} />
-        <DialogContent>
+        <DialogContent
+          sx={{
+            textAlign: 'center',
+            marginBottom: '25px',
+            paddingTop: '0px',
+          }}
+        >
           {t('content.edcconnector.deletemodal.description')}
         </DialogContent>
         <DialogActions>
