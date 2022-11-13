@@ -25,11 +25,10 @@ import match from 'autosuggest-highlight/match'
 import { SelectInput } from '../MultiSelectList/Components/SelectInput'
 import { SelectOptions } from '../MultiSelectList/Components/SelectOptions'
 import uniqueId from 'lodash/uniqueId'
-import { isEqual } from 'lodash'
 
 interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
-  defaultValue?: { id: string; title: string; value: string }
+  defaultValue?: string
   label: string
   placeholder: string
   popperHeight?: number
@@ -41,7 +40,7 @@ interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
 
 export const SelectList = ({
   items,
-  defaultValue = { id: '', title: '', value: '' },
+  defaultValue = '',
   label,
   placeholder,
   variant,
@@ -61,14 +60,12 @@ export const SelectList = ({
       id="singleSelectList"
       sx={{ width: '100%' }}
       clearText={clearText}
-      defaultValue={defaultValue}
       noOptionsText={noOptionsText}
       ListboxProps={{ style: { maxHeight: selectHeight } }}
       disabled={disabled}
       options={items.map((item) => item)}
       getOptionLabel={(option) => option.title || ''}
       onChange={(_, reason: any) => onChangeItem(reason)}
-      isOptionEqualToValue={(option, value) => isEqual(option, value)}
       renderOption={(props, option, { inputValue }) => (
         <SelectOptions
           props={props}

@@ -52,6 +52,13 @@ import AppOverViewConfirm from 'components/overlays/AppOverViewConfirm'
 import AppDetailsOverlay from 'components/overlays/AppOverViewConfirm/AppDetailsOverlay'
 import { ConfirmUserAction } from 'components/overlays/ConfirmUserAction'
 import AppMarketplaceSubscribeRequest from 'components/overlays/AppMarketplaceRequest'
+import { AddIdp } from 'components/overlays/AddIDP'
+import { SampleForm } from 'components/overlays/SampleForm'
+import { UpdateIDP } from 'components/overlays/UpdateIDP'
+import { DeleteIDP } from 'components/overlays/DeleteIDP'
+import { EnableIDP } from 'components/overlays/EnableIDP'
+import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess'
+import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -112,7 +119,7 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddTechnicalUser />
     case OVERLAYS.DELETE_TECHUSER:
       return <DeleteTechnicalUser id={overlay.id} />
-    case OVERLAYS.IDP:
+    case OVERLAYS.IDP_DETAILS:
       return <IDPDetailInfo id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
@@ -140,6 +147,18 @@ export const getOverlay = (overlay: OverlayState) => {
           idpStatus={overlay.status}
         />
       )
+    case OVERLAYS.ADD_IDP:
+      return <AddIdp />
+    case OVERLAYS.UPDATE_IDP:
+      return <UpdateIDP id={overlay.id} />
+    case OVERLAYS.ENABLE_IDP:
+      return <EnableIDP id={overlay.id} />
+    case OVERLAYS.ENABLE_IDP_SUCCESS:
+      return <EnableIDPSuccess id={overlay.id} />
+    case OVERLAYS.DISABLE_IDP:
+      return <DisableIDP id={overlay.id} />
+    case OVERLAYS.DELETE_IDP:
+      return <DeleteIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
       return <IDPTestRun />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
@@ -154,6 +173,8 @@ export const getOverlay = (overlay: OverlayState) => {
           subTitle={overlay.subTitle}
         />
       )
+    case OVERLAYS.SAMPLE_FORM:
+      return <SampleForm />
     default:
       return <NotFound />
   }

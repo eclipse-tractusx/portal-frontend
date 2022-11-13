@@ -23,6 +23,8 @@ const DOMAIN =
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
 
 export const Patterns = {
+  ID: /^[a-z0-9-_]{1,80}$/i,
+  LABEL: /^[a-z0-9-_ ]{1,80}$/i,
   BPN: /^BPNL[0-9A-Z]{12}$/i,
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z0-9-]+\.)+[a-z]{2,}))$/i,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
@@ -33,6 +35,7 @@ export const Patterns = {
   ),
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
+  COMPANY_NAME: /^[a-z0-9À-ÿ][a-z0-9À-ÿ-_+=.,:;!?'"/&@() ]{1,40}$/i,
   prefix: {
     BPN: /^BPNL/i,
     URL: /^https:/i,
@@ -58,14 +61,25 @@ export const Patterns = {
   idp: {
     clientId: /^[a-zA-Z0-9-]*$/,
     clientSecret: /^[a-zA-Z0-9]*$/,
-    metaDataUrl: /^[a-zA-Z0-9- ]*$/,
   },
 }
 
+export const isID = (expr: string) => Patterns.ID.test(expr)
 export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)
 export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
+export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
+export const isMailOrEmpty = (expr: string) =>
+  expr === '' || Patterns.MAIL.test(expr)
+export const isBPNOrEmpty = (expr: string) =>
+  expr === '' || Patterns.BPN.test(expr)
+export const isDomainOrEmpty = (expr: string) =>
+  expr === '' || Patterns.DOMAIN.test(expr)
+export const isURLOrEmpty = (expr: string) =>
+  expr === '' || Patterns.URL.test(expr)
+export const isUUIDOrEmpty = (expr: string) =>
+  expr === '' || Patterns.UUID.test(expr)
 
 export default Patterns

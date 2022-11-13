@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import IDPDetailContent from 'components/pages/IDPDetail/IDPDetailContent'
+import IDPDetailContent from 'components/pages/IDPDetail/IDPDetailContent.deprecated'
 import {
   Button,
   DialogActions,
