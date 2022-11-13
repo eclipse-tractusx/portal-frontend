@@ -18,14 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
 import CXLogo from '../../../assets/logo/cx-logo.svg'
 import CXLogoShort from '../../../assets/logo/cx-logo-short.svg'
 import CXLogoText from '../../../assets/logo/cx-logo-text.svg'
-import { Buffer } from 'buffer'
+import { BaseImage } from '../BaseImage'
 
 interface LogoProps {
-  variant?: 'standard' | 'short' | 'text'
+  variant?: 'standard' | 'short' | 'text' | 'gray'
   altText?: string
 }
 
@@ -46,23 +45,12 @@ export const Logo = ({
     case 'text':
       image = CXLogoText
       break
+    case 'gray':
+      image = LogoGrayData
+      break
     default:
       image = CXLogo
   }
 
-  const src = `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
-    'base64'
-  )}`
-
-  return (
-    <Box
-      component="img"
-      sx={{
-        maxWidth: '100%',
-      }}
-      src={src}
-      alt={altText}
-      {...props}
-    />
-  )
+  return <BaseImage image={image} altText={altText} {...props} />
 }

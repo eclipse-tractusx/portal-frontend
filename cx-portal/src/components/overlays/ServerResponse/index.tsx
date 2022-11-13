@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -26,7 +26,7 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 
-interface TechnicalUserAddOverlayProps {
+interface ServerResponseOverlayProps {
   title: string
   intro?: string
   dialogOpen: boolean
@@ -35,14 +35,14 @@ interface TechnicalUserAddOverlayProps {
   iconComponent?: JSX.Element
 }
 
-export const TechnicalUserAddResponseOverlay = ({
+export const ServerResponseOverlay = ({
   title,
   intro,
   dialogOpen,
   children,
   handleCallback,
   iconComponent,
-}: TechnicalUserAddOverlayProps) => {
+}: ServerResponseOverlayProps) => {
   const [open, setOpen] = useState<boolean>(dialogOpen)
 
   return (

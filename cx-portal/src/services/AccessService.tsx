@@ -42,7 +42,6 @@ import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
 import ServiceRequest from 'components/overlays/ServiceRequest'
-import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
 import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 import IDPDelete from 'components/overlays/IDPDelete'
@@ -119,8 +118,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddTechnicalUser />
     case OVERLAYS.DELETE_TECHUSER:
       return <DeleteTechnicalUser id={overlay.id} />
-    case OVERLAYS.IDP_DETAILS:
-      return <IDPDetailInfo id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
     case OVERLAYS.EDIT_APP_USER_ROLES:

@@ -28,11 +28,11 @@ import {
   useDeleteMyUserMutation,
 } from 'features/admin/userApiSlice'
 import { Typography } from 'cx-portal-shared-components'
-import { TechnicalUserAddResponseOverlay } from '../AddTechnicalUser/TechnicalUserAddResponseOverlay'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { useNavigate } from 'react-router-dom'
 import UserService from 'services/UserService'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { ServerResponseOverlay } from '../ServerResponse'
 
 export const ConfirmUserAction = ({
   id,
@@ -91,22 +91,24 @@ export const ConfirmUserAction = ({
         'content.usermanagement.suspendUserConfirm.errorDescription'
       ),
     },
-    admin: {
-      header: t('content.usermanagement.adminUserConfirm.header'),
+    ownUser: {
+      header: t('content.usermanagement.deleteOwnUserConfirm.header'),
       subHeader: t(
-        'content.usermanagement.adminUserConfirm.confirmTitle'
+        'content.usermanagement.deleteOwnUserConfirm.confirmTitle'
       ).replace('{userName}', ''),
-      subHeaderNote: t('content.usermanagement.adminUserConfirm.note'),
+      subHeaderNote: t('content.usermanagement.deleteOwnUserConfirm.note'),
       subHeaderDescription: t(
-        'content.usermanagement.adminUserConfirm.description'
+        'content.usermanagement.deleteOwnUserConfirm.description'
       ),
-      successTitle: t('content.usermanagement.adminUserConfirm.successTitle'),
+      successTitle: t(
+        'content.usermanagement.deleteOwnUserConfirm.successTitle'
+      ),
       successDescription: t(
-        'content.usermanagement.adminUserConfirm.successDescription'
+        'content.usermanagement.deleteOwnUserConfirm.successDescription'
       ),
-      errorTitle: t('content.usermanagement.adminUserConfirm.errorTitle'),
+      errorTitle: t('content.usermanagement.deleteOwnUserConfirm.errorTitle'),
       errorDescription: t(
-        'content.usermanagement.adminUserConfirm.errorDescription'
+        'content.usermanagement.deleteOwnUserConfirm.errorDescription'
       ),
     },
     resetPassword: {
@@ -140,7 +142,7 @@ export const ConfirmUserAction = ({
       } catch (err) {
         showErrorPopup()
       }
-    } else if (title === 'admin') {
+    } else if (title === 'ownUser') {
       try {
         await deleteMyUser(id).unwrap()
         showSuccessPopup()
@@ -163,6 +165,11 @@ export const ConfirmUserAction = ({
   const showSuccessPopup = () => {
     setResponse(true)
     showLoading(false)
+    if (title === 'ownUser') {
+      setTimeout(() => {
+        UserService.doLogout({ redirectUri: `${document.location.origin}/` })
+      }, 5000)
+    }
   }
 
   const showErrorPopup = () => {
@@ -175,7 +182,7 @@ export const ConfirmUserAction = ({
     if (!error) {
       if (title === 'user' || title === 'suspend') {
         navigate('/usermanagement')
-      } else if (title === 'admin') {
+      } else if (title === 'ownUser') {
         UserService.doLogout({ redirectUri: `${document.location.origin}/` })
       }
     }
@@ -202,17 +209,17 @@ export const ConfirmUserAction = ({
         />
       )}
       {response && (
-        <TechnicalUserAddResponseOverlay
+        <ServerResponseOverlay
           title={messageMap[title].successTitle}
           intro={messageMap[title].successDescription}
           dialogOpen={true}
           handleCallback={handleCallback}
         >
           <Typography variant="body2"></Typography>
-        </TechnicalUserAddResponseOverlay>
+        </ServerResponseOverlay>
       )}
       {error && (
-        <TechnicalUserAddResponseOverlay
+        <ServerResponseOverlay
           title={messageMap[title].errorTitle}
           intro={messageMap[title].errorDescription}
           dialogOpen={true}
@@ -222,7 +229,7 @@ export const ConfirmUserAction = ({
           handleCallback={handleCallback}
         >
           <Typography variant="body2"></Typography>
-        </TechnicalUserAddResponseOverlay>
+        </ServerResponseOverlay>
       )}
     </>
   )

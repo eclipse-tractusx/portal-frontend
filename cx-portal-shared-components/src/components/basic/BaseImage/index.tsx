@@ -18,32 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+import { Box } from '@mui/material'
+import { Buffer } from 'buffer'
 
-  .picture-with-text-section {
-    margin-top: -200px;
-  }
+interface BaseImageProps {
+  image: string
+  altText?: string
 }
 
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
+export const BaseImage = ({
+  image,
+  altText = '',
+  ...props
+}: BaseImageProps) => {
+  const src = image.trim().startsWith('<')
+    ? `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
+        'base64'
+      )}`
+    : image
 
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 25px;
-  }
+  return (
+    <Box
+      component="img"
+      sx={{
+        maxWidth: '100%',
+      }}
+      src={src}
+      alt={altText}
+      {...props}
+    />
+  )
 }

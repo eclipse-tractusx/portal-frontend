@@ -62,6 +62,10 @@ export const Patterns = {
     clientId: /^[a-zA-Z0-9-]*$/,
     clientSecret: /^[a-zA-Z0-9]*$/,
   },
+  connectors: {
+    NAME: /^[a-zA-Z0-9 @]{2,20}$/,
+    COUNTRY: /^[A-Z]{2}$/,
+  },
 }
 
 export const isID = (expr: string) => Patterns.ID.test(expr)
@@ -81,5 +85,8 @@ export const isURLOrEmpty = (expr: string) =>
   expr === '' || Patterns.URL.test(expr)
 export const isUUIDOrEmpty = (expr: string) =>
   expr === '' || Patterns.UUID.test(expr)
+export const isCName = (expr: string) => Patterns.connectors.NAME.test(expr)
+export const isCountryCode = (expr: string) =>
+  Patterns.connectors.COUNTRY.test(expr)
 
 export default Patterns

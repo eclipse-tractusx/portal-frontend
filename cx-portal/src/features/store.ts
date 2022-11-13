@@ -48,6 +48,7 @@ import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
 import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
 import { apiSlice as partnerNetworkPortalApiSlice } from './newPartnerNetwork/partnerNetworkPortalApiSlice'
+import { apiSlice as connectorApiSlice } from './connector/connectorApiSlice'
 
 export const reducers = {
   admin,
@@ -79,6 +80,7 @@ export const reducers = {
   [partnerNetworkApiSlice.reducerPath]: partnerNetworkApiSlice.reducer,
   [partnerNetworkPortalApiSlice.reducerPath]:
     partnerNetworkPortalApiSlice.reducer,
+  [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
 }
 
 export const store = configureStore({
@@ -97,7 +99,8 @@ export const store = configureStore({
       .concat(inviteApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)
       .concat(partnerNetworkApiSlice.middleware)
-      .concat(partnerNetworkPortalApiSlice.middleware),
+      .concat(partnerNetworkPortalApiSlice.middleware)
+      .concat(connectorApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>
