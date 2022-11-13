@@ -38,8 +38,6 @@ export const IDPDetailContent = ({
   idp: IdentityProvider
   onClose?: () => void
 }) => {
-  //return <pre>{JSON.stringify(idp, null, 2)}</pre>
-
   return (
     <div className="idp-detail-content">
       {onClose && (
