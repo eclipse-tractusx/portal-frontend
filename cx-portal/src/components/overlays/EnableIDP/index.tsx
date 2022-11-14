@@ -34,6 +34,7 @@ import {
   useAddUserIDPMutation,
   useUpdateUserIDPMutation,
   IdentityProviderUser,
+  useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
 import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
@@ -44,6 +45,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { data } = useFetchOwnUserDetailsQuery()
+  const idpData = useFetchIDPDetailQuery(id).data
   const [enableIdp] = useEnableIDPMutation()
   const [addUserIDP] = useAddUserIDPMutation()
   const [updateUserIDP] = useUpdateUserIDPMutation()
@@ -86,7 +88,9 @@ export const EnableIDP = ({ id }: { id: string }) => {
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.enableIdpHeadline')}
+        title={t('content.idpmanagement.enableIdpHeadline', {
+          idp: idpData?.displayName,
+        })}
         intro={t('content.idpmanagement.enableIdpSubheadline')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}

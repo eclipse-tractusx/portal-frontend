@@ -55,8 +55,10 @@ export const DisableIDP = ({ id }: { id: string }) => {
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('content.idpmanagement.enableIdpSuccessHeadline')}
-        intro={t('content.idpmanagement.enableIdpSuccessSubheadline')}
+        title={t('content.idpmanagement.disableIdpHeadline', {
+          idp: data?.displayName,
+        })}
+        intro={t('content.idpmanagement.disableIdpSubheadline')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
