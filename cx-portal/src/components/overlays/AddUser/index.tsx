@@ -56,6 +56,7 @@ export const AddUser = () => {
   const rolesToAdd = useSelector(rolesToAddSelector)
   const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
   const [activeTab, setActiveTab] = useState(0)
+  const [singleUserInputValid, setSingleUserInputValid] = useState(false)
 
   if (isSuccess) {
     dispatch(setAddUserSuccess(isSuccess))
@@ -85,6 +86,10 @@ export const AddUser = () => {
     newValue: number
   ) => {
     setActiveTab(newValue)
+  }
+
+  const singleUserInputValidFn = (value: boolean) => {
+    setSingleUserInputValid(value)
   }
 
   return (
@@ -118,7 +123,7 @@ export const AddUser = () => {
           />
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          <SingleUserContent />
+          <SingleUserContent checkInputValid={singleUserInputValidFn} />
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
           <MultipleUserContent />
@@ -135,7 +140,7 @@ export const AddUser = () => {
         </Button>
         <Button
           variant="contained"
-          disabled={usersToAdd.email ? false : true}
+          disabled={singleUserInputValid}
           onClick={handleConfirm}
         >
           {t('global.actions.confirm')}

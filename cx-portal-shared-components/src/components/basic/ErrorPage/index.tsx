@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Footer } from './components/Footer'
 import { ErrorDescription } from './components/ErrorDescription'
 import { ErrorActions } from './components/ErrorActions'
 import { ErrorImage } from './components/ErrorImage'
@@ -34,6 +33,7 @@ export interface ErrorPageProps {
   homeButtonTitle?: string
   onReloadClick?: React.MouseEventHandler
   onHomeClick?: React.MouseEventHandler
+  color?: 'color' | 'gray'
 }
 
 export const ErrorPage = ({
@@ -46,6 +46,7 @@ export const ErrorPage = ({
   homeButtonTitle,
   onReloadClick,
   onHomeClick,
+  color = 'gray',
 }: ErrorPageProps) => {
   const height = hasNavigation ? 'calc(100vh - 85px)' : '100vh'
   return (
@@ -53,45 +54,43 @@ export const ErrorPage = ({
       sx={{
         width: '100%',
         height: height,
-        marginTop: '0px',
-        backgroundColor: '#fff',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'row',
+        backgroundColor: '#F7F7F7',
       }}
     >
       <Box
         sx={{
-          width: 'max-content',
-          margin: `auto`,
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          margin: 'auto auto',
         }}
       >
-        <ErrorDescription
-          header={header}
-          title={title}
-          description={description}
-          additionalDescription={additionalDescription}
-        />
-        <ErrorActions
-          reloadButtonTitle={reloadButtonTitle}
-          homeButtonTitle={homeButtonTitle}
-          onReloadClick={onReloadClick}
-          onHomeClick={onHomeClick}
-        />
-
         <Box
           sx={{
-            float: 'right',
-            marginTop: '110px',
-            zIndex: 1,
-            position: 'relative',
+            minWidth: '400px',
           }}
         >
-          <ErrorImage />
+          <ErrorImage variant={color} />
+        </Box>
+        <Box>
+          <ErrorDescription
+            header={header}
+            title={title}
+            description={description}
+            additionalDescription={additionalDescription}
+          />
+          <ErrorActions
+            reloadButtonTitle={reloadButtonTitle}
+            homeButtonTitle={homeButtonTitle}
+            onReloadClick={onReloadClick}
+            onHomeClick={onHomeClick}
+          />
         </Box>
       </Box>
-
-      <Footer />
     </Box>
   )
 }

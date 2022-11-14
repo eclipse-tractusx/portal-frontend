@@ -13,6 +13,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App User Management - Confirmation and User Role Changes
 * Notifications
    * Design updates
+* Shared Components
+   * More versatile image component
+* Feature - User Management - fetch roles (api refactoring)
+* Bugfix - Add User Invite - Field Validations (FE)
+
 
 ## 0.7.0
 

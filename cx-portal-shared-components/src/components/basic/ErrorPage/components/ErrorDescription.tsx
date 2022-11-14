@@ -41,7 +41,7 @@ export const ErrorDescription = ({
             fontWeight: '600',
             marginBottom: '10px !important',
           }}
-          variant="h2"
+          variant="h3"
         >
           {header}
         </Typography>
