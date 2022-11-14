@@ -22,7 +22,10 @@ import dayjs from 'dayjs'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { useSetNotificationReadMutation } from 'features/notification/apiSlice'
-import { CXNotificationContent, NotificationType } from 'features/notification/types'
+import {
+  CXNotificationContent,
+  NotificationType,
+} from 'features/notification/types'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
@@ -132,7 +135,11 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   }
 }
 
-export default function NotificationItem({ item }: { item: CXNotificationContent }) {
+export default function NotificationItem({
+  item,
+}: {
+  item: CXNotificationContent
+}) {
   const { t } = useTranslation('notification')
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
