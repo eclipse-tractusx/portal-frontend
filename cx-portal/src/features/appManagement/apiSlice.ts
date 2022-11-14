@@ -111,14 +111,14 @@ export const apiSlice = createApi({
     }),
     addCreateApp: builder.mutation<void, CreateAppStep1Item>({
       query: (body: CreateAppStep1Item) => ({
-        url: `/api/Apps/createapp`,
+        url: `/api/apps/appreleaseprocess/createapp`,
         method: 'POST',
         body,
       }),
     }),
     addContractConsent: builder.mutation<void, any>({
       query: (body: any) => ({
-        url: `/api/Apps/createapp`,
+        url: `/api/apps/appreleaseprocess/createapp`,
         method: 'POST',
         body,
       }),
