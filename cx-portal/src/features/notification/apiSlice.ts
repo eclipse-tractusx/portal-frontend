@@ -29,7 +29,7 @@ export const apiSlice = createApi({
     getNotificationCount: builder.query<number, boolean>({
       query: (read) => `/api/notification/count?isRead=${read}`,
     }),
-    getNotifications: builder.query<CXNotification[], null>({
+    getNotifications: builder.query<CXNotification, null>({
       query: () => '/api/notification',
     }),
     setNotificationRead: builder.mutation<void, string>({

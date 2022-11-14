@@ -97,7 +97,11 @@ export default function AddAppUserRoles() {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={() => handleConfirm()} disabled={!user || roles.length <= 0}>
+        <Button
+          variant="contained"
+          onClick={() => handleConfirm()}
+          disabled={!user || roles.length <= 0}
+        >
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>
