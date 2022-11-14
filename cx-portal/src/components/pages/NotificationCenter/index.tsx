@@ -33,19 +33,10 @@ import './Notifications.scss'
 import { SearchInput, ViewSelector } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
 import SortOptionOverlay from './SortOptionOverlay'
-import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
-
-const NotificationGroupTitle = ({ label }: { label: string }) => {
-  const { t } = useTranslation()
-  const date = dayjs(label)
-  if (date.isToday()) return <>{t('global.date.today')}</>
-  if (date.isYesterday()) return <>{t('global.date.yesterday')}</>
-  return <>{date.fromNow()}</>
-}
 
 const NotificationGroup = ({
   label,
@@ -56,9 +47,6 @@ const NotificationGroup = ({
 }) => {
   return (
     <>
-      {/* <div className="divider">
-        <NotificationGroupTitle label={label} />
-      </div> */}
       <ul className="group">
         {items.map((item: CXContent) => (
           <NotificationItem key={item.id} item={item} />

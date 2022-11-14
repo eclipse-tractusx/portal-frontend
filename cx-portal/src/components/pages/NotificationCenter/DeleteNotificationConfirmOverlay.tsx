@@ -69,8 +69,7 @@ const DeleteNotificationConfirmOverlay = ({
         <Button
           color="primary"
           variant="text"
-          onClick={(e) => 
-            handleClose(e)}
+          onClick={(e) => handleClose(e)}
           size="medium"
           sx={{
             fontSize: '14px',
@@ -83,9 +82,7 @@ const DeleteNotificationConfirmOverlay = ({
         <Button
           color="error"
           variant="contained"
-          onClick={(e) => 
-            handleClose(e)
-          }
+          onClick={(e) => handleClose(e)}
           size="large"
           sx={{
             borderRadius: '8px',

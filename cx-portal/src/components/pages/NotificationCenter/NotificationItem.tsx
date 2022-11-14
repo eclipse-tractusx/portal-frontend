@@ -156,19 +156,19 @@ export default function NotificationItem({ item }: { item: CXContent }) {
 
   return (
     <>
-    {showDeleteModal && (
-            <DeleteNotificationConfirmOverlay
-              title="Delete Message"
-              intro="This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
-              handleClose={(e: { stopPropagation: () => void }) => {
-                setShowDeleteModal(false)
-                e.stopPropagation()
-              }}
-              handleCallback={() => {
-                //delete api call here
-              }}
-            />
-          )}
+      {showDeleteModal && (
+        <DeleteNotificationConfirmOverlay
+          title="Delete Message"
+          intro="This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+          handleClose={(e: { stopPropagation: () => void }) => {
+            setShowDeleteModal(false)
+            e.stopPropagation()
+          }}
+          handleCallback={() => {
+            //delete api call here
+          }}
+        />
+      )}
       <li
         style={{
           backgroundColor: item.isRead
@@ -234,7 +234,10 @@ export default function NotificationItem({ item }: { item: CXContent }) {
               {!open && <KeyboardArrowDownIcon sx={{ fontSize: 15 }} />}
               {open && <KeyboardArrowUpIcon sx={{ fontSize: 15 }} />}
             </div>
-            <div className="padding-l-5" onClick={()=> setShowDeleteModal(true)}>
+            <div
+              className="padding-l-5"
+              onClick={() => setShowDeleteModal(true)}
+            >
               <CloseIcon sx={{ fontSize: 15 }} />
             </div>
           </div>
