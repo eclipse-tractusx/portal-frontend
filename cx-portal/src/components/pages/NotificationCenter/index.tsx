@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
 import { useGetNotificationsQuery } from 'features/notification/apiSlice'
-import { CXContent } from 'features/notification/types'
+import { CXNotificationContent } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import NotificationItem from './NotificationItem'
 import { groupBy } from 'lodash'
@@ -43,12 +43,12 @@ const NotificationGroup = ({
   items,
 }: {
   label: string
-  items: CXContent[]
+  items: CXNotificationContent[]
 }) => {
   return (
     <>
       <ul className="group">
-        {items.map((item: CXContent) => (
+        {items.map((item: CXNotificationContent) => (
           <NotificationItem key={item.id} item={item} />
         ))}
       </ul>
@@ -111,7 +111,7 @@ export default function NotificationCenter() {
       ...item,
       contentParsed: item.content && JSON.parse(item.content),
     })),
-    (item: CXContent) => dayjs(item.created).format('YYYY-MM-DD')
+    (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
 
   return (
