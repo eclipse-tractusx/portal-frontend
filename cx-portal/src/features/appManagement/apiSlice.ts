@@ -135,7 +135,7 @@ export const apiSlice = createApi({
     }),
     submitapp: builder.mutation<any, string>({
       query: (appId) => ({
-        url: `/api/Apps/${appId}/submit`,
+        url: `/api/apps/appreleaseprocess/${appId}/submit`,
         method: 'PUT',
       }),
     }),
