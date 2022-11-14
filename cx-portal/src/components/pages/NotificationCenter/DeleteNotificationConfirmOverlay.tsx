@@ -19,9 +19,8 @@
  ********************************************************************************/
 
 import { Typography, Button } from 'cx-portal-shared-components'
-import { Box } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { Divider } from '@mui/material'
 import MuiDialogTitle from '@mui/material/DialogTitle'
 
 interface DeleteNotificationConfirmOverlayProps {
