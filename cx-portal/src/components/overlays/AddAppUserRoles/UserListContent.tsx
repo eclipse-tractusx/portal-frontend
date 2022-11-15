@@ -79,9 +79,8 @@ export default function UserListContent() {
           headerName: t('global.field.status'),
           flex: 2,
           renderCell: ({ value: status }) => {
-            const label = status ? 'active' : 'inactive'
             return (
-              <StatusTag color="label" label={t(`global.field.${label}`)} />
+              <StatusTag color="label" label={t(`global.field.${status}`)} />
             )
           },
         },
