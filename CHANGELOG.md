@@ -5,17 +5,33 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
-* Register connector
-    * Enable "Company as a Service" option. Modal updates
-    * Validation updates. FormFields added for "Company as a Service".
-    * Create & Delete API integration with flow
-* Bugfix - User Invite - New User Role preselected fix
-* Bugfix - App User Management - Confirmation and User Role Changes
-* Shared Components
-   * More versatile image component
-* Feature - User Management - fetch roles (api refactoring)
-* Bugfix - Add User Invite - Field Validations (FE)
+* ...
+* ...
 
+
+## 0.8.0
+
+### Change
+* Connector Registration
+   * Enable "Company as a Service" cennector registration via modal; connected to portal backend and SD Factory
+   * Input field pattern validation established
+   * Updated delete connector integration
+
+### Feature
+* User Management - user acount creation for portal connected to company role validation to reduce and validate available portal roles which the member company can assign (related to the company signed company role agreements)
+* User Account
+   * Enabled my user account deletion flow and backend integration
+   * Error and success overlay added for password reset button/logic
+   * Disabled "Suspend" user button
+
+### Technical Support
+* n/a
+
+### Bugfix
+* User Invite - error pattern validation integrated
+* Shared Components
+   * Image components updated & svg file loaded
+   * Drop-Down list
 
 ## 0.7.0
 
