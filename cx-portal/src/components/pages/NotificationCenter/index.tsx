@@ -91,17 +91,17 @@ export default function NotificationCenter() {
     },
     {
       buttonText: t('notification.sortOptions.app'),
-      buttonValue: t('notification.sortOptions.all'),
+      buttonValue: t('notification.sortOptions.app'),
       onButtonClick: setView,
     },
     {
       buttonText: t('notification.sortOptions.info'),
-      buttonValue: t('notification.sortOptions.all'),
+      buttonValue: t('notification.sortOptions.info'),
       onButtonClick: setView,
     },
     {
       buttonText: t('notification.sortOptions.withaction'),
-      buttonValue: t('notification.sortOptions.all'),
+      buttonValue: t('notification.sortOptions.withaction'),
       onButtonClick: setView,
     },
   ]
