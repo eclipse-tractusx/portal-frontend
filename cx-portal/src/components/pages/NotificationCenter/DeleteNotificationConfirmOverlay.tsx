@@ -22,6 +22,7 @@ import { Typography, Button } from 'cx-portal-shared-components'
 import { Box, Divider } from '@mui/material'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import MuiDialogTitle from '@mui/material/DialogTitle'
+import { useTranslation } from 'react-i18next'
 
 interface DeleteNotificationConfirmOverlayProps {
   title: string
@@ -36,6 +37,7 @@ const DeleteNotificationConfirmOverlay = ({
   handleClose,
   handleCallback,
 }: DeleteNotificationConfirmOverlayProps) => {
+  const { t } = useTranslation()
   return (
     <div className="deleteOverlay">
       <Box sx={{ textAlign: 'left' }}>
@@ -76,7 +78,7 @@ const DeleteNotificationConfirmOverlay = ({
             borderRadius: '8px',
           }}
         >
-          CANCEL
+          {t('notification.cancelButton')}
         </Button>
         <Button
           color="error"
@@ -88,7 +90,7 @@ const DeleteNotificationConfirmOverlay = ({
             fontSize: '14px',
           }}
         >
-          DELETE ALWAYS
+          {t('notification.deleteButton')}
         </Button>
       </div>
     </div>

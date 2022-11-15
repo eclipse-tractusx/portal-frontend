@@ -70,38 +70,38 @@ export default function NotificationCenter() {
 
   const sortOptions = [
     {
-      label: 'Newest First',
+      label: t('notification.sortOptions.new'),
       value: 'new',
     },
     {
-      label: 'Priority First',
+      label: t('notification.sortOptions.priority'),
       value: 'priority',
     },
     {
-      label: 'Unread First',
+      label: t('notification.sortOptions.unread'),
       value: 'unread',
     },
   ]
 
   const filterButtons = [
     {
-      buttonText: 'all',
-      buttonValue: 'all',
+      buttonText: t('notification.sortOptions.all'),
+      buttonValue: t('notification.sortOptions.all'),
       onButtonClick: setView,
     },
     {
-      buttonText: 'app only',
-      buttonValue: 'app only',
+      buttonText: t('notification.sortOptions.app'),
+      buttonValue: t('notification.sortOptions.all'),
       onButtonClick: setView,
     },
     {
-      buttonText: 'info only',
-      buttonValue: 'info only',
+      buttonText: t('notification.sortOptions.info'),
+      buttonValue: t('notification.sortOptions.all'),
       onButtonClick: setView,
     },
     {
-      buttonText: 'message with action required',
-      buttonValue: 'message with action required',
+      buttonText: t('notification.sortOptions.withaction'),
+      buttonValue: t('notification.sortOptions.all'),
       onButtonClick: setView,
     },
   ]
@@ -120,7 +120,7 @@ export default function NotificationCenter() {
       <section>
         <div className="searchContainer">
           <SearchInput
-            placeholder={'Enter your search value'}
+            placeholder={t('notification.search')}
             value={searchExpr}
             autoFocus={false}
             onChange={(e) => setSearchExpr(e.target.value)}

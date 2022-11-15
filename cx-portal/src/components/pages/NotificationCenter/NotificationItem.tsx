@@ -140,7 +140,7 @@ export default function NotificationItem({
 }: {
   item: CXNotificationContent
 }) {
-  const { t } = useTranslation('notification')
+  const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
@@ -165,8 +165,8 @@ export default function NotificationItem({
     <>
       {showDeleteModal && (
         <DeleteNotificationConfirmOverlay
-          title="Delete Message"
-          intro="This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+          title={t('notification.deleteModal.title')}
+          intro={t('notification.deleteModal.intro')}
           handleClose={(e: { stopPropagation: () => void }) => {
             setShowDeleteModal(false)
             e.stopPropagation()
@@ -210,7 +210,7 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`${item.typeId}.title`)}
+              {t(`${item.typeId}`)}
             </Typography>
             {open && (
               <div className="content">
@@ -233,7 +233,7 @@ export default function NotificationItem({
                 fontSize: '11px',
               }}
             >
-              {open ? 'Your action is required' : ''}
+              {open ? t('notification.actionRequired') : ''}
             </Typography>
           </div>
           <div className="lastSection">
@@ -243,7 +243,10 @@ export default function NotificationItem({
             </div>
             <div
               className="padding-l-5"
-              onClick={() => setShowDeleteModal(true)}
+              onClick={(e) => {
+                setShowDeleteModal(true)
+                e.stopPropagation()
+              }}
             >
               <CloseIcon sx={{ fontSize: 15 }} />
             </div>
