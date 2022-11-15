@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 export { Alert } from './basic/Alert'
+export { BaseImage } from './basic/BaseImage'
 export { Button } from './basic/Button'
 export { Checkbox } from './basic/Checkbox'
 export { CategoryDivider } from './basic/CategoryDivider'

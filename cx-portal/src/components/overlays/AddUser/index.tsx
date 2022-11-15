@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -47,6 +47,7 @@ import {
   setAddUserSuccess,
   useAddTenantUsersMutation,
 } from 'features/admin/userApiSlice'
+import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
 export const AddUser = () => {
   const { t } = useTranslation()
@@ -55,6 +56,7 @@ export const AddUser = () => {
   const rolesToAdd = useSelector(rolesToAddSelector)
   const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
   const [activeTab, setActiveTab] = useState(0)
+  const [singleUserInputValid, setSingleUserInputValid] = useState(false)
 
   if (isSuccess) {
     dispatch(setAddUserSuccess(isSuccess))
@@ -65,6 +67,10 @@ export const AddUser = () => {
     dispatch(setAddUserError(isError))
     dispatch(closeOverlay())
   }
+
+  useEffect(() => {
+    dispatch(setRolesToAdd([]))
+  }, [dispatch])
 
   const handleConfirm = async () => {
     dispatch(setAddUserSuccess(false))
@@ -80,6 +86,10 @@ export const AddUser = () => {
     newValue: number
   ) => {
     setActiveTab(newValue)
+  }
+
+  const singleUserInputValidFn = (value: boolean) => {
+    setSingleUserInputValid(value)
   }
 
   return (
@@ -113,7 +123,7 @@ export const AddUser = () => {
           />
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          <SingleUserContent />
+          <SingleUserContent checkInputValid={singleUserInputValidFn} />
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
           <MultipleUserContent />
@@ -130,7 +140,7 @@ export const AddUser = () => {
         </Button>
         <Button
           variant="contained"
-          disabled={usersToAdd.email ? false : true}
+          disabled={singleUserInputValid}
           onClick={handleConfirm}
         >
           {t('global.actions.confirm')}

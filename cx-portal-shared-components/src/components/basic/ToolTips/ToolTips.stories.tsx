@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,32 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+import { Box } from '@mui/material'
+import { ComponentStory } from '@storybook/react'
+import { Tooltips as Component } from '.'
+import { Button } from '../Button'
 
-  .picture-with-text-section {
-    margin-top: -200px;
-  }
+export default {
+  title: 'Tooltips',
+  component: Component,
 }
 
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Box
+    sx={{
+      margin: '100px',
+    }}
+  >
+    <Component {...args} />
+  </Box>
+)
 
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 25px;
-  }
+export const Tooltips = Template.bind({})
+Tooltips.args = {
+  tooltipPlacement: 'bottom-start',
+  tooltipText: 'Action is pending',
+  children: (
+    <span>
+      <Button color="primary">Text</Button>
+    </span>
+  ),
 }

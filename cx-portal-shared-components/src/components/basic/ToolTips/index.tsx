@@ -76,7 +76,7 @@ export const Tooltips = ({
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: backgroundColor || theme.palette.background.background14,
       color: textColor || theme.palette.common.white,
-      padding: 25,
+      padding: 15,
       maxWidth: 300,
       fontSize: '14px',
       lineHeight: '20px',

@@ -9,6 +9,30 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * ...
 
 
+## 0.8.0
+
+### Change
+* Connector Registration
+   * Enable "Company as a Service" cennector registration via modal; connected to portal backend and SD Factory
+   * Input field pattern validation established
+   * Updated delete connector integration
+
+### Feature
+* User Management - user acount creation for portal connected to company role validation to reduce and validate available portal roles which the member company can assign (related to the company signed company role agreements)
+* User Account
+   * Enabled my user account deletion flow and backend integration
+   * Error and success overlay added for password reset button/logic
+   * Disabled "Suspend" user button
+
+### Technical Support
+* n/a
+
+### Bugfix
+* User Invite - error pattern validation integrated
+* Shared Components
+   * Image components updated & svg file loaded
+   * Drop-Down list
+
 ## 0.7.0
 
 ### Change
