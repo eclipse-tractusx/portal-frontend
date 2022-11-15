@@ -88,11 +88,7 @@ export const Table = ({
   }
 
   const handleOnCellClick = (params: any) => {
-    if (params.value === false) {
-      onSelection && onSelection([params.row.companyUserId]) //cell get checked
-    } else {
-      onSelection && onSelection(['']) //cell get unchecked
-    }
+    onSelection && onSelection([params.value === false ? params.row.companyUserId : ''])
   }
 
   const toolbarView = () => {
