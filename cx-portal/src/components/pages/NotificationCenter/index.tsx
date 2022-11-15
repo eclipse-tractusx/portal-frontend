@@ -32,7 +32,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
 import { SearchInput, ViewSelector } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
-import SortOptionOverlay from './SortOptionOverlay'
+import { SortOption } from 'components/shared/basic/SortOption'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -134,7 +134,7 @@ export default function NotificationCenter() {
             <SortIcon sx={{ fontSize: 20, color: '#939393' }} />
           </div>
           {showModal && (
-            <SortOptionOverlay
+            <SortOption
               selectedOption={sortOption}
               setSortOption={(value: string) => {
                 setSortOption(value)
