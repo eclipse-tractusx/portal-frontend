@@ -21,7 +21,10 @@
 import dayjs from 'dayjs'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { useSetNotificationReadMutation } from 'features/notification/apiSlice'
+import {
+  useDeleteNotificationMutation,
+  useSetNotificationReadMutation,
+} from 'features/notification/apiSlice'
 import {
   CXNotificationContent,
   NotificationType,
@@ -143,8 +146,9 @@ export default function NotificationItem({
   const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
+  const [deleteNotification] = useDeleteNotificationMutation()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
-
+  const [loading, setLoading] = useState<boolean>(false)
   const setRead = async (id: string) => {
     try {
       await setNotificationRead(id)
@@ -161,6 +165,12 @@ export default function NotificationItem({
     setOpen(nextState)
   }
 
+  const onDelete = async () => {
+    setLoading(true)
+    await deleteNotification(item.id).unwrap()
+    setShowDeleteModal(false)
+  }
+
   return (
     <>
       {showDeleteModal && (
@@ -171,9 +181,8 @@ export default function NotificationItem({
             setShowDeleteModal(false)
             e.stopPropagation()
           }}
-          handleCallback={() => {
-            //delete api call here
-          }}
+          handleCallback={() => onDelete()}
+          loading={loading}
         />
       )}
       <li

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Button } from 'cx-portal-shared-components'
+import { Typography, Button, CircleProgress } from 'cx-portal-shared-components'
 import { Box, Divider } from '@mui/material'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import MuiDialogTitle from '@mui/material/DialogTitle'
@@ -28,7 +28,8 @@ interface DeleteNotificationConfirmOverlayProps {
   title: string
   intro: string
   handleClose: any
-  handleCallback?: () => void
+  handleCallback: () => void
+  loading: boolean
 }
 
 const DeleteNotificationConfirmOverlay = ({
@@ -36,6 +37,7 @@ const DeleteNotificationConfirmOverlay = ({
   intro,
   handleClose,
   handleCallback,
+  loading,
 }: DeleteNotificationConfirmOverlayProps) => {
   const { t } = useTranslation()
   return (
@@ -80,18 +82,38 @@ const DeleteNotificationConfirmOverlay = ({
         >
           {t('notification.cancelButton')}
         </Button>
-        <Button
-          color="error"
-          variant="contained"
-          onClick={(e) => handleClose(e)}
-          size="large"
-          sx={{
-            borderRadius: '8px',
-            fontSize: '14px',
-          }}
-        >
-          {t('notification.deleteButton')}
-        </Button>
+        {!loading && (
+          <Button
+            color="error"
+            variant="contained"
+            onClick={() => handleCallback()}
+            size="large"
+            sx={{
+              borderRadius: '8px',
+              fontSize: '14px',
+            }}
+          >
+            {t('notification.deleteButton')}
+          </Button>
+        )}
+        {loading && (
+          <Box
+            sx={{
+              width: '110px',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <CircleProgress
+              size={40}
+              step={1}
+              interval={0.1}
+              colorVariant={'primary'}
+              variant={'indeterminate'}
+              thickness={8}
+            />
+          </Box>
+        )}
       </div>
     </div>
   )
