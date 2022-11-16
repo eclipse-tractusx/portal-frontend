@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import './styles.scss'
+import { Typography } from '../Typography'
 
 export const SortOption = ({
   sortOptions,
@@ -35,35 +34,42 @@ export const SortOption = ({
   return (
     <>
       {show && (
-        <div className="sortSection">
-          <ul>
-            {sortOptions.map((entry: any) => (
-              <li
-                key={entry.value}
-                onClick={() => {
-                  setSortOption(entry.value)
-                }}
-                style={{
-                  backgroundColor:
-                    selectedOption === entry.value
-                      ? 'rgba(15, 113, 203, 0.05)'
-                      : 'transparent',
+        <ul
+          style={{
+            padding: '8px',
+          }}
+        >
+          {sortOptions.map((entry: any) => (
+            <li
+              key={entry.value}
+              onClick={() => {
+                setSortOption(entry.value)
+              }}
+              style={{
+                backgroundColor:
+                  selectedOption === entry.value
+                    ? 'rgba(15, 113, 203, 0.05)'
+                    : 'transparent',
+                padding: '17px',
+                width: '152px',
+                height: '52px',
+                borderRadius: '10px',
+                cursor: 'pointer',
+              }}
+            >
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  color: selectedOption === entry.value ? '#0D55AF' : '#000',
                 }}
               >
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    color: selectedOption === entry.value ? '#0D55AF' : '#000',
-                  }}
-                >
-                  {entry.label}
-                </Typography>
-              </li>
-            ))}
-          </ul>
-        </div>
+                {entry.label}
+              </Typography>
+            </li>
+          ))}
+        </ul>
       )}
     </>
   )

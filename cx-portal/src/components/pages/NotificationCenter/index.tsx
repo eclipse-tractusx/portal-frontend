@@ -33,9 +33,12 @@ import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
-import { SearchInput, ViewSelector } from 'cx-portal-shared-components'
+import {
+  SearchInput,
+  ViewSelector,
+  SortOption,
+} from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
-import { SortOption } from 'components/shared/basic/SortOption'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -152,10 +155,7 @@ export default function NotificationCenter() {
             autoFocus={false}
             onChange={(e) => setSearchExpr(e.target.value)}
           />
-          <div
-            className="iconSection"
-            onMouseEnter={() => setShowModal(true)}
-          >
+          <div className="iconSection" onMouseEnter={() => setShowModal(true)}>
             <SortIcon
               sx={{
                 fontSize: 20,
@@ -164,15 +164,17 @@ export default function NotificationCenter() {
               }}
             />
           </div>
-          <SortOption
-            show={showModal}
-            selectedOption={sortOption}
-            setSortOption={(value: string) => {
-              setSortOption(value)
-              setShowModal(!showModal)
-            }}
-            sortOptions={sortOptions}
-          />
+          <div className="sortSection">
+            <SortOption
+              show={showModal}
+              selectedOption={sortOption}
+              setSortOption={(value: string) => {
+                setSortOption(value)
+                setShowModal(!showModal)
+              }}
+              sortOptions={sortOptions}
+            />
+          </div>
         </div>
         <div className="filterSection">
           <ViewSelector activeView={selected} views={filterButtons} />
