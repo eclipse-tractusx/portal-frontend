@@ -42,10 +42,10 @@ export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
+  const [selectedAgreementsIds, setSelectedAgreementsIds] = useState<string[]>([])
 
   const { data } = useFetchServiceQuery(id ?? '')
-  const { data: agreements } = useFetchAgreementsQuery(id ?? '')
+  const { data: serviceAgreements } = useFetchAgreementsQuery(id ?? '')
   const [addSubscribeService, { isSuccess }] = useAddSubscribeServiceMutation()
 
   if (isSuccess) {
@@ -53,40 +53,40 @@ export default function ServiceRequest({ id }: { id: string }) {
     dispatch(closeOverlay())
   }
 
-  const handleConfirm = async (id: string) => {
+  const handleConfirmService = async (id: string) => {
     try {
-      const data = agreements?.map((agreement) => {
+      const subscriptionData = serviceAgreements?.map((agreement) => {
         return {
           agreementId: agreement.agreementId,
           consentStatusId:
-            checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
+            selectedAgreementsIds.indexOf(agreement.agreementId) >= 0
               ? 'ACTIVE'
               : 'INACTIVE',
         }
       })
-      data && addSubscribeService({ serviceId: id, body: data }).unwrap()
+      subscriptionData && addSubscribeService({ serviceId: id, body: subscriptionData }).unwrap()
     } catch (err) {
       console.log('error', err)
     }
   }
 
-  const handleCheckedAgreement = (
+  const handleSelectedAgreement = (
     checked: boolean,
     agreement: AgreementRequest
   ) => {
     if (checked) {
-      checkedAgreementsIds.indexOf(agreement.agreementId) <= 0 &&
-        setCheckedAgreementsIds([
-          ...checkedAgreementsIds,
+      selectedAgreementsIds.indexOf(agreement.agreementId) <= 0 &&
+        setSelectedAgreementsIds([
+          ...selectedAgreementsIds,
           agreement.agreementId,
         ])
     } else {
       const index =
-        checkedAgreementsIds &&
-        checkedAgreementsIds.indexOf(agreement.agreementId)
+        selectedAgreementsIds &&
+        selectedAgreementsIds.indexOf(agreement.agreementId)
       if (index > -1) {
-        checkedAgreementsIds.splice(index, 1)
-        setCheckedAgreementsIds([...checkedAgreementsIds])
+        selectedAgreementsIds.splice(index, 1)
+        setSelectedAgreementsIds([...selectedAgreementsIds])
       }
     }
   }
@@ -109,15 +109,15 @@ export default function ServiceRequest({ id }: { id: string }) {
             )}
         </Typography>
         <ul className="agreements-list">
-          {agreements &&
-            agreements.map((agreement, index) => (
+          {serviceAgreements &&
+            serviceAgreements.map((agreement, index) => (
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
                   onChange={(e) =>
-                    handleCheckedAgreement(e.target.checked, agreement)
+                    handleSelectedAgreement(e.target.checked, agreement)
                   }
-                  onFocusVisible={function noRefCheck() {}}
+                  onFocusVisible={function noRefCheck() { }}
                 />
               </li>
             ))}
@@ -130,10 +130,10 @@ export default function ServiceRequest({ id }: { id: string }) {
         </Button>
         <Button
           variant="contained"
-          onClick={() => handleConfirm(id)}
+          onClick={() => handleConfirmService(id)}
           disabled={
-            checkedAgreementsIds.length > 0 ||
-            (agreements && agreements.length <= 0)
+            selectedAgreementsIds.length > 0 ||
+              (serviceAgreements && serviceAgreements.length <= 0)
               ? false
               : true
           }

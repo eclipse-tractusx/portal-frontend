@@ -53,7 +53,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
     dispatch(closeOverlay())
   }
 
-  const handleConfirm = async (id: string) => {
+  const handleConfirmApp = async (id: string) => {
     try {
       const data = agreements?.map((agreement) => {
         return {
@@ -141,7 +141,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
         </Button>
         <Button
           variant="contained"
-          onClick={() => handleConfirm(id)}
+          onClick={() => handleConfirmApp(id)}
           disabled={
             checkedAgreementsIds.length > 0 ||
             (agreements && agreements.length <= 0)
