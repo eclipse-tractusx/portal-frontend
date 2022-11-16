@@ -23,11 +23,15 @@ import {
   DialogHeader,
   Button,
   Typography,
+  Checkbox,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 import {
+  AgreementRequest,
   useAddSubscribeAppMutation,
+  useFetchAgreementsQuery,
   useFetchAppDetailsQuery,
 } from 'features/apps/apiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
@@ -39,18 +43,51 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
   const dispatch = useDispatch()
 
   const { data } = useFetchAppDetailsQuery(id ?? '')
+  const { data: agreements } = useFetchAgreementsQuery(id ?? '')
   const [addSubscribeApp, { isSuccess }] = useAddSubscribeAppMutation()
+
+  const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
 
   if (isSuccess) {
     dispatch(setSuccessType(true))
     dispatch(closeOverlay())
   }
 
-  const handleConfirm = async (id: string) => {
+  const handleConfirmApp = async (id: string) => {
     try {
-      addSubscribeApp(id).unwrap()
+      const data = agreements?.map((agreement) => {
+        return {
+          agreementId: agreement.agreementId,
+          consentStatusId:
+            checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
+              ? 'ACTIVE'
+              : 'INACTIVE',
+        }
+      })
+      data && addSubscribeApp({ appId: id, body: data }).unwrap()
     } catch (err) {
       console.log('error', err)
+    }
+  }
+
+  const handleCheckedAgreement = (
+    checked: boolean,
+    agreement: AgreementRequest
+  ) => {
+    if (checked) {
+      checkedAgreementsIds.indexOf(agreement.agreementId) <= 0 &&
+        setCheckedAgreementsIds([
+          ...checkedAgreementsIds,
+          agreement.agreementId,
+        ])
+    } else {
+      const index =
+        checkedAgreementsIds &&
+        checkedAgreementsIds.indexOf(agreement.agreementId)
+      if (index > -1) {
+        checkedAgreementsIds.splice(index, 1)
+        setCheckedAgreementsIds([...checkedAgreementsIds])
+      }
     }
   }
 
@@ -82,13 +119,36 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           {data &&
             t('content.appMarketplace.desc4').replace('{appName}', data.title)}
         </Typography>
+        <ul className="agreements-list">
+          {agreements &&
+            agreements.map((agreement, index) => (
+              <li key={index}>
+                <Checkbox
+                  label={agreement.name}
+                  onChange={(e) =>
+                    handleCheckedAgreement(e.target.checked, agreement)
+                  }
+                  onFocusVisible={function noRefCheck() {}}
+                />
+              </li>
+            ))}
+        </ul>
       </DialogContent>
 
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={() => handleConfirm(id)}>
+        <Button
+          variant="contained"
+          onClick={() => handleConfirmApp(id)}
+          disabled={
+            checkedAgreementsIds.length > 0 ||
+            (agreements && agreements.length <= 0)
+              ? false
+              : true
+          }
+        >
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

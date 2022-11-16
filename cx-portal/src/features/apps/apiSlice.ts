@@ -99,6 +99,21 @@ export type AppDetailsState = {
   error: string
 }
 
+export type AgreementRequest = {
+  agreementId: string
+  name: string
+}
+
+export interface SubscriptionRequestBody {
+  agreementId: string
+  consentStatusId: string
+}
+
+export type SubscriptionAppRequest = {
+  appId: string
+  body: SubscriptionRequestBody[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -130,11 +145,15 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    addSubscribeApp: builder.mutation<void, string>({
-      query: (appId) => ({
-        url: `/api/apps/${appId}/subscribe`,
+    addSubscribeApp: builder.mutation<void, SubscriptionAppRequest>({
+      query: (data: SubscriptionAppRequest) => ({
+        url: `/api/apps/${data.appId}/subscribe-consent`,
         method: 'POST',
+        body: data.body,
       }),
+    }),
+    fetchAgreements: builder.query<AgreementRequest[], string>({
+      query: (appId) => `/api/apps/appAgreementData/${appId}`,
     }),
   }),
 })
@@ -148,4 +167,5 @@ export const {
   useFetchBusinessAppsQuery,
   useFetchDocumentByIdMutation,
   useAddSubscribeAppMutation,
+  useFetchAgreementsQuery,
 } = apiSlice

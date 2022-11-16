@@ -2,6 +2,9 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+### In Progress
+* Feature - Apps & Service Subscription: include consent inside subscription
+
 
 ### Unreleased
 * Notifications
