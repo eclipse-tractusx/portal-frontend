@@ -35,6 +35,7 @@ export const SortOption = ({
       <ul>
         {sortOptions.map((entry: any) => (
           <li
+            key={entry.value}
             onClick={() => {
               setSortOption(entry.value)
             }}
