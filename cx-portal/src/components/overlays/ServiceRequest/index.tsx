@@ -42,7 +42,9 @@ export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const [selectedAgreementsIds, setSelectedAgreementsIds] = useState<string[]>([])
+  const [selectedAgreementsIds, setSelectedAgreementsIds] = useState<string[]>(
+    []
+  )
 
   const { data } = useFetchServiceQuery(id ?? '')
   const { data: serviceAgreements } = useFetchAgreementsQuery(id ?? '')
@@ -64,7 +66,8 @@ export default function ServiceRequest({ id }: { id: string }) {
               : 'INACTIVE',
         }
       })
-      subscriptionData && addSubscribeService({ serviceId: id, body: subscriptionData }).unwrap()
+      subscriptionData &&
+        addSubscribeService({ serviceId: id, body: subscriptionData }).unwrap()
     } catch (err) {
       console.log('error', err)
     }
@@ -117,7 +120,7 @@ export default function ServiceRequest({ id }: { id: string }) {
                   onChange={(e) =>
                     handleSelectedAgreement(e.target.checked, agreement)
                   }
-                  onFocusVisible={function noRefCheck() { }}
+                  onFocusVisible={function noRefCheck() {}}
                 />
               </li>
             ))}
@@ -133,7 +136,7 @@ export default function ServiceRequest({ id }: { id: string }) {
           onClick={() => handleConfirmService(id)}
           disabled={
             selectedAgreementsIds.length > 0 ||
-              (serviceAgreements && serviceAgreements.length <= 0)
+            (serviceAgreements && serviceAgreements.length <= 0)
               ? false
               : true
           }
