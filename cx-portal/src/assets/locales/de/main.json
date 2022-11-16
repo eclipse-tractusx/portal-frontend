@@ -895,6 +895,25 @@
       "link2Label": "Identity User Management"
     }
   },
+  "notification": {
+    "search": "Enter your search value",
+    "cancelButton": "CANCEL",
+    "deleteButton": "DELETE ALWAYS",
+    "actionRequired": "Your action is required",
+    "deleteModal": {
+      "title": "Delete Message",
+      "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+    },
+    "sortOptions": {
+      "new": "Newest First",
+      "priority": "Priority First",
+      "unread": "Unread First",
+      "all": "all",
+      "app": "app only",
+      "info": "info only",
+      "withaction": "message with action required"
+    }
+  },
   "global": {
     "field": {
       "first": "Name",

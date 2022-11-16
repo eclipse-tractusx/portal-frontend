@@ -52,10 +52,8 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-
-    &:hover {
-      background-color: #f8f8f8;
-    }
+    align-items: baseline;
+    padding: 10px;
   }
 
   .created {
@@ -94,7 +92,7 @@
   }
 
   .content {
-    padding: 8px 12px 0px 64px;
+    padding: 20px 12px 0px 10px;
     font-size: 16px;
     color: #444;
 
@@ -120,5 +118,113 @@
 
   .links > a {
     margin-right: 20px;
+  }
+
+  .padding-r-5 {
+    padding-right: 5px;
+  }
+
+  .padding-l-5 {
+    padding-left: 5px;
+  }
+
+  .firstSection {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    width: 15%;
+  }
+
+  .middleSection {
+    flex-direction: column;
+    width: 50%;
+  }
+
+  .lastSection {
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .actionButton {
+    padding: 6px 12px 6px 6px;
+    text-align: center;
+    border-radius: 6px;
+    width: 20%;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .searchContainer .MuiTextField-root {
+    margin: auto;
+    width: 100%;
+  }
+
+  .searchContainer .MuiBox-root {
+    width: 40%;
+  }
+
+  .searchContainer .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #fdb943 !important;
+    border-width: 2px;
+    border-radius: 16px;
+  }
+
+  .searchContainer .MuiOutlinedInput-input {
+    font-size: 18px;
+  }
+
+  .searchContainer .MuiOutlinedInput-root {
+    padding: 12px 20px 12px 20px !important;
+    height: 52px;
+  }
+
+  .iconSection {
+    margin-left: 30px;
+    cursor: pointer;
+  }
+
+  .filterSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 100px;
+  }
+
+  .filterSection .chipContainer {
+    padding-left: 20px;
+  }
+
+  .deleteOverlay {
+    width: 30%;
+    position: absolute;
+    top: 100%;
+    left: 35%;
+    margin: auto;
+    background: #f9f9f9;
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+    border-radius: 16px;
+    z-index: 9;
+  }
+
+  .modalButton {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-bottom: 24px;
+    padding-right: 32px;
+  }
+
+  .titleIcon {
+    padding-right: 8px;
+    padding-top: 4px;
   }
 }

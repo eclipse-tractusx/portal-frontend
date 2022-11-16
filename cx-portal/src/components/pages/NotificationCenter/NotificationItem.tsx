@@ -22,13 +22,22 @@ import dayjs from 'dayjs'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { useSetNotificationReadMutation } from 'features/notification/apiSlice'
-import { CXNotification, NotificationType } from 'features/notification/types'
+import {
+  CXNotificationContent,
+  NotificationType,
+} from 'features/notification/types'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
+import { Typography } from 'cx-portal-shared-components'
+import LabelImportantIcon from '@mui/icons-material/LabelImportant'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import CloseIcon from '@mui/icons-material/Close'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay'
 
 dayjs.extend(relativeTime)
 
@@ -47,19 +56,11 @@ const NameLink = ({
   return <NavLink to={`/${path}/${id}`}>{data ? renderName(data) : id}</NavLink>
 }
 
-const getDueState = (dueDate?: dayjs.Dayjs) => {
-  if (!dueDate) return ''
-  const today = dayjs()
-  if (dueDate.isBefore(today)) return 'over'
-  if (dueDate.isBefore(today.add(8, 'days'))) return 'soon'
-  return 'okay'
-}
-
 const NotificationContent = ({
   item,
   navlinks,
 }: {
-  item: CXNotification
+  item: CXNotificationContent
   navlinks?: string[]
 }) => {
   const { t } = useTranslation('notification')
@@ -67,16 +68,9 @@ const NotificationContent = ({
   const userId = item.contentParsed?.userId
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
-  const dueDate = dayjs(item.dueDate)
-  const dueState = getDueState(dueDate)
 
   return (
     <>
-      {dueDate && (
-        <div className={`due ${dueState}`} style={{ marginBottom: '8px' }}>
-          {t('due')} {dueDate.format('YYYY-MM-DD')} ({dueDate.fromNow()})
-        </div>
-      )}
       <div>
         <Trans
           ns="notification"
@@ -121,7 +115,7 @@ const NotificationContent = ({
   )
 }
 
-const NotificationConfig = ({ item }: { item: CXNotification }) => {
+const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
     case NotificationType.APP_SUBSCRIPTION_REQUEST:
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
@@ -141,12 +135,15 @@ const NotificationConfig = ({ item }: { item: CXNotification }) => {
   }
 }
 
-export default function NotificationItem({ item }: { item: CXNotification }) {
-  const { t } = useTranslation('notification')
+export default function NotificationItem({
+  item,
+}: {
+  item: CXNotificationContent
+}) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
-  const dueDate = dayjs(item.dueDate)
-  const dueState = getDueState(dueDate)
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
 
   const setRead = async (id: string) => {
     try {
@@ -165,19 +162,97 @@ export default function NotificationItem({ item }: { item: CXNotification }) {
   }
 
   return (
-    <li>
-      <div onClick={toggle} className="item">
-        <div className="created">{dayjs(item.created).format('HH:mm')}</div>
-        <div className={`title ${item.isRead ? 'read' : 'unread'}`}>
-          {t(`${item.typeId}.title`)}
-        </div>
-        {item.dueDate && <div className={`due ${dueState}`}>!</div>}
-      </div>
-      {open && (
-        <div className="content">
-          <NotificationConfig item={item} />
-        </div>
+    <>
+      {showDeleteModal && (
+        <DeleteNotificationConfirmOverlay
+          title={t('notification.deleteModal.title')}
+          intro={t('notification.deleteModal.intro')}
+          handleClose={(e: { stopPropagation: () => void }) => {
+            setShowDeleteModal(false)
+            e.stopPropagation()
+          }}
+          handleCallback={() => {
+            //delete api call here
+          }}
+        />
       )}
-    </li>
+      <li
+        style={{
+          backgroundColor: item.isRead
+            ? 'rgba(255, 255, 255, 1)'
+            : 'rgba(15, 113, 203, 0.05)',
+          borderColor: open ? '#FDB943' : 'transparent',
+        }}
+      >
+        <div onClick={toggle} className="item">
+          <div className="firstSection">
+            <LabelImportantIcon
+              sx={{ fontSize: 15, color: open ? '#FDB943' : 'transparent' }}
+            />
+            <Typography
+              variant="h1"
+              style={{
+                fontWeight: 600,
+                marginLeft: '10px',
+                fontSize: '11px',
+              }}
+            >
+              {dayjs(item.created).format('DD.MM.YY HH:mm')}
+            </Typography>
+          </div>
+          <div className="middleSection">
+            <Typography
+              variant="h1"
+              style={{
+                fontWeight: 600,
+                marginLeft: '10px',
+                fontSize: '14px',
+              }}
+            >
+              {' '}
+              {t(`${item.typeId}`)}
+            </Typography>
+            {open && (
+              <div className="content">
+                <NotificationConfig item={item} />
+              </div>
+            )}
+          </div>
+
+          <div
+            className="actionButton"
+            style={{
+              backgroundColor: open ? '#FDB943' : 'transparent',
+            }}
+          >
+            <Typography
+              variant="h1"
+              style={{
+                fontWeight: 600,
+                marginLeft: '10px',
+                fontSize: '11px',
+              }}
+            >
+              {open ? t('notification.actionRequired') : ''}
+            </Typography>
+          </div>
+          <div className="lastSection">
+            <div className="padding-r-5">
+              {!open && <KeyboardArrowDownIcon sx={{ fontSize: 15 }} />}
+              {open && <KeyboardArrowUpIcon sx={{ fontSize: 15 }} />}
+            </div>
+            <div
+              className="padding-l-5"
+              onClick={(e) => {
+                setShowDeleteModal(true)
+                e.stopPropagation()
+              }}
+            >
+              <CloseIcon sx={{ fontSize: 15 }} />
+            </div>
+          </div>
+        </div>
+      </li>
+    </>
   )
 }

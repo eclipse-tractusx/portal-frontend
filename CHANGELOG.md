@@ -4,10 +4,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-
-* ...
-* ...
-
+* Notifications
+   * Design updates
 
 ## 0.8.0
 

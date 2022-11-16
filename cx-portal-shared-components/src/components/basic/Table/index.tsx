@@ -88,7 +88,8 @@ export const Table = ({
   }
 
   const handleOnCellClick = (params: any) => {
-    onSelection && onSelection([params.value === false ? params.row.companyUserId : ''])
+    onSelection &&
+      onSelection([params.value === false ? params.row.companyUserId : ''])
   }
 
   const toolbarView = () => {
