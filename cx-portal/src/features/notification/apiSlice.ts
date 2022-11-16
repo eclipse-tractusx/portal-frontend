@@ -38,6 +38,12 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    deleteNotification: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/api/notification/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 })
 
@@ -45,4 +51,5 @@ export const {
   useGetNotificationCountQuery,
   useGetNotificationsQuery,
   useSetNotificationReadMutation,
+  useDeleteNotificationMutation,
 } = apiSlice
