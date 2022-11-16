@@ -64,6 +64,16 @@ export type AgreementRequest = {
   name: string
 }
 
+export interface SubscriptionRequestBody {
+  agreementId: string
+  consentStatusId: string
+}
+
+export type SubscriptionServiceRequest = {
+  serviceId: string
+  body: SubscriptionRequestBody[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -75,10 +85,11 @@ export const apiSlice = createApi({
       query: (serviceId) =>
         `/api/services/${serviceId}?lang=${i18next.language}`,
     }),
-    addSubscribeService: builder.mutation<void, string>({
-      query: (serviceId) => ({
-        url: `/api/services/${serviceId}/subscribe`,
+    addSubscribeService: builder.mutation<void, SubscriptionServiceRequest>({
+      query: (data: SubscriptionServiceRequest) => ({
+        url: `/api/services/${data.serviceId}/subscribe-consent`,
         method: 'POST',
+        body: data.body,
       }),
     }),
     fetchSubscription: builder.query<SubscriptionRequest, string>({

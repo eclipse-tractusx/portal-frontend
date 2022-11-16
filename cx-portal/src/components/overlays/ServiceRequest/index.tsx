@@ -29,6 +29,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import {
+  AgreementRequest,
   useAddSubscribeServiceMutation,
   useFetchAgreementsQuery,
   useFetchServiceQuery,
@@ -41,7 +42,7 @@ export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const [termsChecked, setTermsChecked] = useState<boolean>(false)
+  const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
 
   const { data } = useFetchServiceQuery(id ?? '')
   const { data: agreements } = useFetchAgreementsQuery(id ?? '')
@@ -54,9 +55,27 @@ export default function ServiceRequest({ id }: { id: string }) {
 
   const handleConfirm = async (id: string) => {
     try {
-      addSubscribeService(id).unwrap()
+      const data = agreements?.map(agreement => {
+        return {
+          agreementId: agreement.agreementId,
+          consentStatusId: checkedAgreementsIds.indexOf(agreement.agreementId) >=0 ? 'ACTIVE' : 'INACTIVE'
+        }
+      })
+      data && addSubscribeService({serviceId: id, body: data}).unwrap()
     } catch (err) {
       console.log('error', err)
+    }
+  }
+
+  const handleCheckedAgreement = (checked: boolean, agreement: AgreementRequest) => {
+    if(checked){
+      checkedAgreementsIds.indexOf(agreement.agreementId) <= 0 && setCheckedAgreementsIds([...checkedAgreementsIds, agreement.agreementId])
+    }else{
+      const index = checkedAgreementsIds && checkedAgreementsIds.indexOf(agreement.agreementId)
+      if (index > -1) {
+        checkedAgreementsIds.splice(index, 1)
+        setCheckedAgreementsIds([...checkedAgreementsIds])
+      }
     }
   }
 
@@ -83,9 +102,8 @@ export default function ServiceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) => {
-                    setTermsChecked(e.target.checked)
-                  }}
+                  onChange={(e) => handleCheckedAgreement(e.target.checked, agreement)
+                  }
                   onFocusVisible={function noRefCheck() {}}
                 />
               </li>
@@ -101,7 +119,7 @@ export default function ServiceRequest({ id }: { id: string }) {
           variant="contained"
           onClick={() => handleConfirm(id)}
           disabled={
-            termsChecked || (agreements && agreements.length <= 0)
+            checkedAgreementsIds.length > 0 || (agreements && agreements.length <= 0)
               ? false
               : true
           }
