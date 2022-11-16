@@ -27,7 +27,7 @@ export const SortOption = ({
   show,
 }: {
   sortOptions: any
-  setSortOption: any
+  setSortOption?: any
   selectedOption: any
   show: boolean
 }) => {
@@ -42,9 +42,7 @@ export const SortOption = ({
           {sortOptions.map((entry: any) => (
             <li
               key={entry.value}
-              onClick={() => {
-                setSortOption(entry.value)
-              }}
+              onClick={() => setSortOption(entry.value)}
               style={{
                 backgroundColor:
                   selectedOption === entry.value
@@ -52,9 +50,9 @@ export const SortOption = ({
                     : 'transparent',
                 padding: '17px',
                 width: '152px',
-                height: '52px',
                 borderRadius: '10px',
                 cursor: 'pointer',
+                listStyleType: 'none',
               }}
             >
               <Typography
