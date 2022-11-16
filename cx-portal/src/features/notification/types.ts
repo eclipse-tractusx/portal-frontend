@@ -78,6 +78,14 @@ export interface CXNotificationContent {
   dueDate?: string
 }
 
+export type CXNotificationMeta = {
+  read: number
+  unread: number
+  infoUnread: number
+  offerUnread: number
+  actionRequired: number
+}
+
 export type CXNotification = {
   content: CXNotificationContent[]
 }

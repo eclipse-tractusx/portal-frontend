@@ -195,9 +195,7 @@ export default function NotificationItem({
       >
         <div onClick={toggle} className="item">
           <div className="firstSection">
-            <LabelImportantIcon
-              sx={{ fontSize: 15, color: open ? '#FDB943' : 'transparent' }}
-            />
+            <LabelImportantIcon sx={{ fontSize: 15, color: '#FDB943' }} />
             <Typography
               variant="h1"
               style={{

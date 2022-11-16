@@ -18,9 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
-import { useGetNotificationsQuery } from 'features/notification/apiSlice'
+import {
+  useGetNotificationsQuery,
+  useGetNotificationMetaQuery,
+} from 'features/notification/apiSlice'
 import { CXNotificationContent } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import NotificationItem from './NotificationItem'
@@ -59,11 +62,13 @@ const NotificationGroup = ({
 export default function NotificationCenter() {
   const { t } = useTranslation()
   const { data } = useGetNotificationsQuery(null)
+  const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('all')
+  const [selected, setSelected] = useState<string>(
+    t('notification.sortOptions.all')
+  )
   const [sortOption, setSortOption] = useState<string>('new')
-
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
   }
@@ -83,24 +88,36 @@ export default function NotificationCenter() {
     },
   ]
 
+  const getTotalCount = (
+    read: number | undefined,
+    unread: number | undefined
+  ) => {
+    return read && unread ? read + unread : 0
+  }
+
   const filterButtons = [
     {
-      buttonText: t('notification.sortOptions.all'),
+      buttonText: `${t('notification.sortOptions.all')} ${getTotalCount(
+        pages?.read,
+        pages?.unread
+      )}`,
       buttonValue: t('notification.sortOptions.all'),
       onButtonClick: setView,
     },
     {
-      buttonText: t('notification.sortOptions.app'),
+      buttonText: `${t('notification.sortOptions.app')} ${pages?.offerUnread}`,
       buttonValue: t('notification.sortOptions.app'),
       onButtonClick: setView,
     },
     {
-      buttonText: t('notification.sortOptions.info'),
+      buttonText: `${t('notification.sortOptions.info')} ${pages?.infoUnread}`,
       buttonValue: t('notification.sortOptions.info'),
       onButtonClick: setView,
     },
     {
-      buttonText: t('notification.sortOptions.withaction'),
+      buttonText: `${t('notification.sortOptions.withaction')} ${
+        pages?.actionRequired
+      }`,
       buttonValue: t('notification.sortOptions.withaction'),
       onButtonClick: setView,
     },
@@ -113,6 +130,16 @@ export default function NotificationCenter() {
     })),
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
+
+  const handleClick = () => {
+    setShowModal(false)
+  }
+
+  useEffect(() => {
+    if (showModal) {
+      document.addEventListener('click', handleClick)
+    }
+  }, [showModal])
 
   return (
     <main className="notifications">
@@ -127,22 +154,25 @@ export default function NotificationCenter() {
           />
           <div
             className="iconSection"
-            onClick={() => {
+            onMouseEnter={() => setShowModal(true)}
+          >
+            <SortIcon
+              sx={{
+                fontSize: 20,
+                color: '#939393',
+                ':hover': { color: '#0D55AF' },
+              }}
+            />
+          </div>
+          <SortOption
+            show={showModal}
+            selectedOption={sortOption}
+            setSortOption={(value: string) => {
+              setSortOption(value)
               setShowModal(!showModal)
             }}
-          >
-            <SortIcon sx={{ fontSize: 20, color: '#939393' }} />
-          </div>
-          {showModal && (
-            <SortOption
-              selectedOption={sortOption}
-              setSortOption={(value: string) => {
-                setSortOption(value)
-                setShowModal(!showModal)
-              }}
-              sortOptions={sortOptions}
-            />
-          )}
+            sortOptions={sortOptions}
+          />
         </div>
         <div className="filterSection">
           <ViewSelector activeView={selected} views={filterButtons} />
