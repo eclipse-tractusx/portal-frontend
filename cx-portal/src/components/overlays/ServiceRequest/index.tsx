@@ -55,23 +55,35 @@ export default function ServiceRequest({ id }: { id: string }) {
 
   const handleConfirm = async (id: string) => {
     try {
-      const data = agreements?.map(agreement => {
+      const data = agreements?.map((agreement) => {
         return {
           agreementId: agreement.agreementId,
-          consentStatusId: checkedAgreementsIds.indexOf(agreement.agreementId) >=0 ? 'ACTIVE' : 'INACTIVE'
+          consentStatusId:
+            checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
+              ? 'ACTIVE'
+              : 'INACTIVE',
         }
       })
-      data && addSubscribeService({serviceId: id, body: data}).unwrap()
+      data && addSubscribeService({ serviceId: id, body: data }).unwrap()
     } catch (err) {
       console.log('error', err)
     }
   }
 
-  const handleCheckedAgreement = (checked: boolean, agreement: AgreementRequest) => {
-    if(checked){
-      checkedAgreementsIds.indexOf(agreement.agreementId) <= 0 && setCheckedAgreementsIds([...checkedAgreementsIds, agreement.agreementId])
-    }else{
-      const index = checkedAgreementsIds && checkedAgreementsIds.indexOf(agreement.agreementId)
+  const handleCheckedAgreement = (
+    checked: boolean,
+    agreement: AgreementRequest
+  ) => {
+    if (checked) {
+      checkedAgreementsIds.indexOf(agreement.agreementId) <= 0 &&
+        setCheckedAgreementsIds([
+          ...checkedAgreementsIds,
+          agreement.agreementId,
+        ])
+    } else {
+      const index =
+        checkedAgreementsIds &&
+        checkedAgreementsIds.indexOf(agreement.agreementId)
       if (index > -1) {
         checkedAgreementsIds.splice(index, 1)
         setCheckedAgreementsIds([...checkedAgreementsIds])
@@ -102,7 +114,8 @@ export default function ServiceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) => handleCheckedAgreement(e.target.checked, agreement)
+                  onChange={(e) =>
+                    handleCheckedAgreement(e.target.checked, agreement)
                   }
                   onFocusVisible={function noRefCheck() {}}
                 />
@@ -119,7 +132,8 @@ export default function ServiceRequest({ id }: { id: string }) {
           variant="contained"
           onClick={() => handleConfirm(id)}
           disabled={
-            checkedAgreementsIds.length > 0 || (agreements && agreements.length <= 0)
+            checkedAgreementsIds.length > 0 ||
+            (agreements && agreements.length <= 0)
               ? false
               : true
           }
