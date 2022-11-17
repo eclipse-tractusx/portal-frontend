@@ -4,6 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### In Progress
 * Feature - Apps & Service Subscription: include consent inside subscription
+* Feature - Service Marketplace Design Update
 
 
 ### Unreleased
