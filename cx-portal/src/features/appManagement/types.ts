@@ -25,10 +25,40 @@ export type SearchInputState = {
   text: string
 }
 
+export interface AppStatusDataState {
+  title: string
+  provider: string
+  leadPictureUri: string
+  providerName: string
+  useCase: string[]
+  descriptions: DescriptionState[]
+  agreements: AgreementState[]
+  supportedLanguageCodes: string[]
+  price: string
+  images: string[]
+  providerUri: string
+  contactEmail: string
+  contactNumber: string
+  documents: any
+}
+
+export interface DescriptionState {
+  languageCode: string
+  longDescription: string
+  shortDescription: string
+}
+
+export interface AgreementState {
+  id: string
+  name: string
+  consentStatus: string
+}
+
 export interface AppManagementState {
   searchInput: SearchInputState
   currentActiveStep: number
   appId: string
+  appStatusData: AppStatusDataState
 }
 
 export const initialState: AppManagementState = {
@@ -38,4 +68,20 @@ export const initialState: AppManagementState = {
   },
   currentActiveStep: 1,
   appId: '',
+  appStatusData: {
+    title: '',
+    provider: '',
+    leadPictureUri: '',
+    providerName: '',
+    useCase: [],
+    descriptions: [],
+    agreements: [],
+    supportedLanguageCodes: [],
+    price: '',
+    images: [],
+    providerUri: '',
+    contactEmail: '',
+    contactNumber: '',
+    documents: {},
+  },
 }
