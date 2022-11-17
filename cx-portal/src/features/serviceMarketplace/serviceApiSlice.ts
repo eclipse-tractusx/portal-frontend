@@ -87,7 +87,7 @@ export const apiSlice = createApi({
     }),
     addSubscribeService: builder.mutation<void, SubscriptionServiceRequest>({
       query: (data: SubscriptionServiceRequest) => ({
-        url: `/api/services/${data.serviceId}/subscribe-consent`,
+        url: `/api/services/${data.serviceId}/subscribe`,
         method: 'POST',
         body: data.body,
       }),

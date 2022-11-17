@@ -19,7 +19,12 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { initialState, SearchInputState, name } from './types'
+import {
+  initialState,
+  SearchInputState,
+  name,
+  AppStatusDataState,
+} from './types'
 import { RootState } from 'features/store'
 
 const managementSlice = createSlice({
@@ -44,6 +49,10 @@ const managementSlice = createSlice({
       ...state,
       appId: action.payload,
     }),
+    setAppStatusData: (state, action) => ({
+      ...state,
+      appStatusData: action.payload,
+    }),
   },
 })
 
@@ -55,6 +64,9 @@ export const currentActiveStep = (state: RootState): any =>
 
 export const appIdSelector = (state: RootState): string =>
   state.management.appId
+
+export const appStatusDataSelector = (state: RootState): AppStatusDataState =>
+  state.management.appStatusData
 
 export const { increment, decrement, setCurrentActiveStep } =
   managementSlice.actions

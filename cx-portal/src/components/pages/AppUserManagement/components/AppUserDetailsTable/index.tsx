@@ -43,7 +43,7 @@ export const AppUserDetailsTable = ({
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
       tableLabel={'content.usermanagement.appUserDetails.table.title'}
       fetchHook={useFetchAppUsersSearchQuery}
-      fetchHookArgs={{ appId, expr, userRoleResponse }}
+      fetchHookArgs={{ appId, expr, userRoleResponse, role: true }}
       onSearch={setExpr}
       onDetailsClick={(row: TenantUser) =>
         dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))

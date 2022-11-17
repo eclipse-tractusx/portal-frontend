@@ -81,9 +81,9 @@ export const apiSlice = createApi({
         query: (fetchArgs) =>
           `/api/administration/user/owncompany/apps/${
             fetchArgs.args!.appId
-          }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}${
-            fetchArgs.args!.expr && `&email=${fetchArgs.args!.expr}`
-          }`,
+          }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}&hasRole=${
+            fetchArgs.args!.role
+          }${fetchArgs.args!.expr && `&email=${fetchArgs.args!.expr}`}`,
       }
     ),
     addUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({

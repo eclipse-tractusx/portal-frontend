@@ -107,15 +107,15 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           {data &&
             t('content.appMarketplace.desc1').replace('{appName}', data.title)}
         </Typography>
-        <Typography className="app-description" variant="h5">
+        <Typography className="app-description" variant="body1">
           {data &&
             t('content.appMarketplace.desc2').replace('{appName}', data.title)}
         </Typography>
-        <Typography className="app-description" variant="h5">
+        <Typography className="app-description" variant="body1">
           {data &&
             t('content.appMarketplace.desc3').replace('{appName}', data.title)}
         </Typography>
-        <Typography className="app-description" variant="h5">
+        <Typography className="app-description" variant="body1">
           {data &&
             t('content.appMarketplace.desc4').replace('{appName}', data.title)}
         </Typography>
