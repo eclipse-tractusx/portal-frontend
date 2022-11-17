@@ -773,8 +773,8 @@
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title",
         "appProvider": "App provider",
-        "shortDescriptionEN": "Short Description - EN",
-        "shortDescriptionDE": "Short Description - DE",
+        "shortDescriptionEN": "Short Description (en)",
+        "shortDescriptionDE": "Short Description (de)",
         "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant use case",
         "appLanguage": "App Language",
@@ -836,9 +836,18 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
       },
       "validateAndPublish": {
-        "headerTitle": "Verify your app data for submit",
+        "headerTitle": "Validate & Publish",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "appCardDetails": "App Card Details"
+        "appDetails": "App Details",
+        "language": "Language :  ",
+        "useCase": "Use Case :  ",
+        "price": "Price :  ",
+        "connectedData": "Connected Data",
+        "dataSecurityInformation": "Data Security Information",
+        "documents": "Documents",
+        "providerInformation": "Provider Information",
+        "consent": "Consent",
+        "cxTestRuns": "CX Test Runs"
       },
       "submitApp": {
         "headerTitle": "App erfolgreich eingereicht!",

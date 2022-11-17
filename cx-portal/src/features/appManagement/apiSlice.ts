@@ -39,8 +39,8 @@ export type CreateAppStep1Item = {
   title: string
   provider: string
   leadPictureUri: string
-  providerCompanyId: string
-  useCaseIds: string[]
+  salesManagerId: string
+  useCaseIds: string[] | useCasesItem[]
   descriptions: {
     languageCode: string
     longDescription: string

@@ -40,13 +40,14 @@ import {
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
   useUpdateDocumentUploadMutation,
+  useCasesItem,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
-import { useDispatch } from 'react-redux'
-import { increment } from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { appStatusDataSelector, increment } from 'features/appManagement/slice'
 import { setAppId } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
@@ -56,14 +57,14 @@ type FormDataType = {
   provider: string
   shortDescriptionEN: string
   shortDescriptionDE: string
-  useCaseCategory: string[]
+  useCaseCategory: string[] | useCasesItem[]
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: File | null
-    alt: string
+    leadPictureUri: File | null | string
+    alt?: string
   }
-  providerCompanyId: string
+  salesManagerId: string
 }
 
 export const ConnectorFormInputField = ({
@@ -145,7 +146,9 @@ export const ConnectorFormInputField = ({
               }}
             />
             {!!errors[name] && (
-              <p className="file-error-msg">{errors[name].message}</p>
+              <Typography variant="body2" className="file-error-msg">
+                {errors[name].message}
+              </Typography>
             )}
           </>
         )
@@ -185,19 +188,26 @@ export default function AppMarketCard() {
   const [addCreateApp] = useAddCreateAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [appCardNotification, setAppCardNotification] = useState(false)
+  const appStatusData = useSelector(appStatusDataSelector)
 
   const defaultValues = {
-    title: '',
-    provider: '',
-    price: '',
-    useCaseCategory: [],
-    appLanguage: [],
+    title: appStatusData?.title,
+    provider: appStatusData?.provider,
+    price: appStatusData?.price,
+    useCaseCategory: appStatusData?.useCase,
+    appLanguage: appStatusData?.supportedLanguageCodes,
     //To do: to be changed once api is available
-    providerCompanyId: '2dc4249f-b5ca-4d42-bef1-7a7a950a4f87',
-    shortDescriptionEN: '',
-    shortDescriptionDE: '',
+    salesManagerId: 'ac1cf001-7fbc-1f2f-817f-bce058020001',
+    shortDescriptionEN:
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'en'
+      )[0]?.shortDescription || '',
+    shortDescriptionDE:
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'de'
+      )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: null,
+      leadPictureUri: appStatusData?.leadPictureUri || null,
       alt: '',
     },
   }
@@ -253,7 +263,7 @@ export default function AppMarketCard() {
         data.uploadImage.leadPictureUri !== null &&
         Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
         Object.values(data.uploadImage.leadPictureUri)[0],
-      providerCompanyId: data.providerCompanyId,
+      salesManagerId: data.salesManagerId,
       useCaseIds: data.useCaseCategory,
       descriptions: [
         {
@@ -275,10 +285,11 @@ export default function AppMarketCard() {
     await addCreateApp(saveData)
       .unwrap()
       .then((result) => {
-        isString(result) &&
+        if (isString(result)) {
           uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
-        isString(result) && dispatch(setAppId(result))
-        dispatch(increment())
+          dispatch(setAppId(result))
+          dispatch(increment())
+        }
       })
       .catch((error: any) => {
         setAppCardNotification(true)
@@ -667,9 +678,9 @@ export default function AppMarketCard() {
               }}
             />
             {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-              <p className="file-error-msg">
+              <Typography variant="body2" className="file-error-msg">
                 {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </p>
+              </Typography>
             )}
 
             <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>

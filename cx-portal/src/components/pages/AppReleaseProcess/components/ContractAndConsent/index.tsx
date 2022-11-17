@@ -44,7 +44,9 @@ import {
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
+  useFetchAppStatusQuery,
 } from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 type AgreementType = {
   agreementId: string
@@ -64,6 +66,7 @@ export default function ContractAndConsent() {
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
   })
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
 
   useEffect(() => {
     loadData()
@@ -148,6 +151,11 @@ export default function ContractAndConsent() {
       })
   }
 
+  const onBackIconClick = () => {
+    dispatch(setAppStatus(fetchAppStatus))
+    dispatch(decrement())
+  }
+
   return (
     <div className="contract-consent">
       <Typography variant="h3" mt={10} mb={4} align="center">
@@ -210,7 +218,7 @@ export default function ContractAndConsent() {
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
+        <IconButton color="secondary" onClick={() => onBackIconClick()}>
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
