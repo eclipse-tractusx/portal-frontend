@@ -17,54 +17,114 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.app-release-process-form {
-  .form-field {
-    margin-bottom: 29px !important;
-  }
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
 
-  .file-error-msg {
-    color: #d32f2f !important;
-    margin-top: 3px !important;
-    font-size: 0.75rem !important;
-  }
-
-  .header-description {
-    max-width: 733px;
-    margin: 0 auto 70px !important;
-  }
-
-  .app-release-card {
-    max-width: 250px !important;
-    margin: 0 30px 60px auto !important;
-    padding-left: 0px !important;
-  }
-
-  .form-divider {
-    margin: 64px -16px 16px -16px !important;
-  }
-
-  .create-app-section {
+.appoverview-main {
+  .desc-section {
+    text-align: center;
     margin-top: 112px;
+
+    .desc-heading {
+      max-width: 550px;
+      margin: 0 auto 34px;
+    }
+
+    .desc-message {
+      max-width: 733px;
+      margin: 0 auto 34px;
+    }
+
+    .create-btn {
+      margin-right: 16px;
+    }
+
+    .overview-btn {
+      margin-left: 16px;
+    }
   }
 
-  .container {
-    max-width: 1140px;
-    margin: 0 auto;
-  }
+  .process-steps {
+    margin-top: 112px;
+    background-color: #f9f9f9;
+    padding: 96px 0;
 
-  .verify-app-release-card {
-    width: 250px !important;
-    padding-left: 0px !important;
-  }
+    .steps-main {
+      max-width: 720px;
+      margin: 0 auto;
 
-  .verify-validate-images {
-    width: 164px;
-    height: 164px;
-    border-radius: 16px;
-    background: #f3f3f3;
-  }
+      .step-heading {
+        text-align: center;
+        margin-bottom: 132px;
+      }
 
-  .verify-validate-form-divider {
-    margin: 42px -16px 50px -16px !important;
+      .lr-text-divider {
+        margin-top: 104px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+
+      .lr-text-divider::before,
+      .lr-text-divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #dcdcdc;
+      }
+
+      .lr-text-divider:not(:empty)::before {
+        margin-right: 1.25em;
+      }
+
+      .lr-text-divider:not(:empty)::after {
+        margin-left: 1.25em;
+      }
+
+      .create-btn {
+        margin-top: 48px;
+        text-align: center;
+      }
+
+      .marketplace-heading {
+        max-width: 690px;
+        margin: 158px auto 60px;
+      }
+
+      .marketplace-requirements {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          li {
+            display: flex;
+            margin-bottom: 30px;
+
+            button {
+              margin-right: 36px;
+            }
+
+            span {
+              flex: 1;
+            }
+
+            :last-child {
+              margin-bottom: 0;
+            }
+
+            .neu-btn {
+              height: 36px;
+              width: 51px;
+              cursor: unset;
+            }
+          }
+        }
+      }
+    }
   }
 }
