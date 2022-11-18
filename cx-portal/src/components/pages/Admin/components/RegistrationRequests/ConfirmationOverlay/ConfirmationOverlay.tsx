@@ -27,9 +27,9 @@ import {
   DialogActions,
   DialogHeader,
   Typography,
+  Input
 } from 'cx-portal-shared-components'
 import { isBPN } from 'types/Patterns'
-import { Input } from 'cx-portal-shared-components'
 
 interface ConfirmationOverlayProps {
   openDialog?: boolean
