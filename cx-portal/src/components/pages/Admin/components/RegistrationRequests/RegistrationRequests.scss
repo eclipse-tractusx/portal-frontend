@@ -137,3 +137,15 @@
     }
   }
 }
+
+.MuiButtonBase-root.Mui-disabled {
+  color: #333;
+  background-color: #d1d1d1;
+}
+
+.flex {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}

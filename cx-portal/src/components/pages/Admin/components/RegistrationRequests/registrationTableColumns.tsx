@@ -31,6 +31,8 @@ import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
 import { useState } from 'react'
 import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
+import EditIcon from '@mui/icons-material/Edit'
+import './RegistrationRequests.scss'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
@@ -38,7 +40,8 @@ export const RegistrationRequestsTableColumns = (
   onApproveClick: (id: string) => void,
   onDeclineClick: (id: string) => void,
   isLoading: boolean,
-  handleDownloadDocument: (documentId: string, documentType: string) => void
+  handleDownloadDocument: (documentId: string, documentType: string) => void,
+  showConfirmOverlay?: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')
@@ -61,7 +64,25 @@ export const RegistrationRequestsTableColumns = (
         <div>
           <p style={{ margin: '3px 0' }}>{row.companyName}</p>
           <p style={{ margin: '3px 0' }}>{row.email}</p>
-          <span>{row.bpn}</span>
+          <div className="flex">
+            <span
+              style={{
+                marginRight: '30px',
+              }}
+            >
+              {row.bpn}
+            </span>
+            {row.applicationStatus === 'SUBMITTED' && (
+              <span
+                style={{
+                  paddingTop: '2px',
+                }}
+                onClick={() => showConfirmOverlay()}
+              >
+                <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
+              </span>
+            )}
+          </div>
         </div>
       ),
     },
@@ -147,6 +168,7 @@ export const RegistrationRequestsTableColumns = (
                         onDeclineClick(row.applicationId)
                       },
                       withIcon: true,
+                      disabled: row.bpn ? false : true,
                     }}
                   />
 
@@ -163,6 +185,7 @@ export const RegistrationRequestsTableColumns = (
                         onApproveClick(row.applicationId)
                       },
                       withIcon: true,
+                      disabled: row.bpn ? false : true,
                     }}
                   />
                 </>
