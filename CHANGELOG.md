@@ -15,6 +15,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add BPN to an existing request
 * User management
    * Navigate and scroll to the Identity Management section after deleting the user
+* Technical Integration
+   * Modal width fix
 
 ## 0.8.0
 
