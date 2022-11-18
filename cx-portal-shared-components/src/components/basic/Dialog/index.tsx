@@ -45,7 +45,7 @@ export const Dialog = ({
       sx={{
         '.MuiPaper-root': {
           borderRadius: `${radius}px !important`,
-          ...additionalModalRootStyles
+          ...additionalModalRootStyles,
         },
       }}
     />
