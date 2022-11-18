@@ -100,10 +100,8 @@ const AddConnectorOverlay = ({
     <div>
       <Dialog
         open={openDialog}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: '45%',
-          },
+        additionalModalRootStyles={{
+          width: '45%'
         }}
       >
         <DialogHeader

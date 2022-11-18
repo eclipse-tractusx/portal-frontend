@@ -13,6 +13,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Delete notification
 * Registration Request
    * Add BPN to an existing request
+* Technical Integration
+   * Modal width fix
 
 ## 0.8.0
 
