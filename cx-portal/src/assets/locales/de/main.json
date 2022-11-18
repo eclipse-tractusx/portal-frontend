@@ -88,6 +88,8 @@
           "details": "Einzelheiten",
           "state": "Zustand"
         },
+        "enterBpn": "Enter Business Partner Number",
+        "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Anfragen zur Benutzerregistrierung",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
@@ -472,7 +474,8 @@
         "headline": "Benutzerkontenverwaltung",
         "title": "User Liste",
         "details": "Details",
-        "add": "User hinzufügen"
+        "add": "User hinzufügen",
+        "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
@@ -486,7 +489,8 @@
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
-          "add": "Benutzerrolle hinzufügen"
+          "add": "Benutzerrolle hinzufügen",
+          "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {
           "error": {
@@ -773,8 +777,8 @@
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title",
         "appProvider": "App provider",
-        "shortDescriptionEN": "Short Description - EN",
-        "shortDescriptionDE": "Short Description - DE",
+        "shortDescriptionEN": "Short Description (en)",
+        "shortDescriptionDE": "Short Description (de)",
         "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant use case",
         "appLanguage": "App Language",
@@ -836,9 +840,18 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
       },
       "validateAndPublish": {
-        "headerTitle": "Verify your app data for submit",
+        "headerTitle": "Validate & Publish",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "appCardDetails": "App Card Details"
+        "appDetails": "App Details",
+        "language": "Language :  ",
+        "useCase": "Use Case :  ",
+        "price": "Price :  ",
+        "connectedData": "Connected Data",
+        "dataSecurityInformation": "Data Security Information",
+        "documents": "Documents",
+        "providerInformation": "Provider Information",
+        "consent": "Consent",
+        "cxTestRuns": "CX Test Runs"
       },
       "submitApp": {
         "headerTitle": "App erfolgreich eingereicht!",

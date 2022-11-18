@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DropArea } from 'cx-portal-shared-components'
+import { DropArea, Typography } from 'cx-portal-shared-components'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { IHashMap } from 'types/MainTypes'
@@ -63,7 +63,7 @@ export const Dropzone = ({
     [dropped, onFileDrop]
   )
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
     onDrop,
     disabled:
       maxFilesToUpload === Object.keys(dropped)?.length || showPreviewAlone,
@@ -81,6 +81,16 @@ export const Dropzone = ({
           disabled={maxFilesToUpload === Object.keys(dropped)?.length}
         />
       )}
+      {fileRejections?.map(({ errors }, index: number) => (
+        <Typography
+          variant="body2"
+          sx={{ color: '#d32f2f', fontSize: '0.75rem', mt: 1 }}
+          key={index}
+        >
+          {errors && errors[0]?.message}
+        </Typography>
+      ))}
+
       {(previewFiles &&
         Object.keys(previewFiles)?.length > 0 &&
         preview(Object.values(previewFiles))) ||

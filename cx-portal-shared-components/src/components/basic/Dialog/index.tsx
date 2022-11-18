@@ -22,6 +22,7 @@ import MuiDialog, { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
 
 interface AddtionalDialogProps {
   modalBorderRadius?: number
+  additionalModalRootStyles?: any
 }
 
 export type DialogProps = Pick<
@@ -32,6 +33,7 @@ export type DialogProps = Pick<
 export const Dialog = ({
   scroll = 'body',
   modalBorderRadius,
+  additionalModalRootStyles = {},
   ...props
 }: DialogProps & AddtionalDialogProps) => {
   const radius =
@@ -43,6 +45,7 @@ export const Dialog = ({
       sx={{
         '.MuiPaper-root': {
           borderRadius: `${radius}px !important`,
+          ...additionalModalRootStyles,
         },
       }}
     />

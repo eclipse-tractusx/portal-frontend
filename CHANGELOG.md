@@ -2,11 +2,19 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+### In Progress
+* Feature - Apps & Service Subscription: include consent inside subscription
+* Feature - App Release Process: App status/summary api connect
+* Feature - App User Role - update table content
 
 ### Unreleased
 * Notifications
    * Design updates
    * Delete notification
+* Registration Request
+   * Add BPN to an existing request
+* Technical Integration
+   * Modal width fix
 
 ## 0.8.0
 
