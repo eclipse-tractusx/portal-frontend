@@ -72,20 +72,17 @@ export const apiSlice = createApi({
     }),
     fetchAppUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
       query: (fetchArgs) =>
-        `/api/administration/user/owncompany/apps/${
-          fetchArgs.args!.appId
+        `/api/administration/user/owncompany/apps/${fetchArgs.args!.appId
         }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
     }),
-    fetchAppUsersSearch: builder.query<PaginResult<TenantUser>, PaginFetchArgs>(
-      {
-        query: (fetchArgs) =>
-          `/api/administration/user/owncompany/apps/${
-            fetchArgs.args!.appId
-          }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}&hasRole=${
-            fetchArgs.args!.role
-          }${fetchArgs.args!.expr && `&email=${fetchArgs.args!.expr}`}`,
+    fetchAppUsersSearch: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
+      query: (fetchArgs) => {
+        const emailExpr = `email=${fetchArgs.args!.expr}`
+        return {
+          url: `/api/administration/user/owncompany/apps/${fetchArgs.args!.appId}/users?size=${PAGE_SIZE}&page=${fetchArgs.page}&hasRole=${fetchArgs.args!.role}${fetchArgs.args!.expr && emailExpr}`,
+        }
       }
-    ),
+    }),
     addUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
       query: (data: UserRoleRequest) => ({
         url: `/api/administration/user/app/${data.appId}/roles`,
