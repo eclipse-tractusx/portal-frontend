@@ -64,7 +64,7 @@ export const RegistrationRequestsTableColumns = (
         <div>
           <p style={{ margin: '3px 0' }}>{row.companyName}</p>
           <p style={{ margin: '3px 0' }}>{row.email}</p>
-          <div className="flex">
+          <div className="bpn-edit-flex">
             <span
               style={{
                 marginRight: '30px',
