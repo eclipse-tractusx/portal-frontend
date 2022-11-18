@@ -104,7 +104,7 @@ export default function ServiceRequest({ id }: { id: string }) {
       />
 
       <DialogContent className="marketplace-overlay-content">
-        <Typography className="service-description" variant="h5">
+        <Typography className="service-description" variant="body1">
           {data &&
             t('content.serviceMarketplace.description').replace(
               '{serviceName}',

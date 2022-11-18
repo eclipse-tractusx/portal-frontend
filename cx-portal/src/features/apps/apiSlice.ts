@@ -147,7 +147,7 @@ export const apiSlice = createApi({
     }),
     addSubscribeApp: builder.mutation<void, SubscriptionAppRequest>({
       query: (data: SubscriptionAppRequest) => ({
-        url: `/api/apps/${data.appId}/subscribe-consent`,
+        url: `/api/apps/${data.appId}/subscribe`,
         method: 'POST',
         body: data.body,
       }),

@@ -228,9 +228,9 @@ export default function TechnicalIntegration() {
               )}
             />
             {errors?.uploadAppRoles?.type === 'required' && (
-              <p className="file-error-msg">
+              <Typography variant="body2" className="file-error-msg">
                 {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </p>
+              </Typography>
             )}
             {rolesPreviews?.length > 0 && (
               <>
