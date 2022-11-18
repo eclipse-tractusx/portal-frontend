@@ -87,6 +87,7 @@ export const UserList = ({
           onSearch(expr)
         }}
         searchDebounce={1000}
+        noRowsMsg={t('content.usermanagement.appUserDetails.table.noRowsMsg')}
         title={t(tableLabel)}
         loadLabel={t('global.actions.more')}
         fetchHook={fetchHook}

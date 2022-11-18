@@ -472,7 +472,8 @@
         "headline": "Benutzerkontenverwaltung",
         "title": "User Liste",
         "details": "Details",
-        "add": "User hinzufügen"
+        "add": "User hinzufügen",
+        "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - <1>App-Title</1>",
@@ -486,7 +487,8 @@
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
-          "add": "Benutzerrolle hinzufügen"
+          "add": "Benutzerrolle hinzufügen",
+          "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {
           "error": {

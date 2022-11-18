@@ -472,7 +472,8 @@
         "headline": "Identity Management",
         "title": "User List",
         "details": "Details",
-        "add": "Add user"
+        "add": "Add user",
+        "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
@@ -486,7 +487,8 @@
         "table": {
           "headline": "Identity Management",
           "title": "App Users",
-          "add": "Add Role"
+          "add": "Add Role",
+          "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {
           "error": {
