@@ -29,6 +29,7 @@ interface ChipCustomProps extends ChipProps {
   withIcon?: true | false
   onClick?: any
   duration?: number
+  disabled?: boolean
 }
 
 export const TransitionChip = ({
@@ -38,6 +39,7 @@ export const TransitionChip = ({
   onClick,
   duration = 2.5,
   onDelete = () => null, // To avoid default delete icon appear
+  disabled = false,
   ...props
 }: ChipCustomProps) => {
   let icon, hoverBgColor, hoverTextColor, timeout: any
@@ -75,6 +77,7 @@ export const TransitionChip = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       variant={variant}
+      disabled={disabled}
       onClick={onButtonClick}
       icon={withIcon ? icon : undefined}
       sx={{

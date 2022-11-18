@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -26,21 +26,38 @@ import {
   Button,
   DialogActions,
   DialogHeader,
+  Typography,
+  Input,
 } from 'cx-portal-shared-components'
+import { isBPN } from 'types/Patterns'
 
 interface ConfirmationOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
+  enableBpnInput?: boolean
+  title?: string
 }
 
 const ConfirmationOverlay = ({
   openDialog = false,
   handleOverlayClose,
   handleConfirmClick,
+  enableBpnInput,
+  title,
 }: ConfirmationOverlayProps) => {
   const { t } = useTranslation()
-
+  const [value, setValue] = useState('')
+  const [error, setError] = useState(false)
+  const onChange = (e: any) => {
+    setValue(e.target.value)
+    const validateExpr = isBPN(e.target.value)
+    if (validateExpr) {
+      setError(false)
+    } else {
+      setError(true)
+    }
+  }
   return (
     <div>
       <Dialog
@@ -52,18 +69,58 @@ const ConfirmationOverlay = ({
         }}
       >
         <DialogHeader
-          title={t('content.admin.registration-requests.confirmmodal.title')}
+          title={
+            title
+              ? title
+              : t('content.admin.registration-requests.confirmmodal.title')
+          }
         />
         <DialogContent>
-          {t('content.admin.registration-requests.confirmmodal.description')}
+          {enableBpnInput ? (
+            <div className="form-input">
+              <Input
+                sx={{
+                  paddingTop: '10px',
+                }}
+                placeholder={t(
+                  'content.edcconnector.modal.insertform.bpn.placeholder'
+                )}
+                onChange={(e: any) => {
+                  onChange(e)
+                }}
+                value={value}
+              />
+              {error && (
+                <Typography variant="h6" color="error">
+                  {t('content.admin.registration-requests.bpnError')}
+                </Typography>
+              )}
+            </div>
+          ) : (
+            t('content.admin.registration-requests.confirmmodal.description')
+          )}
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {t('global.actions.cancel')}
           </Button>
-          <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
-            {t('global.actions.confirm')}
-          </Button>
+          {!enableBpnInput && (
+            <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
+              {t('global.actions.confirm')}
+            </Button>
+          )}
+          {enableBpnInput && (
+            <Button
+              variant="contained"
+              disabled={error || value === ''}
+              onClick={(e) => {
+                //TO-DO api integration and callback method to the component
+                console.log('API needs to be added')
+              }}
+            >
+              {t('global.actions.confirm')}
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </div>

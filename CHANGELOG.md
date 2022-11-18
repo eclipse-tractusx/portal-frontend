@@ -11,6 +11,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Notifications
    * Design updates
    * Delete notification
+* Registration Request
+   * Add BPN to an existing request
 
 ## 0.8.0
 

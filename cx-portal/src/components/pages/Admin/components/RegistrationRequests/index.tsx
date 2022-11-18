@@ -64,6 +64,8 @@ export default function RegistrationRequests() {
 
   const [loaded, setLoaded] = useState<number>(0)
 
+  const [enableBpnInput, setEnableBpnInput] = useState<boolean>(false)
+
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
@@ -144,8 +146,11 @@ export default function RegistrationRequests() {
         handleOverlayClose={() => {
           setIsLoading(false)
           setConfirmModalOpen(false)
+          setEnableBpnInput(false)
         }}
         handleConfirmClick={() => makeActionSelectedRequest()}
+        enableBpnInput={enableBpnInput}
+        title={t('content.admin.registration-requests.enterBpn')}
       />
 
       {/* Page header title and background color */}
@@ -178,6 +183,10 @@ export default function RegistrationRequests() {
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}
           searchExpr={expr}
+          showConfirmOverlay={() => {
+            setEnableBpnInput(true)
+            setConfirmModalOpen(true)
+          }}
         />
       </div>
     </main>
