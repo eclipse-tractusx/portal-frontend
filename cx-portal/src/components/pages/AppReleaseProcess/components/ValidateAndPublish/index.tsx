@@ -262,7 +262,7 @@ export default function ValidateAndPublish({
         {appStatusData?.documents &&
           Object.keys(appStatusData.documents).map((item, i) => (
             <InputLabel sx={{ mb: 0, mt: 3 }} key={i}>
-              <a href="#" style={{ display: 'flex' }}>
+              <a href="/" style={{ display: 'flex' }}>
                 <ArrowForwardIcon fontSize="small" />
                 {appStatusData.documents[item][0].documentName}
               </a>
