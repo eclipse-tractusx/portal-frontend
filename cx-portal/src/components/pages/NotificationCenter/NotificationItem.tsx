@@ -195,7 +195,12 @@ export default function NotificationItem({
       >
         <div onClick={toggle} className="item">
           <div className="firstSection">
-            <LabelImportantIcon sx={{ fontSize: 15, color: item.notificationTopic === 'ACTION' ? '#FDB943' : '#fff' }} />
+            <LabelImportantIcon
+              sx={{
+                fontSize: 15,
+                color: item.notificationTopic === 'ACTION' ? '#FDB943' : '#fff',
+              }}
+            />
             <Typography
               variant="h1"
               style={{
@@ -229,7 +234,10 @@ export default function NotificationItem({
           <div
             className="actionButton"
             style={{
-              backgroundColor: item.notificationTopic === 'ACTION' && open ? '#FDB943' : 'transparent',
+              backgroundColor:
+                item.notificationTopic === 'ACTION' && open
+                  ? '#FDB943'
+                  : 'transparent',
             }}
           >
             <Typography
@@ -240,7 +248,9 @@ export default function NotificationItem({
                 fontSize: '11px',
               }}
             >
-              {item.notificationTopic === 'ACTION' && open ? t('notification.actionRequired') : ''}
+              {item.notificationTopic === 'ACTION' && open
+                ? t('notification.actionRequired')
+                : ''}
             </Typography>
           </div>
           <div className="lastSection">
