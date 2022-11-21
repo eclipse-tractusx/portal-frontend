@@ -67,7 +67,7 @@ export interface NotificationContent {
   userId?: string
 }
 
-export type CXNotification = {
+export interface CXNotificationContent {
   id: string
   created: Date
   typeId: NotificationType
@@ -76,4 +76,8 @@ export type CXNotification = {
   contentParsed?: NotificationContent
   isRead?: boolean
   dueDate?: string
+}
+
+export type CXNotification = {
+  content: CXNotificationContent[]
 }

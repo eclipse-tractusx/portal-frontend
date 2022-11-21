@@ -18,9 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
 import { useGetNotificationsQuery } from 'features/notification/apiSlice'
-import { CXNotification } from 'features/notification/types'
+import { CXNotificationContent } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import NotificationItem from './NotificationItem'
 import { groupBy } from 'lodash'
@@ -29,33 +30,25 @@ import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
+import { SearchInput, ViewSelector } from 'cx-portal-shared-components'
+import SortIcon from '@mui/icons-material/Sort'
+import { SortOption } from 'components/shared/basic/SortOption'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
-
-const NotificationGroupTitle = ({ label }: { label: string }) => {
-  const { t } = useTranslation()
-  const date = dayjs(label)
-  if (date.isToday()) return <>{t('global.date.today')}</>
-  if (date.isYesterday()) return <>{t('global.date.yesterday')}</>
-  return <>{date.fromNow()}</>
-}
 
 const NotificationGroup = ({
   label,
   items,
 }: {
   label: string
-  items: CXNotification[]
+  items: CXNotificationContent[]
 }) => {
   return (
     <>
-      <div className="divider">
-        <NotificationGroupTitle label={label} />
-      </div>
       <ul className="group">
-        {items.map((item: CXNotification) => (
+        {items.map((item: CXNotificationContent) => (
           <NotificationItem key={item.id} item={item} />
         ))}
       </ul>
@@ -66,17 +59,94 @@ const NotificationGroup = ({
 export default function NotificationCenter() {
   const { t } = useTranslation()
   const { data } = useGetNotificationsQuery(null)
+  const [searchExpr, setSearchExpr] = useState<string>('')
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [selected, setSelected] = useState<string>('all')
+  const [sortOption, setSortOption] = useState<string>('new')
+
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    setSelected(e.currentTarget.value)
+  }
+
+  const sortOptions = [
+    {
+      label: t('notification.sortOptions.new'),
+      value: 'new',
+    },
+    {
+      label: t('notification.sortOptions.priority'),
+      value: 'priority',
+    },
+    {
+      label: t('notification.sortOptions.unread'),
+      value: 'unread',
+    },
+  ]
+
+  const filterButtons = [
+    {
+      buttonText: t('notification.sortOptions.all'),
+      buttonValue: t('notification.sortOptions.all'),
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('notification.sortOptions.app'),
+      buttonValue: t('notification.sortOptions.app'),
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('notification.sortOptions.info'),
+      buttonValue: t('notification.sortOptions.info'),
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('notification.sortOptions.withaction'),
+      buttonValue: t('notification.sortOptions.withaction'),
+      onButtonClick: setView,
+    },
+  ]
+
   const groups = groupBy(
-    data?.map((item) => ({
+    data?.content?.map((item) => ({
       ...item,
       contentParsed: item.content && JSON.parse(item.content),
     })),
-    (item: CXNotification) => dayjs(item.created).format('YYYY-MM-DD')
+    (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
+
   return (
     <main className="notifications">
       <StageHeader title={t('pages.notifications')} />
       <section>
+        <div className="searchContainer">
+          <SearchInput
+            placeholder={t('notification.search')}
+            value={searchExpr}
+            autoFocus={false}
+            onChange={(e) => setSearchExpr(e.target.value)}
+          />
+          <div
+            className="iconSection"
+            onClick={() => {
+              setShowModal(!showModal)
+            }}
+          >
+            <SortIcon sx={{ fontSize: 20, color: '#939393' }} />
+          </div>
+          {showModal && (
+            <SortOption
+              selectedOption={sortOption}
+              setSortOption={(value: string) => {
+                setSortOption(value)
+                setShowModal(!showModal)
+              }}
+              sortOptions={sortOptions}
+            />
+          )}
+        </div>
+        <div className="filterSection">
+          <ViewSelector activeView={selected} views={filterButtons} />
+        </div>
         <ul>
           {groups &&
             Object.entries(groups).map((entry: any) => (

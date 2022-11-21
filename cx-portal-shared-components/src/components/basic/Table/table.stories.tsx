@@ -83,6 +83,7 @@ const basicArgs = {
   loading: false,
   columnHeadersBackgroundColor: '#fff',
   searchPlaceholder: 'Search by username',
+  noRowsMsg: 'No rows',
   rows,
   columns,
   hasBorder: true,

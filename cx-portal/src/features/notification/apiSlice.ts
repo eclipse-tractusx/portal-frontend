@@ -29,13 +29,19 @@ export const apiSlice = createApi({
     getNotificationCount: builder.query<number, boolean>({
       query: (read) => `/api/notification/count?isRead=${read}`,
     }),
-    getNotifications: builder.query<CXNotification[], null>({
+    getNotifications: builder.query<CXNotification, null>({
       query: () => '/api/notification',
     }),
     setNotificationRead: builder.mutation<void, string>({
       query: (id) => ({
         url: `/api/notification/${id}/read`,
         method: 'PUT',
+      }),
+    }),
+    deleteNotification: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/api/notification/${id}`,
+        method: 'DELETE',
       }),
     }),
   }),
@@ -45,4 +51,5 @@ export const {
   useGetNotificationCountQuery,
   useGetNotificationsQuery,
   useSetNotificationReadMutation,
+  useDeleteNotificationMutation,
 } = apiSlice

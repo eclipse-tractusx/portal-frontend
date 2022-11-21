@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,13 +18,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAction } from '@reduxjs/toolkit'
-import { name, SearchInputState, AppStatusDataState } from './types'
+.sortSection {
+  position: absolute;
+  left: 65%;
+  margin-top: 13%;
+  background: #f9f9f9;
+  box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+  border-radius: 16px;
+  z-index: 9;
+}
 
-const setSearchInput = createAction<SearchInputState>(`${name}/setSearchOpen`)
-const setAppId = createAction<string>(`${name}/setApplicationId`)
-const setAppStatus = createAction<AppStatusDataState>(
-  `${name}/setAppStatusData`
-)
+.sortSection ul {
+  padding: 8px;
+}
 
-export { setSearchInput, setAppId, setAppStatus }
+.sortSection ul li {
+  padding: 17px;
+  width: 152px;
+  height: 52px;
+  border-radius: 10px;
+  cursor: pointer;
+}

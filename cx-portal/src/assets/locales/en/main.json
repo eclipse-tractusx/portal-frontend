@@ -88,6 +88,8 @@
           "details": "Details",
           "state": "State"
         },
+        "enterBpn": "Enter Business Partner Number",
+        "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "User Registration Requests",
         "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
         "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
@@ -472,7 +474,8 @@
         "headline": "Identity Management",
         "title": "User List",
         "details": "Details",
-        "add": "Add user"
+        "add": "Add user",
+        "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
@@ -486,7 +489,8 @@
         "table": {
           "headline": "Identity Management",
           "title": "App Users",
-          "add": "Add Role"
+          "add": "Add Role",
+          "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {
           "error": {
@@ -744,8 +748,8 @@
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App Title",
         "appProvider": "App Provider",
-        "shortDescriptionEN": "Short Description - EN",
-        "shortDescriptionDE": "Short Description - DE",
+        "shortDescriptionEN": "Short Description (en)",
+        "shortDescriptionDE": "Short Description (de)",
         "useCaseCategory": "Use Case /Category",
         "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
         "appLanguage": "App Language",
@@ -807,9 +811,18 @@
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
       },
       "validateAndPublish": {
-        "headerTitle": "Verify your app data for submit",
+        "headerTitle": "Validate & Publish",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "appCardDetails": "App Card Details"
+        "appDetails": "App Details",
+        "language": "Language :  ",
+        "useCase": "Use Case :  ",
+        "price": "Price :  ",
+        "connectedData": "Connected Data",
+        "dataSecurityInformation": "Data Security Information",
+        "documents": "Documents",
+        "providerInformation": "Provider Information",
+        "consent": "Consent",
+        "cxTestRuns": "CX Test Runs"
       },
       "submitApp": {
         "headerTitle": "Thank you for submitting the app!",
@@ -856,7 +869,7 @@
       "desc1": "You have started the subscription request for app {appName}.",
       "desc2": "Please note that the subscription request will trigger a service call on provider side. The app provider will align with you all further steps. This may take up to 5 days.",
       "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
-      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
+      "desc4": "As soon as the service is up and running, a notification will be send to you, which enables you to assign the relevant user roles and start to use your app."
     }
   },
   "navigation": {
@@ -864,6 +877,25 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
+    }
+  },
+  "notification": {
+    "search": "Enter your search value",
+    "cancelButton": "CANCEL",
+    "deleteButton": "DELETE ALWAYS",
+    "actionRequired": "Your action is required",
+    "deleteModal": {
+      "title": "Delete Message",
+      "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+    },
+    "sortOptions": {
+      "new": "Newest First",
+      "priority": "Priority First",
+      "unread": "Unread First",
+      "all": "all",
+      "app": "app only",
+      "info": "info only",
+      "withaction": "message with action required"
     }
   },
   "global": {
