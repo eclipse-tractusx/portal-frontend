@@ -39,7 +39,7 @@ export type CreateAppStep1Item = {
   title: string
   provider: string
   leadPictureUri: string
-  salesManagerId: string
+  salesManagerId: string | null
   useCaseIds: string[] | useCasesItem[]
   descriptions: {
     languageCode: string
@@ -97,6 +97,18 @@ export type ConsentType = {
 export type UpdateAgreementConsentType = {
   appId: string
   body: ConsentType
+}
+
+export type saveAppType = {
+  appId: string
+  body: CreateAppStep1Item
+}
+
+export type salesManagerType = {
+  userId: string | null
+  firstName: string
+  lastName: string
+  fullName?: string
 }
 
 export const apiSlice = createApi({
@@ -177,6 +189,16 @@ export const apiSlice = createApi({
         }),
       }
     ),
+    fetchSalesManagerData: builder.query<salesManagerType[], void>({
+      query: () => `/api/apps/appreleaseprocess/ownCompany/salesManager`,
+    }),
+    saveApp: builder.mutation<void, saveAppType>({
+      query: (data) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -192,4 +214,6 @@ export const {
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
+  useFetchSalesManagerDataQuery,
+  useSaveAppMutation,
 } = apiSlice

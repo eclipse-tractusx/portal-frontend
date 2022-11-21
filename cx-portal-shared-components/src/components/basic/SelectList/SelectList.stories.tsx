@@ -80,4 +80,5 @@ SelectList.args = {
   noOptionsText: 'No Options',
   popperHeight: 0, // 0 = auto size
   onChangeItem: (item: any) => console.log('selected:', item),
+  keyTitle: 'title',
 }

@@ -4,7 +4,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### In Progress
 * Feature - Apps & Service Subscription: include consent inside subscription
-* Feature - App Release Process: App status/summary api connect
 * Feature - App User Role - update table content
 
 ### Unreleased
@@ -17,6 +16,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Navigate and scroll to the Identity Management section after deleting the user
 * Technical Integration
    * Modal width fix
+* App Release Process
+   * App status/summary api connect
+   * Sales Manager business logic
 
 ## 0.8.0
 
