@@ -217,6 +217,7 @@ export default function AppMarketCard() {
       })
       setSalesManagerListData(salesManagerListData.concat(data))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList])
 
   const defaultValues = {
