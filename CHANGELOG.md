@@ -19,6 +19,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * App Release Process
    * App status/summary api connect
    * Sales Manager business logic
+   * "Save" Button enabling for an existing app
+
 
 ## 0.8.0
 

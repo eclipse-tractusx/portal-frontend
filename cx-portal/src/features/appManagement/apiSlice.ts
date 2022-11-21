@@ -190,11 +190,11 @@ export const apiSlice = createApi({
       }
     ),
     fetchSalesManagerData: builder.query<salesManagerType[], void>({
-      query: () => `/api/apps/appreleaseprocess/ownCompany/salesManager`,
+      query: () => `/api/apps/AppReleaseProcess/ownCompany/salesManager`,
     }),
     saveApp: builder.mutation<void, saveAppType>({
       query: (data) => ({
-        url: `/api/apps/appreleaseprocess/${data.appId}`,
+        url: `/api/apps/AppReleaseProcess/${data.appId}`,
         method: 'PUT',
         body: data.body,
       }),
