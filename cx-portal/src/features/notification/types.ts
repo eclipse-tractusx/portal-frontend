@@ -76,6 +76,7 @@ export interface CXNotificationContent {
   contentParsed?: NotificationContent
   isRead?: boolean
   dueDate?: string
+  notificationTopic?: string
 }
 
 export type CXNotificationMeta = {
