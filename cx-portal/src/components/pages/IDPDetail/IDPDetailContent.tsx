@@ -296,6 +296,7 @@ export default function IDPDetailContent({
             onChangeItem={(e: any) =>
               setFormData({ ...formData, ...{ idPType: e.value } })
             }
+            keyTitle="title"
           />
         </div>
       </div>
