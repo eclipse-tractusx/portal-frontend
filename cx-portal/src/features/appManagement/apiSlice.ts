@@ -128,13 +128,6 @@ export const apiSlice = createApi({
         body,
       }),
     }),
-    addContractConsent: builder.mutation<void, any>({
-      query: (body: any) => ({
-        url: `/api/apps/appreleaseprocess/createapp`,
-        method: 'POST',
-        body,
-      }),
-    }),
     updateapp: builder.mutation<void, any>({
       query: (data: any) => {
         const { body, appId } = data
@@ -206,7 +199,6 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
-  useAddContractConsentMutation,
   useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
