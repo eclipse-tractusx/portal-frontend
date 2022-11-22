@@ -73,6 +73,11 @@ export enum PAGES {
   APPOVERVIEW = 'appoverview',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
+  COMPANY_ROLES = 'companyroles',
+  COMPANY_ROLES_PARTICIPANT = 'companyrolesparticipant',
+  COMPANY_ROLES_APP_PROVIDER = 'companyrolesappprovider',
+  COMPANY_ROLES_SERVICE_PROVIDER = 'companyrolesserviceprovider',
+  COMPANY_ROLES_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
 }
 
 export enum OVERLAYS {

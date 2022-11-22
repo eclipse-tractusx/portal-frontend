@@ -42,7 +42,12 @@
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung",
-    "techuserdetails": "Technischer Benutzer Details"
+    "techuserdetails": "Technischer Benutzer Details",
+    "companyroles": "Company Roles",
+    "companyrolesparticipant": "Participant",
+    "companyrolesappprovider": "App Provider",
+    "companyrolesserviceprovider": "Service Provider",
+    "companyrolesconfirmitybody": "Confirmity Body"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -906,6 +911,11 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
+    },
+    "companyRoleSubNavigation": {
+      "link1Label": "app provider",
+      "link2Label": "operation & infrastructure provider",
+      "link3Label": "active participant"
     }
   },
   "notification": {
