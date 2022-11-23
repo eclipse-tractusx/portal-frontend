@@ -49,7 +49,7 @@ export const getAppImage = (appid: string, image: string): ImageType => ({
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
   subtitle: app.provider,
-  title: app.name,
+  title: app.name ?? '',
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
