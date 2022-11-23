@@ -18,47 +18,57 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import './styles.scss'
+import { Typography } from '../Typography'
 
 export const SortOption = ({
   sortOptions,
   setSortOption,
   selectedOption,
+  show,
 }: {
   sortOptions: any
-  setSortOption: any
+  setSortOption?: any
   selectedOption: any
+  show: boolean
 }) => {
   return (
-    <div className="sortSection">
-      <ul>
-        {sortOptions.map((entry: any) => (
-          <li
-            key={entry.value}
-            onClick={() => {
-              setSortOption(entry.value)
-            }}
-            style={{
-              backgroundColor:
-                selectedOption === entry.value
-                  ? 'rgba(15, 113, 203, 0.05)'
-                  : 'transparent',
-            }}
-          >
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: '14px',
-                fontWeight: '400',
-                color: selectedOption === entry.value ? '#0D55AF' : '#000',
+    <>
+      {show && (
+        <ul
+          style={{
+            padding: '8px',
+          }}
+        >
+          {sortOptions.map((entry: any) => (
+            <li
+              key={entry.value}
+              onClick={() => setSortOption(entry.value)}
+              style={{
+                backgroundColor:
+                  selectedOption === entry.value
+                    ? 'rgba(15, 113, 203, 0.05)'
+                    : 'transparent',
+                padding: '17px',
+                width: '152px',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                listStyleType: 'none',
               }}
             >
-              {entry.label}
-            </Typography>
-          </li>
-        ))}
-      </ul>
-    </div>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  color: selectedOption === entry.value ? '#0D55AF' : '#000',
+                }}
+              >
+                {entry.label}
+              </Typography>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   )
 }

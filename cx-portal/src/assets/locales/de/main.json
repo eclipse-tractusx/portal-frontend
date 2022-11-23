@@ -788,6 +788,9 @@
         "useCaseCategoryPlaceholder": "Choose the relevant use case",
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Select app supported language",
+        "salesManager": "Sales Manager",
+        "salesManagerPlaceholder": "Please select a Sales Manager",
+        "salesManagerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
         "pricingInformation": "Preisinformation"
       },
       "appPage": {
