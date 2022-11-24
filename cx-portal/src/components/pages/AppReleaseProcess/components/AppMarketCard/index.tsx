@@ -660,10 +660,19 @@ export default function AppMarketCard() {
             </div>
 
             <div className="form-field">
+              <Typography
+                sx={{ fontFamily: 'LibreFranklin-Medium' }}
+                variant="subtitle2"
+              >
+                {t('content.apprelease.appMarketCard.salesManager')}
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1 }}>
+                {t('content.apprelease.appMarketCard.salesManagerDescription')}
+              </Typography>
               <SelectList
                 defaultValue={defaultSalesManagerValue}
                 items={salesManagerListData}
-                label={t('content.apprelease.appMarketCard.salesManager')}
+                label={''}
                 placeholder={t(
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
@@ -672,9 +681,6 @@ export default function AppMarketCard() {
                 }}
                 keyTitle={'fullName'}
               />
-              <Typography variant="body2">
-                {t('content.apprelease.appMarketCard.salesManagerDescription')}
-              </Typography>
             </div>
 
             <div className="form-field">
