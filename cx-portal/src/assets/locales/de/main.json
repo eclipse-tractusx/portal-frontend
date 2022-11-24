@@ -564,16 +564,16 @@
       }
     },
     "idpmanagement": {
-      "addIdpHeadline": "Add a new Identity Provider",
-      "addIdpSubheadline": "Choose a name and a type for the new IDP",
+      "addIdpHeadline": "Erstelle einen neuen Identity Provider",
+      "addIdpSubheadline": "Wähle einen IdP Namen (dieser wird als Login Name in der Tenant-Auswahl angezeigt werden) und den IdP Type.",
       "updateIdpHeadline": "Update Identity Provider",
       "updateIdpSubheadline": "Choose the required settings for your IDP",
-      "enableIdpHeadline": "Enable Identity Provider {{ idp }}",
+      "enableIdpHeadline": "Activierung Identity Provider {{ idp }}",
       "enableIdpSubheadline": "This will open another option for people from your company to sign.",
-      "enableIdpSuccessHeadline": "Identity Provider successfully enabled",
-      "enableIdpSuccessSubheadline": "Go and test the login now",
-      "disableIdpHeadline": "Disable Identity Provider {{ idp }}",
-      "disableIdpSubheadline": "This will remove the option to sign in for people of your company",
+      "enableIdpSuccessHeadline": "Der Identity Provider wurde erfolgrecih aktiviert.",
+      "enableIdpSuccessSubheadline": "Login Test",
+      "disableIdpHeadline": "Deactiviere Identity Provider {{ idp }}",
+      "disableIdpSubheadline": "Mit der Deaktivierung des IdPs wird ein Zugriff über diesen Login nicht mehr möglich sein. Alle Nutzer müssen sich über den neuen IdP einloggen.",
       "description": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
       "create": "Add Identity Provider"
     },
