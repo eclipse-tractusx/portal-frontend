@@ -18,24 +18,45 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.sortSection {
-  position: absolute;
-  left: 65%;
-  margin-top: 13%;
-  background: #f9f9f9;
-  box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
-  border-radius: 16px;
-  z-index: 9;
+import { ComponentStory } from '@storybook/react'
+import { SortOption as Component } from '.'
+
+export default {
+  title: 'SortOption',
+  component: Component,
 }
 
-.sortSection ul {
-  padding: 8px;
-}
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <div
+    style={{
+      position: 'absolute',
+      background: '#f9f9f9',
+      boxShadow: '0px 10px 20px rgb(80 80 80 / 30%)',
+      borderRadius: '16px',
+      zIndex: '9',
+    }}
+  >
+    <Component {...args} setSortOption={() => {}} />
+  </div>
+)
 
-.sortSection ul li {
-  padding: 17px;
-  width: 152px;
-  height: 52px;
-  border-radius: 10px;
-  cursor: pointer;
+export const SortOption = Template.bind({})
+
+SortOption.args = {
+  sortOptions: [
+    {
+      label: 'New',
+      value: 'new',
+    },
+    {
+      label: 'Priority',
+      value: 'priority',
+    },
+    {
+      label: 'Unread',
+      value: 'unread',
+    },
+  ],
+  selectedOption: 'new',
+  show: true,
 }

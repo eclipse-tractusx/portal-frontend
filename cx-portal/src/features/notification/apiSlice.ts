@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification } from './types'
+import { CXNotification, CXNotificationMeta } from './types'
 
 export const apiSlice = createApi({
   reducerPath: 'info/notifications',
@@ -28,6 +28,9 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getNotificationCount: builder.query<number, boolean>({
       query: (read) => `/api/notification/count?isRead=${read}`,
+    }),
+    getNotificationMeta: builder.query<CXNotificationMeta, null>({
+      query: () => `/api/notification/count-details`,
     }),
     getNotifications: builder.query<CXNotification, null>({
       query: () => '/api/notification',
@@ -52,4 +55,5 @@ export const {
   useGetNotificationsQuery,
   useSetNotificationReadMutation,
   useDeleteNotificationMutation,
+  useGetNotificationMetaQuery,
 } = apiSlice

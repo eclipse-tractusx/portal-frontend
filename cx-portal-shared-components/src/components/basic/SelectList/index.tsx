@@ -29,21 +29,23 @@ import { isEqual } from 'lodash'
 
 interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
-  defaultValue?: { id: string; title: string; value: string }
   label: string
   placeholder: string
+  keyTitle: string
   popperHeight?: number
   variant?: 'filled'
   clearText?: string
   noOptionsText?: string
+  defaultValue?: {}
   onChangeItem: (items: any) => void
 }
 
 export const SelectList = ({
   items,
-  defaultValue = { id: '', title: '', value: '' },
   label,
   placeholder,
+  defaultValue = {},
+  keyTitle,
   variant,
   margin,
   focused,
@@ -66,13 +68,13 @@ export const SelectList = ({
       ListboxProps={{ style: { maxHeight: selectHeight } }}
       disabled={disabled}
       options={items.map((item) => item)}
-      getOptionLabel={(option) => option.title || ''}
+      getOptionLabel={(option) => option[keyTitle] || ''}
       onChange={(_, reason: any) => onChangeItem(reason)}
       isOptionEqualToValue={(option, value) => isEqual(option, value)}
       renderOption={(props, option, { inputValue }) => (
         <SelectOptions
           props={props}
-          parts={parse(option.title, match(option.title, inputValue))}
+          parts={parse(option[keyTitle], match(option[keyTitle], inputValue))}
           key={uniqueId('select-list-option')}
         />
       )}
@@ -88,7 +90,7 @@ export const SelectList = ({
             helperText={helperText}
             error={error}
             disabled={disabled}
-            keyTitle={''}
+            keyTitle={keyTitle}
           />
         )
       }}

@@ -49,6 +49,7 @@ export const SelectOptions = ({ props, parts }: SelectOptionsProps) => (
           key={index}
           style={{
             fontWeight: part.highlight ? 700 : 400,
+            fontSize: 16,
           }}
         >
           {part.text}
