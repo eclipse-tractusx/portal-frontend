@@ -146,6 +146,7 @@ const UpdateIDPForm = ({
           <SelectList
             clearText="clear"
             defaultValue={defaultOidcAuthMethod}
+            keyTitle={'title'}
             items={Object.keys(OIDCAuthMethod).map((m) => ({
               id: m,
               title: m,
