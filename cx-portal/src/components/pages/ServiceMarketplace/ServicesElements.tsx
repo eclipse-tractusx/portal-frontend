@@ -55,9 +55,9 @@ export default function ServicesElements() {
   return (
     <div className="marketplace-section">
       {services && services.length ? (
-        <Grid >
+        <Grid>
           {services.map((service: any) => (
-            <Grid >
+            <Grid>
               <CardHorizontal
                 borderRadius={0}
                 imageAlt="App Card"

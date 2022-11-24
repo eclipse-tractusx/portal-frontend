@@ -24,7 +24,7 @@ import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
 import { CardChip, CardChipProps } from './CardChip'
 import { useState, useEffect, useRef } from 'react'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 interface CardHorizontalProps extends CardChipProps {
   label: string
@@ -134,7 +134,7 @@ export const CardHorizontal = ({
           variant="caption3"
           sx={{
             color: '#252525',
-            lineHeight: '20px'
+            lineHeight: '20px',
           }}
         >
           {label}
@@ -144,7 +144,7 @@ export const CardHorizontal = ({
             variant="caption2"
             sx={{
               color: '#888888',
-              fontSize: '12px'
+              fontSize: '12px',
             }}
           >
             {variant === 'preview'
@@ -156,15 +156,19 @@ export const CardHorizontal = ({
         {buttonText && (
           <>
             {/* <svg data-testid="KeyboardArrowDownIcon"></svg> */}
-            <Typography variant="label4" onClick={onBtnClick} sx={{
-              color: '#0F71CB',
-              fontSize: '14px',
-              display: 'inline-block',
-              width: '100%',
-              textAlign: 'right',
-              marginTop: 'auto',
-              paddingTop: '20px',
-            }}>
+            <Typography
+              variant="label4"
+              onClick={onBtnClick}
+              sx={{
+                color: '#0F71CB',
+                fontSize: '14px',
+                display: 'inline-block',
+                width: '100%',
+                textAlign: 'right',
+                marginTop: 'auto',
+                paddingTop: '20px',
+              }}
+            >
               {buttonText}
             </Typography>
           </>

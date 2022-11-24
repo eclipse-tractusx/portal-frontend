@@ -30,7 +30,11 @@ import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './ServiceMarketplace.scss'
-import { SearchInput, Typography, ViewSelector } from 'cx-portal-shared-components'
+import {
+  SearchInput,
+  Typography,
+  ViewSelector,
+} from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
 import { SortOption } from 'components/shared/basic/SortOption'
 import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
@@ -97,16 +101,10 @@ export default function ServiceMarketplace() {
 
   return (
     <main className="serviceMarketplace">
-      <Typography
-        className="newServices"
-        variant="h5"
-      >
+      <Typography className="newServices" variant="h5">
         {t('content.serviceMarketplace.newServices')}
       </Typography>
-      <Typography
-        className="recommendations"
-        variant="body1"
-      >
+      <Typography className="recommendations" variant="body1">
         {t('content.serviceMarketplace.recommendations')}
       </Typography>
       <hr className="recommendations-divider" />
