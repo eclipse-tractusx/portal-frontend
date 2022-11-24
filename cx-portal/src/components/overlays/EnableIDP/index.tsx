@@ -56,7 +56,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
   const doEnableIDP = async () => {
     if (!(data && idpEnableData)) return
     try {
-      const idpEnable = await enableIdp({
+      await enableIdp({
         id: id,
         enabled: true,
       }).unwrap()
