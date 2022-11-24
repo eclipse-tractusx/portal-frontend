@@ -20,6 +20,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * App status/summary api connect
    * Sales Manager business logic
    * "Save" Button enabling for an existing app
+* Shared Components
+   * SelectList component - clear button can be toggled by disableClearable prop.
 
 
 ## 0.8.0
