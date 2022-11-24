@@ -970,11 +970,6 @@
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
       "additionalDescription": "Please contact your admin."
     },
-    "date": {
-      "yesterday": "yesterday",
-      "today": "today",
-      "tomorrow": "tomorrow"
-    },
     "table": {
       "search": "Enter email to search",
       "searchName": "Enter name to search"
