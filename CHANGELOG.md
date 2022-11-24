@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Apps & Service Subscription: include consent inside subscription
 * Feature - App Release Process: App status/summary api connect
 * Feature - App User Role - update table content
+* Feature - Service Marketplace Design Update
 
 ### Unreleased
 * Notifications

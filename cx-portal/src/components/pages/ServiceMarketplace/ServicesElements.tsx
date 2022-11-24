@@ -23,7 +23,7 @@ import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
-import './style.scss'
+import './ServiceMarketplace.scss'
 
 export default function ServicesElements() {
   const { t } = useTranslation()
@@ -55,9 +55,9 @@ export default function ServicesElements() {
   return (
     <div className="marketplace-section">
       {services && services.length ? (
-        <Grid container spacing={2}>
+        <Grid >
           {services.map((service: any) => (
-            <Grid item xs={12} sm={6} md={4} key={service.id}>
+            <Grid >
               <CardHorizontal
                 borderRadius={0}
                 imageAlt="App Card"

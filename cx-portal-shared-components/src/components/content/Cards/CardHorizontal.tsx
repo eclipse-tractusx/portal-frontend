@@ -24,6 +24,7 @@ import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
 import { CardChip, CardChipProps } from './CardChip'
 import { useState, useEffect, useRef } from 'react'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 interface CardHorizontalProps extends CardChipProps {
   label: string
@@ -71,14 +72,13 @@ export const CardHorizontal = ({
     <Box
       ref={boxRef}
       sx={{
-        backgroundColor: backgroundColor || 'common.white',
-        height: variant === 'expanded' ? 'auto' : '180px',
+        //display: '-ms-flexbox',
         display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: '0px',
-        width: '100%',
-        borderRadius: `${borderRadius}px`,
+        //-ms-flex-wrap: 'wrap',
+        flexWrap: 'wrap',
+        background: '#F9F9F9',
+        borderRadius: '4px',
+        overflow: 'hidden',
         ':hover': {
           boxShadow: theme.shadows['20'],
         },
@@ -88,66 +88,63 @@ export const CardHorizontal = ({
     >
       <Box
         sx={{
-          width: boxHeight ? `${boxHeight}px` : '180px',
-          height: boxHeight ? `${boxHeight}px` : '180px',
-          display: 'flex',
+          //-ms-flex: 0 0 33.333333%;
           flex: '0 0 33.333333%',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 0,
-          margin: 0,
           maxWidth: '33.333333%',
-          background: theme.palette.accent.accent02,
-          borderRadius: `${borderRadius}px`,
+          minHeight: '250px',
           backgroundImage: `url(${imagePath || LogoGrayData})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundColor: '#fff',
         }}
       />
       <Box
         sx={{
-          width: 'auto',
-          height: variant === 'expanded' ? 'auto' : '180px',
-          margin: '0',
-          padding: '15px',
-          flex: '1',
+          //-webkit-box-flex: 1;
+          //-ms-flex: 1;
+          flex: 1,
+          padding: '30px',
         }}
       >
         <Typography
-          variant="caption2"
+          variant="caption3"
           sx={{
-            color: theme.palette.text.tertiary,
             fontWeight: '600',
-            height: '24px',
+            lineHeight: '20px',
+            color: '#888888',
           }}
         >
           {label}
         </Typography>
 
         <Typography
-          variant="h4"
+          variant="h6"
           sx={{
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'normal',
-            display: 'box',
-            lineClamp: '2',
-            boxOrient: 'vertical',
-            height: '36px',
-            marginBottom: '17px',
-            marginTop: '9px',
+            margin: 0,
+            fontWeight: 600,
+            fontSize: '18px',
+            lineHeight: '28px',
+            color: '#111111',
           }}
         >
           {title}
+        </Typography>
+        <Typography
+          variant="caption3"
+          sx={{
+            color: '#252525',
+            lineHeight: '20px'
+          }}
+        >
+          {label}
         </Typography>
         {description && (
           <Typography
             variant="caption2"
             sx={{
-              color: theme.palette.text.tertiary,
-              fontWeight: '600',
-              height: '24px',
+              color: '#888888',
+              fontSize: '12px'
             }}
           >
             {variant === 'preview'
@@ -155,24 +152,23 @@ export const CardHorizontal = ({
               : description}
           </Typography>
         )}
-        <Box p={1} display="flex" justifyContent="space-between">
-          {statusText && (
-            <Box>
-              <CardChip status={status} statusText={statusText} />
-            </Box>
-          )}
-          {buttonText && (
-            <Button
-              size="small"
-              onClick={onBtnClick}
-              sx={{
-                marginLeft: 'auto',
-              }}
-            >
+
+        {buttonText && (
+          <>
+            {/* <svg data-testid="KeyboardArrowDownIcon"></svg> */}
+            <Typography variant="label4" onClick={onBtnClick} sx={{
+              color: '#0F71CB',
+              fontSize: '14px',
+              display: 'inline-block',
+              width: '100%',
+              textAlign: 'right',
+              marginTop: 'auto',
+              paddingTop: '20px',
+            }}>
               {buttonText}
-            </Button>
-          )}
-        </Box>
+            </Typography>
+          </>
+        )}
       </Box>
     </Box>
   )
