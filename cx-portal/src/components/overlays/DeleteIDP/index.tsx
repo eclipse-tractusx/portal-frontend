@@ -70,7 +70,7 @@ export const DeleteIDP = ({ id }: { id: string }) => {
   const handleRemove = async () => {
     if (!data) return
     try {
-      const response = await removeIDP(data.identityProviderId).unwrap()
+      await removeIDP(data.identityProviderId).unwrap()
       deleteIDPSuccess()
     } catch (err) {
       console.log(err)

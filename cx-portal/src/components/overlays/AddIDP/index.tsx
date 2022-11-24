@@ -155,7 +155,7 @@ export const AddIdp = () => {
           },
         },
       }
-      const idpUpdate = await updateIdp(idpUpdateData).unwrap()
+      await updateIdp(idpUpdateData).unwrap()
       dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
     } catch (err) {
