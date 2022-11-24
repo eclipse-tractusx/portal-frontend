@@ -125,15 +125,6 @@ const AddIDPPrepareForm = ({
           onChange(currentData)
         }}
       />
-      {/*
-      <SelectIdpType
-        onChange={(value) => {
-          const currentData = { ...formData }
-          currentData.type = value
-          setFormData(currentData)
-          onChange(currentData)
-        }}
-      />*/}
     </>
   )
 }
@@ -148,10 +139,8 @@ export const AddIdp = () => {
   const [updateIdp] = useUpdateIDPMutation()
 
   const doCreateIDP = async () => {
-    console.log(formData)
     try {
       const idp = await addIdp(formData.authType).unwrap()
-      console.log(idp)
       const idpUpdateData: IdentityProviderUpdate = {
         identityProviderId: idp.identityProviderId,
         body: {
@@ -166,13 +155,11 @@ export const AddIdp = () => {
           },
         },
       }
-      console.log(idpUpdateData)
       const idpUpdate = await updateIdp(idpUpdateData).unwrap()
-      console.log(idpUpdate)
       dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 

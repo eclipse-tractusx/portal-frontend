@@ -48,7 +48,7 @@ export const IDPDetailContent = ({
         </Box>
       )}
       <div className="idp-detail-content-header">
-        <Typography variant="h4">{'Identity Provider Details'}</Typography>
+        <Typography variant="h4">{t('content.idpdetail.title')}</Typography>
       </div>
       <div className="idp-detail-content-main">
         <UpdateIDPContent idp={idp} onValid={console.log} />

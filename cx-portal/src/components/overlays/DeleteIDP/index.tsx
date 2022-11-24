@@ -71,7 +71,6 @@ export const DeleteIDP = ({ id }: { id: string }) => {
     if (!data) return
     try {
       const response = await removeIDP(data.identityProviderId).unwrap()
-      console.log(response)
       deleteIDPSuccess()
     } catch (err) {
       console.log(err)

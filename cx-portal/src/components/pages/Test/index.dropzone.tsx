@@ -38,7 +38,6 @@ export default function Test() {
       })(row.split(','))
 
   const csvPreview = (files: File[]) => {
-    console.log(files)
     return files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {

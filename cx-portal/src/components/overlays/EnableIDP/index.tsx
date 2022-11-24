@@ -53,17 +53,13 @@ export const EnableIDP = ({ id }: { id: string }) => {
     IdentityProviderUser | undefined
   >(undefined)
 
-  console.log('user', data)
-
   const doEnableIDP = async () => {
     if (!(data && idpEnableData)) return
-    console.log(idpEnableData)
     try {
       const idpEnable = await enableIdp({
         id: id,
         enabled: true,
       }).unwrap()
-      console.log('enable', idpEnable)
       const idpUser: IdentityProviderUser = {
         ...idpEnableData,
         ...{
@@ -72,16 +68,14 @@ export const EnableIDP = ({ id }: { id: string }) => {
         },
       }
       try {
-        const addUser = await addUserIDP(idpUser).unwrap()
-        console.log('addUser', addUser)
+        await addUserIDP(idpUser).unwrap()
       } catch (e) {
-        const updateUser = await updateUserIDP(idpUser).unwrap()
-        console.log('updateUser', updateUser)
+        await updateUserIDP(idpUser).unwrap()
       }
       dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 
