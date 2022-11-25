@@ -2,9 +2,6 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### In Progress
-* Feature - Apps & Service Subscription: include consent inside subscription
-* Feature - App User Role - update table content
 
 ### Unreleased
 * Notifications
@@ -20,6 +17,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * App status/summary api connect
    * Sales Manager business logic
    * "Save" Button enabling for an existing app
+* Feature - Apps & Service Subscription: include consent inside subscription
+* Feature - App User Role - update table content
 * Shared Components
    * SelectList component - clear button can be toggled by disableClearable prop.
 
