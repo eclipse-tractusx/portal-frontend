@@ -20,64 +20,75 @@
 
 import { PageNotificationsProps } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import {
-  useFetchServiceAccountDetailQuery,
-  useRemoveServiceAccountMutation,
-} from 'features/admin/serviceApiSlice'
 import { setNotification } from 'features/notification/actions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
-import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
+import {
+  useFetchIDPDetailQuery,
+  useRemoveIDPMutation,
+} from 'features/admin/idpApiSlice'
+import DeleteObjectContent from 'components/shared/basic/DeleteObjectContent'
 
-export const DeleteTechnicalUser = ({ id }: { id: string }) => {
+export const DeleteIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { data } = useFetchServiceAccountDetailQuery(id ?? '')
-  const [removeServiceAccount] = useRemoveServiceAccountMutation()
+  const { data } = useFetchIDPDetailQuery(id ?? '')
+  const [removeIDP] = useRemoveIDPMutation()
 
-  const deleteUserSuccess = () => {
+  const deleteIDPSuccess = () => {
     const notification: PageNotificationsProps = {
       open: true,
       severity: 'success',
-      title:
-        'content.usermanagement.technicalUser.confirmDeleteNotificationTitle',
+      title: 'content.idpManagement.notification.confirmDeleteTitle',
       description:
-        'content.usermanagement.technicalUser.confirmDeleteNotificationDescription',
+        'content.idpmanagement.notification.confirmDeleteDescription',
     }
     dispatch(closeOverlay())
-    dispatch(updateData(UPDATES.TECHUSER_LIST))
+    dispatch(updateData(UPDATES.IDP_LIST))
     dispatch(setNotification(notification))
-    navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
+    navigate(`/${PAGES.IDP_MANAGEMENT}`)
+  }
+
+  const deleteIDPFailure = () => {
+    const notification: PageNotificationsProps = {
+      open: true,
+      severity: 'error',
+      title: 'content.idpManagement.notification.failureDeleteTitle',
+      description:
+        'content.idpmanagement.notification.failureDeleteDescription',
+    }
+    dispatch(closeOverlay())
+    dispatch(updateData(UPDATES.IDP_LIST))
+    dispatch(setNotification(notification))
+    navigate(`/${PAGES.IDP_MANAGEMENT}`)
   }
 
   const handleRemove = async () => {
     if (!data) return
     try {
-      const response = await removeServiceAccount(
-        data.serviceAccountId
-      ).unwrap()
-      deleteUserSuccess()
-      console.log(response)
+      await removeIDP(data.identityProviderId).unwrap()
+      deleteIDPSuccess()
     } catch (err) {
       console.log(err)
+      deleteIDPFailure()
     }
   }
   return data ? (
     <>
-      <DeleteUserContent
-        header={`${t('global.actions.delete')} ${t(
-          'global.objects.techuser'
-        )} ${data.name}`}
+      <DeleteObjectContent
+        header={`${t('global.actions.delete')} ${t('global.objects.idp')} ${
+          data.displayName
+        }`}
         subHeader={t('global.actions.confirmDelete', {
-          object: t('global.objects.techuser'),
-          name: data.name,
+          object: t('global.objects.idp'),
+          name: data.displayName,
         })}
         subHeaderTitle={t('global.actions.noteDelete', {
-          object: t('global.objects.techuser'),
+          object: t('global.objects.idp'),
         })}
         handleConfirm={handleRemove}
         confirmTitle={t('global.actions.delete')}

@@ -367,7 +367,7 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.APPSTORE_VIEW,
   },
   {
-    name: OVERLAYS.IDP,
+    name: OVERLAYS.IDP_DETAILS,
     role: ROLES.IDP_VIEW,
   },
   {
@@ -383,6 +383,30 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_DISABLE,
   },
   {
+    name: OVERLAYS.ADD_IDP,
+    role: ROLES.IDP_ADD,
+  },
+  {
+    name: OVERLAYS.UPDATE_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.ENABLE_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.DISABLE_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.ENABLE_IDP_SUCCESS,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.DELETE_IDP,
+    role: ROLES.IDP_DELETE,
+  },
+  {
     name: OVERLAYS.IDP_TEST_RUN,
     role: ROLES.IDP_ADD,
   },
@@ -395,6 +419,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.CONFIRM_USER_ACTION,
+  },
+  {
+    name: OVERLAYS.SAMPLE_FORM,
   },
 ]
 
