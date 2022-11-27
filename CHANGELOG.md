@@ -2,6 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+
 ### Unreleased
 * Notifications
    * Design updates
@@ -10,6 +11,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add BPN to an existing request
 * User management
    * Navigate and scroll to the Identity Management section after deleting the user
+   * App User tables - content api call filtering activated to reduce response to needed result
 * Technical Integration
    * Modal width fix
 * Identity Provider
@@ -20,9 +22,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * "Save" Button enabling for an existing app
 * Apps & Service Subscription
    * include consent inside subscription
-* App User Role
-   * update table content
-   
+* Feature - App User Role - update table content
+* Shared Components
+   * SelectList component - clear button can be toggled by disableClearable prop.
 
 ## 0.8.0
 
