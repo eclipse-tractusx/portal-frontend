@@ -32,7 +32,7 @@ import { useTranslation } from 'react-i18next'
 import './style.scss'
 import Box from '@mui/material/Box'
 
-export default function DeleteUserContent({
+export default function DeleteObjectContent({
   header,
   subHeader,
   subHeaderTitle,
@@ -57,7 +57,7 @@ export default function DeleteUserContent({
   return (
     <>
       {header && <DialogHeader title={header} />}
-      <DialogContent className="remove-technical-user-content">
+      <DialogContent className="remove-object-content">
         {subHeader && (
           <SubHeaderTitle className="confirm" title={subHeader} variant="h6" />
         )}

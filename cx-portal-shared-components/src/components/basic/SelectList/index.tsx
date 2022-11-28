@@ -37,6 +37,7 @@ interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   clearText?: string
   noOptionsText?: string
   defaultValue?: {}
+  disableClearable?: boolean
   onChangeItem: (items: any) => void
 }
 
@@ -45,6 +46,7 @@ export const SelectList = ({
   label,
   placeholder,
   defaultValue = {},
+  disableClearable = false,
   keyTitle,
   variant,
   margin,
@@ -64,6 +66,7 @@ export const SelectList = ({
       sx={{ width: '100%' }}
       clearText={clearText}
       defaultValue={defaultValue}
+      disableClearable={disableClearable}
       noOptionsText={noOptionsText}
       ListboxProps={{ style: { maxHeight: selectHeight } }}
       disabled={disabled}

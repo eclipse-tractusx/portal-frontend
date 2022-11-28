@@ -18,8 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+// yarn workspace cx-portal test Patterns
+
 import {
   isBPN,
+  isCompanyName,
   isDomain,
   isMail,
   isURL,
@@ -29,6 +32,10 @@ import {
 } from './Patterns'
 
 const TESTDATA = {
+  ID: {
+    valid: ['word', 'ID34', 'my_identifier'],
+    invalid: ['', '%&/()', 'some string', 'ID28  '],
+  },
   BPN: {
     valid: ['BPNL000000015OHJ', 'bpnl000000000001', 'bpnlaaaaaaaaaaaa'],
     invalid: [
@@ -121,6 +128,17 @@ const TESTDATA = {
       '5c08fc78dc454d1baa6e58da1ad9136f',
     ],
   },
+  COMPANY_NAME: {
+    valid: [
+      'VW',
+      'BMW',
+      'Mercedes-Benz',
+      'Huber & Söhne',
+      'Acme (INT)',
+      '33 & me',
+    ],
+    invalid: ['', '   ', ' Company ', '"!§$%&/'],
+  },
   CNAMES: {
     valid: ['word', 'Some word', 'Some@word'],
     invalid: ['some.word', 'w', '', 'some?@#$word'],
@@ -157,6 +175,15 @@ describe('Input Pattern Tests', () => {
   it('validates UUIDs', () => {
     TESTDATA.UUID.valid.forEach((expr) => expect(isUUID(expr)).toBe(true))
     TESTDATA.UUID.invalid.forEach((expr) => expect(isUUID(expr)).toBe(false))
+  })
+
+  it('validates Company Names', () => {
+    TESTDATA.COMPANY_NAME.valid.forEach((expr) =>
+      expect(isCompanyName(expr)).toBe(true)
+    )
+    TESTDATA.COMPANY_NAME.invalid.forEach((expr) =>
+      expect(isCompanyName(expr)).toBe(false)
+    )
   })
 
   it('validates connector Names', () => {
