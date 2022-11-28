@@ -129,15 +129,8 @@ const TESTDATA = {
     ],
   },
   COMPANY_NAME: {
-    valid: [
-      'VW',
-      'BMW',
-      'Mercedes-Benz',
-      'Huber & Söhne',
-      'Acme (INT)',
-      '33 & me',
-    ],
-    invalid: ['', '   ', ' Company ', '"!§$%&/'],
+    valid: ['Company@3', 'BMW4You', 'BMW!4ABC', "BMW XXX 23", "BMW", "23BMW", "BMWü", "BMW?#", "BMWè", "BMW (OIDC)", "BMW+Mini", "BMW.Mini", "BMW&Mini", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],
+    invalid: [' BMW', 'BMW  TG', 'BMW  ', '123', '!#@', 'BMW/Mini]]', 'BMW]]', 'aaaaaaaaaaaa  aaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'],
   },
   CNAMES: {
     valid: ['word', 'Some word', 'Some@word'],
