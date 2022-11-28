@@ -876,9 +876,9 @@
       "link2Label": "Identity User Management"
     },
     "companyRoleSubNavigation": {
-      "link1Label": "app provider",
-      "link2Label": "operation & infrastructure provider",
-      "link3Label": "active participant"
+      "link1Label": "marketplace",
+      "link2Label": "marketplace subscriptions",
+      "link3Label": "dataspace participants"
     }
   },
   "notification": {
@@ -940,7 +940,8 @@
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "readMore": "Read More"
     },
     "state": {
       "enabled": "enabled",

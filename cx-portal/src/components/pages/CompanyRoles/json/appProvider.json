@@ -5,20 +5,20 @@
     {
       "title": "Marketplace",
       "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
-      "imageUrl": "idp-teaser.jpg",
+      "imageUrl": "rectangle-image.png",
       "backgroundColor": "#DAE3EB",
       "id": "provider-id",
       "detailsWithImage": [
         {
           "title": "App Marketplace",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
           "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Service Marketplace",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
           "readMore": "",
           "backgroundColor": "#F9F9F9"
@@ -27,7 +27,7 @@
       "detailsWithoutImage": [
         {
           "title": "to be defined",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "to be defined",
           "readMore": "",
           "backgroundColor": "#F9F9F9"
@@ -51,13 +51,13 @@
     {
       "title": "Marketplace Subscriptions",
       "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
-      "imageUrl": "idp-teaser.jpg",
+      "imageUrl": "rectangle-image.png",
       "id": "operations-id",
       "backgroundColor": "#F9F9F9",
       "detailsWithImage": [
         {
           "title": "Subscription Authority",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "This are the details which I will still add",
           "readMore": "",
           "backgroundColor": "#FFFFFF",
@@ -65,7 +65,7 @@
         },
         {
           "title": "Subscription Flow",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "This are the details which I will still add",
           "readMore": "",
           "backgroundColor": "#FFFFFF",
@@ -99,20 +99,20 @@
     {
       "title": "Dataspace participants",
       "description": "Details regarding the dataspace ",
-      "imageUrl": "idp-teaser.jpg",
+      "imageUrl": "rectangle-image.png",
       "id": "participant-id",
       "backgroundColor": "#FFFFFF",
       "detailsWithImage": [
         {
           "title": "Simply lorem Ipsum Text",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "Read more",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "Read more",
           "backgroundColor": "#F9F9F9"
@@ -121,21 +121,21 @@
       "detailsWithoutImage": [
         {
           "title": "Simply lorem Ipsum Text",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "Read more",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "Read more",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
-          "imageUrl": "idp-teaser.jpg",
+          "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "Read more",
           "backgroundColor": "#F9F9F9"

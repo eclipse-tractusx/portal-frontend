@@ -36,19 +36,23 @@
 
 .subNavigationContainer button {
   padding-right: 80px;
+  margin-right: 20px;
 }
 
 .mainContainer {
   padding: 80px;
+  margin: auto;
+  overflow: hidden;
 }
 
 .cardsContainer {
-  width: 352px !important;
   padding: 20px !important;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 90px;
+  width: 33%;
 }
 
 .textContainer {
@@ -56,7 +60,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding-top: 20px;
+  padding: 0px;
 }
 
 .mainContainer img {
@@ -68,10 +72,10 @@
 }
 
 .cardGridContainer {
-  display: grid;
-  grid-template-columns: 3fr 3fr 2fr;
-  gap: 100px 15px;
-  margin: 130px 20px 20px 20px;
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  place-content: center;
 }
 
 .topFlexContainer {

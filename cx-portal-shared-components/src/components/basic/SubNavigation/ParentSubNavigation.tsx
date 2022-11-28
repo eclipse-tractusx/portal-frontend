@@ -18,35 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Card from './Card'
-import { CardDetailsProps } from '../../types'
+import { MouseEventHandler } from 'react'
+import { Button } from '../Button'
+import EastIcon from '@mui/icons-material/East'
 
-export default function CardWithImage({
-  detail,
+export const ParentSubNavigation = ({
+  navigationArray,
+  onClick,
 }: {
-  detail: CardDetailsProps
-}) {
+  navigationArray: any
+  onClick: any
+}) => {
   return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-      }}
-    >
-      <img
-        style={{
-          marginBottom: '20px',
-          padding:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '40px 90px'
-              : '0px',
-        }}
-        src={detail.imageUrl}
-        width="100%"
-        alt={'alt tag info'}
-      />
-      <Card card={detail} />
-    </div>
+    <>
+      {navigationArray.map(
+        (link: { index: number; title: string; navigation: string }) => {
+          return (
+            <Button
+              key={link.index}
+              onClick={() => onClick(link.navigation)}
+              color="secondary"
+              variant="text"
+              size="medium"
+            >
+              <EastIcon sx={{ marginRight: '16px' }} />
+              {link.title}
+            </Button>
+          )
+        }
+      )}
+    </>
   )
 }

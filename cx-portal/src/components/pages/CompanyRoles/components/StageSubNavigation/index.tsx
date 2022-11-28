@@ -18,10 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
+import { ParentSubNavigation } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import '../../CompanyRoles.scss'
-import EastIcon from '@mui/icons-material/East'
 import { Box } from '@mui/material'
 
 export const StageSubNavigation = () => {
@@ -35,6 +34,24 @@ export const StageSubNavigation = () => {
     })
   }
 
+  const linkArray = [
+    {
+      index: 1,
+      title: t('navigation.companyRoleSubNavigation.link1Label'),
+      navigation: 'provider-id',
+    },
+    {
+      index: 2,
+      title: t('navigation.companyRoleSubNavigation.link2Label'),
+      navigation: 'operations-id',
+    },
+    {
+      index: 3,
+      title: t('navigation.companyRoleSubNavigation.link3Label'),
+      navigation: 'participant-id',
+    },
+  ]
+
   return (
     <Box
       sx={{
@@ -43,33 +60,10 @@ export const StageSubNavigation = () => {
       }}
     >
       <div className="subNavigationContainer">
-        <Button
-          onClick={() => scrollToId('provider-id')}
-          color="secondary"
-          variant="text"
-          size="medium"
-        >
-          <EastIcon sx={{ marginRight: '16px' }} />
-          {t('navigation.companyRoleSubNavigation.link1Label')}
-        </Button>
-        <Button
-          onClick={() => scrollToId('operations-id')}
-          color="secondary"
-          variant="text"
-          size="medium"
-        >
-          <EastIcon sx={{ marginRight: '16px' }} />
-          {t('navigation.companyRoleSubNavigation.link2Label')}
-        </Button>
-        <Button
-          onClick={() => scrollToId('participant-id')}
-          color="secondary"
-          variant="text"
-          size="medium"
-        >
-          <EastIcon sx={{ marginRight: '16px' }} />
-          {t('navigation.companyRoleSubNavigation.link3Label')}
-        </Button>
+        <ParentSubNavigation
+          navigationArray={linkArray}
+          onClick={(value: string) => scrollToId(value)}
+        />
       </div>
     </Box>
   )

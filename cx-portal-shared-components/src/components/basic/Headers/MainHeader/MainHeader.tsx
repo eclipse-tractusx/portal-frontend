@@ -34,6 +34,44 @@ export interface MainHeaderProps {
     | 'LinearGradient3'
     | 'LinearGradient4'
   imagePath?: string
+  titleTextVariant?:
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'subtitle1'
+    | 'subtitle2'
+    | 'body1'
+    | 'body2'
+    | 'button'
+    | 'overline'
+    | 'inherit'
+    | 'body3'
+    | 'caption1'
+    | 'caption2'
+    | 'caption3'
+    | 'label1'
+  subTitleTextVariant?:
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'subtitle1'
+    | 'subtitle2'
+    | 'body1'
+    | 'body2'
+    | 'button'
+    | 'overline'
+    | 'inherit'
+    | 'body3'
+    | 'caption1'
+    | 'caption2'
+    | 'caption3'
+    | 'label1'
 }
 
 export const MainHeader = ({
@@ -44,6 +82,8 @@ export const MainHeader = ({
   headerHeight = 645,
   background = 'LinearGradient1',
   imagePath,
+  titleTextVariant,
+  subTitleTextVariant,
 }: MainHeaderProps) => {
   const backgroundstyle = () => {
     if (background === 'LinearGradient1') {
@@ -127,6 +167,8 @@ export const MainHeader = ({
           title={title}
           subTitle={subTitle}
           subTitleWidth={subTitleWidth}
+          titleTextVariant={titleTextVariant}
+          subTitleTextVariant={subTitleTextVariant}
         />
 
         <div className="children-header">{children}</div>

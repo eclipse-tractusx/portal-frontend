@@ -22,31 +22,52 @@ import { Typography } from 'cx-portal-shared-components'
 import { CardDetailsProps } from '../../types'
 import '../../CompanyRoles.scss'
 import { Link } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export default function Card({ card }: { card: CardDetailsProps }) {
+  const { t } = useTranslation()
   return (
     <div className="textContainer">
-      <Typography variant="h6">{card.title}</Typography>
+      <Typography sx={{
+        minHeight: '32px',
+      }} variant="h6">{card.title}</Typography>
       <Typography
         sx={{
           paddingTop: '34px',
+          minHeight: '32px',
         }}
         variant="body1"
       >
         {card.description}
       </Typography>
-      <Link
-        sx={{
-          textDecoration: 'underline',
-          paddingTop: '20px',
-        }}
-        variant="h6"
-        color="primary"
-        href={card.readMore}
-        underline="always"
-      >
-        Read More
-      </Link>
+      {card.readMore ? (
+        <Link
+          sx={{
+            textDecoration: 'underline',
+            paddingTop: '12px',
+            minHeight: '32px',
+            marginBottom: '15px !important'
+          }}
+          variant="h6"
+          color="primary"
+          href={card.readMore}
+          underline="always"
+        >
+          {t("global.actions.readMore")}
+        </Link>
+      ) : (
+        <Link
+          sx={{
+            textDecoration: 'underline',
+            paddingTop: '12px',
+            minHeight: '32px',
+            marginBottom: '15px !important'
+          }}
+          variant="h6"
+          color="primary"
+          underline="always"
+        ></Link>
+      )}
     </div>
   )
 }

@@ -32,10 +32,11 @@ export default function SearchSection({
       <MainHeader
         title={title}
         subTitle={description}
-        headerHeight={800}
-        subTitleWidth={1000}
+        subTitleTextVariant="h3"
+        headerHeight={551}
+        subTitleWidth={687}
         background="LinearGradient1"
-        imagePath="./home-stage-desktop.png"
+        imagePath="./company-roles.svg"
       ></MainHeader>
     </div>
   )
