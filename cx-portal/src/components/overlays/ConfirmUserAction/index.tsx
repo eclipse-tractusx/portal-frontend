@@ -20,7 +20,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import DeleteUserContent from 'components/shared/basic/DeleteUserContent'
+import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
 import {
   useRemoveTenantUserMutation,
   useFetchUserDetailsQuery,

@@ -72,7 +72,7 @@ export const RegistrationRequestsTableColumns = (
             >
               {row.bpn}
             </span>
-            {row.applicationStatus === 'SUBMITTED' && (
+            {row.applicationStatus === 'SUBMITTED' && !row.bpn && (
               <span
                 style={{
                   paddingTop: '2px',
