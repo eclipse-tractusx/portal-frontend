@@ -26,11 +26,22 @@ import { useTranslation } from 'react-i18next'
 
 export default function Card({ card }: { card: CardDetailsProps }) {
   const { t } = useTranslation()
+  const linkStyles = {
+    textDecoration: 'underline',
+    paddingTop: '12px',
+    minHeight: '32px',
+    marginBottom: '15px !important',
+  }
   return (
     <div className="textContainer">
-      <Typography sx={{
-        minHeight: '32px',
-      }} variant="h6">{card.title}</Typography>
+      <Typography
+        sx={{
+          minHeight: '32px',
+        }}
+        variant="h6"
+      >
+        {card.title}
+      </Typography>
       <Typography
         sx={{
           paddingTop: '34px',
@@ -43,25 +54,19 @@ export default function Card({ card }: { card: CardDetailsProps }) {
       {card.readMore ? (
         <Link
           sx={{
-            textDecoration: 'underline',
-            paddingTop: '12px',
-            minHeight: '32px',
-            marginBottom: '15px !important'
+            ...linkStyles,
           }}
           variant="h6"
           color="primary"
           href={card.readMore}
           underline="always"
         >
-          {t("global.actions.readMore")}
+          {t('global.actions.readMore')}
         </Link>
       ) : (
         <Link
           sx={{
-            textDecoration: 'underline',
-            paddingTop: '12px',
-            minHeight: '32px',
-            marginBottom: '15px !important'
+            ...linkStyles,
           }}
           variant="h6"
           color="primary"
