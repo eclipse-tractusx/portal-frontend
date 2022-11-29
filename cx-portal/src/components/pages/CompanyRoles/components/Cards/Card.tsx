@@ -32,7 +32,7 @@ export default function Card({ card }: { card: CardDetailsProps }) {
         sx={{
           minHeight: '32px',
         }}
-        variant="h6"
+        variant="h4"
       >
         {card.title}
       </Typography>
@@ -41,7 +41,7 @@ export default function Card({ card }: { card: CardDetailsProps }) {
           paddingTop: '34px',
           minHeight: '32px',
         }}
-        variant="body1"
+        variant="body2"
       >
         {card.description}
       </Typography>
