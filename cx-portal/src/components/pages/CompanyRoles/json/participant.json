@@ -6,7 +6,7 @@
       "title": "Marketplace",
       "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
       "imageUrl": "rectangle-image.png",
-      "backgroundColor": "#DAE3EB",
+      "backgroundColor": "#FFFFFF",
       "id": "provider-id",
       "detailsWithImage": [
         {
@@ -37,21 +37,21 @@
           "imageUrl": "rectangle-image.png",
           "description": "to be defined",
           "readMore": "",
-          "backgroundColor": "#F9F9F9"
+          "backgroundColor": "#FFFFFF"
         },
         {
           "title": "How to get to the app marketplace",
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/appmarketplace",
-          "backgroundColor": "#F9F9F9"
+          "backgroundColor": "#FFFFFF"
         },
         {
           "title": "How to get to the service marketplace",
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/servicemarketplace",
-          "backgroundColor": "#F9F9F9"
+          "backgroundColor": "#FFFFFF"
         }
       ]
     },
@@ -131,21 +131,21 @@
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "Read more",
-          "backgroundColor": "#F9F9F9"
+          "backgroundColor": "#FFFFFF"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
           "readMore": "",
-          "backgroundColor": "#F9F9F9"
+          "backgroundColor": "#FFFFFF"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "",
           "readMore": "Read more",
-          "backgroundColor": "#F9F9F9"
+          "backgroundColor": "#FFFFFF"
         }
       ]
     }
