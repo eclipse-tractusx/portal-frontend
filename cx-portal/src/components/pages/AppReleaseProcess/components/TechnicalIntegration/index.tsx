@@ -228,9 +228,9 @@ export default function TechnicalIntegration() {
               )}
             />
             {errors?.uploadAppRoles?.type === 'required' && (
-              <p className="file-error-msg">
+              <Typography variant="body2" className="file-error-msg">
                 {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </p>
+              </Typography>
             )}
             {rolesPreviews?.length > 0 && (
               <>
@@ -239,7 +239,7 @@ export default function TechnicalIntegration() {
                 </Typography>
                 <Grid container xs={12}>
                   {rolesPreviews?.map((role: string, index: number) => (
-                    <Grid xs={6}>
+                    <Grid xs={6} key={index}>
                       <Chip
                         key={index}
                         label={role}

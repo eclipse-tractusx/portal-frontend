@@ -100,22 +100,20 @@ const AddConnectorOverlay = ({
     <div>
       <Dialog
         open={openDialog}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: '45%',
-          },
+        additionalModalRootStyles={{
+          width: '45%',
         }}
       >
         <DialogHeader
           title={
-            !selected.type || selected.type === 'COMPANY_CONNECTOR'
-              ? t('content.edcconnector.modal.company.title')
-              : t('content.edcconnector.modal.managed.title')
+            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
+              ? t('content.edcconnector.modal.managed.title')
+              : t('content.edcconnector.modal.company.title')
           }
           intro={
-            !selected.type || selected.type === 'COMPANY_CONNECTOR'
-              ? t('content.edcconnector.modal.company.intro')
-              : t('content.edcconnector.modal.managed.intro')
+            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
+              ? t('content.edcconnector.modal.managed.intro')
+              : t('content.edcconnector.modal.company.intro')
           }
         />
         <DialogContent

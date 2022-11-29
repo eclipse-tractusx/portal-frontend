@@ -20,21 +20,22 @@
 
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { PageLoadingTable, StatusTag } from 'cx-portal-shared-components'
 import { GridRowId } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
-import {
-  TenantUser,
-  useFetchUsersSearchQuery,
-} from 'features/admin/userApiSlice'
+import { TenantUser } from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updatesSlice'
 import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
 import Patterns from 'types/Patterns'
+import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
 
 export default function UserListContent() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+
+  const { appId } = useParams()
 
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
@@ -59,10 +60,11 @@ export default function UserListContent() {
       onSelection={(id: GridRowId[]) => {
         dispatch(setSelectedUserToAdd(id))
       }}
+      noRowsMsg={t('content.usermanagement.table.noRowsMsg')}
       title={t('content.usermanagement.table.title')}
       loadLabel={t('global.actions.loadmore')}
-      fetchHook={useFetchUsersSearchQuery}
-      fetchHookArgs={{ expr }}
+      fetchHook={useFetchAppUsersSearchQuery}
+      fetchHookArgs={{ appId, expr, role: false }}
       fetchHookRefresh={refresh}
       getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
       columns={[

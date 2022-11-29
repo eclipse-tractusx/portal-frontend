@@ -81,6 +81,12 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    updateBPN: builder.mutation<boolean, any>({
+      query: (args) => ({
+        url: `/api/administration/registration/application/${args.applicationId}/${args.bpn}/bpn`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
@@ -89,4 +95,5 @@ export const {
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
+  useUpdateBPNMutation,
 } = apiSlice

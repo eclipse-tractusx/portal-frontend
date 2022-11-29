@@ -20,7 +20,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import DeleteUserContent from 'components/shared/basic/DeleteUserContent'
+import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
 import {
   useRemoveTenantUserMutation,
   useFetchUserDetailsQuery,
@@ -181,7 +181,7 @@ export const ConfirmUserAction = ({
     dispatch(closeOverlay())
     if (!error) {
       if (title === 'user' || title === 'suspend') {
-        navigate('/usermanagement')
+        navigate('/usermanagement/#identity')
       } else if (title === 'ownUser') {
         UserService.doLogout({ redirectUri: `${document.location.origin}/` })
       }

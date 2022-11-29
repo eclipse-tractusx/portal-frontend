@@ -19,49 +19,20 @@
  ********************************************************************************/
 
 .idp-detail-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 900px;
-  gap: 15px;
-
-  .idp-name-row {
-    display: flex;
-    justify-content: space-between;
-
-    input {
-      width: 400px;
-    }
-  }
-
-  .idp-details-tab {
-    border-bottom: 1px solid #ccc;
-    margin: 15px 0;
-
-    .MuiTabs-root {
-      padding: 0px;
-    }
-  }
-}
-
-.loading-btn {
-  display: flex;
-  justify-content: flex-end;
-
-  .MuiBox-root {
-    width: 150px;
-  }
-}
-
-.text-right {
-  text-align: right;
-}
-
-.error-msg {
-  color: red;
-  font-size: 14px;
-}
-
-.mb-20 {
+  padding: 8px 16px 16px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
   margin-bottom: 20px;
+  border-radius: 10px;
+
+  .idp-detail-content-header {
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .idp-detail-content-main {
+    width: 100%;
+    padding: 40px 120px;
+  }
 }

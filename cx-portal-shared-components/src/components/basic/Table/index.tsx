@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { DataGrid, DataGridProps, GridRowId } from '@mui/x-data-grid'
-import { Box } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
@@ -44,6 +44,7 @@ export interface TableProps extends DataGridProps {
   searchPlaceholder?: string
   searchDebounce?: number
   searchInputData?: SearchInputState
+  noRowsMsg?: string
   hasBorder?: boolean
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
@@ -68,6 +69,7 @@ export const Table = ({
   searchPlaceholder,
   searchDebounce,
   searchInputData,
+  noRowsMsg,
   hasBorder = true,
   buttonLabel,
   onButtonClick,
@@ -81,6 +83,7 @@ export const Table = ({
     searchDebounce,
     searchInputData,
     searchPlaceholder,
+    noRowsMsg,
     buttonLabel,
     onButtonClick,
     onSelection,
@@ -88,7 +91,8 @@ export const Table = ({
   }
 
   const handleOnCellClick = (params: any) => {
-    onSelection && onSelection([params.value === false ? params.row.companyUserId : ''])
+    onSelection &&
+      onSelection([params.value === false ? params.row.companyUserId : ''])
   }
 
   const toolbarView = () => {
@@ -100,6 +104,19 @@ export const Table = ({
       case 'ultimate':
         return <UltimateToolbar title={title} {...toolbarProps} {...toolbar} />
     }
+  }
+
+  const NoRowsOverlay = () => {
+    return (
+      <Stack
+        height="100%"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ backgroundColor: '#fff' }}
+      >
+        {noRowsMsg ?? 'No rows'}
+      </Stack>
+    )
   }
 
   return (
@@ -125,6 +142,7 @@ export const Table = ({
         getRowId={(row) => row.id}
         components={{
           Toolbar: () => toolbarView(),
+          NoRowsOverlay,
         }}
         onCellClick={onSelection && handleOnCellClick}
         {...{

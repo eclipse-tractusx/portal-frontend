@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,21 +18,45 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.remove-technical-user-content {
-  max-width: 930px;
-  margin-top: -20px;
+import { ComponentStory } from '@storybook/react'
+import { SortOption as Component } from '.'
 
-  * {
-    width: fit-content;
-    text-align: center;
-  }
+export default {
+  title: 'SortOption',
+  component: Component,
+}
 
-  h6 {
-    font-weight: bold !important;
-    margin: 0 auto;
-  }
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <div
+    style={{
+      position: 'absolute',
+      background: '#f9f9f9',
+      boxShadow: '0px 10px 20px rgb(80 80 80 / 30%)',
+      borderRadius: '16px',
+      zIndex: '9',
+    }}
+  >
+    <Component {...args} setSortOption={() => {}} />
+  </div>
+)
 
-  h5 {
-    margin: 20px auto 20px auto !important;
-  }
+export const SortOption = Template.bind({})
+
+SortOption.args = {
+  sortOptions: [
+    {
+      label: 'New',
+      value: 'new',
+    },
+    {
+      label: 'Priority',
+      value: 'priority',
+    },
+    {
+      label: 'Unread',
+      value: 'unread',
+    },
+  ],
+  selectedOption: 'new',
+  show: true,
 }

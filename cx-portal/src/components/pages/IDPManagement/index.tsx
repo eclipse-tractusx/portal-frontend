@@ -31,29 +31,16 @@ import { notificationSelector } from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
-import './style.scss'
-import { IDPAuthType, useAddIDPMutation } from 'features/admin/idpApiSlice'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { show } from 'features/control/overlay/actions'
+import './style.scss'
 
 export default function IDPManagement() {
   const { t } = useTranslation()
   const notification = useSelector(notificationSelector)
   const dispatch = useDispatch()
-  const [addIdp] = useAddIDPMutation()
 
   const handleCloseNotification = () => {
     dispatch(resetNotification())
-  }
-
-  const doCreateIDP = async (type: IDPAuthType) => {
-    try {
-      const idp = await addIdp(type).unwrap()
-      dispatch(show(OVERLAYS.IDP, idp.identityProviderId))
-      dispatch(updateData(UPDATES.IDP_LIST))
-    } catch (error) {
-      console.log(error)
-    }
   }
 
   return (
@@ -63,15 +50,11 @@ export default function IDPManagement() {
         <div className="idp-management-header">
           <img src="/idp-teaser.jpg" alt={'idp management'} />
           <div className="idp-management-title">
-            <Typography>
-              {
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
-              }
-            </Typography>
+            <Typography>{t('content.idpmanagement.description')}</Typography>
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
-              onClick={() => doCreateIDP(IDPAuthType.OIDC)}
+              onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
             >
               {t('content.idpmanagement.create')}
             </Button>

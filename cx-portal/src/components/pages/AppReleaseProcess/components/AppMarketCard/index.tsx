@@ -29,10 +29,11 @@ import {
   Checkbox,
   PageNotifications,
   LogoGrayData,
+  SelectList,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -40,13 +41,21 @@ import {
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
   useUpdateDocumentUploadMutation,
+  useCasesItem,
+  useFetchSalesManagerDataQuery,
+  salesManagerType,
+  useSaveAppMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
-import { useDispatch } from 'react-redux'
-import { increment } from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  appStatusDataSelector,
+  increment,
+} from 'features/appManagement/slice'
 import { setAppId } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
@@ -56,14 +65,14 @@ type FormDataType = {
   provider: string
   shortDescriptionEN: string
   shortDescriptionDE: string
-  useCaseCategory: string[]
+  useCaseCategory: string[] | useCasesItem[]
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: File | null
-    alt: string
+    leadPictureUri: File | null | string
+    alt?: string
   }
-  providerCompanyId: string
+  salesManagerId: string | null
 }
 
 export const ConnectorFormInputField = ({
@@ -145,7 +154,9 @@ export const ConnectorFormInputField = ({
               }}
             />
             {!!errors[name] && (
-              <p className="file-error-msg">{errors[name].message}</p>
+              <Typography variant="body2" className="file-error-msg">
+                {errors[name].message}
+              </Typography>
             )}
           </>
         )
@@ -178,26 +189,55 @@ export default function AppMarketCard() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
   const [addCreateApp] = useAddCreateAppMutation()
+  const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [appCardNotification, setAppCardNotification] = useState(false)
+  const appStatusData = useSelector(appStatusDataSelector)
+  const salesManagerList = useFetchSalesManagerDataQuery().data || []
+  const defaultSalesManagerValue = {
+    userId: null,
+    firstName: 'none',
+    lastName: '',
+    fullName: 'none',
+  }
+  const [salesManagerListData, setSalesManagerListData] = useState<
+    salesManagerType[]
+  >([defaultSalesManagerValue])
+  const [salesManagerId, setSalesManagerId] = useState(null)
+
+  useEffect(() => {
+    if (salesManagerList.length > 0) {
+      let data = salesManagerList?.map((item) => {
+        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
+      })
+      setSalesManagerListData(salesManagerListData.concat(data))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [salesManagerList])
 
   const defaultValues = {
-    title: '',
-    provider: '',
-    price: '',
-    useCaseCategory: [],
-    appLanguage: [],
+    title: appStatusData?.title,
+    provider: appStatusData?.provider,
+    price: appStatusData?.price,
+    useCaseCategory: appStatusData?.useCase,
+    appLanguage: appStatusData?.supportedLanguageCodes,
     //To do: to be changed once api is available
-    providerCompanyId: '2dc4249f-b5ca-4d42-bef1-7a7a950a4f87',
-    shortDescriptionEN: '',
-    shortDescriptionDE: '',
+    salesManagerId: salesManagerId,
+    shortDescriptionEN:
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'en'
+      )[0]?.shortDescription || '',
+    shortDescriptionDE:
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'de'
+      )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: null,
+      leadPictureUri: appStatusData?.leadPictureUri || null,
       alt: '',
     },
   }
@@ -253,7 +293,7 @@ export default function AppMarketCard() {
         data.uploadImage.leadPictureUri !== null &&
         Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
         Object.values(data.uploadImage.leadPictureUri)[0],
-      providerCompanyId: data.providerCompanyId,
+      salesManagerId: salesManagerId,
       useCaseIds: data.useCaseCategory,
       descriptions: [
         {
@@ -272,17 +312,35 @@ export default function AppMarketCard() {
     }
 
     const uploadImageValue = getValues().uploadImage.leadPictureUri
-    await addCreateApp(saveData)
-      .unwrap()
-      .then((result) => {
-        isString(result) &&
-          uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
-        isString(result) && dispatch(setAppId(result))
-        dispatch(increment())
-      })
-      .catch((error: any) => {
-        setAppCardNotification(true)
-      })
+
+    if (appId) {
+      const saveAppData = {
+        appId: appId,
+        body: saveData,
+      }
+
+      await saveApp(saveAppData)
+        .unwrap()
+        .then(() => {
+          dispatch(increment())
+        })
+        .catch(() => {
+          setAppCardNotification(true)
+        })
+    } else {
+      await addCreateApp(saveData)
+        .unwrap()
+        .then((result) => {
+          if (isString(result)) {
+            uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+            dispatch(setAppId(result))
+            dispatch(increment())
+          }
+        })
+        .catch(() => {
+          setAppCardNotification(true)
+        })
+    }
   }
 
   const uploadDocumentApi = async (
@@ -443,8 +501,8 @@ export default function AppMarketCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string) => (
-                  <>
+                (item: string, i) => (
+                  <div key={i}>
                     <ConnectorFormInputField
                       {...{
                         control,
@@ -512,7 +570,7 @@ export default function AppMarketCard() {
                         ? getValues().shortDescriptionEN.length
                         : getValues().shortDescriptionDE.length) + `/255`}
                     </Typography>
-                  </>
+                  </div>
                 )
               )}
             </div>
@@ -602,6 +660,30 @@ export default function AppMarketCard() {
             </div>
 
             <div className="form-field">
+              <Typography
+                sx={{ fontFamily: 'LibreFranklin-Medium' }}
+                variant="subtitle2"
+              >
+                {t('content.apprelease.appMarketCard.salesManager')}
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1 }}>
+                {t('content.apprelease.appMarketCard.salesManagerDescription')}
+              </Typography>
+              <SelectList
+                defaultValue={defaultSalesManagerValue}
+                items={salesManagerListData}
+                label={''}
+                placeholder={t(
+                  'content.apprelease.appMarketCard.salesManagerPlaceholder'
+                )}
+                onChangeItem={(e) => {
+                  setSalesManagerId(e.userId)
+                }}
+                keyTitle={'fullName'}
+              />
+            </div>
+
+            <div className="form-field">
               <ConnectorFormInputField
                 {...{
                   control,
@@ -667,9 +749,9 @@ export default function AppMarketCard() {
               }}
             />
             {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-              <p className="file-error-msg">
+              <Typography variant="body2" className="file-error-msg">
                 {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </p>
+              </Typography>
             )}
 
             <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>

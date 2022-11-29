@@ -4,10 +4,41 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+n/a
 
-* ...
-* ...
+## 0.9.0
 
+### Change
+* Shared Components
+   * SelectList component - property/parameter added to clear the select list input
+* App Release Process
+   * Sales Manager Get, Select and drop down enabled for app creation
+   * "Save" Button enabling with update PUT api call
+
+### Feature
+* Marketplace
+   * App subscription consent agreement included inside the user flow with api triggering 
+* Identity Provider
+   * Create, update and enable new idp integration for ownIdP usage (companyIdP)
+* Notifications Service
+   * Release of new notification design with filtering, viewing & pagination
+   * Highlight of unread messages
+   * Delete notification function enabled
+* Registration Approval Board
+   * Enable handling of registrations without bpn by adding a bpn input field with api connection
+* User management
+   * Auto navigation to Identity Management section after deleting an user
+   * App User tables - content api call filtering activated to reduce response to needed result
+* Company Role Introduction
+   * Active Participant introduction page
+   * App Provider introduction page
+   * Service Provider introduction page
+
+### Technical Support
+* n/a
+
+### Bugfix
+* n/a
 
 ## 0.8.0
 

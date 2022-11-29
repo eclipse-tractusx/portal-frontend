@@ -25,6 +25,8 @@ export const MainHeaderTitle = ({
   title,
   subTitle,
   subTitleWidth,
+  titleTextVariant = 'h2',
+  subTitleTextVariant = 'h2',
 }: MainHeaderProps) => {
   return (
     <>
@@ -34,7 +36,7 @@ export const MainHeaderTitle = ({
             fontFamily: 'LibreFranklin-Light',
             fontWeight: 600,
           }}
-          variant="h2"
+          variant={titleTextVariant}
         >
           {title}
         </Typography>
@@ -46,7 +48,7 @@ export const MainHeaderTitle = ({
             fontFamily: 'LibreFranklin-Light',
             width: `${subTitleWidth}px`,
           }}
-          variant="h2"
+          variant={subTitleTextVariant}
         >
           {subTitle}
         </Typography>

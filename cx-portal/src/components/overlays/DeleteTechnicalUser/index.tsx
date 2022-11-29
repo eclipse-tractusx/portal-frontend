@@ -30,7 +30,7 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
-import DeleteUserContent from 'components/shared/basic/DeleteUserContent'
+import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
 
 export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const { t } = useTranslation()

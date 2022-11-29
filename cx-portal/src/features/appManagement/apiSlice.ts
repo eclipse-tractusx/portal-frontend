@@ -39,8 +39,8 @@ export type CreateAppStep1Item = {
   title: string
   provider: string
   leadPictureUri: string
-  providerCompanyId: string
-  useCaseIds: string[]
+  salesManagerId: string | null
+  useCaseIds: string[] | useCasesItem[]
   descriptions: {
     languageCode: string
     longDescription: string
@@ -99,6 +99,18 @@ export type UpdateAgreementConsentType = {
   body: ConsentType
 }
 
+export type saveAppType = {
+  appId: string
+  body: CreateAppStep1Item
+}
+
+export type salesManagerType = {
+  userId: string | null
+  firstName: string
+  lastName: string
+  fullName?: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -111,13 +123,6 @@ export const apiSlice = createApi({
     }),
     addCreateApp: builder.mutation<void, CreateAppStep1Item>({
       query: (body: CreateAppStep1Item) => ({
-        url: `/api/apps/appreleaseprocess/createapp`,
-        method: 'POST',
-        body,
-      }),
-    }),
-    addContractConsent: builder.mutation<void, any>({
-      query: (body: any) => ({
         url: `/api/apps/appreleaseprocess/createapp`,
         method: 'POST',
         body,
@@ -177,6 +182,16 @@ export const apiSlice = createApi({
         }),
       }
     ),
+    fetchSalesManagerData: builder.query<salesManagerType[], void>({
+      query: () => `/api/apps/AppReleaseProcess/ownCompany/salesManager`,
+    }),
+    saveApp: builder.mutation<void, saveAppType>({
+      query: (data) => ({
+        url: `/api/apps/AppReleaseProcess/${data.appId}`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -184,7 +199,6 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
-  useAddContractConsentMutation,
   useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
@@ -192,4 +206,6 @@ export const {
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
+  useFetchSalesManagerDataQuery,
+  useSaveAppMutation,
 } = apiSlice
