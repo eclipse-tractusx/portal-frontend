@@ -50,7 +50,7 @@ export default function Card({ card }: { card: CardDetailsProps }) {
           {t('global.actions.readMore')}
         </a>
       ) : (
-        <a className="readMoreButton" />
+        <div className="readMoreButton" />
       )}
     </div>
   )
