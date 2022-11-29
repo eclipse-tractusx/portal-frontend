@@ -37,7 +37,7 @@ export default function SearchSection({
         subTitleWidth={687}
         background="LinearGradient1"
         imagePath="./company-roles.svg"
-      ></MainHeader>
+      />
     </div>
   )
 }

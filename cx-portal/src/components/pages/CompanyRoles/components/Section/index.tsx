@@ -60,22 +60,14 @@ export default function Section({ sectionInfo }: { sectionInfo: any }) {
                 <div className="cardGridContainer">
                   {provider.detailsWithImage &&
                     provider.detailsWithImage.map((card: CardDetailsProps) => {
-                      return (
-                        <>
-                          <CardWithImage detail={card} />
-                        </>
-                      )
+                      return <CardWithImage detail={card} />
                     })}
                 </div>
                 <div className="cardGridContainer">
                   {provider.detailsWithoutImage &&
                     provider.detailsWithoutImage.map(
                       (card: CardDetailsProps) => {
-                        return (
-                          <>
-                            <CardWithoutImage detail={card} />
-                          </>
-                        )
+                        return <CardWithoutImage detail={card} />
                       }
                     )}
                 </div>

@@ -21,17 +21,11 @@
 import { Typography } from 'cx-portal-shared-components'
 import { CardDetailsProps } from '../../types'
 import '../../CompanyRoles.scss'
-import { Link } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 export default function Card({ card }: { card: CardDetailsProps }) {
   const { t } = useTranslation()
-  const linkStyles = {
-    textDecoration: 'underline',
-    paddingTop: '12px',
-    minHeight: '32px',
-    marginBottom: '15px !important',
-  }
+
   return (
     <div className="textContainer">
       <Typography
@@ -52,26 +46,11 @@ export default function Card({ card }: { card: CardDetailsProps }) {
         {card.description}
       </Typography>
       {card.readMore ? (
-        <Link
-          sx={{
-            ...linkStyles,
-          }}
-          variant="h6"
-          color="primary"
-          href={card.readMore}
-          underline="always"
-        >
+        <a className="readMoreButton" href={card.readMore}>
           {t('global.actions.readMore')}
-        </Link>
+        </a>
       ) : (
-        <Link
-          sx={{
-            ...linkStyles,
-          }}
-          variant="h6"
-          color="primary"
-          underline="always"
-        ></Link>
+        <a className="readMoreButton" />
       )}
     </div>
   )
