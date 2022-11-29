@@ -107,6 +107,12 @@
         "confirmmodal": {
           "title": "Aktion bestätigen",
           "description": "Möchten Sie die ausgewählte Anfrage wirklich ausführen?"
+        },
+        "addBpn": {
+          "successTitle": "Update BPN number successfully completed",
+          "successDescription": "Update BPN number successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
       }
     },
