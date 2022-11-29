@@ -38,39 +38,47 @@ export default function Section({ sectionInfo }: { sectionInfo: any }) {
                 backgroundColor: provider.backgroundColor,
               }}
             >
-              <div className="topFlexContainer">
-                <div>
-                  <Typography variant="h2">{provider.title}</Typography>
-                  <Typography
-                    sx={{
-                      paddingTop: '34px',
-                    }}
-                    variant="body1"
-                  >
-                    {provider.description}
-                  </Typography>
+              <div className="subContainer">
+                <div className="topFlexContainer">
+                  <div>
+                    <Typography variant="h2">{provider.title}</Typography>
+                    <Typography
+                      sx={{
+                        paddingTop: '34px',
+                      }}
+                      variant="body1"
+                    >
+                      {provider.description}
+                    </Typography>
+                  </div>
+                  <img
+                    src={provider.imageUrl}
+                    width="482"
+                    alt={'alt tag info'}
+                  />
                 </div>
-                <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
-              </div>
-              <div className="cardGridContainer">
-                {provider.detailsWithImage &&
-                  provider.detailsWithImage.map((card: CardDetailsProps) => {
-                    return (
-                      <>
-                        <CardWithImage detail={card} />
-                      </>
-                    )
-                  })}
-              </div>
-              <div className="cardGridContainer">
-                {provider.detailsWithoutImage &&
-                  provider.detailsWithoutImage.map((card: CardDetailsProps) => {
-                    return (
-                      <>
-                        <CardWithoutImage detail={card} />
-                      </>
-                    )
-                  })}
+                <div className="cardGridContainer">
+                  {provider.detailsWithImage &&
+                    provider.detailsWithImage.map((card: CardDetailsProps) => {
+                      return (
+                        <>
+                          <CardWithImage detail={card} />
+                        </>
+                      )
+                    })}
+                </div>
+                <div className="cardGridContainer">
+                  {provider.detailsWithoutImage &&
+                    provider.detailsWithoutImage.map(
+                      (card: CardDetailsProps) => {
+                        return (
+                          <>
+                            <CardWithoutImage detail={card} />
+                          </>
+                        )
+                      }
+                    )}
+                </div>
               </div>
             </div>
           )
