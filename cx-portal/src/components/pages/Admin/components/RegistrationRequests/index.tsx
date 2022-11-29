@@ -36,9 +36,13 @@ import {
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
+  useUpdateBPNMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
+import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -58,6 +62,8 @@ export default function RegistrationRequests() {
   const [declineRequest] = useDeclineRequestMutation()
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
+  const [updateBpn] = useUpdateBPNMutation()
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [showErrorAlert, setShowErrorAlert] = useState<string>('')
@@ -65,6 +71,9 @@ export default function RegistrationRequests() {
   const [loaded, setLoaded] = useState<number>(0)
 
   const [enableBpnInput, setEnableBpnInput] = useState<boolean>(false)
+
+  const [successOverlay, setSuccessOverlay] = useState(false)
+  const [errorOverlay, setErrorOverlay] = useState(false)
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
@@ -123,6 +132,21 @@ export default function RegistrationRequests() {
     }
   }
 
+  const onUpdateBpn = async (bpn: string) => {
+    setIsLoading(true)
+    await updateBpn({ bpn: bpn, applicationId: selectedRequestId })
+      .unwrap()
+      .then((payload) => {
+        setEnableBpnInput(false)
+        setSuccessOverlay(true)
+        setLoaded(Date.now())
+      })
+      .catch((error) => {
+        setEnableBpnInput(false)
+        setErrorOverlay(true)
+      })
+  }
+
   return (
     <main className="page-main-container">
       <PageSnackbar
@@ -141,16 +165,47 @@ export default function RegistrationRequests() {
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
+      {successOverlay && (
+        <ServerResponseOverlay
+          title={t('content.admin.registration-requests.addBpn.successTitle')}
+          intro={t(
+            'content.admin.registration-requests.addBpn.successDescription'
+          )}
+          dialogOpen={true}
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
+      {errorOverlay && (
+        <ServerResponseOverlay
+          title={t('content.admin.registration-requests.addBpn.errorTitle')}
+          intro={t(
+            'content.admin.registration-requests.addBpn.errorDescription'
+          )}
+          dialogOpen={true}
+          iconComponent={
+            <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
+          }
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
       <ConfirmationOverlay
         openDialog={confirmModalOpen}
         handleOverlayClose={() => {
           setIsLoading(false)
           setConfirmModalOpen(false)
-          setEnableBpnInput(false)
         }}
         handleConfirmClick={() => makeActionSelectedRequest()}
-        enableBpnInput={enableBpnInput}
-        title={t('content.admin.registration-requests.enterBpn')}
+      />
+      <AddBpnOveraly
+        openDialog={enableBpnInput}
+        isLoading={isLoading}
+        handleOverlayClose={() => {
+          setIsLoading(false)
+          setEnableBpnInput(false)
+        }}
+        handleConfirmClick={(bpn: string) => onUpdateBpn(bpn)}
       />
 
       {/* Page header title and background color */}
@@ -183,9 +238,11 @@ export default function RegistrationRequests() {
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}
           searchExpr={expr}
-          showConfirmOverlay={() => {
+          showConfirmOverlay={(id: string) => {
+            setSelectedRequestId(id)
             setEnableBpnInput(true)
-            setConfirmModalOpen(true)
+            setSuccessOverlay(false)
+            setErrorOverlay(false)
           }}
         />
       </div>
