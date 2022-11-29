@@ -23,8 +23,10 @@ import {
   Card,
   Checkbox,
   IconButton,
-  Input,
+  LanguageSwitch,
+  LogoGrayData,
   PageNotifications,
+  StaticTable,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -36,11 +38,14 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appStatusDataSelector,
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { Dropzone } from 'components/shared/basic/Dropzone'
 import { useSubmitappMutation } from 'features/appManagement/apiSlice'
+import i18next, { changeLanguage } from 'i18next'
+import I18nService from 'services/I18nService'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -53,74 +58,43 @@ export default function ValidateAndPublish({
     useState(false)
   const [submitapp] = useSubmitappMutation()
   const appId = useSelector(appIdSelector)
+  const appStatusData: any = useSelector(appStatusDataSelector)
 
   const defaultValues = {
-    title: 'Digital Twin Aspect Debugger',
-    provider: 'Catena-X',
-    leadPictureUri:
-      'https://catenaxdev003util.blob.core.windows.net/assets/apps/images/Lead-Default.png',
-    providerName: 'providerName via app.providerId',
-    useCase: ['use case'],
-    descriptions: [
+    images: [LogoGrayData, LogoGrayData, LogoGrayData],
+    connectedTableData: {
+      head: ['Linked to your identity', 'Linked NOT to your identity'],
+      body: [
+        ['personal Information', 'Loreum personal Information'],
+        ['Used Content', 'Loreum Used Content'],
+        ['Catena-X Account Data', 'Loreum Catena-X Account Data'],
+      ],
+    },
+    dataSecurityInformation:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    documentsDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    providerTableData: {
+      head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
+      body: [
+        [appStatusData.providerName],
+        [appStatusData.providerUri],
+        [appStatusData.contactEmail],
+        [appStatusData.contactNumber],
+      ],
+    },
+    cxTestRuns: [
       {
-        languageCode: 'en',
-        shortDescription: 'short description EN, Lorem ipsum',
+        agreementId: 'uuid',
+        consentStatus: 'ACTIVE',
+        name: 'Test run A - done',
       },
       {
-        languageCode: 'de',
-        shortDescription: 'short description DE, Lorem ipsum',
-      },
-      {
-        languageCode: 'en',
-        longDescription: 'long description EN, Lorem ipsum',
-      },
-      {
-        languageCode: 'de',
-        longDescription: 'long description DE, Lorem ipsum',
+        agreementId: 'uuid',
+        consentStatus: 'ACTIVE',
+        name: 'Test run B - done',
       },
     ],
-    agreements: [
-      {
-        agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
-        name: 'Consent',
-      },
-      {
-        agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
-        name: 'Consent',
-      },
-    ],
-    betaTest: [
-      {
-        agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
-        name: 'Client',
-      },
-      {
-        agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
-        name: 'Technical User',
-      },
-    ],
-    technicalConnection: [
-      {
-        agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
-        name: 'Security Trivy Run',
-      },
-      {
-        agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
-        name: 'Security Checkov Run',
-      },
-    ],
-    supportedLanguageCodes: ['en'],
-    price: 'price',
-    images: ['string'],
-    providerUri: 'provider homepage',
-    contactEmail: 'test@test.com',
-    contactNumber: '+91 999999999',
   }
 
   const {
@@ -141,10 +115,11 @@ export default function ValidateAndPublish({
     }
   }
 
-  const providerDetailsValues = (item: string) => {
-    if (item === 'providerHomePage') return defaultValues.providerUri
-    else if (item === 'providerContactEmail') return defaultValues.contactEmail
-    else return defaultValues.contactNumber
+  const getAppData = (item: string) => {
+    if (item === 'language')
+      return appStatusData.supportedLanguageCodes.join(', ')
+    else if (item === 'useCase') return appStatusData.useCase.join(', ')
+    else if (item === 'price') return appStatusData.price
   }
 
   return (
@@ -152,275 +127,191 @@ export default function ValidateAndPublish({
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.validateAndPublish.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.validateAndPublish.headerDescription')}
-      </Typography>
-      <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-        {t('content.apprelease.validateAndPublish.appCardDetails')}
-      </Typography>
-
       <Grid container spacing={2}>
-        <Grid
-          item
-          md={3}
-          sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}
-          className={'app-release-card'}
-        >
-          <Card
-            image={{
-              src: `${defaultValues.leadPictureUri}`,
-              alt: 'cardImage Alt',
-            }}
-            title={defaultValues.title}
-            subtitle={defaultValues.provider}
-            description={defaultValues?.descriptions[0]?.shortDescription}
-            imageSize="normal"
-            imageShape="square"
-            variant="text-details"
-            expandOnHover={false}
-            filledBackground={true}
-            buttonText={''}
-          />
-        </Grid>
-
-        <Grid item md={9} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
-          {['appTitle', 'appProvider'].map((item) => (
-            <div className="form-field" key={item}>
-              <Input
-                label={t(`content.apprelease.appMarketCard.${item}`) + ' *'}
-                value={
-                  item === 'appTitle'
-                    ? defaultValues.title
-                    : defaultValues.provider
-                }
-                disabled={true}
-              />
-            </div>
-          ))}
-          {['shortDescriptionEN', 'shortDescriptionDE'].map((item) => (
-            <div className="form-field" key={item}>
-              <Input
-                label={
-                  <>
-                    {t(`content.apprelease.appMarketCard.${item}`) + ' *'}
-                    <IconButton sx={{ color: '#939393' }} size="small">
-                      <HelpOutlineIcon />
-                    </IconButton>
-                  </>
-                }
-                value={
-                  item === 'shortDescriptionEN'
-                    ? defaultValues?.descriptions[0]?.shortDescription
-                    : defaultValues?.descriptions[1]?.shortDescription
-                }
-                disabled={true}
-                multiline
-                minRows={3}
-                maxRows={3}
-                sx={{
-                  '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
-                }}
-              />
-              <Typography variant="body2" className="form-field" align="right">
-                {(item === 'shortDescriptionEN'
-                  ? defaultValues?.descriptions &&
-                    defaultValues?.descriptions[0]?.shortDescription?.length
-                  : defaultValues?.descriptions &&
-                    defaultValues?.descriptions[1]?.shortDescription?.length) +
-                  `/255`}
-              </Typography>
-            </div>
-          ))}
-          <div className="form-field">
-            <Input
-              label={
-                t(`content.apprelease.appMarketCard.useCaseCategory`) + ' *'
-              }
-              value={defaultValues.useCase}
-              disabled={true}
-            />
-          </div>
-          <Divider className="form-divider" />
-          <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-            {t('content.apprelease.appPage.headerTitle')}
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.validateAndPublish.headerDescription')}
           </Typography>
-
-          {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
-            <div className="form-field" key={item}>
-              <Input
-                label={
-                  <>
-                    {t(`content.apprelease.appPage.${item}`) + ' *'}
-                    <IconButton sx={{ color: '#939393' }} size="small">
-                      <HelpOutlineIcon />
-                    </IconButton>
-                  </>
-                }
-                value={
-                  item === 'longDescriptionEN'
-                    ? defaultValues?.descriptions[2]?.longDescription
-                    : defaultValues?.descriptions[3]?.longDescription
-                }
-                disabled={true}
-                multiline
-                minRows={3}
-                maxRows={3}
-                sx={{
-                  '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
-                }}
-              />
-              <Typography variant="body2" className="form-field" align="right">
-                {(item === 'longDescriptionEN'
-                  ? defaultValues?.descriptions &&
-                    defaultValues?.descriptions[2]?.longDescription?.length
-                  : defaultValues?.descriptions &&
-                    defaultValues?.descriptions[3]?.longDescription?.length) +
-                  `/2000`}
-              </Typography>
-            </div>
-          ))}
-
-          <Divider className="form-divider" />
-          <div className="form-field">
-            <InputLabel sx={{ mb: 3, mt: 3 }}>
-              {t('content.apprelease.appPage.images') + ' *'}
-            </InputLabel>
-            <Dropzone
-              onFileDrop={(files: any) => {}}
-              showPreviewAlone={true}
-              previewFiles={{
-                'image.png': {
-                  name: 'image.png',
-                },
-                'image.jpg': {
-                  name: 'image.jpg',
-                },
-              }}
-            />
-            <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-              {t('content.apprelease.appReleaseForm.note')}
-            </Typography>
-            <Typography variant="body2" mb={3}>
-              {t('content.apprelease.appReleaseForm.max3Images')}
-            </Typography>
-          </div>
-          <Divider className="form-divider" />
-
-          {['connectData', 'dataSecurityInformation'].map((item) => (
-            <div className="form-field" key={item}>
-              <Input
-                label={
-                  <>
-                    {t(`content.apprelease.appPage.${item}`) + ' *'}
-                    <IconButton sx={{ color: '#939393' }} size="small">
-                      <HelpOutlineIcon />
-                    </IconButton>
-                  </>
-                }
-                disabled={true}
-                multiline
-                minRows={3}
-                maxRows={3}
-                sx={{
-                  '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
-                }}
-              />
-              <Typography variant="body2" className="form-field" align="right">
-                {`0/255`}
-              </Typography>
-            </div>
-          ))}
-          {[
-            'uploadDataPrerequisits',
-            'uploadTechnicalGuide',
-            'uploadDataContract',
-            'uploadAppContract',
-          ].map((item: string) => (
-            <>
-              <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-              <div className="form-field" key={item}>
-                <InputLabel sx={{ mb: 3, mt: 3 }}>
-                  {t(`content.apprelease.appPage.${item}`) + ' *'}
-                </InputLabel>
-                <Dropzone
-                  onFileDrop={(files: any) => {}}
-                  showPreviewAlone={true}
-                  previewFiles={{
-                    'image.png': {
-                      name: 'image.png',
-                    },
-                  }}
-                />
-              </div>
-            </>
-          ))}
-
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <InputLabel sx={{ mb: 3 }}>
-            {t('content.apprelease.appPage.providerDetails')}
-          </InputLabel>
-          {[
-            'providerHomePage',
-            'providerContactEmail',
-            'providerPhoneContact',
-          ].map((item: string) => (
-            <div className="form-field" key={item}>
-              <Input
-                label={t(`content.apprelease.appPage.${item}`) + ' *'}
-                value={providerDetailsValues(item)}
-                disabled={true}
-              />
-            </div>
-          ))}
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-            {t('content.apprelease.contractAndConsent.headerTitle')}
-          </Typography>
-          <div className="form-field">
-            {defaultValues.agreements?.map((item: any, index: number) => (
-              <div>
-                <Checkbox
-                  key={index}
-                  label={item.name}
-                  checked={item.consentStatus === 'ACTIVE'}
-                />
-              </div>
-            ))}
-          </div>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-            {t('content.apprelease.technicalIntegration.headerTitle')}
-          </Typography>
-          <div className="form-field">
-            {defaultValues.technicalConnection?.map(
-              (item: any, index: number) => (
-                <div>
-                  <Checkbox
-                    key={index}
-                    label={item.name}
-                    checked={item.consentStatus === 'ACTIVE'}
-                  />
-                </div>
-              )
-            )}
-          </div>
-          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-            {t('content.apprelease.betaTest.headerTitle')}
-          </Typography>
-          <div className="form-field">
-            {defaultValues.betaTest?.map((item: any, index: number) => (
-              <div>
-                <Checkbox
-                  key={index}
-                  label={item.name}
-                  checked={item.consentStatus === 'ACTIVE'}
-                />
-              </div>
-            ))}
-          </div>
         </Grid>
       </Grid>
+
+      <div className="header-description">
+        <Grid container sx={{ mt: 0 }}>
+          <Grid
+            item
+            className={'verify-app-release-card'}
+            sx={{ ml: 0, mr: 0 }}
+            md={4}
+          >
+            <Card
+              image={{
+                src: LogoGrayData,
+              }}
+              title={appStatusData.title}
+              subtitle={appStatusData.provider}
+              description={
+                i18next.language === 'en'
+                  ? appStatusData?.descriptions?.filter(
+                      (lang: { languageCode: string }) =>
+                        lang.languageCode === 'en'
+                    )[0].shortDescription
+                  : appStatusData?.descriptions?.filter(
+                      (lang: { languageCode: string }) =>
+                        lang.languageCode === 'de'
+                    )[0].shortDescription
+              }
+              imageSize="normal"
+              imageShape="square"
+              variant="text-details"
+              expandOnHover={false}
+              filledBackground={true}
+              buttonText={''}
+            />
+            <div style={{ margin: '35px auto -16px 65px' }}>
+              <LanguageSwitch
+                current={i18next.language}
+                languages={I18nService.supportedLanguages.map((key) => ({
+                  key,
+                }))}
+                onChange={changeLanguage}
+              />
+            </div>
+          </Grid>
+
+          <Grid item sx={{ paddingLeft: '71px', marginTop: '22%' }} md={8}>
+            {['language', 'useCase', 'price'].map((item, i) => (
+              <div style={{ display: 'flex', marginBottom: '5px' }} key={i}>
+                <Typography variant="body2">
+                  <b>{t(`content.apprelease.validateAndPublish.${item}`)}</b>
+                  {getAppData(item)}
+                </Typography>
+              </div>
+            ))}
+          </Grid>
+        </Grid>
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.appDetails')}
+        </Typography>
+        {['longDescriptionEN', 'longDescriptionDE'].map((item, i) => (
+          <div key={i}>
+            {item === 'longDescriptionEN' ? (
+              <Typography variant="body2" className="form-field">
+                <span style={{ fontWeight: 'bold' }}>
+                  [Long Description - EN]{' '}
+                </span>
+                {
+                  appStatusData?.descriptions?.filter(
+                    (lang: { languageCode: string }) =>
+                      lang.languageCode === 'en'
+                  )[0].longDescription
+                }
+              </Typography>
+            ) : (
+              <Typography variant="body2" className="form-field">
+                <span style={{ fontWeight: 'bold' }}>
+                  [Long Description - DE]{' '}
+                </span>
+                {
+                  appStatusData?.descriptions?.filter(
+                    (lang: { languageCode: string }) =>
+                      lang.languageCode === 'de'
+                  )[0].longDescription
+                }
+              </Typography>
+            )}
+          </div>
+        ))}
+        <div style={{ display: 'flex' }}>
+          {defaultValues.images?.map((img, i) => (
+            <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
+              <img
+                src={img}
+                alt={'images'}
+                className="verify-validate-images"
+              />
+            </Box>
+          ))}
+        </div>
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.connectedData')}
+        </Typography>
+        <StaticTable
+          data={defaultValues.connectedTableData}
+          horizontal={false}
+        />
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.dataSecurityInformation')}
+        </Typography>
+        <Typography variant="body2" className="form-field">
+          {defaultValues.dataSecurityInformation}
+        </Typography>
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.documents')}
+        </Typography>
+        <Typography variant="body2" className="form-field">
+          {defaultValues.documentsDescription}
+        </Typography>
+        {appStatusData?.documents &&
+          Object.keys(appStatusData.documents).map((item, i) => (
+            <InputLabel sx={{ mb: 0, mt: 3 }} key={i}>
+              <a href="/" style={{ display: 'flex' }}>
+                <ArrowForwardIcon fontSize="small" />
+                {appStatusData.documents[item][0].documentName}
+              </a>
+            </InputLabel>
+          ))}
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.providerInformation')}
+        </Typography>
+        <StaticTable data={defaultValues.providerTableData} horizontal={true} />
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.consent')}
+        </Typography>
+        <div className="form-field">
+          {appStatusData?.agreements?.map(
+            (item: { name: string; consentStatus: string }, index: number) => (
+              <div key={index}>
+                <Checkbox
+                  key={index}
+                  label={item.name}
+                  checked={item.consentStatus === 'ACTIVE'}
+                  disabled
+                />
+              </div>
+            )
+          )}
+        </div>
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.cxTestRuns')}
+        </Typography>
+        <div className="form-field">
+          {defaultValues.cxTestRuns?.map((item: any, index: number) => (
+            <div key={index}>
+              <Checkbox
+                key={index}
+                label={item.name}
+                checked={item.consentStatus === 'ACTIVE'}
+                disabled
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
       <Box mb={2}>
         {validatePublishNotification && (
           <Grid container xs={12} sx={{ mb: 2 }}>

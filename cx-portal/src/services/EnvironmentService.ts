@@ -38,7 +38,7 @@ export const getAssetBase = () =>
 export const getCentralIdp = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net')
-    return 'https://centralidp.demo.catena-x.net/auth'
+    return 'https://centralidp.int.demo.catena-x.net/auth'
   if (hostname === 'portal-pen.dev.demo.catena-x.net')
     return 'https://centralidp-pen.dev.demo.catena-x.net/auth'
   if (hostname === 'portal.beta.demo.catena-x.net')

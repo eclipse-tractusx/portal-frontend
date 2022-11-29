@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,43 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState } from 'react'
-import Box from '@mui/material/Box'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-} from 'cx-portal-shared-components'
+import { Box } from '@mui/material'
+import { Buffer } from 'buffer'
 
-interface TechnicalUserAddOverlayProps {
-  title: string
-  intro?: string
-  dialogOpen: boolean
-  children?: JSX.Element | JSX.Element[]
+interface BaseImageProps {
+  image: string
+  altText?: string
 }
 
-export const TechnicalUserAddResponseOverlay = ({
-  title,
-  intro,
-  dialogOpen,
-  children,
-}: TechnicalUserAddOverlayProps) => {
-  const [open, setOpen] = useState<boolean>(dialogOpen)
+export const BaseImage = ({
+  image,
+  altText = '',
+  ...props
+}: BaseImageProps) => {
+  const src = image.trim().startsWith('<')
+    ? `data:image/svg+xml;base64,${Buffer.from(image, 'utf8').toString(
+        'base64'
+      )}`
+    : image
 
   return (
-    <div>
-      <Dialog open={open}>
-        <DialogHeader
-          title={title}
-          intro={intro}
-          closeWithIcon={true}
-          icon={true}
-          onCloseWithIcon={() => setOpen(false)}
-        />
-        <DialogContent>
-          <Box>{children}</Box>
-        </DialogContent>
-      </Dialog>
-    </div>
+    <Box
+      component="img"
+      sx={{
+        maxWidth: '100%',
+      }}
+      src={src}
+      alt={altText}
+      {...props}
+    />
   )
 }

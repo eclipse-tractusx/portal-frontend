@@ -73,6 +73,11 @@ export enum PAGES {
   APPOVERVIEW = 'appoverview',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
+  COMPANY_ROLES = 'companyroles',
+  COMPANY_ROLES_PARTICIPANT = 'companyrolesparticipant',
+  COMPANY_ROLES_APP_PROVIDER = 'companyrolesappprovider',
+  COMPANY_ROLES_SERVICE_PROVIDER = 'companyrolesserviceprovider',
+  COMPANY_ROLES_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
 }
 
 export enum OVERLAYS {
@@ -91,12 +96,21 @@ export enum OVERLAYS {
   PARTNER = 'partner',
   APP = 'app',
   SERVICE_REQUEST = 'service_request',
-  IDP = 'idp',
+  APPMARKETPLACE_REQUEST = 'appmarketplace_request',
+  ADD_IDP = 'add_idp',
+  UPDATE_IDP = 'update_idp',
+  ENABLE_IDP = 'enable_idp',
+  DISABLE_IDP = 'disable_idp',
+  DELETE_IDP = 'delete_idp',
+  IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',
   IDP_TEST_RUN = 'idp_test_run',
+  ENABLE_IDP_SUCCESS = 'enable_idp_success',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
+  CONFIRM_USER_ACTION = 'confirm_user_action',
+  SAMPLE_FORM = 'sample_form',
 }
 
 export enum ACTIONS {
@@ -116,7 +130,7 @@ export enum ROLES {
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
   APPSTORE_VIEW_SERVICES = 'view_service_marketplace',
-  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service_marketplace',
+  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service_offering',
   APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',

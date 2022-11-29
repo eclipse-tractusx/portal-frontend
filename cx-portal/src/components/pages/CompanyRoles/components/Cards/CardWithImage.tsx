@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,21 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.remove-technical-user-content {
-  max-width: 930px;
+import Card from './Card'
+import { CardDetailsProps } from '../../types'
 
-  * {
-    width: fit-content;
-    text-align: center;
-  }
-
-  h6 {
-    font-weight: bold !important;
-    margin: 0 auto;
-  }
-
-  h5 {
-    padding: 20px;
-    margin: 20px auto 20px auto !important;
-  }
+export default function CardWithImage({
+  detail,
+}: {
+  detail: CardDetailsProps
+}) {
+  return (
+    <div
+      key={detail.id}
+      className="cardsContainer"
+      style={{
+        backgroundColor: detail.backgroundColor,
+      }}
+    >
+      <img
+        style={{
+          marginBottom: '20px',
+          padding:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '40px 90px'
+              : '0px',
+        }}
+        src={detail.imageUrl}
+        width="100%"
+        alt={'alt tag info'}
+      />
+      <Card card={detail} />
+    </div>
+  )
 }

@@ -42,9 +42,13 @@ export default function BetaTest() {
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.betaTest.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.betaTest.headerDescription')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.betaTest.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
       <Box mb={2}>
         {betaTestNotification && (
           <Grid container xs={12} sx={{ mb: 2 }}>

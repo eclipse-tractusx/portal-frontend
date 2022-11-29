@@ -27,7 +27,6 @@ import {
   DialogActions,
   DialogHeader,
 } from 'cx-portal-shared-components'
-
 interface ConfirmationOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler

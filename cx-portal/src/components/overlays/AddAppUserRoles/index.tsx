@@ -38,7 +38,7 @@ import {
 } from 'features/admin/userDeprecated/slice'
 import {
   setUserRoleResp,
-  useAddUserRolesMutation,
+  useUpdateUserRolesMutation,
   UserRoleRequest,
 } from 'features/admin/appuserApiSlice'
 
@@ -50,7 +50,7 @@ export default function AddAppUserRoles() {
   const roles = useSelector(rolesToAddSelector)
   const user = useSelector(selectedUserSelector)
 
-  const [addUserRoles] = useAddUserRolesMutation()
+  const [updateUserRoles] = useUpdateUserRolesMutation()
 
   const handleConfirm = async () => {
     if (!appId || !user || roles.length <= 0) return
@@ -62,7 +62,7 @@ export default function AddAppUserRoles() {
       },
     }
     try {
-      await addUserRoles(data).unwrap()
+      await updateUserRoles(data).unwrap()
       dispatch(setUserRoleResp('success'))
       dispatch(closeOverlay())
     } catch (err) {
@@ -97,7 +97,11 @@ export default function AddAppUserRoles() {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={() => handleConfirm()}>
+        <Button
+          variant="contained"
+          onClick={() => handleConfirm()}
+          disabled={!user || roles.length <= 0}
+        >
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

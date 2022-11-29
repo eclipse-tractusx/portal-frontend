@@ -37,9 +37,9 @@ import {
 } from 'features/admin/serviceApiSlice'
 import { TechnicalUserAddForm } from 'components/overlays/AddTechnicalUser/TechnicalUserAddForm'
 import { useState } from 'react'
-import { TechnicalUserAddResponseOverlay } from './TechnicalUserAddResponseOverlay'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
+import { ServerResponseOverlay } from '../ServerResponse'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -137,7 +137,7 @@ export const AddTechnicalUser = () => {
         </Button>
       </DialogActions>
       {response && (
-        <TechnicalUserAddResponseOverlay
+        <ServerResponseOverlay
           title={t('content.addUser.technicalUserHeadline')}
           intro={t('content.addUser.technicalUserSubheadlineSuccess')}
           dialogOpen={true}
@@ -157,7 +157,7 @@ export const AddTechnicalUser = () => {
             }}
             variant="wide"
           />
-        </TechnicalUserAddResponseOverlay>
+        </ServerResponseOverlay>
       )}
     </>
   )

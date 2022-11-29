@@ -20,7 +20,7 @@
 import { useParams } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import IDPDetailContent from './IDPDetailContent'
+import { IDPDetailContent } from './IDPDetailContent'
 import { Empty } from 'components/shared/basic/Empty'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
