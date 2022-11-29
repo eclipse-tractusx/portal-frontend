@@ -4,27 +4,37 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-* Notifications
-   * Design updates
-   * Delete notification
-* Registration Request
-   * Add BPN to an existing request
-* User management
-   * Navigate and scroll to the Identity Management section after deleting the user
-   * App User tables - content api call filtering activated to reduce response to needed result
-* Technical Integration
-   * Modal width fix
-* Identity Provider
-   * Create, update and enable IDPs
-* App Release Process
-   * App status/summary api connect
-   * Sales Manager business logic
-   * "Save" Button enabling for an existing app
-* Apps & Service Subscription
-   * include consent inside subscription
-* Feature - App User Role - update table content
+
+## 0.9.0
+
+### Change
 * Shared Components
-   * SelectList component - clear button can be toggled by disableClearable prop.
+   * SelectList component - property/parameter added to clear the select list input
+* App Release Process
+   * Sales Manager Get, Select and drop down enabled for app creation
+   * "Save" Button enabling with update PUT api call
+
+### Feature
+* Marketplace
+   * App subscription consent agreement included inside the user flow with api triggering 
+* Identity Provider
+   * Create, update and enable new idp integration for ownIdP usage (companyIdP)
+* Notifications Service
+   * Release of new notification design with filtering, viewing & pagination
+   * Highlight of unread messages
+   * Delete notification function enabled
+* Registration Approval Board
+   * Enable handling of registrations without bpn by adding a bpn input field with api connection
+* User management
+   * Auto navigation to Identity Management section after deleting an user
+   * App User tables - content api call filtering activated to reduce response to needed result
+
+### Technical Support
+* n/a
+
+### Bugfix
+* n/a
+
 
 ## 0.8.0
 
