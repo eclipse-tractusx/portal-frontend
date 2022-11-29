@@ -122,6 +122,18 @@ export const apiSlice = createApi({
     fetchOwnCompanyDetails: builder.query<CompanyDetails, void>({
       query: () => `/api/administration/companydata/ownCompanyDetails`,
     }),
+    deleteMyUser: builder.mutation<void, string>({
+      query: (id: string) => ({
+        url: `/api/administration/user/ownUser/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+    resetPassword: builder.mutation<void, string>({
+      query: (id: string) => ({
+        url: `/api/administration/user/ownCompany/users/${id}/resetPassword`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -134,6 +146,8 @@ export const {
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
   useFetchOwnCompanyDetailsQuery,
+  useDeleteMyUserMutation,
+  useResetPasswordMutation,
 } = apiSlice
 
 const name = 'admin/user/add'

@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { Chip, Typography } from 'cx-portal-shared-components'
 import {
   SubscriptionData,
   useFetchSubscriptionQuery,
@@ -31,5 +32,22 @@ export default function MarketplaceSubscriptionNames({
 }) {
   const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
 
-  return <span className="subscription-name">{data && data.offerName}</span>
+  return (
+    <div className="subscription-list">
+      {data && (
+        <span className="subscription-name">
+          <Typography variant="body2">{data.offerName}</Typography>
+          <Chip
+            color={data.status === 'ACTIVE' ? 'success' : 'info'}
+            label={data.status}
+            type="plain"
+            variant="outlined"
+            size="small"
+            withIcon
+            className="subscription-status"
+          />
+        </span>
+      )}
+    </div>
+  )
 }

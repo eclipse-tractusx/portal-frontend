@@ -42,7 +42,6 @@ import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
 import { DeleteTechnicalUser } from 'components/overlays/DeleteTechnicalUser'
 import ServiceRequest from 'components/overlays/ServiceRequest'
-import IDPDetailInfo from 'components/overlays/IDPDetailInfo'
 import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 import IDPDelete from 'components/overlays/IDPDelete'
@@ -50,6 +49,15 @@ import IDPStatusChange from 'components/overlays/IDPStatusChange'
 import IDPTestRun from 'components/overlays/IDPTestRun'
 import AppOverViewConfirm from 'components/overlays/AppOverViewConfirm'
 import AppDetailsOverlay from 'components/overlays/AppOverViewConfirm/AppDetailsOverlay'
+import { ConfirmUserAction } from 'components/overlays/ConfirmUserAction'
+import AppMarketplaceSubscribeRequest from 'components/overlays/AppMarketplaceRequest'
+import { AddIdp } from 'components/overlays/AddIDP'
+import { SampleForm } from 'components/overlays/SampleForm'
+import { UpdateIDP } from 'components/overlays/UpdateIDP'
+import { DeleteIDP } from 'components/overlays/DeleteIDP'
+import { EnableIDP } from 'components/overlays/EnableIDP'
+import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess'
+import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -110,8 +118,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddTechnicalUser />
     case OVERLAYS.DELETE_TECHUSER:
       return <DeleteTechnicalUser id={overlay.id} />
-    case OVERLAYS.IDP:
-      return <IDPDetailInfo id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
     case OVERLAYS.EDIT_APP_USER_ROLES:
@@ -126,6 +132,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AppInfo id={overlay.id} title={overlay.title} />
     case OVERLAYS.SERVICE_REQUEST:
       return <ServiceRequest id={overlay.id} />
+    case OVERLAYS.APPMARKETPLACE_REQUEST:
+      return <AppMarketplaceSubscribeRequest id={overlay.id} />
     case OVERLAYS.IDP_CONFIRM:
       return <IDPDelete id={overlay.id} title={overlay.title} />
     case OVERLAYS.IDP_STATUS:
@@ -136,12 +144,34 @@ export const getOverlay = (overlay: OverlayState) => {
           idpStatus={overlay.status}
         />
       )
+    case OVERLAYS.ADD_IDP:
+      return <AddIdp />
+    case OVERLAYS.UPDATE_IDP:
+      return <UpdateIDP id={overlay.id} />
+    case OVERLAYS.ENABLE_IDP:
+      return <EnableIDP id={overlay.id} />
+    case OVERLAYS.ENABLE_IDP_SUCCESS:
+      return <EnableIDPSuccess id={overlay.id} />
+    case OVERLAYS.DISABLE_IDP:
+      return <DisableIDP id={overlay.id} />
+    case OVERLAYS.DELETE_IDP:
+      return <DeleteIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
       return <IDPTestRun />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
       return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
     case OVERLAYS.APP_DETAILS_OVERLAY:
       return <AppDetailsOverlay id={overlay.id} title={overlay.title} />
+    case OVERLAYS.CONFIRM_USER_ACTION:
+      return (
+        <ConfirmUserAction
+          id={overlay.id}
+          title={overlay.title}
+          subTitle={overlay.subTitle}
+        />
+      )
+    case OVERLAYS.SAMPLE_FORM:
+      return <SampleForm />
     default:
       return <NotFound />
   }

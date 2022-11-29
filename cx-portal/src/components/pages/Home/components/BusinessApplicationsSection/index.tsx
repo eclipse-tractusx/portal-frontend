@@ -69,32 +69,31 @@ export default function BusinessApplicationsSection() {
             />
           ))}
           {emptyCards > 0
-            ? Array.from(Array(emptyCards), () => {
-                return (
-                  <Box
+            ? Array.from(Array(emptyCards), (_item, i) => (
+                <Box
+                  key={i}
+                  sx={{
+                    height: '240px',
+                    border: '3px dashed #f3f3f3',
+                    borderRadius: '15px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    padding: '15px',
+                  }}
+                >
+                  <Typography
                     sx={{
-                      height: '240px',
-                      border: '3px dashed #f3f3f3',
-                      borderRadius: '15px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                      padding: '15px',
+                      color: '#f3f3f3',
                     }}
+                    variant="body2"
                   >
-                    <Typography
-                      sx={{
-                        color: '#f3f3f3',
-                      }}
-                      variant="body2"
-                    >
-                      {t('content.home.emptyCards.title')}
-                    </Typography>
-                  </Box>
-                )
-              })
+                    {t('content.home.emptyCards.title')}
+                  </Typography>
+                </Box>
+              ))
             : ''}
         </Carousel>
       </section>

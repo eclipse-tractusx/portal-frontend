@@ -30,7 +30,7 @@ import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 
@@ -66,6 +66,10 @@ export const UserList = ({
     return validateExpr
   }
 
+  useEffect(() => {
+    setRefresh(Date.now())
+  }, [fetchHookArgs.userRoleResponse, fetchHookArgs.addUserResponse])
+
   return (
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
@@ -83,6 +87,7 @@ export const UserList = ({
           onSearch(expr)
         }}
         searchDebounce={1000}
+        noRowsMsg={t('content.usermanagement.appUserDetails.table.noRowsMsg')}
         title={t(tableLabel)}
         loadLabel={t('global.actions.more')}
         fetchHook={fetchHook}
@@ -101,11 +106,10 @@ export const UserList = ({
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 2,
+            flex: 3,
             renderCell: ({ value: status }) => {
-              const label = status ? 'active' : 'inactive'
               return (
-                <StatusTag color="label" label={t(`global.field.${label}`)} />
+                <StatusTag color="label" label={t(`global.field.${status}`)} />
               )
             },
           },

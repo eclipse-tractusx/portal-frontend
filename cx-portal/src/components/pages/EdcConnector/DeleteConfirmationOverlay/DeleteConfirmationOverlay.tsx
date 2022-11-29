@@ -26,18 +26,22 @@ import {
   Button,
   DialogActions,
   DialogHeader,
+  CircleProgress,
 } from 'cx-portal-shared-components'
+import Box from '@mui/material/Box'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
+  loading?: boolean
 }
 
 const DeleteConfirmationOverlay = ({
   openDialog = false,
   handleOverlayClose,
   handleConfirmClick,
+  loading,
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
 
@@ -52,16 +56,42 @@ const DeleteConfirmationOverlay = ({
         }}
       >
         <DialogHeader title={t('content.edcconnector.deletemodal.title')} />
-        <DialogContent>
+        <DialogContent
+          sx={{
+            textAlign: 'center',
+            marginBottom: '25px',
+            paddingTop: '0px',
+          }}
+        >
           {t('content.edcconnector.deletemodal.description')}
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {t('global.actions.cancel')}
           </Button>
-          <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
-            {t('global.actions.confirm')}
-          </Button>
+          {!loading && (
+            <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
+              {t('global.actions.confirm')}
+            </Button>
+          )}
+          {loading && (
+            <Box
+              sx={{
+                width: '110px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <CircleProgress
+                size={40}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            </Box>
+          )}
         </DialogActions>
       </Dialog>
     </div>

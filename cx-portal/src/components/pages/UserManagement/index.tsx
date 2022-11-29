@@ -66,7 +66,7 @@ export default function UserManagement() {
       <StageSection />
       <StageSubNavigation />
       <AppArea />
-      <ActiveUserTable />
+      <ActiveUserTable addUserResponse={isSuccess} />
       {/* success or error dialog/overlay */}
       <Dialog open={showAlert} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
         <DialogContent>

@@ -50,7 +50,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const [updateUserRoles] = useUpdateUserRolesMutation()
   const appDetails = useFetchAppDetailsQuery(appId ?? '').data
   const appRoles = useFetchAppRolesQuery(appId ?? '').data
-  const { data } = useFetchUserDetailsQuery(id)
+  const { data, refetch } = useFetchUserDetailsQuery(id)
   const assignedRoles =
     data &&
     data.assignedRoles.filter((assignedRole) => assignedRole.appId === appId)[0]
@@ -82,6 +82,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
     }
     try {
       await updateUserRoles(data).unwrap()
+      refetch()
       dispatch(setUserRoleResp('success'))
       dispatch(closeOverlay())
     } catch (err) {

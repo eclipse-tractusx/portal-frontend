@@ -57,7 +57,7 @@ const ENV = [
     origin: 'https://portal.int.demo.catena-x.net',
     assets: '/assets',
     api: 'https://portal-backend.int.demo.catena-x.net',
-    idp: 'https://centralidp.demo.catena-x.net/auth',
+    idp: 'https://centralidp.int.demo.catena-x.net/auth',
   },
   {
     name: 'beta',
