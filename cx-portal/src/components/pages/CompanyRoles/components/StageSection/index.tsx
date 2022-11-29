@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,41 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeaderProps } from '../MainHeader'
-import { Typography } from '../../../Typography'
+import { MainHeader } from 'cx-portal-shared-components'
 
-export const MainHeaderTitle = ({
+export default function SearchSection({
   title,
-  subTitle,
-  subTitleWidth,
-  titleTextVariant = 'h2',
-  subTitleTextVariant = 'h2',
-}: MainHeaderProps) => {
+  description,
+}: {
+  title: string
+  description: string
+}) {
   return (
-    <>
-      {title && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            fontWeight: 600,
-          }}
-          variant={titleTextVariant}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {subTitle && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`,
-          }}
-          variant={subTitleTextVariant}
-        >
-          {subTitle}
-        </Typography>
-      )}
-    </>
+    <div className="stage-home">
+      <MainHeader
+        title={title}
+        subTitle={description}
+        subTitleTextVariant="h3"
+        headerHeight={551}
+        subTitleWidth={687}
+        background="LinearGradient1"
+        imagePath="./company-roles.svg"
+      />
+    </div>
   )
 }

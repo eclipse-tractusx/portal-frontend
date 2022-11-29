@@ -21,6 +21,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * App status/summary api connect
    * Sales Manager business logic
    * "Save" Button enabling for an existing app
+* Company Roles
+   * Static page
 * Apps & Service Subscription
    * include consent inside subscription
 * Feature - App User Role - update table content

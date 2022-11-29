@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,40 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeaderProps } from '../MainHeader'
-import { Typography } from '../../../Typography'
+import { Button } from '../Button'
+import EastIcon from '@mui/icons-material/East'
 
-export const MainHeaderTitle = ({
-  title,
-  subTitle,
-  subTitleWidth,
-  titleTextVariant = 'h2',
-  subTitleTextVariant = 'h2',
-}: MainHeaderProps) => {
+export const ParentSubNavigation = ({
+  navigationArray,
+  onClick,
+}: {
+  navigationArray: any
+  onClick: any
+}) => {
   return (
     <>
-      {title && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            fontWeight: 600,
-          }}
-          variant={titleTextVariant}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {subTitle && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`,
-          }}
-          variant={subTitleTextVariant}
-        >
-          {subTitle}
-        </Typography>
+      {navigationArray.map(
+        (link: { index: number; title: string; navigation: string }) => {
+          return (
+            <Button
+              key={link.index}
+              onClick={() => onClick(link.navigation)}
+              color="secondary"
+              variant="text"
+              size="medium"
+            >
+              <EastIcon sx={{ marginRight: '16px' }} />
+              {link.title}
+            </Button>
+          )
+        }
       )}
     </>
   )

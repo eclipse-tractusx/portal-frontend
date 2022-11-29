@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,41 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeaderProps } from '../MainHeader'
-import { Typography } from '../../../Typography'
+import { Typography } from 'cx-portal-shared-components'
+import { CardDetailsProps } from '../../types'
+import '../../CompanyRoles.scss'
+import { useTranslation } from 'react-i18next'
 
-export const MainHeaderTitle = ({
-  title,
-  subTitle,
-  subTitleWidth,
-  titleTextVariant = 'h2',
-  subTitleTextVariant = 'h2',
-}: MainHeaderProps) => {
+export default function Card({ card }: { card: CardDetailsProps }) {
+  const { t } = useTranslation()
+
   return (
-    <>
-      {title && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            fontWeight: 600,
-          }}
-          variant={titleTextVariant}
-        >
-          {title}
-        </Typography>
+    <div className="textContainer">
+      <Typography
+        sx={{
+          minHeight: '32px',
+        }}
+        variant="h6"
+      >
+        {card.title}
+      </Typography>
+      <Typography
+        sx={{
+          paddingTop: '34px',
+          minHeight: '32px',
+        }}
+        variant="body1"
+      >
+        {card.description}
+      </Typography>
+      {card.readMore ? (
+        <a className="readMoreButton" href={card.readMore}>
+          {t('global.actions.readMore')}
+        </a>
+      ) : (
+        <div className="readMoreButton" />
       )}
-
-      {subTitle && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`,
-          }}
-          variant={subTitleTextVariant}
-        >
-          {subTitle}
-        </Typography>
-      )}
-    </>
+    </div>
   )
 }
