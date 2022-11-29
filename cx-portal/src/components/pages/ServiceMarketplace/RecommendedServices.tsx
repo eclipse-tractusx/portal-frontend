@@ -18,62 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal, Typography } from 'cx-portal-shared-components'
-import { Grid, Box } from '@mui/material'
-import { useTranslation } from 'react-i18next'
+import { CardHorizontal } from 'cx-portal-shared-components'
+import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 
-export default function ServicesElements({
+export default function RecommendedServices({
   services,
 }: {
   services: ServiceRequest[]
 }) {
-  const { t } = useTranslation()
+  const theme = useTheme()
   const navigate = useNavigate()
 
   const handleClick = (id: string) => {
     navigate(`/servicemarketplacedetail/${id}`)
   }
 
-  // if (services && services.length === 0) {
-  //   return (
-  //     <div className="marketplace-section">
-  //       <PageNotifications
-  //         description={t('content.serviceMarketplace.noDataMessage')}
-  //         onCloseNotification={function noRefCheck() {}}
-  //         open
-  //         severity="error"
-  //         showIcon
-  //         title="Error"
-  //       />
-  //     </div>
-  //   )
-  // }
-
   return (
-    <div className="services-main">
-      <Box className="services-section">
-        <section className="services-section-content">
-          <Typography
-            sx={{ fontFamily: 'LibreFranklin-Light' }}
-            variant="h3"
-            className="section-title"
-          >
-            {t('content.serviceMarketplace.allServices')}
-          </Typography>
-        </section>
-        <Grid container spacing={2} className="services-section">
+    <div>
+      {services && services.length ? (
+        <Grid className="recommended-section">
           {services.map((service: any) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={6}
-              key={service.id}
-              className="services-card"
-            >
+            <Grid className="recommended-card">
               <CardHorizontal
                 borderRadius={0}
                 imageAlt="App Card"
@@ -82,12 +50,21 @@ export default function ServicesElements({
                 buttonText="Details"
                 onBtnClick={() => handleClick(service.id)}
                 title={service.title}
-                backgroundColor="#fff"
+                backgroundColor="#f7f7f7"
               />
             </Grid>
           ))}
         </Grid>
-      </Box>
+      ) : (
+        <div className="service-progress">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }

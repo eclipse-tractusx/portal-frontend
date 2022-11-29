@@ -76,7 +76,7 @@ export const CardHorizontal = ({
         display: 'flex',
         //-ms-flex-wrap: 'wrap',
         flexWrap: 'wrap',
-        background: '#F9F9F9',
+        backgroundColor: backgroundColor,
         borderRadius: '4px',
         overflow: 'hidden',
         ':hover': {
@@ -91,7 +91,7 @@ export const CardHorizontal = ({
           //-ms-flex: 0 0 33.333333%;
           flex: '0 0 33.333333%',
           maxWidth: '33.333333%',
-          minHeight: '250px',
+          minHeight: '200px',
           backgroundImage: `url(${imagePath || LogoGrayData})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',

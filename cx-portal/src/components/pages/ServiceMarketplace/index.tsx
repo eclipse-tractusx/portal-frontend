@@ -18,13 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import { useGetNotificationsQuery } from 'features/notification/apiSlice'
-import { CXNotificationContent } from 'features/notification/types'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box } from '@mui/material'
 import ServicesElements from './ServicesElements'
-import { groupBy } from 'lodash'
+import RecommendedServices from './RecommendedServices'
 import dayjs from 'dayjs'
 import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
@@ -45,14 +42,24 @@ dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
-  const { data } = useGetNotificationsQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('All Active Apps')
   const [sortOption, setSortOption] = useState<string>('new')
+  const [recommendedServices, setRecommendedServices] = useState<any>([])
+  const [allServices, setAllServices] = useState<any>([])
 
-  const { data: allServices } = useFetchServicesQuery(0)
-  const services = allServices && allServices.content
+  const { data } = useFetchServicesQuery(0)
+  const services = data && data.content
+
+  useEffect(() => {
+    if (services && services.length > 0) {
+      console.log('services', services)
+      var indexToSplit = 2
+      setRecommendedServices(services.slice(0, indexToSplit))
+      setAllServices(services.slice(indexToSplit + 1))
+    }
+  }, [services])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -90,14 +97,6 @@ export default function ServiceMarketplace() {
       onButtonClick: setView,
     },
   ]
-
-  const groups = groupBy(
-    data?.content?.map((item) => ({
-      ...item,
-      contentParsed: item.content && JSON.parse(item.content),
-    })),
-    (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
-  )
 
   return (
     <main className="serviceMarketplace">
@@ -139,21 +138,13 @@ export default function ServiceMarketplace() {
             />
           )}
         </div>
-        <ServicesElements />
+        {recommendedServices && recommendedServices.length && (
+          <RecommendedServices services={recommendedServices} />
+        )}
       </section>
-      <div className="services-main">
-        <Box className="services-section">
-          <section className="services-section-content">
-            <Typography
-              sx={{ fontFamily: 'LibreFranklin-Light' }}
-              variant="h3"
-              className="section-title"
-            >
-              {t('content.serviceMarketplace.allServices')}
-            </Typography>
-          </section>
-        </Box>
-      </div>
+      {allServices && allServices.length && (
+        <ServicesElements services={allServices} />
+      )}
     </main>
   )
 }

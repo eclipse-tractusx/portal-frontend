@@ -52,9 +52,22 @@
   text-align: center;
 }
 
+.recommended-section {
+  margin: 0 60px;
+  .recommended-card {
+    margin-bottom: 30px;
+  }
+}
+
+.services-section {
+  margin: 0 60px;
+  .services-card {
+    margin-bottom: 30px;
+  }
+}
+
 .marketplace-section {
-  //margin-top: 100px;
-  margin: 112px 159px 0px 159px;
+  margin: 0 80px;
 
   button {
     //margin-left: -15px;
