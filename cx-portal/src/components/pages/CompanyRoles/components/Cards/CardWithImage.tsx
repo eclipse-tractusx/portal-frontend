@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,41 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeaderProps } from '../MainHeader'
-import { Typography } from '../../../Typography'
+import Card from './Card'
+import { CardDetailsProps } from '../../types'
 
-export const MainHeaderTitle = ({
-  title,
-  subTitle,
-  subTitleWidth,
-  titleTextVariant = 'h2',
-  subTitleTextVariant = 'h2',
-}: MainHeaderProps) => {
+export default function CardWithImage({
+  detail,
+}: {
+  detail: CardDetailsProps
+}) {
   return (
-    <>
-      {title && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            fontWeight: 600,
-          }}
-          variant={titleTextVariant}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {subTitle && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`,
-          }}
-          variant={subTitleTextVariant}
-        >
-          {subTitle}
-        </Typography>
-      )}
-    </>
+    <div
+      key={detail.id}
+      className="cardsContainer"
+      style={{
+        backgroundColor: detail.backgroundColor,
+      }}
+    >
+      <img
+        style={{
+          marginBottom: '20px',
+          padding:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '40px 90px'
+              : '0px',
+        }}
+        src={detail.imageUrl}
+        width="100%"
+        alt={'alt tag info'}
+      />
+      <Card card={detail} />
+    </div>
   )
 }

@@ -29,13 +29,16 @@ n/a
 * User management
    * Auto navigation to Identity Management section after deleting an user
    * App User tables - content api call filtering activated to reduce response to needed result
+* Company Role Introduction
+   * Active Participant introduction page
+   * App Provider introduction page
+   * Service Provider introduction page
 
 ### Technical Support
 * n/a
 
 ### Bugfix
 * n/a
-
 
 ## 0.8.0
 

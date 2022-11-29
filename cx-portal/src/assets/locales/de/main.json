@@ -42,7 +42,12 @@
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung",
-    "techuserdetails": "Technischer Benutzer Details"
+    "techuserdetails": "Technischer Benutzer Details",
+    "companyroles": "Company Roles",
+    "companyrolesparticipant": "Participant",
+    "companyrolesappprovider": "App Provider",
+    "companyrolesserviceprovider": "Service Provider",
+    "companyrolesconfirmitybody": "Confirmity Body"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -926,6 +931,11 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
+    },
+    "companyRoleSubNavigation": {
+      "link1Label": "marketplace",
+      "link2Label": "marketplace subscriptions",
+      "link3Label": "dataspace participants"
     }
   },
   "notification": {
@@ -988,7 +998,8 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "readMore": "Read More"
     },
     "state": {
       "enabled": "aktiv",
@@ -1028,11 +1039,6 @@
       "title": "Oops, Etwas ist schief gelaufen.",
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
-    },
-    "date": {
-      "yesterday": "gestern",
-      "today": "heute",
-      "tomorrow": "morgen"
     },
     "table": {
       "search": "Enter email to search",

@@ -63,6 +63,7 @@ import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
+import CompanyRoles from 'components/pages/CompanyRoles'
 
 /**
  * ALL_PAGES
@@ -317,6 +318,11 @@ export const ALL_PAGES: IPage[] = [
     element: <EdcConnector />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
+  { name: PAGES.COMPANY_ROLES, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_APP_PROVIDER, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_CONFIRMITY_BODY, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_PARTICIPANT, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_SERVICE_PROVIDER, element: <CompanyRoles /> },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -465,6 +471,15 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
+    ],
+  },
+  {
+    name: PAGES.COMPANY_ROLES,
+    children: [
+      { name: PAGES.COMPANY_ROLES_PARTICIPANT, hint: HINTS.NEW },
+      { name: PAGES.COMPANY_ROLES_APP_PROVIDER, hint: HINTS.NEW },
+      { name: PAGES.COMPANY_ROLES_SERVICE_PROVIDER, hint: HINTS.NEW },
+      { name: PAGES.COMPANY_ROLES_CONFIRMITY_BODY, hint: HINTS.NEW },
     ],
   },
 ]
