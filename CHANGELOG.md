@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Delete notification
 * Registration Request
    * Add BPN to an existing request
+   * Disable decline/confirm button if status is SUBMITTED
 * User management
    * Navigate and scroll to the Identity Management section after deleting the user
    * App User tables - content api call filtering activated to reduce response to needed result

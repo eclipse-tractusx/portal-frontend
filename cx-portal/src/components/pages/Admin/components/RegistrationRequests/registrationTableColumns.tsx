@@ -41,7 +41,7 @@ export const RegistrationRequestsTableColumns = (
   onDeclineClick: (id: string) => void,
   isLoading: boolean,
   handleDownloadDocument: (documentId: string, documentType: string) => void,
-  showConfirmOverlay?: any
+  showConfirmOverlay?: (applicationId: string) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')
@@ -77,7 +77,9 @@ export const RegistrationRequestsTableColumns = (
                 style={{
                   paddingTop: '2px',
                 }}
-                onClick={() => showConfirmOverlay()}
+                onClick={() =>
+                  showConfirmOverlay && showConfirmOverlay(row.applicationId)
+                }
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
               </span>
