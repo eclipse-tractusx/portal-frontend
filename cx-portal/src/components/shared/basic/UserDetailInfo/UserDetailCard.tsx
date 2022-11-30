@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
 import { Chip, IconButton, Typography } from 'cx-portal-shared-components'
@@ -26,6 +27,7 @@ import { show } from 'features/control/overlay/actions'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { useParams } from 'react-router-dom'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 export type UserDetail = {
   companyUserId: string
@@ -63,6 +65,12 @@ export const UserDetailCard = ({
   const dispatch = useDispatch()
   const { userId } = useParams()
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
+  const [copied, setCopied] = useState<boolean>(false)
+
+  const copyText = (value: any) => {
+    setCopied(true)
+    navigator.clipboard.writeText(value)
+  }
 
   const renderValue = (value: UserItemsTranslation | undefined) => (
     <>
@@ -80,6 +88,15 @@ export const UserDetailCard = ({
       <span>
         {userId && value?.label === 'BPN' && (
           <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
+        )}
+      </span>
+      <span>
+        {value?.label === 'Client Secret' && (
+          <ContentCopyIcon
+            style={{ cursor: 'pointer' }}
+            sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
+            onClick={() => copyText(value?.value)}
+          />
         )}
       </span>
     </>
@@ -141,7 +158,7 @@ export const UserDetailCard = ({
               fontFamily: 'LibreFranklin-Light',
               padding: k === 'status' ? '14.5px 20px' : '20px',
               justifyContent: k === 'bpn' ? 'space-between' : '',
-              display: 'block',
+              display: variant === 'wide' ? 'flex' : 'block',
             }}
           >
             {renderContentSwitch(k, v)}
