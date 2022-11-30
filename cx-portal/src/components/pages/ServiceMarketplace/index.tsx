@@ -18,8 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import debounce from 'lodash.debounce'
 import ServicesElements from './ServicesElements'
 import RecommendedServices from './RecommendedServices'
 import dayjs from 'dayjs'
@@ -32,6 +33,7 @@ import {
   Typography,
   ViewSelector,
 } from 'cx-portal-shared-components'
+import { useTheme, CircularProgress } from '@mui/material'
 import SortIcon from '@mui/icons-material/Sort'
 import { SortOption } from 'components/shared/basic/SortOption'
 import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
@@ -42,14 +44,16 @@ dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
+  const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('All Active Apps')
   const [sortOption, setSortOption] = useState<string>('new')
   const [recommendedServices, setRecommendedServices] = useState<any>([])
   const [allServices, setAllServices] = useState<any>([])
+  const [cardServices, setCardServices] = useState<any>([])
 
-  const { data } = useFetchServicesQuery(0)
+  const { data } = useFetchServicesQuery({page: 0, serviceType: selected !== 'All Active Apps' ? selected : ''})
   const services = data && data.content
 
   useEffect(() => {
@@ -60,6 +64,12 @@ export default function ServiceMarketplace() {
       setAllServices(services.slice(indexToSplit + 1))
     }
   }, [services])
+
+  useEffect(() => {
+    if (cardServices && cardServices.length <= 0) {
+      setCardServices(allServices)
+    }
+  }, [cardServices, allServices])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -87,64 +97,116 @@ export default function ServiceMarketplace() {
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.serviceMarketplace.sortOptions.appRequest'),
-      buttonValue: t('content.serviceMarketplace.sortOptions.appRequest'),
+      buttonText: t('content.serviceMarketplace.sortOptions.dataspaceService'),
+      buttonValue: t('content.serviceMarketplace.sortOptions.dataspaceService'),
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.serviceMarketplace.sortOptions.appRequest'),
-      buttonValue: t('content.serviceMarketplace.sortOptions.appRequest'),
+      buttonText: t('content.serviceMarketplace.sortOptions.consultantService'),
+      buttonValue: t('content.serviceMarketplace.sortOptions.consultantService'),
       onButtonClick: setView,
     },
   ]
 
+  const debouncedFilter = useMemo(
+    () =>
+      debounce(
+        (expr: string) =>
+        setCardServices(
+            expr
+              ? cardServices.filter(
+                  (card: any) =>
+                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                    (card.provider.toLowerCase().includes(expr.toLowerCase()) ||
+                    (card.description && card.description.toLowerCase().includes(expr.toLowerCase())) )
+                )
+              : cardServices
+          ),
+        300
+      ),
+    [cardServices]
+  )
+
+  const doFilter = useCallback(
+    (expr: string) => {
+      console.log('**')
+      setSearchExpr(expr)
+      debouncedFilter(expr)
+    },
+    [debouncedFilter]
+  )
+
   return (
     <main className="serviceMarketplace">
-      <Typography className="newServices" variant="h5">
-        {t('content.serviceMarketplace.newServices')}
-      </Typography>
-      <Typography className="recommendations" variant="body1">
-        {t('content.serviceMarketplace.recommendations')}
-      </Typography>
-      <hr className="recommendations-divider" />
-      <section>
-        <div className="searchContainer">
-          <SearchInput
-            placeholder={t('notification.search')}
-            value={searchExpr}
-            autoFocus={false}
-            onChange={(e) => setSearchExpr(e.target.value)}
+      <div className="mainContainer">
+        <div className="mainRow">
+          <Typography className="newServices" variant="h5">
+            {t('content.serviceMarketplace.newServices')}
+          </Typography>
+          <Typography className="recommendations" variant="body1">
+            {t('content.serviceMarketplace.recommendations')}
+          </Typography>
+          <div>
+            <div className="searchContainer">
+              <SearchInput
+                placeholder={t('notification.search')}
+                value={searchExpr}
+                autoFocus={false}
+                //onChange={(e) => setSearchExpr(e.target.value)}
+                onChange={(e) => doFilter(e.target.value)}
+              />
+            </div>
+            <div className="filterSection">
+              <ViewSelector activeView={selected} views={filterButtons} />
+
+              <div
+                className="iconSection"
+                onClick={() => {
+                  setShowModal(!showModal)
+                }}
+              >
+                <SortIcon sx={{ fontSize: 20, color: '#939393' }} />
+              </div>
+              {showModal && (
+                <SortOption
+                  selectedOption={sortOption}
+                  setSortOption={(value: string) => {
+                    setSortOption(value)
+                    setShowModal(!showModal)
+                  }}
+                  sortOptions={sortOptions}
+                />
+              )}
+            </div>
+            {
+              recommendedServices && recommendedServices.length ? (
+                <RecommendedServices services={recommendedServices} />
+              ) :
+                <div className="recommended-progress">
+                  <CircularProgress
+                    size={50}
+                    sx={{
+                      color: theme.palette.primary.main,
+                    }}
+                  />
+                </div>
+            }
+          </div>
+        </div>
+      </div>
+      {
+        cardServices && cardServices.length ? (
+          <ServicesElements services={cardServices} />
+        ) :
+        <div className="service-progress">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
           />
         </div>
-        <div className="filterSection">
-          <ViewSelector activeView={selected} views={filterButtons} />
-
-          <div
-            className="iconSection"
-            onClick={() => {
-              setShowModal(!showModal)
-            }}
-          >
-            <SortIcon sx={{ fontSize: 20, color: '#939393' }} />
-          </div>
-          {showModal && (
-            <SortOption
-              selectedOption={sortOption}
-              setSortOption={(value: string) => {
-                setSortOption(value)
-                setShowModal(!showModal)
-              }}
-              sortOptions={sortOptions}
-            />
-          )}
-        </div>
-        {recommendedServices && recommendedServices.length && (
-          <RecommendedServices services={recommendedServices} />
-        )}
-      </section>
-      {allServices && allServices.length && (
-        <ServicesElements services={allServices} />
-      )}
+      }
     </main>
   )
 }

@@ -18,13 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState, useRef } from 'react'
 import { Box, useTheme } from '@mui/material'
-import { LogoGrayData } from '../../basic/Logo'
-import { Button } from '../../basic/Button'
-import { Typography } from '../../basic/Typography'
-import { CardChip, CardChipProps } from './CardChip'
-import { useState, useEffect, useRef } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { LogoGrayData } from '../../basic/Logo'
+import { Typography } from '../../basic/Typography'
+import { CardChipProps } from './CardChip'
+
 
 interface CardHorizontalProps extends CardChipProps {
   label: string
@@ -55,16 +55,11 @@ export const CardHorizontal = ({
 }: CardHorizontalProps) => {
   const theme = useTheme()
   const [variant, setVariant] = useState('preview')
-  const [boxHeight, setBoxHeight] = useState<number | undefined>()
   const boxRef = useRef<HTMLDivElement>(null)
 
   const onMouseEnter = () => {
     if (expandOnHover) setVariant('expanded')
   }
-
-  useEffect(() => {
-    setBoxHeight(boxRef.current?.getBoundingClientRect().height)
-  }, [variant])
 
   const onMouseLeave = () => setVariant('preview')
 
@@ -72,12 +67,10 @@ export const CardHorizontal = ({
     <Box
       ref={boxRef}
       sx={{
-        //display: '-ms-flexbox',
         display: 'flex',
-        //-ms-flex-wrap: 'wrap',
         flexWrap: 'wrap',
-        backgroundColor: backgroundColor,
-        borderRadius: '4px',
+        backgroundColor: backgroundColor || 'common.white',
+        borderRadius: `${borderRadius}px`,
         overflow: 'hidden',
         ':hover': {
           boxShadow: theme.shadows['20'],
@@ -88,7 +81,6 @@ export const CardHorizontal = ({
     >
       <Box
         sx={{
-          //-ms-flex: 0 0 33.333333%;
           flex: '0 0 33.333333%',
           maxWidth: '33.333333%',
           minHeight: '200px',
@@ -101,10 +93,10 @@ export const CardHorizontal = ({
       />
       <Box
         sx={{
-          //-webkit-box-flex: 1;
-          //-ms-flex: 1;
           flex: 1,
           padding: '30px',
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
         <Typography
@@ -130,7 +122,7 @@ export const CardHorizontal = ({
         >
           {title}
         </Typography>
-        <Typography
+        {/* <Typography
           variant="caption3"
           sx={{
             color: '#252525',
@@ -138,7 +130,7 @@ export const CardHorizontal = ({
           }}
         >
           {label}
-        </Typography>
+        </Typography> */}
         {description && (
           <Typography
             variant="caption2"
@@ -154,24 +146,31 @@ export const CardHorizontal = ({
         )}
 
         {buttonText && (
-          <>
-            {/* <svg data-testid="KeyboardArrowDownIcon"></svg> */}
+          <div
+            style={{
+              marginTop: 'auto'
+            }}
+          >
             <Typography
               variant="label4"
               onClick={onBtnClick}
               sx={{
                 color: '#0F71CB',
                 fontSize: '14px',
-                display: 'inline-block',
                 width: '100%',
                 textAlign: 'right',
                 marginTop: 'auto',
                 paddingTop: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                cursor: 'pointer',
               }}
             >
+              <KeyboardArrowDownIcon sx={{ marginRight: '5px' }} />
               {buttonText}
             </Typography>
-          </>
+          </div>
         )}
       </Box>
     </Box>

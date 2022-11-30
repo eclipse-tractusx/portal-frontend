@@ -855,7 +855,8 @@
       "allServices": "All Services",
       "sortOptions": {
         "all": "All Active Apps",
-        "appRequest": "App Request Only"
+        "dataspaceService": "Dataspace Service",
+        "consultantService": "Consultant Service"
       }
     },
     "appMarketplace": {

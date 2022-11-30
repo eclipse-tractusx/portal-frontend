@@ -48,20 +48,25 @@
   border-right: none;
 }
 
+.recommended-progress {
+  text-align: center;
+}
+
 .service-progress {
   text-align: center;
 }
 
 .recommended-section {
-  margin: 0 60px;
   .recommended-card {
     margin-bottom: 30px;
   }
 }
 
 .services-section {
-  margin: 0 60px;
+  margin: 0 -15px !important;
+  width: calc(100% + 30px) !important;
   .services-card {
+    padding: 0 15px;
     margin-bottom: 30px;
   }
 }
@@ -83,17 +88,16 @@
     .section-title {
       text-align: center;
       padding-bottom: 20px;
-      margin-bottom: 80px;
       position: relative;
-      ::after {
-        content: '';
-        width: 70px;
-        border-bottom: 2px solid;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    }
+    .section-title::after {
+      content: '';
+      width: 70px;
+      border-bottom: 2px solid;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 }
@@ -118,6 +122,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+.mainContainer {
+  width: 100%;
+  max-width: 1100px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  .mainRow {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+
+
 .serviceMarketplace {
   margin: 0;
   padding: 0;
@@ -131,10 +151,18 @@
   .recommendations {
     text-align: center;
     font-size: 36px;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
   }
-
-  .recommendations-divider {
-    width: 5%;
+  .recommendations::after {
+    content: '';
+    width: 70px;
+    border-bottom: 2px solid;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .divider {
@@ -215,7 +243,7 @@
     margin-top: 6px;
   }
 
-  .links > a {
+  .links>a {
     margin-right: 20px;
   }
 

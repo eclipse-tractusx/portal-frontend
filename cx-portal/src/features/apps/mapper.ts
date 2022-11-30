@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { CardItems, ImageType } from 'cx-portal-shared-components'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
   AppMarketplaceApp,
@@ -28,6 +29,13 @@ import {
 } from './apiSlice'
 
 const baseAssets = getAssetBase()
+
+export const getServiceLeadImage = (app: ServiceRequest): string => {
+  if (!app.leadPictureUri || app.leadPictureUri === 'ERROR')
+    return `${baseAssets}/images/apps/default/lead.png`
+  if (app.leadPictureUri.startsWith('https://')) return app.leadPictureUri
+  return `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
+}
 
 export const getAppLeadImage = (app: AppMarketplaceApp): string => {
   if (!app.leadPictureUri || app.leadPictureUri === 'ERROR')

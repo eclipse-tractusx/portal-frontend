@@ -54,40 +54,46 @@ export default function ServicesElements({
 
   return (
     <div className="services-main">
-      <Box className="services-section">
-        <section className="services-section-content">
-          <Typography
-            sx={{ fontFamily: 'LibreFranklin-Light' }}
-            variant="h3"
-            className="section-title"
-          >
-            {t('content.serviceMarketplace.allServices')}
-          </Typography>
-        </section>
-        <Grid container spacing={2} className="services-section">
-          {services.map((service: any) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={6}
-              key={service.id}
-              className="services-card"
-            >
-              <CardHorizontal
-                borderRadius={0}
-                imageAlt="App Card"
-                imagePath={service.leadPictureUri}
-                label={service.provider}
-                buttonText="Details"
-                onBtnClick={() => handleClick(service.id)}
-                title={service.title}
-                backgroundColor="#fff"
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <div className="mainContainer">
+        <div className="mainRow">
+          <Box className="services-section-main">
+            <div className="services-section-content">
+              <Typography
+                sx={{ fontFamily: 'LibreFranklin-Light' }}
+                variant="h3"
+                className="section-title"
+              >
+                {t('content.serviceMarketplace.allServices')}
+              </Typography>
+            </div>
+            <div className="services-container">
+              <Grid container spacing={2} className="services-section">
+                {services.map((service: any) => (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    key={service.id}
+                    className="services-card"
+                  >
+                    <CardHorizontal
+                      borderRadius={6}
+                      imageAlt="App Card"
+                      imagePath={service.leadPictureUri}
+                      label={service.provider}
+                      buttonText="Details"
+                      onBtnClick={() => handleClick(service.id)}
+                      title={service.title}
+                      backgroundColor="#fff"
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
+          </Box>
+        </div>
+      </div>
     </div>
   )
 }

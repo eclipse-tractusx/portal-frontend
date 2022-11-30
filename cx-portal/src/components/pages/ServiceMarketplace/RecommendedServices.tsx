@@ -43,7 +43,7 @@ export default function RecommendedServices({
           {services.map((service: any) => (
             <Grid className="recommended-card">
               <CardHorizontal
-                borderRadius={0}
+                borderRadius={6}
                 imageAlt="App Card"
                 imagePath={service.leadPictureUri}
                 label={service.provider}
