@@ -25,7 +25,6 @@ import { LogoGrayData } from '../../basic/Logo'
 import { Typography } from '../../basic/Typography'
 import { CardChipProps } from './CardChip'
 
-
 interface CardHorizontalProps extends CardChipProps {
   label: string
   title: string
@@ -96,7 +95,7 @@ export const CardHorizontal = ({
           flex: 1,
           padding: '30px',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
         }}
       >
         <Typography
@@ -148,7 +147,7 @@ export const CardHorizontal = ({
         {buttonText && (
           <div
             style={{
-              marginTop: 'auto'
+              marginTop: 'auto',
             }}
           >
             <Typography

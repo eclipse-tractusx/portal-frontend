@@ -53,7 +53,10 @@ export default function ServiceMarketplace() {
   const [allServices, setAllServices] = useState<any>([])
   const [cardServices, setCardServices] = useState<any>([])
 
-  const { data } = useFetchServicesQuery({page: 0, serviceType: selected !== 'All Active Apps' ? selected : ''})
+  const { data } = useFetchServicesQuery({
+    page: 0,
+    serviceType: selected !== 'All Active Apps' ? selected : '',
+  })
   const services = data && data.content
 
   useEffect(() => {
@@ -103,7 +106,9 @@ export default function ServiceMarketplace() {
     },
     {
       buttonText: t('content.serviceMarketplace.sortOptions.consultantService'),
-      buttonValue: t('content.serviceMarketplace.sortOptions.consultantService'),
+      buttonValue: t(
+        'content.serviceMarketplace.sortOptions.consultantService'
+      ),
       onButtonClick: setView,
     },
   ]
@@ -112,13 +117,16 @@ export default function ServiceMarketplace() {
     () =>
       debounce(
         (expr: string) =>
-        setCardServices(
+          setCardServices(
             expr
               ? cardServices.filter(
                   (card: any) =>
                     card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                    (card.provider.toLowerCase().includes(expr.toLowerCase()) ||
-                    (card.description && card.description.toLowerCase().includes(expr.toLowerCase())) )
+                    card.provider.toLowerCase().includes(expr.toLowerCase()) ||
+                    (card.description &&
+                      card.description
+                        .toLowerCase()
+                        .includes(expr.toLowerCase()))
                 )
               : cardServices
           ),
@@ -178,26 +186,24 @@ export default function ServiceMarketplace() {
                 />
               )}
             </div>
-            {
-              recommendedServices && recommendedServices.length ? (
-                <RecommendedServices services={recommendedServices} />
-              ) :
-                <div className="recommended-progress">
-                  <CircularProgress
-                    size={50}
-                    sx={{
-                      color: theme.palette.primary.main,
-                    }}
-                  />
-                </div>
-            }
+            {recommendedServices && recommendedServices.length ? (
+              <RecommendedServices services={recommendedServices} />
+            ) : (
+              <div className="recommended-progress">
+                <CircularProgress
+                  size={50}
+                  sx={{
+                    color: theme.palette.primary.main,
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
-      {
-        cardServices && cardServices.length ? (
-          <ServicesElements services={cardServices} />
-        ) :
+      {cardServices && cardServices.length ? (
+        <ServicesElements services={cardServices} />
+      ) : (
         <div className="service-progress">
           <CircularProgress
             size={50}
@@ -206,7 +212,7 @@ export default function ServiceMarketplace() {
             }}
           />
         </div>
-      }
+      )}
     </main>
   )
 }

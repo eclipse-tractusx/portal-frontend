@@ -83,16 +83,16 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchServices: builder.query<ServiceRequestAPIResponse, ServicesBody>(
-      {
-        query: (body) => {
-          const serviceType = `serviceTypeId=${body.serviceType}`
-          return {
-            url: `/api/services/active?size${PAGE_SIZE}&page=${body.page}&${body.serviceType && serviceType}`,
-          }
-        },
-      }
-    ),
+    fetchServices: builder.query<ServiceRequestAPIResponse, ServicesBody>({
+      query: (body) => {
+        const serviceType = `serviceTypeId=${body.serviceType}`
+        return {
+          url: `/api/services/active?size${PAGE_SIZE}&page=${body.page}&${
+            body.serviceType && serviceType
+          }`,
+        }
+      },
+    }),
     fetchService: builder.query<ServiceRequest, string>({
       query: (serviceId) =>
         `/api/services/${serviceId}?lang=${i18next.language}`,
