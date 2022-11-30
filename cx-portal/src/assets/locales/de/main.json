@@ -42,7 +42,12 @@
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung",
-    "techuserdetails": "Technischer Benutzer Details"
+    "techuserdetails": "Technischer Benutzer Details",
+    "companyroles": "Company Roles",
+    "companyrolesparticipant": "Participant",
+    "companyrolesappprovider": "App Provider",
+    "companyrolesserviceprovider": "Service Provider",
+    "companyrolesconfirmitybody": "Confirmity Body"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -88,6 +93,8 @@
           "details": "Einzelheiten",
           "state": "Zustand"
         },
+        "enterBpn": "Enter Business Partner Number",
+        "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Anfragen zur Benutzerregistrierung",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
@@ -105,6 +112,12 @@
         "confirmmodal": {
           "title": "Aktion bestätigen",
           "description": "Möchten Sie die ausgewählte Anfrage wirklich ausführen?"
+        },
+        "addBpn": {
+          "successTitle": "Update BPN number successfully completed",
+          "successDescription": "Update BPN number successfully completed.",
+          "errorTitle": "Something went wrong",
+          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
       }
     },
@@ -562,7 +575,18 @@
       }
     },
     "idpmanagement": {
-      "create": "OIDC Identitätsprovider anlegen"
+      "addIdpHeadline": "Erstelle einen neuen Identity Provider",
+      "addIdpSubheadline": "Wähle einen IdP Namen (dieser wird als Login Name in der Tenant-Auswahl angezeigt werden) und den IdP Type.",
+      "updateIdpHeadline": "Update Identity Provider",
+      "updateIdpSubheadline": "Choose the required settings for your IDP",
+      "enableIdpHeadline": "Activierung Identity Provider {{ idp }}",
+      "enableIdpSubheadline": "This will open another option for people from your company to sign.",
+      "enableIdpSuccessHeadline": "Der Identity Provider wurde erfolgrecih aktiviert.",
+      "enableIdpSuccessSubheadline": "Login Test",
+      "disableIdpHeadline": "Deactiviere Identity Provider {{ idp }}",
+      "disableIdpSubheadline": "Mit der Deaktivierung des IdPs wird ein Zugriff über diesen Login nicht mehr möglich sein. Alle Nutzer müssen sich über den neuen IdP einloggen.",
+      "description": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
+      "create": "Add Identity Provider"
     },
     "idpdetail": {
       "title": "Identitätsprovider Details",
@@ -781,6 +805,9 @@
         "useCaseCategoryPlaceholder": "Choose the relevant use case",
         "appLanguage": "App Language",
         "appLanguagePlaceholder": "Select app supported language",
+        "salesManager": "Sales Manager",
+        "salesManagerPlaceholder": "Please select a Sales Manager",
+        "salesManagerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
         "pricingInformation": "Preisinformation"
       },
       "appPage": {
@@ -912,6 +939,11 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
+    },
+    "companyRoleSubNavigation": {
+      "link1Label": "marketplace",
+      "link2Label": "marketplace subscriptions",
+      "link3Label": "dataspace participants"
     }
   },
   "notification": {
@@ -974,7 +1006,8 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "readMore": "Read More"
     },
     "state": {
       "enabled": "aktiv",
@@ -985,7 +1018,8 @@
     "objects": {
       "app": "App",
       "user": "Benutzer",
-      "techuser": "Technischer Account"
+      "techuser": "Technischer Account",
+      "idp": "identity provider"
     },
     "search": {
       "less": "weniger anzeigen",
@@ -1013,11 +1047,6 @@
       "title": "Oops, Etwas ist schief gelaufen.",
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator."
-    },
-    "date": {
-      "yesterday": "gestern",
-      "today": "heute",
-      "tomorrow": "morgen"
     },
     "table": {
       "search": "Enter email to search",

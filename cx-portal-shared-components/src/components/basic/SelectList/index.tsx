@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -25,15 +25,19 @@ import match from 'autosuggest-highlight/match'
 import { SelectInput } from '../MultiSelectList/Components/SelectInput'
 import { SelectOptions } from '../MultiSelectList/Components/SelectOptions'
 import uniqueId from 'lodash/uniqueId'
+import { isEqual } from 'lodash'
 
 interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
   label: string
   placeholder: string
+  keyTitle: string
   popperHeight?: number
   variant?: 'filled'
   clearText?: string
   noOptionsText?: string
+  defaultValue?: {}
+  disableClearable?: boolean
   onChangeItem: (items: any) => void
 }
 
@@ -41,6 +45,9 @@ export const SelectList = ({
   items,
   label,
   placeholder,
+  defaultValue = {},
+  disableClearable = false,
+  keyTitle,
   variant,
   margin,
   focused,
@@ -58,16 +65,19 @@ export const SelectList = ({
       id="singleSelectList"
       sx={{ width: '100%' }}
       clearText={clearText}
+      defaultValue={defaultValue}
+      disableClearable={disableClearable}
       noOptionsText={noOptionsText}
       ListboxProps={{ style: { maxHeight: selectHeight } }}
       disabled={disabled}
       options={items.map((item) => item)}
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => option[keyTitle] || ''}
       onChange={(_, reason: any) => onChangeItem(reason)}
+      isOptionEqualToValue={(option, value) => isEqual(option, value)}
       renderOption={(props, option, { inputValue }) => (
         <SelectOptions
           props={props}
-          parts={parse(option.title, match(option.title, inputValue))}
+          parts={parse(option[keyTitle], match(option[keyTitle], inputValue))}
           key={uniqueId('select-list-option')}
         />
       )}
@@ -83,7 +93,7 @@ export const SelectList = ({
             helperText={helperText}
             error={error}
             disabled={disabled}
-            keyTitle={''}
+            keyTitle={keyTitle}
           />
         )
       }}

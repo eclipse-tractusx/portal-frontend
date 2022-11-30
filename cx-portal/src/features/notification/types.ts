@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -76,6 +76,15 @@ export interface CXNotificationContent {
   contentParsed?: NotificationContent
   isRead?: boolean
   dueDate?: string
+  notificationTopic?: string
+}
+
+export type CXNotificationMeta = {
+  read: number
+  unread: number
+  infoUnread: number
+  offerUnread: number
+  actionRequired: number
 }
 
 export type CXNotification = {

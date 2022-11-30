@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -81,6 +81,12 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    updateBPN: builder.mutation<boolean, any>({
+      query: (args) => ({
+        url: `/api/administration/registration/application/${args.applicationId}/${args.bpn}/bpn`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
@@ -89,4 +95,5 @@ export const {
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
+  useUpdateBPNMutation,
 } = apiSlice

@@ -2,27 +2,54 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### In Progress
-* Feature - Apps & Service Subscription: include consent inside subscription
-* Feature - App Release Process: App status/summary api connect
-* Feature - App User Role - update table content
-* Feature - Service Marketplace Design Update
 
 ### Unreleased
-* Notifications
-   * Design updates
-   * Delete notification
+n/a
+
+## 0.9.0
+
+### Change
+* Shared Components
+   * SelectList component - property/parameter added to clear the select list input
+* App Release Process
+   * Sales Manager Get, Select and drop down enabled for app creation
+   * "Save" Button enabling with update PUT api call
+
+### Feature
+* Marketplace
+   * App subscription consent agreement included inside the user flow with api triggering 
+* Identity Provider
+   * Create, update and enable new idp integration for ownIdP usage (companyIdP)
+* Notifications Service
+   * Release of new notification design with filtering, viewing & pagination
+   * Highlight of unread messages
+   * Delete notification function enabled
+* Registration Approval Board
+   * Enable handling of registrations without bpn by adding a bpn input field with api connection
+* User management
+   * Auto navigation to Identity Management section after deleting an user
+   * App User tables - content api call filtering activated to reduce response to needed result
+* Company Role Introduction
+   * Active Participant introduction page
+   * App Provider introduction page
+   * Service Provider introduction page
+
+### Technical Support
+* n/a
+
+### Bugfix
+* n/a
 
 ## 0.8.0
 
 ### Change
 * Connector Registration
-   * Enable "Company as a Service" cennector registration via modal; connected to portal backend and SD Factory
+   * Enable "Company as a Service" connector registration via modal; connected to portal backend and SD Factory
    * Input field pattern validation established
    * Updated delete connector integration
 
 ### Feature
-* User Management - user acount creation for portal connected to company role validation to reduce and validate available portal roles which the member company can assign (related to the company signed company role agreements)
+* User Management - user account creation for portal connected to company role validation to reduce and validate available portal roles which the member company can assign (related to the company signed company role agreements)
 * User Account
    * Enabled my user account deletion flow and backend integration
    * Error and success overlay added for password reset button/logic
@@ -63,7 +90,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * User Management - User table auto-refresh enabled after new user invite; business logic of user status inside the user table updated to display correct status
 * Central Search - Result list gave an issue on app title value
 
-
 ## 0.6.0
 
 ### Change
@@ -71,7 +97,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Feature
 * Application Management Board: Manage application request (by viewing company details and documents) and approve or cancel company applications.
-* User Management: View own company users, invite new users and assign app roles for subscribed apps. Additionally the technical user self-service got released and supports now the creation of technical users as part of the user company account.
+* User Management: View own company users, invite new users and assign app roles for subscribed apps. Additionally, the technical user self-service got released and supports now the creation of technical users as part of the user company account.
 * App Marketplace: Enables user to search for apps, display app details and subscribe for an app. Also app favorites tags are added.
 * App Overview: App overview supports the app provider to see own published apps, check the status, progress unfinished app releases and start the registration of a new app.
 * UiComponents: SharedUiComponent library got released and is usable for other projects with a number of ui react components
@@ -81,7 +107,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfix
 * n/a
-
 
 ## 0.5.5
 
@@ -117,7 +142,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Service Marketplace - Page Padding Margin UI Fix and Provider Table Border Fix 
 * Bugfix - User Experience - delete request id from registration admin board
 
-
 ## 0.5.4
 
 * Feature - Service Marketplace
@@ -132,7 +156,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Fixed modal width, subscribe refetch and services loading effect
 * Bugfix - User Management - AddUser Roles missing
 
-
 ## 0.5.3
 
 * Feature - App Release Process Step 1 implementation with api binding
@@ -141,7 +164,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - App Release Process Step 5 - Beta Test
 * Feature - Search functionality added in Invite Business Partner page
 * Feature - Identity provider list and detail view
-
 
 ## 0.5.2
 
@@ -154,12 +176,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - Partner Network single search for multiple endpoints & UI update
 * Feature - Search in User and App User table
 * Feature - New components date picker, table style, lightweight dropzone, in screen navigation, single dropdown, load button
-* Bugfix - Business Apps displayed correcty and links working
+* Bugfix - Business Apps displayed correctly and links working
 * Bugfix - Restrict supported languages to 'en' and 'de' without local variants
 * Bugfix - Removed empty 'Organization' option from user menu
 * Bugfix - Footer fixed to bottom of window
 * Bugfix - Some alignment and content fixes
-
 
 ### Older
 

@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -237,8 +237,8 @@ export default function AppPage() {
       </Grid>
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map((item: string) => (
-            <>
+          {['longDescriptionEN', 'longDescriptionDE'].map((item: string, i) => (
+            <div key={i}>
               <ConnectorFormInputField
                 {...{
                   control,
@@ -300,7 +300,7 @@ export default function AppPage() {
                   : getValues().longDescriptionDE.length) +
                   `/${longDescriptionMaxLength}`}
               </Typography>
-            </>
+            </div>
           ))}
         </div>
 
@@ -347,8 +347,8 @@ export default function AppPage() {
           'uploadTechnicalGuide',
           'uploadDataContract',
           'uploadAppContract',
-        ].map((item: string) => (
-          <>
+        ].map((item: string, i) => (
+          <div key={i}>
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <div className="form-field" key={item}>
               <InputLabel sx={{ mb: 3, mt: 3 }}>
@@ -406,7 +406,7 @@ export default function AppPage() {
                   </Typography>
                 )}
             </div>
-          </>
+          </div>
         ))}
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />

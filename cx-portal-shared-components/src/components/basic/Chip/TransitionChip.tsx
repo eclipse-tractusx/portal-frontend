@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -29,6 +29,7 @@ interface ChipCustomProps extends ChipProps {
   withIcon?: true | false
   onClick?: any
   duration?: number
+  disabled?: boolean
 }
 
 export const TransitionChip = ({
@@ -38,6 +39,7 @@ export const TransitionChip = ({
   onClick,
   duration = 2.5,
   onDelete = () => null, // To avoid default delete icon appear
+  disabled = false,
   ...props
 }: ChipCustomProps) => {
   let icon, hoverBgColor, hoverTextColor, timeout: any
@@ -75,6 +77,7 @@ export const TransitionChip = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       variant={variant}
+      disabled={disabled}
       onClick={onButtonClick}
       icon={withIcon ? icon : undefined}
       sx={{

@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -72,7 +72,6 @@ export { Stepper } from './basic/Stepper'
 export { SelectList } from './basic/SelectList'
 export { VerticalTabs } from './basic/VerticalTabs'
 export { LoadingButton } from './basic/LoadingButton'
-export { CardHorizontalTable } from './basic/CardTable'
 
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
@@ -85,6 +84,8 @@ export { CircularProgress } from './basic/CircularProgress'
 export { Datepicker } from './basic/Datepicker'
 export { TransitionChip } from './basic/Chip/TransitionChip'
 export { Tooltips } from './basic/ToolTips'
+export { SortOption } from './basic/SortOption'
+export { ParentSubNavigation } from './basic/SubNavigation/ParentSubNavigation'
 
 export type { TableProps } from './basic/Table'
 export type {
@@ -101,4 +102,3 @@ export type { ImageType } from './basic/ImageGallery/types'
 export type { DateType } from './basic/Datepicker'
 export { StatusVariants } from './content/Cards/CardChip'
 export type { TabPanelType } from './basic/VerticalTabs'
-export type { CustomAccordianProps, DataProp } from './basic/CardTable'

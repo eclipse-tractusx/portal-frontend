@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -37,6 +37,7 @@ export const getServiceLeadImage = (app: ServiceRequest): string => {
   return `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
 }
 
+// mapper to fetch an app lead-image from the asset repo by using the app image name; default image handling included as well
 export const getAppLeadImage = (app: AppMarketplaceApp): string => {
   if (!app.leadPictureUri || app.leadPictureUri === 'ERROR')
     return `${baseAssets}/images/apps/default/lead.png`
@@ -44,6 +45,7 @@ export const getAppLeadImage = (app: AppMarketplaceApp): string => {
   return `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
 }
 
+// mapper to fetch an app image from the asset repo by using the app image name, without default image handling
 export const getAppImage = (appid: string, image: string): ImageType => ({
   text: 'image caption',
   url: image.startsWith('https://')
@@ -51,10 +53,11 @@ export const getAppImage = (appid: string, image: string): ImageType => ({
     : `${baseAssets}/images/apps/${appid}/${image}`,
 })
 
+// mapper to create the app card used for the my business application section
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
   subtitle: app.provider,
-  title: app.title ?? app.name, // supposed to get cleaned up to an identical key value across all the endpoints with jira ticket cplp-1700
+  title: app.name ?? '',
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
@@ -64,6 +67,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,
 })
 
+// mapper to create the app card used for the app access management view on the user management page
 export const filterSubscribed = (
   apps: AppMarketplaceApp[],
   subscriptionStatus: SubscriptionStatusItem[]

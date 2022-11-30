@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -136,4 +136,17 @@
       transform: translateX(-50%);
     }
   }
+}
+
+.state-cell-container .MuiButtonBase-root.Mui-disabled {
+  color: #333;
+  background-color: #d1d1d1;
+}
+
+.bpn-edit-flex {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
 }

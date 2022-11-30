@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -206,7 +206,6 @@
   .deleteOverlay {
     width: 30%;
     position: absolute;
-    top: 100%;
     left: 35%;
     margin: auto;
     background: #f9f9f9;
@@ -226,5 +225,15 @@
   .titleIcon {
     padding-right: 8px;
     padding-top: 4px;
+  }
+
+  .sortSection {
+    position: absolute;
+    left: 65%;
+    margin-top: 13%;
+    background: #f9f9f9;
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+    border-radius: 16px;
+    z-index: 9;
   }
 }

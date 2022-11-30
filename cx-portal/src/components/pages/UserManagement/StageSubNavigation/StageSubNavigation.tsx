@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect } from 'react'
 import { SubNavigation } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -33,6 +34,13 @@ export const StageSubNavigation = () => {
     })
   }
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const windowUrl = window.location.href
+    if (windowUrl.indexOf('#identity') > 1) {
+      scrollToId('identity-management-id')
+    }
+  }, [])
 
   return (
     <SubNavigation

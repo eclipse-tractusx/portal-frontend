@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -73,6 +73,11 @@ export enum PAGES {
   APPOVERVIEW = 'appoverview',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
+  COMPANY_ROLES = 'companyroles',
+  COMPANY_ROLES_PARTICIPANT = 'companyrolesparticipant',
+  COMPANY_ROLES_APP_PROVIDER = 'companyrolesappprovider',
+  COMPANY_ROLES_SERVICE_PROVIDER = 'companyrolesserviceprovider',
+  COMPANY_ROLES_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
 }
 
 export enum OVERLAYS {
@@ -92,13 +97,20 @@ export enum OVERLAYS {
   APP = 'app',
   SERVICE_REQUEST = 'service_request',
   APPMARKETPLACE_REQUEST = 'appmarketplace_request',
-  IDP = 'idp',
+  ADD_IDP = 'add_idp',
+  UPDATE_IDP = 'update_idp',
+  ENABLE_IDP = 'enable_idp',
+  DISABLE_IDP = 'disable_idp',
+  DELETE_IDP = 'delete_idp',
+  IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',
   IDP_TEST_RUN = 'idp_test_run',
+  ENABLE_IDP_SUCCESS = 'enable_idp_success',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',
+  SAMPLE_FORM = 'sample_form',
 }
 
 export enum ACTIONS {

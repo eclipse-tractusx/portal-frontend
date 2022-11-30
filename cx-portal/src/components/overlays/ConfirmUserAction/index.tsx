@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,7 +20,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import DeleteUserContent from 'components/shared/basic/DeleteUserContent'
+import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
 import {
   useRemoveTenantUserMutation,
   useFetchUserDetailsQuery,
@@ -181,7 +181,7 @@ export const ConfirmUserAction = ({
     dispatch(closeOverlay())
     if (!error) {
       if (title === 'user' || title === 'suspend') {
-        navigate('/usermanagement')
+        navigate('/usermanagement/#identity')
       } else if (title === 'ownUser') {
         UserService.doLogout({ redirectUri: `${document.location.origin}/` })
       }

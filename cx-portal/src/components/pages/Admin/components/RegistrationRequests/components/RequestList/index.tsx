@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -39,6 +39,7 @@ export const RequestList = ({
   loaded,
   handleDownloadDocument,
   searchExpr,
+  showConfirmOverlay,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: any
@@ -50,6 +51,7 @@ export const RequestList = ({
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
   searchExpr?: string
+  showConfirmOverlay?: any
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -61,7 +63,8 @@ export const RequestList = ({
     onApproveClick,
     onDeclineClick,
     isLoading,
-    handleDownloadDocument
+    handleDownloadDocument,
+    showConfirmOverlay
   )
 
   useEffect(() => {

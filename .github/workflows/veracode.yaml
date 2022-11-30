@@ -25,5 +25,5 @@ jobs:
           appname: 'Portal Frontend'
           createprofile: false
           filepath: 'portal-frontend.zip'
-          vid: '${{ secrets.VERACODE_API_ID }}'
-          vkey: '${{ secrets.VERACODE_API_KEY }}' 
+          vid: '${{ secrets.ORG_VERACODE_API_ID }}'
+          vkey: '${{ secrets.ORG_VERACODE_API_KEY }}' 

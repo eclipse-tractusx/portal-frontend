@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -32,7 +32,7 @@ import { useTranslation } from 'react-i18next'
 import './style.scss'
 import Box from '@mui/material/Box'
 
-export default function DeleteUserContent({
+export default function DeleteObjectContent({
   header,
   subHeader,
   subHeaderTitle,
@@ -57,7 +57,7 @@ export default function DeleteUserContent({
   return (
     <>
       {header && <DialogHeader title={header} />}
-      <DialogContent className="remove-technical-user-content">
+      <DialogContent className="remove-object-content">
         {subHeader && (
           <SubHeaderTitle className="confirm" title={subHeader} variant="h6" />
         )}

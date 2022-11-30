@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -100,22 +100,20 @@ const AddConnectorOverlay = ({
     <div>
       <Dialog
         open={openDialog}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: '45%',
-          },
+        additionalModalRootStyles={{
+          width: '45%',
         }}
       >
         <DialogHeader
           title={
-            !selected.type || selected.type === 'COMPANY_CONNECTOR'
-              ? t('content.edcconnector.modal.company.title')
-              : t('content.edcconnector.modal.managed.title')
+            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
+              ? t('content.edcconnector.modal.managed.title')
+              : t('content.edcconnector.modal.company.title')
           }
           intro={
-            !selected.type || selected.type === 'COMPANY_CONNECTOR'
-              ? t('content.edcconnector.modal.company.intro')
-              : t('content.edcconnector.modal.managed.intro')
+            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
+              ? t('content.edcconnector.modal.managed.intro')
+              : t('content.edcconnector.modal.company.intro')
           }
         />
         <DialogContent

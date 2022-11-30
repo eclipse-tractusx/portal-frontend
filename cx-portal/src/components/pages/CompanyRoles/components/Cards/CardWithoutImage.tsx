@@ -1,6 +1,6 @@
 /********************************************************************************
  * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the CatenaX (ng) GitHub Organisation.
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,24 +18,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.sortSection {
-  position: absolute;
-  left: 65%;
-  margin-top: 13%;
-  background: #f9f9f9;
-  box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
-  border-radius: 16px;
-  z-index: 9;
-}
+import { CardDetailsProps } from '../../types'
+import Card from './Card'
 
-.sortSection ul {
-  padding: 8px;
-}
-
-.sortSection ul li {
-  padding: 17px;
-  width: 152px;
-  height: 52px;
-  border-radius: 10px;
-  cursor: pointer;
+export default function CardWithoutImage({
+  detail,
+}: {
+  detail: CardDetailsProps
+}) {
+  return (
+    <div
+      key={detail.id}
+      className="cardsContainer"
+      style={{
+        backgroundColor: detail.backgroundColor,
+        border: '1px solid rgba(15, 113, 203, 1)',
+      }}
+    >
+      <Card card={detail} />
+    </div>
+  )
 }
