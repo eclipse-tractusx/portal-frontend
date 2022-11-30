@@ -47,7 +47,7 @@ export default function Card({ card }: { card: CardDetailsProps }) {
       </Typography>
       {card.readMore ? (
         <a className="readMoreButton" href={card.readMore}>
-          {t('global.actions.readMore')}
+          {t('global.actions.details')}
         </a>
       ) : (
         <div className="readMoreButton" />
