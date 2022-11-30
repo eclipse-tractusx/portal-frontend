@@ -73,6 +73,8 @@
 }
 
 .cardsContainer img {
+  margin-bottom: 20px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -99,7 +101,6 @@
 .readMoreButton {
   text-decoration: underline;
   padding-top: 12px;
-  min-height: 32px;
   margin-bottom: 15px !important;
   font-size: 18px;
   color: #0f71cb;

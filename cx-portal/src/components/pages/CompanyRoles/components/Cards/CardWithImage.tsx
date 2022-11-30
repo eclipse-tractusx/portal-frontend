@@ -36,11 +36,14 @@ export default function CardWithImage({
     >
       <img
         style={{
-          marginBottom: '20px',
           padding:
             detail.imageShape && detail.imageShape === 'circle'
               ? '40px 90px'
               : '0px',
+          maxHeight:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '100%'
+              : '156px',
         }}
         src={detail.imageUrl}
         width="100%"
