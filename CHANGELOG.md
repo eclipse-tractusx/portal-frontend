@@ -4,7 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-n/a
+* Technical User
+   * Removed multi overlay layering
+   * Update the style of the response
 
 ## 0.9.0
 
