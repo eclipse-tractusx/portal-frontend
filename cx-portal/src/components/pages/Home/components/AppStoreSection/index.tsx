@@ -35,7 +35,7 @@ export default function AppStoreSection() {
     <section className="app-store-section">
       <Typography
         sx={{ fontFamily: 'LibreFranklin-Light' }}
-        variant="h3"
+        variant="h2"
         className="section-title"
       >
         {t('content.home.appStoreSection.title')}
