@@ -924,6 +924,14 @@
       "desc2": "Please note that the subscription request will trigger a service call on provider side.The app provider will align with you all further steps. This may take up to 5 days.",
       "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
       "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
+    },
+    "techUser": {
+      "details": {
+        "clientId": "Client ID",
+        "username": "User Name",
+        "authType": "Auth Type",
+        "clientSercret": "Client Secret"
+      }
     }
   },
   "navigation": {

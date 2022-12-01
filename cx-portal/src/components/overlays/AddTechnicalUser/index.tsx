@@ -122,14 +122,20 @@ export const AddTechnicalUser = () => {
         >
           <UserDetailCard
             cardContentItems={{
-              clientId: { label: 'Client ID', value: response.clientId },
-              userName: { label: 'UserName', value: response.name },
+              clientId: {
+                label: t('content.techUser.details.clientId'),
+                value: response.clientId,
+              },
+              userName: {
+                label: t('content.techUser.details.username'),
+                value: response.name,
+              },
               authType: {
-                label: 'Auth Type',
+                label: t('content.techUser.details.authType'),
                 value: response.authenticationType,
               },
               clientSecret: {
-                label: 'Client Secret',
+                label: t('content.techUser.details.clientSercret'),
                 value: response.secret,
               },
             }}
