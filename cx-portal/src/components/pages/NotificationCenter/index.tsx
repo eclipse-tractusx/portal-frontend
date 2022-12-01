@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
 import {
   useGetNotificationsQuery,
@@ -134,46 +134,42 @@ export default function NotificationCenter() {
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
 
-  const handleClick = () => {
-    setShowModal(false)
-  }
-
-  useEffect(() => {
-    if (showModal) {
-      document.addEventListener('click', handleClick)
-    }
-  }, [showModal])
-
   return (
     <main className="notifications">
       <StageHeader title={t('pages.notifications')} />
       <section>
-        <div className="searchContainer">
+        <div
+          className="searchContainer"
+          onMouseLeave={() => setShowModal(!showModal)}
+        >
           <SearchInput
             placeholder={t('notification.search')}
             value={searchExpr}
             autoFocus={false}
             onChange={(e) => setSearchExpr(e.target.value)}
           />
-          <div className="iconSection" onMouseEnter={() => setShowModal(true)}>
-            <SortIcon
-              sx={{
-                fontSize: 20,
-                color: '#939393',
-                ':hover': { color: '#0D55AF' },
-              }}
-            />
-          </div>
-          <div className="sortSection">
-            <SortOption
-              show={showModal}
-              selectedOption={sortOption}
-              setSortOption={(value: string) => {
-                setSortOption(value)
-                setShowModal(!showModal)
-              }}
-              sortOptions={sortOptions}
-            />
+          <div>
+            <div className="iconSection">
+              <SortIcon
+                onClick={() => setShowModal(true)}
+                sx={{
+                  fontSize: 20,
+                  color: '#939393',
+                  ':hover': { color: '#0D55AF' },
+                }}
+              />
+            </div>
+            <div className="sortSection">
+              <SortOption
+                show={showModal}
+                selectedOption={sortOption}
+                setSortOption={(value: string) => {
+                  setSortOption(value)
+                  setShowModal(!showModal)
+                }}
+                sortOptions={sortOptions}
+              />
+            </div>
           </div>
         </div>
         <div className="filterSection">
