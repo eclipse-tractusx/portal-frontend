@@ -113,7 +113,30 @@ export const AddTechnicalUser = () => {
 
   return (
     <>
-      {!response ? (
+      {response ? (
+        <ServerResponseOverlay
+          title={t('content.addUser.technicalUserHeadline')}
+          intro={t('content.addUser.technicalUserSubheadlineSuccess')}
+          dialogOpen={true}
+          handleCallback={() => dispatch(closeOverlay())}
+        >
+          <UserDetailCard
+            cardContentItems={{
+              clientId: { label: 'Client ID', value: response.clientId },
+              userName: { label: 'UserName', value: response.name },
+              authType: {
+                label: 'Auth Type',
+                value: response.authenticationType,
+              },
+              clientSecret: {
+                label: 'Client Secret',
+                value: response.secret,
+              },
+            }}
+            variant="wide"
+          />
+        </ServerResponseOverlay>
+      ) : (
         <>
           <DialogHeader
             title={t('content.addUser.technicalUserHeadline')}
@@ -163,29 +186,6 @@ export const AddTechnicalUser = () => {
             )}
           </DialogActions>
         </>
-      ) : (
-        <ServerResponseOverlay
-          title={t('content.addUser.technicalUserHeadline')}
-          intro={t('content.addUser.technicalUserSubheadlineSuccess')}
-          dialogOpen={true}
-          handleCallback={() => dispatch(closeOverlay())}
-        >
-          <UserDetailCard
-            cardContentItems={{
-              clientId: { label: 'Client ID', value: response.clientId },
-              userName: { label: 'UserName', value: response.name },
-              authType: {
-                label: 'Auth Type',
-                value: response.authenticationType,
-              },
-              clientSecret: {
-                label: 'Client Secret',
-                value: response.secret,
-              },
-            }}
-            variant="wide"
-          />
-        </ServerResponseOverlay>
       )}
     </>
   )

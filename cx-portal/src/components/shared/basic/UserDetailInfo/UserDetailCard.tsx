@@ -72,7 +72,10 @@ export const UserDetailCard = ({
     navigator.clipboard.writeText(value)
   }
 
-  const renderValue = (value: UserItemsTranslation | undefined) => (
+  const renderValue = (
+    value: UserItemsTranslation | undefined,
+    param: string
+  ) => (
     <>
       <strong>{value?.label}:</strong>&nbsp;
       <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
@@ -91,7 +94,7 @@ export const UserDetailCard = ({
         )}
       </span>
       <span>
-        {value?.label === 'Client Secret' && (
+        {param === 'clientSecret' && (
           <ContentCopyIcon
             style={{ cursor: 'pointer' }}
             sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
@@ -118,7 +121,7 @@ export const UserDetailCard = ({
         />
       </>
     ) : (
-      renderValue(value)
+      renderValue(value, param)
     )
 
   return (
