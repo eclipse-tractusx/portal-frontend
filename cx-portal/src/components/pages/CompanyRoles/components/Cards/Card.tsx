@@ -28,26 +28,36 @@ export default function Card({ card }: { card: CardDetailsProps }) {
 
   return (
     <div className="textContainer">
-      <Typography
-        sx={{
-          minHeight: '32px',
-        }}
-        variant="h6"
-      >
-        {card.title}
-      </Typography>
-      <Typography
-        sx={{
-          paddingTop: '34px',
-          minHeight: '32px',
-        }}
-        variant="body1"
-      >
-        {card.description}
-      </Typography>
+      <div>
+        <Typography
+          sx={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: '1',
+            WebkitBoxOrient: 'vertical',
+          }}
+          variant="h4"
+        >
+          {card.title}
+        </Typography>
+        <Typography
+          sx={{
+            paddingTop: '34px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: '2',
+            WebkitBoxOrient: 'vertical',
+          }}
+          variant="body2"
+        >
+          {card.description}
+        </Typography>
+      </div>
       {card.readMore ? (
         <a className="readMoreButton" href={card.readMore}>
-          {t('global.actions.readMore')}
+          {t('global.actions.details')}
         </a>
       ) : (
         <div className="readMoreButton" />
