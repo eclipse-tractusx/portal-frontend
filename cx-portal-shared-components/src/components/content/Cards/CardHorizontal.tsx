@@ -87,7 +87,7 @@ export const CardHorizontal = ({
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundColor: '#fff',
+          backgroundColor: theme.palette.accent.accent02,
         }}
       />
       <Box
@@ -103,7 +103,7 @@ export const CardHorizontal = ({
           sx={{
             fontWeight: '600',
             lineHeight: '20px',
-            color: '#888888',
+            color: theme.palette.text.tertiary,
           }}
         >
           {label}
@@ -121,15 +121,6 @@ export const CardHorizontal = ({
         >
           {title}
         </Typography>
-        {/* <Typography
-          variant="caption3"
-          sx={{
-            color: '#252525',
-            lineHeight: '20px',
-          }}
-        >
-          {label}
-        </Typography> */}
         {description && (
           <Typography
             variant="caption2"

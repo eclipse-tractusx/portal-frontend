@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { CardItems, ImageType } from 'cx-portal-shared-components'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
   AppMarketplaceApp,
@@ -29,13 +28,6 @@ import {
 } from './apiSlice'
 
 const baseAssets = getAssetBase()
-
-export const getServiceLeadImage = (app: ServiceRequest): string => {
-  if (!app.leadPictureUri || app.leadPictureUri === 'ERROR')
-    return `${baseAssets}/images/apps/default/lead.png`
-  if (app.leadPictureUri.startsWith('https://')) return app.leadPictureUri
-  return `${baseAssets}/images/apps/${app.id}/${app.leadPictureUri}`
-}
 
 // mapper to fetch an app lead-image from the asset repo by using the app image name; default image handling included as well
 export const getAppLeadImage = (app: AppMarketplaceApp): string => {

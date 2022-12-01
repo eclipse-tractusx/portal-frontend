@@ -63,10 +63,11 @@ export default function ServiceMarketplace() {
   }
 
   let sortingType = 'ReleaseDateDesc'
-
   if (sortOption === 'provider') {
     sortingType = 'ProviderDesc'
   }
+
+  const indexToSplit = 2 //show only 2 services in recommended
 
   const { data } = useFetchServicesQuery({
     page: 0,
@@ -74,9 +75,6 @@ export default function ServiceMarketplace() {
     sortingType: sortingType,
   })
   const services = data && data.content
-
-  console.log('services', services)
-  const indexToSplit = 2
 
   useEffect(() => {
     services && setCardServices(services)
@@ -211,7 +209,7 @@ export default function ServiceMarketplace() {
         </div>
       </div>
       {cardServices && cardServices.length > 2 && (
-        <ServicesElements services={cardServices!.slice(indexToSplit)} />
+        <ServicesElements services={cardServices.slice(indexToSplit)} />
       )}
     </main>
   )
