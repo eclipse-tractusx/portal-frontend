@@ -5,6 +5,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 * Feature - Service marketplace UI Updates
+* Technical User
+   * Removed multi overlay layering
+   * Update the style of the response
 
 ## 0.9.0
 
