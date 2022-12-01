@@ -37,21 +37,6 @@ export default function ServicesElements({
     navigate(`/servicemarketplacedetail/${id}`)
   }
 
-  // if (services && services.length === 0) {
-  //   return (
-  //     <div className="marketplace-section">
-  //       <PageNotifications
-  //         description={t('content.serviceMarketplace.noDataMessage')}
-  //         onCloseNotification={function noRefCheck() {}}
-  //         open
-  //         severity="error"
-  //         showIcon
-  //         title="Error"
-  //       />
-  //     </div>
-  //   )
-  // }
-
   return (
     <div className="services-main">
       <div className="mainContainer">
@@ -68,7 +53,7 @@ export default function ServicesElements({
             </div>
             <div className="services-container">
               <Grid container spacing={2} className="services-section">
-                {services.map((service: any) => (
+                {services.map((service: ServiceRequest) => (
                   <Grid
                     item
                     xs={12}
@@ -80,7 +65,7 @@ export default function ServicesElements({
                     <CardHorizontal
                       borderRadius={6}
                       imageAlt="App Card"
-                      imagePath={service.leadPictureUri}
+                      imagePath={'ServiceMarketplace.png'}
                       label={service.provider}
                       buttonText="Details"
                       onBtnClick={() => handleClick(service.id)}

@@ -17,90 +17,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.services-row {
-  padding: 0 50px;
-}
-
-.banner-heading h4 {
-  width: 25%;
-  font-weight: bold;
-}
-
-.box-container {
-  position: absolute;
-  top: 200px;
-  right: 0px !important;
-  font-weight: bold;
-}
-
-.grid-heading {
-  padding: 0px 10px;
-  text-align: center;
-  border-right: 3px solid white;
-}
-
-.border-none {
-  border-right: none;
-}
-
-.recommended-progress {
-  text-align: center;
-}
-
-.service-progress {
-  text-align: center;
-}
-
-.recommended-section {
-  .recommended-card {
-    margin-bottom: 30px;
-  }
-}
-
-.services-section {
-  margin: 0 -15px !important;
-  width: calc(100% + 30px) !important;
-  .services-card {
-    padding: 0 15px;
-    margin-bottom: 30px;
-  }
-}
-
-.marketplace-section {
-  margin: 0 80px;
-
-  button {
-    //margin-left: -15px;
-  }
-}
-
-.services-main {
-  background-color: #f9f9f9;
-
-  .services-section-content {
-    padding: 50px 30px;
-
-    .section-title {
-      text-align: center;
-      padding-bottom: 20px;
-      position: relative;
-    }
-    .section-title::after {
-      content: '';
-      width: 70px;
-      border-bottom: 2px solid;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-}
 
 /********************************************************************************
  * Copyright (c) 2021,2022 BMW Group AG
@@ -122,38 +38,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.mainContainer {
-  width: 100%;
-  max-width: 1100px;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-
-  .mainRow {
-    display: inline-block;
-    width: 100%;
-  }
-}
-
 .serviceMarketplace {
   margin: 0;
   padding: 0;
 
-  .newServices {
+  .mainContainer {
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 15px 0 15px !important;
+    margin-right: auto;
+    margin-left: auto;
+
+    .mainRow {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  .newServicesTitle {
     font-size: 36px;
     margin-top: 67px;
     text-align: center;
   }
 
-  .recommendations {
+  .recommendationsTitle {
     text-align: center;
     font-size: 36px;
     position: relative;
     padding-bottom: 10px;
     margin-bottom: 25px;
   }
-  .recommendations::after {
+
+  .recommendationsTitle::after {
     content: '';
     width: 70px;
     border-bottom: 2px solid;
@@ -163,120 +79,46 @@
     transform: translateX(-50%);
   }
 
-  .divider {
-    display: block;
+  .loading-progress {
     text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: #aaa;
-    margin: 40px 120px 12px 120px;
   }
 
-  .item {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: baseline;
-    padding: 10px;
-  }
-
-  .created {
-    margin: 2px;
-    min-width: 60px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    font-weight: bold;
-    color: #aaa;
-  }
-
-  .title {
-    font-weight: bold;
-    font-size: 16px;
-    width: 100%;
-  }
-
-  .read {
-    color: #aaa;
-  }
-
-  .unread {
-    color: #444;
-  }
-
-  .due.okay {
-    color: green;
-  }
-
-  .due.soon {
-    color: orange;
-  }
-
-  .due.over {
-    color: red;
-  }
-
-  .content {
-    padding: 20px 12px 0px 10px;
-    font-size: 16px;
-    color: #444;
-
-    .NameLink {
-      cursor: pointer;
-      font-weight: bold;
-      color: #888888;
-
-      :hover {
-        color: black;
+  .recommended-main {
+    .recommended-section {
+      margin-bottom: 30px;
+      .recommended-card {
+        margin-bottom: 30px;
       }
     }
   }
 
-  .message {
-    margin-top: 6px;
-    font-style: italic;
-  }
-
-  .links {
-    margin-top: 6px;
-  }
-
-  .links > a {
-    margin-right: 20px;
-  }
-
-  .padding-r-5 {
-    padding-right: 5px;
-  }
-
-  .padding-l-5 {
-    padding-left: 5px;
-  }
-
-  .firstSection {
-    display: flex;
-    align-content: center;
-    justify-content: flex-start;
-    width: 15%;
-  }
-
-  .middleSection {
-    flex-direction: column;
-    width: 50%;
-  }
-
-  .lastSection {
-    width: 15%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-
-  .actionButton {
-    padding: 6px 12px 6px 6px;
-    text-align: center;
-    border-radius: 6px;
-    width: 20%;
+  .services-main {
+    background-color: #f9f9f9;
+    .services-section-content {
+      padding: 50px 30px;
+      .section-title {
+        text-align: center;
+        padding-bottom: 20px;
+        position: relative;
+      }
+      .section-title::after {
+        content: '';
+        width: 70px;
+        border-bottom: 2px solid;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .services-section {
+      margin: 0 -15px !important;
+      width: calc(100% + 30px) !important;
+      .services-card {
+        padding: 0 15px;
+        margin-bottom: 30px;
+      }
+    }
   }
 
   .searchContainer {
@@ -294,12 +136,6 @@
 
   .searchContainer .MuiBox-root {
     width: 50%;
-  }
-
-  .searchContainer .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-    //border-color: #fdb943 !important;
-    // border-width: 2px;
-    // border-radius: 16px;
   }
 
   .searchContainer .MuiOutlinedInput-input {
@@ -322,39 +158,20 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
   }
 
   .filterSection .chipContainer {
     padding-left: 20px;
   }
 
-  .sortSection ul {
-    list-style: none;
-  }
-
-  .deleteOverlay {
-    width: 30%;
+  .sortSection {
     position: absolute;
-    top: 100%;
-    left: 35%;
-    margin: auto;
+    left: 65%;
+    margin-top: 13%;
     background: #f9f9f9;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
     border-radius: 16px;
     z-index: 9;
-  }
-
-  .modalButton {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 10px;
-    padding-bottom: 24px;
-    padding-right: 32px;
-  }
-
-  .titleIcon {
-    padding-right: 8px;
-    padding-top: 4px;
   }
 }

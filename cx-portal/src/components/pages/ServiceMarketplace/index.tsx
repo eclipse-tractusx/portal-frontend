@@ -20,6 +20,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
 import ServicesElements from './ServicesElements'
 import RecommendedServices from './RecommendedServices'
@@ -32,11 +33,13 @@ import {
   SearchInput,
   Typography,
   ViewSelector,
+  SortOption,
 } from 'cx-portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
 import SortIcon from '@mui/icons-material/Sort'
-import { SortOption } from 'components/shared/basic/SortOption'
-import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
+import {
+  ServiceRequest,
+  useFetchServicesQuery,
+} from 'features/serviceMarketplace/serviceApiSlice'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -49,30 +52,35 @@ export default function ServiceMarketplace() {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('All Active Apps')
   const [sortOption, setSortOption] = useState<string>('new')
-  const [recommendedServices, setRecommendedServices] = useState<any>([])
-  const [allServices, setAllServices] = useState<any>([])
-  const [cardServices, setCardServices] = useState<any>([])
+  const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
+
+  let serviceTypeId = ''
+
+  if (selected === 'Dataspace Service') {
+    serviceTypeId = 'DATASPACE_SERVICE'
+  } else if (selected === 'Consultant Service') {
+    serviceTypeId = 'CONSULTANCE_SERVICE'
+  }
+
+  let sortingType = 'ReleaseDateDesc'
+
+  if (sortOption === 'provider') {
+    sortingType = 'ProviderDesc'
+  }
 
   const { data } = useFetchServicesQuery({
     page: 0,
-    serviceType: selected !== 'All Active Apps' ? selected : '',
+    serviceType: serviceTypeId,
+    sortingType: sortingType,
   })
   const services = data && data.content
 
-  useEffect(() => {
-    if (services && services.length > 0) {
-      console.log('services', services)
-      var indexToSplit = 2
-      setRecommendedServices(services.slice(0, indexToSplit))
-      setAllServices(services.slice(indexToSplit + 1))
-    }
-  }, [services])
+  console.log('services', services)
+  const indexToSplit = 2
 
   useEffect(() => {
-    if (cardServices && cardServices.length <= 0) {
-      setCardServices(allServices)
-    }
-  }, [cardServices, allServices])
+    services && setCardServices(services)
+  }, [services])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -80,64 +88,59 @@ export default function ServiceMarketplace() {
 
   const sortOptions = [
     {
-      label: t('notification.sortOptions.new'),
+      label: t('content.serviceMarketplace.sortOptions.new'),
       value: 'new',
     },
     {
-      label: t('notification.sortOptions.priority'),
-      value: 'priority',
-    },
-    {
-      label: t('notification.sortOptions.unread'),
-      value: 'unread',
+      label: t('content.serviceMarketplace.sortOptions.provider'),
+      value: 'provider',
     },
   ]
 
   const filterButtons = [
     {
-      buttonText: t('content.serviceMarketplace.sortOptions.all'),
-      buttonValue: t('content.serviceMarketplace.sortOptions.all'),
+      buttonText: t('content.serviceMarketplace.tabs.all'),
+      buttonValue: t('content.serviceMarketplace.tabs.all'),
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.serviceMarketplace.sortOptions.dataspaceService'),
-      buttonValue: t('content.serviceMarketplace.sortOptions.dataspaceService'),
+      buttonText: t('content.serviceMarketplace.tabs.dataspaceService'),
+      buttonValue: t('content.serviceMarketplace.tabs.dataspaceService'),
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.serviceMarketplace.sortOptions.consultantService'),
-      buttonValue: t(
-        'content.serviceMarketplace.sortOptions.consultantService'
-      ),
+      buttonText: t('content.serviceMarketplace.tabs.consultantService'),
+      buttonValue: t('content.serviceMarketplace.tabs.consultantService'),
       onButtonClick: setView,
     },
   ]
 
   const debouncedFilter = useMemo(
     () =>
-      debounce(
-        (expr: string) =>
+      debounce((expr: string) => {
+        services &&
           setCardServices(
             expr
-              ? cardServices.filter(
-                  (card: any) =>
-                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                    card.provider.toLowerCase().includes(expr.toLowerCase()) ||
-                    (card.description &&
-                      card.description
+              ? services &&
+                  services.filter(
+                    (card: ServiceRequest) =>
+                      card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                      card.provider
                         .toLowerCase()
-                        .includes(expr.toLowerCase()))
-                )
-              : cardServices
-          ),
-        300
-      ),
-    [cardServices]
+                        .includes(expr.toLowerCase()) ||
+                      (card.description &&
+                        card.description
+                          .toLowerCase()
+                          .includes(expr.toLowerCase()))
+                  )
+              : services
+          )
+      }, 300),
+    [services]
   )
 
   const doFilter = useCallback(
     (expr: string) => {
-      console.log('**')
       setSearchExpr(expr)
       debouncedFilter(expr)
     },
@@ -148,10 +151,10 @@ export default function ServiceMarketplace() {
     <main className="serviceMarketplace">
       <div className="mainContainer">
         <div className="mainRow">
-          <Typography className="newServices" variant="h5">
+          <Typography className="newServicesTitle" variant="h5">
             {t('content.serviceMarketplace.newServices')}
           </Typography>
-          <Typography className="recommendations" variant="body1">
+          <Typography className="recommendationsTitle" variant="body1">
             {t('content.serviceMarketplace.recommendations')}
           </Typography>
           <div>
@@ -160,7 +163,6 @@ export default function ServiceMarketplace() {
                 placeholder={t('notification.search')}
                 value={searchExpr}
                 autoFocus={false}
-                //onChange={(e) => setSearchExpr(e.target.value)}
                 onChange={(e) => doFilter(e.target.value)}
               />
             </div>
@@ -169,14 +171,19 @@ export default function ServiceMarketplace() {
 
               <div
                 className="iconSection"
-                onClick={() => {
-                  setShowModal(!showModal)
-                }}
+                onMouseEnter={() => setShowModal(true)}
               >
-                <SortIcon sx={{ fontSize: 20, color: '#939393' }} />
+                <SortIcon
+                  sx={{
+                    fontSize: 20,
+                    color: '#939393',
+                    ':hover': { color: '#0D55AF' },
+                  }}
+                />
               </div>
-              {showModal && (
+              <div className="sortSection">
                 <SortOption
+                  show={showModal}
                   selectedOption={sortOption}
                   setSortOption={(value: string) => {
                     setSortOption(value)
@@ -184,12 +191,10 @@ export default function ServiceMarketplace() {
                   }}
                   sortOptions={sortOptions}
                 />
-              )}
+              </div>
             </div>
-            {recommendedServices && recommendedServices.length ? (
-              <RecommendedServices services={recommendedServices} />
-            ) : (
-              <div className="recommended-progress">
+            {!services ? (
+              <div className="loading-progress">
                 <CircularProgress
                   size={50}
                   sx={{
@@ -197,21 +202,16 @@ export default function ServiceMarketplace() {
                   }}
                 />
               </div>
+            ) : (
+              <RecommendedServices
+                services={cardServices && cardServices.slice(0, indexToSplit)}
+              />
             )}
           </div>
         </div>
       </div>
-      {cardServices && cardServices.length ? (
-        <ServicesElements services={cardServices} />
-      ) : (
-        <div className="service-progress">
-          <CircularProgress
-            size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-          />
-        </div>
+      {cardServices && cardServices.length > 2 && (
+        <ServicesElements services={cardServices!.slice(indexToSplit)} />
       )}
     </main>
   )

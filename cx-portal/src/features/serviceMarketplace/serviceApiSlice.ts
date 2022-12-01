@@ -74,22 +74,24 @@ export type SubscriptionServiceRequest = {
   body: SubscriptionRequestBody[]
 }
 
-export type ServicesBody = {
+export type ServiceBody = {
   page: number
   serviceType: string
+  sortingType: string
 }
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchServices: builder.query<ServiceRequestAPIResponse, ServicesBody>({
+    fetchServices: builder.query<ServiceRequestAPIResponse, ServiceBody>({
       query: (body) => {
         const serviceType = `serviceTypeId=${body.serviceType}`
+        const sortingType = `sorting=${body.sortingType}`
         return {
           url: `/api/services/active?size${PAGE_SIZE}&page=${body.page}&${
             body.serviceType && serviceType
-          }`,
+          }&${body.sortingType && sortingType}`,
         }
       },
     }),

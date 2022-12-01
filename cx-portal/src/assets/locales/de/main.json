@@ -920,10 +920,18 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
-      "sortOptions": {
+      "tabs": {
         "all": "All Active Apps",
         "dataspaceService": "Dataspace Service",
         "consultantService": "Consultant Service"
+      },
+      "sortOptions": {
+        "new": "Newest First",
+        "provider": "Provider"
+      },
+      "document": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
       }
     },
     "appMarketplace": {

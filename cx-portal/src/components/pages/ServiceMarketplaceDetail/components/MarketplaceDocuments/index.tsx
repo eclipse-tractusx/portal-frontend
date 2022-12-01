@@ -18,34 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
-import MarketplaceHeader from './components/MarketplaceHeader'
-import MarketplaceProvider from './components/MarketplaceProvider'
-import MarketplaceSubscription from './components/MarketplaceSubscription'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './Marketplace.scss'
-import MarketplaceDocuments from './components/MarketplaceDocuments'
+import './MarketplaceDocuments.scss'
 
-export default function MarketplaceContentDetails({
-  item,
-  success,
-}: {
-  item: ServiceRequest
-  success: boolean
-}) {
+export default function MarketplaceDocuments() {
+  const { t } = useTranslation()
+
   return (
-    item.offerSubscriptionDetailData && (
-      <>
-        <MarketplaceHeader item={item} success={success} />
-        {item.offerSubscriptionDetailData.length > 0 && (
-          <MarketplaceSubscription item={item} />
-        )}
-        <div className="product-description">
-          <Typography variant="body2">{item.description}</Typography>
-        </div>
-        <MarketplaceDocuments />
-        <MarketplaceProvider item={item} />
-      </>
-    )
+    <div className="document-main">
+      <div className="document-content">
+        <Typography variant="h4">
+          {t('content.serviceMarketplace.document.heading')}
+        </Typography>
+        <Typography variant="body2">
+          {t('content.serviceMarketplace.document.message')}
+        </Typography>
+      </div>
+      <ul>
+        <li>
+          <button className="document-button-link">Document 1</button>
+        </li>
+        <li>
+          <button className="document-button-link">Document 2</button>
+        </li>
+        <li>
+          <button className="document-button-link">Document 3</button>
+        </li>
+        <li>
+          <button className="document-button-link">Document 4</button>
+        </li>
+      </ul>
+    </div>
   )
 }

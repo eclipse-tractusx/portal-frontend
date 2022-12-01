@@ -880,10 +880,18 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
-      "sortOptions": {
+      "tabs": {
         "all": "All Active Apps",
         "dataspaceService": "Dataspace Service",
         "consultantService": "Consultant Service"
+      },
+      "sortOptions": {
+        "new": "Newest First",
+        "provider": "Provider"
+      },
+      "document": {
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       }
     },
     "appMarketplace": {

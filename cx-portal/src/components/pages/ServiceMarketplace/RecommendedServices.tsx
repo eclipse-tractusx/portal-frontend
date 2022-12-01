@@ -18,34 +18,51 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal } from 'cx-portal-shared-components'
+import { CardHorizontal, PageNotifications } from 'cx-portal-shared-components'
 import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 
 export default function RecommendedServices({
   services,
 }: {
-  services: ServiceRequest[]
+  services?: ServiceRequest[]
 }) {
   const theme = useTheme()
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleClick = (id: string) => {
     navigate(`/servicemarketplacedetail/${id}`)
   }
 
+  if (services && services.length === 0) {
+    return (
+      <div className="recommended-section">
+        <PageNotifications
+          description={t('content.serviceMarketplace.noDataMessage')}
+          onCloseNotification={function noRefCheck() {}}
+          open
+          severity="error"
+          showIcon
+          title="Error"
+        />
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div className="recommended-main">
       {services && services.length ? (
         <Grid className="recommended-section">
-          {services.map((service: any) => (
-            <Grid className="recommended-card">
+          {services.map((service: ServiceRequest) => (
+            <Grid className="recommended-card" key={service.id}>
               <CardHorizontal
                 borderRadius={6}
                 imageAlt="App Card"
-                imagePath={service.leadPictureUri}
+                imagePath={'ServiceMarketplace.png'}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => handleClick(service.id)}
@@ -56,7 +73,7 @@ export default function RecommendedServices({
           ))}
         </Grid>
       ) : (
-        <div className="service-progress">
+        <div className="loading-progress">
           <CircularProgress
             size={50}
             sx={{
