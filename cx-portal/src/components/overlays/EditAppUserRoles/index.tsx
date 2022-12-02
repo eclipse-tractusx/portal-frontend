@@ -75,10 +75,8 @@ export default function EditAppUserRoles({ id }: { id: string }) {
     if (!appId) return
     const data: UserRoleRequest = {
       appId: appId,
-      body: {
-        companyUserId: id,
-        roles,
-      },
+      companyUserId: id,
+      body: roles,
     }
     try {
       await updateUserRoles(data).unwrap()

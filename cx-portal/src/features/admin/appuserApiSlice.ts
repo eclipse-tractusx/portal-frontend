@@ -26,15 +26,10 @@ import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { TenantUser } from './userApiSlice'
-
-export interface UserRoleRequestBody {
-  companyUserId: string
-  roles: string[]
-}
-
 export interface UserRoleRequest {
   appId: string
-  body: UserRoleRequestBody
+  companyUserId: string
+  body: string[]
 }
 
 export interface ResponseInfo {
@@ -99,7 +94,7 @@ export const apiSlice = createApi({
     }),
     updateUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
       query: (data: UserRoleRequest) => ({
-        url: `/api/administration/user/app/${data.appId}/roles`,
+        url: `/api/administration/user/owncompany/users/${data.companyUserId}/apps/${data.appId}/roles`,
         method: 'PUT',
         body: data.body,
       }),

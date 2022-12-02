@@ -56,10 +56,8 @@ export default function AddAppUserRoles() {
     if (!appId || !user || roles.length <= 0) return
     const data: UserRoleRequest = {
       appId: appId,
-      body: {
-        companyUserId: user, // under refactoring
-        roles,
-      },
+      companyUserId: user,
+      body: roles,
     }
     try {
       await updateUserRoles(data).unwrap()
