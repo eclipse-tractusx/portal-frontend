@@ -8,6 +8,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Removed multi overlay layering
    * Update the style of the response
 
+* BugFix - Add user role for app not working fix
+
 ## 0.9.0
 
 ### Change
