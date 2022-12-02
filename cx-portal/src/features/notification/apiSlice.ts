@@ -21,6 +21,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { CXNotification, CXNotificationMeta } from './types'
+interface FetchArgs {
+  page: number
+  size: number
+  args?: any
+}
+export interface NotificationArgsProps {
+  sorting: string
+  notificationTopic: string
+}
 
 export const apiSlice = createApi({
   reducerPath: 'info/notifications',
@@ -32,8 +41,26 @@ export const apiSlice = createApi({
     getNotificationMeta: builder.query<CXNotificationMeta, null>({
       query: () => `/api/notification/count-details`,
     }),
-    getNotifications: builder.query<CXNotification, null>({
-      query: () => '/api/notification',
+    getNotifications: builder.query<CXNotification, FetchArgs>({
+      query: (fetchArgs) => {
+        let base = `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}`
+        if (fetchArgs.args.sorting) {
+          base += `&sorting=${fetchArgs.args.sorting}`
+        }
+        if (
+          fetchArgs.args.notificationTopic &&
+          fetchArgs.args.notificationTopic !== 'ALL'
+        ) {
+          base += `&notificationTopic=${fetchArgs.args.notificationTopic}`
+        }
+        if (
+          fetchArgs.args.notificationTopic &&
+          fetchArgs.args.notificationTopic === 'ACTION'
+        ) {
+          base += `&onlyDueDate=true`
+        }
+        return base
+      },
     }),
     setNotificationRead: builder.mutation<void, string>({
       query: (id) => ({

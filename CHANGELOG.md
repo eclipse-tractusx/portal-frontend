@@ -7,6 +7,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Technical User
    * Removed multi overlay layering
    * Update the style of the response
+* Notification
+   * Sorting apis added
+   * Filter apis added
+   * Load More button to handle pagination
+   * Delete Modal positioning issue fix
+   * Sort Icon click/Mouse event issue fix 
 
 ## 0.9.0
 

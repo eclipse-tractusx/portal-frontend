@@ -957,7 +957,7 @@
     },
     "sortOptions": {
       "new": "Newest First",
-      "priority": "Priority First",
+      "oldest": "Oldest First",
       "unread": "Unread First",
       "all": "all",
       "app": "app only",

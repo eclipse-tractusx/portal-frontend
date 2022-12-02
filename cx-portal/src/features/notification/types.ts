@@ -87,6 +87,14 @@ export type CXNotificationMeta = {
   actionRequired: number
 }
 
+export type CXNotificationPagination = {
+  contentSize: number
+  page: number
+  totalElements: number
+  totalPages: number
+}
+
 export type CXNotification = {
   content: CXNotificationContent[]
+  meta: CXNotificationPagination
 }

@@ -18,13 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
 import {
   useGetNotificationsQuery,
   useGetNotificationMetaQuery,
 } from 'features/notification/apiSlice'
-import { CXNotificationContent } from 'features/notification/types'
+import {
+  CXNotificationContent,
+  CXNotificationPagination,
+} from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import NotificationItem from './NotificationItem'
 import { groupBy } from 'lodash'
@@ -37,8 +40,11 @@ import {
   SearchInput,
   ViewSelector,
   SortOption,
+  Button,
+  CircleProgress,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
+import { Box } from '@mui/material'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -64,70 +70,121 @@ const NotificationGroup = ({
 
 export default function NotificationCenter() {
   const { t } = useTranslation()
-  const { data } = useGetNotificationsQuery(null)
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>(
-    t('notification.sortOptions.all')
-  )
-  const [sortOption, setSortOption] = useState<string>('new')
+  const [filterOption, setFilterOption] = useState<string>(t('ALL'))
+  const [loaded, setLoaded] = useState<boolean>(false)
+  const [sortOption, setSortOption] = useState<string>('DateDesc')
+  const [page, setPage] = useState<number>(0)
+  const PAGE_SIZE = 5
+  const [notificationState, setNotificationState] = useState({
+    page: page,
+    size: PAGE_SIZE,
+    args: {
+      notificationTopic: filterOption,
+      sorting: sortOption,
+    },
+  })
+  const { data, isFetching } = useGetNotificationsQuery(notificationState)
+
+  const [notificationItems, setNotificationItems] = useState<
+    CXNotificationContent[]
+  >([])
+  const [paginationData, setPaginationData] =
+    useState<CXNotificationPagination>()
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setSelected(e.currentTarget.value)
+    setLoaded(true)
+    setPage(0)
+    setFilterOption(e.currentTarget.value)
   }
+
+  useEffect(() => {
+    if (data) {
+      setPaginationData(data?.meta)
+      setNotificationItems((i) => i.concat(data?.content))
+    }
+  }, [data])
+
+  const nextPage = () => setPage(page + 1)
 
   const sortOptions = [
     {
       label: t('notification.sortOptions.new'),
-      value: 'new',
+      value: 'DateDesc',
     },
     {
-      label: t('notification.sortOptions.priority'),
-      value: 'priority',
+      label: t('notification.sortOptions.oldest'),
+      value: 'DateAsc',
     },
     {
       label: t('notification.sortOptions.unread'),
-      value: 'unread',
+      value: 'ReadStatusAsc',
     },
   ]
 
+  useEffect(() => {
+    if (loaded) {
+      setNotificationItems([])
+      setLoaded(false)
+    }
+    setNotificationState({
+      page: page,
+      size: PAGE_SIZE,
+      args: {
+        notificationTopic: filterOption,
+        sorting: sortOption,
+      },
+    })
+  }, [filterOption, sortOption, page, loaded])
+
   const getTotalCount = (
-    read: number | undefined,
-    unread: number | undefined
+    infoUnread = 0,
+    unread = 0,
+    offerUnread = 0,
+    actionRequired = 0
   ) => {
-    return read && unread ? read + unread : 0
+    return infoUnread && unread && offerUnread && actionRequired
+      ? infoUnread + unread + offerUnread + actionRequired
+      : 0
   }
 
   const filterButtons = [
     {
-      buttonText: `${t('notification.sortOptions.all')} ${getTotalCount(
-        pages?.read,
-        pages?.unread
-      )}`,
-      buttonValue: t('notification.sortOptions.all'),
-      onButtonClick: setView,
-    },
-    {
-      buttonText: `${t('notification.sortOptions.app')} ${pages?.offerUnread}`,
-      buttonValue: t('notification.sortOptions.app'),
-      onButtonClick: setView,
-    },
-    {
-      buttonText: `${t('notification.sortOptions.info')} ${pages?.infoUnread}`,
-      buttonValue: t('notification.sortOptions.info'),
-      onButtonClick: setView,
-    },
-    {
-      buttonText: `${t('notification.sortOptions.withaction')} ${
+      buttonText: `${t('notification.sortOptions.all')} (${getTotalCount(
+        pages?.infoUnread,
+        pages?.unread,
+        pages?.offerUnread,
         pages?.actionRequired
-      }`,
-      buttonValue: t('notification.sortOptions.withaction'),
+      )})`,
+      buttonValue: 'ALL',
+      onButtonClick: setView,
+    },
+    {
+      buttonText: `${t('notification.sortOptions.app')} (${
+        pages?.offerUnread || 0
+      })`,
+      buttonValue: 'OFFER',
+      onButtonClick: setView,
+    },
+    {
+      buttonText: `${t('notification.sortOptions.info')} (${
+        pages?.infoUnread || 0
+      })`,
+      buttonValue: 'INFO',
+      onButtonClick: setView,
+    },
+    {
+      buttonText: `${t('notification.sortOptions.withaction')} (${
+        pages?.actionRequired || 0
+      })`,
+      buttonValue: 'ACTION',
       onButtonClick: setView,
     },
   ]
 
   const groups = groupBy(
-    data?.content?.map((item) => ({
+    notificationItems.map((item) => ({
       ...item,
       contentParsed: item.content && JSON.parse(item.content),
     })),
@@ -140,7 +197,7 @@ export default function NotificationCenter() {
       <section>
         <div
           className="searchContainer"
-          onMouseLeave={() => setShowModal(!showModal)}
+          onMouseLeave={() => setShowModal(false)}
         >
           <SearchInput
             placeholder={t('notification.search')}
@@ -165,7 +222,9 @@ export default function NotificationCenter() {
                 selectedOption={sortOption}
                 setSortOption={(value: string) => {
                   setSortOption(value)
-                  setShowModal(!showModal)
+                  setShowModal(false)
+                  setLoaded(true)
+                  setPage(0)
                 }}
                 sortOptions={sortOptions}
               />
@@ -173,16 +232,53 @@ export default function NotificationCenter() {
           </div>
         </div>
         <div className="filterSection">
-          <ViewSelector activeView={selected} views={filterButtons} />
+          <ViewSelector activeView={filterOption} views={filterButtons} />
         </div>
-        <ul>
-          {groups &&
-            Object.entries(groups).map((entry: any) => (
-              <li key={entry[0]}>
-                <NotificationGroup label={entry[0]} items={entry[1]} />
-              </li>
-            ))}
-        </ul>
+        {isFetching && (
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
+            }}
+          >
+            <CircleProgress
+              size={40}
+              step={1}
+              interval={0.1}
+              colorVariant={'primary'}
+              variant={'indeterminate'}
+              thickness={8}
+            />
+          </Box>
+        )}
+        {!isFetching && (
+          <ul>
+            {groups &&
+              Object.entries(groups).map((entry: any) => (
+                <li key={entry[0]}>
+                  <NotificationGroup label={entry[0]} items={entry[1]} />
+                </li>
+              ))}
+          </ul>
+        )}
+        {!isFetching &&
+          paginationData &&
+          paginationData.contentSize >= PAGE_SIZE && (
+            <Box
+              sx={{
+                width: '100%',
+                height: '100px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Button onClick={nextPage}>{'Load More'}</Button>
+            </Box>
+          )}
       </section>
     </main>
   )
