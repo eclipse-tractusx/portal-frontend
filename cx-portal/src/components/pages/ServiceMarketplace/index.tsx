@@ -50,15 +50,15 @@ export default function ServiceMarketplace() {
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('All Active Apps')
+  const [selected, setSelected] = useState<string>('All Services')
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
 
   let serviceTypeId = ''
 
-  if (selected === 'Dataspace Service') {
+  if (selected === 'Dataspace Services') {
     serviceTypeId = 'DATASPACE_SERVICE'
-  } else if (selected === 'Consultant Service') {
+  } else if (selected === 'Consultant Services') {
     serviceTypeId = 'CONSULTANCE_SERVICE'
   }
 
@@ -149,7 +149,7 @@ export default function ServiceMarketplace() {
     <main className="serviceMarketplace">
       <div className="mainContainer">
         <div className="mainRow">
-          <Typography className="newServicesTitle" variant="h5">
+          <Typography className="newServicesTitle" variant="h2">
             {t('content.serviceMarketplace.newServices')}
           </Typography>
           <Typography className="recommendationsTitle" variant="body1">

@@ -28,7 +28,7 @@ export default function MarketplaceDocuments() {
   return (
     <div className="document-main">
       <div className="document-content">
-        <Typography variant="h4">
+        <Typography variant="h3">
           {t('content.serviceMarketplace.document.heading')}
         </Typography>
         <Typography variant="body2">

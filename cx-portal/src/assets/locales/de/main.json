@@ -921,9 +921,9 @@
       "recommendations": "Recommendations",
       "allServices": "All Services",
       "tabs": {
-        "all": "All Active Apps",
-        "dataspaceService": "Dataspace Service",
-        "consultantService": "Consultant Service"
+        "all": "All Services",
+        "dataspaceService": "Dataspace Services",
+        "consultantService": "Consultant Services"
       },
       "sortOptions": {
         "new": "Newest First",

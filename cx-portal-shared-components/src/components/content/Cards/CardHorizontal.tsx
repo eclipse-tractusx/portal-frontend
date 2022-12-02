@@ -110,11 +110,10 @@ export const CardHorizontal = ({
         </Typography>
 
         <Typography
-          variant="h6"
+          variant="h4"
           sx={{
             margin: 0,
             fontWeight: 600,
-            fontSize: '18px',
             lineHeight: '28px',
             color: '#111111',
           }}
