@@ -51,7 +51,7 @@ export const apiSlice = createApi({
           fetchArgs.args.notificationTopic &&
           fetchArgs.args.notificationTopic !== 'ALL'
         ) {
-          base += `&notificationTopic=${fetchArgs.args.notificationTopic}`
+          base += `&notificationTopicId=${fetchArgs.args.notificationTopic}`
         }
         if (
           fetchArgs.args.notificationTopic &&
@@ -61,6 +61,7 @@ export const apiSlice = createApi({
         }
         return base
       },
+      keepUnusedDataFor: 5,
     }),
     setNotificationRead: builder.mutation<void, string>({
       query: (id) => ({
