@@ -18,21 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Checkbox } from 'cx-portal-shared-components'
+import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { AppRole, useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
+import {
+  AppRole,
+  useFetchCoreoffersRolesQuery,
+} from 'features/admin/appuserApiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import { useEffect, useState } from 'react'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
-  // workaround approlefetch - getting replaced toll release
-  const { data } = useFetchAppRolesQuery('9b957704-3505-4445-822c-d7ef80f27fcd')
+  const { data } = useFetchCoreoffersRolesQuery()
+
+  const [allRoles, setAllRoles] = useState<any>([])
+
+  useEffect(() => {
+    const rolesArr: AppRole[] = []
+    data && data.map((a) => rolesArr.push(...a.roles))
+    setAllRoles(rolesArr)
+  }, [data])
 
   const selectRole = (role: string, select: boolean) => {
     const isSelected = roles.includes(role)
@@ -64,9 +75,9 @@ export const UserRoles = () => {
         />
       </div>
 
-      <div className="checkbox-section">
-        {data &&
-          data.map((role: AppRole) => (
+      {allRoles.length > 0 ? (
+        <div className="checkbox-section">
+          {allRoles.map((role: AppRole) => (
             <Checkbox
               checked={Array.isArray(roles) && roles.includes(role.role)}
               label={role.role}
@@ -74,7 +85,12 @@ export const UserRoles = () => {
               onChange={(e) => selectRole(role.role, e.target.checked)}
             />
           ))}
-      </div>
+        </div>
+      ) : (
+        <Alert severity="info">
+          <span>{t('content.addUserRight.noRolesFound')}</span>
+        </Alert>
+      )}
     </Box>
   )
 }

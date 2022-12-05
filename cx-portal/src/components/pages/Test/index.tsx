@@ -18,17 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useApiGet } from 'utils/useApiGet'
+import { Button } from 'cx-portal-shared-components'
+import { show } from 'features/control/overlay/actions'
+import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
 
 export default function Test() {
-  const data = useApiGet(
-    'https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/.well-known/openid-configuration'
-  )
+  const dispatch = useDispatch()
 
   return (
     <main>
       <section>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
+          {'Sample Form'}
+        </Button>
       </section>
     </main>
   )

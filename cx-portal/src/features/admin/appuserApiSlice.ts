@@ -47,6 +47,11 @@ export interface UserRoleResponse {
   warning: Array<ResponseInfo>
 }
 
+export type CoreoffersRoles = {
+  offerId: string
+  roles: AppRole[]
+}
+
 export type AppRole = {
   roleId: string
   role: string
@@ -57,6 +62,10 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/apps/roles',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
+    fetchCoreoffersRoles: builder.query<CoreoffersRoles[], void>({
+      query: () =>
+        `/api/administration/user/owncompany/roles/coreoffers?lang=${i18next.language}`,
+    }),
     fetchAppRoles: builder.query<AppRole[], string>({
       query: (appId: string) =>
         `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
@@ -69,12 +78,16 @@ export const apiSlice = createApi({
     }),
     fetchAppUsersSearch: builder.query<PaginResult<TenantUser>, PaginFetchArgs>(
       {
-        query: (fetchArgs) =>
-          `/api/administration/user/owncompany/apps/${
-            fetchArgs.args!.appId
-          }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}${
-            fetchArgs.args!.expr && `&email=${fetchArgs.args!.expr}`
-          }`,
+        query: (fetchArgs) => {
+          const emailExpr = `email=${fetchArgs.args!.expr}`
+          return {
+            url: `/api/administration/user/owncompany/apps/${
+              fetchArgs.args!.appId
+            }/users?size=${PAGE_SIZE}&page=${fetchArgs.page}&hasRole=${
+              fetchArgs.args!.role
+            }${fetchArgs.args!.expr && emailExpr}`,
+          }
+        },
       }
     ),
     addUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
@@ -95,6 +108,7 @@ export const apiSlice = createApi({
 })
 
 export const {
+  useFetchCoreoffersRolesQuery,
   useFetchAppRolesQuery,
   useFetchAppUsersQuery,
   useFetchAppUsersSearchQuery,

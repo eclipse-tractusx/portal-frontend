@@ -39,8 +39,8 @@ export type CreateAppStep1Item = {
   title: string
   provider: string
   leadPictureUri: string
-  providerCompanyId: string
-  useCaseIds: string[]
+  salesManagerId: string | null
+  useCaseIds: string[] | useCasesItem[]
   descriptions: {
     languageCode: string
     longDescription: string
@@ -80,6 +80,36 @@ export type NewAppDetails = {
   title: string
   useCase: string[]
 }
+export type AgreementType = {
+  agreementId: string
+  name: string
+}
+
+export type AgreementStatusType = {
+  agreementId: string
+  consentStatus: string | boolean
+}
+
+export type ConsentType = {
+  agreements: AgreementStatusType[]
+}
+
+export type UpdateAgreementConsentType = {
+  appId: string
+  body: ConsentType
+}
+
+export type saveAppType = {
+  appId: string
+  body: CreateAppStep1Item
+}
+
+export type salesManagerType = {
+  userId: string | null
+  firstName: string
+  lastName: string
+  fullName?: string
+}
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
@@ -93,20 +123,7 @@ export const apiSlice = createApi({
     }),
     addCreateApp: builder.mutation<void, CreateAppStep1Item>({
       query: (body: CreateAppStep1Item) => ({
-        url: `/api/Apps/createapp`,
-        method: 'POST',
-        body,
-      }),
-    }),
-    fetchConsentData: builder.query<any[], void>({
-      query: () => `/api/apps/consentData`,
-    }),
-    fetchConsent: builder.query<any[], void>({
-      query: () => `/api/apps/consent`,
-    }),
-    addContractConsent: builder.mutation<void, any>({
-      query: (body: any) => ({
-        url: `/api/Apps/createapp`,
+        url: `/api/apps/appreleaseprocess/createapp`,
         method: 'POST',
         body,
       }),
@@ -123,7 +140,7 @@ export const apiSlice = createApi({
     }),
     submitapp: builder.mutation<any, string>({
       query: (appId) => ({
-        url: `/api/Apps/${appId}/submit`,
+        url: `/api/apps/appreleaseprocess/${appId}/submit`,
         method: 'PUT',
       }),
     }),
@@ -150,6 +167,31 @@ export const apiSlice = createApi({
     fetchAppStatus: builder.query<any, string>({
       query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
     }),
+    fetchAgreementData: builder.query<AgreementType[], void>({
+      query: () => `api/apps/AppReleaseProcess/agreementData`,
+    }),
+    fetchConsentData: builder.query<ConsentType, string>({
+      query: (appId: string) => `/api/apps/AppReleaseProcess/consent/${appId}`,
+    }),
+    updateAgreementConsents: builder.mutation<void, UpdateAgreementConsentType>(
+      {
+        query: (data: UpdateAgreementConsentType) => ({
+          url: `/api/apps/AppReleaseProcess/consent/${data.appId}/agreementConsents`,
+          method: 'POST',
+          body: data.body,
+        }),
+      }
+    ),
+    fetchSalesManagerData: builder.query<salesManagerType[], void>({
+      query: () => `/api/apps/AppReleaseProcess/ownCompany/salesManager`,
+    }),
+    saveApp: builder.mutation<void, saveAppType>({
+      query: (data) => ({
+        url: `/api/apps/AppReleaseProcess/${data.appId}`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -157,11 +199,13 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
-  useFetchConsentDataQuery,
-  useFetchConsentQuery,
-  useAddContractConsentMutation,
   useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
   useFetchAppStatusQuery,
+  useFetchAgreementDataQuery,
+  useFetchConsentDataQuery,
+  useUpdateAgreementConsentsMutation,
+  useFetchSalesManagerDataQuery,
+  useSaveAppMutation,
 } = apiSlice

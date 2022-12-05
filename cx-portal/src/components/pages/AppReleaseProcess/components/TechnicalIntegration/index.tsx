@@ -114,9 +114,13 @@ export default function TechnicalIntegration() {
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.technicalIntegration.headerDescription')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.technicalIntegration.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
 
       <form className="header-description">
         <Typography variant="h5" mb={4}>
@@ -224,9 +228,9 @@ export default function TechnicalIntegration() {
               )}
             />
             {errors?.uploadAppRoles?.type === 'required' && (
-              <p className="file-error-msg">
+              <Typography variant="body2" className="file-error-msg">
                 {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </p>
+              </Typography>
             )}
             {rolesPreviews?.length > 0 && (
               <>
@@ -235,7 +239,7 @@ export default function TechnicalIntegration() {
                 </Typography>
                 <Grid container xs={12}>
                   {rolesPreviews?.map((role: string, index: number) => (
-                    <Grid xs={6}>
+                    <Grid xs={6} key={index}>
                       <Chip
                         key={index}
                         label={role}

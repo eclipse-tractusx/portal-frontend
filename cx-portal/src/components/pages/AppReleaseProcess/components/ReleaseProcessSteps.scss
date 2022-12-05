@@ -17,36 +17,54 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+.app-release-process-form {
+  .form-field {
+    margin-bottom: 29px !important;
+  }
 
-.form-field {
-  margin-bottom: 29px !important;
-}
+  .file-error-msg {
+    color: #d32f2f !important;
+    margin-top: 3px !important;
+    font-size: 0.75rem !important;
+  }
 
-.file-error-msg {
-  color: #d32f2f;
-  margin-top: 3px;
-  font-size: 0.75rem;
-}
+  .header-description {
+    max-width: 733px;
+    margin: 0 auto 70px !important;
+  }
 
-.header-description {
-  max-width: 733px;
-  margin: 0 auto 68px !important;
-}
+  .app-release-card {
+    max-width: 250px !important;
+    margin: 0 30px 60px auto !important;
+    padding-left: 0px !important;
+  }
 
-.app-release-card {
-  max-width: 213px !important;
-  margin: 0 auto !important;
-}
+  .form-divider {
+    margin: 64px -16px 16px -16px !important;
+  }
 
-.form-divider {
-  margin: 64px -16px 16px -16px !important;
-}
+  .create-app-section {
+    margin-top: 112px;
+  }
 
-.create-app-section {
-  margin-top: 112px;
-}
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
 
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
+  .verify-app-release-card {
+    width: 250px !important;
+    padding-left: 0px !important;
+  }
+
+  .verify-validate-images {
+    width: 164px;
+    height: 164px;
+    border-radius: 16px;
+    background: #f3f3f3;
+  }
+
+  .verify-validate-form-divider {
+    margin: 42px -16px 50px -16px !important;
+  }
 }

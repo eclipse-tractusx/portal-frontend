@@ -18,11 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
-import { Input } from 'cx-portal-shared-components'
+import { Input, Tooltips } from 'cx-portal-shared-components'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import Patterns from 'types/Patterns'
+import { ConnectType } from 'features/connector/connectorApiSlice'
 
 const ConnectorFormInput = ({
   control,
@@ -33,26 +35,54 @@ const ConnectorFormInput = ({
   placeholder,
   name,
   rules,
+  tooltipMsg,
 }: any) => {
   return (
-    <Controller
-      render={({ field: { onChange, value } }) => (
-        <Input
-          error={!!errors[name]}
-          helperText={helperText}
-          label={label}
-          placeholder={placeholder}
-          onChange={(event) => {
-            trigger(name)
-            onChange(event)
+    <>
+      <div
+        style={{
+          marginLeft: '50px',
+          position: 'relative',
+          top: '25px',
+          zIndex: '9',
+        }}
+      >
+        <Tooltips
+          additionalStyles={{
+            cursor: 'pointer',
+            marginTop: '30px !important',
           }}
-          value={value}
+          tooltipPlacement="top-start"
+          tooltipText={tooltipMsg}
+          children={
+            <span>
+              <HelpOutlineIcon fontSize={'small'} />
+            </span>
+          }
         />
-      )}
-      name={name}
-      control={control}
-      rules={rules}
-    />
+      </div>
+      <Controller
+        render={({ field: { onChange, value } }) => (
+          <Input
+            sx={{
+              paddingTop: '10px',
+            }}
+            error={!!errors[name]}
+            helperText={helperText}
+            label={label}
+            placeholder={placeholder}
+            onChange={(event) => {
+              trigger(name)
+              onChange(event)
+            }}
+            value={value}
+          />
+        )}
+        name={name}
+        control={control}
+        rules={rules}
+      />
+    </>
   )
 }
 
@@ -63,6 +93,7 @@ const ConnectorInsertForm = ({
   errors,
   control,
   trigger,
+  selectedService,
 }: any) => {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -79,7 +110,12 @@ const ConnectorInsertForm = ({
           }}
         >
           <form onSubmit={handleSubmit} className="form">
-            <div className="form-input">
+            <div
+              className="form-input"
+              style={{
+                paddingTop: '40px',
+              }}
+            >
               <ConnectorFormInput
                 {...{
                   control,
@@ -88,6 +124,7 @@ const ConnectorInsertForm = ({
                   name: 'ConnectorName',
                   rules: {
                     required: true,
+                    pattern: Patterns.connectors.NAME,
                   },
                   helperText: t(
                     'content.edcconnector.modal.insertform.name.error'
@@ -95,6 +132,9 @@ const ConnectorInsertForm = ({
                   label: t('content.edcconnector.modal.insertform.name.label'),
                   placeholder: t(
                     'content.edcconnector.modal.insertform.name.placeholder'
+                  ),
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.name.tooltipMsg'
                   ),
                 }}
               />
@@ -108,8 +148,7 @@ const ConnectorInsertForm = ({
                   name: 'ConnectorURL',
                   rules: {
                     required: true,
-                    pattern:
-                      /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/gm,
+                    pattern: Patterns.URL,
                   },
                   helperText: t(
                     'content.edcconnector.modal.insertform.url.error'
@@ -118,9 +157,67 @@ const ConnectorInsertForm = ({
                   placeholder: t(
                     'content.edcconnector.modal.insertform.url.placeholder'
                   ),
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.url.tooltipMsg'
+                  ),
                 }}
               />
             </div>
+            <div className="form-input">
+              <ConnectorFormInput
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'ConnectorLocation',
+                  rules: {
+                    required: true,
+                    pattern: Patterns.connectors.COUNTRY,
+                  },
+                  helperText: t(
+                    'content.edcconnector.modal.insertform.country.error'
+                  ),
+                  label: t(
+                    'content.edcconnector.modal.insertform.country.label'
+                  ),
+                  placeholder: t(
+                    'content.edcconnector.modal.insertform.country.placeholder'
+                  ),
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.country.tooltipMsg'
+                  ),
+                }}
+              />
+            </div>
+            {selectedService &&
+              selectedService.type === ConnectType.MANAGED_CONNECTOR && (
+                <div className="form-input">
+                  <ConnectorFormInput
+                    {...{
+                      control,
+                      trigger,
+                      errors,
+                      name: 'ConnectorBPN',
+                      rules: {
+                        required: true,
+                        pattern: Patterns.BPN,
+                      },
+                      helperText: t(
+                        'content.edcconnector.modal.insertform.bpn.error'
+                      ),
+                      label: t(
+                        'content.edcconnector.modal.insertform.bpn.label'
+                      ),
+                      placeholder: t(
+                        'content.edcconnector.modal.insertform.bpn.placeholder'
+                      ),
+                      tooltipMsg: t(
+                        'content.edcconnector.modal.insertform.bpn.tooltipMsg'
+                      ),
+                    }}
+                  />
+                </div>
+              )}
           </form>
         </Grid>
       </Grid>

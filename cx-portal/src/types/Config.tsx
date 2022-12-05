@@ -63,6 +63,7 @@ import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
+import CompanyRoles from 'components/pages/CompanyRoles'
 
 /**
  * ALL_PAGES
@@ -209,6 +210,7 @@ export const ALL_PAGES: IPage[] = [
     isRoute: true,
     element: (
       <Route
+        key={`${PAGES.APPRELEASEPROCESS}/form`}
         path={`${PAGES.APPRELEASEPROCESS}/form`}
         element={<AppReleaseProcessForm />}
       />
@@ -316,6 +318,11 @@ export const ALL_PAGES: IPage[] = [
     element: <EdcConnector />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
+  { name: PAGES.COMPANY_ROLES, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_APP_PROVIDER, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_CONFIRMITY_BODY, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_PARTICIPANT, element: <CompanyRoles /> },
+  { name: PAGES.COMPANY_ROLES_SERVICE_PROVIDER, element: <CompanyRoles /> },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -362,7 +369,11 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.APPSTORE_VIEW_SERVICES,
   },
   {
-    name: OVERLAYS.IDP,
+    name: OVERLAYS.APPMARKETPLACE_REQUEST,
+    role: ROLES.APPSTORE_VIEW,
+  },
+  {
+    name: OVERLAYS.IDP_DETAILS,
     role: ROLES.IDP_VIEW,
   },
   {
@@ -378,6 +389,30 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_DISABLE,
   },
   {
+    name: OVERLAYS.ADD_IDP,
+    role: ROLES.IDP_ADD,
+  },
+  {
+    name: OVERLAYS.UPDATE_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.ENABLE_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.DISABLE_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.ENABLE_IDP_SUCCESS,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.DELETE_IDP,
+    role: ROLES.IDP_DELETE,
+  },
+  {
     name: OVERLAYS.IDP_TEST_RUN,
     role: ROLES.IDP_ADD,
   },
@@ -387,6 +422,12 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.APP_DETAILS_OVERLAY,
+  },
+  {
+    name: OVERLAYS.CONFIRM_USER_ACTION,
+  },
+  {
+    name: OVERLAYS.SAMPLE_FORM,
   },
 ]
 
@@ -430,6 +471,15 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
+    ],
+  },
+  {
+    name: PAGES.COMPANY_ROLES,
+    children: [
+      { name: PAGES.COMPANY_ROLES_PARTICIPANT, hint: HINTS.NEW },
+      { name: PAGES.COMPANY_ROLES_APP_PROVIDER, hint: HINTS.NEW },
+      { name: PAGES.COMPANY_ROLES_SERVICE_PROVIDER, hint: HINTS.NEW },
+      { name: PAGES.COMPANY_ROLES_CONFIRMITY_BODY, hint: HINTS.NEW },
     ],
   },
 ]

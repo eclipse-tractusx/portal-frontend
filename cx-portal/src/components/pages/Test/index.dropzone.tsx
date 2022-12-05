@@ -20,15 +20,12 @@
 
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { Cards } from 'cx-portal-shared-components'
-import { useAddServiceAccountMutation } from 'features/admin/serviceApiSlice'
 import { appToCard } from 'features/apps/mapper'
 import { isString } from 'lodash'
 import { useState } from 'react'
 import ItemProcessor from './ItemProcessor'
 
 export default function Test() {
-  const [addServiceAccount] = useAddServiceAccountMutation()
-
   const [items, setItems] = useState<any[]>([])
 
   const techUserRowToJson = (row: string) =>
@@ -40,8 +37,8 @@ export default function Test() {
         roleIds: [cols[0]],
       })(row.split(','))
 
-  const csvPreview = (files: File[]) =>
-    files
+  const csvPreview = (files: File[]) => {
+    return files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
         const reader = new FileReader()
@@ -55,6 +52,7 @@ export default function Test() {
         }
         reader.readAsText(file)
       })
+  }
 
   const appPreview = (files: File[]) =>
     files
@@ -75,12 +73,12 @@ export default function Test() {
   return (
     <main>
       <section>
-        <Dropzone onFileDrop={csvPreview} />
-        <ItemProcessor
-          items={items}
-          process={addServiceAccount}
-          autostart={true}
+        <Dropzone
+          onFileDrop={csvPreview}
+          acceptFormat={{ 'application/json': [] }}
+          maxFilesToUpload={20}
         />
+        <ItemProcessor items={items} process={console.log} autostart={true} />
       </section>
       <section>
         <Dropzone onFileDrop={appPreview} />

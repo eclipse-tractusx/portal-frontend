@@ -68,8 +68,10 @@ export const Input = ({
           }
           {...props}
         />
-        {error && (
-          <FormHelperText sx={{ marginLeft: 0 }}>{helperText}</FormHelperText>
+        {error && helperText && (
+          <FormHelperText sx={{ marginLeft: 0, marginBottom: '-23px' }}>
+            {helperText}
+          </FormHelperText>
         )}
       </FormControl>
     </Box>

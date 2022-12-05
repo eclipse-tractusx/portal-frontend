@@ -42,7 +42,6 @@ export enum IDPSyncModeType {
 
 export enum OIDCAuthMethod {
   SECRET_BASIC = 'SECRET_BASIC',
-  JWT = 'JWT',
 }
 
 export enum OIDCSignatureAlgorithm {
@@ -91,9 +90,17 @@ export interface IdentityProviderUpdateBody {
   oidc?: OIDCType
   saml?: OIDCType
 }
+
 export interface IdentityProviderUpdate {
   identityProviderId: string
   body: IdentityProviderUpdateBody
+}
+
+export interface IdentityProviderUser {
+  identityProviderId: string
+  companyUserId: string
+  userId: string
+  userName: string
 }
 
 export interface IdentityProvider {
@@ -147,6 +154,27 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    addUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
+      query: (idpUser: IdentityProviderUser) => ({
+        url: `/api/administration/identityprovider/owncompany/users/${idpUser.companyUserId}/identityprovider`,
+        method: 'POST',
+        body: {
+          identityProviderId: idpUser.identityProviderId,
+          userId: idpUser.userId,
+          userName: idpUser.userName,
+        },
+      }),
+    }),
+    updateUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
+      query: (idpUser: IdentityProviderUser) => ({
+        url: `/api/administration/identityprovider/owncompany/users/${idpUser.companyUserId}/identityprovider/${idpUser.identityProviderId}`,
+        method: 'PUT',
+        body: {
+          userId: idpUser.userId,
+          userName: idpUser.userName,
+        },
+      }),
+    }),
   }),
 })
 
@@ -157,4 +185,6 @@ export const {
   useUpdateIDPMutation,
   useRemoveIDPMutation,
   useEnableIDPMutation,
+  useAddUserIDPMutation,
+  useUpdateUserIDPMutation,
 } = apiSlice

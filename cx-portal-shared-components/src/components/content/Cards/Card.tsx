@@ -46,6 +46,8 @@ export interface CardProps
   readMoreLink?: string
   onClick?: React.MouseEventHandler
   addButtonClicked?: boolean
+  positionValue?: string
+  topValue?: number
 }
 
 export const Card = ({
@@ -70,6 +72,8 @@ export const Card = ({
   addButtonClicked,
   status,
   statusText,
+  positionValue = '',
+  topValue = 0,
 }: CardProps) => {
   const { shape, shadows, spacing } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
@@ -124,13 +128,17 @@ export const Card = ({
     return backgroundColor ? backgroundColor : 'background.background02'
   }
 
+  const styles = {
+    position: positionValue !== '' ? positionValue : 'relative',
+    height: boxHeight ? `${boxHeight + 37}px` : '',
+    top: `${topValue}px`,
+    left: '0px',
+  } as React.CSSProperties
+
   return (
     <div
       ref={boxRef}
-      style={{
-        position: 'relative',
-        height: boxHeight ? `${boxHeight + 37}px` : '',
-      }}
+      style={styles}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}

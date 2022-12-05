@@ -141,6 +141,7 @@ export const UserDetailCard = ({
               fontFamily: 'LibreFranklin-Light',
               padding: k === 'status' ? '14.5px 20px' : '20px',
               justifyContent: k === 'bpn' ? 'space-between' : '',
+              display: 'block',
             }}
           >
             {renderContentSwitch(k, v)}

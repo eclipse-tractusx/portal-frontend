@@ -36,13 +36,16 @@ import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appStatusDataSelector,
   decrement,
   increment,
 } from 'features/appManagement/slice'
 import {
+  useFetchAppStatusQuery,
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -51,7 +54,7 @@ type FormDataType = {
   uploadDataPrerequisits: File | null
   uploadTechnicalGuide: File | null
   uploadDataContract: File | null
-  uploadAppContract: File | null
+  uploadAppContract: File | null | string
   providerHomePage: string
   providerContactEmail: string
   providerPhoneContact: string
@@ -65,18 +68,31 @@ export default function AppPage() {
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
+  const appStatusData: any = useSelector(appStatusDataSelector)
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const defaultValues = {
-    longDescriptionEN: '',
-    longDescriptionDE: '',
+    longDescriptionEN:
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'en'
+      )[0].longDescription || '',
+    longDescriptionDE:
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'de'
+      )[0].longDescription || '',
     images: null,
     uploadDataPrerequisits: null,
     uploadTechnicalGuide: null,
     uploadDataContract: null,
     uploadAppContract: null,
-    providerHomePage: '',
-    providerContactEmail: '',
-    providerPhoneContact: '',
+    providerHomePage: appStatusData?.providerUri || '',
+    providerContactEmail: appStatusData?.contactEmail || '',
+    providerPhoneContact: appStatusData?.contactNumber || '',
   }
 
   const {
@@ -104,7 +120,7 @@ export default function AppPage() {
 
   useEffect(() => {
     if (getValues().uploadDataContract !== null)
-      uploadDocumentApi(appId, 'DATA_CONTRACT', uploadDataContractValue)
+      uploadDocumentApi(appId, 'APP_DATA_DETAILS', uploadDataContractValue)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataContractValue])
 
@@ -120,7 +136,11 @@ export default function AppPage() {
 
   useEffect(() => {
     if (getValues().uploadTechnicalGuide !== null)
-      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', uploadTechnicalGuideValue)
+      uploadDocumentApi(
+        appId,
+        'APP_TECHNICAL_INFORMATION',
+        uploadTechnicalGuideValue
+      )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
 
@@ -170,12 +190,18 @@ export default function AppPage() {
         {
           languageCode: 'en',
           longDescription: data.longDescriptionEN,
-          shortDescription: '',
+          shortDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0].shortDescription || '',
         },
         {
           languageCode: 'de',
           longDescription: data.longDescriptionDE,
-          shortDescription: '',
+          shortDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'de'
+            )[0].shortDescription || '',
         },
       ],
       images: [],
@@ -192,19 +218,27 @@ export default function AppPage() {
     }
   }
 
+  const onBackIconClick = () => {
+    dispatch(setAppStatus(fetchAppStatus))
+    dispatch(decrement())
+  }
+
   return (
     <div className="app-page">
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.appPage.headerTitle')}
       </Typography>
-      <Typography variant="body2" className="header-description" align="center">
-        {t('content.apprelease.appPage.headerDescription')}
-      </Typography>
-
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+          <Typography variant="body2" align="center">
+            {t('content.apprelease.appPage.headerDescription')}
+          </Typography>
+        </Grid>
+      </Grid>
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map((item: string) => (
-            <>
+          {['longDescriptionEN', 'longDescriptionDE'].map((item: string, i) => (
+            <div key={i}>
               <ConnectorFormInputField
                 {...{
                   control,
@@ -219,7 +253,6 @@ export default function AppPage() {
                       </IconButton>
                     </>
                   ),
-                  placeholder: t(`content.apprelease.appPage.${item}`),
                   type: 'input',
                   textarea: true,
                   rules: {
@@ -267,7 +300,7 @@ export default function AppPage() {
                   : getValues().longDescriptionDE.length) +
                   `/${longDescriptionMaxLength}`}
               </Typography>
-            </>
+            </div>
           ))}
         </div>
 
@@ -297,9 +330,9 @@ export default function AppPage() {
             }}
           />
           {errors?.images?.type === 'required' && (
-            <p className="file-error-msg">
+            <Typography variant="body2" className="file-error-msg">
               {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-            </p>
+            </Typography>
           )}
           <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
             {t('content.apprelease.appReleaseForm.note')}
@@ -314,8 +347,8 @@ export default function AppPage() {
           'uploadTechnicalGuide',
           'uploadDataContract',
           'uploadAppContract',
-        ].map((item: string) => (
-          <>
+        ].map((item: string, i) => (
+          <div key={i}>
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <div className="form-field" key={item}>
               <InputLabel sx={{ mb: 3, mt: 3 }}>
@@ -342,38 +375,38 @@ export default function AppPage() {
               />
               {item === 'uploadDataPrerequisits' &&
                 errors?.uploadDataPrerequisits?.type === 'required' && (
-                  <p className="file-error-msg">
+                  <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
                     )}
-                  </p>
+                  </Typography>
                 )}
               {item === 'uploadTechnicalGuide' &&
                 errors?.uploadTechnicalGuide?.type === 'required' && (
-                  <p className="file-error-msg">
+                  <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
                     )}
-                  </p>
+                  </Typography>
                 )}
               {item === 'uploadDataContract' &&
                 errors?.uploadDataContract?.type === 'required' && (
-                  <p className="file-error-msg">
+                  <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
                     )}
-                  </p>
+                  </Typography>
                 )}
               {item === 'uploadAppContract' &&
                 errors?.uploadAppContract?.type === 'required' && (
-                  <p className="file-error-msg">
+                  <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
                     )}
-                  </p>
+                  </Typography>
                 )}
             </div>
-          </>
+          </div>
         ))}
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
@@ -388,7 +421,6 @@ export default function AppPage() {
               errors,
               name: 'providerHomePage',
               label: t('content.apprelease.appPage.providerHomePage') + ' *',
-              placeholder: t('content.apprelease.appPage.providerHomePage'),
               type: 'input',
               rules: {
                 required: {
@@ -417,7 +449,6 @@ export default function AppPage() {
               name: 'providerContactEmail',
               label:
                 t('content.apprelease.appPage.providerContactEmail') + ' *',
-              placeholder: t('content.apprelease.appPage.providerContactEmail'),
               type: 'input',
               rules: {
                 required: {
@@ -493,7 +524,7 @@ export default function AppPage() {
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton onClick={() => dispatch(decrement())} color="secondary">
+        <IconButton onClick={() => onBackIconClick()} color="secondary">
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button

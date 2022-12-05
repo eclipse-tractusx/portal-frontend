@@ -30,7 +30,11 @@ import { OVERLAYS, ROLES } from 'types/Constants'
 import { useState } from 'react'
 import UserService from 'services/UserService'
 
-export const ActiveUserTable = () => {
+export const ActiveUserTable = ({
+  addUserResponse,
+}: {
+  addUserResponse: boolean
+}) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [expr, setExpr] = useState<string>('')
@@ -46,7 +50,7 @@ export const ActiveUserTable = () => {
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
       tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersSearchQuery}
-      fetchHookArgs={{ expr }}
+      fetchHookArgs={{ expr, addUserResponse }}
       searchExpr={expr}
       onSearch={setExpr}
       onDetailsClick={(row: TenantUser) =>
