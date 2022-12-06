@@ -15,6 +15,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Delete Modal positioning issue fix
    * Sort Icon click/Mouse event issue fix 
 
+* BugFix - Add user role for app not working fix
+
 ## 0.9.0
 
 ### Change
