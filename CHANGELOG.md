@@ -13,7 +13,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Filter apis added
    * Load More button to handle pagination
    * Delete Modal positioning issue fix
-   * Sort Icon click/Mouse event issue fix 
+   * Sort Icon click/Mouse event issue fix
+   * Refetching issue fix
+* Partner Network
+   * Stop throbber in case of error and show No rows present message
 
 * BugFix - Add user role for app not working fix
 

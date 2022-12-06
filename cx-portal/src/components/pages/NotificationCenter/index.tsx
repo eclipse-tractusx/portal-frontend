@@ -203,6 +203,7 @@ export default function NotificationCenter() {
             placeholder={t('notification.search')}
             value={searchExpr}
             autoFocus={false}
+            autoComplete="off"
             onChange={(e) => setSearchExpr(e.target.value)}
           />
           <div>
