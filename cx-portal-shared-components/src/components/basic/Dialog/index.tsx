@@ -20,6 +20,8 @@
 
 import MuiDialog, { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
 
+export const CONTENT_PADDING_RIGHT_LEFT = 14
+
 interface AddtionalDialogProps {
   modalBorderRadius?: number
   additionalModalRootStyles?: any
