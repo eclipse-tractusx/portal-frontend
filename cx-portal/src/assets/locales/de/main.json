@@ -255,8 +255,7 @@
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
           "asset_count": "Anzahl Assets"
-        },
-        "load_button": "Mehr laden"
+        }
       },
       "detail": {
         "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
@@ -426,7 +425,6 @@
         "others": "Andere"
       },
       "message": "Inhalte vom Partner Netzwerk",
-      "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
       "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
@@ -450,7 +448,6 @@
       "failure": "Error - Business Partner Einladung schlug fehl.",
       "failureSubText": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
       "tabletitle": "Invites",
-      "load_button": "Mehr laden",
       "columns": {
         "companyName": "Unternehmensname",
         "firstAndLastName": "Vor- und Nachname",
