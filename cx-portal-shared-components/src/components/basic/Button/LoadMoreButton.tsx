@@ -25,34 +25,64 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 export interface LoadMoreButtonProps
   extends Omit<MuiButtonProps, 'color' | 'variant' | 'size'> {
   label: string | JSX.Element
-  color?: 'primary' | 'secondary'
-  background?: 'transparent' | 'secondary'
+  color?: 'primary' | 'secondary' | 'white'
   onClick?: React.MouseEventHandler
 }
 
 export const LoadMoreButton = ({
   label,
   color,
-  background,
   onClick,
   ...props
 }: LoadMoreButtonProps) => {
+  const getStyle = () => {
+    switch (color) {
+      case 'white':
+        return {
+          variant: 'outlined',
+          color: 'secondary.main',
+          hoverColor: 'secondary.dark',
+          background: 'transparent',
+          backgroundHover: 'transparent',
+        } as const
+      case 'secondary':
+        return {
+          variant: 'contained',
+          color: 'primary.main',
+          hoverColor: 'primary.dark',
+          background: 'secondary.main',
+          backgroundHover: 'secondary.dark',
+        } as const
+      case 'primary':
+      default:
+        return {
+          variant: 'outlined',
+          color: 'primary.main',
+          hoverColor: 'primary.dark',
+          background: 'transparent',
+          backgroundHover: 'transparent',
+        } as const
+    }
+  }
+
+  const style = getStyle()
+
   return (
     <Button
       {...props}
       onClick={onClick}
       color="primary"
-      variant="outlined"
+      variant={style.variant}
       size="small"
       sx={{
         ...props?.sx,
-        color: color === 'secondary' ? 'secondary.main' : 'primary.main',
+        color: style.color,
+        backgroundColor: style.background,
         borderColor: 'currentColor',
-        backgroundColor: background,
         '&:hover': {
-          color: color === 'secondary' ? 'secondary.dark' : 'primary.dark',
+          color: style.hoverColor,
+          backgroundColor: style.backgroundHover,
           borderColor: 'currentColor',
-          backgroundColor: background,
         },
       }}
     >

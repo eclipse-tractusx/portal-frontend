@@ -36,5 +36,4 @@ export const LoadMoreButton = Template.bind({})
 LoadMoreButton.args = {
   label: 'load more',
   color: 'primary',
-  background: 'transparent',
 }
