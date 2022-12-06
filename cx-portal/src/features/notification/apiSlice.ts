@@ -61,7 +61,8 @@ export const apiSlice = createApi({
         }
         return base
       },
-      keepUnusedDataFor: 5,
+      // configuration for an individual endpoint, overriding the api setting
+      keepUnusedDataFor: 10,
     }),
     setNotificationRead: builder.mutation<void, string>({
       query: (id) => ({
