@@ -202,8 +202,7 @@
           "version": "Version",
           "src": "Source",
           "details": "Details"
-        },
-        "load_button": "Load more"
+        }
       },
       "importDialog": {
         "title": "Import Model",
