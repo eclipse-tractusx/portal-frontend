@@ -18,69 +18,67 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal, PageNotifications } from 'cx-portal-shared-components'
-import { Grid, useTheme, CircularProgress } from '@mui/material'
+import { CardHorizontal, Typography } from 'cx-portal-shared-components'
+import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { useFetchServicesQuery } from 'features/serviceMarketplace/serviceApiSlice'
-import './style.scss'
+import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import './ServiceMarketplace.scss'
 
-export default function ServicesElements() {
+export default function ServicesElements({
+  services,
+}: {
+  services: ServiceRequest[]
+}) {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const theme = useTheme()
-
-  const { data } = useFetchServicesQuery(0)
-  const services = data && data.content
 
   const handleClick = (id: string) => {
     navigate(`/servicemarketplacedetail/${id}`)
   }
 
-  if (services && services.length === 0) {
-    return (
-      <div className="marketplace-section">
-        <PageNotifications
-          description={t('content.serviceMarketplace.noDataMessage')}
-          onCloseNotification={function noRefCheck() {}}
-          open
-          severity="error"
-          showIcon
-          title="Error"
-        />
-      </div>
-    )
-  }
-
   return (
-    <div className="marketplace-section">
-      {services && services.length ? (
-        <Grid container spacing={2}>
-          {services.map((service: any) => (
-            <Grid item xs={12} sm={6} md={4} key={service.id}>
-              <CardHorizontal
-                borderRadius={0}
-                imageAlt="App Card"
-                imagePath={service.leadPictureUri}
-                label={service.provider}
-                buttonText="Details"
-                onBtnClick={() => handleClick(service.id)}
-                title={service.title}
-                backgroundColor="#f7f7f7"
-              />
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <div className="service-progress">
-          <CircularProgress
-            size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-          />
+    <div className="services-main">
+      <div className="mainContainer">
+        <div className="mainRow">
+          <Box className="services-section-main">
+            <div className="services-section-content">
+              <Typography
+                sx={{ fontFamily: 'LibreFranklin-Light' }}
+                variant="h3"
+                className="section-title"
+              >
+                {t('content.serviceMarketplace.allServices')}
+              </Typography>
+            </div>
+            <div className="services-container">
+              <Grid container spacing={2} className="services-section">
+                {services.map((service: ServiceRequest) => (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    key={service.id}
+                    className="services-card"
+                  >
+                    <CardHorizontal
+                      borderRadius={6}
+                      imageAlt="App Card"
+                      imagePath={'ServiceMarketplace.png'}
+                      label={service.provider}
+                      buttonText="Details"
+                      onBtnClick={() => handleClick(service.id)}
+                      title={service.title}
+                      backgroundColor="#fff"
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
+          </Box>
         </div>
-      )}
+      </div>
     </div>
   )
 }

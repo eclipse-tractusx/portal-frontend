@@ -45,6 +45,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     PAGES.APPOVERVIEW,
     PAGES.APP_MANAGEMENT,
     PAGES.APPRELEASEPROCESS,
+    PAGES.SERVICE_MARKETPLACE,
   ].find((e) => location.pathname.split('/').includes(e))
 
   const isAppDarkOverviewPage = [PAGES.USER_MANAGEMENT].find((e) =>

@@ -23,8 +23,11 @@
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  .lead-image img {
+    border-radius: 10px;
+  }
   .content {
-    padding: 0 15px;
+    padding: 0 30px;
     flex: 1;
     .provider {
       margin: 0 0 10px 0;
