@@ -13,6 +13,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Load More button to handle pagination
    * Delete Modal positioning issue fix
    * Sort Icon click/Mouse event issue fix 
+* Connectors
+   * DAPS api integration
+   * Table updated with new column - Authentication status based on the DAPS api response
 
 ## 0.9.0
 

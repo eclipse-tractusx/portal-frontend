@@ -47,6 +47,7 @@ export type ConnectorCreateBody = {
   status?: ConnectorStatusType
   location?: string
   providerBpn?: string
+  file?: any
 }
 
 export type ConnectorResponseBody = {
@@ -55,22 +56,32 @@ export type ConnectorResponseBody = {
   location: string
   id: string
   type: string
+  DapsRegistrationSuccessful?: boolean
+}
+
+export type FileType = {
+  lastModified: number
+  lastModifiedDate: any
+  name: string
+  size: number
+  type: string
+  webkitRelativePath: string
 }
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    createConnector: builder.mutation<void, ConnectorCreateBody>({
+    createConnector: builder.mutation({
       query: (body) => ({
-        url: `/api/administration/connectors`,
+        url: `/api/administration/connectors/daps`,
         method: 'POST',
         body,
       }),
     }),
-    createManagedConnector: builder.mutation<void, ConnectorCreateBody>({
+    createManagedConnector: builder.mutation({
       query: (body) => ({
-        url: `/api/administration/connectors/managed`,
+        url: `/api/administration/connectors/managed-daps`,
         method: 'POST',
         body,
       }),
@@ -80,6 +91,17 @@ export const apiSlice = createApi({
         url: `/api/administration/Connectors/${connectorID}`,
         method: 'DELETE',
       }),
+    }),
+    triggerDaps: builder.mutation<void, any>({
+      query: (data) => {
+        const body = new FormData()
+        body.append('Certificate', data.file)
+        return {
+          url: `/api/administration/Connectors/trigger-daps/${data.connectorId}`,
+          method: 'POST',
+          body,
+        }
+      },
     }),
     fetchConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,
@@ -96,4 +118,5 @@ export const {
   useCreateManagedConnectorMutation,
   useDeleteConnectorMutation,
   useFetchConnectorsQuery,
+  useTriggerDapsMutation,
 } = apiSlice

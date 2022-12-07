@@ -337,7 +337,8 @@
         "id": "Connector_ID",
         "type": "Connector Type",
         "details": "Details",
-        "location": "Location"
+        "location": "Location",
+        "status": "Authentication Status"
       },
       "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
@@ -360,6 +361,11 @@
         "managed": {
           "title": "Register Managed Connector",
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+        },
+        "daps": {
+          "title": "Create DAPS Registration",
+          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+          "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
@@ -392,6 +398,10 @@
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
+          },
+          "doc": {
+            "error": "Valid types Image/pdf",
+            "tooltipMsg": "Connector document - Message to be added"
           }
         },
         "create": {
@@ -406,6 +416,11 @@
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
+      },
+      "edcUpload": {
+        "formTitle": "Update your public key",
+        "title": "Drag & drop your files here",
+        "subtitle": "or browse files on your computer."
       }
     },
     "partnernetwork": {
