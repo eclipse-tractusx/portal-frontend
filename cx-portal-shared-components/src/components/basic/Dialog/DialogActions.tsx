@@ -22,7 +22,7 @@ import { Box, useTheme } from '@mui/material'
 import MuiDialogActions, {
   DialogActionsProps as MuiDialogActionsProps,
 } from '@mui/material/DialogActions'
-import { CONTENT_PADDING_RIGHT_LEFT } from './index'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export interface DialogActionProps extends MuiDialogActionsProps {
   helperText?: string
@@ -38,7 +38,7 @@ export const DialogActions = ({
   return (
     <Box
       sx={{
-        padding: spacing(4, CONTENT_PADDING_RIGHT_LEFT),
+        padding: spacing(4, CONTENT_SPACING_RIGHT_LEFT),
         backgroundColor: 'background.background09',
       }}
     >

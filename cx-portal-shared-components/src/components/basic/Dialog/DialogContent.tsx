@@ -22,7 +22,7 @@ import { useTheme } from '@mui/material'
 import MuiDialogContent, {
   DialogContentProps as MuiDialogContentProps,
 } from '@mui/material/DialogContent'
-import { CONTENT_PADDING_RIGHT_LEFT } from './index'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export type DialogContentProps = MuiDialogContentProps
 
@@ -33,7 +33,7 @@ export const DialogContent = (props: DialogContentProps) => {
     <MuiDialogContent
       sx={{
         fontFamily: 'fontFamily',
-        padding: spacing(0, CONTENT_PADDING_RIGHT_LEFT, 4),
+        padding: spacing(0, CONTENT_SPACING_RIGHT_LEFT, 4),
         textAlign: 'center',
       }}
       {...props}

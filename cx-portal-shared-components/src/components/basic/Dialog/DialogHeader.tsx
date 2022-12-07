@@ -25,7 +25,7 @@ import { Typography } from '../Typography'
 import { IconButton } from '../IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
-import { CONTENT_PADDING_RIGHT_LEFT } from './index'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export interface DialogHeaderProps {
   title: string | JSX.Element
@@ -51,7 +51,7 @@ export const DialogHeader = ({
   return (
     <Box
       sx={{
-        padding: spacing(7, CONTENT_PADDING_RIGHT_LEFT),
+        padding: spacing(7, CONTENT_SPACING_RIGHT_LEFT),
         textAlign: 'center',
       }}
     >
