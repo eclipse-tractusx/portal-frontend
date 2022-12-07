@@ -65,6 +65,7 @@ export const Dialog = ({
           borderRadius: `${radius}px !important`,
           width: width,
           maxWidth: maxWidth ? undefined : fullScreenWidth,
+          overflowWrap: 'break-word',
           ...additionalModalRootStyles,
         },
       }}

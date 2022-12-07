@@ -35,6 +35,9 @@ export const DialogContent = (props: DialogContentProps) => {
         fontFamily: 'fontFamily',
         padding: spacing(0, CONTENT_SPACING_RIGHT_LEFT, 4),
         textAlign: 'center',
+        '& > *': {
+          textAlign: 'left',
+        },
       }}
       {...props}
     >
