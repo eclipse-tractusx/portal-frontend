@@ -46,7 +46,6 @@ import {
   useFetchConnectorsQuery,
   ConnectorResponseBody,
   useTriggerDapsMutation,
-  FileType,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -99,7 +98,10 @@ const EdcConnector = () => {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
       setDeleteConnectorConfirmModalOpen(true)
     }
-    if (params.field === 'DapsRegistrationSuccessful' && !params.row.DapsRegistrationSuccessful) {
+    if (
+      params.field === 'DapsRegistrationSuccessful' &&
+      !params.row.DapsRegistrationSuccessful
+    ) {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
       setCreateDapsModalOpen(true)
     }
