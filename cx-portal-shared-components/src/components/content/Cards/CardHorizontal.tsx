@@ -18,12 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState, useRef } from 'react'
 import { Box, useTheme } from '@mui/material'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { LogoGrayData } from '../../basic/Logo'
-import { Button } from '../../basic/Button'
 import { Typography } from '../../basic/Typography'
-import { CardChip, CardChipProps } from './CardChip'
-import { useState, useEffect, useRef } from 'react'
+import { CardChipProps } from './CardChip'
 
 interface CardHorizontalProps extends CardChipProps {
   label: string
@@ -54,16 +54,11 @@ export const CardHorizontal = ({
 }: CardHorizontalProps) => {
   const theme = useTheme()
   const [variant, setVariant] = useState('preview')
-  const [boxHeight, setBoxHeight] = useState<number | undefined>()
   const boxRef = useRef<HTMLDivElement>(null)
 
   const onMouseEnter = () => {
     if (expandOnHover) setVariant('expanded')
   }
-
-  useEffect(() => {
-    setBoxHeight(boxRef.current?.getBoundingClientRect().height)
-  }, [variant])
 
   const onMouseLeave = () => setVariant('preview')
 
@@ -71,14 +66,11 @@ export const CardHorizontal = ({
     <Box
       ref={boxRef}
       sx={{
-        backgroundColor: backgroundColor || 'common.white',
-        height: variant === 'expanded' ? 'auto' : '180px',
         display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: '0px',
-        width: '100%',
+        flexWrap: 'wrap',
+        backgroundColor: backgroundColor || 'common.white',
         borderRadius: `${borderRadius}px`,
+        overflow: 'hidden',
         ':hover': {
           boxShadow: theme.shadows['20'],
         },
@@ -88,38 +80,30 @@ export const CardHorizontal = ({
     >
       <Box
         sx={{
-          width: boxHeight ? `${boxHeight}px` : '180px',
-          height: boxHeight ? `${boxHeight}px` : '180px',
-          display: 'flex',
           flex: '0 0 33.333333%',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 0,
-          margin: 0,
           maxWidth: '33.333333%',
-          background: theme.palette.accent.accent02,
-          borderRadius: `${borderRadius}px`,
+          minHeight: '200px',
           backgroundImage: `url(${imagePath || LogoGrayData})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundColor: theme.palette.accent.accent02,
         }}
       />
       <Box
         sx={{
-          width: 'auto',
-          height: variant === 'expanded' ? 'auto' : '180px',
-          margin: '0',
-          padding: '15px',
-          flex: '1',
+          flex: 1,
+          padding: '30px',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         <Typography
-          variant="caption2"
+          variant="caption3"
           sx={{
-            color: theme.palette.text.tertiary,
             fontWeight: '600',
-            height: '24px',
+            lineHeight: '20px',
+            color: theme.palette.text.tertiary,
           }}
         >
           {label}
@@ -128,15 +112,10 @@ export const CardHorizontal = ({
         <Typography
           variant="h4"
           sx={{
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'normal',
-            display: 'box',
-            lineClamp: '2',
-            boxOrient: 'vertical',
-            height: '36px',
-            marginBottom: '17px',
-            marginTop: '9px',
+            margin: 0,
+            fontWeight: 600,
+            lineHeight: '28px',
+            color: '#111111',
           }}
         >
           {title}
@@ -145,9 +124,8 @@ export const CardHorizontal = ({
           <Typography
             variant="caption2"
             sx={{
-              color: theme.palette.text.tertiary,
-              fontWeight: '600',
-              height: '24px',
+              color: '#888888',
+              fontSize: '12px',
             }}
           >
             {variant === 'preview'
@@ -155,24 +133,34 @@ export const CardHorizontal = ({
               : description}
           </Typography>
         )}
-        <Box p={1} display="flex" justifyContent="space-between">
-          {statusText && (
-            <Box>
-              <CardChip status={status} statusText={statusText} />
-            </Box>
-          )}
-          {buttonText && (
-            <Button
-              size="small"
+
+        {buttonText && (
+          <div
+            style={{
+              marginTop: 'auto',
+            }}
+          >
+            <Typography
+              variant="label4"
               onClick={onBtnClick}
               sx={{
-                marginLeft: 'auto',
+                color: '#0F71CB',
+                fontSize: '14px',
+                width: '100%',
+                textAlign: 'right',
+                marginTop: 'auto',
+                paddingTop: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                cursor: 'pointer',
               }}
             >
+              <KeyboardArrowDownIcon sx={{ marginRight: '5px' }} />
               {buttonText}
-            </Button>
-          )}
-        </Box>
+            </Typography>
+          </div>
+        )}
       </Box>
     </Box>
   )

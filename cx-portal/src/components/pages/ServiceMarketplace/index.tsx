@@ -17,40 +17,200 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { PageHeader } from 'cx-portal-shared-components'
+
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Grid } from '@mui/material'
+import { useTheme, CircularProgress } from '@mui/material'
+import debounce from 'lodash.debounce'
 import ServicesElements from './ServicesElements'
-import './style.scss'
+import RecommendedServices from './RecommendedServices'
+import dayjs from 'dayjs'
+import isToday from 'dayjs/plugin/isToday'
+import isYesterday from 'dayjs/plugin/isYesterday'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import './ServiceMarketplace.scss'
+import {
+  SearchInput,
+  Typography,
+  ViewSelector,
+  SortOption,
+} from 'cx-portal-shared-components'
+import SortIcon from '@mui/icons-material/Sort'
+import {
+  ServiceRequest,
+  useFetchServicesQuery,
+} from 'features/serviceMarketplace/serviceApiSlice'
+
+dayjs.extend(isToday)
+dayjs.extend(isYesterday)
+dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
+  const theme = useTheme()
+  const [searchExpr, setSearchExpr] = useState<string>('')
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [selected, setSelected] = useState<string>('All Services')
+  const [sortOption, setSortOption] = useState<string>('new')
+  const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
+
+  let serviceTypeId = ''
+
+  if (selected === 'Dataspace Services') {
+    serviceTypeId = 'DATASPACE_SERVICE'
+  } else if (selected === 'Consultant Services') {
+    serviceTypeId = 'CONSULTANCE_SERVICE'
+  }
+
+  let sortingType = 'ReleaseDateDesc'
+  if (sortOption === 'provider') {
+    sortingType = 'ProviderDesc'
+  }
+
+  const indexToSplit = 2 //show only 2 services in recommended
+
+  const { data } = useFetchServicesQuery({
+    page: 0,
+    serviceType: serviceTypeId,
+    sortingType: sortingType,
+  })
+  const services = data && data.content
+
+  useEffect(() => {
+    services && setCardServices(services)
+  }, [services])
+
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    setSelected(e.currentTarget.value)
+  }
+
+  const sortOptions = [
+    {
+      label: t('content.serviceMarketplace.sortOptions.new'),
+      value: 'new',
+    },
+    {
+      label: t('content.serviceMarketplace.sortOptions.provider'),
+      value: 'provider',
+    },
+  ]
+
+  const filterButtons = [
+    {
+      buttonText: t('content.serviceMarketplace.tabs.all'),
+      buttonValue: t('content.serviceMarketplace.tabs.all'),
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.serviceMarketplace.tabs.dataspaceService'),
+      buttonValue: t('content.serviceMarketplace.tabs.dataspaceService'),
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.serviceMarketplace.tabs.consultantService'),
+      buttonValue: t('content.serviceMarketplace.tabs.consultantService'),
+      onButtonClick: setView,
+    },
+  ]
+
+  const debouncedFilter = useMemo(
+    () =>
+      debounce((expr: string) => {
+        services &&
+          setCardServices(
+            expr
+              ? services &&
+                  services.filter(
+                    (card: ServiceRequest) =>
+                      card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                      card.provider
+                        .toLowerCase()
+                        .includes(expr.toLowerCase()) ||
+                      (card.description &&
+                        card.description
+                          .toLowerCase()
+                          .includes(expr.toLowerCase()))
+                  )
+              : services
+          )
+      }, 300),
+    [services]
+  )
+
+  const doFilter = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedFilter(expr)
+    },
+    [debouncedFilter]
+  )
+
   return (
-    <div>
-      <div className="banner-heading">
-        <PageHeader
-          title={t('servicemarketplace.title')}
-          hasSubtract={false}
-          headerHeight={250}
-        />
+    <main className="serviceMarketplace">
+      <div className="mainContainer">
+        <div className="mainRow">
+          <Typography className="newServicesTitle" variant="h2">
+            {t('content.serviceMarketplace.newServices')}
+          </Typography>
+          <Typography className="recommendationsTitle" variant="body1">
+            {t('content.serviceMarketplace.recommendations')}
+          </Typography>
+          <div>
+            <div className="searchContainer">
+              <SearchInput
+                placeholder={t('notification.search')}
+                value={searchExpr}
+                autoFocus={false}
+                onChange={(e) => doFilter(e.target.value)}
+              />
+            </div>
+            <div className="filterSection">
+              <ViewSelector activeView={selected} views={filterButtons} />
+
+              <div
+                className="iconSection"
+                onMouseEnter={() => setShowModal(true)}
+              >
+                <SortIcon
+                  sx={{
+                    fontSize: 20,
+                    color: '#939393',
+                    ':hover': { color: '#0D55AF' },
+                  }}
+                />
+              </div>
+              <div className="sortSection">
+                <SortOption
+                  show={showModal}
+                  selectedOption={sortOption}
+                  setSortOption={(value: string) => {
+                    setSortOption(value)
+                    setShowModal(!showModal)
+                  }}
+                  sortOptions={sortOptions}
+                />
+              </div>
+            </div>
+            {!services ? (
+              <div className="loading-progress">
+                <CircularProgress
+                  size={50}
+                  sx={{
+                    color: theme.palette.primary.main,
+                  }}
+                />
+              </div>
+            ) : (
+              <RecommendedServices
+                services={cardServices && cardServices.slice(0, indexToSplit)}
+              />
+            )}
+          </div>
+        </div>
       </div>
-      <Box className="box-container">
-        <Grid container>
-          <Grid xs={2} item></Grid>
-          <Grid item xs={3} className="grid-heading">
-            Explore available service offers
-          </Grid>
-          <Grid item xs={3} className="grid-heading">
-            Select & Contact interesting offers
-          </Grid>
-          <Grid item xs={3} className="grid-heading border-none">
-            Get your dataspace connected
-          </Grid>
-        </Grid>
-      </Box>
-      <div className="services-row">
-        <ServicesElements />
-      </div>
-    </div>
+      {cardServices && cardServices.length > 2 && (
+        <ServicesElements services={cardServices.slice(indexToSplit)} />
+      )}
+    </main>
   )
 }

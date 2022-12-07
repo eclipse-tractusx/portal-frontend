@@ -891,7 +891,23 @@
       "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
-      "subscribeSuccessMsg": "Subscribed Successfully"
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "tabs": {
+        "all": "All Services",
+        "dataspaceService": "Dataspace Services",
+        "consultantService": "Consultant Services"
+      },
+      "sortOptions": {
+        "new": "Newest First",
+        "provider": "Provider"
+      },
+      "document": {
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      }
     },
     "appMarketplace": {
       "headline": "Order Business Application",

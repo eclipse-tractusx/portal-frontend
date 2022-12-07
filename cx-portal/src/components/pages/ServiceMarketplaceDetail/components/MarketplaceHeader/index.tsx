@@ -74,6 +74,9 @@ export default function MarketplaceHeader({
 
   return (
     <div className="marketplace-header">
+      <div className="lead-image">
+        <img src={'/ServiceMarketplace.png'} alt={item.title} />
+      </div>
       <div className="content">
         <Typography variant="body2" className="provider">
           {item.provider}
