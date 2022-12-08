@@ -17,6 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Refetching issue fix
 * Partner Network
    * Stop throbber in case of error and show No rows present message
+   * Empty details overlay issue fix
 
 * BugFix - Add user role for app not working fix
 

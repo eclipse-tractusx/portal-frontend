@@ -63,11 +63,11 @@ const mapSingleBusinessPartnerToDataGrid = (
   const bpAddress = bp.addresses[0]
   return {
     bpn: bp.bpn,
-    name: bp.names.filter(
-      (name) =>
-        name.type.technicalKey === 'INTERNATIONAL' ||
-        name.type.technicalKey === 'LOCAL'
-    )[0].value,
+    name: bp.names.length
+      ? bp.names.sort((a, b) =>
+          a.type.technicalKey.localeCompare(b.type.technicalKey)
+        )[0].value
+      : '-', //value can be INTERNATIONAL < LOCAL < OTHER
     legalForm: bp.legalForm?.name || '',
     country: bpAddress.country.name,
     street: bpAddress.thoroughfares[0].value,
