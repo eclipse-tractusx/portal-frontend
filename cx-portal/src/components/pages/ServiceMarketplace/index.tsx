@@ -145,6 +145,15 @@ export default function ServiceMarketplace() {
     [debouncedFilter]
   )
 
+  const setSortOptionFn = useCallback((value: string) => {
+    setSortOption(value)
+    setShowModal(false)
+  }, [])
+
+  const setModalFn = useCallback(() => {
+    setShowModal(false)
+  }, [])
+
   return (
     <main className="serviceMarketplace">
       <div className="mainContainer">
@@ -164,10 +173,7 @@ export default function ServiceMarketplace() {
                 onChange={(e) => doFilter(e.target.value)}
               />
             </div>
-            <div
-              className="filterSection"
-              onMouseLeave={() => setShowModal(false)}
-            >
+            <div className="filterSection" onMouseLeave={setModalFn}>
               <ViewSelector activeView={selected} views={filterButtons} />
               <div className="iconSection">
                 <SortIcon
@@ -183,10 +189,7 @@ export default function ServiceMarketplace() {
                 <SortOption
                   show={showModal}
                   selectedOption={sortOption}
-                  setSortOption={(value: string) => {
-                    setSortOption(value)
-                    setShowModal(false)
-                  }}
+                  setSortOption={setSortOptionFn}
                   sortOptions={sortOptions}
                 />
               </div>
