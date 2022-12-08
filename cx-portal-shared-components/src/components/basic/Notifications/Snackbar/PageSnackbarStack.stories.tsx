@@ -27,20 +27,21 @@ export default {
   title: 'Notifications',
   component: Component,
   argTypes: {},
+  args: {
+    open: true,
+    autoClose: false,
+    title: 'Lorem Ipsum',
+    description: 'Notification sentence comes here',
+  },
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => {
   return (
     <Component>
-      <PageSnackbar open={true} {...args} />
-      <PageSnackbar open={true} {...args} />
+      <PageSnackbar {...args} />
+      <PageSnackbar {...args} />
     </Component>
   )
 }
 
 export const PageSnackbarStack = Template.bind({})
-PageSnackbarStack.args = {
-  autoClose: false,
-  title: 'Lorem Ipsum',
-  description: 'Notification sentence comes here',
-}

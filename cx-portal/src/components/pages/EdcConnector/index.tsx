@@ -75,9 +75,9 @@ const EdcConnector = () => {
   const [response, setResponse] = useState<boolean>(false)
   const [action, setAction] = useState<string>('create')
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-  const [notificationType, setNotificationType] = useState<
-    'error' | 'warning' | 'info' | 'success'
-  >('success')
+  const [notificationType, setNotificationType] = useState<'error' | 'success'>(
+    'success'
+  )
   const [notificationMessage, setNotificationMessage] = useState<string>(
     t('content.edcconnector.snackbar.successmessage')
   )
@@ -205,8 +205,6 @@ const EdcConnector = () => {
     <main className="connector-page-container">
       <PageSnackbar
         description={notificationMessage}
-        vertical="bottom"
-        horizontal="right"
         onCloseNotification={() => setNotificationOpen(false)}
         severity={notificationType}
         open={notificationOpen}
