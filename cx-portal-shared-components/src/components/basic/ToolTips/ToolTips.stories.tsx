@@ -42,6 +42,7 @@ export const Tooltips = Template.bind({})
 Tooltips.args = {
   tooltipPlacement: 'bottom-start',
   tooltipText: 'Action is pending',
+  color: 'dark',
   children: (
     <span>
       <Button color="primary">Text</Button>
