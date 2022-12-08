@@ -150,8 +150,8 @@ export default function ServiceMarketplace() {
     setShowModal(false)
   }, [])
 
-  const setModalFn = useCallback(() => {
-    setShowModal(false)
+  const setModalValue = useCallback((value: boolean) => {
+    setShowModal(value)
   }, [])
 
   return (
@@ -173,11 +173,14 @@ export default function ServiceMarketplace() {
                 onChange={(e) => doFilter(e.target.value)}
               />
             </div>
-            <div className="filterSection" onMouseLeave={setModalFn}>
+            <div
+              className="filterSection"
+              onMouseLeave={() => setModalValue(false)}
+            >
               <ViewSelector activeView={selected} views={filterButtons} />
               <div className="iconSection">
                 <SortIcon
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setModalValue(true)}
                   sx={{
                     fontSize: 20,
                     color: '#939393',
