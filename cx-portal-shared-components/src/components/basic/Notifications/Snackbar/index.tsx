@@ -22,7 +22,7 @@ import { Box, IconButton, Slide } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { SlideProps } from '@mui/material/Slide/Slide'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
+import Snackbar from '@mui/material/Snackbar'
 import CheckIcon from '@mui/icons-material/Check'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
@@ -32,7 +32,7 @@ const SlideTransition = (props: SlideProps) => (
   <Slide {...props} direction="left" />
 )
 
-export interface PageSnackbarProps extends SnackbarOrigin {
+export interface PageSnackbarProps {
   severity?: 'error' | 'success'
   open: boolean
   onCloseNotification?: () => void
@@ -40,9 +40,6 @@ export interface PageSnackbarProps extends SnackbarOrigin {
   description?: string | JSX.Element
   showIcon?: boolean
   autoClose?: boolean
-  contactText?: string
-  contactLinks?: string
-  contactNewTab?: boolean
 }
 
 export const PageSnackbar = ({
@@ -52,10 +49,7 @@ export const PageSnackbar = ({
   autoClose,
   title,
   description,
-  contactText,
-  contactLinks,
-  contactNewTab,
-  showIcon,
+  showIcon = true,
   ...props
 }: PageSnackbarProps) => {
   const [isOpen, setOpen] = useState(open)
@@ -96,83 +90,69 @@ export const PageSnackbar = ({
   }
 
   return (
-    <Box>
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        open={isOpen}
-        key={'bottom right'}
-        TransitionComponent={SlideTransition}
-        {...props}
-        onMouseEnter={cancelAutoClose}
-        onMouseLeave={handleAutoClose}
-        message={
-          <Box
-            sx={{ display: 'flex', width: '100%', alignItems: 'flex-start' }}
-          >
-            {showIcon && (
-              <Box
-                sx={{
-                  flex: '0 0 auto',
-                  marginRight: 2,
-                  marginTop: '2px',
-                  marginBottom: '-2px',
-                }}
-              >
-                {renderIcon()}
-              </Box>
-            )}
-            <Box sx={{ flex: '1 1 auto', alignSelf: 'center' }}>
-              {title && (
-                <Box
-                  component="span"
-                  sx={{ marginRight: 0.5, fontWeight: 'bold' }}
-                >
-                  {title}
-                </Box>
-              )}
-              {description}
-              {contactText && (
-                <a
-                  style={{ marginLeft: '10px' }}
-                  href={contactLinks}
-                  target={contactNewTab ? '_blank' : ''}
-                  rel="noreferrer"
-                >
-                  {contactText}
-                </a>
-              )}
-            </Box>
+    <Snackbar
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isOpen}
+      key={'bottom right'}
+      TransitionComponent={SlideTransition}
+      {...props}
+      onMouseEnter={cancelAutoClose}
+      onMouseLeave={handleAutoClose}
+      message={
+        <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start' }}>
+          {showIcon && (
             <Box
               sx={{
                 flex: '0 0 auto',
-                marginLeft: 1.5,
+                marginRight: 2,
                 marginTop: '2px',
-                marginRight: '-3px',
+                marginBottom: '-2px',
               }}
             >
-              <IconButton size="small" aria-label="close" onClick={doClose}>
-                <Close fontSize="small" sx={{ color: 'text.primary' }} />
-              </IconButton>
+              {renderIcon()}
             </Box>
+          )}
+          <Box sx={{ flex: '1 1 auto', alignSelf: 'center' }}>
+            {title && (
+              <Box
+                component="span"
+                sx={{ marginRight: 0.5, fontWeight: 'bold' }}
+              >
+                {title}
+              </Box>
+            )}
+            {description}
           </Box>
-        }
-        sx={{
-          '.MuiSnackbarContent-root': {
-            width: '390px',
-            typography: 'body3',
-            backgroundColor: 'common.white',
-            color: 'text.primary',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            borderColor: 'action.disabledBackground',
-            borderRadius: '8px',
-            boxShadow: '0px 10px 20px 0px rgba(80, 80, 80, 0.3)',
-          },
-          '.MuiSnackbarContent-message': {
-            width: '100%',
-          },
-        }}
-      />
-    </Box>
+          <Box
+            sx={{
+              flex: '0 0 auto',
+              marginLeft: 1.5,
+              marginTop: '2px',
+              marginRight: '-3px',
+            }}
+          >
+            <IconButton size="small" aria-label="close" onClick={doClose}>
+              <Close fontSize="small" sx={{ color: 'text.primary' }} />
+            </IconButton>
+          </Box>
+        </Box>
+      }
+      sx={{
+        '.MuiSnackbarContent-root': {
+          width: '390px',
+          typography: 'body3',
+          backgroundColor: 'common.white',
+          color: 'text.primary',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: 'action.disabledBackground',
+          borderRadius: '8px',
+          boxShadow: '0px 10px 20px 0px rgba(80, 80, 80, 0.3)',
+        },
+        '.MuiSnackbarContent-message': {
+          width: '100%',
+        },
+      }}
+    />
   )
 }

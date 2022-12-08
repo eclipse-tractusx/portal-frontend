@@ -18,26 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory } from '@storybook/react'
+import { Box } from '@mui/material'
+import { PropsWithChildren } from 'react'
+import * as React from 'react'
 
-import { PageSnackbar as Component } from '.'
-
-export default {
-  title: 'Notifications',
-  component: Component,
-  argTypes: {},
-}
-
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
-
-export const PageSnackbar = Template.bind({})
-PageSnackbar.args = {
-  severity: 'success',
-  open: true,
-  autoClose: false,
-  title: 'Lorem Ipsum',
-  description: 'Notification sentence comes here',
-  showIcon: true,
+export const PageSnackbarStack = ({ children }: PropsWithChildren<{}>) => {
+  return (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        marginTop: 1,
+        '& > *': {
+          marginTop: 2,
+          position: 'relative !important',
+          top: 'auto !important',
+          bottom: 'auto !important',
+        },
+      }}
+    >
+      {children}
+    </Box>
+  )
 }
