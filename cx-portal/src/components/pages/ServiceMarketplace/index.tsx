@@ -164,14 +164,14 @@ export default function ServiceMarketplace() {
                 onChange={(e) => doFilter(e.target.value)}
               />
             </div>
-            <div className="filterSection">
+            <div
+              className="filterSection"
+              onMouseLeave={() => setShowModal(false)}
+            >
               <ViewSelector activeView={selected} views={filterButtons} />
-
-              <div
-                className="iconSection"
-                onMouseEnter={() => setShowModal(true)}
-              >
+              <div className="iconSection">
                 <SortIcon
+                  onClick={() => setShowModal(true)}
                   sx={{
                     fontSize: 20,
                     color: '#939393',
@@ -185,7 +185,7 @@ export default function ServiceMarketplace() {
                   selectedOption={sortOption}
                   setSortOption={(value: string) => {
                     setSortOption(value)
-                    setShowModal(!showModal)
+                    setShowModal(false)
                   }}
                   sortOptions={sortOptions}
                 />
