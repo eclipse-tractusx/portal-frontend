@@ -22,7 +22,6 @@ import { Box, IconButton, Slide } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { SlideProps } from '@mui/material/Slide/Slide'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { PageNotificationsProps } from '../PageNotification'
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
 import CheckIcon from '@mui/icons-material/Check'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -33,11 +32,17 @@ const SlideTransition = (props: SlideProps) => (
   <Slide {...props} direction="left" />
 )
 
-export interface PageSnackbarProps
-  extends PageNotificationsProps,
-    SnackbarOrigin {
+export interface PageSnackbarProps extends SnackbarOrigin {
   severity?: 'error' | 'success'
+  open: boolean
+  onCloseNotification?: () => void
+  title?: string | JSX.Element
+  description?: string | JSX.Element
+  showIcon?: boolean
   autoClose?: boolean
+  contactText?: string
+  contactLinks?: string
+  contactNewTab?: boolean
 }
 
 export const PageSnackbar = ({
