@@ -23,7 +23,7 @@ import Tooltip from '@mui/material/Tooltip'
 interface TooltipsProps {
   children: any
   tooltipText: string
-  color: 'light' | 'dark'
+  color?: 'light' | 'dark'
   tooltipPlacement?:
     | 'top'
     | 'right'
