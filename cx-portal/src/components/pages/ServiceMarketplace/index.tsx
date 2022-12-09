@@ -158,7 +158,7 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
-  const getServices = (serviceTypeIds: any) => {
+  const getServices = useCallback((serviceTypeIds: any) => {
     const newArr: string[] = []
 
     serviceTypeIds.forEach((serviceType: any) => {
@@ -167,7 +167,7 @@ export default function ServiceMarketplace() {
       if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
     })
     return newArr.join(', ')
-  }
+  }, [])
 
   return (
     <main className="serviceMarketplace">
