@@ -19,25 +19,29 @@
  ********************************************************************************/
 
 import { ComponentStory } from '@storybook/react'
+import { PageSnackbar } from './index'
 
-import { PageSnackbar as Component } from '.'
+import { PageSnackbarStack as Component } from './PageSnackbarStack'
 
 export default {
   title: 'Notifications',
   component: Component,
   argTypes: {},
+  args: {
+    open: true,
+    autoClose: false,
+    title: 'Lorem Ipsum',
+    description: 'Notification sentence comes here',
+  },
 }
 
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
-)
-
-export const PageSnackbar = Template.bind({})
-PageSnackbar.args = {
-  severity: 'success',
-  open: true,
-  autoClose: false,
-  title: 'Lorem Ipsum',
-  description: 'Notification sentence comes here',
-  showIcon: true,
+const Template: ComponentStory<typeof Component> = (args: any) => {
+  return (
+    <Component>
+      <PageSnackbar {...args} />
+      <PageSnackbar {...args} />
+    </Component>
+  )
 }
+
+export const PageSnackbarStack = Template.bind({})

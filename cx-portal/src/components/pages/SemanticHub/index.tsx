@@ -159,8 +159,6 @@ export default function SemanticHub() {
         title={t('content.semantichub.alerts.alertErrorTitle')}
         description={errorAlertMsg}
         showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
       />
       <PageSnackbar
         open={showSuccessAlert}
@@ -169,8 +167,6 @@ export default function SemanticHub() {
         title={t('content.semantichub.alerts.alertSuccessTitle')}
         description={successAlertMsg}
         showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
       />
     </>
   )
