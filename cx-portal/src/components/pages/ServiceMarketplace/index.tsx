@@ -158,6 +158,17 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
+  const getServices = (serviceTypeIds: any) => {
+    const newArr: string[] = []
+
+    serviceTypeIds.forEach((serviceType: any) => {
+      if (serviceType === 'CONSULTANCE_SERVICE')
+        newArr.push('Consultance Service')
+      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
+    })
+    return newArr.join(', ')
+  }
+
   return (
     <main className="serviceMarketplace">
       <div className="mainContainer">
@@ -210,13 +221,17 @@ export default function ServiceMarketplace() {
             ) : (
               <RecommendedServices
                 services={cardServices && cardServices.slice(0, indexToSplit)}
+                getServices={getServices}
               />
             )}
           </div>
         </div>
       </div>
       {cardServices && cardServices.length > 2 && (
-        <ServicesElements services={cardServices.slice(indexToSplit)} />
+        <ServicesElements
+          services={cardServices.slice(indexToSplit)}
+          getServices={getServices}
+        />
       )}
     </main>
   )
