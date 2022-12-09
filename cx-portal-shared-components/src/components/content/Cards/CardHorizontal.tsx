@@ -28,6 +28,7 @@ import { CardChipProps } from './CardChip'
 interface CardHorizontalProps extends CardChipProps {
   label: string
   title: string
+  subTitle?: string
   borderRadius: number
   imagePath: string
   imageAlt: string
@@ -41,6 +42,7 @@ interface CardHorizontalProps extends CardChipProps {
 export const CardHorizontal = ({
   label,
   title,
+  subTitle,
   borderRadius = 0,
   imagePath,
   imageAlt,
@@ -119,6 +121,16 @@ export const CardHorizontal = ({
           }}
         >
           {title}
+        </Typography>
+        <Typography
+          variant="caption3"
+          sx={{
+            fontWeight: '600',
+            lineHeight: '20px',
+            color: theme.palette.text.tertiary,
+          }}
+        >
+          {subTitle}
         </Typography>
         {description && (
           <Typography
