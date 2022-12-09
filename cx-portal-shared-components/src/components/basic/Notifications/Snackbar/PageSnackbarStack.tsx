@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -19,33 +19,26 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { ComponentStory } from '@storybook/react'
-import { Tooltips as Component } from '.'
-import { Button } from '../Button'
+import { PropsWithChildren } from 'react'
+import * as React from 'react'
 
-export default {
-  title: 'Tooltips',
-  component: Component,
-}
-
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Box
-    sx={{
-      margin: '100px',
-    }}
-  >
-    <Component {...args} />
-  </Box>
-)
-
-export const Tooltips = Template.bind({})
-Tooltips.args = {
-  tooltipPlacement: 'bottom-start',
-  tooltipText: 'Action is pending',
-  color: 'dark',
-  children: (
-    <span>
-      <Button color="primary">Text</Button>
-    </span>
-  ),
+export const PageSnackbarStack = ({ children }: PropsWithChildren<{}>) => {
+  return (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        marginTop: 1,
+        '& > *': {
+          marginTop: 2,
+          position: 'relative !important',
+          top: 'auto !important',
+          bottom: 'auto !important',
+        },
+      }}
+    >
+      {children}
+    </Box>
+  )
 }

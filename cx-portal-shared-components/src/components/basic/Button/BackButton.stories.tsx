@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,34 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
 import { ComponentStory } from '@storybook/react'
-import { Tooltips as Component } from '.'
-import { Button } from '../Button'
+
+import { BackButton as Component } from './BackButton'
 
 export default {
-  title: 'Tooltips',
+  title: 'Buttons',
   component: Component,
+  argTypes: {
+    onBackButtonClick: {
+      action: 'onClick',
+    },
+  },
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Box
-    sx={{
-      margin: '100px',
-    }}
-  >
-    <Component {...args} />
-  </Box>
+  <Component {...args} />
 )
 
-export const Tooltips = Template.bind({})
-Tooltips.args = {
-  tooltipPlacement: 'bottom-start',
-  tooltipText: 'Action is pending',
-  color: 'dark',
-  children: (
-    <span>
-      <Button color="primary">Text</Button>
-    </span>
-  ),
+export const BackButton = Template.bind({})
+BackButton.args = {
+  backButtonLabel: 'Back',
+  backButtonVariant: 'text',
 }

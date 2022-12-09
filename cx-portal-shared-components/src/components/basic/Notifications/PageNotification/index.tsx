@@ -31,7 +31,7 @@ import { theme } from '../../../../theme'
 export interface PageNotificationsProps {
   severity?: 'error' | 'warning' | 'info' | 'success'
   open: boolean
-  onCloseNotification?: React.MouseEventHandler
+  onCloseNotification?: () => void
   title?: string
   description?: string
   contactText?: string

@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -27,76 +27,35 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
+  Dropzone,
+  Typography,
 } from 'cx-portal-shared-components'
-import ConnectorTypeSelection from './components/ConnectorTypeSelection'
-import ConnectorInsertForm from './components/ConnectorInsertForm'
-import { useForm } from 'react-hook-form'
-import { ConnectorType } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
+import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
+import './EdcComponentStyles.scss'
+import { FileType } from 'features/connector/connectorApiSlice'
 
-interface AddCollectorOverlayProps {
+interface CreateDapsRegistrationProps {
   openDialog?: boolean
-  connectorStep: number
   handleOverlayClose: React.MouseEventHandler
-  handleConfirmClick: (data: ConnectorType) => void
-  onFormConfirmClick: (data: FormFieldsType) => void
-  loading?: boolean
+  handleConfirmClick: (data: any) => {}
+  loading: boolean
 }
 
-export type FormFieldsType = {
-  ConnectorName: string
-  ConnectorURL: string
-  ConnectorBPN: string
-  ConnectorLocation: string
-  ConnectorDoc: any
-}
-
-const formFields = {
-  ConnectorName: '',
-  ConnectorURL: '',
-  ConnectorBPN: '',
-  ConnectorLocation: '',
-  ConnectorDoc: '',
-}
-
-const AddConnectorOverlay = ({
+const CreateDapsRegistration = ({
   openDialog = false,
-  connectorStep,
   handleOverlayClose,
   handleConfirmClick,
-  onFormConfirmClick,
   loading,
-}: AddCollectorOverlayProps) => {
+}: CreateDapsRegistrationProps) => {
   const { t } = useTranslation()
-
-  const {
-    handleSubmit,
-    getValues,
-    control,
-    trigger,
-    formState: { errors },
-    reset,
-  } = useForm({
-    defaultValues: formFields,
-    mode: 'onChange',
-  })
-
-  const [selected, setSelected] = useState<ConnectorType>({})
-
-  const onFormSubmit = async () => {
-    const validateFields = await trigger([
-      'ConnectorName',
-      'ConnectorURL',
-      'ConnectorBPN',
-      'ConnectorDoc',
-    ])
-    if (validateFields) {
-      onFormConfirmClick(getValues() as FormFieldsType)
-    }
-  }
-
-  const onSelect = (service: ConnectorType) => {
-    setSelected(service)
+  const [error, setError] = useState(false)
+  const [file, setFile] = useState<FileType>()
+  const dropzoneProps = {
+    formTitle: t('content.edcconnector.edcUpload.formTitle'),
+    title: t('content.edcconnector.edcUpload.title'),
+    subtitle: t('content.edcconnector.edcUpload.subtitle'),
+    accept: '*',
   }
 
   return (
@@ -108,42 +67,54 @@ const AddConnectorOverlay = ({
         }}
       >
         <DialogHeader
-          title={
-            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
-              ? t('content.edcconnector.modal.managed.title')
-              : t('content.edcconnector.modal.company.title')
-          }
-          intro={
-            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
-              ? t('content.edcconnector.modal.managed.intro')
-              : t('content.edcconnector.modal.company.intro')
-          }
+          title={t('content.edcconnector.modal.daps.title')}
+          intro={t('content.edcconnector.modal.daps.intro')}
         />
         <DialogContent
           sx={{
             padding: '0px 120px 40px 120px',
           }}
         >
-          {connectorStep === 0 ? (
-            <>
-              <ConnectorTypeSelection selectedServiceCallback={onSelect} />
-            </>
-          ) : (
-            <>
-              <ConnectorInsertForm
-                selectedService={selected}
-                {...{ handleSubmit, control, errors, trigger }}
+          <Dropzone
+            inputContentTitle={dropzoneProps.title}
+            inputContentSubTitle={dropzoneProps.subtitle}
+            accept={dropzoneProps.accept}
+            multiple={false}
+            maxFiles={1}
+            onChangeStatus={(meta: any, status: string) => {
+              if (status === 'done' || status === 'preparing') {
+                setFile(meta.file)
+                setError(false)
+              } else {
+                setError(true)
+              }
+            }}
+          />
+          {error && (
+            <div className="errorContainer">
+              <ErrorOutlineOutlinedIcon
+                sx={{
+                  color: 'red',
+                }}
               />
-            </>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  paddingLeft: '10px',
+                }}
+              >
+                {t('content.edcconnector.modal.daps.error')}
+              </Typography>
+            </div>
           )}
         </DialogContent>
         <DialogActions>
           <Button
             variant="outlined"
             onClick={(e) => {
-              setSelected({})
               handleOverlayClose(e)
-              reset(formFields)
             }}
           >
             {`${t('global.actions.cancel')}`}
@@ -151,12 +122,8 @@ const AddConnectorOverlay = ({
           {!loading && (
             <Button
               variant="contained"
-              disabled={selected && selected.id ? false : true}
-              onClick={(e) =>
-                connectorStep === 0 && selected && selected.id
-                  ? handleConfirmClick(selected)
-                  : onFormSubmit()
-              }
+              disabled={!file}
+              onClick={(e) => handleConfirmClick(file)}
             >
               {`${t('global.actions.confirm')}`}
             </Button>
@@ -185,4 +152,4 @@ const AddConnectorOverlay = ({
   )
 }
 
-export default AddConnectorOverlay
+export default CreateDapsRegistration

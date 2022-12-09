@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,34 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
 import { ComponentStory } from '@storybook/react'
-import { Tooltips as Component } from '.'
-import { Button } from '../Button'
+
+import { LoadMoreButton as Component } from './LoadMoreButton'
 
 export default {
-  title: 'Tooltips',
+  title: 'Buttons',
   component: Component,
+  argTypes: {},
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Box
-    sx={{
-      margin: '100px',
-    }}
-  >
-    <Component {...args} />
-  </Box>
+  <Component {...args} />
 )
 
-export const Tooltips = Template.bind({})
-Tooltips.args = {
-  tooltipPlacement: 'bottom-start',
-  tooltipText: 'Action is pending',
-  color: 'dark',
-  children: (
-    <span>
-      <Button color="primary">Text</Button>
-    </span>
-  ),
+export const LoadMoreButton = Template.bind({})
+LoadMoreButton.args = {
+  label: 'load more',
+  color: 'primary',
 }

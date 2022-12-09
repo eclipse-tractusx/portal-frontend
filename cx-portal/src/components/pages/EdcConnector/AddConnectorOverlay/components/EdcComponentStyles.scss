@@ -18,34 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ComponentStory } from '@storybook/react'
-import { Tooltips as Component } from '.'
-import { Button } from '../Button'
-
-export default {
-  title: 'Tooltips',
-  component: Component,
-}
-
-const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Box
-    sx={{
-      margin: '100px',
-    }}
-  >
-    <Component {...args} />
-  </Box>
-)
-
-export const Tooltips = Template.bind({})
-Tooltips.args = {
-  tooltipPlacement: 'bottom-start',
-  tooltipText: 'Action is pending',
-  color: 'dark',
-  children: (
-    <span>
-      <Button color="primary">Text</Button>
-    </span>
-  ),
+.errorContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: rgba(241, 38, 19, 0.1);
+  border-radius: 8px;
 }

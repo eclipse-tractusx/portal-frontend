@@ -37,6 +37,7 @@ export type SubscriptionData = {
 export type ServiceRequest = {
   id: string
   title: string
+  serviceTypeIds: string[]
   provider: string
   leadPictureUri: string
   contactEmail: string

@@ -145,6 +145,30 @@ export default function ServiceMarketplace() {
     [debouncedFilter]
   )
 
+  const setSortOptionFn = useCallback((value: string) => {
+    setSortOption(value)
+    setShowModal(false)
+  }, [])
+
+  const setModalFalse = useCallback(() => {
+    setShowModal(false)
+  }, [])
+
+  const setModalTrue = useCallback(() => {
+    setShowModal(true)
+  }, [])
+
+  const getServices = useCallback((serviceTypeIds: string[]) => {
+    const newArr: string[] = []
+
+    serviceTypeIds.forEach((serviceType: string) => {
+      if (serviceType === 'CONSULTANCE_SERVICE')
+        newArr.push('Consultance Service')
+      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
+    })
+    return newArr.join(', ')
+  }, [])
+
   return (
     <main className="serviceMarketplace">
       <div className="mainContainer">
@@ -164,14 +188,11 @@ export default function ServiceMarketplace() {
                 onChange={(e) => doFilter(e.target.value)}
               />
             </div>
-            <div className="filterSection">
+            <div className="filterSection" onMouseLeave={setModalFalse}>
               <ViewSelector activeView={selected} views={filterButtons} />
-
-              <div
-                className="iconSection"
-                onMouseEnter={() => setShowModal(true)}
-              >
+              <div className="iconSection">
                 <SortIcon
+                  onClick={setModalTrue}
                   sx={{
                     fontSize: 20,
                     color: '#939393',
@@ -183,10 +204,7 @@ export default function ServiceMarketplace() {
                 <SortOption
                   show={showModal}
                   selectedOption={sortOption}
-                  setSortOption={(value: string) => {
-                    setSortOption(value)
-                    setShowModal(!showModal)
-                  }}
+                  setSortOption={setSortOptionFn}
                   sortOptions={sortOptions}
                 />
               </div>
@@ -203,13 +221,17 @@ export default function ServiceMarketplace() {
             ) : (
               <RecommendedServices
                 services={cardServices && cardServices.slice(0, indexToSplit)}
+                getServices={getServices}
               />
             )}
           </div>
         </div>
       </div>
       {cardServices && cardServices.length > 2 && (
-        <ServicesElements services={cardServices.slice(indexToSplit)} />
+        <ServicesElements
+          services={cardServices.slice(indexToSplit)}
+          getServices={getServices}
+        />
       )}
     </main>
   )

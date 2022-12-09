@@ -27,8 +27,10 @@ import './ServiceMarketplace.scss'
 
 export default function ServicesElements({
   services,
+  getServices,
 }: {
   services: ServiceRequest[]
+  getServices: any
 }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -70,6 +72,7 @@ export default function ServicesElements({
                       buttonText="Details"
                       onBtnClick={() => handleClick(service.id)}
                       title={service.title}
+                      subTitle={getServices(service.serviceTypeIds)}
                       backgroundColor="#fff"
                     />
                   </Grid>

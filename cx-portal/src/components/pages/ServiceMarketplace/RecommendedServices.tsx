@@ -27,8 +27,10 @@ import './ServiceMarketplace.scss'
 
 export default function RecommendedServices({
   services,
+  getServices,
 }: {
   services?: ServiceRequest[]
+  getServices: any
 }) {
   const theme = useTheme()
   const navigate = useNavigate()
@@ -67,6 +69,7 @@ export default function RecommendedServices({
                 buttonText="Details"
                 onBtnClick={() => handleClick(service.id)}
                 title={service.title}
+                subTitle={getServices(service.serviceTypeIds)}
                 backgroundColor="#f7f7f7"
               />
             </Grid>
