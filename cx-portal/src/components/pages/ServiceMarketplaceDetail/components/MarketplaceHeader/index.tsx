@@ -72,10 +72,10 @@ export default function MarketplaceHeader({
     }
   }
 
-  const getAllServices = (serviceTypeIds: any) => {
+  const getAllServices = (serviceTypeIds: string[]) => {
     const newArr: string[] = []
 
-    serviceTypeIds.forEach((serviceType: any) => {
+    serviceTypeIds.forEach((serviceType: string) => {
       if (serviceType === 'CONSULTANCE_SERVICE')
         newArr.push('Consultance Service')
       if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
