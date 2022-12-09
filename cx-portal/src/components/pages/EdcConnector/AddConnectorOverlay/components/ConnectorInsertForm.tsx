@@ -21,7 +21,12 @@
 import { useTranslation } from 'react-i18next'
 import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
-import { Input, Tooltips } from 'cx-portal-shared-components'
+import {
+  Input,
+  Tooltips,
+  Typography,
+  Dropzone,
+} from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'
@@ -36,52 +41,122 @@ const ConnectorFormInput = ({
   name,
   rules,
   tooltipMsg,
+  type,
+  dropzoneProps,
 }: any) => {
   return (
     <>
-      <div
-        style={{
-          marginLeft: '50px',
-          position: 'relative',
-          top: '25px',
-          zIndex: '9',
-        }}
-      >
-        <Tooltips
-          additionalStyles={{
-            cursor: 'pointer',
-            marginTop: '30px !important',
-          }}
-          tooltipPlacement="top-start"
-          tooltipText={tooltipMsg}
-          children={
-            <span>
-              <HelpOutlineIcon fontSize={'small'} />
-            </span>
-          }
-        />
-      </div>
-      <Controller
-        render={({ field: { onChange, value } }) => (
-          <Input
-            sx={{
-              paddingTop: '10px',
+      {type === 'dropzone' ? (
+        <>
+          <div
+            style={{
+              display: 'flex',
+              marginBottom: '10px',
+              marginTop: '25px',
             }}
-            error={!!errors[name]}
-            helperText={helperText}
-            label={label}
-            placeholder={placeholder}
-            onChange={(event) => {
-              trigger(name)
-              onChange(event)
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: '14px',
+                color: '#111111',
+                fontWeight: '400',
+                paddingRight: '10px',
+              }}
+            >
+              {dropzoneProps.formTitle}*
+            </Typography>
+
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
+              }}
+              tooltipPlacement="top-start"
+              tooltipText={tooltipMsg}
+              children={
+                <span>
+                  <HelpOutlineIcon
+                    sx={{ color: '#B6B6B6' }}
+                    fontSize={'small'}
+                  />
+                </span>
+              }
+            />
+          </div>
+          <Controller
+            name={name}
+            control={control}
+            rules={rules}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <Dropzone
+                  inputContentTitle={dropzoneProps.title}
+                  inputContentSubTitle={dropzoneProps.subtitle}
+                  accept={dropzoneProps.accept}
+                  multiple={false}
+                  maxFiles={1}
+                  onChangeStatus={(meta: any, status: string) => {
+                    if (status === 'done' || status === 'preparing') {
+                      trigger(name)
+                      onChange(meta.file)
+                    }
+                  }}
+                />
+              )
             }}
-            value={value}
           />
-        )}
-        name={name}
-        control={control}
-        rules={rules}
-      />
+        </>
+      ) : (
+        <>
+          <div
+            style={{
+              marginLeft: '50px',
+              position: 'relative',
+              top: '25px',
+              zIndex: '9',
+            }}
+          >
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
+              }}
+              tooltipPlacement="top-start"
+              tooltipText={tooltipMsg}
+              children={
+                <span>
+                  <HelpOutlineIcon
+                    sx={{ color: '#B6B6B6' }}
+                    fontSize={'small'}
+                  />
+                </span>
+              }
+            />
+          </div>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input
+                sx={{
+                  paddingTop: '10px',
+                }}
+                error={!!errors[name]}
+                helperText={helperText}
+                label={label}
+                placeholder={placeholder}
+                onChange={(event) => {
+                  trigger(name)
+                  onChange(event)
+                }}
+                value={value}
+              />
+            )}
+            name={name}
+            control={control}
+            rules={rules}
+          />
+        </>
+      )}
     </>
   )
 }
@@ -99,6 +174,13 @@ const ConnectorInsertForm = ({
   const theme = useTheme()
   const { spacing } = theme
 
+  const dropzoneProps = {
+    formTitle: t('content.edcconnector.edcUpload.formTitle'),
+    title: t('content.edcconnector.edcUpload.title'),
+    subtitle: t('content.edcconnector.edcUpload.subtitle'),
+    accept: '*',
+  }
+
   return (
     <Box sx={{ width: '100%' }} className="connector-insert-form">
       <Grid container spacing={1.5} style={{ marginTop: '-60px' }}>
@@ -113,7 +195,7 @@ const ConnectorInsertForm = ({
             <div
               className="form-input"
               style={{
-                paddingTop: '40px',
+                paddingTop: '20px',
               }}
             >
               <ConnectorFormInput
@@ -218,6 +300,27 @@ const ConnectorInsertForm = ({
                   />
                 </div>
               )}
+            <div className="form-input">
+              <ConnectorFormInput
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'ConnectorDoc',
+                  type: 'dropzone',
+                  rules: {
+                    required: true,
+                  },
+                  dropzoneProps: dropzoneProps,
+                  helperText: t(
+                    'content.edcconnector.modal.insertform.doc.error'
+                  ),
+                  tooltipMsg: t(
+                    'content.edcconnector.modal.insertform.doc.tooltipMsg'
+                  ),
+                }}
+              />
+            </div>
           </form>
         </Grid>
       </Grid>
