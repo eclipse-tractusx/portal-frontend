@@ -17,6 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Refetching issue fix
 * Partner Network
    * Stop throbber in case of error and show No rows present message
+   * Empty details overlay issue fix
 * Connectors
    * DAPS api integration
    * Table updated with new column - Authentication status based on the DAPS api response
