@@ -20,16 +20,13 @@
 
 import { ComponentStory } from '@storybook/react'
 
-import { Button as Component } from '.'
+import { BackButton as Component } from './BackButton'
 
 export default {
   title: 'Buttons',
   component: Component,
   argTypes: {
-    children: {
-      name: 'label',
-    },
-    onClick: {
+    onBackButtonClick: {
       action: 'onClick',
     },
   },
@@ -39,11 +36,8 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />
 )
 
-export const Button = Template.bind({})
-Button.args = {
-  color: 'primary',
-  size: 'large',
-  disabled: false,
-  children: 'Button',
-  fullWidth: false,
+export const BackButton = Template.bind({})
+BackButton.args = {
+  backButtonLabel: 'Back',
+  backButtonVariant: 'text',
 }

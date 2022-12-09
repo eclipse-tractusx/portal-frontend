@@ -20,30 +20,20 @@
 
 import { ComponentStory } from '@storybook/react'
 
-import { Button as Component } from '.'
+import { LoadMoreButton as Component } from './LoadMoreButton'
 
 export default {
   title: 'Buttons',
   component: Component,
-  argTypes: {
-    children: {
-      name: 'label',
-    },
-    onClick: {
-      action: 'onClick',
-    },
-  },
+  argTypes: {},
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />
 )
 
-export const Button = Template.bind({})
-Button.args = {
+export const LoadMoreButton = Template.bind({})
+LoadMoreButton.args = {
+  label: 'load more',
   color: 'primary',
-  size: 'large',
-  disabled: false,
-  children: 'Button',
-  fullWidth: false,
 }
