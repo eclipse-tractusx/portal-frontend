@@ -78,11 +78,11 @@ export default function AppPage() {
 
   const defaultValues = {
     longDescriptionEN:
-    fetchAppStatus?.descriptions?.filter(
+      fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
       )[0].longDescription || '',
     longDescriptionDE:
-    fetchAppStatus?.descriptions?.filter(
+      fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0].longDescription || '',
     images: null,

@@ -23,6 +23,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Table updated with new column - Authentication status based on the DAPS api response
 
 * BugFix - Add user role for app not working fix
+* BugFix - Page break issue fix in app release process - step 2
 
 ## 0.9.0
 
