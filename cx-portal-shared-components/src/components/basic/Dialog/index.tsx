@@ -49,11 +49,8 @@ export const Dialog = ({
 
   const fullScreenWidth = `calc(100vw - ${theme.spacing(8)})`
 
-  const width = fullWidth
-    ? fullScreenWidth
-    : maxWidth
-    ? 'auto'
-    : MODAL_DEFAULT_WIDTH
+  const defaultWidth = maxWidth ? 'auto' : MODAL_DEFAULT_WIDTH
+  const width = fullWidth ? fullScreenWidth : defaultWidth
 
   return (
     <MuiDialog

@@ -45,7 +45,6 @@ export default function RecommendedServices({
       <div className="recommended-section">
         <PageNotifications
           description={t('content.serviceMarketplace.noDataMessage')}
-          onCloseNotification={function noRefCheck() {}}
           open
           severity="error"
           showIcon
