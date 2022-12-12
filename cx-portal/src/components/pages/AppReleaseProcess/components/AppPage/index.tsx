@@ -78,11 +78,11 @@ export default function AppPage() {
 
   const defaultValues = {
     longDescriptionEN:
-      appStatusData?.descriptions?.filter(
+    fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
       )[0].longDescription || '',
     longDescriptionDE:
-      appStatusData?.descriptions?.filter(
+    fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0].longDescription || '',
     images: null,
@@ -90,9 +90,9 @@ export default function AppPage() {
     uploadTechnicalGuide: null,
     uploadDataContract: null,
     uploadAppContract: null,
-    providerHomePage: appStatusData?.providerUri || '',
-    providerContactEmail: appStatusData?.contactEmail || '',
-    providerPhoneContact: appStatusData?.contactNumber || '',
+    providerHomePage: fetchAppStatus?.providerUri || '',
+    providerContactEmail: fetchAppStatus?.contactEmail || '',
+    providerPhoneContact: fetchAppStatus?.contactNumber || '',
   }
 
   const {
@@ -193,7 +193,7 @@ export default function AppPage() {
           shortDescription:
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0].shortDescription || '',
+            )[0]?.shortDescription || '',
         },
         {
           languageCode: 'de',
@@ -201,7 +201,7 @@ export default function AppPage() {
           shortDescription:
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
-            )[0].shortDescription || '',
+            )[0]?.shortDescription || '',
         },
       ],
       images: [],
