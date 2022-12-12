@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Box, BoxProps, Collapse, Fade } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button } from '../Button'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
@@ -48,10 +48,10 @@ export const SideMenu = ({
 
   useEffect(() => setExpanded(isExpanded), [isExpanded])
 
-  const toggleExpanded = () => {
+  const toggleExpanded = useCallback(() => {
     setExpanded(!expanded)
     onChange?.(!expanded)
-  }
+  }, [expanded, onChange])
 
   return (
     <Box
