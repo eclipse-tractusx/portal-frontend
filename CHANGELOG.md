@@ -26,7 +26,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * Add Draggable Chip component
 
 * BugFix - Add user role for app not working fix
-   * Sort Icon click/Mouse event issue fix 
 
 
 ## 0.9.0
