@@ -37,6 +37,7 @@ export const CardHorizontal = Template.bind({})
 CardHorizontal.args = {
   label: 'Catena-X',
   title: 'Digital Twin Debugger',
+  subTitle: 'Service Category',
   borderRadius: 20,
   imagePath: '',
   imageAlt: 'App Card ',

@@ -4,6 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Feature - Service marketplace UI Updates
 * Technical User
    * Removed multi overlay layering
    * Update the style of the response
@@ -12,10 +13,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Filter apis added
    * Load More button to handle pagination
    * Delete Modal positioning issue fix
-   * Sort Icon click/Mouse event issue fix 
+   * Sort Icon click/Mouse event issue fix
+   * Refetching issue fix
+* Partner Network
+   * Stop throbber in case of error and show No rows present message
+   * Empty details overlay issue fix
+* Connectors
+   * DAPS api integration
+   * Table updated with new column - Authentication status based on the DAPS api response
 * Shared Components
   * Add Side List component
   * Add Draggable Chip component
+
+* BugFix - Add user role for app not working fix
+   * Sort Icon click/Mouse event issue fix 
+
 
 ## 0.9.0
 
