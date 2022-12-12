@@ -21,6 +21,8 @@
 import { Box, BoxProps, Collapse, Fade } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Button } from '../Button'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 
 export interface SideMenuProps extends Omit<BoxProps, 'onChange'> {
   header?: string | JSX.Element
@@ -103,6 +105,7 @@ export const SideMenu = ({
           onClick={toggleExpanded}
           variant={expanded ? 'outlined' : 'contained'}
           size="small"
+          endIcon={expanded ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
           sx={{
             '&:focus': {
               boxShadow: 'none',

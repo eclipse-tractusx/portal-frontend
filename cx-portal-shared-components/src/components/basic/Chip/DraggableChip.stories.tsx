@@ -18,40 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
 import { ComponentStory } from '@storybook/react'
 
-import { SideMenu as Component } from '.'
-import { DraggableChip } from '../Chip/DraggableChip'
+import { DraggableChip as Component } from './DraggableChip'
 
 export default {
-  title: 'Menus',
+  title: 'Chip',
   component: Component,
   args: {
-    header: 'Filter Semantic Models by assigned Use Cases',
-    subHeader: 'Assign a Use Case by dragging it to a Semantic Model',
-    buttonTextCollapsed: 'Show Filter',
-    buttonTextExpanded: 'Close Filter',
-    isExpanded: false,
+    children: 'name_use_case_4',
+    isSelected: false,
+    width: '170px',
   },
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
+  <Component {...args}>{args.children}</Component>
 )
 
-export const SideMenu = Template.bind({})
-SideMenu.args = {
-  children: (
-    <Box sx={{ '& > * + *': { marginTop: 2 } }}>
-      <DraggableChip>name_use_case_4</DraggableChip>
-      <DraggableChip>name_use_case_4</DraggableChip>
-      <DraggableChip>name_use_case_4</DraggableChip>
-      <DraggableChip isSelected>name_use_case_7</DraggableChip>
-      <DraggableChip>name_use_case_7</DraggableChip>
-      <DraggableChip>name_use_case_7</DraggableChip>
-      <DraggableChip>name_use_case_8</DraggableChip>
-      <DraggableChip>name_use_case_8</DraggableChip>
-    </Box>
-  ),
-}
+export const DraggableChip = Template.bind({})

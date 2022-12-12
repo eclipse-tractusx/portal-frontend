@@ -13,6 +13,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Load More button to handle pagination
    * Delete Modal positioning issue fix
    * Sort Icon click/Mouse event issue fix 
+* Shared Components
+  * Add Side List component
+  * Add Draggable Chip component
 
 ## 0.9.0
 

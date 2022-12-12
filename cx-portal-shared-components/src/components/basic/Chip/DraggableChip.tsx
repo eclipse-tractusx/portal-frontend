@@ -24,37 +24,45 @@ import OpenWithIcon from '@mui/icons-material/OpenWith'
 interface DraggableChipProps extends BoxProps {
   isSelected?: boolean
   onClick?: () => void
+  width?: string
+  backgroundColor?: string
+  backgroundColorHighlight?: string
   children: React.ReactNode
 }
 
 export const DraggableChip = ({
   isSelected,
   children,
+  width = '170px',
+  backgroundColor = 'rgb(243, 235, 208)',
+  backgroundColorHighlight = 'rgb(255, 230, 100)',
   ...props
 }: DraggableChipProps) => {
   const theme = useTheme()
 
   return (
     <Box
+      draggable="true"
       {...props}
-      onClick={() => props.onClick?.()}
       sx={{
         cursor: 'pointer',
         boxSizing: 'border-box',
-        width: '170px',
+        width: width,
         height: '36px',
         paddingX: 2,
+        opacity: 0.999, // keep transparent rounded corners when dragging
         borderRadius: '4px',
         typography: 'label4',
         backgroundColor: isSelected
-          ? 'rgb(255, 230, 100)'
-          : 'rgb(243, 235, 208)',
+          ? backgroundColorHighlight
+          : backgroundColor,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'hidden',
         transition: theme.transitions.create(['background-color']),
         '&:hover': {
-          backgroundColor: 'rgb(255, 230, 100)',
+          backgroundColor: backgroundColorHighlight,
         },
         ...props.sx,
       }}
