@@ -21,6 +21,7 @@
 import { ComponentStory } from '@storybook/react'
 
 import { Dropzone as Component } from '.'
+import { Preview } from './components/Preview'
 
 export default {
   title: 'Dropzone',
@@ -33,7 +34,37 @@ export default {
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
+  <div>
+    <Component {...args} />
+    <Preview
+      uploadFiles={[
+        { fileName: 'Test123.pdf', fileSize: 44345000, status: 'new' },
+        {
+          fileName: 'Document.pdf',
+          fileSize: 65402,
+          status: 'uploading',
+          progressPercent: 45,
+        },
+        {
+          fileName:
+            'Das ist ein sehr langer Name von einer Datei - der Name ist wirklich äußerst, äußerst lang...!.pdf',
+          fileSize: 32003,
+          status: 'new',
+        },
+        {
+          fileName: 'My pretty PDF.pdf',
+          fileSize: 54676543,
+          status: 'upload_success',
+        },
+        {
+          fileName: 'Nix wars.xls',
+          fileSize: 543545,
+          status: 'upload_error',
+        },
+      ]}
+      onDelete={() => {}}
+    />
+  </div>
 )
 
 export const Dropzone = Template.bind({})

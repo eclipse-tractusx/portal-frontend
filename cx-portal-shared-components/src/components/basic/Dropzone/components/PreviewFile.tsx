@@ -18,18 +18,133 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
+import { Box, IconButton, useTheme } from '@mui/material'
+import React from 'react'
 import { UploadFile } from '../types'
+import { FileIcon } from '../../CustomIcons/FileIcon'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+
+export const formatBytes = (b: number) => {
+  const units = ['bytes', 'KB', 'MB']
+  let l = 0
+  let n = b
+
+  while (n >= 1024) {
+    n /= 1024
+    l += 1
+  }
+
+  return `${n.toFixed(n >= 10 || l < 1 ? 0 : 1)} ${units[l]}`
+}
 
 export interface PreviewFileProps {
   uploadFile: UploadFile
-  onDelete: () => void
+  onDelete?: () => void
 }
 
 export const PreviewFile = ({ uploadFile, onDelete }: PreviewFileProps) => {
+  const theme = useTheme()
+
+  const isUploading = !!uploadFile.progressPercent
+
   return (
-    <Box>
-      {uploadFile.fileName} {uploadFile.status}
+    <Box
+      sx={{
+        marginBottom: 1,
+        borderRadius: '8px',
+        overflow: 'hidden',
+        typography: 'label3',
+        paddingX: 2,
+        paddingY: 1,
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        '&:before': {
+          zIndex: -2,
+          content: "''",
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'selected.hover',
+        },
+        '&:after': {
+          zIndex: -1,
+          content: "''",
+          pointerEvents: 'none',
+          position: 'absolute',
+          inset: 0,
+          width: isUploading ? `${uploadFile.progressPercent}%` : 0,
+          backgroundColor: 'primary.main',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          flex: '0 0 auto',
+          height: '56px',
+          width: '56px',
+          backgroundColor: isUploading
+            ? 'background.background12'
+            : 'selected.focus',
+          borderRadius: '8px',
+          marginRight: 4.5,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: isUploading ? 'primary.contrastText' : 'icon.icon03',
+        }}
+      >
+        <FileIcon fillColor="currentColor" size={22} />
+      </Box>
+      <Box
+        sx={{
+          flex: '1 1 auto',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          color: isUploading ? 'primary.contrastText' : 'text.primary',
+          textShadow: isUploading
+            ? `0 0 2px ${theme.palette.primary.main}`
+            : 'none',
+        }}
+      >
+        <Box>{uploadFile.fileName}</Box>
+        <Box
+          sx={{
+            marginTop: 0.5,
+            typography: 'label4',
+            color: isUploading ? 'inherit' : 'textField.placeholderText',
+          }}
+        >
+          {formatBytes(uploadFile.fileSize)}
+        </Box>
+      </Box>
+      {['upload_success', 'upload_error'].includes(uploadFile.status) && (
+        <Box>
+          <Box
+            sx={{
+              marginLeft: 3,
+              boxSizing: 'border-box',
+              paddingX: 1.5,
+              paddingY: 0.5,
+              borderRadius: '14px',
+              height: '28px',
+              border: '2px solid currentColor',
+              typography: 'label4',
+              color:
+                uploadFile.status === 'upload_error'
+                  ? 'support.error'
+                  : 'support.success',
+            }}
+          >
+            {uploadFile.status}
+          </Box>
+        </Box>
+      )}
+      <Box sx={{ flex: '0 0 auto', marginLeft: 3 }}>
+        <IconButton>
+          <DeleteOutlineIcon sx={{ color: 'primary.main' }} />
+        </IconButton>
+      </Box>
     </Box>
   )
 }

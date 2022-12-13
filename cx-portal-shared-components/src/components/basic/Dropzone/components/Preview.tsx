@@ -24,41 +24,41 @@ import { PreviewFile } from './PreviewFile'
 
 export interface PreviewProps {
   uploadFiles: UploadFile[]
-  onDelete: (index: number) => void
+  onDelete?: (index: number) => void
 }
 
 export const Preview = ({ uploadFiles, onDelete }: PreviewProps) => {
   const numUploaded = uploadFiles.filter(
     (file) => file.status === 'upload_success'
-  )
+  ).length
 
   const isUploading = (file: UploadFile) => file.status === 'uploading'
 
   return (
-    <Box>
-      <Box>
+    <Box sx={{ marginTop: 4 }}>
+      <Box sx={{ typography: 'label2' }}>
         Uploaded {numUploaded} of {uploadFiles.length} files
       </Box>
-      <Box>
+      <Box sx={{ marginTop: 4 }}>
         {uploadFiles.map(
           (file, index) =>
             !isUploading(file) && (
               <PreviewFile
                 key={index}
                 uploadFile={file}
-                onDelete={() => onDelete(index)}
+                onDelete={() => onDelete?.(index)}
               />
             )
         )}
       </Box>
-      <Box sx={{ marginTop: 2 }}>
+      <Box sx={{ marginTop: 4 }}>
         {uploadFiles.map(
           (file, index) =>
             isUploading(file) && (
               <PreviewFile
                 key={index}
                 uploadFile={file}
-                onDelete={() => onDelete(index)}
+                onDelete={() => onDelete?.(index)}
               />
             )
         )}
