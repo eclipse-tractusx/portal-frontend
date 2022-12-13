@@ -70,7 +70,10 @@ export const PageLoadingTable = function <T>({
     },
   })
   const [loading, setLoading] = useState(true)
-  const nextPage = () => setPage(page + 1)
+
+  function nextPage() {
+    setPage(page + 1)
+  }
   const hasMore = hasMorePages(data)
   const maxRows = getMaxRows(data)
 
