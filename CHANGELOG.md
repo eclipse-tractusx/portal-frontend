@@ -11,8 +11,6 @@ n/a
 ### Change
 * Shared Components
    * "load more" button component released with new design
-   * modal dialog default width, maxWidth and fullWidth implemented
-   * modal dialog content typography updated and positioning centralized
    * page snackbar component released with new design
    * page snackbar auto closure implemented (as variant)
    * page snackbar positioning updated
