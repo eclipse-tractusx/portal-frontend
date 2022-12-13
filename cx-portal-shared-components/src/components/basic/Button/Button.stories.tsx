@@ -45,4 +45,5 @@ Button.args = {
   size: 'large',
   disabled: false,
   children: 'Button',
+  fullWidth: false,
 }

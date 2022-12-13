@@ -19,11 +19,13 @@
  ********************************************************************************/
 
 import { useState } from 'react'
+import Box from '@mui/material/Box'
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import { Grid, Container } from '@mui/material'
+import LockIcon from '@mui/icons-material/Lock'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
@@ -57,6 +59,30 @@ export const ConnectorTableColumns = (
       headerName: t('content.edcconnector.columns.type'),
       flex: 1,
       sortable: false,
+    },
+    {
+      field: 'DapsRegistrationSuccessful',
+      headerName: t('content.edcconnector.columns.status'),
+      flex: 1,
+      sortable: false,
+      renderCell: ({ row }: { row: any }) => (
+        <Box onClick={() => {}}>
+          <IconButton
+            color="secondary"
+            disabled
+            size="small"
+            style={{
+              alignSelf: 'center',
+            }}
+          >
+            {row.DapsRegistrationSuccessful ? (
+              <LockIcon sx={{ color: 'green' }} />
+            ) : (
+              <LockIcon sx={{ color: '#b6b6b6' }} />
+            )}
+          </IconButton>
+        </Box>
+      ),
     },
     {
       field: 'detail',

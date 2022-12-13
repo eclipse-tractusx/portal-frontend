@@ -24,6 +24,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  CircleProgress,
 } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
@@ -46,9 +47,10 @@ export const AddTechnicalUser = () => {
   const dispatch = useDispatch()
   const [response, setResponse] = useState<ServiceAccountDetail>()
   const [addServiceAccount] = useAddServiceAccountMutation()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleConfirm = async (formValues: DefaultFormFieldValuesType) => {
-    console.log('Form data: ', formValues)
+    setLoading(true)
     try {
       const result = await addServiceAccount({
         name: formValues.TechnicalUserName,
@@ -58,9 +60,11 @@ export const AddTechnicalUser = () => {
       }).unwrap()
       console.log(result)
       setResponse(result)
+      setLoading(false)
       dispatch(updateData(UPDATES.TECHUSER_LIST))
     } catch (err) {
       console.log(err)
+      setLoading(false)
     }
     //openAddTechnicalUserResponseOverlay()
   }
@@ -109,55 +113,85 @@ export const AddTechnicalUser = () => {
 
   return (
     <>
-      <DialogHeader
-        title={t('content.addUser.technicalUserHeadline')}
-        intro={t('content.addUser.technicalUserSubheadline')}
-        closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(closeOverlay())}
-      />
-      <DialogContent>
-        <TechnicalUserAddForm {...{ handleSubmit, control, errors, trigger }} />
-        <Box sx={{ paddingTop: '25px' }}>
-          <UserDetailCard
-            cardContentItems={userDetailsData.cardContentItems}
-            variant="wide"
-          />
-        </Box>
-      </DialogContent>
-      <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={onFormSubmit}
-          disabled={formHasErrors()}
-        >
-          {t('global.actions.confirm')}
-        </Button>
-      </DialogActions>
-      {response && (
+      {response ? (
         <ServerResponseOverlay
           title={t('content.addUser.technicalUserHeadline')}
           intro={t('content.addUser.technicalUserSubheadlineSuccess')}
           dialogOpen={true}
+          handleCallback={() => dispatch(closeOverlay())}
         >
           <UserDetailCard
             cardContentItems={{
-              clientId: { label: 'Client ID', value: response.clientId },
-              userName: { label: 'UserName', value: response.name },
+              clientId: {
+                label: t('content.techUser.details.clientId'),
+                value: response.clientId,
+              },
+              userName: {
+                label: t('content.techUser.details.username'),
+                value: response.name,
+              },
               authType: {
-                label: 'Auth Type',
+                label: t('content.techUser.details.authType'),
                 value: response.authenticationType,
               },
               clientSecret: {
-                label: 'Client Secret',
+                label: t('content.techUser.details.clientSercret'),
                 value: response.secret,
               },
             }}
             variant="wide"
           />
         </ServerResponseOverlay>
+      ) : (
+        <>
+          <DialogHeader
+            title={t('content.addUser.technicalUserHeadline')}
+            intro={t('content.addUser.technicalUserSubheadline')}
+            closeWithIcon={true}
+            onCloseWithIcon={() => dispatch(closeOverlay())}
+          />
+          <DialogContent>
+            <TechnicalUserAddForm
+              {...{ handleSubmit, control, errors, trigger }}
+            />
+            <Box sx={{ paddingTop: '25px' }}>
+              <UserDetailCard
+                cardContentItems={userDetailsData.cardContentItems}
+                variant="wide"
+              />
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('global.actions.cancel')}
+            </Button>
+            {loading ? (
+              <span
+                style={{
+                  width: '100px',
+                  textAlign: 'center',
+                }}
+              >
+                <CircleProgress
+                  size={40}
+                  step={1}
+                  interval={0.1}
+                  colorVariant={'primary'}
+                  variant={'indeterminate'}
+                  thickness={8}
+                />
+              </span>
+            ) : (
+              <Button
+                variant="contained"
+                onClick={onFormSubmit}
+                disabled={formHasErrors()}
+              >
+                {t('global.actions.confirm')}
+              </Button>
+            )}
+          </DialogActions>
+        </>
       )}
     </>
   )

@@ -337,7 +337,8 @@
         "id": "Konnektor-ID",
         "type": "Steckertyp",
         "details": "Einzelheiten",
-        "location": "Location"
+        "location": "Location",
+        "status": "Authentication Status"
       },
       "headertitle": "Technische Integration - Connector & IDPs",
       "subheadertitle": "Connector",
@@ -360,6 +361,11 @@
         "managed": {
           "title": "Register Managed Connector",
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+        },
+        "daps": {
+          "title": "Create DAPS Registration",
+          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+          "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
@@ -392,6 +398,10 @@
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
+          },
+          "doc": {
+            "error": "Valid types Image/pdf",
+            "tooltipMsg": "Connector document - Message to be added"
           }
         },
         "create": {
@@ -406,6 +416,11 @@
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
+      },
+      "edcUpload": {
+        "formTitle": "Update your public key",
+        "title": "Drag & drop your files here",
+        "subtitle": "or browse files on your computer."
       }
     },
     "partnernetwork": {
@@ -575,8 +590,10 @@
       }
     },
     "idpmanagement": {
-      "addIdpHeadline": "Erstelle einen neuen Identity Provider",
-      "addIdpSubheadline": "Wähle einen IdP Namen (dieser wird als Login Name in der Tenant-Auswahl angezeigt werden) und den IdP Type.",
+      "addIdpHeadline": "Identity Provider Konfiguration",
+      "addIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed. <br> Follow the",
+      "idpHelp": "help",
+      "updateIdpSubheadline2": "to find a number of examples of local idp's such as Azure, Keycloak, etc.",
       "updateIdpHeadline": "Update Identity Provider",
       "updateIdpSubheadline": "Choose the required settings for your IDP",
       "enableIdpHeadline": "Activierung Identity Provider {{ idp }}",
@@ -916,7 +933,23 @@
       "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
-      "subscribeSuccessMsg": "Subscribed Successfully"
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "tabs": {
+        "all": "All Services",
+        "dataspaceService": "Dataspace Services",
+        "consultantService": "Consultant Services"
+      },
+      "sortOptions": {
+        "new": "Newest First",
+        "provider": "Provider"
+      },
+      "document": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+      }
     },
     "appMarketplace": {
       "headline": "Order Business Application",
@@ -924,6 +957,14 @@
       "desc2": "Please note that the subscription request will trigger a service call on provider side.The app provider will align with you all further steps. This may take up to 5 days.",
       "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
       "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
+    },
+    "techUser": {
+      "details": {
+        "clientId": "Client ID",
+        "username": "User Name",
+        "authType": "Auth Type",
+        "clientSercret": "Client Secret"
+      }
     }
   },
   "navigation": {
@@ -949,7 +990,7 @@
     },
     "sortOptions": {
       "new": "Newest First",
-      "priority": "Priority First",
+      "oldest": "Oldest First",
       "unread": "Unread First",
       "all": "all",
       "app": "app only",
@@ -999,7 +1040,7 @@
       "submit": "Einreichen",
       "no": "No",
       "yes": "Yes",
-      "readMore": "Read More"
+      "details": "Details"
     },
     "state": {
       "enabled": "aktiv",
