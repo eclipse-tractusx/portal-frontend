@@ -19,57 +19,65 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
+import { useState } from 'react'
 import { Typography } from '../../Typography'
-import { CloudUploadIcon } from '../../CustomIcons/CloudUploadIcon'
+import UploadFileIcon from '@mui/icons-material/UploadFile'
 
-export const DropArea = ({
-  title = 'Drop files to upload',
-  subtitle = 'or click to select files',
-  children,
-  disabled = false,
-}: {
-  title?: string
-  subtitle?: string
+export interface DropAreaProps {
+  title?: string | JSX.Element
   children?: JSX.Element | JSX.Element[]
   disabled?: boolean
-}) => (
-  <Box
-    sx={{
-      position: 'relative',
-      backgroundColor: 'background.background01',
-      borderRadius: '40px',
-      border: 'none',
-      backgroundImage:
-        'url(data:image/svg+xml,%3csvg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"%3e%3crect width="100%25" height="100%25" fill="none" rx="40" ry="40" stroke="%23B6B6B6FF" stroke-width="2" stroke-dasharray="16" stroke-dashoffset="0" stroke-linecap="square"/%3e%3c/svg%3e)',
-      textAlign: 'center',
-      minHeight: 274,
-      label: {
-        padding: '48px 0',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        cursor: disabled ? 'default' : 'pointer',
-      },
-    }}
-  >
-    <label>
-      <CloudUploadIcon fillColor={'#939393'} size={64} />
-      <Typography
-        variant="h4"
-        sx={{
-          display: 'block',
-          fontFamily: 'LibreFranklin-Light',
-          marginTop: '24px',
-        }}
-      >
-        {title}
-      </Typography>
-      <Typography variant="body1" sx={{ display: 'block' }}>
-        {subtitle}
-      </Typography>
-    </label>
-    {children}
-  </Box>
-)
+}
+
+export const DropArea = ({
+  title = (
+    <div>
+      Drop files to upload
+      <br />
+      or click to select files
+    </div>
+  ),
+  children,
+  disabled = false,
+}: DropAreaProps) => {
+  const [isDragging, setDragging] = useState(false)
+
+  const borderRadius = 24
+  const borderColor = 'rgb(7, 73, 133)'
+  const dashedBorder = `"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='${borderRadius}' ry='${borderRadius}' stroke='${borderColor}' stroke-width='2' stroke-dasharray='2%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"`
+
+  return (
+    <Box
+      onDragEnter={() => setDragging(true)}
+      onDragLeave={() => setDragging(false)}
+      sx={{
+        position: 'relative',
+        backgroundColor: isDragging ? 'selected.focus' : 'selected.hover',
+        borderRadius: `${borderRadius}px`,
+        border: 'none',
+        backgroundImage: `url(${dashedBorder})`,
+        textAlign: 'center',
+        minHeight: 274,
+        label: {
+          padding: '48px 0',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          cursor: disabled ? 'default' : 'pointer',
+        },
+      }}
+    >
+      <label>
+        <UploadFileIcon
+          sx={{ color: 'primary.main', width: '60px', height: '60px' }}
+        />
+        <Typography variant="body1" sx={{ marginTop: 3, display: 'block' }}>
+          {title}
+        </Typography>
+      </label>
+      {children}
+    </Box>
+  )
+}

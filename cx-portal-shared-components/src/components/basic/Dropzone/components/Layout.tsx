@@ -38,8 +38,8 @@ const Layout = (props: ILayoutProps) => {
         },
       }}
     >
-      {previews}
       <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
+      {previews}
     </Box>
   )
 }
