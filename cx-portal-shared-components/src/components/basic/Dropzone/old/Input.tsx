@@ -19,8 +19,8 @@
  ********************************************************************************/
 
 import React from 'react'
-import { IInputProps } from '../DropzoneTypes'
-import { DropArea } from './DropArea'
+import { IInputProps } from './DropzoneTypes'
+import { DropArea } from '../components/DropArea'
 
 class Input extends React.PureComponent<IInputProps> {
   render() {

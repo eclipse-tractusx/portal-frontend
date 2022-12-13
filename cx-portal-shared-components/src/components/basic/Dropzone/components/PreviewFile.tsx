@@ -18,30 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ILayoutProps } from '../DropzoneTypes'
 import { Box } from '@mui/material'
+import { UploadFile } from '../types'
 
-const Layout = (props: ILayoutProps) => {
-  const {
-    input,
-    previews,
-    dropzoneProps,
-    files,
-    extra: { maxFiles },
-  } = props
+export interface PreviewFileProps {
+  uploadFile: UploadFile
+  onDelete: () => void
+}
 
+export const PreviewFile = ({ uploadFile, onDelete }: PreviewFileProps) => {
   return (
-    <Box
-      sx={{
-        '.input': {
-          visibility: 'hidden',
-        },
-      }}
-    >
-      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
-      {previews}
+    <Box>
+      {uploadFile.fileName} {uploadFile.status}
     </Box>
   )
 }
-
-export default Layout

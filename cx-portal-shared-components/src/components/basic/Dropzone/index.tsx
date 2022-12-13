@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import React from 'react'
-import Layout from './components/Layout'
-import Preview from './components/Preview'
-import Input from './components/Input'
+import Layout from './old/Layout'
+import Preview from './old/Preview'
+import Input from './old/Input'
 
 import {
   formatBytes,
@@ -31,7 +31,7 @@ import {
   mergeStyles,
   defaultClassNames,
   getFilesFromEvent as defaultGetFilesFromEvent,
-} from './utils'
+} from './old/utils'
 
 import {
   IDropzoneProps,
@@ -40,7 +40,7 @@ import {
   IFileWithMeta,
   IInputProps,
   IUploadParams,
-} from './DropzoneTypes'
+} from './old/DropzoneTypes'
 
 class Dropzone extends React.Component<
   IDropzoneProps,
