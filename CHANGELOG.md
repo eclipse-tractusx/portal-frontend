@@ -4,28 +4,45 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-* Feature - Service marketplace UI Updates
-* Technical User
-   * Removed multi overlay layering
-   * Update the style of the response
-* Notification
-   * Sorting apis added
-   * Filter apis added
-   * Load More button to handle pagination
-   * Delete Modal positioning issue fix
-   * Sort Icon click/Mouse event issue fix
-   * Refetching issue fix
-* Partner Network
-   * Stop throbber in case of error and show No rows present message
-   * Empty details overlay issue fix
-* Connectors
-   * DAPS api integration
-   * Table updated with new column - Authentication status based on the DAPS api response
 * Shared Components
   * Add Side List component
   * Add Draggable Chip component
 
-* BugFix - Add user role for app not working fix
+## 0.10.0
+
+### Change
+* Shared Components
+   * "load more" button component released with new design
+   * page snackbar component released with new design
+   * page snackbar auto closure implemented (as variant)
+   * page snackbar positioning updated
+   * tooltip enhanced by adding light color variant
+* Partner Network
+   * Stop throbber in case of error and show No rows present message
+   * Empty details overlay issue fix
+
+### Feature
+* Service Marketplace
+   * new UI released
+   * enabled different views by service category
+   * enabled sorting and in-page search
+* Connector Registration
+   * style updated and connector details enhanced inside the "my connectors" table
+   * added DAPS logic and file upload inside the connector registration ui and business logic
+* Notifications Service
+   * enabled sorting and filtering
+   * pagination enabled by adding "load more" function and receiving pagination details via api
+
+### Technical Support
+* n/a
+
+### Bugfix
+* Technical User creation: Removed multi overlay layering and corrected response style
+* Notification Service:
+   * modal for message deletion page positioning fixed
+   * sort icon behavior on click/mouse over fixed
+   * notification api trigger logic fixed
+* App user management: user role deletion fixed
 
 
 ## 0.9.0
