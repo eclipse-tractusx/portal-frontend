@@ -31,7 +31,7 @@ interface ServerResponseOverlayProps {
   intro?: string
   dialogOpen: boolean
   children?: JSX.Element | JSX.Element[]
-  handleCallback?: any
+  handleCallback?: () => void
   iconComponent?: JSX.Element
 }
 
