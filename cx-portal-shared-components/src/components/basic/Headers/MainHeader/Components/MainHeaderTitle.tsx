@@ -27,6 +27,7 @@ export const MainHeaderTitle = ({
   subTitleWidth,
   titleTextVariant = 'h2',
   subTitleTextVariant = 'h2',
+  titleSpacing = '0px',
 }: MainHeaderProps) => {
   return (
     <>
@@ -35,6 +36,7 @@ export const MainHeaderTitle = ({
           sx={{
             fontFamily: 'LibreFranklin-Light',
             fontWeight: 600,
+            paddingBottom: titleSpacing,
           }}
           variant={titleTextVariant}
         >

@@ -35,6 +35,7 @@ export default function SearchSection({
         subTitleTextVariant="h3"
         headerHeight={551}
         subTitleWidth={687}
+        titleSpacing="34px"
         background="LinearGradient1"
         imagePath="./company-roles.svg"
       />

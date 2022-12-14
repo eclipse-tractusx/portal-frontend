@@ -72,6 +72,7 @@ export interface MainHeaderProps {
     | 'caption2'
     | 'caption3'
     | 'label1'
+  titleSpacing?: string
 }
 
 export const MainHeader = ({
@@ -84,6 +85,7 @@ export const MainHeader = ({
   imagePath,
   titleTextVariant,
   subTitleTextVariant,
+  titleSpacing,
 }: MainHeaderProps) => {
   const backgroundstyle = () => {
     if (background === 'LinearGradient1') {
@@ -155,7 +157,7 @@ export const MainHeader = ({
       <Box
         sx={{
           width: '100%',
-          padding: '0px 100px',
+          padding: '0px 180px',
           margin: '0px',
           paddingTop: '150px',
           zIndex: 1,
@@ -169,6 +171,7 @@ export const MainHeader = ({
           subTitleWidth={subTitleWidth}
           titleTextVariant={titleTextVariant}
           subTitleTextVariant={subTitleTextVariant}
+          titleSpacing={titleSpacing}
         />
 
         <div className="children-header">{children}</div>
