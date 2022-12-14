@@ -18,14 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip'
-import { styled } from '@mui/material/styles'
-import { theme } from '../../../theme'
+import Tooltip from '@mui/material/Tooltip'
 
 interface TooltipsProps {
   children: any
   tooltipText: string
+  color?: 'light' | 'dark'
   tooltipPlacement?:
     | 'top'
     | 'right'
@@ -40,61 +38,45 @@ interface TooltipsProps {
     | 'top-end'
     | 'top-start'
   tooltipArrow?: boolean
-  arrowColor?: string
-  backgroundColor?: string
-  textColor?: string
   additionalStyles?: any
 }
 
 export const Tooltips = ({
   children, // Element to hover
-  backgroundColor, //Tooltip container background color
   tooltipPlacement = 'bottom', // TooltipPosition & ArrowPostion ex - <top-start>
   tooltipArrow = true, // Show/Hide arrow
   tooltipText, // Tooltip text
-  arrowColor, // Tooltip arrow icon color
-  textColor, // Tooltip text color
+  color = 'dark',
   additionalStyles, //additionalStyles to the tooltip container. ex - height, width, align
 }: TooltipsProps) => {
-  const [open, setOpen] = useState(false)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-  const handleOpen = () => {
-    setOpen(true)
-  }
-
-  const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }}>
-      {props.children}
-    </Tooltip>
-  ))(() => ({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: arrowColor || theme.palette.background.background14,
-    },
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: backgroundColor || theme.palette.background.background14,
-      color: textColor || theme.palette.common.white,
-      padding: 15,
-      maxWidth: 300,
-      fontSize: '14px',
-      lineHeight: '20px',
-      ...additionalStyles,
-    },
-  }))
+  const backgroundColor =
+    color === 'dark' ? 'background.background14' : 'grey.100'
 
   return (
-    <>
-      <CustomTooltip
-        title={tooltipText}
-        placement={tooltipPlacement}
-        arrow={tooltipArrow}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        open={open}
-        children={children}
-      />
-    </>
+    <Tooltip
+      title={tooltipText}
+      placement={tooltipPlacement}
+      arrow={tooltipArrow}
+      componentsProps={{
+        tooltip: {
+          sx: {
+            color: color === 'dark' ? 'common.white' : 'text.primary',
+            backgroundColor: backgroundColor,
+            padding: '15px',
+            maxWidth: '300px',
+            fontSize: '14px',
+            lineHeight: '20px',
+            ...additionalStyles,
+          },
+        },
+        arrow: {
+          sx: {
+            color: backgroundColor,
+          },
+        },
+      }}
+    >
+      {children}
+    </Tooltip>
   )
 }

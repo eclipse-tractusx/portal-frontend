@@ -156,8 +156,6 @@ export default function RegistrationRequests() {
         title={t('content.semantichub.alerts.alertErrorTitle')}
         description={showErrorAlert}
         showIcon={true}
-        vertical={'bottom'}
-        horizontal={'left'}
       />
       <CompanyDetailOverlay
         {...{

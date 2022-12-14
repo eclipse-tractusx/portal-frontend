@@ -17,40 +17,31 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.marketplace-header {
-  margin: 30px -15px 60px -15px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  .lead-image img {
-    border-radius: 10px;
-  }
-  .content {
-    padding: 0 30px;
-    flex: 1;
-    .provider {
-      margin: 0 0 10px 0;
-      padding: 0;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      color: #888888;
-    }
-    .heading {
-      margin: 0 0 10px 0;
-      color: #111111;
-    }
-    .price {
-      padding: 0;
-      margin: 0 0 10px 0;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 28px;
-      color: #888888;
-    }
-    .subscribe-btn {
-      margin-top: 40px;
-    }
-  }
+
+import { ComponentStory } from '@storybook/react'
+import { PageSnackbar } from './index'
+
+import { PageSnackbarStack as Component } from './PageSnackbarStack'
+
+export default {
+  title: 'Notifications',
+  component: Component,
+  argTypes: {},
+  args: {
+    open: true,
+    autoClose: false,
+    title: 'Lorem Ipsum',
+    description: 'Notification sentence comes here',
+  },
 }
+
+const Template: ComponentStory<typeof Component> = (args: any) => {
+  return (
+    <Component>
+      <PageSnackbar {...args} />
+      <PageSnackbar {...args} />
+    </Component>
+  )
+}
+
+export const PageSnackbarStack = Template.bind({})

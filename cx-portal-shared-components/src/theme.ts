@@ -190,33 +190,33 @@ const typography = createTypography(palette, {
     color: palette.text.primary,
   },
   h1: {
-    fontFamily: getFontFamily('LibreFranklin-SemiBold'),
-    fontSize: 72,
-    lineHeight: 88 / 72,
-    letterSpacing: 0,
-  },
-  h2: {
     fontFamily: getFontFamily('LibreFranklin-Medium'),
     fontSize: 56,
     lineHeight: 68 / 56,
     letterSpacing: 0,
   },
-  h3: {
+  h2: {
     fontFamily: getFontFamily('LibreFranklin-Medium'),
     fontSize: 36,
     lineHeight: 44 / 36,
     letterSpacing: 0,
   },
-  h4: {
+  h3: {
     fontFamily: getFontFamily('LibreFranklin-SemiBold'),
     fontSize: 24,
     lineHeight: 36 / 24,
     letterSpacing: 0,
   },
-  h5: {
+  h4: {
     fontFamily: getFontFamily('LibreFranklin-SemiBold'),
     fontSize: 18,
     lineHeight: 28 / 18,
+    letterSpacing: 0,
+  },
+  h5: {
+    fontFamily: getFontFamily('LibreFranklin-SemiBold'),
+    fontSize: 16,
+    lineHeight: 24 / 16,
     letterSpacing: 0,
   },
   body1: {

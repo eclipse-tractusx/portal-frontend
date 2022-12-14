@@ -18,74 +18,141 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, IconButton } from '@mui/material'
+import { Box, IconButton, Slide } from '@mui/material'
 import { Close } from '@mui/icons-material'
-import { PageNotificationsProps, color, titleIcon } from '../PageNotification'
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
-import { SnackbarContent } from './SnackbarContent'
-import { theme } from '../../../../theme'
+import { SlideProps } from '@mui/material/Slide/Slide'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import Snackbar from '@mui/material/Snackbar'
+import CheckIcon from '@mui/icons-material/Check'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+
+const AUTO_CLOSE_DELAY_MS = 7000
+
+const SlideTransition = (props: SlideProps) => (
+  <Slide {...props} direction="left" />
+)
+
+export interface PageSnackbarProps {
+  severity?: 'error' | 'success'
+  open: boolean
+  onCloseNotification?: () => void
+  title?: string | JSX.Element
+  description?: string | JSX.Element
+  showIcon?: boolean
+  autoClose?: boolean
+}
 
 export const PageSnackbar = ({
-  severity = 'info',
+  severity = 'success',
   onCloseNotification,
   open,
+  autoClose,
   title,
   description,
-  contactText,
-  contactLinks,
-  contactNewTab,
-  showIcon,
+  showIcon = true,
   ...props
-}: PageNotificationsProps & SnackbarOrigin) => {
+}: PageSnackbarProps) => {
+  const [isOpen, setOpen] = useState(open)
+
+  const autoCloseTimeoutRef = useRef<ReturnType<typeof setTimeout>>()
+
+  useEffect(() => setOpen(open), [open])
+
+  const cancelAutoClose = useCallback(
+    () => clearTimeout(autoCloseTimeoutRef.current!),
+    []
+  )
+
+  const doClose = useCallback(() => {
+    cancelAutoClose()
+    setOpen(false)
+
+    onCloseNotification?.()
+  }, [cancelAutoClose, onCloseNotification])
+
+  const handleAutoClose = useCallback(() => {
+    cancelAutoClose()
+
+    if (autoClose) {
+      autoCloseTimeoutRef.current = setTimeout(doClose, AUTO_CLOSE_DELAY_MS)
+    }
+  }, [autoClose, cancelAutoClose, doClose])
+
+  useEffect(handleAutoClose, [autoClose, handleAutoClose])
+
+  const renderIcon = () => {
+    switch (severity) {
+      case 'success':
+        return <CheckIcon sx={{ color: 'support.success' }} />
+      case 'error':
+        return <ErrorOutlineIcon sx={{ color: 'support.error' }} />
+    }
+  }
+
   return (
-    <Box>
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        open={open}
-        key={'bottom right'}
-        {...props}
-        message={
-          <SnackbarContent
-            title={title}
-            description={description}
-            contactText={contactText}
-            contactLinks={contactLinks}
-            contactNewTab={contactNewTab}
-            titleColor={color(severity)}
-            showIcon={showIcon}
-          >
-            {showIcon && titleIcon(severity)}
-          </SnackbarContent>
-        }
-        action={
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={onCloseNotification}
+    <Snackbar
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isOpen}
+      key={'bottom right'}
+      TransitionComponent={SlideTransition}
+      {...props}
+      onMouseEnter={cancelAutoClose}
+      onMouseLeave={handleAutoClose}
+      message={
+        <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start' }}>
+          {showIcon && (
+            <Box
+              sx={{
+                flex: '0 0 auto',
+                marginRight: 2,
+                marginTop: '2px',
+                marginBottom: '-2px',
+              }}
+            >
+              {renderIcon()}
+            </Box>
+          )}
+          <Box sx={{ flex: '1 1 auto', alignSelf: 'center' }}>
+            {title && (
+              <Box
+                component="span"
+                sx={{ marginRight: 0.5, fontWeight: 'bold' }}
+              >
+                {title}
+              </Box>
+            )}
+            {description}
+          </Box>
+          <Box
             sx={{
-              color: theme.palette.icon.icon01,
+              flex: '0 0 auto',
+              marginLeft: 1.5,
+              marginTop: '2px',
+              marginRight: '-3px',
             }}
           >
-            <Close fontSize="small" />
-          </IconButton>
-        }
-        sx={{
-          '.MuiSnackbarContent-root': {
-            width: '352px',
-            boxShadow: '0px 20px 40px rgba(80, 80, 80, 0.3)',
-            backgroundColor: '#FFFFFF !important',
-            border: `1px solid ${color(severity)}`,
-            borderRadius: '8px',
-            padding: '16px 16px 32px 32px',
-            flexDirection: 'column-reverse',
-          },
-          '.MuiSnackbarContent-message': {
-            padding: '0px',
-            color: 'black',
-          },
-        }}
-      />
-    </Box>
+            <IconButton size="small" aria-label="close" onClick={doClose}>
+              <Close fontSize="small" sx={{ color: 'text.primary' }} />
+            </IconButton>
+          </Box>
+        </Box>
+      }
+      sx={{
+        '.MuiSnackbarContent-root': {
+          width: '390px',
+          typography: 'body3',
+          backgroundColor: 'common.white',
+          color: 'text.primary',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: 'action.disabledBackground',
+          borderRadius: '8px',
+          boxShadow: '0px 10px 20px 0px rgba(80, 80, 80, 0.3)',
+        },
+        '.MuiSnackbarContent-message': {
+          width: '100%',
+        },
+      }}
+    />
   )
 }

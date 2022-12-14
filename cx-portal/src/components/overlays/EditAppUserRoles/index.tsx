@@ -72,13 +72,11 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   }
 
   const saveRoles = async () => {
-    if (!appId || roles.length <= 0) return
+    if (!appId) return
     const data: UserRoleRequest = {
       appId: appId,
-      body: {
-        companyUserId: id,
-        roles,
-      },
+      companyUserId: id,
+      body: roles,
     }
     try {
       await updateUserRoles(data).unwrap()
@@ -92,7 +90,6 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   }
 
   const checkConfirmBtn = () => {
-    if (!roles) return true
     return (
       assignedRoles &&
       roles &&

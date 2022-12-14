@@ -72,14 +72,31 @@ export default function MarketplaceHeader({
     }
   }
 
+  const getAllServices = (serviceTypeIds: string[]) => {
+    const newArr: string[] = []
+
+    serviceTypeIds.forEach((serviceType: string) => {
+      if (serviceType === 'CONSULTANCE_SERVICE')
+        newArr.push('Consultance Service')
+      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
+    })
+    return newArr.join(', ')
+  }
+
   return (
     <div className="marketplace-header">
+      <div className="lead-image">
+        <img src={'/ServiceMarketplace.png'} alt={item.title} />
+      </div>
       <div className="content">
         <Typography variant="body2" className="provider">
           {item.provider}
         </Typography>
         <Typography variant="h4" className="heading">
           {item.title}
+        </Typography>
+        <Typography variant="body2" className="provider">
+          {getAllServices(item.serviceTypeIds)}
         </Typography>
         <Typography variant="body2" className="price">
           {item.price}

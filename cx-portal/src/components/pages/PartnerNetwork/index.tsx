@@ -76,7 +76,9 @@ const PartnerNetwork = () => {
           finalObj = addMemberAttribute(finalObj, data)
           setAllItems(finalObj)
         })
-        .catch(() => {})
+        .catch(() => {
+          setAllItems([])
+        })
     } else {
       const result = [cData.bpn]
       await mutationRequest(result)
@@ -90,7 +92,9 @@ const PartnerNetwork = () => {
           }
           setAllItems([finalObj])
         })
-        .catch(() => {})
+        .catch(() => {
+          setAllItems([])
+        })
     }
   }
 

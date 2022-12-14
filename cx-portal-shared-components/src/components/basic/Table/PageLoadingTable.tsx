@@ -20,7 +20,7 @@
 import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Table, TableProps } from '.'
-import { Button } from '../Button'
+import { LoadMoreButton } from '../Button/LoadMoreButton'
 import { hasMorePages, getMaxRows } from './components/Helper/helper'
 
 export type PaginFetchArgs = {
@@ -135,7 +135,7 @@ export const PageLoadingTable = function <T>({
             alignItems: 'center',
           }}
         >
-          <Button onClick={nextPage}>{loadLabel || 'load more'}</Button>
+          <LoadMoreButton label={loadLabel || 'load more'} onClick={nextPage} />
         </Box>
       )}
     </>

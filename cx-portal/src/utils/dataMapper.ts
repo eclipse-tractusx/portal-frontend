@@ -29,6 +29,7 @@ import {
   RegistrationRequest,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
+import { cloneDeep } from 'lodash'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
@@ -61,13 +62,14 @@ const mapSingleBusinessPartnerToDataGrid = (
   bp: BusinessPartner
 ): PartnerNetworkDataGrid => {
   const bpAddress = bp.addresses[0]
+  const names = cloneDeep(bp.names)
   return {
     bpn: bp.bpn,
-    name: bp.names.filter(
-      (name) =>
-        name.type.technicalKey === 'INTERNATIONAL' ||
-        name.type.technicalKey === 'LOCAL'
-    )[0].value,
+    name: names.length
+      ? names.sort((a, b) =>
+          a.type.technicalKey.localeCompare(b.type.technicalKey)
+        )[0].value
+      : '-', //value can be INTERNATIONAL < LOCAL < OTHER
     legalForm: bp.legalForm?.name || '',
     country: bpAddress.country.name,
     street: bpAddress.thoroughfares[0].value,

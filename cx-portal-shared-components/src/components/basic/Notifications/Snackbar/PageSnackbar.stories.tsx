@@ -36,11 +36,8 @@ export const PageSnackbar = Template.bind({})
 PageSnackbar.args = {
   severity: 'success',
   open: true,
-  onCloseNotification: () => console.log('close snackbar'),
-  title: 'Notification title',
-  description: 'This is some notification text and can be replaced later.',
-  contactText: 'Contact',
-  contactLinks: 'https://portal.dev.demo.catena-x.net/',
+  autoClose: false,
+  title: 'Lorem Ipsum',
+  description: 'Notification sentence comes here',
   showIcon: true,
-  contactNewTab: false,
 }
