@@ -19,16 +19,16 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { DropZoneTranslations, UploadFile } from '../types'
+import { DropZonePreviewTranslations, UploadFile } from '../types'
 import { PreviewFile } from './PreviewFile'
 
 export interface PreviewProps {
   uploadFiles: UploadFile[]
   onDelete?: (index: number) => void
-  translations: DropZoneTranslations
+  translations: DropZonePreviewTranslations
 }
 
-export const Preview = ({
+export const DropPreview = ({
   uploadFiles,
   translations,
   onDelete,

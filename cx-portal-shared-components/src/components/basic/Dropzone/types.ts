@@ -5,18 +5,24 @@ export type UploadFileStatus =
   | 'upload_success'
   | 'upload_error'
 
-export interface UploadFile {
+export type UploadFile = {
   fileName: string
   fileSize: number
   status: UploadFileStatus
   progressPercent?: number
 }
 
-export interface DropZoneTranslations {
-  dropzoneTitle: string | JSX.Element
-  dropzoneSubTitle: string | JSX.Element
+export type DropZoneDropAreaTranslations = {
+  title: string | JSX.Element
+  subTitle: string | JSX.Element
+}
+
+export type DropZonePreviewTranslations = {
   placeholder: string | JSX.Element
   uploadProgess: string
   uploadSuccess: string | JSX.Element
   uploadError: string | JSX.Element
 }
+
+export type DropZoneTranslations = DropZonePreviewTranslations &
+  DropZoneDropAreaTranslations

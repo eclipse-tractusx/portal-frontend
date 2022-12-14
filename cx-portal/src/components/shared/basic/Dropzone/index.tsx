@@ -21,53 +21,53 @@
 import { DropArea, Typography } from 'cx-portal-shared-components'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { IHashMap } from 'types/MainTypes'
+import { useTranslation } from 'react-i18next'
 import { Preview } from './components/Preview'
 
 export const Dropzone = ({
-  onFileDrop,
+  onChange,
   showPreviewAlone = false,
-  preview = (files) => (
-    <Preview files={files} showPreviewAlone={showPreviewAlone} />
-  ),
   children,
   acceptFormat = { 'image/*': [] },
   maxFilesToUpload = 1,
-  previewFiles,
+  files,
   maxFileSize,
 }: {
-  onFileDrop: (files: File[]) => void
+  onChange: (files: File[]) => void
+  files?: File[]
   showPreviewAlone?: boolean
   preview?: (files: File[]) => JSX.Element
   children?: JSX.Element[] | JSX.Element
   acceptFormat?: any
   maxFilesToUpload?: number
-  previewFiles?: any
   maxFileSize?: number
 }) => {
-  const [dropped, setDropped] = useState<IHashMap<File>>({})
+  const { t } = useTranslation()
 
-  const onDrop = useCallback(
+  const [dropped, setDropped] = useState<File[]>([])
+
+  const currentFiles = files ?? dropped
+
+  const isSingleUpload = maxFilesToUpload === 1
+
+  const isDisabled = isSingleUpload
+    ? false
+    : currentFiles.length === maxFilesToUpload
+
+  const onDropAccepted = useCallback(
     (files: File[]) => {
-      setDropped(
-        files.reduce(
-          (map: any, file: File) => {
-            map[file.name] = file
-            return map
-          },
-          { ...dropped }
-        )
-      )
-      onFileDrop(files)
+      const nextFiles = isSingleUpload ? files : [...dropped, ...files]
+
+      setDropped(nextFiles)
+      onChange(nextFiles)
     },
-    [dropped, onFileDrop]
+    [dropped, isSingleUpload, onChange]
   )
 
   const { getRootProps, getInputProps, fileRejections } = useDropzone({
-    onDrop,
-    disabled:
-      maxFilesToUpload === Object.keys(dropped)?.length || showPreviewAlone,
-    maxFiles: maxFilesToUpload,
+    onDropAccepted,
+    disabled: isDisabled || showPreviewAlone,
+    maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
     accept: acceptFormat,
     multiple: false,
     maxSize: maxFileSize,
@@ -78,7 +78,11 @@ export const Dropzone = ({
       <input {...getInputProps()} />
       {!showPreviewAlone && (
         <DropArea
-          disabled={maxFilesToUpload === Object.keys(dropped)?.length}
+          disabled={isDisabled}
+          translations={{
+            title: t('shared.dropzone.title'),
+            subTitle: t('shared.dropzone.subTitle'),
+          }}
         />
       )}
       {fileRejections?.map(({ errors }, index: number) => (
@@ -91,10 +95,8 @@ export const Dropzone = ({
         </Typography>
       ))}
 
-      {(previewFiles &&
-        Object.keys(previewFiles)?.length > 0 &&
-        preview(Object.values(previewFiles))) ||
-        preview(Object.values(dropped))}
+      <Preview files={currentFiles} />
+
       {children}
     </div>
   )

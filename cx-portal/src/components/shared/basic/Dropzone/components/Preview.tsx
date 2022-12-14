@@ -18,22 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { FilePreviewItem } from './FilePreviewItem'
-import { PreviewItem } from './PreviewItem'
+import { DropPreview } from 'cx-portal-shared-components'
+import { useTranslation } from 'react-i18next'
 
-export const Preview = ({
-  files,
-  showPreviewAlone,
-  itemPreview = (file) => (
-    <PreviewItem key={file.name}>
-      <FilePreviewItem file={file} showPreviewAlone={showPreviewAlone} />
-    </PreviewItem>
-  ),
-}: {
-  files: File[]
-  showPreviewAlone?: boolean
-  itemPreview?: (file: File) => JSX.Element | Element
-}) => {
-  return <Box>{files && files.map(itemPreview)}</Box>
+export const Preview = ({ files }: { files: File[] }) => {
+  const { t } = useTranslation()
+
+  const uploadFiles = files.map((file) => {
+    console.log(file)
+    return {
+      fileName: file.name,
+      fileSize: file.size,
+      status: 'new',
+    } as const
+  })
+
+  return (
+    <DropPreview
+      uploadFiles={uploadFiles}
+      translations={{
+        placeholder: t('shared.dropzone.placeholder'),
+        uploadError: t('shared.dropzone.uploadError'),
+        uploadSuccess: t('shared.dropzone.uploadSuccess'),
+        uploadProgess: t('shared.dropzone.uploadProgess'),
+      }}
+    />
+  )
 }

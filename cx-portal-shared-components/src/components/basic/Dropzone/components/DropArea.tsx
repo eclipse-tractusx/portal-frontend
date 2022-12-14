@@ -22,23 +22,24 @@ import { Box, Link, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { Typography } from '../../Typography'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
+import { DropZoneDropAreaTranslations } from '../types'
 
 export interface DropAreaProps {
-  title?: string | JSX.Element
-  subTitle?: string | JSX.Element
+  translations: DropZoneDropAreaTranslations
   children?: JSX.Element | JSX.Element[]
   disabled?: boolean
   size?: 'normal' | 'small'
 }
 
 export const DropArea = ({
-  title,
-  subTitle,
+  translations,
   children,
   disabled = false,
   size = 'normal',
 }: DropAreaProps) => {
   const theme = useTheme()
+
+  const { title, subTitle } = translations
 
   const [isDragging, setDragging] = useState(false)
 
@@ -60,17 +61,21 @@ export const DropArea = ({
     }
   }
 
+  const activeBackground = isDragging ? 'selected.focus' : 'selected.hover'
+  const background = disabled ? 'action.disabledBackground' : activeBackground
+
   return (
     <Box
-      onDragEnter={() => setDragging(true)}
+      onDragEnter={() => !disabled && setDragging(true)}
       onDragLeave={() => setDragging(false)}
+      onDrop={() => setDragging(false)}
       sx={{
         position: 'relative',
-        backgroundColor: isDragging ? 'selected.focus' : 'selected.hover',
+        backgroundColor: background,
         transition: theme.transitions.create('background-color'),
         borderRadius: `${borderRadius}px`,
         border: 'none',
-        backgroundImage: `url(${dashedBorder})`,
+        backgroundImage: disabled ? 'none' : `url(${dashedBorder})`,
         textAlign: 'center',
       }}
     >
@@ -79,7 +84,7 @@ export const DropArea = ({
         sx={{
           padding: size === 'normal' ? 5 : 2.5,
           display: 'block',
-          cursor: disabled ? 'default' : 'pointer',
+          cursor: disabled ? 'no-drop' : 'pointer',
         }}
       >
         <Box
@@ -88,6 +93,11 @@ export const DropArea = ({
             display: size === 'normal' ? 'block' : 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            ...(disabled && {
+              '& *': {
+                color: 'action.disabled',
+              },
+            }),
           }}
         >
           <UploadFileIcon
@@ -96,7 +106,7 @@ export const DropArea = ({
           <Box>
             <Typography
               variant="h3"
-              fontFamily="fontFamily"
+              fontFamily="body1.fontFamily"
               sx={{
                 marginTop: size === 'normal' ? 3 : 0,
                 marginLeft: size === 'normal' ? 0 : 3,

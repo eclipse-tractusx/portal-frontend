@@ -418,9 +418,7 @@
         }
       },
       "edcUpload": {
-        "formTitle": "Update your public key",
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer."
+        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
@@ -994,6 +992,16 @@
       "app": "app only",
       "info": "info only",
       "withaction": "message with action required"
+    }
+  },
+  "shared": {
+    "dropzone": {
+      "title": "Drag & drop your files here",
+      "subTitle": "or %browse files% on your computer.",
+      "placeholder": "",
+      "uploadError": "Not Uploaded",
+      "uploadSuccess": "Uploaded",
+      "uploadProgess": "Uploaded % of % files"
     }
   },
   "global": {

@@ -21,7 +21,7 @@
 import { ComponentStory } from '@storybook/react'
 
 import { Dropzone as Component } from '.'
-import { Preview } from './components/Preview'
+import { DropPreview } from './components/DropPreview'
 
 export default {
   title: 'Dropzone',
@@ -36,10 +36,12 @@ export default {
 const Template: ComponentStory<typeof Component> = (args: any) => (
   <div>
     <Component {...args} />
-    <Preview
+    <DropPreview
       translations={{
         placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
         uploadProgess: 'Uploaded % of % files',
+        uploadSuccess: 'Uploaded',
+        uploadError: 'Not Uploaded',
       }}
       uploadFiles={[
         { fileName: 'Test123.pdf', fileSize: 44345000, status: 'new' },
@@ -75,6 +77,7 @@ export const Dropzone = Template.bind({})
 Dropzone.args = {
   inputContentTitle: 'Drag & drop your files here',
   inputContentSubTitle: 'or %browse files% on your computer.',
+  size: 'normal',
   accept: 'image/*,audio/*,video/*',
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
   statusText: {

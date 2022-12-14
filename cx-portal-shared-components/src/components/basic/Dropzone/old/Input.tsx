@@ -34,14 +34,17 @@ class Input extends React.PureComponent<IInputProps> {
       disabled,
       getFilesFromEvent,
       onFiles,
+      size,
     } = this.props
 
     return (
       <DropArea
         disabled={disabled}
-        title={inputContentTitle}
-        subTitle={inputContentSubTitle}
-        size="normal"
+        translations={{
+          title: inputContentTitle,
+          subTitle: inputContentSubTitle,
+        }}
+        size={size}
       >
         <input
           className={inputClassName}

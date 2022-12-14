@@ -128,13 +128,13 @@ export const ConnectorFormInputField = ({
       } else if (type === 'dropzone') {
         return (
           <Dropzone
-            onFileDrop={(files: any) => {
+            files={previewFiles}
+            onChange={([file]) => {
               trigger(name)
-              onChange(files[0])
+              onChange(file)
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
-            previewFiles={previewFiles}
             showPreviewAlone={showPreviewAlone}
             maxFileSize={maxFileSize}
           />

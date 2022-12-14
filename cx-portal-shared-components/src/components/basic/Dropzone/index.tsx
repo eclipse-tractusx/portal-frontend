@@ -364,6 +364,7 @@ class Dropzone extends React.Component<
       inputContentTitle,
       errorStatus,
       statusText,
+      size,
     } = this.props
 
     const { active, dragged } = this.state
@@ -436,6 +437,7 @@ class Dropzone extends React.Component<
         onFiles={this.handleFiles}
         files={files}
         extra={extra}
+        size={size}
       />
     )
 

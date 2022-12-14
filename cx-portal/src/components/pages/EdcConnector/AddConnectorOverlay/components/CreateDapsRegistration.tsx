@@ -53,8 +53,8 @@ const CreateDapsRegistration = ({
   const [file, setFile] = useState<FileType>()
   const dropzoneProps = {
     formTitle: t('content.edcconnector.edcUpload.formTitle'),
-    title: t('content.edcconnector.edcUpload.title'),
-    subtitle: t('content.edcconnector.edcUpload.subtitle'),
+    title: t('shared.dropzone.title'),
+    subtitle: t('shared.dropzone.subTitle'),
     accept: '*',
   }
 
@@ -81,6 +81,7 @@ const CreateDapsRegistration = ({
             accept={dropzoneProps.accept}
             multiple={false}
             maxFiles={1}
+            size="small"
             onChangeStatus={(meta: any, status: string) => {
               if (status === 'done' || status === 'preparing') {
                 setFile(meta.file)
