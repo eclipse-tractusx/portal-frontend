@@ -37,6 +37,10 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <div>
     <Component {...args} />
     <Preview
+      translations={{
+        placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
+        uploadProgess: 'Uploaded % of % files',
+      }}
       uploadFiles={[
         { fileName: 'Test123.pdf', fileSize: 44345000, status: 'new' },
         {
@@ -70,7 +74,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const Dropzone = Template.bind({})
 Dropzone.args = {
   inputContentTitle: 'Drag & drop your files here',
-  inputContentSubTitle: 'or _browse files_ on your computer.',
+  inputContentSubTitle: 'or %browse files% on your computer.',
   accept: 'image/*,audio/*,video/*',
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
   statusText: {

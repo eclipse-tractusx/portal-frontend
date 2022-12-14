@@ -48,7 +48,7 @@ export const DropArea = ({
 
   let formattedSubtitle = subTitle
   if (typeof subTitle === 'string') {
-    const subTitleParts = subTitle.split('_')
+    const subTitleParts = subTitle.split('%')
     if (subTitleParts.length === 3) {
       formattedSubtitle = (
         <span>

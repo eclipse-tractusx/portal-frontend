@@ -20,7 +20,7 @@
 
 import { Box, IconButton, useTheme } from '@mui/material'
 import React from 'react'
-import { UploadFile } from '../types'
+import { DropZoneTranslations, UploadFile } from '../types'
 import { FileIcon } from '../../CustomIcons/FileIcon'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
@@ -40,9 +40,14 @@ export const formatBytes = (b: number) => {
 export interface PreviewFileProps {
   uploadFile: UploadFile
   onDelete?: () => void
+  translations: DropZoneTranslations
 }
 
-export const PreviewFile = ({ uploadFile, onDelete }: PreviewFileProps) => {
+export const PreviewFile = ({
+  uploadFile,
+  translations,
+  onDelete,
+}: PreviewFileProps) => {
   const theme = useTheme()
 
   const isUploading = !!uploadFile.progressPercent

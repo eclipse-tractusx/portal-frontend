@@ -19,50 +19,66 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { UploadFile } from '../types'
+import { DropZoneTranslations, UploadFile } from '../types'
 import { PreviewFile } from './PreviewFile'
 
 export interface PreviewProps {
   uploadFiles: UploadFile[]
   onDelete?: (index: number) => void
+  translations: DropZoneTranslations
 }
 
-export const Preview = ({ uploadFiles, onDelete }: PreviewProps) => {
-  const numUploaded = uploadFiles.filter(
-    (file) => file.status === 'upload_success'
-  ).length
+export const Preview = ({
+  uploadFiles,
+  translations,
+  onDelete,
+}: PreviewProps) => {
+  const isFinished = (file: UploadFile) =>
+    file.status === 'upload_success' || file.status === 'upload_error'
 
-  const isUploading = (file: UploadFile) => file.status === 'uploading'
+  const filesCount = uploadFiles.length
+
+  const finishedFilesCount = uploadFiles.filter(isFinished).length
+
+  const uploadProgress = translations.uploadProgess
+    .replace('%', finishedFilesCount.toString())
+    .replace('%', filesCount.toString())
 
   return (
     <Box sx={{ marginTop: 4 }}>
       <Box sx={{ typography: 'label2' }}>
-        Uploaded {numUploaded} of {uploadFiles.length} files
+        {filesCount ? uploadProgress : translations.placeholder}
       </Box>
-      <Box sx={{ marginTop: 4 }}>
-        {uploadFiles.map(
-          (file, index) =>
-            !isUploading(file) && (
-              <PreviewFile
-                key={index}
-                uploadFile={file}
-                onDelete={() => onDelete?.(index)}
-              />
-            )
-        )}
-      </Box>
-      <Box sx={{ marginTop: 4 }}>
-        {uploadFiles.map(
-          (file, index) =>
-            isUploading(file) && (
-              <PreviewFile
-                key={index}
-                uploadFile={file}
-                onDelete={() => onDelete?.(index)}
-              />
-            )
-        )}
-      </Box>
+      {finishedFilesCount > 0 && (
+        <Box sx={{ marginTop: 4 }}>
+          {uploadFiles.map(
+            (file, index) =>
+              isFinished(file) && (
+                <PreviewFile
+                  key={index}
+                  uploadFile={file}
+                  translations={translations}
+                  onDelete={() => onDelete?.(index)}
+                />
+              )
+          )}
+        </Box>
+      )}
+      {filesCount - finishedFilesCount > 0 && (
+        <Box sx={{ marginTop: 4 }}>
+          {uploadFiles.map(
+            (file, index) =>
+              !isFinished(file) && (
+                <PreviewFile
+                  key={index}
+                  uploadFile={file}
+                  translations={translations}
+                  onDelete={() => onDelete?.(index)}
+                />
+              )
+          )}
+        </Box>
+      )}
     </Box>
   )
 }
