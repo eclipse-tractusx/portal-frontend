@@ -70,7 +70,7 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 export const Dropzone = Template.bind({})
 Dropzone.args = {
   inputContentTitle: 'Drag & drop your files here',
-  inputContentSubTitle: 'or browse files on your computer.',
+  inputContentSubTitle: 'or _browse files_ on your computer.',
   accept: 'image/*,audio/*,video/*',
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
   statusText: {

@@ -103,7 +103,7 @@ export const PreviewFile = ({ uploadFile, onDelete }: PreviewFileProps) => {
           textOverflow: 'ellipsis',
           color: isUploading ? 'primary.contrastText' : 'text.primary',
           textShadow: isUploading
-            ? `0 0 2px ${theme.palette.primary.main}`
+            ? `0 0 7px ${theme.palette.primary.main}`
             : 'none',
         }}
       >
@@ -123,7 +123,6 @@ export const PreviewFile = ({ uploadFile, onDelete }: PreviewFileProps) => {
           <Box
             sx={{
               marginLeft: 3,
-              boxSizing: 'border-box',
               paddingX: 1.5,
               paddingY: 0.5,
               borderRadius: '14px',

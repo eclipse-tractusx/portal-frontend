@@ -39,13 +39,9 @@ class Input extends React.PureComponent<IInputProps> {
     return (
       <DropArea
         disabled={disabled}
-        title={
-          <div>
-            {inputContentTitle}
-            <br />
-            {inputContentSubTitle}
-          </div>
-        }
+        title={inputContentTitle}
+        subTitle={inputContentSubTitle}
+        size="normal"
       >
         <input
           className={inputClassName}
