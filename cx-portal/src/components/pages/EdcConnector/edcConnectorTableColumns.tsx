@@ -18,28 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import Box from '@mui/material/Box'
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from 'cx-portal-shared-components'
+import { Typography } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import { Grid, Container } from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock'
+import Box from '@mui/material/Box'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
   translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
-  const [isHover, setIsHover] = useState(false)
-
-  const handleMouseEnter = () => {
-    setIsHover(true)
-  }
-  const handleMouseLeave = () => {
-    setIsHover(false)
-  }
 
   return [
     {
@@ -53,34 +43,41 @@ export const ConnectorTableColumns = (
       headerName: t('content.edcconnector.columns.location'),
       flex: 0.5,
       sortable: false,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: ({ row }: { row: any }) => (
+        <Box>
+          <Typography variant="body1" sx={{ fontSize: '16px' }}>
+            {row.location}
+          </Typography>
+        </Box>
+      ),
     },
     {
       field: 'type',
       headerName: t('content.edcconnector.columns.type'),
       flex: 1,
       sortable: false,
+      renderCell: ({ row }: { row: any }) => (
+        <Typography variant="body1" sx={{ fontSize: '16px' }}>
+          {row.type === 'COMPANY_CONNECTOR' ? 'Owned' : 'Managed'}
+        </Typography>
+      ),
     },
     {
-      field: 'DapsRegistrationSuccessful',
+      field: 'dapsRegistrationSuccessful',
       headerName: t('content.edcconnector.columns.status'),
       flex: 1,
       sortable: false,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Box onClick={() => {}}>
-          <IconButton
-            color="secondary"
-            disabled
-            size="small"
-            style={{
-              alignSelf: 'center',
-            }}
-          >
-            {row.DapsRegistrationSuccessful ? (
-              <LockIcon sx={{ color: 'green' }} />
-            ) : (
-              <LockIcon sx={{ color: '#b6b6b6' }} />
-            )}
-          </IconButton>
+        <Box>
+          {row.dapsRegistrationSuccessful ? (
+            <LockIcon sx={{ color: 'green' }} />
+          ) : (
+            <LockIcon sx={{ color: '#b6b6b6' }} />
+          )}
         </Box>
       ),
     },
@@ -89,41 +86,28 @@ export const ConnectorTableColumns = (
       headerName: '',
       flex: 1,
       sortable: false,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Container maxWidth="sm">
-          <Grid container spacing={2}>
-            <Grid
-              item
-              xs={6}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <IconButton
-                color="secondary"
-                disabled
-                size="small"
-                style={{
-                  alignSelf: 'center',
-                  color: isHover ? 'blue' : '#ADADAD',
-                }}
-              >
-                <DeleteOutlineIcon />
-              </IconButton>
-            </Grid>
-            {row.status === 'PENDING' && (
-              <Grid item xs={6}>
-                <IconButton
-                  color="secondary"
-                  disabled
-                  size="small"
-                  style={{ alignSelf: 'center' }}
-                >
-                  <AccessTimeIcon />
-                </IconButton>
-              </Grid>
-            )}
-          </Grid>
-        </Container>
+        <Box>
+          <DeleteOutlineIcon
+            sx={{
+              color: '#adadad',
+              marginRight: '20px',
+              ':hover': {
+                color: 'blue',
+              },
+            }}
+          />
+          {row.status === 'PENDING' && (
+            <AccessTimeIcon
+              sx={{
+                color: '#adadad',
+                marginLeft: '20px',
+              }}
+            />
+          )}
+        </Box>
       ),
     },
   ]
