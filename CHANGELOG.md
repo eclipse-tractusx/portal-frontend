@@ -4,8 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-* Cleanups
-   * Technical user
+n/a
 
 ## 0.10.0
 
@@ -21,6 +20,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * empty details overlay issue fix by updating the front end business logic of the api key values fetched
 
 * BugFix - Add user role for app not working fix
+* Cleanups
+   * Technical user
 ### Feature
 * Service Marketplace
    * new UI released
