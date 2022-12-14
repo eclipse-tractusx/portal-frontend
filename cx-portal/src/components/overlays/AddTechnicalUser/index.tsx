@@ -128,6 +128,10 @@ export const AddTechnicalUser = () => {
     return Object.keys(errors).length > 0
   }
 
+  function handleDispatch() {
+    dispatch(closeOverlay())
+  }
+
   return (
     <>
       {response && (
@@ -135,7 +139,7 @@ export const AddTechnicalUser = () => {
           title={t('content.addUser.technicalUserHeadline')}
           intro={t('content.addUser.technicalUserSubheadlineSuccess')}
           dialogOpen={true}
-          handleCallback={() => dispatch(closeOverlay())}
+          handleCallback={handleDispatch}
         >
           <UserDetailCard
             cardContentItems={{
@@ -169,7 +173,7 @@ export const AddTechnicalUser = () => {
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
           }
-          handleCallback={() => dispatch(closeOverlay())}
+          handleCallback={handleDispatch}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
@@ -181,7 +185,7 @@ export const AddTechnicalUser = () => {
             title={t('content.addUser.technicalUserHeadline')}
             intro={t('content.addUser.technicalUserSubheadline')}
             closeWithIcon={true}
-            onCloseWithIcon={() => dispatch(closeOverlay())}
+            onCloseWithIcon={handleDispatch}
           />
           <DialogContent>
             <TechnicalUserAddForm
@@ -195,7 +199,7 @@ export const AddTechnicalUser = () => {
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <Button variant="outlined" onClick={handleDispatch}>
               {t('global.actions.cancel')}
             </Button>
             {loading ? (
