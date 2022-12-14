@@ -25,7 +25,7 @@ import match from 'autosuggest-highlight/match'
 import { SelectInput } from '../MultiSelectList/Components/SelectInput'
 import { SelectOptions } from '../MultiSelectList/Components/SelectOptions'
 import uniqueId from 'lodash/uniqueId'
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 
 interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]

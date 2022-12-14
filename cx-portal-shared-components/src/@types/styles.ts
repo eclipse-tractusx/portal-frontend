@@ -173,30 +173,4 @@ declare module '@mui/material/styles' {
     chip?: Partial<TypeChipCardColor>
     stepper?: Partial<TypeStepper>
   }
-
-  interface TypographyVariants {
-    body3: TypographyStyleOptions
-    caption1: TypographyStyleOptions
-    caption2: TypographyStyleOptions
-    caption3: TypographyStyleOptions
-    label1: TypographyStyleOptions
-    label2: TypographyStyleOptions
-    label3: TypographyStyleOptions
-    label4: TypographyStyleOptions
-    label5: TypographyStyleOptions
-    helper: TypographyStyleOptions
-  }
-
-  interface TypographyVariantsOptions {
-    body3?: TypographyStyleOptions
-    caption1?: TypographyStyleOptions
-    caption2?: TypographyStyleOptions
-    caption3?: TypographyStyleOptions
-    label1?: TypographyStyleOptions
-    label2?: TypographyStyleOptions
-    label3?: TypographyStyleOptions
-    label4?: TypographyStyleOptions
-    label5?: TypographyStyleOptions
-    helper?: TypographyStyleOptions
-  }
 }

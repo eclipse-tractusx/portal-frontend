@@ -52,9 +52,9 @@ export default function AppInfo({
               <Typography
                 sx={{
                   padding: '0px 10px',
-                  fontSize: '18px',
+                  color: 'text.primary',
                 }}
-                variant="caption"
+                variant="caption1"
               >
                 {desc.longDescription}
               </Typography>
