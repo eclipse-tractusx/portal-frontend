@@ -131,7 +131,10 @@ export const UserList = ({
           },
           {
             field: 'details',
-            headerName: t(sectionTitle) === 'Identity Management' ? t('global.field.details') : t('global.field.edit'),
+            headerName:
+              t(sectionTitle) === 'Identity Management'
+                ? t('global.field.details')
+                : t('global.field.edit'),
             flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
