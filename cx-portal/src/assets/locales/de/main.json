@@ -494,7 +494,8 @@
     },
     "usermanagement": {
       "apparea": {
-        "headline": "App Zugriffsmanagement"
+        "headline": "App Zugriffsmanagement",
+        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
       },
       "table": {
         "headline": "Benutzerkontenverwaltung",
