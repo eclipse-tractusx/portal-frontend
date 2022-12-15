@@ -135,7 +135,6 @@ export const ConnectorFormInputField = ({
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
-            showPreviewAlone={showPreviewAlone}
             maxFileSize={maxFileSize}
           />
         )

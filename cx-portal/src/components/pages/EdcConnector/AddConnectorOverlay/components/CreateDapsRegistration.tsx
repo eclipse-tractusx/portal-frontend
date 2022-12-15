@@ -27,13 +27,13 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
-  DropzoneOldDEPRECATED,
   Typography,
+  DropArea,
 } from 'cx-portal-shared-components'
 import Box from '@mui/material/Box'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
 import './EdcComponentStyles.scss'
-import { FileType } from 'features/connector/connectorApiSlice'
+import { Dropzone } from '../../../../shared/basic/Dropzone'
 
 interface CreateDapsRegistrationProps {
   openDialog?: boolean
@@ -50,11 +50,8 @@ const CreateDapsRegistration = ({
 }: CreateDapsRegistrationProps) => {
   const { t } = useTranslation()
   const [error, setError] = useState(false)
-  const [file, setFile] = useState<FileType>()
+  const [file, setFile] = useState<File>()
   const dropzoneProps = {
-    formTitle: t('content.edcconnector.edcUpload.formTitle'),
-    title: t('shared.dropzone.title'),
-    subtitle: t('shared.dropzone.subTitle'),
     accept: '*',
   }
 
@@ -75,21 +72,15 @@ const CreateDapsRegistration = ({
             padding: '0px 120px 40px 120px',
           }}
         >
-          <DropzoneOldDEPRECATED
-            inputContentTitle={dropzoneProps.title}
-            inputContentSubTitle={dropzoneProps.subtitle}
-            accept={dropzoneProps.accept}
-            multiple={false}
-            maxFiles={1}
-            size="small"
-            onChangeStatus={(meta: any, status: string) => {
-              if (status === 'done' || status === 'preparing') {
-                setFile(meta.file)
-                setError(false)
-              } else {
-                setError(true)
-              }
+          <Dropzone
+            acceptFormat={dropzoneProps.accept}
+            maxFilesToUpload={1}
+            onChange={([file]) => {
+              setFile(file)
+              setError(false)
             }}
+            DropStatusHeader={false}
+            DropArea={(props) => <DropArea {...props} size="small" />}
           />
           {error && (
             <div className="errorContainer">

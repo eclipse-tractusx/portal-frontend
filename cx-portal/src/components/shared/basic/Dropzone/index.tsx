@@ -19,13 +19,13 @@
  ********************************************************************************/
 
 import {
-  DropArea as DefaultDropArea,
   DropAreaProps,
   DropPreviewProps,
   DropPreviewFileProps,
+  DropStatusHeaderProps,
+  DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
 } from 'cx-portal-shared-components'
-import { DropStatusHeaderProps } from 'cx-portal-shared-components/src'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
@@ -33,7 +33,6 @@ import { useTranslation } from 'react-i18next'
 export interface DropzoneProps {
   onChange: (files: File[]) => void
   files?: File[]
-  showPreviewAlone?: boolean
   acceptFormat?: any
   maxFilesToUpload?: number
   maxFileSize?: number
@@ -46,10 +45,9 @@ export interface DropzoneProps {
 
 export const Dropzone = ({
   onChange,
-  showPreviewAlone = false,
-  acceptFormat = { 'image/*': [] },
-  maxFilesToUpload = 1,
   files,
+  acceptFormat = { 'image/*': [] }, // TODO: not default!
+  maxFilesToUpload = 1,
   maxFileSize,
   DropArea,
   DropStatusHeader,
@@ -88,6 +86,21 @@ export const Dropzone = ({
     [currentFiles, onChange]
   )
 
+  const {
+    getRootProps,
+    getInputProps,
+    fileRejections,
+    isDragReject,
+    isDragActive,
+  } = useDropzone({
+    onDropAccepted,
+    disabled: isDisabled,
+    maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
+    accept: acceptFormat,
+    multiple: !isSingleUpload,
+    maxSize: maxFileSize,
+  })
+
   let DropAreaComponent = DefaultDropArea
   if (DropArea) {
     DropAreaComponent = DropArea
@@ -101,21 +114,6 @@ export const Dropzone = ({
   } else if (DropPreview === false) {
     DropPreviewComponent = () => null
   }
-
-  const {
-    getRootProps,
-    getInputProps,
-    fileRejections,
-    isDragReject,
-    isDragActive,
-  } = useDropzone({
-    onDropAccepted,
-    disabled: isDisabled || showPreviewAlone,
-    maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
-    accept: acceptFormat,
-    multiple: !isSingleUpload,
-    maxSize: maxFileSize,
-  })
 
   // TODO: read react-dropzone errorCode instead of message and localize
   const errorMessage =

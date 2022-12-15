@@ -653,29 +653,6 @@
             "description": "Bitte geben Sie eine Beschreibung ein."
           }
         }
-      },
-      "userUpload": {
-        "title": "Dateien hierher ziehen",
-        "subtitle": "oder wähle eine Datei direkt aus.",
-        "uploadStatus": {
-          "rejected_file_type": "Fehler - falscher Dateityp.",
-          "rejected_max_files": "Fehler - Dateigröße zu groß.",
-          "preparing": "vorbereiten",
-          "error_file_size": "Fehler (file_size)",
-          "error_validation": "Fehler (validation)",
-          "ready": "Fertig",
-          "started": "started",
-          "getting_upload_params": "getting (upload_params)",
-          "error_upload_params": "error (upload_params)",
-          "uploading": "hochladen",
-          "exception_upload": "exception_upload",
-          "aborted": "aborted",
-          "restarted": "restarted",
-          "removed": "removed",
-          "error_upload": "upload error",
-          "headers_received": "headers received",
-          "done": "done"
-        }
       }
     },
     "addUserRight": {
@@ -996,9 +973,9 @@
   },
   "shared": {
     "dropzone": {
-      "title": "Drag & drop your files here",
-      "subTitle": "or %browse files% on your computer.",
-      "errorTitle": "Sorry",
+      "title": "Dateien hierher ziehen",
+      "subTitle": "oder %wähle eine Datei% direkt aus.",
+      "errorTitle": "Es tut uns leid",
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",

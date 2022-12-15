@@ -22,14 +22,15 @@ import { useTranslation } from 'react-i18next'
 import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import {
+  DropArea,
   Input,
   Tooltips,
   Typography,
-  DropzoneOldDEPRECATED,
 } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'
+import { Dropzone } from '../../../../shared/basic/Dropzone'
 
 const ConnectorFormInput = ({
   control,
@@ -88,24 +89,18 @@ const ConnectorFormInput = ({
             name={name}
             control={control}
             rules={rules}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <DropzoneOldDEPRECATED
-                  inputContentTitle={dropzoneProps.title}
-                  inputContentSubTitle={dropzoneProps.subtitle}
-                  accept={dropzoneProps.accept}
-                  multiple={false}
-                  maxFiles={1}
-                  size="small"
-                  onChangeStatus={(meta: any, status: string) => {
-                    if (status === 'done' || status === 'preparing') {
-                      trigger(name)
-                      onChange(meta.file)
-                    }
-                  }}
-                />
-              )
-            }}
+            render={({ field: { onChange, value } }) => (
+              <Dropzone
+                acceptFormat={dropzoneProps.accept}
+                maxFilesToUpload={1}
+                onChange={([file]) => {
+                  trigger(name)
+                  onChange(file)
+                }}
+                DropStatusHeader={false}
+                DropArea={(props) => <DropArea {...props} size="small" />}
+              />
+            )}
           />
         </>
       ) : (
@@ -176,9 +171,6 @@ const ConnectorInsertForm = ({
   const { spacing } = theme
 
   const dropzoneProps = {
-    formTitle: t('content.edcconnector.edcUpload.formTitle'),
-    title: t('shared.dropzone.title'),
-    subtitle: t('shared.dropzone.subTitle'),
     accept: '*',
   }
 

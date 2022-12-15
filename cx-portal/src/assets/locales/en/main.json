@@ -652,29 +652,6 @@
             "description": "Please enter a description."
           }
         }
-      },
-      "userUpload": {
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer.",
-        "uploadStatus": {
-          "rejected_file_type": "rejected (file type)",
-          "rejected_max_files": "rejected (max files)",
-          "preparing": "preparing",
-          "error_file_size": "error (file_size)",
-          "error_validation": "error (validation)",
-          "ready": "ready",
-          "started": "started",
-          "getting_upload_params": "getting (upload_params)",
-          "error_upload_params": "error (upload_params)",
-          "uploading": "uploading",
-          "exception_upload": "exception_upload",
-          "aborted": "aborted",
-          "restarted": "restarted",
-          "removed": "removed",
-          "error_upload": "upload error",
-          "headers_received": "headers received",
-          "done": "done"
-        }
       }
     },
     "addUserRight": {
