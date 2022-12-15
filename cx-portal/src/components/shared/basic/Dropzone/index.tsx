@@ -87,9 +87,9 @@ export const Dropzone = ({
     maxSize: maxFileSize,
   })
 
+  // TODO: read react-dropzone errorCode instead of message and localize
   const errorMessage =
-    !isDragActive &&
-    fileRejections?.map(({ errors }) => errors?.[0]?.message).join(', ')
+    !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
 
   return (
     <div>

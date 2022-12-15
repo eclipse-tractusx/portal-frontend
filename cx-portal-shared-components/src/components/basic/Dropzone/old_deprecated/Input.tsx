@@ -43,6 +43,7 @@ class Input extends React.PureComponent<IInputProps> {
         translations={{
           title: inputContentTitle,
           subTitle: inputContentSubTitle,
+          errorTitle: '',
         }}
         size={size}
       >

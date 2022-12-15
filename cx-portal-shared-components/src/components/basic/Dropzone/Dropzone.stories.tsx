@@ -20,7 +20,7 @@
 
 import { ComponentStory } from '@storybook/react'
 
-import { Dropzone as Component } from '.'
+import { DropzoneOldDEPRECATED as Component } from './old_deprecated'
 import { DropPreview } from './components/DropPreview'
 
 export default {

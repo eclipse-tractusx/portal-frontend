@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { Dropzone, Typography } from 'cx-portal-shared-components'
+import { DropzoneOldDEPRECATED, Typography } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 
 export const MultipleUserContent = () => {
@@ -81,7 +81,7 @@ export const MultipleUserContent = () => {
           by file
         </Trans>
       </Typography>
-      <Dropzone
+      <DropzoneOldDEPRECATED
         inputContentTitle={dropzoneProps.title}
         inputContentSubTitle={dropzoneProps.subtitle}
         accept={dropzoneProps.accept}

@@ -962,11 +962,7 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
-      "uploadProgess": "Uploaded % of % files",
-      "errorInvalidFileType": "Invalid file type! Allowed: %",
-      "errorFileTooLarge": "File too large! Max. %s",
-      "errorTooManyFiles": "Too many files! Max: %",
-      "errorFileTooSmall": "???"
+      "uploadProgess": "Uploaded % of % files"
     }
   },
   "global": {

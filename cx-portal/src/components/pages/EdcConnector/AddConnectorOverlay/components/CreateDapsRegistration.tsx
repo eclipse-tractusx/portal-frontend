@@ -27,7 +27,7 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
-  Dropzone,
+  DropzoneOldDEPRECATED,
   Typography,
 } from 'cx-portal-shared-components'
 import Box from '@mui/material/Box'
@@ -75,7 +75,7 @@ const CreateDapsRegistration = ({
             padding: '0px 120px 40px 120px',
           }}
         >
-          <Dropzone
+          <DropzoneOldDEPRECATED
             inputContentTitle={dropzoneProps.title}
             inputContentSubTitle={dropzoneProps.subtitle}
             accept={dropzoneProps.accept}

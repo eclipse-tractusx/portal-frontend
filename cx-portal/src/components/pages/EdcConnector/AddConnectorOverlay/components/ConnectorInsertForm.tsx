@@ -25,7 +25,7 @@ import {
   Input,
   Tooltips,
   Typography,
-  Dropzone,
+  DropzoneOldDEPRECATED,
 } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
@@ -90,7 +90,7 @@ const ConnectorFormInput = ({
             rules={rules}
             render={({ field: { onChange, value } }) => {
               return (
-                <Dropzone
+                <DropzoneOldDEPRECATED
                   inputContentTitle={dropzoneProps.title}
                   inputContentSubTitle={dropzoneProps.subtitle}
                   accept={dropzoneProps.accept}

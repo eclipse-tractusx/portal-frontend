@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import React from 'react'
-import Layout from './old/Layout'
-import Preview from './old/Preview'
-import Input from './old/Input'
+import Layout from './Layout'
+import Preview from './Preview'
+import Input from './Input'
 
 import {
   formatBytes,
@@ -31,7 +31,7 @@ import {
   mergeStyles,
   defaultClassNames,
   getFilesFromEvent as defaultGetFilesFromEvent,
-} from './old/utils'
+} from './utils'
 
 import {
   IDropzoneProps,
@@ -40,9 +40,9 @@ import {
   IFileWithMeta,
   IInputProps,
   IUploadParams,
-} from './old/DropzoneTypes'
+} from './DropzoneTypes'
 
-class Dropzone extends React.Component<
+class DropzoneOldDEPRECATED extends React.Component<
   IDropzoneProps,
   { active: boolean; dragged: (File | DataTransferItem)[] }
 > {
@@ -483,7 +483,7 @@ class Dropzone extends React.Component<
   }
 }
 
-Dropzone.defaultProps = {
+DropzoneOldDEPRECATED.defaultProps = {
   accept: '*',
   multiple: true,
   minSizeBytes: 0,
@@ -525,7 +525,7 @@ Dropzone.defaultProps = {
 }
 
 export {
-  Dropzone,
+  DropzoneOldDEPRECATED,
   formatBytes,
   formatDuration,
   accepts,
