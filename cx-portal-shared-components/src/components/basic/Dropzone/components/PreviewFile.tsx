@@ -156,7 +156,7 @@ export const PreviewFile = ({
         </Box>
       )}
       <Box sx={{ flex: '0 0 auto', marginLeft: 3 }}>
-        <IconButton>
+        <IconButton onClick={() => onDelete?.()}>
           <DeleteOutlineIcon sx={{ color: 'primary.main' }} />
         </IconButton>
       </Box>

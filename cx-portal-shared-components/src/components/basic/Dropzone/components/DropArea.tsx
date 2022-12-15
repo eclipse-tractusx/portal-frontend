@@ -20,6 +20,7 @@
 
 import { Box, Link, useTheme } from '@mui/material'
 import { useState } from 'react'
+import { FileErrorIcon } from '../../CustomIcons/FileErrorIcon'
 import { Typography } from '../../Typography'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import { DropZoneDropAreaTranslations } from '../types'
@@ -28,12 +29,14 @@ export interface DropAreaProps {
   translations: DropZoneDropAreaTranslations
   children?: JSX.Element | JSX.Element[]
   disabled?: boolean
+  error?: boolean | string
   size?: 'normal' | 'small'
 }
 
 export const DropArea = ({
   translations,
   children,
+  error,
   disabled = false,
   size = 'normal',
 }: DropAreaProps) => {
@@ -42,10 +45,6 @@ export const DropArea = ({
   const { title, subTitle } = translations
 
   const [isDragging, setDragging] = useState(false)
-
-  const borderRadius = 24
-  const borderColor = 'rgb(7, 73, 133)'
-  const dashedBorder = `"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='${borderRadius}' ry='${borderRadius}' stroke='${borderColor}' stroke-width='2' stroke-dasharray='2%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"`
 
   let formattedSubtitle = subTitle
   if (typeof subTitle === 'string') {
@@ -61,8 +60,18 @@ export const DropArea = ({
     }
   }
 
-  const activeBackground = isDragging ? 'selected.focus' : 'selected.hover'
-  const background = disabled ? 'action.disabledBackground' : activeBackground
+  const hasError = !!error
+  const hasErrorMessage = hasError && error !== true
+
+  const errorBackground = hasError && 'declined.main'
+  const disabledBackground = disabled && 'action.disabledBackground'
+  const draggingBackground = isDragging && 'selected.active'
+
+  const borderRadius = 24
+  const borderColor = hasError
+    ? encodeURIComponent(theme.palette.danger.danger)
+    : 'rgb(7, 73, 133)'
+  const dashedBorder = `"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='${borderRadius}' ry='${borderRadius}' stroke='${borderColor}' stroke-width='2' stroke-dasharray='2%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"`
 
   return (
     <Box
@@ -71,12 +80,23 @@ export const DropArea = ({
       onDrop={() => setDragging(false)}
       sx={{
         position: 'relative',
-        backgroundColor: background,
         transition: theme.transitions.create('background-color'),
         borderRadius: `${borderRadius}px`,
         border: 'none',
         backgroundImage: disabled ? 'none' : `url(${dashedBorder})`,
         textAlign: 'center',
+        backgroundColor:
+          disabledBackground ||
+          errorBackground ||
+          draggingBackground ||
+          'selected.hover',
+        '&:hover': {
+          backgroundColor:
+            disabledBackground ||
+            errorBackground ||
+            draggingBackground ||
+            'selected.focus',
+        },
       }}
     >
       <Box
@@ -100,9 +120,18 @@ export const DropArea = ({
             }),
           }}
         >
-          <UploadFileIcon
-            sx={{ color: 'primary.main', width: '68px', height: '68px' }}
-          />
+          <Box sx={{ height: '68px' }}>
+            {hasError ? (
+              <FileErrorIcon
+                size={60}
+                fillColor={theme.palette.danger.danger}
+              />
+            ) : (
+              <UploadFileIcon
+                sx={{ color: 'primary.main', width: '68px', height: '68px' }}
+              />
+            )}{' '}
+          </Box>
           <Box>
             <Typography
               variant="h3"
@@ -113,13 +142,13 @@ export const DropArea = ({
                 display: 'block',
               }}
             >
-              {title}
+              {hasErrorMessage ? translations.errorTitle : title}
             </Typography>
             <Typography
               variant="body2"
               sx={{ marginTop: 0.5, display: 'block' }}
             >
-              {formattedSubtitle}
+              {hasErrorMessage ? error : formattedSubtitle}
             </Typography>
           </Box>
         </Box>

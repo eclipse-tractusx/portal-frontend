@@ -15,6 +15,7 @@ export type UploadFile = {
 export type DropZoneDropAreaTranslations = {
   title: string | JSX.Element
   subTitle: string | JSX.Element
+  errorTitle: string | JSX.Element
 }
 
 export type DropZonePreviewTranslations = {

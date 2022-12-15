@@ -27,7 +27,6 @@ import { Preview } from './components/Preview'
 export const Dropzone = ({
   onChange,
   showPreviewAlone = false,
-  children,
   acceptFormat = { 'image/*': [] },
   maxFilesToUpload = 1,
   files,
@@ -37,7 +36,6 @@ export const Dropzone = ({
   files?: File[]
   showPreviewAlone?: boolean
   preview?: (files: File[]) => JSX.Element
-  children?: JSX.Element[] | JSX.Element
   acceptFormat?: any
   maxFilesToUpload?: number
   maxFileSize?: number
@@ -64,40 +62,54 @@ export const Dropzone = ({
     [dropped, isSingleUpload, onChange]
   )
 
-  const { getRootProps, getInputProps, fileRejections } = useDropzone({
+  const handleDelete = useCallback(
+    (deleteIndex) => {
+      const nextFiles = currentFiles.filter((_, index) => index !== deleteIndex)
+
+      setDropped(nextFiles)
+      onChange(nextFiles)
+    },
+    [currentFiles, onChange]
+  )
+
+  const {
+    getRootProps,
+    getInputProps,
+    fileRejections,
+    isDragReject,
+    isDragActive,
+  } = useDropzone({
     onDropAccepted,
     disabled: isDisabled || showPreviewAlone,
     maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
     accept: acceptFormat,
-    multiple: false,
+    multiple: !isSingleUpload,
     maxSize: maxFileSize,
   })
 
+  const errorMessage =
+    !isDragActive &&
+    fileRejections?.map(({ errors }) => errors?.[0]?.message).join(', ')
+
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {!showPreviewAlone && (
-        <DropArea
-          disabled={isDisabled}
-          translations={{
-            title: t('shared.dropzone.title'),
-            subTitle: t('shared.dropzone.subTitle'),
-          }}
-        />
-      )}
-      {fileRejections?.map(({ errors }, index: number) => (
-        <Typography
-          variant="body2"
-          sx={{ color: '#d32f2f', fontSize: '0.75rem', mt: 1 }}
-          key={index}
-        >
-          {errors && errors[0]?.message}
-        </Typography>
-      ))}
+    <div>
+      <div {...getRootProps()}>
+        {!showPreviewAlone && (
+          <DropArea
+            disabled={isDisabled}
+            error={errorMessage || isDragReject}
+            translations={{
+              title: t('shared.dropzone.title'),
+              subTitle: t('shared.dropzone.subTitle'),
+              errorTitle: t('shared.dropzone.errorTitle'),
+            }}
+          >
+            <input {...getInputProps()} />
+          </DropArea>
+        )}
+      </div>
 
-      <Preview files={currentFiles} />
-
-      {children}
+      <Preview files={currentFiles} onDelete={handleDelete} />
     </div>
   )
 }

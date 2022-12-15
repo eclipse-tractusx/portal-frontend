@@ -958,6 +958,7 @@
     "dropzone": {
       "title": "Drag & drop your files here",
       "subTitle": "or %browse files% on your computer.",
+      "errorTitle": "Sorry",
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",

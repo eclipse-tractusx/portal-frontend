@@ -18,37 +18,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DropPreview } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
+interface FileIconProps {
+  fillColor?: string
+  size?: number
+}
 
-export const Preview = ({
-  files,
-  onDelete,
-}: {
-  files: File[]
-  onDelete?: (deleteIndex: number) => void
-}) => {
-  const { t } = useTranslation()
-
-  const uploadFiles = files.map((file) => {
-    console.log(file)
-    return {
-      fileName: file.name,
-      fileSize: file.size,
-      status: 'new',
-    } as const
-  })
-
+export const FileErrorIcon = ({ fillColor, size }: FileIconProps) => {
   return (
-    <DropPreview
-      uploadFiles={uploadFiles}
-      onDelete={onDelete}
-      translations={{
-        placeholder: t('shared.dropzone.placeholder'),
-        uploadError: t('shared.dropzone.uploadError'),
-        uploadSuccess: t('shared.dropzone.uploadSuccess'),
-        uploadProgess: t('shared.dropzone.uploadProgess'),
-      }}
-    />
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 58 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M57.3201 55.2001L4.91005 2.79007L0.680054 7.02007L8.90005 15.2401L8.54005 15.6001V48.5701C8.54005 51.8701 11.2401 54.5701 14.5401 54.5701H44.5401C45.59 54.5701 46.58 54.2701 47.45 53.7901L53.0901 59.4301L57.3201 55.2001ZM14.5401 48.5701V20.8801L42.23 48.5701H14.5401ZM26.0601 6.57007H44.5401V33.9001L50.54 39.9001V6.57007C50.54 3.27007 47.84 0.570068 44.5401 0.570068H23.5701L17.3901 6.75007L21.6201 10.9801L26.0601 6.57007Z"
+        fill={fillColor}
+      />
+    </svg>
   )
 }

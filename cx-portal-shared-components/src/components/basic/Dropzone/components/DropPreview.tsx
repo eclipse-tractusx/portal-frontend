@@ -24,7 +24,7 @@ import { PreviewFile } from './PreviewFile'
 
 export interface PreviewProps {
   uploadFiles: UploadFile[]
-  onDelete?: (index: number) => void
+  onDelete?: (deleteIndex: number) => void
   translations: DropZonePreviewTranslations
 }
 
