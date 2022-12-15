@@ -18,6 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export * from './@types'
-export * from './components'
-export { theme } from './theme'
+export * from './chip'
+export * from './styles'
+export * from './typography'
