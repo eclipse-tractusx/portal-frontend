@@ -4,7 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-n/a
+* BugFix - Add user role for app not working fix
+* Updates
+   * Style fix in Company roles page
 
 ## 0.10.0
 
@@ -19,9 +21,6 @@ n/a
    * stop throbber in case of error and information "no rows" added
    * empty details overlay issue fix by updating the front end business logic of the api key values fetched
 
-* BugFix - Add user role for app not working fix
-* Updates
-   * Style fix in Company roles page
 ### Feature
 * Service Marketplace
    * new UI released
