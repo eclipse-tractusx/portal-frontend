@@ -1012,6 +1012,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
+      "edit": "Edit",
       "userName": "Benutzername",
       "clientId": "Client ID",
       "authType": "Auth Type",

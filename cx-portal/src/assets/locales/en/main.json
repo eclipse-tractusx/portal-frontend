@@ -972,6 +972,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
+      "edit": "Edit",
       "userName": "Username",
       "clientId": "Client ID",
       "authType": "Auth Type",

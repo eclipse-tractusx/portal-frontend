@@ -5,6 +5,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 * Feature - User Management - Add App Access Placeholders
+* Feature - User Management - App Access Table Column Heading Change
 
 ## 0.10.0
 
