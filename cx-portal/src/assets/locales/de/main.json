@@ -644,7 +644,7 @@
       "technicalUserHeadline": "Technischen Nutzer anfragen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
-      "technicalUserSubheadlineError": "Something went wrong. We are looking to it",
+      "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "technicalUser": {
