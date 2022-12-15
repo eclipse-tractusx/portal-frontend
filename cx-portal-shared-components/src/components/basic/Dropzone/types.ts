@@ -1,6 +1,5 @@
 export type UploadFileStatus =
   | 'new'
-  | 'rejected'
   | 'uploading'
   | 'upload_success'
   | 'upload_error'
@@ -24,6 +23,3 @@ export type DropZonePreviewTranslations = {
   uploadSuccess: string | JSX.Element
   uploadError: string | JSX.Element
 }
-
-export type DropZoneTranslations = DropZonePreviewTranslations &
-  DropZoneDropAreaTranslations

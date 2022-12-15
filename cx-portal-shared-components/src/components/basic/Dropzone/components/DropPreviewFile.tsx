@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { Box, IconButton, useTheme } from '@mui/material'
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { DropZonePreviewTranslations, UploadFile } from '../types'
 import { FileIcon } from '../../CustomIcons/FileIcon'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
-export const formatBytes = (b: number) => {
+const formatBytes = (b: number) => {
   const units = ['bytes', 'KB', 'MB']
   let l = 0
   let n = b
@@ -37,20 +37,20 @@ export const formatBytes = (b: number) => {
   return `${n.toFixed(n >= 10 || l < 1 ? 0 : 1)} ${units[l]}`
 }
 
-export interface PreviewFileProps {
+export interface DropPreviewFileProps {
   uploadFile: UploadFile
   onDelete?: () => void
   translations: DropZonePreviewTranslations
 }
 
-export const PreviewFile = ({
+export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
   uploadFile,
   translations,
   onDelete,
-}: PreviewFileProps) => {
+}) => {
   const theme = useTheme()
 
-  const isUploading = !!uploadFile.progressPercent
+  const isUploading = uploadFile.status === 'uploading'
 
   let tagLabel
 

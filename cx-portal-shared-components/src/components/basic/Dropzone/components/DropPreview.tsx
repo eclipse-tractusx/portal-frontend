@@ -19,20 +19,34 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
+import { FunctionComponent } from 'react'
 import { DropZonePreviewTranslations, UploadFile } from '../types'
-import { PreviewFile } from './PreviewFile'
+import {
+  DropPreviewFile as DefaultDropPreviewFile,
+  DropPreviewFileProps,
+} from './DropPreviewFile'
 
-export interface PreviewProps {
+export interface DropPreviewProps {
   uploadFiles: UploadFile[]
   onDelete?: (deleteIndex: number) => void
   translations: DropZonePreviewTranslations
+
+  DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
+  DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
 }
 
-export const DropPreview = ({
+export interface DropStatusHeaderProps {
+  numUploaded: number
+  numTotal: number
+}
+
+export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   uploadFiles,
   translations,
   onDelete,
-}: PreviewProps) => {
+  DropStatusHeader,
+  DropPreviewFile,
+}) => {
   const isFinished = (file: UploadFile) =>
     file.status === 'upload_success' || file.status === 'upload_error'
 
@@ -40,21 +54,47 @@ export const DropPreview = ({
 
   const finishedFilesCount = uploadFiles.filter(isFinished).length
 
-  const uploadProgress = translations.uploadProgess
-    .replace('%', finishedFilesCount.toString())
-    .replace('%', filesCount.toString())
+  const DefaultDropStatusHeader: typeof DropStatusHeader = ({
+    numUploaded,
+    numTotal,
+  }) => {
+    const uploadProgress = translations.uploadProgess
+      .replace('%', numUploaded.toString())
+      .replace('%', numTotal.toString())
 
-  return (
-    <Box sx={{ marginTop: 4 }}>
+    return (
       <Box sx={{ typography: 'label2' }}>
         {filesCount ? uploadProgress : translations.placeholder}
       </Box>
+    )
+  }
+
+  let DropStatusHeaderComponent = DefaultDropStatusHeader
+  if (DropStatusHeader) {
+    DropStatusHeaderComponent = DropStatusHeader
+  } else if (DropStatusHeader === false) {
+    DropStatusHeaderComponent = () => null
+  }
+
+  let DropPreviewFileComponent = DefaultDropPreviewFile
+  if (DropPreviewFile) {
+    DropPreviewFileComponent = DropPreviewFile
+  } else if (DropPreviewFile === false) {
+    DropPreviewFileComponent = () => null
+  }
+
+  return (
+    <Box sx={{ marginTop: 4 }}>
+      <DropStatusHeaderComponent
+        numUploaded={finishedFilesCount}
+        numTotal={filesCount}
+      />
       {finishedFilesCount > 0 && (
         <Box sx={{ marginTop: 4 }}>
           {uploadFiles.map(
             (file, index) =>
               isFinished(file) && (
-                <PreviewFile
+                <DropPreviewFileComponent
                   key={index}
                   uploadFile={file}
                   translations={translations}
@@ -69,7 +109,7 @@ export const DropPreview = ({
           {uploadFiles.map(
             (file, index) =>
               !isFinished(file) && (
-                <PreviewFile
+                <DropPreviewFileComponent
                   key={index}
                   uploadFile={file}
                   translations={translations}

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Box, Link, useTheme } from '@mui/material'
-import { useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { FileErrorIcon } from '../../CustomIcons/FileErrorIcon'
 import { Typography } from '../../Typography'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
@@ -33,13 +33,13 @@ export interface DropAreaProps {
   size?: 'normal' | 'small'
 }
 
-export const DropArea = ({
+export const DropArea: FunctionComponent<DropAreaProps> = ({
   translations,
   children,
   error,
   disabled = false,
   size = 'normal',
-}: DropAreaProps) => {
+}) => {
   const theme = useTheme()
 
   const { title, subTitle } = translations

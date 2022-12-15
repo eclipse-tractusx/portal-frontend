@@ -18,11 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DropArea, Typography } from 'cx-portal-shared-components'
-import { useCallback, useState } from 'react'
+import {
+  DropArea as DefaultDropArea,
+  DropAreaProps,
+  DropPreviewProps,
+  DropPreviewFileProps,
+  DropPreview as DefaultDropPreview,
+} from 'cx-portal-shared-components'
+import { DropStatusHeaderProps } from 'cx-portal-shared-components/src'
+import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { Preview } from './components/Preview'
+
+export interface DropzoneProps {
+  onChange: (files: File[]) => void
+  files?: File[]
+  showPreviewAlone?: boolean
+  acceptFormat?: any
+  maxFilesToUpload?: number
+  maxFileSize?: number
+
+  DropArea?: FunctionComponent<DropAreaProps> | false
+  DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
+  DropPreview?: FunctionComponent<DropPreviewProps> | false
+  DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
+}
 
 export const Dropzone = ({
   onChange,
@@ -31,15 +51,11 @@ export const Dropzone = ({
   maxFilesToUpload = 1,
   files,
   maxFileSize,
-}: {
-  onChange: (files: File[]) => void
-  files?: File[]
-  showPreviewAlone?: boolean
-  preview?: (files: File[]) => JSX.Element
-  acceptFormat?: any
-  maxFilesToUpload?: number
-  maxFileSize?: number
-}) => {
+  DropArea,
+  DropStatusHeader,
+  DropPreview,
+  DropPreviewFile,
+}: DropzoneProps) => {
   const { t } = useTranslation()
 
   const [dropped, setDropped] = useState<File[]>([])
@@ -72,6 +88,20 @@ export const Dropzone = ({
     [currentFiles, onChange]
   )
 
+  let DropAreaComponent = DefaultDropArea
+  if (DropArea) {
+    DropAreaComponent = DropArea
+  } else if (DropArea === false) {
+    DropAreaComponent = () => null
+  }
+
+  let DropPreviewComponent = DefaultDropPreview
+  if (DropPreview) {
+    DropPreviewComponent = DropPreview
+  } else if (DropPreview === false) {
+    DropPreviewComponent = () => null
+  }
+
   const {
     getRootProps,
     getInputProps,
@@ -91,25 +121,39 @@ export const Dropzone = ({
   const errorMessage =
     !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
 
+  const uploadFiles = currentFiles.map(
+    (file) =>
+      ({ fileName: file.name, fileSize: file.size, status: 'new' } as const)
+  )
+
   return (
     <div>
       <div {...getRootProps()}>
-        {!showPreviewAlone && (
-          <DropArea
-            disabled={isDisabled}
-            error={errorMessage || isDragReject}
-            translations={{
-              title: t('shared.dropzone.title'),
-              subTitle: t('shared.dropzone.subTitle'),
-              errorTitle: t('shared.dropzone.errorTitle'),
-            }}
-          >
-            <input {...getInputProps()} />
-          </DropArea>
-        )}
+        <DropAreaComponent
+          disabled={isDisabled}
+          error={errorMessage || isDragReject}
+          translations={{
+            title: t('shared.dropzone.title'),
+            subTitle: t('shared.dropzone.subTitle'),
+            errorTitle: t('shared.dropzone.errorTitle'),
+          }}
+        >
+          <input {...getInputProps()} />
+        </DropAreaComponent>
       </div>
 
-      <Preview files={currentFiles} onDelete={handleDelete} />
+      <DropPreviewComponent
+        uploadFiles={uploadFiles}
+        onDelete={handleDelete}
+        DropStatusHeader={DropStatusHeader}
+        DropPreviewFile={DropPreviewFile}
+        translations={{
+          placeholder: t('shared.dropzone.placeholder'),
+          uploadError: t('shared.dropzone.uploadError'),
+          uploadSuccess: t('shared.dropzone.uploadSuccess'),
+          uploadProgess: t('shared.dropzone.uploadProgess'),
+        }}
+      />
     </div>
   )
 }

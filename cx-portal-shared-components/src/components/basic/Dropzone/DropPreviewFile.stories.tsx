@@ -18,37 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DropPreview } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
+import { ComponentStory } from '@storybook/react'
 
-export const Preview = ({
-  files,
-  onDelete,
-}: {
-  files: File[]
-  onDelete?: (deleteIndex: number) => void
-}) => {
-  const { t } = useTranslation()
+import { DropPreviewFile as Component } from './components/DropPreviewFile'
 
-  const uploadFiles = files.map((file) => {
-    console.log(file)
-    return {
-      fileName: file.name,
-      fileSize: file.size,
-      status: 'new',
-    } as const
-  })
+export default {
+  title: 'Dropzone',
+  component: Component,
+  args: {
+    fileName: 'Document.pdf',
+    fileSize: 65402,
+    status: 'new',
+    progressPercent: 45,
+    translations: {
+      placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
+      uploadProgess: 'Uploaded % of % files',
+      uploadSuccess: 'Uploaded',
+      uploadError: 'Not Uploaded',
+    },
+    placeholder: false,
+  },
+  argTypes: {
+    status: {
+      control: 'radio',
+      options: ['new', 'uploading', 'upload_success', 'upload_error'],
+    },
+  },
+}
 
+const Template: ComponentStory<typeof Component> = (args: any) => {
+  const { fileName, fileSize, status, progressPercent, ...props } = args
   return (
-    <DropPreview
-      uploadFiles={uploadFiles}
-      onDelete={onDelete}
-      translations={{
-        placeholder: t('shared.dropzone.placeholder'),
-        uploadError: t('shared.dropzone.uploadError'),
-        uploadSuccess: t('shared.dropzone.uploadSuccess'),
-        uploadProgess: t('shared.dropzone.uploadProgess'),
-      }}
+    <Component
+      {...props}
+      uploadFile={{ fileName, fileSize, status, progressPercent }}
     />
   )
 }
+
+export const DropPreviewFile = Template.bind({})

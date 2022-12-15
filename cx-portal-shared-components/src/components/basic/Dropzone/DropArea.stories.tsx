@@ -18,37 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography, FileIcon } from 'cx-portal-shared-components'
+import { ComponentStory } from '@storybook/react'
 
-export const FilePreviewItem = ({
-  file,
-  showPreviewAlone,
-}: {
-  file: File
-  showPreviewAlone?: boolean
-}) => {
-  return (
-    <>
-      <FileIcon fillColor={'#939393'} size={80} />
+import { DropArea as Component } from './components/DropArea'
 
-      <Box sx={{ width: '100%', margin: '8px 32px' }}>
-        <Typography
-          variant="h6"
-          sx={{ display: 'block', color: 'common.black' }}
-        >
-          {file.name}
-        </Typography>
-        {!showPreviewAlone && (
-          <Typography
-            variant="body2"
-            sx={{ display: 'block', '&.error': { color: 'danger.danger' } }}
-          >
-            {file.type}, {file.size} bytes
-          </Typography>
-        )}
-        <progress max={100} value={0} />
-      </Box>
-    </>
-  )
+export default {
+  title: 'Dropzone',
+  component: Component,
+  args: {
+    size: 'normal',
+    disabled: false,
+    error: '',
+    translations: {
+      title: 'Drag & drop your files here',
+      subTitle: 'or %browse files% on your computer.',
+      errorTitle: 'Sorry',
+    },
+  },
 }
+
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const DropArea = Template.bind({})

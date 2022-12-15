@@ -21,7 +21,6 @@
 import { ComponentStory } from '@storybook/react'
 
 import { DropzoneOldDEPRECATED as Component } from './old_deprecated'
-import { DropPreview } from './components/DropPreview'
 
 export default {
   title: 'Dropzone',
@@ -34,47 +33,11 @@ export default {
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <div>
-    <Component {...args} />
-    <DropPreview
-      translations={{
-        placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
-        uploadProgess: 'Uploaded % of % files',
-        uploadSuccess: 'Uploaded',
-        uploadError: 'Not Uploaded',
-      }}
-      uploadFiles={[
-        { fileName: 'Test123.pdf', fileSize: 44345000, status: 'new' },
-        {
-          fileName: 'Document.pdf',
-          fileSize: 65402,
-          status: 'uploading',
-          progressPercent: 45,
-        },
-        {
-          fileName:
-            'Das ist ein sehr langer Name von einer Datei - der Name ist wirklich äußerst, äußerst lang...!.pdf',
-          fileSize: 32003,
-          status: 'new',
-        },
-        {
-          fileName: 'My pretty PDF.pdf',
-          fileSize: 54676543,
-          status: 'upload_success',
-        },
-        {
-          fileName: 'Nix wars.xls',
-          fileSize: 543545,
-          status: 'upload_error',
-        },
-      ]}
-      onDelete={() => {}}
-    />
-  </div>
+  <Component {...args} />
 )
 
-export const Dropzone = Template.bind({})
-Dropzone.args = {
+export const DropzoneOldDEPRECATED = Template.bind({})
+DropzoneOldDEPRECATED.args = {
   inputContentTitle: 'Drag & drop your files here',
   inputContentSubTitle: 'or %browse files% on your computer.',
   size: 'normal',
