@@ -47,9 +47,7 @@ export const ConnectorTableColumns = (
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
         <Box>
-          <Typography variant="body1" sx={{ fontSize: '16px' }}>
-            {row.location}
-          </Typography>
+          <Typography variant="body2">{row.location}</Typography>
         </Box>
       ),
     },
@@ -59,8 +57,10 @@ export const ConnectorTableColumns = (
       flex: 1,
       sortable: false,
       renderCell: ({ row }: { row: any }) => (
-        <Typography variant="body1" sx={{ fontSize: '16px' }}>
-          {row.type === 'COMPANY_CONNECTOR' ? 'Owned' : 'Managed'}
+        <Typography variant="body2">
+          {row.type === 'COMPANY_CONNECTOR'
+            ? t('content.edcconnector.rowValue.owned')
+            : t('content.edcconnector.rowValue.managed')}
         </Typography>
       ),
     },
