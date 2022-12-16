@@ -4,7 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-n/a
+* BugFix - Add user role for app not working fix
+* BugFix - Page break issue fix in app release process - step 2
+
 
 ## 0.10.0
 
