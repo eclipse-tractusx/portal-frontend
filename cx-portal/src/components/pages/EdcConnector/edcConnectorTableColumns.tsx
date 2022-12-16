@@ -73,11 +73,9 @@ export const ConnectorTableColumns = (
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
         <Box>
-          {row.dapsRegistrationSuccessful ? (
-            <LockIcon sx={{ color: 'green' }} />
-          ) : (
-            <LockIcon sx={{ color: '#b6b6b6' }} />
-          )}
+          <LockIcon
+            sx={{ color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6' }}
+          />
         </Box>
       ),
     },
