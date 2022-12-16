@@ -25,7 +25,7 @@ export const MainHeaderTitle = ({
   title,
   subTitle,
   subTitleWidth,
-  titleTextVariant = 'h2',
+  titleTextVariant = 'h1',
   subTitleTextVariant = 'h2',
   titleSpacing = '0px',
 }: MainHeaderProps) => {
