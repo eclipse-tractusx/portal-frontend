@@ -22,7 +22,7 @@
 
 .companyRoles {
   width: 100%;
-  padding: 0;
+  padding: 0px;
 }
 
 .subNavigationContainer {
@@ -30,7 +30,7 @@
   width: 100%;
   justify-content: flex-start;
   padding-top: 25px;
-  padding-left: 80px;
+  padding-left: 160px;
   padding-right: 80px;
 }
 
@@ -51,12 +51,11 @@
 }
 
 .cardsContainer {
-  padding: 20px !important;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 22px;
+  margin-top: 96px;
   width: 33%;
 }
 
@@ -73,7 +72,7 @@
 }
 
 .cardsContainer img {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -101,8 +100,6 @@
 .readMoreButton {
   text-decoration: underline;
   padding-top: 12px;
-  margin-bottom: 15px !important;
-  font-size: 18px;
   color: #0f71cb;
   cursor: pointer;
 }
