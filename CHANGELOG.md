@@ -6,6 +6,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Cleanups
    * Technical user
+* BugFix - Add user role for app not working fix
+* BugFix - Page break issue fix in app release process - step 2
 
 ## 0.10.0
 
