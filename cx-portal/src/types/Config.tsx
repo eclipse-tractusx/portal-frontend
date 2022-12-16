@@ -486,7 +486,7 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
-      { name: PAGES.APPSTORE, hint: HINTS.NEW},
+      { name: PAGES.APPSTORE, hint: HINTS.NEW },
     ],
   },
 ]

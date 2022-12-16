@@ -105,7 +105,7 @@ export default function AppStore() {
       buttonText: t('content.appStore.tabs.active'),
       buttonValue: t('content.appStore.tabs.active'),
       onButtonClick: setView,
-    }
+    },
   ]
 
   // const debouncedFilter = useMemo(
@@ -132,13 +132,10 @@ export default function AppStore() {
   //   [services]
   // )
 
-  const doFilter = useCallback(
-    (expr: string) => {
-      setSearchExpr(expr)
-      //debouncedFilter(expr)
-    },
-    []
-  )
+  const doFilter = useCallback((expr: string) => {
+    setSearchExpr(expr)
+    //debouncedFilter(expr)
+  }, [])
 
   const setSortOptionFn = useCallback((value: string) => {
     setSortOption(value)
@@ -225,9 +222,7 @@ export default function AppStore() {
                 />
               </div>
             ) : (
-              <SubscriptionElements
-                subscriptions={subscriptions}
-              />
+              <SubscriptionElements subscriptions={subscriptions} />
             )}
           </div>
         </div>

@@ -66,9 +66,9 @@ export type AgreementRequest = {
 }
 
 export interface SubscriptionRequestBody {
-  page: number,
-  statusId: string,
-  sortingType: string,
+  page: number
+  statusId: string
+  sortingType: string
 }
 
 // export type SubscriptionServiceRequest = {
@@ -77,42 +77,45 @@ export interface SubscriptionRequestBody {
 // }
 
 export type MetaBody = {
-  "totalElements": 0,
-  "totalPages": 0,
-  "page": 0,
-  "contentSize": 0
+  totalElements: 0
+  totalPages: 0
+  page: 0
+  contentSize: 0
 }
 
 export type CompanySubscriptionData = {
-  "companyId": string,
-  "companyName": string,
-  "subscriptionId": string,
-  "offerSubscriptionStatus": string
+  companyId: string
+  companyName: string
+  subscriptionId: string
+  offerSubscriptionStatus: string
 }
 
 export type SubscriptionContent = {
-  "offerId": string,
-  "serviceName": string,
-  "companySubscriptionStatuses": CompanySubscriptionData[]
+  offerId: string
+  serviceName: string
+  companySubscriptionStatuses: CompanySubscriptionData[]
 }
 
 export type SubscriptionResponse = {
-  "meta": MetaBody,
-  "content": SubscriptionContent[]
+  meta: MetaBody
+  content: SubscriptionContent[]
 }
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchSubscriptions: builder.query<SubscriptionResponse, SubscriptionRequestBody>({
+    fetchSubscriptions: builder.query<
+      SubscriptionResponse,
+      SubscriptionRequestBody
+    >({
       query: (body) => {
         const statusId = `statusId=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
-          url: `/api/Apps/provided/subscription-status?size${PAGE_SIZE}&page=${body.page}&${
-            body.statusId && statusId
-          }&${body.sortingType && sortingType}`,
+          url: `/api/Apps/provided/subscription-status?size${PAGE_SIZE}&page=${
+            body.page
+          }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
         }
       },
     }),

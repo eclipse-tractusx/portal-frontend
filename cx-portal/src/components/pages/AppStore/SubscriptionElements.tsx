@@ -18,13 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, CardHorizontal, PageNotifications, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  CardHorizontal,
+  PageNotifications,
+  Typography,
+} from 'cx-portal-shared-components'
 import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import {
-  SubscriptionContent,
-} from 'features/appStore/appStoreApiSlice'
+import { SubscriptionContent } from 'features/appStore/appStoreApiSlice'
 import './AppStore.scss'
 
 export default function SubscriptionElements({
@@ -46,7 +49,7 @@ export default function SubscriptionElements({
       <div className="recommended-section">
         <PageNotifications
           description={t('content.serviceMarketplace.noDataMessage')}
-          onCloseNotification={function noRefCheck() { }}
+          onCloseNotification={function noRefCheck() {}}
           open
           severity="error"
           showIcon
@@ -66,42 +69,42 @@ export default function SubscriptionElements({
                 <li>
                   <div className="item">
                     <div className="firstSection">
-                      <Typography
-                        variant="h5"
-                      >
+                      <Typography variant="h5">
                         {subscription.serviceName}
                       </Typography>
                     </div>
                     <div className="middleSection">
-                      <Typography
-                        variant="h5"
-                      >
-                        {subscription.companySubscriptionStatuses[0].companyName}
+                      <Typography variant="h5">
+                        {
+                          subscription.companySubscriptionStatuses[0]
+                            .companyName
+                        }
                       </Typography>
                     </div>
                     <div className="lastSection">
-                      <Typography
-                        variant="caption2"
-                      >
-                        {subscription.companySubscriptionStatuses[0].companyName}
+                      <Typography variant="caption2">
+                        {
+                          subscription.companySubscriptionStatuses[0]
+                            .companyName
+                        }
                       </Typography>
                     </div>
                     <div className="actionButton">
                       <Button
                         color="primary"
                         className="activateBtn"
-                        onClick={function noRefCheck() { }}
+                        onClick={function noRefCheck() {}}
                         size="small"
                         variant="contained"
                       >
-                        { t('content.appStore.activateBtn') }
+                        {t('content.appStore.activateBtn')}
                       </Button>
                     </div>
                   </div>
                 </li>
               </ul>
             </li>
-          </ul >
+          </ul>
         ))
       ) : (
         <div className="loading-progress">
@@ -112,8 +115,7 @@ export default function SubscriptionElements({
             }}
           />
         </div>
-      )
-      }
-    </div >
+      )}
+    </div>
   )
 }

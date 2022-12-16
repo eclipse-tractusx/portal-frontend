@@ -81,11 +81,11 @@
     margin-left: 170px;
   }
 
-  .subDescription{
+  .subDescription {
     color: #0f71cb;
     text-align: center;
     margin-bottom: 20px;
-    .readMore{
+    .readMore {
       padding-right: 30px;
     }
   }
@@ -186,12 +186,12 @@
     z-index: 9;
   }
 
-  ul{
+  ul {
     list-style: none;
   }
 
   .group {
-    li{
+    li {
       border-radius: 8px;
       // margin: 12px 120px;
       // padding: 6px 8px;
@@ -212,22 +212,22 @@
       justify-content: flex-start;
       width: 25%;
     }
-  
+
     .middleSection {
       flex-direction: column;
       width: 25%;
     }
-  
+
     .lastSection {
       width: 25%;
     }
-  
+
     .actionButton {
       padding: 6px 12px 6px 6px;
       text-align: center;
       border-radius: 6px;
       width: 20%;
-      .activateBtn{
+      .activateBtn {
         padding: 2px;
         width: 60%;
       }
