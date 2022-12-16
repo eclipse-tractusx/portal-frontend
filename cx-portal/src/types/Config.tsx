@@ -46,6 +46,7 @@ import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
+import AppStore from 'components/pages/AppStore'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
@@ -204,6 +205,11 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPRELEASEPROCESS,
     //role: ROLES.VIEW_APP_RELEASE,
     element: <AppReleaseProcess />,
+  },
+  {
+    name: PAGES.APPSTORE,
+    role: ROLES.APP_MANAGEMENT,
+    element: <AppStore />,
   },
   {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
@@ -480,6 +486,7 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
+      { name: PAGES.APPSTORE, hint: HINTS.NEW},
     ],
   },
 ]

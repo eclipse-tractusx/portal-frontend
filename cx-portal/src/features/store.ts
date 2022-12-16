@@ -44,6 +44,7 @@ import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
+import { apiSlice as appStoreApiSlice } from './appStore/appStoreApiSlice'
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
 import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
@@ -75,6 +76,7 @@ export const reducers = {
   [appMarketplaceSliceTest.reducerPath]: appMarketplaceSliceTest.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
+  [appStoreApiSlice.reducerPath]: appStoreApiSlice.reducer,
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
   [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
   [partnerNetworkApiSlice.reducerPath]: partnerNetworkApiSlice.reducer,
@@ -96,6 +98,7 @@ export const store = configureStore({
       .concat(appMarketplaceSliceTest.middleware)
       .concat(appManagementSlice.middleware)
       .concat(serviceMarketplaceApiSlice.middleware)
+      .concat(appStoreApiSlice.middleware)
       .concat(inviteApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)
       .concat(partnerNetworkApiSlice.middleware)

@@ -39,6 +39,7 @@
     "appmanagement": "App Management",
     "appoverview": "App Overview",
     "appreleaseprocess": "App Release Process",
+    "appstore": "App Store",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User Management",
@@ -924,6 +925,32 @@
         "username": "User Name",
         "authType": "Auth Type",
         "clientSercret": "Client Secret"
+      }
+    },
+    "appStore": {
+      "headline": "App Subscription",
+      "subHeading": "Manage customer subscriptons",
+      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "readMore": "Read More",
+      "registerURL": "RegisterURL",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "activateBtn": "Activate",
+      "tabs": {
+        "request": "Request",
+        "active": "Active"
+      },
+      "sortOptions": {
+        "customer": "By Customer A-Z",
+        "offer": "By Offer"
+      },
+      "document": {
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       }
     }
   },

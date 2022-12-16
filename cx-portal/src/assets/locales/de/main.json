@@ -39,6 +39,7 @@
     "appmanagement": "App Management",
     "appoverview": "App-Übersicht",
     "appreleaseprocess": "App Release Process",
+    "appstore": "App Store",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung",
@@ -964,6 +965,29 @@
         "username": "User Name",
         "authType": "Auth Type",
         "clientSercret": "Client Secret"
+      }
+    },
+    "appStore": {
+      "headline": "Purchase Service Request",
+      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "tabs": {
+        "all": "All Services",
+        "dataspaceService": "Dataspace Services",
+        "consultantService": "Consultant Services"
+      },
+      "sortOptions": {
+        "new": "Newest First",
+        "provider": "Provider"
+      },
+      "document": {
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       }
     }
   },

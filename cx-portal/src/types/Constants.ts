@@ -137,6 +137,7 @@ export enum ROLES {
   APPSTORE_FILTER = 'filter_apps',
   APPSTORE_DELETE = 'delete_apps',
   APPMANAGEMENT_VIEW = 'add_apps',
+  APP_MANAGEMENT = 'app_management',
   APPOVERVIEW_VIEW = 'add_apps',
   CONNECTOR_SETUP = 'setup_connector',
   DATACATALOG_VIEW = 'view_data_catalog',
