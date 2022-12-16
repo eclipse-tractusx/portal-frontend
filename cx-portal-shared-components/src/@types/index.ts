@@ -18,43 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeaderProps } from '../MainHeader'
-import { Typography } from '../../../Typography'
-
-export const MainHeaderTitle = ({
-  title,
-  subTitle,
-  subTitleWidth,
-  titleTextVariant = 'h1',
-  subTitleTextVariant = 'h2',
-  titleSpacing = '0px',
-}: MainHeaderProps) => {
-  return (
-    <>
-      {title && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            fontWeight: 600,
-            paddingBottom: titleSpacing,
-          }}
-          variant={titleTextVariant}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {subTitle && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`,
-          }}
-          variant={subTitleTextVariant}
-        >
-          {subTitle}
-        </Typography>
-      )}
-    </>
-  )
-}
+export * from './chip'
+export * from './styles'
+export * from './typography'

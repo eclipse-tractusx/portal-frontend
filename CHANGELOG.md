@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Feature - User Management - Add App Access Placeholders
 * Feature - User Management - App Access Table Column Heading Change
+* BugFix - Add user role for app not working fix
+* Updates
+   * Style fix in Company roles page
+* BugFix - Page break issue fix in app release process - step 2
 
 ## 0.10.0
 
