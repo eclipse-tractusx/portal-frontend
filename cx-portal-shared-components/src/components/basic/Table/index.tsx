@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useCallback } from 'react'
 import { DataGrid, DataGridProps, GridRowId } from '@mui/x-data-grid'
 import { Box, Stack } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
