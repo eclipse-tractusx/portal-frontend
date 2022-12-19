@@ -201,7 +201,7 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
-  const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
+  const [defaultSalesManagerValue] =
     useState<salesManagerType>({
       userId: null,
       firstName: 'none',
@@ -259,12 +259,12 @@ export default function AppMarketCard() {
       appStatusData?.documents?.APP_LEADIMAGE &&
       appStatusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
-      fetchImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
+      fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
     }
     reset(defaultValues)
   }, [appStatusData])
 
-  const fetchImage = async (documentId: string) => {
+  const fetchCardImage = async (documentId: string) => {
     try {
       const response = await fetchDocumentById(documentId).unwrap()
       const file = response.data
