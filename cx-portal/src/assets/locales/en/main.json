@@ -202,8 +202,7 @@
           "version": "Version",
           "src": "Source",
           "details": "Details"
-        },
-        "load_button": "Load more"
+        }
       },
       "importDialog": {
         "title": "Import Model",
@@ -256,8 +255,7 @@
           "idShort": "Name",
           "sm_count": "Submodel Count",
           "asset_count": "Asset Count"
-        },
-        "load_button": "Load more"
+        }
       },
       "detail": {
         "error": "ERROR: No twin data available.",
@@ -442,7 +440,6 @@
         "others": "Others"
       },
       "message": "Contents of Partner Network",
-      "loadmore": "Load More",
       "searchbuttonlabel": "Search",
       "searchfielddefaulttext": "Search by name or BPN",
       "searchfielderrormessage": "Invalid Data",
@@ -466,7 +463,6 @@
       "failure": "Error - Business Partner was not invited",
       "failureSubText": "An error occured. Please try it again later.",
       "tabletitle": "Invites",
-      "load_button": "Load more",
       "columns": {
         "companyName": "Company Name",
         "firstAndLastName": "First and Last Name",
