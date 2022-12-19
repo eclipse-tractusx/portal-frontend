@@ -100,7 +100,7 @@ export interface IdentityProviderUser {
   identityProviderId: string
   companyUserId: string
   userId: string
-  userName: string
+  userName?: string
 }
 
 export interface IdentityProvider {
@@ -161,7 +161,7 @@ export const apiSlice = createApi({
         body: {
           identityProviderId: idpUser.identityProviderId,
           userId: idpUser.userId,
-          userName: idpUser.userName,
+          userName: idpUser.userName || '-',
         },
       }),
     }),

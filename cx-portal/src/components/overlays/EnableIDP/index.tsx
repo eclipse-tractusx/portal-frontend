@@ -79,6 +79,8 @@ export const EnableIDP = ({ id }: { id: string }) => {
     }
   }
 
+  console.log(id, data, data?.companyUserId, idpEnableData, idpEnableData?.userId)
+
   return (
     <>
       <DialogHeader
@@ -94,9 +96,9 @@ export const EnableIDP = ({ id }: { id: string }) => {
           {t('Before enabling we have to link your user to the new IDP.')}
         </Typography>
         <Typography>
-          {t('Please enter the User ID and name of your user from there.')}
+          {t('Please enter the User ID (not name) of your user from there.')}
         </Typography>
-        {data && <EnableIDPContent onValid={setIdpEnableData} />}
+        <EnableIDPContent onValid={setIdpEnableData} />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
@@ -108,8 +110,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
             !(
               !!id &&
               !!data?.companyUserId &&
-              !!idpEnableData?.userId &&
-              !!idpEnableData.userName
+              !!idpEnableData?.userId
             )
           }
           onClick={doEnableIDP}

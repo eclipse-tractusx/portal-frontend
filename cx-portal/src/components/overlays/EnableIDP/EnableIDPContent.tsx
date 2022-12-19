@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import { IdentityProviderUser } from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
-import { isCompanyName } from 'types/Patterns'
+import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 
 const EnableIDPForm = ({
@@ -34,17 +34,8 @@ const EnableIDPForm = ({
       <div style={{ margin: '20px 0' }}>
         <ValidatingInput
           name="userId"
-          label="Your existing user ID on target IDP"
-          validate={isCompanyName}
-          onValid={onChange}
-        />
-      </div>
-
-      <div style={{ margin: '20px 0' }}>
-        <ValidatingInput
-          name="userName"
-          label="Your existing user name on target IDP"
-          validate={isCompanyName}
+          label="Your existing user ID (not name) on target IDP"
+          validate={isID}
           onValid={onChange}
         />
       </div>
@@ -67,14 +58,13 @@ export const EnableIDPContent = ({
     const current: IHashMap<string> = { ...formData }
     current[key] = value
     setFormData(current)
-    const formValid = !!current.userName && !!current.userId
+    const formValid = !!current.userId
     onValid(
       formValid
         ? {
             companyUserId: '',
             identityProviderId: '',
-            userId: current.userId,
-            userName: current.userName,
+            userId: current.userId
           }
         : undefined
     )
