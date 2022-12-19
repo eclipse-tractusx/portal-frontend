@@ -4,11 +4,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+
+* Feature - App Release Process - Business Logic & API: Document Endpoint Get and PUT PNG/JPEG
 * BugFix - Add user role for app not working fix
-* Updates
-   * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
 
+* Updates
+   * Style fix in Company roles page
 ## 0.10.0
 
 ### Change

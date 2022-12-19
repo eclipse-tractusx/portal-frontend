@@ -62,6 +62,7 @@ export type DocumentData = {
 
 export type DocumentAppContract = {
   APP_CONTRACT: Array<DocumentData>
+  APP_LEADIMAGE?: Array<DocumentData>
 }
 
 export type NewAppDetails = {
@@ -192,6 +193,15 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId: string) => ({
+        url: `/api/administration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -208,4 +218,5 @@ export const {
   useUpdateAgreementConsentsMutation,
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
+  useFetchDocumentByIdMutation,
 } = apiSlice
