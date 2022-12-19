@@ -91,21 +91,18 @@ export const Table = ({
     searchExpr,
   }
 
-  const handleOnCellClick = useCallback(
-    (selectedIds) => {
-      const idsArr: Array<string> = []
-      selectedIds = selectedIds.map((id: string) =>
-        id.substring(0, id.length - 1)
-      )
-      rows.map(
-        (row) =>
-          selectedIds.indexOf(row.companyUserId) > -1 &&
-          idsArr.push(row.companyUserId)
-      )
-      onSelection && onSelection(idsArr)
-    },
-    [rows, onSelection]
-  )
+  const handleOnCellClick = (selectedIds: any) => {
+    const idsArr: Array<string> = []
+    selectedIds = selectedIds.map((id: string) =>
+      id.substring(0, id.length - 1)
+    )
+    rows.map(
+      (row) =>
+        selectedIds.indexOf(row.companyUserId) > -1 &&
+        idsArr.push(row.companyUserId)
+    )
+    onSelection && onSelection(idsArr)
+  }
 
   const toolbarView = () => {
     switch (toolbarVariant) {
@@ -156,7 +153,7 @@ export const Table = ({
           Toolbar: () => toolbarView(),
           NoRowsOverlay,
         }}
-        onSelectionModelChange={(ids) => handleOnCellClick(ids)}
+        onSelectionModelChange={handleOnCellClick}
         {...{
           rows,
           columns,
