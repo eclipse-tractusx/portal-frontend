@@ -40,6 +40,7 @@ export interface CarouselProps {
   gapToArrows?: number
   gapCarouselTop?: number
   expandOnHover?: boolean
+  position?: string
 }
 
 function NavArrows(props: any) {
@@ -69,6 +70,7 @@ export const Carousel = ({
   gapToArrows = 32,
   gapCarouselTop = 32,
   expandOnHover = false,
+  position = 'relative'
 }: CarouselProps) => {
   const [showArrows, setShowArrows] = useState(false)
   const onMouseEnter = () => setShowArrows(true)
@@ -164,7 +166,7 @@ export const Carousel = ({
       sx={{
         width: 'max-content',
         maxWidth: `${responsiveWidth}px`,
-        position: 'relative',
+        position: `${position}`,
         left: carouselLeft,
         marginLeft: 'auto',
         marginRight: 'auto',
