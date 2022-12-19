@@ -41,7 +41,6 @@ import {
   SearchInput,
   ViewSelector,
   SortOption,
-  Button,
   CircleProgress,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
