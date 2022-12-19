@@ -588,8 +588,10 @@
       }
     },
     "idpmanagement": {
-      "addIdpHeadline": "Erstelle einen neuen Identity Provider",
-      "addIdpSubheadline": "Wähle einen IdP Namen (dieser wird als Login Name in der Tenant-Auswahl angezeigt werden) und den IdP Type.",
+      "addIdpHeadline": "Identity Provider Konfiguration",
+      "addIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed. <br> Follow the",
+      "idpHelp": "help",
+      "updateIdpSubheadline2": "to find a number of examples of local idp's such as Azure, Keycloak, etc.",
       "updateIdpHeadline": "Update Identity Provider",
       "updateIdpSubheadline": "Choose the required settings for your IDP",
       "enableIdpHeadline": "Activierung Identity Provider {{ idp }}",

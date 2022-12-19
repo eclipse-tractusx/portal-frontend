@@ -145,9 +145,8 @@ export default function AppOverViewDetails({
                     <Typography
                       sx={{
                         padding: '0px 10px',
-                        fontSize: '18px',
                       }}
-                      variant="caption"
+                      variant="caption1"
                     >
                       {newCase}
                     </Typography>
@@ -167,9 +166,8 @@ export default function AppOverViewDetails({
               <Typography
                 sx={{
                   padding: '0px 10px',
-                  fontSize: '18px',
                 }}
-                variant="caption"
+                variant="caption1"
               >
                 {item.price}
               </Typography>
