@@ -20,10 +20,12 @@
 
 import React from 'react'
 import { SharedThemeProvider } from '../src/components/basic/SharedThemeProvider'
+import { SharedCssBaseline } from '../src/components/basic/SharedCssBaseline'
 
 export const decorators = [
   (Story) => (
     <SharedThemeProvider>
+      <SharedCssBaseline />
       <Story />
     </SharedThemeProvider>
   ),
