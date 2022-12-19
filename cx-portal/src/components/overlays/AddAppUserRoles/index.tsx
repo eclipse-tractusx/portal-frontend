@@ -48,25 +48,28 @@ export default function AddAppUserRoles() {
   const { appId } = useParams()
 
   const roles = useSelector(rolesToAddSelector)
-  const user = useSelector(selectedUserSelector)
+  const users = useSelector(selectedUserSelector)
 
   const [updateUserRoles] = useUpdateUserRolesMutation()
 
   const handleConfirm = async () => {
-    if (!appId || !user || roles.length <= 0) return
-    const data: UserRoleRequest = {
-      appId: appId,
-      companyUserId: user,
-      body: roles,
-    }
-    try {
-      await updateUserRoles(data).unwrap()
-      dispatch(setUserRoleResp('success'))
-      dispatch(closeOverlay())
-    } catch (err) {
-      dispatch(setUserRoleResp('error'))
-      dispatch(closeOverlay())
-    }
+    if (!appId || !users || roles.length <= 0) return
+
+    users.map(async (user) => {
+      const data: UserRoleRequest = {
+        appId: appId,
+        companyUserId: user,
+        body: roles,
+      }
+      try {
+        await updateUserRoles(data).unwrap()
+        dispatch(setUserRoleResp('success'))
+        dispatch(closeOverlay())
+      } catch (err) {
+        dispatch(setUserRoleResp('error'))
+        dispatch(closeOverlay())
+      }
+    })
   }
 
   return (
@@ -98,7 +101,7 @@ export default function AddAppUserRoles() {
         <Button
           variant="contained"
           onClick={() => handleConfirm()}
-          disabled={!user || roles.length <= 0}
+          disabled={!users || roles.length <= 0}
         >
           {t('global.actions.confirm')}
         </Button>

@@ -90,9 +90,17 @@ export const Table = ({
     searchExpr,
   }
 
-  const handleOnCellClick = (params: any) => {
-    onSelection &&
-      onSelection([params.value === false ? params.row.companyUserId : ''])
+  const handleOnCellClick = (selectedIds: any) => {
+    const idsArr: Array<string> = []
+    selectedIds = selectedIds.map(
+      (id: string) => (id = id.substring(0, id.length - 1))
+    )
+    rows.map(
+      (row) =>
+        selectedIds.indexOf(row.companyUserId) > -1 &&
+        idsArr.push(row.companyUserId)
+    )
+    onSelection && onSelection(idsArr)
   }
 
   const toolbarView = () => {
@@ -144,7 +152,7 @@ export const Table = ({
           Toolbar: () => toolbarView(),
           NoRowsOverlay,
         }}
-        onCellClick={onSelection && handleOnCellClick}
+        onSelectionModelChange={(ids) => handleOnCellClick(ids)}
         {...{
           rows,
           columns,
