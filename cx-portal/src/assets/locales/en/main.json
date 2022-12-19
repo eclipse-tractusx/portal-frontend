@@ -494,7 +494,8 @@
     },
     "usermanagement": {
       "apparea": {
-        "headline": "App Access Management"
+        "headline": "App Access Management",
+        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
       },
       "table": {
         "headline": "Identity Management",
@@ -971,6 +972,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
+      "edit": "Edit",
       "userName": "Username",
       "clientId": "Client ID",
       "authType": "Auth Type",
