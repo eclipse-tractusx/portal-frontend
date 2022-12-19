@@ -46,9 +46,7 @@ export const ConnectorTableColumns = (
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Box>
-          <Typography variant="body2">{row.location}</Typography>
-        </Box>
+        <Typography variant="body2">{row.location}</Typography>
       ),
     },
     {
