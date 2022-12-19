@@ -4,6 +4,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Cleanups
+   * Technical user
 * Shared Components
   * Add Side List component
   * Add Draggable Chip component
@@ -27,7 +29,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Partner Network
    * Stop throbber in case of error and show No rows present message
    * Empty details overlay issue fix
-
+   
 ### Feature
 * Service Marketplace
    * new UI released
