@@ -20,35 +20,20 @@
 
 import { ComponentStory } from '@storybook/react'
 
-import { Menu as Component } from '.'
+import { DraggableChip as Component } from './DraggableChip'
 
 export default {
-  title: 'Menus',
+  title: 'Chip',
   component: Component,
+  args: {
+    children: 'name_use_case_4',
+    isSelected: false,
+    width: '170px',
+  },
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args} />
+  <Component {...args}>{args.children}</Component>
 )
 
-export const Menu = Template.bind({})
-Menu.args = {
-  items: [
-    {
-      href: '/1',
-      title: 'Menu Item 1',
-      children: [
-        { href: '/1/1', title: 'Submenu Item 1' },
-        { href: '/1/2', title: 'Submenu Item 2' },
-        {
-          href: '/1/3',
-          title: 'Submenu Item 3',
-          hint: 'coming soon',
-          disable: true,
-        },
-      ],
-    },
-    { href: '/2', title: 'Menu Item 2' },
-    { href: '/3', title: 'Menu Item 3' },
-  ],
-}
+export const DraggableChip = Template.bind({})
