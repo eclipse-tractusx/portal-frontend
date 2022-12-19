@@ -18,43 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeaderProps } from '../MainHeader'
-import { Typography } from '../../../Typography'
+import Box from '@mui/material/Box'
+import {
+  LoadMoreButton as LoadMoreButtonShared,
+  LoadMoreButtonProps as LoadMoreButtonSharedProps,
+} from 'cx-portal-shared-components'
 
-export const MainHeaderTitle = ({
-  title,
-  subTitle,
-  subTitleWidth,
-  titleTextVariant = 'h1',
-  subTitleTextVariant = 'h2',
-  titleSpacing = '0px',
-}: MainHeaderProps) => {
+import { useTranslation } from 'react-i18next'
+
+export type LoadMoreButtonProps = Omit<LoadMoreButtonSharedProps, 'label'>
+
+export const LoadMoreButton = ({ onClick, ...props }: LoadMoreButtonProps) => {
+  const { t } = useTranslation()
+
   return (
-    <>
-      {title && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            fontWeight: 600,
-            paddingBottom: titleSpacing,
-          }}
-          variant={titleTextVariant}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {subTitle && (
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            width: `${subTitleWidth}px`,
-          }}
-          variant={subTitleTextVariant}
-        >
-          {subTitle}
-        </Typography>
-      )}
-    </>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <LoadMoreButtonShared
+        {...props}
+        label={t('global.actions.loadmore')}
+        onClick={onClick}
+      />
+    </Box>
   )
 }

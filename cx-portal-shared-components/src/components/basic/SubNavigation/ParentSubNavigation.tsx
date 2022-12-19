@@ -39,8 +39,11 @@ export const ParentSubNavigation = ({
               color="secondary"
               variant="text"
               size="medium"
+              sx={{
+                fontSize: '16px',
+              }}
             >
-              <EastIcon sx={{ marginRight: '16px' }} />
+              <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
               {link.title}
             </Button>
           )

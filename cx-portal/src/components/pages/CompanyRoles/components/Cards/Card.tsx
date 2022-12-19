@@ -23,7 +23,13 @@ import { CardDetailsProps } from '../../types'
 import '../../CompanyRoles.scss'
 import { useTranslation } from 'react-i18next'
 
-export default function Card({ card }: { card: CardDetailsProps }) {
+export default function Card({
+  card,
+  isImage,
+}: {
+  card: CardDetailsProps
+  isImage: boolean
+}) {
   const { t } = useTranslation()
 
   return (
@@ -56,7 +62,13 @@ export default function Card({ card }: { card: CardDetailsProps }) {
         </Typography>
       </div>
       {card.readMore ? (
-        <a className="readMoreButton" href={card.readMore}>
+        <a
+          className="readMoreButton"
+          style={{
+            fontSize: isImage ? '16px' : '14px',
+          }}
+          href={card.readMore}
+        >
           {t('global.actions.details')}
         </a>
       ) : (

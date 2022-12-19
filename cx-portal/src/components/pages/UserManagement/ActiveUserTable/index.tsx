@@ -56,6 +56,7 @@ export const ActiveUserTable = ({
       onDetailsClick={(row: TenantUser) =>
         navigate(`/userdetails/${row.companyUserId}`)
       }
+      isDetail={true}
     />
   )
 }
