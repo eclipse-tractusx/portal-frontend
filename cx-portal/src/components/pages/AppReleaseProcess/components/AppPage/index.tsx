@@ -23,6 +23,7 @@ import {
   Typography,
   IconButton,
   PageNotifications,
+  UploadFileStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
@@ -100,6 +101,7 @@ export default function AppPage() {
     getValues,
     control,
     trigger,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
@@ -112,41 +114,82 @@ export default function AppPage() {
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
   const imagesValue = getValues().images
 
+  const setFileStatus = (
+    fieldName: Parameters<typeof setValue>[0],
+    status: UploadFileStatus
+  ) => {
+    const value = getValues(fieldName)
+
+    setValue(fieldName, {
+      name: value.name,
+      size: value.size,
+      status,
+    } as any)
+  }
+
   useEffect(() => {
-    if (getValues().uploadAppContract !== null)
-      uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
+    const value = getValues().uploadAppContract
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadAppContract', 'uploading')
+
+      uploadDocumentApi(appId, 'APP_CONTRACT', value)
+        .then(() => setFileStatus('uploadAppContract', 'upload_success'))
+        .catch(() => setFileStatus('uploadAppContract', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadAppContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataContract !== null)
-      uploadDocumentApi(appId, 'APP_DATA_DETAILS', uploadDataContractValue)
+    const value = getValues().uploadDataContract
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadDataContract', 'uploading')
+
+      uploadDocumentApi(appId, 'APP_DATA_DETAILS', value)
+        .then(() => setFileStatus('uploadDataContract', 'upload_success'))
+        .catch(() => setFileStatus('uploadDataContract', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataPrerequisits !== null)
-      uploadDocumentApi(
-        appId,
-        'ADDITIONAL_DETAILS',
-        uploadDataPrerequisitsValue
-      )
+    const value = getValues().uploadDataPrerequisits
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadDataPrerequisits', 'uploading')
+
+      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', value)
+        .then(() => setFileStatus('uploadDataPrerequisits', 'upload_success'))
+        .catch(() => setFileStatus('uploadDataPrerequisits', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataPrerequisitsValue])
 
   useEffect(() => {
-    if (getValues().uploadTechnicalGuide !== null)
-      uploadDocumentApi(
-        appId,
-        'APP_TECHNICAL_INFORMATION',
-        uploadTechnicalGuideValue
-      )
+    const value = getValues().uploadTechnicalGuide
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadTechnicalGuide', 'uploading')
+
+      uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
+        .then(() => setFileStatus('uploadDataPrerequisits', 'upload_success'))
+        .catch(() => setFileStatus('uploadTechnicalGuide', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
 
   useEffect(() => {
-    if (getValues().images !== null)
-      uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
+    const value = getValues().images
+
+    if (value && !('status' in value)) {
+      setFileStatus('images', 'uploading')
+
+      // TODO: the API endpoint should support multiple images? Or is just one image allowed?
+      uploadDocumentApi(appId, 'APP_IMAGE', value)
+        .then(() => setFileStatus('images', 'upload_success'))
+        .catch(() => setFileStatus('images', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagesValue])
 
@@ -161,9 +204,7 @@ export default function AppPage() {
       body: { file },
     }
 
-    try {
-      await updateDocumentUpload(data).unwrap()
-    } catch (error) {}
+    return updateDocumentUpload(data).unwrap()
   }
 
   const onAppPageSubmit = async (data: FormDataType) => {
@@ -320,7 +361,7 @@ export default function AppPage() {
                 'image/png': [],
                 'image/jpeg': [],
               },
-              maxFilesToUpload: 3,
+              maxFilesToUpload: 3, // TODO: the API endpoint should support multiple images? Or is just one image allowed?
               maxFileSize: 819200,
               rules: {
                 required: {
@@ -362,7 +403,7 @@ export default function AppPage() {
                   name: item,
                   type: 'dropzone',
                   acceptFormat: {
-                    'text/pdf': ['.pdf'],
+                    'application/pdf': ['.pdf'],
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,

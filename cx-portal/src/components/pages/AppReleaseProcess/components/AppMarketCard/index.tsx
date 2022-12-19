@@ -339,6 +339,8 @@ export default function AppMarketCard() {
                 status,
               } as any)
 
+            setFileStatus('uploading')
+
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
               .then(() => {
                 setFileStatus('upload_success')

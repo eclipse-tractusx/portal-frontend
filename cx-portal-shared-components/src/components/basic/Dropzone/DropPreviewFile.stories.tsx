@@ -29,7 +29,7 @@ export default {
     name: 'Document.pdf',
     size: 65402,
     status: 'new',
-    progressPercent: 45,
+    progressPercent: 0,
     translations: {
       placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
       uploadProgess: 'Uploaded % of % files',

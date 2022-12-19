@@ -53,8 +53,8 @@ export interface DropzoneProps {
 export const Dropzone = ({
   onChange,
   files,
-  acceptFormat = { 'image/*': [] }, // TODO: not default!
-  maxFilesToUpload = 1,
+  acceptFormat,
+  maxFilesToUpload,
   maxFileSize,
   DropArea,
   DropStatusHeader,

@@ -19,10 +19,12 @@
  ********************************************************************************/
 
 import { Box, IconButton, useTheme } from '@mui/material'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { DropZonePreviewTranslations, UploadFile } from '../types'
 import { FileIcon } from '../../CustomIcons/FileIcon'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+
+const FAKE_UPLOAD_DURATION = 6000
 
 const formatBytes = (b: number) => {
   const units = ['bytes', 'KB', 'MB']
@@ -50,6 +52,40 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
 }) => {
   const theme = useTheme()
 
+  const [fakeProgressPercent, setFakeProgressPercent] = useState(0)
+  const fakeProgressTimeRef = useRef(0)
+
+  const progressPercent = uploadFile.progressPercent || fakeProgressPercent
+
+  useEffect(() => {
+    if (
+      uploadFile.status === 'uploading' &&
+      fakeProgressTimeRef.current === 0
+    ) {
+      const fakeUploadDuration =
+        FAKE_UPLOAD_DURATION + (Math.random() - 0.5) * 1000
+      const intervalFrequency = 50
+
+      const updateProgress = () => {
+        fakeProgressTimeRef.current += intervalFrequency
+
+        setFakeProgressPercent(
+          Math.log2(
+            1 + (fakeProgressTimeRef.current / FAKE_UPLOAD_DURATION) * 5
+          ) * 33
+        )
+
+        if (fakeProgressTimeRef.current < fakeUploadDuration) {
+          setTimeout(updateProgress, intervalFrequency)
+        } else {
+          fakeProgressTimeRef.current = 0
+        }
+      }
+
+      updateProgress()
+    }
+  }, [uploadFile.status])
+
   const isUploading = uploadFile.status === 'uploading'
 
   let tagLabel
@@ -62,6 +98,9 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
       tagLabel = translations.uploadError
       break
   }
+
+  const showDeleteButton =
+    uploadFile.status !== 'uploading' && uploadFile.status !== 'upload_error'
 
   return (
     <Box
@@ -88,7 +127,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
           pointerEvents: 'none',
           position: 'absolute',
           inset: 0,
-          width: isUploading ? `${uploadFile.progressPercent}%` : 0,
+          width: isUploading ? `${progressPercent}%` : 0,
           backgroundColor: 'primary.main',
         },
       }}
@@ -155,7 +194,13 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
           </Box>
         </Box>
       )}
-      <Box sx={{ flex: '0 0 auto', marginLeft: 3 }}>
+      <Box
+        sx={{
+          flex: '0 0 auto',
+          marginLeft: 3,
+          visibility: showDeleteButton ? 'visible' : 'hidden',
+        }}
+      >
         <IconButton onClick={() => onDelete?.()}>
           <DeleteOutlineIcon sx={{ color: 'primary.main' }} />
         </IconButton>
