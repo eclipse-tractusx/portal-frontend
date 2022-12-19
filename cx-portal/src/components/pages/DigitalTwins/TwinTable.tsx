@@ -28,6 +28,7 @@ import {
 } from 'features/digitalTwins/actions'
 import { twinsSelector } from 'features/digitalTwins/slice'
 import { ShellDescriptor } from 'features/digitalTwins/types'
+import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
 import uniqueId from 'lodash/uniqueId'
 import Patterns from 'types/Patterns'
@@ -108,13 +109,9 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (
-          <Button
-            size="medium"
-            sx={{ mt: 15 }}
+          <LoadMoreButton
             onClick={() => setPageNumber((prevState) => prevState + 1)}
-          >
-            {t('content.digitaltwin.table.load_button')}
-          </Button>
+          />
         )}
       </div>
     </section>

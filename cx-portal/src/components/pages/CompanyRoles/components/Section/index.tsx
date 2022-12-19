@@ -63,7 +63,12 @@ export default function Section({ sectionInfo }: { sectionInfo: any }) {
                       return <CardWithImage detail={card} />
                     })}
                 </div>
-                <div className="cardGridContainer">
+                <div
+                  className="cardGridContainer"
+                  style={{
+                    marginBottom: '180px',
+                  }}
+                >
                   {provider.detailsWithoutImage &&
                     provider.detailsWithoutImage.map(
                       (card: CardDetailsProps) => {

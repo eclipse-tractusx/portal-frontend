@@ -29,6 +29,7 @@ import {
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import uniqueId from 'lodash/uniqueId'
 
@@ -180,13 +181,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (
-          <Button
-            size="medium"
-            sx={{ mt: 15 }}
+          <LoadMoreButton
             onClick={() => setPageNumber((prevState) => prevState + 1)}
-          >
-            {t('content.semantichub.table.load_button')}
-          </Button>
+            sx={{ mt: 4 }}
+          />
         )}
       </div>
     </section>
