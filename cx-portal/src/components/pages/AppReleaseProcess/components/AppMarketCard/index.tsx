@@ -201,13 +201,12 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
-  const [defaultSalesManagerValue] =
-    useState<salesManagerType>({
-      userId: null,
-      firstName: 'none',
-      lastName: '',
-      fullName: 'none',
-    })
+  const [defaultSalesManagerValue] = useState<salesManagerType>({
+    userId: null,
+    firstName: 'none',
+    lastName: '',
+    fullName: 'none',
+  })
   const [salesManagerListData, setSalesManagerListData] = useState<
     salesManagerType[]
   >([defaultSalesManagerValue])
