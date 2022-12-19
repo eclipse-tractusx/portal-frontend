@@ -26,8 +26,8 @@ export default {
   title: 'Dropzone',
   component: Component,
   args: {
-    fileName: 'Document.pdf',
-    fileSize: 65402,
+    name: 'Document.pdf',
+    size: 65402,
     status: 'new',
     progressPercent: 45,
     translations: {
@@ -47,11 +47,11 @@ export default {
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => {
-  const { fileName, fileSize, status, progressPercent, ...props } = args
+  const { name, size, status, progressPercent, ...props } = args
   return (
     <Component
       {...props}
-      uploadFile={{ fileName, fileSize, status, progressPercent }}
+      uploadFile={{ name, size, status, progressPercent }}
     />
   )
 }

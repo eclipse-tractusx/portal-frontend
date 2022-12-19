@@ -53,6 +53,9 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   const filesCount = uploadFiles.length
 
   const finishedFilesCount = uploadFiles.filter(isFinished).length
+  const uploadedFilesCount = uploadFiles.filter(
+    (file) => file.status === 'upload_success'
+  ).length
 
   const DefaultDropStatusHeader: typeof DropStatusHeader = ({
     numUploaded,
@@ -86,7 +89,7 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   return (
     <Box sx={{ marginTop: 4 }}>
       <DropStatusHeaderComponent
-        numUploaded={finishedFilesCount}
+        numUploaded={uploadedFilesCount}
         numTotal={filesCount}
       />
       {finishedFilesCount > 0 && (

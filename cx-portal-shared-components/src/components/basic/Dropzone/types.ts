@@ -5,8 +5,8 @@ export type UploadFileStatus =
   | 'upload_error'
 
 export type UploadFile = {
-  fileName: string
-  fileSize: number
+  name: string
+  size: number
   status: UploadFileStatus
   progressPercent?: number
 }

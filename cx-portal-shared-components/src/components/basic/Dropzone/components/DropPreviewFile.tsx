@@ -34,7 +34,7 @@ const formatBytes = (b: number) => {
     l += 1
   }
 
-  return `${n.toFixed(n >= 10 || l < 1 ? 0 : 1)} ${units[l]}`
+  return `${n?.toFixed?.(n >= 10 || l < 1 ? 0 : 1)} ${units[l]}`
 }
 
 export interface DropPreviewFileProps {
@@ -123,7 +123,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
             : 'none',
         }}
       >
-        <Box>{uploadFile.fileName}</Box>
+        <Box>{uploadFile.name}</Box>
         <Box
           sx={{
             marginTop: 0.5,
@@ -131,7 +131,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
             color: isUploading ? 'inherit' : 'textField.placeholderText',
           }}
         >
-          {formatBytes(uploadFile.fileSize)}
+          {formatBytes(uploadFile.size)}
         </Box>
       </Box>
       {tagLabel && (

@@ -23,6 +23,7 @@ import {
   DropPreviewProps,
   DropPreviewFileProps,
   DropStatusHeaderProps,
+  UploadFile,
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
 } from 'cx-portal-shared-components'
@@ -30,9 +31,15 @@ import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 
+export type DropzoneFile = File & Partial<UploadFile>
+
 export interface DropzoneProps {
-  onChange: (files: File[]) => void
-  files?: File[]
+  onChange: (
+    allFiles: DropzoneFile[],
+    addedFiles: DropzoneFile[] | undefined,
+    deletedFiles: DropzoneFile[] | undefined
+  ) => void
+  files?: DropzoneFile[]
   acceptFormat?: any
   maxFilesToUpload?: number
   maxFileSize?: number
@@ -56,7 +63,7 @@ export const Dropzone = ({
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
-  const [dropped, setDropped] = useState<File[]>([])
+  const [dropped, setDropped] = useState<DropzoneFile[]>([])
 
   const currentFiles = files ?? dropped
 
@@ -67,21 +74,24 @@ export const Dropzone = ({
     : currentFiles.length === maxFilesToUpload
 
   const onDropAccepted = useCallback(
-    (files: File[]) => {
-      const nextFiles = isSingleUpload ? files : [...dropped, ...files]
+    (droppedFiles: File[]) => {
+      const nextFiles = isSingleUpload
+        ? droppedFiles
+        : [...dropped, ...droppedFiles]
 
       setDropped(nextFiles)
-      onChange(nextFiles)
+      onChange(nextFiles, droppedFiles, undefined)
     },
     [dropped, isSingleUpload, onChange]
   )
 
   const handleDelete = useCallback(
     (deleteIndex) => {
-      const nextFiles = currentFiles.filter((_, index) => index !== deleteIndex)
+      const nextFiles = [...currentFiles]
+      const deletedFiles = nextFiles.splice(deleteIndex, 1)
 
       setDropped(nextFiles)
-      onChange(nextFiles)
+      onChange(nextFiles, undefined, deletedFiles)
     },
     [currentFiles, onChange]
   )
@@ -119,10 +129,12 @@ export const Dropzone = ({
   const errorMessage =
     !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
 
-  const uploadFiles = currentFiles.map(
-    (file) =>
-      ({ fileName: file.name, fileSize: file.size, status: 'new' } as const)
-  )
+  const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
+    name: file.name,
+    size: file.size,
+    status: file.status ?? 'new',
+    progressPercent: file.progressPercent,
+  }))
 
   return (
     <div>

@@ -27,27 +27,26 @@ export default {
   component: Component,
   args: {
     uploadFiles: [
-      { fileName: 'Test123.pdf', fileSize: 44345000, status: 'new' },
+      { name: 'Test123.pdf', size: 44345000, status: 'new' },
       {
-        fileName: 'Document.pdf',
-        fileSize: 65402,
+        name: 'Document.pdf',
+        size: 65402,
         status: 'uploading',
         progressPercent: 45,
       },
       {
-        fileName:
-          'Das ist ein sehr langer Name von einer Datei - der Name ist wirklich äußerst, äußerst lang...!.pdf',
-        fileSize: 32003,
+        name: 'Das ist ein sehr langer Name von einer Datei - der Name ist wirklich äußerst, äußerst lang...!.pdf',
+        size: 32003,
         status: 'new',
       },
       {
-        fileName: 'My pretty PDF.pdf',
-        fileSize: 54676543,
+        name: 'My pretty PDF.pdf',
+        size: 54676543,
         status: 'upload_success',
       },
       {
-        fileName: 'Nix wars.xls',
-        fileSize: 543545,
+        name: 'Nix wars.xls',
+        size: 543545,
         status: 'upload_error',
       },
     ],
