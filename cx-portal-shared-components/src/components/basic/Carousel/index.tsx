@@ -70,7 +70,7 @@ export const Carousel = ({
   gapToArrows = 32,
   gapCarouselTop = 32,
   expandOnHover = false,
-  position = 'relative'
+  position = 'relative',
 }: CarouselProps) => {
   const [showArrows, setShowArrows] = useState(false)
   const onMouseEnter = () => setShowArrows(true)
