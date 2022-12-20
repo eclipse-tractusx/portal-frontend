@@ -25,6 +25,7 @@ import { Typography } from '../Typography'
 import { IconButton } from '../IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export interface DialogHeaderProps {
   title: string | JSX.Element
@@ -48,7 +49,12 @@ export const DialogHeader = ({
   const { spacing, palette } = useTheme()
 
   return (
-    <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
+    <Box
+      sx={{
+        padding: spacing(7, CONTENT_SPACING_RIGHT_LEFT),
+        textAlign: 'center',
+      }}
+    >
       <MuiDialogTitle>
         {icon && <Box>{iconComponent}</Box>}
         {title}

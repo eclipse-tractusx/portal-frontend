@@ -44,6 +44,7 @@ export const UserList = ({
   fetchHookArgs,
   onSearch,
   searchExpr,
+  isDetail,
 }: {
   sectionTitle: string
   addButtonLabel: string
@@ -54,6 +55,7 @@ export const UserList = ({
   fetchHookArgs?: any
   onSearch?: (search: string) => void
   searchExpr?: string
+  isDetail?: boolean
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -131,7 +133,9 @@ export const UserList = ({
           },
           {
             field: 'details',
-            headerName: t('global.field.details'),
+            headerName: isDetail
+              ? t('global.field.details')
+              : t('global.field.edit'),
             flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
