@@ -64,11 +64,10 @@ export default function AddAppUserRoles() {
       try {
         await updateUserRoles(data).unwrap()
         dispatch(setUserRoleResp('success'))
-        dispatch(closeOverlay())
       } catch (err) {
         dispatch(setUserRoleResp('error'))
-        dispatch(closeOverlay())
       }
+      dispatch(closeOverlay())
     })
   }
 
