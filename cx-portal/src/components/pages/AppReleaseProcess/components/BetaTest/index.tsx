@@ -60,7 +60,7 @@ export default function BetaTest() {
           <Grid item md={3}>
             <img
               src="/idp-teaser.jpg"
-              alt={'beta tests image'}
+              alt='idp teaser'
               height="164px"
               width="164px"
               style={{ borderRadius: '16px' }}
@@ -86,7 +86,7 @@ export default function BetaTest() {
                 `content.apprelease.betaTest.technicalIntegrationTestDescription`
               )}
             </Typography>
-            <a href="#" style={{ display: 'flex', marginTop: '28px' }}>
+            <a href="/" style={{ display: 'flex', marginTop: '28px' }}>
               <ArrowForwardIcon fontSize="small" /> Open test overview
             </a>
           </Grid>
