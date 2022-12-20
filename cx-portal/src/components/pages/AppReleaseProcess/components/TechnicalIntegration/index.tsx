@@ -72,22 +72,6 @@ export default function TechnicalIntegration() {
   const onIntegrationSubmit = async (data: any) =>
     setTechnicalIntegrationNotification(true)
 
-  // To-Do : the below code will get enhanced again in R.3.1
-
-  // const clientIdValue = getValues().clientId
-  // const URLValue = getValues().URL
-  // useEffect(() => {
-  //   if (
-  //     getValues().clientId !== '' &&
-  //     getValues().URL !== '' &&
-  //     !errors?.clientId &&
-  //     !errors?.URL
-  //   )
-  //     setDisableCreateClient(false)
-  //   else setDisableCreateClient(true)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [clientIdValue, URLValue])
-
   const csvPreview = (files: File[]) => {
     return files
       .filter((file: File) => file.type === 'text/csv')
