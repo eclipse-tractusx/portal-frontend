@@ -30,13 +30,9 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
-import Patterns from 'types/Patterns'
-import { ConnectorFormInputField } from '../AppMarketCard'
-import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import DoneIcon from '@mui/icons-material/Done'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 
@@ -47,16 +43,18 @@ export default function TechnicalIntegration() {
     setTechnicalIntegrationNotification,
   ] = useState(false)
   const dispatch = useDispatch()
-  const [disableCreateClient, setDisableCreateClient] = useState(true)
-  const [createClientSuccess, setCreateClientSuccess] = useState(false)
   const [enableUploadAppRoles, setEnableUploadAppRoles] = useState(false)
-  const [enableTestUserButton, setEnableTestUserButton] = useState(false)
-  const [showUserButton, setShowUserButton] = useState(true)
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
+  // To-Do : the below code will get enhanced again in R.3.1
+  // const [disableCreateClient, setDisableCreateClient] = useState(true)
+  // const [createClientSuccess, setCreateClientSuccess] = useState(false)
+  // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
+  // const [showUserButton, setShowUserButton] = useState(true)
 
   const defaultValues = {
-    clientId: '',
-    URL: '',
+    // To-Do : the below code will get enhanced again in R.3.1
+    // clientId: '',
+    // URL: '',
     uploadAppRoles: '',
   }
 
@@ -71,23 +69,24 @@ export default function TechnicalIntegration() {
     mode: 'onChange',
   })
 
-  const clientIdValue = getValues().clientId
-  const URLValue = getValues().URL
-
   const onIntegrationSubmit = async (data: any) =>
     setTechnicalIntegrationNotification(true)
 
-  useEffect(() => {
-    if (
-      getValues().clientId !== '' &&
-      getValues().URL !== '' &&
-      !errors?.clientId &&
-      !errors?.URL
-    )
-      setDisableCreateClient(false)
-    else setDisableCreateClient(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientIdValue, URLValue])
+  // To-Do : the below code will get enhanced again in R.3.1
+
+  // const clientIdValue = getValues().clientId
+  // const URLValue = getValues().URL
+  // useEffect(() => {
+  //   if (
+  //     getValues().clientId !== '' &&
+  //     getValues().URL !== '' &&
+  //     !errors?.clientId &&
+  //     !errors?.URL
+  //   )
+  //     setDisableCreateClient(false)
+  //   else setDisableCreateClient(true)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [clientIdValue, URLValue])
 
   const csvPreview = (files: File[]) => {
     return files
@@ -123,7 +122,8 @@ export default function TechnicalIntegration() {
       </Grid>
 
       <form className="header-description">
-        <Typography variant="h5" mb={4}>
+        {/* To-Do : the below code will get enhanced again in R.3.1 */}
+        {/* <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step1Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
@@ -206,6 +206,9 @@ export default function TechnicalIntegration() {
         <Divider className="form-divider" />
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step2Header')}
+        </Typography> */}
+        <Typography variant="h5" mb={4}>
+          {t('content.apprelease.technicalIntegration.uploadRolesDescription')}
         </Typography>
         {enableUploadAppRoles && (
           <>
@@ -261,12 +264,18 @@ export default function TechnicalIntegration() {
           <Button
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
-            disabled={!createClientSuccess}
             onClick={() => {
               getValues().uploadAppRoles === ''
                 ? setEnableUploadAppRoles(true)
-                : setEnableTestUserButton(true)
+                : setEnableUploadAppRoles(false)
             }}
+            // To-Do : the below code will get enhanced again in R.3.1
+            // disabled={!createClientSuccess}
+            // onClick={() => {
+            //   getValues().uploadAppRoles === ''
+            //     ? setEnableUploadAppRoles(true)
+            //     : setEnableTestUserButton(true)
+            // }}
           >
             {getValues().uploadAppRoles === ''
               ? t(
@@ -278,7 +287,8 @@ export default function TechnicalIntegration() {
           </Button>
         </Box>
 
-        <Divider className="form-divider" />
+        {/* To-Do : the below code will get enhanced again in R.3.1 */}
+        {/* <Divider className="form-divider" />
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step3Header')}
         </Typography>
@@ -315,7 +325,7 @@ export default function TechnicalIntegration() {
             </Grid>
             <Grid xs={4}>Lorem Ipsum</Grid>
           </Grid>
-        )}
+        )} */}
       </form>
 
       <Box mb={2}>
@@ -349,7 +359,8 @@ export default function TechnicalIntegration() {
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
-          disabled={showUserButton}
+          // To-Do : the below code will get enhanced again in R.3.1
+          // disabled={showUserButton}
           onClick={() => dispatch(increment())}
           variant="contained"
           sx={{ float: 'right' }}

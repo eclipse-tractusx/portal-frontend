@@ -866,6 +866,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
