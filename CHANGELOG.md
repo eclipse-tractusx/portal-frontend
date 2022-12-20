@@ -17,6 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Updates
    * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
+* BugFix - User Management - App Access assign multiple user with role
 
 
 ## 0.10.0
