@@ -338,6 +338,10 @@
         "location": "Location",
         "status": "Authentication Status"
       },
+      "rowValue": {
+        "owned": "Owned",
+        "managed": "Managed"
+      },
       "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
