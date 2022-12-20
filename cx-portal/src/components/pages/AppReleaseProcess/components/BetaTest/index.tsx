@@ -60,7 +60,7 @@ export default function BetaTest() {
           <Grid item md={3}>
             <img
               src="/idp-teaser.jpg"
-              alt='idp teaser'
+              alt="idp teaser"
               height="164px"
               width="164px"
               style={{ borderRadius: '16px' }}
