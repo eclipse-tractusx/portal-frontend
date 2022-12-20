@@ -69,7 +69,7 @@ export const InviteList = ({
         }}
         searchDebounce={1000}
         title={t('content.invite.tabletitle')}
-        loadLabel={t('global.actions.more')}
+        loadLabel={t('global.actions.loadmore')}
         fetchHook={fetchHook}
         fetchHookArgs={fetchHookArgs}
         fetchHookRefresh={refresh}

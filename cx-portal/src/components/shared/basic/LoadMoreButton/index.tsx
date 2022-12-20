@@ -18,38 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme } from '@mui/material'
-import MuiDialogActions, {
-  DialogActionsProps as MuiDialogActionsProps,
-} from '@mui/material/DialogActions'
-import { CONTENT_SPACING_RIGHT_LEFT } from './index'
+import Box from '@mui/material/Box'
+import {
+  LoadMoreButton as LoadMoreButtonShared,
+  LoadMoreButtonProps as LoadMoreButtonSharedProps,
+} from 'cx-portal-shared-components'
 
-export interface DialogActionProps extends MuiDialogActionsProps {
-  helperText?: string
-}
+import { useTranslation } from 'react-i18next'
 
-export const DialogActions = ({
-  children,
-  helperText,
-  ...props
-}: DialogActionProps) => {
-  const { spacing } = useTheme()
+export type LoadMoreButtonProps = Omit<LoadMoreButtonSharedProps, 'label'>
+
+export const LoadMoreButton = ({ onClick, ...props }: LoadMoreButtonProps) => {
+  const { t } = useTranslation()
 
   return (
     <Box
       sx={{
-        padding: spacing(4, CONTENT_SPACING_RIGHT_LEFT),
-        backgroundColor: 'background.background09',
+        width: '100%',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      {helperText && (
-        <Box
-          sx={{ paddingBottom: 4, typography: 'body3', textAlign: 'center' }}
-        >
-          {helperText}
-        </Box>
-      )}
-      <MuiDialogActions {...props}>{children}</MuiDialogActions>
+      <LoadMoreButtonShared
+        {...props}
+        label={t('global.actions.loadmore')}
+        onClick={onClick}
+      />
     </Box>
   )
 }

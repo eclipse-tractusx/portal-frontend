@@ -18,38 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme } from '@mui/material'
-import MuiDialogActions, {
-  DialogActionsProps as MuiDialogActionsProps,
-} from '@mui/material/DialogActions'
-import { CONTENT_SPACING_RIGHT_LEFT } from './index'
+import { ComponentStory } from '@storybook/react'
 
-export interface DialogActionProps extends MuiDialogActionsProps {
-  helperText?: string
+import { DraggableChip as Component } from './DraggableChip'
+
+export default {
+  title: 'Chip',
+  component: Component,
+  args: {
+    children: 'name_use_case_4',
+    isSelected: false,
+    width: '170px',
+  },
 }
 
-export const DialogActions = ({
-  children,
-  helperText,
-  ...props
-}: DialogActionProps) => {
-  const { spacing } = useTheme()
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args}>{args.children}</Component>
+)
 
-  return (
-    <Box
-      sx={{
-        padding: spacing(4, CONTENT_SPACING_RIGHT_LEFT),
-        backgroundColor: 'background.background09',
-      }}
-    >
-      {helperText && (
-        <Box
-          sx={{ paddingBottom: 4, typography: 'body3', textAlign: 'center' }}
-        >
-          {helperText}
-        </Box>
-      )}
-      <MuiDialogActions {...props}>{children}</MuiDialogActions>
-    </Box>
-  )
-}
+export const DraggableChip = Template.bind({})
