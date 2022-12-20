@@ -62,8 +62,6 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
       uploadFile.status === 'uploading' &&
       fakeProgressTimeRef.current === 0
     ) {
-      const fakeUploadDuration =
-        FAKE_UPLOAD_DURATION + (Math.random() - 0.5) * 1000
       const intervalFrequency = 50
 
       const updateProgress = () => {
@@ -75,7 +73,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
           ) * 33
         )
 
-        if (fakeProgressTimeRef.current < fakeUploadDuration) {
+        if (fakeProgressTimeRef.current < FAKE_UPLOAD_DURATION) {
           setTimeout(updateProgress, intervalFrequency)
         } else {
           fakeProgressTimeRef.current = 0
