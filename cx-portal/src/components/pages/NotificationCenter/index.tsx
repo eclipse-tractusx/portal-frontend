@@ -69,7 +69,7 @@ const NotificationGroup = ({
 }
 
 export default function NotificationCenter() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('notification')
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -110,15 +110,15 @@ export default function NotificationCenter() {
 
   const sortOptions = [
     {
-      label: t('notification.sortOptions.new'),
+      label: t('sortOptions.new'),
       value: 'DateDesc',
     },
     {
-      label: t('notification.sortOptions.oldest'),
+      label: t('sortOptions.oldest'),
       value: 'DateAsc',
     },
     {
-      label: t('notification.sortOptions.unread'),
+      label: t('sortOptions.unread'),
       value: 'ReadStatusAsc',
     },
   ]
@@ -151,7 +151,7 @@ export default function NotificationCenter() {
 
   const filterButtons = [
     {
-      buttonText: `${t('notification.sortOptions.all')} (${getTotalCount(
+      buttonText: `${t('sortOptions.all')} (${getTotalCount(
         pages?.infoUnread,
         pages?.unread,
         pages?.offerUnread,
@@ -161,21 +161,17 @@ export default function NotificationCenter() {
       onButtonClick: setView,
     },
     {
-      buttonText: `${t('notification.sortOptions.app')} (${
-        pages?.offerUnread || 0
-      })`,
+      buttonText: `${t('sortOptions.app')} (${pages?.offerUnread || 0})`,
       buttonValue: 'OFFER',
       onButtonClick: setView,
     },
     {
-      buttonText: `${t('notification.sortOptions.info')} (${
-        pages?.infoUnread || 0
-      })`,
+      buttonText: `${t('sortOptions.info')} (${pages?.infoUnread || 0})`,
       buttonValue: 'INFO',
       onButtonClick: setView,
     },
     {
-      buttonText: `${t('notification.sortOptions.withaction')} (${
+      buttonText: `${t('sortOptions.withaction')} (${
         pages?.actionRequired || 0
       })`,
       buttonValue: 'ACTION',
@@ -200,7 +196,7 @@ export default function NotificationCenter() {
           onMouseLeave={() => setShowModal(false)}
         >
           <SearchInput
-            placeholder={t('notification.search')}
+            placeholder={t('search')}
             value={searchExpr}
             autoFocus={false}
             autoComplete="off"
