@@ -29,23 +29,37 @@ import { DialogHeader } from './DialogHeader'
 export default {
   title: 'Modal',
   component: Component,
+  argTypes: {
+    maxWidth: {
+      control: 'inline-radio',
+      options: [undefined, 'sm', 'md', 'lg', 'xl'],
+    },
+  },
+  args: {
+    open: true,
+    maxWidth: undefined,
+    fullWidth: false,
+    title: 'Title',
+    intro:
+      'Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    content: 'Content goes here.',
+    helperText: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+  },
 }
 
-const DialogTemplate: ComponentStory<typeof Component> = (args: any) => (
-  <Component {...args}>
-    <DialogHeader
-      title="Title"
-      intro="Optional intro. Lorem ipsum dolor sit amet consectetur adipisicing elit."
-    />
-    <DialogContent>Content goes here.</DialogContent>
-    <DialogActions helperText="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
-      <Button variant="outlined">Cancel</Button>
-      <Button variant="contained">Confirm</Button>
-    </DialogActions>
-  </Component>
-)
+const DialogTemplate: ComponentStory<typeof Component> = (args: any) => {
+  const { title, intro, content, helperText, ...componentArgs } = args
+
+  return (
+    <Component {...componentArgs}>
+      <DialogHeader title={title} intro={intro} />
+      <DialogContent>{content}</DialogContent>
+      <DialogActions helperText={helperText}>
+        <Button variant="outlined">Cancel</Button>
+        <Button variant="contained">Confirm</Button>
+      </DialogActions>
+    </Component>
+  )
+}
 
 export const Dialog = DialogTemplate.bind({})
-Dialog.args = {
-  open: true,
-}
