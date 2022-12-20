@@ -4,10 +4,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Cleanups
+   * Technical user
+* Shared Components
+  * Add Side List component
+  * Add Draggable Chip component
+* Feature - User Management - Add App Access Placeholders
+* Feature - User Management - App Access Table Column Heading Change
+* Feature - App Release Process
+   * Update of Step 4 to only handle the role upload
 * BugFix - Add user role for app not working fix
 * Updates
    * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
+* BugFix - User Management - App Access assign multiple user with role
+
 
 ## 0.10.0
 
@@ -19,9 +30,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * page snackbar positioning updated
    * tooltip enhanced by adding light color variant
 * Partner Network
-   * stop throbber in case of error and information "no rows" added
-   * empty details overlay issue fix by updating the front end business logic of the api key values fetched
-
+   * Stop throbber in case of error and show No rows present message
+   * Empty details overlay issue fix
+   
 ### Feature
 * Service Marketplace
    * new UI released
@@ -44,6 +55,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * sort icon behavior on click/mouse over fixed
    * notification api trigger logic fixed
 * App user management: user role deletion fixed
+
 
 ## 0.9.0
 

@@ -202,8 +202,7 @@
           "version": "Version",
           "src": "Quelle",
           "details": "Details"
-        },
-        "load_button": "Mehr laden"
+        }
       },
       "importDialog": {
         "title": "Modell importieren",
@@ -256,8 +255,7 @@
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
           "asset_count": "Anzahl Assets"
-        },
-        "load_button": "Mehr laden"
+        }
       },
       "detail": {
         "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
@@ -339,6 +337,10 @@
         "details": "Einzelheiten",
         "location": "Location",
         "status": "Authentication Status"
+      },
+      "rowValue": {
+        "owned": "Owned",
+        "managed": "Managed"
       },
       "headertitle": "Technische Integration - Connector & IDPs",
       "subheadertitle": "Connector",
@@ -440,7 +442,6 @@
         "others": "Andere"
       },
       "message": "Inhalte vom Partner Netzwerk",
-      "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
       "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
@@ -464,7 +465,6 @@
       "failure": "Error - Business Partner Einladung schlug fehl.",
       "failureSubText": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
       "tabletitle": "Invites",
-      "load_button": "Mehr laden",
       "columns": {
         "companyName": "Unternehmensname",
         "firstAndLastName": "Vor- und Nachname",
@@ -492,7 +492,8 @@
     },
     "usermanagement": {
       "apparea": {
-        "headline": "App Zugriffsmanagement"
+        "headline": "App Zugriffsmanagement",
+        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
       },
       "table": {
         "headline": "Benutzerkontenverwaltung",
@@ -642,6 +643,7 @@
       "technicalUserHeadline": "Technischen Nutzer anfragen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
+      "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "technicalUser": {
@@ -649,7 +651,10 @@
           "service": "Dienst",
           "username": "Username",
           "description": "Beschreibung",
-          "spocHeadline": "Single Point of Contact (SPoC):",
+          "spocHeadline": "Single Point of Contact (SPoC)",
+          "org": "Organization name",
+          "email": "E-Mail Address",
+          "name": "Username",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
             "description": "Bitte geben Sie eine Beschreibung ein."
@@ -840,6 +845,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
@@ -997,6 +1003,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
+      "edit": "Edit",
       "userName": "Benutzername",
       "clientId": "Client ID",
       "authType": "Auth Type",
@@ -1025,8 +1032,7 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes",
-      "details": "Details"
+      "yes": "Yes"
     },
     "state": {
       "enabled": "aktiv",

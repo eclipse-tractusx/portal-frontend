@@ -29,6 +29,7 @@ import {
   CXNotificationPagination,
 } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
+import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import NotificationItem from './NotificationItem'
 import { groupBy } from 'lodash'
 import dayjs from 'dayjs'
@@ -40,7 +41,6 @@ import {
   SearchInput,
   ViewSelector,
   SortOption,
-  Button,
   CircleProgress,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
@@ -268,17 +268,7 @@ export default function NotificationCenter() {
         {!isFetching &&
           paginationData &&
           paginationData.contentSize >= PAGE_SIZE && (
-            <Box
-              sx={{
-                width: '100%',
-                height: '100px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Button onClick={nextPage}>{'Load More'}</Button>
-            </Box>
+            <LoadMoreButton onClick={nextPage} />
           )}
       </section>
     </main>

@@ -202,8 +202,7 @@
           "version": "Version",
           "src": "Source",
           "details": "Details"
-        },
-        "load_button": "Load more"
+        }
       },
       "importDialog": {
         "title": "Import Model",
@@ -256,8 +255,7 @@
           "idShort": "Name",
           "sm_count": "Submodel Count",
           "asset_count": "Asset Count"
-        },
-        "load_button": "Load more"
+        }
       },
       "detail": {
         "error": "ERROR: No twin data available.",
@@ -339,6 +337,10 @@
         "details": "Details",
         "location": "Location",
         "status": "Authentication Status"
+      },
+      "rowValue": {
+        "owned": "Owned",
+        "managed": "Managed"
       },
       "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
@@ -440,7 +442,6 @@
         "others": "Others"
       },
       "message": "Contents of Partner Network",
-      "loadmore": "Load More",
       "searchbuttonlabel": "Search",
       "searchfielddefaulttext": "Search by name or BPN",
       "searchfielderrormessage": "Invalid Data",
@@ -464,7 +465,6 @@
       "failure": "Error - Business Partner was not invited",
       "failureSubText": "An error occured. Please try it again later.",
       "tabletitle": "Invites",
-      "load_button": "Load more",
       "columns": {
         "companyName": "Company Name",
         "firstAndLastName": "First and Last Name",
@@ -492,7 +492,8 @@
     },
     "usermanagement": {
       "apparea": {
-        "headline": "App Access Management"
+        "headline": "App Access Management",
+        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
       },
       "table": {
         "headline": "Identity Management",
@@ -641,6 +642,7 @@
       "technicalUserHeadline": "Technical User Creation",
       "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
       "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
+      "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Select CX Portal User Role",
       "helperText": "Please enter all required information before proceeding.",
       "technicalUser": {
@@ -648,7 +650,10 @@
           "service": "Service",
           "username": "Username",
           "description": "Description",
-          "spocHeadline": "Single Point of Contact (SPoC):",
+          "spocHeadline": "Single Point of Contact (SPoC)",
+          "org": "Organization name",
+          "email": "E-Mail Address",
+          "name": "Username",
           "error": {
             "select": "Please select a value.",
             "description": "Please enter a description."
@@ -800,6 +805,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
@@ -957,6 +963,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
+      "edit": "Edit",
       "userName": "Username",
       "clientId": "Client ID",
       "authType": "Auth Type",
@@ -984,8 +991,7 @@
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
       "no": "No",
-      "yes": "Yes",
-      "details": "Details"
+      "yes": "Yes"
     },
     "state": {
       "enabled": "enabled",
