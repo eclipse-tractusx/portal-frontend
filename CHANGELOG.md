@@ -18,6 +18,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
 * BugFix - User Management - App Access assign multiple user with role
+* Registration Request
+   * Search moved to the center
+   * Filter feature enabled
+   * View update in Details overlay
 
 
 ## 0.10.0
