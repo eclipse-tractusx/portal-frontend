@@ -338,6 +338,10 @@
         "location": "Location",
         "status": "Authentication Status"
       },
+      "rowValue": {
+        "owned": "Owned",
+        "managed": "Managed"
+      },
       "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
@@ -840,8 +844,11 @@
         "username": "Username"
       },
       "betaTest": {
-        "headerTitle": "Beta Test",
-        "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release."
+        "headerTitle": "CX Test Runs",
+        "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release.",
+        "betaTests": "Beta Tests",
+        "technicalIntegrationTest": "Technical Integration Test",
+        "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
       },
       "validateAndPublish": {
         "headerTitle": "Validate & Publish",
@@ -887,7 +894,8 @@
         "help": "Help",
         "saveAndProceed": "Save & proceed",
         "save": "Save",
-        "submit": "Submit"
+        "submit": "Submit",
+        "proceed": "Proceed"
       }
     },
     "serviceMarketplace": {

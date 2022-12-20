@@ -22,7 +22,7 @@ import { useTheme } from '@mui/material'
 import MuiDialog, { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
 
 export const CONTENT_SPACING_RIGHT_LEFT = 10
-const MODAL_DEFAULT_WIDTH = '800px'
+const MODAL_DEFAULT_WIDTH = '1000px'
 
 interface AddtionalDialogProps {
   modalBorderRadius?: number

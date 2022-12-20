@@ -103,8 +103,8 @@ export const usersToAddSelector = (state: RootState): AddUser =>
 export const rolesToAddSelector = (state: RootState): string[] =>
   state.admin.user.rolesToAdd
 
-export const selectedUserSelector = (state: RootState): string =>
-  state.admin.user.selectedUser[0]
+export const selectedUserSelector = (state: RootState): string[] =>
+  state.admin.user.selectedUser
 
 export const getRequestStateSelector = (state: RootState): RequestState =>
   state.admin.user.getRequest

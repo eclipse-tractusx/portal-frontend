@@ -16,11 +16,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - User Management - App Access Table Column Heading Change
 * Feature - App Release Process
    * Update of Step 4 to only handle the role upload
+   * Beta Test- Added preview content
 * BugFix - Add user role for app not working fix
 * BugFix - Page break issue fix in app release process - step 2
 * Updates
    * Style fix in Company roles page
-   
+* BugFix - Page break issue fix in app release process - step 2
+* BugFix - User Management - App Access assign multiple user with role
+
+
 ## 0.10.0
 
 ### Change
