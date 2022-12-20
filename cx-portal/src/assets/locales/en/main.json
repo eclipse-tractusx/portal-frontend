@@ -95,7 +95,8 @@
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
-        "headertitle": "User Registration Requests",
+        "headertitle": "Admin Board",
+        "headersubtitle": "Application Requests",
         "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
         "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "tabletitle": "Registration requests",
@@ -105,9 +106,13 @@
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
         "overlay": {
-          "title": "Company Data",
-          "companydatatitle": "Company Data",
-          "taxid": "Tax ID"
+          "title": "Company Registration Details",
+          "companydatatitle": "Overview",
+          "companydatadescription": "Below you can find the details of the company registration",
+          "taxid": "Tax ID",
+          "address": "Address",
+          "docs": "Document(s)",
+          "roles": "Company Role(s)"
         },
         "confirmmodal": {
           "title": "Confirm action",
@@ -118,6 +123,11 @@
           "successDescription": "Update BPN number successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        },
+        "filter": {
+          "all": "All Services",
+          "review": "Review",
+          "closed": "Closed"
         }
       }
     },

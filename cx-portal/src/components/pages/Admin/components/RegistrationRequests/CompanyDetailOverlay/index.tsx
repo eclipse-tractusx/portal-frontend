@@ -25,11 +25,13 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
+  Button,
 } from 'cx-portal-shared-components'
 import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/DetailGridRow'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -59,8 +61,9 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: t(
-              'content.admin.registration-requests.overlay.companydatatitle'
+            title: t('content.admin.registration-requests.overlay.title'),
+            intro: t(
+              'content.admin.registration-requests.overlay.companydatadescription'
             ),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
@@ -102,7 +105,9 @@ const CompanyDetailOverlay = ({
                   }}
                 >
                   <Typography variant="h5">
-                    {t('content.admin.registration-requests.overlay.title')}
+                    {t(
+                      'content.admin.registration-requests.overlay.companydatatitle'
+                    )}
                   </Typography>
                 </Grid>
                 <DetailGridRow
@@ -140,7 +145,9 @@ const CompanyDetailOverlay = ({
                     padding: spacing(2),
                   }}
                 >
-                  <Typography variant="h5">Address</Typography>
+                  <Typography variant="h5">
+                    {t('content.admin.registration-requests.overlay.address')}
+                  </Typography>
                 </Grid>
                 <DetailGridRow
                   key="Street"
@@ -167,6 +174,105 @@ const CompanyDetailOverlay = ({
                     value: selectedCompany?.countryDe || '',
                   }}
                 />
+                <Grid
+                  xs={12}
+                  item
+                  style={{
+                    backgroundColor: theme.palette.grey['100'],
+                    padding: spacing(2),
+                  }}
+                >
+                  <Typography variant="h5">
+                    {t('content.admin.registration-requests.overlay.docs')}
+                  </Typography>
+                </Grid>
+                <div
+                  style={{
+                    display: 'flex',
+                    padding: '20px',
+                    alignItems: 'center',
+                  }}
+                >
+                  <>
+                    <ArticleOutlinedIcon />
+                    <button
+                      style={{
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                        fontSize: '16px',
+                        border: 'none',
+                        background: 'transparent',
+                        paddingLeft: '10px',
+                      }}
+                    >
+                      Document
+                    </button>
+                  </>
+                </div>
+                <Grid
+                  xs={12}
+                  item
+                  style={{
+                    backgroundColor: theme.palette.grey['100'],
+                    padding: spacing(2),
+                  }}
+                >
+                  <Typography variant="h5">
+                    {t('content.admin.registration-requests.overlay.roles')}
+                  </Typography>
+                </Grid>
+                <div
+                  style={{
+                    display: 'flex',
+                    padding: '20px 10px 10px 10px',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                  }}
+                >
+                  <Button
+                    color="secondary"
+                    sx={{
+                      borderRadius: '6px',
+                      margin: '0px 10px',
+                      cursor: 'auto',
+                    }}
+                    onClick={function noRefCheck() {}}
+                    onFocusVisible={function noRefCheck() {}}
+                    size="small"
+                    variant="contained"
+                  >
+                    Participant
+                  </Button>
+                  <Button
+                    color="secondary"
+                    sx={{
+                      borderRadius: '6px',
+                      margin: '0px 10px',
+                      cursor: 'auto',
+                    }}
+                    onClick={function noRefCheck() {}}
+                    onFocusVisible={function noRefCheck() {}}
+                    size="small"
+                    variant="contained"
+                  >
+                    App Provider
+                  </Button>
+                  <Button
+                    color="secondary"
+                    disabled
+                    sx={{
+                      borderRadius: '6px',
+                      margin: '0px 10px',
+                      cursor: 'auto',
+                    }}
+                    onClick={function noRefCheck() {}}
+                    onFocusVisible={function noRefCheck() {}}
+                    size="small"
+                    variant="contained"
+                  >
+                    Service Provider
+                  </Button>
+                </div>
               </Grid>
             </Box>
           </DialogContent>
