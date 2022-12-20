@@ -20,6 +20,7 @@
 
 import {
   Button,
+  Chip,
   IconButton,
   PageNotifications,
   Typography,
@@ -31,6 +32,7 @@ import { Divider, Box, Grid } from '@mui/material'
 import { decrement, increment } from 'features/appManagement/slice'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export default function BetaTest() {
   const { t } = useTranslation()
@@ -49,6 +51,47 @@ export default function BetaTest() {
           </Typography>
         </Grid>
       </Grid>
+
+      <form className="header-description">
+        <Typography variant="h4" mb={5}>
+          {t('content.apprelease.betaTest.betaTests')}
+        </Typography>
+        <Grid container sx={{ mt: 0 }}>
+          <Grid item md={3}>
+            <img
+              src="/idp-teaser.jpg"
+              alt={'beta tests image'}
+              height="164px"
+              width="164px"
+              style={{ borderRadius: '16px' }}
+            />
+          </Grid>
+          <Grid item md={8} marginLeft="20px">
+            <div style={{ display: 'flex' }}>
+              <Typography variant="h4">
+                {t(`content.apprelease.betaTest.technicalIntegrationTest`)}
+              </Typography>
+              <Chip
+                key={1}
+                label={'Available Soon'}
+                withIcon={false}
+                type="plain"
+                variant="filled"
+                color="label"
+                sx={{ ml: 5 }}
+              />
+            </div>
+            <Typography variant="body2" marginTop="16px">
+              {t(
+                `content.apprelease.betaTest.technicalIntegrationTestDescription`
+              )}
+            </Typography>
+            <a href="#" style={{ display: 'flex', marginTop: '28px' }}>
+              <ArrowForwardIcon fontSize="small" /> Open test overview
+            </a>
+          </Grid>
+        </Grid>
+      </form>
       <Box mb={2}>
         {betaTestNotification && (
           <Grid container xs={12} sx={{ mb: 2 }}>
@@ -82,10 +125,7 @@ export default function BetaTest() {
           sx={{ float: 'right' }}
           onClick={() => dispatch(increment())}
         >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button variant="outlined" name="send" sx={{ float: 'right', mr: 1 }}>
-          {t('content.apprelease.footerButtons.save')}
+          {t('content.apprelease.footerButtons.proceed')}
         </Button>
       </Box>
     </>
