@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useCallback } from 'react'
 import { DataGrid, DataGridProps, GridRowId } from '@mui/x-data-grid'
 import { Box, Stack } from '@mui/material'
 import { StatusTag } from './components/StatusTag'
@@ -100,10 +101,21 @@ export const Table = ({
     filterViews,
   }
 
-  const handleOnCellClick = (params: any) => {
-    onSelection &&
-      onSelection([params.value === false ? params.row.companyUserId : ''])
-  }
+  const handleOnCellClick = useCallback(
+    (selectedIds) => {
+      const idsArr: Array<string> = []
+      selectedIds = selectedIds.map((id: string) =>
+        id.substring(0, id.length - 1)
+      )
+      rows.map(
+        (row) =>
+          selectedIds.indexOf(row.companyUserId) > -1 &&
+          idsArr.push(row.companyUserId)
+      )
+      onSelection && onSelection(idsArr)
+    },
+    [rows, onSelection]
+  )
 
   const toolbarView = () => {
     switch (toolbarVariant) {
@@ -156,7 +168,7 @@ export const Table = ({
           Toolbar: () => toolbarView(),
           NoRowsOverlay,
         }}
-        onCellClick={onSelection && handleOnCellClick}
+        onSelectionModelChange={handleOnCellClick}
         {...{
           rows,
           columns,
