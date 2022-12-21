@@ -241,6 +241,7 @@ const CompanyDetailOverlay = ({
                     </Grid>
                     {company.documents.map((contract: any) => (
                       <div
+                        key={contract.documentId}
                         style={{
                           display: 'flex',
                           padding: '20px',
@@ -287,8 +288,9 @@ const CompanyDetailOverlay = ({
                       </Typography>
                     </Grid>
                     {selectedCompany?.companyRoles.map(
-                      (role: { companyRole: string }) => (
+                      (role: { companyRole: string }, index) => (
                         <div
+                          key={index}
                           style={{
                             display: 'flex',
                             padding: '20px 10px 10px 10px',
