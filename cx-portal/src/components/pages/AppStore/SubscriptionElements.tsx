@@ -47,7 +47,6 @@ export default function SubscriptionElements({
       <div className="recommended-section">
         <PageNotifications
           description={t('content.serviceMarketplace.noDataMessage')}
-          onCloseNotification={function noRefCheck() {}}
           open
           severity="error"
           showIcon
@@ -65,9 +64,9 @@ export default function SubscriptionElements({
             <ul className="group">
               {subscriptions.map((subscriptionData) => {
                 return subscriptionData.companySubscriptionStatuses.map(
-                  (subscription, index) => {
+                  (subscription) => {
                     return (
-                      <li key={index}>
+                      <li key={subscription.subscriptionId}>
                         <div className="item">
                           <div
                             className={`firstSection ${

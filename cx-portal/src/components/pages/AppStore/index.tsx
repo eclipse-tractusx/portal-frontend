@@ -167,7 +167,7 @@ export default function AppStore() {
           <div>
             <div className="searchContainer">
               <SearchInput
-                placeholder={t('notification.search')}
+                placeholder={t('content.appStore.search')}
                 value={searchExpr}
                 autoFocus={false}
                 onChange={(e) => doFilter(e.target.value)}
