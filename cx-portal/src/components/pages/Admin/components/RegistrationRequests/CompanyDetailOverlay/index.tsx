@@ -288,9 +288,9 @@ const CompanyDetailOverlay = ({
                       </Typography>
                     </Grid>
                     {selectedCompany?.companyRoles.map(
-                      (role: { companyRole: string }, index) => (
+                      (role: { companyRole: string }) => (
                         <div
-                          key={index}
+                          key={role.companyRole}
                           style={{
                             display: 'flex',
                             padding: '20px 10px 10px 10px',
