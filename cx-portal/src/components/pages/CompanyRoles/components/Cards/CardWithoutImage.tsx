@@ -33,9 +33,10 @@ export default function CardWithoutImage({
       style={{
         backgroundColor: detail.backgroundColor,
         border: '1px solid rgba(15, 113, 203, 1)',
+        padding: '30px',
       }}
     >
-      <Card card={detail} />
+      <Card card={detail} isImage={false} />
     </div>
   )
 }

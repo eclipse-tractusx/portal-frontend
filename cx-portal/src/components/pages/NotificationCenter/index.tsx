@@ -29,6 +29,7 @@ import {
   CXNotificationPagination,
 } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
+import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import NotificationItem from './NotificationItem'
 import { groupBy } from 'lodash'
 import dayjs from 'dayjs'
@@ -40,7 +41,6 @@ import {
   SearchInput,
   ViewSelector,
   SortOption,
-  Button,
   CircleProgress,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
@@ -69,7 +69,7 @@ const NotificationGroup = ({
 }
 
 export default function NotificationCenter() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('notification')
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -110,15 +110,15 @@ export default function NotificationCenter() {
 
   const sortOptions = [
     {
-      label: t('notification.sortOptions.new'),
+      label: t('sortOptions.new'),
       value: 'DateDesc',
     },
     {
-      label: t('notification.sortOptions.oldest'),
+      label: t('sortOptions.oldest'),
       value: 'DateAsc',
     },
     {
-      label: t('notification.sortOptions.unread'),
+      label: t('sortOptions.unread'),
       value: 'ReadStatusAsc',
     },
   ]
@@ -151,7 +151,7 @@ export default function NotificationCenter() {
 
   const filterButtons = [
     {
-      buttonText: `${t('notification.sortOptions.all')} (${getTotalCount(
+      buttonText: `${t('sortOptions.all')} (${getTotalCount(
         pages?.infoUnread,
         pages?.unread,
         pages?.offerUnread,
@@ -161,21 +161,17 @@ export default function NotificationCenter() {
       onButtonClick: setView,
     },
     {
-      buttonText: `${t('notification.sortOptions.app')} (${
-        pages?.offerUnread || 0
-      })`,
+      buttonText: `${t('sortOptions.app')} (${pages?.offerUnread || 0})`,
       buttonValue: 'OFFER',
       onButtonClick: setView,
     },
     {
-      buttonText: `${t('notification.sortOptions.info')} (${
-        pages?.infoUnread || 0
-      })`,
+      buttonText: `${t('sortOptions.info')} (${pages?.infoUnread || 0})`,
       buttonValue: 'INFO',
       onButtonClick: setView,
     },
     {
-      buttonText: `${t('notification.sortOptions.withaction')} (${
+      buttonText: `${t('sortOptions.withaction')} (${
         pages?.actionRequired || 0
       })`,
       buttonValue: 'ACTION',
@@ -200,7 +196,7 @@ export default function NotificationCenter() {
           onMouseLeave={() => setShowModal(false)}
         >
           <SearchInput
-            placeholder={t('notification.search')}
+            placeholder={t('search')}
             value={searchExpr}
             autoFocus={false}
             autoComplete="off"
@@ -268,17 +264,7 @@ export default function NotificationCenter() {
         {!isFetching &&
           paginationData &&
           paginationData.contentSize >= PAGE_SIZE && (
-            <Box
-              sx={{
-                width: '100%',
-                height: '100px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Button onClick={nextPage}>{'Load More'}</Button>
-            </Box>
+            <LoadMoreButton onClick={nextPage} />
           )}
       </section>
     </main>

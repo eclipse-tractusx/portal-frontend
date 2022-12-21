@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,26 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeader } from 'cx-portal-shared-components'
+import Box from '@mui/material/Box'
+import {
+  LoadMoreButton as LoadMoreButtonShared,
+  LoadMoreButtonProps as LoadMoreButtonSharedProps,
+} from 'cx-portal-shared-components'
 
-export default function SearchSection({
-  title,
-  description,
-}: {
-  title: string
-  description: string
-}) {
+import { useTranslation } from 'react-i18next'
+
+export type LoadMoreButtonProps = Omit<LoadMoreButtonSharedProps, 'label'>
+
+export const LoadMoreButton = ({ onClick, ...props }: LoadMoreButtonProps) => {
+  const { t } = useTranslation()
+
   return (
-    <div className="stage-home">
-      <MainHeader
-        title={title}
-        subTitle={description}
-        subTitleTextVariant="h3"
-        headerHeight={551}
-        subTitleWidth={800}
-        background="LinearGradient1"
-        imagePath="./company-roles.svg"
+    <Box
+      sx={{
+        width: '100%',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <LoadMoreButtonShared
+        {...props}
+        label={t('global.actions.loadmore')}
+        onClick={onClick}
       />
-    </div>
+    </Box>
   )
 }

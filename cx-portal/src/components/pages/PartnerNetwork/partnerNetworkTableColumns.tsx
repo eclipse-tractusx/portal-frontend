@@ -42,7 +42,9 @@ export const PartnerNetworksTableColumns = (
       flex: 2,
       sortable: false,
       valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity && row?.legalEntity?.names
+        row?.legalEntity &&
+        row?.legalEntity?.names &&
+        row?.legalEntity?.names?.length
           ? row.legalEntity.names[0].value
           : '',
     },

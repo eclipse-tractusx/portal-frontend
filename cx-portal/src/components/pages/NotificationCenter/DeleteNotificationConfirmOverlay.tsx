@@ -39,7 +39,7 @@ const DeleteNotificationConfirmOverlay = ({
   handleCallback,
   loading,
 }: DeleteNotificationConfirmOverlayProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('notification')
   return (
     <div className="deleteOverlay">
       <Box sx={{ textAlign: 'left' }}>
@@ -80,7 +80,7 @@ const DeleteNotificationConfirmOverlay = ({
             borderRadius: '8px',
           }}
         >
-          {t('notification.cancelButton')}
+          {t('cancelButton')}
         </Button>
         {!loading && (
           <Button
@@ -93,7 +93,7 @@ const DeleteNotificationConfirmOverlay = ({
               fontSize: '14px',
             }}
           >
-            {t('notification.deleteButton')}
+            {t('deleteButton')}
           </Button>
         )}
         {loading && (

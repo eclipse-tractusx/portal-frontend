@@ -91,6 +91,10 @@
     "title": "New app release request waiting for review",
     "content": "A new app release request is available in the app management board. Please validate the request:"
   },
+  "APP_RELEASE_APPROVAL": {
+    "title": "App publish request approved",
+    "content": "Your app request for app {appname} got successfully approved and is now available on the Catena-X marketplace."
+  },
   "link": {
     "appmarketplace": "Go to app marketplace",
     "technicalsetup": "Go to connector configuration",
@@ -100,5 +104,22 @@
     "usecases": "Go to use cases",
     "serviceprovider": "Go to service provider"
   },
-  "due": "due"
+  "due": "due",
+  "search": "Enter your search value",
+  "cancelButton": "CANCEL",
+  "deleteButton": "DELETE ALWAYS",
+  "actionRequired": "Your action is required",
+  "deleteModal": {
+    "title": "Delete Message",
+    "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+  },
+  "sortOptions": {
+    "new": "Newest First",
+    "oldest": "Oldest First",
+    "unread": "Unread First",
+    "all": "all",
+    "app": "app only",
+    "info": "info only",
+    "withaction": "message with action required"
+  }
 }

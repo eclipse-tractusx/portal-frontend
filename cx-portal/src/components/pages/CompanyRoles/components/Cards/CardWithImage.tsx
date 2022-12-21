@@ -32,13 +32,14 @@ export default function CardWithImage({
       className="cardsContainer"
       style={{
         backgroundColor: detail.backgroundColor,
+        padding: '40px',
       }}
     >
       <img
         style={{
           padding:
             detail.imageShape && detail.imageShape === 'circle'
-              ? '40px 90px'
+              ? '0px 90px'
               : '0px', // provide extra padding if the image shape is circle.
           maxHeight:
             detail.imageShape && detail.imageShape === 'circle'
@@ -49,7 +50,7 @@ export default function CardWithImage({
         width="100%"
         alt={'alt tag info'}
       />
-      <Card card={detail} />
+      <Card card={detail} isImage={true} />
     </div>
   )
 }
