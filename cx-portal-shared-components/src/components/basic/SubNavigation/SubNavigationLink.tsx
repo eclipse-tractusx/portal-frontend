@@ -46,8 +46,11 @@ export const SubNavigationLink = ({
               color="secondary"
               variant="text"
               size="medium"
+              sx={{
+                fontSize: '16px',
+              }}
             >
-              <EastIcon sx={{ marginRight: '16px' }} />
+              <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
               {link1Label}
             </Button>
           </>
@@ -61,8 +64,11 @@ export const SubNavigationLink = ({
             color="secondary"
             variant="text"
             size="medium"
+            sx={{
+              fontSize: '16px',
+            }}
           >
-            <EastIcon sx={{ marginRight: '16px' }} />
+            <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
             {link2Label}
           </Button>
         )}
