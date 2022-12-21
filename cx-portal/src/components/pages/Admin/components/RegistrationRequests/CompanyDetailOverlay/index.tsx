@@ -76,9 +76,11 @@ const CompanyDetailOverlay = ({
   }, [data, selectedCompany])
 
   const getLocaleStr = (str: string) => {
-    if(str === 'ACTIVE_PARTICIPANT') {
-      return  t('content.admin.registration-requests.overlay.activeParticipation')
-    } else if(str === 'APP_PROVIDER') {
+    if (str === 'ACTIVE_PARTICIPANT') {
+      return t(
+        'content.admin.registration-requests.overlay.activeParticipation'
+      )
+    } else if (str === 'APP_PROVIDER') {
       return t('content.admin.registration-requests.overlay.appProvider')
     } else {
       return t('content.admin.registration-requests.overlay.serviceProvider')

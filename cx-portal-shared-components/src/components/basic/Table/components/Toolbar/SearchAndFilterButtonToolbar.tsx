@@ -48,12 +48,13 @@ export const SearchAndFilterButtonToolbar = ({
   defaultFilter = '',
   descriptionText,
 }: SearchAndFilterButtonToolbarProps) => {
-  const { spacing } = useTheme()
-  const [searchInput, setSearchInput] = useState<string>(
+  const [searchInputText, setSearchInputText] = useState<string>(
     searchExpr ?? (searchInputData ? searchInputData.text : '')
   )
 
-  const debounceSearch = useMemo(
+  const { spacing } = useTheme()
+
+  const searchDeBounced = useMemo(
     () =>
       debounce((expr: string) => {
         onSearch && onSearch(expr)
@@ -61,42 +62,42 @@ export const SearchAndFilterButtonToolbar = ({
     [onSearch, searchDebounce]
   )
 
-  const doOnSearch = useCallback(
+  const onSearchDo = useCallback(
     (expr: string) => {
-      debounceSearch(expr)
+      searchDeBounced(expr)
     },
-    [debounceSearch]
+    [searchDeBounced]
   )
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value)
+    setSearchInputText(e.target.value)
     const inputLen = e.target.value.length
     if (inputLen === 0 || inputLen > 2) {
-      onSearch && doOnSearch(e.target.value)
+      onSearch && onSearchDo(e.target.value)
     }
   }
 
   const onSearchInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && onSearch) {
-      onSearch(searchInput)
+      onSearch(searchInputText)
     }
   }
 
-  // const onFilterChange = (value: string) => {
-  //   if (onFilter) {
-  //     onFilter(value)
-  //   }
-  // }
+  const onFilterChange = (value: string) => {
+    if (onFilter) {
+      onFilter(value)
+    }
+  }
 
   const handleSearchClear = () => {
     onClearSearch && onClearSearch()
-    setSearchInput('')
+    setSearchInputText('')
   }
 
   const headerHeight = () => (onSearch || onFilter ? 100 : 0)
 
   const endAdornment =
-    onClearSearch && searchInput ? (
+    onClearSearch && searchInputText ? (
       <IconButton onClick={handleSearchClear}>
         <ClearIcon />
       </IconButton>
@@ -104,23 +105,23 @@ export const SearchAndFilterButtonToolbar = ({
       <></>
     )
 
+  const styles = {
+    minHeight: { headerHeight },
+    padding: spacing(2, 0, 6, 0),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    marginTop: '40px',
+  }
+
   return (
-    <Box
-      sx={{
-        minHeight: { headerHeight },
-        padding: spacing(2, 0, 6, 0),
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        marginTop: '40px',
-      }}
-    >
+    <Box sx={styles}>
       <Box sx={{ display: 'flex', alignItems: 'center', height: '50px' }}>
         <SearchInput
           endAdornment={endAdornment}
           type="text"
-          value={searchInput}
+          value={searchInputText}
           onChange={onSearchChange}
           onKeyPress={onSearchInputKeyPress}
           placeholder={searchPlaceholder}
