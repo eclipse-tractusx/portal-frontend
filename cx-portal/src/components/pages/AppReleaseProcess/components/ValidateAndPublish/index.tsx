@@ -176,15 +176,10 @@ export default function ValidateAndPublish({
               title={appStatusData.title}
               subtitle={appStatusData.provider}
               description={
-                i18next.language === 'en'
-                  ? appStatusData?.descriptions?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'en'
-                    )[0]?.shortDescription
-                  : appStatusData?.descriptions?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'de'
-                    )[0]?.shortDescription
+                appStatusData?.descriptions?.filter(
+                  (lang: { languageCode: string }) =>
+                    lang.languageCode === i18next.language
+                )[0]?.shortDescription
               }
               imageSize="normal"
               imageShape="square"

@@ -217,8 +217,7 @@ export default function AppMarketCard() {
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchAppStatus])
+  }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
     if (salesManagerList.length > 0) {
