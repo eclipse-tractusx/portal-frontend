@@ -24,10 +24,6 @@ import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
 import SubscriptionElements from './SubscriptionElements'
-import dayjs from 'dayjs'
-import isToday from 'dayjs/plugin/isToday'
-import isYesterday from 'dayjs/plugin/isYesterday'
-import relativeTime from 'dayjs/plugin/relativeTime'
 import './AppStore.scss'
 import {
   SearchInput,
@@ -41,10 +37,6 @@ import {
   useFetchSubscriptionsQuery,
 } from 'features/appStore/appStoreApiSlice'
 import { currentSuccessType } from 'features/appStore/slice'
-
-dayjs.extend(isToday)
-dayjs.extend(isYesterday)
-dayjs.extend(relativeTime)
 
 export default function AppStore() {
   const { t } = useTranslation()
