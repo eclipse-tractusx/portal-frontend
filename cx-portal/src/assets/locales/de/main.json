@@ -968,26 +968,36 @@
       }
     },
     "appStore": {
-      "headline": "Purchase Service Request",
-      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "headline": "App Subscription",
+      "subHeading": "Manage customer subscriptons",
+      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "readMore": "Read More",
+      "registerURL": "RegisterURL",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
+      "activateBtn": "Activate",
       "tabs": {
-        "all": "All Services",
-        "dataspaceService": "Dataspace Services",
-        "consultantService": "Consultant Services"
+        "request": "Request",
+        "active": "Active"
       },
       "sortOptions": {
-        "new": "Newest First",
-        "provider": "Provider"
+        "customer": "By Customer A-Z",
+        "offer": "By Offer"
       },
       "document": {
         "heading": "Relevant Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "activation": {
+        "heading": "Activate User Subscription",
+        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "successDescription": "The technical user has been created with the following data:",
+        "clientId": "Client Id",
+        "clientSecret": "Client Secret"
       }
     }
   },

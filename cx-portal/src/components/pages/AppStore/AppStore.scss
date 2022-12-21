@@ -94,44 +94,6 @@
     text-align: center;
   }
 
-  .recommended-main {
-    .recommended-section {
-      margin-bottom: 30px;
-      .recommended-card {
-        margin-bottom: 30px;
-      }
-    }
-  }
-
-  .services-main {
-    background-color: #f9f9f9;
-    .services-section-content {
-      padding: 50px 30px;
-      .section-title {
-        text-align: center;
-        padding-bottom: 20px;
-        position: relative;
-      }
-      .section-title::after {
-        content: '';
-        width: 70px;
-        border-bottom: 2px solid;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-    .services-section {
-      margin: 0 -15px !important;
-      width: calc(100% + 30px) !important;
-      .services-card {
-        padding: 0 15px;
-        margin-bottom: 30px;
-      }
-    }
-  }
-
   .searchContainer {
     margin: auto;
     width: 100%;
@@ -193,10 +155,15 @@
   .group {
     li {
       border-radius: 8px;
-      // margin: 12px 120px;
-      // padding: 6px 8px;
+      margin-top: 10px;
       border: 1px solid #eee;
       box-shadow: 2px 2px 4px 2px #f4f4f4;
+    }
+    .wd-25 {
+      width: 25%;
+    }
+    .wd-32 {
+      width: 32%;
     }
     .item {
       cursor: pointer;
@@ -208,37 +175,27 @@
     }
     .firstSection {
       display: flex;
-      align-content: center;
+      text-align: center;
       justify-content: flex-start;
-      width: 25%;
     }
 
     .middleSection {
       flex-direction: column;
-      width: 25%;
+      text-align: center;
     }
 
     .lastSection {
-      width: 25%;
+      text-align: center;
     }
 
     .actionButton {
       padding: 6px 12px 6px 6px;
       text-align: center;
       border-radius: 6px;
-      width: 20%;
       .activateBtn {
         padding: 2px;
         width: 60%;
       }
     }
   }
-
-  // .group > li {
-  //   border-radius: 8px;
-  //   margin: 12px 120px;
-  //   padding: 6px 8px;
-  //   border: 1px solid #eee;
-  //   box-shadow: 2px 2px 4px 2px #f4f4f4;
-  // }
 }

@@ -20,29 +20,27 @@
 
 import {
   Button,
-  CardHorizontal,
   PageNotifications,
   Typography,
 } from 'cx-portal-shared-components'
-import { Grid, useTheme, CircularProgress } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 import { SubscriptionContent } from 'features/appStore/appStoreApiSlice'
 import './AppStore.scss'
 
 export default function SubscriptionElements({
   subscriptions,
+  selectedTab,
 }: {
   subscriptions?: SubscriptionContent[]
+  selectedTab: string
 }) {
-  console.log('sub', subscriptions)
   const theme = useTheme()
-  const navigate = useNavigate()
   const { t } = useTranslation()
-
-  const handleClick = (id: string) => {
-    navigate(`/servicemarketplacedetail/${id}`)
-  }
+  const dispatch = useDispatch()
 
   if (subscriptions && subscriptions.length === 0) {
     return (
@@ -62,50 +60,76 @@ export default function SubscriptionElements({
   return (
     <div className="recommended-main">
       {subscriptions && subscriptions.length ? (
-        subscriptions.map((subscription: SubscriptionContent) => (
-          <ul>
-            <li>
-              <ul className="group">
-                <li>
-                  <div className="item">
-                    <div className="firstSection">
-                      <Typography variant="h5">
-                        {subscription.serviceName}
-                      </Typography>
-                    </div>
-                    <div className="middleSection">
-                      <Typography variant="h5">
-                        {
-                          subscription.companySubscriptionStatuses[0]
-                            .companyName
-                        }
-                      </Typography>
-                    </div>
-                    <div className="lastSection">
-                      <Typography variant="caption2">
-                        {
-                          subscription.companySubscriptionStatuses[0]
-                            .companyName
-                        }
-                      </Typography>
-                    </div>
-                    <div className="actionButton">
-                      <Button
-                        color="primary"
-                        className="activateBtn"
-                        onClick={function noRefCheck() {}}
-                        size="small"
-                        variant="contained"
-                      >
-                        {t('content.appStore.activateBtn')}
-                      </Button>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        ))
+        <ul>
+          <li>
+            <ul className="group">
+              {subscriptions.map((subscriptionData) => {
+                return subscriptionData.companySubscriptionStatuses.map(
+                  (subscription, index) => {
+                    return (
+                      <li key={index}>
+                        <div className="item">
+                          <div
+                            className={`firstSection ${
+                              selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                            }`}
+                          >
+                            <Typography variant="h5">
+                              {subscription.companyName}
+                            </Typography>
+                          </div>
+                          <div
+                            className={`middleSection ${
+                              selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                            }`}
+                          >
+                            <Typography variant="h5">
+                              {subscriptionData.serviceName}
+                            </Typography>
+                          </div>
+                          <div
+                            className={`lastSection ${
+                              selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                            }`}
+                          >
+                            <Typography variant="caption3">
+                              {'Placeholders for add details such as BPN; etc'}
+                            </Typography>
+                          </div>
+                          {subscription.offerSubscriptionStatus ===
+                            'PENDING' && (
+                            <div
+                              className={`actionButton ${
+                                selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                              }`}
+                            >
+                              <Button
+                                color="primary"
+                                className="activateBtn"
+                                onClick={() =>
+                                  dispatch(
+                                    show(
+                                      OVERLAYS.ADD_SUBSCRIPTION,
+                                      subscription.subscriptionId
+                                    )
+                                  )
+                                }
+                                size="small"
+                                variant="contained"
+                              >
+                                {t('content.appStore.activateBtn')}
+                              </Button>
+                            </div>
+                          )}
+                        </div>
+                      </li>
+                    )
+                  }
+                )
+              })}
+            </ul>
+          </li>
+        </ul>
       ) : (
         <div className="loading-progress">
           <CircularProgress

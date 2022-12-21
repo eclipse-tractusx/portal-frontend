@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -39,6 +40,7 @@ import {
   SubscriptionContent,
   useFetchSubscriptionsQuery,
 } from 'features/appStore/appStoreApiSlice'
+import { currentSuccessType } from 'features/appStore/slice'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -49,13 +51,15 @@ export default function AppStore() {
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('Request')
+  const [selected, setSelected] = useState<string>('request')
   const [sortOption, setSortOption] = useState<string>('customer')
-  //const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
+  const [cardSubscriptions, setCardSubscriptions] = useState<
+    SubscriptionContent[]
+  >([])
 
   let statusId = ''
 
-  if (selected === 'Request') {
+  if (selected === 'request') {
     statusId = 'PENDING'
   } else if (selected === 'Active') {
     statusId = 'ACTIVE'
@@ -66,19 +70,21 @@ export default function AppStore() {
     sortingType = 'OfferIdAsc'
   }
 
-  const indexToSplit = 2 //show only 2 services in recommended
-
-  const { data } = useFetchSubscriptionsQuery({
+  const { data, refetch } = useFetchSubscriptionsQuery({
     page: 0,
     statusId: statusId,
     sortingType: sortingType,
   })
   const subscriptions = data && data.content
-  console.log('sub', subscriptions)
 
-  // useEffect(() => {
-  //   services && setCardServices(services)
-  // }, [services])
+  useEffect(() => {
+    subscriptions && setCardSubscriptions(subscriptions)
+  }, [subscriptions])
+
+  const success: boolean = useSelector(currentSuccessType)
+  useEffect(() => {
+    refetch()
+  }, [success, refetch])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -98,44 +104,39 @@ export default function AppStore() {
   const filterButtons = [
     {
       buttonText: t('content.appStore.tabs.request'),
-      buttonValue: t('content.appStore.tabs.request'),
+      buttonValue: 'request',
       onButtonClick: setView,
     },
     {
       buttonText: t('content.appStore.tabs.active'),
-      buttonValue: t('content.appStore.tabs.active'),
+      buttonValue: 'active',
       onButtonClick: setView,
     },
   ]
 
-  // const debouncedFilter = useMemo(
-  //   () =>
-  //     debounce((expr: string) => {
-  //       subscriptions &&
-  //         setCardServices(
-  //           expr
-  //             ? subscriptions &&
-  //             subscriptions.filter(
-  //               (card: SubscriptionContent) =>
-  //                 card.title.toLowerCase().includes(expr.toLowerCase()) ||
-  //                 card.provider
-  //                   .toLowerCase()
-  //                   .includes(expr.toLowerCase()) ||
-  //                 (card.description &&
-  //                   card.description
-  //                     .toLowerCase()
-  //                     .includes(expr.toLowerCase()))
-  //             )
-  //             : services
-  //         )
-  //     }, 300),
-  //   [services]
-  // )
+  const debouncedFilter = useMemo(
+    () =>
+      debounce((expr: string) => {
+        subscriptions &&
+          setCardSubscriptions(
+            expr
+              ? subscriptions &&
+                  subscriptions.filter((card: SubscriptionContent) =>
+                    card.serviceName.toLowerCase().includes(expr.toLowerCase())
+                  )
+              : subscriptions
+          )
+      }, 300),
+    [subscriptions]
+  )
 
-  const doFilter = useCallback((expr: string) => {
-    setSearchExpr(expr)
-    //debouncedFilter(expr)
-  }, [])
+  const doFilter = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedFilter(expr)
+    },
+    [debouncedFilter]
+  )
 
   const setSortOptionFn = useCallback((value: string) => {
     setSortOption(value)
@@ -148,17 +149,6 @@ export default function AppStore() {
 
   const setModalTrue = useCallback(() => {
     setShowModal(true)
-  }, [])
-
-  const getServices = useCallback((serviceTypeIds: string[]) => {
-    const newArr: string[] = []
-
-    serviceTypeIds.forEach((serviceType: string) => {
-      if (serviceType === 'CONSULTANCE_SERVICE')
-        newArr.push('Consultance Service')
-      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
-    })
-    return newArr.join(', ')
   }, [])
 
   return (
@@ -222,7 +212,10 @@ export default function AppStore() {
                 />
               </div>
             ) : (
-              <SubscriptionElements subscriptions={subscriptions} />
+              <SubscriptionElements
+                subscriptions={cardSubscriptions}
+                selectedTab={selected}
+              />
             )}
           </div>
         </div>

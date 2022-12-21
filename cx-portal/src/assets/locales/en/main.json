@@ -951,6 +951,13 @@
       "document": {
         "heading": "Relevant Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "activation": {
+        "heading": "Activate User Subscription",
+        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "successDescription": "The technical user has been created with the following data:",
+        "clientId": "Client Id",
+        "clientSecret": "Client Secret"
       }
     }
   },

@@ -4,7 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-n/a
+* Feature - Tenant Management Board for App/Service Owners (FE)
 
 ## 0.10.0
 

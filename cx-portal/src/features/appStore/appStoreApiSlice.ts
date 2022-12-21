@@ -19,62 +19,14 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import i18next from 'i18next'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
-
-export type SubscriptionRequest = {
-  offerId: string
-  offerName: string
-  status: string
-}
-
-export type SubscriptionData = {
-  offerSubscriptionId: string
-  offerSubscriptionStatus: string
-}
-
-export type ServiceRequest = {
-  id: string
-  title: string
-  serviceTypeIds: string[]
-  provider: string
-  leadPictureUri: string
-  contactEmail: string
-  description: string
-  price: string
-  website: string
-  phone: string
-  offerSubscriptionDetailData: Array<SubscriptionData>
-}
-
-export type PaginationData = {
-  contentSize: number
-  page: number
-  totalElements: number
-  totalPages: number
-}
-
-export type ServiceRequestAPIResponse = {
-  content: Array<ServiceRequest>
-  meta: PaginationData
-}
-
-export type AgreementRequest = {
-  agreementId: string
-  name: string
-}
 
 export interface SubscriptionRequestBody {
   page: number
   statusId: string
   sortingType: string
 }
-
-// export type SubscriptionServiceRequest = {
-//   serviceId: string
-//   body: SubscriptionRequestBody[]
-// }
 
 export type MetaBody = {
   totalElements: 0
@@ -101,8 +53,24 @@ export type SubscriptionResponse = {
   content: SubscriptionContent[]
 }
 
+export type SubscriptionStoreRequest = {
+  requestId: string
+  offerUrl: string
+}
+
+export type SubscriptionActivationResponse = {
+  technicalUserInfo: {
+    technicalUserId: string
+    technicalUserSecret: string
+    technicalClientId: string
+  }
+  clientInfo: {
+    clientId: string
+  }
+}
+
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/service',
+  reducerPath: 'rtk/apps/appStore',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchSubscriptions: builder.query<
@@ -119,30 +87,18 @@ export const apiSlice = createApi({
         }
       },
     }),
-    fetchService: builder.query<ServiceRequest, string>({
-      query: (serviceId) =>
-        `/api/services/${serviceId}?lang=${i18next.language}`,
-    }),
-    // addSubscribeService: builder.mutation<void, SubscriptionServiceRequest>({
-    //   query: (data: SubscriptionServiceRequest) => ({
-    //     url: `/api/services/${data.serviceId}/subscribe`,
-    //     method: 'POST',
-    //     body: data.body,
-    //   }),
-    // }),
-    fetchSubscription: builder.query<SubscriptionRequest, string>({
-      query: (subscriptionId) => `/api/services/subscription/${subscriptionId}`,
-    }),
-    fetchAgreements: builder.query<AgreementRequest[], string>({
-      query: (serviceId) => `/api/services/serviceAgreementData/${serviceId}`,
+    addUserSubscribtion: builder.mutation<
+      SubscriptionActivationResponse,
+      SubscriptionStoreRequest
+    >({
+      query: (data: SubscriptionStoreRequest) => ({
+        url: `/api/Apps/autoSetup`,
+        method: 'POST',
+        body: data,
+      }),
     }),
   }),
 })
 
-export const {
-  useFetchSubscriptionsQuery,
-  useFetchServiceQuery,
-  //useAddSubscribeServiceMutation,
-  useFetchSubscriptionQuery,
-  useFetchAgreementsQuery,
-} = apiSlice
+export const { useFetchSubscriptionsQuery, useAddUserSubscribtionMutation } =
+  apiSlice
