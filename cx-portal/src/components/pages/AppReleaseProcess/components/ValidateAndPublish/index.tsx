@@ -34,7 +34,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Grid, Divider, Box, InputLabel } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
@@ -42,7 +42,10 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { useSubmitappMutation } from 'features/appManagement/apiSlice'
+import {
+  useFetchDocumentByIdMutation,
+  useSubmitappMutation,
+} from 'features/appManagement/apiSlice'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -59,6 +62,28 @@ export default function ValidateAndPublish({
   const [submitapp] = useSubmitappMutation()
   const appId = useSelector(appIdSelector)
   const appStatusData: any = useSelector(appStatusDataSelector)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [cardImage, setCardImage] = useState('')
+
+  useEffect(() => {
+    if (
+      appStatusData?.documents?.APP_LEADIMAGE &&
+      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
+    ) {
+      fetchImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
+    }
+    reset(defaultValues)
+  }, [appStatusData])
+
+  const fetchImage = async (documentId: string) => {
+    try {
+      const response = await fetchDocumentById(documentId).unwrap()
+      const file = response.data
+      return setCardImage(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
 
   const defaultValues = {
     images: [LogoGrayData, LogoGrayData, LogoGrayData],
@@ -100,6 +125,7 @@ export default function ValidateAndPublish({
   const {
     handleSubmit,
     formState: { isValid },
+    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
@@ -145,20 +171,15 @@ export default function ValidateAndPublish({
           >
             <Card
               image={{
-                src: LogoGrayData,
+                src: cardImage || LogoGrayData,
               }}
               title={appStatusData.title}
               subtitle={appStatusData.provider}
               description={
-                i18next.language === 'en'
-                  ? appStatusData?.descriptions?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'en'
-                    )[0].shortDescription
-                  : appStatusData?.descriptions?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'de'
-                    )[0].shortDescription
+                appStatusData?.descriptions?.filter(
+                  (lang: { languageCode: string }) =>
+                    lang.languageCode === i18next.language
+                )[0]?.shortDescription
               }
               imageSize="normal"
               imageShape="square"
@@ -205,7 +226,7 @@ export default function ValidateAndPublish({
                   appStatusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === 'en'
-                  )[0].longDescription
+                  )[0]?.longDescription
                 }
               </Typography>
             ) : (
@@ -217,7 +238,7 @@ export default function ValidateAndPublish({
                   appStatusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === 'de'
-                  )[0].longDescription
+                  )[0]?.longDescription
                 }
               </Typography>
             )}
