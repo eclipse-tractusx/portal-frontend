@@ -75,6 +75,16 @@ const CompanyDetailOverlay = ({
     }
   }, [data, selectedCompany])
 
+  const getLocaleStr = (str: string) => {
+    if(str === 'ACTIVE_PARTICIPANT') {
+      return  t('content.admin.registration-requests.overlay.activeParticipation')
+    } else if(str === 'APP_PROVIDER') {
+      return t('content.admin.registration-requests.overlay.appProvider')
+    } else {
+      return t('content.admin.registration-requests.overlay.serviceProvider')
+    }
+  }
+
   const downloadDocumnet = async (documentId: string, documentType: string) => {
     try {
       const response = await getDocumentById(documentId).unwrap()
@@ -296,7 +306,7 @@ const CompanyDetailOverlay = ({
                             size="small"
                             variant="contained"
                           >
-                            {role.companyRole}
+                            {getLocaleStr(role.companyRole)}
                           </Button>
                         </div>
                       )

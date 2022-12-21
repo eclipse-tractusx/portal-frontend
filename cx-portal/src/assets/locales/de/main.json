@@ -112,7 +112,10 @@
           "taxid": "Steuernummer",
           "address": "Address",
           "docs": "Document(s)",
-          "roles": "Company Role(s)"
+          "roles": "Company Role(s)",
+          "activeParticipation": "Teilnehmer",
+          "appProvider": "App Anbieter",
+          "serviceProvider": "Service Anbieter"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
