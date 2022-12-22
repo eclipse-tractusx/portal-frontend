@@ -41,7 +41,6 @@ import { show } from 'features/control/overlay/actions'
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
-  console.log('parsedToken', parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
   const dispatch = useDispatch()
