@@ -92,7 +92,7 @@ export default function SubscriptionElements({
                     <div className="forthSection">
                       <Button
                         color="primary"
-                        className='wd-25'
+                        className="wd-25"
                         onClick={() =>
                           dispatch(
                             show(
