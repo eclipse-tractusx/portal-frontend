@@ -24,10 +24,16 @@ import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { TenantUserDetails } from 'features/admin/userApiSlice'
 import { AppPermissions } from 'components/shared/frame/AppPermissions'
 
-export const UserDetailInfo = ({ user }: { user: TenantUserDetails }) => {
+export const UserDetailInfo = ({
+  user,
+  parsedToken,
+}: {
+  user: TenantUserDetails
+  parsedToken?: any
+}) => {
   const { spacing } = useTheme()
 
-  const userDetailsCards = userDetailsToCards(user)
+  const userDetailsCards = userDetailsToCards(user, parsedToken)
   const columns = 3
 
   return (

@@ -41,6 +41,7 @@ import { show } from 'features/control/overlay/actions'
 export default function MyAccount() {
   const { t } = useTranslation()
   const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
+  console.log('parsedToken', parsedToken)
   const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
   const dispatch = useDispatch()
@@ -85,7 +86,7 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        {data && <UserDetailInfo user={data} />}
+        {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
       </section>
 
       {/* TODO: DEV only needs to be removed when going PROD */}
