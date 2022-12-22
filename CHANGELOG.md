@@ -25,6 +25,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix - User Management - App Access assign multiple user with role
 * Notification
    * Bug fix - Pick appropriate title from locale file
+* Feature - My CX Account - Update Issue Table
 
 
 ## 0.10.0
