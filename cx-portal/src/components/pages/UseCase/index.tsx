@@ -31,11 +31,7 @@ export default function UseCase() {
   const [messageContent, setMessageContent] = useState<any>({})
   const url = window.location.href
   useEffect(() => {
-    if (url.indexOf('usecasetraceablity') > 1) {
-      setMessageContent(traceablity)
-    } else {
-      setMessageContent(traceablity)
-    }
+    setMessageContent(traceablity)
   }, [url])
 
   const linkArray = [
