@@ -24,9 +24,11 @@ import {
   DialogContent,
   DialogHeader,
   Input,
+  LoadingButton,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import Patterns from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
   SubscriptionActivationResponse,
@@ -43,6 +45,8 @@ export default function AddBPN({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [inputURL, setInputURL] = useState('')
+  const [URLErrorMsg, setURLErrorMessage] = useState('')
+  const [loading, setLoading] = useState(false)
   const [activationResponse, setActivationResponse] =
     useState<SubscriptionActivationResponse>()
 
@@ -50,9 +54,15 @@ export default function AddBPN({ id }: { id: string }) {
 
   const addInputURL = (value: string) => {
     setInputURL(value)
+    if (!Patterns.URL.test(value.trim())) {
+      setURLErrorMessage(t('content.appStore.pleaseEnterValidURL'))
+    } else {
+      setURLErrorMessage('')
+    }
   }
 
   const addTentantURL = async () => {
+    setLoading(true)
     try {
       const subscriptionData = await addUserSubscribtion({
         requestId: id,
@@ -138,19 +148,34 @@ export default function AddBPN({ id }: { id: string }) {
                 onChange={(e) => addInputURL(e.target.value)}
                 value={inputURL}
               />
+              <p>{URLErrorMsg}</p>
             </div>
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
               {t('global.actions.close')}
             </Button>
-            <Button
-              variant="contained"
-              disabled={!inputURL}
-              onClick={addTentantURL}
-            >
-              {t('global.actions.confirm')}
-            </Button>
+            {loading ? (
+              <LoadingButton
+                color="primary"
+                helperText=""
+                helperTextColor="success"
+                label=""
+                loadIndicator="Loading ..."
+                loading
+                size="medium"
+                onButtonClick={() => {}}
+                sx={{ marginLeft: '10px' }}
+              />
+            ) : (
+              <Button
+                variant="contained"
+                disabled={URLErrorMsg !== ''}
+                onClick={addTentantURL}
+              >
+                {t('global.actions.confirm')}
+              </Button>
+            )}
           </DialogActions>
         </>
       )}
