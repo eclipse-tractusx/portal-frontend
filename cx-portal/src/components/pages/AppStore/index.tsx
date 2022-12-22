@@ -122,7 +122,7 @@ export default function AppStore() {
     [subscriptions]
   )
 
-  const doSearch = useCallback(
+  const doSearchData = useCallback(
     (expr: string) => {
       setSearchExpr(expr)
       debouncedFilter(expr)
@@ -170,7 +170,7 @@ export default function AppStore() {
                 placeholder={t('content.appStore.search')}
                 value={searchExpr}
                 autoFocus={false}
-                onChange={(e) => doSearch(e.target.value)}
+                onChange={(e) => doSearchData(e.target.value)}
               />
             </div>
             <div className="filterSection" onMouseLeave={setModalFalse}>
