@@ -59,75 +59,61 @@ export default function SubscriptionElements({
   return (
     <div className="recommended-main">
       {subscriptions && subscriptions.length ? (
-        <ul>
-          <li>
-            <ul className="group">
-              {subscriptions.map((subscriptionData) => {
-                return subscriptionData.companySubscriptionStatuses.map(
-                  (subscription) => {
-                    return (
-                      <li key={subscription.subscriptionId}>
-                        <div className="item">
-                          <div
-                            className={`firstSection ${
-                              selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                            }`}
-                          >
-                            <Typography variant="h5">
-                              {subscription.companyName}
-                            </Typography>
-                          </div>
-                          <div
-                            className={`middleSection ${
-                              selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                            }`}
-                          >
-                            <Typography variant="h5">
-                              {subscriptionData.serviceName}
-                            </Typography>
-                          </div>
-                          <div
-                            className={`lastSection ${
-                              selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                            }`}
-                          >
-                            <Typography variant="caption3">
-                              {'Placeholders for add details such as BPN; etc'}
-                            </Typography>
-                          </div>
-                          {subscription.offerSubscriptionStatus ===
-                            'PENDING' && (
-                            <div
-                              className={`actionButton ${
-                                selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                              }`}
-                            >
-                              <Button
-                                color="primary"
-                                className="activateBtn"
-                                onClick={() =>
-                                  dispatch(
-                                    show(
-                                      OVERLAYS.ADD_SUBSCRIPTION,
-                                      subscription.subscriptionId
-                                    )
-                                  )
-                                }
-                                size="small"
-                                variant="contained"
-                              >
-                                {t('content.appStore.activateBtn')}
-                              </Button>
-                            </div>
-                          )}
-                        </div>
-                      </li>
-                    )
-                  }
-                )
-              })}
-            </ul>
-          </li>
+        <ul className="group">
+          {subscriptions.map((subscriptionData) => {
+            return subscriptionData.companySubscriptionStatuses.map(
+              (subscription) => (
+                <li key={subscription.subscriptionId} className="item">
+                  <Typography
+                    variant="h5"
+                    className={`firstSection ${
+                      selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                    }`}
+                  >
+                    {subscription.companyName}
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    className={`secondSection ${
+                      selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                    }`}
+                  >
+                    {subscriptionData.serviceName}
+                  </Typography>
+                  <Typography
+                    variant="caption3"
+                    className={`thirdSection ${
+                      selectedTab === 'request' ? 'wd-25' : 'wd-32'
+                    } `}
+                  >
+                    {'Placeholders for add details such as BPN; etc'}
+                  </Typography>
+                  {subscription.offerSubscriptionStatus === 'PENDING' && (
+                    <div className="forthSection">
+                      <Button
+                        color="primary"
+                        className={`${
+                          selectedTab === 'request' ? 'wd-25' : 'wd-25'
+                        }`}
+                        onClick={() =>
+                          dispatch(
+                            show(
+                              OVERLAYS.ADD_SUBSCRIPTION,
+                              subscription.subscriptionId
+                            )
+                          )
+                        }
+                        size="small"
+                        variant="contained"
+                      >
+                        {t('content.appStore.activateBtn')}
+                      </Button>
+                    </div>
+                  )}
+                </li>
+              )
+            )
+          })}
         </ul>
       ) : (
         <div className="loading-progress">

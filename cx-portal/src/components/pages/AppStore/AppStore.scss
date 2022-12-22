@@ -138,13 +138,33 @@
       margin-top: 10px;
       border: 1px solid #eee;
       box-shadow: 2px 2px 4px 2px #f4f4f4;
+
+      .firstSection {
+        display: flex;
+        text-align: center;
+        justify-content: flex-start;
+      }
+
+      .secondSection {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .thirdSection {
+        text-align: center;
+      }
+
+      .forthSection {
+        width: 25%;
+        text-align: center;
+        button {
+          width: 50%;
+          border-radius: 15px;
+          padding: 5px;
+        }
+      }
     }
-    .wd-25 {
-      width: 25%;
-    }
-    .wd-32 {
-      width: 32%;
-    }
+
     .item {
       cursor: pointer;
       display: flex;
@@ -152,30 +172,15 @@
       width: 100%;
       align-items: baseline;
       padding: 0 20px;
-    }
-    .firstSection {
-      display: flex;
-      text-align: center;
-      justify-content: flex-start;
+      align-items: center;
     }
 
-    .middleSection {
-      flex-direction: column;
-      text-align: center;
+    .wd-25 {
+      width: 25%;
     }
 
-    .lastSection {
-      text-align: center;
-    }
-
-    .actionButton {
-      padding: 6px 12px 6px 6px;
-      text-align: center;
-      border-radius: 6px;
-      .activateBtn {
-        padding: 2px;
-        width: 60%;
-      }
+    .wd-32 {
+      width: 32%;
     }
   }
 }

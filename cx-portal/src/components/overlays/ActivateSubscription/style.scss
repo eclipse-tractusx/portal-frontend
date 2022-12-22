@@ -18,46 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.manageSubscription {
+.URLInput {
   padding: 0 50px 0 50px;
-  .URLInput {
-    max-width: 85%;
-    margin: 0 auto;
-  }
+  max-width: 85%;
+  margin: 0 auto;
 }
 
 .activationOverlay {
   p {
     font-weight: 600;
   }
-  .activationSubscription {
-    ul {
-      list-style: none;
-      hr {
-        border-width: 0px 0px thin;
-        border-color: rgb(220, 220, 220);
-        width: 80%;
-      }
-      .item {
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        align-items: baseline;
-        padding: 0 90px;
-      }
-      .firstSection {
-        display: flex;
-        text-align: center;
-        justify-content: flex-start;
-        width: 25%;
-      }
 
-      .secondSection {
-        flex-direction: column;
-        text-align: center;
-        width: 25%;
-      }
+  table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+    tr td {
+      border-top: 1px solid rgb(220, 220, 220);
+      padding: 10px;
+    }
+
+    tr:first-child td {
+      border: none;
     }
   }
 }

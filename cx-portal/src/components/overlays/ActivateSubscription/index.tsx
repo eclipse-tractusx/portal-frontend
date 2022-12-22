@@ -32,11 +32,10 @@ import {
   SubscriptionActivationResponse,
   useAddUserSubscribtionMutation,
 } from 'features/appStore/appStoreApiSlice'
-import { show } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay/actions'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './style.scss'
-import { OVERLAYS } from 'types/Constants'
 import { store } from 'features/store'
 import { setSuccessType } from 'features/appStore/slice'
 
@@ -65,9 +64,9 @@ export default function AddBPN({ id }: { id: string }) {
     }
   }
 
-  const closeOverlay = () => {
+  const closeActivationOverlay = () => {
     dispatch(setSuccessType(true))
-    dispatch(show(OVERLAYS.NONE, ''))
+    dispatch(closeOverlay())
   }
 
   return (
@@ -82,50 +81,41 @@ export default function AddBPN({ id }: { id: string }) {
             iconComponent={
               <CheckCircleOutlinedIcon sx={{ fontSize: 60 }} color="success" />
             }
-            onCloseWithIcon={() => dispatch(show(OVERLAYS.NONE, ''))}
+            onCloseWithIcon={() => dispatch(closeOverlay())}
           />
           <DialogContent>
-            <div className="activationSubscription">
-              <ul>
-                <li>
-                  <div className="item">
-                    <div className="firstSection">
-                      <Typography variant="label3">
-                        {t('content.appStore.activation.clientId')}
-                      </Typography>
-                    </div>
-                    <div className="middleSection">
-                      <Typography variant="label3">
-                        {activationResponse &&
-                          activationResponse.technicalUserInfo
-                            .technicalClientId}
-                      </Typography>
-                    </div>
-                  </div>
-                </li>
-                <hr />
-                <li>
-                  <div className="item">
-                    <div className="firstSection">
-                      <Typography variant="label3">
-                        {t('content.appStore.activation.clientSecret')}
-                      </Typography>
-                    </div>
-                    <div className="middleSection">
-                      <Typography variant="label3">
-                        {activationResponse &&
-                          activationResponse.technicalUserInfo
-                            .technicalUserSecret}
-                      </Typography>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <table>
+              <tr>
+                <td>
+                  <Typography variant="label3">
+                    {t('content.appStore.activation.clientId')}
+                  </Typography>
+                </td>
+                <td>
+                  <Typography variant="label3">
+                    {activationResponse &&
+                      activationResponse.technicalUserInfo.technicalClientId}
+                  </Typography>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Typography variant="label3">
+                    {t('content.appStore.activation.clientSecret')}
+                  </Typography>
+                </td>
+                <td>
+                  <Typography variant="label3">
+                    {activationResponse &&
+                      activationResponse.technicalUserInfo.technicalUserSecret}
+                  </Typography>
+                </td>
+              </tr>
+            </table>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={closeOverlay}>
-              Close
+            <Button variant="outlined" onClick={closeActivationOverlay}>
+              {t('global.actions.close')}
             </Button>
           </DialogActions>
         </div>
@@ -136,35 +126,30 @@ export default function AddBPN({ id }: { id: string }) {
               title: t('content.appStore.activation.heading'),
               intro: t('content.appStore.activation.description'),
               closeWithIcon: true,
-              onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+              onCloseWithIcon: () => dispatch(closeOverlay()),
             }}
           />
           <DialogContent>
-            <div className="manageSubscription">
-              <div className="URLInput">
-                <Input
-                  name="tentant_url"
-                  label="Tentant URL*"
-                  placeholder="URL of the customer tentant"
-                  onChange={(e) => addInputURL(e.target.value)}
-                  value={inputURL}
-                />
-              </div>
+            <div className="URLInput">
+              <Input
+                name="tentant_url"
+                label="Tentant URL*"
+                placeholder="URL of the customer tentant"
+                onChange={(e) => addInputURL(e.target.value)}
+                value={inputURL}
+              />
             </div>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
-            >
-              Close
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('global.actions.close')}
             </Button>
             <Button
               variant="contained"
               disabled={!inputURL}
               onClick={addTentantURL}
             >
-              Confirm
+              {t('global.actions.confirm')}
             </Button>
           </DialogActions>
         </>
