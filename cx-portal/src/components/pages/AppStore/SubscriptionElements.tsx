@@ -92,9 +92,7 @@ export default function SubscriptionElements({
                     <div className="forthSection">
                       <Button
                         color="primary"
-                        className={`${
-                          selectedTab === 'request' ? 'wd-25' : 'wd-25'
-                        }`}
+                        className='wd-25'
                         onClick={() =>
                           dispatch(
                             show(
