@@ -19,6 +19,7 @@ export default function LinkButtonGrid({
       {provider.links.map((link: linkProps) => {
         return (
           <div
+            key={link.title}
             style={{
               backgroundColor: link.background,
               width: `${100 / grid}%`,

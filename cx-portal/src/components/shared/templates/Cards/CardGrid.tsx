@@ -35,7 +35,7 @@ export default function CardGrid({
   const isCenter = align === 'center'
   return (
     <>
-      {(provider.detailsWithImage && provider.detailsWithImage.length > 0) && (
+      {provider.detailsWithImage && provider.detailsWithImage.length > 0 && (
         <div
           className="cardGridContainer"
           style={{
@@ -45,11 +45,11 @@ export default function CardGrid({
           }}
         >
           {provider.detailsWithImage.map((card: CardDetailsProps) => {
-            return <CardWithImage detail={card} grid={grid} />
+            return <CardWithImage key={card.title} detail={card} grid={grid} />
           })}
         </div>
       )}
-      {(provider.detailsWithoutImage && provider.detailsWithoutImage.length > 0) && (
+      {provider.detailsWithoutImage && provider.detailsWithoutImage.length > 0 && (
         <div
           className="cardGridContainer"
           style={{
@@ -57,7 +57,9 @@ export default function CardGrid({
           }}
         >
           {provider.detailsWithoutImage.map((card: CardDetailsProps) => {
-            return <CardWithoutImage detail={card} grid={grid} />
+            return (
+              <CardWithoutImage key={card.title} detail={card} grid={grid} />
+            )
           })}
         </div>
       )}
