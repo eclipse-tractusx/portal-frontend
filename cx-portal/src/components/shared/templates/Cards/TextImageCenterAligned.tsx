@@ -18,9 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import '../StaticTemplate.scss'
+import { ProviderProps } from 'types/StaticTemplate'
+import TextCenterAligned from './TextCenterAligned'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function TextImageCenterAligned({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <div className="topCenterContainer">
+      <TextCenterAligned provider={provider} />
+      <img src={provider.imageUrl} alt={'alt tag info'} />
+    </div>
+  )
 }

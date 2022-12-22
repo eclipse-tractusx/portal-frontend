@@ -18,22 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export type CardDetailsProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  backgroundColor: string
-  readMore: string
-  id: string
-  imageShape?: string
-}
+import { Typography } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
+import { ProviderProps } from 'types/StaticTemplate'
 
-export type ProviderProps = {
-  title: string
-  description: string
-  imageUrl: string
-  backgroundColor: string
-  id: string
-  detailsWithImage: CardDetailsProps[]
-  detailsWithoutImage: CardDetailsProps[]
+export default function TitleWithVideo({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <div className="topFlexContainer">
+      <div>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            paddingTop: '34px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </div>
+      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+    </div>
+  )
 }

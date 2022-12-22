@@ -18,39 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Card from './Card'
-import { CardDetailsProps } from '../../types'
+@import 'src/components/styles/_colors';
 
-export default function CardWithImage({
-  detail,
-}: {
-  detail: CardDetailsProps
-}) {
-  return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-        padding: '40px',
-      }}
-    >
-      <img
-        style={{
-          padding:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '0px 90px'
-              : '0px', // provide extra padding if the image shape is circle.
-          maxHeight:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '100%'
-              : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
-        }}
-        src={detail.imageUrl}
-        width="100%"
-        alt={'alt tag info'}
-      />
-      <Card card={detail} isImage={true} />
-    </div>
-  )
+.useCase {
+  width: 100%;
+  padding: 0px;
 }

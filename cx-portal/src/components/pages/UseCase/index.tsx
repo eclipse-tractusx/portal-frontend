@@ -18,53 +18,52 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ParentSubNavigation } from 'cx-portal-shared-components'
+import './UseCase.scss'
+import { useEffect, useState } from 'react'
+import traceablity from './json/traceablity.json'
+import StageSection from 'components/shared/templates/StageSection'
+import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
+import Section from 'components/shared/templates/Section'
 import { useTranslation } from 'react-i18next'
-import '../../CompanyRoles.scss'
-import { Box } from '@mui/material'
 
-export const StageSubNavigation = () => {
+export default function UseCase() {
   const { t } = useTranslation()
-  const scrollToId = (id: string) => {
-    const element = document.getElementById(id)
-    const top = element?.offsetTop
-    window.scrollTo({
-      top: top,
-      behavior: 'smooth',
-    })
-  }
+  const [messageContent, setMessageContent] = useState<any>({})
+  const url = window.location.href
+  useEffect(() => {
+    if (url.indexOf('usecasetraceablity') > 1) {
+      setMessageContent(traceablity)
+    } else {
+      setMessageContent(traceablity)
+    }
+  }, [url])
 
   const linkArray = [
     {
       index: 1,
-      title: t('navigation.companyRoleSubNavigation.link1Label'),
-      navigation: 'provider-id',
+      title: t('navigation.useCaseNavigation.link1Label'),
+      navigation: 'intro-id',
     },
     {
       index: 2,
-      title: t('navigation.companyRoleSubNavigation.link2Label'),
-      navigation: 'operations-id',
+      title: t('navigation.useCaseNavigation.link2Label'),
+      navigation: 'data-id',
     },
     {
       index: 3,
-      title: t('navigation.companyRoleSubNavigation.link3Label'),
-      navigation: 'participant-id',
+      title: t('navigation.useCaseNavigation.link3Label'),
+      navigation: 'business-id',
     },
   ]
 
   return (
-    <Box
-      sx={{
-        backgroundColor: 'rgba(15, 113, 203, 0.05)',
-        height: '100px',
-      }}
-    >
-      <div className="subNavigationContainer">
-        <ParentSubNavigation
-          navigationArray={linkArray}
-          onClick={(value: string) => scrollToId(value)}
-        />
-      </div>
-    </Box>
+    <main className="useCase">
+      <StageSection
+        title={messageContent.title}
+        description={messageContent.description}
+      />
+      <StageSubNavigation linkArray={linkArray} />
+      <Section sectionInfo={messageContent.roles} />
+    </main>
   )
 }

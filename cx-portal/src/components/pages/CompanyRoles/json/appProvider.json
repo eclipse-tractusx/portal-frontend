@@ -8,6 +8,7 @@
       "imageUrl": "rectangle-image.png",
       "backgroundColor": "#DAE3EB",
       "id": "provider-id",
+      "template": "TextImageSideBySideWithCardGrid",
       "detailsWithImage": [
         {
           "title": "App Marketplace",
@@ -54,6 +55,7 @@
       "imageUrl": "rectangle-image.png",
       "id": "operations-id",
       "backgroundColor": "#F9F9F9",
+      "template": "TextImageSideBySideWithCardGrid",
       "detailsWithImage": [
         {
           "title": "Subscription Authority",
@@ -102,6 +104,7 @@
       "imageUrl": "rectangle-image.png",
       "id": "participant-id",
       "backgroundColor": "#FFFFFF",
+      "template": "TextImageSideBySideWithCardGrid",
       "detailsWithImage": [
         {
           "title": "Simply lorem Ipsum Text",

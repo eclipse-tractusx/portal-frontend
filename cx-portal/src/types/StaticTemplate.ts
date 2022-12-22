@@ -18,9 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+export type CardDetailsProps = {
+  title: string
+  description: string
+  imageUrl?: string
+  backgroundColor: string
+  readMore: string
+  id: string
+  imageShape?: string
+}
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export type ProviderProps = {
+  title: string
+  description: string
+  imageUrl: string
+  backgroundColor: string
+  id: string
+  detailsWithImage: CardDetailsProps[]
+  detailsWithoutImage: CardDetailsProps[]
+  grid: number
+  template: string
+  links: linkProps[]
+}
+
+export type linkProps = {
+  background: string
+  title: string
+  navigate: string
 }

@@ -18,25 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../../types'
-import Card from './Card'
+import { ParentSubNavigation } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
+import { Box } from '@mui/material'
 
-export default function CardWithoutImage({
-  detail,
-}: {
-  detail: CardDetailsProps
-}) {
+export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
+  const scrollToId = (id: string) => {
+    const element = document.getElementById(id)
+    const top = element?.offsetTop
+    window.scrollTo({
+      top: top,
+      behavior: 'smooth',
+    })
+  }
+
   return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-        border: '1px solid rgba(15, 113, 203, 1)',
-        padding: '30px',
+    <Box
+      sx={{
+        backgroundColor: 'rgba(15, 113, 203, 0.05)',
+        height: '100px',
       }}
     >
-      <Card card={detail} isImage={false} />
-    </div>
+      <div className="subNavigationContainer">
+        <ParentSubNavigation
+          navigationArray={linkArray}
+          onClick={(value: string) => scrollToId(value)}
+        />
+      </div>
+    </Box>
   )
 }

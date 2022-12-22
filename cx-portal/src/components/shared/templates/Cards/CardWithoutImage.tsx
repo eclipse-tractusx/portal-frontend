@@ -18,9 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { CardDetailsProps } from 'types/StaticTemplate'
+import CardWithText from './CardWithText'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function CardWithoutImage({
+  detail,
+  grid = 3,
+}: {
+  detail: CardDetailsProps
+  grid: number
+}) {
+  return (
+    <div
+      key={detail.id}
+      className="cardsContainer"
+      style={{
+        backgroundColor: detail.backgroundColor,
+        border: '1px solid rgba(15, 113, 203, 1)',
+        padding: '30px',
+        width: `${100 / grid}%`,
+      }}
+    >
+      <CardWithText card={detail} isImage={false} />
+    </div>
+  )
 }

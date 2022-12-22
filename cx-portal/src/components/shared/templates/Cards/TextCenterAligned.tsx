@@ -18,9 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { Typography } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
+import { ProviderProps } from 'types/StaticTemplate'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function TextCenterAligned({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <div className="topCenterContainer">
+      <div>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            padding: '34px 100px 0px 100px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </div>
+    </div>
+  )
 }

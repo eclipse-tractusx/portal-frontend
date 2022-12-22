@@ -19,11 +19,11 @@
  ********************************************************************************/
 
 import { Typography } from 'cx-portal-shared-components'
-import { CardDetailsProps } from '../../types'
-import '../../CompanyRoles.scss'
+import { CardDetailsProps } from 'types/StaticTemplate'
+import '../StaticTemplate.scss'
 import { useTranslation } from 'react-i18next'
 
-export default function Card({
+export default function CardWithText({
   card,
   isImage,
 }: {

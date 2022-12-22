@@ -8,6 +8,7 @@
       "imageUrl": "rectangle-image.png",
       "backgroundColor": "#DAE3EB",
       "id": "provider-id",
+      "template": "TextImageSideBySideWithCardGrid",
       "detailsWithImage": [
         {
           "title": "App Marketplace",
@@ -53,6 +54,7 @@
       "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
       "imageUrl": "rectangle-image.png",
       "id": "operations-id",
+      "template": "TextImageSideBySideWithCardGrid",
       "backgroundColor": "#F9F9F9",
       "detailsWithImage": [
         {
@@ -101,6 +103,7 @@
       "description": "Details regarding the dataspace ",
       "imageUrl": "rectangle-image.png",
       "id": "participant-id",
+      "template": "TextImageSideBySideWithCardGrid",
       "backgroundColor": "#FFFFFF",
       "detailsWithImage": [
         {

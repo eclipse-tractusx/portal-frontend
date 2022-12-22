@@ -1,0 +1,86 @@
+{
+  "title": "Traceablity",
+  "description": "This is a intro sentence to traceability to get some details to the be added",
+  "roles": [
+    {
+      "title": "Intro to Traceability",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "imageUrl": "rectangle-image.png",
+      "id": "intro-id",
+      "backgroundColor": "#FFFFFF",
+      "template": "TextVideoSideBySide"
+    },
+    {
+      "title": "How to contribute to traceability and why?",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "imageUrl": "rectangle-image.png",
+      "backgroundColor": "#F9F9F9",
+      "id": "data-id",
+      "template": "TextImageCenterAligned"
+    },
+    {
+      "title": "Business Applications inside Traceability",
+      "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+      "backgroundColor": "#FFFFFF",
+      "id": "business-id",
+      "imageUrl": "rectangle-image.png",
+      "grid": 4,
+      "template": "TextCenterAlignedWithCardGrid",
+      "detailsWithImage": [
+        {
+          "title": "App Marketplace",
+          "imageUrl": "rectangle-image.png",
+          "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+          "readMore": "/appmarketplace",
+          "backgroundColor": "#f9f9f9",
+          "align": "center"
+        },
+        {
+          "title": "Service Marketplace",
+          "imageUrl": "rectangle-image.png",
+          "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+          "readMore": "",
+          "backgroundColor": "#f9f9f9",
+          "align": "center"
+        },
+        {
+          "title": "App Marketplace",
+          "imageUrl": "rectangle-image.png",
+          "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+          "readMore": "",
+          "backgroundColor": "#f9f9f9",
+          "align": "center"
+        },
+        {
+          "title": "Service Marketplace",
+          "imageUrl": "rectangle-image.png",
+          "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+          "readMore": "",
+          "backgroundColor": "#f9f9f9",
+          "align": "center"
+        }
+      ]
+    },
+    {
+      "title": "Direct Links / What Else Do You Need To Know",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "imageUrl": "rectangle-image.png",
+      "backgroundColor": "#FFFFFF",
+      "grid": 2,
+      "id": "section-one",
+      "template": "TextCenterAlignedWithLinkButtonGrid",
+      "links": [
+        {
+          "background": "#C498EF63",
+          "title": "Sample Name",
+          "navigate": "/appmanagement"
+        },
+        {
+          "background": "#C498EF63",
+          "title": "Sample Name",
+          "navigate": "/appmanagement"
+        }
+      ]
+    }
+  ]
+}

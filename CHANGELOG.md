@@ -25,6 +25,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix - User Management - App Access assign multiple user with role
 * Notification
    * Bug fix - Pick appropriate title from locale file
+* Use case
+   * Static page content added
 
 
 ## 0.10.0

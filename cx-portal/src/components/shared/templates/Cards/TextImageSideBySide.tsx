@@ -18,9 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { Typography } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
+import { ProviderProps } from 'types/StaticTemplate'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function TextVideSideBySide({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <div className="topFlexContainer">
+      <div>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            paddingTop: '34px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </div>
+      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+    </div>
+  )
 }
