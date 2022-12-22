@@ -35,12 +35,9 @@ import {
   IdentityProviderUser,
   useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
-import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
-import { OVERLAYS } from 'types/Constants'
 
-export const EnableIDP = ({ id }: { id: string }) => {
+export const AddusersIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { data } = useFetchOwnUserDetailsQuery()
@@ -51,7 +48,9 @@ export const EnableIDP = ({ id }: { id: string }) => {
     IdentityProviderUser | undefined
   >(undefined)
 
-  const doEnableIDP = async () => {
+  const doAddusersIDP = async () => {
+    console.log('add users to idp')
+    /*
     if (!(data && idpEnableData)) return
     try {
       await enableIdp({
@@ -66,45 +65,43 @@ export const EnableIDP = ({ id }: { id: string }) => {
         },
       }
       try {
-        await updateUserIDP(idpUser).unwrap()
+        await addUserIDP(idpUser).unwrap()
       } catch (e) {
-        console.log(e)
+        await updateUserIDP(idpUser).unwrap()
       }
       dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
     } catch (err) {
       console.log(err)
     }
+    */
   }
 
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.enableIdpHeadline', {
+        title={t('content.idpmanagement.adduserIdpHeadline', {
           idp: idpData?.displayName,
         })}
-        intro={t('content.idpmanagement.enableIdpSubheadline')}
+        intro={t('content.idpmanagement.adduserIdpSubheadline')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
         <Typography>
-          {t('Before enabling we have to link your user to the new IDP.')}
+          {t('Now transfer the existing users to your new IDP.')}
         </Typography>
         <Typography>
-          {t('Please enter the User ID (not name) of your user from there.')}
+          {t('Please upload a mapping table of the users in CSV format.')}
         </Typography>
-        <EnableIDPContent onValid={setIdpEnableData} />
+
+        {/*<AdduserIDPContent onValid={setIdpAdduserData} />*/}
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          disabled={!(!!id && !!data?.companyUserId && !!idpEnableData?.userId)}
-          onClick={doEnableIDP}
-        >
+        <Button variant="contained" disabled={!!!id} onClick={doAddusersIDP}>
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

@@ -24,7 +24,7 @@ import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 
-const EnableIDPForm = ({
+const AdduserIDPForm = ({
   onChange,
 }: {
   onChange: (key: string, value: string | undefined) => boolean
@@ -43,7 +43,7 @@ const EnableIDPForm = ({
   )
 }
 
-export const EnableIDPContent = ({
+export const AdduserIDPContent = ({
   onValid,
 }: {
   onValid: (form: IdentityProviderUser | undefined) => void
@@ -65,7 +65,6 @@ export const EnableIDPContent = ({
             companyUserId: '',
             identityProviderId: '',
             userId: current.userId,
-            userName: '-',
           }
         : undefined
     )
@@ -74,7 +73,7 @@ export const EnableIDPContent = ({
 
   return (
     <>
-      <EnableIDPForm onChange={checkData} />
+      <AdduserIDPForm onChange={checkData} />
     </>
   )
 }

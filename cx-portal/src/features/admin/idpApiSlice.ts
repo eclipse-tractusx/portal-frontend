@@ -154,17 +154,6 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
-    addUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
-      query: (idpUser: IdentityProviderUser) => ({
-        url: `/api/administration/identityprovider/owncompany/users/${idpUser.companyUserId}/identityprovider`,
-        method: 'POST',
-        body: {
-          identityProviderId: idpUser.identityProviderId,
-          userId: idpUser.userId,
-          userName: idpUser.userName || '-',
-        },
-      }),
-    }),
     updateUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
       query: (idpUser: IdentityProviderUser) => ({
         url: `/api/administration/identityprovider/owncompany/users/${idpUser.companyUserId}/identityprovider/${idpUser.identityProviderId}`,
@@ -185,6 +174,5 @@ export const {
   useUpdateIDPMutation,
   useRemoveIDPMutation,
   useEnableIDPMutation,
-  useAddUserIDPMutation,
   useUpdateUserIDPMutation,
 } = apiSlice

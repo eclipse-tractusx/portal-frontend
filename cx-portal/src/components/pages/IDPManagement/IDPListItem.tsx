@@ -24,6 +24,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import ToggleOffIcon from '@mui/icons-material/ToggleOff'
 import ToggleOnIcon from '@mui/icons-material/ToggleOn'
 import EditIcon from '@mui/icons-material/Edit'
+import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import { IconButton } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import { show } from 'features/control/overlay/actions'
@@ -38,6 +39,15 @@ export default function IDPListItem({ idp }: { idp: IdentityProvider }) {
   const doConfirmDelete = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation()
     dispatch(show(OVERLAYS.DELETE_IDP, idp.identityProviderId))
+  }
+
+  const doAddUsers = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(OVERLAYS.ADDUSERS_IDP, idp.identityProviderId))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const doEdit = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -93,7 +103,11 @@ export default function IDPListItem({ idp }: { idp: IdentityProvider }) {
             <EditIcon />
           </IconButton>
 
-          {idp.enabled || (
+          {idp.enabled ? (
+            <IconButton color="secondary" onClick={doAddUsers}>
+              <GroupAddIcon />
+            </IconButton>
+          ) : (
             <IconButton color="secondary" onClick={doConfirmDelete}>
               <DeleteForeverIcon />
             </IconButton>
