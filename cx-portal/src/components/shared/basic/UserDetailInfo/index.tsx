@@ -29,7 +29,7 @@ export const UserDetailInfo = ({
   parsedToken,
 }: {
   user: TenantUserDetails
-  parsedToken?: any
+  parsedToken?: { organisation: string }
 }) => {
   const { spacing } = useTheme()
 

@@ -20,7 +20,10 @@
 
 import { UserDetail } from './types'
 
-export const userDetailsToCards = (user: UserDetail, parsedToken?: any) => [
+export const userDetailsToCards = (
+  user: UserDetail,
+  parsedToken?: { organisation: string }
+) => [
   {
     cardCategory: 'Personal Information',
     cardContentItems: {
@@ -43,7 +46,10 @@ export const userDetailsToCards = (user: UserDetail, parsedToken?: any) => [
   {
     cardCategory: 'Issuer Information',
     cardContentItems: {
-      organisation: { label: 'Organisation', value: parsedToken.organisation },
+      organisation: {
+        label: 'Organisation',
+        value: parsedToken ? parsedToken.organisation : 'N/A',
+      },
       adminName: { label: 'Admin Name', value: 'N/A' },
       adminMail: { label: 'Admin E-Mail', value: 'N/A' },
     },
