@@ -77,6 +77,8 @@ export const EnableIDP = ({ id }: { id: string }) => {
     }
   }
 
+  console.log('enable idp', id, data)
+
   return (
     <>
       <DialogHeader

@@ -20,13 +20,17 @@
 
 import { Button, MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
+import { useFetchIDPListQuery } from 'features/admin/idpApiSlice'
+import { updateIDPSelector } from 'features/control/updatesSlice'
 
 export default function SearchSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const update = useSelector(updateIDPSelector)
+  const { data } = useFetchIDPListQuery(update)
 
   return (
     <div className="stage-home">

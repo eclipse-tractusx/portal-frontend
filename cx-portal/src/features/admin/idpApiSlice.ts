@@ -103,6 +103,25 @@ export interface IdentityProviderUser {
   userName?: string
 }
 
+export interface UserIdentityProvider {
+  companyUserId: string
+  identityProviderId: string
+}
+
+export interface UserIdentityProvidersItem {
+  identityProviderId: string
+  userId: string
+  userName: string
+}
+
+export interface UserIdentityProviders {
+    companyUserId: string
+    firstName: string
+    lastName: string
+    email: string
+    identityProviders: Array<UserIdentityProvidersItem>
+}
+
 export interface IdentityProvider {
   identityProviderId: string
   alias: string
@@ -164,6 +183,15 @@ export const apiSlice = createApi({
         },
       }),
     }),
+    fetchIDPUsersList: builder.query<Array<UserIdentityProviders>, string>({
+      query: (id: string) =>
+        `/api/administration/identityprovider/owncompany/users?identityProviderIds=${id}&unlinkedUsersOnly=false`,
+    }),
+    fetchIDPUser: builder.query<UserIdentityProvidersItem, UserIdentityProvider>({
+      query: (useridp: UserIdentityProvider) =>
+        `/api/administration/identityprovider/owncompany/users/${useridp.companyUserId}/identityprovider/${useridp.identityProviderId}`,
+    }),
+
   }),
 })
 
