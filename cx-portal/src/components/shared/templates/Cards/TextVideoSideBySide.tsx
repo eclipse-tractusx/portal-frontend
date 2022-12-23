@@ -40,7 +40,17 @@ export default function TitleWithVideo({
           {provider.description}
         </Typography>
       </div>
-      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+      <iframe
+        width="482"
+        height="331"
+        title="Video"
+        style={{
+          borderRadius: '16px',
+          border: '0px',
+        }}
+        src={provider.imageUrl}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      ></iframe>
     </div>
   )
 }
