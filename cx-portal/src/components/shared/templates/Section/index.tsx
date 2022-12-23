@@ -27,50 +27,50 @@ import TextImageSideBySide from '../Cards/TextImageSideBySide'
 import TextVideoSideBySide from '../Cards/TextVideoSideBySide'
 import '../StaticTemplate.scss'
 
-export default function Section({ sectionInfo }: { sectionInfo: any }) {
-  const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
-    switch (provider.template) {
-      case 'TextImageSideBySide':
-        return <TextImageSideBySide provider={provider} />
-      case 'TextVideoSideBySide':
-        return <TextVideoSideBySide provider={provider} />
-      case 'TextImageCenterAligned':
-        return <TextImageCenterAligned provider={provider} />
-      case 'TextCenterAligned':
-        return <TextCenterAligned provider={provider} />
-      case 'TextImageCenterAlignedWithCardGrid':
-        return (
-          <>
-            <TextImageCenterAligned provider={provider} />
-            <CardGrid align="center" provider={provider} grid={provider.grid} />
-          </>
-        )
-      case 'TextCenterAlignedWithCardGrid':
-        return (
-          <>
-            <TextCenterAligned provider={provider} />
-            <CardGrid align="center" provider={provider} grid={provider.grid} />
-          </>
-        )
-      case 'TextImageSideBySideWithCardGrid':
-        return (
-          <>
-            <TextImageSideBySide provider={provider} />
-            <CardGrid provider={provider} grid={provider.grid} />
-          </>
-        )
-      case 'TextCenterAlignedWithLinkButtonGrid':
-        return (
-          <>
-            <TextCenterAligned provider={provider} />
-            <LinkButtonGrid provider={provider} grid={provider.grid} />
-          </>
-        )
-      default:
-        return <TextImageSideBySide provider={provider} />
-    }
+const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
+  switch (provider.template) {
+    case 'TextImageSideBySide':
+      return <TextImageSideBySide provider={provider} />
+    case 'TextVideoSideBySide':
+      return <TextVideoSideBySide provider={provider} />
+    case 'TextImageCenterAligned':
+      return <TextImageCenterAligned provider={provider} />
+    case 'TextCenterAligned':
+      return <TextCenterAligned provider={provider} />
+    case 'TextImageCenterAlignedWithCardGrid':
+      return (
+        <>
+          <TextImageCenterAligned provider={provider} />
+          <CardGrid align="center" provider={provider} grid={provider.grid} />
+        </>
+      )
+    case 'TextCenterAlignedWithCardGrid':
+      return (
+        <>
+          <TextCenterAligned provider={provider} />
+          <CardGrid align="center" provider={provider} grid={provider.grid} />
+        </>
+      )
+    case 'TextImageSideBySideWithCardGrid':
+      return (
+        <>
+          <TextImageSideBySide provider={provider} />
+          <CardGrid provider={provider} grid={provider.grid} />
+        </>
+      )
+    case 'TextCenterAlignedWithLinkButtonGrid':
+      return (
+        <>
+          <TextCenterAligned provider={provider} />
+          <LinkButtonGrid provider={provider} grid={provider.grid} />
+        </>
+      )
+    default:
+      return <TextImageSideBySide provider={provider} />
   }
+}
 
+export default function Section({ sectionInfo }: { sectionInfo: any }) {
   return (
     <div>
       {sectionInfo &&
