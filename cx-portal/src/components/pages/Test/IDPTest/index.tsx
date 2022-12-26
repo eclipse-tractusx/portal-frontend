@@ -22,10 +22,7 @@ import {
   useFetchIDPListQuery,
   useFetchIDPUserQuery,
 } from 'features/admin/idpApiSlice'
-import {
-  TenantUser,
-  useFetchOwnUserDetailsQuery,
-} from 'features/admin/userApiSlice'
+import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { updateIDPSelector } from 'features/control/updatesSlice'
 import { useSelector } from 'react-redux'
 import './style.scss'

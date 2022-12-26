@@ -45,6 +45,7 @@ export default function SearchSection() {
         <Button
           sx={{ margin: '40px 10px 0 0' }}
           onClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+          disabled={data?.filter((idp) => idp.enabled).length !== 1}
         >
           {t('content.usermanagement.table.add')}
         </Button>

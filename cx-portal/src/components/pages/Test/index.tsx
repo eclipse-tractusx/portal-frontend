@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useDispatch } from 'react-redux'
 import IDPTest from './IDPTest'
 
 export default function Test() {
