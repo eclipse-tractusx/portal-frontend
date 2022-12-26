@@ -19,43 +19,54 @@
  ********************************************************************************/
 
 import {
-  IdentityProvider,
   useFetchIDPListQuery,
+  useFetchIDPUserQuery,
 } from 'features/admin/idpApiSlice'
-import { useSelector } from 'react-redux'
+import {
+  TenantUser,
+  useFetchOwnUserDetailsQuery,
+} from 'features/admin/userApiSlice'
 import { updateIDPSelector } from 'features/control/updatesSlice'
-import IDPListItem from './IDPListItem'
+import { useSelector } from 'react-redux'
 import './style.scss'
-import { Checkbox } from 'cx-portal-shared-components'
-import { useState } from 'react'
 
-export const IDPList = () => {
+function UserIDP({ userid, idpid }: { userid: string; idpid: string }) {
+  const idpuser = useFetchIDPUserQuery({
+    companyUserId: userid,
+    identityProviderId: idpid,
+  }).data
+  return (
+    <div>
+      {'idpuser'}
+      <pre>{JSON.stringify(idpuser, null, 2)}</pre>
+    </div>
+  )
+}
+
+export default function IDPTest() {
   const update = useSelector(updateIDPSelector)
-  const { data } = useFetchIDPListQuery(update)
-  const [buttons, setButtons] = useState<boolean>(false)
+  const userdata = useFetchOwnUserDetailsQuery().data
+  const idpdata = useFetchIDPListQuery(update).data
 
   return (
-    <>
-      <div style={{ width: '100%', textAlign: 'right' }}>
-        <Checkbox
-          sx={{ color: '#ccc' }}
-          label=""
-          onClick={() => setButtons(!buttons)}
-        />
-      </div>
-      <ul className="idp-list">
-        {data &&
-          data
-            .slice()
-            .sort((a: IdentityProvider, b: IdentityProvider) =>
-              a.alias.localeCompare(b.alias)
-            )
-            .map((idp) => (
-              <li key={idp.identityProviderId}>
-                <IDPListItem idp={idp} buttons={buttons} />
-              </li>
-            ))}
+    <section className="idptest">
+      {'userdata'}
+      <pre>{JSON.stringify(userdata, null, 2)}</pre>
+      {'idplist'}
+      <ul>
+        {idpdata?.map((item) => (
+          <li key={item.identityProviderId}>
+            {'idp'}
+            <pre>{JSON.stringify(item, null, 2)}</pre>
+            {userdata && (
+              <UserIDP
+                userid={userdata.companyUserId}
+                idpid={item.identityProviderId}
+              />
+            )}
+          </li>
+        ))}
       </ul>
-    </>
+    </section>
   )
 }

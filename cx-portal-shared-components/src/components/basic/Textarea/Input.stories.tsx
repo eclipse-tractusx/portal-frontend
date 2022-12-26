@@ -18,13 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useDispatch } from 'react-redux'
-import IDPTest from './IDPTest'
+import { ComponentStory } from '@storybook/react'
 
-export default function Test() {
-  return (
-    <main>
-      <IDPTest />
-    </main>
-  )
+import { Textarea as Component } from '.'
+
+export default {
+  title: 'Form',
+  component: Component,
+  argTypes: {
+    onClick: {
+      action: 'onClick',
+    },
+  },
+}
+
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const Input = Template.bind({})
+Input.args = {
+  label: 'Label',
+  placeholder: 'Placeholder',
+  helperText: 'Helper',
+  disabled: false,
+  error: false,
 }

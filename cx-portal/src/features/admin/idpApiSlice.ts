@@ -111,15 +111,15 @@ export interface UserIdentityProvider {
 export interface UserIdentityProvidersItem {
   identityProviderId: string
   userId: string
-  userName: string
+  userName?: string
 }
 
 export interface UserIdentityProviders {
-    companyUserId: string
-    firstName: string
-    lastName: string
-    email: string
-    identityProviders: Array<UserIdentityProvidersItem>
+  companyUserId: string
+  firstName: string
+  lastName: string
+  email: string
+  identityProviders: Array<UserIdentityProvidersItem>
 }
 
 export interface IdentityProvider {
@@ -187,17 +187,21 @@ export const apiSlice = createApi({
       query: (id: string) =>
         `/api/administration/identityprovider/owncompany/users?identityProviderIds=${id}&unlinkedUsersOnly=false`,
     }),
-    fetchIDPUser: builder.query<UserIdentityProvidersItem, UserIdentityProvider>({
+    fetchIDPUser: builder.query<
+      UserIdentityProvidersItem,
+      UserIdentityProvider
+    >({
       query: (useridp: UserIdentityProvider) =>
         `/api/administration/identityprovider/owncompany/users/${useridp.companyUserId}/identityprovider/${useridp.identityProviderId}`,
     }),
-
   }),
 })
 
 export const {
   useFetchIDPListQuery,
   useFetchIDPDetailQuery,
+  useFetchIDPUserQuery,
+  useFetchIDPUsersListQuery,
   useAddIDPMutation,
   useUpdateIDPMutation,
   useRemoveIDPMutation,

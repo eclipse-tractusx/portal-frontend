@@ -72,7 +72,9 @@ export const DisableIDP = ({ id }: { id: string }) => {
           </Typography>
         </div>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
-          <Typography variant="h5">{data?.displayName}</Typography>
+          <Typography variant="h5">
+            {data?.displayName} - {data?.alias}
+          </Typography>
         </div>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
           <Typography>{t('Are you sure you want to proceed?')}</Typography>

@@ -20,18 +20,25 @@
 
 import { IdentityProvider } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
+import InfoIcon from '@mui/icons-material/Info'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import ToggleOffIcon from '@mui/icons-material/ToggleOff'
 import ToggleOnIcon from '@mui/icons-material/ToggleOn'
 import EditIcon from '@mui/icons-material/Edit'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
-import { IconButton } from 'cx-portal-shared-components'
+import { DropdownMenu, IconButton, MenuItem } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
 
-export default function IDPListItem({ idp }: { idp: IdentityProvider }) {
+export default function IDPListItem({
+  idp,
+  buttons,
+}: {
+  idp: IdentityProvider
+  buttons?: boolean
+}) {
   const dispatch = useDispatch()
   const [open, setOpen] = useState<boolean>(false)
   const toggle = () => setOpen(!open)
@@ -75,43 +82,73 @@ export default function IDPListItem({ idp }: { idp: IdentityProvider }) {
     }
   }
 
+  const renderButtons = () => {
+    return (
+      <>
+        <IconButton color={open ? 'primary' : 'secondary'} onClick={toggle}>
+          <InfoIcon />
+        </IconButton>
+        {idp.enabled ? (
+          <IconButton
+            disabled={idp.alias === 'CX-Test-Access'}
+            color="primary"
+            onClick={doEnableToggle}
+          >
+            <ToggleOnIcon />
+          </IconButton>
+        ) : (
+          <IconButton color="secondary" onClick={doEnableToggle}>
+            <ToggleOffIcon />
+          </IconButton>
+        )}
+        <IconButton
+          disabled={idp.alias === 'CX-Test-Access'}
+          color="secondary"
+          onClick={doEdit}
+        >
+          <EditIcon />
+        </IconButton>
+
+        {idp.enabled ? (
+          <IconButton color="secondary" onClick={doAddUsers}>
+            <GroupAddIcon />
+          </IconButton>
+        ) : (
+          <IconButton color="secondary" onClick={doConfirmDelete}>
+            <DeleteForeverIcon />
+          </IconButton>
+        )}
+      </>
+    )
+  }
+
+  const renderMenu = () => {
+    return (
+      <DropdownMenu buttonText={'Actions'}>
+        <MenuItem title={'Details'} onClick={toggle} />
+        {idp.enabled ? (
+          <MenuItem title={'Disable'} onClick={doEnableToggle} />
+        ) : (
+          <MenuItem title={'Enable'} onClick={doEnableToggle} />
+        )}
+        <MenuItem title={'Edit'} onClick={doEdit} />
+        {idp.enabled ? (
+          <MenuItem title={'Link users'} onClick={doAddUsers} />
+        ) : (
+          <MenuItem title={'Delete'} onClick={doConfirmDelete} />
+        )}
+      </DropdownMenu>
+    )
+  }
+
   return (
     <>
-      <div onClick={toggle} className="idp-list-item">
+      <div className="idp-list-item">
         <span className="category">{idp.identityProviderCategoryId}</span>
         <span className="name">{idp.displayName || '-'}</span>
         <span className="alias">{idp.alias}</span>
-        <span className="action">
-          {idp.enabled ? (
-            <IconButton
-              disabled={idp.alias === 'CX-Test-Access'}
-              color="primary"
-              onClick={doEnableToggle}
-            >
-              <ToggleOnIcon />
-            </IconButton>
-          ) : (
-            <IconButton color="secondary" onClick={doEnableToggle}>
-              <ToggleOffIcon />
-            </IconButton>
-          )}
-          <IconButton
-            disabled={idp.alias === 'CX-Test-Access'}
-            color="secondary"
-            onClick={doEdit}
-          >
-            <EditIcon />
-          </IconButton>
-
-          {idp.enabled ? (
-            <IconButton color="secondary" onClick={doAddUsers}>
-              <GroupAddIcon />
-            </IconButton>
-          ) : (
-            <IconButton color="secondary" onClick={doConfirmDelete}>
-              <DeleteForeverIcon />
-            </IconButton>
-          )}
+        <span className={`action ${buttons ? 'buttons' : 'menu'}`}>
+          {buttons ? renderButtons() : renderMenu()}
         </span>
       </div>
       {open && (

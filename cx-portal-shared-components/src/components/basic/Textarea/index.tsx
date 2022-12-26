@@ -18,13 +18,45 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useDispatch } from 'react-redux'
-import IDPTest from './IDPTest'
+import {
+  TextareaAutosize,
+  TextareaAutosizeProps,
+  FormHelperText,
+  InputLabel,
+  Box,
+  FormControl,
+} from '@mui/material'
 
-export default function Test() {
+interface TextareaProps extends TextareaAutosizeProps {
+  label?: string
+  helperText?: string
+  error?: boolean
+}
+
+export const Textarea = ({
+  label,
+  placeholder,
+  helperText,
+  error = false,
+  ...props
+}: TextareaProps) => {
   return (
-    <main>
-      <IDPTest />
-    </main>
+    <Box>
+      <FormControl
+        sx={{
+          width: '100%',
+        }}
+        error={error}
+        variant="filled"
+      >
+        <InputLabel>{label}</InputLabel>
+        <TextareaAutosize placeholder={placeholder} {...props} />
+        {error && helperText && (
+          <FormHelperText sx={{ marginLeft: 0, marginBottom: '-23px' }}>
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    </Box>
   )
 }
