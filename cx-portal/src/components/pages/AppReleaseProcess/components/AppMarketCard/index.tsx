@@ -214,22 +214,6 @@ export default function AppMarketCard() {
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
-
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-  }, [dispatch, fetchAppStatus])
-
-  useEffect(() => {
-    if (salesManagerList.length > 0) {
-      let data = salesManagerList?.map((item) => {
-        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
-      })
-      reset(defaultValues)
-      setSalesManagerListData(salesManagerListData.concat(data))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [salesManagerList])
-
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -252,6 +236,43 @@ export default function AppMarketCard() {
     },
   }
 
+  const {
+    handleSubmit,
+    getValues,
+    control,
+    trigger,
+    formState: { errors, isValid },
+    reset,
+  } = useForm({
+    defaultValues: defaultValues,
+    mode: 'onChange',
+  })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (salesManagerList.length > 0) {
+      let data = salesManagerList?.map((item) => {
+        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
+      })
+      reset(defaultValues)
+      setSalesManagerListData(salesManagerListData.concat(data))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [salesManagerList])
+
+  const cardImageData = getValues().uploadImage.leadPictureUri
+  useEffect(() => {
+    if (cardImageData !== LogoGrayData) {
+      const blobFile = new Blob([getValues().uploadImage.leadPictureUri], {
+        type: 'image/png',
+      })
+      setCardImage(URL.createObjectURL(blobFile))
+    }
+  }, [cardImageData])
+
   useEffect(() => {
     if (
       appStatusData?.documents?.APP_LEADIMAGE &&
@@ -272,18 +293,6 @@ export default function AppMarketCard() {
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
     }
   }
-
-  const {
-    handleSubmit,
-    getValues,
-    control,
-    trigger,
-    formState: { errors, isValid },
-    reset,
-  } = useForm({
-    defaultValues: defaultValues,
-    mode: 'onChange',
-  })
 
   const cardAppTitle =
     getValues().title ||
