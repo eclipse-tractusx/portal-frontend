@@ -322,7 +322,7 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
-          dispatch(increment())
+          dispatch(setAppId(appId))
         })
         .catch(() => {
           setAppCardNotification(true)
