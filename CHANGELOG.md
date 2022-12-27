@@ -21,6 +21,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix - User Management - App Access assign multiple user with role
 * Notification
    * Bug fix - Pick appropriate title from locale file
+* Feature - App Change Process
+   * Created Deactivate Sub-Menu Component in App Overview Page
+   * Created Deactivate page and add functionality
 
 
 ## 0.10.0
