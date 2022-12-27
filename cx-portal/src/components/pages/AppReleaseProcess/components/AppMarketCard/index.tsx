@@ -45,8 +45,6 @@ import {
   useFetchSalesManagerDataQuery,
   salesManagerType,
   useSaveAppMutation,
-  useFetchAppStatusQuery,
-  useFetchDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
@@ -58,7 +56,7 @@ import {
   appStatusDataSelector,
   increment,
 } from 'features/appManagement/slice'
-import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import { setAppId } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 
@@ -201,30 +199,22 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
-  const [defaultSalesManagerValue] = useState<salesManagerType>({
+  const defaultSalesManagerValue = {
     userId: null,
     firstName: 'none',
     lastName: '',
     fullName: 'none',
-  })
+  }
   const [salesManagerListData, setSalesManagerListData] = useState<
     salesManagerType[]
   >([defaultSalesManagerValue])
-  const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
-  const [cardImage, setCardImage] = useState('')
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
-
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-  }, [dispatch, fetchAppStatus])
+  const [salesManagerId, setSalesManagerId] = useState(null)
 
   useEffect(() => {
     if (salesManagerList.length > 0) {
       let data = salesManagerList?.map((item) => {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
-      reset(defaultValues)
       setSalesManagerListData(salesManagerListData.concat(data))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -247,29 +237,9 @@ export default function AppMarketCard() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: cardImage || '',
-      alt: appStatusData?.leadPictureUri || '',
+      leadPictureUri: appStatusData?.leadPictureUri || null,
+      alt: '',
     },
-  }
-
-  useEffect(() => {
-    if (
-      appStatusData?.documents?.APP_LEADIMAGE &&
-      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
-    ) {
-      fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
-    }
-    reset(defaultValues)
-  }, [appStatusData])
-
-  const fetchCardImage = async (documentId: string) => {
-    try {
-      const response = await fetchDocumentById(documentId).unwrap()
-      const file = response.data
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
   }
 
   const {
@@ -278,7 +248,6 @@ export default function AppMarketCard() {
     control,
     trigger,
     formState: { errors, isValid },
-    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
@@ -353,7 +322,6 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
-          dispatch(setAppId(appId))
           dispatch(increment())
         })
         .catch(() => {
@@ -408,7 +376,7 @@ export default function AppMarketCard() {
           <Grid item md={3} className={'app-release-card'}>
             <Card
               image={{
-                src: cardImage,
+                src: cardImageSrc,
                 alt: cardImageAlt,
               }}
               title={cardAppTitle}
