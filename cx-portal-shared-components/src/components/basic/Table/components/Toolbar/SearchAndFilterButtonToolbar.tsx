@@ -83,12 +83,6 @@ export const SearchAndFilterButtonToolbar = ({
     }
   }
 
-  // const onFilterChange = (value: string) => {
-  //   if (onFilter) {
-  //     onFilter(value)
-  //   }
-  // }
-
   const handleSearchClear = () => {
     onClearSearch && onClearSearch()
     setSearchInputText('')
