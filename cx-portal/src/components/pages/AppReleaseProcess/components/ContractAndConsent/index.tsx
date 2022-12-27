@@ -112,14 +112,14 @@ export default function ContractAndConsent() {
     mode: 'onChange',
   })
 
-  const onContractConsentSubmit = async (data: any) => {
+  const onContractConsentSubmit = async (data: any, buttonLabel: string) => {
     const validateFields = await trigger(['agreements'])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: any) => {
+  const handleSave = async (data: any, buttonLabel: string) => {
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
     )
@@ -144,7 +144,7 @@ export default function ContractAndConsent() {
     await updateAgreementConsents(updateData)
       .unwrap()
       .then(() => {
-        dispatch(increment())
+        buttonLabel === 'saveAndProceed' && dispatch(increment())
       })
       .catch(() => {
         setContractNotification(true)
@@ -225,7 +225,9 @@ export default function ContractAndConsent() {
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onContractConsentSubmit)}
+          onClick={handleSubmit((data) =>
+            onContractConsentSubmit(data, 'saveAndProceed')
+          )}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -233,7 +235,9 @@ export default function ContractAndConsent() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onContractConsentSubmit)}
+          onClick={handleSubmit((data) =>
+            onContractConsentSubmit(data, 'save')
+          )}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

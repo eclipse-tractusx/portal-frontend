@@ -166,7 +166,7 @@ export default function AppPage() {
     } catch (error) {}
   }
 
-  const onAppPageSubmit = async (data: FormDataType) => {
+  const onAppPageSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
@@ -180,11 +180,11 @@ export default function AppPage() {
       'providerPhoneContact',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       descriptions: [
         {
@@ -212,7 +212,7 @@ export default function AppPage() {
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
-      dispatch(increment())
+      buttonLabel === 'saveAndProceed' && dispatch(increment())
     } catch (error: any) {
       setAppPageNotification(true)
     }
@@ -531,7 +531,9 @@ export default function AppPage() {
           sx={{ float: 'right' }}
           variant="contained"
           disabled={!isValid}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) =>
+            onAppPageSubmit(data, 'saveAndProceed')
+          )}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -539,7 +541,7 @@ export default function AppPage() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

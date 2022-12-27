@@ -154,11 +154,11 @@ export default function ValidateAndPublish({
                   ? appStatusData?.descriptions?.filter(
                       (lang: { languageCode: string }) =>
                         lang.languageCode === 'en'
-                    )[0].shortDescription
+                    )[0]?.shortDescription
                   : appStatusData?.descriptions?.filter(
                       (lang: { languageCode: string }) =>
                         lang.languageCode === 'de'
-                    )[0].shortDescription
+                    )[0]?.shortDescription
               }
               imageSize="normal"
               imageShape="square"
@@ -205,7 +205,7 @@ export default function ValidateAndPublish({
                   appStatusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === 'en'
-                  )[0].longDescription
+                  )[0]?.longDescription
                 }
               </Typography>
             ) : (
@@ -217,7 +217,7 @@ export default function ValidateAndPublish({
                   appStatusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === 'de'
-                  )[0].longDescription
+                  )[0]?.longDescription
                 }
               </Typography>
             )}

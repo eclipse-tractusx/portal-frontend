@@ -69,8 +69,10 @@ export default function TechnicalIntegration() {
     mode: 'onChange',
   })
 
-  const onIntegrationSubmit = async (data: any) =>
-    setTechnicalIntegrationNotification(true)
+  const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
+    buttonLabel === 'saveAndProceed' && dispatch(increment())
+    buttonLabel === 'save' && setTechnicalIntegrationNotification(true)
+  }
 
   const csvPreview = (files: File[]) => {
     return files
@@ -345,7 +347,9 @@ export default function TechnicalIntegration() {
         <Button
           // To-Do : the below code will get enhanced again in R.3.1
           // disabled={showUserButton}
-          onClick={() => dispatch(increment())}
+          onClick={handleSubmit((data) =>
+            onIntegrationSubmit(data, 'saveAndProceed')
+          )}
           variant="contained"
           sx={{ float: 'right' }}
         >
@@ -355,7 +359,7 @@ export default function TechnicalIntegration() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onIntegrationSubmit)}
+          onClick={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

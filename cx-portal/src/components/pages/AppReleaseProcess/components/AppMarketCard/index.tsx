@@ -269,7 +269,7 @@ export default function AppMarketCard() {
 
   window.onscroll = () => setPageScrolled(window.scrollY !== 0)
 
-  const onSubmit = async (data: FormDataType) => {
+  const onSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'title',
       'provider',
@@ -281,11 +281,11 @@ export default function AppMarketCard() {
       'uploadImage',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       title: data.title,
       provider: data.provider,
@@ -322,6 +322,7 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
+          buttonLabel === 'saveAndProceed' && dispatch(increment())
           dispatch(setAppId(appId))
         })
         .catch(() => {
@@ -334,7 +335,7 @@ export default function AppMarketCard() {
           if (isString(result)) {
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
             dispatch(setAppId(result))
-            dispatch(increment())
+            buttonLabel === 'saveAndProceed' && dispatch(increment())
           }
         })
         .catch(() => {
@@ -800,7 +801,7 @@ export default function AppMarketCard() {
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((data) => onSubmit(data, 'saveAndProceed'))}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -808,7 +809,7 @@ export default function AppMarketCard() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((data) => onSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>
