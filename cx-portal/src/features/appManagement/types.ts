@@ -30,7 +30,6 @@ export interface AppStatusDataState {
   provider: string
   leadPictureUri: string
   providerName: string
-  salesManagerId: string
   useCase: string[]
   descriptions: DescriptionState[]
   agreements: AgreementState[]
@@ -74,7 +73,6 @@ export const initialState: AppManagementState = {
     provider: '',
     leadPictureUri: '',
     providerName: '',
-    salesManagerId: '',
     useCase: [],
     descriptions: [],
     agreements: [],
