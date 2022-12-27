@@ -38,7 +38,7 @@ export const CardContent = ({
   description,
 }: CardContentProps) => {
   return (
-    <Box>
+    <Box sx={{ padding: '0px 15px 10px' }}>
       {subtitle && (
         <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
           {subtitle}
@@ -48,7 +48,7 @@ export const CardContent = ({
         variant="h5"
         sx={{
           marginTop: 0.5,
-          height: '56px',
+          height: 'auto',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'normal',
