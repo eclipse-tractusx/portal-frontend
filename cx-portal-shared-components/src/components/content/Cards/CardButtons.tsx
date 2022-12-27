@@ -43,7 +43,7 @@ export const CardButtons = ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 2,
+        margin: '20px',
       }}
     >
       <Button size="small" onClick={onButtonClick}>

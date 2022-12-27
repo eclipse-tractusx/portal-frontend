@@ -88,7 +88,7 @@ export const Card = ({
   submenuClick,
   tooltipText = '',
 }: CardProps) => {
-  const { shape, shadows, spacing } = useTheme()
+  const { shape, shadows } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
   const [content, setContent] = useState({
     title,
@@ -106,7 +106,7 @@ export const Card = ({
 
   useEffect(() => {
     sortOption && submenuClick(sortOption, id)
-  }, [sortOption])
+  }, [sortOption, submenuClick, id])
 
   useEffect(() => {
     switch (variant) {
@@ -219,7 +219,7 @@ export const Card = ({
             preview={variant === 'preview'}
           />
         </Box>
-        <Box>
+        <Box sx={{ marginBottom: '30px' }}>
           {statusText && imageSize === 'small' && (
             <Box
               sx={{
@@ -242,7 +242,7 @@ export const Card = ({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-end',
-                  padding: '10px',
+                  padding: '0 10px',
                 }}
               >
                 <MoreVertIcon
