@@ -46,6 +46,7 @@ import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
+import AppStore from 'components/pages/AppStore'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
@@ -207,6 +208,11 @@ export const ALL_PAGES: IPage[] = [
     element: <AppReleaseProcess />,
   },
   {
+    name: PAGES.APPSTORE,
+    role: ROLES.APP_MANAGEMENT,
+    element: <AppStore />,
+  },
+  {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
     isRoute: true,
     element: (
@@ -332,6 +338,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_BPN,
     role: ROLES.MODIFY_USER_ACCOUNT,
+  },
+  {
+    name: OVERLAYS.ADD_SUBSCRIPTION,
+    role: ROLES.ACTIVATE_SUBSCRIPTION,
   },
   {
     name: OVERLAYS.ADD_USER,
@@ -487,6 +497,7 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
+      { name: PAGES.APPSTORE, hint: HINTS.NEW },
     ],
   },
 ]

@@ -72,7 +72,10 @@ export const ConnectorTableColumns = (
       renderCell: ({ row }: { row: any }) => (
         <Box>
           <LockIcon
-            sx={{ color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6' }}
+            sx={{
+              color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6',
+              cursor: 'pointer',
+            }}
           />
         </Box>
       ),
@@ -80,7 +83,7 @@ export const ConnectorTableColumns = (
     {
       field: 'detail',
       headerName: '',
-      flex: 1,
+      flex: 0.3,
       sortable: false,
       align: 'center',
       headerAlign: 'center',
@@ -89,17 +92,30 @@ export const ConnectorTableColumns = (
           <DeleteOutlineIcon
             sx={{
               color: '#adadad',
-              marginRight: '20px',
+              marginRight: '-30px',
               ':hover': {
                 color: 'blue',
+                cursor: 'pointer',
               },
             }}
           />
+        </Box>
+      ),
+    },
+    {
+      field: 'none',
+      headerName: '',
+      flex: 0.3,
+      sortable: false,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: ({ row }: { row: any }) => (
+        <Box>
           {row.status === 'PENDING' && (
             <AccessTimeIcon
               sx={{
+                marginLeft: '-30px',
                 color: '#adadad',
-                marginLeft: '20px',
               }}
             />
           )}

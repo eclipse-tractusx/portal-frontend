@@ -27,6 +27,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Bug fix - Pick appropriate title from locale file
 * Use case
    * Static page content added
+* BugFix
+   Enable authentication icon for all the states
+   Fixed issue on clicking info icon trigger delete action
+* Feature - Tenant Management Board for App/Service Owners (FE)
 * Feature - My CX Account - Update Issue Table
 
 
