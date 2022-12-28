@@ -29,13 +29,9 @@ import { Grid } from '@mui/material'
 import I18nService from 'services/I18nService'
 import i18next, { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
-import {
-  NewAppDetails,
-  useFetchDocumentByIdMutation,
-} from 'features/appManagement/apiSlice'
+import { NewAppDetails } from 'features/appManagement/apiSlice'
 import AppInfo from './components/AppInfo'
 import AppConsent from './components/AppConsent'
-import { useEffect, useState } from 'react'
 
 export default function AppOverViewDetails({
   item,
@@ -89,28 +85,6 @@ export default function AppOverViewDetails({
     return item?.descriptions[0]?.longDescription
   }
 
-  const [cardImage, setCardImage] = useState('')
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
-
-  useEffect(() => {
-    if (
-      item?.documents?.APP_LEADIMAGE &&
-      item?.documents?.APP_LEADIMAGE[0].documentId
-    ) {
-      fetchImage(item?.documents?.APP_LEADIMAGE[0].documentId)
-    }
-  }, [item])
-
-  const fetchImage = async (documentId: string) => {
-    try {
-      const response = await fetchDocumentById(documentId).unwrap()
-      const file = response.data
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
-
   return (
     <>
       {item && (
@@ -118,7 +92,7 @@ export default function AppOverViewDetails({
           <Grid item>
             <Card
               image={{
-                src: cardImage || LogoGrayData, // To-Do : Update this with actual data when new api is available
+                src: LogoGrayData, // To-Do : Update this with actual data when new api is available
               }}
               title={item.title}
               subtitle={item.provider}
