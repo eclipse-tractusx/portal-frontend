@@ -25,6 +25,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * View update in Details overlay
 * Notification
    * Bug fix - Pick appropriate title from locale file
+* Feature - My CX Account - Update Issue Table
 
 
 ## 0.10.0
