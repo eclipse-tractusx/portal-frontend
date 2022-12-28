@@ -25,9 +25,10 @@ import { StatusTag } from './components/StatusTag'
 import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 import { theme } from '../../../theme'
+import { SearchAndFilterButtonToolbar } from './components/Toolbar/SearchAndFilterButtonToolbar'
 
 export { StatusTag }
-export type toolbarType = 'basic' | 'premium' | 'ultimate'
+export type toolbarType = 'basic' | 'premium' | 'ultimate' | 'searchAndFilter'
 export type SearchInputState = {
   open: boolean
   text: string
@@ -50,6 +51,9 @@ export interface TableProps extends DataGridProps {
   buttonLabel?: string
   onButtonClick?: React.MouseEventHandler
   onSelection?: (value: GridRowId[]) => void
+  descriptionText?: string
+  defaultFilter?: string
+  filterViews?: any
 }
 
 export const Table = ({
@@ -75,6 +79,9 @@ export const Table = ({
   buttonLabel,
   onButtonClick,
   onSelection,
+  descriptionText,
+  defaultFilter,
+  filterViews,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -89,6 +96,9 @@ export const Table = ({
     onButtonClick,
     onSelection,
     searchExpr,
+    descriptionText,
+    defaultFilter,
+    filterViews,
   }
 
   const handleOnCellClick = useCallback(
@@ -115,6 +125,8 @@ export const Table = ({
         return <Toolbar title={title} {...toolbar} {...toolbarProps} />
       case 'ultimate':
         return <UltimateToolbar title={title} {...toolbarProps} {...toolbar} />
+      case 'searchAndFilter':
+        return <SearchAndFilterButtonToolbar {...toolbarProps} {...toolbar} />
     }
   }
 
