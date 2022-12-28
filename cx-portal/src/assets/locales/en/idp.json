@@ -1,0 +1,75 @@
+{
+    "idpmanagement": {
+        "addIdpHeadline": "New IdP Connection",
+        "addIdpSubheadline": "Enter an IdP name and choose the idp type to start the configuration",
+        "updateIdpHeadline": "Identity Provider Configuration",
+        "updateIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed. <br> Follow the",
+        "idpHelp": "help",
+        "updateIdpSubheadline2": "to find a number of examples of local idp's such as Azure, Keycloak, etc.",
+        "enableIdpHeadline": "Enable Identity Provider {{ idp }}",
+        "enableIdpSubheadline": "This will open another option for people from your company to sign.",
+        "enableIdpSuccessHeadline": "Identity Provider successfully enabled",
+        "enableIdpSuccessSubheadline": "Go and test the login now",
+        "disableIdpHeadline": "Disable Identity Provider {{ idp }}",
+        "disableIdpSubheadline": "This will remove the option to sign in for people of your company",
+        "description": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
+        "create": "Add Identity Provider"
+      },
+      "idpdetail": {
+        "title": "Identity Provider Details",
+        "alias": "Alias",
+        "status": "Status",
+        "displayName": "Display Name",
+        "authType": "IDP Typ",
+        "authorizationUrl": "Authorization URL",
+        "metadataUrl": "Metadata URL",
+        "clientId": "Client ID",
+        "secret": "Secret",
+        "signatureAlgorithm": "Signature algorithm",
+        "clientAuthMethod": "Authentication Method",
+        "tokenUrl": "Token URL",
+        "idpTypeSelection": "IdP Type Selection",
+        "companyName": "Company Name",
+        "done": "Done",
+        "loading": "Loading",
+        "load": "Load",
+        "selectIpsText": "Select the type of IdP which should get newly created",
+        "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
+        "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
+        "client_id_required_error": "Client id is required",
+        "client_id_invalid_error": "Please enter valid client id",
+        "client_secret_required_error": "Client secret is required",
+        "client_secret_invalid_error": "Please enter valid client secret",
+        "metadata_url_required_error": "Metadata url is required",
+        "metadata_url_invalid_error": "Please enter valid metadata url"
+      },
+      "page": {
+        "title": "Identity Provider Config",
+        "desc": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page."
+    },
+    "add": {
+        "title": "New IdP Connection",
+        "subtitle": "Enter an IdP name and choose the idp type to start the configuration"
+    },
+    "users": {
+        "title": "Link existing users to new IdP",
+        "subtitle": "Make sure users can continue working"
+    },
+    "field": {
+        "name": "IdP name"
+    },
+    "action": {
+        "actions": "Actions",
+        "create": "Add Identity Provider",
+        "details": "Details",
+        "enable": "Enable",
+        "disable": "Disable",
+        "delete": "Delete",
+        "edit": "Edit",
+        "users": "Users",
+        "signout": "Sign out",
+        "confirm": "Confirm",
+        "close": "Close",
+        "cancel": "Cancel"
+    }
+}

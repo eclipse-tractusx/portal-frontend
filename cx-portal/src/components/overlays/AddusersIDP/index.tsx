@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Button,
   Checkbox,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -41,6 +42,7 @@ import {
 import EnvironmentService from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import {
+  editIDPUserResponseSelector,
   editIDPUserSelector,
   FORMS,
   storeForm,
@@ -107,7 +109,7 @@ const SelectFormat = ({
 }
 
 export const AddusersIDP = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const idpData = useFetchIDPDetailQuery(id).data
   const userData = useFetchIDPUsersListQuery(id).data
@@ -115,7 +117,47 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const [pretty, setPretty] = useState<boolean>(false)
   const [unlinked, setUnlinked] = useState<boolean>(false)
   const userContent = useSelector(editIDPUserSelector)
+  const userResponse = useSelector(editIDPUserResponseSelector)
   const [status, setStatus] = useState<IDPSetupState>(IDPSetupState.NONE)
+  const fetching = t('fetching users...')
+
+  const AddusersIDPResponse = ({ response }: { response: string }) => {
+    const { t } = useTranslation()
+
+    return (
+      <Dialog open={true}>
+        <DialogHeader
+          title={t('content.idpmanagement.addusersIdpSuccessHeadline')}
+          intro={t('content.idpmanagement.addusersIdpSuccessSubheadline')}
+          closeWithIcon={true}
+          onCloseWithIcon={() => storeResponse('')}
+        />
+        <DialogContent>
+          <div>
+            <Typography>
+              {t(
+                'The request to link users to your new Identity Provider has succeeded with this response'
+              )}
+            </Typography>
+            <pre
+              style={{
+                padding: '12px',
+                border: '1px solid lightgray',
+                backgroundColor: '#eee',
+              }}
+            >
+              {JSON.stringify(JSON.parse(response), null, 2)}
+            </pre>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined" onClick={() => storeResponse('')}>
+            {t('global.actions.close')}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
 
   const CSV_COLUMNS = useMemo(
     () => [
@@ -130,27 +172,12 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     []
   )
 
-  //  const fetchUsers = () => {
-  //    fetch(
-  //      `${EnvironmentService.getApiBase()}/api/administration/identityprovider/owncompany/usersfile?identityProviderIds=${id}&unlinkedUsersOnly=false`,
-  //      {
-  //        method: 'GET',
-  //        headers: {
-  //          authorization: `bearer ${UserService.getToken()}`,
-  //          'content-type': MIME_TYPE[format],
-  //        },
-  //      }
-  //    )
-  //      .then((response) => response.text())
-  //      .then((text) => setContent(text))
-  //  }
-
   const postUsers = () => {
     if (!idpData || !userContent?.data) return
     const postdata = new FormData()
     postdata.append(
       'document',
-      new Blob([store2text(userContent.data)], {
+      new Blob([json2csv(store2data(userContent.data))], {
         type: 'text/csv',
       })
     )
@@ -165,9 +192,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
     )
       .then((response) => response.text())
-      .then((text) => {
-        console.log(text)
+      .then((result) => {
+        console.log(result)
         setStatus(IDPSetupState.SUCCESS_UPLOAD_USERS)
+        storeResponse(result)
+        setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
       })
       .catch((_error) => setStatus(IDPSetupState.ERROR_UPLOAD_USERS))
   }
@@ -277,6 +306,37 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     return data2text(data)
   }
 
+  const storeResponse = (response: string) => {
+    dispatch(
+      storeForm({
+        form: FORMS.IDP_USER_RESPONSE_FORM,
+        att: {
+          data: response,
+        },
+      })
+    )
+  }
+
+  const storeData = useCallback(
+    (text: string) => {
+      try {
+        dispatch(
+          storeForm({
+            form: FORMS.IDP_USER_FORM,
+            att: {
+              data: JSON.stringify(JSON.parse(text)),
+            },
+          })
+        )
+        setStatus(IDPSetupState.SUCCESS_VALID_FORMAT)
+      } catch (e) {
+        setStatus(IDPSetupState.ERROR_INVALID_FORMAT)
+      }
+      setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
+    },
+    [dispatch]
+  )
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 1) {
@@ -297,54 +357,35 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         reader.onerror = () => console.log('file reading has failed')
         reader.onload = () => {
           if (!reader.result) return
-          try {
-            const content = reader.result.toString()
-            dispatch(
-              storeForm({
-                form: FORMS.IDP_USER_FORM,
-                att: {
-                  data: JSON.stringify(
-                    file.type === MIME_TYPE.CSV
-                      ? csv2json(content)
-                      : JSON.parse(content)
-                  ),
-                },
-              })
-            )
-            setStatus(IDPSetupState.SUCCESS_VALID_FORMAT)
-          } catch (e) {
-            setStatus(IDPSetupState.ERROR_INVALID_FORMAT)
-          }
-          setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
+          const content = reader.result.toString()
+          storeData(
+            file.type === MIME_TYPE.CSV
+              ? JSON.stringify(csv2json(content))
+              : content
+          )
         }
         reader.readAsText(file)
       })
     },
-    [csv2json, dispatch]
+    [csv2json, storeData]
   )
 
   const { getRootProps } = useDropzone({ onDrop })
 
   useEffect(() => {
-    if (!idpData || !userData) return
-    userData &&
-      dispatch(
-        storeForm({
-          form: FORMS.IDP_USER_FORM,
-          att: { data: JSON.stringify(userData) },
-        })
-      )
-  }, [idpData, userData, dispatch, json2csv])
+    if (!userData) return
+    storeData(JSON.stringify(userData))
+  }, [storeData, userData])
 
   //console.log(userContent)
 
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.adduserIdpHeadline', {
+        title={t('users.title', {
           idp: idpData?.displayName,
         })}
-        intro={t('content.idpmanagement.adduserIdpSubheadline')}
+        intro={t('users.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
@@ -360,82 +401,72 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             "Specify their user ID (not name) at the new target IDP in the field 'UserId'."
           )}
         </Typography>
-        {idpData && userContent?.data ? (
-          <>
-            <div {...getRootProps()}>
-              <Textarea
-                style={{
-                  ...{
-                    padding: '12px',
-                    width: '100%',
-                    whiteSpace: 'pre',
-                    color: '#666',
-                    lineHeight: '20px',
-                  },
-                  ...(status.startsWith('ERROR')
-                    ? { backgroundColor: '#fdd' }
-                    : {}),
-                  ...(status.startsWith('SUCCESS')
-                    ? { backgroundColor: '#dfd' }
-                    : {}),
+        <>
+          <div {...getRootProps()}>
+            <Textarea
+              style={{
+                ...{
+                  marginTop: '12px',
+                  padding: '12px',
+                  width: '100%',
+                  whiteSpace: 'pre',
+                  color: '#666',
+                  lineHeight: '20px',
+                },
+                ...(status.startsWith('ERROR')
+                  ? { backgroundColor: '#fdd' }
+                  : {}),
+                ...(status.startsWith('SUCCESS')
+                  ? { backgroundColor: '#dfd' }
+                  : {}),
+              }}
+              disabled={true}
+              minRows={10}
+              maxRows={10}
+              value={
+                idpData && userContent?.data
+                  ? store2text(userContent.data)
+                  : fetching
+              }
+              onBlur={() => {}}
+              onChange={(e) => storeData(e.target.value)}
+            />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <SelectFormat
+              format={format}
+              onChange={(selectedFormat: FileFormat) =>
+                setFormat(selectedFormat)
+              }
+            />
+            <Checkbox
+              label={'pretty'}
+              checked={pretty}
+              onClick={() => setPretty(!pretty)}
+            />
+            <Checkbox
+              label={'hide linked'}
+              checked={unlinked}
+              onClick={() => setUnlinked(!unlinked)}
+            />
+            <span style={{ display: 'block', padding: '38px 0px' }}>
+              <Typography
+                onClick={downloadUserfile}
+                sx={{
+                  color: 'blue',
+                  textDecoration: 'underline',
+                  cursor: 'pointer',
                 }}
-                disabled={true}
-                minRows={10}
-                maxRows={10}
-                value={store2text(userContent.data)}
-                onBlur={() => {}}
-                onChange={(e) =>
-                  dispatch(
-                    storeForm({
-                      form: FORMS.IDP_USER_FORM,
-                      att: { data: e.target.value },
-                    })
-                  )
-                }
-              />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <SelectFormat
-                format={format}
-                onChange={(selectedFormat: FileFormat) =>
-                  setFormat(selectedFormat)
-                }
-              />
-              <Checkbox
-                label={'pretty'}
-                checked={pretty}
-                onClick={() => setPretty(!pretty)}
-              />
-              <Checkbox
-                label={'hide linked'}
-                checked={unlinked}
-                onClick={() => setUnlinked(!unlinked)}
-              />
-              <span style={{ display: 'block', padding: '38px 0px' }}>
-                <Typography
-                  onClick={downloadUserfile}
-                  sx={{
-                    color: 'blue',
-                    textDecoration: 'underline',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {t('download')}
-                </Typography>
-              </span>
-            </div>
-          </>
-        ) : (
-          <Typography
-            sx={{
-              color: 'lightgray',
-            }}
-          >
-            'fetching users ...'
-          </Typography>
-        )}
-
+              >
+                {t('download')}
+              </Typography>
+            </span>
+          </div>
+        </>
         <IDPSetupNotification state={status} />
+        {userResponse?.data && (
+          <AddusersIDPResponse response={userResponse.data} />
+        )}
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>

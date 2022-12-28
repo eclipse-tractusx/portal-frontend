@@ -31,6 +31,7 @@ import { useState } from 'react'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 export default function IDPListItem({
   idp,
@@ -39,6 +40,7 @@ export default function IDPListItem({
   idp: IdentityProvider
   buttons?: boolean
 }) {
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const [open, setOpen] = useState<boolean>(false)
   const toggle = () => setOpen(!open)
@@ -85,11 +87,24 @@ export default function IDPListItem({
   const renderButtons = () => {
     return (
       <>
-        <IconButton color={open ? 'primary' : 'secondary'} onClick={toggle}>
+        <IconButton
+          title={t('action.details')}
+          color={open ? 'primary' : 'secondary'}
+          onClick={toggle}
+        >
           <InfoIcon />
+        </IconButton>
+        <IconButton
+          title={t('action.edit')}
+          disabled={idp.alias === 'CX-Test-Access'}
+          color="secondary"
+          onClick={doEdit}
+        >
+          <EditIcon />
         </IconButton>
         {idp.enabled ? (
           <IconButton
+            title={t('action.enable')}
             disabled={idp.alias === 'CX-Test-Access'}
             color="primary"
             onClick={doEnableToggle}
@@ -97,24 +112,29 @@ export default function IDPListItem({
             <ToggleOnIcon />
           </IconButton>
         ) : (
-          <IconButton color="secondary" onClick={doEnableToggle}>
+          <IconButton
+            title={t('action.disable')}
+            color="secondary"
+            onClick={doEnableToggle}
+          >
             <ToggleOffIcon />
           </IconButton>
         )}
-        <IconButton
-          disabled={idp.alias === 'CX-Test-Access'}
-          color="secondary"
-          onClick={doEdit}
-        >
-          <EditIcon />
-        </IconButton>
 
         {idp.enabled ? (
-          <IconButton color="secondary" onClick={doAddUsers}>
+          <IconButton
+            title={t('action.user')}
+            color="secondary"
+            onClick={doAddUsers}
+          >
             <GroupAddIcon />
           </IconButton>
         ) : (
-          <IconButton color="secondary" onClick={doConfirmDelete}>
+          <IconButton
+            title={t('action.delete')}
+            color="secondary"
+            onClick={doConfirmDelete}
+          >
             <DeleteForeverIcon />
           </IconButton>
         )}
@@ -124,18 +144,18 @@ export default function IDPListItem({
 
   const renderMenu = () => {
     return (
-      <DropdownMenu buttonText={'Actions'}>
-        <MenuItem title={'Details'} onClick={toggle} />
+      <DropdownMenu buttonText={t('action.actions')}>
+        <MenuItem title={t('action.details')} onClick={toggle} />
+        <MenuItem title={t('action.edit')} onClick={doEdit} />
         {idp.enabled ? (
-          <MenuItem title={'Disable'} onClick={doEnableToggle} />
+          <MenuItem title={t('action.disable')} onClick={doEnableToggle} />
         ) : (
-          <MenuItem title={'Enable'} onClick={doEnableToggle} />
+          <MenuItem title={t('action.enable')} onClick={doEnableToggle} />
         )}
-        <MenuItem title={'Edit'} onClick={doEdit} />
         {idp.enabled ? (
-          <MenuItem title={'Link users'} onClick={doAddUsers} />
+          <MenuItem title={t('action.users')} onClick={doAddUsers} />
         ) : (
-          <MenuItem title={'Delete'} onClick={doConfirmDelete} />
+          <MenuItem title={t('action.delete')} onClick={doConfirmDelete} />
         )}
       </DropdownMenu>
     )

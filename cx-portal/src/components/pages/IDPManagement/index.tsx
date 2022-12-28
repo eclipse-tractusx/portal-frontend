@@ -35,7 +35,7 @@ import { show } from 'features/control/overlay/actions'
 import './style.scss'
 
 export default function IDPManagement() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const notification = useSelector(notificationSelector)
   const dispatch = useDispatch()
 
@@ -50,13 +50,13 @@ export default function IDPManagement() {
         <div className="idp-management-header">
           <img src="/idp-teaser.jpg" alt={'idp management'} />
           <div className="idp-management-title">
-            <Typography>{t('content.idpmanagement.description')}</Typography>
+            <Typography>{t('page.desc')}</Typography>
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
               onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
             >
-              {t('content.idpmanagement.create')}
+              {t('action.create')}
             </Button>
           </div>
         </div>
