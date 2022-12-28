@@ -9,7 +9,7 @@
       "backgroundColor": "#FFFFFF",
       "id": "provider-id",
       "template": "TextImageSideBySideWithCardGrid",
-      "detailsWithImage": [
+      "detailsWithImageRow1": [
         {
           "title": "App Marketplace",
           "imageUrl": "rectangle-image.png",
@@ -32,7 +32,7 @@
           "backgroundColor": "#F9F9F9"
         }
       ],
-      "detailsWithoutImage": [
+      "detailsWithoutImageRow1": [
         {
           "title": "to be defined",
           "imageUrl": "rectangle-image.png",
@@ -63,7 +63,7 @@
       "id": "operations-id",
       "backgroundColor": "#F9F9F9",
       "template": "TextImageSideBySideWithCardGrid",
-      "detailsWithImage": [
+      "detailsWithImageRow1": [
         {
           "title": "Subscription Authority",
           "imageUrl": "circle-image.png",
@@ -81,7 +81,7 @@
           "imageShape": "circle"
         }
       ],
-      "detailsWithoutImage": [
+      "detailsWithoutImageRow1": [
         {
           "title": "Who can subscribe?",
           "imageUrl": "",
@@ -112,7 +112,7 @@
       "id": "participant-id",
       "backgroundColor": "#FFFFFF",
       "template": "TextImageSideBySideWithCardGrid",
-      "detailsWithImage": [
+      "detailsWithImageRow1": [
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
@@ -128,7 +128,7 @@
           "backgroundColor": "#F9F9F9"
         }
       ],
-      "detailsWithoutImage": [
+      "detailsWithoutImageRow1": [
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",

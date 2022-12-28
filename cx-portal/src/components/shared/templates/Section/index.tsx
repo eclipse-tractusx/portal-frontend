@@ -29,14 +29,19 @@ import '../StaticTemplate.scss'
 
 const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
   switch (provider.template) {
+    //Text in the left and image in the right side
     case 'TextImageSideBySide':
       return <TextImageSideBySide provider={provider} />
+    //Text in the left and video in the right side
     case 'TextVideoSideBySide':
       return <TextVideoSideBySide provider={provider} />
+    //Text and image component both center aligned
     case 'TextImageCenterAligned':
       return <TextImageCenterAligned provider={provider} />
+    //Text component center aligned
     case 'TextCenterAligned':
       return <TextCenterAligned provider={provider} />
+    //Combination of Text and image component both center aligned with grid layout card component
     case 'TextImageCenterAlignedWithCardGrid':
       return (
         <>
@@ -44,6 +49,7 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
           <CardGrid align="center" provider={provider} grid={provider.grid} />
         </>
       )
+    //Combination of Text center aligned component with grid layout card component
     case 'TextCenterAlignedWithCardGrid':
       return (
         <>
@@ -51,6 +57,7 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
           <CardGrid align="center" provider={provider} grid={provider.grid} />
         </>
       )
+    //Combination of Text and image side by side with grid layout card component
     case 'TextImageSideBySideWithCardGrid':
       return (
         <>
@@ -58,6 +65,7 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
           <CardGrid provider={provider} grid={provider.grid} />
         </>
       )
+    //Combination of Text center aligned component with grid layout link component
     case 'TextCenterAlignedWithLinkButtonGrid':
       return (
         <>

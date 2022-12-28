@@ -5,7 +5,7 @@
     {
       "title": "Intro to Traceability",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "imageUrl": "https://www.youtube.com/embed/g-NVjP2srw4",
+      "videoUrl": "https://www.youtube.com/embed/g-NVjP2srw4",
       "id": "intro-id",
       "backgroundColor": "#FFFFFF",
       "template": "TextVideoSideBySide"
@@ -26,7 +26,7 @@
       "imageUrl": "rectangle-image.png",
       "grid": 4,
       "template": "TextCenterAlignedWithCardGrid",
-      "detailsWithImage": [
+      "detailsWithImageRow1": [
         {
           "title": "App Marketplace",
           "imageUrl": "rectangle-image.png",
@@ -69,12 +69,19 @@
       "grid": 2,
       "id": "section-one",
       "template": "TextCenterAlignedWithLinkButtonGrid",
-      "links": [
+      "linksRow1": [
         {
           "background": "#C498EF63",
           "title": "Sample Name",
           "navigate": "/appmanagement"
         },
+        {
+          "background": "#C498EF63",
+          "title": "Sample Name",
+          "navigate": "/appmanagement"
+        }
+      ],
+      "linksRow2": [
         {
           "background": "#C498EF63",
           "title": "Sample Name",

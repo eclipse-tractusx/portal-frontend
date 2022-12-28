@@ -31,14 +31,18 @@ export type CardDetailsProps = {
 export type ProviderProps = {
   title: string
   description: string
-  imageUrl: string
+  imageUrl?: string
+  videoUrl?: string
   backgroundColor: string
   id: string
-  detailsWithImage: CardDetailsProps[]
-  detailsWithoutImage: CardDetailsProps[]
+  detailsWithImageRow1: CardDetailsProps[]
+  detailsWithImageRow2: CardDetailsProps[]
+  detailsWithoutImageRow1: CardDetailsProps[]
+  detailsWithoutImageRow2: CardDetailsProps[]
   grid: number
   template: string
-  links: linkProps[]
+  linksRow1: linkProps[]
+  linksRow2: linkProps[]
 }
 
 export type linkProps = {

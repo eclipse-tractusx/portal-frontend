@@ -35,34 +35,73 @@ export default function CardGrid({
   const isCenter = align === 'center'
   return (
     <>
-      {provider.detailsWithImage && provider.detailsWithImage.length > 0 && (
-        <div
-          className="cardGridContainer"
-          style={{
-            gridTemplateColumns: `repeat(${grid}, 1fr)`,
-            marginTop: isCenter ? '84px' : '96px',
-            textAlign: isCenter ? 'center' : 'left',
-          }}
-        >
-          {provider.detailsWithImage.map((card: CardDetailsProps) => {
-            return <CardWithImage key={card.title} detail={card} grid={grid} />
-          })}
-        </div>
-      )}
-      {provider.detailsWithoutImage && provider.detailsWithoutImage.length > 0 && (
-        <div
-          className="cardGridContainer"
-          style={{
-            marginBottom: '180px',
-          }}
-        >
-          {provider.detailsWithoutImage.map((card: CardDetailsProps) => {
-            return (
-              <CardWithoutImage key={card.title} detail={card} grid={grid} />
-            )
-          })}
-        </div>
-      )}
+      {provider.detailsWithImageRow1 &&
+        provider.detailsWithImageRow1.length > 0 && (
+          <div
+            className="cardGridContainer"
+            style={{
+              gridTemplateColumns: `repeat(${grid}, 1fr)`,
+              marginTop: isCenter ? '84px' : '96px',
+              textAlign: isCenter ? 'center' : 'left',
+            }}
+          >
+            {provider.detailsWithImageRow1.map((card: CardDetailsProps) => {
+              return (
+                <CardWithImage key={card.title} detail={card} grid={grid} />
+              )
+            })}
+          </div>
+        )}
+      {provider.detailsWithImageRow2 &&
+        provider.detailsWithImageRow2.length > 0 && (
+          <div
+            className="cardGridContainer"
+            style={{
+              gridTemplateColumns: `repeat(${grid}, 1fr)`,
+              textAlign: isCenter ? 'center' : 'left',
+            }}
+          >
+            {provider.detailsWithImageRow2.map((card: CardDetailsProps) => {
+              return (
+                <CardWithImage key={card.title} detail={card} grid={grid} />
+              )
+            })}
+          </div>
+        )}
+      {provider.detailsWithoutImageRow1 &&
+        provider.detailsWithoutImageRow1.length > 0 && (
+          <div
+            className="cardGridContainer"
+            style={{
+              marginBottom:
+                provider.detailsWithoutImageRow2 &&
+                provider.detailsWithoutImageRow2.length > 0
+                  ? '0px'
+                  : '180px',
+            }}
+          >
+            {provider.detailsWithoutImageRow1.map((card: CardDetailsProps) => {
+              return (
+                <CardWithoutImage key={card.title} detail={card} grid={grid} />
+              )
+            })}
+          </div>
+        )}
+      {provider.detailsWithoutImageRow2 &&
+        provider.detailsWithoutImageRow2.length > 0 && (
+          <div
+            className="cardGridContainer"
+            style={{
+              marginBottom: '180px',
+            }}
+          >
+            {provider.detailsWithoutImageRow2.map((card: CardDetailsProps) => {
+              return (
+                <CardWithoutImage key={card.title} detail={card} grid={grid} />
+              )
+            })}
+          </div>
+        )}
     </>
   )
 }

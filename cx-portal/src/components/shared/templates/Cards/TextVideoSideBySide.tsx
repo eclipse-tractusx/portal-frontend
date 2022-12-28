@@ -48,7 +48,7 @@ export default function TitleWithVideo({
           borderRadius: '16px',
           border: '0px',
         }}
-        src={provider.imageUrl}
+        src={provider.videoUrl}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
     </div>
