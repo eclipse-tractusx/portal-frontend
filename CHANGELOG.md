@@ -27,6 +27,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Bug fix - Pick appropriate title from locale file
 * BugFix
    Enable authentication icon for all the states
+   Fixed issue on clicking info icon trigger delete action
 
 
 ## 0.10.0
