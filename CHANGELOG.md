@@ -28,6 +28,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    Enable authentication icon for all the states
    Fixed issue on clicking info icon trigger delete action
+* Feature - My CX Account - Update Issue Table
 
 
 ## 0.10.0
