@@ -239,38 +239,43 @@ const CompanyDetailOverlay = ({
                         {t('content.admin.registration-requests.overlay.docs')}
                       </Typography>
                     </Grid>
-                    {company.documents.map((contract: any) => (
-                      <div
-                        key={contract.documentId}
-                        style={{
-                          display: 'flex',
-                          padding: '20px',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <>
-                          <ArticleOutlinedIcon />
-                          <button
-                            style={{
-                              textDecoration: 'underline',
-                              cursor: 'pointer',
-                              fontSize: '16px',
-                              border: 'none',
-                              background: 'transparent',
-                              paddingLeft: '10px',
-                            }}
-                            onClick={() => {
-                              downloadDocumnet(
-                                contract.documentId,
-                                contract.documentType
-                              )
-                            }}
-                          >
-                            {contract?.documentType}
-                          </button>
-                        </>
-                      </div>
-                    ))}
+                    {company.documents.map(
+                      (contract: {
+                        documentId: string
+                        documentType: string
+                      }) => (
+                        <div
+                          key={contract.documentId}
+                          style={{
+                            display: 'flex',
+                            padding: '20px',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <>
+                            <ArticleOutlinedIcon />
+                            <button
+                              style={{
+                                textDecoration: 'underline',
+                                cursor: 'pointer',
+                                fontSize: '16px',
+                                border: 'none',
+                                background: 'transparent',
+                                paddingLeft: '10px',
+                              }}
+                              onClick={() => {
+                                downloadDocumnet(
+                                  contract.documentId,
+                                  contract.documentType
+                                )
+                              }}
+                            >
+                              {contract?.documentType}
+                            </button>
+                          </>
+                        </div>
+                      )
+                    )}
                   </>
                 )}
                 {selectedCompany?.companyRoles && (
