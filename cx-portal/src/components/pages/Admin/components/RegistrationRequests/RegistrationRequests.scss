@@ -150,3 +150,25 @@
   align-items: center;
   width: 250px;
 }
+
+.newTitle {
+  margin-top: 67px;
+  text-align: center;
+}
+
+.subTitle {
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+}
+
+.subTitle::after {
+  content: '';
+  width: 70px;
+  border-bottom: 2px solid;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
