@@ -19,11 +19,16 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
 * BugFix - User Management - App Access assign multiple user with role
+* Registration Request
+   * Search moved to the center
+   * Filter feature enabled
+   * View update in Details overlay
 * Notification
    * Bug fix - Pick appropriate title from locale file
 * Feature - App Change Process
    * Created Deactivate Sub-Menu Component in App Overview Page
    * Created Deactivate page and add functionality
+* Feature - My CX Account - Update Issue Table
 
 
 ## 0.10.0
