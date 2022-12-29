@@ -132,7 +132,7 @@ export const MenuItem = ({
         {showNotificationCount &&
           notificationInfo &&
           notificationInfo.notificationCount > 0 && (
-            <Box
+            <Typography
               sx={{
                 fontWeight: '500',
                 fontSize: '0.75rem',
@@ -141,11 +141,11 @@ export const MenuItem = ({
                 height: '20px',
                 borderRadius: '10px',
                 background: notificationColor,
-                color: '#fff',
+                color: 'white',
               }}
             >
               {notificationInfo?.notificationCount}
-            </Box>
+            </Typography>
           )}
       </Link>
       {Menu && children && open && <Menu items={children} {...menuProps} />}
