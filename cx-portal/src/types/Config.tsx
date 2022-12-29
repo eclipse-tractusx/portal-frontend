@@ -66,6 +66,7 @@ import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
+import Deactivate from 'components/pages/AppOverview/Deactivate'
 
 /**
  * ALL_PAGES
@@ -332,6 +333,19 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
   { name: PAGES.USE_CASE, element: <UseCase /> },
   { name: PAGES.USE_CASE_TRACABILITY, element: <UseCase /> },
+  {
+    name: PAGES.DEACTIVATE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.DEACTIVATE}
+        path={PAGES.DEACTIVATE}
+        element={<Deactivate />}
+      >
+        <Route path=":appId" element={<Deactivate />} />
+      </Route>
+    ),
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [

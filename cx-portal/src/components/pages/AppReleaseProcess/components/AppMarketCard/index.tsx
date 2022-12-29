@@ -30,6 +30,7 @@ import {
   PageNotifications,
   LogoGrayData,
   SelectList,
+  UploadFileStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -48,7 +49,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -69,7 +70,7 @@ type FormDataType = {
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: File | null | string
+    leadPictureUri: DropzoneFile | string | null
     alt?: string
   }
   salesManagerId: string | null
@@ -93,8 +94,6 @@ export const ConnectorFormInputField = ({
   filterOptionsArgs,
   acceptFormat,
   maxFilesToUpload,
-  previewFiles,
-  showPreviewAlone,
   maxFileSize,
   defaultValues,
 }: any) => (
@@ -128,14 +127,13 @@ export const ConnectorFormInputField = ({
       } else if (type === 'dropzone') {
         return (
           <Dropzone
-            onFileDrop={(files: any) => {
+            files={value ? [value] : undefined}
+            onChange={([file]) => {
               trigger(name)
-              onChange(files[0])
+              onChange(file)
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
-            previewFiles={previewFiles}
-            showPreviewAlone={showPreviewAlone}
             maxFileSize={maxFileSize}
           />
         )
@@ -247,6 +245,7 @@ export default function AppMarketCard() {
     getValues,
     control,
     trigger,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
@@ -311,7 +310,8 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
-    const uploadImageValue = getValues().uploadImage.leadPictureUri
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
 
     if (appId) {
       const saveAppData = {
@@ -332,9 +332,25 @@ export default function AppMarketCard() {
         .unwrap()
         .then((result) => {
           if (isString(result)) {
+            const setFileStatus = (status: UploadFileStatus) =>
+              setValue('uploadImage.leadPictureUri', {
+                name: uploadImageValue.name,
+                size: uploadImageValue.size,
+                status,
+              } as any)
+
+            setFileStatus('uploading')
+
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+              .then(() => {
+                setFileStatus('upload_success')
+                dispatch(increment())
+              })
+              .catch(() => {
+                setFileStatus('upload_error')
+              })
+
             dispatch(setAppId(result))
-            dispatch(increment())
           }
         })
         .catch(() => {
@@ -354,9 +370,7 @@ export default function AppMarketCard() {
       body: { file },
     }
 
-    try {
-      await updateDocumentUpload(data).unwrap()
-    } catch (error) {}
+    await updateDocumentUpload(data).unwrap()
   }
 
   return (

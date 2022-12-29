@@ -18,37 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ILayoutProps } from './DropzoneTypes'
 import { Box } from '@mui/material'
-import { Typography, FileIcon } from 'cx-portal-shared-components'
 
-export const FilePreviewItem = ({
-  file,
-  showPreviewAlone,
-}: {
-  file: File
-  showPreviewAlone?: boolean
-}) => {
+const Layout = (props: ILayoutProps) => {
+  const {
+    input,
+    previews,
+    dropzoneProps,
+    files,
+    extra: { maxFiles },
+  } = props
+
   return (
-    <>
-      <FileIcon fillColor={'#939393'} size={80} />
-
-      <Box sx={{ width: '100%', margin: '8px 32px' }}>
-        <Typography
-          variant="h6"
-          sx={{ display: 'block', color: 'common.black' }}
-        >
-          {file.name}
-        </Typography>
-        {!showPreviewAlone && (
-          <Typography
-            variant="body2"
-            sx={{ display: 'block', '&.error': { color: 'danger.danger' } }}
-          >
-            {file.type}, {file.size} bytes
-          </Typography>
-        )}
-        <progress max={100} value={0} />
-      </Box>
-    </>
+    <Box
+      sx={{
+        '.input': {
+          visibility: 'hidden',
+        },
+      }}
+    >
+      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
+      {previews}
+    </Box>
   )
 }
+
+export default Layout

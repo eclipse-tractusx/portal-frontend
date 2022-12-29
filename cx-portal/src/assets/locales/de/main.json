@@ -38,6 +38,7 @@
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
     "appoverview": "App-Übersicht",
+    "deactivate": "Deactivate",
     "appreleaseprocess": "App Release Process",
     "appstore": "App Store",
     "appusermanagement": "App Benutzer Verwaltung",
@@ -325,6 +326,9 @@
         "inactive": "Inaktiv",
         "wip": "In Arbeit"
       },
+      "sortOptions": {
+        "deactivate": "Deactivate"
+      },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
         "title": "Appbeschreibung '{appName}' öffnen",
@@ -337,7 +341,16 @@
         "useCase": "Use Case:",
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
-      }
+      },
+      "submenuNotAvail": "Sub-Menu is not available for not active apps."
+    },
+    "deactivate": {
+      "headerTitle": "Deactivate Business App",
+      "description": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
+      "checkboxLabel": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
+      "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
+      "successMsg": "Deactivation successfully completed",
+      "errorMsg": "Error! Something went wrong"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -436,9 +449,7 @@
         }
       },
       "edcUpload": {
-        "formTitle": "Update your public key",
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer."
+        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
@@ -677,29 +688,6 @@
             "select": "Bitte wählen Sie einen Wert.",
             "description": "Bitte geben Sie eine Beschreibung ein."
           }
-        }
-      },
-      "userUpload": {
-        "title": "Dateien hierher ziehen",
-        "subtitle": "oder wähle eine Datei direkt aus.",
-        "uploadStatus": {
-          "rejected_file_type": "Fehler - falscher Dateityp.",
-          "rejected_max_files": "Fehler - Dateigröße zu groß.",
-          "preparing": "vorbereiten",
-          "error_file_size": "Fehler (file_size)",
-          "error_validation": "Fehler (validation)",
-          "ready": "Fertig",
-          "started": "started",
-          "getting_upload_params": "getting (upload_params)",
-          "error_upload_params": "error (upload_params)",
-          "uploading": "hochladen",
-          "exception_upload": "exception_upload",
-          "aborted": "aborted",
-          "restarted": "restarted",
-          "removed": "removed",
-          "error_upload": "upload error",
-          "headers_received": "headers received",
-          "done": "done"
         }
       }
     },
@@ -1043,6 +1031,36 @@
       "link1Label": "Intro",
       "link2Label": "Data Provisioning",
       "link3Label": "Business Applications"
+    }
+  },
+  "notification": {
+    "search": "Enter your search value",
+    "cancelButton": "CANCEL",
+    "deleteButton": "DELETE ALWAYS",
+    "actionRequired": "Your action is required",
+    "deleteModal": {
+      "title": "Delete Message",
+      "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+    },
+    "sortOptions": {
+      "new": "Newest First",
+      "oldest": "Oldest First",
+      "unread": "Unread First",
+      "all": "all",
+      "app": "app only",
+      "info": "info only",
+      "withaction": "message with action required"
+    }
+  },
+  "shared": {
+    "dropzone": {
+      "title": "Dateien hierher ziehen",
+      "subTitle": "oder %wähle eine Datei% direkt aus.",
+      "errorTitle": "Es tut uns leid",
+      "placeholder": "",
+      "uploadError": "Not Uploaded",
+      "uploadSuccess": "Uploaded",
+      "uploadProgess": "Uploaded % of % files"
     }
   },
   "global": {
