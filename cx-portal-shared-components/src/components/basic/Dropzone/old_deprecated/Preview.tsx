@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import React from 'react'
-import { IPreviewProps } from '../DropzoneTypes'
+import { IPreviewProps } from './DropzoneTypes'
 import { Box } from '@mui/material'
 import { Typography } from '../../Typography'
 import { FileIcon } from '../../CustomIcons/FileIcon'

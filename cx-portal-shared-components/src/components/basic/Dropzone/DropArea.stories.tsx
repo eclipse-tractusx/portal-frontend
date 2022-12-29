@@ -18,32 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
+import { ComponentStory } from '@storybook/react'
 
-export const PreviewItem = ({ children }: { children: JSX.Element }) => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        margin: '32px 0',
-        progress: {
-          width: ' 100%',
-          height: '4px',
-          backgroundColor: 'textField.backgroundHover',
-          '&::-webkit-progress-bar': {
-            borderRadius: '40px',
-          },
-          '&::-webkit-progress-value': {
-            backgroundColor: 'support.success',
-            borderRadius: '40px',
-          },
-          '&.error::-webkit-progress-value': {
-            backgroundColor: 'danger.danger',
-          },
-        },
-      }}
-    >
-      {children}
-    </Box>
-  )
+import { DropArea as Component } from './components/DropArea'
+
+export default {
+  title: 'Dropzone',
+  component: Component,
+  args: {
+    size: 'normal',
+    disabled: false,
+    error: '',
+    translations: {
+      title: 'Drag & drop your files here',
+      subTitle: 'or %browse files% on your computer.',
+      errorTitle: 'Sorry',
+    },
+  },
 }
+
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const DropArea = Template.bind({})
