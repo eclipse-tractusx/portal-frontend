@@ -77,7 +77,7 @@ export default function NotificationCenter() {
   const [loaded, setLoaded] = useState<boolean>(false)
   const [sortOption, setSortOption] = useState<string>('DateDesc')
   const [page, setPage] = useState<number>(0)
-  const PAGE_SIZE = 5
+  const PAGE_SIZE = 10
   const [notificationState, setNotificationState] = useState({
     page: page,
     size: PAGE_SIZE,

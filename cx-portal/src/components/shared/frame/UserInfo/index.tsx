@@ -18,12 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import {
   LanguageSwitch,
   UserAvatar,
   UserMenu,
   UserNav,
+  NotificationBadgeType,
 } from 'cx-portal-shared-components'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
@@ -32,15 +33,17 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import './UserInfo.scss'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
-import { useGetNotificationCountQuery } from 'features/notification/apiSlice'
+import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 
 export const UserInfo = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
-  const { data } = useGetNotificationCountQuery(false, {
+  const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
   })
+  const [notificationInfo, setNotificationInfo] =
+    useState<NotificationBadgeType>()
   const menu = pages.map((link) => ({
     to: link,
     title: t(`pages.${link}`),
@@ -53,10 +56,33 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
     }
   }
 
+  useEffect(() => {
+    if (data && data.unread === 0) {
+      setNotificationInfo({
+        notificationCount: data.unread,
+        isNotificationAlert: false,
+      })
+    } else if (data && data.unread > 0 && data.actionRequired === 0) {
+      setNotificationInfo({
+        notificationCount: data.unread,
+        isNotificationAlert: false,
+      })
+    } else if (data && data.unread > 0 && data.actionRequired > 0) {
+      setNotificationInfo({
+        notificationCount: data.actionRequired,
+        isNotificationAlert: true,
+      })
+    }
+  }, [data])
+
   return (
     <div className="UserInfo">
       <div ref={avatar}>
-        <UserAvatar onClick={openCloseMenu} notificationCount={data} />
+        <UserAvatar
+          onClick={openCloseMenu}
+          notificationCount={notificationInfo?.notificationCount}
+          isNotificationAlert={notificationInfo?.isNotificationAlert}
+        />
       </div>
       <UserMenu
         open={menuOpen}
@@ -70,6 +96,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
           onClick={openCloseMenu}
           divider
           items={menu}
+          notificationInfo={notificationInfo}
         />
         <LanguageSwitch
           current={i18next.language}
