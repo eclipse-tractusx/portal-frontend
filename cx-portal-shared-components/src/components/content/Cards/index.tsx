@@ -28,6 +28,11 @@ export type CardItems = Omit<
   'variant' | 'imageSize' | 'imageShape' | 'buttonText' | 'status'
 >
 
+export type SubItems = {
+  label: string
+  value: string
+}
+
 interface CardsProps {
   items: CardItems[]
   buttonText: CardProps['buttonText']
@@ -44,6 +49,10 @@ interface CardsProps {
   newButtonText?: string
   onNewCardButton?: any
   onCardClick?: any
+  subMenu?: boolean
+  submenuOptions?: SubItems[]
+  submenuClick?: any
+  tooltipText?: string
 }
 
 export const Cards = ({
@@ -62,6 +71,10 @@ export const Cards = ({
   newButtonText,
   onNewCardButton,
   onCardClick = () => {},
+  subMenu = false,
+  submenuOptions = [],
+  submenuClick = () => {},
+  tooltipText,
 }: CardsProps) => {
   const settings = {
     variant,
@@ -73,6 +86,10 @@ export const Cards = ({
     expandOnHover,
     filledBackground,
     addButtonClicked,
+    subMenu,
+    submenuOptions,
+    submenuClick,
+    tooltipText,
   }
   const { spacing } = useTheme()
 

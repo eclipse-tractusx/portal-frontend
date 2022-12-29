@@ -25,6 +25,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * View update in Details overlay
 * Notification
    * Bug fix - Pick appropriate title from locale file
+* Feature - App Change Process
+   * Created Deactivate Sub-Menu Component in App Overview Page
+   * Created Deactivate page and add functionality
 * BugFix
    Enable authentication icon for all the states
    Fixed issue on clicking info icon trigger delete action
