@@ -13,11 +13,23 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - User Management - App Access Table Column Heading Change
 * Feature - App Release Process
    * Update of Step 4 to only handle the role upload
+   * Beta Test- Added preview content
 * BugFix - Add user role for app not working fix
 * Updates
    * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
 * BugFix - User Management - App Access assign multiple user with role
+* Registration Request
+   * Search moved to the center
+   * Filter feature enabled
+   * View update in Details overlay
+* Notification
+   * Bug fix - Pick appropriate title from locale file
+* BugFix
+   Enable authentication icon for all the states
+   Fixed issue on clicking info icon trigger delete action
+* Feature - Tenant Management Board for App/Service Owners (FE)
+* Feature - My CX Account - Update Issue Table
 
 
 ## 0.10.0

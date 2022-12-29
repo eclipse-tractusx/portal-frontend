@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,26 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeader } from 'cx-portal-shared-components'
+.URLInput {
+  padding: 0 50px 0 50px;
+  max-width: 85%;
+  margin: 0 auto;
+  p {
+    color: #e43333;
+  }
+}
 
-export default function SearchSection({
-  title,
-  description,
-}: {
-  title: string
-  description: string
-}) {
-  return (
-    <div className="stage-home">
-      <MainHeader
-        title={title}
-        subTitle={description}
-        subTitleTextVariant="h3"
-        headerHeight={551}
-        subTitleWidth={800}
-        background="LinearGradient1"
-        imagePath="./company-roles.svg"
-      />
-    </div>
-  )
+.activationOverlay {
+  p {
+    font-weight: 600;
+  }
+
+  table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+    tr td {
+      border-top: 1px solid rgb(220, 220, 220);
+      padding: 10px;
+    }
+
+    tr:first-child td {
+      border: none;
+    }
+  }
 }

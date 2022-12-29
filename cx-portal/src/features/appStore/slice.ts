@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021,2022 BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,26 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeader } from 'cx-portal-shared-components'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export default function SearchSection({
-  title,
-  description,
-}: {
-  title: string
-  description: string
-}) {
-  return (
-    <div className="stage-home">
-      <MainHeader
-        title={title}
-        subTitle={description}
-        subTitleTextVariant="h3"
-        headerHeight={551}
-        subTitleWidth={800}
-        background="LinearGradient1"
-        imagePath="./company-roles.svg"
-      />
-    </div>
-  )
+const name = 'admin/appstore'
+
+export interface AppStoreState {
+  isSuccess: boolean
 }
+
+export const initialState: AppStoreState = {
+  isSuccess: false,
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentSuccessType = (state: RootState): any =>
+  state.appStore.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

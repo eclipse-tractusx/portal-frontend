@@ -39,6 +39,7 @@
     "appmanagement": "App Management",
     "appoverview": "App-Übersicht",
     "appreleaseprocess": "App Release Process",
+    "appstore": "App Store",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung",
@@ -95,7 +96,8 @@
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
-        "headertitle": "Anfragen zur Benutzerregistrierung",
+        "headertitle": "Admin Board",
+        "headersubtitle": "Application Requests",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
@@ -105,9 +107,16 @@
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
         "overlay": {
-          "title": "Firmendaten",
-          "companydatatitle": "Firmendaten",
-          "taxid": "Steuernummer"
+          "title": "Company Registration Details",
+          "companydatatitle": "Overview",
+          "companydatadescription": "Below you can find the details of the company registration",
+          "taxid": "Steuernummer",
+          "address": "Address",
+          "docs": "Document(s)",
+          "roles": "Company Role(s)",
+          "activeParticipation": "Teilnehmer",
+          "appProvider": "App Anbieter",
+          "serviceProvider": "Service Anbieter"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
@@ -118,6 +127,11 @@
           "successDescription": "Update BPN number successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        },
+        "filter": {
+          "all": "All Services",
+          "review": "Review",
+          "closed": "Closed"
         }
       }
     },
@@ -859,8 +873,11 @@
         "username": "Username"
       },
       "betaTest": {
-        "headerTitle": "Beta Test",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+        "headerTitle": "CX Test Runs",
+        "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release.",
+        "betaTests": "Beta Tests",
+        "technicalIntegrationTest": "Technical Integration Test",
+        "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
       },
       "validateAndPublish": {
         "headerTitle": "Validate & Publish",
@@ -906,7 +923,8 @@
         "help": "Help",
         "saveAndProceed": "Save & proceed",
         "save": "Save",
-        "submit": "Submit"
+        "submit": "Submit",
+        "proceed": "Proceed"
       }
     },
     "serviceMarketplace": {
@@ -945,6 +963,41 @@
         "username": "User Name",
         "authType": "Auth Type",
         "clientSercret": "Client Secret"
+      }
+    },
+    "appStore": {
+      "headline": "App Subscription",
+      "subHeading": "Manage customer subscriptons",
+      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "readMore": "Read More",
+      "registerURL": "RegisterURL",
+      "search": "Search by Service Name",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "activateBtn": "Activate",
+      "pleaseEnterValidURL": "Please enter a valid URL",
+      "tabs": {
+        "request": "Request",
+        "active": "Active"
+      },
+      "sortOptions": {
+        "customer": "By Customer A-Z",
+        "offer": "By Offer"
+      },
+      "document": {
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "activation": {
+        "heading": "Activate User Subscription",
+        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "successDescription": "The technical user has been created with the following data:",
+        "clientId": "Client Id",
+        "clientSecret": "Client Secret"
       }
     }
   },
