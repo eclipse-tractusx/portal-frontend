@@ -21,7 +21,7 @@
 import { ArrowForward } from '@mui/icons-material'
 import { Box, BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
 import { useState } from 'react'
-import { MenuType } from '.'
+import { MenuType, NotificationBadgeType } from '.'
 import { Typography } from '../Typography'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
@@ -36,6 +36,8 @@ export interface MenuItemProps extends LinkItem {
   onClick?: React.MouseEventHandler
   Menu?: MenuType
   disable?: boolean
+  notificationInfo?: NotificationBadgeType
+  showNotificationCount?: boolean
 }
 
 export const MenuItem = ({
@@ -48,11 +50,16 @@ export const MenuItem = ({
   menuProps,
   onClick,
   Menu,
+  notificationInfo,
+  showNotificationCount,
   ...props
 }: MenuItemProps) => {
+  const theme = useTheme()
   const { spacing } = useTheme()
   const [open, setOpen] = useState(false)
-
+  const notificationColor = notificationInfo?.isNotificationAlert
+    ? theme.palette.danger.dangerBadge
+    : theme.palette.brand.brand02
   const onMouseEnter = () => setOpen(true)
 
   const onMouseLeave = () => setOpen(false)
@@ -122,6 +129,24 @@ export const MenuItem = ({
         {children && (
           <ArrowForward fontSize="small" sx={{ color: 'icon.icon02' }} />
         )}
+        {showNotificationCount &&
+          notificationInfo &&
+          notificationInfo.notificationCount > 0 && (
+            <Typography
+              sx={{
+                fontWeight: '500',
+                fontSize: '0.75rem',
+                minWidth: '20px',
+                padding: '2px 6px',
+                height: '20px',
+                borderRadius: '10px',
+                background: notificationColor,
+                color: 'white',
+              }}
+            >
+              {notificationInfo?.notificationCount}
+            </Typography>
+          )}
       </Link>
       {Menu && children && open && <Menu items={children} {...menuProps} />}
       {divider && <Divider />}

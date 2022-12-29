@@ -33,6 +33,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    Fixed issue on clicking info icon trigger delete action
 * Feature - Tenant Management Board for App/Service Owners (FE)
 * Feature - My CX Account - Update Issue Table
+* Notification
+   * Badge count to be show in Nav overlay
+   * new api to get the notification count
 
 
 ## 0.10.0
