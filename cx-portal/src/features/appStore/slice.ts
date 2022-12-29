@@ -18,22 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { FilePreviewItem } from './FilePreviewItem'
-import { PreviewItem } from './PreviewItem'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export const Preview = ({
-  files,
-  showPreviewAlone,
-  itemPreview = (file) => (
-    <PreviewItem key={file.name}>
-      <FilePreviewItem file={file} showPreviewAlone={showPreviewAlone} />
-    </PreviewItem>
-  ),
-}: {
-  files: File[]
-  showPreviewAlone?: boolean
-  itemPreview?: (file: File) => JSX.Element | Element
-}) => {
-  return <Box>{files && files.map(itemPreview)}</Box>
+const name = 'admin/appstore'
+
+export interface AppStoreState {
+  isSuccess: boolean
 }
+
+export const initialState: AppStoreState = {
+  isSuccess: false,
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentSuccessType = (state: RootState): any =>
+  state.appStore.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

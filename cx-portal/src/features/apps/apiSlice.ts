@@ -155,6 +155,12 @@ export const apiSlice = createApi({
     fetchAgreements: builder.query<AgreementRequest[], string>({
       query: (appId) => `/api/apps/appAgreementData/${appId}`,
     }),
+    deactivateApp: builder.mutation<void, string>({
+      query: (appId) => ({
+        url: `/apps/${appId}/deactivateApp`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -168,4 +174,5 @@ export const {
   useFetchDocumentByIdMutation,
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
+  useDeactivateAppMutation,
 } = apiSlice

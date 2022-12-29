@@ -29,6 +29,7 @@ import ErrorSlice from './error/slice'
 import { reducer as admin } from './admin/reducer'
 import managementSlice from './appManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
+import appStoreSlice from './appStore/slice'
 import userAddSlice from './admin/userApiSlice'
 import userRoleSlice from './admin/appuserApiSlice'
 import { reducer as apps } from './apps/reducer'
@@ -44,6 +45,7 @@ import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
+import { apiSlice as appStoreApiSlice } from './appStore/appStoreApiSlice'
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
 import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
@@ -57,6 +59,7 @@ export const reducers = {
   info,
   management: managementSlice.reducer,
   serviceMarketplace: serviceMarketplaceSlice.reducer,
+  appStore: appStoreSlice.reducer,
   userAdd: userAddSlice.reducer,
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
@@ -75,6 +78,7 @@ export const reducers = {
   [appMarketplaceSliceTest.reducerPath]: appMarketplaceSliceTest.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
+  [appStoreApiSlice.reducerPath]: appStoreApiSlice.reducer,
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
   [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
   [partnerNetworkApiSlice.reducerPath]: partnerNetworkApiSlice.reducer,
@@ -96,6 +100,7 @@ export const store = configureStore({
       .concat(appMarketplaceSliceTest.middleware)
       .concat(appManagementSlice.middleware)
       .concat(serviceMarketplaceApiSlice.middleware)
+      .concat(appStoreApiSlice.middleware)
       .concat(inviteApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)
       .concat(partnerNetworkApiSlice.middleware)

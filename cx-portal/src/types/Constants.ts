@@ -71,6 +71,7 @@ export enum PAGES {
   ERROR = 'error',
   APP_MANAGEMENT = 'appmanagement',
   APPOVERVIEW = 'appoverview',
+  DEACTIVATE = 'deactivate',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',
@@ -92,6 +93,7 @@ export enum OVERLAYS {
   DELETE_TECHUSER = 'delete_techuser',
   NEWS = 'news',
   ADD_BPN = 'add_bpn',
+  ADD_SUBSCRIPTION = 'add_subscription',
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
@@ -137,6 +139,7 @@ export enum ROLES {
   APPSTORE_FILTER = 'filter_apps',
   APPSTORE_DELETE = 'delete_apps',
   APPMANAGEMENT_VIEW = 'add_apps',
+  APP_MANAGEMENT = 'app_management',
   APPOVERVIEW_VIEW = 'add_apps',
   CONNECTOR_SETUP = 'setup_connector',
   DATACATALOG_VIEW = 'view_data_catalog',
@@ -165,6 +168,7 @@ export enum ROLES {
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
   MY_USER_ACCOUNT = 'my_user_account',
+  ACTIVATE_SUBSCRIPTION = 'activate_subscription',
 }
 
 export enum HINTS {

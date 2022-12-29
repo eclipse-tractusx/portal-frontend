@@ -18,39 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Trans, useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
+import { ILayoutProps } from './DropzoneTypes'
 import { Box } from '@mui/material'
-import { Dropzone } from '../../shared/basic/Dropzone'
 
-export const MultipleUserContent = () => {
-  const { t } = useTranslation('', { keyPrefix: 'content.addUser' })
+const Layout = (props: ILayoutProps) => {
+  const {
+    input,
+    previews,
+    dropzoneProps,
+    files,
+    extra: { maxFiles },
+  } = props
 
   return (
-    <Box sx={{ marginBottom: '30px' }}>
-      <Typography
-        sx={{ margin: '30px 0 10px', textAlign: 'center' }}
-        variant="h5"
-      >
-        {t('multipleUserHeadline')}
-      </Typography>
-      <Typography
-        sx={{ marginBottom: '30px', textAlign: 'center' }}
-        variant="body2"
-      >
-        <Trans i18nKey="multipleUserSubheadline">
-          Please use this <a href="/">upload Template</a> to add multiple users
-          by file
-        </Trans>
-      </Typography>
-      <Dropzone
-        acceptFormat="*"
-        maxFilesToUpload={1}
-        onChange={([file]) => {
-          /* TODO: implement actual upload */
-          console.log(file.name)
-        }}
-      />
+    <Box
+      sx={{
+        '.input': {
+          visibility: 'hidden',
+        },
+      }}
+    >
+      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
+      {previews}
     </Box>
   )
 }
+
+export default Layout

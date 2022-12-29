@@ -22,10 +22,16 @@ import { Box, BoxProps, Divider, List, useTheme } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 import { MenuItem, MenuItemProps } from './MenuItem'
 
+export type NotificationBadgeType = {
+  notificationCount: number
+  isNotificationAlert: boolean
+}
+
 export interface MenuProps extends BoxProps {
   items: MenuItemProps[]
   component?: React.ElementType
   divider?: boolean
+  notificationInfo?: NotificationBadgeType
 }
 
 export const Menu = ({
@@ -33,6 +39,7 @@ export const Menu = ({
   divider,
   component,
   onClick,
+  notificationInfo,
   ...props
 }: MenuProps) => {
   const { spacing } = useTheme()
@@ -48,6 +55,8 @@ export const Menu = ({
             Menu={Menu}
             onClick={onClick}
             key={uniqueId('Menu')}
+            showNotificationCount={item.to === 'notifications'}
+            notificationInfo={notificationInfo}
           />
         ))}
       </List>

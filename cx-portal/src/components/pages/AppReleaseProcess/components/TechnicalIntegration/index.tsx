@@ -206,8 +206,8 @@ export default function TechnicalIntegration() {
               }}
               render={({ field: { onChange, value } }) => (
                 <Dropzone
-                  onFileDrop={(files: File[]) => {
-                    onChange(files[0].name)
+                  onChange={(files) => {
+                    onChange(files[0]?.name)
                     trigger('uploadAppRoles')
                     csvPreview(files)
                   }}
