@@ -24,6 +24,7 @@ import {
   IconButton,
   PageNotifications,
   UploadFileStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
@@ -64,6 +65,7 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const [appPageNotification, setAppPageNotification] = useState(false)
+  const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -207,7 +209,7 @@ export default function AppPage() {
     return updateDocumentUpload(data).unwrap()
   }
 
-  const onAppPageSubmit = async (data: FormDataType) => {
+  const onAppPageSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
@@ -221,11 +223,11 @@ export default function AppPage() {
       'providerPhoneContact',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       descriptions: [
         {
@@ -253,7 +255,8 @@ export default function AppPage() {
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
-      dispatch(increment())
+      buttonLabel === 'saveAndProceed' && dispatch(increment())
+      buttonLabel === 'save' && setAppPageSnackbar(true)
     } catch (error: any) {
       setAppPageNotification(true)
     }
@@ -557,6 +560,15 @@ export default function AppPage() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appPageSnackbar}
+          onCloseNotification={() => setAppPageSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           sx={{ mr: 1 }}
@@ -572,7 +584,9 @@ export default function AppPage() {
           sx={{ float: 'right' }}
           variant="contained"
           disabled={!isValid}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) =>
+            onAppPageSubmit(data, 'saveAndProceed')
+          )}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -580,7 +594,7 @@ export default function AppPage() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

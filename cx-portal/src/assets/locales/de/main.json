@@ -930,7 +930,8 @@
         "error": {
           "title": "Error - something went wrong.",
           "message": "Please try it again"
-        }
+        },
+        "dataSavedSuccessMessage": "Data saved successfully"
       },
       "footerButtons": {
         "help": "Help",
