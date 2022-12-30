@@ -21,26 +21,6 @@
   },
   "APP_SUBSCRIPTION_REQUEST": {
     "title": "Request for app subscription",
-    "content": "A new app subscription request for offer <1>{{app}}</1> was triggered by <0>{{user}}</0>. Please proceed with the request and deploy the app tenant. As soon as this is done, you can activate the app usage under following link ERROR"
-  },
-  "APP_SUBSCRIPTION_ACTIVATION": {
-    "title": "App request activated",
-    "content": "Your subscription for {{app}} is now active"
-  },
-  "CONNECTOR_REGISTERED": {
-    "title": "Connector registered successfully",
-    "content": "The connector {{connector}} was successfully created and you can assign users now."
-  },
-  "WelcomeInvite": {
-    "title": "Welcome to Catena-X!",
-    "content": "Hello {{you}}! Your company is now officially registered to the network and you can start your technical onboarding journey now."
-  },
-  "WelcomeUser": {
-    "title": "Welcome to Catena-X!",
-    "content": "Hello {{you}}! You have been added to Catena-X. The community welcomes you and is looking forward to your contributions."
-  },
-    "APP_SUBSCRIPTION_REQUEST": {
-    "title": "Request for app subscription",
     "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
@@ -71,11 +51,11 @@
     "title": "Changed terms and conditions",
     "content": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
   },
-    "APP_ROLE_ADDED": {
+  "APP_ROLE_ADDED": {
     "title": "App {{appName}} roles got changed",
     "content": "App {{appName}} got new roles added; check out the user management and assign new roles to your user group."
   },
-    "TECHNICAL_USER_CREATION": {
+  "TECHNICAL_USER_CREATION": {
     "title": "{{appName}} subscription created a new technical user",
     "content": "This is a default text and will get enhanced later."
   },  
