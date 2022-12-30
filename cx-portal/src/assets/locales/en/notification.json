@@ -59,10 +59,6 @@
     "title": "{{appName}} subscription created a new technical user",
     "content": "This is a default text and will get enhanced later."
   },  
-  "AppSubscriptionReceived": {
-    "title": "Request for app subscription",
-    "content": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}} and writes:"
-  },
   "SERVICE_RELEASE_REQUEST": {
     "title": "New service release request waiting for review",
     "content": "A new service release request is available in the service management board. Please validate the request:"
