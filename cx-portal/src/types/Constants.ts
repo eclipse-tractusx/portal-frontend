@@ -112,6 +112,7 @@ export enum OVERLAYS {
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',
   SAMPLE_FORM = 'sample_form',
+  ADD_SERVICE_PROVIDER = 'add_service_provider',
 }
 
 export enum ACTIONS {

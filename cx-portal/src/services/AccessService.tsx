@@ -59,6 +59,7 @@ import { DeleteIDP } from 'components/overlays/DeleteIDP'
 import { EnableIDP } from 'components/overlays/EnableIDP'
 import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess'
 import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
+import AddServiceProvider from 'components/overlays/AddServiceProvider'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -175,6 +176,8 @@ export const getOverlay = (overlay: OverlayState) => {
       )
     case OVERLAYS.SAMPLE_FORM:
       return <SampleForm />
+    case OVERLAYS.ADD_SERVICE_PROVIDER:
+      return <AddServiceProvider id={overlay.id} />
     default:
       return <NotFound />
   }
