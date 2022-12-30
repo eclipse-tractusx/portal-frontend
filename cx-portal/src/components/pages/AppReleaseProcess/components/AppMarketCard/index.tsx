@@ -30,6 +30,8 @@ import {
   PageNotifications,
   LogoGrayData,
   SelectList,
+  UploadFileStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -48,7 +50,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -69,7 +71,7 @@ type FormDataType = {
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: File | null | string
+    leadPictureUri: DropzoneFile | string | null
     alt?: string
   }
   salesManagerId: string | null
@@ -93,8 +95,6 @@ export const ConnectorFormInputField = ({
   filterOptionsArgs,
   acceptFormat,
   maxFilesToUpload,
-  previewFiles,
-  showPreviewAlone,
   maxFileSize,
   defaultValues,
 }: any) => (
@@ -128,14 +128,13 @@ export const ConnectorFormInputField = ({
       } else if (type === 'dropzone') {
         return (
           <Dropzone
-            onFileDrop={(files: any) => {
+            files={value ? [value] : undefined}
+            onChange={([file]) => {
               trigger(name)
-              onChange(files[0])
+              onChange(file)
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
-            previewFiles={previewFiles}
-            showPreviewAlone={showPreviewAlone}
             maxFileSize={maxFileSize}
           />
         )
@@ -197,6 +196,7 @@ export default function AppMarketCard() {
   const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [appCardNotification, setAppCardNotification] = useState(false)
+  const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
   const defaultSalesManagerValue = {
@@ -247,6 +247,7 @@ export default function AppMarketCard() {
     getValues,
     control,
     trigger,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
@@ -269,7 +270,7 @@ export default function AppMarketCard() {
 
   window.onscroll = () => setPageScrolled(window.scrollY !== 0)
 
-  const onSubmit = async (data: FormDataType) => {
+  const onSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'title',
       'provider',
@@ -281,11 +282,11 @@ export default function AppMarketCard() {
       'uploadImage',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       title: data.title,
       provider: data.provider,
@@ -311,7 +312,8 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
-    const uploadImageValue = getValues().uploadImage.leadPictureUri
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
 
     if (appId) {
       const saveAppData = {
@@ -322,7 +324,9 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
-          dispatch(increment())
+          dispatch(setAppId(appId))
+          buttonLabel === 'saveAndProceed' && dispatch(increment())
+          buttonLabel === 'save' && setAppCardSnackbar(true)
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -332,9 +336,27 @@ export default function AppMarketCard() {
         .unwrap()
         .then((result) => {
           if (isString(result)) {
+            const setFileStatus = (status: UploadFileStatus) =>
+              setValue('uploadImage.leadPictureUri', {
+                name: uploadImageValue.name,
+                size: uploadImageValue.size,
+                status,
+              } as any)
+
+            setFileStatus('uploading')
+
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+              .then(() => {
+                setFileStatus('upload_success')
+                dispatch(increment())
+              })
+              .catch(() => {
+                setFileStatus('upload_error')
+              })
+
             dispatch(setAppId(result))
-            dispatch(increment())
+            buttonLabel === 'saveAndProceed' && dispatch(increment())
+            buttonLabel === 'save' && setAppCardSnackbar(true)
           }
         })
         .catch(() => {
@@ -354,9 +376,7 @@ export default function AppMarketCard() {
       body: { file },
     }
 
-    try {
-      await updateDocumentUpload(data).unwrap()
-    } catch (error) {}
+    await updateDocumentUpload(data).unwrap()
   }
 
   return (
@@ -781,6 +801,15 @@ export default function AppMarketCard() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appCardSnackbar}
+          onCloseNotification={() => setAppCardSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
@@ -800,7 +829,7 @@ export default function AppMarketCard() {
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((data) => onSubmit(data, 'saveAndProceed'))}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -808,7 +837,7 @@ export default function AppMarketCard() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((data) => onSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

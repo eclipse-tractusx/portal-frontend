@@ -18,22 +18,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { FilePreviewItem } from './FilePreviewItem'
-import { PreviewItem } from './PreviewItem'
+interface FileIconProps {
+  fillColor?: string
+  size?: number
+}
 
-export const Preview = ({
-  files,
-  showPreviewAlone,
-  itemPreview = (file) => (
-    <PreviewItem key={file.name}>
-      <FilePreviewItem file={file} showPreviewAlone={showPreviewAlone} />
-    </PreviewItem>
-  ),
-}: {
-  files: File[]
-  showPreviewAlone?: boolean
-  itemPreview?: (file: File) => JSX.Element | Element
-}) => {
-  return <Box>{files && files.map(itemPreview)}</Box>
+export const FileErrorIcon = ({ fillColor, size }: FileIconProps) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 58 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M57.3201 55.2001L4.91005 2.79007L0.680054 7.02007L8.90005 15.2401L8.54005 15.6001V48.5701C8.54005 51.8701 11.2401 54.5701 14.5401 54.5701H44.5401C45.59 54.5701 46.58 54.2701 47.45 53.7901L53.0901 59.4301L57.3201 55.2001ZM14.5401 48.5701V20.8801L42.23 48.5701H14.5401ZM26.0601 6.57007H44.5401V33.9001L50.54 39.9001V6.57007C50.54 3.27007 47.84 0.570068 44.5401 0.570068H23.5701L17.3901 6.75007L21.6201 10.9801L26.0601 6.57007Z"
+        fill={fillColor}
+      />
+    </svg>
+  )
 }

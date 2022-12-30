@@ -18,30 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ILayoutProps } from '../DropzoneTypes'
-import { Box } from '@mui/material'
+import { ComponentStory } from '@storybook/react'
 
-const Layout = (props: ILayoutProps) => {
-  const {
-    input,
-    previews,
-    dropzoneProps,
-    files,
-    extra: { maxFiles },
-  } = props
+import { DropPreviewFile as Component } from './components/DropPreviewFile'
 
+export default {
+  title: 'Dropzone',
+  component: Component,
+  args: {
+    name: 'Document.pdf',
+    size: 65402,
+    status: 'new',
+    progressPercent: 0,
+    translations: {
+      placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
+      uploadProgess: 'Uploaded % of % files',
+      uploadSuccess: 'Uploaded',
+      uploadError: 'Not Uploaded',
+    },
+    placeholder: false,
+  },
+  argTypes: {
+    status: {
+      control: 'radio',
+      options: ['new', 'uploading', 'upload_success', 'upload_error'],
+    },
+  },
+}
+
+const Template: ComponentStory<typeof Component> = (args: any) => {
+  const { name, size, status, progressPercent, ...props } = args
   return (
-    <Box
-      sx={{
-        '.input': {
-          visibility: 'hidden',
-        },
-      }}
-    >
-      {previews}
-      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
-    </Box>
+    <Component
+      {...props}
+      uploadFile={{ name, size, status, progressPercent }}
+    />
   )
 }
 
-export default Layout
+export const DropPreviewFile = Template.bind({})
