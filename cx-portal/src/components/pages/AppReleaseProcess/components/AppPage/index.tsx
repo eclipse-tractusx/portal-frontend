@@ -24,6 +24,7 @@ import {
   IconButton,
   PageNotifications,
   UploadFileStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
@@ -64,6 +65,7 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const [appPageNotification, setAppPageNotification] = useState(false)
+  const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -254,6 +256,7 @@ export default function AppPage() {
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       buttonLabel === 'saveAndProceed' && dispatch(increment())
+      buttonLabel === 'save' && setAppPageSnackbar(true)
     } catch (error: any) {
       setAppPageNotification(true)
     }
@@ -557,6 +560,15 @@ export default function AppPage() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appPageSnackbar}
+          onCloseNotification={() => setAppPageSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           sx={{ mr: 1 }}

@@ -22,6 +22,7 @@ import {
   Button,
   IconButton,
   PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -57,6 +58,7 @@ type AgreementType = {
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
+  const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
@@ -145,6 +147,7 @@ export default function ContractAndConsent() {
       .unwrap()
       .then(() => {
         buttonLabel === 'saveAndProceed' && dispatch(increment())
+        buttonLabel === 'save' && setContractSnackbar(true)
       })
       .catch(() => {
         setContractNotification(true)
@@ -210,6 +213,15 @@ export default function ContractAndConsent() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={contractSnackbar}
+          onCloseNotification={() => setContractSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"

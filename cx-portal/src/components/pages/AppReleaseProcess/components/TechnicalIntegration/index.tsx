@@ -23,6 +23,7 @@ import {
   Chip,
   IconButton,
   PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -42,6 +43,9 @@ export default function TechnicalIntegration() {
     technicalIntegrationNotification,
     setTechnicalIntegrationNotification,
   ] = useState(false)
+  const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
+    useState<boolean>(false)
+
   const dispatch = useDispatch()
   const [enableUploadAppRoles, setEnableUploadAppRoles] = useState(false)
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
@@ -71,7 +75,7 @@ export default function TechnicalIntegration() {
 
   const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
-    buttonLabel === 'save' && setTechnicalIntegrationNotification(true)
+    buttonLabel === 'save' && setTechnicalIntegrationSnackbar(true)
   }
 
   const csvPreview = (files: File[]) => {
@@ -333,6 +337,15 @@ export default function TechnicalIntegration() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={technicalIntegrationSnackbar}
+          onCloseNotification={() => setTechnicalIntegrationSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           startIcon={<HelpOutlineIcon />}

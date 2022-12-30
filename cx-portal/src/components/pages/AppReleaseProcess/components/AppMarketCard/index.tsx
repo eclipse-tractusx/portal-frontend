@@ -31,6 +31,7 @@ import {
   LogoGrayData,
   SelectList,
   UploadFileStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -195,6 +196,7 @@ export default function AppMarketCard() {
   const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [appCardNotification, setAppCardNotification] = useState(false)
+  const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
   const defaultSalesManagerValue = {
@@ -322,8 +324,9 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
-          buttonLabel === 'saveAndProceed' && dispatch(increment())
           dispatch(setAppId(appId))
+          buttonLabel === 'saveAndProceed' && dispatch(increment())
+          buttonLabel === 'save' && setAppCardSnackbar(true)
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -353,6 +356,7 @@ export default function AppMarketCard() {
 
             dispatch(setAppId(result))
             buttonLabel === 'saveAndProceed' && dispatch(increment())
+            buttonLabel === 'save' && setAppCardSnackbar(true)
           }
         })
         .catch(() => {
@@ -797,6 +801,15 @@ export default function AppMarketCard() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appCardSnackbar}
+          onCloseNotification={() => setAppCardSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button

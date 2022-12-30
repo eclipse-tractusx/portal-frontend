@@ -77,10 +77,10 @@ export default function ValidateAndPublish({
     providerTableData: {
       head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
       body: [
-        [appStatusData.providerName],
-        [appStatusData.providerUri],
-        [appStatusData.contactEmail],
-        [appStatusData.contactNumber],
+        [appStatusData?.providerName],
+        [appStatusData?.providerUri],
+        [appStatusData?.contactEmail],
+        [appStatusData?.contactNumber],
       ],
     },
     cxTestRuns: [
