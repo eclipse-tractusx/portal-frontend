@@ -21,7 +21,7 @@
   },
   "APP_SUBSCRIPTION_REQUEST": {
     "title": "Request for app subscription",
-    "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
+    "content": "A new app subscription request for offer <1>{{app}}</1> was triggered by <0>{{user}}</0>. Please proceed with the request and deploy the app tenant. As soon as this is done, you can activate the app usage under following link ERROR"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
     "title": "App request activated",
@@ -39,61 +39,69 @@
     "title": "Welcome to Catena-X!",
     "content": "Hello {{you}}! You have been added to Catena-X. The community welcomes you and is looking forward to your contributions."
   },
-  "WelcomeAppMarketplace": {
-    "title": "Check out the App Marketplace",
-    "content": "Get a first insight into available apps, just follow us to the marketplace for apps."
+    "APP_SUBSCRIPTION_REQUEST": {
+    "title": "Request for app subscription",
+    "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
   },
-  "NoConnector": {
-    "title": "No connector registered",
-    "content": "You do not have any registered Connector so far. Have a look at the connector offers and get your connector to participate."
+  "APP_SUBSCRIPTION_ACTIVATION": {
+    "title": "App request activated",
+    "content": "Your subscription for {{app}} is now active"
   },
-  "ConnectorRegistered": {
+  "CONNECTOR_REGISTERED": {
     "title": "Connector registered successfully",
     "content": "The connector {{connector}} was successfully created and you can assign users now."
-  },
-  "NoUseCase": {
-    "title": "Select Use Cases",
-    "content": "Pick your preferred use cases to customize the network to you needs."
   },
   "PersonalMessage": {
     "title": "Personal message",
     "content": "{{user}} writes"
-  },
-  "AppRequestSubmitted": {
-    "title": "App request submitted",
-    "content": "Hey {{you}}, thanks for your request to approve app {{app}}. We will let you know when it got processed."
-  },
-  "AppRequestReceived": {
-    "title": "App request received",
-    "content": "Hey {{you}}, {{user}} requested app {{app}} for approval."
-  },
-  "AppRequestApproved": {
-    "title": "App request approved",
-    "content": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel."
-  },
-  "AppRequestRejeced": {
-    "title": "App request rejected",
-    "content": "Your request for app {{app}} got declined. Please contact {{user}} for questions."
-  },
-  "AppTermsChange": {
-    "title": "Changed terms and conditions",
-    "content": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
-  },
-  "AppSubscriptionSubmitted": {
-    "title": "App subscription submitted",
-    "content": "Hey {{you}}, your request for subscription to app {{app}} was successful."
-  },
-  "AppSubscriptionReceived": {
-    "title": "Request for app subscription",
-    "content": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}} and writes:"
   },
   "APP_RELEASE_REQUEST": {
     "title": "New app release request waiting for review",
     "content": "A new app release request is available in the app management board. Please validate the request:"
   },
   "APP_RELEASE_APPROVAL": {
-    "title": "App publish request approved",
-    "content": "Your app request for app {appname} got successfully approved and is now available on the Catena-X marketplace."
+    "title": "App request approved",
+    "content": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel."
+  },
+  "APP_RELEASE_REJECTION": {
+    "title": "App request rejected",
+    "content": "Your request for app {{app}} got declined."
+  },
+  "AppTermsChange": {
+    "title": "Changed terms and conditions",
+    "content": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
+  },
+    "APP_ROLE_ADDED": {
+    "title": "App {{appName}} roles got changed",
+    "content": "App {{appName}} got new roles added; check out the user management and assign new roles to your user group."
+  },
+    "TECHNICAL_USER_CREATION": {
+    "title": "{{appName}} subscription created a new technical user",
+    "content": "This is a default text and will get enhanced later."
+  },  
+  "AppSubscriptionReceived": {
+    "title": "Request for app subscription",
+    "content": "Hey {{you}}, {{user}} is interested to subscribe for app {{app}} and writes:"
+  },
+  "SERVICE_RELEASE_REQUEST": {
+    "title": "New service release request waiting for review",
+    "content": "A new service release request is available in the service management board. Please validate the request:"
+  },
+  "SERVICE_RELEASE_APPROVAL": {
+    "title": "Service release request approved",
+    "content": "Your release request for service offer {{serviceName}} was successfully approved and available on the service marketplace."
+  },
+  "SERVICE_RELEASE_REJECTION": {
+    "title": "Service release request rejected",
+    "content": "Your request for service offer {{serviceName}} got declined. Please recheck your service management board and solve the findings: {{personalMessage}}."
+  },
+  "SERVICE_REQUEST": {
+    "title": "Request for service subscription",
+    "content": "A new service subscription request for <1>{{offerName}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link...."
+  },
+  "SERVICE_ACTIVATION": {
+    "title": "Service request activated",
+    "content": "Your subscription for service offer {{serviceName}} is now active"
   },
   "link": {
     "appmarketplace": "Go to app marketplace",
@@ -103,6 +111,8 @@
     "user": "Go to user",
     "usecases": "Go to use cases",
     "serviceprovider": "Go to service provider"
+    "appmanagementboard": "Get there"
+    "servicemanagementboard": "Get there"
   },
   "due": "due",
   "search": "Enter your search value",
