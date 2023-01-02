@@ -108,6 +108,46 @@ const SelectFormat = ({
   )
 }
 
+const AddusersIDPResponse = ({
+  response,
+  storeResponse,
+}: {
+  response: string
+  storeResponse: (response: string) => void
+}) => {
+  const { t } = useTranslation('idp')
+
+  return (
+    <Dialog open={true}>
+      <DialogHeader
+        title={t('users.success.title')}
+        intro={t('users.success.subtitle')}
+        closeWithIcon={true}
+        onCloseWithIcon={() => storeResponse('')}
+      />
+      <DialogContent>
+        <div>
+          <Typography>{t('users.success.desc')}</Typography>
+          <pre
+            style={{
+              padding: '12px',
+              border: '1px solid lightgray',
+              backgroundColor: '#eee',
+            }}
+          >
+            {JSON.stringify(JSON.parse(response), null, 2)}
+          </pre>
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="outlined" onClick={() => storeResponse('')}>
+          {t('action.close')}
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
+}
+
 export const AddusersIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
@@ -120,40 +160,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const userResponse = useSelector(editIDPUserResponseSelector)
   const [status, setStatus] = useState<IDPSetupState>(IDPSetupState.NONE)
   const fetching = t('state.fetching')
-
-  const AddusersIDPResponse = ({ response }: { response: string }) => {
-    const { t } = useTranslation('idp')
-
-    return (
-      <Dialog open={true}>
-        <DialogHeader
-          title={t('users.success.title')}
-          intro={t('users.success.subtitle')}
-          closeWithIcon={true}
-          onCloseWithIcon={() => storeResponse('')}
-        />
-        <DialogContent>
-          <div>
-            <Typography>{t('users.success.desc')}</Typography>
-            <pre
-              style={{
-                padding: '12px',
-                border: '1px solid lightgray',
-                backgroundColor: '#eee',
-              }}
-            >
-              {JSON.stringify(JSON.parse(response), null, 2)}
-            </pre>
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={() => storeResponse('')}>
-            {t('action.close')}
-          </Button>
-        </DialogActions>
-      </Dialog>
-    )
-  }
 
   const CSV_COLUMNS = useMemo(
     () => [
@@ -452,7 +458,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         </>
         <IDPSetupNotification state={status} />
         {userResponse?.data && (
-          <AddusersIDPResponse response={userResponse.data} />
+          <AddusersIDPResponse
+            response={userResponse.data}
+            storeResponse={storeResponse}
+          />
         )}
       </DialogContent>
       <DialogActions>
