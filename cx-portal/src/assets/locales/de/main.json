@@ -120,7 +120,7 @@
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
           "serviceProvider": "Service Anbieter",
-          "noinfo": "No info available"
+          "noinfo": "no data available"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
