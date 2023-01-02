@@ -3,7 +3,7 @@
     "addIdpHeadline": "New IdP Connection",
     "addIdpSubheadline": "Enter an IdP name and choose the idp type to start the configuration",
     "updateIdpHeadline": "Identity Provider Configuration",
-    "updateIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed. <br> Follow the",
+    "updateIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed.",
     "idpHelp": "help",
     "updateIdpSubheadline2": "to find a number of examples of local idp's such as Azure, Keycloak, etc.",
     "enableIdpHeadline": "Enable Identity Provider {{ idp }}",
@@ -51,12 +51,66 @@
     "title": "New IdP Connection",
     "subtitle": "Enter an IdP name and choose the idp type to start the configuration"
   },
+  "edit": {
+    "title": "Edit Identity Provider Details",
+    "subtitle": "Configure the connection details to your company IdP"
+  },
+  "enable": {
+    "title": "Enable Identity Provider",
+    "subtitle": "This requires to link at least one user ID",
+    "desc": "Now link your existing user ID so you keep all permissions. Specify the user ID (not name) for your user at the new IdP.",
+    "hint": "Your existing user ID (not name) on target IDP",
+    "success": {
+      "title": "Identity Provider Enabled",
+      "subtitle": "Your request has completed successfully",
+      "desc": "Your new Identity Provider has been enabled and your user has been linked to it. Choose 'Sign out' and then log in again with the IDP named"
+    }
+  },
+  "disable": {
+    "title": "Disable Identity Provider",
+    "subtitle": "You are about to disable an Identity Provider",
+    "desc": "When you disable your Identity Provider you and other people of your company won't be able to login through this IDP.",
+    "ask": "Are you sure you want to proceed."
+  },
   "users": {
     "title": "Link existing users to new IdP",
-    "subtitle": "Make sure users can continue working"
+    "subtitle": "Make sure users can continue working",
+    "desc1": "Now link the existing users to your new IDP",
+    "desc2": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
+    "download": "Download",
+    "pretty": "Pretty",
+    "hide_linked": "Hide linked",
+    "success": {
+      "title": "Request successful",
+      "subtitle": "Your request to update the users has completed",
+      "desc": "Here the detailed request response"
+    }
+  },
+  "state": {
+    "fetching": "fetching users ...",
+    "error": "ERROR",
+    "success": "SUCCESS",
+    "NONE": "",
+    "SUCCESS_VALID_FORMAT": "File format valid",
+    "SUCCESS_UPLOAD_USERS": "Uploading users succeeded",
+    "ERROR_MULTIPLE_FILES": "Only one file allowed",
+    "ERROR_INVALID_TYPE": "Invalid file type",
+    "ERROR_INVALID_FORMAT": "Invalid format",
+    "ERROR_UPLOAD_USERS": "Uploading users failed"
   },
   "field": {
-    "name": "IdP name"
+    "name": "IdP name",
+    "enabled": "enabled",
+    "disabled": "disabled",
+    "clientAuthMethod": "Client Authentication Method",
+    "redirect": {
+      "name": "Redirect URI",
+      "hint": "(click to copy)"
+    },
+    "metadata": {
+      "name": "Metadata URI",
+      "hint": "Enter the metadata URL of your IDP that ends with '.well-known/openid-configuration'"
+    }
   },
   "action": {
     "actions": "Actions",

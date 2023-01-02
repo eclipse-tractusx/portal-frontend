@@ -23,18 +23,21 @@ import { IdentityProviderUser } from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
+import { useTranslation } from 'react-i18next'
 
 const EnableIDPForm = ({
   onChange,
 }: {
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
+  const { t } = useTranslation('idp')
+
   return (
     <>
       <div style={{ margin: '20px 0' }}>
         <ValidatingInput
           name="userId"
-          label="Your existing user ID (not name) on target IDP"
+          label={t('enable.hint')}
           validate={isID}
           onValid={onChange}
         />

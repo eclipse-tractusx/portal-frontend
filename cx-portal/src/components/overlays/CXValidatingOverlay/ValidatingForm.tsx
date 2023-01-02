@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Input, Textarea } from 'cx-portal-shared-components'
+import { Input } from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useState, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -80,78 +80,6 @@ export const ValidatingInput = ({
       helperText={helperText}
       placeholder={label}
       value={data}
-      error={!valid && show > 0}
-      autoFocus={autofocus}
-      onChange={(e) => doValidate(e.currentTarget.value)}
-      onBlur={(e) => doValidate(e.currentTarget.value)}
-    />
-  )
-}
-
-export type ValidatingTextareaProps = {
-  style: any
-  name: string
-  label?: string
-  helperText?: string
-  autofocus?: boolean
-  value?: string
-  minRows?: number
-  maxRows?: number
-  debounceTime?: number
-  validate: (data: string) => boolean
-  onValid: (name: string, data: string | undefined) => void
-}
-
-export const ValidatingTextarea = ({
-  style,
-  name,
-  label = '',
-  helperText = '',
-  autofocus = false,
-  value = '',
-  minRows,
-  maxRows,
-  debounceTime = 300,
-  validate,
-  onValid,
-}: ValidatingTextareaProps) => {
-  const [data, setData] = useState<string>(value)
-  const [valid, setValid] = useState<boolean>(validate(value))
-  const [show, setShow] = useState<number>(0)
-
-  const debouncedValidation = useMemo(
-    () =>
-      debounce((expr: string, counter: number) => {
-        const isValid = validate(expr)
-        setValid(isValid)
-        setShow(counter)
-        const validValue = isValid ? expr : undefined
-        onValid(name, validValue)
-      }, debounceTime),
-    [onValid, setValid, validate, setShow, name, debounceTime]
-  )
-
-  const doValidate = useCallback(
-    (expr: string) => {
-      setData(expr)
-      debouncedValidation(expr, show + 1)
-    },
-    [debouncedValidation, setData, show]
-  )
-
-  return (
-    <Textarea
-      style={{
-        ...(!valid && show > 0 ? { backgroundColor: '#fdd' } : {}),
-        ...style,
-      }}
-      name={name}
-      label={label}
-      helperText={helperText}
-      placeholder={label}
-      value={data}
-      minRows={minRows}
-      maxRows={maxRows}
       error={!valid && show > 0}
       autoFocus={autofocus}
       onChange={(e) => doValidate(e.currentTarget.value)}

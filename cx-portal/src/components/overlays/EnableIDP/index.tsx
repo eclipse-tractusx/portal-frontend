@@ -41,7 +41,7 @@ import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { OVERLAYS } from 'types/Constants'
 
 export const EnableIDP = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchOwnUserDetailsQuery()
   const idpData = useFetchIDPDetailQuery(id).data
@@ -77,37 +77,30 @@ export const EnableIDP = ({ id }: { id: string }) => {
     }
   }
 
-  console.log('enable idp', id, data)
-
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.enableIdpHeadline', {
+        title={t('enable.title', {
           idp: idpData?.displayName,
         })}
-        intro={t('content.idpmanagement.enableIdpSubheadline')}
+        intro={t('enable.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <Typography>
-          {t('Before enabling we have to link your user to the new IDP.')}
-        </Typography>
-        <Typography>
-          {t('Please enter the User ID (not name) of your user from there.')}
-        </Typography>
+        <Typography>{t('enable.desc')}</Typography>
         <EnableIDPContent onValid={setIdpEnableData} />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button
           variant="contained"
           disabled={!(!!id && !!data?.companyUserId && !!idpEnableData?.userId)}
           onClick={doEnableIDP}
         >
-          {t('global.actions.confirm')}
+          {t('action.confirm')}
         </Button>
       </DialogActions>
     </>

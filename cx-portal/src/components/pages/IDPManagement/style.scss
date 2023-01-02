@@ -54,10 +54,14 @@
     .category,
     .name,
     .alias,
-    .state,
     .action {
       display: inline-block;
       margin: 16px 0;
+    }
+
+    .state {
+      display: inline-block;
+      margin: 6px 0;
     }
 
     .action.buttons {

@@ -20,18 +20,21 @@
 
 import { IdentityProvider } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
-import InfoIcon from '@mui/icons-material/Info'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import ToggleOffIcon from '@mui/icons-material/ToggleOff'
 import ToggleOnIcon from '@mui/icons-material/ToggleOn'
 import EditIcon from '@mui/icons-material/Edit'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
-import { DropdownMenu, IconButton, MenuItem } from 'cx-portal-shared-components'
-import { useState } from 'react'
+import {
+  Checkbox,
+  DropdownMenu,
+  IconButton,
+  MenuItem,
+} from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
-import './style.scss'
 import { useTranslation } from 'react-i18next'
+import './style.scss'
 
 export default function IDPListItem({
   idp,
@@ -42,8 +45,8 @@ export default function IDPListItem({
 }) {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const [open, setOpen] = useState<boolean>(false)
-  const toggle = () => setOpen(!open)
+  //const [open, setOpen] = useState<boolean>(false)
+  //const toggle = () => setOpen(!open)
 
   const doConfirmDelete = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation()
@@ -87,6 +90,7 @@ export default function IDPListItem({
   const renderButtons = () => {
     return (
       <>
+        {/*
         <IconButton
           title={t('action.details')}
           color={open ? 'primary' : 'secondary'}
@@ -94,6 +98,7 @@ export default function IDPListItem({
         >
           <InfoIcon />
         </IconButton>
+        */}
         <IconButton
           title={t('action.edit')}
           disabled={idp.alias === 'CX-Test-Access'}
@@ -104,7 +109,7 @@ export default function IDPListItem({
         </IconButton>
         {idp.enabled ? (
           <IconButton
-            title={t('action.enable')}
+            title={t('action.disable')}
             disabled={idp.alias === 'CX-Test-Access'}
             color="primary"
             onClick={doEnableToggle}
@@ -113,7 +118,7 @@ export default function IDPListItem({
           </IconButton>
         ) : (
           <IconButton
-            title={t('action.disable')}
+            title={t('action.enable')}
             color="secondary"
             onClick={doEnableToggle}
           >
@@ -123,7 +128,7 @@ export default function IDPListItem({
 
         {idp.enabled ? (
           <IconButton
-            title={t('action.user')}
+            title={t('action.users')}
             color="secondary"
             onClick={doAddUsers}
           >
@@ -145,7 +150,7 @@ export default function IDPListItem({
   const renderMenu = () => {
     return (
       <DropdownMenu buttonText={t('action.actions')}>
-        <MenuItem title={t('action.details')} onClick={toggle} />
+        {/*<MenuItem title={t('action.details')} onClick={toggle} />*/}
         <MenuItem title={t('action.edit')} onClick={doEdit} />
         {idp.enabled ? (
           <MenuItem title={t('action.disable')} onClick={doEnableToggle} />
@@ -167,15 +172,18 @@ export default function IDPListItem({
         <span className="category">{idp.identityProviderCategoryId}</span>
         <span className="name">{idp.displayName || '-'}</span>
         <span className="alias">{idp.alias}</span>
+        <span className="state">
+          <Checkbox disabled={true} checked={idp.enabled} />
+        </span>
         <span className={`action ${buttons ? 'buttons' : 'menu'}`}>
           {buttons ? renderButtons() : renderMenu()}
         </span>
       </div>
-      {open && (
+      {/*open && (
         <div className="content">
           <pre>{JSON.stringify(idp, null, 2)}</pre>
         </div>
-      )}
+      )*/}
     </>
   )
 }

@@ -65,13 +65,13 @@ enum FileFormat {
 }
 
 const IDPSetupNotification = ({ state }: { state: IDPSetupState }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const error = state.toString().startsWith('ERROR')
   return (
     <PageSnackbar
       autoClose
-      title={t(`idp.state.message`)}
-      description={t(`idp.state.${state}`)}
+      title={t(`state.${error ? 'error' : 'success'}`)}
+      description={t(`state.${state}`)}
       open={state !== IDPSetupState.NONE}
       severity={error ? 'error' : 'success'}
       showIcon
@@ -119,26 +119,22 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const userContent = useSelector(editIDPUserSelector)
   const userResponse = useSelector(editIDPUserResponseSelector)
   const [status, setStatus] = useState<IDPSetupState>(IDPSetupState.NONE)
-  const fetching = t('fetching users...')
+  const fetching = t('state.fetching')
 
   const AddusersIDPResponse = ({ response }: { response: string }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('idp')
 
     return (
       <Dialog open={true}>
         <DialogHeader
-          title={t('content.idpmanagement.addusersIdpSuccessHeadline')}
-          intro={t('content.idpmanagement.addusersIdpSuccessSubheadline')}
+          title={t('users.success.title')}
+          intro={t('users.success.subtitle')}
           closeWithIcon={true}
           onCloseWithIcon={() => storeResponse('')}
         />
         <DialogContent>
           <div>
-            <Typography>
-              {t(
-                'The request to link users to your new Identity Provider has succeeded with this response'
-              )}
-            </Typography>
+            <Typography>{t('users.success.desc')}</Typography>
             <pre
               style={{
                 padding: '12px',
@@ -152,7 +148,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={() => storeResponse('')}>
-            {t('global.actions.close')}
+            {t('action.close')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -328,7 +324,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             },
           })
         )
-        setStatus(IDPSetupState.SUCCESS_VALID_FORMAT)
       } catch (e) {
         setStatus(IDPSetupState.ERROR_INVALID_FORMAT)
       }
@@ -377,8 +372,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     storeData(JSON.stringify(userData))
   }, [storeData, userData])
 
-  //console.log(userContent)
-
   return (
     <>
       <DialogHeader
@@ -390,17 +383,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <Typography>
-          {t('Now link the existing users to your new IDP')}
-        </Typography>
+        <Typography>{t('users.desc1')}</Typography>
         <Typography variant="h4" sx={{ margin: '10px 0' }}>
           {idpData?.displayName} - {idpData?.alias}
         </Typography>
-        <Typography>
-          {t(
-            "Specify their user ID (not name) at the new target IDP in the field 'UserId'."
-          )}
-        </Typography>
+        <Typography>{t('users.desc2')}</Typography>
         <>
           <div {...getRootProps()}>
             <Textarea
@@ -440,12 +427,12 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               }
             />
             <Checkbox
-              label={'pretty'}
+              label={`${t('users.pretty')}`}
               checked={pretty}
               onClick={() => setPretty(!pretty)}
             />
             <Checkbox
-              label={'hide linked'}
+              label={`${t('users.hide_linked')}`}
               checked={unlinked}
               onClick={() => setUnlinked(!unlinked)}
             />
@@ -458,7 +445,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   cursor: 'pointer',
                 }}
               >
-                {t('download')}
+                {t('users.download')}
               </Typography>
             </span>
           </div>
@@ -470,10 +457,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button variant="contained" disabled={!!!id} onClick={postUsers}>
-          {t('global.actions.confirm')}
+          {t('action.confirm')}
         </Button>
       </DialogActions>
     </>

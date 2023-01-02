@@ -36,7 +36,7 @@ import {
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 
 export const DisableIDP = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const [enableIDP] = useEnableIDPMutation()
@@ -55,21 +55,16 @@ export const DisableIDP = ({ id }: { id: string }) => {
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('content.idpmanagement.disableIdpHeadline', {
+        title={t('disable.title', {
           idp: data?.displayName,
         })}
-        intro={t('content.idpmanagement.disableIdpSubheadline')}
+        intro={t('disable.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
-          <Typography>
-            {t('When you disable your Identity Provider you and other people')}
-          </Typography>
-          <Typography>
-            {t("of your company won't be able to login through this IDP.")}
-          </Typography>
+          <Typography>{t('disable.desc')}</Typography>
         </div>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
           <Typography variant="h5">
@@ -77,15 +72,15 @@ export const DisableIDP = ({ id }: { id: string }) => {
           </Typography>
         </div>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
-          <Typography>{t('Are you sure you want to proceed?')}</Typography>
+          <Typography>{t('disable.ask')}</Typography>
         </div>
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button variant="contained" onClick={doDisable}>
-          {t('global.actions.confirm')}
+          {t('action.confirm')}
         </Button>
       </DialogActions>
     </Dialog>

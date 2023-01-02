@@ -40,6 +40,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Connect OIDC based company IdPs
    * Transfer existing users with roles between IdPs
 
+
 ## 0.10.0
 
 ### Change
