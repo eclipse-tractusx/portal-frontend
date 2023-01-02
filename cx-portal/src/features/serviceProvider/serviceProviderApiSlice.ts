@@ -66,9 +66,7 @@ export const apiSlice = createApi({
     }),
     addServiceProvider: builder.mutation<void, ServiceRequest>({
       query: (data) => ({
-        url: `/api/administration/serviceprovider/owncompany/${
-          data.providerId && data.providerId
-        }`,
+        url: `/api/administration/serviceprovider/owncompany/${data.providerId}`,
         method: data.method,
         body: data.body,
       }),
