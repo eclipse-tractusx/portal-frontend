@@ -115,7 +115,8 @@
           "roles": "Company Role(s)",
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
-          "serviceProvider": "Service Anbieter"
+          "serviceProvider": "Service Anbieter",
+          "noinfo": "No info available"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
