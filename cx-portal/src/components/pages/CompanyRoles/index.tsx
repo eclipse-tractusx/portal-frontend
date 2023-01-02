@@ -26,8 +26,8 @@ import appProvider from './json/appProvider.json'
 import confirmity from './json/confirmity.json'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import Section from 'components/shared/templates/Section'
 import { useTranslation } from 'react-i18next'
+import { StaticTemplate } from 'cx-portal-shared-components'
 
 export default function CompanyRoles() {
   const { t } = useTranslation()
@@ -70,7 +70,7 @@ export default function CompanyRoles() {
         description={messageContent.description}
       />
       <StageSubNavigation linkArray={linkArray} />
-      <Section sectionInfo={messageContent.providers} />
+      <StaticTemplate sectionInfo={messageContent.providers} />
     </main>
   )
 }

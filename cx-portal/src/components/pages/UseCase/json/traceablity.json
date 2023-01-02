@@ -32,6 +32,7 @@
           "imageUrl": "rectangle-image.png",
           "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
           "readMore": "/appmarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#f9f9f9",
           "align": "center"
         },

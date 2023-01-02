@@ -18,8 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import { ProviderProps, linkProps } from 'types/StaticTemplate'
+import { Typography } from '../../Typography'
+import { ProviderProps, linkProps } from '../StaticTypes'
+import { Box } from '@mui/material'
 
 export default function LinkButtonGrid({
   provider,
@@ -28,48 +29,64 @@ export default function LinkButtonGrid({
   provider: ProviderProps
   grid: number
 }) {
+  const linkGridContainer = {
+    display: 'flex',
+    gap: '30px',
+    placeContent: 'center',
+    marginTop: '60px',
+  }
+
+  const linkBox = {
+    padding: '10px 0px',
+    height: '40px',
+    borderRadius: '10px',
+    textAlign: 'center',
+    minWidth: '472px',
+  }
   return (
     <>
       {provider.linksRow1 && (
-        <div
-          className="linkGridContainer"
-          style={{
+        <Box
+          sx={{
+            ...linkGridContainer,
             gridTemplateColumns: `repeat(${grid}, 1fr)`,
           }}
         >
           {provider.linksRow1.map((link: linkProps) => (
-            <div
+            <Box
               key={link.title}
-              style={{
+              sx={{
+                ...linkBox,
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
               }}
             >
               <Typography variant="h5">{link.title}</Typography>
-            </div>
+            </Box>
           ))}
-        </div>
+        </Box>
       )}
       {provider.linksRow2 && (
-        <div
-          className="linkGridContainer"
-          style={{
+        <Box
+          sx={{
+            ...linkGridContainer,
             gridTemplateColumns: `repeat(${grid}, 1fr)`,
             marginTop: '30px',
           }}
         >
           {provider.linksRow2.map((link: linkProps) => (
-            <div
+            <Box
               key={link.title}
-              style={{
+              sx={{
+                ...linkBox,
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
               }}
             >
               <Typography variant="h5">{link.title}</Typography>
-            </div>
+            </Box>
           ))}
-        </div>
+        </Box>
       )}
     </>
   )

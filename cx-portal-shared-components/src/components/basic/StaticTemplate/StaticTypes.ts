@@ -18,29 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import '../StaticTemplate.scss'
-import { ProviderProps } from 'types/StaticTemplate'
+export type CardDetailsProps = {
+  title: string
+  description: string
+  imageUrl?: string
+  backgroundColor: string
+  readMore: string
+  readMoreTitle: string
+  id: string
+  imageShape?: string
+}
 
-export default function TextVideSideBySide({
-  provider,
-}: {
-  provider: ProviderProps
-}) {
-  return (
-    <div className="topFlexContainer">
-      <div>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </div>
-      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
-    </div>
-  )
+export type ProviderProps = {
+  title: string
+  description: string
+  imageUrl?: string
+  videoUrl?: string
+  backgroundColor: string
+  id: string
+  detailsWithImageRow1: CardDetailsProps[]
+  detailsWithImageRow2: CardDetailsProps[]
+  detailsWithoutImageRow1: CardDetailsProps[]
+  detailsWithoutImageRow2: CardDetailsProps[]
+  grid: number
+  template: string
+  linksRow1: linkProps[]
+  linksRow2: linkProps[]
+}
+
+export type linkProps = {
+  background: string
+  title: string
+  navigate: string
 }

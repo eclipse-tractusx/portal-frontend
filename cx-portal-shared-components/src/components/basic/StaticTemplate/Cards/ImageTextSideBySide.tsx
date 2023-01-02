@@ -18,33 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ParentSubNavigation } from 'cx-portal-shared-components'
-import '../Templates.scss'
 import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
-export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
-  const scrollToId = (id: string) => {
-    const element = document.getElementById(id)
-    const top = element?.offsetTop
-    window.scrollTo({
-      top: top,
-      behavior: 'smooth',
-    })
-  }
-
+export default function ImageTextSideBySide({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
   return (
     <Box
       sx={{
-        backgroundColor: 'rgba(15, 113, 203, 0.05)',
-        height: '100px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: '0px 20px 0px 20px',
+        padding: '90px 0px',
       }}
     >
-      <div className="subNavigationContainer">
-        <ParentSubNavigation
-          navigationArray={linkArray}
-          onClick={(value: string) => scrollToId(value)}
-        />
-      </div>
+      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+      <Box
+        sx={{
+          padding: '20px',
+          width: '50%',
+        }}
+      >
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            paddingTop: '34px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </Box>
     </Box>
   )
 }

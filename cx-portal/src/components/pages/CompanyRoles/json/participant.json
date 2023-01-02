@@ -15,6 +15,7 @@
           "imageUrl": "rectangle-image.png",
           "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
           "readMore": "/appmarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#F9F9F9"
         },
         {
@@ -29,6 +30,7 @@
           "imageUrl": "rectangle-image.png",
           "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
           "readMore": "/servicemarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#F9F9F9"
         }
       ],
@@ -45,6 +47,7 @@
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/appmarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -52,6 +55,7 @@
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/servicemarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         }
       ]
@@ -87,6 +91,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -94,6 +99,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -101,6 +107,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         }
       ]
@@ -117,14 +124,14 @@
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         }
       ],
@@ -133,7 +140,7 @@
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -147,7 +154,7 @@
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#FFFFFF"
         }
       ]

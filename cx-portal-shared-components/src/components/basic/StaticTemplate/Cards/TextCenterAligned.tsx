@@ -18,9 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import '../StaticTemplate.scss'
-import { ProviderProps } from 'types/StaticTemplate'
+import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
 export default function TextCenterAligned({
   provider,
@@ -28,8 +28,14 @@ export default function TextCenterAligned({
   provider: ProviderProps
 }) {
   return (
-    <div className="topCenterContainer">
-      <div>
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: '0px 20px 0px 20px',
+        marginTop: '84px',
+      }}
+    >
+      <Box>
         <Typography variant="h2">{provider.title}</Typography>
         <Typography
           sx={{
@@ -39,7 +45,7 @@ export default function TextCenterAligned({
         >
           {provider.description}
         </Typography>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

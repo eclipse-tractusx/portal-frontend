@@ -18,19 +18,39 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import '../StaticTemplate.scss'
-import { ProviderProps } from 'types/StaticTemplate'
-import TextCenterAligned from './TextCenterAligned'
+import { CardDetailsProps } from '../StaticTypes'
+import CardWithText from './CardWithText'
+import { Box } from '@mui/material'
 
-export default function TextImageCenterAligned({
-  provider,
+export default function CardWithoutImage({
+  detail,
+  grid = 3,
 }: {
-  provider: ProviderProps
+  detail: CardDetailsProps
+  grid: number
 }) {
+  const cardContainer = {
+    borderRadius: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    marginBottom: '96px',
+    maxWidth: '33%',
+  }
   return (
-    <div className="topCenterContainer">
-      <TextCenterAligned provider={provider} />
-      <img src={provider.imageUrl} alt={'alt tag info'} />
-    </div>
+    <Box
+      key={detail.id}
+      sx={{
+        ...cardContainer,
+      }}
+      style={{
+        backgroundColor: detail.backgroundColor,
+        border: '1px solid rgba(15, 113, 203, 1)',
+        padding: '30px',
+        width: `${100 / grid}%`,
+      }}
+    >
+      <CardWithText card={detail} isImage={false} />
+    </Box>
   )
 }

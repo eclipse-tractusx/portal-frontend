@@ -23,8 +23,8 @@ import { useEffect, useState } from 'react'
 import traceablity from './json/traceablity.json'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import Section from 'components/shared/templates/Section'
 import { useTranslation } from 'react-i18next'
+import { StaticTemplate } from 'cx-portal-shared-components'
 
 export default function UseCase() {
   const { t } = useTranslation()
@@ -59,7 +59,7 @@ export default function UseCase() {
         description={messageContent.description}
       />
       <StageSubNavigation linkArray={linkArray} />
-      <Section sectionInfo={messageContent.roles} />
+      <StaticTemplate sectionInfo={messageContent.roles} />
     </main>
   )
 }

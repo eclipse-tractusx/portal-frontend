@@ -18,10 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import { CardDetailsProps } from 'types/StaticTemplate'
-import '../StaticTemplate.scss'
-import { useTranslation } from 'react-i18next'
+import { CardDetailsProps } from '../StaticTypes'
+import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
 
 export default function CardWithText({
   card,
@@ -30,11 +29,23 @@ export default function CardWithText({
   card: CardDetailsProps
   isImage: boolean
 }) {
-  const { t } = useTranslation()
-
+  const readMoreStyle = {
+    textDecoration: 'underline',
+    paddingTop: '12px',
+    color: '#0f71cb',
+    cursor: 'pointer',
+  }
   return (
-    <div className="textContainer">
-      <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100%',
+        padding: '0px',
+      }}
+    >
+      <Box>
         <Typography
           sx={{
             overflow: 'hidden',
@@ -60,20 +71,25 @@ export default function CardWithText({
         >
           {card.description}
         </Typography>
-      </div>
+      </Box>
       {card.readMore ? (
         <a
-          className="readMoreButton"
+          className={'readMoreButton'}
           style={{
             fontSize: isImage ? '16px' : '14px',
+            ...readMoreStyle,
           }}
           href={card.readMore}
         >
-          {t('global.actions.details')}
+          {card.readMoreTitle}
         </a>
       ) : (
-        <div className="readMoreButton" />
+        <Box
+          sx={{
+            ...readMoreStyle,
+          }}
+        />
       )}
-    </div>
+    </Box>
   )
 }

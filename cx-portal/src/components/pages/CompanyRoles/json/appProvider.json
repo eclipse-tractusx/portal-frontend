@@ -38,6 +38,7 @@
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/appmarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#F9F9F9"
         },
         {
@@ -45,6 +46,7 @@
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/servicemarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#F9F9F9"
         }
       ]
@@ -80,6 +82,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -87,6 +90,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -94,6 +98,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         }
       ]
@@ -110,14 +115,14 @@
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         }
       ],
@@ -126,21 +131,21 @@
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         }
       ]

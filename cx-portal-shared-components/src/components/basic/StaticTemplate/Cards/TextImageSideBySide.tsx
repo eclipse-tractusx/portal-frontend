@@ -18,42 +18,49 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import CardWithText from './CardWithText'
-import { CardDetailsProps } from 'types/StaticTemplate'
+import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
-export default function CardWithImage({
-  detail,
-  grid = 3,
+export default function TextImageSideBySide({
+  provider,
 }: {
-  detail: CardDetailsProps
-  grid: number
+  provider: ProviderProps
 }) {
   return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-        padding: '40px',
-        width: `${100 / grid}%`,
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: '0px 20px 0px 20px',
+        padding: '90px 0px',
       }}
     >
+      <Box
+        sx={{
+          padding: '20px',
+          width: '50%',
+        }}
+      >
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            paddingTop: '34px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </Box>
       <img
         style={{
-          padding:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '0px 90px'
-              : '0px', // provide extra padding if the image shape is circle.
-          maxHeight:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '100%'
-              : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
+          borderRadius: '16px',
         }}
-        src={detail.imageUrl}
-        width="100%"
+        src={provider.imageUrl}
+        width="482"
         alt={'alt tag info'}
       />
-      <CardWithText card={detail} isImage={true} />
-    </div>
+    </Box>
   )
 }

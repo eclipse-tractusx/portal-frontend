@@ -18,28 +18,56 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from 'types/StaticTemplate'
 import CardWithText from './CardWithText'
+import { CardDetailsProps } from '../StaticTypes'
+import { Box } from '@mui/material'
 
-export default function CardWithoutImage({
+export default function CardWithImage({
   detail,
   grid = 3,
 }: {
   detail: CardDetailsProps
   grid: number
 }) {
+  const cardStyle = {
+    borderRadius: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    marginBottom: '96px',
+    maxWidth: '33%',
+  }
   return (
-    <div
+    <Box
       key={detail.id}
-      className="cardsContainer"
+      sx={{
+        ...cardStyle,
+      }}
       style={{
         backgroundColor: detail.backgroundColor,
-        border: '1px solid rgba(15, 113, 203, 1)',
-        padding: '30px',
+        padding: '40px',
         width: `${100 / grid}%`,
       }}
     >
-      <CardWithText card={detail} isImage={false} />
-    </div>
+      <img
+        style={{
+          marginBottom: '24px',
+          objectFit: 'cover',
+          borderRadius: '8px',
+          padding:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '0px 90px'
+              : '0px', // provide extra padding if the image shape is circle.
+          maxHeight:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '100%'
+              : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
+        }}
+        src={detail.imageUrl}
+        width="100%"
+        alt={'alt tag info'}
+      />
+      <CardWithText card={detail} isImage={true} />
+    </Box>
   )
 }

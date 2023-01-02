@@ -18,14 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from 'types/StaticTemplate'
-import CardGrid from '../Cards/CardGrid'
-import LinkButtonGrid from '../Cards/LinkButtonGrid'
-import TextCenterAligned from '../Cards/TextCenterAligned'
-import TextImageCenterAligned from '../Cards/TextImageCenterAligned'
-import TextImageSideBySide from '../Cards/TextImageSideBySide'
-import TextVideoSideBySide from '../Cards/TextVideoSideBySide'
-import '../StaticTemplate.scss'
+import { ProviderProps } from './StaticTypes'
+import TextImageSideBySide from './Cards/TextImageSideBySide'
+import TextVideoSideBySide from './Cards/TextVideoSideBySide'
+import TextImageCenterAligned from './Cards/TextImageCenterAligned'
+import TextCenterAligned from './Cards/TextCenterAligned'
+import CardGrid from './Cards/CardGrid'
+import LinkButtonGrid from './Cards/LinkButtonGrid'
+import { Box } from '@mui/material'
+import VideoTextSideBySide from './Cards/VideoTextSideBySide'
 
 const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
   switch (provider.template) {
@@ -35,6 +36,9 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
     //Text in the left and video in the right side
     case 'TextVideoSideBySide':
       return <TextVideoSideBySide provider={provider} />
+    //video in the left and Text in the right side
+    case 'VideoTextSideBySide':
+      return <VideoTextSideBySide provider={provider} />
     //Text and image component both center aligned
     case 'TextImageCenterAligned':
       return <TextImageCenterAligned provider={provider} />
@@ -78,24 +82,31 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
   }
 }
 
-export default function Section({ sectionInfo }: { sectionInfo: any }) {
+export const StaticTemplate = ({ sectionInfo }: { sectionInfo: any }) => {
   return (
     <div>
       {sectionInfo &&
         sectionInfo.map((provider: ProviderProps) => {
           return (
-            <div
-              className="mainContainer"
-              key={provider.id}
-              id={`${provider.id}`}
-              style={{
+            <Box
+              sx={{
+                padding: '0 180px',
+                margin: 'auto',
+                overflow: 'hidden',
                 backgroundColor: provider.backgroundColor,
               }}
+              key={provider.id}
+              id={`${provider.id}`}
             >
-              <div className="subContainer">
+              <Box
+                sx={{
+                  maxWidth: '1200px',
+                  margin: 'auto',
+                }}
+              >
                 <TemplateConfig provider={provider} />
-              </div>
-            </div>
+              </Box>
+            </Box>
           )
         })}
     </div>

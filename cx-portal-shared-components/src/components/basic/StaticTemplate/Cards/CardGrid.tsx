@@ -18,10 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps, ProviderProps } from 'types/StaticTemplate'
 import CardWithImage from './CardWithImage'
 import CardWithoutImage from './CardWithoutImage'
-import '../StaticTemplate.scss'
+import { ProviderProps, CardDetailsProps } from '../StaticTypes'
+import { Box } from '@mui/material'
 
 export default function CardGrid({
   provider,
@@ -33,14 +33,19 @@ export default function CardGrid({
   align?: string
 }) {
   const isCenter = align === 'center'
+  const gridStyle = {
+    display: 'flex',
+    gap: '30px',
+    placeContent: 'center',
+    gridTemplateColumns: `repeat(${grid}, 1fr)`,
+  }
   return (
     <>
       {provider.detailsWithImageRow1 &&
         provider.detailsWithImageRow1.length > 0 && (
-          <div
-            className="cardGridContainer"
-            style={{
-              gridTemplateColumns: `repeat(${grid}, 1fr)`,
+          <Box
+            sx={{
+              ...gridStyle,
               marginTop: isCenter ? '84px' : '96px',
               textAlign: isCenter ? 'center' : 'left',
             }}
@@ -50,14 +55,13 @@ export default function CardGrid({
                 <CardWithImage key={card.title} detail={card} grid={grid} />
               )
             })}
-          </div>
+          </Box>
         )}
       {provider.detailsWithImageRow2 &&
         provider.detailsWithImageRow2.length > 0 && (
-          <div
-            className="cardGridContainer"
-            style={{
-              gridTemplateColumns: `repeat(${grid}, 1fr)`,
+          <Box
+            sx={{
+              ...gridStyle,
               textAlign: isCenter ? 'center' : 'left',
             }}
           >
@@ -66,13 +70,13 @@ export default function CardGrid({
                 <CardWithImage key={card.title} detail={card} grid={grid} />
               )
             })}
-          </div>
+          </Box>
         )}
       {provider.detailsWithoutImageRow1 &&
         provider.detailsWithoutImageRow1.length > 0 && (
-          <div
-            className="cardGridContainer"
-            style={{
+          <Box
+            sx={{
+              ...gridStyle,
               marginBottom:
                 provider.detailsWithoutImageRow2 &&
                 provider.detailsWithoutImageRow2.length > 0
@@ -85,13 +89,13 @@ export default function CardGrid({
                 <CardWithoutImage key={card.title} detail={card} grid={grid} />
               )
             })}
-          </div>
+          </Box>
         )}
       {provider.detailsWithoutImageRow2 &&
         provider.detailsWithoutImageRow2.length > 0 && (
-          <div
-            className="cardGridContainer"
-            style={{
+          <Box
+            sx={{
+              ...gridStyle,
               marginBottom: '180px',
             }}
           >
@@ -100,7 +104,7 @@ export default function CardGrid({
                 <CardWithoutImage key={card.title} detail={card} grid={grid} />
               )
             })}
-          </div>
+          </Box>
         )}
     </>
   )

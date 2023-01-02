@@ -18,39 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
-import '../StaticTemplate.scss'
-import { ProviderProps } from 'types/StaticTemplate'
+.companyRoles {
+  width: 100%;
+  padding: 0px;
+}
 
-export default function TitleWithVideo({
-  provider,
-}: {
-  provider: ProviderProps
-}) {
-  return (
-    <div className="topFlexContainer">
-      <div>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </div>
-      <iframe
-        width="482"
-        height="331"
-        title="Video"
-        style={{
-          borderRadius: '16px',
-          border: '0px',
-        }}
-        src={provider.videoUrl}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      ></iframe>
-    </div>
-  )
+.subNavigationContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding-top: 25px;
+  padding-left: 160px;
+  padding-right: 80px;
+}
+
+.subNavigationContainer button {
+  padding-right: 80px;
+  margin-right: 20px;
 }
