@@ -19,16 +19,18 @@
  ********************************************************************************/
 
 import './CompanyRoles.scss'
-import StageSection from './components/StageSection'
 import { useEffect, useState } from 'react'
 import participant from './json/participant.json'
 import serviceProvider from './json/serviceProvider.json'
 import appProvider from './json/appProvider.json'
 import confirmity from './json/confirmity.json'
-import Section from './components/Section'
-import { StageSubNavigation } from './components/StageSubNavigation'
+import StageSection from 'components/shared/templates/StageSection'
+import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
+import { useTranslation } from 'react-i18next'
+import { StaticTemplate } from 'cx-portal-shared-components'
 
 export default function CompanyRoles() {
+  const { t } = useTranslation()
   const [messageContent, setMessageContent] = useState<any>({})
   const url = window.location.href
   useEffect(() => {
@@ -43,14 +45,32 @@ export default function CompanyRoles() {
     }
   }, [url])
 
+  const linkArray = [
+    {
+      index: 1,
+      title: t('navigation.companyRoleSubNavigation.link1Label'),
+      navigation: 'provider-id',
+    },
+    {
+      index: 2,
+      title: t('navigation.companyRoleSubNavigation.link2Label'),
+      navigation: 'operations-id',
+    },
+    {
+      index: 3,
+      title: t('navigation.companyRoleSubNavigation.link3Label'),
+      navigation: 'participant-id',
+    },
+  ]
+
   return (
     <main className="companyRoles">
       <StageSection
         title={messageContent.title}
         description={messageContent.description}
       />
-      <StageSubNavigation />
-      <Section sectionInfo={messageContent.providers} />
+      <StageSubNavigation linkArray={linkArray} />
+      <StaticTemplate sectionInfo={messageContent.providers} />
     </main>
   )
 }
