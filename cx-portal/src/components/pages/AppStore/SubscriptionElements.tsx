@@ -65,7 +65,7 @@ export default function SubscriptionElements({
               (subscription) => (
                 <li key={subscription.subscriptionId} className="item">
                   <Typography
-                    variant="h5"
+                    variant="body2"
                     className={`firstSection ${
                       selectedTab === 'request' ? 'wd-25' : 'wd-32'
                     }`}
@@ -73,7 +73,7 @@ export default function SubscriptionElements({
                     {subscription.companyName}
                   </Typography>
                   <Typography
-                    variant="h5"
+                    variant="body2"
                     className={`secondSection ${
                       selectedTab === 'request' ? 'wd-25' : 'wd-32'
                     }`}
@@ -81,7 +81,7 @@ export default function SubscriptionElements({
                     {subscriptionData.serviceName}
                   </Typography>
                   <Typography
-                    variant="caption3"
+                    variant="body3"
                     className={`thirdSection ${
                       selectedTab === 'request' ? 'wd-25' : 'wd-32'
                     } `}
