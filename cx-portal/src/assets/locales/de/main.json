@@ -363,7 +363,8 @@
         "type": "Steckertyp",
         "details": "Einzelheiten",
         "location": "Location",
-        "status": "Authentication Status"
+        "status": "Authentication Status",
+        "tooltipText": "Connector's status is pending"
       },
       "rowValue": {
         "owned": "Owned",
