@@ -28,6 +28,7 @@ import {
   SearchInput,
   CardItems,
   Cards,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
@@ -36,17 +37,20 @@ import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS, PAGES } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './AppOverview.scss'
 
 export default function AppOverview() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [group, setGroup] = useState<string>('')
+
   const { data } = useFetchProvidedAppsQuery()
   const items = data && appCardStatus(data)
   const recentlyChangedApps = data && appCardRecentlyApps(data)
+
+  const { state } = useLocation()
+  const [group, setGroup] = useState<string>('')
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
@@ -148,6 +152,14 @@ export default function AppOverview() {
     }
   }
 
+  const submenuOptions = [
+    {
+      label: t('content.appoverview.sortOptions.deactivate'),
+      value: 'deactivate',
+      url: '',
+    },
+  ]
+
   return (
     <div className="appoverview-app">
       <PageHeader
@@ -226,11 +238,34 @@ export default function AppOverview() {
                 onCardClick={(item: AppInfo) => {
                   showOverlay(item)
                 }}
+                subMenu={true}
+                submenuOptions={submenuOptions}
+                submenuClick={(value: string, appId: string) =>
+                  value === 'deactivate' &&
+                  navigate(`/deactivate/${appId}`, {
+                    state: filterItem,
+                  })
+                }
+                tooltipText={t('content.appoverview.submenuNotAvail')}
               />
             </div>
           )}
         </div>
       </div>
+      {state && (
+        <PageSnackbar
+          open={state !== ''}
+          onCloseNotification={() => {}}
+          severity={state === 'deactivate-success' ? 'success' : 'error'}
+          description={
+            state === 'deactivate-success'
+              ? t('content.deactivate.successMsg')
+              : t('content.deactivate.errorMsg')
+          }
+          showIcon={true}
+          autoClose={true}
+        />
+      )}
     </div>
   )
 }

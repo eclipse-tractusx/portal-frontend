@@ -99,8 +99,8 @@ const EdcConnector = () => {
       setDeleteConnectorConfirmModalOpen(true)
     }
     if (
-      params.field === 'DapsRegistrationSuccessful' &&
-      !params.row.DapsRegistrationSuccessful
+      params.field === 'dapsRegistrationSuccessful' &&
+      !params.row.dapsRegistrationSuccessful
     ) {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
       setCreateDapsModalOpen(true)

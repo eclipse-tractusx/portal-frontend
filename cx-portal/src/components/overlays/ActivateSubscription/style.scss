@@ -18,37 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography, FileIcon } from 'cx-portal-shared-components'
+.URLInput {
+  padding: 0 50px 0 50px;
+  max-width: 85%;
+  margin: 0 auto;
+  p {
+    color: #e43333;
+  }
+}
 
-export const FilePreviewItem = ({
-  file,
-  showPreviewAlone,
-}: {
-  file: File
-  showPreviewAlone?: boolean
-}) => {
-  return (
-    <>
-      <FileIcon fillColor={'#939393'} size={80} />
+.activationOverlay {
+  p {
+    font-weight: 600;
+  }
 
-      <Box sx={{ width: '100%', margin: '8px 32px' }}>
-        <Typography
-          variant="h6"
-          sx={{ display: 'block', color: 'common.black' }}
-        >
-          {file.name}
-        </Typography>
-        {!showPreviewAlone && (
-          <Typography
-            variant="body2"
-            sx={{ display: 'block', '&.error': { color: 'danger.danger' } }}
-          >
-            {file.type}, {file.size} bytes
-          </Typography>
-        )}
-        <progress max={100} value={0} />
-      </Box>
-    </>
-  )
+  table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+    tr td {
+      border-top: 1px solid rgb(220, 220, 220);
+      padding: 10px;
+    }
+
+    tr:first-child td {
+      border: none;
+    }
+  }
 }
