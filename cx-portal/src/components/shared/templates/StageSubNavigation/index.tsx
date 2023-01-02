@@ -18,9 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { ParentSubNavigation } from 'cx-portal-shared-components'
+import '../Templates.scss'
+import { Box } from '@mui/material'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
+  const scrollToId = (id: string) => {
+    const element = document.getElementById(id)
+    const top = element?.offsetTop
+    window.scrollTo({
+      top: top,
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: 'rgba(15, 113, 203, 0.05)',
+        height: '100px',
+      }}
+    >
+      <div className="subNavigationContainer">
+        <ParentSubNavigation
+          navigationArray={linkArray}
+          onClick={(value: string) => scrollToId(value)}
+        />
+      </div>
+    </Box>
+  )
 }

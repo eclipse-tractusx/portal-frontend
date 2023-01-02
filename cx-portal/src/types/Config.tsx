@@ -65,6 +65,7 @@ import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
+import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
 
 /**
@@ -330,6 +331,8 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
+  { name: PAGES.USE_CASE, element: <UseCase /> },
+  { name: PAGES.USE_CASE_TRACABILITY, element: <UseCase /> },
   {
     name: PAGES.DEACTIVATE,
     isRoute: true,
@@ -477,6 +480,10 @@ export const mainMenuFullTree = [
       { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, hint: HINTS.NEW },
     ],
+  },
+  {
+    name: PAGES.USE_CASE,
+    children: [{ name: PAGES.USE_CASE_TRACABILITY, hint: HINTS.NEW }],
   },
   {
     name: PAGES.MARKETPLACE,

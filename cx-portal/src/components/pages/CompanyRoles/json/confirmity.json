@@ -8,7 +8,8 @@
       "imageUrl": "rectangle-image.png",
       "backgroundColor": "#DAE3EB",
       "id": "provider-id",
-      "detailsWithImage": [
+      "template": "TextImageSideBySideWithCardGrid",
+      "detailsWithImageRow1": [
         {
           "title": "App Marketplace",
           "imageUrl": "rectangle-image.png",
@@ -24,7 +25,7 @@
           "backgroundColor": "#F9F9F9"
         }
       ],
-      "detailsWithoutImage": [
+      "detailsWithoutImageRow1": [
         {
           "title": "to be defined",
           "imageUrl": "rectangle-image.png",
@@ -37,6 +38,7 @@
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/appmarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#F9F9F9"
         },
         {
@@ -44,6 +46,7 @@
           "imageUrl": "",
           "description": "to get to the marketplace, just follow the link below",
           "readMore": "/servicemarketplace",
+          "readMoreTitle": "Details",
           "backgroundColor": "#F9F9F9"
         }
       ]
@@ -53,8 +56,9 @@
       "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
       "imageUrl": "rectangle-image.png",
       "id": "operations-id",
+      "template": "TextImageSideBySideWithCardGrid",
       "backgroundColor": "#F9F9F9",
-      "detailsWithImage": [
+      "detailsWithImageRow1": [
         {
           "title": "Subscription Authority",
           "imageUrl": "circle-image.png",
@@ -72,12 +76,13 @@
           "imageShape": "circle"
         }
       ],
-      "detailsWithoutImage": [
+      "detailsWithoutImageRow1": [
         {
           "title": "Who can subscribe?",
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         },
         {
@@ -92,6 +97,7 @@
           "imageUrl": "",
           "description": "the details will get added asap",
           "readMore": "/help",
+          "readMoreTitle": "Details",
           "backgroundColor": "#FFFFFF"
         }
       ]
@@ -101,43 +107,44 @@
       "description": "Details regarding the dataspace ",
       "imageUrl": "rectangle-image.png",
       "id": "participant-id",
+      "template": "TextImageSideBySideWithCardGrid",
       "backgroundColor": "#FFFFFF",
-      "detailsWithImage": [
+      "detailsWithImageRow1": [
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         }
       ],
-      "detailsWithoutImage": [
+      "detailsWithoutImageRow1": [
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Simply lorem Ipsum Text",
           "imageUrl": "rectangle-image.png",
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-          "readMore": "Read more",
+          "readMore": "",
           "backgroundColor": "#F9F9F9"
         }
       ]

@@ -18,9 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function TextVideoSideBySide({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <iframe
+          width="482"
+          height="331"
+          title="Video"
+          style={{
+            borderRadius: '16px',
+            border: '0px',
+          }}
+          src={provider.videoUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      }
+    />
+  )
 }

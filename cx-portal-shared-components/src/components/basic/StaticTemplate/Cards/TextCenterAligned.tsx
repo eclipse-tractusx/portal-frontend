@@ -18,25 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../../types'
-import Card from './Card'
+import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
-export default function CardWithoutImage({
-  detail,
+export default function TextCenterAligned({
+  provider,
 }: {
-  detail: CardDetailsProps
+  provider: ProviderProps
 }) {
   return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-        border: '1px solid rgba(15, 113, 203, 1)',
-        padding: '30px',
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: '0px 20px 0px 20px',
+        marginTop: '84px',
       }}
     >
-      <Card card={detail} isImage={false} />
-    </div>
+      <Box>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            padding: '34px 100px 0px 100px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </Box>
+    </Box>
   )
 }

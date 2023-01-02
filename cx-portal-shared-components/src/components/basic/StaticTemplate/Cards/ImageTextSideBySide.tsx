@@ -18,9 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function ImageTextSideBySide({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: '0px 20px 0px 20px',
+        padding: '90px 0px',
+      }}
+    >
+      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+      <Box
+        sx={{
+          padding: '20px',
+          width: '50%',
+        }}
+      >
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            paddingTop: '34px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </Box>
+    </Box>
+  )
 }

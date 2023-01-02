@@ -18,9 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { Box } from '@mui/material'
+import { ProviderProps } from '../StaticTypes'
+import TextCenterAligned from './TextCenterAligned'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function TextImageCenterAligned({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: '0px 20px 0px 20px',
+        marginTop: '84px',
+      }}
+    >
+      <TextCenterAligned provider={provider} />
+      <img
+        style={{
+          marginTop: '84px',
+          marginBottom: '84px',
+          width: '100%',
+          height: '472px',
+          objectFit: 'cover',
+          borderRadius: '16px',
+        }}
+        src={provider.imageUrl}
+        alt={'alt tag info'}
+      />
+    </Box>
+  )
 }

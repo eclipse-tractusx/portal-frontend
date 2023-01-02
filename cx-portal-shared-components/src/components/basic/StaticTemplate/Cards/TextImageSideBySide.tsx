@@ -18,9 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function TextImageSideBySide({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <img
+          style={{
+            borderRadius: '16px',
+          }}
+          src={provider.imageUrl}
+          width="482"
+          alt={'alt tag info'}
+        />
+      }
+    />
+  )
 }

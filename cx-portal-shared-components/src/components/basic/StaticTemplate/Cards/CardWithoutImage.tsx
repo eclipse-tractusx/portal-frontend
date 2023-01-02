@@ -18,9 +18,39 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+import { CardDetailsProps } from '../StaticTypes'
+import CardWithText from './CardWithText'
+import { Box } from '@mui/material'
 
-.companyRoles {
-  width: 100%;
-  padding: 0px;
+export default function CardWithoutImage({
+  detail,
+  grid = 3,
+}: {
+  detail: CardDetailsProps
+  grid: number
+}) {
+  const cardContainer = {
+    borderRadius: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    marginBottom: '96px',
+    maxWidth: '33%',
+  }
+  return (
+    <Box
+      key={detail.id}
+      sx={{
+        ...cardContainer,
+      }}
+      style={{
+        backgroundColor: detail.backgroundColor,
+        border: '1px solid rgba(15, 113, 203, 1)',
+        padding: '30px',
+        width: `${100 / grid}%`,
+      }}
+    >
+      <CardWithText card={detail} isImage={false} />
+    </Box>
+  )
 }
