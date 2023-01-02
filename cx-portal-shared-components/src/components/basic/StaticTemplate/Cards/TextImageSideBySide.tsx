@@ -18,9 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography } from '../../Typography'
 import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
 
 export default function TextImageSideBySide({
   provider,
@@ -28,39 +27,18 @@ export default function TextImageSideBySide({
   provider: ProviderProps
 }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
-      }}
-    >
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <img
+          style={{
+            borderRadius: '16px',
           }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-      <img
-        style={{
-          borderRadius: '16px',
-        }}
-        src={provider.imageUrl}
-        width="482"
-        alt={'alt tag info'}
-      />
-    </Box>
+          src={provider.imageUrl}
+          width="482"
+          alt={'alt tag info'}
+        />
+      }
+    />
   )
 }

@@ -19,8 +19,7 @@
  ********************************************************************************/
 
 import { ProviderProps } from '../StaticTypes'
-import { Typography } from '../../Typography'
-import { Box } from '@mui/material'
+import ImageVideoWrapper from './ImageVideoWrapper'
 
 export default function TextVideoSideBySide({
   provider,
@@ -28,42 +27,21 @@ export default function TextVideoSideBySide({
   provider: ProviderProps
 }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
-      }}
-    >
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <iframe
+          width="482"
+          height="331"
+          title="Video"
+          style={{
+            borderRadius: '16px',
+            border: '0px',
           }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-      <iframe
-        width="482"
-        height="331"
-        title="Video"
-        style={{
-          borderRadius: '16px',
-          border: '0px',
-        }}
-        src={provider.videoUrl}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      ></iframe>
-    </Box>
+          src={provider.videoUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      }
+    />
   )
 }
