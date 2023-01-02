@@ -85,7 +85,7 @@ export default function MyAccount() {
           </Box>
         </Box>
 
-        {data && <UserDetailInfo user={data} />}
+        {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
       </section>
 
       {/* TODO: DEV only needs to be removed when going PROD */}

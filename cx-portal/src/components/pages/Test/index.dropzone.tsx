@@ -74,14 +74,14 @@ export default function Test() {
     <main>
       <section>
         <Dropzone
-          onFileDrop={csvPreview}
+          onChange={csvPreview}
           acceptFormat={{ 'application/json': [] }}
           maxFilesToUpload={20}
         />
         <ItemProcessor items={items} process={console.log} autostart={true} />
       </section>
       <section>
-        <Dropzone onFileDrop={appPreview} />
+        <Dropzone onChange={appPreview} />
         <Cards columns={4} buttonText={'click'} items={items.map(appToCard)} />
       </section>
     </main>

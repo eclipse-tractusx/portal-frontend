@@ -31,6 +31,11 @@ export const SortOption = ({
   selectedOption: any
   show: boolean
 }) => {
+  const handleSortSelection = (e: any, value: string) => {
+    e.stopPropagation()
+    setSortOption(value)
+  }
+
   return (
     <>
       {show && (
@@ -42,7 +47,7 @@ export const SortOption = ({
           {sortOptions.map((entry: any) => (
             <li
               key={entry.value}
-              onClick={() => setSortOption(entry.value)}
+              onClick={(e) => handleSortSelection(e, entry.value)}
               style={{
                 backgroundColor:
                   selectedOption === entry.value
