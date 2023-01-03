@@ -33,13 +33,13 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
   SubscriptionActivationResponse,
   useAddUserSubscribtionMutation,
-} from 'features/appStore/appStoreApiSlice'
+} from 'features/appSubscription/appSubscriptionApiSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './style.scss'
 import { store } from 'features/store'
-import { setSuccessType } from 'features/appStore/slice'
+import { setSuccessType } from 'features/appSubscription/slice'
 
 export default function AddBPN({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -55,7 +55,7 @@ export default function AddBPN({ id }: { id: string }) {
   const addInputURL = (value: string) => {
     setInputURL(value)
     if (!Patterns.URL.test(value.trim())) {
-      setURLErrorMessage(t('content.appStore.pleaseEnterValidURL'))
+      setURLErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
     } else {
       setURLErrorMessage('')
     }
@@ -85,7 +85,7 @@ export default function AddBPN({ id }: { id: string }) {
         <div className="activationOverlay">
           <DialogHeader
             title=""
-            intro={t('content.appStore.activation.successDescription')}
+            intro={t('content.appSubscription.activation.successDescription')}
             closeWithIcon={true}
             icon={true}
             iconComponent={
@@ -95,32 +95,35 @@ export default function AddBPN({ id }: { id: string }) {
           />
           <DialogContent>
             <table>
-              <tr>
-                <td>
-                  <Typography variant="label3">
-                    {t('content.appStore.activation.clientId')}
-                  </Typography>
-                </td>
-                <td>
-                  <Typography variant="label3">
-                    {activationResponse &&
-                      activationResponse.technicalUserInfo.technicalClientId}
-                  </Typography>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Typography variant="label3">
-                    {t('content.appStore.activation.clientSecret')}
-                  </Typography>
-                </td>
-                <td>
-                  <Typography variant="label3">
-                    {activationResponse &&
-                      activationResponse.technicalUserInfo.technicalUserSecret}
-                  </Typography>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>
+                    <Typography variant="label3">
+                      {t('content.appSubscription.activation.clientId')}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="label3">
+                      {activationResponse &&
+                        activationResponse.technicalUserInfo.technicalClientId}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Typography variant="label3">
+                      {t('content.appSubscription.activation.clientSecret')}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="label3">
+                      {activationResponse &&
+                        activationResponse.technicalUserInfo
+                          .technicalUserSecret}
+                    </Typography>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </DialogContent>
           <DialogActions>
@@ -133,8 +136,8 @@ export default function AddBPN({ id }: { id: string }) {
         <>
           <DialogHeader
             {...{
-              title: t('content.appStore.activation.heading'),
-              intro: t('content.appStore.activation.description'),
+              title: t('content.appSubscription.activation.heading'),
+              intro: t('content.appSubscription.activation.description'),
               closeWithIcon: true,
               onCloseWithIcon: () => dispatch(closeOverlay()),
             }}

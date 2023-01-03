@@ -28,7 +28,7 @@ export enum PAGES {
   REGISTRATION = 'registration',
   SWAGGER = 'swagger',
   STORYBOOK = 'storybook',
-  APPSTORE = 'appstore',
+  APPSUBSCRIPTION = 'appsubscription',
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',

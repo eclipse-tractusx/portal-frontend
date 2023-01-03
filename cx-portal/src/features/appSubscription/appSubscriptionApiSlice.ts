@@ -70,7 +70,7 @@ export type SubscriptionActivationResponse = {
 }
 
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/appStore',
+  reducerPath: 'rtk/apps/appSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchSubscriptions: builder.query<

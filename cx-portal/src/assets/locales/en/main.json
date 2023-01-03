@@ -40,7 +40,7 @@
     "appoverview": "App Overview",
     "deactivate": "Deactivate",
     "appreleaseprocess": "App Release Process",
-    "appstore": "App Store",
+    "appsubscription": "App Subscription MGT",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User Management",
@@ -943,13 +943,13 @@
         "clientSercret": "Client Secret"
       }
     },
-    "appStore": {
+    "appSubscription": {
       "headline": "App Subscription",
       "subHeading": "Manage customer subscriptons",
       "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
       "readMore": "Read More",
       "registerURL": "RegisterURL",
-      "search": "Search by Service Name",
+      "search": "...search by entering the app name here.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",

@@ -21,13 +21,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 
-const name = 'admin/appstore'
+const name = 'admin/appSubscription'
 
-export interface AppStoreState {
+export interface AppSubscriptionState {
   isSuccess: boolean
 }
 
-export const initialState: AppStoreState = {
+export const initialState: AppSubscriptionState = {
   isSuccess: false,
 }
 
@@ -42,7 +42,7 @@ const slice = createSlice({
 })
 
 export const currentSuccessType = (state: RootState): any =>
-  state.appStore.isSuccess
+  state.appSubscription.isSuccess
 
 export const { setSuccessType } = slice.actions
 export default slice
