@@ -427,12 +427,13 @@
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           },
           "country": {
-            "label": "Place*",
+            "label": "Location*",
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
+            "label": "Upload*",
             "error": "Valid types Image/pdf",
             "tooltipMsg": "Connector document - Message to be added"
           }

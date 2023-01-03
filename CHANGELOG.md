@@ -39,6 +39,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Fixed issue on clicking info icon trigger delete action
    * Show tooltip message on hover of info icon
    * Enable authentication issue fix
+* Updates - Connector
+   * Upload title missing
 
 
 ## 0.10.0
