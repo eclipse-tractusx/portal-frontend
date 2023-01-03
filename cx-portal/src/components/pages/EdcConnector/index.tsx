@@ -29,7 +29,6 @@ import {
   PageLoadingTable,
   PageSnackbar,
 } from 'cx-portal-shared-components'
-import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
