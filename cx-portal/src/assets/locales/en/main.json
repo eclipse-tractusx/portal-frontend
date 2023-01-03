@@ -40,7 +40,7 @@
     "appoverview": "App Overview",
     "deactivate": "Deactivate",
     "appreleaseprocess": "App Release Process",
-    "appstore": "App Subscription MGT",
+    "appsubscription": "App Subscription MGT",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User Management",
@@ -942,7 +942,7 @@
         "clientSercret": "Client Secret"
       }
     },
-    "appStore": {
+    "appSubscription": {
       "headline": "App Subscription",
       "subHeading": "Manage customer subscriptons",
       "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",

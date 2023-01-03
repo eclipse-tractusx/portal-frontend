@@ -28,15 +28,13 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
-import { SubscriptionContent } from 'features/appStore/appStoreApiSlice'
-import './AppStore.scss'
+import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
+import './AppSubscription.scss'
 
 export default function SubscriptionElements({
   subscriptions,
-  selectedTab,
 }: {
   subscriptions?: SubscriptionContent[]
-  selectedTab: string
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -59,33 +57,21 @@ export default function SubscriptionElements({
   return (
     <div className="recommended-main">
       {subscriptions && subscriptions.length ? (
-        <ul className="group">
+        <ul className="subscription-list">
           {subscriptions.map((subscriptionData) => {
             return subscriptionData.companySubscriptionStatuses.map(
               (subscription) => (
-                <li key={subscription.subscriptionId} className="item">
-                  <Typography
-                    variant="body2"
-                    className={`firstSection ${
-                      selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                    }`}
-                  >
+                <li
+                  key={subscription.subscriptionId}
+                  className="subscription-list-item"
+                >
+                  <Typography variant="body2" className="firstSection">
                     {subscription.companyName}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className={`secondSection ${
-                      selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                    }`}
-                  >
+                  <Typography variant="body2" className="secondSection">
                     {subscriptionData.serviceName}
                   </Typography>
-                  <Typography
-                    variant="body3"
-                    className={`thirdSection ${
-                      selectedTab === 'request' ? 'wd-25' : 'wd-32'
-                    } `}
-                  >
+                  <Typography variant="body3" className="thirdSection">
                     {'Placeholders for add details such as BPN; etc'}
                   </Typography>
                   {subscription.offerSubscriptionStatus === 'PENDING' && (
@@ -104,7 +90,7 @@ export default function SubscriptionElements({
                         size="small"
                         variant="contained"
                       >
-                        {t('content.appStore.activateBtn')}
+                        {t('content.appSubscription.activateBtn')}
                       </Button>
                     </div>
                   )}

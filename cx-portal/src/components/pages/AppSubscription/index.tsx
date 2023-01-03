@@ -24,7 +24,6 @@ import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
 import SubscriptionElements from './SubscriptionElements'
-import './AppStore.scss'
 import {
   SearchInput,
   Typography,
@@ -35,10 +34,11 @@ import SortIcon from '@mui/icons-material/Sort'
 import {
   SubscriptionContent,
   useFetchSubscriptionsQuery,
-} from 'features/appStore/appStoreApiSlice'
-import { currentSuccessType } from 'features/appStore/slice'
+} from 'features/appSubscription/appSubscriptionApiSlice'
+import { currentSuccessType } from 'features/appSubscription/slice'
+import './AppSubscription.scss'
 
-export default function AppStore() {
+export default function AppSubscription() {
   const { t } = useTranslation()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
@@ -84,23 +84,23 @@ export default function AppStore() {
 
   const sortOptions = [
     {
-      label: t('content.appStore.sortOptions.customer'),
+      label: t('content.appSubscription.sortOptions.customer'),
       value: 'customer',
     },
     {
-      label: t('content.appStore.sortOptions.offer'),
+      label: t('content.appSubscription.sortOptions.offer'),
       value: 'offer',
     },
   ]
 
   const filterButtons = [
     {
-      buttonText: t('content.appStore.tabs.request'),
+      buttonText: t('content.appSubscription.tabs.request'),
       buttonValue: 'request',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appStore.tabs.active'),
+      buttonText: t('content.appSubscription.tabs.active'),
       buttonValue: 'active',
       onButtonClick: setView,
     },
@@ -130,44 +130,44 @@ export default function AppStore() {
     [debouncedFilter]
   )
 
-  const setSortOptionFn = useCallback((value: string) => {
+  const setSortOptionFn = (value: string) => {
     setSortOption(value)
     setShowModal(false)
-  }, [])
+  }
 
-  const setModalFalse = useCallback(() => {
+  const setModalFalse = () => {
     setShowModal(false)
-  }, [])
+  }
 
-  const setModalTrue = useCallback(() => {
+  const setModalTrue = () => {
     setShowModal(true)
-  }, [])
+  }
 
   return (
-    <main className="appStore">
+    <main className="appSubscription">
       <div className="mainContainer">
         <div className="mainRow">
           <Typography className="heading" variant="h2">
-            {t('content.appStore.headline')}
+            {t('content.appSubscription.headline')}
           </Typography>
           <Typography className="subheading" variant="body1">
-            {t('content.appStore.subHeading')}
+            {t('content.appSubscription.subHeading')}
           </Typography>
           <Typography className="description" variant="caption2">
-            {t('content.appStore.description')}
+            {t('content.appSubscription.description')}
           </Typography>
           <div className="subDescription">
             <Typography className="readMore" variant="label3">
-              {t('content.appStore.readMore')}
+              {t('content.appSubscription.readMore')}
             </Typography>
             <Typography variant="label3">
-              {t('content.appStore.registerURL')}
+              {t('content.appSubscription.registerURL')}
             </Typography>
           </div>
           <div>
             <div className="searchContainer">
               <SearchInput
-                placeholder={t('content.appStore.search')}
+                placeholder={t('content.appSubscription.search')}
                 value={searchExpr}
                 autoFocus={false}
                 onChange={(e) => doSearchData(e.target.value)}
@@ -204,10 +204,7 @@ export default function AppStore() {
                 />
               </div>
             ) : (
-              <SubscriptionElements
-                subscriptions={cardSubscriptions}
-                selectedTab={selected}
-              />
+              <SubscriptionElements subscriptions={cardSubscriptions} />
             )}
           </div>
         </div>
