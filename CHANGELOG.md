@@ -32,6 +32,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Created Deactivate page and add functionality
 * Feature - Tenant Management Board for App/Service Owners (FE)
 * Feature - My CX Account - Update Issue Table
+* Feature - Service Provider Endpoint / Service Management
 * Notification
    * Badge count to be show in Nav overlay
    * new api to get the notification count
