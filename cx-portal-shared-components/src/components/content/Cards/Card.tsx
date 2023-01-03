@@ -235,7 +235,7 @@ export const Card = ({
               color="dark"
               tooltipPlacement="bottom-start"
               tooltipText={status === 'active' ? '' : tooltipText}
-              additionalStyles={{ marginLeft: '190px' }}
+              additionalStyles={{ marginLeft: '210px' }}
             >
               <Box
                 sx={{
@@ -279,6 +279,7 @@ export const Card = ({
                 setShowModal(false)
               }}
               sortOptions={submenuOptions}
+              singleMenu={true}
             />
           </div>
           {showButton && (
