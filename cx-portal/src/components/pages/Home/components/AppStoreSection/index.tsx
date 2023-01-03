@@ -21,15 +21,16 @@
 import { useTranslation } from 'react-i18next'
 import { Cards, Button, Typography } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
-import { useFetchLatestAppsQuery } from 'features/apps/apiSliceTest'
 import { appToCard } from 'features/apps/mapper'
 import './app-store-section.scss'
+import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 
 export default function AppStoreSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { data } = useFetchLatestAppsQuery()
-  const items = data?.map((app) => appToCard(app)) || []
+  const { data } = useFetchActiveAppsQuery()
+  const items =
+    data?.filter((app, index) => index < 4).map((app) => appToCard(app)) || []
 
   return (
     <section className="app-store-section">
