@@ -172,6 +172,7 @@ export interface IInputProps extends ICommonProps {
   onFiles: (files: File[]) => void
   inputContentSubTitle: string
   inputContentTitle: string
+  size?: 'normal' | 'small'
 }
 
 type ReactComponent<Props> = (
@@ -226,4 +227,6 @@ export interface IDropzoneProps {
   /* component injection */
   PreviewComponent?: ReactComponent<IPreviewProps>
   InputComponent?: ReactComponent<IInputProps>
+
+  size?: 'normal' | 'small'
 }

@@ -49,7 +49,7 @@ export const accepts = (file: File, accept: string) => {
   if (!accept || accept === '*') return true
 
   const mimeType = file.type || ''
-  const baseMimeType = mimeType.replace(/\/.*$/, '')
+  const baseMimeType = mimeType.split('/').shift()
 
   return accept
     .split(',')
@@ -62,7 +62,7 @@ export const accepts = (file: File, accept: string) => {
         )
       } else if (type.endsWith('/*')) {
         // this is something like an image/* mime type
-        return baseMimeType === type.replace(/\/.*$/, '')
+        return baseMimeType === type.split('/').shift()
       }
       return mimeType === type
     })

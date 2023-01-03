@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -19,21 +19,33 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { FilePreviewItem } from './FilePreviewItem'
-import { PreviewItem } from './PreviewItem'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
-export const Preview = ({
-  files,
-  showPreviewAlone,
-  itemPreview = (file) => (
-    <PreviewItem key={file.name}>
-      <FilePreviewItem file={file} showPreviewAlone={showPreviewAlone} />
-    </PreviewItem>
-  ),
+export default function TextCenterAligned({
+  provider,
 }: {
-  files: File[]
-  showPreviewAlone?: boolean
-  itemPreview?: (file: File) => JSX.Element | Element
-}) => {
-  return <Box>{files && files.map(itemPreview)}</Box>
+  provider: ProviderProps
+}) {
+  return (
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: '0px 20px 0px 20px',
+        marginTop: '84px',
+      }}
+    >
+      <Box>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography
+          sx={{
+            padding: '34px 100px 0px 100px',
+          }}
+          variant="body1"
+        >
+          {provider.description}
+        </Typography>
+      </Box>
+    </Box>
+  )
 }

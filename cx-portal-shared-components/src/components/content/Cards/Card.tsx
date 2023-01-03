@@ -19,11 +19,15 @@
  ********************************************************************************/
 
 import { Box, Link, useTheme } from '@mui/material'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useEffect, useRef, useState } from 'react'
 import { CardButtons, CardButtonsProps } from './CardButtons'
 import { CardChip, CardChipProps } from './CardChip'
 import { CardContent, CardContentProps } from './CardContent'
 import { CardImage, CardImageProps } from './CardImage'
+import { SortOption } from '../../basic/SortOption'
+import { SubItems } from '.'
+import { Tooltips } from '../../basic/ToolTips'
 
 type Variants =
   | 'minimal'
@@ -48,6 +52,10 @@ export interface CardProps
   addButtonClicked?: boolean
   positionValue?: string
   topValue?: number
+  subMenu?: boolean
+  submenuOptions?: SubItems[]
+  submenuClick?: any
+  tooltipText?: string
 }
 
 export const Card = ({
@@ -55,6 +63,7 @@ export const Card = ({
   expandOnHover = false,
   filledBackground,
   backgroundColor,
+  id,
   title,
   subtitle,
   rating,
@@ -74,8 +83,12 @@ export const Card = ({
   statusText,
   positionValue = '',
   topValue = 0,
+  subMenu,
+  submenuOptions,
+  submenuClick,
+  tooltipText = '',
 }: CardProps) => {
-  const { shape, shadows, spacing } = useTheme()
+  const { shape, shadows } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
   const [content, setContent] = useState({
     title,
@@ -84,10 +97,16 @@ export const Card = ({
   const boxRef = useRef<HTMLDivElement>(null)
   const [showButton, setShowButton] = useState(false)
   const [boxHeight, setBoxHeight] = useState<number | undefined>()
+  const [sortOption, setSortOption] = useState<string>('')
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   useEffect(() => {
     setVariant(variantProp)
   }, [variantProp])
+
+  useEffect(() => {
+    sortOption && submenuClick(sortOption, id)
+  }, [sortOption, submenuClick, id])
 
   useEffect(() => {
     switch (variant) {
@@ -135,6 +154,13 @@ export const Card = ({
     left: '0px',
   } as React.CSSProperties
 
+  const handleSubmenuFn = (e: any) => {
+    e.stopPropagation()
+    if (status === 'active') {
+      setShowModal(true)
+    }
+  }
+
   return (
     <div
       ref={boxRef}
@@ -171,6 +197,7 @@ export const Card = ({
           ...(onClick && { cursor: 'pointer' }),
         }}
         className="card"
+        onMouseLeave={() => setShowModal(false)}
       >
         <Box>
           {statusText && imageSize !== 'small' && (
@@ -192,24 +219,69 @@ export const Card = ({
             preview={variant === 'preview'}
           />
         </Box>
-        <Box
-          sx={{
-            padding: 3,
-            ...(variant === 'text-only' && {
-              padding: spacing(3, 0),
-            }),
-          }}
-        >
+        <Box sx={{ marginBottom: '30px' }}>
           {statusText && imageSize === 'small' && (
             <Box
               sx={{
-                marginBottom: '12px',
+                padding: '15px',
               }}
             >
               <CardChip status={status} statusText={statusText} />
             </Box>
           )}
           <CardContent {...content} />
+          {subMenu && (
+            <Tooltips
+              color="dark"
+              tooltipPlacement="bottom-start"
+              tooltipText={status === 'active' ? '' : tooltipText}
+              additionalStyles={{ marginLeft: '210px' }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end',
+                  padding: '0 10px',
+                }}
+              >
+                <MoreVertIcon
+                  sx={{
+                    color: status === 'active' ? '#0F71CB' : '#999999',
+                    borderRadius: '15px',
+                    cursor: 'pointer',
+                    ...(status === 'active' && {
+                      ':hover': {
+                        backgroundColor: 'rgb(176 206 235 / 40%)',
+                      },
+                    }),
+                  }}
+                  onClick={(e) => handleSubmenuFn(e)}
+                />
+              </Box>
+            </Tooltips>
+          )}
+          <div
+            style={{
+              background: '#f9f9f9',
+              borderRadius: '16px',
+              boxShadow: '0px 10px 20px rgb(80 80 80 / 30%)',
+              position: 'absolute',
+              zIndex: '9',
+              margin: '-10px 80px',
+            }}
+          >
+            <SortOption
+              show={showModal}
+              selectedOption={sortOption}
+              setSortOption={(value: string) => {
+                setSortOption(value)
+                setShowModal(false)
+              }}
+              sortOptions={submenuOptions}
+              singleMenu={true}
+            />
+          </div>
           {showButton && (
             <CardButtons
               buttonText={buttonText}

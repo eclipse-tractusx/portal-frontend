@@ -71,6 +71,7 @@ export enum PAGES {
   ERROR = 'error',
   APP_MANAGEMENT = 'appmanagement',
   APPOVERVIEW = 'appoverview',
+  DEACTIVATE = 'deactivate',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',
@@ -78,6 +79,8 @@ export enum PAGES {
   INTRODUCTION_APP_PROVIDER = 'companyrolesappprovider',
   INTRODUCTION_SERVICE_PROVIDER = 'companyrolesserviceprovider',
   INTRODUCTION_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
+  USE_CASE = 'usecase',
+  USE_CASE_TRACABILITY = 'usecasetraceablity',
 }
 
 export enum OVERLAYS {

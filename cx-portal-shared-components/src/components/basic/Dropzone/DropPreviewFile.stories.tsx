@@ -18,37 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography, FileIcon } from 'cx-portal-shared-components'
+import { ComponentStory } from '@storybook/react'
 
-export const FilePreviewItem = ({
-  file,
-  showPreviewAlone,
-}: {
-  file: File
-  showPreviewAlone?: boolean
-}) => {
+import { DropPreviewFile as Component } from './components/DropPreviewFile'
+
+export default {
+  title: 'Dropzone',
+  component: Component,
+  args: {
+    name: 'Document.pdf',
+    size: 65402,
+    status: 'new',
+    progressPercent: 0,
+    translations: {
+      placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
+      uploadProgess: 'Uploaded % of % files',
+      uploadSuccess: 'Uploaded',
+      uploadError: 'Not Uploaded',
+    },
+    placeholder: false,
+  },
+  argTypes: {
+    status: {
+      control: 'radio',
+      options: ['new', 'uploading', 'upload_success', 'upload_error'],
+    },
+  },
+}
+
+const Template: ComponentStory<typeof Component> = (args: any) => {
+  const { name, size, status, progressPercent, ...props } = args
   return (
-    <>
-      <FileIcon fillColor={'#939393'} size={80} />
-
-      <Box sx={{ width: '100%', margin: '8px 32px' }}>
-        <Typography
-          variant="h6"
-          sx={{ display: 'block', color: 'common.black' }}
-        >
-          {file.name}
-        </Typography>
-        {!showPreviewAlone && (
-          <Typography
-            variant="body2"
-            sx={{ display: 'block', '&.error': { color: 'danger.danger' } }}
-          >
-            {file.type}, {file.size} bytes
-          </Typography>
-        )}
-        <progress max={100} value={0} />
-      </Box>
-    </>
+    <Component
+      {...props}
+      uploadFile={{ name, size, status, progressPercent }}
+    />
   )
 }
+
+export const DropPreviewFile = Template.bind({})

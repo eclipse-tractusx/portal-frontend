@@ -18,25 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../../types'
-import Card from './Card'
+import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
 
-export default function CardWithoutImage({
-  detail,
+export default function TextVideoSideBySide({
+  provider,
 }: {
-  detail: CardDetailsProps
+  provider: ProviderProps
 }) {
   return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-        border: '1px solid rgba(15, 113, 203, 1)',
-        padding: '30px',
-      }}
-    >
-      <Card card={detail} isImage={false} />
-    </div>
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <iframe
+          width="482"
+          height="331"
+          title="Video"
+          style={{
+            borderRadius: '16px',
+            border: '0px',
+          }}
+          src={provider.videoUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      }
+    />
   )
 }

@@ -18,39 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Card from './Card'
-import { CardDetailsProps } from '../../types'
+import { ParentSubNavigation } from 'cx-portal-shared-components'
+import '../Templates.scss'
+import { Box } from '@mui/material'
 
-export default function CardWithImage({
-  detail,
-}: {
-  detail: CardDetailsProps
-}) {
+export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
+  const scrollToId = (id: string) => {
+    const element = document.getElementById(id)
+    const top = element?.offsetTop
+    window.scrollTo({
+      top: top,
+      behavior: 'smooth',
+    })
+  }
+
   return (
-    <div
-      key={detail.id}
-      className="cardsContainer"
-      style={{
-        backgroundColor: detail.backgroundColor,
-        padding: '40px',
+    <Box
+      sx={{
+        backgroundColor: 'rgba(15, 113, 203, 0.05)',
+        height: '100px',
       }}
     >
-      <img
-        style={{
-          padding:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '0px 90px'
-              : '0px', // provide extra padding if the image shape is circle.
-          maxHeight:
-            detail.imageShape && detail.imageShape === 'circle'
-              ? '100%'
-              : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
-        }}
-        src={detail.imageUrl}
-        width="100%"
-        alt={'alt tag info'}
-      />
-      <Card card={detail} isImage={true} />
-    </div>
+      <div className="subNavigationContainer">
+        <ParentSubNavigation
+          navigationArray={linkArray}
+          onClick={(value: string) => scrollToId(value)}
+        />
+      </div>
+    </Box>
   )
 }

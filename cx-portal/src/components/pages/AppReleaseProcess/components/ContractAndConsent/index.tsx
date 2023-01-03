@@ -22,6 +22,7 @@ import {
   Button,
   IconButton,
   PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -57,6 +58,7 @@ type AgreementType = {
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
+  const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
@@ -112,14 +114,14 @@ export default function ContractAndConsent() {
     mode: 'onChange',
   })
 
-  const onContractConsentSubmit = async (data: any) => {
+  const onContractConsentSubmit = async (data: any, buttonLabel: string) => {
     const validateFields = await trigger(['agreements'])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: any) => {
+  const handleSave = async (data: any, buttonLabel: string) => {
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
     )
@@ -144,7 +146,8 @@ export default function ContractAndConsent() {
     await updateAgreementConsents(updateData)
       .unwrap()
       .then(() => {
-        dispatch(increment())
+        buttonLabel === 'saveAndProceed' && dispatch(increment())
+        buttonLabel === 'save' && setContractSnackbar(true)
       })
       .catch(() => {
         setContractNotification(true)
@@ -210,6 +213,15 @@ export default function ContractAndConsent() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={contractSnackbar}
+          onCloseNotification={() => setContractSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
@@ -225,7 +237,9 @@ export default function ContractAndConsent() {
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onContractConsentSubmit)}
+          onClick={handleSubmit((data) =>
+            onContractConsentSubmit(data, 'saveAndProceed')
+          )}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -233,7 +247,9 @@ export default function ContractAndConsent() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onContractConsentSubmit)}
+          onClick={handleSubmit((data) =>
+            onContractConsentSubmit(data, 'save')
+          )}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

@@ -59,15 +59,6 @@ export type ConnectorResponseBody = {
   DapsRegistrationSuccessful?: boolean
 }
 
-export type FileType = {
-  lastModified: number
-  lastModifiedDate: any
-  name: string
-  size: number
-  type: string
-  webkitRelativePath: string
-}
-
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),

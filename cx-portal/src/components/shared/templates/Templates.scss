@@ -18,22 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export type CardDetailsProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  backgroundColor: string
-  readMore: string
-  id: string
-  imageShape?: string
+.companyRoles {
+  width: 100%;
+  padding: 0px;
 }
 
-export type ProviderProps = {
-  title: string
-  description: string
-  imageUrl: string
-  backgroundColor: string
-  id: string
-  detailsWithImage: CardDetailsProps[]
-  detailsWithoutImage: CardDetailsProps[]
+.subNavigationContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding-top: 25px;
+  padding-left: 160px;
+  padding-right: 80px;
+}
+
+.subNavigationContainer button {
+  padding-right: 80px;
+  margin-right: 20px;
 }

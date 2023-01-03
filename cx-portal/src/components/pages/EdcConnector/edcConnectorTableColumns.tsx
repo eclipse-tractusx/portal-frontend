@@ -19,15 +19,17 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { Typography } from 'cx-portal-shared-components'
+import { Tooltips, Typography } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import LockIcon from '@mui/icons-material/Lock'
 import Box from '@mui/material/Box'
+import { ConnectorContentAPIResponse } from 'features/connector/types'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
-  translationHook: any
+  translationHook: any,
+  onDelete: (row: ConnectorContentAPIResponse) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
@@ -72,7 +74,10 @@ export const ConnectorTableColumns = (
       renderCell: ({ row }: { row: any }) => (
         <Box>
           <LockIcon
-            sx={{ color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6' }}
+            sx={{
+              color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6',
+              cursor: 'pointer',
+            }}
           />
         </Box>
       ),
@@ -80,7 +85,7 @@ export const ConnectorTableColumns = (
     {
       field: 'detail',
       headerName: '',
-      flex: 1,
+      flex: 0.3,
       sortable: false,
       align: 'center',
       headerAlign: 'center',
@@ -89,21 +94,49 @@ export const ConnectorTableColumns = (
           <DeleteOutlineIcon
             sx={{
               color: '#adadad',
-              marginRight: '20px',
+              marginRight: '-30px',
               ':hover': {
                 color: 'blue',
+                cursor: 'pointer',
               },
             }}
+            onClick={() => onDelete(row)}
           />
+        </Box>
+      ),
+    },
+    {
+      field: 'none',
+      headerName: '',
+      flex: 0.3,
+      sortable: false,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: ({ row }: { row: any }) => (
+        <>
           {row.status === 'PENDING' && (
-            <AccessTimeIcon
-              sx={{
-                color: '#adadad',
-                marginLeft: '20px',
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
               }}
+              tooltipPlacement="bottom"
+              tooltipText={t('content.edcconnector.columns.tooltipText')}
+              children={
+                <span>
+                  <Box>
+                    <AccessTimeIcon
+                      sx={{
+                        marginLeft: '-30px',
+                        color: '#adadad',
+                      }}
+                    />
+                  </Box>
+                </span>
+              }
             />
           )}
-        </Box>
+        </>
       ),
     },
   ]

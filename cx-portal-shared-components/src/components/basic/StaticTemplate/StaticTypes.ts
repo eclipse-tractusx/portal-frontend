@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,30 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ILayoutProps } from '../DropzoneTypes'
-import { Box } from '@mui/material'
-
-const Layout = (props: ILayoutProps) => {
-  const {
-    input,
-    previews,
-    dropzoneProps,
-    files,
-    extra: { maxFiles },
-  } = props
-
-  return (
-    <Box
-      sx={{
-        '.input': {
-          visibility: 'hidden',
-        },
-      }}
-    >
-      {previews}
-      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
-    </Box>
-  )
+export type CardDetailsProps = {
+  title: string
+  description: string
+  imageUrl?: string
+  backgroundColor: string
+  readMore: string
+  readMoreTitle: string
+  id: string
+  imageShape?: string
 }
 
-export default Layout
+export type ProviderProps = {
+  title: string
+  description: string
+  imageUrl?: string
+  videoUrl?: string
+  backgroundColor: string
+  id: string
+  detailsWithImageRow1: CardDetailsProps[]
+  detailsWithImageRow2: CardDetailsProps[]
+  detailsWithoutImageRow1: CardDetailsProps[]
+  detailsWithoutImageRow2: CardDetailsProps[]
+  grid: number
+  template: string
+  linksRow1: linkProps[]
+  linksRow2: linkProps[]
+}
+
+export type linkProps = {
+  background: string
+  title: string
+  navigate: string
+}

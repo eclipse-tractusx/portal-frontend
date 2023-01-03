@@ -53,7 +53,6 @@ import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsR
 
 const EdcConnector = () => {
   const { t } = useTranslation()
-  const columns = ConnectorTableColumns(useTranslation)
   const [addConnectorOverlayOpen, setAddConnectorOverlayOpen] =
     useState<boolean>(false)
   const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] =
@@ -87,6 +86,13 @@ const EdcConnector = () => {
   useState<boolean>(false)
   const [triggerDaps] = useTriggerDapsMutation()
 
+  const onDelete = (row: ConnectorContentAPIResponse) => {
+    setSelectedConnector(row)
+    setDeleteConnectorConfirmModalOpen(true)
+  }
+
+  const columns = ConnectorTableColumns(useTranslation, onDelete)
+
   const closeAndResetModalState = () => {
     setAddConnectorOverlayCurrentStep(0)
     setAddConnectorOverlayOpen(false)
@@ -94,13 +100,9 @@ const EdcConnector = () => {
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (params.field === 'detail') {
-      setSelectedConnector(params.row as ConnectorContentAPIResponse)
-      setDeleteConnectorConfirmModalOpen(true)
-    }
     if (
-      params.field === 'DapsRegistrationSuccessful' &&
-      !params.row.DapsRegistrationSuccessful
+      params.field === 'dapsRegistrationSuccessful' &&
+      !params.row.dapsRegistrationSuccessful
     ) {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
       setCreateDapsModalOpen(true)
@@ -269,7 +271,7 @@ const EdcConnector = () => {
           onButtonClicked={() => setAddConnectorOverlayOpen(true)}
         />
       </section>
-      <div className="partner-network-table-container">
+      <div className="connector-table-container">
         <PageLoadingTable<ConnectorResponseBody>
           toolbarVariant="premium"
           title={t('content.edcconnector.tabletitle')}
