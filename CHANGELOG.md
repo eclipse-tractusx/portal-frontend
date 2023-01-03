@@ -41,6 +41,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Enable authentication issue fix
 * BugFix
    * Home Screen: missing app name
+   * My Organisation Screen: missing app name
 
 
 ## 0.10.0
