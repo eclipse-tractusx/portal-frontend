@@ -130,7 +130,7 @@ export default function AppSubscription() {
     [debouncedFilter]
   )
 
-  const setSortOptionFn = (value: string) => {
+  const setSortOptionFunc = (value: string) => {
     setSortOption(value)
     setShowModal(false)
   }
@@ -139,7 +139,7 @@ export default function AppSubscription() {
     setShowModal(false)
   }
 
-  const setModalTrue = () => {
+  const setSortModalTrue = () => {
     setShowModal(true)
   }
 
@@ -177,7 +177,7 @@ export default function AppSubscription() {
               <ViewSelector activeView={selected} views={filterButtons} />
               <div className="iconSection">
                 <SortIcon
-                  onClick={setModalTrue}
+                  onClick={setSortModalTrue}
                   sx={{
                     fontSize: 20,
                     color: '#939393',
@@ -189,7 +189,7 @@ export default function AppSubscription() {
                 <SortOption
                   show={showModal}
                   selectedOption={sortOption}
-                  setSortOption={setSortOptionFn}
+                  setSortOption={setSortOptionFunc}
                   sortOptions={sortOptions}
                 />
               </div>
