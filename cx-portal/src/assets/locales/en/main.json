@@ -133,7 +133,7 @@
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         },
         "filter": {
-          "all": "All Services",
+          "all": "All",
           "review": "Review",
           "closed": "Closed"
         }
