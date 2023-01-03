@@ -106,6 +106,7 @@ export enum OVERLAYS {
   ENABLE_IDP = 'enable_idp',
   DISABLE_IDP = 'disable_idp',
   DELETE_IDP = 'delete_idp',
+  ADDUSERS_IDP = 'addusers_idp',
   IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',
@@ -115,6 +116,7 @@ export enum OVERLAYS {
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',
   SAMPLE_FORM = 'sample_form',
+  ADD_SERVICE_PROVIDER = 'add_service_provider',
 }
 
 export enum ACTIONS {

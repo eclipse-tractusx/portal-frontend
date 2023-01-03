@@ -27,15 +27,23 @@ const name = 'control/form'
 
 export enum FORMS {
   IDP_FORM = 'IDP_FORM',
+  IDP_USER_FORM = 'IDP_USER_FORM',
+  IDP_USER_RESPONSE_FORM = 'IDP_USER_RESPONSE_FORM',
+}
+
+interface FormAttribute {
+  [name: string]: string | boolean
 }
 
 export type StoreFormType = {
-  form: string
-  att: { [name: string]: string }
+  form: FORMS
+  att: FormAttribute
 }
 
 const initialState: IHashMap<any> = {}
 initialState[FORMS.IDP_FORM] = {}
+initialState[FORMS.IDP_USER_FORM] = {}
+initialState[FORMS.IDP_USER_RESPONSE_FORM] = {}
 
 export const slice = createSlice({
   name,
@@ -54,5 +62,11 @@ export const { storeForm } = slice.actions
 
 export const editIDPSelector = (state: RootState): any =>
   state.control.form[FORMS.IDP_FORM]
+
+export const editIDPUserSelector = (state: RootState): any =>
+  state.control.form[FORMS.IDP_USER_FORM]
+
+export const editIDPUserResponseSelector = (state: RootState): any =>
+  state.control.form[FORMS.IDP_USER_RESPONSE_FORM]
 
 export default slice.reducer

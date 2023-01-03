@@ -18,24 +18,45 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import NewDropzoneTest from './index.newdropzone'
+import {
+  TextareaAutosize,
+  TextareaAutosizeProps,
+  FormHelperText,
+  InputLabel,
+  Box,
+  FormControl,
+} from '@mui/material'
 
-export default function Test() {
-  const dispatch = useDispatch()
+interface TextareaProps extends TextareaAutosizeProps {
+  label?: string
+  helperText?: string
+  error?: boolean
+}
+
+export const Textarea = ({
+  label,
+  placeholder,
+  helperText,
+  error = false,
+  ...props
+}: TextareaProps) => {
   return (
-    <main>
-      <section>
-        <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
-          {'Sample Form'}
-        </Button>
-      </section>
-      <section>
-        <NewDropzoneTest />
-      </section>
-    </main>
+    <Box>
+      <FormControl
+        sx={{
+          width: '100%',
+        }}
+        error={error}
+        variant="filled"
+      >
+        <InputLabel>{label}</InputLabel>
+        <TextareaAutosize placeholder={placeholder} {...props} />
+        {error && helperText && (
+          <FormHelperText sx={{ marginLeft: 0, marginBottom: '-23px' }}>
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    </Box>
   )
 }

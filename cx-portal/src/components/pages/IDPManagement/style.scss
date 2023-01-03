@@ -40,10 +40,12 @@
     border: 1px solid #eeeeee;
     border-radius: 5px;
     background-color: #fcfcfc;
-    padding: 10px 30px;
+    padding: 8px 30px;
     margin-bottom: 12px;
     font-weight: bold;
     white-space: nowrap;
+    display: flex;
+    flex-direction: row;
 
     &:hover {
       background-color: #f4f4f4;
@@ -52,14 +54,27 @@
     .category,
     .name,
     .alias,
-    .state,
     .action {
       display: inline-block;
+      margin: 16px 0;
+    }
+
+    .state {
+      display: inline-block;
+      margin: 6px 0;
+    }
+
+    .action.buttons {
+      margin: 10px 0;
+    }
+
+    .action.menu {
+      margin: 0;
     }
 
     .category {
       color: #888;
-      width: 300px;
+      width: 280px;
       font-weight: normal;
     }
 
@@ -69,12 +84,16 @@
 
     .alias {
       color: #888;
-      width: 300px;
+      width: 280px;
       font-weight: normal;
     }
 
     .action {
       margin-left: 0px;
+      width: 220px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
 
       button {
         margin-left: 10px;

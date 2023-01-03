@@ -18,24 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import NewDropzoneTest from './index.newdropzone'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export default function Test() {
-  const dispatch = useDispatch()
-  return (
-    <main>
-      <section>
-        <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
-          {'Sample Form'}
-        </Button>
-      </section>
-      <section>
-        <NewDropzoneTest />
-      </section>
-    </main>
-  )
+const name = 'admin/serviceprovider'
+
+export interface ServiceProviderState {
+  isSuccess: boolean
 }
+
+export const initialState: ServiceProviderState = {
+  isSuccess: false,
+}
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentProviderSuccessType = (state: RootState): any =>
+  state.serviceProvider.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

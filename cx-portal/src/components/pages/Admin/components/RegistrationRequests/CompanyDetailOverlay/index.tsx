@@ -225,103 +225,126 @@ const CompanyDetailOverlay = ({
                     value: selectedCompany?.countryDe || '',
                   }}
                 />
-                {company?.documents && company.documents.length > 0 && (
-                  <>
-                    <Grid
-                      xs={12}
-                      item
-                      style={{
-                        backgroundColor: theme.palette.grey['100'],
-                        padding: spacing(2),
-                      }}
-                    >
-                      <Typography variant="h5">
-                        {t('content.admin.registration-requests.overlay.docs')}
-                      </Typography>
-                    </Grid>
-                    {company.documents.map(
-                      (contract: {
-                        documentId: string
-                        documentType: string
-                      }) => (
-                        <div
-                          key={contract.documentId}
-                          style={{
-                            display: 'flex',
-                            padding: '20px',
-                            alignItems: 'center',
-                          }}
-                        >
-                          <>
-                            <ArticleOutlinedIcon />
-                            <button
-                              style={{
-                                textDecoration: 'underline',
-                                cursor: 'pointer',
-                                fontSize: '16px',
-                                border: 'none',
-                                background: 'transparent',
-                                paddingLeft: '10px',
-                              }}
-                              onClick={() => {
-                                downloadDocumnet(
-                                  contract.documentId,
-                                  contract.documentType
-                                )
-                              }}
-                            >
-                              {contract?.documentType}
-                            </button>
-                          </>
-                        </div>
-                      )
-                    )}
-                  </>
-                )}
-                {selectedCompany?.companyRoles && (
-                  <>
-                    <Grid
-                      xs={12}
-                      item
-                      style={{
-                        backgroundColor: theme.palette.grey['100'],
-                        padding: spacing(2),
-                      }}
-                    >
-                      <Typography variant="h5">
-                        {t('content.admin.registration-requests.overlay.roles')}
-                      </Typography>
-                    </Grid>
-                    {selectedCompany?.companyRoles.map(
-                      (role: { companyRole: string }) => (
-                        <div
-                          key={role.companyRole}
-                          style={{
-                            display: 'flex',
-                            padding: '20px 10px 10px 10px',
-                            alignItems: 'center',
-                            flexDirection: 'row',
-                          }}
-                        >
-                          <Button
-                            color="secondary"
-                            sx={{
-                              borderRadius: '6px',
-                              margin: '0px 10px',
-                              cursor: 'auto',
+                <>
+                  <Grid
+                    xs={12}
+                    item
+                    style={{
+                      backgroundColor: theme.palette.grey['100'],
+                      padding: spacing(2),
+                    }}
+                  >
+                    <Typography variant="h5">
+                      {t('content.admin.registration-requests.overlay.docs')}
+                    </Typography>
+                  </Grid>
+                  {company?.documents && company.documents.length > 0 ? (
+                    <>
+                      {company.documents.map(
+                        (contract: {
+                          documentId: string
+                          documentType: string
+                        }) => (
+                          <div
+                            key={contract.documentId}
+                            style={{
+                              display: 'flex',
+                              padding: '20px',
+                              alignItems: 'center',
                             }}
-                            onClick={function noRefCheck() {}}
-                            onFocusVisible={function noRefCheck() {}}
-                            size="small"
-                            variant="contained"
                           >
-                            {getLocaleStr(role.companyRole)}
-                          </Button>
-                        </div>
-                      )
-                    )}
-                  </>
-                )}
+                            <>
+                              <ArticleOutlinedIcon />
+                              <button
+                                style={{
+                                  textDecoration: 'underline',
+                                  cursor: 'pointer',
+                                  fontSize: '16px',
+                                  border: 'none',
+                                  background: 'transparent',
+                                  paddingLeft: '10px',
+                                }}
+                                onClick={() => {
+                                  downloadDocumnet(
+                                    contract.documentId,
+                                    contract.documentType
+                                  )
+                                }}
+                              >
+                                {contract?.documentType}
+                              </button>
+                            </>
+                          </div>
+                        )
+                      )}
+                    </>
+                  ) : (
+                    <Typography
+                      sx={{
+                        padding: '20px',
+                      }}
+                      variant="body1"
+                    >
+                      {t('content.admin.registration-requests.overlay.noinfo')}
+                    </Typography>
+                  )}
+                </>
+                <>
+                  <Grid
+                    xs={12}
+                    item
+                    style={{
+                      backgroundColor: theme.palette.grey['100'],
+                      padding: spacing(2),
+                    }}
+                  >
+                    <Typography variant="h5">
+                      {t('content.admin.registration-requests.overlay.roles')}
+                    </Typography>
+                  </Grid>
+                  {selectedCompany?.companyRoles &&
+                  selectedCompany?.companyRoles.length > 0 ? (
+                    <>
+                      {selectedCompany?.companyRoles.map(
+                        (role: { companyRole: string }) => (
+                          <div
+                            key={role.companyRole}
+                            style={{
+                              display: 'flex',
+                              padding: '20px 10px 10px 10px',
+                              alignItems: 'center',
+                              flexDirection: 'row',
+                            }}
+                          >
+                            <Button
+                              color="secondary"
+                              sx={{
+                                borderRadius: '6px',
+                                margin: '0px 10px',
+                                cursor: 'auto',
+                              }}
+                              onClick={function noRefCheck() {}}
+                              onFocusVisible={function noRefCheck() {}}
+                              size="small"
+                              variant="contained"
+                            >
+                              {getLocaleStr(role.companyRole)}
+                            </Button>
+                          </div>
+                        )
+                      )}
+                    </>
+                  ) : (
+                    <Typography
+                      sx={{
+                        padding: '20px',
+                      }}
+                      variant="body1"
+                    >
+                      {t('content.admin.registration-requests.overlay.noinfo')}
+                    </Typography>
+                  )}
+                </>
               </Grid>
             </Box>
           </DialogContent>
