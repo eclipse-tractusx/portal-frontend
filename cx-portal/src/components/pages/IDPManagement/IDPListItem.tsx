@@ -41,7 +41,7 @@ import { useState } from 'react'
 export default function IDPListItem({
   idp,
   buttons,
-  showInfo = true,
+  showInfo = false,
 }: {
   idp: IdentityProvider
   buttons?: boolean
@@ -183,7 +183,7 @@ export default function IDPListItem({
           {buttons ? renderButtons() : renderMenu()}
         </span>
       </div>
-      {open && showInfo && <div className="content">{idp}</div>}
+      {open && showInfo && <div className="content">{idp.displayName}</div>}
     </>
   )
 }
