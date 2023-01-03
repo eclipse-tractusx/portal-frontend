@@ -31,7 +31,6 @@ import { closeOverlay, show } from 'features/control/overlay/actions'
 import { useState } from 'react'
 import {
   useEnableIDPMutation,
-  useAddUserIDPMutation,
   useUpdateUserIDPMutation,
   IdentityProviderUser,
   useFetchIDPDetailQuery,
@@ -42,12 +41,11 @@ import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { OVERLAYS } from 'types/Constants'
 
 export const EnableIDP = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchOwnUserDetailsQuery()
   const idpData = useFetchIDPDetailQuery(id).data
   const [enableIdp] = useEnableIDPMutation()
-  const [addUserIDP] = useAddUserIDPMutation()
   const [updateUserIDP] = useUpdateUserIDPMutation()
   const [idpEnableData, setIdpEnableData] = useState<
     IdentityProviderUser | undefined
@@ -68,9 +66,9 @@ export const EnableIDP = ({ id }: { id: string }) => {
         },
       }
       try {
-        await addUserIDP(idpUser).unwrap()
-      } catch (e) {
         await updateUserIDP(idpUser).unwrap()
+      } catch (e) {
+        console.log(e)
       }
       dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
@@ -82,39 +80,27 @@ export const EnableIDP = ({ id }: { id: string }) => {
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.enableIdpHeadline', {
+        title={t('enable.title', {
           idp: idpData?.displayName,
         })}
-        intro={t('content.idpmanagement.enableIdpSubheadline')}
+        intro={t('enable.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <Typography>
-          {t('Before enabling we have to link your user to the new IDP.')}
-        </Typography>
-        <Typography>
-          {t('Please enter the User ID and name of your user from there.')}
-        </Typography>
-        {data && <EnableIDPContent onValid={setIdpEnableData} />}
+        <Typography>{t('enable.desc')}</Typography>
+        <EnableIDPContent onValid={setIdpEnableData} />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button
           variant="contained"
-          disabled={
-            !(
-              !!id &&
-              !!data?.companyUserId &&
-              !!idpEnableData?.userId &&
-              !!idpEnableData.userName
-            )
-          }
+          disabled={!(!!id && !!data?.companyUserId && !!idpEnableData?.userId)}
           onClick={doEnableIDP}
         >
-          {t('global.actions.confirm')}
+          {t('action.confirm')}
         </Button>
       </DialogActions>
     </>

@@ -18,24 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import NewDropzoneTest from './index.newdropzone'
+import { ComponentStory } from '@storybook/react'
 
-export default function Test() {
-  const dispatch = useDispatch()
-  return (
-    <main>
-      <section>
-        <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
-          {'Sample Form'}
-        </Button>
-      </section>
-      <section>
-        <NewDropzoneTest />
-      </section>
-    </main>
-  )
+import { Textarea as Component } from '.'
+
+export default {
+  title: 'Form',
+  component: Component,
+  argTypes: {
+    onClick: {
+      action: 'onClick',
+    },
+  },
+}
+
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const Input = Template.bind({})
+Input.args = {
+  label: 'Label',
+  placeholder: 'Placeholder',
+  helperText: 'Helper',
+  disabled: false,
+  error: false,
 }

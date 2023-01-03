@@ -36,6 +36,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Notification
    * Badge count to be show in Nav overlay
    * new api to get the notification count
+* Identity Provider Management
+   * Connect OIDC based company IdPs
+   * Transfer existing users with roles between IdPs
 * BugFix - Connector
    * Fixed issue on clicking info icon trigger delete action
    * Show tooltip message on hover of info icon
