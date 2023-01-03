@@ -49,7 +49,9 @@
     "companyrolesparticipant": "Participant",
     "companyrolesappprovider": "App Provider",
     "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconfirmitybody": "Confirmity Body"
+    "companyrolesconfirmitybody": "Confirmity Body",
+    "usecase": "Use Case",
+    "usecasetraceablity": "Traceablity"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -363,7 +365,8 @@
         "type": "Connector Type",
         "details": "Details",
         "location": "Location",
-        "status": "Authentication Status"
+        "status": "Authentication Status",
+        "tooltipText": "Connector's status is pending"
       },
       "rowValue": {
         "owned": "Owned",
@@ -985,6 +988,11 @@
       "link1Label": "marketplace",
       "link2Label": "marketplace subscriptions",
       "link3Label": "dataspace participants"
+    },
+    "useCaseNavigation": {
+      "link1Label": "Intro",
+      "link2Label": "Data Provisioning",
+      "link3Label": "Business Applications"
     }
   },
   "notification": {

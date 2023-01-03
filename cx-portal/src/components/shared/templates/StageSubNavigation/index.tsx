@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,36 +18,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-table-container {
-  margin: 0 10% 70px;
-}
+import { ParentSubNavigation } from 'cx-portal-shared-components'
+import '../Templates.scss'
+import { Box } from '@mui/material'
 
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  .picture-with-text-section {
-    margin-top: -200px;
+export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
+  const scrollToId = (id: string) => {
+    const element = document.getElementById(id)
+    const top = element?.offsetTop
+    window.scrollTo({
+      top: top,
+      behavior: 'smooth',
+    })
   }
-}
 
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
-
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 0px;
-  }
+  return (
+    <Box
+      sx={{
+        backgroundColor: 'rgba(15, 113, 203, 0.05)',
+        height: '100px',
+      }}
+    >
+      <div className="subNavigationContainer">
+        <ParentSubNavigation
+          navigationArray={linkArray}
+          onClick={(value: string) => scrollToId(value)}
+        />
+      </div>
+    </Box>
+  )
 }

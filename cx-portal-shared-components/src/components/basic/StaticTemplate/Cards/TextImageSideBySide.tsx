@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,36 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-table-container {
-  margin: 0 10% 70px;
-}
+import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
 
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  .picture-with-text-section {
-    margin-top: -200px;
-  }
-}
-
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
-
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 0px;
-  }
+export default function TextImageSideBySide({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <img
+          style={{
+            borderRadius: '16px',
+          }}
+          src={provider.imageUrl}
+          width="482"
+          alt={'alt tag info'}
+        />
+      }
+    />
+  )
 }

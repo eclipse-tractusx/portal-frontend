@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,36 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-table-container {
-  margin: 0 10% 70px;
-}
+import { Box } from '@mui/material'
+import { ProviderProps } from '../StaticTypes'
+import TextCenterAligned from './TextCenterAligned'
 
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  .picture-with-text-section {
-    margin-top: -200px;
-  }
-}
-
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
-
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 0px;
-  }
+export default function TextImageCenterAligned({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: '0px 20px 0px 20px',
+        marginTop: '84px',
+      }}
+    >
+      <TextCenterAligned provider={provider} />
+      <img
+        style={{
+          marginTop: '84px',
+          marginBottom: '84px',
+          width: '100%',
+          height: '472px',
+          objectFit: 'cover',
+          borderRadius: '16px',
+        }}
+        src={provider.imageUrl}
+        alt={'alt tag info'}
+      />
+    </Box>
+  )
 }
