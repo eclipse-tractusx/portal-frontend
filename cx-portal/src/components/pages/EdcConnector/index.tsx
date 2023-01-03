@@ -116,6 +116,10 @@ const EdcConnector = () => {
     })
   }
 
+  const onStepChange = () => {
+    setAddConnectorOverlayCurrentStep(0)
+  }
+
   const onFormSubmit = async (data: FormFieldsType) => {
     console.log(data.ConnectorDoc)
     const body = new FormData()
@@ -256,15 +260,13 @@ const EdcConnector = () => {
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={onFormSubmit}
         loading={loading}
+        onStepChange={onStepChange}
       />
       <PageHeader
         title={t('content.edcconnector.headertitle')}
         topPage={false}
         headerHeight={200}
       />
-      <section>
-        <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
-      </section>
       <section className={'picture-with-text-section'}>
         <PictureWithText
           text={'content.edcconnector.imagetext'}

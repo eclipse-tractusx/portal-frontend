@@ -373,7 +373,8 @@
         "owned": "Owned",
         "managed": "Managed"
       },
-      "headertitle": "Technical Integration - Connectors & IDPs",
+      "helpText": "Get some help",
+      "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
