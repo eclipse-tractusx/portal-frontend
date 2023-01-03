@@ -46,6 +46,7 @@ export type CompanyDetail = {
   zipCode: string
   city: string
   countryDe: string
+  companyRoles: []
 }
 
 export type RegistrationRequestDocument = {
