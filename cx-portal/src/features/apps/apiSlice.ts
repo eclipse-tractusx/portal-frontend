@@ -157,7 +157,7 @@ export const apiSlice = createApi({
     }),
     deactivateApp: builder.mutation<void, string>({
       query: (appId) => ({
-        url: `/apps/${appId}/deactivateApp`,
+        url: `/api/apps/${appId}/deactivateApp`,
         method: 'PUT',
       }),
     }),
