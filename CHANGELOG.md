@@ -25,20 +25,27 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * View update in Details overlay
 * Notification
    * Bug fix - Pick appropriate title from locale file
+* Use case
+   * Static page content added
 * Feature - App Change Process
    * Created Deactivate Sub-Menu Component in App Overview Page
    * Created Deactivate page and add functionality
-* BugFix
-   Enable authentication icon for all the states
-   Fixed issue on clicking info icon trigger delete action
 * Feature - Tenant Management Board for App/Service Owners (FE)
 * Feature - My CX Account - Update Issue Table
+* Feature - Service Provider Endpoint / Service Management
 * Notification
    * Badge count to be show in Nav overlay
    * new api to get the notification count
 * Identity Provider Management
    * Connect OIDC based company IdPs
    * Transfer existing users with roles between IdPs
+* BugFix - Connector
+   * Fixed issue on clicking info icon trigger delete action
+   * Show tooltip message on hover of info icon
+   * Enable authentication issue fix
+* BugFix
+   * Home Screen: missing app name
+   * My Organisation Screen: missing app name
 
 
 ## 0.10.0

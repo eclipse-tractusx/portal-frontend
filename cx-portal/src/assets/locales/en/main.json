@@ -49,7 +49,9 @@
     "companyrolesparticipant": "Participant",
     "companyrolesappprovider": "App Provider",
     "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconfirmitybody": "Confirmity Body"
+    "companyrolesconfirmitybody": "Confirmity Body",
+    "usecase": "Use Case",
+    "usecasetraceablity": "Traceablity"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -117,7 +119,8 @@
           "roles": "Company Role(s)",
           "activeParticipation": "Participant",
           "appProvider": "App Provider",
-          "serviceProvider": "Service Provider"
+          "serviceProvider": "Service Provider",
+          "noinfo": "no data available"
         },
         "confirmmodal": {
           "title": "Confirm action",
@@ -130,7 +133,7 @@
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         },
         "filter": {
-          "all": "All Services",
+          "all": "All",
           "review": "Review",
           "closed": "Closed"
         }
@@ -363,7 +366,8 @@
         "type": "Connector Type",
         "details": "Details",
         "location": "Location",
-        "status": "Authentication Status"
+        "status": "Authentication Status",
+        "tooltipText": "Connector's status is pending"
       },
       "rowValue": {
         "owned": "Owned",
@@ -966,6 +970,14 @@
         "heading": "Relevant Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
+      "register": {
+        "heading": "Autosetup URL",
+        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "endpointConfigured": "Endpoint Configured",
+        "autosetupURL": "AutoSetup URL",
+        "providerErrorMessage": "Something went wrong!",
+        "providerSuccessMessage": "Service Provider Details added successfully."
+      },
       "activation": {
         "heading": "Activate User Subscription",
         "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
@@ -985,6 +997,11 @@
       "link1Label": "marketplace",
       "link2Label": "marketplace subscriptions",
       "link3Label": "dataspace participants"
+    },
+    "useCaseNavigation": {
+      "link1Label": "Intro",
+      "link2Label": "Data Provisioning",
+      "link3Label": "Business Applications"
     }
   },
   "notification": {

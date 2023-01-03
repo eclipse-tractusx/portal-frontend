@@ -19,15 +19,17 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { Typography } from 'cx-portal-shared-components'
+import { Tooltips, Typography } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import LockIcon from '@mui/icons-material/Lock'
 import Box from '@mui/material/Box'
+import { ConnectorContentAPIResponse } from 'features/connector/types'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
-  translationHook: any
+  translationHook: any,
+  onDelete: (row: ConnectorContentAPIResponse) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
@@ -98,6 +100,7 @@ export const ConnectorTableColumns = (
                 cursor: 'pointer',
               },
             }}
+            onClick={() => onDelete(row)}
           />
         </Box>
       ),
@@ -110,16 +113,30 @@ export const ConnectorTableColumns = (
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Box>
+        <>
           {row.status === 'PENDING' && (
-            <AccessTimeIcon
-              sx={{
-                marginLeft: '-30px',
-                color: '#adadad',
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
               }}
+              tooltipPlacement="bottom"
+              tooltipText={t('content.edcconnector.columns.tooltipText')}
+              children={
+                <span>
+                  <Box>
+                    <AccessTimeIcon
+                      sx={{
+                        marginLeft: '-30px',
+                        color: '#adadad',
+                      }}
+                    />
+                  </Box>
+                </span>
+              }
             />
           )}
-        </Box>
+        </>
       ),
     },
   ]

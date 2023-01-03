@@ -64,7 +64,7 @@ export default function Organization() {
         <AppSubscriptions
           image={app.image}
           onButtonClick={() => handleClick(app.id)}
-          name={app.title}
+          name={app.name || ''}
           provider={app.provider}
           status={app.status}
         />

@@ -18,36 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-table-container {
-  margin: 0 10% 70px;
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
+
+const name = 'admin/serviceprovider'
+
+export interface ServiceProviderState {
+  isSuccess: boolean
 }
 
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  .picture-with-text-section {
-    margin-top: -200px;
-  }
+export const initialState: ServiceProviderState = {
+  isSuccess: false,
 }
 
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
 
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 0px;
-  }
-}
+export const currentProviderSuccessType = (state: RootState): any =>
+  state.serviceProvider.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

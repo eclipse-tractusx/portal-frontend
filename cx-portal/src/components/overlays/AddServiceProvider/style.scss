@@ -18,36 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-table-container {
-  margin: 0 10% 70px;
-}
-
-.connector-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  .picture-with-text-section {
-    margin-top: -200px;
-  }
-}
-
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
-
-.connector-insert-form {
-  .form-input {
-    margin-bottom: 0px;
+.manageInputURL {
+  padding: 0 80px;
+  .error {
+    color: #e93333;
   }
 }
