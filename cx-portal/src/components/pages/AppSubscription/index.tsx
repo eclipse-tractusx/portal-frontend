@@ -122,7 +122,7 @@ export default function AppSubscription() {
     [subscriptions]
   )
 
-  const doSearchData = useCallback(
+  const searchDataFn = useCallback(
     (expr: string) => {
       setSearchExpr(expr)
       debouncedFilter(expr)
@@ -170,7 +170,7 @@ export default function AppSubscription() {
                 placeholder={t('content.appSubscription.search')}
                 value={searchExpr}
                 autoFocus={false}
-                onChange={(e) => doSearchData(e.target.value)}
+                onChange={(e) => searchDataFn(e.target.value)}
               />
             </div>
             <div className="filterSection" onMouseLeave={setModalFalse}>
