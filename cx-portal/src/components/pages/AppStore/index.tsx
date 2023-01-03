@@ -19,10 +19,12 @@
  ********************************************************************************/
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 import SubscriptionElements from './SubscriptionElements'
 import './AppStore.scss'
 import {
@@ -30,6 +32,7 @@ import {
   Typography,
   ViewSelector,
   SortOption,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
 import {
@@ -37,9 +40,11 @@ import {
   useFetchSubscriptionsQuery,
 } from 'features/appStore/appStoreApiSlice'
 import { currentSuccessType } from 'features/appStore/slice'
+import { currentProviderSuccessType } from 'features/serviceProvider/slice'
 
 export default function AppStore() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -48,6 +53,8 @@ export default function AppStore() {
   const [cardSubscriptions, setCardSubscriptions] = useState<
     SubscriptionContent[]
   >([])
+  const [serviceProviderSuccess, setServiceProviderSuccess] =
+    useState<boolean>(false)
 
   let statusId = ''
 
@@ -68,7 +75,6 @@ export default function AppStore() {
     sortingType: sortingType,
   })
   const subscriptions = data && data.content
-
   useEffect(() => {
     subscriptions && setCardSubscriptions(subscriptions)
   }, [subscriptions])
@@ -77,6 +83,11 @@ export default function AppStore() {
   useEffect(() => {
     refetch()
   }, [success, refetch])
+
+  const isSuccess = useSelector(currentProviderSuccessType)
+  useEffect(() => {
+    isSuccess && setServiceProviderSuccess(true)
+  }, [isSuccess])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -160,7 +171,18 @@ export default function AppStore() {
             <Typography className="readMore" variant="label3">
               {t('content.appStore.readMore')}
             </Typography>
-            <Typography variant="label3">
+            <Typography
+              variant="label3"
+              onClick={() =>
+                dispatch(
+                  show(
+                    OVERLAYS.ADD_SERVICE_PROVIDER,
+                    '570788fc-0b34-4953-ad1d-c48d32c533e2'
+                  )
+                )
+              }
+              sx={{ cursor: 'pointer' }}
+            >
               {t('content.appStore.registerURL')}
             </Typography>
           </div>
@@ -212,6 +234,15 @@ export default function AppStore() {
           </div>
         </div>
       </div>
+      {
+        <PageSnackbar
+          open={serviceProviderSuccess}
+          onCloseNotification={() => setServiceProviderSuccess(false)}
+          severity="success"
+          description={t('content.appStore.register.providerSuccessMessage')}
+          showIcon={true}
+        />
+      }
     </main>
   )
 }

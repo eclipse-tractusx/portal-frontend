@@ -460,6 +460,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.SAMPLE_FORM,
   },
+  {
+    name: OVERLAYS.ADD_SERVICE_PROVIDER,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
