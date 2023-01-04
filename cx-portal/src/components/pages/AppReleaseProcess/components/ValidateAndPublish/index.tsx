@@ -70,16 +70,6 @@ export default function ValidateAndPublish({
   const statusData = appStatusData || fetchAppStatus
 
   useEffect(() => {
-    const fetchImage = async (documentId: string) => {
-      try {
-        const response = await fetchDocumentById(documentId).unwrap()
-        const file = response.data
-        return setCardImage(URL.createObjectURL(file))
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
-      }
-    }
-
     if (
       statusData?.documents?.APP_LEADIMAGE &&
       statusData?.documents?.APP_LEADIMAGE[0].documentId
@@ -87,7 +77,18 @@ export default function ValidateAndPublish({
       fetchImage(statusData?.documents?.APP_LEADIMAGE[0].documentId)
     }
     reset(defaultValues)
-  }, [statusData, fetchDocumentById])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [statusData])
+
+  const fetchImage = async (documentId: string) => {
+    try {
+      const response = await fetchDocumentById(documentId).unwrap()
+      const file = response.data
+      return setCardImage(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
 
   const defaultValues = {
     images: [LogoGrayData, LogoGrayData, LogoGrayData],
