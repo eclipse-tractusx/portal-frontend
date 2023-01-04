@@ -202,6 +202,16 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    fetchRolesData: builder.query<any, string>({
+      query: (appId: string) => `api/administration/user/app/${appId}/roles`,
+    }),
+    updateRoleData: builder.mutation<any, any>({
+      query: (data: any) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}/role`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -219,4 +229,6 @@ export const {
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
   useFetchDocumentByIdMutation,
+  useFetchRolesDataQuery,
+  useUpdateRoleDataMutation,
 } = apiSlice

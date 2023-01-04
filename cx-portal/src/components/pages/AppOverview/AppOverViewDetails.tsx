@@ -92,23 +92,23 @@ export default function AppOverViewDetails({
   }
 
   useEffect(() => {
+    const fetchImage = async (documentId: string) => {
+      try {
+        const response = await fetchDocumentById(documentId).unwrap()
+        const file = response.data
+        return setCardImage(URL.createObjectURL(file))
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      }
+    }
+
     if (
       item?.documents?.APP_LEADIMAGE &&
       item?.documents?.APP_LEADIMAGE[0].documentId
     ) {
       fetchImage(item?.documents?.APP_LEADIMAGE[0].documentId)
     }
-  }, [item])
-
-  const fetchImage = async (documentId: string) => {
-    try {
-      const response = await fetchDocumentById(documentId).unwrap()
-      const file = response.data
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
+  }, [item, fetchDocumentById])
 
   return (
     <>

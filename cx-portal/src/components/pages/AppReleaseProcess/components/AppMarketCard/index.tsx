@@ -267,7 +267,7 @@ export default function AppMarketCard() {
   const cardImageData = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== LogoGrayData) {
-      const blobFile = new Blob([getValues().uploadImage.leadPictureUri], {
+      const blobFile = new Blob([cardImageData], {
         type: 'image/png',
       })
       setCardImage(URL.createObjectURL(blobFile))
@@ -275,6 +275,16 @@ export default function AppMarketCard() {
   }, [cardImageData])
 
   useEffect(() => {
+    const fetchCardImage = async (documentId: string) => {
+      try {
+        const response = await fetchDocumentById(documentId).unwrap()
+        const file = response.data
+        return setCardImage(URL.createObjectURL(file))
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      }
+    }
+
     if (
       appStatusData?.documents?.APP_LEADIMAGE &&
       appStatusData?.documents?.APP_LEADIMAGE[0].documentId
@@ -282,18 +292,7 @@ export default function AppMarketCard() {
       fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
     }
     reset(defaultValues)
-  }, [appStatusData])
-
-  const fetchCardImage = async (documentId: string) => {
-    try {
-      console.log('documentId', documentId)
-      const response = await fetchDocumentById(documentId).unwrap()
-      const file = response.data
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
+  }, [appStatusData, fetchDocumentById])
 
   const cardAppTitle =
     getValues().title ||
@@ -340,12 +339,18 @@ export default function AppMarketCard() {
       descriptions: [
         {
           languageCode: 'de',
-          longDescription: '',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionDE,
         },
         {
           languageCode: 'en',
-          longDescription: '',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionEN,
         },
       ],
@@ -368,6 +373,7 @@ export default function AppMarketCard() {
           dispatch(setAppId(appId))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
           buttonLabel === 'save' && setAppCardSnackbar(true)
+          dispatch(setAppStatus(fetchAppStatus))
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -398,6 +404,7 @@ export default function AppMarketCard() {
             dispatch(setAppId(result))
             buttonLabel === 'saveAndProceed' && dispatch(increment())
             buttonLabel === 'save' && setAppCardSnackbar(true)
+            dispatch(setAppStatus(fetchAppStatus))
           }
         })
         .catch(() => {
