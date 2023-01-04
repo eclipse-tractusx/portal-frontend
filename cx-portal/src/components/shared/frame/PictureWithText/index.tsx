@@ -22,6 +22,7 @@ import { Typography, Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import './PictureWithText.scss'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 type PictureWithTextProps = {
   image?: string
@@ -43,8 +44,31 @@ export default function PictureWithText({
         <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="body1">
           {t(text)}
         </Typography>
-
-        <Button startIcon={<AddCircleOutlineIcon />} onClick={onButtonClicked}>
+        <Button
+          sx={{
+            marginLeft: '-20px',
+            ':hover': {
+              background: 'transparent',
+              boxShadow: 'none',
+            },
+            ':focus': {
+              boxShadow: 'none',
+            },
+          }}
+          variant="text"
+          size="small"
+          startIcon={<ArrowForwardIcon />}
+          onClick={onButtonClicked}
+        >
+          {t('content.edcconnector.helpText')}
+        </Button>
+        <Button
+          sx={{
+            marginTop: '40px',
+          }}
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={onButtonClicked}
+        >
           {t('content.edcconnector.addconnectorbutton')}
         </Button>
       </div>

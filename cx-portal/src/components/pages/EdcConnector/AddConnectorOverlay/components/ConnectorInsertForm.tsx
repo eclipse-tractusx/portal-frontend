@@ -65,7 +65,7 @@ const ConnectorFormInput = ({
                 paddingRight: '10px',
               }}
             >
-              {dropzoneProps.formTitle}*
+              {label}
             </Typography>
 
             <Tooltips
@@ -107,7 +107,7 @@ const ConnectorFormInput = ({
         <>
           <div
             style={{
-              marginLeft: '50px',
+              marginLeft: '65px',
               position: 'relative',
               top: '25px',
               zIndex: '9',
@@ -305,6 +305,7 @@ const ConnectorInsertForm = ({
                     required: true,
                   },
                   dropzoneProps: dropzoneProps,
+                  label: t('content.edcconnector.modal.insertform.doc.label'),
                   helperText: t(
                     'content.edcconnector.modal.insertform.doc.error'
                   ),

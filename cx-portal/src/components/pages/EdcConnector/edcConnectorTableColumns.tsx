@@ -39,12 +39,14 @@ export const ConnectorTableColumns = (
       headerName: t('content.edcconnector.columns.name'),
       flex: 1,
       sortable: false,
+      disableColumnMenu: true,
     },
     {
       field: 'location',
       headerName: t('content.edcconnector.columns.location'),
       flex: 0.5,
       sortable: false,
+      disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
@@ -56,6 +58,7 @@ export const ConnectorTableColumns = (
       headerName: t('content.edcconnector.columns.type'),
       flex: 1,
       sortable: false,
+      disableColumnMenu: true,
       renderCell: ({ row }: { row: any }) => (
         <Typography variant="body2">
           {row.type === 'COMPANY_CONNECTOR'
@@ -69,6 +72,7 @@ export const ConnectorTableColumns = (
       headerName: t('content.edcconnector.columns.status'),
       flex: 1,
       sortable: false,
+      disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
@@ -87,6 +91,7 @@ export const ConnectorTableColumns = (
       headerName: '',
       flex: 0.3,
       sortable: false,
+      disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
@@ -110,6 +115,7 @@ export const ConnectorTableColumns = (
       headerName: '',
       flex: 0.3,
       sortable: false,
+      disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
