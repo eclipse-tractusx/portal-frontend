@@ -36,8 +36,8 @@ export const ImageGallery = ({
       gridTemplateColumns: 'repeat(3, 1fr)',
     }}
   >
-    {gallery.map((image, index) => (
-      <ImageItem key={index} image={image} />
+    {gallery.map((image) => (
+      <ImageItem key={image.text} image={image} />
     ))}
   </div>
 )
