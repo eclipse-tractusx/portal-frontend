@@ -58,7 +58,7 @@ GridMediumSquareGallery.args = {
       hover: false,
       borderRadius: true,
       shadow: true,
-    }
+    },
   ],
 }
 

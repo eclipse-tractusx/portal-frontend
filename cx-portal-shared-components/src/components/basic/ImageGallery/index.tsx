@@ -37,7 +37,15 @@ export const ImageGallery = ({
     }}
   >
     {gallery.map((image) => (
-      <ImageItem key={image.text} image={image} />
+      <ImageItem
+        key={image.text}
+        url={image.url}
+        text={image.text}
+        size={image.size}
+        hover={image.hover}
+        borderRadius={image.borderRadius}
+        shadow={image.shadow}
+      />
     ))}
   </div>
 )

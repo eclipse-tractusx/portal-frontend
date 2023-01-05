@@ -19,8 +19,8 @@
  ********************************************************************************/
 
 export type ImageType = {
-  url?: string
-  text?: string
+  url: string
+  text: string
   size?:
     | 'small-rectangle'
     | 'small-square'

@@ -23,18 +23,22 @@ import { DialogContent } from '../Dialog/DialogContent'
 import { DialogHeader } from '../Dialog/DialogHeader'
 import { ImageType } from './types'
 
-export default function ImageItemOverlay({
-  image,
-  onClose,
-}: {
-  image: ImageType
+type ImageItemOverlayProps = {
   onClose: () => void
-}) {
+}
+
+export default function ImageItemOverlay({
+  url,
+  text,
+  borderRadius,
+  shadow,
+  onClose,
+}: ImageType & ImageItemOverlayProps) {
   return (
     <div>
       <Dialog open={true}>
         <DialogHeader
-          title={image.text || ''}
+          title={text || ''}
           closeWithIcon={true}
           onCloseWithIcon={() => {
             if (onClose) onClose()
@@ -43,14 +47,14 @@ export default function ImageItemOverlay({
         <DialogContent>
           <div>
             <img
-              src={image.url}
-              alt={image.text}
+              src={url}
+              alt={text}
               style={{
                 width: '100%',
                 height: '100%',
-                borderRadius: image.borderRadius ? '16px' : '0px',
+                borderRadius: borderRadius ? '16px' : '0px',
                 objectFit: 'cover',
-                boxShadow: image.shadow
+                boxShadow: shadow
                   ? '0px 10px 20px rgb(80 80 80 / 30%)'
                   : 'none',
               }}

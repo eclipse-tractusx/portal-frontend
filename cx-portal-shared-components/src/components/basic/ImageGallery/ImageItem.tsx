@@ -23,14 +23,21 @@ import { useState } from 'react'
 import ImageItemOverlay from './ImageItemOverlay'
 import { ImageType } from './types'
 
-export const ImageItem = ({ image }: { image: ImageType }) => {
+export const ImageItem = ({
+  url,
+  text,
+  size = 'small-square',
+  hover = false,
+  borderRadius = true,
+  shadow = true,
+}: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
     let obj = {
       width: '160px',
       height: '160px',
     }
-    switch (image.size) {
+    switch (size) {
       case 'small-rectangle': {
         obj.width = '320px'
         obj.height = '160px'
@@ -69,28 +76,34 @@ export const ImageItem = ({ image }: { image: ImageType }) => {
   return (
     <>
       {hovered ? (
-        <ImageItemOverlay onClose={() => setHovered(false)} image={image} />
+        <ImageItemOverlay
+          onClose={() => setHovered(false)}
+          url={url}
+          text={text}
+          size={size}
+          hover={hover}
+          borderRadius={borderRadius}
+          shadow={shadow}
+        />
       ) : (
         <div
-          onMouseEnter={() => image.hover && setHovered(true)}
+          onMouseEnter={() => hover && setHovered(true)}
           style={{
             width: getWidth().width,
             height: getWidth().height,
-            boxShadow: image.shadow
-              ? '0px 10px 20px rgb(80 80 80 / 30%)'
-              : 'none',
-            borderRadius: image.borderRadius ? '16px' : '0px',
+            boxShadow: shadow ? '0px 10px 20px rgb(80 80 80 / 30%)' : 'none',
+            borderRadius: borderRadius ? '16px' : '0px',
             objectFit: 'cover',
             marginBottom: '20px',
           }}
         >
           <img
-            src={image.url}
-            alt={image.text}
+            src={url}
+            alt={text}
             style={{
               width: getWidth().width,
               height: getWidth().height,
-              borderRadius: image.borderRadius ? '16px' : '0px',
+              borderRadius: borderRadius ? '16px' : '0px',
             }}
           />
           <Typography
@@ -101,7 +114,7 @@ export const ImageItem = ({ image }: { image: ImageType }) => {
               fontSize: '14px',
             }}
           >
-            {image.text}
+            {text}
           </Typography>
         </div>
       )}
