@@ -46,6 +46,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * Home Screen: missing app name
    * My Organisation Screen: missing app name
+* Refactor
+   * Image gallery component
 
 
 ## 0.10.0

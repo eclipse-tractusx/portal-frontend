@@ -31,20 +31,252 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 )
 
-export const Gallery = Template.bind({})
-Gallery.args = {
+export const GridSmallSquareGallery = Template.bind({})
+GridSmallSquareGallery.args = {
+  grid: true,
   gallery: [
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
     },
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
     },
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+  ],
+}
+
+export const GridMediumSquareGallery = Template.bind({})
+GridMediumSquareGallery.args = {
+  grid: true,
+  gallery: [
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+  ],
+}
+
+export const GridLargeSquareGallery = Template.bind({})
+GridLargeSquareGallery.args = {
+  grid: true,
+  gallery: [
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'large-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'large-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'large-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'large-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'large-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'large-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+  ],
+}
+
+export const GridSmallRectangleGallery = Template.bind({})
+GridSmallRectangleGallery.args = {
+  grid: true,
+  gallery: [
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+  ],
+}
+
+export const FlexGallery = Template.bind({})
+FlexGallery.args = {
+  gallery: [
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
     },
   ],
 }
