@@ -373,8 +373,7 @@
         "owned": "Owned",
         "managed": "Managed"
       },
-      "helpText": "Get some help",
-      "headertitle": "Connector Registration",
+      "headertitle": "Technical Integration - Connectors & IDPs",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
@@ -428,13 +427,12 @@
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           },
           "country": {
-            "label": "Location*",
+            "label": "Place*",
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
-            "label": "Upload*",
             "error": "Valid types Image/pdf",
             "tooltipMsg": "Connector document - Message to be added"
           }

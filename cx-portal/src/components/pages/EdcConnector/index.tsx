@@ -29,6 +29,7 @@ import {
   PageLoadingTable,
   PageSnackbar,
 } from 'cx-portal-shared-components'
+import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
@@ -113,10 +114,6 @@ const EdcConnector = () => {
     setAddConnectorOverlayCurrentStep((prevState) => {
       return prevState < 1 ? 1 : prevState
     })
-  }
-
-  const onStepChange = () => {
-    setAddConnectorOverlayCurrentStep(0)
   }
 
   const onFormSubmit = async (data: FormFieldsType) => {
@@ -259,13 +256,15 @@ const EdcConnector = () => {
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={onFormSubmit}
         loading={loading}
-        onStepChange={onStepChange}
       />
       <PageHeader
         title={t('content.edcconnector.headertitle')}
         topPage={false}
         headerHeight={200}
       />
+      <section>
+        <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
+      </section>
       <section className={'picture-with-text-section'}>
         <PictureWithText
           text={'content.edcconnector.imagetext'}
