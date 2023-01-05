@@ -47,6 +47,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * Home Screen: missing app name
    * My Organisation Screen: missing app name
+* Updates - Connector
+   * Upload title missing
+   * Change "Cancel" to "Back" Button
+   * Add "Cancel" icon in 2nd connector overlay
+   * Add tooltips
+   * Update titles
 
 
 ## 0.10.0
