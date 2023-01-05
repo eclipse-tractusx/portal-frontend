@@ -47,6 +47,8 @@ import {
   useFetchSalesManagerDataQuery,
   salesManagerType,
   useSaveAppMutation,
+  useFetchAppStatusQuery,
+  useFetchDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
@@ -58,7 +60,7 @@ import {
   appStatusDataSelector,
   increment,
 } from 'features/appManagement/slice'
-import { setAppId } from 'features/appManagement/actions'
+import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 
@@ -199,27 +201,19 @@ export default function AppMarketCard() {
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
-  const defaultSalesManagerValue = {
+  const [defaultSalesManagerValue] = useState<salesManagerType>({
     userId: null,
     firstName: 'none',
     lastName: '',
     fullName: 'none',
-  }
+  })
   const [salesManagerListData, setSalesManagerListData] = useState<
     salesManagerType[]
   >([defaultSalesManagerValue])
-  const [salesManagerId, setSalesManagerId] = useState(null)
-
-  useEffect(() => {
-    if (salesManagerList.length > 0) {
-      let data = salesManagerList?.map((item) => {
-        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
-      })
-      setSalesManagerListData(salesManagerListData.concat(data))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [salesManagerList])
-
+  const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [cardImage, setCardImage] = useState(LogoGrayData)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -237,8 +231,8 @@ export default function AppMarketCard() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: appStatusData?.leadPictureUri || null,
-      alt: '',
+      leadPictureUri: cardImage || '',
+      alt: appStatusData?.leadPictureUri || '',
     },
   }
 
@@ -249,10 +243,57 @@ export default function AppMarketCard() {
     trigger,
     setValue,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (salesManagerList.length > 0) {
+      let data = salesManagerList?.map((item) => {
+        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
+      })
+      reset(defaultValues)
+      setSalesManagerListData(salesManagerListData.concat(data))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [salesManagerList])
+
+  const cardImageData = getValues().uploadImage.leadPictureUri
+  useEffect(() => {
+    if (cardImageData !== LogoGrayData) {
+      const blobFile = new Blob([cardImageData], {
+        type: 'image/png',
+      })
+      setCardImage(URL.createObjectURL(blobFile))
+    }
+  }, [cardImageData])
+
+  useEffect(() => {
+    if (
+      appStatusData?.documents?.APP_LEADIMAGE &&
+      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
+    ) {
+      fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
+    }
+    reset(defaultValues)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appStatusData])
+
+  const fetchCardImage = async (documentId: string) => {
+    try {
+      const response = await fetchDocumentById(documentId).unwrap()
+      const file = response.data
+      return setCardImage(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
 
   const cardAppTitle =
     getValues().title ||
@@ -299,12 +340,18 @@ export default function AppMarketCard() {
       descriptions: [
         {
           languageCode: 'de',
-          longDescription: '',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionDE,
         },
         {
           languageCode: 'en',
-          longDescription: '',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionEN,
         },
       ],
@@ -327,6 +374,7 @@ export default function AppMarketCard() {
           dispatch(setAppId(appId))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
           buttonLabel === 'save' && setAppCardSnackbar(true)
+          dispatch(setAppStatus(fetchAppStatus))
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -357,6 +405,7 @@ export default function AppMarketCard() {
             dispatch(setAppId(result))
             buttonLabel === 'saveAndProceed' && dispatch(increment())
             buttonLabel === 'save' && setAppCardSnackbar(true)
+            dispatch(setAppStatus(fetchAppStatus))
           }
         })
         .catch(() => {
@@ -396,7 +445,7 @@ export default function AppMarketCard() {
           <Grid item md={3} className={'app-release-card'}>
             <Card
               image={{
-                src: cardImageSrc,
+                src: cardImage,
                 alt: cardImageAlt,
               }}
               title={cardAppTitle}

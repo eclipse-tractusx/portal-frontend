@@ -73,11 +73,7 @@ export default function AppPage() {
   const longDescriptionMaxLength = 2000
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
   const appStatusData: any = useSelector(appStatusDataSelector)
-
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const statusData = fetchAppStatus || appStatusData
 
   const defaultValues = {
     longDescriptionEN:
@@ -109,6 +105,10 @@ export default function AppPage() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataContractValue = getValues().uploadDataContract
@@ -234,7 +234,7 @@ export default function AppPage() {
           languageCode: 'en',
           longDescription: data.longDescriptionEN,
           shortDescription:
-            appStatusData?.descriptions?.filter(
+            statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
             )[0]?.shortDescription || '',
         },
@@ -242,7 +242,7 @@ export default function AppPage() {
           languageCode: 'de',
           longDescription: data.longDescriptionDE,
           shortDescription:
-            appStatusData?.descriptions?.filter(
+            statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
             )[0]?.shortDescription || '',
         },
@@ -257,6 +257,7 @@ export default function AppPage() {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       buttonLabel === 'saveAndProceed' && dispatch(increment())
       buttonLabel === 'save' && setAppPageSnackbar(true)
+      dispatch(setAppStatus(fetchAppStatus))
     } catch (error: any) {
       setAppPageNotification(true)
     }
