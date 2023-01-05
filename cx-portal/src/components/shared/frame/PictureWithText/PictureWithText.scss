@@ -27,9 +27,9 @@
 
   .text-with-button-wrapper {
     padding-left: 100px;
-    flex-direction: column;
-    display: flex;
-    align-items: start;
-    text-align: left;
+
+    button {
+      margin-top: 40px;
+    }
   }
 }
