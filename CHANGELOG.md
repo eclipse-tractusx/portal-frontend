@@ -49,6 +49,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * My Organisation Screen: missing app name
 * Refactor
    * Image gallery component
+* Updates - Connector
+   * Upload title missing
+   * Change "Cancel" to "Back" Button
+   * Add "Cancel" icon in 2nd connector overlay
+   * Add tooltips
+   * Update titles
 
 
 ## 0.10.0
