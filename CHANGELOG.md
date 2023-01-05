@@ -12,8 +12,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Feature - User Management - Add App Access Placeholders
 * Feature - User Management - App Access Table Column Heading Change
 * Feature - App Release Process
-   * Update of Step 4 to only handle the role upload
+   * Update of step 4 to only handle the role upload
    * Beta Test- Added preview content
+   * Business Logic & API - Document endpoint get and put PNG/JPEG
 * BugFix - Add user role for app not working fix
 * Updates
    * Style fix in Company roles page
@@ -46,12 +47,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * Home Screen: missing app name
    * My Organisation Screen: missing app name
-* Updates - Connector
-   * Upload title missing
-   * Change "Cancel" to "Back" Button
-   * Add "Cancel" icon in 2nd connector overlay
-   * Add tooltips
-   * Update titles
+
 
 ## 0.10.0
 

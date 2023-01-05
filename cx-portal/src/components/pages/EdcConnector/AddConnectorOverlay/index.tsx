@@ -37,11 +37,10 @@ import Box from '@mui/material/Box'
 interface AddCollectorOverlayProps {
   openDialog?: boolean
   connectorStep: number
-  handleOverlayClose: () => void
+  handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: (data: ConnectorType) => void
   onFormConfirmClick: (data: FormFieldsType) => void
   loading?: boolean
-  onStepChange: () => void
 }
 
 export type FormFieldsType = {
@@ -67,7 +66,6 @@ const AddConnectorOverlay = ({
   handleConfirmClick,
   onFormConfirmClick,
   loading,
-  onStepChange,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
 
@@ -120,12 +118,6 @@ const AddConnectorOverlay = ({
               ? t('content.edcconnector.modal.managed.intro')
               : t('content.edcconnector.modal.company.intro')
           }
-          closeWithIcon={true}
-          onCloseWithIcon={() => {
-            setSelected({})
-            handleOverlayClose()
-            reset(formFields)
-          }}
         />
         <DialogContent
           sx={{
@@ -148,19 +140,13 @@ const AddConnectorOverlay = ({
         <DialogActions>
           <Button
             variant="outlined"
-            onClick={() => {
-              if (connectorStep === 1) {
-                onStepChange()
-              } else {
-                setSelected({})
-                handleOverlayClose()
-                reset(formFields)
-              }
+            onClick={(e) => {
+              setSelected({})
+              handleOverlayClose(e)
+              reset(formFields)
             }}
           >
-            {connectorStep === 0
-              ? `${t('global.actions.cancel')}`
-              : `${t('global.actions.back')}`}
+            {`${t('global.actions.cancel')}`}
           </Button>
           {!loading && (
             <Button

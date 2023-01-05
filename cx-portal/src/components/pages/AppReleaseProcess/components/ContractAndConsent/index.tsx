@@ -71,6 +71,10 @@ export default function ContractAndConsent() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
 
   useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
     loadData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchConsentData, fetchAgreementData])
