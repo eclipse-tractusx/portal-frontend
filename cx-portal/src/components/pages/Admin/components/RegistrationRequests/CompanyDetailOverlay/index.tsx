@@ -259,7 +259,7 @@ const CompanyDetailOverlay = ({
                                 style={{
                                   textDecoration: 'underline',
                                   cursor: 'pointer',
-                                  fontSize: '16px',
+                                  fontSize: '14px',
                                   border: 'none',
                                   background: 'transparent',
                                   paddingLeft: '10px',
