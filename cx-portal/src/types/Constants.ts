@@ -175,7 +175,7 @@ export enum ROLES {
   MY_USER_ACCOUNT = 'my_user_account',
   ACTIVATE_SUBSCRIPTION = 'activate_subscription',
   APPROVE_APP_RELEASE = 'approve_app_release',
-  DECLINE_APP_RELEASE = 'decline_app_release'
+  DECLINE_APP_RELEASE = 'decline_app_release',
 }
 
 export enum HINTS {

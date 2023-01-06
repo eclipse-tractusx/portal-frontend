@@ -51,10 +51,7 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/apps/adminBoard',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchAppReleaseApps: builder.query<
-      AppResponse,
-      AppRequestBody
-    >({
+    fetchAppReleaseApps: builder.query<AppResponse, AppRequestBody>({
       query: (body) => {
         const statusId = `statusId=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
@@ -64,9 +61,8 @@ export const apiSlice = createApi({
           }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
         }
       },
-    })
+    }),
   }),
 })
 
-export const { useFetchAppReleaseAppsQuery } =
-  apiSlice
+export const { useFetchAppReleaseAppsQuery } = apiSlice

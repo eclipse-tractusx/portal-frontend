@@ -137,9 +137,7 @@ export default function AppSubscription() {
   //   [subscriptions]
   // )
 
-  const debouncedFilter = (expr: string) => {
-
-  }
+  const debouncedFilter = (expr: string) => {}
 
   const searchDataFn = useCallback(
     (expr: string) => {

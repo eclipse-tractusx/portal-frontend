@@ -32,11 +32,7 @@ import { OVERLAYS } from 'types/Constants'
 import './AdminBoard.scss'
 import { AppContent } from 'features/adminBoard/adminBoardApiSlice'
 
-export default function AdminBoardElements({
-  apps,
-}: {
-  apps?: AppContent[]
-}) {
+export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
   const theme = useTheme()
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -59,9 +55,7 @@ export default function AdminBoardElements({
     <div className="recommended-main">
       {apps && apps.length ? (
         <ul className="subscription-list">
-          {apps.map((subscriptionData) => 
-            'test'
-          )}
+          {apps.map((subscriptionData) => 'test')}
         </ul>
       ) : (
         <div className="loading-progress">
