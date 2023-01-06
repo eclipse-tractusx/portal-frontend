@@ -180,6 +180,7 @@ export const ConnectorFormInputField = ({
             tagSize="small"
             margin="none"
             filterOptionsArgs={filterOptionsArgs}
+            defaultValues={defaultValues}
           />
         )
     }}
@@ -190,7 +191,8 @@ export default function AppMarketCard() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
+  // const appId = useSelector(appIdSelector)
+  const appId = 'c80c2e5b-38cd-40e2-ade5-f37dfe58480c'
   const [pageScrolled, setPageScrolled] = useState(false)
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
@@ -235,6 +237,31 @@ export default function AppMarketCard() {
       alt: appStatusData?.leadPictureUri || '',
     },
   }
+
+  const [defaultVal, setDefaultVal] = useState<any[]>([])
+
+  useEffect(() => {
+    if (useCasesList.length > 0) {
+      console.log('appStatusDatauseCasesList,', useCasesList)
+      setDefaultVal(
+        useCasesList?.filter((item) =>
+          appStatusData?.useCase?.some((x) => x === item.name)
+        )
+      )
+    }
+  }, [useCasesList])
+
+  // let defaultVal=[{
+  //       "useCaseId": "6909ccc7-37c8-4088-99ab-790f20702460",
+  //       "name": "Business Partner Management",
+  //       "shortname": "BPDM"
+  //   },
+  //   {
+  //       "useCaseId": "c065a349-f649-47f8-94d5-1a504a855419",
+  //       "name": "Quality Management",
+  //       "shortname": "QM"
+  //   }
+  // ]
 
   const {
     handleSubmit,
@@ -679,6 +706,7 @@ export default function AppMarketCard() {
                     'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
+                  defaultValues: defaultVal,
                 }}
               />
             </div>
