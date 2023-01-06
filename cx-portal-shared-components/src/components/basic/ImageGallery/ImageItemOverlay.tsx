@@ -18,10 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Dialog } from '../Dialog'
-import { DialogContent } from '../Dialog/DialogContent'
-import { DialogHeader } from '../Dialog/DialogHeader'
+import MuiDialog from '@mui/material/Dialog'
+import MuiDialogTitle from '@mui/material/DialogTitle'
 import { ImageType } from './types'
+import { IconButton } from '../IconButton'
+import CloseIcon from '@mui/icons-material/Close'
+import { Box, useTheme } from '@mui/material'
+import MuiDialogContent from '@mui/material/DialogContent'
+import { Typography } from '../Typography'
 
 type ImageItemOverlayProps = {
   onClose: () => void
@@ -34,34 +38,67 @@ export default function ImageItemOverlay({
   shadow,
   onClose,
 }: ImageType & ImageItemOverlayProps) {
+  const { palette } = useTheme()
   return (
     <div>
-      <Dialog open={true}>
-        <DialogHeader
-          title={text || ''}
-          closeWithIcon={true}
-          onCloseWithIcon={() => {
-            if (onClose) onClose()
+      <MuiDialog
+        sx={{
+          '.MuiPaper-root': {
+            minWidth: '800px',
+            borderRadius: '4px',
+          },
+        }}
+        open={true}
+      >
+        <MuiDialogContent
+          sx={{
+            fontFamily: 'fontFamily',
+            textAlign: 'center',
+            padding: '0px',
           }}
-        />
-        <DialogContent>
+        >
           <div>
+            <IconButton
+              aria-label="close"
+              onClick={() => onClose()}
+              sx={{
+                position: 'absolute',
+                right: 16,
+                top: 16,
+                color: palette.action.active,
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
             <img
               src={url}
               alt={text}
               style={{
                 width: '100%',
                 height: '100%',
-                borderRadius: borderRadius ? '16px' : '0px',
-                objectFit: 'cover',
-                boxShadow: shadow
-                  ? '0px 10px 20px rgb(80 80 80 / 30%)'
-                  : 'none',
+                objectFit: 'contain',
               }}
             />
           </div>
-        </DialogContent>
-      </Dialog>
+          <div
+            style={{
+              background: '#b1b1b1',
+              padding: '10px 20px',
+              textAlign: 'left',
+              marginTop: '-10px',
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                color: '#111',
+              }}
+            >
+              {text}
+            </Typography>
+          </div>
+        </MuiDialogContent>
+      </MuiDialog>
     </div>
   )
 }

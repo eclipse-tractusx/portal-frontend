@@ -41,10 +41,10 @@ export const ImageGallery = ({
         key={image.text}
         url={image.url}
         text={image.text}
-        size={image.size}
-        hover={image.hover}
-        borderRadius={image.borderRadius}
-        shadow={image.shadow}
+        size={image.size || 'large-square'}
+        hover={image.hover || true}
+        borderRadius={image.borderRadius || true}
+        shadow={image.shadow || true}
       />
     ))}
   </div>

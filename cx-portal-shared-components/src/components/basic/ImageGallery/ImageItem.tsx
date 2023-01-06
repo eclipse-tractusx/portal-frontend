@@ -26,16 +26,16 @@ import { ImageType } from './types'
 export const ImageItem = ({
   url,
   text,
-  size = 'small-square',
-  hover = false,
+  size = 'large-square',
+  hover = true,
   borderRadius = true,
   shadow = true,
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
     let obj = {
-      width: '160px',
-      height: '160px',
+      width: '352px',
+      height: '352px',
     }
     switch (size) {
       case 'small-rectangle': {
@@ -87,14 +87,14 @@ export const ImageItem = ({
         />
       ) : (
         <div
-          onMouseEnter={() => hover && setHovered(true)}
+          onClick={() => hover && setHovered(true)}
           style={{
             width: getWidth().width,
             height: getWidth().height,
             boxShadow: shadow ? '0px 10px 20px rgb(80 80 80 / 30%)' : 'none',
             borderRadius: borderRadius ? '16px' : '0px',
-            objectFit: 'cover',
             marginBottom: '20px',
+            cursor: 'zoom-in',
           }}
         >
           <img
@@ -104,6 +104,7 @@ export const ImageItem = ({
               width: getWidth().width,
               height: getWidth().height,
               borderRadius: borderRadius ? '16px' : '0px',
+              objectFit: 'contain',
             }}
           />
           <Typography
