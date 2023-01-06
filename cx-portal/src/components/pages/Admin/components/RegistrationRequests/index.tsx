@@ -52,8 +52,6 @@ export default function RegistrationRequests() {
   const [selectedRequestId, setSelectedRequestId] = useState<string>()
   const [actionType, setActionType] = useState<string>('approve')
 
-  const [expr, setExpr] = useState<string>('')
-
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineRequestMutation()
   const [getDocumentById] = useFetchDocumentByIdMutation()
@@ -225,15 +223,12 @@ export default function RegistrationRequests() {
       <div className={'table-container'}>
         <RequestList
           fetchHook={useFetchCompanySearchQuery}
-          fetchHookArgs={{ expr }}
-          onSearch={setExpr}
           onApproveClick={onApproveClick}
           onDeclineClick={onDeclineClick}
           isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}
-          searchExpr={expr}
           showConfirmOverlay={(id: string) => {
             setSelectedRequestId(id)
             setEnableBpnInput(true)

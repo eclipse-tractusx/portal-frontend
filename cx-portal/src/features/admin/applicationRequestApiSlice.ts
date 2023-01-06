@@ -65,12 +65,30 @@ export const apiSlice = createApi({
       PaginResult<ApplicationRequest>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) =>
-        fetchArgs.args && fetchArgs.args.expr
-          ? `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
-              fetchArgs.page
-            }&companyName=${fetchArgs.args!.expr}`
-          : `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
+      query: (fetchArgs) => {
+        const isFetchArgs = fetchArgs.args && fetchArgs.args.expr
+        if (isFetchArgs && fetchArgs.args.statusFilter === '') {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+            fetchArgs.page
+          }&companyName=${fetchArgs.args!.expr}`
+        } else if (isFetchArgs && fetchArgs.args.statusFilter) {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+            fetchArgs.page
+          }&companyName=${
+            fetchArgs.args!.expr
+          }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
+        } else if (
+          fetchArgs.args &&
+          !fetchArgs.args.expr &&
+          fetchArgs.args.statusFilter
+        ) {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+            fetchArgs.page
+          }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
+        } else {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+        }
+      },
     }),
     fetchDocumentById: builder.mutation({
       query: (documentId) => ({

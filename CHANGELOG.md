@@ -20,10 +20,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Style fix in Company roles page
 * BugFix - Page break issue fix in app release process - step 2
 * BugFix - User Management - App Access assign multiple user with role
-* Registration Request
-   * Search moved to the center
-   * Filter feature enabled
-   * View update in Details overlay
 * Notification
    * Bug fix - Pick appropriate title from locale file
 * Use case
@@ -40,13 +36,18 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Identity Provider Management
    * Connect OIDC based company IdPs
    * Transfer existing users with roles between IdPs
-* BugFix - Connector
-   * Fixed issue on clicking info icon trigger delete action
-   * Show tooltip message on hover of info icon
-   * Enable authentication issue fix
+* Connector
+   * Bug fix - Fixed issue on clicking info icon trigger delete action
+   * Bug fix - Show tooltip message on hover of info icon
+   * Bug fix - Enable authentication issue fix
 * BugFix
    * Home Screen: missing app name
    * My Organisation Screen: missing app name
+* Registration Request
+   * Search moved to the center
+   * Filter feature enabled
+   * View update in Details overlay
+   * APIs added
 * Updates - Connector
    * Upload title missing
    * Change "Cancel" to "Back" Button
