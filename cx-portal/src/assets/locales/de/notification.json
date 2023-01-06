@@ -31,47 +31,19 @@
     "title": "Connector erfolgreich registriert",
     "content": "Der Konnektor {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
   },
-  "WelcomeInvite": {
-    "title": "Willkommen bei Catena-X!",
-    "content": "Hallo {{you}}! Ihr Unternehmen ist jetzt offiziell im Netzwerk registriert und Sie können jetzt Ihre technische Onboarding-Reise beginnen."
-  },
-  "WelcomeUser": {
-    "title": "Willkommen bei Catena-X!",
-    "content": "Hallo {{you}}! Du wurdest zu Catena-X hinzugefügt. Die Community heißt Sie herzlich willkommen und freut sich auf Ihre Beiträge."
-  },
-  "WelcomeAppMarketplace": {
-    "title": "Schauen Sie sich den App Marketplace an",
-    "content": "Erhalten Sie einen ersten Einblick in verfügbare Apps, folgen Sie uns einfach zum Marktplatz für Apps."
-  },
-  "NoConnector": {
-    "title": "Kein Konnektor registriert",
-    "content": "Sie haben bisher keinen registrierten Connector. Registrieren Sie Ihren Konnektor und nehmen Sie am Netzwerk teil."
-  },
-  "ConnectorRegistered": {
-    "title": "Connector erfolgreich registriert",
-    "content": "Der Konnektor {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
-  },
-  "NoUseCase": {
-    "title": "Anwendungsfälle auswählen",
-    "content": "Wählen Sie Ihre bevorzugten Anwendungsfälle aus, um das Netzwerk an Ihre Bedürfnisse anzupassen."
-  },
   "PersonalMessage": {
     "title": "Persönliche Nachricht",
     "content": "{{user}} schreibt"
   },
-  "AppRequestSubmitted": {
+  "APP_RELEASE_REQUEST": {
     "title": "App-Anfrage eingereicht",
     "content": "Hallo {{you}}, danke für deine Anfrage zur Genehmigung der App {{app}}. Wir werden Sie wissen lassen, wann es verarbeitet wurde."
   },
-  "AppRequestReceived": {
-    "title": "App-Anfrage empfangen",
-    "content": "Hey {{you}}, {{user}} hat die App {{app}} zur Genehmigung angefordert."
-  },
-  "AppRequestApproved": {
+  "APP_RELEASE_APPROVAL": {
     "title": "App-Anfrage genehmigt",
-    "content": "Ihre Anforderung für App {{app}} wurde erfolgreich genehmigt. Sie können nun damit beginnen, Benutzerberechtigungen über das Benutzerverwaltungspanel zuzuweisen."
+    "content": "Ihre Anfrage für App {{app}} wurde erfolgreich genehmigt. Sie können nun damit beginnen, Benutzerberechtigungen über das Benutzerverwaltungspanel zuzuweisen."
   },
-  "AppRequestRejeced": {
+  "APP_RELEASE_REJECTION": {
     "title": "App-Anfrage abgelehnt",
     "content": "Ihre Anfrage für App {{app}} wurde abgelehnt. Bei Fragen wenden Sie sich bitte an {{user}}."
   },
@@ -79,17 +51,33 @@
     "title": "Geänderte Geschäftsbedingungen",
     "content": "App {{app}} ist dabei, seine Allgemeinen Geschäftsbedingungen bis Ende des Monats zu ändern. Bitte werfen Sie einen Blick auf die aktualisierten AGB. Es bedarf keiner Einigung. Wenn Sie den App-Nutzungsvertrag nicht vor {{date}} kündigen, gelten automatisch die neuen Geschäftsbedingungen."
   },
-  "AppSubscriptionSubmitted": {
-    "title": "App-Abonnement eingereicht",
-    "content": "Hey {{you}}, deine Anfrage für das Abonnement der App {{app}} war erfolgreich."
+  "APP_ROLE_ADDED": {
+    "title": "App {{appName}} neue Userrollen wurden hinzugefügt.",
+    "content": "App {{appName}} got new roles added; check out the user management and assign new roles to your user group."
   },
-  "AppSubscriptionReceived": {
-    "title": "App-Abonnement anfordern",
-    "content": "Hey {{you}}, {{user}} ist daran interessiert, App {{app}} zu abonnieren und schreibt:"
+  "TECHNICAL_USER_CREATION": {
+    "title": "{{appName}} subscription created a new technical user",
+    "content": "This is a default text and will get enhanced later."
   },
-  "APP_RELEASE_REQUEST": {
-    "title": "App Release Anfrage",
-    "content": "Eine neue App Release Anfrage wurde gestellt. Review die Anfrage im App Release Board:"
+  "SERVICE_RELEASE_REQUEST": {
+    "title": "New service release request waiting for review",
+    "content": "A new service release request is available in the service management board. Please validate the request:"
+  },
+  "SERVICE_RELEASE_APPROVAL": {
+    "title": "Service release request approved",
+    "content": "Your release request for service offer {{serviceName}} was successfully approved and available on the service marketplace."
+  },
+  "SERVICE_RELEASE_REJECTION": {
+    "title": "Service release request rejected",
+    "content": "Your request for service offer {{serviceName}} got declined. Please recheck your service management board and solve the findings: {{personalMessage}}."
+  },
+  "SERVICE_REQUEST": {
+    "title": "Request for service subscription",
+    "content": "A new service subscription request for <1>{{offerName}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link...."
+  },
+  "SERVICE_ACTIVATION": {
+    "title": "Service request activated",
+    "content": "Your subscription for service offer {{serviceName}} is now active"
   },
   "link": {
     "appmarketplace": "Zum App Marketplace",
@@ -97,24 +85,27 @@
     "home": "Zur Startseite",
     "app": "Zur App",
     "user": "Zum Benutzer",
-    "usecases": "Zu den Use Cases"
+    "usecases": "Zu den Use Cases",
+    "serviceprovider": "Go to service provider",
+    "appmanagementboard": "Get there",
+    "servicemanagementboard": "Get there"
   },
   "due": "fällig",
-  "search": "Enter your search value",
+  "search": "...suchen",
   "cancelButton": "CANCEL",
   "deleteButton": "DELETE ALWAYS",
   "actionRequired": "Your action is required",
   "deleteModal": {
-    "title": "Delete Message",
+    "title": "Nachrichte löschen",
     "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
   },
   "sortOptions": {
-    "new": "Newest First",
-    "oldest": "Oldest First",
-    "unread": "Unread First",
-    "all": "all",
-    "app": "app only",
-    "info": "info only",
-    "withaction": "message with action required"
+    "new": "Neuste",
+    "oldest": "Älteste",
+    "unread": "Ungelesen",
+    "all": "Alle",
+    "app": "Apps",
+    "info": "Info's",
+    "withaction": "Action"
   }
 }

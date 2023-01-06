@@ -31,55 +31,62 @@ import './RequestListStyle.scss'
 
 export const RequestList = ({
   fetchHook,
-  fetchHookArgs,
-  onSearch,
   onApproveClick,
   onDeclineClick,
   isLoading,
   onTableCellClick,
   loaded,
   handleDownloadDocument,
-  searchExpr,
   showConfirmOverlay,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: any
-  onSearch?: (search: string) => void
   onApproveClick: (id: string) => void
   onDeclineClick: (id: string) => void
   isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
-  searchExpr?: string
   showConfirmOverlay?: any
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateApplicationRequestSelector)
-  const [group, setGroup] = useState<string>('')
-
+  const [group, setGroup] = useState<string>('InReview')
+  const [searchExpr, setSearchExpr] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState<string>('InReview')
+  const [fetchHookArgs, setFetchHookArgs] = useState({})
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
+    setFilterStatus(viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
   }
 
+  useEffect(() => {
+    if (onValidate(searchExpr)) {
+      setFetchHookArgs({
+        statusFilter: filterStatus,
+        expr: searchExpr,
+      })
+    }
+    // eslint-disable-next-line
+  }, [filterStatus, searchExpr])
+
   const filterView = [
     {
       buttonText: t('content.admin.registration-requests.filter.all'),
-      buttonValue: 'inactive',
-      onButtonClick: setView,
-    },
-    {
-      buttonText: t('content.admin.registration-requests.filter.review'),
       buttonValue: '',
       onButtonClick: setView,
     },
     {
+      buttonText: t('content.admin.registration-requests.filter.review'),
+      buttonValue: 'InReview',
+      onButtonClick: setView,
+    },
+    {
       buttonText: t('content.admin.registration-requests.filter.closed'),
-      buttonValue: 'active',
+      buttonValue: 'Closed',
       onButtonClick: setView,
     },
   ]
@@ -115,9 +122,10 @@ export const RequestList = ({
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (!onSearch || !onValidate(expr)) return
+          console.log(onValidate(expr))
+          if (!onValidate(expr)) return
           setRefresh(Date.now())
-          onSearch(expr)
+          setSearchExpr(expr)
         }}
         searchDebounce={1000}
         title={t('content.admin.registration-requests.tabletitle')}
