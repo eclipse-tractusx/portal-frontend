@@ -33,8 +33,6 @@ type ImageItemOverlayProps = {
 export default function ImageItemOverlay({
   url,
   text,
-  borderRadius,
-  shadow,
   onClose,
 }: ImageType & ImageItemOverlayProps) {
   const { palette } = useTheme()
