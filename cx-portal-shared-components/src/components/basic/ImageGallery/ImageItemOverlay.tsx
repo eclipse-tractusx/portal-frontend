@@ -19,11 +19,10 @@
  ********************************************************************************/
 
 import MuiDialog from '@mui/material/Dialog'
-import MuiDialogTitle from '@mui/material/DialogTitle'
 import { ImageType } from './types'
 import { IconButton } from '../IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import { Box, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import MuiDialogContent from '@mui/material/DialogContent'
 import { Typography } from '../Typography'
 
