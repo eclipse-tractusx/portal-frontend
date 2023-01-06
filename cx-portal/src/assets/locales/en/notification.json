@@ -58,7 +58,7 @@
   "TECHNICAL_USER_CREATION": {
     "title": "{{appName}} subscription created a new technical user",
     "content": "This is a default text and will get enhanced later."
-  },  
+  },
   "SERVICE_RELEASE_REQUEST": {
     "title": "New service release request waiting for review",
     "content": "A new service release request is available in the service management board. Please validate the request:"
