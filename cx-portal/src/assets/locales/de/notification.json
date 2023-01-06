@@ -85,9 +85,9 @@
     "home": "Zur Startseite",
     "app": "Zur App",
     "user": "Zum Benutzer",
-    "usecases": "Zu den Use Cases"
-    "serviceprovider": "Go to service provider"
-    "appmanagementboard": "Get there"
+    "usecases": "Zu den Use Cases",
+    "serviceprovider": "Go to service provider",
+    "appmanagementboard": "Get there",
     "servicemanagementboard": "Get there"
   },
   "due": "fällig",
