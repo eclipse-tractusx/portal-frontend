@@ -22,6 +22,7 @@ import {
   Button,
   Chip,
   IconButton,
+  LoadingButton,
   PageNotifications,
   PageSnackbar,
   Typography,
@@ -31,11 +32,21 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
+import {
+  useFetchAppStatusQuery,
+  useFetchRolesDataQuery,
+  useUpdateRoleDataMutation,
+} from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -55,6 +66,17 @@ export default function TechnicalIntegration() {
   // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
   // const [showUserButton, setShowUserButton] = useState(true)
 
+  const appId = useSelector(appIdSelector)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+  const fetchRolesData = useFetchRolesDataQuery(appId ?? '').data
+  const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
+  const [rolesResponse, setRolesResponse] = useState<any[]>([])
+
+  console.log(fetchRolesData)
+  console.log(rolesResponse)
+
   const defaultValues = {
     // To-Do : the below code will get enhanced again in R.3.1
     // clientId: '',
@@ -72,6 +94,10 @@ export default function TechnicalIntegration() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
@@ -95,6 +121,34 @@ export default function TechnicalIntegration() {
           setRolesPreviews(roles)
         }
         reader.readAsText(file)
+      })
+  }
+
+  const postRoles = async () => {
+    getValues().uploadAppRoles === '' && setEnableUploadAppRoles(true)
+
+    const updateRolesData: any = {
+      appId: appId,
+      body: rolesPreviews.map((item) => {
+        return {
+          role: item,
+          descriptions: [
+            {
+              languageCode: 'en',
+              description: '',
+            },
+          ],
+        }
+      }),
+    }
+
+    await updateRoleData(updateRolesData)
+      .unwrap()
+      .then((data) => {
+        setRolesResponse(data)
+      })
+      .catch(() => {
+        setTechnicalIntegrationNotification(true)
       })
   }
 
@@ -251,14 +305,15 @@ export default function TechnicalIntegration() {
         )}
 
         <Box textAlign="center">
-          <Button
+          {/* <Button
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
-            onClick={() => {
-              getValues().uploadAppRoles === ''
-                ? setEnableUploadAppRoles(true)
-                : setEnableUploadAppRoles(false)
-            }}
+            // onClick={() => {
+            //   getValues().uploadAppRoles === ''
+            //     ? setEnableUploadAppRoles(true)
+            //     : setEnableUploadAppRoles(false)
+            // }}
+            onClick={postRoles}
             // To-Do : the below code will get enhanced again in R.3.1
             // disabled={!createClientSuccess}
             // onClick={() => {
@@ -274,7 +329,38 @@ export default function TechnicalIntegration() {
               : t(
                   'content.apprelease.technicalIntegration.createThoseForYourApp'
                 )}
-          </Button>
+          </Button> */}
+
+          <LoadingButton
+            loading={isLoading}
+            variant="contained"
+            onButtonClick={postRoles}
+            sx={{
+              textAlign: 'center',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginTop: '30px',
+            }}
+            loadIndicator={
+              getValues().uploadAppRoles === ''
+                ? t(
+                    'content.apprelease.technicalIntegration.clickToOpenDialogBox'
+                  )
+                : t(
+                    'content.apprelease.technicalIntegration.createThoseForYourApp'
+                  )
+            }
+            label={
+              getValues().uploadAppRoles === ''
+                ? t(
+                    'content.apprelease.technicalIntegration.clickToOpenDialogBox'
+                  )
+                : t(
+                    'content.apprelease.technicalIntegration.createThoseForYourApp'
+                  )
+            }
+            fullWidth={false}
+          />
         </Box>
 
         {/* To-Do : the below code will get enhanced again in R.3.1 */}

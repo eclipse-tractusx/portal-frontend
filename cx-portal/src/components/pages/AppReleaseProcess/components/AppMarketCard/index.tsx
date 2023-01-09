@@ -191,8 +191,7 @@ export default function AppMarketCard() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const appId = useSelector(appIdSelector)
-  const appId = 'c80c2e5b-38cd-40e2-ade5-f37dfe58480c'
+  const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
   const useCasesList = useFetchUseCasesQuery().data || []
   const appLanguagesList = useFetchAppLanguagesQuery().data || []
@@ -215,7 +214,10 @@ export default function AppMarketCard() {
   const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+  const [defaultVal, setDefaultVal] = useState<any[]>([])
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -238,31 +240,6 @@ export default function AppMarketCard() {
     },
   }
 
-  const [defaultVal, setDefaultVal] = useState<any[]>([])
-
-  useEffect(() => {
-    if (useCasesList.length > 0) {
-      console.log('appStatusDatauseCasesList,', useCasesList)
-      setDefaultVal(
-        useCasesList?.filter((item) =>
-          appStatusData?.useCase?.some((x) => x === item.name)
-        )
-      )
-    }
-  }, [useCasesList])
-
-  // let defaultVal=[{
-  //       "useCaseId": "6909ccc7-37c8-4088-99ab-790f20702460",
-  //       "name": "Business Partner Management",
-  //       "shortname": "BPDM"
-  //   },
-  //   {
-  //       "useCaseId": "c065a349-f649-47f8-94d5-1a504a855419",
-  //       "name": "Quality Management",
-  //       "shortname": "QM"
-  //   }
-  // ]
-
   const {
     handleSubmit,
     getValues,
@@ -275,6 +252,19 @@ export default function AppMarketCard() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    if (useCasesList.length > 0) {
+      const defaultUseCaseIds: any = useCasesList?.filter((item) =>
+        appStatusData?.useCase?.some((x) => x === item.name)
+      )
+      setDefaultVal(defaultUseCaseIds)
+      setValue(
+        'useCaseCategory',
+        defaultUseCaseIds.map((id: { useCaseId: string }) => id.useCaseId)
+      )
+    }
+  }, [useCasesList, appStatusData, setValue])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
@@ -294,7 +284,7 @@ export default function AppMarketCard() {
   const cardImageData = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== LogoGrayData) {
-      const blobFile = new Blob([cardImageData], {
+      const blobFile = new Blob([getValues().uploadImage.leadPictureUri], {
         type: 'image/png',
       })
       setCardImage(URL.createObjectURL(blobFile))
@@ -423,7 +413,6 @@ export default function AppMarketCard() {
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
               .then(() => {
                 setFileStatus('upload_success')
-                dispatch(increment())
               })
               .catch(() => {
                 setFileStatus('upload_error')

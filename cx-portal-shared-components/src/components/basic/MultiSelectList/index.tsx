@@ -96,18 +96,19 @@ export const MultiSelectList = ({
           stringify: (option: any) => option[keyTitle],
         }
   )
-  console.log('defaultValues', defaultValues)
-  console.log('selected', selected)
 
   useEffect(() => {
-    console.log('useEffect items', items)
-    console.log('useEffect defaultValues', defaultValues)
-
-    if (items.length > 0) {
-      console.log('useEffect ifitems', items)
-      console.log('useEffect ifdefaultValues', defaultValues)
-      onAddItem(defaultValues)
+    if (defaultValues.length > 0) {
       setSelected(defaultValues)
+    }
+  }, [defaultValues])
+
+  useEffect(() => {
+    if (items.length > 0) {
+      if (defaultValues.length > 0) {
+        onAddItem(defaultValues)
+        setSelected(defaultValues)
+      }
     }
   }, [items])
 
