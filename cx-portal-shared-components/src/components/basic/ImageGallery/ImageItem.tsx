@@ -30,7 +30,7 @@ export const ImageItem = ({
   hover = true,
   borderRadius = true,
   shadow = true,
-  modalWidth
+  modalWidth,
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
@@ -88,38 +88,38 @@ export const ImageItem = ({
           modalWidth={modalWidth}
         />
       )}
-        <div
-          onClick={() => hover && setHovered(true)}
+      <div
+        onClick={() => hover && setHovered(true)}
+        style={{
+          width: getWidth().width,
+          height: getWidth().height,
+          boxShadow: shadow ? '0px 10px 20px rgb(80 80 80 / 30%)' : 'none',
+          borderRadius: borderRadius ? '16px' : '0px',
+          marginBottom: '20px',
+          cursor: 'zoom-in',
+        }}
+      >
+        <img
+          src={url}
+          alt={text}
           style={{
             width: getWidth().width,
             height: getWidth().height,
-            boxShadow: shadow ? '0px 10px 20px rgb(80 80 80 / 30%)' : 'none',
             borderRadius: borderRadius ? '16px' : '0px',
-            marginBottom: '20px',
-            cursor: 'zoom-in',
+            objectFit: 'contain',
+          }}
+        />
+        <Typography
+          variant="body2"
+          sx={{
+            color: '#888888',
+            margin: '5px 0',
+            fontSize: '14px',
           }}
         >
-          <img
-            src={url}
-            alt={text}
-            style={{
-              width: getWidth().width,
-              height: getWidth().height,
-              borderRadius: borderRadius ? '16px' : '0px',
-              objectFit: 'contain',
-            }}
-          />
-          <Typography
-            variant="body2"
-            sx={{
-              color: '#888888',
-              margin: '5px 0',
-              fontSize: '14px',
-            }}
-          >
-            {text}
-          </Typography>
-        </div>
+          {text}
+        </Typography>
+      </div>
     </>
   )
 }

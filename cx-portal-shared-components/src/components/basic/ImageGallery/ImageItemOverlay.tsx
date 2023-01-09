@@ -33,7 +33,7 @@ type ImageItemOverlayProps = {
 export default function ImageItemOverlay({
   url,
   text,
-  modalWidth = "600",
+  modalWidth = '600',
   onClose,
 }: ImageType & ImageItemOverlayProps) {
   const { palette } = useTheme()

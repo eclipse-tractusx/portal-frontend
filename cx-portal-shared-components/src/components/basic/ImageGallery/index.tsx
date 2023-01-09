@@ -24,7 +24,7 @@ import { ImageType } from './types'
 export const ImageGallery = ({
   gallery,
   grid = false,
-  modalWidth
+  modalWidth,
 }: {
   gallery: ImageType[]
   grid?: boolean
