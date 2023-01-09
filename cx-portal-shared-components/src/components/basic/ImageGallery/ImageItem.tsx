@@ -34,44 +34,43 @@ export const ImageItem = ({
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
-    let obj = {
-      width: '352px',
-      height: '352px',
-    }
     switch (size) {
-      case 'small-rectangle': {
-        obj.width = '320px'
-        obj.height = '160px'
-        return obj
-      }
-      case 'small-square': {
-        obj.width = '160px'
-        obj.height = '160px'
-        return obj
-      }
-      case 'medium-rectangle': {
-        obj.width = '512px'
-        obj.height = '256px'
-        return obj
-      }
-      case 'medium-square': {
-        obj.width = '256px'
-        obj.height = '256px'
-        return obj
-      }
-      case 'large-rectangle': {
-        obj.width = '712px'
-        obj.height = '352px'
-        return obj
-      }
-      case 'large-square': {
-        obj.width = '352px'
-        obj.height = '352px'
-        return obj
-      }
+      case 'small-rectangle':
+        return {
+          width: '320px',
+          height: '160px',
+        }
+      case 'small-square':
+        return {
+          width: '160px',
+          height: '160px',
+        }
+      case 'medium-rectangle':
+        return {
+          width: '512px',
+          height: '256px',
+        }
+      case 'medium-square':
+        return {
+          width: '256px',
+          height: '256px',
+        }
+      case 'large-rectangle':
+        return {
+          width: '712px',
+          height: '352px',
+        }
+      case 'large-square':
+        return {
+          width: '352px',
+          height: '352px',
+        }
 
       default:
-        return obj
+        return {
+          width: '352px',
+          height: '352px',
+        }
     }
   }
   return (
