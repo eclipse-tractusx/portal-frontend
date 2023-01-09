@@ -91,7 +91,8 @@ export default function Deactivate() {
                   buttonText=""
                   variant="minimal"
                   filledBackground={false}
-                  imageSize={'small'}
+                  imageShape="round"
+                  imageSize="small"
                 />
               </Box>
               <Checkbox
