@@ -158,13 +158,13 @@ export default function InviteBusinessPartner() {
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
-        <Typography variant="h3" mb={3} align="center">
+        <Typography variant="h2" mb={3} align="center">
           {t('content.invite.subHeaderTitle')}
         </Typography>
-        <Typography variant="body2" align="center">
+        <Typography variant="body1" align="center">
           {t('content.invite.inviteText1')}
         </Typography>
-        <Typography variant="body2" mb={3} align="center">
+        <Typography variant="body1" mb={3} align="center">
           {t('content.invite.inviteText2')}
         </Typography>
         <Button
