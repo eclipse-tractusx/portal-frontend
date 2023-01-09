@@ -54,6 +54,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add "Cancel" icon in 2nd connector overlay
    * Add tooltips
    * Update titles
+* User Management
+   * Updte - Page header
+* Notification
+   * Label color bug fix
 
 
 ## 0.10.0
