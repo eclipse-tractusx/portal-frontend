@@ -30,6 +30,7 @@ export const ImageItem = ({
   hover = true,
   borderRadius = true,
   shadow = true,
+  modalWidth
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
@@ -75,7 +76,7 @@ export const ImageItem = ({
   }
   return (
     <>
-      {hovered ? (
+      {hovered && (
         <ImageItemOverlay
           onClose={() => setHovered(false)}
           url={url}
@@ -84,8 +85,9 @@ export const ImageItem = ({
           hover={hover}
           borderRadius={borderRadius}
           shadow={shadow}
+          modalWidth={modalWidth}
         />
-      ) : (
+      )}
         <div
           onClick={() => hover && setHovered(true)}
           style={{
@@ -118,7 +120,6 @@ export const ImageItem = ({
             {text}
           </Typography>
         </div>
-      )}
     </>
   )
 }

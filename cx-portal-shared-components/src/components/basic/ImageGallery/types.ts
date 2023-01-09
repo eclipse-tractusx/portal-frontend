@@ -31,4 +31,5 @@ export type ImageType = {
   hover?: boolean
   borderRadius?: boolean
   shadow?: boolean
+  modalWidth?: string
 }

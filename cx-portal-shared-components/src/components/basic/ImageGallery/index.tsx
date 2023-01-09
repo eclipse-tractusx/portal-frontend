@@ -24,9 +24,11 @@ import { ImageType } from './types'
 export const ImageGallery = ({
   gallery,
   grid = false,
+  modalWidth
 }: {
   gallery: ImageType[]
   grid?: boolean
+  modalWidth?: string
 }) => (
   <div
     style={{
@@ -45,6 +47,7 @@ export const ImageGallery = ({
         hover={image.hover || true}
         borderRadius={image.borderRadius || true}
         shadow={image.shadow || true}
+        modalWidth={modalWidth}
       />
     ))}
   </div>

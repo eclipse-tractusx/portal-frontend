@@ -33,6 +33,7 @@ type ImageItemOverlayProps = {
 export default function ImageItemOverlay({
   url,
   text,
+  modalWidth = "600",
   onClose,
 }: ImageType & ImageItemOverlayProps) {
   const { palette } = useTheme()
@@ -41,7 +42,7 @@ export default function ImageItemOverlay({
       <MuiDialog
         sx={{
           '.MuiPaper-root': {
-            minWidth: '800px',
+            minWidth: `${modalWidth}px`,
             borderRadius: '4px',
           },
         }}
