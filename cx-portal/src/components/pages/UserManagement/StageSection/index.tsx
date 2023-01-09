@@ -20,13 +20,9 @@
 
 import { MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { useFetchIDPListQuery } from 'features/admin/idpApiSlice'
-import { updateIDPSelector } from 'features/control/updatesSlice'
 
 export default function SearchSection() {
   const { t } = useTranslation()
-  const update = useSelector(updateIDPSelector)
 
   return (
     <div className="stage-home">
