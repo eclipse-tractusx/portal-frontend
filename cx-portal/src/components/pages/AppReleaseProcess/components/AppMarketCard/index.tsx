@@ -35,7 +35,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, SetStateAction } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -63,6 +63,7 @@ import {
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
+import uniqBy from 'lodash/uniqBy'
 
 type FormDataType = {
   title: string
@@ -202,12 +203,13 @@ export default function AppMarketCard() {
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
-  const [defaultSalesManagerValue] = useState<salesManagerType>({
-    userId: null,
-    firstName: 'none',
-    lastName: '',
-    fullName: 'none',
-  })
+  const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
+    useState<salesManagerType>({
+      userId: null,
+      firstName: 'none',
+      lastName: '',
+      fullName: 'none',
+    })
   const [salesManagerListData, setSalesManagerListData] = useState<
     salesManagerType[]
   >([defaultSalesManagerValue])
@@ -217,7 +219,8 @@ export default function AppMarketCard() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const [defaultVal, setDefaultVal] = useState<any[]>([])
+  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
+  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -225,7 +228,7 @@ export default function AppMarketCard() {
     useCaseCategory: appStatusData?.useCase,
     appLanguage: appStatusData?.supportedLanguageCodes,
     //To do: to be changed once api is available
-    salesManagerId: salesManagerId,
+    salesManagerId: appStatusData?.salesManagerId || null,
     shortDescriptionEN:
       appStatusData?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
@@ -258,13 +261,27 @@ export default function AppMarketCard() {
       const defaultUseCaseIds: any = useCasesList?.filter((item) =>
         appStatusData?.useCase?.some((x) => x === item.name)
       )
-      setDefaultVal(defaultUseCaseIds)
+      setDefaultUseCaseVal(defaultUseCaseIds)
       setValue(
         'useCaseCategory',
         defaultUseCaseIds.map((id: { useCaseId: string }) => id.useCaseId)
       )
     }
-  }, [useCasesList, appStatusData, setValue])
+    if (appLanguagesList.length > 0) {
+      const defaultAppLanguages: any = appLanguagesList?.filter((item) =>
+        appStatusData?.supportedLanguageCodes?.some(
+          (x) => x === item.languageShortName
+        )
+      )
+      setDefaultAppLanguageVal(defaultAppLanguages)
+      setValue(
+        'appLanguage',
+        defaultAppLanguages.map(
+          (id: { languageShortName: string }) => id.languageShortName
+        )
+      )
+    }
+  }, [useCasesList, appStatusData, setValue, appLanguagesList])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
@@ -276,10 +293,26 @@ export default function AppMarketCard() {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
       reset(defaultValues)
-      setSalesManagerListData(salesManagerListData.concat(data))
+      const uniqueSalesManagerList = uniqBy(
+        salesManagerListData.concat(data),
+        'userId'
+      )
+      setSalesManagerListData(uniqueSalesManagerList)
+
+      if (appStatusData?.salesManagerId) {
+        const defaultsalesMgr: any = uniqueSalesManagerList?.filter(
+          (item) => item.userId === appStatusData?.salesManagerId
+        )
+        onSalesManagerChange(defaultsalesMgr[0].userId)
+        setDefaultSalesManagerValue(defaultsalesMgr[0])
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [salesManagerList])
+  }, [salesManagerList, appStatusData])
+
+  const onSalesManagerChange = (sales: SetStateAction<string | null>) => {
+    setSalesManagerId(sales)
+  }
 
   const cardImageData = getValues().uploadImage.leadPictureUri
   useEffect(() => {
@@ -695,7 +728,7 @@ export default function AppMarketCard() {
                     'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
-                  defaultValues: defaultVal,
+                  defaultValues: defaultUseCaseVal,
                 }}
               />
             </div>
@@ -741,6 +774,7 @@ export default function AppMarketCard() {
                       option.languageLongNames.de +
                       option.languageLongNames.en,
                   },
+                  defaultValues: defaultAppLanguageVal,
                 }}
               />
             </div>
@@ -762,9 +796,7 @@ export default function AppMarketCard() {
                 placeholder={t(
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
-                onChangeItem={(e) => {
-                  setSalesManagerId(e.userId)
-                }}
+                onChangeItem={(e) => onSalesManagerChange(e.userId)}
                 keyTitle={'fullName'}
               />
             </div>
