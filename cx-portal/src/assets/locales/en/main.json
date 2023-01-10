@@ -404,7 +404,7 @@
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {
-                    "name": {
+          "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
             "error": "Connector name is mandatory. Length should be between 2 and 20",
@@ -432,19 +432,6 @@
             "label": "Public Authentication Key Upload*",
             "error": "Please use a valid type. E.g. .pem; .cert",
             "tooltipMsg": "Public key"
-          }
-          },
-          "create": {
-            "successTitle": "Create connector successfully completed",
-            "successDescription": "Create connector successfully completed.",
-            "errorTitle": "Something went wrong",
-            "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
-          },
-          "delete": {
-            "successTitle": "Delete connector successfully completed",
-            "successDescription": "Delete connector successfully completed.",
-            "errorTitle": "Something went wrong",
-            "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
           }
         },
         "create": {
