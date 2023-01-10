@@ -56,6 +56,7 @@ export interface CardProps
   submenuOptions?: SubItems[]
   submenuClick?: any
   tooltipText?: string
+  showStatus?: boolean
 }
 
 export const Card = ({
@@ -87,6 +88,7 @@ export const Card = ({
   submenuOptions,
   submenuClick,
   tooltipText = '',
+  showStatus = true,
 }: CardProps) => {
   const { shape, shadows } = useTheme()
   const [variant, setVariant] = useState(variantProp as Variants)
@@ -220,7 +222,7 @@ export const Card = ({
           />
         </Box>
         <Box sx={{ marginBottom: '30px' }}>
-          {statusText && imageSize === 'small' && (
+          {statusText && imageSize === 'small' && showStatus && (
             <Box
               sx={{
                 padding: '15px',
