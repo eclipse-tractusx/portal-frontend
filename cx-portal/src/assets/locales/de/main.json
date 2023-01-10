@@ -430,7 +430,7 @@
           },
           "doc": {
             "label": "Public Authentication Key Upload*",
-            "error": "Please use a valid type. E.g. .pen; .cert",
+            "error": "Please use a valid type. E.g. .pem; .cert",
             "tooltipMsg": "Public key"
           }
         },
