@@ -93,6 +93,7 @@ export default function Deactivate() {
                   filledBackground={false}
                   imageShape="round"
                   imageSize="small"
+                  showStatus={false}
                 />
               </Box>
               <Checkbox
