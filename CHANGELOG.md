@@ -58,6 +58,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Updte - Page header
 * Notification
    * Label color bug fix
+* AppOverview
+   * BugFix - Navigation to App release process issue fix
 
 
 ## 0.10.0
