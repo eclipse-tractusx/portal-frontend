@@ -50,7 +50,6 @@ export type SubscriptionServiceRequest = {
 
 export type ServiceRequest = {
   method: string
-  providerId: string
   body: {
     url: string
   }
@@ -60,13 +59,12 @@ export const apiSlice = createApi({
   reducerPath: 'rtk/apps/serviceprovider',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchServiceProvider: builder.query<ServiceProviderAPIResponse, string>({
-      query: (providerId) =>
-        `/api/administration/serviceprovider/owncompany/${providerId}`,
+    fetchServiceProvider: builder.query<ServiceProviderAPIResponse, void>({
+      query: () => `/api/administration/serviceprovider/owncompany`,
     }),
     addServiceProvider: builder.mutation<void, ServiceRequest>({
       query: (data) => ({
-        url: `/api/administration/serviceprovider/owncompany/${data.providerId}`,
+        url: `/api/administration/serviceprovider/owncompany`,
         method: data.method,
         body: data.body,
       }),
