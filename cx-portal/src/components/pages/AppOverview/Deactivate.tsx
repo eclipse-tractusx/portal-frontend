@@ -65,7 +65,7 @@ export default function Deactivate() {
   }
 
   return (
-    <main>
+    <main className="deactivate-main">
       <PageHeader title={app[0].title} topPage={true} headerHeight={200}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
@@ -79,16 +79,18 @@ export default function Deactivate() {
         <Typography variant="body2" align="center">
           {t('content.deactivate.description')}
         </Typography>
-        {app && (
-          <>
-            <Box sx={{ display: 'flex', margin: '100px 0' }}>
+      </section>
+      <div className="mainContainer">
+        <div className="mainRow">
+          {app && (
+            <Box sx={{ display: 'flex' }}>
               <Box sx={{ width: '50%' }}>
                 <Cards
                   items={app}
                   columns={1}
                   buttonText=""
                   variant="minimal"
-                  filledBackground={true}
+                  filledBackground={false}
                   imageSize={'small'}
                 />
               </Box>
@@ -98,49 +100,52 @@ export default function Deactivate() {
                 onChange={(e) =>
                   e.target.checked ? setChecked(true) : setChecked(false)
                 }
-                sx={{ marginLeft: '60px !important' }}
+                className="checkbox-input"
               />
             </Box>
-            <Box sx={{ position: 'relative' }}>
-              <Button
-                color="secondary"
-                size="small"
-                onClick={() => navigate('/appoverview')}
-              >
-                {t('global.actions.cancel')}
-              </Button>
-              <Tooltips
-                tooltipPlacement="bottom-start"
-                tooltipText={
-                  !checked ? t('content.deactivate.checkboxErrorMsg') : ''
-                }
-                children={
-                  <span style={{ position: 'absolute', right: '10px' }}>
-                    {isLoading ? (
-                      <LoadingButton
-                        size="small"
-                        loading={isLoading}
-                        variant="contained"
-                        onButtonClick={() => {}}
-                        loadIndicator="Loading..."
-                        label={`${t('global.actions.confirm')}`}
-                      ></LoadingButton>
-                    ) : (
-                      <Button
-                        size="small"
-                        variant="contained"
-                        disabled={!checked}
-                        onClick={handleSaveClick}
-                      >
-                        {t('global.actions.save')}
-                      </Button>
-                    )}
-                  </span>
-                }
-              />
-            </Box>
-          </>
-        )}
+          )}
+        </div>
+      </div>
+      <section>
+        <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
+        <Box sx={{ position: 'relative', marginTop: '30px' }}>
+          <Button
+            color="secondary"
+            size="small"
+            onClick={() => navigate('/appoverview')}
+          >
+            {t('global.actions.cancel')}
+          </Button>
+          <Tooltips
+            tooltipPlacement="bottom-start"
+            tooltipText={
+              !checked ? t('content.deactivate.checkboxErrorMsg') : ''
+            }
+            children={
+              <span style={{ position: 'absolute', right: '10px' }}>
+                {isLoading ? (
+                  <LoadingButton
+                    size="small"
+                    loading={isLoading}
+                    variant="contained"
+                    onButtonClick={() => {}}
+                    loadIndicator="Loading..."
+                    label={`${t('global.actions.confirm')}`}
+                  ></LoadingButton>
+                ) : (
+                  <Button
+                    size="small"
+                    variant="contained"
+                    disabled={!checked}
+                    onClick={handleSaveClick}
+                  >
+                    {t('global.actions.save')}
+                  </Button>
+                )}
+              </span>
+            }
+          />
+        </Box>
       </section>
     </main>
   )

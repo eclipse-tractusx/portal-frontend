@@ -68,7 +68,7 @@ export const appIdSelector = (state: RootState): string =>
 export const appStatusDataSelector = (state: RootState): AppStatusDataState =>
   state.management.appStatusData
 
-export const { increment, decrement, setCurrentActiveStep } =
+export const { increment, decrement, setCurrentActiveStep, setApplicationId } =
   managementSlice.actions
 
 export default managementSlice
