@@ -26,9 +26,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Feature
 * Use case introduction page released
 * Shared Components
-  * created Side List component
-  * created Draggable Chip component
-  * created static page templates for introduction pages
+  * created "Side List" component
+  * created "Draggable Chip" component
+  * created "Static Page" templates for introduction pages
 * App Release Process
    * step 4 limited to role upload/handling only
    * step 5 Beta Test page updated with preview content for future releases
@@ -46,7 +46,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * user migration function enabled to support migration of users from one idp to another
 
 ### Technical Support
-Portal asset repo image drag disabled for all transactional images (such as app images)
+Portal asset repo image drag disabled for all transactional images (such as app images) ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
 
 ### Bugfix
 * User Management: assign multiple users to an role got fixed
