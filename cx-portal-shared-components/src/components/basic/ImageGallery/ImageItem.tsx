@@ -60,12 +60,6 @@ export const ImageItem = ({
           width: '712px',
           height: '352px',
         }
-      case 'large-square':
-        return {
-          width: '352px',
-          height: '352px',
-        }
-
       default:
         return {
           width: '352px',
