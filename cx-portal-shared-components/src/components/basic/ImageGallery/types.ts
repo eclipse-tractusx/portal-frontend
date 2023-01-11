@@ -21,4 +21,15 @@
 export type ImageType = {
   url: string
   text: string
+  size?:
+    | 'small-rectangle'
+    | 'small-square'
+    | 'medium-rectangle'
+    | 'medium-square'
+    | 'large-rectangle'
+    | 'large-square'
+  hover?: boolean
+  borderRadius?: boolean
+  shadow?: boolean
+  modalWidth?: string
 }

@@ -43,6 +43,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * Home Screen: missing app name
    * My Organisation Screen: missing app name
+* Refactor
+   * Image gallery component
 * Registration Request
    * Search moved to the center
    * Filter feature enabled
