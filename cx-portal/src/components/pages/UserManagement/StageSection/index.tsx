@@ -32,7 +32,7 @@ export default function SearchSection() {
         headerHeight={600}
         subTitleWidth={787}
         background="LinearGradient1"
-        imagePath="./home-stage-desktop.png"
+        imagePath="./Frame.svg"
       />
     </div>
   )
