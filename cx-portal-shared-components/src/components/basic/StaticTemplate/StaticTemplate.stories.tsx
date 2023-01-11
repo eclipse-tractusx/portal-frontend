@@ -36,7 +36,7 @@ export const TextImageTemplates = Template.bind({})
 TextImageTemplates.args = {
   sectionInfo: [
     {
-      title: 'Intro to Traceability',
+      title: 'Intro headline',
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       videoUrl: 'https://www.youtube.com/embed/g-NVjP2srw4',
@@ -45,7 +45,7 @@ TextImageTemplates.args = {
       template: 'TextVideoSideBySide',
     },
     {
-      title: 'Intro to Traceability',
+      title: 'Intro headline',
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       videoUrl: 'https://www.youtube.com/embed/g-NVjP2srw4',
