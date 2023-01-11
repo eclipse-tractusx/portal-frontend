@@ -172,9 +172,9 @@ GridTemplates.args = {
       ],
     },
     {
-      title: 'Marketplace',
+      title: 'Section Title',
       description:
-        'The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.',
+        'description such as an introduction or explaination / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards',
       imageUrl:
         'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       backgroundColor: '#FFFFFF',
@@ -182,57 +182,57 @@ GridTemplates.args = {
       template: 'TextImageSideBySideWithCardGrid',
       detailsWithImageRow1: [
         {
-          title: 'App Marketplace',
+          title: 'Card Title 1',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
           description:
-            'The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.',
-          readMore: '/appmarketplace',
+            'description such as an introduction or explaination / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards',
+          readMore: '/help',
           readMoreTitle: 'Details',
           backgroundColor: '#F9F9F9',
         },
         {
-          title: 'Service Marketplace',
+          title: 'Card Title 2',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
           description:
-            'The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.',
-          readMore: '/servicemarketplace',
+            'description such as an introduction or explaination / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards',
+          readMore: '/help',
           backgroundColor: '#F9F9F9',
         },
         {
-          title: 'Service Marketplace',
+          title: 'Card Title 3',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
           description:
-            'The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.',
-          readMore: '/servicemarketplace',
+            'description such as an introduction or explaination / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards - description such as an introduction or explanation / subscription of the following cards',
+          readMore: '/help',
           readMoreTitle: 'Details',
           backgroundColor: '#F9F9F9',
         },
       ],
       detailsWithoutImageRow1: [
         {
-          title: 'to be defined',
-          imageUrl:
-            'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-          description: 'to be defined',
+          title: 'Card Title 1',
+          imageUrl:'',
+          description: 'Card element description, with limited size.',
           readMore: '',
-          backgroundColor: '#FFFFFF',
-        },
-        {
-          title: 'How to get to the app marketplace',
-          imageUrl: '',
-          description: 'to get to the marketplace, just follow the link below',
-          readMore: '/appmarketplace',
           readMoreTitle: 'Details',
           backgroundColor: '#FFFFFF',
         },
         {
-          title: 'How to get to the service marketplace',
+          title: 'Card Title 2',
           imageUrl: '',
-          description: 'to get to the marketplace, just follow the link below',
-          readMore: '/servicemarketplace',
+          description: 'Card element description, with limited size.',
+          readMore: '',
+          readMoreTitle: 'Details',
+          backgroundColor: '#FFFFFF',
+        },
+        {
+          title: 'Card Title 3',
+          imageUrl: '',
+          description: 'Card element description, with limited size.',
+          readMore: '',
           readMoreTitle: 'Details',
           backgroundColor: '#FFFFFF',
         },
