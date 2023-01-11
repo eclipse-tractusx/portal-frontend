@@ -54,7 +54,7 @@ TextImageTemplates.args = {
       template: 'VideoTextSideBySide',
     },
     {
-      title: 'How to contribute to traceability and why?',
+      title: 'Headline / Question',
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       imageUrl:
@@ -64,7 +64,7 @@ TextImageTemplates.args = {
       template: 'TextImageCenterAligned',
     },
     {
-      title: 'How to contribute to traceability and why?',
+      title: 'Headline / Question',
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       backgroundColor: '#F9F9F9',
@@ -72,7 +72,7 @@ TextImageTemplates.args = {
       template: 'TextCenterAligned',
     },
     {
-      title: 'How to contribute to traceability and why?',
+      title: 'Headline / Question',
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       imageUrl:
