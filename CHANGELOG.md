@@ -5,7 +5,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
-## 1.0.0 RC-1
+## 1.0.0-RC1
 
 ### Change
 * User management
@@ -13,7 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * user table headlines updated
    * updated page header size and image
 * Updates - Connector
-   * overlays updated (dropzone headline added; chnaged "Cancel" to "Back" Button, add top right cancel icon inside the overlay)
+   * overlays updated (dropzone headline added; changed "Cancel" to "Back" Button, add top right cancel icon inside the overlay)
    * tooltips added for connector table to explain status icons
 * Registration Request Approval Board
    * page layout updated
@@ -21,7 +21,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * company data details overlay extended with company role and documents
 * Notification
    * Badge count added inside the user icon sub-navigation
-   * notfication message title and content updated by supporting new technical keys
+   * notification message title and content updated by supporting new technical keys
 
 ### Feature
 * Use case introduction page released
@@ -34,7 +34,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * step 5 Beta Test page updated with preview content for future releases
    * app card component of step 1 connected with the leadimage load element to display the leadimage inside the card in realtime
 * App Change Process released
-   * created ceactivate sub-menu component in App Provider Overview Page
+   * created deactivate sub-menu component in App Provider Overview Page
    * created app deactivate page and connected the app/deactivation api
 * App Subscription Management Board for app providers got newly released
    * overview of active app subscriptions and new requests
