@@ -104,14 +104,13 @@ export const Table = ({
   const handleOnCellClick = useCallback(
     (selectedIds) => {
       const idsArr: Array<string> = []
-      selectedIds = selectedIds.map((id: string) =>
-        id.substring(0, id.length - 1)
-      )
-      rows.map(
-        (row) =>
-          selectedIds.indexOf(row.companyUserId) > -1 &&
-          idsArr.push(row.companyUserId)
-      )
+      rows.map((row) => {
+        return selectedIds.map(
+          (selectedId: string) =>
+            selectedId.indexOf(row.companyUserId) > -1 &&
+            idsArr.push(row.companyUserId)
+        )
+      })
       onSelection && onSelection(idsArr)
     },
     [rows, onSelection]
