@@ -22,16 +22,19 @@ import { Button } from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
+import NewDropzoneTest from './index.newdropzone'
 
 export default function Test() {
   const dispatch = useDispatch()
-
   return (
     <main>
       <section>
         <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
           {'Sample Form'}
         </Button>
+      </section>
+      <section>
+        <NewDropzoneTest />
       </section>
     </main>
   )

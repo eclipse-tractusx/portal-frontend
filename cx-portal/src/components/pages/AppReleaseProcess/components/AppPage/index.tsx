@@ -23,6 +23,8 @@ import {
   Typography,
   IconButton,
   PageNotifications,
+  UploadFileStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
@@ -63,6 +65,7 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const [appPageNotification, setAppPageNotification] = useState(false)
+  const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -70,19 +73,15 @@ export default function AppPage() {
   const longDescriptionMaxLength = 2000
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
   const appStatusData: any = useSelector(appStatusDataSelector)
-
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const statusData = fetchAppStatus || appStatusData
 
   const defaultValues = {
     longDescriptionEN:
-      appStatusData?.descriptions?.filter(
+      fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
       )[0].longDescription || '',
     longDescriptionDE:
-      appStatusData?.descriptions?.filter(
+      fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0].longDescription || '',
     images: null,
@@ -90,9 +89,9 @@ export default function AppPage() {
     uploadTechnicalGuide: null,
     uploadDataContract: null,
     uploadAppContract: null,
-    providerHomePage: appStatusData?.providerUri || '',
-    providerContactEmail: appStatusData?.contactEmail || '',
-    providerPhoneContact: appStatusData?.contactNumber || '',
+    providerHomePage: fetchAppStatus?.providerUri || '',
+    providerContactEmail: fetchAppStatus?.contactEmail || '',
+    providerPhoneContact: fetchAppStatus?.contactNumber || '',
   }
 
   const {
@@ -100,11 +99,16 @@ export default function AppPage() {
     getValues,
     control,
     trigger,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataContractValue = getValues().uploadDataContract
@@ -112,41 +116,82 @@ export default function AppPage() {
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
   const imagesValue = getValues().images
 
+  const setFileStatus = (
+    fieldName: Parameters<typeof setValue>[0],
+    status: UploadFileStatus
+  ) => {
+    const value = getValues(fieldName)
+
+    setValue(fieldName, {
+      name: value.name,
+      size: value.size,
+      status,
+    } as any)
+  }
+
   useEffect(() => {
-    if (getValues().uploadAppContract !== null)
-      uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
+    const value = getValues().uploadAppContract
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadAppContract', 'uploading')
+
+      uploadDocumentApi(appId, 'APP_CONTRACT', value)
+        .then(() => setFileStatus('uploadAppContract', 'upload_success'))
+        .catch(() => setFileStatus('uploadAppContract', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadAppContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataContract !== null)
-      uploadDocumentApi(appId, 'APP_DATA_DETAILS', uploadDataContractValue)
+    const value = getValues().uploadDataContract
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadDataContract', 'uploading')
+
+      uploadDocumentApi(appId, 'APP_DATA_DETAILS', value)
+        .then(() => setFileStatus('uploadDataContract', 'upload_success'))
+        .catch(() => setFileStatus('uploadDataContract', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataPrerequisits !== null)
-      uploadDocumentApi(
-        appId,
-        'ADDITIONAL_DETAILS',
-        uploadDataPrerequisitsValue
-      )
+    const value = getValues().uploadDataPrerequisits
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadDataPrerequisits', 'uploading')
+
+      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', value)
+        .then(() => setFileStatus('uploadDataPrerequisits', 'upload_success'))
+        .catch(() => setFileStatus('uploadDataPrerequisits', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataPrerequisitsValue])
 
   useEffect(() => {
-    if (getValues().uploadTechnicalGuide !== null)
-      uploadDocumentApi(
-        appId,
-        'APP_TECHNICAL_INFORMATION',
-        uploadTechnicalGuideValue
-      )
+    const value = getValues().uploadTechnicalGuide
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadTechnicalGuide', 'uploading')
+
+      uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
+        .then(() => setFileStatus('uploadDataPrerequisits', 'upload_success'))
+        .catch(() => setFileStatus('uploadTechnicalGuide', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
 
   useEffect(() => {
-    if (getValues().images !== null)
-      uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
+    const value = getValues().images
+
+    if (value && !('status' in value)) {
+      setFileStatus('images', 'uploading')
+
+      // TODO: the API endpoint should support multiple images? Or is just one image allowed?
+      uploadDocumentApi(appId, 'APP_IMAGE', value)
+        .then(() => setFileStatus('images', 'upload_success'))
+        .catch(() => setFileStatus('images', 'upload_error'))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagesValue])
 
@@ -161,12 +206,10 @@ export default function AppPage() {
       body: { file },
     }
 
-    try {
-      await updateDocumentUpload(data).unwrap()
-    } catch (error) {}
+    return updateDocumentUpload(data).unwrap()
   }
 
-  const onAppPageSubmit = async (data: FormDataType) => {
+  const onAppPageSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
@@ -180,28 +223,28 @@ export default function AppPage() {
       'providerPhoneContact',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       descriptions: [
         {
           languageCode: 'en',
           longDescription: data.longDescriptionEN,
           shortDescription:
-            appStatusData?.descriptions?.filter(
+            statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0].shortDescription || '',
+            )[0]?.shortDescription || '',
         },
         {
           languageCode: 'de',
           longDescription: data.longDescriptionDE,
           shortDescription:
-            appStatusData?.descriptions?.filter(
+            statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
-            )[0].shortDescription || '',
+            )[0]?.shortDescription || '',
         },
       ],
       images: [],
@@ -212,7 +255,9 @@ export default function AppPage() {
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
-      dispatch(increment())
+      buttonLabel === 'saveAndProceed' && dispatch(increment())
+      buttonLabel === 'save' && setAppPageSnackbar(true)
+      dispatch(setAppStatus(fetchAppStatus))
     } catch (error: any) {
       setAppPageNotification(true)
     }
@@ -320,7 +365,7 @@ export default function AppPage() {
                 'image/png': [],
                 'image/jpeg': [],
               },
-              maxFilesToUpload: 3,
+              maxFilesToUpload: 3, // TODO: the API endpoint should support multiple images? Or is just one image allowed?
               maxFileSize: 819200,
               rules: {
                 required: {
@@ -362,7 +407,7 @@ export default function AppPage() {
                   name: item,
                   type: 'dropzone',
                   acceptFormat: {
-                    'text/pdf': ['.pdf'],
+                    'application/pdf': ['.pdf'],
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
@@ -516,6 +561,15 @@ export default function AppPage() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appPageSnackbar}
+          onCloseNotification={() => setAppPageSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           sx={{ mr: 1 }}
@@ -531,7 +585,9 @@ export default function AppPage() {
           sx={{ float: 'right' }}
           variant="contained"
           disabled={!isValid}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) =>
+            onAppPageSubmit(data, 'saveAndProceed')
+          )}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -539,7 +595,7 @@ export default function AppPage() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

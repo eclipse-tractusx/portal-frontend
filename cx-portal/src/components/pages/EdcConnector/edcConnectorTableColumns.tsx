@@ -18,34 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import Box from '@mui/material/Box'
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from 'cx-portal-shared-components'
+import { Tooltips, Typography } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import { Grid, Container } from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock'
+import Box from '@mui/material/Box'
+import { ConnectorContentAPIResponse } from 'features/connector/types'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
-  translationHook: any
+  translationHook: any,
+  onDelete: (row: ConnectorContentAPIResponse) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
-  const [isHover, setIsHover] = useState(false)
-
-  const handleMouseEnter = () => {
-    setIsHover(true)
-  }
-  const handleMouseLeave = () => {
-    setIsHover(false)
-  }
 
   return [
     {
       field: 'name',
       headerName: t('content.edcconnector.columns.name'),
       flex: 1,
+      disableColumnMenu: true,
       sortable: false,
     },
     {
@@ -53,77 +46,103 @@ export const ConnectorTableColumns = (
       headerName: t('content.edcconnector.columns.location'),
       flex: 0.5,
       sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: ({ row }: { row: any }) => (
+        <Typography variant="body2">{row.location}</Typography>
+      ),
     },
     {
       field: 'type',
       headerName: t('content.edcconnector.columns.type'),
       flex: 1,
       sortable: false,
+      disableColumnMenu: true,
+      renderCell: ({ row }: { row: any }) => (
+        <Typography variant="body2">
+          {row.type === 'COMPANY_CONNECTOR'
+            ? t('content.edcconnector.rowValue.owned')
+            : t('content.edcconnector.rowValue.managed')}
+        </Typography>
+      ),
     },
     {
-      field: 'DapsRegistrationSuccessful',
+      field: 'dapsRegistrationSuccessful',
       headerName: t('content.edcconnector.columns.status'),
       flex: 1,
       sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Box onClick={() => {}}>
-          <IconButton
-            color="secondary"
-            disabled
-            size="small"
-            style={{
-              alignSelf: 'center',
+        <Box>
+          <LockIcon
+            sx={{
+              color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6',
+              cursor: 'pointer',
             }}
-          >
-            {row.DapsRegistrationSuccessful ? (
-              <LockIcon sx={{ color: 'green' }} />
-            ) : (
-              <LockIcon sx={{ color: '#b6b6b6' }} />
-            )}
-          </IconButton>
+          />
         </Box>
       ),
     },
     {
       field: 'detail',
       headerName: '',
-      flex: 1,
+      flex: 0.3,
       sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Container maxWidth="sm">
-          <Grid container spacing={2}>
-            <Grid
-              item
-              xs={6}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <IconButton
-                color="secondary"
-                disabled
-                size="small"
-                style={{
-                  alignSelf: 'center',
-                  color: isHover ? 'blue' : '#ADADAD',
-                }}
-              >
-                <DeleteOutlineIcon />
-              </IconButton>
-            </Grid>
-            {row.status === 'PENDING' && (
-              <Grid item xs={6}>
-                <IconButton
-                  color="secondary"
-                  disabled
-                  size="small"
-                  style={{ alignSelf: 'center' }}
-                >
-                  <AccessTimeIcon />
-                </IconButton>
-              </Grid>
-            )}
-          </Grid>
-        </Container>
+        <Box>
+          <DeleteOutlineIcon
+            sx={{
+              color: '#adadad',
+              marginRight: '-30px',
+              ':hover': {
+                color: 'blue',
+                cursor: 'pointer',
+              },
+            }}
+            onClick={() => onDelete(row)}
+          />
+        </Box>
+      ),
+    },
+    {
+      field: 'none',
+      headerName: '',
+      flex: 0.3,
+      sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: ({ row }: { row: any }) => (
+        <>
+          {row.status === 'PENDING' && (
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
+              }}
+              tooltipPlacement="bottom"
+              tooltipText={t('content.edcconnector.columns.tooltipText')}
+              children={
+                <span>
+                  <Box>
+                    <AccessTimeIcon
+                      sx={{
+                        marginLeft: '-30px',
+                        color: '#adadad',
+                      }}
+                    />
+                  </Box>
+                </span>
+              }
+            />
+          )}
+        </>
       ),
     },
   ]

@@ -29,7 +29,6 @@ import {
   PageLoadingTable,
   PageSnackbar,
 } from 'cx-portal-shared-components'
-import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
@@ -53,7 +52,6 @@ import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsR
 
 const EdcConnector = () => {
   const { t } = useTranslation()
-  const columns = ConnectorTableColumns(useTranslation)
   const [addConnectorOverlayOpen, setAddConnectorOverlayOpen] =
     useState<boolean>(false)
   const [addConnectorOverlayCurrentStep, setAddConnectorOverlayCurrentStep] =
@@ -87,6 +85,17 @@ const EdcConnector = () => {
   useState<boolean>(false)
   const [triggerDaps] = useTriggerDapsMutation()
 
+  const onStepChange = () => {
+    setAddConnectorOverlayCurrentStep(0)
+  }
+
+  const onDelete = (row: ConnectorContentAPIResponse) => {
+    setSelectedConnector(row)
+    setDeleteConnectorConfirmModalOpen(true)
+  }
+
+  const columns = ConnectorTableColumns(useTranslation, onDelete)
+
   const closeAndResetModalState = () => {
     setAddConnectorOverlayCurrentStep(0)
     setAddConnectorOverlayOpen(false)
@@ -94,13 +103,9 @@ const EdcConnector = () => {
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (params.field === 'detail') {
-      setSelectedConnector(params.row as ConnectorContentAPIResponse)
-      setDeleteConnectorConfirmModalOpen(true)
-    }
     if (
-      params.field === 'DapsRegistrationSuccessful' &&
-      !params.row.DapsRegistrationSuccessful
+      params.field === 'dapsRegistrationSuccessful' &&
+      !params.row.dapsRegistrationSuccessful
     ) {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
       setCreateDapsModalOpen(true)
@@ -254,22 +259,20 @@ const EdcConnector = () => {
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={onFormSubmit}
         loading={loading}
+        onStepChange={onStepChange}
       />
       <PageHeader
         title={t('content.edcconnector.headertitle')}
         topPage={false}
         headerHeight={200}
       />
-      <section>
-        <SubHeaderTitle title={'content.edcconnector.subheadertitle'} />
-      </section>
       <section className={'picture-with-text-section'}>
         <PictureWithText
           text={'content.edcconnector.imagetext'}
           onButtonClicked={() => setAddConnectorOverlayOpen(true)}
         />
       </section>
-      <div className="partner-network-table-container">
+      <div className="connector-table-container">
         <PageLoadingTable<ConnectorResponseBody>
           toolbarVariant="premium"
           title={t('content.edcconnector.tabletitle')}

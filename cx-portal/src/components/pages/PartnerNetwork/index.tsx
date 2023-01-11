@@ -125,7 +125,7 @@ const PartnerNetwork = () => {
           }}
           searchDebounce={1000}
           title={t('content.partnernetwork.tabletitle')}
-          loadLabel={t('global.actions.more')}
+          loadLabel={t('global.actions.loadmore')}
           fetchHook={useFetchBusinessPartnersQuery}
           fetchHookArgs={{ expr }}
           fetchHookRefresh={refresh}

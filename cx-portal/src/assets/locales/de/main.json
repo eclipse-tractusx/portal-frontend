@@ -38,7 +38,9 @@
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
     "appoverview": "App-Übersicht",
+    "deactivate": "Deactivate",
     "appreleaseprocess": "App Release Process",
+    "appsubscription": "App Subscription MGT",
     "appusermanagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicaluser": "Technische Benutzer Verwaltung",
@@ -47,7 +49,9 @@
     "companyrolesparticipant": "Participant",
     "companyrolesappprovider": "App Provider",
     "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconfirmitybody": "Confirmity Body"
+    "companyrolesconfirmitybody": "Confirmity Body",
+    "usecase": "Use Case",
+    "usecasetraceablity": "Traceablity"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -95,7 +99,8 @@
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
-        "headertitle": "Anfragen zur Benutzerregistrierung",
+        "headertitle": "Admin Board",
+        "headersubtitle": "Application Requests",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
@@ -105,9 +110,17 @@
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
         "overlay": {
-          "title": "Firmendaten",
-          "companydatatitle": "Firmendaten",
-          "taxid": "Steuernummer"
+          "title": "Company Registration Details",
+          "companydatatitle": "Overview",
+          "companydatadescription": "Below you can find the details of the company registration",
+          "taxid": "Steuernummer",
+          "address": "Address",
+          "docs": "Document(s)",
+          "roles": "Company Role(s)",
+          "activeParticipation": "Teilnehmer",
+          "appProvider": "App Anbieter",
+          "serviceProvider": "Service Anbieter",
+          "noinfo": "no data available"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
@@ -118,6 +131,11 @@
           "successDescription": "Update BPN number successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        },
+        "filter": {
+          "all": "Alle",
+          "review": "Review",
+          "closed": "Geschlossen"
         }
       }
     },
@@ -202,8 +220,7 @@
           "version": "Version",
           "src": "Quelle",
           "details": "Details"
-        },
-        "load_button": "Mehr laden"
+        }
       },
       "importDialog": {
         "title": "Modell importieren",
@@ -256,8 +273,7 @@
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
           "asset_count": "Anzahl Assets"
-        },
-        "load_button": "Mehr laden"
+        }
       },
       "detail": {
         "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
@@ -311,6 +327,9 @@
         "inactive": "Inaktiv",
         "wip": "In Arbeit"
       },
+      "sortOptions": {
+        "deactivate": "Deactivate"
+      },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
         "title": "Appbeschreibung '{appName}' öffnen",
@@ -323,7 +342,16 @@
         "useCase": "Use Case:",
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
-      }
+      },
+      "submenuNotAvail": "Sub-Menu is not available for not active apps."
+    },
+    "deactivate": {
+      "headerTitle": "Deactivate Business App",
+      "description": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
+      "checkboxLabel": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
+      "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
+      "successMsg": "Deactivation successfully completed",
+      "errorMsg": "Error! Something went wrong"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -338,9 +366,15 @@
         "type": "Steckertyp",
         "details": "Einzelheiten",
         "location": "Location",
-        "status": "Authentication Status"
+        "status": "Authentication Status",
+        "tooltipText": "Connector's status is pending"
       },
-      "headertitle": "Technische Integration - Connector & IDPs",
+      "rowValue": {
+        "owned": "Owned",
+        "managed": "Managed"
+      },
+      "helpText": "Get some help",
+      "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
@@ -376,32 +410,28 @@
             "error": "Connector name is mandatory. Length should be between 2 and 20",
             "tooltipMsg": "Own selected connector name for verification"
           },
-          "id": {
-            "label": "ID*",
-            "placeholder": "Connector ID",
-            "error": "Connector ID is mandatory"
-          },
           "url": {
-            "label": "URL*",
+            "label": "Connector URL*",
             "placeholder": "Connector URL",
-            "error": "This field needs to be valid url eg: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
+            "error": "Enter a valid url - eg: https://catena-x.net",
+            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
           },
           "bpn": {
-            "label": "Owner*",
+            "label": "Connector Owner*",
             "placeholder": "BPNL's are allowed only",
             "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           },
           "country": {
-            "label": "Place*",
+            "label": "Location*",
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
-            "error": "Valid types Image/pdf",
-            "tooltipMsg": "Connector document - Message to be added"
+            "label": "Public Authentication Key Upload*",
+            "error": "Please use a valid type. E.g. .pem; .cert",
+            "tooltipMsg": "Public key"
           }
         },
         "create": {
@@ -418,9 +448,7 @@
         }
       },
       "edcUpload": {
-        "formTitle": "Update your public key",
-        "title": "Drag & drop your files here",
-        "subtitle": "or browse files on your computer."
+        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
@@ -442,7 +470,6 @@
         "others": "Andere"
       },
       "message": "Inhalte vom Partner Netzwerk",
-      "loadmore": "Mehr Laden",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
       "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
@@ -466,7 +493,6 @@
       "failure": "Error - Business Partner Einladung schlug fehl.",
       "failureSubText": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
       "tabletitle": "Invites",
-      "load_button": "Mehr laden",
       "columns": {
         "companyName": "Unternehmensname",
         "firstAndLastName": "Vor- und Nachname",
@@ -493,8 +519,11 @@
       "failure": "Die Verarbeitung Ihrer Anfrage ist fehlgeschlagen"
     },
     "usermanagement": {
+      "title": "User Management",
+      "description": "View and manage all users assigned to the company. Assign roles; create new user accounts and create technical users.",
       "apparea": {
-        "headline": "App Zugriffsmanagement"
+        "headline": "App Zugriffsmanagement",
+        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
       },
       "table": {
         "headline": "Benutzerkontenverwaltung",
@@ -644,6 +673,7 @@
       "technicalUserHeadline": "Technischen Nutzer anfragen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
+      "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "technicalUser": {
@@ -651,34 +681,14 @@
           "service": "Dienst",
           "username": "Username",
           "description": "Beschreibung",
-          "spocHeadline": "Single Point of Contact (SPoC):",
+          "spocHeadline": "Single Point of Contact (SPoC)",
+          "org": "Organization name",
+          "email": "E-Mail Address",
+          "name": "Username",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
             "description": "Bitte geben Sie eine Beschreibung ein."
           }
-        }
-      },
-      "userUpload": {
-        "title": "Dateien hierher ziehen",
-        "subtitle": "oder wähle eine Datei direkt aus.",
-        "uploadStatus": {
-          "rejected_file_type": "Fehler - falscher Dateityp.",
-          "rejected_max_files": "Fehler - Dateigröße zu groß.",
-          "preparing": "vorbereiten",
-          "error_file_size": "Fehler (file_size)",
-          "error_validation": "Fehler (validation)",
-          "ready": "Fertig",
-          "started": "started",
-          "getting_upload_params": "getting (upload_params)",
-          "error_upload_params": "error (upload_params)",
-          "uploading": "hochladen",
-          "exception_upload": "exception_upload",
-          "aborted": "aborted",
-          "restarted": "restarted",
-          "removed": "removed",
-          "error_upload": "upload error",
-          "headers_received": "headers received",
-          "done": "done"
         }
       }
     },
@@ -865,6 +875,7 @@
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
+        "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of roles contained in the uploaded files:",
         "createThoseForYourApp": "Create those for your App",
         "step3Header": "3. Enable your Identity Management Solution",
@@ -878,8 +889,11 @@
         "username": "Username"
       },
       "betaTest": {
-        "headerTitle": "Beta Test",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+        "headerTitle": "CX Test Runs",
+        "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release.",
+        "betaTests": "Beta Tests",
+        "technicalIntegrationTest": "Technical Integration Test",
+        "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
       },
       "validateAndPublish": {
         "headerTitle": "Validate & Publish",
@@ -919,13 +933,15 @@
         "error": {
           "title": "Error - something went wrong.",
           "message": "Please try it again"
-        }
+        },
+        "dataSavedSuccessMessage": "Data saved successfully"
       },
       "footerButtons": {
         "help": "Help",
         "saveAndProceed": "Save & proceed",
         "save": "Save",
-        "submit": "Submit"
+        "submit": "Submit",
+        "proceed": "Proceed"
       }
     },
     "serviceMarketplace": {
@@ -965,6 +981,49 @@
         "authType": "Auth Type",
         "clientSercret": "Client Secret"
       }
+    },
+    "appSubscription": {
+      "headline": "App Subscription",
+      "subHeading": "Manage customer subscriptons",
+      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "readMore": "Read More",
+      "registerURL": "RegisterURL",
+      "search": "...search by entering the app name here.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "activateBtn": "Activate",
+      "pleaseEnterValidURL": "Please enter a valid URL",
+      "tabs": {
+        "request": "Request",
+        "active": "Active"
+      },
+      "sortOptions": {
+        "customer": "By Customer A-Z",
+        "offer": "By Offer"
+      },
+      "document": {
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "register": {
+        "heading": "Autosetup URL",
+        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "endpointConfigured": "Endpoint Configured",
+        "autosetupURL": "AutoSetup URL",
+        "providerErrorMessage": "Something went wrong!",
+        "providerSuccessMessage": "Service Provider Details added successfully."
+      },
+      "activation": {
+        "heading": "Activate User Subscription",
+        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "successDescription": "The technical user has been created with the following data:",
+        "clientId": "Client Id",
+        "clientSecret": "Client Secret"
+      }
     }
   },
   "navigation": {
@@ -977,6 +1036,11 @@
       "link1Label": "marketplace",
       "link2Label": "marketplace subscriptions",
       "link3Label": "dataspace participants"
+    },
+    "useCaseNavigation": {
+      "link1Label": "Intro",
+      "link2Label": "Data Provisioning",
+      "link3Label": "Business Applications"
     }
   },
   "notification": {
@@ -998,6 +1062,17 @@
       "withaction": "message with action required"
     }
   },
+  "shared": {
+    "dropzone": {
+      "title": "Dateien hierher ziehen",
+      "subTitle": "oder %wähle eine Datei% direkt aus.",
+      "errorTitle": "Es tut uns leid",
+      "placeholder": "",
+      "uploadError": "Not Uploaded",
+      "uploadSuccess": "Uploaded",
+      "uploadProgess": "Uploaded % of % files"
+    }
+  },
   "global": {
     "field": {
       "first": "Name",
@@ -1011,6 +1086,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
+      "edit": "Edit",
       "userName": "Benutzername",
       "clientId": "Client ID",
       "authType": "Auth Type",
@@ -1039,8 +1115,7 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes",
-      "details": "Details"
+      "yes": "Yes"
     },
     "state": {
       "enabled": "aktiv",

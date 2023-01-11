@@ -20,7 +20,7 @@
 
 import { ComponentStory } from '@storybook/react'
 
-import { Dropzone as Component } from '.'
+import { DropzoneOldDEPRECATED as Component } from './old_deprecated'
 
 export default {
   title: 'Dropzone',
@@ -36,10 +36,11 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />
 )
 
-export const Dropzone = Template.bind({})
-Dropzone.args = {
+export const DropzoneOldDEPRECATED = Template.bind({})
+DropzoneOldDEPRECATED.args = {
   inputContentTitle: 'Drag & drop your files here',
-  inputContentSubTitle: 'or browse files on your computer.',
+  inputContentSubTitle: 'or %browse files% on your computer.',
+  size: 'normal',
   accept: 'image/*,audio/*,video/*',
   getUploadParams: () => ({ url: 'https://httpbin.org/post' }),
   statusText: {

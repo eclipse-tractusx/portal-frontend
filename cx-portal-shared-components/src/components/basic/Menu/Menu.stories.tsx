@@ -23,7 +23,7 @@ import { ComponentStory } from '@storybook/react'
 import { Menu as Component } from '.'
 
 export default {
-  title: 'Menu',
+  title: 'Menus',
   component: Component,
 }
 

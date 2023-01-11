@@ -98,6 +98,14 @@ const items = [
   },
 ]
 
+const submenuOptions = [
+  {
+    label: 'Tab 1',
+    value: 'tab1',
+    url: '/tab1',
+  },
+]
+
 export const ContentCards = Template.bind({})
 ContentCards.args = {
   columns: 6,
@@ -107,4 +115,7 @@ ContentCards.args = {
   imageSize: 'medium',
   imageShape: 'round',
   addButtonClicked: false,
+  subMenu: true,
+  submenuOptions: submenuOptions,
+  tooltipText: 'Action is pending',
 }

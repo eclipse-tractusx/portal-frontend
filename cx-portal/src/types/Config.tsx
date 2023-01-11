@@ -46,6 +46,7 @@ import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
+import AppSubscription from 'components/pages/AppSubscription'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
@@ -64,6 +65,8 @@ import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
+import UseCase from 'components/pages/UseCase'
+import Deactivate from 'components/pages/AppOverview/Deactivate'
 
 /**
  * ALL_PAGES
@@ -206,6 +209,11 @@ export const ALL_PAGES: IPage[] = [
     element: <AppReleaseProcess />,
   },
   {
+    name: PAGES.APPSUBSCRIPTION,
+    role: ROLES.APP_MANAGEMENT,
+    element: <AppSubscription />,
+  },
+  {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
     isRoute: true,
     element: (
@@ -323,12 +331,31 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
+  { name: PAGES.USE_CASE, element: <UseCase /> },
+  { name: PAGES.USE_CASE_TRACABILITY, element: <UseCase /> },
+  {
+    name: PAGES.DEACTIVATE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.DEACTIVATE}
+        path={PAGES.DEACTIVATE}
+        element={<Deactivate />}
+      >
+        <Route path=":appId" element={<Deactivate />} />
+      </Route>
+    ),
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_BPN,
     role: ROLES.MODIFY_USER_ACCOUNT,
+  },
+  {
+    name: OVERLAYS.ADD_SUBSCRIPTION,
+    role: ROLES.ACTIVATE_SUBSCRIPTION,
   },
   {
     name: OVERLAYS.ADD_USER,
@@ -413,6 +440,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_DELETE,
   },
   {
+    name: OVERLAYS.ADDUSERS_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
     name: OVERLAYS.IDP_TEST_RUN,
     role: ROLES.IDP_ADD,
   },
@@ -428,6 +459,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.SAMPLE_FORM,
+  },
+  {
+    name: OVERLAYS.ADD_SERVICE_PROVIDER,
   },
 ]
 
@@ -455,6 +489,10 @@ export const mainMenuFullTree = [
     ],
   },
   {
+    name: PAGES.USE_CASE,
+    children: [{ name: PAGES.USE_CASE_TRACABILITY, hint: HINTS.NEW }],
+  },
+  {
     name: PAGES.MARKETPLACE,
     children: [
       { name: PAGES.APP_MARKETPLACE },
@@ -480,6 +518,7 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
+      { name: PAGES.APPSUBSCRIPTION, hint: HINTS.NEW },
     ],
   },
 ]

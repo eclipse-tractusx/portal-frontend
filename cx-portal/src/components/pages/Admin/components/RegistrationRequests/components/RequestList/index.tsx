@@ -27,36 +27,69 @@ import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
 import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
+import './RequestListStyle.scss'
 
 export const RequestList = ({
   fetchHook,
-  fetchHookArgs,
-  onSearch,
   onApproveClick,
   onDeclineClick,
   isLoading,
   onTableCellClick,
   loaded,
   handleDownloadDocument,
-  searchExpr,
   showConfirmOverlay,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: any
-  onSearch?: (search: string) => void
   onApproveClick: (id: string) => void
   onDeclineClick: (id: string) => void
   isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
-  searchExpr?: string
   showConfirmOverlay?: any
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateApplicationRequestSelector)
+  const [group, setGroup] = useState<string>('InReview')
+  const [searchExpr, setSearchExpr] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState<string>('InReview')
+  const [fetchHookArgs, setFetchHookArgs] = useState({})
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    const viewValue = e.currentTarget.value
+    setFilterStatus(viewValue)
+    setGroup(viewValue)
+    setRefresh(Date.now())
+  }
+
+  useEffect(() => {
+    if (onValidate(searchExpr)) {
+      setFetchHookArgs({
+        statusFilter: filterStatus,
+        expr: searchExpr,
+      })
+    }
+    // eslint-disable-next-line
+  }, [filterStatus, searchExpr])
+
+  const filterView = [
+    {
+      buttonText: t('content.admin.registration-requests.filter.all'),
+      buttonValue: '',
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.admin.registration-requests.filter.review'),
+      buttonValue: 'InReview',
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.admin.registration-requests.filter.closed'),
+      buttonValue: 'Closed',
+      onButtonClick: setView,
+    },
+  ]
 
   const columns = RegistrationRequestsTableColumns(
     useTranslation,
@@ -78,20 +111,21 @@ export const RequestList = ({
   }
 
   return (
-    <section id="identity-management-id">
+    <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
         rowHeight={80}
         onCellClick={onTableCellClick}
-        toolbarVariant={'ultimate'}
+        toolbarVariant={'searchAndFilter'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (!onSearch || !onValidate(expr)) return
+          console.log(onValidate(expr))
+          if (!onValidate(expr)) return
           setRefresh(Date.now())
-          onSearch(expr)
+          setSearchExpr(expr)
         }}
         searchDebounce={1000}
         title={t('content.admin.registration-requests.tabletitle')}
@@ -101,6 +135,11 @@ export const RequestList = ({
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.applicationId}
         columns={columns}
+        descriptionText={`${t(
+          'content.admin.registration-requests.introText1'
+        )}${t('content.admin.registration-requests.introText2')}`}
+        defaultFilter={group}
+        filterViews={filterView}
       />
     </section>
   )

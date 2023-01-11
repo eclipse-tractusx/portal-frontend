@@ -4,7 +4,59 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-n/a
+
+## 1.0.0-RC1
+
+### Change
+* User management
+   * app Access placeholder component implemented which is getting used in case no active app subscription does exist
+   * user table headlines updated
+   * updated page header size and image
+* Updates - Connector
+   * overlays updated (dropzone headline added; changed "Cancel" to "Back" Button, add top right cancel icon inside the overlay)
+   * tooltips added for connector table to explain status icons
+* Registration Request Approval Board
+   * page layout updated
+   * filter feature enabled
+   * company data details overlay extended with company role and documents
+* Notification
+   * Badge count added inside the user icon sub-navigation
+   * notification message title and content updated by supporting new technical keys
+
+### Feature
+* Use case introduction page released
+* Shared Components
+  * created "Side List" component
+  * created "Draggable Chip" component
+  * created "Static Page" templates for introduction pages
+  * created "Image Item" with zoom and hover function as well as update of "Image Gallery" 
+* App Release Process
+   * step 4 limited to role upload/handling only
+   * step 5 Beta Test page updated with preview content for future releases
+   * app card component of step 1 connected with the leadimage load element to display the leadimage inside the card in realtime
+* App Change Process released
+   * created deactivate sub-menu component in App Provider Overview Page
+   * created app deactivate page and connected the app/deactivation api
+* App Subscription Management Board for app providers got newly released
+   * overview of active app subscriptions and new requests
+   * filter & search function on subscriptions
+   * subscription activation function implemented with direct user response such es technical user creation
+   * autosetup url storage for the app provider enabled via user interface
+* Identity Provider Management released
+   * connect company OIDC idps enabled via portal user workflow
+   * user migration function enabled to support migration of users from one idp to another
+
+### Technical Support
+Portal asset repo image drag disabled for all transactional images (such as app images) ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+
+### Bugfix
+* User Management: assign multiple users to an role got fixed
+* Connector:
+   * fixed issue on clicking info icon trigger delete action
+   * show tooltip message on hover of info icon
+   * enable authentication flow
+* Technical User: overlay static user data now getting fetched from the user token
+* AppOverview: navigation to app release process screen with auto filled app data got fixed for apps in status "In PROGRESS"
 
 ## 0.10.0
 
@@ -16,9 +68,9 @@ n/a
    * page snackbar positioning updated
    * tooltip enhanced by adding light color variant
 * Partner Network
-   * stop throbber in case of error and information "no rows" added
-   * empty details overlay issue fix by updating the front end business logic of the api key values fetched
-
+   * Stop throbber in case of error and show No rows present message
+   * Empty details overlay issue fix
+   
 ### Feature
 * Service Marketplace
    * new UI released
@@ -41,6 +93,7 @@ n/a
    * sort icon behavior on click/mouse over fixed
    * notification api trigger logic fixed
 * App user management: user role deletion fixed
+
 
 ## 0.9.0
 

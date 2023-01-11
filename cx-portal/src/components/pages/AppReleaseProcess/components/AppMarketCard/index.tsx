@@ -30,6 +30,8 @@ import {
   PageNotifications,
   LogoGrayData,
   SelectList,
+  UploadFileStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
@@ -45,10 +47,12 @@ import {
   useFetchSalesManagerDataQuery,
   salesManagerType,
   useSaveAppMutation,
+  useFetchAppStatusQuery,
+  useFetchDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -56,7 +60,7 @@ import {
   appStatusDataSelector,
   increment,
 } from 'features/appManagement/slice'
-import { setAppId } from 'features/appManagement/actions'
+import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 
@@ -69,7 +73,7 @@ type FormDataType = {
   appLanguage: string[]
   price: string
   uploadImage: {
-    leadPictureUri: File | null | string
+    leadPictureUri: DropzoneFile | string | null
     alt?: string
   }
   salesManagerId: string | null
@@ -93,8 +97,6 @@ export const ConnectorFormInputField = ({
   filterOptionsArgs,
   acceptFormat,
   maxFilesToUpload,
-  previewFiles,
-  showPreviewAlone,
   maxFileSize,
   defaultValues,
 }: any) => (
@@ -128,14 +130,13 @@ export const ConnectorFormInputField = ({
       } else if (type === 'dropzone') {
         return (
           <Dropzone
-            onFileDrop={(files: any) => {
+            files={value ? [value] : undefined}
+            onChange={([file]) => {
               trigger(name)
-              onChange(files[0])
+              onChange(file)
             }}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
-            previewFiles={previewFiles}
-            showPreviewAlone={showPreviewAlone}
             maxFileSize={maxFileSize}
           />
         )
@@ -197,29 +198,22 @@ export default function AppMarketCard() {
   const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [appCardNotification, setAppCardNotification] = useState(false)
+  const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
   const salesManagerList = useFetchSalesManagerDataQuery().data || []
-  const defaultSalesManagerValue = {
+  const [defaultSalesManagerValue] = useState<salesManagerType>({
     userId: null,
     firstName: 'none',
     lastName: '',
     fullName: 'none',
-  }
+  })
   const [salesManagerListData, setSalesManagerListData] = useState<
     salesManagerType[]
   >([defaultSalesManagerValue])
-  const [salesManagerId, setSalesManagerId] = useState(null)
-
-  useEffect(() => {
-    if (salesManagerList.length > 0) {
-      let data = salesManagerList?.map((item) => {
-        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
-      })
-      setSalesManagerListData(salesManagerListData.concat(data))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [salesManagerList])
-
+  const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [cardImage, setCardImage] = useState(LogoGrayData)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -237,8 +231,8 @@ export default function AppMarketCard() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: appStatusData?.leadPictureUri || null,
-      alt: '',
+      leadPictureUri: cardImage || '',
+      alt: appStatusData?.leadPictureUri || '',
     },
   }
 
@@ -247,11 +241,59 @@ export default function AppMarketCard() {
     getValues,
     control,
     trigger,
+    setValue,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (salesManagerList.length > 0) {
+      let data = salesManagerList?.map((item) => {
+        return { ...item, fullName: `${item.firstName} ${item.lastName}` }
+      })
+      reset(defaultValues)
+      setSalesManagerListData(salesManagerListData.concat(data))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [salesManagerList])
+
+  const cardImageData = getValues().uploadImage.leadPictureUri
+  useEffect(() => {
+    if (cardImageData !== LogoGrayData) {
+      const blobFile = new Blob([cardImageData], {
+        type: 'image/png',
+      })
+      setCardImage(URL.createObjectURL(blobFile))
+    }
+  }, [cardImageData])
+
+  useEffect(() => {
+    if (
+      appStatusData?.documents?.APP_LEADIMAGE &&
+      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
+    ) {
+      fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
+    }
+    reset(defaultValues)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appStatusData])
+
+  const fetchCardImage = async (documentId: string) => {
+    try {
+      const response = await fetchDocumentById(documentId).unwrap()
+      const file = response.data
+      return setCardImage(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
 
   const cardAppTitle =
     getValues().title ||
@@ -269,7 +311,7 @@ export default function AppMarketCard() {
 
   window.onscroll = () => setPageScrolled(window.scrollY !== 0)
 
-  const onSubmit = async (data: FormDataType) => {
+  const onSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'title',
       'provider',
@@ -281,11 +323,11 @@ export default function AppMarketCard() {
       'uploadImage',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       title: data.title,
       provider: data.provider,
@@ -298,12 +340,18 @@ export default function AppMarketCard() {
       descriptions: [
         {
           languageCode: 'de',
-          longDescription: '',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionDE,
         },
         {
           languageCode: 'en',
-          longDescription: '',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionEN,
         },
       ],
@@ -311,7 +359,8 @@ export default function AppMarketCard() {
       price: data.price,
     }
 
-    const uploadImageValue = getValues().uploadImage.leadPictureUri
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
 
     if (appId) {
       const saveAppData = {
@@ -322,7 +371,10 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
-          dispatch(increment())
+          dispatch(setAppId(appId))
+          buttonLabel === 'saveAndProceed' && dispatch(increment())
+          buttonLabel === 'save' && setAppCardSnackbar(true)
+          dispatch(setAppStatus(fetchAppStatus))
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -332,9 +384,28 @@ export default function AppMarketCard() {
         .unwrap()
         .then((result) => {
           if (isString(result)) {
+            const setFileStatus = (status: UploadFileStatus) =>
+              setValue('uploadImage.leadPictureUri', {
+                name: uploadImageValue.name,
+                size: uploadImageValue.size,
+                status,
+              } as any)
+
+            setFileStatus('uploading')
+
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+              .then(() => {
+                setFileStatus('upload_success')
+                dispatch(increment())
+              })
+              .catch(() => {
+                setFileStatus('upload_error')
+              })
+
             dispatch(setAppId(result))
-            dispatch(increment())
+            buttonLabel === 'saveAndProceed' && dispatch(increment())
+            buttonLabel === 'save' && setAppCardSnackbar(true)
+            dispatch(setAppStatus(fetchAppStatus))
           }
         })
         .catch(() => {
@@ -354,9 +425,7 @@ export default function AppMarketCard() {
       body: { file },
     }
 
-    try {
-      await updateDocumentUpload(data).unwrap()
-    } catch (error) {}
+    await updateDocumentUpload(data).unwrap()
   }
 
   return (
@@ -376,7 +445,7 @@ export default function AppMarketCard() {
           <Grid item md={3} className={'app-release-card'}>
             <Card
               image={{
-                src: cardImageSrc,
+                src: cardImage,
                 alt: cardImageAlt,
               }}
               title={cardAppTitle}
@@ -781,6 +850,15 @@ export default function AppMarketCard() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appCardSnackbar}
+          onCloseNotification={() => setAppCardSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
@@ -800,7 +878,7 @@ export default function AppMarketCard() {
           variant="contained"
           disabled={!isValid}
           sx={{ float: 'right' }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((data) => onSubmit(data, 'saveAndProceed'))}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -808,7 +886,7 @@ export default function AppMarketCard() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((data) => onSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

@@ -20,11 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Typography,
-  PageHeader,
-  PageSnackbar,
-} from 'cx-portal-shared-components'
+import { Typography, PageSnackbar } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './RegistrationRequests.scss'
@@ -55,8 +51,6 @@ export default function RegistrationRequests() {
 
   const [selectedRequestId, setSelectedRequestId] = useState<string>()
   const [actionType, setActionType] = useState<string>('approve')
-
-  const [expr, setExpr] = useState<string>('')
 
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineRequestMutation()
@@ -206,20 +200,22 @@ export default function RegistrationRequests() {
         handleConfirmClick={(bpn: string) => onUpdateBpn(bpn)}
       />
 
-      {/* Page header title and background color */}
-      <PageHeader
-        title={t('content.admin.registration-requests.headertitle')}
-        topPage={false}
-        headerHeight={200}
-      />
-
-      {/* Adding additional text to introduce the page function */}
-      <div className={'padding-r-80'}>
-        <Typography variant="body2" mt={3} align="center">
-          {t('content.admin.registration-requests.introText1')}
+      <div
+        style={{
+          marginTop: '60px',
+        }}
+      >
+        <Typography className="newTitle" variant="h2">
+          {t('content.admin.registration-requests.headertitle')}
         </Typography>
-        <Typography variant="body2" mb={3} align="center">
-          {t('content.admin.registration-requests.introText2')}
+        <Typography
+          className="subTitle"
+          variant="body1"
+          sx={{
+            fontSize: '36px',
+          }}
+        >
+          {t('content.admin.registration-requests.headersubtitle')}
         </Typography>
       </div>
 
@@ -227,15 +223,12 @@ export default function RegistrationRequests() {
       <div className={'table-container'}>
         <RequestList
           fetchHook={useFetchCompanySearchQuery}
-          fetchHookArgs={{ expr }}
-          onSearch={setExpr}
           onApproveClick={onApproveClick}
           onDeclineClick={onDeclineClick}
           isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}
-          searchExpr={expr}
           showConfirmOverlay={(id: string) => {
             setSelectedRequestId(id)
             setEnableBpnInput(true)

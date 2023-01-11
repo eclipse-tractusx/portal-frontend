@@ -155,7 +155,7 @@ export const MainHeader = ({
       <Box
         sx={{
           width: '100%',
-          padding: '0px 100px',
+          padding: '0px 180px',
           margin: '0px',
           paddingTop: '150px',
           zIndex: 1,

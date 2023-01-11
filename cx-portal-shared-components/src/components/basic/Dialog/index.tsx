@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useTheme } from '@mui/material'
 import MuiDialog, { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
+
+export const CONTENT_SPACING_RIGHT_LEFT = 10
+const MODAL_DEFAULT_WIDTH = '1000px'
 
 interface AddtionalDialogProps {
   modalBorderRadius?: number
@@ -27,24 +31,38 @@ interface AddtionalDialogProps {
 
 export type DialogProps = Pick<
   MuiDialogProps,
-  'children' | 'open' | 'scroll' | 'sx'
+  'children' | 'open' | 'scroll' | 'sx' | 'fullWidth' | 'maxWidth'
 >
 
 export const Dialog = ({
   scroll = 'body',
   modalBorderRadius,
   additionalModalRootStyles = {},
+  fullWidth,
+  maxWidth,
   ...props
 }: DialogProps & AddtionalDialogProps) => {
+  const theme = useTheme()
+
   const radius =
     modalBorderRadius && modalBorderRadius !== 0 ? modalBorderRadius : 20
+
+  const fullScreenWidth = `calc(100vw - ${theme.spacing(8)})`
+
+  const defaultWidth = maxWidth ? 'auto' : MODAL_DEFAULT_WIDTH
+  const width = fullWidth ? fullScreenWidth : defaultWidth
+
   return (
     <MuiDialog
       {...props}
       scroll={scroll}
+      maxWidth={fullWidth ? 'xl' : maxWidth}
       sx={{
         '.MuiPaper-root': {
           borderRadius: `${radius}px !important`,
+          width: width,
+          maxWidth: maxWidth ? undefined : fullScreenWidth,
+          overflowWrap: 'break-word',
           ...additionalModalRootStyles,
         },
       }}

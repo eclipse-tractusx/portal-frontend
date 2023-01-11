@@ -27,6 +27,8 @@ import footerDE from '../assets/locales/de/footer.json'
 import footerEN from '../assets/locales/en/footer.json'
 import appsDE from '../assets/locales/de/apps.json'
 import appsEN from '../assets/locales/en/apps.json'
+import idpDE from '../assets/locales/de/idp.json'
+import idpEN from '../assets/locales/en/idp.json'
 import notificationDE from '../assets/locales/de/notification.json'
 import notificationEN from '../assets/locales/en/notification.json'
 
@@ -35,12 +37,14 @@ const resources = {
     translation: mainDE,
     footer: footerDE,
     apps: appsDE,
+    idp: idpDE,
     notification: notificationDE,
   },
   en: {
     translation: mainEN,
     footer: footerEN,
     apps: appsEN,
+    idp: idpEN,
     notification: notificationEN,
   },
 }

@@ -143,7 +143,7 @@ export default function NotificationItem({
 }: {
   item: CXNotificationContent
 }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation('notification')
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
   const [deleteNotification] = useDeleteNotificationMutation()
@@ -175,8 +175,8 @@ export default function NotificationItem({
     <>
       {showDeleteModal && (
         <DeleteNotificationConfirmOverlay
-          title={t('notification.deleteModal.title')}
-          intro={t('notification.deleteModal.intro')}
+          title={t('deleteModal.title')}
+          intro={t('deleteModal.intro')}
           handleClose={(e: { stopPropagation: () => void }) => {
             setShowDeleteModal(false)
             e.stopPropagation()
@@ -198,7 +198,10 @@ export default function NotificationItem({
             <LabelImportantIcon
               sx={{
                 fontSize: 15,
-                color: item.notificationTopic === 'ACTION' ? '#FDB943' : '#fff',
+                color:
+                  item.notificationTopic === 'ACTION'
+                    ? '#FDB943'
+                    : 'transparent',
               }}
             />
             <Typography
@@ -222,7 +225,7 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`${item.typeId}`)}
+              {t(`${item.typeId}.title`)}
             </Typography>
             {open && (
               <div className="content">
@@ -249,7 +252,7 @@ export default function NotificationItem({
               }}
             >
               {item.notificationTopic === 'ACTION' && open
-                ? t('notification.actionRequired')
+                ? t('actionRequired')
                 : ''}
             </Typography>
           </div>
