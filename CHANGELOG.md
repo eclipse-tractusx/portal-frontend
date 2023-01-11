@@ -29,6 +29,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * created "Side List" component
   * created "Draggable Chip" component
   * created "Static Page" templates for introduction pages
+  * created "Image Item" with zoom and hover function as well as update of "Image Gallery" 
 * App Release Process
    * step 4 limited to role upload/handling only
    * step 5 Beta Test page updated with preview content for future releases
