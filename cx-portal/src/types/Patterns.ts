@@ -59,8 +59,8 @@ export const Patterns = {
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {
-    clientId: /^[a-zA-Z0-9-_]*$/,
-    clientSecret: /^[a-zA-Z0-9-_.!?/]*$/,
+    clientId: /^[a-zA-Z0-9-_]{2,80}$/,
+    clientSecret: /^[a-zA-Z0-9-_.!?/]{8,200}$/,
   },
   connectors: {
     NAME: /^[a-zA-Z0-9 @]{2,20}$/,
