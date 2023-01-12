@@ -221,6 +221,7 @@ export default function AppMarketCard() {
   }).data
   const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
+
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -228,7 +229,7 @@ export default function AppMarketCard() {
     useCaseCategory: appStatusData?.useCase,
     appLanguage: appStatusData?.supportedLanguageCodes,
     //To do: to be changed once api is available
-    salesManagerId: appStatusData?.salesManagerId || null,
+    salesManagerId: appStatusData?.salesManagerId,
     shortDescriptionEN:
       appStatusData?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'

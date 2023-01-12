@@ -46,6 +46,9 @@ import {
 import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import {
+  postRolesResponseType,
+  rolesType,
+  updateRoleType,
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
   useFetchRolesDataQuery,
@@ -71,13 +74,16 @@ export default function TechnicalIntegration() {
   // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
   // const [showUserButton, setShowUserButton] = useState(true)
 
-  const appId = useSelector(appIdSelector)
+  // const appId = useSelector(appIdSelector)
+  const appId = '65ec6426-1a33-45d7-8d74-a1a361d45803'
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const { data, refetch } = useFetchRolesDataQuery(appId ?? '')
   const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
-  const [rolesResponse, setRolesResponse] = useState<any[]>([])
+  const [rolesResponse, setRolesResponse] = useState<postRolesResponseType[]>(
+    []
+  )
   const [deleteOverlay, setDeleteOverlay] = useState(false)
   const [deleteRoles] = useDeleteRolesMutation()
 
@@ -131,19 +137,17 @@ export default function TechnicalIntegration() {
   const postRoles = async () => {
     getValues().uploadAppRoles === '' && setEnableUploadAppRoles(true)
 
-    const updateRolesData: any = {
+    const updateRolesData: updateRoleType = {
       appId: appId,
-      body: rolesPreviews.map((item) => {
-        return {
-          role: item,
-          descriptions: [
-            {
-              languageCode: 'en',
-              description: '',
-            },
-          ],
-        }
-      }),
+      body: rolesPreviews.map((item) => ({
+        role: item,
+        descriptions: [
+          {
+            languageCode: 'en',
+            description: '',
+          },
+        ],
+      })),
     }
 
     await updateRoleData(updateRolesData)
@@ -177,12 +181,11 @@ export default function TechnicalIntegration() {
     )
   }
 
-  const onChipDelete = (roleId: any) => {
-    const data = {
+  const onChipDelete = (roleId: string) => {
+    deleteRoles({
       appId: appId,
       roleId: roleId,
-    }
-    deleteRoles(data)
+    })
       .unwrap()
       .then(() => {
         refetch()
@@ -419,7 +422,7 @@ export default function TechnicalIntegration() {
                 )}
           </Button> */}
 
-           <LoadingButton
+            <LoadingButton
               loading={isLoading}
               variant="contained"
               onButtonClick={postRoles}
@@ -458,10 +461,10 @@ export default function TechnicalIntegration() {
                 </Typography>
 
                 <Grid item container xs={12}>
-                  {data?.map((role: any, index: number) => (
-                    <Grid item xs={6} key={index}>
+                  {data?.map((role: rolesType) => (
+                    <Grid item xs={6} key={role.roleId}>
                       <Chip
-                        key={index}
+                        key={role.roleId}
                         label={role.role}
                         withIcon={true}
                         type="delete"

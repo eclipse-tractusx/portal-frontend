@@ -5,6 +5,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
+### Feature
+* App Release Process
+   * step 4 - Business logic and API added for add, delete and get roles
+
 ## 1.0.0-RC1
 
 ### Change
