@@ -1,10 +1,10 @@
 {
   "title": "Traceablity",
-  "description": "This is a intro sentence to traceability to get some details to the be added",
+  "description": "...als Basis und integraler Bestandteil zum Aufbau von digitalen Datenketten und Befähiger von datenketten-fokussierter Use Cases",
   "roles": [
     {
-      "title": "Intro to Traceability",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "title": "Introduction",
+      "description": "Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum fertigen Fahrzeug beim OEM bzw. dessen Wiederverwertung im Recycling. Partner im Use Case sind sowohl Hersteller von Produkten bis hin zu Automobilherstellern als auch Zulieferer von Material und Teilen.",
       "videoUrl": "https://www.youtube.com/embed/g-NVjP2srw4",
       "id": "intro-id",
       "backgroundColor": "#FFFFFF",
@@ -12,15 +12,15 @@
     },
     {
       "title": "How to contribute to traceability and why?",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "imageUrl": "rectangle-image.png",
+      "description": "",
+      "imageUrl": "traceability_why.png",
       "backgroundColor": "#F9F9F9",
       "id": "data-id",
       "template": "TextImageCenterAligned"
     },
     {
       "title": "Business Applications inside Traceability",
-      "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+      "description": "The traceability use case is strengthened by a number of business apps which help the user to visualize and easy access the treaceability chain. Below you can find an overview of all available apps. Use the direct link to open the app details page.",
       "backgroundColor": "#FFFFFF",
       "id": "business-id",
       "imageUrl": "rectangle-image.png",
@@ -28,34 +28,34 @@
       "template": "TextCenterAlignedWithCardGrid",
       "detailsWithImageRow1": [
         {
-          "title": "App Marketplace",
+          "title": "Trace X",
           "imageUrl": "rectangle-image.png",
-          "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
-          "readMore": "/appmarketplace",
-          "readMoreTitle": "Details",
+          "description": "Ermöglicht die lückenlose Rückverfolgbarkeit von Teilen über die Lieferkette von n.tier – visualisiert detaillierte Informationen über die Komponenten von direkten Lieferanten und Direktkunden.",
+          "readMore": "/appdetail/ac1cf001-7fbc-1f2f-817f-bce0572c0007",
+          "readMoreTitle": "Get to the app",
           "backgroundColor": "#f9f9f9",
           "align": "center"
         },
         {
-          "title": "Service Marketplace",
+          "title": "Smart MOM",
           "imageUrl": "rectangle-image.png",
-          "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+          "description": "",
           "readMore": "",
           "backgroundColor": "#f9f9f9",
           "align": "center"
         },
         {
-          "title": "App Marketplace",
+          "title": "SAP BN MT",
           "imageUrl": "rectangle-image.png",
-          "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+          "description": "",
           "readMore": "",
           "backgroundColor": "#f9f9f9",
           "align": "center"
         },
         {
-          "title": "Service Marketplace",
+          "title": "Trusted Traceability",
           "imageUrl": "rectangle-image.png",
-          "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+          "description": "",
           "readMore": "",
           "backgroundColor": "#f9f9f9",
           "align": "center"
@@ -73,20 +73,20 @@
       "linksRow1": [
         {
           "background": "#C498EF63",
-          "title": "Sample Name",
-          "navigate": "/appmanagement"
+          "title": "Get more details to the use case",
+          "navigate": "/help/traceability"
         },
         {
           "background": "#C498EF63",
           "title": "Sample Name",
-          "navigate": "/appmanagement"
+          "navigate": "/help/traceability"
         }
       ],
       "linksRow2": [
         {
           "background": "#C498EF63",
           "title": "Sample Name",
-          "navigate": "/appmanagement"
+          "navigate": "/help/traceability"
         }
       ]
     }

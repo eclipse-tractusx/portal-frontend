@@ -31,6 +31,7 @@ import { useDispatch } from 'react-redux'
 import './AppOverviewConfirm.scss'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
+import { setApplicationId } from 'features/appManagement/slice'
 
 export default function AppOverViewConfirm({
   id,
@@ -43,6 +44,7 @@ export default function AppOverViewConfirm({
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
   const navigate = useNavigate()
+  dispatch(setApplicationId(id))
 
   return (
     <div className="small-confirm">

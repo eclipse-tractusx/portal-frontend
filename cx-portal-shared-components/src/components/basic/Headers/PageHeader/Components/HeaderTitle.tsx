@@ -30,7 +30,7 @@ export const HeaderTitle = ({ title }: PageHeaderProps) => {
             paddingTop: '36px',
             fontFamily: 'LibreFranklin-Light',
           }}
-          variant="h4"
+          variant="h3"
         >
           {title}
         </Typography>

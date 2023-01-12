@@ -18,38 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, MainHeader } from 'cx-portal-shared-components'
+import { MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
-import { useFetchIDPListQuery } from 'features/admin/idpApiSlice'
-import { updateIDPSelector } from 'features/control/updatesSlice'
 
 export default function SearchSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const update = useSelector(updateIDPSelector)
-  const { data } = useFetchIDPListQuery(update)
 
   return (
     <div className="stage-home">
       <MainHeader
-        title={t('content.home.stage.title')}
-        subTitle={t('content.home.stage.subtitle')}
-        headerHeight={731}
+        title={t('content.usermanagement.title')}
+        subTitle={t('content.usermanagement.description')}
+        headerHeight={600}
         subTitleWidth={787}
         background="LinearGradient1"
-        imagePath="./home-stage-desktop.png"
-      >
-        <Button
-          sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => dispatch(show(OVERLAYS.ADD_USER))}
-          disabled={data?.filter((idp) => idp.enabled).length !== 1}
-        >
-          {t('content.usermanagement.table.add')}
-        </Button>
-      </MainHeader>
+        imagePath="./Frame.svg"
+      />
     </div>
   )
 }

@@ -410,19 +410,14 @@
             "error": "Connector name is mandatory. Length should be between 2 and 20",
             "tooltipMsg": "Own selected connector name for verification"
           },
-          "id": {
-            "label": "ID*",
-            "placeholder": "Connector ID",
-            "error": "Connector ID is mandatory"
-          },
           "url": {
-            "label": "URL*",
+            "label": "Connector URL*",
             "placeholder": "Connector URL",
-            "error": "This field needs to be valid url eg: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https: endpoints are allowed"
+            "error": "Enter a valid url - eg: https://catena-x.net",
+            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
           },
           "bpn": {
-            "label": "Owner*",
+            "label": "Connector Owner*",
             "placeholder": "BPNL's are allowed only",
             "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
@@ -434,9 +429,9 @@
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
-            "label": "Upload*",
-            "error": "Valid types Image/pdf",
-            "tooltipMsg": "Connector document - Message to be added"
+            "label": "Public Authentication Key Upload*",
+            "error": "Please use a valid type. E.g. .pem; .cert",
+            "tooltipMsg": "Public key"
           }
         },
         "create": {
@@ -524,6 +519,8 @@
       "failure": "Die Verarbeitung Ihrer Anfrage ist fehlgeschlagen"
     },
     "usermanagement": {
+      "title": "User Management",
+      "description": "View and manage all users assigned to the company. Assign roles; create new user accounts and create technical users.",
       "apparea": {
         "headline": "App Zugriffsmanagement",
         "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"

@@ -40,7 +40,7 @@ import {
 import Patterns from 'types/Patterns'
 import { setSuccessType } from 'features/serviceProvider/slice'
 
-export default function AddServiceProvider({ id }: { id: string }) {
+export default function AddServiceProvider() {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [inputURL, setInputURL] = useState('')
@@ -48,9 +48,8 @@ export default function AddServiceProvider({ id }: { id: string }) {
   const [UrlErrorMsg, setUrlErrorMessage] = useState('')
   const [saveErrorMsg, setSaveErrorMessage] = useState(false)
 
-  const { data, refetch } = useFetchServiceProviderQuery(id ?? '')
+  const { data, refetch } = useFetchServiceProviderQuery()
   const [addServiceProvider] = useAddServiceProviderMutation()
-
   useEffect(() => {
     refetch()
     dispatch(setSuccessType(false))
@@ -59,7 +58,7 @@ export default function AddServiceProvider({ id }: { id: string }) {
   const addInputURL = (value: string) => {
     setInputURL(value)
     if (!Patterns.URL.test(value.trim())) {
-      setUrlErrorMessage(t('content.appStore.pleaseEnterValidURL'))
+      setUrlErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
     } else {
       setUrlErrorMessage('')
     }
@@ -70,7 +69,6 @@ export default function AddServiceProvider({ id }: { id: string }) {
     try {
       await addServiceProvider({
         method: data && data.url ? 'PUT' : 'POST',
-        providerId: data && data.url ? id : '',
         body: { url: inputURL },
       }).unwrap()
       dispatch(setSuccessType(true))
@@ -85,8 +83,8 @@ export default function AddServiceProvider({ id }: { id: string }) {
     <>
       <DialogHeader
         {...{
-          title: t('content.appStore.register.heading'),
-          intro: t('content.appStore.register.message'),
+          title: t('content.appSubscription.register.heading'),
+          intro: t('content.appSubscription.register.message'),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
@@ -95,13 +93,13 @@ export default function AddServiceProvider({ id }: { id: string }) {
       <DialogContent>
         <div className="manageInputURL">
           <Input
-            label={t('content.appStore.register.endpointConfigured')}
+            label={t('content.appSubscription.register.endpointConfigured')}
             value={data ? data.url : ''}
             disabled={true}
             sx={{ marginBottom: '20px' }}
           />
           <Input
-            label={t('content.appStore.register.autosetupURL')}
+            label={t('content.appSubscription.register.autosetupURL')}
             placeholder="URL of the customer tentant"
             onChange={(e) => addInputURL(e.target.value)}
             value={inputURL}
@@ -142,7 +140,7 @@ export default function AddServiceProvider({ id }: { id: string }) {
         open={saveErrorMsg}
         onCloseNotification={() => setSaveErrorMessage(false)}
         severity="error"
-        description={t('content.appStore.register.providerErrorMessage')}
+        description={t('content.appSubscription.register.providerErrorMessage')}
         showIcon={true}
       />
     </>

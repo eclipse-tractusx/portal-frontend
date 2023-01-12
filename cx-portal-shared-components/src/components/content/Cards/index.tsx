@@ -53,6 +53,7 @@ interface CardsProps {
   submenuOptions?: SubItems[]
   submenuClick?: any
   tooltipText?: string
+  showStatus?: boolean
 }
 
 export const Cards = ({
@@ -75,6 +76,7 @@ export const Cards = ({
   submenuOptions = [],
   submenuClick = () => {},
   tooltipText,
+  showStatus = true,
 }: CardsProps) => {
   const settings = {
     variant,
@@ -90,6 +92,7 @@ export const Cards = ({
     submenuOptions,
     submenuClick,
     tooltipText,
+    showStatus,
   }
   const { spacing } = useTheme()
 
