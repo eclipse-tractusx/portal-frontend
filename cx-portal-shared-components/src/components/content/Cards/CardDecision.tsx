@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { Box, useTheme, Typography, IconButton } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
 import { CardChip, Variants } from './CardChip'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import ApprovalIcon from '@mui/icons-material/Approval'
