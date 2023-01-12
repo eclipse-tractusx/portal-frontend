@@ -5,6 +5,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
+* Bugfix - App Subscription - Search behavior CSS issue
+* Bugfix - App Access Management 
+      * Carousel central issue
+      * Card Height Fixed
+
 ## 1.0.0-RC1
 
 ### Change
