@@ -30,7 +30,12 @@ import {
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
-import { isCompanyName, isID, isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
+import {
+  isCompanyName,
+  isIDPClientID,
+  isIDPClientSecret,
+  isURL,
+} from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 

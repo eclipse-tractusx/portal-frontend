@@ -76,7 +76,8 @@ export const isURL = (expr: string) => Patterns.URL.test(expr)
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
 export const isIDPClientID = (expr: string) => Patterns.idp.clientId.test(expr)
-export const isIDPClientSecret = (expr: string) => Patterns.idp.clientSecret.test(expr)
+export const isIDPClientSecret = (expr: string) =>
+  Patterns.idp.clientSecret.test(expr)
 export const isMailOrEmpty = (expr: string) =>
   expr === '' || Patterns.MAIL.test(expr)
 export const isBPNOrEmpty = (expr: string) =>
