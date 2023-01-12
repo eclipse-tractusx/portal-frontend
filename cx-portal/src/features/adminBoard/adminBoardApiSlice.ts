@@ -19,8 +19,10 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { StatusVariants } from 'cx-portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PAGE_SIZE } from 'types/Constants'
+
+const PAGE_SIZE = 15
 
 export interface AppRequestBody {
   page: number
@@ -39,7 +41,7 @@ export type AppContent = {
   appId: string
   name: string
   provider: string
-  status: string
+  status: StatusVariants
 }
 
 export type AppResponse = {
@@ -56,13 +58,29 @@ export const apiSlice = createApi({
         const statusId = `statusId=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
-          url: `/api/apps/appreleaseprocess/inReview?size=15&page=${
+          url: `/api/apps/appreleaseprocess/inReview?size=${PAGE_SIZE}&page=${
             body.page
           }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
         }
       },
     }),
+    approveRequest: builder.mutation<boolean, string>({
+      query: (appId) => ({
+        url: `/api/apps/appreleaseprocess/${appId}/approveApp`,
+        method: 'PUT',
+      }),
+    }),
+    declineRequest: builder.mutation<boolean, string>({
+      query: (appId) => ({
+        url: `/api/apps/appreleaseprocess/${appId}/declineApp`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
-export const { useFetchAppReleaseAppsQuery } = apiSlice
+export const {
+  useFetchAppReleaseAppsQuery,
+  useApproveRequestMutation,
+  useDeclineRequestMutation,
+} = apiSlice

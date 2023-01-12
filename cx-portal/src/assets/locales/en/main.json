@@ -993,10 +993,8 @@
       "headerTitle": "App request management",
       "search": "search company name/app title",
       "noDataMessage": "No data available",
-      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
-      "subscribeSuccessMsg": "Subscribed Successfully",
-      "activateBtn": "Activate",
-      "pleaseEnterValidURL": "Please enter a valid URL",
+      "errorMsg": "Error! Something went wrong",
+      "successMsg": "Successfully completed",
       "tabs": {
         "all": "All Apps",
         "request": "Under Review"
@@ -1004,25 +1002,6 @@
       "sortOptions": {
         "newFirst": "Newest First",
         "AppTitle": "App Title (A-Z)"
-      },
-      "document": {
-        "heading": "Relevant Documents",
-        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
-      },
-      "register": {
-        "heading": "Autosetup URL",
-        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "endpointConfigured": "Endpoint Configured",
-        "autosetupURL": "AutoSetup URL",
-        "providerErrorMessage": "Something went wrong!",
-        "providerSuccessMessage": "Service Provider Details added successfully."
-      },
-      "activation": {
-        "heading": "Activate User Subscription",
-        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "successDescription": "The technical user has been created with the following data:",
-        "clientId": "Client Id",
-        "clientSecret": "Client Secret"
       }
     }
   },

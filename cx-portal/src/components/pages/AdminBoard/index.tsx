@@ -19,46 +19,32 @@
  ********************************************************************************/
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
-import SubscriptionElements from './AdminBoardElements'
 import {
   SearchInput,
-  Typography,
   ViewSelector,
   SortOption,
-  PageSnackbar,
   PageHeader,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
-import {
-  SubscriptionContent,
-  useFetchSubscriptionsQuery,
-} from 'features/appSubscription/appSubscriptionApiSlice'
-import { currentSuccessType } from 'features/appSubscription/slice'
-import { currentProviderSuccessType } from 'features/serviceProvider/slice'
 import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useFetchAppReleaseAppsQuery } from 'features/adminBoard/adminBoardApiSlice'
+import {
+  AppContent,
+  useFetchAppReleaseAppsQuery,
+} from 'features/adminBoard/adminBoardApiSlice'
 import AdminBoardElements from './AdminBoardElements'
 
 export default function AppSubscription() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('')
   const [sortOption, setSortOption] = useState<string>('new')
-  const [cardSubscriptions, setCardSubscriptions] = useState<
-    SubscriptionContent[]
-  >([])
-  const [serviceProviderSuccess, setServiceProviderSuccess] =
-    useState<boolean>(false)
+  const [appCards, setAppCards] = useState<AppContent[]>([])
 
   let statusId = selected
 
@@ -67,31 +53,17 @@ export default function AppSubscription() {
     sortingType = 'NameAsc'
   }
 
-  const { data, refetch } = useFetchAppReleaseAppsQuery({
+  const { data } = useFetchAppReleaseAppsQuery({
     page: 0,
     statusId: statusId,
     sortingType: sortingType,
   })
 
-  // const { data, refetch } = useFetchSubscriptionsQuery({
-  //   page: 0,
-  //   statusId: statusId,
-  //   sortingType: sortingType,
-  // })
   const apps = data && data.content
-  // useEffect(() => {
-  //   subscriptions && setCardSubscriptions(subscriptions)
-  // }, [subscriptions])
 
-  // const success: boolean = useSelector(currentSuccessType)
-  // useEffect(() => {
-  //   refetch()
-  // }, [success, refetch])
-
-  // const isSuccess = useSelector(currentProviderSuccessType)
-  // useEffect(() => {
-  //   isSuccess && setServiceProviderSuccess(true)
-  // }, [isSuccess])
+  useEffect(() => {
+    apps && setAppCards(apps)
+  }, [apps])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -121,23 +93,23 @@ export default function AppSubscription() {
     },
   ]
 
-  // const debouncedFilter = useMemo(
-  //   () =>
-  //     debounce((expr: string) => {
-  //       subscriptions &&
-  //         setCardSubscriptions(
-  //           expr
-  //             ? subscriptions &&
-  //             subscriptions.filter((card: SubscriptionContent) =>
-  //               card.serviceName.toLowerCase().includes(expr.toLowerCase())
-  //             )
-  //             : subscriptions
-  //         )
-  //     }, 300),
-  //   [subscriptions]
-  // )
-
-  const debouncedFilter = (expr: string) => {}
+  const debouncedFilter = useMemo(
+    () =>
+      debounce((expr: string) => {
+        apps &&
+          setAppCards(
+            expr
+              ? apps &&
+                  apps.filter(
+                    (app: AppContent) =>
+                      app.provider.toLowerCase().includes(expr.toLowerCase()) ||
+                      app.name.toLowerCase().includes(expr.toLowerCase())
+                  )
+              : apps
+          )
+      }, 300),
+    [apps]
+  )
 
   const searchDataFn = useCallback(
     (expr: string) => {
@@ -209,18 +181,9 @@ export default function AppSubscription() {
             />
           </div>
         ) : (
-          <AdminBoardElements apps={apps} />
+          <AdminBoardElements apps={appCards} />
         )}
       </div>
-      {
-        <PageSnackbar
-          open={serviceProviderSuccess}
-          onCloseNotification={() => setServiceProviderSuccess(false)}
-          severity="success"
-          description={t('content.appStore.register.providerSuccessMessage')}
-          showIcon={true}
-        />
-      }
     </div>
   )
 }

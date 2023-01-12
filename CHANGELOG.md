@@ -52,6 +52,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add "Cancel" icon in 2nd connector overlay
    * Add tooltips
    * Update titles
+* Feature - Admin Board - App Release (Page)
+   * Created Admin Board Page
+   * Connect with API's
+   * BL&API Approve app release
+   * BL&API Decline app release
 
 ## 0.10.0
 

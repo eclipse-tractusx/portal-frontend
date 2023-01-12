@@ -18,24 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import {
-  Button,
-  Cards,
+  CardDecision,
   PageNotifications,
-  Typography,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
 import './AdminBoard.scss'
-import { AppContent } from 'features/adminBoard/adminBoardApiSlice'
+import {
+  AppContent,
+  useApproveRequestMutation,
+  useDeclineRequestMutation,
+} from 'features/adminBoard/adminBoardApiSlice'
 
 export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
   const theme = useTheme()
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
+  const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false)
+
+  const [approveRequest] = useApproveRequestMutation()
+  const [declineRequest] = useDeclineRequestMutation()
 
   if (apps && apps.length === 0) {
     return (
@@ -51,12 +56,44 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
     )
   }
 
+  const onDecisionApprove = async (appId: string) => {
+    await approveRequest(appId)
+      .unwrap()
+      .then(() => setShowSuccessAlert(true))
+      .catch((error) => setShowErrorAlert(true))
+  }
+
+  const onDecisionDelete = async (appId: string) => {
+    await declineRequest(appId)
+      .unwrap()
+      .then(() => setShowSuccessAlert(true))
+      .catch((error) => setShowErrorAlert(true))
+  }
+
+  const onAlertClose = () => {
+    setShowSuccessAlert(false)
+    setShowErrorAlert(false)
+  }
+
   return (
-    <div className="recommended-main">
+    <div className="admin-board-elements-main">
+      <PageSnackbar
+        open={showSuccessAlert || showErrorAlert}
+        onCloseNotification={onAlertClose}
+        severity={showSuccessAlert ? 'success' : 'error'}
+        description={
+          showSuccessAlert
+            ? t('content.adminBoard.successMsg')
+            : t('content.adminBoard.errorMsg')
+        }
+        showIcon={true}
+      />
       {apps && apps.length ? (
-        <ul className="subscription-list">
-          {apps.map((subscriptionData) => 'test')}
-        </ul>
+        <CardDecision
+          items={apps}
+          onDelete={onDecisionDelete}
+          onApprove={onDecisionApprove}
+        />
       ) : (
         <div className="loading-progress">
           <CircularProgress

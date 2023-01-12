@@ -1028,6 +1028,21 @@
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
       }
+    },
+    "adminBoard": {
+      "headerTitle": "App request management",
+      "search": "search company name/app title",
+      "noDataMessage": "No data available",
+      "tabs": {
+        "all": "All Apps",
+        "request": "Under Review"
+      },
+      "sortOptions": {
+        "newFirst": "Newest First",
+        "AppTitle": "App Title (A-Z)"
+      },
+      "errorMsg": "Error! Something went wrong",
+      "successMsg": "Successfully completed"
     }
   },
   "navigation": {
