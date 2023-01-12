@@ -51,7 +51,6 @@ export const CardContent = ({
           variant="h5"
           sx={{
             marginTop: 0.5,
-            //height: 'auto',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'normal',
