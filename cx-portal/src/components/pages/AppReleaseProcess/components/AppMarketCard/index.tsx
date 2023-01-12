@@ -35,7 +35,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box } from '@mui/material'
-import { useState, useEffect, SetStateAction } from 'react'
+import { useState, useEffect } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -311,7 +311,7 @@ export default function AppMarketCard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList, appStatusData])
 
-  const onSalesManagerChange = (sales: SetStateAction<string | null>) => {
+  const onSalesManagerChange = (sales: any) => {
     setSalesManagerId(sales)
   }
 

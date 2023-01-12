@@ -74,8 +74,7 @@ export default function TechnicalIntegration() {
   // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
   // const [showUserButton, setShowUserButton] = useState(true)
 
-  // const appId = useSelector(appIdSelector)
-  const appId = '65ec6426-1a33-45d7-8d74-a1a361d45803'
+  const appId = useSelector(appIdSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
@@ -376,10 +375,10 @@ export default function TechnicalIntegration() {
                     {t('content.apprelease.technicalIntegration.rolesPreview')}
                   </Typography>
                   <Grid item container xs={12}>
-                    {rolesPreviews?.map((role: string, index: number) => (
-                      <Grid item xs={6} key={index}>
+                    {rolesPreviews?.map((role: string) => (
+                      <Grid item xs={6} key={role}>
                         <Chip
-                          key={index}
+                          key={role}
                           label={role}
                           withIcon={false}
                           type="plain"
