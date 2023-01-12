@@ -84,4 +84,5 @@ Chip.args = {
   type: 'decline',
   onClick: () => console.log('Decline clicked'),
   withIcon: true,
+  handleDelete: () => console.log('onDelete clicked'),
 }

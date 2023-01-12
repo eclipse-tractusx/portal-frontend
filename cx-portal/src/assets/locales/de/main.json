@@ -889,7 +889,8 @@
         "createTestUser": "Create Test User",
         "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
         "password": "Password",
-        "username": "Username"
+        "username": "Username",
+        "successfullyUploadedAppRoles": "Successfully uploaded app roles"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

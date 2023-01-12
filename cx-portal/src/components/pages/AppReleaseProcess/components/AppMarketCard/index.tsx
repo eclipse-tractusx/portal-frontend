@@ -317,7 +317,7 @@ export default function AppMarketCard() {
   const cardImageData = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== LogoGrayData) {
-      const blobFile = new Blob([getValues().uploadImage.leadPictureUri], {
+      const blobFile = new Blob([cardImageData], {
         type: 'image/png',
       })
       setCardImage(URL.createObjectURL(blobFile))
