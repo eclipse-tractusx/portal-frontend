@@ -94,8 +94,7 @@ export const CardDecision = ({
           <Box>
             <CardChip status={item.status} statusText={item.status} />
           </Box>
-          {
-            item.status.toLowerCase() !== StatusVariants.active &&
+          {item.status.toLowerCase() !== StatusVariants.active && (
             <Box
               sx={{
                 display: 'flex',
@@ -131,7 +130,7 @@ export const CardDecision = ({
                 <DeleteOutlineIcon sx={{ color: '#D91E18' }} />
               </IconButton>
             </Box>
-          }
+          )}
         </Box>
       ))}
     </Box>
