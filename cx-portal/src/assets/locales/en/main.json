@@ -996,8 +996,8 @@
       "errorMsg": "Error! Something went wrong",
       "successMsg": "Successfully completed",
       "tabs": {
-        "all": "All Apps",
-        "request": "Under Review"
+        "open": "Open",
+        "all": "All"
       },
       "sortOptions": {
         "newFirst": "Newest First",

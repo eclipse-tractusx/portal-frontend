@@ -1034,8 +1034,8 @@
       "search": "search company name/app title",
       "noDataMessage": "No data available",
       "tabs": {
-        "all": "All Apps",
-        "request": "Under Review"
+        "open": "Open",
+        "all": "All"
       },
       "sortOptions": {
         "newFirst": "Newest First",

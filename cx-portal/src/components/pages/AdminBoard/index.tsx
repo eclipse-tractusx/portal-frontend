@@ -42,7 +42,7 @@ export default function AppSubscription() {
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('')
+  const [selected, setSelected] = useState<string>('InReview')
   const [sortOption, setSortOption] = useState<string>('new')
   const [appCards, setAppCards] = useState<AppContent[]>([])
 
@@ -82,13 +82,13 @@ export default function AppSubscription() {
 
   const filterButtons = [
     {
-      buttonText: t('content.adminBoard.tabs.all'),
-      buttonValue: '',
+      buttonText: t('content.adminBoard.tabs.open'),
+      buttonValue: 'InReview',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.adminBoard.tabs.request'),
-      buttonValue: 'INREVIEW',
+      buttonText: t('content.adminBoard.tabs.all'),
+      buttonValue: 'All',
       onButtonClick: setView,
     },
   ]

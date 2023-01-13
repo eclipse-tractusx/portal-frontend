@@ -55,7 +55,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchAppReleaseApps: builder.query<AppResponse, AppRequestBody>({
       query: (body) => {
-        const statusId = `statusId=${body.statusId}`
+        const statusId = `offerStatusIdFilter=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
           url: `/api/apps/appreleaseprocess/inReview?size=${PAGE_SIZE}&page=${
