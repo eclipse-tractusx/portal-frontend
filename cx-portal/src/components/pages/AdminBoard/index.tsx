@@ -111,18 +111,18 @@ export default function AppSubscription() {
     [apps]
   )
 
-  // const handleSearch = useCallback(
-  //   (expr: string) => {
-  //     setSearchExpr(expr)
-  //     debouncedFilter(expr)
-  //   },
-  //   [debouncedFilter]
-  // )
+  const handleSearch = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedFilter(expr)
+    },
+    [debouncedFilter]
+  )
 
-  // const handleSortOption = (value: string) => {
-  //   setSortOption(value)
-  //   setShowModalValue(false)
-  // }
+  const handleSortOption = (value: string) => {
+    setSortOption(value)
+    setShowModalValue(false)
+  }
 
   return (
     <div className="adminBoard">
@@ -139,7 +139,7 @@ export default function AppSubscription() {
             placeholder={t('content.adminBoard.search')}
             value={searchExpr}
             autoFocus={false}
-            //onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
         <div
@@ -149,7 +149,7 @@ export default function AppSubscription() {
           <ViewSelector activeView={selected} views={filterButtons} />
           <div className="iconSection">
             <SortIcon
-              //onClick={() => setShowModalValue(true)}
+              onClick={() => setShowModalValue(true)}
               sx={{
                 fontSize: 20,
                 color: '#939393',
@@ -161,7 +161,7 @@ export default function AppSubscription() {
             <SortOption
               show={showModal}
               selectedOption={sortOption}
-              //setSortOption={handleSortOption}
+              setSortOption={handleSortOption}
               sortOptions={sortOptions}
             />
           </div>
