@@ -111,18 +111,18 @@ export default function AppSubscription() {
     [apps]
   )
 
-  const handleSearch = useCallback(
-    (expr: string) => {
-      setSearchExpr(expr)
-      debouncedFilter(expr)
-    },
-    [debouncedFilter]
-  )
+  // const handleSearch = useCallback(
+  //   (expr: string) => {
+  //     setSearchExpr(expr)
+  //     debouncedFilter(expr)
+  //   },
+  //   [debouncedFilter]
+  // )
 
-  const handleSortOption = (value: string) => {
-    setSortOption(value)
-    setShowModalValue(false)
-  }
+  // const handleSortOption = (value: string) => {
+  //   setSortOption(value)
+  //   setShowModalValue(false)
+  // }
 
   return (
     <div className="adminBoard">
