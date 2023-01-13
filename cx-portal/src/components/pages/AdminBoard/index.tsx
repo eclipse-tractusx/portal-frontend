@@ -138,8 +138,8 @@ export default function AppSubscription() {
           <SearchInput
             placeholder={t('content.adminBoard.search')}
             value={searchExpr}
-            onChange={(x) => handleSearch(x.target.value)}
             autoFocus={false}
+            //onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
         <div
@@ -149,7 +149,7 @@ export default function AppSubscription() {
           <ViewSelector activeView={selected} views={filterButtons} />
           <div className="iconSection">
             <SortIcon
-              onClick={() => setShowModalValue(true)}
+              //onClick={() => setShowModalValue(true)}
               sx={{
                 fontSize: 20,
                 color: '#939393',
@@ -161,8 +161,8 @@ export default function AppSubscription() {
             <SortOption
               show={showModal}
               selectedOption={sortOption}
+              //setSortOption={handleSortOption}
               sortOptions={sortOptions}
-              setSortOption={(value: string) => handleSortOption(value)}
             />
           </div>
         </div>
