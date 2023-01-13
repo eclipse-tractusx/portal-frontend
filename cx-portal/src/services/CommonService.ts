@@ -21,6 +21,15 @@
 import { getApiBase } from './EnvironmentService'
 import UserService from './UserService'
 
+const getName = (app: any) => app.name ?? ''
+const getDescription = (app: any) =>
+  app.shortDescription === 'ERROR' ? '' : app.shortDescription
+
+const onClick = (app: any) =>
+  app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined
+
+const getPrice = (app: any) => (app.price === 'ERROR' ? '' : app.price)
+
 const fetchLeadPictureImage = (data: any[]) => {
   const promises = data?.map((app: any) => {
     return [
@@ -44,15 +53,10 @@ const fetchLeadPictureImage = (data: any[]) => {
                   resolve({
                     ...app,
                     subtitle: app.provider,
-                    title: app.name ?? '',
-                    description:
-                      app.shortDescription === 'ERROR'
-                        ? ''
-                        : app.shortDescription,
-                    price: app.price === 'ERROR' ? '' : app.price,
-                    onClick: app.uri
-                      ? () => window.open(app.uri, '_blank')?.focus()
-                      : undefined,
+                    title: getName(app),
+                    description: getDescription(app),
+                    price: getPrice(app),
+                    onClick: onClick(app),
                     image: {
                       src: this.result,
                       alt: app.title,
