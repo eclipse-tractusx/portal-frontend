@@ -85,6 +85,10 @@ const EdcConnector = () => {
   useState<boolean>(false)
   const [triggerDaps] = useTriggerDapsMutation()
 
+  const onStepChange = () => {
+    setAddConnectorOverlayCurrentStep(0)
+  }
+
   const onDelete = (row: ConnectorContentAPIResponse) => {
     setSelectedConnector(row)
     setDeleteConnectorConfirmModalOpen(true)
@@ -113,10 +117,6 @@ const EdcConnector = () => {
     setAddConnectorOverlayCurrentStep((prevState) => {
       return prevState < 1 ? 1 : prevState
     })
-  }
-
-  const onStepChange = () => {
-    setAddConnectorOverlayCurrentStep(0)
   }
 
   const onFormSubmit = async (data: FormFieldsType) => {

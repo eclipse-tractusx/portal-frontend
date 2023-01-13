@@ -304,8 +304,8 @@ const ConnectorInsertForm = ({
                   rules: {
                     required: true,
                   },
-                  dropzoneProps: dropzoneProps,
                   label: t('content.edcconnector.modal.insertform.doc.label'),
+                  dropzoneProps: dropzoneProps,
                   helperText: t(
                     'content.edcconnector.modal.insertform.doc.error'
                   ),

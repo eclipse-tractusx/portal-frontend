@@ -38,8 +38,8 @@ export const ConnectorTableColumns = (
       field: 'name',
       headerName: t('content.edcconnector.columns.name'),
       flex: 1,
-      sortable: false,
       disableColumnMenu: true,
+      sortable: false,
     },
     {
       field: 'location',

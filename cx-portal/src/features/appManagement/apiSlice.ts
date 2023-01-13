@@ -62,6 +62,7 @@ export type DocumentData = {
 
 export type DocumentAppContract = {
   APP_CONTRACT: Array<DocumentData>
+  APP_LEADIMAGE?: Array<DocumentData>
 }
 
 export type NewAppDetails = {
@@ -192,6 +193,25 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId: string) => ({
+        url: `/api/administration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
+    fetchRolesData: builder.query<any, string>({
+      query: (appId: string) => `api/administration/user/app/${appId}/roles`,
+    }),
+    updateRoleData: builder.mutation<any, any>({
+      query: (data: any) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}/role`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -208,4 +228,7 @@ export const {
   useUpdateAgreementConsentsMutation,
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
+  useFetchDocumentByIdMutation,
+  useFetchRolesDataQuery,
+  useUpdateRoleDataMutation,
 } = apiSlice

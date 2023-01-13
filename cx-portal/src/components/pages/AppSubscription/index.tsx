@@ -173,17 +173,10 @@ export default function AppSubscription() {
             </Typography>
             <Typography
               variant="label3"
-              onClick={() =>
-                dispatch(
-                  show(
-                    OVERLAYS.ADD_SERVICE_PROVIDER,
-                    '570788fc-0b34-4953-ad1d-c48d32c533e2'
-                  )
-                )
-              }
+              onClick={() => dispatch(show(OVERLAYS.ADD_SERVICE_PROVIDER))}
               sx={{ cursor: 'pointer' }}
             >
-              {t('content.appStore.registerURL')}
+              {t('content.appSubscription.registerURL')}
             </Typography>
           </div>
           <div>
@@ -236,7 +229,9 @@ export default function AppSubscription() {
           open={serviceProviderSuccess}
           onCloseNotification={() => setServiceProviderSuccess(false)}
           severity="success"
-          description={t('content.appStore.register.providerSuccessMessage')}
+          description={t(
+            'content.appSubscription.register.providerSuccessMessage'
+          )}
           showIcon={true}
         />
       }

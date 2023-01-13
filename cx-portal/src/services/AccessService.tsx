@@ -180,7 +180,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.SAMPLE_FORM:
       return <SampleForm />
     case OVERLAYS.ADD_SERVICE_PROVIDER:
-      return <AddServiceProvider id={overlay.id} />
+      return <AddServiceProvider />
     default:
       return <NotFound />
   }

@@ -198,7 +198,10 @@ export default function NotificationItem({
             <LabelImportantIcon
               sx={{
                 fontSize: 15,
-                color: item.notificationTopic === 'ACTION' ? '#FDB943' : '#fff',
+                color:
+                  item.notificationTopic === 'ACTION'
+                    ? '#FDB943'
+                    : 'transparent',
               }}
             />
             <Typography

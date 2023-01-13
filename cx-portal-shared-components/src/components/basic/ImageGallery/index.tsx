@@ -18,53 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ImageItem } from './ImageItem'
 import { ImageType } from './types'
-import { Typography } from '../Typography'
 
-export const ImageGallery = ({ gallery }: { gallery: ImageType[] }) => (
+export const ImageGallery = ({
+  gallery,
+  grid = false,
+  modalWidth,
+}: {
+  gallery: ImageType[]
+  grid?: boolean
+  modalWidth?: string
+}) => (
   <div
     style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      marginRight: '-15px',
-      marginLeft: '-15px',
-      boxSizing: 'border-box',
+      display: grid ? 'grid' : 'flex',
+      gap: '30px',
+      placeContent: 'center',
+      gridTemplateColumns: 'repeat(3, 1fr)',
     }}
   >
-    {gallery.map((image, index) => (
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          paddingRight: '15px',
-          paddingLeft: '15px',
-          flex: '0 0 33.333333%',
-          maxWidth: '33.333333%',
-          boxSizing: 'border-box',
-        }}
-        key={index}
-      >
-        <img
-          src={image.url}
-          alt={image.text}
-          style={{
-            width: '100%',
-            borderRadius: '20px',
-            height: '250px',
-            objectFit: 'cover',
-          }}
-        />
-        <Typography
-          variant="body2"
-          sx={{
-            color: '#888888',
-            margin: '5px 0',
-            fontSize: '14px',
-          }}
-        >
-          {image.text}
-        </Typography>
-      </div>
+    {gallery.map((image) => (
+      <ImageItem
+        key={image.text}
+        url={image.url}
+        text={image.text}
+        size={image.size || 'large-square'}
+        hover={image.hover || true}
+        borderRadius={image.borderRadius || true}
+        shadow={image.shadow || true}
+        modalWidth={modalWidth}
+      />
     ))}
   </div>
 )
