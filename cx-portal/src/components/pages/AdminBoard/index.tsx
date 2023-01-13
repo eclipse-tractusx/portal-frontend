@@ -138,8 +138,8 @@ export default function AppSubscription() {
           <SearchInput
             placeholder={t('content.adminBoard.search')}
             value={searchExpr}
-            autoFocus={false}
             onChange={(x) => handleSearch(x.target.value)}
+            autoFocus={false}
           />
         </div>
         <div
@@ -161,8 +161,8 @@ export default function AppSubscription() {
             <SortOption
               show={showModal}
               selectedOption={sortOption}
-              setSortOption={handleSortOption}
               sortOptions={sortOptions}
+              setSortOption={(value: string) => handleSortOption(value)}
             />
           </div>
         </div>
