@@ -219,8 +219,6 @@ export default function AppMarketCard() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
-  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
 
   const defaultValues = {
     title: appStatusData?.title,
@@ -256,33 +254,6 @@ export default function AppMarketCard() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
-
-  useEffect(() => {
-    if (useCasesList.length > 0) {
-      const defaultUseCaseIds: any = useCasesList?.filter((item) =>
-        appStatusData?.useCase?.some((x) => x === item.name)
-      )
-      setDefaultUseCaseVal(defaultUseCaseIds)
-      setValue(
-        'useCaseCategory',
-        defaultUseCaseIds.map((id: { useCaseId: string }) => id.useCaseId)
-      )
-    }
-    if (appLanguagesList.length > 0) {
-      const defaultAppLanguages: any = appLanguagesList?.filter((item) =>
-        appStatusData?.supportedLanguageCodes?.some(
-          (x) => x === item.languageShortName
-        )
-      )
-      setDefaultAppLanguageVal(defaultAppLanguages)
-      setValue(
-        'appLanguage',
-        defaultAppLanguages.map(
-          (id: { languageShortName: string }) => id.languageShortName
-        )
-      )
-    }
-  }, [useCasesList, appStatusData, setValue, appLanguagesList])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
@@ -729,7 +700,6 @@ export default function AppMarketCard() {
                     'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
-                  defaultValues: defaultUseCaseVal,
                 }}
               />
             </div>
@@ -775,7 +745,6 @@ export default function AppMarketCard() {
                       option.languageLongNames.de +
                       option.languageLongNames.en,
                   },
-                  defaultValues: defaultAppLanguageVal,
                 }}
               />
             </div>
