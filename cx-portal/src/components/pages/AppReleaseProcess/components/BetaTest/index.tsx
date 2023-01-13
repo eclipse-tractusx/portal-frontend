@@ -29,15 +29,29 @@ import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
-import { decrement, increment } from 'features/appManagement/slice'
-import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 export default function BetaTest() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [betaTestNotification, setBetaTestNotification] = useState(false)
+  const appId = useSelector(appIdSelector)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   return (
     <>

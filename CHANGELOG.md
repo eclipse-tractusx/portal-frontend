@@ -7,6 +7,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Dailog Header
    * Update Dailog header font size to 24px
 
+### Feature
+* App Release Process
+   * step 4 - Business logic and API added for add, delete and get roles
+
 ## 1.0.0-RC1
 
 ### Change
