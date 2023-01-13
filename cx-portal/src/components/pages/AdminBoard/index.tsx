@@ -139,7 +139,7 @@ export default function AppSubscription() {
             placeholder={t('content.adminBoard.search')}
             value={searchExpr}
             autoFocus={false}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(x) => handleSearch(x.target.value)}
           />
         </div>
         <div
