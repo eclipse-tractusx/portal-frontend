@@ -41,7 +41,7 @@ export default function AppSubscription() {
   const { t } = useTranslation()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const [showModal, setShowModalValue] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('InReview')
   const [sortOption, setSortOption] = useState<string>('new')
   const [appCards, setAppCards] = useState<AppContent[]>([])
@@ -121,15 +121,15 @@ export default function AppSubscription() {
 
   const handleSortOption = (value: string) => {
     setSortOption(value)
-    setShowModal(false)
+    setShowModalValue(false)
   }
 
   const setModalFalse = () => {
-    setShowModal(false)
+    setShowModalValue(false)
   }
 
   const handleSortModal = () => {
-    setShowModal(true)
+    setShowModalValue(true)
   }
 
   return (
