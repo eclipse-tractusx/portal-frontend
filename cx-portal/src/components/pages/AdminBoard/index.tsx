@@ -111,7 +111,7 @@ export default function AppSubscription() {
     [apps]
   )
 
-  const handleSearchData = useCallback(
+  const handleSearch = useCallback(
     (expr: string) => {
       setSearchExpr(expr)
       debouncedFilter(expr)
@@ -139,7 +139,7 @@ export default function AppSubscription() {
             placeholder={t('content.adminBoard.search')}
             value={searchExpr}
             autoFocus={false}
-            onChange={(e) => handleSearchData(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
         <div
