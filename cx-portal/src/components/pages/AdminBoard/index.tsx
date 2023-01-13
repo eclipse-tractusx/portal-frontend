@@ -111,7 +111,7 @@ export default function AppSubscription() {
     [apps]
   )
 
-  const searchDataFn = useCallback(
+  const handleSearchData = useCallback(
     (expr: string) => {
       setSearchExpr(expr)
       debouncedFilter(expr)
@@ -119,7 +119,7 @@ export default function AppSubscription() {
     [debouncedFilter]
   )
 
-  const setSortOptionFunc = (value: string) => {
+  const handleSortOption = (value: string) => {
     setSortOption(value)
     setShowModal(false)
   }
@@ -128,7 +128,7 @@ export default function AppSubscription() {
     setShowModal(false)
   }
 
-  const setSortModalTrue = () => {
+  const handleSortModal = () => {
     setShowModal(true)
   }
 
@@ -147,14 +147,14 @@ export default function AppSubscription() {
             placeholder={t('content.adminBoard.search')}
             value={searchExpr}
             autoFocus={false}
-            onChange={(e) => searchDataFn(e.target.value)}
+            onChange={(e) => handleSearchData(e.target.value)}
           />
         </div>
         <div className="filterSection" onMouseLeave={setModalFalse}>
           <ViewSelector activeView={selected} views={filterButtons} />
           <div className="iconSection">
             <SortIcon
-              onClick={setSortModalTrue}
+              onClick={handleSortModal}
               sx={{
                 fontSize: 20,
                 color: '#939393',
@@ -166,7 +166,7 @@ export default function AppSubscription() {
             <SortOption
               show={showModal}
               selectedOption={sortOption}
-              setSortOption={setSortOptionFunc}
+              setSortOption={handleSortOption}
               sortOptions={sortOptions}
             />
           </div>
