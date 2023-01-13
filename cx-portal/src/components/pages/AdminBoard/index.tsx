@@ -124,14 +124,6 @@ export default function AppSubscription() {
     setShowModalValue(false)
   }
 
-  const setModalFalse = () => {
-    setShowModalValue(false)
-  }
-
-  const handleSortModal = () => {
-    setShowModalValue(true)
-  }
-
   return (
     <div className="adminBoard">
       <PageHeader
@@ -150,11 +142,14 @@ export default function AppSubscription() {
             onChange={(e) => handleSearchData(e.target.value)}
           />
         </div>
-        <div className="filterSection" onMouseLeave={setModalFalse}>
+        <div
+          className="filterSection"
+          onMouseLeave={() => setShowModalValue(false)}
+        >
           <ViewSelector activeView={selected} views={filterButtons} />
           <div className="iconSection">
             <SortIcon
-              onClick={handleSortModal}
+              onClick={() => setShowModalValue(true)}
               sx={{
                 fontSize: 20,
                 color: '#939393',
