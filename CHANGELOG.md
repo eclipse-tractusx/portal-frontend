@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Dailog Header
    * Update Dailog header font size to 24px
+* Bugfix - Change Email Pattern Regex to fix Hostspot
 
 ## 1.0.0-RC1
 
