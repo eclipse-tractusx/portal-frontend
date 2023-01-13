@@ -50,7 +50,7 @@ export const AppArea = () => {
           variant="h3"
         />
       </div>
-      <Carousel gapToDots={5} position="">
+      <Carousel gapToDots={5}>
         {cards.length > 0
           ? cards?.map((item: CardItems) => {
               return (

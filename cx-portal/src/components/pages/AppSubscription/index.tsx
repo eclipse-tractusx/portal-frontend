@@ -186,6 +186,7 @@ export default function AppSubscription() {
                 value={searchExpr}
                 autoFocus={false}
                 onChange={(e) => searchDataFn(e.target.value)}
+                autoComplete="off"
               />
             </div>
             <div className="filterSection" onMouseLeave={setModalFalse}>

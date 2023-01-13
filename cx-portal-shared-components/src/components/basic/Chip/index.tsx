@@ -24,8 +24,10 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { theme } from '../../../theme'
 
 interface ChipCustomProps extends ChipProps {
-  type?: 'decline' | 'confirm' | 'plain'
+  type?: 'decline' | 'confirm' | 'plain' | 'delete'
   withIcon?: true | false
+  onDelete?: () => void
+  handleDelete?: any
 }
 
 export const Chip = ({
@@ -33,7 +35,8 @@ export const Chip = ({
   color = 'label',
   type = 'decline',
   withIcon = true,
-  onDelete = () => null, // To avoid default delete icon appear
+  onDelete,
+  handleDelete,
   ...props
 }: ChipCustomProps) => {
   let icon, hoverBgColor, hoverTextColor
@@ -56,6 +59,7 @@ export const Chip = ({
       variant={variant}
       color={color}
       icon={withIcon ? icon : undefined}
+      onDelete={type === 'delete' ? handleDelete : undefined}
       sx={{
         borderRadius: '36px',
         ':hover': {

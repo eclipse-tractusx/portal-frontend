@@ -4,6 +4,18 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Dailog Header
+   * Update Dailog header font size to 24px
+* Bugfix - Change Email Pattern Regex to fix Hostspot
+
+### Feature
+* App Release Process
+   * step 4 - Business logic and API added for add, delete and get roles
+
+* Bugfix - App Subscription - Search behavior CSS issue
+* Bugfix - App Access Management 
+      * Carousel central issue
+      * Card Height Fixed
 
 ## 1.0.0-RC1
 

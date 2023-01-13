@@ -112,6 +112,37 @@ export type salesManagerType = {
   fullName?: string
 }
 
+export type rolesType = {
+  roleId: string
+  role: string
+  description: string
+}
+
+export type deleteRoleType = {
+  appId: string
+  roleId: string
+}
+
+export type postRolesResponseType = {
+  roleId: string
+  roleName: string
+}
+
+export type updateRoleType = {
+  appId: string
+  body?: updateRolePayload[] | null
+}
+
+export type updateRolePayload = {
+  role: string
+  descriptions?:
+    | {
+        languageCode: string
+        description: string
+      }[]
+    | null
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -202,14 +233,20 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    fetchRolesData: builder.query<any, string>({
+    fetchRolesData: builder.query<rolesType[], string>({
       query: (appId: string) => `api/administration/user/app/${appId}/roles`,
     }),
-    updateRoleData: builder.mutation<any, any>({
-      query: (data: any) => ({
+    updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
+      query: (data) => ({
         url: `/api/apps/appreleaseprocess/${data.appId}/role`,
         method: 'POST',
         body: data.body,
+      }),
+    }),
+    deleteRoles: builder.mutation<void, deleteRoleType>({
+      query: (data) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}/role/${data.roleId}`,
+        method: 'DELETE',
       }),
     }),
   }),
@@ -231,4 +268,5 @@ export const {
   useFetchDocumentByIdMutation,
   useFetchRolesDataQuery,
   useUpdateRoleDataMutation,
+  useDeleteRolesMutation,
 } = apiSlice

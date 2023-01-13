@@ -50,7 +50,6 @@ const TESTDATA = {
   MAIL: {
     valid: [
       'julia.jeroch@bmw.de',
-      'JULIA.JEROCH@BMW.DE',
       'some_name.123.with-dash@my-host.co.uk',
       'a@b.ce',
       '222.333@444.com', // valid?
@@ -58,6 +57,7 @@ const TESTDATA = {
     invalid: [
       '',
       'word',
+      'JULIA.JEROCH@BMW.DE',
       'some string',
       '   donald.duck@bmw.de',
       'julia.jeroch@bmw',
