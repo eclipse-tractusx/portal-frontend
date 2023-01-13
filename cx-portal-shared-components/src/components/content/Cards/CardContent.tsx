@@ -39,26 +39,29 @@ export const CardContent = ({
 }: CardContentProps) => {
   return (
     <Box sx={{ padding: '20px' }}>
-      {subtitle && (
-        <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
-          {subtitle}
+      <Box sx={{ height: '50px' }}>
+        {subtitle && (
+          <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
+            {subtitle}
+          </Typography>
+        )}
+      </Box>
+      <Box sx={{ height: '50px' }}>
+        <Typography
+          variant="h5"
+          sx={{
+            marginTop: 0.5,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'normal',
+            display: 'box',
+            lineClamp: '2',
+            boxOrient: 'vertical',
+          }}
+        >
+          {title}
         </Typography>
-      )}
-      <Typography
-        variant="h5"
-        sx={{
-          marginTop: 0.5,
-          height: 'auto',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'normal',
-          display: 'box',
-          lineClamp: '2',
-          boxOrient: 'vertical',
-        }}
-      >
-        {title}
-      </Typography>
+      </Box>
       {rating && price && (
         <Box
           sx={{
