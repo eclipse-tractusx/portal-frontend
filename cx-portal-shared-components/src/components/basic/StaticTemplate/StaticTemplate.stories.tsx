@@ -102,8 +102,7 @@ GridTemplates.args = {
           title: 'Card Title 1',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-          description:
-            'Card element description, with limited size.',
+          description: 'Card element description, with limited size.',
           readMore: '/appmarketplace',
           readMoreTitle: 'Details',
           backgroundColor: '#f9f9f9',
@@ -113,8 +112,7 @@ GridTemplates.args = {
           title: 'Card Title 2',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-          description:
-            'Card element description, with limited size.',
+          description: 'Card element description, with limited size.',
           readMore: '',
           backgroundColor: '#f9f9f9',
           align: 'center',
@@ -123,8 +121,7 @@ GridTemplates.args = {
           title: 'Card Title 3',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-          description:
-            'Card element description, with limited size.',
+          description: 'Card element description, with limited size.',
           readMore: '',
           backgroundColor: '#f9f9f9',
           align: 'center',
@@ -133,8 +130,7 @@ GridTemplates.args = {
           title: 'Card Title 4',
           imageUrl:
             'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-          description:
-            'Card element description, with limited size.',
+          description: 'Card element description, with limited size.',
           readMore: '',
           backgroundColor: '#f9f9f9',
           align: 'center',
@@ -214,7 +210,7 @@ GridTemplates.args = {
       detailsWithoutImageRow1: [
         {
           title: 'Card Title 1',
-          imageUrl:'',
+          imageUrl: '',
           description: 'Card element description, with limited size.',
           readMore: '',
           readMoreTitle: 'Details',
