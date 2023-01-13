@@ -26,7 +26,7 @@ export const Patterns = {
   ID: /^[a-z0-9-_]{1,80}$/i,
   LABEL: /^[a-z0-9-_ ]{1,80}$/i,
   BPN: /^BPNL[0-9A-Z]{12}$/i,
-  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z0-9-]+\.)+[a-z]{2,}))$/i,
+  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*))@(([a-z0-9-]+\.)+[a-z]{2,})$/,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
   URL: new RegExp(
