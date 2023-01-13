@@ -21,10 +21,11 @@
 import { Card } from 'cx-portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { removeItem } from 'features/apps/favorites/actions'
 import { useDispatch } from 'react-redux'
-
+import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import CommonService from 'services/CommonService'
 interface FavoriteItemProps {
   item: any
   expandOnHover: boolean
@@ -38,11 +39,30 @@ export default function FavoriteItem({
 }: FavoriteItemProps) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [cardImage, setCardImage] = useState('')
   const [addedToFavorite, setAddedToFavorite] = useState(false)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const handleSecondaryButtonClick = (id: string) => {
     dispatch(removeItem(id))
     setAddedToFavorite(!addedToFavorite)
+  }
+
+  useEffect(() => {
+    if (item?.leadPictureId) {
+      fetchImage(item?.leadPictureId)
+    }
+    // eslint-disable-next-line
+  }, [])
+
+  const fetchImage = async (documentId: string) => {
+    try {
+      const id = CommonService.isValidPictureId(documentId)
+      const result = await fetchDocumentById(id).unwrap()
+      return setCardImage(URL.createObjectURL(result.data))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleButtonClick = (id: string) => {
@@ -54,7 +74,9 @@ export default function FavoriteItem({
       key={uniqueId(item.title)}
       title={item.title}
       subtitle={item.subtitle}
-      image={item.image}
+      image={{
+        src: cardImage,
+      }}
       buttonText="Details"
       imageSize="small"
       imageShape="round"
