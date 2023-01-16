@@ -38,8 +38,8 @@ import {
   removeItem,
 } from 'features/apps/favorites/actions'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
-import { appToCard } from 'features/apps/mapper'
 import debounce from 'lodash.debounce'
+import CommonService from 'services/CommonService'
 
 export const label = 'AppList'
 
@@ -52,7 +52,7 @@ export default function AppListSection() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
-  const cards = (data || []).map((app) => appToCard(app))
+  const [cards, setCards] = useState<any>([])
   const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
 
@@ -61,10 +61,21 @@ export default function AppListSection() {
   }, [dispatch])
 
   useEffect(() => {
-    if (cardsData && cardsData.length <= 0) {
+    if (cards && cards.length > 0 && cardsData && cardsData.length <= 0) {
       setCardsData(cards)
     }
+    // eslint-disable-next-line
   }, [cards, cardsData])
+
+  useEffect(() => {
+    if (data) {
+      const newPromies = CommonService.fetchLeadPictureImage(data)
+      Promise.all(newPromies).then((result) => {
+        setCards(result.flat())
+      })
+    }
+    // eslint-disable-next-line
+  }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
@@ -81,9 +92,9 @@ export default function AppListSection() {
       debounce(
         (expr: string) =>
           setCardsData(
-            expr
+            expr && cards?.length > 0
               ? cards.filter(
-                  (card) =>
+                  (card: { title: string; subtitle: string }) =>
                     card.title.toLowerCase().includes(expr.toLowerCase()) ||
                     (card.subtitle &&
                       card.subtitle.toLowerCase().includes(expr.toLowerCase()))
