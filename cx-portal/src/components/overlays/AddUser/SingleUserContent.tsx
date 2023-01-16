@@ -29,11 +29,21 @@ import { IHashMap, UserInput } from 'types/MainTypes'
 import Patterns from 'types/Patterns'
 
 export const SingleUserContent = ({
+  withUserId = false,
   checkInputValid,
 }: {
+  withUserId?: boolean
   checkInputValid: (value: boolean) => void
 }) => {
   const InputDefinitions = {
+    userid: {
+      key: 'userid',
+      i18n: 'global.field.userid',
+      helperText: '',
+      pattern: Patterns.ID,
+      value: '',
+      valid: false,
+    },
     firstname: {
       key: 'firstname',
       i18n: 'global.field.first',
@@ -62,8 +72,15 @@ export const SingleUserContent = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [inputValid, setInputValid] = useState<boolean>(false)
-  const [userInputs, setUserInputs] =
-    useState<IHashMap<UserInput>>(InputDefinitions)
+  const [userInputs, setUserInputs] = useState<IHashMap<UserInput>>(
+    withUserId
+      ? InputDefinitions
+      : {
+          firstname: InputDefinitions.firstname,
+          lastname: InputDefinitions.lastname,
+          email: InputDefinitions.email,
+        }
+  )
 
   const debouncedValidation = useMemo(
     () =>
@@ -84,7 +101,10 @@ export const SingleUserContent = ({
       current.value = value
       current.valid = !current.pattern.test(current.value)
       checkInputValid(
-        inputs.email.valid || inputs.firstname.valid || inputs.lastname.valid
+        inputs.email.valid ||
+          inputs.firstname.valid ||
+          inputs.lastname.valid ||
+          inputs.userid.valid
       )
       setUserInputs(inputs)
       debouncedValidation(inputs)
@@ -96,7 +116,8 @@ export const SingleUserContent = ({
     if (
       !userInputs.email.value ||
       !userInputs.firstname.value ||
-      !userInputs.lastname.value
+      !userInputs.lastname.value ||
+      !userInputs.userid.value
     ) {
       checkInputValid(true)
     }
@@ -107,6 +128,7 @@ export const SingleUserContent = ({
       setUsersToAdd(
         inputValid
           ? {
+              userId: userInputs.userid.value,
               userName: userInputs.email.value,
               email: userInputs.email.value,
               firstName: userInputs.firstname.value,

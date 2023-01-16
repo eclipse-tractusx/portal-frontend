@@ -31,13 +31,27 @@ export interface UserAppRoles {
   roles: string[]
 }
 
-export type AddUser = {
+export interface AddUser {
   userName: string
   email: string
   firstName: string
   lastName: string
   roles?: string[]
-  message: string
+  message?: string
+}
+
+export interface AddUserIdp {
+  userId: string
+  userName: string
+  email: string
+  firstName: string
+  lastName: string
+  roles?: string[]
+}
+
+export interface AddUserIdpArgs {
+  identityProviderId: string
+  user: AddUserIdp
 }
 
 export interface UserBase {
@@ -86,6 +100,13 @@ export const apiSlice = createApi({
     },
   }),
   endpoints: (builder) => ({
+    addUserIdp: builder.mutation<void, AddUserIdpArgs>({
+      query: (args: AddUserIdpArgs) => ({
+        url: `/api/administration/users/identityprovider/owncompany/identityprovider/${args.identityProviderId}/users`,
+        method: 'POST',
+        body: args.user,
+      }),
+    }),
     addTenantUsers: builder.mutation<void, AddUser[]>({
       query: (body) => ({
         url: `/api/administration/user/owncompany/users`,
@@ -143,6 +164,7 @@ export const {
   useFetchUsersSearchQuery,
   useFetchUserDetailsQuery,
   useFetchOwnUserDetailsQuery,
+  useAddUserIdpMutation,
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
   useFetchOwnCompanyDetailsQuery,

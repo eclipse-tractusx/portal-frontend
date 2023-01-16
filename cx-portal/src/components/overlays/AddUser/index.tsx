@@ -18,134 +18,59 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
   DialogActions,
   DialogContent,
   DialogHeader,
-  Tab,
-  Tabs,
-  TabPanel,
 } from 'cx-portal-shared-components'
-import { UserRoles } from './UserRoles'
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import {
-  rolesToAddSelector,
-  usersToAddSelector,
-} from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
-import './AddUserOverlay.scss'
-import { MultipleUserContent } from './MultipleUserContent'
-import { SingleUserContent } from './SingleUserContent'
+import { closeOverlay } from 'features/control/overlay/actions'
 import {
-  setAddUserError,
-  setAddUserSuccess,
-  useAddTenantUsersMutation,
-} from 'features/admin/userApiSlice'
-import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+  useFetchIDPListQuery,
+  IdentityProvider,
+} from 'features/admin/idpApiSlice'
+import { updateIDPSelector } from 'features/control/updatesSlice'
+import { AddUserContent } from './AddUserContent'
+import { AddUserDeny } from './AddUserDeny'
+import { useEffect, useState } from 'react'
 
 export const AddUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const usersToAdd = useSelector(usersToAddSelector)
-  const rolesToAdd = useSelector(rolesToAddSelector)
-  const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
-  const [activeTab, setActiveTab] = useState(0)
-  const [singleUserInputValid, setSingleUserInputValid] = useState(false)
+  const update = useSelector(updateIDPSelector)
+  const { data, isFetching } = useFetchIDPListQuery(update)
+  const [idps, setIdps] = useState<IdentityProvider[]>([])
 
-  if (isSuccess) {
-    dispatch(setAddUserSuccess(isSuccess))
-    dispatch(closeOverlay())
-  }
+  useEffect(
+    () =>
+      setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : []),
+    [data]
+  )
 
-  if (isError) {
-    dispatch(setAddUserError(isError))
-    dispatch(closeOverlay())
-  }
-
-  useEffect(() => {
-    dispatch(setRolesToAdd([]))
-  }, [dispatch])
-
-  const handleConfirm = async () => {
-    dispatch(setAddUserSuccess(false))
-    dispatch(setAddUserError(false))
-    const addUser = { ...usersToAdd, roles: rolesToAdd }
-    try {
-      await addTenantUsers([addUser]).unwrap()
-    } catch (err) {}
-  }
-
-  const handleTabSwitch = (
-    _event: React.ChangeEvent<unknown>,
-    newValue: number
-  ) => {
-    setActiveTab(newValue)
-  }
-
-  const singleUserInputValidFn = (value: boolean) => {
-    setSingleUserInputValid(value)
-  }
-
-  return (
+  return isFetching ? (
     <>
       <DialogHeader
         {...{
-          title: t('content.addUser.headline'),
-          intro: t('content.addUser.subheadline'),
+          title: t('Checking Identity Providers'),
+          intro: t('checking intro'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE)),
+          onCloseWithIcon: () => dispatch(closeOverlay),
         }}
       />
 
-      <DialogContent className="w-100">
-        <Tabs
-          value={activeTab}
-          onChange={handleTabSwitch}
-          aria-label="basic tabs usage"
-        >
-          <Tab
-            sx={{ minWidth: '50%' }}
-            label={t('content.addUser.singleUser')}
-            icon={<PersonOutlinedIcon />}
-            iconPosition="start"
-          />
-          <Tab
-            sx={{ minWidth: '50%' }}
-            label={t('content.addUser.multipleUser')}
-            icon={<GroupOutlinedIcon />}
-            iconPosition="start"
-          />
-        </Tabs>
-        <TabPanel value={activeTab} index={0}>
-          <SingleUserContent checkInputValid={singleUserInputValidFn} />
-        </TabPanel>
-        <TabPanel value={activeTab} index={1}>
-          <MultipleUserContent />
-        </TabPanel>
-        <UserRoles />
-      </DialogContent>
+      <DialogContent>{'checking IDPs'}</DialogContent>
 
       <DialogActions helperText={t('content.addUser.helperText')}>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE))}
-        >
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay)}>
           {t('global.actions.cancel')}
-        </Button>
-        <Button
-          variant="contained"
-          disabled={singleUserInputValid}
-          onClick={handleConfirm}
-        >
-          {t('global.actions.confirm')}
         </Button>
       </DialogActions>
     </>
+  ) : idps.length === 1 ? (
+    <AddUserContent idp={idps[0]} />
+  ) : (
+    <AddUserDeny idps={idps} />
   )
 }
