@@ -9,6 +9,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - Change Email Pattern Regex to fix Hostspot
 * LeadImagePicture
    * Remove asset repo dependency. New api to get image
+* Static templates
+   * Moved JSON files to locales
+   * New components added
 
 ### Feature
 * App Release Process
