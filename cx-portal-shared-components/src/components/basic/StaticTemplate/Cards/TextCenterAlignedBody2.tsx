@@ -31,7 +31,7 @@ export default function TextCenterAlignedBody2({
     <Box
       sx={{
         textAlign: 'center',
-        margin: '40px',
+        margin: '20px',
       }}
     >
       <Box>
