@@ -1,7 +1,12 @@
 {
+  "subNavigation": {
+    "link1Label": "Intro",
+    "link2Label": "Data Provisioning",
+    "link3Label": "Business Applications"
+  },
   "title": "Traceablity",
   "description": "...als Basis und integraler Bestandteil zum Aufbau von digitalen Datenketten und Befähiger von datenketten-fokussierter Use Cases",
-  "roles": [
+  "sections": [
     {
       "title": "Introduction",
       "description": "Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum fertigen Fahrzeug beim OEM bzw. dessen Wiederverwertung im Recycling. Partner im Use Case sind sowohl Hersteller von Produkten bis hin zu Automobilherstellern als auch Zulieferer von Material und Teilen.",
@@ -23,7 +28,6 @@
       "description": "The traceability use case is strengthened by a number of business apps which help the user to visualize and easy access the treaceability chain. Below you can find an overview of all available apps. Use the direct link to open the app details page.",
       "backgroundColor": "#FFFFFF",
       "id": "business-id",
-      "imageUrl": "rectangle-image.png",
       "grid": 4,
       "template": "TextCenterAlignedWithCardGrid",
       "detailsWithImageRow1": [

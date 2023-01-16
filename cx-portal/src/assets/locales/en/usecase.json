@@ -1,0 +1,100 @@
+{
+  "subNavigation": {
+    "link1Label": "Intro",
+    "link2Label": "Data Provisioning",
+    "link3Label": "Business Applications"
+  },
+  "traceability": {
+    "title": "Traceablity",
+    "description": "...als Basis und integraler Bestandteil zum Aufbau von digitalen Datenketten und Befähiger von datenketten-fokussierter Use Cases",
+    "sections": [
+      {
+        "title": "Introduction",
+        "description": "Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum fertigen Fahrzeug beim OEM bzw. dessen Wiederverwertung im Recycling. Partner im Use Case sind sowohl Hersteller von Produkten bis hin zu Automobilherstellern als auch Zulieferer von Material und Teilen.",
+        "videoUrl": "https://www.youtube.com/embed/g-NVjP2srw4",
+        "id": "intro-id",
+        "backgroundColor": "#FFFFFF",
+        "template": "TextVideoSideBySide"
+      },
+      {
+        "title": "How to contribute to traceability and why?",
+        "description": "",
+        "imageUrl": "traceability_why.png",
+        "backgroundColor": "#F9F9F9",
+        "id": "data-id",
+        "template": "TextImageCenterAligned"
+      },
+      {
+        "title": "Business Applications inside Traceability",
+        "description": "The traceability use case is strengthened by a number of business apps which help the user to visualize and easy access the treaceability chain. Below you can find an overview of all available apps. Use the direct link to open the app details page.",
+        "backgroundColor": "#FFFFFF",
+        "id": "business-id",
+        "grid": 4,
+        "template": "TextCenterAlignedWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "Trace X",
+            "imageUrl": "rectangle-image.png",
+            "description": "Ermöglicht die lückenlose Rückverfolgbarkeit von Teilen über die Lieferkette von n.tier – visualisiert detaillierte Informationen über die Komponenten von direkten Lieferanten und Direktkunden.",
+            "readMore": "/appdetail/ac1cf001-7fbc-1f2f-817f-bce0572c0007",
+            "readMoreTitle": "Get to the app",
+            "backgroundColor": "#f9f9f9",
+            "align": "center"
+          },
+          {
+            "title": "Smart MOM",
+            "imageUrl": "rectangle-image.png",
+            "description": "",
+            "readMore": "",
+            "backgroundColor": "#f9f9f9",
+            "align": "center"
+          },
+          {
+            "title": "SAP BN MT",
+            "imageUrl": "rectangle-image.png",
+            "description": "",
+            "readMore": "",
+            "backgroundColor": "#f9f9f9",
+            "align": "center"
+          },
+          {
+            "title": "Trusted Traceability",
+            "imageUrl": "rectangle-image.png",
+            "description": "",
+            "readMore": "",
+            "backgroundColor": "#f9f9f9",
+            "align": "center"
+          }
+        ]
+      },
+      {
+        "title": "Direct Links / What Else Do You Need To Know",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "imageUrl": "rectangle-image.png",
+        "backgroundColor": "#FFFFFF",
+        "grid": 2,
+        "id": "section-one",
+        "template": "TextCenterAlignedWithLinkButtonGrid",
+        "linksRow1": [
+          {
+            "background": "#C498EF63",
+            "title": "Get more details to the use case",
+            "navigate": "/help/traceability"
+          },
+          {
+            "background": "#C498EF63",
+            "title": "Sample Name",
+            "navigate": "/help/traceability"
+          }
+        ],
+        "linksRow2": [
+          {
+            "background": "#C498EF63",
+            "title": "Sample Name",
+            "navigate": "/help/traceability"
+          }
+        ]
+      }
+    ]
+  }
+}

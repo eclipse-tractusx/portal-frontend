@@ -1,0 +1,595 @@
+{
+  "subNavigation": {
+    "link1Label": "marketplace",
+    "link2Label": "marketplace subscriptions",
+    "link3Label": "dataspace participants"
+  },
+  "appProvider": {
+    "title": "Catena-X Data App Provider",
+    "description": "The catena-x App Provider is the standard role inside the catena-x network. Companies sharing and receviing data as well as using service provider offers and app offers are usually 'App Provider' - active members of the network.",
+    "sections": [
+      {
+        "title": "Marketplace",
+        "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+        "imageUrl": "rectangle-image.png",
+        "backgroundColor": "#DAE3EB",
+        "id": "provider-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "App Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Service Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "to be defined",
+            "description": "to be defined",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "How to get to the app marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/appmarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "How to get to the service marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/servicemarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          }
+        ]
+      },
+      {
+        "title": "Marketplace Subscriptions",
+        "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
+        "imageUrl": "rectangle-image.png",
+        "id": "operations-id",
+        "backgroundColor": "#F9F9F9",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "Subscription Authority",
+            "imageUrl": "rectangle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          },
+          {
+            "title": "Subscription Flow",
+            "imageUrl": "rectangle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Who can subscribe?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "What happens after the subscription?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "How can I use the service?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "title": "Dataspace participants",
+        "description": "Details regarding the dataspace ",
+        "imageUrl": "rectangle-image.png",
+        "id": "participant-id",
+        "backgroundColor": "#FFFFFF",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ]
+      }
+    ]
+  },
+  "serviceProvider": {
+    "title": "Catena-X Data Service Provider",
+    "description": "The catena-x Service Provider is the standard role inside the catena-x network. Companies sharing and receviing data as well as using service provider offers and app offers are usually 'Service Provider' - active members of the network.",
+    "sections": [
+      {
+        "title": "Marketplace",
+        "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+        "imageUrl": "rectangle-image.png",
+        "backgroundColor": "#DAE3EB",
+        "template": "TextImageSideBySideWithCardGrid",
+        "id": "provider-id",
+        "detailsWithImageRow1": [
+          {
+            "title": "App Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Service Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "to be defined",
+            "description": "to be defined",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "How to get to the app marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/appmarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "How to get to the service marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/servicemarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          }
+        ]
+      },
+      {
+        "title": "Marketplace Subscriptions",
+        "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
+        "imageUrl": "rectangle-image.png",
+        "id": "operations-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "backgroundColor": "#F9F9F9",
+        "detailsWithImageRow1": [
+          {
+            "title": "Subscription Authority",
+            "imageUrl": "rectangle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          },
+          {
+            "title": "Subscription Flow",
+            "imageUrl": "rectangle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Who can subscribe?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "What happens after the subscription?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "How can I use the service?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "title": "Dataspace participants",
+        "description": "Details regarding the dataspace ",
+        "imageUrl": "rectangle-image.png",
+        "id": "participant-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "backgroundColor": "#FFFFFF",
+        "detailsWithImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ]
+      }
+    ]
+  },
+  "participant": {
+    "title": "Catena-X Data Participant",
+    "description": "The catena-x participant is the standard role inside the catena-x network. Companies sharing and receviing data as well as using service provider offers and app offers are usually 'participants' - active members of the network.",
+    "sections": [
+      {
+        "title": "Marketplace",
+        "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+        "imageUrl": "rectangle-image.png",
+        "backgroundColor": "#FFFFFF",
+        "id": "provider-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "App Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+            "readMore": "/appmarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Service Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+            "readMore": "/servicemarketplace",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Service Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+            "readMore": "/servicemarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "to be defined",
+            "description": "to be defined",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "How to get to the app marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/appmarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "How to get to the service marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/servicemarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "title": "Marketplace Subscriptions",
+        "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
+        "imageUrl": "rectangle-image.png",
+        "id": "operations-id",
+        "backgroundColor": "#F9F9F9",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "Subscription Authority",
+            "imageUrl": "circle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          },
+          {
+            "title": "Subscription Flow",
+            "imageUrl": "circle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Who can subscribe?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "What happens after the subscription?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "How can I use the service?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "title": "Dataspace participants",
+        "description": "Details regarding the dataspace ",
+        "imageUrl": "rectangle-image.png",
+        "id": "participant-id",
+        "backgroundColor": "#FFFFFF",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF"
+          }
+        ]
+      }
+    ]
+  },
+  "confirmity": {
+    "title": "Catena-X Data Confirmity Body",
+    "description": "The catena-x Confirmity Body is the standard role inside the catena-x network. Companies sharing and receviing data as well as using service provider offers and app offers are usually 'Confirmity Body' - active members of the network.",
+    "sections": [
+      {
+        "title": "Marketplace",
+        "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+        "imageUrl": "rectangle-image.png",
+        "backgroundColor": "#DAE3EB",
+        "id": "provider-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "detailsWithImageRow1": [
+          {
+            "title": "App Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Service Marketplace",
+            "imageUrl": "rectangle-image.png",
+            "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "to be defined",
+            "description": "to be defined",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "How to get to the app marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/appmarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "How to get to the service marketplace",
+            "description": "to get to the marketplace, just follow the link below",
+            "readMore": "/servicemarketplace",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#F9F9F9"
+          }
+        ]
+      },
+      {
+        "title": "Marketplace Subscriptions",
+        "description": "Inside the app and service marketplace, subscriptions to avialable offers can get made. Find out more how this works by following the details below",
+        "imageUrl": "rectangle-image.png",
+        "id": "operations-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "backgroundColor": "#F9F9F9",
+        "detailsWithImageRow1": [
+          {
+            "title": "Subscription Authority",
+            "imageUrl": "circle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          },
+          {
+            "title": "Subscription Flow",
+            "imageUrl": "circle-image.png",
+            "description": "This are the details which I will still add",
+            "readMore": "",
+            "backgroundColor": "#FFFFFF",
+            "imageShape": "circle"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Who can subscribe?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "What happens after the subscription?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "backgroundColor": "#FFFFFF"
+          },
+          {
+            "title": "How can I use the service?",
+            "description": "the details will get added asap",
+            "readMore": "/help",
+            "readMoreTitle": "Details",
+            "backgroundColor": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "title": "Dataspace participants",
+        "description": "Details regarding the dataspace ",
+        "imageUrl": "rectangle-image.png",
+        "id": "participant-id",
+        "template": "TextImageSideBySideWithCardGrid",
+        "backgroundColor": "#FFFFFF",
+        "detailsWithImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "imageUrl": "rectangle-image.png",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ],
+        "detailsWithoutImageRow1": [
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          },
+          {
+            "title": "Simply lorem Ipsum Text",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+            "readMore": "",
+            "backgroundColor": "#F9F9F9"
+          }
+        ]
+      }
+    ]
+  }
+}

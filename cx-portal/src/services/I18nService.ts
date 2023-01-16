@@ -31,6 +31,10 @@ import idpDE from '../assets/locales/de/idp.json'
 import idpEN from '../assets/locales/en/idp.json'
 import notificationDE from '../assets/locales/de/notification.json'
 import notificationEN from '../assets/locales/en/notification.json'
+import useCaseDE from '../assets/locales/de/usecase.json'
+import useCaseEN from '../assets/locales/en/usecase.json'
+import companyrolesDE from '../assets/locales/de/companyroles.json'
+import companyrolesEN from '../assets/locales/en/companyroles.json'
 
 const resources = {
   de: {
@@ -39,6 +43,8 @@ const resources = {
     apps: appsDE,
     idp: idpDE,
     notification: notificationDE,
+    usecase: useCaseDE,
+    companyroles: companyrolesDE,
   },
   en: {
     translation: mainEN,
@@ -46,6 +52,8 @@ const resources = {
     apps: appsEN,
     idp: idpEN,
     notification: notificationEN,
+    usecase: useCaseEN,
+    companyroles: companyrolesEN,
   },
 }
 

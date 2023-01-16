@@ -20,57 +20,61 @@
 
 import './CompanyRoles.scss'
 import { useEffect, useState } from 'react'
-import participant from './json/participant.json'
-import serviceProvider from './json/serviceProvider.json'
-import appProvider from './json/appProvider.json'
-import confirmity from './json/confirmity.json'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useTranslation } from 'react-i18next'
 import { StaticTemplate } from 'cx-portal-shared-components'
 
 export default function CompanyRoles() {
-  const { t } = useTranslation()
-  const [messageContent, setMessageContent] = useState<any>({})
+  const { t } = useTranslation('companyroles')
+  const [messageContent, setMessageContent] = useState<string>()
   const url = window.location.href
   useEffect(() => {
     if (url.indexOf('companyrolesappprovider') > 1) {
-      setMessageContent(appProvider)
+      setMessageContent('appProvider')
     } else if (url.indexOf('companyrolesserviceprovider') > 1) {
-      setMessageContent(serviceProvider)
+      setMessageContent('serviceProvider')
     } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
-      setMessageContent(confirmity)
+      setMessageContent('confirmity')
     } else {
-      setMessageContent(participant)
+      setMessageContent('participant')
     }
-  }, [url])
+  }, [url, t])
 
   const linkArray = [
     {
       index: 1,
-      title: t('navigation.companyRoleSubNavigation.link1Label'),
+      title: t('subNavigation.link1Label'),
       navigation: 'provider-id',
     },
     {
       index: 2,
-      title: t('navigation.companyRoleSubNavigation.link2Label'),
+      title: t('subNavigation.link2Label'),
       navigation: 'operations-id',
     },
     {
       index: 3,
-      title: t('navigation.companyRoleSubNavigation.link3Label'),
+      title: t('subNavigation.link3Label'),
       navigation: 'participant-id',
     },
   ]
 
   return (
     <main className="companyRoles">
-      <StageSection
-        title={messageContent.title}
-        description={messageContent.description}
-      />
-      <StageSubNavigation linkArray={linkArray} />
-      <StaticTemplate sectionInfo={messageContent.providers} />
+      {messageContent && (
+        <>
+          <StageSection
+            title={t(`${messageContent}.title`)}
+            description={t(`${messageContent}.description`)}
+          />
+          <StageSubNavigation linkArray={linkArray} />
+          <StaticTemplate
+            sectionInfo={t(`${messageContent}.sections`, {
+              returnObjects: true,
+            })}
+          />
+        </>
+      )}
     </main>
   )
 }

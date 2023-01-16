@@ -18,39 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export type CardDetailsProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  backgroundColor: string
-  readMore: string
-  readMoreTitle: string
-  id: string
-  imageShape?: string
-}
+import { Box } from '@mui/material'
+import { ProviderProps } from '../StaticTypes'
+import TextCenterAligned from './TextCenterAligned'
 
-export type ProviderProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  videoUrl?: string
-  backgroundColor: string
-  id: string
-  detailsWithImageRow1: CardDetailsProps[]
-  detailsWithImageRow2: CardDetailsProps[]
-  detailsWithoutImageRow1: CardDetailsProps[]
-  detailsWithoutImageRow2: CardDetailsProps[]
-  grid: number
-  template: string
-  linksRow1: linkProps[]
-  linksRow2: linkProps[]
-  subTitle1?: string
-  subTitle2?: string
-  subTitle3?: string
-}
-
-export type linkProps = {
-  background: string
-  title: string
-  navigate: string
+export default function ImageImageCenterAligned({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: '0px 20px 0px 20px',
+        marginTop: '84px',
+      }}
+    >
+      <img
+        style={{
+          marginTop: '84px',
+          marginBottom: '84px',
+          width: '100%',
+          height: '472px',
+          objectFit: 'cover',
+          borderRadius: '16px',
+        }}
+        src={provider.imageUrl}
+        alt={'alt tag info'}
+      />
+      <TextCenterAligned provider={provider} />
+    </Box>
+  )
 }

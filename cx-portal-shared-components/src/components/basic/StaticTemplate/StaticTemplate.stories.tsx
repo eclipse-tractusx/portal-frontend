@@ -72,6 +72,17 @@ TextImageTemplates.args = {
       template: 'TextCenterAligned',
     },
     {
+      subTitle1:
+        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum',
+      subTitle2:
+        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum',
+      subTitle3:
+        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum',
+      backgroundColor: '#F9F9F9',
+      id: 'no-id',
+      template: 'TextCenterAlignedBody2',
+    },
+    {
       title: 'Headline / Question',
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",

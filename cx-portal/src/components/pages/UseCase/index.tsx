@@ -19,35 +19,27 @@
  ********************************************************************************/
 
 import './UseCase.scss'
-import { useEffect, useState } from 'react'
-import traceablity from './json/traceablity.json'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useTranslation } from 'react-i18next'
 import { StaticTemplate } from 'cx-portal-shared-components'
 
 export default function UseCase() {
-  const { t } = useTranslation()
-  const [messageContent, setMessageContent] = useState<any>({})
-  const url = window.location.href
-  useEffect(() => {
-    setMessageContent(traceablity)
-  }, [url])
-
+  const { t } = useTranslation('usecase')
   const linkArray = [
     {
       index: 1,
-      title: t('navigation.useCaseNavigation.link1Label'),
+      title: t('subNavigation.link1Label'),
       navigation: 'intro-id',
     },
     {
       index: 2,
-      title: t('navigation.useCaseNavigation.link2Label'),
+      title: t('subNavigation.link2Label'),
       navigation: 'data-id',
     },
     {
       index: 3,
-      title: t('navigation.useCaseNavigation.link3Label'),
+      title: t('subNavigation.link3Label'),
       navigation: 'business-id',
     },
   ]
@@ -55,11 +47,13 @@ export default function UseCase() {
   return (
     <main className="useCase">
       <StageSection
-        title={messageContent.title}
-        description={messageContent.description}
+        title={t('traceability.title')}
+        description={t('traceability.description')}
       />
       <StageSubNavigation linkArray={linkArray} />
-      <StaticTemplate sectionInfo={messageContent.roles} />
+      <StaticTemplate
+        sectionInfo={t('traceability.sections', { returnObjects: true })}
+      />
     </main>
   )
 }
