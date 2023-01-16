@@ -51,7 +51,7 @@ export default function CardWithText({
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             display: '-webkit-box',
-            WebkitLineClamp: '1',
+            WebkitLineClamp: '2',
             WebkitBoxOrient: 'vertical',
           }}
           variant="h4"
@@ -60,11 +60,11 @@ export default function CardWithText({
         </Typography>
         <Typography
           sx={{
-            paddingTop: '34px',
+            paddingTop: '20px',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             display: '-webkit-box',
-            WebkitLineClamp: '2',
+            WebkitLineClamp: '4',
             WebkitBoxOrient: 'vertical',
           }}
           variant="body2"
