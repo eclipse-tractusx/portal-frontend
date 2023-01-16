@@ -7,6 +7,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Dailog Header
    * Update Dailog header font size to 24px
 * Bugfix - Change Email Pattern Regex to fix Hostspot
+* LeadImagePicture
+   * Remove asset repo dependency. New api to get image
 
 ### Feature
 * App Release Process

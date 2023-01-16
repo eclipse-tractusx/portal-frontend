@@ -31,7 +31,7 @@ export interface ICardImage {
 }
 
 export interface CardImageProps {
-  image: ICardImage
+  image?: ICardImage
   imageSize?: CardImageSize
   imageShape?: CardImageShape
   preview?: boolean
