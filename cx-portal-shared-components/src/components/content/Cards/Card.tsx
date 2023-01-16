@@ -221,7 +221,7 @@ export const Card = ({
             preview={variant === 'preview'}
           />
         </Box>
-        <Box sx={{ marginBottom: '30px' }}>
+        <Box sx={{ marginBottom: '20px' }}>
           {statusText && imageSize === 'small' && showStatus && (
             <Box
               sx={{

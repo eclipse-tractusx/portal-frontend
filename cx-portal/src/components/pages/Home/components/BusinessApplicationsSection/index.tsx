@@ -18,27 +18,47 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Carousel, Card } from 'cx-portal-shared-components'
+import {
+  Typography,
+  Carousel,
+  Card,
+  CardItems,
+} from 'cx-portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
-import { appToCard } from 'features/apps/mapper'
-import {
-  AppMarketplaceApp,
-  useFetchBusinessAppsQuery,
-} from 'features/apps/apiSlice'
+import { useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
+import CommonService from 'services/CommonService'
 
 export const label = 'BusinessApplictions'
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const businessApps = useFetchBusinessAppsQuery().data || []
-  const cards = businessApps.map((app: AppMarketplaceApp) => appToCard(app))
+  const [cards, setCards] = useState<CardItems[]>([])
+  const [cardsData, setCardsData] = useState<any>([])
+  const { data } = useFetchBusinessAppsQuery()
   const reference = PageService.registerReference(label, useRef(null))
   const maximumCards = 4
   const emptyCards: number = maximumCards - cards.length
+
+  useEffect(() => {
+    if (data) {
+      const newPromies = CommonService.fetchLeadPictureImage(data)
+      Promise.all(newPromies).then((result) => {
+        setCardsData(result.flat())
+      })
+    }
+    // eslint-disable-next-line
+  }, [data])
+
+  useEffect(() => {
+    if (cardsData) {
+      setCards(cardsData)
+    }
+    // eslint-disable-next-line
+  }, [cards])
 
   return (
     <div ref={reference} className="orange-background">
@@ -55,7 +75,7 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {cards.map((item) => (
+          {cards.map((item: CardItems) => (
             <Card
               {...item}
               key={uniqueId(item.title)}

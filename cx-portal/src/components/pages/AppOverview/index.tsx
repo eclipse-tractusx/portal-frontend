@@ -39,6 +39,7 @@ import { OVERLAYS, PAGES } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './AppOverview.scss'
+import CommonService from 'services/CommonService'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -46,9 +47,9 @@ export default function AppOverview() {
   const navigate = useNavigate()
 
   const { data } = useFetchProvidedAppsQuery()
-  const items = data && appCardStatus(data)
-  const recentlyChangedApps = data && appCardRecentlyApps(data)
-
+  const [itemCards, setItemCards] = useState<any>([])
+  const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
+  const [cards, setCards] = useState<any>([])
   const { state } = useLocation()
   const [group, setGroup] = useState<string>('')
   const [filterItem, setFilterItem] = useState<CardItems[]>()
@@ -59,6 +60,32 @@ export default function AppOverview() {
     inactive: 'inactive',
     active: 'active',
   }
+
+  useEffect(() => {
+    if (cards) {
+      const recentCards = appCardRecentlyApps(cards)
+      setRecentlyChangedApps(recentCards)
+      const itemCards = appCardStatus(cards)
+      setItemCards(itemCards)
+    }
+    // eslint-disable-next-line
+  }, [cards])
+
+  useEffect(() => {
+    if (itemCards) {
+      setFilterItem(itemCards)
+    }
+    // eslint-disable-next-line
+  }, [itemCards])
+
+  useEffect(() => {
+    if (data) {
+      const newPromies = CommonService.fetchLeadPictureImage(data)
+      Promise.all(newPromies).then((result) => {
+        setCards(result.flat())
+      })
+    }
+  }, [data])
 
   const debouncedSearch = useMemo(
     () =>
@@ -89,24 +116,17 @@ export default function AppOverview() {
         } else if (group) {
           setFilterItem(data)
         } else if (expr.length === 0) {
-          setFilterItem(items)
+          setFilterItem(itemCards)
         }
       }, 400),
     // eslint-disable-next-line
     [dispatch, filterItem, group]
   )
 
-  useEffect(() => {
-    if (items) {
-      setFilterItem(items)
-    }
-    // eslint-disable-next-line
-  }, [data])
-
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
-    debouncedSearch(searchExpr, items, viewValue)
+    debouncedSearch(searchExpr, itemCards, viewValue)
   }
 
   const categoryViews = [
@@ -139,9 +159,9 @@ export default function AppOverview() {
         return
       }
       setSearchExpr(expr)
-      debouncedSearch(expr, items, group)
+      debouncedSearch(expr, itemCards, group)
     },
-    [debouncedSearch, items, group]
+    [debouncedSearch, itemCards, group]
   )
 
   const showOverlay = (item: AppInfo) => {

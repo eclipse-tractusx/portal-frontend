@@ -113,7 +113,6 @@ export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {
       return { ...app, title, status, statusText }
     })
     .filter((e) => e.status)
-    .map(appToCard)
 }
 
 export const appCardRecentlyApps = (apps: AppMarketplaceApp[]): CardItems[] => {

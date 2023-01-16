@@ -55,7 +55,11 @@ export const DialogHeader = ({
         textAlign: 'center',
       }}
     >
-      <MuiDialogTitle>
+      <MuiDialogTitle
+        sx={{
+          fontSize: '24px',
+        }}
+      >
         {icon && <Box>{iconComponent}</Box>}
         {title}
         {closeWithIcon && (
