@@ -47,6 +47,7 @@ export type ProviderProps = {
   subTitle1?: string
   subTitle2?: string
   subTitle3?: string
+  align?: 'left' | 'center' | 'right'
 }
 
 export type linkProps = {

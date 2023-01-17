@@ -72,15 +72,16 @@ TextImageTemplates.args = {
       template: 'TextCenterAligned',
     },
     {
-      subTitle1:
-        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum',
-      subTitle2:
-        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum',
-      subTitle3:
-        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum',
+      align: 'center',
       backgroundColor: '#F9F9F9',
-      id: 'no-id',
       template: 'TextCenterAlignedBody2',
+      title: 'Heading goes here',
+      subTitle1:
+        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum fertigen Fahrzeug beim OEM bzw. dessen Wiederverwertung im Recycling. Partner im Use Case sind sowohl Hersteller von Produkten bis hin zu Automobilherstellern als auch Zulieferer von Material und Teilen.',
+      subTitle2:
+        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum fertigen Fahrzeug beim OEM bzw. dessen Wiederverwertung im Recycling. Partner im Use Case sind sowohl Hersteller von Produkten bis hin zu Automobilherstellern als auch Zulieferer von Material und Teilen.',
+      subTitle3:
+        'Der Use-Case Rückverfolgbarkeit hat das Ziel, durchgängige Datenketten aufzubauen: vom Rohstoff über Zwischenprodukte bis zum fertigen Fahrzeug beim OEM bzw. dessen Wiederverwertung im Recycling. Partner im Use Case sind sowohl Hersteller von Produkten bis hin zu Automobilherstellern als auch Zulieferer von Material und Teilen.',
     },
     {
       title: 'Headline / Question',
@@ -89,7 +90,7 @@ TextImageTemplates.args = {
       imageUrl:
         'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       backgroundColor: '#F9F9F9',
-      id: 'data2-id',
+      id: 'no-id',
       template: 'TextImageSideBySide',
     },
   ],

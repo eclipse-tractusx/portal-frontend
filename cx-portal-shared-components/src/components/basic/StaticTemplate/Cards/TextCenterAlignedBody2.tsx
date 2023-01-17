@@ -30,14 +30,16 @@ export default function TextCenterAlignedBody2({
   return (
     <Box
       sx={{
-        textAlign: 'center',
-        margin: '20px',
+        textAlign: provider.align || 'left',
+        padding: '40px 80px',
+        backgroundColor: provider.backgroundColor || '#ffffff',
       }}
     >
       <Box>
+        <Typography variant="h2">{provider.title}</Typography>
         <Typography
           sx={{
-            padding: '20px',
+            padding: '30px 0px',
           }}
           variant="body2"
         >
@@ -45,7 +47,7 @@ export default function TextCenterAlignedBody2({
         </Typography>
         <Typography
           sx={{
-            padding: '20px',
+            padding: '30px 0px',
           }}
           variant="body2"
         >
@@ -53,7 +55,7 @@ export default function TextCenterAlignedBody2({
         </Typography>
         <Typography
           sx={{
-            padding: '20px',
+            padding: '30px 0px',
           }}
           variant="body2"
         >
