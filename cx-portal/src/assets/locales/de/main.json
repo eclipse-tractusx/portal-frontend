@@ -935,7 +935,10 @@
           "title": "Error - something went wrong.",
           "message": "Please try it again"
         },
-        "dataSavedSuccessMessage": "Data saved successfully"
+        "dataSavedSuccessMessage": "Data saved successfully",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "rolesDeleteSuccessMessage": "Roles deleted successfully",
+        "errormessage": "Error! Something went wrong"
       },
       "footerButtons": {
         "help": "Help",

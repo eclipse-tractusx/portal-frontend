@@ -64,6 +64,12 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
     useState<boolean>(false)
+  const [snackBarType, setSnackBarType] = useState<'error' | 'success'>(
+    'success'
+  )
+  const [snackBarMessage, setSnackBarMessage] = useState<string>(
+    t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+  )
 
   const dispatch = useDispatch()
   const [enableUploadAppRoles, setEnableUploadAppRoles] = useState(false)
@@ -78,7 +84,9 @@ export default function TechnicalIntegration() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const { data, refetch } = useFetchRolesDataQuery(appId ?? '')
+  const { data, refetch } = useFetchRolesDataQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  })
   const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
   const [rolesResponse, setRolesResponse] = useState<postRolesResponseType[]>(
     []
@@ -127,7 +135,7 @@ export default function TechnicalIntegration() {
             ?.split('\n')
             .filter((item) => item !== '')
             .map((item) => item.substring(0, item.indexOf(';')))
-          setRolesPreviews(roles)
+          setRolesPreviews(roles?.splice(1))
         }
         reader.readAsText(file)
       })
@@ -173,9 +181,20 @@ export default function TechnicalIntegration() {
         .then(() => {
           setDeleteOverlay(false)
           setRolesPreviews([])
+          refetch()
+          setSnackBarType('success')
+          setSnackBarMessage(
+            t('content.apprelease.appReleaseForm.rolesDeleteSuccessMessage')
+          )
+          setTechnicalIntegrationSnackbar(true)
         })
         .catch(() => {
           setDeleteOverlay(false)
+          setSnackBarType('error')
+          setSnackBarMessage(
+            t('content.apprelease.appReleaseForm.errormessage')
+          )
+          setTechnicalIntegrationSnackbar(true)
         })
     )
   }
@@ -188,9 +207,16 @@ export default function TechnicalIntegration() {
       .unwrap()
       .then(() => {
         refetch()
+        setSnackBarType('success')
+        setSnackBarMessage(
+          t('content.apprelease.appReleaseForm.roleDeleteSuccessMessage')
+        )
+        setTechnicalIntegrationSnackbar(true)
       })
       .catch((error) => {
-        console.error(error, 'ERROR WHILE DELETING ROLES')
+        setSnackBarType('error')
+        setSnackBarMessage(t('content.apprelease.appReleaseForm.errormessage'))
+        setTechnicalIntegrationSnackbar(true)
       })
   }
 
@@ -542,10 +568,8 @@ export default function TechnicalIntegration() {
           <PageSnackbar
             open={technicalIntegrationSnackbar}
             onCloseNotification={() => setTechnicalIntegrationSnackbar(false)}
-            severity="success"
-            description={t(
-              'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
-            )}
+            severity={snackBarType}
+            description={snackBarMessage}
             autoClose={true}
           />
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
