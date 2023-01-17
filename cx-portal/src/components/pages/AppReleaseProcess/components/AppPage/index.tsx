@@ -55,7 +55,6 @@ type FormDataType = {
   images: File | null
   uploadDataPrerequisits: File | null
   uploadTechnicalGuide: File | null
-  uploadDataContract: File | null
   uploadAppContract: File | null | string
   providerHomePage: string
   providerContactEmail: string
@@ -89,7 +88,6 @@ export default function AppPage() {
     images: null,
     uploadDataPrerequisits: null,
     uploadTechnicalGuide: null,
-    uploadDataContract: null,
     uploadAppContract: null,
     providerHomePage: fetchAppStatus?.providerUri || '',
     providerContactEmail: fetchAppStatus?.contactEmail || '',
@@ -113,7 +111,6 @@ export default function AppPage() {
   }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
-  const uploadDataContractValue = getValues().uploadDataContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
   const imagesValue = getValues().images
@@ -143,19 +140,6 @@ export default function AppPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadAppContractValue])
-
-  useEffect(() => {
-    const value = getValues().uploadDataContract
-
-    if (value && !('status' in value)) {
-      setFileStatus('uploadDataContract', 'uploading')
-
-      uploadDocumentApi(appId, 'APP_DATA_DETAILS', value)
-        .then(() => setFileStatus('uploadDataContract', 'upload_success'))
-        .catch(() => setFileStatus('uploadDataContract', 'upload_error'))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadDataContractValue])
 
   useEffect(() => {
     const value = getValues().uploadDataPrerequisits
@@ -218,7 +202,6 @@ export default function AppPage() {
       'images',
       'uploadDataPrerequisits',
       'uploadTechnicalGuide',
-      'uploadDataContract',
       'uploadAppContract',
       'providerHomePage',
       'providerContactEmail',
@@ -250,9 +233,9 @@ export default function AppPage() {
         },
       ],
       images: [],
-      providerUri: data.providerHomePage,
-      contactEmail: data.providerContactEmail,
-      contactNumber: data.providerPhoneContact,
+      providerUri: data.providerHomePage || '',
+      contactEmail: data.providerContactEmail || '',
+      contactNumber: data.providerPhoneContact || '',
     }
 
     try {
@@ -373,6 +356,7 @@ export default function AppPage() {
                   value: true,
                 },
               },
+              dropAreaSize: 'small',
             }}
           />
           {errors?.images?.type === 'required' && (
@@ -391,7 +375,6 @@ export default function AppPage() {
         {[
           'uploadDataPrerequisits',
           'uploadTechnicalGuide',
-          'uploadDataContract',
           'uploadAppContract',
         ].map((item: string, i) => (
           <div key={i}>
@@ -417,6 +400,7 @@ export default function AppPage() {
                       value: true,
                     },
                   },
+                  dropAreaSize: 'small',
                 }}
               />
               {item === 'uploadDataPrerequisits' &&
@@ -429,14 +413,6 @@ export default function AppPage() {
                 )}
               {item === 'uploadTechnicalGuide' &&
                 errors?.uploadTechnicalGuide?.type === 'required' && (
-                  <Typography variant="body2" className="file-error-msg">
-                    {t(
-                      'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-                    )}
-                  </Typography>
-                )}
-              {item === 'uploadDataContract' &&
-                errors?.uploadDataContract?.type === 'required' && (
                   <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
@@ -466,15 +442,9 @@ export default function AppPage() {
               trigger,
               errors,
               name: 'providerHomePage',
-              label: t('content.apprelease.appPage.providerHomePage') + ' *',
+              label: t('content.apprelease.appPage.providerHomePage'),
               type: 'input',
               rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.appPage.providerHomePage'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
                 pattern: {
                   value: Patterns.appPage.providerHomePage,
                   message: `${t(
@@ -493,16 +463,9 @@ export default function AppPage() {
               trigger,
               errors,
               name: 'providerContactEmail',
-              label:
-                t('content.apprelease.appPage.providerContactEmail') + ' *',
+              label: t('content.apprelease.appPage.providerContactEmail'),
               type: 'input',
               rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.appPage.providerContactEmail'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
                 pattern: {
                   value: Patterns.MAIL,
                   message: t(
@@ -521,19 +484,12 @@ export default function AppPage() {
               trigger,
               errors,
               name: 'providerPhoneContact',
-              label:
-                t('content.apprelease.appPage.providerPhoneContact') + ' *',
+              label: t('content.apprelease.appPage.providerPhoneContact'),
               placeholder: t(
                 'content.apprelease.appPage.providerPhoneContactPlaceholder'
               ),
               type: 'input',
               rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.appPage.providerPhoneContact'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
                 pattern: {
                   value: Patterns.appPage.phone,
                   message: t(

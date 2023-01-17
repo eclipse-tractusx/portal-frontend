@@ -32,9 +32,10 @@ import {
   SelectList,
   UploadFileStatus,
   PageSnackbar,
+  DropArea,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, Divider, Box } from '@mui/material'
+import { Grid, Divider, Box, InputLabel } from '@mui/material'
 import { useState, useEffect } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -100,6 +101,7 @@ export const ConnectorFormInputField = ({
   maxFilesToUpload,
   maxFileSize,
   defaultValues,
+  dropAreaSize,
 }: any) => (
   <Controller
     name={name}
@@ -139,6 +141,9 @@ export const ConnectorFormInputField = ({
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             maxFileSize={maxFileSize}
+            DropArea={(props) => (
+              <DropArea {...props} size={dropAreaSize || 'normal'} />
+            )}
           />
         )
       } else if (type === 'checkbox') {
@@ -295,8 +300,8 @@ export default function AppMarketCard() {
         const defaultsalesMgr: any = uniqueSalesManagerList?.filter(
           (item) => item.userId === appStatusData?.salesManagerId
         )
-        onSalesManagerChange(defaultsalesMgr[0].userId)
-        setDefaultSalesManagerValue(defaultsalesMgr[0])
+        onSalesManagerChange(defaultsalesMgr && defaultsalesMgr[0]?.userId)
+        setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -838,38 +843,44 @@ export default function AppMarketCard() {
               />
             </div>
 
-            <ConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-                name: 'uploadImage.leadPictureUri',
-                type: 'dropzone',
-                acceptFormat: {
-                  'image/png': [],
-                  'image/jpeg': [],
-                },
-                maxFilesToUpload: 1,
-                maxFileSize: 819200,
-                rules: {
-                  required: {
-                    value: true,
+            <div className="form-field">
+              <InputLabel sx={{ mb: 3, mt: 3 }}>
+                {t('content.apprelease.appMarketCard.appLeadImageUpload') +
+                  ' *'}
+              </InputLabel>
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'uploadImage.leadPictureUri',
+                  type: 'dropzone',
+                  acceptFormat: {
+                    'image/png': [],
+                    'image/jpeg': [],
                   },
-                },
-              }}
-            />
-            {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-              <Typography variant="body2" className="file-error-msg">
-                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </Typography>
-            )}
+                  maxFilesToUpload: 1,
+                  maxFileSize: 819200,
+                  rules: {
+                    required: {
+                      value: true,
+                    },
+                  },
+                }}
+              />
+              {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
+                <Typography variant="body2" className="file-error-msg">
+                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
+                </Typography>
+              )}
 
-            <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-              {t('content.apprelease.appReleaseForm.note')}
-            </Typography>
-            <Typography variant="body2" mb={3}>
-              {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
-            </Typography>
+              <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+                {t('content.apprelease.appReleaseForm.note')}
+              </Typography>
+              <Typography variant="body2" mb={3}>
+                {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
+              </Typography>
+            </div>
           </form>
         </Grid>
       </Grid>
