@@ -31,6 +31,7 @@ export type AppDetails = AppMarketplaceApp & {
   isSubscribed: string
   tags: string[]
   languages: string[]
+  leadPictureId?: string
 }
 
 export type AppDetailsState = {

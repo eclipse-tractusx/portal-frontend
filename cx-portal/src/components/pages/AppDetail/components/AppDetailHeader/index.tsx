@@ -22,12 +22,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Button, Typography, Tooltips } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
-import { getAppLeadImage } from 'features/apps/mapper'
 import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import CommonService from 'services/CommonService'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -38,6 +40,8 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const dispatch = useDispatch()
   const { appId } = useParams()
   const user = useSelector(userSelector)
+  const [image, setImage] = useState('')
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const getSubscribeBtn = () => {
     const subscribeStatus = item.isSubscribed
@@ -93,10 +97,28 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
     }
   }
 
+  useEffect(() => {
+    if (item?.leadPictureId) {
+      const id = CommonService.isValidPictureId(item?.leadPictureId)
+      getImage(id)
+    }
+    // eslint-disable-next-line
+  }, [])
+
+  const getImage = async (documentId: string) => {
+    try {
+      const response = await fetchDocumentById(documentId).unwrap()
+      const file = response.data
+      return setImage(URL.createObjectURL(file))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="appdetail-header">
       <div className="lead-image">
-        <img src={getAppLeadImage(item)} alt={item.title} />
+        <img src={image} alt={item.title} />
       </div>
       <div className="content">
         <Typography variant="body2" className="provider">

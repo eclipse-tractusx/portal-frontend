@@ -29,7 +29,7 @@ import { SelectInput } from './Components/SelectInput'
 import { SelectOptions } from './Components/SelectOptions'
 import { SelectAddMore } from './Components/SelectAddMore'
 import uniqueId from 'lodash/uniqueId'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export type TagSizeType = 'small' | 'medium' | 'large'
 export type PartsType = {
@@ -51,6 +51,7 @@ export interface MultiSelectListProps
   notItemsText: string
   tagSize?: TagSizeType
   filterOptionsArgs?: {}
+  defaultValues?: any
   onAddItem: (items: any[]) => void
 }
 
@@ -72,6 +73,7 @@ export const MultiSelectList = ({
   notItemsText,
   tagSize,
   filterOptionsArgs = {},
+  defaultValues = [],
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
@@ -94,6 +96,22 @@ export const MultiSelectList = ({
           stringify: (option: any) => option[keyTitle],
         }
   )
+
+  useEffect(() => {
+    if (defaultValues.length > 0) {
+      setSelected(defaultValues)
+    }
+  }, [defaultValues])
+
+  useEffect(() => {
+    if (items.length > 0) {
+      if (defaultValues.length > 0) {
+        onAddItem(defaultValues)
+        setSelected(defaultValues)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items])
 
   return (
     <Box>
@@ -171,6 +189,7 @@ export const MultiSelectList = ({
           }}
           onChange={(_, selectedItems: any[]) => handleChange(selectedItems)}
           onBlur={() => setShowItems(true)}
+          defaultValue={defaultValues}
         />
       ) : (
         <SelectAddMore

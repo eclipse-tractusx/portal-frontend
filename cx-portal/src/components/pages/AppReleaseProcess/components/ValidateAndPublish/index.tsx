@@ -50,6 +50,7 @@ import {
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { setAppStatus } from 'features/appManagement/actions'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -66,8 +67,14 @@ export default function ValidateAndPublish({
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState('')
 
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
   const statusData = appStatusData || fetchAppStatus
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
     if (

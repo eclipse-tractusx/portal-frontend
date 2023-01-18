@@ -21,7 +21,12 @@
 import {
   Button,
   Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
   IconButton,
+  LoadingButton,
   PageNotifications,
   PageSnackbar,
   Typography,
@@ -31,11 +36,25 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
+import {
+  postRolesResponseType,
+  rolesType,
+  updateRoleType,
+  useDeleteRolesMutation,
+  useFetchAppStatusQuery,
+  useFetchRolesDataQuery,
+  useUpdateRoleDataMutation,
+} from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -55,6 +74,18 @@ export default function TechnicalIntegration() {
   // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
   // const [showUserButton, setShowUserButton] = useState(true)
 
+  const appId = useSelector(appIdSelector)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+  const { data, refetch } = useFetchRolesDataQuery(appId ?? '')
+  const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
+  const [rolesResponse, setRolesResponse] = useState<postRolesResponseType[]>(
+    []
+  )
+  const [deleteOverlay, setDeleteOverlay] = useState(false)
+  const [deleteRoles] = useDeleteRolesMutation()
+
   const defaultValues = {
     // To-Do : the below code will get enhanced again in R.3.1
     // clientId: '',
@@ -72,6 +103,10 @@ export default function TechnicalIntegration() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
@@ -98,22 +133,128 @@ export default function TechnicalIntegration() {
       })
   }
 
-  return (
-    <div className="technical-integration">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.technicalIntegration.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.technicalIntegration.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+  const postRoles = async () => {
+    getValues().uploadAppRoles === '' && setEnableUploadAppRoles(true)
 
-      <form className="header-description">
-        {/* To-Do : the below code will get enhanced again in R.3.1 */}
-        {/* <Typography variant="h5" mb={4}>
+    const updateRolesData: updateRoleType = {
+      appId: appId,
+      body: rolesPreviews.map((item) => ({
+        role: item,
+        descriptions: [
+          {
+            languageCode: 'en',
+            description: '',
+          },
+        ],
+      })),
+    }
+
+    await updateRoleData(updateRolesData)
+      .unwrap()
+      .then((data) => {
+        setRolesResponse(data)
+      })
+      .catch((error) => {
+        console.error(error, 'ERROR WHILE UPDATING ROLES')
+      })
+  }
+
+  const deletedFile = (file: DropzoneFile[]) => {
+    setDeleteOverlay(true)
+  }
+
+  const onDelete = () => {
+    rolesResponse.map((item) =>
+      deleteRoles({
+        appId: appId,
+        roleId: item.roleId,
+      })
+        .unwrap()
+        .then(() => {
+          setDeleteOverlay(false)
+          setRolesPreviews([])
+        })
+        .catch(() => {
+          setDeleteOverlay(false)
+        })
+    )
+  }
+
+  const onChipDelete = (roleId: string) => {
+    deleteRoles({
+      appId: appId,
+      roleId: roleId,
+    })
+      .unwrap()
+      .then(() => {
+        refetch()
+      })
+      .catch((error) => {
+        console.error(error, 'ERROR WHILE DELETING ROLES')
+      })
+  }
+
+  return (
+    <>
+      <Dialog
+        open={deleteOverlay}
+        additionalModalRootStyles={{
+          width: '45%',
+        }}
+      >
+        <DialogHeader
+          {...{
+            title: '',
+            closeWithIcon: false,
+          }}
+        />
+        <DialogContent
+          sx={{
+            padding: '0px 120px 40px 120px',
+          }}
+        >
+          Deletion will not be reversable, do you still want to delete?
+        </DialogContent>
+        <DialogActions>
+          <Button
+            sx={{
+              minWidth: '100px',
+            }}
+            variant="outlined"
+            onClick={() => {
+              setDeleteOverlay(false)
+            }}
+          >
+            {`${t('global.actions.no')}`}
+          </Button>
+          <Button
+            sx={{
+              mr: '2',
+              minWidth: '100px',
+            }}
+            variant="contained"
+            onClick={onDelete}
+          >
+            {`${t('global.actions.yes')}`}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <div className="technical-integration">
+        <Typography variant="h3" mt={10} mb={4} align="center">
+          {t('content.apprelease.technicalIntegration.headerTitle')}
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+            <Typography variant="body2" align="center">
+              {t('content.apprelease.technicalIntegration.headerDescription')}
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <form className="header-description">
+          {/* To-Do : the below code will get enhanced again in R.3.1 */}
+          {/* <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step1Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
@@ -197,68 +338,72 @@ export default function TechnicalIntegration() {
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step2Header')}
         </Typography> */}
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.uploadRolesDescription')}
-        </Typography>
-        {enableUploadAppRoles && (
-          <>
-            <Controller
-              name={'uploadAppRoles'}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { onChange, value } }) => (
-                <Dropzone
-                  onChange={(files) => {
-                    onChange(files[0]?.name)
-                    trigger('uploadAppRoles')
-                    csvPreview(files)
-                  }}
-                  acceptFormat={{ 'text/csv': ['.csv'] }}
-                  maxFilesToUpload={1}
-                />
-              )}
-            />
-            {errors?.uploadAppRoles?.type === 'required' && (
-              <Typography variant="body2" className="file-error-msg">
-                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </Typography>
+          <Typography variant="h5" mb={4}>
+            {t(
+              'content.apprelease.technicalIntegration.uploadRolesDescription'
             )}
-            {rolesPreviews?.length > 0 && (
-              <>
-                <Typography variant="h6" mb={2} textAlign="center">
-                  {t('content.apprelease.technicalIntegration.rolesPreview')}
+          </Typography>
+          {enableUploadAppRoles && (
+            <>
+              <Controller
+                name={'uploadAppRoles'}
+                control={control}
+                rules={{ required: true }}
+                render={({ field: { onChange, value } }) => (
+                  <Dropzone
+                    onChange={(files, deletedFiles) => {
+                      if (deletedFiles?.length) {
+                        deletedFile(deletedFiles)
+                      }
+                      onChange(files[0]?.name)
+                      trigger('uploadAppRoles')
+                      csvPreview(files)
+                    }}
+                    acceptFormat={{ 'text/csv': ['.csv'] }}
+                    maxFilesToUpload={1}
+                  />
+                )}
+              />
+              {errors?.uploadAppRoles?.type === 'required' && (
+                <Typography variant="body2" className="file-error-msg">
+                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
                 </Typography>
-                <Grid container xs={12}>
-                  {rolesPreviews?.map((role: string, index: number) => (
-                    <Grid xs={6} key={index}>
-                      <Chip
-                        key={index}
-                        label={role}
-                        withIcon={false}
-                        type="plain"
-                        variant="filled"
-                        color="secondary"
-                        sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
-              </>
-            )}
-          </>
-        )}
+              )}
+              {rolesPreviews?.length > 0 && (
+                <>
+                  <Typography variant="h6" mb={2} textAlign="center">
+                    {t('content.apprelease.technicalIntegration.rolesPreview')}
+                  </Typography>
+                  <Grid item container xs={12}>
+                    {rolesPreviews?.map((role: string) => (
+                      <Grid item xs={6} key={role}>
+                        <Chip
+                          key={role}
+                          label={role}
+                          withIcon={false}
+                          type="plain"
+                          variant="filled"
+                          color="secondary"
+                          sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </>
+              )}
+            </>
+          )}
 
-        <Box textAlign="center">
-          <Button
+          <Box textAlign="center">
+            {/* <Button
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
-            onClick={() => {
-              getValues().uploadAppRoles === ''
-                ? setEnableUploadAppRoles(true)
-                : setEnableUploadAppRoles(false)
-            }}
+            // onClick={() => {
+            //   getValues().uploadAppRoles === ''
+            //     ? setEnableUploadAppRoles(true)
+            //     : setEnableUploadAppRoles(false)
+            // }}
+            onClick={postRoles}
             // To-Do : the below code will get enhanced again in R.3.1
             // disabled={!createClientSuccess}
             // onClick={() => {
@@ -274,11 +419,68 @@ export default function TechnicalIntegration() {
               : t(
                   'content.apprelease.technicalIntegration.createThoseForYourApp'
                 )}
-          </Button>
-        </Box>
+          </Button> */}
 
-        {/* To-Do : the below code will get enhanced again in R.3.1 */}
-        {/* <Divider className="form-divider" />
+            <LoadingButton
+              loading={isLoading}
+              variant="contained"
+              onButtonClick={postRoles}
+              sx={{
+                textAlign: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '30px',
+              }}
+              loadIndicator={
+                getValues().uploadAppRoles === ''
+                  ? t(
+                      'content.apprelease.technicalIntegration.clickToOpenDialogBox'
+                    )
+                  : t(
+                      'content.apprelease.technicalIntegration.createThoseForYourApp'
+                    )
+              }
+              label={
+                getValues().uploadAppRoles === ''
+                  ? t(
+                      'content.apprelease.technicalIntegration.clickToOpenDialogBox'
+                    )
+                  : t(
+                      'content.apprelease.technicalIntegration.createThoseForYourApp'
+                    )
+              }
+              fullWidth={false}
+            />
+            {data && data.length > 0 && (
+              <>
+                <Typography variant="h4" mb={4} mt={4}>
+                  {t(
+                    'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
+                  )}
+                </Typography>
+
+                <Grid item container xs={12}>
+                  {data?.map((role: rolesType) => (
+                    <Grid item xs={6} key={role.roleId}>
+                      <Chip
+                        key={role.roleId}
+                        label={role.role}
+                        withIcon={true}
+                        type="delete"
+                        variant="filled"
+                        color="secondary"
+                        sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                        handleDelete={() => onChipDelete(role.roleId)}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </>
+            )}
+          </Box>
+
+          {/* To-Do : the below code will get enhanced again in R.3.1 */}
+          {/* <Divider className="form-divider" />
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step3Header')}
         </Typography>
@@ -316,67 +518,68 @@ export default function TechnicalIntegration() {
             <Grid xs={4}>Lorem Ipsum</Grid>
           </Grid>
         )} */}
-      </form>
+        </form>
 
-      <Box mb={2}>
-        {technicalIntegrationNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('content.apprelease.appReleaseForm.error.title')}
-                description={t(
-                  'content.apprelease.appReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() =>
-                  setTechnicalIntegrationNotification(false)
-                }
-              />
+        <Box mb={2}>
+          {technicalIntegrationNotification && (
+            <Grid item container xs={12} sx={{ mb: 2 }}>
+              <Grid item xs={6}></Grid>
+              <Grid item xs={6}>
+                <PageNotifications
+                  title={t('content.apprelease.appReleaseForm.error.title')}
+                  description={t(
+                    'content.apprelease.appReleaseForm.error.message'
+                  )}
+                  open
+                  severity="error"
+                  onCloseNotification={() =>
+                    setTechnicalIntegrationNotification(false)
+                  }
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        )}
-        <PageSnackbar
-          open={technicalIntegrationSnackbar}
-          onCloseNotification={() => setTechnicalIntegrationSnackbar(false)}
-          severity="success"
-          description={t(
-            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
           )}
-          autoClose={true}
-        />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          startIcon={<HelpOutlineIcon />}
-          sx={{ mr: 1 }}
-          variant="outlined"
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          // To-Do : the below code will get enhanced again in R.3.1
-          // disabled={showUserButton}
-          onClick={handleSubmit((data) =>
-            onIntegrationSubmit(data, 'saveAndProceed')
-          )}
-          variant="contained"
-          sx={{ float: 'right' }}
-        >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
-      </Box>
-    </div>
+          <PageSnackbar
+            open={technicalIntegrationSnackbar}
+            onCloseNotification={() => setTechnicalIntegrationSnackbar(false)}
+            severity="success"
+            description={t(
+              'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+            )}
+            autoClose={true}
+          />
+          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+          <Button
+            startIcon={<HelpOutlineIcon />}
+            sx={{ mr: 1 }}
+            variant="outlined"
+          >
+            {t('content.apprelease.footerButtons.help')}
+          </Button>
+          <IconButton color="secondary" onClick={() => dispatch(decrement())}>
+            <KeyboardArrowLeftIcon />
+          </IconButton>
+          <Button
+            // To-Do : the below code will get enhanced again in R.3.1
+            // disabled={showUserButton}
+            onClick={handleSubmit((data) =>
+              onIntegrationSubmit(data, 'saveAndProceed')
+            )}
+            variant="contained"
+            sx={{ float: 'right' }}
+          >
+            {t('content.apprelease.footerButtons.saveAndProceed')}
+          </Button>
+          <Button
+            variant="outlined"
+            name="send"
+            sx={{ float: 'right', mr: 1 }}
+            onClick={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
+          >
+            {t('content.apprelease.footerButtons.save')}
+          </Button>
+        </Box>
+      </div>
+    </>
   )
 }

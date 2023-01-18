@@ -4,8 +4,24 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-* Dailog Header
-   * Update Dailog header font size to 24px
+
+## 1.0.0-RC2
+
+### Change
+* User Management main page - update dialog header & font style/size
+* App Lead-Image-Picture - removed asset repo dependency and connect backend apis to fetch lead images
+* App Release Process - step 4 "role management" connected with apis to support GET / POST and DELETE
+* Company role introduction page styling sizes updated
+* Added content for company role introduction & use case introduction pages
+
+### Feature
+n/a
+
+### Technical Support
+* Email pattern / regular expression updated
+
+### Bugfix
+* App access management - carousel style updated & card height fixed
 
 ## 1.0.0-RC1
 

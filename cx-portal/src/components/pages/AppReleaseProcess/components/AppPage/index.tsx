@@ -71,7 +71,9 @@ export default function AppPage() {
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
 
@@ -79,11 +81,11 @@ export default function AppPage() {
     longDescriptionEN:
       fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
-      )[0].longDescription || '',
+      )[0]?.longDescription || '',
     longDescriptionDE:
       fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
-      )[0].longDescription || '',
+      )[0]?.longDescription || '',
     images: null,
     uploadDataPrerequisits: null,
     uploadTechnicalGuide: null,
@@ -257,7 +259,6 @@ export default function AppPage() {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       buttonLabel === 'saveAndProceed' && dispatch(increment())
       buttonLabel === 'save' && setAppPageSnackbar(true)
-      dispatch(setAppStatus(fetchAppStatus))
     } catch (error: any) {
       setAppPageNotification(true)
     }

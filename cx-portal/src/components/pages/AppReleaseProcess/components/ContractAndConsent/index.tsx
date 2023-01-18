@@ -68,7 +68,9 @@ export default function ContractAndConsent() {
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
   })
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
