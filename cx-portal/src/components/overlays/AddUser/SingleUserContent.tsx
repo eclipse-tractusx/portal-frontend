@@ -27,7 +27,7 @@ export const SingleUserContent = ({
   withUserId = false,
   setValue,
 }: {
-  withUserId?: boolean,
+  withUserId?: boolean
   setValue: (key: string, value: string) => void
 }) => {
   const InputDefinitions = {
@@ -68,11 +68,15 @@ export const SingleUserContent = ({
 
   return (
     <Box sx={{ marginTop: '30px' }}>
-      {Object.values(withUserId ? InputDefinitions : {
-        firstName: InputDefinitions.firstname,
-        lastName: InputDefinitions.lastname,
-        email: InputDefinitions.email,
-      }).map(({ key, i18n, helperText }) => (
+      {Object.values(
+        withUserId
+          ? InputDefinitions
+          : {
+              firstName: InputDefinitions.firstname,
+              lastName: InputDefinitions.lastname,
+              email: InputDefinitions.email,
+            }
+      ).map(({ key, i18n, helperText }) => (
         <Input
           sx={{ marginBottom: '30px' }}
           key={key}

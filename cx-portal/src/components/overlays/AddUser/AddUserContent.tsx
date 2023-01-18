@@ -25,6 +25,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { UserRoles } from './UserRoles'
 import {
@@ -32,18 +33,42 @@ import {
   usersToAddSelector,
 } from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay/actions'
-import { OVERLAYS } from 'types/Constants'
+import { closeOverlay } from 'features/control/overlay/actions'
 import './AddUserOverlay.scss'
 import { SingleUserContent } from './SingleUserContent'
 import {
   setAddUserError,
   setAddUserSuccess,
   useAddTenantUsersMutation,
+  useAddUserIdpMutation,
 } from 'features/admin/userApiSlice'
-import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import {
+  setRolesToAdd,
+  setUsersToAdd,
+} from 'features/admin/userDeprecated/actions'
 import { IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
 import { IHashMap } from 'types/MainTypes'
+
+enum AddUserState {
+  NONE = 'NONE',
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+}
+
+const AddUserNotification = ({ state }: { state: AddUserState }) => {
+  const { t } = useTranslation()
+  const error = state.toString().startsWith('ERROR')
+  return (
+    <PageSnackbar
+      autoClose
+      title={t(`state.${error ? 'error' : 'success'}`)}
+      description={t(`state.${state}`)}
+      open={state !== AddUserState.NONE}
+      severity={error ? 'error' : 'success'}
+      showIcon
+    />
+  )
+}
 
 export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const { t } = useTranslation()
@@ -51,6 +76,8 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const usersToAdd = useSelector(usersToAddSelector)
   const rolesToAdd = useSelector(rolesToAddSelector)
   const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
+  const [addUserIdp] = useAddUserIdpMutation()
+  const [status, setStatus] = useState<AddUserState>(AddUserState.NONE)
   const fields: IHashMap<string> = {}
   const [data, setData] = useState(fields)
 
@@ -73,16 +100,33 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
     dispatch(setAddUserError(false))
     const addUser = { ...usersToAdd, roles: rolesToAdd }
     try {
-      await addTenantUsers([addUser]).unwrap()
-    } catch (err) {}
+      const response =
+        idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
+          ? await addUserIdp({
+              identityProviderId: idp.identityProviderId,
+              user: addUser,
+            }).unwrap()
+          : await addTenantUsers([addUser]).unwrap()
+      console.log('response', response)
+      setStatus(AddUserState.SUCCESS)
+    } catch (err) {
+      setStatus(AddUserState.ERROR)
+    }
+    setTimeout(() => {
+      setStatus(AddUserState.NONE)
+      dispatch(closeOverlay())
+    }, 3000)
   }
 
   const setField = (key: string, value: string) => {
-    console.log('data', data)
-    const updateData = {...data}
+    //console.log('usersToAdd', usersToAdd)
+    //console.log('rolesToAdd', rolesToAdd)
+    //console.log('data', data)
+    const updateData = { ...data }
     updateData[key] = value
     setData(updateData)
-    console.log('update', updateData)
+    //console.log('update', updateData)
+    dispatch(setUsersToAdd(updateData))
   }
 
   return (
@@ -92,7 +136,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
           title: t('content.addUser.headline'),
           intro: t('content.addUser.subheadline'),
           closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE)),
+          onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
       />
 
@@ -104,19 +148,14 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
           setValue={setField}
         />
         <UserRoles />
+        <AddUserNotification state={status} />
       </DialogContent>
 
       <DialogActions helperText={t('content.addUser.helperText')}>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE))}
-        >
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          onClick={handleConfirm}
-        >
+        <Button variant="contained" onClick={handleConfirm}>
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

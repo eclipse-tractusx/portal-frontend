@@ -41,8 +41,8 @@ export interface AddUser {
 }
 
 export interface AddUserIdp {
-  userId: string
-  userName: string
+  userId?: string
+  userName?: string
   email: string
   firstName: string
   lastName: string
@@ -102,7 +102,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     addUserIdp: builder.mutation<void, AddUserIdpArgs>({
       query: (args: AddUserIdpArgs) => ({
-        url: `/api/administration/users/identityprovider/owncompany/identityprovider/${args.identityProviderId}/users`,
+        url: `/api/administration/user/owncompany/identityprovider/${args.identityProviderId}/users`,
         method: 'POST',
         body: args.user,
       }),

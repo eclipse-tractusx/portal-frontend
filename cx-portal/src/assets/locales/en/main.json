@@ -1046,6 +1046,8 @@
       "INACTIVE": "Inactive",
       "DELETED": "DELETED",
       "name": "Name",
+      "userid": "User ID",
+      "username": "User Name",
       "details": "Details",
       "edit": "Edit",
       "userName": "Username",
