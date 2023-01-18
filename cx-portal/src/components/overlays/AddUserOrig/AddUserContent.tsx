@@ -25,8 +25,13 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  Tab,
+  Tabs,
+  TabPanel,
 } from 'cx-portal-shared-components'
 import { UserRoles } from './UserRoles'
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import {
   rolesToAddSelector,
   usersToAddSelector,
@@ -35,6 +40,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import './AddUserOverlay.scss'
+import { MultipleUserContent } from './MultipleUserContent'
 import { SingleUserContent } from './SingleUserContent'
 import {
   setAddUserError,
@@ -43,7 +49,7 @@ import {
 } from 'features/admin/userApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 import { IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
-import { IHashMap } from 'types/MainTypes'
+import { IDPHint } from './IDPHint'
 
 export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const { t } = useTranslation()
@@ -51,8 +57,8 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const usersToAdd = useSelector(usersToAddSelector)
   const rolesToAdd = useSelector(rolesToAddSelector)
   const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
-  const fields: IHashMap<string> = {}
-  const [data, setData] = useState(fields)
+  const [activeTab, setActiveTab] = useState(0)
+  const [singleUserInputValid, setSingleUserInputValid] = useState(false)
 
   if (isSuccess) {
     dispatch(setAddUserSuccess(isSuccess))
@@ -77,12 +83,15 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
     } catch (err) {}
   }
 
-  const setField = (key: string, value: string) => {
-    console.log('data', data)
-    const updateData = {...data}
-    updateData[key] = value
-    setData(updateData)
-    console.log('update', updateData)
+  const handleTabSwitch = (
+    _event: React.ChangeEvent<unknown>,
+    newValue: number
+  ) => {
+    setActiveTab(newValue)
+  }
+
+  const singleUserInputValidFn = (value: boolean) => {
+    setSingleUserInputValid(value)
   }
 
   return (
@@ -97,12 +106,36 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
       />
 
       <DialogContent className="w-100">
-        <SingleUserContent
-          withUserId={
-            idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
-          }
-          setValue={setField}
-        />
+        <Tabs
+          value={activeTab}
+          onChange={handleTabSwitch}
+          aria-label="basic tabs usage"
+        >
+          <Tab
+            sx={{ minWidth: '50%' }}
+            label={t('content.addUser.singleUser')}
+            icon={<PersonOutlinedIcon />}
+            iconPosition="start"
+          />
+          <Tab
+            sx={{ minWidth: '50%' }}
+            label={t('content.addUser.multipleUser')}
+            icon={<GroupOutlinedIcon />}
+            iconPosition="start"
+          />
+        </Tabs>
+        <TabPanel value={activeTab} index={0}>
+          <SingleUserContent
+            withUserId={
+              idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
+            }
+            checkInputValid={singleUserInputValidFn}
+          />
+        </TabPanel>
+        <TabPanel value={activeTab} index={1}>
+          <MultipleUserContent />
+        </TabPanel>
+        {/*<IDPHint idp={idp} />*/}
         <UserRoles />
       </DialogContent>
 
@@ -115,6 +148,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
         </Button>
         <Button
           variant="contained"
+          disabled={singleUserInputValid}
           onClick={handleConfirm}
         >
           {t('global.actions.confirm')}

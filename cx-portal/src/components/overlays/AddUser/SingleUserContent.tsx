@@ -21,19 +21,14 @@
 import { useTranslation } from 'react-i18next'
 import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setUsersToAdd } from 'features/admin/userDeprecated/actions'
-import debounce from 'lodash.debounce'
-import { IHashMap, UserInput } from 'types/MainTypes'
 import Patterns from 'types/Patterns'
 
 export const SingleUserContent = ({
   withUserId = false,
-  checkInputValid,
+  setValue,
 }: {
-  withUserId?: boolean
-  checkInputValid: (value: boolean) => void
+  withUserId?: boolean,
+  setValue: (key: string, value: string) => void
 }) => {
   const InputDefinitions = {
     userid: {
@@ -70,87 +65,21 @@ export const SingleUserContent = ({
     },
   }
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const [inputValid, setInputValid] = useState<boolean>(false)
-  const [userInputs, setUserInputs] = useState<IHashMap<UserInput>>(
-    withUserId
-      ? InputDefinitions
-      : {
-          firstname: InputDefinitions.firstname,
-          lastname: InputDefinitions.lastname,
-          email: InputDefinitions.email,
-        }
-  )
-
-  const debouncedValidation = useMemo(
-    () =>
-      debounce((inputs: IHashMap<UserInput>) => {
-        const check = Object.values(inputs).reduce(
-          (all, input) => all && input.pattern.test(input.value),
-          true
-        )
-        setInputValid(check)
-      }, 300),
-    [setInputValid]
-  )
-
-  const doValidate = useCallback(
-    (key: string, value: string) => {
-      const inputs = { ...userInputs }
-      const current = inputs[key]
-      current.value = value
-      current.valid = !current.pattern.test(current.value)
-      checkInputValid(
-        inputs.email.valid ||
-          inputs.firstname.valid ||
-          inputs.lastname.valid ||
-          inputs.userid.valid
-      )
-      setUserInputs(inputs)
-      debouncedValidation(inputs)
-    },
-    [debouncedValidation, userInputs, checkInputValid]
-  )
-
-  useMemo(() => {
-    if (
-      !userInputs.email.value ||
-      !userInputs.firstname.value ||
-      !userInputs.lastname.value ||
-      !userInputs.userid.value
-    ) {
-      checkInputValid(true)
-    }
-  }, [checkInputValid, userInputs])
-
-  useEffect(() => {
-    dispatch(
-      setUsersToAdd(
-        inputValid
-          ? {
-              userId: userInputs.userid.value,
-              userName: userInputs.email.value,
-              email: userInputs.email.value,
-              firstName: userInputs.firstname.value,
-              lastName: userInputs.lastname.value,
-              message: 'you have been invited to catena-x',
-            }
-          : {}
-      )
-    )
-  }, [inputValid, userInputs, dispatch])
 
   return (
     <Box sx={{ marginTop: '30px' }}>
-      {Object.values(userInputs).map(({ key, i18n, helperText }) => (
+      {Object.values(withUserId ? InputDefinitions : {
+        firstName: InputDefinitions.firstname,
+        lastName: InputDefinitions.lastname,
+        email: InputDefinitions.email,
+      }).map(({ key, i18n, helperText }) => (
         <Input
           sx={{ marginBottom: '30px' }}
           key={key}
           label={t(i18n)}
           placeholder={t(i18n)}
           helperText={helperText}
-          error={userInputs[key].valid}
-          onChange={(e) => doValidate(key, e.target.value)}
+          onChange={(e) => setValue(key, e.target.value)}
         />
       ))}
     </Box>
