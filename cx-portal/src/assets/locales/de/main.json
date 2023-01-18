@@ -346,12 +346,12 @@
       "submenuNotAvail": "Sub-Menu is not available for not active apps."
     },
     "deactivate": {
-      "headerTitle": "Deactivate Business App",
-      "description": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
-      "checkboxLabel": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
-      "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
-      "successMsg": "Deactivation successfully completed",
-      "errorMsg": "Error! Something went wrong"
+      "headerTitle": "Deaktivierung Business-App",
+      "description": "Die Deaktivierung von Geschäftsanwendungen deaktiviert das App-Angebot innerhalb des Catena-X-Marktplatzes. Alle derzeit aktiven Abonnements bleiben aktiv und Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
+      "checkboxLabel": "Hiermit bestätige ich, dass ich die Geschäftsbedingungen der Business-App zur Kenntnis genommen habe und meine Firmen-Business-App mit sofortiger Wirkung vom Marktplatz deaktiviere. Ich habe verstanden, dass es nicht möglich ist, die Deaktivierung selbstständig rückgängig zu machen.",
+      "checkboxErrorMsg": "Bitte bestätigen Sie, dass Sie die obigen Deaktivierungsauswirkungen gelesen haben, bevor Sie fortfahren",
+      "successMsg": "Deactivierung war erfolgreich.",
+      "errorMsg": "Leider hat die Deaktivierung nicht funktioniert. Bitte versuchen sie es später nochmal"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -381,11 +381,11 @@
       "addconnectorbutton": "Connector registrieren",
       "snackbar": {
         "successmessage": "Edc-Konnektor erfolgreich hinzugefügt",
-        "errormessage": "Fehler! Etwas ist schief gelaufen"
+        "errormessage": "Fehler! Etwas ist schief gelaufen. Der Konnektor wurde nicht angelegt."
       },
       "deletemodal": {
-        "title": "Löschen Sie den EDC-Connector",
-        "description": "Möchten Sie den ausgewählten Connector wirklich löschen?"
+        "title": "EDC-Connector Löschen",
+        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden."
       },
       "modal": {
         "company": {
