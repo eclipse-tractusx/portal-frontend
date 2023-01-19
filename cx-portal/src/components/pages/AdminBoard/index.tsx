@@ -90,7 +90,7 @@ export default function AppSubscription() {
     },
   ].map((btn) => (btn.onButtonClick = setView))
 
-  console.log('testing')
+  console.log('testing', apps)
 
   const debouncedFilter = useMemo(
     () =>
