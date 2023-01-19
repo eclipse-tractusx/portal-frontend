@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems, ImageType } from 'cx-portal-shared-components'
-import { getAssetBase } from 'services/EnvironmentService'
+import { CardItems, ImageType, LogoGrayData } from 'cx-portal-shared-components'
+import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {
   AppMarketplaceApp,
   SubscriptionStatus,
@@ -28,6 +28,11 @@ import {
 } from './apiSlice'
 
 const baseAssets = getAssetBase()
+
+export const getAppImageDocumentUrl = (app: AppMarketplaceApp) =>
+  app.leadPictureId
+    ? `${getApiBase()}/api/administration/documents/${app.leadPictureId}`
+    : LogoGrayData
 
 // mapper to fetch an app lead-image from the asset repo by using the app image name; default image handling included as well
 export const getAppLeadImage = (app: AppMarketplaceApp): string => {
@@ -53,7 +58,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
-    src: getAppLeadImage(app),
+    src: LogoGrayData,
     alt: app.title,
   },
   onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,
