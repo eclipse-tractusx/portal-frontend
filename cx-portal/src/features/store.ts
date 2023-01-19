@@ -48,6 +48,7 @@ import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
 import { apiSlice as serviceProviderApiSlice } from './serviceProvider/serviceProviderApiSlice'
 import { apiSlice as appSubscriptionApiSlice } from './appSubscription/appSubscriptionApiSlice'
+import { apiSlice as adminBoardApiSlice } from './adminBoard/adminBoardApiSlice'
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
 import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
@@ -83,6 +84,7 @@ export const reducers = {
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
   [serviceProviderApiSlice.reducerPath]: serviceProviderApiSlice.reducer,
   [appSubscriptionApiSlice.reducerPath]: appSubscriptionApiSlice.reducer,
+  [adminBoardApiSlice.reducerPath]: adminBoardApiSlice.reducer,
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
   [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
   [partnerNetworkApiSlice.reducerPath]: partnerNetworkApiSlice.reducer,
@@ -106,6 +108,7 @@ export const store = configureStore({
       .concat(serviceMarketplaceApiSlice.middleware)
       .concat(serviceProviderApiSlice.middleware)
       .concat(appSubscriptionApiSlice.middleware)
+      .concat(adminBoardApiSlice.middleware)
       .concat(inviteApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)
       .concat(partnerNetworkApiSlice.middleware)
