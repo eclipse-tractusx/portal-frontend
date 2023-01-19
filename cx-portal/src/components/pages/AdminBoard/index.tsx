@@ -93,6 +93,8 @@ export default function AppSubscription() {
     },
   ]
 
+  console.log('testing')
+
   const debouncedFilter = useMemo(
     () =>
       debounce((expr: string) => {
@@ -102,8 +104,8 @@ export default function AppSubscription() {
               ? apps &&
                   apps.filter(
                     (app: AppContent) =>
-                      app.provider.toLowerCase().includes(expr.toLowerCase()) ||
-                      app.name.toLowerCase().includes(expr.toLowerCase())
+                      app.provider?.toLowerCase().includes(expr.toLowerCase()) ||
+                      app.name?.toLowerCase().includes(expr.toLowerCase())
                   )
               : apps
           )
