@@ -3,6 +3,10 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
+### Unreleased
+* Connector
+   * Overlay text update
+
 ## 1.0.0-RC2
 
 ### Change
