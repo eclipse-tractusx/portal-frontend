@@ -60,6 +60,7 @@ export default function UseCase() {
             title={useCase.traceability.title}
             description={useCase.traceability.description}
           />
+          <StageSubNavigation linkArray={linkArray} />
           <StaticTemplate sectionInfo={useCase.traceability.sections} />
         </>
       )}
