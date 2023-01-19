@@ -146,14 +146,6 @@ export default function AppSubscription() {
     setShowModal(false)
   }
 
-  const setModalFalse = () => {
-    setShowModal(false)
-  }
-
-  const setSortModalTrue = () => {
-    setShowModal(true)
-  }
-
   return (
     <main className="appSubscription">
       <div className="mainContainer">
@@ -189,11 +181,14 @@ export default function AppSubscription() {
                 autoComplete="off"
               />
             </div>
-            <div className="filterSection" onMouseLeave={setModalFalse}>
+            <div
+              className="filterSection"
+              onMouseLeave={() => setShowModal(false)}
+            >
               <ViewSelector activeView={selected} views={filterButtons} />
               <div className="iconSection">
                 <SortIcon
-                  onClick={setSortModalTrue}
+                  onClick={() => setShowModal(true)}
                   sx={{
                     fontSize: 20,
                     color: '#939393',

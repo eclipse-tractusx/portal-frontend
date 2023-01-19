@@ -29,6 +29,7 @@ export enum PAGES {
   SWAGGER = 'swagger',
   STORYBOOK = 'storybook',
   APPSUBSCRIPTION = 'appsubscription',
+  ADMINBOARD = 'adminboard',
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
@@ -173,6 +174,8 @@ export enum ROLES {
   VIEW_APP_RELEASE = 'view_app_release',
   MY_USER_ACCOUNT = 'my_user_account',
   ACTIVATE_SUBSCRIPTION = 'activate_subscription',
+  APPROVE_APP_RELEASE = 'approve_app_release',
+  DECLINE_APP_RELEASE = 'decline_app_release',
 }
 
 export enum HINTS {

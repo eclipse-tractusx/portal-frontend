@@ -48,7 +48,7 @@ export const CardChip = ({ status, statusText }: CardChipProps) => {
   const [chipBackground, setChipBackground] = useState('')
 
   useEffect(() => {
-    switch (status) {
+    switch (status?.toLowerCase()) {
       case StatusVariants.release:
         setChipColor(theme.palette.chip.release)
         setChipBackground(theme.palette.chip.bgRelease)
