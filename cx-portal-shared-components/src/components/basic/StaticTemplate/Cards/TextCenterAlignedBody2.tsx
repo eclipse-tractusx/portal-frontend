@@ -40,6 +40,7 @@ export default function TextCenterAlignedBody2({
         {provider.subTitles &&
           provider.subTitles.map((subtitle) => (
             <Typography
+              key={subtitle}
               sx={{
                 padding: '30px 0px',
               }}
