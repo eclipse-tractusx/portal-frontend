@@ -101,7 +101,6 @@ export const ConnectorFormInputField = ({
   maxFilesToUpload,
   maxFileSize,
   defaultValues,
-  dropAreaSize,
 }: any) => (
   <Controller
     name={name}
@@ -141,9 +140,6 @@ export const ConnectorFormInputField = ({
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             maxFileSize={maxFileSize}
-            DropArea={(props) => (
-              <DropArea {...props} size={dropAreaSize || 'normal'} />
-            )}
           />
         )
       } else if (type === 'checkbox') {
@@ -278,7 +274,7 @@ export default function AppMarketCard() {
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [useCasesList, appStatusData, appLanguagesList])
+  }, [useCasesList, appStatusData, appLanguagesList])   
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))

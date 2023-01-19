@@ -356,7 +356,6 @@ export default function AppPage() {
                   value: true,
                 },
               },
-              dropAreaSize: 'small',
             }}
           />
           {errors?.images?.type === 'required' && (
@@ -400,7 +399,6 @@ export default function AppPage() {
                       value: true,
                     },
                   },
-                  dropAreaSize: 'small',
                 }}
               />
               {item === 'uploadDataPrerequisits' &&
