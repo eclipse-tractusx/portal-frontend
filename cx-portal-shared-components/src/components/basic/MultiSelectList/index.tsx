@@ -100,6 +100,7 @@ export const MultiSelectList = ({
   useEffect(() => {
     if (defaultValues.length > 0) {
       setSelected(defaultValues)
+      onAddItem(defaultValues)
     }
   }, [defaultValues])
 

@@ -32,11 +32,10 @@ import {
   SelectList,
   UploadFileStatus,
   PageSnackbar,
-  DropArea,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box, InputLabel } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -195,8 +194,16 @@ export default function AppMarketCard() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
-  const useCasesList = useFetchUseCasesQuery().data || []
-  const appLanguagesList = useFetchAppLanguagesQuery().data || []
+
+  const useCasesListData = useFetchUseCasesQuery().data
+  const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
+
+  const appLanguagesListData = useFetchAppLanguagesQuery().data
+  const appLanguagesList = useMemo(
+    () => appLanguagesListData || [],
+    [appLanguagesListData]
+  )
+
   const [addCreateApp] = useAddCreateAppMutation()
   const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -274,7 +281,7 @@ export default function AppMarketCard() {
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [useCasesList, appStatusData, appLanguagesList])   
+  }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))

@@ -81,7 +81,11 @@ export default function NewDropzoneTest() {
               maxFilesToUpload={3}
               maxFileSize={819200}
               DropArea={(props) => (
-                <DropArea {...props} disabled={uploadStarted} size="small" />
+                <DropArea
+                  {...props}
+                  disabled={props.disabled || uploadStarted}
+                  size="small"
+                />
               )}
             />
           )
