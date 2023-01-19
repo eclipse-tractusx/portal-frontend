@@ -264,13 +264,13 @@ export default function AppMarketCard() {
 
   useEffect(() => {
     if (useCasesList.length > 0) {
-      const defaultUseCaseIds: any = useCasesList?.filter((item) =>
+      const defaultUseCaseIds = useCasesList?.filter((item) =>
         appStatusData?.useCase?.some((x) => x === item.name)
       )
       setDefaultUseCaseVal(defaultUseCaseIds)
     }
     if (appLanguagesList.length > 0) {
-      const defaultAppLanguages: any = appLanguagesList?.filter((item) =>
+      const defaultAppLanguages = appLanguagesList?.filter((item) =>
         appStatusData?.supportedLanguageCodes?.some(
           (x) => x === item.languageShortName
         )
@@ -278,7 +278,7 @@ export default function AppMarketCard() {
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [useCasesList, appStatusData, setValue, appLanguagesList])
+  }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
