@@ -102,6 +102,7 @@ export const MultiSelectList = ({
       setSelected(defaultValues)
       onAddItem(defaultValues)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues])
 
   useEffect(() => {
