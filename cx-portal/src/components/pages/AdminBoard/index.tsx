@@ -93,7 +93,7 @@ export default function AppSubscription() {
     },
   ]
 
-  console.log('testing')
+  console.log('testing', apps)
 
   const debouncedFilter = useMemo(
     () =>

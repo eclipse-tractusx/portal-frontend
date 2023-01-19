@@ -40,6 +40,8 @@ export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
         <Button
           color={'secondary'}
           variant={
+            activeView &&
+            buttonValue &&
             activeView.toLowerCase() === buttonValue.toLowerCase()
               ? 'contained'
               : 'text'
