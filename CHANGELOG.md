@@ -11,11 +11,23 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ## 1.0.0-RC2
 
 ### Change
-* User Management main page - update dialog header & font style/size
-* App Lead-Image-Picture - removed asset repo dependency and connect backend apis to fetch lead images
-* App Release Process - step 4 "role management" connected with apis to support GET / POST and DELETE
-* Company role introduction page styling sizes updated
-* Added content for company role introduction & use case introduction pages
+* Dialog Header
+   * Update Dialog header font size to 24px
+* Admin Board - App Release (Page)
+   * Created Admin Board Page
+   * Connect with API's
+   * BL&API Approve app release
+   * BL&API Decline app release
+* Bugfix
+   * Change Email Pattern Regex to fix Hostspot
+* User Management main page
+   * update dialog header & font style/size
+* Apps
+   * removed asset repo dependency and connect backend apis to fetch lead images
+* App Release Process
+   * step 4 "role management" connected with apis to support GET / POST and DELETE
+   * Company role introduction page styling sizes updated
+   * Added content for company role introduction & use case introduction pages
 
 ### Feature
 n/a

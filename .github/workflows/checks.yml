@@ -17,6 +17,9 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
+      - name: linter checks
+        run: yarn lint
+
       - name: Build Library
         run: yarn build:lib
 
