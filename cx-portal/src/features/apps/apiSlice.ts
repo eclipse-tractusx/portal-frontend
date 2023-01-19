@@ -48,6 +48,7 @@ export type AppMarketplaceApp = {
   name?: string
   lastChanged?: string
   timestamp?: number
+  leadPictureId?: string
 }
 
 export enum SubscriptionStatus {

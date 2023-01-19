@@ -3,24 +3,35 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 
-### Unreleased
-* Dailog Header
-   * Update Dailog header font size to 24px
+## 1.0.0-RC2
+
+### Change
+* Dialog Header
+   * Update Dialog header font size to 24px
 * Admin Board - App Release (Page)
    * Created Admin Board Page
    * Connect with API's
    * BL&API Approve app release
    * BL&API Decline app release
-* Bugfix - Change Email Pattern Regex to fix Hostspot
+* Bugfix
+   * Change Email Pattern Regex to fix Hostspot
+* User Management main page
+   * update dialog header & font style/size
+* Apps
+   * removed asset repo dependency and connect backend apis to fetch lead images
+* App Release Process
+   * step 4 "role management" connected with apis to support GET / POST and DELETE
+   * Company role introduction page styling sizes updated
+   * Added content for company role introduction & use case introduction pages
 
 ### Feature
-* App Release Process
-   * step 4 - Business logic and API added for add, delete and get roles
+n/a
 
-* Bugfix - App Subscription - Search behavior CSS issue
-* Bugfix - App Access Management 
-      * Carousel central issue
-      * Card Height Fixed
+### Technical Support
+* Email pattern / regular expression updated
+
+### Bugfix
+* App access management - carousel style updated & card height fixed
 
 ## 1.0.0-RC1
 
