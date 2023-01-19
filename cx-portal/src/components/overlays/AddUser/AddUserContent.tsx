@@ -99,6 +99,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
     dispatch(setAddUserSuccess(false))
     dispatch(setAddUserError(false))
     const addUser = { ...usersToAdd, roles: rolesToAdd }
+    addUser.userName = addUser.email
     try {
       const response =
         idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
