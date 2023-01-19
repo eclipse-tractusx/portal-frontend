@@ -37,16 +37,14 @@ const ConnectorTypeSelection = ({
       title: t('content.edcconnector.modal.companyconnectorlabel'),
       type: 'COMPANY_CONNECTOR',
       subTitle: 'This is available now',
-      descritpion:
-        'Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen nyck till fysoras. Gaskapet prelaras, syning diheten alltså piporat',
+      descritpion: t('content.edcconnector.modal.company.intro'),
       id: 1,
     },
     {
       title: t('content.edcconnector.modal.connectorasaservice'),
       type: 'MANAGED_CONNECTOR',
       subTitle: 'This is also available now',
-      descritpion:
-        'Lörem ipsum kavis asm. Gos fan. Eusida dida. Topopp difeligen nyck till fysoras. Gaskapet prelaras, syning diheten alltså piporat',
+      descritpion: t('content.edcconnector.modal.managed.intro'),
       id: 2,
     },
   ]
