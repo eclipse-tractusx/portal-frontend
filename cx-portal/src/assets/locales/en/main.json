@@ -796,7 +796,8 @@
         "salesManager": "Sales Manager",
         "salesManagerPlaceholder": "Please select a Sales Manager",
         "salesManagerDescription": "Please select the app sales manager via the dropdown below. The sales manager can only get set if a user of your company has the respective portal role. The sales manager will get informed as soon as a app subscribtion request is triggered by the customer.",
-        "pricingInformation": "Pricing Information (e.g. free / charged ( to be defined)"
+        "pricingInformation": "Pricing Information (e.g. free / charged ( to be defined)",
+        "appLeadImageUpload": "App Lead Image Upload"
       },
       "appPage": {
         "headerTitle": "App Details",
@@ -810,7 +811,6 @@
         "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
-        "uploadDataContract": "Upload “Data Contract”",
         "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",
         "providerHomePage": "Provider Homepage",
@@ -896,7 +896,10 @@
           "title": "Error - something went wrong.",
           "message": "Please try it again"
         },
-        "dataSavedSuccessMessage": "Data saved successfully"
+        "dataSavedSuccessMessage": "Data saved successfully",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "rolesDeleteSuccessMessage": "Roles deleted successfully",
+        "errormessage": "Error! Something went wrong"
       },
       "footerButtons": {
         "help": "Help",

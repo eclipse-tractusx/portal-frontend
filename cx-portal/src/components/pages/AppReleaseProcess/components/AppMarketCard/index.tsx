@@ -34,8 +34,8 @@ import {
   PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, Divider, Box } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { useState, useEffect, useMemo } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -194,8 +194,16 @@ export default function AppMarketCard() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
-  const useCasesList = useFetchUseCasesQuery().data || []
-  const appLanguagesList = useFetchAppLanguagesQuery().data || []
+
+  const useCasesListData = useFetchUseCasesQuery().data
+  const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
+
+  const appLanguagesListData = useFetchAppLanguagesQuery().data
+  const appLanguagesList = useMemo(
+    () => appLanguagesListData || [],
+    [appLanguagesListData]
+  )
+
   const [addCreateApp] = useAddCreateAppMutation()
   const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -219,6 +227,8 @@ export default function AppMarketCard() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
+  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
 
   const defaultValues = {
     title: appStatusData?.title,
@@ -256,6 +266,24 @@ export default function AppMarketCard() {
   })
 
   useEffect(() => {
+    if (useCasesList.length > 0) {
+      const defaultUseCaseIds = useCasesList?.filter((item) =>
+        appStatusData?.useCase?.some((x) => x === item.name)
+      )
+      setDefaultUseCaseVal(defaultUseCaseIds)
+    }
+    if (appLanguagesList.length > 0) {
+      const defaultAppLanguages = appLanguagesList?.filter((item) =>
+        appStatusData?.supportedLanguageCodes?.some(
+          (x) => x === item.languageShortName
+        )
+      )
+      setDefaultAppLanguageVal(defaultAppLanguages)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [useCasesList, appStatusData, appLanguagesList])
+
+  useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
@@ -275,8 +303,8 @@ export default function AppMarketCard() {
         const defaultsalesMgr: any = uniqueSalesManagerList?.filter(
           (item) => item.userId === appStatusData?.salesManagerId
         )
-        onSalesManagerChange(defaultsalesMgr[0].userId)
-        setDefaultSalesManagerValue(defaultsalesMgr[0])
+        onSalesManagerChange(defaultsalesMgr && defaultsalesMgr[0]?.userId)
+        setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -700,6 +728,7 @@ export default function AppMarketCard() {
                     'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
+                  defaultValues: defaultUseCaseVal,
                 }}
               />
             </div>
@@ -745,6 +774,7 @@ export default function AppMarketCard() {
                       option.languageLongNames.de +
                       option.languageLongNames.en,
                   },
+                  defaultValues: defaultAppLanguageVal,
                 }}
               />
             </div>
@@ -816,38 +846,44 @@ export default function AppMarketCard() {
               />
             </div>
 
-            <ConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-                name: 'uploadImage.leadPictureUri',
-                type: 'dropzone',
-                acceptFormat: {
-                  'image/png': [],
-                  'image/jpeg': [],
-                },
-                maxFilesToUpload: 1,
-                maxFileSize: 819200,
-                rules: {
-                  required: {
-                    value: true,
+            <div className="form-field">
+              <InputLabel sx={{ mb: 3, mt: 3 }}>
+                {t('content.apprelease.appMarketCard.appLeadImageUpload') +
+                  ' *'}
+              </InputLabel>
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'uploadImage.leadPictureUri',
+                  type: 'dropzone',
+                  acceptFormat: {
+                    'image/png': [],
+                    'image/jpeg': [],
                   },
-                },
-              }}
-            />
-            {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-              <Typography variant="body2" className="file-error-msg">
-                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </Typography>
-            )}
+                  maxFilesToUpload: 1,
+                  maxFileSize: 819200,
+                  rules: {
+                    required: {
+                      value: true,
+                    },
+                  },
+                }}
+              />
+              {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
+                <Typography variant="body2" className="file-error-msg">
+                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
+                </Typography>
+              )}
 
-            <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-              {t('content.apprelease.appReleaseForm.note')}
-            </Typography>
-            <Typography variant="body2" mb={3}>
-              {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
-            </Typography>
+              <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+                {t('content.apprelease.appReleaseForm.note')}
+              </Typography>
+              <Typography variant="body2" mb={3}>
+                {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
+              </Typography>
+            </div>
           </form>
         </Grid>
       </Grid>
