@@ -61,13 +61,10 @@ export default function AppSubscription() {
 
   const apps = data && data.content
 
-  useEffect(() => {
-    apps && setAppCards(apps)
-  }, [apps])
+  useEffect(() => apps && setAppCards(apps), [apps])
 
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+  const setView = (e: React.MouseEvent<HTMLInputElement>) =>
     setSelected(e.currentTarget.value)
-  }
 
   const sortOptions = [
     {
@@ -80,18 +77,18 @@ export default function AppSubscription() {
     },
   ]
 
-  const filterButtons = [
+  const filterButtons: any[] = [
     {
       buttonText: t('content.adminBoard.tabs.open'),
       buttonValue: 'InReview',
-      onButtonClick: setView,
+      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => {},
     },
     {
       buttonText: t('content.adminBoard.tabs.all'),
       buttonValue: 'All',
-      onButtonClick: setView,
+      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => {},
     },
-  ]
+  ].map((btn) => (btn.onButtonClick = setView))
 
   const debouncedFilter = useMemo(
     () =>
