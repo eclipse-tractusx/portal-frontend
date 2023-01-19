@@ -18,23 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import NewDropzoneTest from './index.newdropzone'
+import { useEffect } from '@storybook/addons'
+import { LogoGrayData } from 'cx-portal-shared-components'
+import { useState } from 'react'
+import { getApiBase } from 'services/EnvironmentService'
+import UserService from 'services/UserService'
 
 export default function Test() {
-  const dispatch = useDispatch()
+
+  const [source, useSource] = useState<string>(LogoGrayData)
+
+  const fetchDoc = (id: string, token: string) => {
+    fetch(`${getApiBase()}/api/administration/documents/${id}`,
+    {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => response.blob())
+      .then(imageBlob => {
+        // Then create a local URL for that image and print it 
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+        console.log(imageObjectURL);
+      });
+    }
+
+  useEffect(() => fetchDoc('184cde16-52d4-4865-81f6-b5b45e3c9051', UserService.getToken()))
+
   return (
     <main>
       <section>
-        <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
-          {'Sample Form'}
-        </Button>
-      </section>
-      <section>
-        <NewDropzoneTest />
+        <image href={source} /> 
       </section>
     </main>
   )
