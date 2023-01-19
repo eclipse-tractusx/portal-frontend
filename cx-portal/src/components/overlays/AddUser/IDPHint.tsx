@@ -18,43 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Button } from '../Button'
-import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { Input } from 'cx-portal-shared-components'
+import { IdentityProvider } from 'features/admin/idpApiSlice'
 
-export interface view {
-  buttonText: string
-  buttonValue: string
-  onButtonClick?: React.MouseEventHandler
-}
+export const IDPHint = ({ idp }: { idp: IdentityProvider }) => {
+  const { t } = useTranslation()
+  const idpName = `${idp.alias} ${
+    idp.displayName ? `(${idp.displayName})` : ''
+  }`
 
-export interface ViewSelectorProps {
-  views: view[]
-  activeView: string
-}
-
-export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
   return (
-    <Box sx={{ textAlign: 'right' }}>
-      {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
-        <Button
-          color={'secondary'}
-          variant={
-            activeView &&
-            buttonValue &&
-            activeView.toLowerCase() === buttonValue.toLowerCase()
-              ? 'contained'
-              : 'text'
-          }
-          value={buttonValue}
-          key={buttonText}
-          sx={{ marginRight: '16px' }}
-          size={'small'}
-          onClick={onButtonClick}
-        >
-          {buttonText}
-        </Button>
-      ))}
-    </Box>
+    <Input
+      sx={{ marginBottom: '30px' }}
+      key={'idp'}
+      label={t('idp')}
+      placeholder={t('idp')}
+      helperText={t('idp')}
+      disabled={true}
+      defaultValue={idpName}
+      onChange={() => {}}
+    />
   )
 }

@@ -41,6 +41,7 @@
     "deactivate": "Deactivate",
     "appreleaseprocess": "App Release Process",
     "appsubscription": "App Subscription MGT",
+    "adminboard": "Admin Board",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User Management",
@@ -347,8 +348,8 @@
     },
     "deactivate": {
       "headerTitle": "Deactivate Business App",
-      "description": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
-      "checkboxLabel": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis",
+      "description": "Deactivation of business applications will deactivate the app offer inside the Catena-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
+      "checkboxLabel": "Hereby I confirm that I have ridden the business app terms and conditions and that I am deactivating my company business application from the marketpalce with immediately affect. I have understood that it is not possible to self-reverse the deactivation.",
       "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
       "successMsg": "Deactivation successfully completed",
       "errorMsg": "Error! Something went wrong"
@@ -795,7 +796,8 @@
         "salesManager": "Sales Manager",
         "salesManagerPlaceholder": "Please select a Sales Manager",
         "salesManagerDescription": "Please select the app sales manager via the dropdown below. The sales manager can only get set if a user of your company has the respective portal role. The sales manager will get informed as soon as a app subscribtion request is triggered by the customer.",
-        "pricingInformation": "Pricing Information (e.g. free / charged ( to be defined)"
+        "pricingInformation": "Pricing Information (e.g. free / charged ( to be defined)",
+        "appLeadImageUpload": "App Lead Image Upload"
       },
       "appPage": {
         "headerTitle": "App Details",
@@ -809,7 +811,6 @@
         "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
-        "uploadDataContract": "Upload “Data Contract”",
         "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",
         "providerHomePage": "Provider Homepage",
@@ -895,7 +896,10 @@
           "title": "Error - something went wrong.",
           "message": "Please try it again"
         },
-        "dataSavedSuccessMessage": "Data saved successfully"
+        "dataSavedSuccessMessage": "Data saved successfully",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "rolesDeleteSuccessMessage": "Roles deleted successfully",
+        "errormessage": "Error! Something went wrong"
       },
       "footerButtons": {
         "help": "Help",
@@ -985,6 +989,21 @@
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
       }
+    },
+    "adminBoard": {
+      "headerTitle": "App request management",
+      "search": "search company name/app title",
+      "noDataMessage": "No data available",
+      "errorMsg": "Error! Something went wrong",
+      "successMsg": "Successfully completed",
+      "tabs": {
+        "open": "Open",
+        "all": "All"
+      },
+      "sortOptions": {
+        "newFirst": "Newest First",
+        "AppTitle": "App Title (A-Z)"
+      }
     }
   },
   "navigation": {
@@ -1046,6 +1065,8 @@
       "INACTIVE": "Inactive",
       "DELETED": "DELETED",
       "name": "Name",
+      "userid": "User ID",
+      "username": "User Name",
       "details": "Details",
       "edit": "Edit",
       "userName": "Username",

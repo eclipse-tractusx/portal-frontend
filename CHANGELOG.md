@@ -5,14 +5,43 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
+## 1.0.0-RC3
+
+### Change
+
+### Feature
+* User Management
+   * create single user account support of company idp
+* Released App Management Board for Operator to managed app publishing requests
+
+### Technical Support
+n/a
+
+### Bugfix
+* Translations and couple of text messages updated
+* My business apllication area fixed by removing cache relation for app card images
+* App release process bugs fixed such as incorrect mandatory fields; file upload handling, etc.
+
 ## 1.0.0-RC2
 
 ### Change
-* User Management main page - update dialog header & font style/size
-* App Lead-Image-Picture - removed asset repo dependency and connect backend apis to fetch lead images
-* App Release Process - step 4 "role management" connected with apis to support GET / POST and DELETE
-* Company role introduction page styling sizes updated
-* Added content for company role introduction & use case introduction pages
+* Dialog Header
+   * Update Dialog header font size to 24px
+* Admin Board - App Release (Page)
+   * Created Admin Board Page
+   * Connect with API's
+   * BL&API Approve app release
+   * BL&API Decline app release
+* Bugfix
+   * Change Email Pattern Regex to fix Hostspot
+* User Management main page
+   * update dialog header & font style/size
+* Apps
+   * removed asset repo dependency and connect backend apis to fetch lead images
+* App Release Process
+   * step 4 "role management" connected with apis to support GET / POST and DELETE
+   * Company role introduction page styling sizes updated
+   * Added content for company role introduction & use case introduction pages
 
 ### Feature
 n/a

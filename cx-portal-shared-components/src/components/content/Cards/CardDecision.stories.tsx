@@ -18,43 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Button } from '../Button'
-import React from 'react'
+import { ComponentStory } from '@storybook/react'
+import { StatusVariants } from './CardChip'
 
-export interface view {
-  buttonText: string
-  buttonValue: string
-  onButtonClick?: React.MouseEventHandler
+import { CardDecision as Component } from './CardDecision'
+
+export default {
+  title: 'Cards',
+  component: Component,
+  argTypes: {},
 }
 
-export interface ViewSelectorProps {
-  views: view[]
-  activeView: string
-}
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
 
-export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
-  return (
-    <Box sx={{ textAlign: 'right' }}>
-      {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
-        <Button
-          color={'secondary'}
-          variant={
-            activeView &&
-            buttonValue &&
-            activeView.toLowerCase() === buttonValue.toLowerCase()
-              ? 'contained'
-              : 'text'
-          }
-          value={buttonValue}
-          key={buttonText}
-          sx={{ marginRight: '16px' }}
-          size={'small'}
-          onClick={onButtonClick}
-        >
-          {buttonText}
-        </Button>
-      ))}
-    </Box>
-  )
+const items = [
+  {
+    appId: '12',
+    provider: 'Bayerische Motorenwerke AG',
+    name: 'Logistics Network, Material Traceability (LBN-MT)',
+    status: StatusVariants.release,
+  },
+  {
+    appId: '123',
+    provider: 'Catena-X',
+    name: 'DTC-Translator',
+    status: StatusVariants.active,
+  },
+]
+
+export const CardDecision = Template.bind({})
+CardDecision.args = {
+  items: items,
 }

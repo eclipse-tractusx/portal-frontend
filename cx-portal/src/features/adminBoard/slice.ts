@@ -18,43 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Button } from '../Button'
-import React from 'react'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export interface view {
-  buttonText: string
-  buttonValue: string
-  onButtonClick?: React.MouseEventHandler
+const name = 'admin/appSubscription'
+
+export interface AppSubscriptionState {
+  isSuccess: boolean
 }
 
-export interface ViewSelectorProps {
-  views: view[]
-  activeView: string
+export const initialState: AppSubscriptionState = {
+  isSuccess: false,
 }
 
-export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
-  return (
-    <Box sx={{ textAlign: 'right' }}>
-      {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
-        <Button
-          color={'secondary'}
-          variant={
-            activeView &&
-            buttonValue &&
-            activeView.toLowerCase() === buttonValue.toLowerCase()
-              ? 'contained'
-              : 'text'
-          }
-          value={buttonValue}
-          key={buttonText}
-          sx={{ marginRight: '16px' }}
-          size={'small'}
-          onClick={onButtonClick}
-        >
-          {buttonText}
-        </Button>
-      ))}
-    </Box>
-  )
-}
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentSuccessType = (state: RootState): any =>
+  state.appSubscription.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice
