@@ -41,6 +41,7 @@
     "deactivate": "Deactivate",
     "appreleaseprocess": "App Release Process",
     "appsubscription": "App Subscription MGT",
+    "adminboard": "Admin Board",
     "appusermanagement": "App User Management",
     "userdetails": "User Details",
     "technicaluser": "Technical User Management",
@@ -984,6 +985,21 @@
         "successDescription": "The technical user has been created with the following data:",
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
+      }
+    },
+    "adminBoard": {
+      "headerTitle": "App request management",
+      "search": "search company name/app title",
+      "noDataMessage": "No data available",
+      "errorMsg": "Error! Something went wrong",
+      "successMsg": "Successfully completed",
+      "tabs": {
+        "open": "Open",
+        "all": "All"
+      },
+      "sortOptions": {
+        "newFirst": "Newest First",
+        "AppTitle": "App Title (A-Z)"
       }
     }
   },

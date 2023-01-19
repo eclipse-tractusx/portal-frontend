@@ -67,6 +67,7 @@ import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components
 import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
+import AdminBoard from 'components/pages/AdminBoard'
 
 /**
  * ALL_PAGES
@@ -212,6 +213,11 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPSUBSCRIPTION,
     role: ROLES.APP_MANAGEMENT,
     element: <AppSubscription />,
+  },
+  {
+    name: PAGES.ADMINBOARD,
+    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    element: <AdminBoard />,
   },
   {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
@@ -519,6 +525,7 @@ export const mainMenuFullTree = [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
       { name: PAGES.APPSUBSCRIPTION, hint: HINTS.NEW },
+      { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
     ],
   },
 ]
