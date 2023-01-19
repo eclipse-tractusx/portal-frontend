@@ -36,14 +36,12 @@ const ConnectorTypeSelection = ({
     {
       title: t('content.edcconnector.modal.companyconnectorlabel'),
       type: 'COMPANY_CONNECTOR',
-      subTitle: 'This is available now',
       descritpion: t('content.edcconnector.modal.company.intro'),
       id: 1,
     },
     {
       title: t('content.edcconnector.modal.connectorasaservice'),
       type: 'MANAGED_CONNECTOR',
-      subTitle: 'This is also available now',
       descritpion: t('content.edcconnector.modal.managed.intro'),
       id: 2,
     },
@@ -66,12 +64,6 @@ const ConnectorTypeSelection = ({
                     selectedServiceCallback(checkBox)
                   }}
                 />
-                <Typography
-                  variant="body2"
-                  style={{ margin: '5px 0px 16px 30px' }}
-                >
-                  {checkBox.subTitle}
-                </Typography>
 
                 <Typography variant="body2" style={{ marginLeft: '30px' }}>
                   {checkBox.descritpion}
