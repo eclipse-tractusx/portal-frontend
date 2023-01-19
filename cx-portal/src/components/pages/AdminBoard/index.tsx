@@ -104,7 +104,9 @@ export default function AppSubscription() {
               ? apps &&
                   apps.filter(
                     (app: AppContent) =>
-                      app.provider?.toLowerCase().includes(expr.toLowerCase()) ||
+                      app.provider
+                        ?.toLowerCase()
+                        .includes(expr.toLowerCase()) ||
                       app.name?.toLowerCase().includes(expr.toLowerCase())
                   )
               : apps
