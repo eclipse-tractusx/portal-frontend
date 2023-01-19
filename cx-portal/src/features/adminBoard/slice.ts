@@ -18,48 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export const name = 'apps/details'
+const name = 'admin/appSubscription'
 
-export type AppDetails = AppMarketplaceApp & {
-  providerUri: string
-  contactEmail: string
-  contactNumber: string
-  detailPictureUris: string[]
-  longDescription: string
-  isSubscribed: string
-  tags: string[]
-  languages: string[]
-  leadPictureId?: string
+export interface AppSubscriptionState {
+  isSuccess: boolean
 }
 
-export type AppDetailsState = {
-  item: AppDetails
-  loading: boolean
-  error: string
+export const initialState: AppSubscriptionState = {
+  isSuccess: false,
 }
 
-export const AppDetailInitial = {
-  id: 'default',
-  title: '',
-  provider: '',
-  leadPictureUri: 'trans.png',
-  shortDescription: '',
-  useCases: [''],
-  price: '',
-  providerUri: '',
-  contactEmail: '',
-  contactNumber: '',
-  detailPictureUris: [''],
-  longDescription: '',
-  isSubscribed: '',
-  tags: [''],
-  languages: [''],
-}
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
 
-export const initialState: AppDetailsState = {
-  item: AppDetailInitial,
-  loading: true,
-  error: '',
-}
+export const currentSuccessType = (state: RootState): any =>
+  state.appSubscription.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

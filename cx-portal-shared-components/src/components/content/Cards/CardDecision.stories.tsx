@@ -18,48 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { ComponentStory } from '@storybook/react'
+import { StatusVariants } from './CardChip'
 
-export const name = 'apps/details'
+import { CardDecision as Component } from './CardDecision'
 
-export type AppDetails = AppMarketplaceApp & {
-  providerUri: string
-  contactEmail: string
-  contactNumber: string
-  detailPictureUris: string[]
-  longDescription: string
-  isSubscribed: string
-  tags: string[]
-  languages: string[]
-  leadPictureId?: string
+export default {
+  title: 'Cards',
+  component: Component,
+  argTypes: {},
 }
 
-export type AppDetailsState = {
-  item: AppDetails
-  loading: boolean
-  error: string
-}
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
 
-export const AppDetailInitial = {
-  id: 'default',
-  title: '',
-  provider: '',
-  leadPictureUri: 'trans.png',
-  shortDescription: '',
-  useCases: [''],
-  price: '',
-  providerUri: '',
-  contactEmail: '',
-  contactNumber: '',
-  detailPictureUris: [''],
-  longDescription: '',
-  isSubscribed: '',
-  tags: [''],
-  languages: [''],
-}
+const items = [
+  {
+    appId: '12',
+    provider: 'Bayerische Motorenwerke AG',
+    name: 'Logistics Network, Material Traceability (LBN-MT)',
+    status: StatusVariants.release,
+  },
+  {
+    appId: '123',
+    provider: 'Catena-X',
+    name: 'DTC-Translator',
+    status: StatusVariants.active,
+  },
+]
 
-export const initialState: AppDetailsState = {
-  item: AppDetailInitial,
-  loading: true,
-  error: '',
+export const CardDecision = Template.bind({})
+CardDecision.args = {
+  items: items,
 }

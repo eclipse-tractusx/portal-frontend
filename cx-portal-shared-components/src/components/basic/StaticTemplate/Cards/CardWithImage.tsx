@@ -30,7 +30,7 @@ export default function CardWithImage({
   grid: number
 }) {
   const cardStyle = {
-    borderRadius: '16px',
+    borderRadius: '0px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

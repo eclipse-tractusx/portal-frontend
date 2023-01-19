@@ -24,21 +24,43 @@ import { Typography, Carousel, Card } from 'cx-portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
-import { appToCard } from 'features/apps/mapper'
 import {
   AppMarketplaceApp,
   useFetchBusinessAppsQuery,
 } from 'features/apps/apiSlice'
+import { appToCard } from 'features/apps/mapper'
 
 export const label = 'BusinessApplictions'
 
+const EmptyBox = ({ text }: { text: string }) => (
+  <Box
+    sx={{
+      height: '240px',
+      border: '3px dashed #f3f3f3',
+      borderRadius: '15px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+      padding: '15px',
+    }}
+  >
+    <Typography
+      sx={{
+        color: '#f3f3f3',
+      }}
+      variant="body2"
+    >
+      {text}
+    </Typography>
+  </Box>
+)
+
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const businessApps = useFetchBusinessAppsQuery().data || []
-  const cards = businessApps.map((app: AppMarketplaceApp) => appToCard(app))
+  const { data } = useFetchBusinessAppsQuery()
   const reference = PageService.registerReference(label, useRef(null))
-  const maximumCards = 4
-  const emptyCards: number = maximumCards - cards.length
 
   return (
     <div ref={reference} className="orange-background">
@@ -55,46 +77,32 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {cards.map((item) => (
-            <Card
-              {...item}
-              key={uniqueId(item.title)}
-              buttonText="Details"
-              imageSize="small"
-              imageShape="round"
-              variant="minimal"
-              expandOnHover={false}
-              filledBackground={true}
-              onClick={item.onClick}
-            />
-          ))}
-          {emptyCards > 0
-            ? Array.from(Array(emptyCards), (_item, i) => (
-                <Box
-                  key={i}
-                  sx={{
-                    height: '240px',
-                    border: '3px dashed #f3f3f3',
-                    borderRadius: '15px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    padding: '15px',
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: '#f3f3f3',
-                    }}
-                    variant="body2"
-                  >
-                    {t('content.home.emptyCards.title')}
-                  </Typography>
-                </Box>
-              ))
-            : ''}
+          {data &&
+            data
+              .map((app: AppMarketplaceApp) => {
+                const card = appToCard(app)
+                console.log(card)
+                return card
+              })
+              .map((item) => (
+                <Card
+                  {...item}
+                  key={uniqueId(item.title)}
+                  buttonText="Details"
+                  imageSize="small"
+                  imageShape="round"
+                  variant="minimal"
+                  expandOnHover={false}
+                  filledBackground={true}
+                  onClick={item.onClick}
+                />
+              ))}
+          {data &&
+            new Array(4 - data.length)
+              .fill(true)
+              .map((_item, i) => (
+                <EmptyBox key={i} text={t('content.home.emptyCards.title')} />
+              ))}
         </Carousel>
       </section>
     </div>

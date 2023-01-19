@@ -30,7 +30,12 @@ import {
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
-import { isCompanyName, isID, isURL } from 'types/Patterns'
+import {
+  isCompanyName,
+  isIDPClientID,
+  isIDPClientSecret,
+  isURL,
+} from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 
@@ -170,7 +175,7 @@ const UpdateIDPForm = ({
             name="clientId"
             label="Client ID"
             value={idp.oidc?.clientId || ''}
-            validate={isID}
+            validate={isIDPClientID}
             onValid={onChange}
           />
         </div>
@@ -178,7 +183,7 @@ const UpdateIDPForm = ({
           <ValidatingInput
             name="secret"
             label="Client Secret"
-            validate={isID}
+            validate={isIDPClientSecret}
             onValid={onChange}
           />
         </div>
