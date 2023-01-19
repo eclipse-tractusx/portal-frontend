@@ -22,57 +22,55 @@ import './CompanyRoles.scss'
 import { useEffect, useState } from 'react'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import { useTranslation } from 'react-i18next'
 import { StaticTemplate } from 'cx-portal-shared-components'
+import CommonService from 'services/CommonService'
 
 export default function CompanyRoles() {
-  const { t } = useTranslation('companyroles')
-  const [messageContent, setMessageContent] = useState<string>()
+  const [companyRoles, setCompanyRoles] = useState<any>()
+  const [linkArray, setLinkArray] = useState<any>()
   const url = window.location.href
   useEffect(() => {
-    if (url.indexOf('companyrolesappprovider') > 1) {
-      setMessageContent('appProvider')
-    } else if (url.indexOf('companyrolesserviceprovider') > 1) {
-      setMessageContent('serviceProvider')
-    } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
-      setMessageContent('confirmity')
-    } else {
-      setMessageContent('participant')
-    }
-  }, [url, t])
-
-  const linkArray = [
-    {
-      index: 1,
-      title: t('subNavigation.link1Label'),
-      navigation: 'provider-id',
-    },
-    {
-      index: 2,
-      title: t('subNavigation.link2Label'),
-      navigation: 'operations-id',
-    },
-    {
-      index: 3,
-      title: t('subNavigation.link3Label'),
-      navigation: 'participant-id',
-    },
-  ]
+    CommonService.getCompanyRoles((data: any) => {
+      console.log(data)
+      setLinkArray([
+        {
+          index: 1,
+          title: data.subNavigation.link1Label,
+          navigation: 'intro-id',
+        },
+        {
+          index: 2,
+          title: data.subNavigation.link2Label,
+          navigation: 'data-id',
+        },
+        {
+          index: 3,
+          title: data.subNavigation.link3Label,
+          navigation: 'business-id',
+        },
+      ])
+      if (url.indexOf('companyrolesappprovider') > 1) {
+        setCompanyRoles(data.appProvider)
+      } else if (url.indexOf('companyrolesserviceprovider') > 1) {
+        setCompanyRoles(data.serviceProvider)
+      } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
+        setCompanyRoles(data.confirmity)
+      } else {
+        setCompanyRoles(data.participant)
+      }
+    })
+  }, [url])
 
   return (
     <main className="companyRoles">
-      {messageContent && (
+      {companyRoles && linkArray && (
         <>
           <StageSection
-            title={t(`${messageContent}.title`)}
-            description={t(`${messageContent}.description`)}
+            title={companyRoles.title}
+            description={companyRoles.description}
           />
           <StageSubNavigation linkArray={linkArray} />
-          <StaticTemplate
-            sectionInfo={t(`${messageContent}.sections`, {
-              returnObjects: true,
-            })}
-          />
+          <StaticTemplate sectionInfo={companyRoles.sections} />
         </>
       )}
     </main>

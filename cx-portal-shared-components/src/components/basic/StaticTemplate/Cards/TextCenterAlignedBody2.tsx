@@ -37,30 +37,17 @@ export default function TextCenterAlignedBody2({
     >
       <Box>
         <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            padding: '30px 0px',
-          }}
-          variant="body2"
-        >
-          {provider.subTitle1}
-        </Typography>
-        <Typography
-          sx={{
-            padding: '30px 0px',
-          }}
-          variant="body2"
-        >
-          {provider.subTitle2}
-        </Typography>
-        <Typography
-          sx={{
-            padding: '30px 0px',
-          }}
-          variant="body2"
-        >
-          {provider.subTitle3}
-        </Typography>
+        {provider.subTitles &&
+          provider.subTitles.map((subtitle) => (
+            <Typography
+              sx={{
+                padding: '30px 0px',
+              }}
+              variant="body2"
+            >
+              {subtitle}
+            </Typography>
+          ))}
       </Box>
     </Box>
   )

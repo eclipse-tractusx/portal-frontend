@@ -21,39 +21,48 @@
 import './UseCase.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import { useTranslation } from 'react-i18next'
 import { StaticTemplate } from 'cx-portal-shared-components'
+import { useEffect, useState } from 'react'
+import CommonService from 'services/CommonService'
 
 export default function UseCase() {
-  const { t } = useTranslation('usecase')
-  const linkArray = [
-    {
-      index: 1,
-      title: t('subNavigation.link1Label'),
-      navigation: 'intro-id',
-    },
-    {
-      index: 2,
-      title: t('subNavigation.link2Label'),
-      navigation: 'data-id',
-    },
-    {
-      index: 3,
-      title: t('subNavigation.link3Label'),
-      navigation: 'business-id',
-    },
-  ]
+  const [useCase, setUseCase] = useState<any>()
+  const [linkArray, setLinkArray] = useState<any>()
+
+  useEffect(() => {
+    CommonService.getUseCases((data: any) => {
+      setUseCase(data)
+      setLinkArray([
+        {
+          index: 1,
+          title: data.subNavigation.link1Label,
+          navigation: 'intro-id',
+        },
+        {
+          index: 2,
+          title: data.subNavigation.link2Label,
+          navigation: 'data-id',
+        },
+        {
+          index: 3,
+          title: data.subNavigation.link3Label,
+          navigation: 'business-id',
+        },
+      ])
+    })
+  }, [])
 
   return (
     <main className="useCase">
-      <StageSection
-        title={t('traceability.title')}
-        description={t('traceability.description')}
-      />
-      <StageSubNavigation linkArray={linkArray} />
-      <StaticTemplate
-        sectionInfo={t('traceability.sections', { returnObjects: true })}
-      />
+      {useCase && linkArray && (
+        <>
+          <StageSection
+            title={useCase.traceability.title}
+            description={useCase.traceability.description}
+          />
+          <StaticTemplate sectionInfo={useCase.traceability.sections} />
+        </>
+      )}
     </main>
   )
 }

@@ -18,7 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase } from './EnvironmentService'
+import { getApiBase, getAssetBase } from './EnvironmentService'
+import i18next from 'i18next'
 import UserService from './UserService'
 
 const getName = (app: any) => app.name ?? ''
@@ -80,9 +81,25 @@ const isValidPictureId = (id: string) => {
     : id
 }
 
+const getCompanyRoles = (callback: any) => {
+  let url = `${getAssetBase()}/content/${i18next.language}/companyroles.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+}
+
+const getUseCases = (callback: any) => {
+  let url = `${getAssetBase()}/content/${i18next.language}/usecase.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+}
+
 const CommonService = {
   fetchLeadPictureImage,
   isValidPictureId,
+  getCompanyRoles,
+  getUseCases,
 }
 
 export default CommonService

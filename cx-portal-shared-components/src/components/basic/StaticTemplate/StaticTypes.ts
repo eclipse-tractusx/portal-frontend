@@ -44,9 +44,7 @@ export type ProviderProps = {
   template: string
   linksRow1: linkProps[]
   linksRow2: linkProps[]
-  subTitle1?: string
-  subTitle2?: string
-  subTitle3?: string
+  subTitles?: string[]
   align?: 'left' | 'center' | 'right'
 }
 
