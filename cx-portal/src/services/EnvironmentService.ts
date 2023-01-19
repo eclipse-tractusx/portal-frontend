@@ -75,16 +75,16 @@ export const getBpdmApiBase = () => {
 export const getSemanticApiBase = () => {
   const hostname = getHostname()
   if (hostname === 'portal.int.demo.catena-x.net')
-    return 'https://semantics.int.demo.catena-x.net/'
+    return 'https://semantics.int.demo.catena-x.net'
   if (hostname === 'portal-pen.dev.demo.catena-x.net')
-    return 'https://semantics-pen.dev.demo.catena-x.net/'
+    return 'https://semantics-pen.dev.demo.catena-x.net'
   if (hostname === 'portal.beta.demo.catena-x.net')
-    return 'https://semantics.beta.demo.catena-x.net/'
+    return 'https://semantics.beta.demo.catena-x.net'
   if (hostname === 'portal.pre-prod.demo.catena-x.net')
-    return 'https://semantics.pre-prod.demo.catena-x.net/'
+    return 'https://semantics.pre-prod.demo.catena-x.net'
   if (hostname === 'portal.catena-x.net')
-    return 'https://semantics.catena-x.net/'
-  return 'https://semantics.dev.demo.catena-x.net/'
+    return 'https://semantics.catena-x.net'
+  return 'https://semantics.dev.demo.catena-x.net'
 }
 
 export const getClientIdSemantic = () => 'Cl3-CX-Semantic'
