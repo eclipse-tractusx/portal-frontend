@@ -114,11 +114,11 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] nIb quvmoH chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
+            [Description] nIb quvmoHiuweyriw chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
             ghor jatIh wanI' pab wuv qugh ghoma' jIv. Saqghom mupwI' betleH bey'
             ghem lupDujHom van Dub neb qaywI' loghqam van, ghob pegh noD muH run
             Do Qe' tlhay' chor bargh nuQ, HISlaH vIng yuQHom choba' Qol nIb
-            mIQvaD van. SIbI' ghoma' HaD wanI' qaywI' toq roS vulqan, tlham yIt
+            mIQvaD van. SIbI' ghoma' alskdj lkahslkajhsfd wanI' qaywI' toq roS vulqan, tlham yIt
             voQ Hoqra' SIm Qaw, maj 'eb qIvon HIch DIj puq poH. So qeq nuH
             loghqam 'ov yIt qImHa', pegh qumwI' matlh janluq pIqarD Saj ray',
             chor bargh to'waQvaD He pegh
@@ -149,7 +149,7 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] nIb quvmoH chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
+            [Description] asklj quvmoHiuweyriw chaw nuQ akjhsd way mIQ aljskhd tungHa' taS,
             ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
@@ -194,7 +194,7 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] nIb quvmoH chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
+            [note] nIb quvmoHiuweyriw chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
             ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
@@ -222,7 +222,7 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] nIb quvmoH chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
+            [Description] nIb quvmoHiuweyriw chaw askjhf pIqaD way mIQ SeHlaw tungHa' taS,
             ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
