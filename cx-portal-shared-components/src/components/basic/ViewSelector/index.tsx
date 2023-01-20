@@ -34,12 +34,15 @@ export interface ViewSelectorProps {
 }
 
 export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
+  console.log('views', views)
   return (
     <Box sx={{ textAlign: 'right' }}>
       {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
         <Button
           color={'secondary'}
           variant={
+            activeView &&
+            buttonValue &&
             activeView.toLowerCase() === buttonValue.toLowerCase()
               ? 'contained'
               : 'text'
