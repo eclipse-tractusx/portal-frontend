@@ -33,7 +33,13 @@ import {
   useDeclineRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
 
-export default function AdminBoardElements({ apps, handleApproveDeclineSuccess}: { apps?: AppContent[], handleApproveDeclineSuccess: any }) {
+export default function AdminBoardElements({
+  apps,
+  handleApproveDeclineSuccess,
+}: {
+  apps?: AppContent[]
+  handleApproveDeclineSuccess: any
+}) {
   const theme = useTheme()
   const { t } = useTranslation()
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
@@ -57,7 +63,8 @@ export default function AdminBoardElements({ apps, handleApproveDeclineSuccess}:
   }
 
   const handleDecision = async (appId: string, status: string) => {
-    const statusFn = status === 'approve' ? approveRequest(appId) : declineRequest(appId)
+    const statusFn =
+      status === 'approve' ? approveRequest(appId) : declineRequest(appId)
     await statusFn
       .unwrap()
       .then(() => {

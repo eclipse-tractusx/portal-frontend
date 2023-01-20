@@ -45,7 +45,8 @@ export default function AdminBoard() {
   const [selected, setSelected] = useState<string>('InReview')
   const [sortOption, setSortOption] = useState<string>('new')
   const [appCards, setAppCards] = useState<AppContent[]>([])
-  const [approveDeclineSuccess, setApproveDeclineSuccess] = useState<boolean>(false)
+  const [approveDeclineSuccess, setApproveDeclineSuccess] =
+    useState<boolean>(false)
 
   let statusId = selected
 
@@ -188,7 +189,10 @@ export default function AdminBoard() {
             />
           </div>
         ) : (
-          <AdminBoardElements apps={appCards} handleApproveDeclineSuccess={handleApproveDeclineSuccess} />
+          <AdminBoardElements
+            apps={appCards}
+            handleApproveDeclineSuccess={handleApproveDeclineSuccess}
+          />
         )}
       </div>
     </div>
