@@ -54,6 +54,7 @@ export interface TableProps extends DataGridProps {
   descriptionText?: string
   defaultFilter?: string
   filterViews?: any
+  alignCell?: string
 }
 
 export const Table = ({
@@ -82,6 +83,7 @@ export const Table = ({
   descriptionText,
   defaultFilter,
   filterViews,
+  alignCell = 'center',
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -157,6 +159,10 @@ export const Table = ({
     >
       <DataGrid
         sx={{
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell':
+            {
+              alignItems: alignCell,
+            },
           '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus':
             {
               outline: 'none',

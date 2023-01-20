@@ -38,6 +38,8 @@ export const RequestList = ({
   loaded,
   handleDownloadDocument,
   showConfirmOverlay,
+  onConfirmationCancel,
+  onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   onApproveClick: (id: string) => void
@@ -47,6 +49,8 @@ export const RequestList = ({
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
   showConfirmOverlay?: any
+  onConfirmationCancel?: any
+  onChipButtonSelect?: any
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -97,7 +101,9 @@ export const RequestList = ({
     onDeclineClick,
     isLoading,
     handleDownloadDocument,
-    showConfirmOverlay
+    showConfirmOverlay,
+    onConfirmationCancel,
+    onChipButtonSelect
   )
 
   useEffect(() => {
@@ -114,7 +120,8 @@ export const RequestList = ({
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={80}
+        rowHeight={160}
+        alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}

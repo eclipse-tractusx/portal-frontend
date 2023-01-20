@@ -39,6 +39,8 @@ import { download } from 'utils/downloadUtils'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
+import CheckListStatusOverlay from './components/CheckListStatusOverlay'
+import { ProgressButtonsProps } from 'components/shared/basic/CheckList'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -66,8 +68,12 @@ export default function RegistrationRequests() {
 
   const [enableBpnInput, setEnableBpnInput] = useState<boolean>(false)
 
-  const [successOverlay, setSuccessOverlay] = useState(false)
-  const [errorOverlay, setErrorOverlay] = useState(false)
+  const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
+  const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
+
+  const [selectedButton, setSelectedButton] = useState<ProgressButtonsProps>()
+  const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
+    useState<boolean>(false)
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
@@ -141,6 +147,17 @@ export default function RegistrationRequests() {
       })
   }
 
+  const onConfirmationCancel = (id: string) => {
+    //To-Do API needs to be added
+    console.log('Clicked on cancel', id)
+  }
+
+  const onChipButtonSelect = (id: string, selected: any) => {
+    setSelectedButton(selected)
+    dispatch(fetchCompanyDetail(id))
+    setStatusConfirmationOverlay(true)
+  }
+
   return (
     <main className="page-main-container">
       <PageSnackbar
@@ -190,6 +207,13 @@ export default function RegistrationRequests() {
         }}
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
+      <CheckListStatusOverlay
+        openDialog={statusConfirmationOverlay}
+        handleOverlayClose={() => {
+          setStatusConfirmationOverlay(false)
+        }}
+        selectedButton={selectedButton}
+      />
       <AddBpnOveraly
         openDialog={enableBpnInput}
         isLoading={isLoading}
@@ -235,6 +259,10 @@ export default function RegistrationRequests() {
             setSuccessOverlay(false)
             setErrorOverlay(false)
           }}
+          onConfirmationCancel={(id: string) => onConfirmationCancel(id)}
+          onChipButtonSelect={(id: string, selected: any) =>
+            onChipButtonSelect(id, selected)
+          }
         />
       </div>
     </main>
