@@ -45,6 +45,7 @@ export default function AdminBoard() {
   const [selected, setSelected] = useState<string>('InReview')
   const [sortOption, setSortOption] = useState<string>('new')
   const [appCards, setAppCards] = useState<AppContent[]>([])
+  const [approveDeclineSuccess, setApproveDeclineSuccess] = useState<boolean>(false)
 
   let statusId = selected
 
@@ -53,7 +54,7 @@ export default function AdminBoard() {
     sortingType = 'NameAsc'
   }
 
-  const { data } = useFetchAppReleaseAppsQuery({
+  const { data, refetch } = useFetchAppReleaseAppsQuery({
     page: 0,
     statusId: statusId,
     sortingType: sortingType,
@@ -61,9 +62,17 @@ export default function AdminBoard() {
 
   const apps = data && data.content
 
+  const handleApproveDeclineSuccess = () => {
+    setApproveDeclineSuccess(true)
+  }
+
   useEffect(() => {
     apps && setAppCards(apps)
   }, [apps])
+
+  useEffect(() => {
+    refetch()
+  }, [approveDeclineSuccess, refetch])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -142,6 +151,7 @@ export default function AdminBoard() {
             value={searchExpr}
             autoFocus={false}
             onChange={(e) => handleSearch(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div
@@ -178,7 +188,7 @@ export default function AdminBoard() {
             />
           </div>
         ) : (
-          <AdminBoardElements apps={appCards} />
+          <AdminBoardElements apps={appCards} handleApproveDeclineSuccess={handleApproveDeclineSuccess} />
         )}
       </div>
     </div>

@@ -33,7 +33,7 @@ import {
   useDeclineRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
 
-export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
+export default function AdminBoardElements({ apps, handleApproveDeclineSuccess}: { apps?: AppContent[], handleApproveDeclineSuccess: any }) {
   const theme = useTheme()
   const { t } = useTranslation()
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
@@ -56,17 +56,14 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
     )
   }
 
-  const onDecisionApprove = async (appId: string) => {
-    await approveRequest(appId)
+  const handleDecision = async (appId: string, status: string) => {
+    const statusFn = status === 'approve' ? approveRequest(appId) : declineRequest(appId)
+    await statusFn
       .unwrap()
-      .then(() => setShowSuccessAlert(true))
-      .catch((error) => setShowErrorAlert(true))
-  }
-
-  const onDecisionDelete = async (appId: string) => {
-    await declineRequest(appId)
-      .unwrap()
-      .then(() => setShowSuccessAlert(true))
+      .then(() => {
+        setShowSuccessAlert(true)
+        handleApproveDeclineSuccess(true)
+      })
       .catch((error) => setShowErrorAlert(true))
   }
 
@@ -91,8 +88,8 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
       {apps && apps.length ? (
         <CardDecision
           items={apps}
-          onDelete={onDecisionDelete}
-          onApprove={onDecisionApprove}
+          onDelete={(appId: string) => handleDecision(appId, 'decline')}
+          onApprove={(appId: string) => handleDecision(appId, 'approve')}
         />
       ) : (
         <div className="loading-progress">
