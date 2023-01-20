@@ -46,10 +46,7 @@ export const RegistrationRequestsTableColumns = (
   handleDownloadDocument: (documentId: string, documentType: string) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string) => void,
-  onChipButtonSelect?: (
-    row: ApplicationRequest,
-    button: ProgressButtonsProps
-  ) => void
+  onChipButtonSelect?: (button: ProgressButtonsProps, row: any) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')
@@ -221,7 +218,7 @@ export const RegistrationRequestsTableColumns = (
       },
     },
     {
-      field: 'email',
+      field: 'applicationChecklist',
       headerName: '',
       disableColumnMenu: true,
       flex: 0,
@@ -234,40 +231,21 @@ export const RegistrationRequestsTableColumns = (
             width: '100%',
           }}
         >
-          <CheckList
-            headerText="Confirmation in progress: "
-            progressButtons={[
-              {
-                type: 'Registration_Verification',
-                value: 'TO_DO',
-              },
-              {
-                type: 'Business_Partner_Number',
-                value: 'IN_PROGRESS',
-              },
-              {
-                type: 'Identity_Wallet',
-                value: 'DONE',
-              },
-              {
-                type: 'Clearing_House',
-                value: 'FAILED',
-              },
-              {
-                type: 'Self_Description_LP',
-                value: 'TO_DO',
-              },
-            ]}
-            showCancel={true}
-            cancelText="Cancel Confirmation"
-            alignRow="center"
-            onButtonClick={(button) =>
-              onChipButtonSelect && onChipButtonSelect(row, button)
-            }
-            onCancel={() =>
-              onConfirmationCancel && onConfirmationCancel(row.applicationId)
-            }
-          />
+          {row.applicationChecklist.length && (
+            <CheckList
+              headerText="Confirmation in progress: "
+              progressButtons={row.applicationChecklist}
+              showCancel={true}
+              cancelText="Cancel Confirmation"
+              alignRow="center"
+              onButtonClick={(button) =>
+                onChipButtonSelect && onChipButtonSelect(button, row)
+              }
+              onCancel={() =>
+                onConfirmationCancel && onConfirmationCancel(row.applicationId)
+              }
+            />
+          )}
         </div>
       ),
     },

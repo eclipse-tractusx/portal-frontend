@@ -35,6 +35,11 @@ export interface DocumentMapper {
   documentId: string
 }
 
+export interface applicationChecklistType {
+  statusId: string
+  typeId: string
+}
+
 export interface ApplicationRequest {
   applicationId: string
   applicationStatus: ApplicationRequestStatus
@@ -43,6 +48,7 @@ export interface ApplicationRequest {
   email: string
   bpn: string
   documents: Array<DocumentMapper>
+  applicationChecklist: Array<applicationChecklistType>
 }
 
 export const apiSlice = createApi({

@@ -74,6 +74,7 @@ export default function RegistrationRequests() {
   const [selectedButton, setSelectedButton] = useState<ProgressButtonsProps>()
   const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
     useState<boolean>(false)
+  const [checkList, setCheckList] = useState<ProgressButtonsProps[]>()
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
@@ -152,9 +153,9 @@ export default function RegistrationRequests() {
     console.log('Clicked on cancel', id)
   }
 
-  const onChipButtonSelect = (id: string, selected: any) => {
+  const onChipButtonSelect = (selected: ProgressButtonsProps, row: any) => {
     setSelectedButton(selected)
-    dispatch(fetchCompanyDetail(id))
+    setCheckList(row.applicationChecklist)
     setStatusConfirmationOverlay(true)
   }
 
@@ -212,6 +213,7 @@ export default function RegistrationRequests() {
         handleOverlayClose={() => {
           setStatusConfirmationOverlay(false)
         }}
+        progressButtons={checkList}
         selectedButton={selectedButton}
       />
       <AddBpnOveraly
@@ -260,8 +262,8 @@ export default function RegistrationRequests() {
             setErrorOverlay(false)
           }}
           onConfirmationCancel={(id: string) => onConfirmationCancel(id)}
-          onChipButtonSelect={(id: string, selected: any) =>
-            onChipButtonSelect(id, selected)
+          onChipButtonSelect={(selected: ProgressButtonsProps, row: any) =>
+            onChipButtonSelect(selected, row)
           }
         />
       </div>

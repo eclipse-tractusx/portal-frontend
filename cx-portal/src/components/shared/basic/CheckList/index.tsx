@@ -25,22 +25,29 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
+import { applicationChecklistType } from 'features/admin/applicationRequestApiSlice'
+import { useState, useEffect } from 'react'
 
 export type ProgressButtonsProps = {
-  value: 'IN_PROGRESS' | 'TO_DO' | 'DONE' | 'FAILED'
-  type: string
+  statusId: 'IN_PROGRESS' | 'TO_DO' | 'DONE' | 'FAILED'
+  typeId: string
   label?: string
   highlight?: boolean
+  backgroundColor?: string
+  border?: string
+  icon?: JSX.Element
+  textColor?: string
 }
 
 interface CheckListProps extends ChipProps {
   headerText?: string
-  progressButtons?: ProgressButtonsProps[]
+  progressButtons?: Array<applicationChecklistType>
   showCancel?: boolean
   onCancel?: () => void
   cancelText?: string
   alignRow?: string
   onButtonClick?: (button: ProgressButtonsProps) => void
+  selectedButton?: ProgressButtonsProps
 }
 
 export default function CheckList({
@@ -51,9 +58,11 @@ export default function CheckList({
   cancelText,
   alignRow = 'center',
   onButtonClick,
+  selectedButton,
 }: CheckListProps) {
+  const [checkListButtons, setCheckListButtons] = useState<any>()
   const progressMapper = {
-    DONE: 15,
+    DONE: 20,
     IN_PROGRESS: 5,
     TO_DO: 0,
     FAILED: 0,
@@ -61,29 +70,47 @@ export default function CheckList({
 
   const getProgressValue = () => {
     let progressValue = 0
-    progressButtons?.forEach((button: ProgressButtonsProps) => {
-      progressValue += progressMapper[button.value]
+    checkListButtons?.forEach((button: ProgressButtonsProps) => {
+      progressValue += progressMapper[button.statusId]
     })
     return `${progressValue}%`
   }
 
-  const getButtonLabel = (button: ProgressButtonsProps) => {
-    switch (button.type) {
-      case 'Registration_Verification':
+  const getButtonLabel = (typeId: string) => {
+    switch (typeId) {
+      case 'REGISTRATION_VERIFICATION':
         return 'Data Validation'
-      case 'Business_Partner_Number':
+      case 'BUSINESS_PARTNER_NUMBER':
         return 'BPN Creation'
-      case 'Identity_Wallet':
+      case 'IDENTITY_WALLET':
         return 'Identity Wallet Creation'
-      case 'Clearing_House':
+      case 'CLEARING_HOUSE':
         return 'Clearing House'
-      case 'Self_Description_LP':
+      case 'SELF_DESCRIPTION_LP':
         return 'Self Description'
     }
   }
 
-  const getButtonProps = (button: ProgressButtonsProps) => {
-    switch (button.value) {
+  const isButtonSelected = (typeId: string) =>
+    selectedButton ? selectedButton.typeId === typeId : false
+
+  useEffect(() => {
+    if (progressButtons) {
+      setCheckListButtons(
+        progressButtons.map((button) => ({
+          statusId: button.statusId,
+          typeId: button.typeId,
+          label: getButtonLabel(button.typeId),
+          highlight: isButtonSelected(button.typeId),
+          ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
+        }))
+      )
+    }
+    // eslint-disable-next-line
+  }, [progressButtons, selectedButton])
+
+  const getButtonProps = (statusId: string, highlight: boolean) => {
+    switch (statusId) {
       case 'IN_PROGRESS':
         return {
           icon: (
@@ -91,7 +118,7 @@ export default function CheckList({
               style={{ color: '#0F71CB', height: '20px', width: '15px' }}
             />
           ),
-          border: button.highlight ? '1px solid #0F71CB' : '0px',
+          border: highlight ? '1px solid #0F71CB' : '0px',
           backgroundColor: '#EAF1FE',
           textColor: '#111111',
         }
@@ -102,7 +129,7 @@ export default function CheckList({
               style={{ color: '#0F71CB', height: '20px', width: '15px' }}
             />
           ),
-          border: button.highlight ? '1px solid #0F71CB' : '0px',
+          border: highlight ? '1px solid #0F71CB' : '0px',
           backgroundColor: '#EAF1FE',
           textColor: '#111111',
         }
@@ -113,7 +140,7 @@ export default function CheckList({
               style={{ color: '#00AA55', height: '20px', width: '15px' }}
             />
           ),
-          border: button.highlight ? '1px solid #00AA55' : '0px',
+          border: highlight ? '1px solid #00AA55' : '0px',
           backgroundColor: '#F5F9EE',
           textColor: '#111111',
         }
@@ -124,7 +151,7 @@ export default function CheckList({
               style={{ color: '#D91E18', height: '20px', width: '15px' }}
             />
           ),
-          border: button.highlight ? '1px solid #D91E18' : '0px',
+          border: highlight ? '1px solid #D91E18' : '0px',
           backgroundColor: '#FFF6FF',
           textColor: '#111111',
         }
@@ -132,71 +159,76 @@ export default function CheckList({
   }
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: alignRow,
-        width: '100%',
-      }}
-    >
-      {headerText && (
-        <Box>
-          <Typography
-            sx={{
-              paddingRight: '10px',
-            }}
-            variant="subtitle1"
-          >
-            {headerText}
-            {getProgressValue()}
-          </Typography>
-        </Box>
-      )}
-      <Box>
-        {progressButtons &&
-          progressButtons.map((button: ProgressButtonsProps) => {
-            const buttonProps = getButtonProps(button)
-            const label = getButtonLabel(button)
-            return (
-              <MuiChip
-                key={button.type}
-                onClick={() => {
-                  onButtonClick && onButtonClick(button)
-                }}
-                variant="filled"
-                icon={buttonProps.icon}
+    <>
+      {checkListButtons && (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: alignRow,
+            width: '100%',
+          }}
+        >
+          {headerText && (
+            <Box>
+              <Typography
                 sx={{
-                  width: '120px',
-                  height: button.highlight ? '56px' : '40px',
-                  padding: '8px 12px',
-                  borderRadius: '8px',
-                  margin: '0px 3px',
-                  backgroundColor: buttonProps.backgroundColor || '#fff',
-                  color: buttonProps.textColor || '#111',
-                  border: buttonProps.border,
-                  fontSize: '10px',
+                  paddingRight: '10px',
                 }}
-                label={label}
-              />
-            )
-          })}
-      </Box>
-      {showCancel && (
-        <Box onClick={() => onCancel}>
-          <Typography
-            sx={{
-              fontSize: '12px',
-              color: '#D91E18',
-              cursor: 'pointer',
-              marginLeft: '25px',
-            }}
-            variant="subtitle2"
-          >
-            {cancelText}
-          </Typography>
+                variant="subtitle1"
+              >
+                {headerText}
+                {getProgressValue()}
+              </Typography>
+            </Box>
+          )}
+          <Box>
+            {checkListButtons.map((button: ProgressButtonsProps) => {
+              return (
+                <MuiChip
+                  key={button.typeId}
+                  onClick={() => {
+                    onButtonClick && onButtonClick(button)
+                  }}
+                  variant="filled"
+                  icon={button?.icon}
+                  sx={{
+                    width: '120px',
+                    height: button.highlight ? '56px' : '40px',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    margin: '0px 3px',
+                    backgroundColor: button?.backgroundColor || '#fff',
+                    color: button?.textColor || '#111',
+                    border: button?.border,
+                    fontSize: '10px',
+                    outlined: 'none',
+                    '.hover': {
+                      background: 'transparent',
+                    },
+                  }}
+                  label={button.label}
+                />
+              )
+            })}
+          </Box>
+          {showCancel && (
+            <Box onClick={() => onCancel}>
+              <Typography
+                sx={{
+                  fontSize: '12px',
+                  color: '#D91E18',
+                  cursor: 'pointer',
+                  marginLeft: '25px',
+                }}
+                variant="subtitle2"
+              >
+                {cancelText}
+              </Typography>
+            </Box>
+          )}
         </Box>
       )}
-    </Box>
+    </>
   )
 }

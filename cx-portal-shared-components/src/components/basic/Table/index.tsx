@@ -159,11 +159,10 @@ export const Table = ({
     >
       <DataGrid
         sx={{
-          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell':
-            {
-              alignItems: alignCell,
-            },
-          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus':
+          '&.MuiDataGrid-root .MuiDataGrid-cell': {
+            alignItems: alignCell,
+          },
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus-within':
             {
               outline: 'none',
             },

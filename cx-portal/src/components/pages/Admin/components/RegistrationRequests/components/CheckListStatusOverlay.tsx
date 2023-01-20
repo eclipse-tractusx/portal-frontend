@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MuiDialog from '@mui/material/Dialog'
 import MuiDialogContent from '@mui/material/DialogContent'
 import MuiDialogActions from '@mui/material/DialogActions'
@@ -33,6 +33,7 @@ interface CheckListStatusOverlayProps {
   handleOverlayClose: React.MouseEventHandler
   selectedButton?: ProgressButtonsProps
   modalWidth?: string
+  progressButtons?: Array<ProgressButtonsProps>
 }
 
 const CheckListStatusOverlay = ({
@@ -40,41 +41,25 @@ const CheckListStatusOverlay = ({
   handleOverlayClose,
   selectedButton,
   modalWidth = '900',
+  progressButtons,
 }: CheckListStatusOverlayProps) => {
-  const [buttons, setButtons] = useState<ProgressButtonsProps[]>()
-  const [loading, setLoading] = useState<boolean>(false)
+  const loading = false
+  // const [loading, setLoading] = useState<boolean>(false)
+  const [selectedCheckListButton, setSelectedCheckListButton] =
+    useState<ProgressButtonsProps>()
+  const [checkListButton, setCheckListButton] =
+    useState<ProgressButtonsProps[]>()
+
   useEffect(() => {
-    const oldButtons: ProgressButtonsProps[] = [
-      {
-        type: 'Registration_Verification',
-        value: 'TO_DO',
-      },
-      {
-        type: 'Business_Partner_Number',
-        value: 'IN_PROGRESS',
-      },
-      {
-        type: 'Identity_Wallet',
-        value: 'DONE',
-      },
-      {
-        type: 'Clearing_House',
-        value: 'FAILED',
-      },
-      {
-        type: 'Self_Description_LP',
-        value: 'TO_DO',
-      },
-    ]
-    if (selectedButton) {
-      oldButtons.forEach((button: ProgressButtonsProps) => {
-        if (button.type === selectedButton.type) {
-          button.highlight = true
-        }
-      })
-    }
-    setButtons(oldButtons)
-  }, [selectedButton])
+    selectedButton && setSelectedCheckListButton(selectedButton)
+    progressButtons && setCheckListButton(progressButtons)
+  }, [selectedButton, progressButtons])
+
+  const reset = (button: ProgressButtonsProps) => {
+    setCheckListButton(progressButtons)
+    button.highlight = true
+    setSelectedCheckListButton(button)
+  }
 
   return (
     <MuiDialog
@@ -99,12 +84,12 @@ const CheckListStatusOverlay = ({
           }}
         >
           <CheckList
-            progressButtons={buttons}
+            progressButtons={checkListButton}
             showCancel={false}
-            cancelText="Cancel Confirmation"
             alignRow="center"
+            selectedButton={selectedCheckListButton}
             onButtonClick={(button) => {
-              //get status api
+              reset(button)
             }}
           />
         </div>
