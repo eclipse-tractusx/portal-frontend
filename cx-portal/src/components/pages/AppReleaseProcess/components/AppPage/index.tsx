@@ -48,7 +48,7 @@ import {
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
-import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 
 type FormDataType = {
@@ -107,10 +107,6 @@ export default function AppPage() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
-
-  useEffect(() => {
-    dispatch(setAppId('4dc97e48-1f16-436f-9e4a-96d7f10dbada'))
-  }, [dispatch])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
