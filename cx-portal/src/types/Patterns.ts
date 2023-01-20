@@ -44,8 +44,8 @@ export const Patterns = {
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
   appMarketCard: {
-    appTitle: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
-    appProvider: /^([A-Za-z ]){3,30}$/,
+    appTitle: /^([A-Za-z.:_@&0-9' -]){5,40}$/,
+    appProvider: /^([A-Za-z -]){3,30}$/,
     shortDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
     shortDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
     useCaseCategory: /^([A-Za-z])$/,
@@ -59,8 +59,8 @@ export const Patterns = {
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {
-    clientId: /^[a-zA-Z0-9-]*$/,
-    clientSecret: /^[a-zA-Z0-9]*$/,
+    clientId: /^[a-zA-Z0-9-_]{2,80}$/,
+    clientSecret: /^[a-zA-Z0-9-_.!?/]{8,200}$/,
   },
   connectors: {
     NAME: /^[a-zA-Z0-9 @]{2,20}$/,
@@ -75,6 +75,9 @@ export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
+export const isIDPClientID = (expr: string) => Patterns.idp.clientId.test(expr)
+export const isIDPClientSecret = (expr: string) =>
+  Patterns.idp.clientSecret.test(expr)
 export const isMailOrEmpty = (expr: string) =>
   expr === '' || Patterns.MAIL.test(expr)
 export const isBPNOrEmpty = (expr: string) =>

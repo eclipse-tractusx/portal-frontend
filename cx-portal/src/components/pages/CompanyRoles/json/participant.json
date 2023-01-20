@@ -3,8 +3,8 @@
   "description": "The catena-x participant is the standard role inside the catena-x network. Companies sharing and receviing data as well as using service provider offers and app offers are usually 'participants' - active members of the network.",
   "providers": [
     {
-      "title": "Marketplace",
-      "description": "The marketplace is structured into 2 different areaa - Apps and Services. Depending on your need you can access the marketplace and receive an overview of available apps/services of a wide range of providers.",
+      "title": "Catena-X Marketplace",
+      "description": "The CX marketplace(s) are separated between apps and services. Both the marketplaces offer customer oriented offers to enable the customer to participate inside the network as well as support the daily business by use case specific business applications.",
       "imageUrl": "rectangle-image.png",
       "backgroundColor": "#FFFFFF",
       "id": "provider-id",
@@ -12,25 +12,26 @@
       "detailsWithImageRow1": [
         {
           "title": "App Marketplace",
-          "imageUrl": "rectangle-image.png",
-          "description": "The app marketplace offers business applications supporting your business in the daily live. Have a look into the marketplace and use filter options such as use case based views.",
+          "imageUrl": "MarketplaceIntro.png",
+          "description": "The app marketplace offers use case driven business applications.",
           "readMore": "/appmarketplace",
-          "readMoreTitle": "Details",
+          "readMoreTitle": "Get there...",
           "backgroundColor": "#F9F9F9"
         },
         {
           "title": "Service Marketplace",
-          "imageUrl": "rectangle-image.png",
-          "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
+          "imageUrl": "ServiceMarketplaceIntro.png",
+          "description": "Service offerings to enable CX members to participate in the dataspace.",
           "readMore": "/servicemarketplace",
+          "readMoreTitle": "Get there...",
           "backgroundColor": "#F9F9F9"
         },
         {
-          "title": "Service Marketplace",
+          "title": "more to come",
           "imageUrl": "rectangle-image.png",
-          "description": "The service marketplace offers technical and consultancy support to enable you and your company to participate in the catena-x dataspace.",
-          "readMore": "/servicemarketplace",
-          "readMoreTitle": "Details",
+          "description": "Lorem Lipsum",
+          "readMore": "",
+          "readMoreTitle": "more to come",
           "backgroundColor": "#F9F9F9"
         }
       ],

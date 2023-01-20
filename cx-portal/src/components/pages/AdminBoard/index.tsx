@@ -75,7 +75,7 @@ export default function AdminBoard() {
     refetch()
   }, [approveDeclineSuccess, refetch])
 
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+  const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
   }
 
@@ -90,16 +90,16 @@ export default function AdminBoard() {
     },
   ]
 
-  const filterButtons = [
+  const tabButtons: any[] = [
     {
       buttonText: t('content.adminBoard.tabs.open'),
       buttonValue: 'InReview',
-      onButtonClick: setView,
+      onButtonClick: setBtnView,
     },
     {
       buttonText: t('content.adminBoard.tabs.all'),
       buttonValue: 'All',
-      onButtonClick: setView,
+      onButtonClick: setBtnView,
     },
   ]
 
@@ -159,7 +159,7 @@ export default function AdminBoard() {
           className="filterSection"
           onMouseLeave={() => setShowModalValue(false)}
         >
-          <ViewSelector activeView={selected} views={filterButtons} />
+          <ViewSelector activeView={selected} views={tabButtons} />
           <div className="iconSection">
             <SortIcon
               onClick={() => setShowModalValue(true)}
