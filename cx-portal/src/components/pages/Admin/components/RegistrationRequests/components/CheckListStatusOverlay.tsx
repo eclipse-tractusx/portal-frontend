@@ -114,14 +114,14 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] nIb quvmoHiuweyriw chaw nuQ pIqaD way mIQ SeHlaw tungHa' taS,
-            ghor jatIh wanI' pab wuv qugh ghoma' jIv. Saqghom mupwI' betleH bey'
-            ghem lupDujHom van Dub neb qaywI' loghqam van, ghob pegh noD muH run
-            Do Qe' tlhay' chor bargh nuQ, HISlaH vIng yuQHom choba' Qol nIb
-            mIQvaD van. SIbI' ghoma' alskdj lkahslkajhsfd wanI' qaywI' toq roS vulqan, tlham yIt
-            voQ Hoqra' SIm Qaw, maj 'eb qIvon HIch DIj puq poH. So qeq nuH
-            loghqam 'ov yIt qImHa', pegh qumwI' matlh janluq pIqarD Saj ray',
-            chor bargh to'waQvaD He pegh
+            [Description] nIb quvmoHiuweyriw chaw nuQ pIqaD way mIQ SeHlaw
+            tungHa' taS, ghor jatIh wanI' pab wuv qugh ghoma' jIv. Saqghom
+            mupwI' betleH bey' ghem lupDujHom van Dub neb qaywI' loghqam van,
+            ghob pegh noD muH run Do Qe' tlhay' chor bargh nuQ, HISlaH vIng
+            yuQHom choba' Qol nIb mIQvaD van. SIbI' ghoma' alskdj lkahslkajhsfd
+            wanI' qaywI' toq roS vulqan, tlham yIt voQ Hoqra' SIm Qaw, maj 'eb
+            qIvon HIch DIj puq poH. So qeq nuH loghqam 'ov yIt qImHa', pegh
+            qumwI' matlh janluq pIqarD Saj ray', chor bargh to'waQvaD He pegh
           </Typography>
         </div>
         <Divider sx={{ borderBottomStyle: 'dashed' }} />
@@ -149,8 +149,8 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] asklj quvmoHiuweyriw chaw nuQ akjhsd way mIQ aljskhd tungHa' taS,
-            ghor jatIh wanI' pa He pegh
+            [Description] asklj quvmoHiuweyriw chaw nuQ akjhsd way mIQ aljskhd
+            tungHa' taS, ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
         <div
@@ -222,8 +222,8 @@ const CheckListStatusOverlay = ({
             }}
             variant="body2"
           >
-            [Description] nIb quvmoHiuweyriw chaw askjhf pIqaD way mIQ SeHlaw tungHa' taS,
-            ghor jatIh wanI' pa He pegh
+            [Description] nIb quvmoHiuweyriw chaw askjhf pIqaD way mIQ SeHlaw
+            tungHa' taS, ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
         <div
