@@ -10,6 +10,23 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Checklist UI and API integration
    * Checklist overlay
 
+## 1.0.0-RC3
+
+### Change
+
+### Feature
+* User Management
+   * create single user account support of company idp
+* Released App Management Board for Operator to managed app publishing requests
+
+### Technical Support
+n/a
+
+### Bugfix
+* Translations and couple of text messages updated
+* My business apllication area fixed by removing cache relation for app card images
+* App release process bugs fixed such as incorrect mandatory fields; file upload handling, etc.
+
 ## 1.0.0-RC2
 
 ### Change
