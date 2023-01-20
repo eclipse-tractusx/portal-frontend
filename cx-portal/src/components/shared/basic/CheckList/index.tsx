@@ -25,7 +25,7 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
-import { applicationChecklistType } from 'features/admin/applicationRequestApiSlice'
+import { ApplicationChecklistType } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect } from 'react'
 
 export type ProgressButtonsProps = {
@@ -41,7 +41,7 @@ export type ProgressButtonsProps = {
 
 interface CheckListProps extends ChipProps {
   headerText?: string
-  progressButtons?: Array<applicationChecklistType>
+  progressButtons?: Array<ApplicationChecklistType>
   showCancel?: boolean
   onCancel?: () => void
   cancelText?: string
