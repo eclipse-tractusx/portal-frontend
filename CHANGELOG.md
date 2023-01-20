@@ -6,6 +6,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Connector
    * Overlay text update
+* Registration
+   * Checklist UI and API integration
+   * Checklist overlay
 
 ## 1.0.0-RC2
 
