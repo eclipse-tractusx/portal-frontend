@@ -37,7 +37,7 @@ import {
 } from 'features/adminBoard/adminBoardApiSlice'
 import AdminBoardElements from './AdminBoardElements'
 
-export default function AppSubscription() {
+export default function AdminBoard() {
   const { t } = useTranslation()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
@@ -92,8 +92,6 @@ export default function AppSubscription() {
       onButtonClick: setView,
     },
   ]
-
-  console.log('testing', apps)
 
   const debouncedFilter = useMemo(
     () =>
