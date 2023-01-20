@@ -25,12 +25,13 @@ import {
   PageNotifications,
   UploadFileStatus,
   PageSnackbar,
+  DropArea,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
@@ -47,12 +48,13 @@ import {
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
-import { setAppStatus } from 'features/appManagement/actions'
+import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: File | null
+  images: any
   uploadDataPrerequisits: File | null
   uploadTechnicalGuide: File | null
   uploadAppContract: File | null | string
@@ -85,7 +87,7 @@ export default function AppPage() {
       fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.longDescription || '',
-    images: null,
+    images: [],
     uploadDataPrerequisits: null,
     uploadTechnicalGuide: null,
     uploadAppContract: null,
@@ -107,13 +109,16 @@ export default function AppPage() {
   })
 
   useEffect(() => {
+    dispatch(setAppId('4dc97e48-1f16-436f-9e4a-96d7f10dbada'))
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
-  const imagesValue = getValues().images
 
   const setFileStatus = (
     fieldName: Parameters<typeof setValue>[0],
@@ -167,19 +172,28 @@ export default function AppPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
 
-  useEffect(() => {
-    const value = getValues().images
+  const uploadImages = (files: any) => {
+    const value = files
+    if (value.length > 0) {
+      const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
+        const nextFiles = [...getValues().images] as any[]
+        nextFiles[fileIndex] = {
+          name: value[fileIndex].name,
+          size: value[fileIndex].size,
+          status,
+        }
+        setValue('images', nextFiles as any)
+      }
 
-    if (value && !('status' in value)) {
-      setFileStatus('images', 'uploading')
-
-      // TODO: the API endpoint should support multiple images? Or is just one image allowed?
-      uploadDocumentApi(appId, 'APP_IMAGE', value)
-        .then(() => setFileStatus('images', 'upload_success'))
-        .catch(() => setFileStatus('images', 'upload_error'))
+      for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
+        setFileStatus(fileIndex, 'uploading')
+        uploadDocumentApi(appId, 'APP_IMAGE', value[fileIndex])
+          .then(() => setFileStatus(fileIndex, 'upload_success'))
+          .catch(() => setFileStatus(fileIndex, 'upload_error'))
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imagesValue])
+  }
 
   const uploadDocumentApi = async (
     appId: string,
@@ -338,24 +352,32 @@ export default function AppPage() {
           <InputLabel sx={{ mb: 3, mt: 3 }}>
             {t('content.apprelease.appPage.images') + ' *'}
           </InputLabel>
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'images',
-              type: 'dropzone',
-              acceptFormat: {
-                'image/png': [],
-                'image/jpeg': [],
-              },
-              maxFilesToUpload: 3, // TODO: the API endpoint should support multiple images? Or is just one image allowed?
-              maxFileSize: 819200,
-              rules: {
-                required: {
-                  value: true,
-                },
-              },
+          <Controller
+            name="images"
+            control={control}
+            render={({ field: { value, onChange } }) => {
+              const uploadStarted = value.some(
+                (uploadFile: DropzoneFile) => !!uploadFile.status
+              )
+              return (
+                <Dropzone
+                  files={value}
+                  onChange={uploadImages}
+                  acceptFormat={{
+                    'image/png': [],
+                    'image/jpeg': [],
+                  }}
+                  maxFilesToUpload={3}
+                  maxFileSize={819200}
+                  DropArea={(props: any) => (
+                    <DropArea
+                      {...props}
+                      disabled={props.disabled || uploadStarted}
+                      size="small"
+                    />
+                  )}
+                />
+              )
             }}
           />
           {errors?.images?.type === 'required' && (
