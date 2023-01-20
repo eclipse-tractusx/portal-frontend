@@ -34,6 +34,7 @@ export interface ViewSelectorProps {
 }
 
 export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
+  console.log('views', views)
   return (
     <Box sx={{ textAlign: 'right' }}>
       {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
