@@ -231,7 +231,7 @@ export const RegistrationRequestsTableColumns = (
             width: '100%',
           }}
         >
-          {row.applicationChecklist.length && (
+          {row.applicationChecklist && (
             <CheckList
               headerText="Confirmation in progress: "
               progressButtons={row.applicationChecklist}
