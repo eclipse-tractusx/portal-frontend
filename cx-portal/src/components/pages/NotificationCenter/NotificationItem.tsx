@@ -120,7 +120,6 @@ const NotificationContent = ({
 
 const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
-    case NotificationType.APP_SUBSCRIPTION_REQUEST:
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
       return <NotificationContent item={item} />
     case NotificationType.WELCOME:
