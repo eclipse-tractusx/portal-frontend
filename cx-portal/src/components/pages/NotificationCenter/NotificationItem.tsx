@@ -130,9 +130,17 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
       return <NotificationContent item={item} navlinks={['technicalsetup']} />
     case NotificationType.WELCOME_USE_CASES:
-      return <NotificationContent item={item} navlinks={['usecases']} />
+      return <NotificationContent item={item} navlinks={['usecase']} />
     case NotificationType.WELCOME_SERVICE_PROVIDER:
-      return <NotificationContent item={item} navlinks={['serviceprovider']} />
+      return <NotificationContent item={item} navlinks={['companyrolesserviceprovider']} />
+    case NotificationType.APP_SUBSCRIPTION_REQUEST:
+      return <NotificationContent item={item} navlinks={['appsubscription']} />
+    case NotificationType.APP_RELEASE_REQUEST:
+      return <NotificationContent item={item} navlinks={['adminboard']} />
+    case NotificationType.APP_RELEASE_APPROVAL:
+      return <NotificationContent item={item} navlinks={['appoverview']} />
+    case NotificationType.TECHNICAL_USER_CREATION:
+      return <NotificationContent item={item} navlinks={['technicaluser']} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }

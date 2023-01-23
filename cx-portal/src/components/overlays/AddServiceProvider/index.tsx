@@ -67,10 +67,7 @@ export default function AddServiceProvider() {
   const addURL = async () => {
     setLoading(true)
     try {
-      await addServiceProvider({
-        method: data && data.url ? 'PUT' : 'POST',
-        body: { url: inputURL },
-      }).unwrap()
+      await addServiceProvider({ url: inputURL }).unwrap()
       dispatch(setSuccessType(true))
       dispatch(closeOverlay())
     } catch (error) {

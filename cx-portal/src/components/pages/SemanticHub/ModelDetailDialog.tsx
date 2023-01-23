@@ -83,7 +83,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     setDiagram('')
     if (model) {
       fetch(
-        `${getSemanticApiBase()}hub/api/v1/models/${encodeURIComponent(
+        `${getSemanticApiBase()}/hub/api/v1/models/${encodeURIComponent(
           model.urn
         )}/diagram`,
         getHeaders()
