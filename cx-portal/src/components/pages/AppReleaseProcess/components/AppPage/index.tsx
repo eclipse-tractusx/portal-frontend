@@ -188,7 +188,6 @@ export default function AppPage() {
           .catch(() => setFileStatus(fileIndex, 'upload_error'))
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }
 
   const uploadDocumentApi = async (
