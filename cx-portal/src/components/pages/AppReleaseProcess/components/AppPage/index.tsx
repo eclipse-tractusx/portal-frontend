@@ -365,13 +365,6 @@ export default function AppPage() {
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
-                  DropArea={(props: any) => (
-                    <DropArea
-                      {...props}
-                      disabled={props.disabled || uploadStarted}
-                      size="small"
-                    />
-                  )}
                 />
               )
             }}
