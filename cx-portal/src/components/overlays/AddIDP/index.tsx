@@ -148,8 +148,7 @@ export const AddIdp = () => {
         body: {
           displayName: formData.name,
           oidc: {
-            metadataUrl:
-              `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
+            metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
             clientId: '',
             secret: '',

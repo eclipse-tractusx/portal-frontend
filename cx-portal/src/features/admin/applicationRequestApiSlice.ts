@@ -77,12 +77,14 @@ export const apiSlice = createApi({
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyName=${fetchArgs.args!.expr}`
-        } else if (isFetchArgs && fetchArgs.args.statusFilter && fetchArgs.args.statusFilter === 'All') {
+        } else if (
+          isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter === 'All'
+        ) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
-          }&companyName=${
-            fetchArgs.args!.expr
-          }`
+          }&companyName=${fetchArgs.args!.expr}`
         } else if (isFetchArgs && fetchArgs.args.statusFilter) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
@@ -91,15 +93,11 @@ export const apiSlice = createApi({
           }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
         } else if (
           !isFetchArgs &&
-          fetchArgs.args.statusFilter && fetchArgs.args.statusFilter === 'All'
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter === 'All'
         ) {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
-            fetchArgs.page
-          }`
-        } else if (
-          !isFetchArgs &&
-          fetchArgs.args.statusFilter
-        ) {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+        } else if (!isFetchArgs && fetchArgs.args.statusFilter) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
