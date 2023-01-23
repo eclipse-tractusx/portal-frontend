@@ -7,7 +7,7 @@
   "homepage": "https://catena-x.net/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/catenax-ng/product-portal-frontend.git"
+    "url": "https://github.com/catenax-ng/tx-portal-frontend.git"
   },
   "author": "Catena-X NG <julia.jeroch@bmw.de> (https://github.com/catena-ng/)",
   "files": [
