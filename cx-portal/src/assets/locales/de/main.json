@@ -521,10 +521,10 @@
     },
     "usermanagement": {
       "title": "User Management",
-      "description": "View and manage all users assigned to the company. Assign roles; create new user accounts and create technical users.",
+      "description": "Alle dem Unternehmen zugewiesenen Benutzer anzeigen und verwalten. Rollenzuweisung, erstelle neue Benutzerkonten, sowie technische Accounts.",
       "apparea": {
         "headline": "App Zugriffsmanagement",
-        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
+        "appsNotAvailable": "Apps sind verfügbar, sobald Geschäftsanwendungen abonniert und aktiviert sind"
       },
       "table": {
         "headline": "Benutzerkontenverwaltung",
@@ -534,7 +534,7 @@
         "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
-        "headline": "App Zugriffsmanagement - <1>App-Title</1>",
+        "headline": "App Zugriffsmanagement - {{app}}",
         "subheadline": "App Zugriffsmanagement",
         "userRoleSuccessMsg": "Benutzerrollen wurden erfolgreich aktualisiert.",
         "userRoleErrorMsg": "Etwas ist schief gelaufen. Benutzerrollen wurden nicht aktualisiert.",
