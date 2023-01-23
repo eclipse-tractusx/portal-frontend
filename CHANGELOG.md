@@ -9,6 +9,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Registration
    * Checklist UI and API integration
    * Checklist overlay
+* Static templates
+   * Moved JSON files to locales
+   * New components added
 
 ## 1.0.0-RC3
 
