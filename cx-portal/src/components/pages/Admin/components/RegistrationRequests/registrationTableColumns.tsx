@@ -231,7 +231,7 @@ export const RegistrationRequestsTableColumns = (
             width: '100%',
           }}
         >
-          {row.applicationChecklist && (
+          {row.applicationChecklist && row.applicationChecklist.length> 0 ? (
             <CheckList
               headerText="Confirmation in progress: "
               progressButtons={row.applicationChecklist}
@@ -245,7 +245,7 @@ export const RegistrationRequestsTableColumns = (
                 onConfirmationCancel && onConfirmationCancel(row.applicationId)
               }
             />
-          )}
+          ):null}
         </div>
       ),
     },

@@ -80,7 +80,7 @@ export const RequestList = ({
   const filterView = [
     {
       buttonText: t('content.admin.registration-requests.filter.all'),
-      buttonValue: '',
+      buttonValue: 'All',
       onButtonClick: setView,
     },
     {

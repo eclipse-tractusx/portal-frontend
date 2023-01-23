@@ -73,7 +73,7 @@ export default function CheckList({
     checkListButtons?.forEach((button: ProgressButtonsProps) => {
       progressValue += progressMapper[button.statusId]
     })
-    return `${progressValue}%`
+    return progressValue
   }
 
   const getButtonLabel = (typeId: string) => {
@@ -178,7 +178,7 @@ export default function CheckList({
                 variant="subtitle1"
               >
                 {headerText}
-                {getProgressValue()}
+                {getProgressValue()}%
               </Typography>
             </Box>
           )}
@@ -212,7 +212,7 @@ export default function CheckList({
               )
             })}
           </Box>
-          {showCancel && (
+          {showCancel && getProgressValue() < 100 && (
             <Box onClick={() => onCancel}>
               <Typography
                 sx={{
