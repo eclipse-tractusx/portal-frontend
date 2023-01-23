@@ -27,6 +27,8 @@ import CardGrid from './Cards/CardGrid'
 import LinkButtonGrid from './Cards/LinkButtonGrid'
 import { Box } from '@mui/material'
 import VideoTextSideBySide from './Cards/VideoTextSideBySide'
+import ImageTextCenterAligned from './Cards/ImageTextCenterAligned'
+import TextCenterAlignedBody2 from './Cards/TextCenterAlignedBody2'
 
 const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
   switch (provider.template) {
@@ -42,9 +44,15 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
     //Text and image component both center aligned
     case 'TextImageCenterAligned':
       return <TextImageCenterAligned provider={provider} />
+    //Image and text component both center aligned
+    case 'ImageTextCenterAligned':
+      return <ImageTextCenterAligned provider={provider} />
     //Text component center aligned
     case 'TextCenterAligned':
       return <TextCenterAligned provider={provider} />
+    //Text component body2
+    case 'TextCenterAlignedBody2':
+      return <TextCenterAlignedBody2 provider={provider} />
     //Combination of Text and image component both center aligned with grid layout card component
     case 'TextImageCenterAlignedWithCardGrid':
       return (

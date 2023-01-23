@@ -1011,16 +1011,6 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
-    },
-    "companyRoleSubNavigation": {
-      "link1Label": "marketplace",
-      "link2Label": "marketplace subscriptions",
-      "link3Label": "dataspace participants"
-    },
-    "useCaseNavigation": {
-      "link1Label": "Intro",
-      "link2Label": "Data Provisioning",
-      "link3Label": "Business Applications"
     }
   },
   "notification": {

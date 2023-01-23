@@ -4,6 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Static templates
+   * Moved JSON files to locales
+   * New components added
+* Connector
+   * Overlay text update
 
 ## 1.0.0-RC3
 
