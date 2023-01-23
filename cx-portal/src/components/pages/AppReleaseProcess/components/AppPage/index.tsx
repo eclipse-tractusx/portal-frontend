@@ -351,6 +351,7 @@ export default function AppPage() {
           <Controller
             name="images"
             control={control}
+            rules={{ required: true }}
             render={({ field: { value, onChange } }) => {
               const uploadStarted = value.some(
                 (uploadFile: DropzoneFile) => !!uploadFile.status
