@@ -25,7 +25,6 @@ import {
   PageNotifications,
   UploadFileStatus,
   PageSnackbar,
-  DropArea,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
@@ -49,7 +48,7 @@ import {
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
+import { Dropzone } from 'components/shared/basic/Dropzone'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -352,9 +351,6 @@ export default function AppPage() {
             control={control}
             rules={{ required: true }}
             render={({ field: { value, onChange } }) => {
-              const uploadStarted = value.some(
-                (uploadFile: DropzoneFile) => !!uploadFile.status
-              )
               return (
                 <Dropzone
                   files={value}
