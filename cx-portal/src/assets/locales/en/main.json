@@ -524,7 +524,7 @@
       "description": "View and manage all users assigned to the company. Assign roles; create new user accounts and create technical users.",
       "apparea": {
         "headline": "App Access Management",
-        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
+        "appsNotAvailable": "Apps will be available as soon as business applications are subscribed and activated"
       },
       "table": {
         "headline": "Identity Management",
