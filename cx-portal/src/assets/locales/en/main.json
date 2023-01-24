@@ -126,7 +126,7 @@
         "checkList": {
           "data_validation": "Data Validation",
           "bpn_creation": "BPN Creation",
-          "identity_wallet_creation":"Identity Wallet Creation",
+          "identity_wallet_creation": "Identity Wallet Creation",
           "clearing_house": "Clearing House",
           "self_description": "Self Description"
         },

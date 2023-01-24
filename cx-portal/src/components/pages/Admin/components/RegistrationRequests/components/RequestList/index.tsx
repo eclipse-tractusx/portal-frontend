@@ -24,7 +24,11 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
-import { AppFilterType, ApplicationRequest, ProgressButtonsProps } from 'features/admin/applicationRequestApiSlice'
+import {
+  AppFilterType,
+  ApplicationRequest,
+  ProgressButtonsProps,
+} from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
@@ -48,9 +52,12 @@ export const RequestList = ({
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
-  showConfirmOverlay?: (applicationId: string) => void,
-  onConfirmationCancel?: (applicationId: string) => void,
-  onChipButtonSelect?: (button: ProgressButtonsProps, row: ApplicationRequest) => void
+  showConfirmOverlay?: (applicationId: string) => void
+  onConfirmationCancel?: (applicationId: string) => void
+  onChipButtonSelect?: (
+    button: ProgressButtonsProps,
+    row: ApplicationRequest
+  ) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -58,7 +65,9 @@ export const RequestList = ({
   const searchInputData = useSelector(updateApplicationRequestSelector)
   const [group, setGroup] = useState<string>(AppFilterType.INREVIEW)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterStatus, setFilterStatus] = useState<string>(AppFilterType.INREVIEW)
+  const [filterStatus, setFilterStatus] = useState<string>(
+    AppFilterType.INREVIEW
+  )
   const [fetchHookArgs, setFetchHookArgs] = useState({})
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value

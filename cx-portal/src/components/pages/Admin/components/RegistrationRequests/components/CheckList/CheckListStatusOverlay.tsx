@@ -122,7 +122,13 @@ const CheckListStatusOverlay = ({
             qumwI' matlh janluq pIqarD Saj ray', chor bargh to'waQvaD He pegh
           </Typography>
         </div>
-        <div style={{ borderBottomWidth: '1px', borderColor: '#e3e3e3', borderBottomStyle: 'dashed' }} />
+        <div
+          style={{
+            borderBottomWidth: '1px',
+            borderColor: '#e3e3e3',
+            borderBottomStyle: 'dashed',
+          }}
+        />
         <div
           style={{
             textAlign: 'left',
@@ -168,7 +174,13 @@ const CheckListStatusOverlay = ({
             CTA
           </Button>
         </div>
-        <div style={{ borderBottomWidth: '1px', borderColor: '#e3e3e3', borderBottomStyle: 'dashed' }} />
+        <div
+          style={{
+            borderBottomWidth: '1px',
+            borderColor: '#e3e3e3',
+            borderBottomStyle: 'dashed',
+          }}
+        />
         <div
           style={{
             textAlign: 'left',
@@ -195,7 +207,13 @@ const CheckListStatusOverlay = ({
             ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
-        <div style={{ borderBottomWidth: '1px', borderColor: '#e3e3e3', borderBottomStyle: 'dashed' }} />
+        <div
+          style={{
+            borderBottomWidth: '1px',
+            borderColor: '#e3e3e3',
+            borderBottomStyle: 'dashed',
+          }}
+        />
         <div
           style={{
             textAlign: 'left',

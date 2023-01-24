@@ -30,7 +30,10 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
 import { useState } from 'react'
-import { ApplicationRequest, ProgressButtonsProps } from 'features/admin/applicationRequestApiSlice'
+import {
+  ApplicationRequest,
+  ProgressButtonsProps,
+} from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import './RegistrationRequests.scss'
 import CheckList from './components/CheckList'
@@ -44,7 +47,10 @@ export const RegistrationRequestsTableColumns = (
   handleDownloadDocument: (documentId: string, documentType: string) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string) => void,
-  onChipButtonSelect?: (button: ProgressButtonsProps, row: ApplicationRequest) => void
+  onChipButtonSelect?: (
+    button: ProgressButtonsProps,
+    row: ApplicationRequest
+  ) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')

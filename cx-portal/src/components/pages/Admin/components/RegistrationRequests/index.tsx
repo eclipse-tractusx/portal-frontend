@@ -34,7 +34,7 @@ import {
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
-  ProgressButtonsProps
+  ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
@@ -154,7 +154,10 @@ export default function RegistrationRequests() {
     console.log('Clicked on cancel', id)
   }
 
-  const onChipButtonSelect = (selected: ProgressButtonsProps, row: ApplicationRequest) => {
+  const onChipButtonSelect = (
+    selected: ProgressButtonsProps,
+    row: ApplicationRequest
+  ) => {
     setSelectedButton(selected)
     setCheckList(row.applicationChecklist)
     setStatusConfirmationOverlay(true)
@@ -263,9 +266,10 @@ export default function RegistrationRequests() {
             setErrorOverlay(false)
           }}
           onConfirmationCancel={(id: string) => onConfirmationCancel(id)}
-          onChipButtonSelect={(selected: ProgressButtonsProps, row: ApplicationRequest) =>
-            onChipButtonSelect(selected, row)
-          }
+          onChipButtonSelect={(
+            selected: ProgressButtonsProps,
+            row: ApplicationRequest
+          ) => onChipButtonSelect(selected, row)}
         />
       </div>
     </main>

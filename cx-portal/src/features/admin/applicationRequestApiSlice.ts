@@ -50,7 +50,7 @@ export enum ProgressStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   TO_DO = 'TO_DO',
   DONE = 'DONE',
-  FAILED = 'FAILED'
+  FAILED = 'FAILED',
 }
 
 export enum StatusType {
@@ -58,7 +58,7 @@ export enum StatusType {
   BUSINESS_PARTNER_NUMBER = 'BUSINESS_PARTNER_NUMBER',
   IDENTITY_WALLET = 'IDENTITY_WALLET',
   CLEARING_HOUSE = 'CLEARING_HOUSE',
-  SELF_DESCRIPTION_LP = 'SELF_DESCRIPTION_LP'
+  SELF_DESCRIPTION_LP = 'SELF_DESCRIPTION_LP',
 }
 
 export type ProgressButtonsProps = {
