@@ -41,6 +41,7 @@ import {
 import { OVERLAYS } from 'types/Constants'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isCompanyName } from 'types/Patterns'
+import { getCentralIdp } from 'services/EnvironmentService'
 
 enum IDPType {
   COMPANY = 'Company',
@@ -147,8 +148,7 @@ export const AddIdp = () => {
         body: {
           displayName: formData.name,
           oidc: {
-            metadataUrl:
-              'https://centralidp.dev.demo.catena-x.net/auth/realms/CX-Central/.well-known/openid-configuration',
+            metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
             clientId: '',
             secret: '',

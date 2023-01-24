@@ -37,49 +37,15 @@ TextImageTemplates.args = {
   sectionInfo: [
     {
       title: 'Intro headline',
-      description:
+      subTitles: [
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      videoUrl: 'https://www.youtube.com/embed/g-NVjP2srw4',
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      ],
       id: 'intro-id',
-      backgroundColor: '#FFFFFF',
-      template: 'TextVideoSideBySide',
-    },
-    {
-      title: 'Intro headline',
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      videoUrl: 'https://www.youtube.com/embed/g-NVjP2srw4',
-      id: 'intro-id',
-      backgroundColor: '#FFFFFF',
-      template: 'VideoTextSideBySide',
-    },
-    {
-      title: 'Headline / Question',
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-      backgroundColor: '#F9F9F9',
-      id: 'data-id',
-      template: 'TextImageCenterAligned',
-    },
-    {
-      title: 'Headline / Question',
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      backgroundColor: '#F9F9F9',
-      id: 'data1-id',
-      template: 'TextCenterAligned',
-    },
-    {
-      title: 'Headline / Question',
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
-      backgroundColor: '#F9F9F9',
-      id: 'data2-id',
-      template: 'TextImageSideBySide',
+      backgroundColor: '#f9f9f9',
+      template: 'TextCenterAlignedBody2',
     },
   ],
 }

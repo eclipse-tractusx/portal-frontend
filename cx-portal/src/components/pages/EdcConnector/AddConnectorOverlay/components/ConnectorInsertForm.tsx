@@ -105,34 +105,10 @@ const ConnectorFormInput = ({
         </>
       ) : (
         <>
-          <div
-            style={{
-              marginLeft: '65px',
-              position: 'relative',
-              top: '25px',
-              zIndex: '9',
-            }}
-          >
-            <Tooltips
-              additionalStyles={{
-                cursor: 'pointer',
-                marginTop: '30px !important',
-              }}
-              tooltipPlacement="top-start"
-              tooltipText={tooltipMsg}
-              children={
-                <span>
-                  <HelpOutlineIcon
-                    sx={{ color: '#B6B6B6' }}
-                    fontSize={'small'}
-                  />
-                </span>
-              }
-            />
-          </div>
           <Controller
             render={({ field: { onChange, value } }) => (
               <Input
+                tooltipMessage={tooltipMsg}
                 sx={{
                   paddingTop: '10px',
                 }}
