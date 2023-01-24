@@ -394,7 +394,8 @@ export default function TechnicalIntegration() {
                   )
             }
             label={
-              getValues().uploadAppRoles === ''
+              getValues().uploadAppRoles === '' ||
+              getValues().uploadAppRoles === undefined
                 ? t(
                     'content.apprelease.technicalIntegration.clickToOpenDialogBox'
                   )

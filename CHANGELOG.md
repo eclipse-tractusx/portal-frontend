@@ -4,7 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-
+* Shared Components
+   * Added delete confirm overlay to the dropzone
+* App Release Process
+   * Technical Integration - roles upload functionality 
+   
 ## 1.0.0-RC3
 
 ### Change
