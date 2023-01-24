@@ -124,11 +124,11 @@
           "noinfo": "no data available"
         },
         "checkList": {
-          "data_validation": "Data Validation",
-          "bpn_creation": "BPN Creation",
-          "identity_wallet_creation": "Identity Wallet Creation",
-          "clearing_house": "Clearing House",
-          "self_description": "Self Description"
+          "REGISTRATION_VERIFICATION": "Data Validation",
+          "BUSINESS_PARTNER_NUMBER": "BPN Creation",
+          "IDENTITY_WALLET": "Identity Wallet Creation",
+          "CLEARING_HOUSE": "Clearing House",
+          "SELF_DESCRIPTION_LP": "Self Description"
         },
         "confirmmodal": {
           "title": "Confirm action",

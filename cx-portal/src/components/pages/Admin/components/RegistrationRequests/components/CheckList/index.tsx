@@ -28,7 +28,6 @@ import MuiChip, { ChipProps } from '@mui/material/Chip'
 import {
   ProgressButtonsProps,
   ProgressStatus,
-  StatusType,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -71,34 +70,6 @@ export default function CheckList({
     return progressValue
   }
 
-  const getButtonLabel = useCallback(
-    (typeId: string) => {
-      switch (typeId) {
-        case StatusType.REGISTRATION_VERIFICATION:
-          return t(
-            'content.admin.registration-requests.checkList.data_validation'
-          )
-
-        case StatusType.BUSINESS_PARTNER_NUMBER:
-          return t('content.admin.registration-requests.checkList.bpn_creation')
-        case StatusType.IDENTITY_WALLET:
-          return t(
-            'content.admin.registration-requests.checkList.identity_wallet_creation'
-          )
-
-        case StatusType.CLEARING_HOUSE:
-          return t(
-            'content.admin.registration-requests.checkList.clearing_house'
-          )
-        case StatusType.SELF_DESCRIPTION_LP:
-          return t(
-            'content.admin.registration-requests.checkList.self_description'
-          )
-      }
-    },
-    [t]
-  )
-
   const isButtonSelected = useCallback(
     (typeId: string) => {
       return selectedButton ? selectedButton.typeId === typeId : false
@@ -117,7 +88,6 @@ export default function CheckList({
           ),
           border: highlight ? '1px solid #0F71CB' : '0px',
           backgroundColor: '#EAF1FE',
-          textColor: '#111111',
         }
       case ProgressStatus.TO_DO:
         return {
@@ -128,7 +98,6 @@ export default function CheckList({
           ),
           border: highlight ? '1px solid #0F71CB' : '0px',
           backgroundColor: '#EAF1FE',
-          textColor: '#111111',
         }
       case ProgressStatus.DONE:
         return {
@@ -139,7 +108,6 @@ export default function CheckList({
           ),
           border: highlight ? '1px solid #00AA55' : '0px',
           backgroundColor: '#F5F9EE',
-          textColor: '#111111',
         }
       case ProgressStatus.FAILED:
         return {
@@ -150,7 +118,6 @@ export default function CheckList({
           ),
           border: highlight ? '1px solid #D91E18' : '0px',
           backgroundColor: '#FFF6FF',
-          textColor: '#111111',
         }
     }
   }, [])
@@ -161,13 +128,13 @@ export default function CheckList({
         progressButtons.map((button: ProgressButtonsProps) => ({
           statusId: button.statusId,
           typeId: button.typeId,
-          label: getButtonLabel(button.typeId),
+          label: t(`content.admin.registration-requests.checkList.${button.typeId}`),
           highlight: isButtonSelected(button.typeId),
           ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
         }))
       )
     },
-    [getButtonLabel, isButtonSelected, getButtonProps]
+    [isButtonSelected, getButtonProps, t]
   )
 
   useEffect(() => {
@@ -217,7 +184,7 @@ export default function CheckList({
                     borderRadius: '8px',
                     margin: '0px 3px',
                     backgroundColor: button?.backgroundColor || '#fff',
-                    color: button?.textColor || '#111',
+                    color: '#111',
                     border: button?.border,
                     fontSize: '10px',
                     outlined: 'none',

@@ -69,7 +69,6 @@ export type ProgressButtonsProps = {
   backgroundColor?: string
   border?: string
   icon?: JSX.Element
-  textColor?: string
 }
 
 export interface ApplicationRequest {
