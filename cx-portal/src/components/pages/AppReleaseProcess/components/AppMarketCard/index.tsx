@@ -238,7 +238,6 @@ export default function AppMarketCard() {
     price: appStatusData?.price,
     useCaseCategory: appStatusData?.useCase,
     appLanguage: appStatusData?.supportedLanguageCodes,
-    //To do: to be changed once api is available
     salesManagerId: appStatusData?.salesManagerId,
     shortDescriptionEN:
       appStatusData?.descriptions?.filter(
