@@ -23,10 +23,8 @@ import MuiDialog from '@mui/material/Dialog'
 import MuiDialogContent from '@mui/material/DialogContent'
 import MuiDialogActions from '@mui/material/DialogActions'
 import { Button, CircleProgress, Typography } from 'cx-portal-shared-components'
-import CheckList, {
-  ProgressButtonsProps,
-} from 'components/shared/basic/CheckList'
-import { Divider } from '@mui/material'
+import CheckList from '.'
+import { ProgressButtonsProps } from 'features/admin/applicationRequestApiSlice'
 
 interface CheckListStatusOverlayProps {
   openDialog?: boolean
@@ -124,8 +122,7 @@ const CheckListStatusOverlay = ({
             qumwI' matlh janluq pIqarD Saj ray', chor bargh to'waQvaD He pegh
           </Typography>
         </div>
-        <Divider sx={{ borderBottomStyle: 'dashed' }} />
-        <Divider sx={{ borderBottomStyle: 'dashed' }} />
+        <div style={{ borderBottomWidth: '1px', borderColor: '#e3e3e3', borderBottomStyle: 'dashed' }} />
         <div
           style={{
             textAlign: 'left',
@@ -171,7 +168,7 @@ const CheckListStatusOverlay = ({
             CTA
           </Button>
         </div>
-        <Divider sx={{ borderBottomStyle: 'dashed' }} />
+        <div style={{ borderBottomWidth: '1px', borderColor: '#e3e3e3', borderBottomStyle: 'dashed' }} />
         <div
           style={{
             textAlign: 'left',
@@ -198,7 +195,7 @@ const CheckListStatusOverlay = ({
             ghor jatIh wanI' pa He pegh
           </Typography>
         </div>
-        <Divider sx={{ borderBottomStyle: 'dashed' }} />
+        <div style={{ borderBottomWidth: '1px', borderColor: '#e3e3e3', borderBottomStyle: 'dashed' }} />
         <div
           style={{
             textAlign: 'left',

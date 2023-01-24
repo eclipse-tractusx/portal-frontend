@@ -25,19 +25,9 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
-import { ApplicationChecklistType } from 'features/admin/applicationRequestApiSlice'
+import { ApplicationChecklistType, ProgressButtonsProps, ProgressStatus, StatusType } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect } from 'react'
-
-export type ProgressButtonsProps = {
-  statusId: 'IN_PROGRESS' | 'TO_DO' | 'DONE' | 'FAILED'
-  typeId: string
-  label?: string
-  highlight?: boolean
-  backgroundColor?: string
-  border?: string
-  icon?: JSX.Element
-  textColor?: string
-}
+import { useTranslation } from 'react-i18next'
 
 interface CheckListProps extends ChipProps {
   headerText?: string
@@ -60,6 +50,7 @@ export default function CheckList({
   onButtonClick,
   selectedButton,
 }: CheckListProps) {
+  const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
   const progressMapper = {
     DONE: 20,
@@ -78,16 +69,16 @@ export default function CheckList({
 
   const getButtonLabel = (typeId: string) => {
     switch (typeId) {
-      case 'REGISTRATION_VERIFICATION':
-        return 'Data Validation'
-      case 'BUSINESS_PARTNER_NUMBER':
-        return 'BPN Creation'
-      case 'IDENTITY_WALLET':
-        return 'Identity Wallet Creation'
-      case 'CLEARING_HOUSE':
-        return 'Clearing House'
-      case 'SELF_DESCRIPTION_LP':
-        return 'Self Description'
+      case StatusType.REGISTRATION_VERIFICATION:
+        return t('content.admin.registration-requests.checkList.data_validation')
+      case StatusType.BUSINESS_PARTNER_NUMBER:
+        return t('content.admin.registration-requests.checkList.bpn_creation')
+      case StatusType.IDENTITY_WALLET:
+        return t('content.admin.registration-requests.checkList.identity_wallet_creation')
+      case StatusType.CLEARING_HOUSE:
+        return t('content.admin.registration-requests.checkList.clearing_house')
+      case StatusType.SELF_DESCRIPTION_LP:
+        return t('content.admin.registration-requests.checkList.self_description')
     }
   }
 
@@ -111,7 +102,7 @@ export default function CheckList({
 
   const getButtonProps = (statusId: string, highlight: boolean) => {
     switch (statusId) {
-      case 'IN_PROGRESS':
+      case ProgressStatus.IN_PROGRESS:
         return {
           icon: (
             <LoopIcon
@@ -122,7 +113,7 @@ export default function CheckList({
           backgroundColor: '#EAF1FE',
           textColor: '#111111',
         }
-      case 'TO_DO':
+      case ProgressStatus.TO_DO:
         return {
           icon: (
             <PendingActionsIcon
@@ -133,7 +124,7 @@ export default function CheckList({
           backgroundColor: '#EAF1FE',
           textColor: '#111111',
         }
-      case 'DONE':
+      case ProgressStatus.DONE:
         return {
           icon: (
             <CheckCircleOutlineIcon
@@ -144,7 +135,7 @@ export default function CheckList({
           backgroundColor: '#F5F9EE',
           textColor: '#111111',
         }
-      case 'FAILED':
+      case ProgressStatus.FAILED:
         return {
           icon: (
             <ReportProblemIcon

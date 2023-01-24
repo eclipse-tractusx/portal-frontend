@@ -28,19 +28,20 @@ import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
+  ApplicationRequest,
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
+  ProgressButtonsProps
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
-import CheckListStatusOverlay from './components/CheckListStatusOverlay'
-import { ProgressButtonsProps } from 'components/shared/basic/CheckList'
+import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -153,7 +154,7 @@ export default function RegistrationRequests() {
     console.log('Clicked on cancel', id)
   }
 
-  const onChipButtonSelect = (selected: ProgressButtonsProps, row: any) => {
+  const onChipButtonSelect = (selected: ProgressButtonsProps, row: ApplicationRequest) => {
     setSelectedButton(selected)
     setCheckList(row.applicationChecklist)
     setStatusConfirmationOverlay(true)
@@ -262,7 +263,7 @@ export default function RegistrationRequests() {
             setErrorOverlay(false)
           }}
           onConfirmationCancel={(id: string) => onConfirmationCancel(id)}
-          onChipButtonSelect={(selected: ProgressButtonsProps, row: any) =>
+          onChipButtonSelect={(selected: ProgressButtonsProps, row: ApplicationRequest) =>
             onChipButtonSelect(selected, row)
           }
         />
