@@ -24,7 +24,7 @@ export const getApiBase = () =>
   typeof ENV === 'undefined' ? '' : ENV.PORTAL_BACKEND_URL
 
 export const getAssetBase = () =>
-  `${typeof ENV === 'undefined' ? '' : ENV.PORTAL_FRONTEND_URL}/assets`
+  typeof ENV === 'undefined' ? '' : ENV.PORTAL_ASSETS_URL
 
 export const getCentralIdp = () =>
   typeof ENV === 'undefined' ? '' : ENV.CENTRALIDP_URL
