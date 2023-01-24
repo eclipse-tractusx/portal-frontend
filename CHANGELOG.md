@@ -4,11 +4,24 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-* Static templates
-   * Moved JSON files to locales
-   * New components added
-* Connector
-   * Overlay text update
+
+
+## 1.0.0-RC4
+
+### Change
+n/a
+
+### Feature
+n/a
+
+### Technical Support
+* Static Template handling updated to fetch content from asset repo for more flexibility and code separation from content & support of multi-language activated
+
+### Bugfix
+* App release process bugs fixed such as multiple document upload, fetch uploaded roles from backend
+* App release management board - views tabs fixed
+* Notification URLs for notification messages updated
+* Connector registration overlay overlapping tooltip icon fixed
 
 ## 1.0.0-RC3
 
