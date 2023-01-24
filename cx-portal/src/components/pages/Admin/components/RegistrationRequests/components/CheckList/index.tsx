@@ -26,17 +26,16 @@ import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
 import {
-  ApplicationChecklistType,
   ProgressButtonsProps,
   ProgressStatus,
   StatusType,
 } from 'features/admin/applicationRequestApiSlice'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface CheckListProps extends ChipProps {
   headerText?: string
-  progressButtons?: Array<ApplicationChecklistType>
+  progressButtons?: Array<ProgressButtonsProps>
   showCancel?: boolean
   onCancel?: () => void
   cancelText?: string
@@ -72,46 +71,42 @@ export default function CheckList({
     return progressValue
   }
 
-  const getButtonLabel = (typeId: string) => {
-    switch (typeId) {
-      case StatusType.REGISTRATION_VERIFICATION:
-        return t(
-          'content.admin.registration-requests.checkList.data_validation'
-        )
-      case StatusType.BUSINESS_PARTNER_NUMBER:
-        return t('content.admin.registration-requests.checkList.bpn_creation')
-      case StatusType.IDENTITY_WALLET:
-        return t(
-          'content.admin.registration-requests.checkList.identity_wallet_creation'
-        )
-      case StatusType.CLEARING_HOUSE:
-        return t('content.admin.registration-requests.checkList.clearing_house')
-      case StatusType.SELF_DESCRIPTION_LP:
-        return t(
-          'content.admin.registration-requests.checkList.self_description'
-        )
-    }
-  }
+  const getButtonLabel = useCallback(
+    (typeId: string) => {
+      switch (typeId) {
+        case StatusType.REGISTRATION_VERIFICATION:
+          return t(
+            'content.admin.registration-requests.checkList.data_validation'
+          )
 
-  const isButtonSelected = (typeId: string) =>
-    selectedButton ? selectedButton.typeId === typeId : false
+        case StatusType.BUSINESS_PARTNER_NUMBER:
+          return t('content.admin.registration-requests.checkList.bpn_creation')
+        case StatusType.IDENTITY_WALLET:
+          return t(
+            'content.admin.registration-requests.checkList.identity_wallet_creation'
+          )
 
-  useEffect(() => {
-    if (progressButtons) {
-      setCheckListButtons(
-        progressButtons.map((button) => ({
-          statusId: button.statusId,
-          typeId: button.typeId,
-          label: getButtonLabel(button.typeId),
-          highlight: isButtonSelected(button.typeId),
-          ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
-        }))
-      )
-    }
-    // eslint-disable-next-line
-  }, [progressButtons, selectedButton])
+        case StatusType.CLEARING_HOUSE:
+          return t(
+            'content.admin.registration-requests.checkList.clearing_house'
+          )
+        case StatusType.SELF_DESCRIPTION_LP:
+          return t(
+            'content.admin.registration-requests.checkList.self_description'
+          )
+      }
+    },
+    [t]
+  )
 
-  const getButtonProps = (statusId: string, highlight: boolean) => {
+  const isButtonSelected = useCallback(
+    (typeId: string) => {
+      return selectedButton ? selectedButton.typeId === typeId : false
+    },
+    [selectedButton]
+  )
+
+  const getButtonProps = useCallback((statusId: string, highlight: boolean) => {
     switch (statusId) {
       case ProgressStatus.IN_PROGRESS:
         return {
@@ -158,7 +153,28 @@ export default function CheckList({
           textColor: '#111111',
         }
     }
-  }
+  }, [])
+
+  const updateCheckListStatusButtons = useCallback(
+    (progressButtons: ProgressButtonsProps[]) => {
+      setCheckListButtons(
+        progressButtons.map((button: ProgressButtonsProps) => ({
+          statusId: button.statusId,
+          typeId: button.typeId,
+          label: getButtonLabel(button.typeId),
+          highlight: isButtonSelected(button.typeId),
+          ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
+        }))
+      )
+    },
+    [getButtonLabel, isButtonSelected, getButtonProps]
+  )
+
+  useEffect(() => {
+    if (progressButtons) {
+      updateCheckListStatusButtons(progressButtons)
+    }
+  }, [progressButtons, selectedButton, updateCheckListStatusButtons])
 
   return (
     <>
