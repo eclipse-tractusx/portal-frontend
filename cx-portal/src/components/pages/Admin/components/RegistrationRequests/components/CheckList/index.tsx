@@ -128,7 +128,9 @@ export default function CheckList({
         progressButtons.map((button: ProgressButtonsProps) => ({
           statusId: button.statusId,
           typeId: button.typeId,
-          label: t(`content.admin.registration-requests.checkList.${button.typeId}`),
+          label: t(
+            `content.admin.registration-requests.checkList.${button.typeId}`
+          ),
           highlight: isButtonSelected(button.typeId),
           ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
         }))
