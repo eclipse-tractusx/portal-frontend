@@ -105,19 +105,11 @@ export const apiSlice = createApi({
     >({
       query: (fetchArgs) => {
         const isFetchArgs = fetchArgs.args && fetchArgs.args.expr
-        if (isFetchArgs && fetchArgs.args.statusFilter === '') {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
-            fetchArgs.page
-          }&companyName=${fetchArgs.args!.expr}`
-        } else if (
+        if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === AppFilterType.ALL
+          fetchArgs.args.statusFilter !== AppFilterType.ALL
         ) {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
-            fetchArgs.page
-          }&companyName=${fetchArgs.args!.expr}`
-        } else if (isFetchArgs && fetchArgs.args.statusFilter) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyName=${
@@ -126,13 +118,19 @@ export const apiSlice = createApi({
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === AppFilterType.ALL
+          fetchArgs.args.statusFilter !== AppFilterType.ALL
         ) {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
-        } else if (!isFetchArgs && fetchArgs.args.statusFilter) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
+        } else if (
+          isFetchArgs ||
+          (fetchArgs.args.statusFilter &&
+            fetchArgs.args.statusFilter === AppFilterType.ALL)
+        ) {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+            fetchArgs.page
+          }&companyName=${fetchArgs.args!.expr}`
         } else {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }
