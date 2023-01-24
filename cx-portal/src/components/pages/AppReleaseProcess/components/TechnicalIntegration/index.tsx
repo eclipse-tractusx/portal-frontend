@@ -107,6 +107,7 @@ export default function TechnicalIntegration() {
     control,
     trigger,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
@@ -146,7 +147,7 @@ export default function TechnicalIntegration() {
 
     const updateRolesData: updateRoleType = {
       appId: appId,
-      body: rolesPreviews.map((item) => ({
+      body: rolesPreviews?.map((item) => ({
         role: item,
         descriptions: [
           {
@@ -157,46 +158,20 @@ export default function TechnicalIntegration() {
       })),
     }
 
-    await updateRoleData(updateRolesData)
-      .unwrap()
-      .then((data) => {
-        setRolesResponse(data)
-      })
-      .catch((error) => {
-        console.error(error, 'ERROR WHILE UPDATING ROLES')
-      })
-  }
-
-  const deletedFile = (file: DropzoneFile[]) => {
-    setDeleteOverlay(true)
-  }
-
-  const onDelete = () => {
-    rolesResponse.map((item) =>
-      deleteRoles({
-        appId: appId,
-        roleId: item.roleId,
-      })
+    if (rolesPreviews.length > 0) {
+      await updateRoleData(updateRolesData)
         .unwrap()
-        .then(() => {
-          setDeleteOverlay(false)
+        .then((data) => {
+          setRolesResponse(data)
           setRolesPreviews([])
+          reset(defaultValues)
           refetch()
-          setSnackBarType('success')
-          setSnackBarMessage(
-            t('content.apprelease.appReleaseForm.rolesDeleteSuccessMessage')
-          )
-          setTechnicalIntegrationSnackbar(true)
+          setEnableUploadAppRoles(false)
         })
-        .catch(() => {
-          setDeleteOverlay(false)
-          setSnackBarType('error')
-          setSnackBarMessage(
-            t('content.apprelease.appReleaseForm.errormessage')
-          )
-          setTechnicalIntegrationSnackbar(true)
+        .catch((error) => {
+          console.error(error, 'ERROR WHILE UPDATING ROLES')
         })
-    )
+    }
   }
 
   const onChipDelete = (roleId: string) => {
@@ -259,7 +234,11 @@ export default function TechnicalIntegration() {
               minWidth: '100px',
             }}
             variant="contained"
-            onClick={onDelete}
+            onClick={() => {
+              setDeleteOverlay(false)
+              setRolesPreviews([])
+            }
+            }
           >
             {`${t('global.actions.yes')}`}
           </Button>
@@ -374,14 +353,13 @@ export default function TechnicalIntegration() {
               <Controller
                 name={'uploadAppRoles'}
                 control={control}
-                rules={{ required: true }}
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange: reactHookFormOnChange, value } }) => (
                   <Dropzone
-                    onChange={(files, deletedFiles) => {
-                      if (deletedFiles?.length) {
-                        deletedFile(deletedFiles)
+                    onChange={(files, addedFiles, deletedFiles) => {
+                     if (deletedFiles?.length) {
+                        setDeleteOverlay(true)
                       }
-                      onChange(files[0]?.name)
+                      reactHookFormOnChange(files[0]?.name)
                       trigger('uploadAppRoles')
                       csvPreview(files)
                     }}
