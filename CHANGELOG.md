@@ -15,12 +15,12 @@ n/a
 n/a
 
 ### Technical Support
-* Static Template handling updated to fetch content from asset repo for more felxibility and code separation from content & support of multi language activated
+* Static Template handling updated to fetch content from asset repo for more flexibility and code separation from content & support of multi-language activated
 
 ### Bugfix
-* App release process bugs fixed such as multiple document upload, fetch uplaoded roles from backend
+* App release process bugs fixed such as multiple document upload, fetch uploaded roles from backend
 * App release management board - views tabs fixed
-* Notification url's for notification mesages updated
+* Notification URLs for notification messages updated
 * Connector registration overlay overlapping tooltip icon fixed
 
 ## 1.0.0-RC3
