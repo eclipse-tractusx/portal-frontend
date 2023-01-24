@@ -37,7 +37,7 @@ import {
 } from 'features/adminBoard/adminBoardApiSlice'
 import AdminBoardElements from './AdminBoardElements'
 
-export default function AppSubscription() {
+export default function AdminBoard() {
   const { t } = useTranslation()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
@@ -45,6 +45,8 @@ export default function AppSubscription() {
   const [selected, setSelected] = useState<string>('InReview')
   const [sortOption, setSortOption] = useState<string>('new')
   const [appCards, setAppCards] = useState<AppContent[]>([])
+  const [approveDeclineSuccess, setApproveDeclineSuccess] =
+    useState<boolean>(false)
 
   let statusId = selected
 
@@ -53,7 +55,7 @@ export default function AppSubscription() {
     sortingType = 'NameAsc'
   }
 
-  const { data } = useFetchAppReleaseAppsQuery({
+  const { data, refetch } = useFetchAppReleaseAppsQuery({
     page: 0,
     statusId: statusId,
     sortingType: sortingType,
@@ -61,10 +63,21 @@ export default function AppSubscription() {
 
   const apps = data && data.content
 
-  useEffect(() => apps && setAppCards(apps), [apps])
+  const handleApproveDeclineSuccess = () => {
+    setApproveDeclineSuccess(true)
+  }
 
-  const setView = (e: React.MouseEvent<HTMLInputElement>) =>
+  useEffect(() => {
+    apps && setAppCards(apps)
+  }, [apps])
+
+  useEffect(() => {
+    refetch()
+  }, [approveDeclineSuccess, refetch])
+
+  const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
+  }
 
   const sortOptions = [
     {
@@ -77,20 +90,18 @@ export default function AppSubscription() {
     },
   ]
 
-  const filterButtons: any[] = [
+  const tabButtons: any[] = [
     {
       buttonText: t('content.adminBoard.tabs.open'),
       buttonValue: 'InReview',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => {},
+      onButtonClick: setBtnView,
     },
     {
       buttonText: t('content.adminBoard.tabs.all'),
       buttonValue: 'All',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => {},
+      onButtonClick: setBtnView,
     },
-  ].map((btn) => (btn.onButtonClick = setView))
-
-  console.log('testing', apps)
+  ]
 
   const debouncedFilter = useMemo(
     () =>
@@ -141,13 +152,14 @@ export default function AppSubscription() {
             value={searchExpr}
             autoFocus={false}
             onChange={(e) => handleSearch(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div
           className="filterSection"
           onMouseLeave={() => setShowModalValue(false)}
         >
-          <ViewSelector activeView={selected} views={filterButtons} />
+          <ViewSelector activeView={selected} views={tabButtons} />
           <div className="iconSection">
             <SortIcon
               onClick={() => setShowModalValue(true)}
@@ -177,7 +189,10 @@ export default function AppSubscription() {
             />
           </div>
         ) : (
-          <AdminBoardElements apps={appCards} />
+          <AdminBoardElements
+            apps={appCards}
+            handleApproveDeclineSuccess={handleApproveDeclineSuccess}
+          />
         )}
       </div>
     </div>

@@ -70,7 +70,7 @@ const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
         }
       }
       fetch(
-        `${getSemanticApiBase()}hub/api/v1/models/${encodedUrn}/${url}`,
+        `${getSemanticApiBase()}/hub/api/v1/models/${encodedUrn}/${url}`,
         getHeaders()
       )
         .then((response) => {

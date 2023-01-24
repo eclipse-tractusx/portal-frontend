@@ -18,38 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export type CardDetailsProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  backgroundColor: string
-  readMore: string
-  readMoreTitle: string
-  id: string
-  imageShape?: string
-}
+import { Box } from '@mui/material'
+import { Typography } from '../../Typography'
+import { ProviderProps } from '../StaticTypes'
 
-export type ProviderProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  videoUrl?: string
-  backgroundColor: string
-  id: string
-  detailsWithImageRow1: CardDetailsProps[]
-  detailsWithImageRow2: CardDetailsProps[]
-  detailsWithoutImageRow1: CardDetailsProps[]
-  detailsWithoutImageRow2: CardDetailsProps[]
-  grid: number
-  template: string
-  linksRow1: linkProps[]
-  linksRow2: linkProps[]
-  subTitles?: string[]
-  align?: 'left' | 'center' | 'right'
-}
-
-export type linkProps = {
-  background: string
-  title: string
-  navigate: string
+export default function TextCenterAlignedBody2({
+  provider,
+}: {
+  provider: ProviderProps
+}) {
+  return (
+    <Box
+      sx={{
+        textAlign: provider.align || 'left',
+        padding: '40px 80px',
+        backgroundColor: provider.backgroundColor || '#ffffff',
+      }}
+    >
+      <Box>
+        <Typography variant="h2">{provider.title}</Typography>
+        {provider.subTitles &&
+          provider.subTitles.map((subtitle) => (
+            <Typography
+              key={subtitle}
+              sx={{
+                padding: '30px 0px',
+              }}
+              variant="body2"
+            >
+              {subtitle}
+            </Typography>
+          ))}
+      </Box>
+    </Box>
+  )
 }
