@@ -24,6 +24,7 @@ import {
   DropPreviewFileProps,
   DropStatusHeaderProps,
   UploadFile,
+  deleteConfirmOverlayTranslation,
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
 } from 'cx-portal-shared-components'
@@ -49,6 +50,8 @@ export interface DropzoneProps {
   DropPreview?: FunctionComponent<DropPreviewProps> | false
   DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
   enableDeleteIcon?: boolean
+  enableDeleteOverlay?: boolean
+  deleteOverlayTranslation?: deleteConfirmOverlayTranslation
 }
 
 export const Dropzone = ({
@@ -62,6 +65,8 @@ export const Dropzone = ({
   DropPreview,
   DropPreviewFile,
   enableDeleteIcon = true,
+  enableDeleteOverlay = false,
+  deleteOverlayTranslation,
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
@@ -166,6 +171,8 @@ export const Dropzone = ({
           uploadProgess: t('shared.dropzone.uploadProgess'),
         }}
         enableDeleteIcon={enableDeleteIcon}
+        enableDeleteOverlay={enableDeleteOverlay}
+        deleteOverlayTranslation={deleteOverlayTranslation}
       />
     </div>
   )

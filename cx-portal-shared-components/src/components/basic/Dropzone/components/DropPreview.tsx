@@ -19,8 +19,13 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { FunctionComponent } from 'react'
-import { DropZonePreviewTranslations, UploadFile } from '../types'
+import { FunctionComponent, useState } from 'react'
+import {
+  DropZonePreviewTranslations,
+  UploadFile,
+  deleteConfirmOverlayTranslation,
+} from '../types'
+import { DeleteConfirmOverlay } from './deleteConfirmOverlay'
 import {
   DropPreviewFile as DefaultDropPreviewFile,
   DropPreviewFileProps,
@@ -34,6 +39,8 @@ export interface DropPreviewProps {
   DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
   DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
   enableDeleteIcon?: boolean
+  enableDeleteOverlay?: boolean
+  deleteOverlayTranslation?: deleteConfirmOverlayTranslation
 }
 
 export interface DropStatusHeaderProps {
@@ -48,7 +55,11 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   DropStatusHeader,
   DropPreviewFile,
   enableDeleteIcon = true,
+  enableDeleteOverlay = false,
+  deleteOverlayTranslation,
 }) => {
+  const [deletestatus, setDeleteStatus] = useState({ index: 0, state: false })
+
   const isFinished = (file: UploadFile) =>
     file.status === 'upload_success' || file.status === 'upload_error'
 
@@ -88,43 +99,65 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
     DropPreviewFileComponent = () => null
   }
 
+  const onCallback = (closeOverlay: boolean) => {
+    if (closeOverlay) {
+      onDelete?.(deletestatus.index)
+      setDeleteStatus({ index: 0, state: false })
+    } else setDeleteStatus({ index: 0, state: false })
+  }
+
   return (
-    <Box sx={{ marginTop: 4 }}>
-      <DropStatusHeaderComponent
-        numUploaded={uploadedFilesCount}
-        numTotal={filesCount}
+    <>
+      <DeleteConfirmOverlay
+        onCallback={(closeOverlay) => onCallback(closeOverlay)}
+        deleteOverlay={deletestatus.state}
+        deleteOverlayTranslation={deleteOverlayTranslation}
       />
-      {finishedFilesCount > 0 && (
-        <Box sx={{ marginTop: 4 }}>
-          {uploadFiles.map(
-            (file, index) =>
-              isFinished(file) && (
-                <DropPreviewFileComponent
-                  key={index}
-                  uploadFile={file}
-                  translations={translations}
-                  onDelete={() => onDelete?.(index)}
-                  enableDeleteIcon={enableDeleteIcon}
-                />
-              )
-          )}
-        </Box>
-      )}
-      {filesCount - finishedFilesCount > 0 && (
-        <Box sx={{ marginTop: 4 }}>
-          {uploadFiles.map(
-            (file, index) =>
-              !isFinished(file) && (
-                <DropPreviewFileComponent
-                  key={index}
-                  uploadFile={file}
-                  translations={translations}
-                  onDelete={() => onDelete?.(index)}
-                />
-              )
-          )}
-        </Box>
-      )}
-    </Box>
+      <Box sx={{ marginTop: 4 }}>
+        <DropStatusHeaderComponent
+          numUploaded={uploadedFilesCount}
+          numTotal={filesCount}
+        />
+        {finishedFilesCount > 0 && (
+          <Box sx={{ marginTop: 4 }}>
+            {uploadFiles.map(
+              (file, index) =>
+                isFinished(file) && (
+                  <DropPreviewFileComponent
+                    key={index}
+                    uploadFile={file}
+                    translations={translations}
+                    onDelete={() =>
+                      enableDeleteOverlay
+                        ? setDeleteStatus({ index: index, state: true })
+                        : onDelete?.(index)
+                    }
+                    enableDeleteIcon={enableDeleteIcon}
+                  />
+                )
+            )}
+          </Box>
+        )}
+        {filesCount - finishedFilesCount > 0 && (
+          <Box sx={{ marginTop: 4 }}>
+            {uploadFiles.map(
+              (file, index) =>
+                !isFinished(file) && (
+                  <DropPreviewFileComponent
+                    key={index}
+                    uploadFile={file}
+                    translations={translations}
+                    onDelete={() =>
+                      enableDeleteOverlay
+                        ? setDeleteStatus({ index: index, state: true })
+                        : onDelete?.(index)
+                    }
+                  />
+                )
+            )}
+          </Box>
+        )}
+      </Box>
+    </>
   )
 }

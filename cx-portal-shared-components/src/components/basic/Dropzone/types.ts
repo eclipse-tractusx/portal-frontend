@@ -23,3 +23,10 @@ export type DropZonePreviewTranslations = {
   uploadSuccess: string | JSX.Element
   uploadError: string | JSX.Element
 }
+
+export type deleteConfirmOverlayTranslation = {
+  title: string
+  content: string
+  action_no: string
+  action_yes: string
+}
