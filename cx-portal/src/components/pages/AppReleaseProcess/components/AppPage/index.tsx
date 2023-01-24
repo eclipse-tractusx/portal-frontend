@@ -361,6 +361,7 @@ export default function AppPage() {
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
+                  enableDeleteIcon={false}
                 />
               )
             }}
@@ -401,6 +402,7 @@ export default function AppPage() {
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
+                  enableDeleteIcon: false,
                   rules: {
                     required: {
                       value: true,

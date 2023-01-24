@@ -33,6 +33,7 @@ export interface DropPreviewProps {
 
   DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
   DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
+  enableDeleteIcon?: boolean
 }
 
 export interface DropStatusHeaderProps {
@@ -46,6 +47,7 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   onDelete,
   DropStatusHeader,
   DropPreviewFile,
+  enableDeleteIcon = true,
 }) => {
   const isFinished = (file: UploadFile) =>
     file.status === 'upload_success' || file.status === 'upload_error'
@@ -102,6 +104,7 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
                   uploadFile={file}
                   translations={translations}
                   onDelete={() => onDelete?.(index)}
+                  enableDeleteIcon={enableDeleteIcon}
                 />
               )
           )}

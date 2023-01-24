@@ -43,12 +43,14 @@ export interface DropPreviewFileProps {
   uploadFile: UploadFile
   onDelete?: () => void
   translations: DropZonePreviewTranslations
+  enableDeleteIcon?: boolean
 }
 
 export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
   uploadFile,
   translations,
   onDelete,
+  enableDeleteIcon = true,
 }) => {
   const theme = useTheme()
 
@@ -98,7 +100,9 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
   }
 
   const showDeleteButton =
-    uploadFile.status !== 'uploading' && uploadFile.status !== 'upload_error'
+    enableDeleteIcon &&
+    uploadFile.status !== 'uploading' &&
+    uploadFile.status !== 'upload_error'
 
   return (
     <Box

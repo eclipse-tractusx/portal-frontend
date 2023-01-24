@@ -48,6 +48,7 @@ export interface DropzoneProps {
   DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
   DropPreview?: FunctionComponent<DropPreviewProps> | false
   DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
+  enableDeleteIcon?: boolean
 }
 
 export const Dropzone = ({
@@ -60,6 +61,7 @@ export const Dropzone = ({
   DropStatusHeader,
   DropPreview,
   DropPreviewFile,
+  enableDeleteIcon = true,
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
@@ -163,6 +165,7 @@ export const Dropzone = ({
           uploadSuccess: t('shared.dropzone.uploadSuccess'),
           uploadProgess: t('shared.dropzone.uploadProgess'),
         }}
+        enableDeleteIcon={enableDeleteIcon}
       />
     </div>
   )

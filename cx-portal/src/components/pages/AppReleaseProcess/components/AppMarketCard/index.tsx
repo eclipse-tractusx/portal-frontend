@@ -100,6 +100,7 @@ export const ConnectorFormInputField = ({
   maxFilesToUpload,
   maxFileSize,
   defaultValues,
+  enableDeleteIcon,
 }: any) => (
   <Controller
     name={name}
@@ -139,6 +140,7 @@ export const ConnectorFormInputField = ({
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             maxFileSize={maxFileSize}
+            enableDeleteIcon={enableDeleteIcon}
           />
         )
       } else if (type === 'checkbox') {
