@@ -6,6 +6,14 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Bugs
    * Restrict file extension in Connector request form
+* Connector
+   * Overlay text update
+* Registration
+   * Checklist UI and API integration
+   * Checklist overlay
+* Static templates
+   * Moved JSON files to locales
+   * New components added
 
 ## 1.0.0-RC4
 
