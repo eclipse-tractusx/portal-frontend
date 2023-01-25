@@ -122,7 +122,8 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
         />
         {finishedFilesCount > 0 && (
           <Box sx={{ marginTop: 4 }}>
-            {uploadFiles.filter((file) => isFinished(file))
+            {uploadFiles
+              .filter((file) => isFinished(file))
               .map((file, index) => (
                 <DropPreviewFileComponent
                   key={index}
@@ -140,7 +141,8 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
         )}
         {filesCount - finishedFilesCount > 0 && (
           <Box sx={{ marginTop: 4 }}>
-            {uploadFiles.filter((file) => !isFinished(file))
+            {uploadFiles
+              .filter((file) => !isFinished(file))
               .map((file, index) => (
                 <DropPreviewFileComponent
                   key={index}
