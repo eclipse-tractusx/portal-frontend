@@ -12,7 +12,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Static templates
    * Moved JSON files to locales
    * New components added
-
+* Bugs
+   * Refetch updated notification list on delete action
 
 ## 1.0.0-RC4
 
