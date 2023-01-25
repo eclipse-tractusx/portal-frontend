@@ -4,7 +4,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
-
+* Bugs
+   * Restrict file extension in Connector request form
 
 ## 1.0.0-RC4
 
