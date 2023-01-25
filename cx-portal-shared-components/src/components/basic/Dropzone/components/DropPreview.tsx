@@ -24,6 +24,7 @@ import {
   DropZonePreviewTranslations,
   UploadFile,
   deleteConfirmOverlayTranslation,
+  UploadStatus,
 } from '../types'
 import { DeleteConfirmOverlay } from './deleteConfirmOverlay'
 import {
@@ -61,13 +62,14 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   const [deletestatus, setDeleteStatus] = useState({ index: 0, state: false })
 
   const isFinished = (file: UploadFile) =>
-    file.status === 'upload_success' || file.status === 'upload_error'
+    file.status === UploadStatus.UPLOAD_SUCCESS ||
+    file.status === UploadStatus.UPLOAD_ERROR
 
   const filesCount = uploadFiles.length
 
   const finishedFilesCount = uploadFiles.filter(isFinished).length
   const uploadedFilesCount = uploadFiles.filter(
-    (file) => file.status === 'upload_success'
+    (file) => file.status === UploadStatus.UPLOAD_SUCCESS
   ).length
 
   const DefaultDropStatusHeader: typeof DropStatusHeader = ({
@@ -102,8 +104,8 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
   const onCallback = (closeOverlay: boolean) => {
     if (closeOverlay) {
       onDelete?.(deletestatus.index)
-      setDeleteStatus({ index: 0, state: false })
-    } else setDeleteStatus({ index: 0, state: false })
+    }
+    setDeleteStatus({ index: 0, state: false })
   }
 
   return (

@@ -32,6 +32,7 @@ import {
   SelectList,
   UploadFileStatus,
   PageSnackbar,
+  UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid, Divider, Box, InputLabel } from '@mui/material'
@@ -442,14 +443,14 @@ export default function AppMarketCard() {
                 status,
               } as any)
 
-            setFileStatus('uploading')
+            setFileStatus(UploadStatus.UPLOADING)
 
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
               .then(() => {
-                setFileStatus('upload_success')
+                setFileStatus(UploadStatus.UPLOAD_SUCCESS)
               })
               .catch(() => {
-                setFileStatus('upload_error')
+                setFileStatus(UploadStatus.UPLOAD_ERROR)
               })
 
             dispatch(setAppId(result))

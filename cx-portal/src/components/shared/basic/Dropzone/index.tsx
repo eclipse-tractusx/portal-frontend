@@ -27,6 +27,7 @@ import {
   deleteConfirmOverlayTranslation,
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
+  UploadStatus,
 } from 'cx-portal-shared-components'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
@@ -139,7 +140,7 @@ export const Dropzone = ({
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     name: file.name,
     size: file.size,
-    status: file.status ?? 'new',
+    status: file.status ?? UploadStatus.NEW,
     progressPercent: file.progressPercent,
   }))
 

@@ -1,8 +1,15 @@
+export enum UploadStatus {
+  NEW = 'new',
+  UPLOADING = 'uploading',
+  UPLOAD_SUCCESS = 'upload_success',
+  UPLOAD_ERROR = 'upload_error',
+}
+
 export type UploadFileStatus =
-  | 'new'
-  | 'uploading'
-  | 'upload_success'
-  | 'upload_error'
+  | UploadStatus.NEW
+  | UploadStatus.UPLOADING
+  | UploadStatus.UPLOAD_SUCCESS
+  | UploadStatus.UPLOAD_ERROR
 
 export type UploadFile = {
   name: string
