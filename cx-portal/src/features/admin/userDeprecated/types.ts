@@ -37,7 +37,6 @@ export type AddUser = {
   firstName: string
   lastName: string
   roles?: string[]
-  message: string
 }
 
 export type TechnicalUser = {
@@ -65,7 +64,6 @@ export const InitialAddUser = {
   firstName: '',
   lastName: '',
   roles: [],
-  message: '',
 }
 
 export const initialState: AdminUserState = {
