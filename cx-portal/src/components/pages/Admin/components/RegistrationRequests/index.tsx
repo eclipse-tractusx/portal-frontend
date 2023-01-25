@@ -28,17 +28,20 @@ import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
+  ApplicationRequest,
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
+  ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
+import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -66,8 +69,13 @@ export default function RegistrationRequests() {
 
   const [enableBpnInput, setEnableBpnInput] = useState<boolean>(false)
 
-  const [successOverlay, setSuccessOverlay] = useState(false)
-  const [errorOverlay, setErrorOverlay] = useState(false)
+  const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
+  const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
+
+  const [selectedButton, setSelectedButton] = useState<ProgressButtonsProps>()
+  const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
+    useState<boolean>(false)
+  const [checkList, setCheckList] = useState<ProgressButtonsProps[]>()
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
@@ -141,6 +149,20 @@ export default function RegistrationRequests() {
       })
   }
 
+  const onConfirmationCancel = (id: string) => {
+    //To-Do API needs to be added
+    console.log('Clicked on cancel', id)
+  }
+
+  const onChipButtonSelect = (
+    selected: ProgressButtonsProps,
+    row: ApplicationRequest
+  ) => {
+    setSelectedButton(selected)
+    setCheckList(row.applicationChecklist)
+    setStatusConfirmationOverlay(true)
+  }
+
   return (
     <main className="page-main-container">
       <PageSnackbar
@@ -190,6 +212,14 @@ export default function RegistrationRequests() {
         }}
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
+      <CheckListStatusOverlay
+        openDialog={statusConfirmationOverlay}
+        handleOverlayClose={() => {
+          setStatusConfirmationOverlay(false)
+        }}
+        progressButtons={checkList}
+        selectedButton={selectedButton}
+      />
       <AddBpnOveraly
         openDialog={enableBpnInput}
         isLoading={isLoading}
@@ -235,6 +265,11 @@ export default function RegistrationRequests() {
             setSuccessOverlay(false)
             setErrorOverlay(false)
           }}
+          onConfirmationCancel={(id: string) => onConfirmationCancel(id)}
+          onChipButtonSelect={(
+            selected: ProgressButtonsProps,
+            row: ApplicationRequest
+          ) => onChipButtonSelect(selected, row)}
         />
       </div>
     </main>
