@@ -42,7 +42,7 @@ export default function AppDetailContentDetails({
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
         <AppDetailImageGallery
-          images={item.detailPictureUris.map((image) =>
+          images={item.images.map((image) =>
             getAppImage(item.id, image)
           )}
         />

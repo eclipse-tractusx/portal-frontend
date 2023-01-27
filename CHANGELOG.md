@@ -12,6 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Static templates
    * Moved JSON files to locales
    * New components added
+* Bugfix - App details in marketplace not available
 
 
 ## 1.0.0-RC4
