@@ -467,9 +467,9 @@ export default function AppPage() {
               rules: {
                 pattern: {
                   value: Patterns.appPage.providerHomePage,
-                  message: `${t(
-                    'content.apprelease.appReleaseForm.validCharactersIncludes'
-                  )} A-Za-z.:@&0-9 !`,
+                  message: t(
+                    'content.apprelease.appPage.pleaseEnterValidHomePageURL'
+                  ),
                 },
               },
             }}
