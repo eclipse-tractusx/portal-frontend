@@ -26,7 +26,7 @@ export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
   contactNumber: string
-  detailPictureUris: string[]
+  images: string[]
   longDescription: string
   isSubscribed: string
   tags: string[]
@@ -51,7 +51,7 @@ export const AppDetailInitial = {
   providerUri: '',
   contactEmail: '',
   contactNumber: '',
-  detailPictureUris: [''],
+  images: [''],
   longDescription: '',
   isSubscribed: '',
   tags: [''],
