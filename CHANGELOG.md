@@ -19,7 +19,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Moved JSON files to locales
    * New components added
 * Bugfix - App details in marketplace not available
-
+* Bugfix - App release process : Changed the regex validation for Provider Homepage field 
 
 ## 1.0.0-RC4
 
