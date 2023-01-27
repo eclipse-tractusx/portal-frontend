@@ -4,11 +4,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Shared Components
+   * Added delete confirm overlay to the dropzone
+* App Release Process
+   * Technical Integration - roles upload functionality 
+   
 * Connector
    * Overlay text update
 * Registration
    * Checklist UI and API integration
    * Checklist overlay
+
 * Static templates
    * Moved JSON files to locales
    * New components added
@@ -31,6 +37,7 @@ n/a
 * App release management board - views tabs fixed
 * Notification URLs for notification messages updated
 * Connector registration overlay overlapping tooltip icon fixed
+
 
 ## 1.0.0-RC3
 
