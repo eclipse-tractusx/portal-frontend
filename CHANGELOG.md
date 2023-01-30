@@ -23,6 +23,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * App details in marketplace not available
    * App release process : Changed the regex validation for 'Provider Homepage' field
    * App release process : Document upload in 'technical guide' field
+* Registration list
+   * Cancel process flow implemented
 
 ## 1.0.0-RC4
 
