@@ -40,7 +40,7 @@ export const ImageGallery = ({
   >
     {gallery.map((image) => (
       <ImageItem
-        key={image.text}
+        key={image.url}
         url={image.url}
         text={image.text}
         size={image.size || 'large-square'}
