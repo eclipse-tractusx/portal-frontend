@@ -37,7 +37,6 @@ export interface AddUser {
   firstName: string
   lastName: string
   roles?: string[]
-  message?: string
 }
 
 export interface AddUserIdp {
@@ -107,7 +106,7 @@ export const apiSlice = createApi({
         body: args.user,
       }),
     }),
-    addTenantUsers: builder.mutation<void, AddUser[]>({
+    addTenantUsers: builder.mutation<void, AddUserIdp[]>({
       query: (body) => ({
         url: `/api/administration/user/owncompany/users`,
         method: 'POST',

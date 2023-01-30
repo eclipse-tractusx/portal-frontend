@@ -81,7 +81,7 @@ export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
   contactNumber: string
-  detailPictureUris: string[]
+  images: string[]
   documents: DocumentAppContract
   longDescription: string
   isSubscribed: string

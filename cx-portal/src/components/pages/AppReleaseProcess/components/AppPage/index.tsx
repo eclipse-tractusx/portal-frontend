@@ -25,6 +25,7 @@ import {
   PageNotifications,
   UploadFileStatus,
   PageSnackbar,
+  UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
@@ -132,11 +133,15 @@ export default function AppPage() {
     const value = getValues().uploadAppContract
 
     if (value && !('status' in value)) {
-      setFileStatus('uploadAppContract', 'uploading')
+      setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
 
       uploadDocumentApi(appId, 'APP_CONTRACT', value)
-        .then(() => setFileStatus('uploadAppContract', 'upload_success'))
-        .catch(() => setFileStatus('uploadAppContract', 'upload_error'))
+        .then(() =>
+          setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadAppContract', UploadStatus.UPLOAD_ERROR)
+        )
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadAppContractValue])
@@ -145,11 +150,15 @@ export default function AppPage() {
     const value = getValues().uploadDataPrerequisits
 
     if (value && !('status' in value)) {
-      setFileStatus('uploadDataPrerequisits', 'uploading')
+      setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
 
       uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', value)
-        .then(() => setFileStatus('uploadDataPrerequisits', 'upload_success'))
-        .catch(() => setFileStatus('uploadDataPrerequisits', 'upload_error'))
+        .then(() =>
+          setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_ERROR)
+        )
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataPrerequisitsValue])
@@ -158,11 +167,15 @@ export default function AppPage() {
     const value = getValues().uploadTechnicalGuide
 
     if (value && !('status' in value)) {
-      setFileStatus('uploadTechnicalGuide', 'uploading')
+      setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
 
       uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
-        .then(() => setFileStatus('uploadDataPrerequisits', 'upload_success'))
-        .catch(() => setFileStatus('uploadTechnicalGuide', 'upload_error'))
+        .then(() =>
+          setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_ERROR)
+        )
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
@@ -181,10 +194,10 @@ export default function AppPage() {
       }
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
-        setFileStatus(fileIndex, 'uploading')
+        setFileStatus(fileIndex, UploadStatus.UPLOADING)
         uploadDocumentApi(appId, 'APP_IMAGE', value[fileIndex])
-          .then(() => setFileStatus(fileIndex, 'upload_success'))
-          .catch(() => setFileStatus(fileIndex, 'upload_error'))
+          .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
+          .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
     }
   }
@@ -361,6 +374,7 @@ export default function AppPage() {
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
+                  enableDeleteIcon={false}
                 />
               )
             }}
@@ -401,6 +415,7 @@ export default function AppPage() {
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
+                  enableDeleteIcon: false,
                   rules: {
                     required: {
                       value: true,
@@ -452,9 +467,9 @@ export default function AppPage() {
               rules: {
                 pattern: {
                   value: Patterns.appPage.providerHomePage,
-                  message: `${t(
-                    'content.apprelease.appReleaseForm.validCharactersIncludes'
-                  )} A-Za-z.:@&0-9 !`,
+                  message: t(
+                    'content.apprelease.appPage.pleaseEnterValidHomePageURL'
+                  ),
                 },
               },
             }}
