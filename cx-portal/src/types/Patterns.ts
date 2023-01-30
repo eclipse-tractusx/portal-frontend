@@ -57,10 +57,6 @@ export const Patterns = {
   appPage: {
     longDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
     longDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
-    providerHomePage: new RegExp(
-      `^((https)://)?(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
-      'i'
-    ),
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {

@@ -20,8 +20,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * New components added
 * Bugs
    * Refetch updated notification list on delete action
-* Bugfix - App details in marketplace not available
-* Bugfix - App release process : Changed the regex validation for Provider Homepage field 
+   * App details in marketplace not available
+   * App release process : Changed the regex validation for 'Provider Homepage' field
+   * App release process : Document upload in 'technical guide' field
 
 ## 1.0.0-RC4
 

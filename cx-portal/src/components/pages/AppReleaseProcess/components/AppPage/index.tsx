@@ -171,7 +171,7 @@ export default function AppPage() {
 
       uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
         .then(() =>
-          setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
+          setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
         )
         .catch(() =>
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_ERROR)
@@ -466,7 +466,7 @@ export default function AppPage() {
               type: 'input',
               rules: {
                 pattern: {
-                  value: Patterns.appPage.providerHomePage,
+                  value: Patterns.URL,
                   message: t(
                     'content.apprelease.appPage.pleaseEnterValidHomePageURL'
                   ),
