@@ -123,7 +123,12 @@
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
           "serviceProvider": "Service Anbieter",
-          "noinfo": "no data available"
+          "noinfo": "no data available",
+          "commercialRegisterNumber": "Handelsregisternummer",
+          "vatId": "VAT ID",
+          "leiCode": "LEI Code",
+          "vies": "VIES",
+          "eori": "EORI"
         },
         "checkList": {
           "REGISTRATION_VERIFICATION": "Data Validation",
@@ -874,7 +879,7 @@
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
         "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
-        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net or catena-x.net",
+        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
         "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
       },

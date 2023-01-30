@@ -4,22 +4,25 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Bugs
+   * Restrict file extension in Connector request form
 * Shared Components
    * Added delete confirm overlay to the dropzone
 * App Release Process
    * Technical Integration - roles upload functionality 
-   
 * Connector
    * Overlay text update
 * Registration
    * Checklist UI and API integration
    * Checklist overlay
-
 * Static templates
    * Moved JSON files to locales
    * New components added
-* Bugfix - App details in marketplace not available
-* Bugfix - App release process : Changed the regex validation for Provider Homepage field 
+* Bugs
+   * Refetch updated notification list on delete action
+   * App details in marketplace not available
+   * App release process : Changed the regex validation for 'Provider Homepage' field
+   * App release process : Document upload in 'technical guide' field
 
 ## 1.0.0-RC4
 

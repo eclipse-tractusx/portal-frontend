@@ -147,7 +147,10 @@ const ConnectorInsertForm = ({
   const { spacing } = theme
 
   const dropzoneProps = {
-    accept: '*',
+    accept: {
+      'application/x-pem-file': [],
+      'application/x-x509-ca-cert': [],
+    },
   }
 
   return (
