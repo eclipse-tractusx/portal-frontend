@@ -102,13 +102,13 @@ export default function NotificationCenter() {
   useEffect(() => {
     if (data) {
       setPaginationData(data?.meta)
-      if (data?.meta.page !== page) {
-        setNotificationItems((i) => i.concat(data?.content))
-      } else {
-        setNotificationItems(data?.content)
-      }
+      setNotificationItems(
+        data?.meta.page !== page
+          ? (i) => i.concat(data?.content)
+          : data?.content
+      )
     }
-    //Disabled link check -Because can not run this block on change of Page value. It has to run only when data changes
+    //Disabled link check - Because can not run this block on change of Page value. It has to run only when data changes
     // eslint-disable-next-line
   }, [data])
 
@@ -144,9 +144,7 @@ export default function NotificationCenter() {
     })
   }, [filterOption, sortOption, page, loaded])
 
-  const getTotalCount = (unread = 0) => {
-    return unread ? unread : 0
-  }
+  const getTotalCount = (unread = 0) => (unread ? unread : 0)
 
   const filterButtons = [
     {
