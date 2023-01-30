@@ -41,6 +41,7 @@ export const apiSlice = createApi({
     }),
     getNotificationMeta: builder.query<CXNotificationMeta, null>({
       query: () => `/api/notification/count-details`,
+      providesTags: ['Notification'],
     }),
     getNotifications: builder.query<CXNotification, FetchArgs>({
       query: (fetchArgs) => {
