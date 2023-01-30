@@ -23,8 +23,16 @@ import MuiAlert from '@mui/material/Alert'
 interface AlertProps {
   severity?: 'error' | 'warning' | 'info' | 'success'
   children?: string | JSX.Element
+  width?: string
 }
 
-export const Alert = ({ severity = 'info', children }: AlertProps) => (
-  <MuiAlert severity={severity}>{children}</MuiAlert>
+export const Alert = ({ severity = 'info', children, width }: AlertProps) => (
+  <MuiAlert
+    sx={{
+      width: width ? `${width}!important` : '45%',
+    }}
+    severity={severity}
+  >
+    {children}
+  </MuiAlert>
 )

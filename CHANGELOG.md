@@ -4,17 +4,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Bugs
+   * Restrict file extension in Connector request form
 * Shared Components
    * Added delete confirm overlay to the dropzone
 * App Release Process
    * Technical Integration - roles upload functionality 
-   
 * Connector
    * Overlay text update
 * Registration
    * Checklist UI and API integration
    * Checklist overlay
-
 * Static templates
    * Moved JSON files to locales
    * New components added
