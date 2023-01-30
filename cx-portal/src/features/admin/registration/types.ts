@@ -47,6 +47,7 @@ export type CompanyDetail = {
   city: string
   countryDe: string
   companyRoles: []
+  uniqueIds?: []
 }
 
 export type RegistrationRequestDocument = {

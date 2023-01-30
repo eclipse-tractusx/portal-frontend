@@ -121,7 +121,12 @@
           "activeParticipation": "Participant",
           "appProvider": "App Provider",
           "serviceProvider": "Service Provider",
-          "noinfo": "no data available"
+          "noinfo": "no data available",
+          "commercialRegisterNumber": "Commercial Register Number",
+          "vatId": "VAT ID",
+          "leiCode": "LEI Code",
+          "vies": "VIES",
+          "eori": "EORI"
         },
         "checkList": {
           "REGISTRATION_VERIFICATION": "Data Validation",
