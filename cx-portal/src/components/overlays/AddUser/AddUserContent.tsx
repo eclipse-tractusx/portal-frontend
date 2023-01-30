@@ -78,6 +78,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const [addTenantUsers, { isSuccess, isError }] = useAddTenantUsersMutation()
   const [addUserIdp] = useAddUserIdpMutation()
   const [status, setStatus] = useState<AddUserState>(AddUserState.NONE)
+  const [valid, setValid] = useState<boolean>(false)
   const fields: IHashMap<string> = {}
   const [data, setData] = useState(fields)
 
@@ -94,6 +95,21 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   useEffect(() => {
     dispatch(setRolesToAdd([]))
   }, [dispatch])
+
+  useEffect(() => {
+    const isValid = !!(
+      usersToAdd.email &&
+      usersToAdd.firstName &&
+      usersToAdd.lastName &&
+      rolesToAdd &&
+      rolesToAdd.length > 0
+    )
+    setValid(
+      idp.identityProviderCategoryId === IDPCategory.KEYCLOAK_SHARED
+        ? isValid
+        : !!(isValid && usersToAdd.userId)
+    )
+  }, [usersToAdd, rolesToAdd, idp])
 
   const handleConfirm = async () => {
     dispatch(setAddUserSuccess(false))
@@ -156,7 +172,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" onClick={handleConfirm}>
+        <Button variant="contained" disabled={!valid} onClick={handleConfirm}>
           {t('global.actions.confirm')}
         </Button>
       </DialogActions>

@@ -28,7 +28,7 @@ export class Api extends HttpClient {
   private static classInstance?: Api
 
   public constructor() {
-    super(`${getSemanticApiBase()}registry`)
+    super(`${getSemanticApiBase()}/registry`)
   }
 
   public static getInstance() {

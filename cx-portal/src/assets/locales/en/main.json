@@ -128,6 +128,13 @@
           "vies": "VIES",
           "eori": "EORI"
         },
+        "checkList": {
+          "REGISTRATION_VERIFICATION": "Data Validation",
+          "BUSINESS_PARTNER_NUMBER": "BPN Creation",
+          "IDENTITY_WALLET": "Identity Wallet Creation",
+          "CLEARING_HOUSE": "Clearing House",
+          "SELF_DESCRIPTION_LP": "Self Description"
+        },
         "confirmmodal": {
           "title": "Confirm action",
           "description": "Are you sure to make action on selected request?"
@@ -349,12 +356,12 @@
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
-      "submenuNotAvail": "Sub-Menu is not available for not active apps."
+      "submenuNotAvail": "Sub-Menu is not available for inactive apps."
     },
     "deactivate": {
       "headerTitle": "Deactivate Business App",
       "description": "Deactivation of business applications will deactivate the app offer inside the Catena-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
-      "checkboxLabel": "Hereby I confirm that I have ridden the business app terms and conditions and that I am deactivating my company business application from the marketpalce with immediately affect. I have understood that it is not possible to self-reverse the deactivation.",
+      "checkboxLabel": "Hereby I confirm that I have read the business app terms and conditions and that I am deactivating my company business application from the marketplace with immediate effect. I understand that it is not possible to self-reverse the deactivation.",
       "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
       "successMsg": "Deactivation successfully completed",
       "errorMsg": "Error! Something went wrong"
@@ -529,7 +536,7 @@
       "description": "View and manage all users assigned to the company. Assign roles; create new user accounts and create technical users.",
       "apparea": {
         "headline": "App Access Management",
-        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
+        "appsNotAvailable": "Apps will be available as soon as business applications are subscribed and activated"
       },
       "table": {
         "headline": "Identity Management",
@@ -822,6 +829,7 @@
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
         "providerPhoneContactPlaceholder": "Following formats are supported: +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
+        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net or catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
         "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx"
       },
@@ -1016,16 +1024,6 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
-    },
-    "companyRoleSubNavigation": {
-      "link1Label": "marketplace",
-      "link2Label": "marketplace subscriptions",
-      "link3Label": "dataspace participants"
-    },
-    "useCaseNavigation": {
-      "link1Label": "Intro",
-      "link2Label": "Data Provisioning",
-      "link3Label": "Business Applications"
     }
   },
   "notification": {

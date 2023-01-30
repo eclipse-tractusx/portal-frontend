@@ -36,6 +36,8 @@ export const Patterns = {
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   COMPANY_NAME: /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ-_+=.,:;!?'"&#@()]\s?){1,29}$/i,
+  firstName: /^[A-Za-zÀ-ÿ-]{2,40}$/,
+  lastName: /^[A-Za-zÀ-ÿ-]{2,40}$/,
   prefix: {
     BPN: /^BPNL/i,
     URL: /^https:/i,
@@ -55,7 +57,10 @@ export const Patterns = {
   appPage: {
     longDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
     longDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
-    providerHomePage: /^([A-Za-z.:@&0-9 !])+$/,
+    providerHomePage: new RegExp(
+      `^((https)://)?(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
+      'i'
+    ),
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {
@@ -75,6 +80,8 @@ export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
+export const isFirstName = (expr: string) => Patterns.firstName.test(expr)
+export const isLastName = (expr: string) => Patterns.lastName.test(expr)
 export const isIDPClientID = (expr: string) => Patterns.idp.clientId.test(expr)
 export const isIDPClientSecret = (expr: string) =>
   Patterns.idp.clientSecret.test(expr)

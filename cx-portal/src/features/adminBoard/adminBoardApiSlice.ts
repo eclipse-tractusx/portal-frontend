@@ -72,7 +72,7 @@ export const apiSlice = createApi({
     }),
     declineRequest: builder.mutation<boolean, string>({
       query: (appId) => ({
-        url: `/api/apps/appreleaseprocess/${appId}/declineApp`,
+        url: `/api/apps/${appId}/declineApp`,
         method: 'PUT',
       }),
     }),

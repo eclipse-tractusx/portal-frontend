@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
 import { useState } from 'react'
+import { Typography } from '../Typography'
 import ImageItemOverlay from './ImageItemOverlay'
 import { ImageType } from './types'
 
