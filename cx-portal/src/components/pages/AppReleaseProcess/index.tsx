@@ -32,6 +32,8 @@ import { Box } from '@mui/material'
 import './AppReleaseProcess.scss'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useDispatch } from 'react-redux'
+import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import { initialState } from 'features/appManagement/types'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
@@ -80,6 +82,8 @@ export default function AppReleaseProcess() {
   const onStartClick = () => {
     navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
     dispatch(setCurrentActiveStep())
+    dispatch(setAppId(''))
+    dispatch(setAppStatus(initialState.appStatusData))
   }
 
   return (

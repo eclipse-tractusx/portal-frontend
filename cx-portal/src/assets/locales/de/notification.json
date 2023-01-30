@@ -87,8 +87,8 @@
     "user": "Zum Benutzer",
     "usecases": "Zu den Use Cases",
     "serviceprovider": "Go to service provider",
-    "appmanagementboard": "Get there",
-    "servicemanagementboard": "Get there"
+    "appmanagementboard": "App Management Board öffnen",
+    "servicemanagementboard": "Service Management Board öffnen"
   },
   "due": "fällig",
   "search": "...suchen",
@@ -97,7 +97,7 @@
   "actionRequired": "Your action is required",
   "deleteModal": {
     "title": "Nachrichte löschen",
-    "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+    "intro": "Möchten Sie diese Nachricht löschen? Die Löschung kann nicht rückgängig gemacht werden."
   },
   "sortOptions": {
     "new": "Neuste",
@@ -105,7 +105,7 @@
     "unread": "Ungelesen",
     "all": "Alle",
     "app": "Apps",
-    "info": "Info's",
+    "info": "Information",
     "withaction": "Action"
   }
 }

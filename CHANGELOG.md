@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
 ### Unreleased
+* Shared Components
+   * Added delete confirm overlay to the dropzone
+* App Release Process
+   * Technical Integration - roles upload functionality 
 * Connector
    * Overlay text update
 * Registration
@@ -14,6 +18,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * New components added
 * Bugs
    * Refetch updated notification list on delete action
+* Bugfix - App details in marketplace not available
+* Bugfix - App release process : Changed the regex validation for Provider Homepage field 
 
 ## 1.0.0-RC4
 
@@ -31,6 +37,7 @@ n/a
 * App release management board - views tabs fixed
 * Notification URLs for notification messages updated
 * Connector registration overlay overlapping tooltip icon fixed
+
 
 ## 1.0.0-RC3
 
