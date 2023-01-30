@@ -41,11 +41,16 @@ export default function UseCase() {
         {
           index: 2,
           title: data.subNavigation.link2Label,
-          navigation: 'data-id',
+          navigation: 'core-id',
         },
         {
           index: 3,
           title: data.subNavigation.link3Label,
+          navigation: 'details-id',
+        },
+        {
+          index: 4,
+          title: data.subNavigation.link4Label,
           navigation: 'business-id',
         },
       ])
