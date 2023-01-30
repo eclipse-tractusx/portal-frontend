@@ -34,6 +34,7 @@ export interface NotificationArgsProps {
 export const apiSlice = createApi({
   reducerPath: 'info/notifications',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: ['Notification'], // this will enable auto-refetching feature in rtk queries
   endpoints: (builder) => ({
     getNotificationCount: builder.query<number, boolean>({
       query: (read) => `/api/notification/count?isRead=${read}`,
@@ -61,6 +62,7 @@ export const apiSlice = createApi({
         }
         return base
       },
+      providesTags: ['Notification'],
       // configuration for an individual endpoint, overriding the api setting
       keepUnusedDataFor: 10,
     }),
@@ -75,6 +77,7 @@ export const apiSlice = createApi({
         url: `/api/notification/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Notification'],
     }),
   }),
 })

@@ -100,6 +100,23 @@ const CompanyDetailOverlay = ({
     }
   }
 
+  const getUniqueIdName = (id: { type: string; value: string }) => {
+    switch (id.type) {
+      case 'COMMERCIAL_REG_NUMBER':
+        return t(
+          'content.admin.registration-requests.overlay.commercialRegisterNumber'
+        )
+      case 'VAT_ID':
+        return t('content.admin.registration-requests.overlay.vatId')
+      case 'LEI_CODE':
+        return t('content.admin.registration-requests.overlay.leiCode')
+      case 'VIES':
+        return t('content.admin.registration-requests.overlay.vies')
+      case 'EORI':
+        return t('content.admin.registration-requests.overlay.eori')
+    }
+  }
+
   return (
     <div className={'company-detail-overlay'}>
       <Dialog
@@ -175,19 +192,18 @@ const CompanyDetailOverlay = ({
                     value: selectedCompany?.bpn,
                   }}
                 />
-                <DetailGridRow
-                  key={
-                    t(
-                      'content.admin.registration-requests.overlay.taxid'
-                    ) as string
-                  }
-                  {...{
-                    variableName: `${t(
-                      'content.admin.registration-requests.overlay.taxid'
-                    )}`,
-                    value: selectedCompany?.taxId || '',
-                  }}
-                />
+                {selectedCompany.uniqueIds &&
+                  selectedCompany.uniqueIds.map(
+                    (id: { type: string; value: string }) => (
+                      <DetailGridRow
+                        key={id.type}
+                        {...{
+                          variableName: getUniqueIdName(id) as string,
+                          value: id.value || '',
+                        }}
+                      />
+                    )
+                  )}
                 <Grid
                   xs={12}
                   item
