@@ -18,6 +18,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Static templates
    * Moved JSON files to locales
    * New components added
+* Bugs
+   * Refetch updated notification list on delete action
 * Bugfix - App details in marketplace not available
 * Bugfix - App release process : Changed the regex validation for Provider Homepage field 
 
