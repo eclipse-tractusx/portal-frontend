@@ -18,6 +18,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Static templates
    * Moved JSON files to locales
    * New components added
+* App details page
+   * Fetch document/image from new end point
 * Bugs
    * Refetch updated notification list on delete action
    * App details in marketplace not available

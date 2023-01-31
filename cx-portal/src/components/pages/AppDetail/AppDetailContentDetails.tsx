@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect, useState } from 'react'
 import { Typography } from 'cx-portal-shared-components'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
@@ -25,15 +26,26 @@ import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailHowToUse from './components/AppDetailHowToUse'
 import AppDetailProvider from './components/AppDetailProvider'
 import AppDetailTags from './components/AppDetailTags'
-import { getAppImage } from 'features/apps/mapper'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
+import CommonService from 'services/CommonService'
 
 export default function AppDetailContentDetails({
   item,
 }: {
   item: AppDetails
 }) {
+  const [images, setImages] = useState<any>()
+
+  useEffect(() => {
+    if (item) {
+      const newPromies = CommonService.fetchLeadPictures(item.images)
+      Promise.all(newPromies).then((result) => {
+        setImages(result.flat())
+      })
+    }
+  }, [item])
+
   return (
     item && (
       <>
@@ -41,9 +53,7 @@ export default function AppDetailContentDetails({
         <div className="product-description">
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
-        <AppDetailImageGallery
-          images={item.images.map((image) => getAppImage(item.id, image))}
-        />
+        {images && <AppDetailImageGallery images={images} />}
         <AppDetailPrivacy />
         <AppDetailHowToUse item={item} />
         <AppDetailProvider item={item} />
