@@ -24,7 +24,11 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
-import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
+import {
+  AppFilterType,
+  ApplicationRequest,
+  ProgressButtonsProps,
+} from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
@@ -38,6 +42,8 @@ export const RequestList = ({
   loaded,
   handleDownloadDocument,
   showConfirmOverlay,
+  onConfirmationCancel,
+  onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
   onApproveClick: (id: string) => void
@@ -46,15 +52,22 @@ export const RequestList = ({
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
-  showConfirmOverlay?: any
+  showConfirmOverlay?: (applicationId: string) => void
+  onConfirmationCancel?: (applicationId: string) => void
+  onChipButtonSelect?: (
+    button: ProgressButtonsProps,
+    row: ApplicationRequest
+  ) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateApplicationRequestSelector)
-  const [group, setGroup] = useState<string>('InReview')
+  const [group, setGroup] = useState<string>(AppFilterType.INREVIEW)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterStatus, setFilterStatus] = useState<string>('InReview')
+  const [filterStatus, setFilterStatus] = useState<string>(
+    AppFilterType.INREVIEW
+  )
   const [fetchHookArgs, setFetchHookArgs] = useState({})
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -76,17 +89,17 @@ export const RequestList = ({
   const filterView = [
     {
       buttonText: t('content.admin.registration-requests.filter.all'),
-      buttonValue: '',
+      buttonValue: AppFilterType.ALL,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.admin.registration-requests.filter.review'),
-      buttonValue: 'InReview',
+      buttonValue: AppFilterType.INREVIEW,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.admin.registration-requests.filter.closed'),
-      buttonValue: 'Closed',
+      buttonValue: AppFilterType.CLOSED,
       onButtonClick: setView,
     },
   ]
@@ -97,7 +110,9 @@ export const RequestList = ({
     onDeclineClick,
     isLoading,
     handleDownloadDocument,
-    showConfirmOverlay
+    showConfirmOverlay,
+    onConfirmationCancel,
+    onChipButtonSelect
   )
 
   useEffect(() => {
@@ -114,7 +129,8 @@ export const RequestList = ({
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={80}
+        rowHeight={160}
+        alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}

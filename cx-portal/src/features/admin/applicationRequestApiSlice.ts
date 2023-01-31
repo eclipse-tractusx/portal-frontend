@@ -30,9 +30,45 @@ export enum ApplicationRequestStatus {
   SUBMITTED = 'SUBMITTED',
 }
 
+export enum AppFilterType {
+  ALL = 'All',
+  INREVIEW = 'InReview',
+  CLOSED = 'Closed',
+}
+
 export interface DocumentMapper {
   documentType: string
   documentId: string
+}
+
+export interface ApplicationChecklistType {
+  statusId: string
+  typeId: string
+}
+
+export enum ProgressStatus {
+  IN_PROGRESS = 'IN_PROGRESS',
+  TO_DO = 'TO_DO',
+  DONE = 'DONE',
+  FAILED = 'FAILED',
+}
+
+export enum StatusType {
+  REGISTRATION_VERIFICATION = 'REGISTRATION_VERIFICATION',
+  BUSINESS_PARTNER_NUMBER = 'BUSINESS_PARTNER_NUMBER',
+  IDENTITY_WALLET = 'IDENTITY_WALLET',
+  CLEARING_HOUSE = 'CLEARING_HOUSE',
+  SELF_DESCRIPTION_LP = 'SELF_DESCRIPTION_LP',
+}
+
+export type ProgressButtonsProps = {
+  statusId: ProgressStatus
+  typeId: string
+  label?: string
+  highlight?: boolean
+  backgroundColor?: string
+  border?: string
+  icon?: JSX.Element
 }
 
 export interface ApplicationRequest {
@@ -43,6 +79,7 @@ export interface ApplicationRequest {
   email: string
   bpn: string
   documents: Array<DocumentMapper>
+  applicationChecklist: Array<ProgressButtonsProps>
 }
 
 export const apiSlice = createApi({
@@ -67,24 +104,32 @@ export const apiSlice = createApi({
     >({
       query: (fetchArgs) => {
         const isFetchArgs = fetchArgs.args && fetchArgs.args.expr
-        if (isFetchArgs && fetchArgs.args.statusFilter === '') {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
-            fetchArgs.page
-          }&companyName=${fetchArgs.args!.expr}`
-        } else if (isFetchArgs && fetchArgs.args.statusFilter) {
+        if (
+          isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter !== AppFilterType.ALL
+        ) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyName=${
             fetchArgs.args!.expr
           }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
         } else if (
-          fetchArgs.args &&
-          !fetchArgs.args.expr &&
-          fetchArgs.args.statusFilter
+          !isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter !== AppFilterType.ALL
         ) {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
+        } else if (
+          isFetchArgs ||
+          (fetchArgs.args.statusFilter &&
+            fetchArgs.args.statusFilter === AppFilterType.ALL)
+        ) {
+          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+            fetchArgs.page
+          }&companyName=${fetchArgs.args!.expr}`
         } else {
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }

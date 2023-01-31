@@ -1,15 +1,15 @@
 {
   "name": "cx-portal-shared-components",
-  "version": "1.0.0-RC4",
+  "version": "1.0.0-RC5",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",
   "homepage": "https://catena-x.net/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/catenax-ng/product-portal-frontend.git"
+    "url": "https://github.com/eclipse-tractusx/portal-frontend.git"
   },
-  "author": "Catena-X NG <julia.jeroch@bmw.de> (https://github.com/catena-ng/)",
+  "author": "Catena-X Contributors",
   "files": [
     "package.json",
     "src",

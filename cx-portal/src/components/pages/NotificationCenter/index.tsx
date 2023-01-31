@@ -102,8 +102,14 @@ export default function NotificationCenter() {
   useEffect(() => {
     if (data) {
       setPaginationData(data?.meta)
-      setNotificationItems((i) => i.concat(data?.content))
+      setNotificationItems(
+        data?.meta.page !== page
+          ? (i) => i.concat(data?.content)
+          : data?.content
+      )
     }
+    //Disabled link check - Because can not run this block on change of Page value. It has to run only when data changes
+    // eslint-disable-next-line
   }, [data])
 
   const nextPage = () => setPage(page + 1)
@@ -138,25 +144,11 @@ export default function NotificationCenter() {
     })
   }, [filterOption, sortOption, page, loaded])
 
-  const getTotalCount = (
-    infoUnread = 0,
-    unread = 0,
-    offerUnread = 0,
-    actionRequired = 0
-  ) => {
-    return infoUnread && unread && offerUnread && actionRequired
-      ? infoUnread + unread + offerUnread + actionRequired
-      : 0
-  }
+  const getTotalCount = (unread = 0) => (unread ? unread : 0)
 
   const filterButtons = [
     {
-      buttonText: `${t('sortOptions.all')} (${getTotalCount(
-        pages?.infoUnread,
-        pages?.unread,
-        pages?.offerUnread,
-        pages?.actionRequired
-      )})`,
+      buttonText: `${t('sortOptions.all')} (${getTotalCount(pages?.unread)})`,
       buttonValue: 'ALL',
       onButtonClick: setView,
     },

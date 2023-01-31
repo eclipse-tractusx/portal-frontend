@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Input } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import Patterns from 'types/Patterns'
+import { isFirstName, isID, isLastName, isMail } from 'types/Patterns'
+import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 
 export const SingleUserContent = ({
   withUserId = false,
@@ -31,59 +31,48 @@ export const SingleUserContent = ({
   setValue: (key: string, value: string) => void
 }) => {
   const InputDefinitions = {
-    userid: {
-      key: 'userid',
+    userId: {
+      key: 'userId',
       i18n: 'global.field.userid',
-      helperText: '',
-      pattern: Patterns.ID,
-      value: '',
-      valid: false,
+      validate: isID,
     },
-    firstname: {
-      key: 'firstname',
+    firstName: {
+      key: 'firstName',
       i18n: 'global.field.first',
-      helperText: '',
-      pattern: Patterns.NAME,
-      value: '',
-      valid: false,
+      validate: isFirstName,
     },
-    lastname: {
-      key: 'lastname',
+    lastName: {
+      key: 'lastName',
       i18n: 'global.field.last',
-      helperText: '',
-      pattern: Patterns.NAME,
-      value: '',
-      valid: false,
+      validate: isLastName,
     },
     email: {
       key: 'email',
       i18n: 'global.field.email',
-      helperText: '',
-      pattern: Patterns.MAIL,
-      value: '',
-      valid: false,
+      validate: isMail,
     },
   }
   const { t } = useTranslation()
 
   return (
-    <Box sx={{ marginTop: '30px' }}>
+    <Box sx={{ margin: '0 0 30px 0' }}>
       {Object.values(
         withUserId
           ? InputDefinitions
           : {
-              firstName: InputDefinitions.firstname,
-              lastName: InputDefinitions.lastname,
+              firstName: InputDefinitions.firstName,
+              lastName: InputDefinitions.lastName,
               email: InputDefinitions.email,
             }
-      ).map(({ key, i18n, helperText }) => (
-        <Input
-          sx={{ marginBottom: '30px' }}
+      ).map(({ key, i18n, validate }) => (
+        <ValidatingInput
+          name={key}
           key={key}
           label={t(i18n)}
           placeholder={t(i18n)}
-          helperText={helperText}
-          onChange={(e) => setValue(key, e.target.value)}
+          helperText={t(i18n)}
+          validate={validate}
+          onValid={(key, value) => setValue(key, value || '')}
         />
       ))}
     </Box>

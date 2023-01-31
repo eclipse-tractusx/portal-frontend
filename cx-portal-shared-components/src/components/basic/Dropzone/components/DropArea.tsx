@@ -161,7 +161,9 @@ export const DropArea: FunctionComponent<DropAreaProps> = ({
       </Box>
       {hasErrorMessage && (
         <Box sx={{ marginY: 2 }}>
-          <Alert severity="error">{error}</Alert>
+          <Alert width={'100%'} severity="error">
+            {error}
+          </Alert>
         </Box>
       )}
     </Fragment>

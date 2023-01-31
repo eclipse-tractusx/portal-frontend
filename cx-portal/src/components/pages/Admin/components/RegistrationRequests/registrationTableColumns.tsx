@@ -30,9 +30,13 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
 import { useState } from 'react'
-import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
+import {
+  ApplicationRequest,
+  ProgressButtonsProps,
+} from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import './RegistrationRequests.scss'
+import CheckList from './components/CheckList'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
@@ -41,7 +45,12 @@ export const RegistrationRequestsTableColumns = (
   onDeclineClick: (id: string) => void,
   isLoading: boolean,
   handleDownloadDocument: (documentId: string, documentType: string) => void,
-  showConfirmOverlay?: (applicationId: string) => void
+  showConfirmOverlay?: (applicationId: string) => void,
+  onConfirmationCancel?: (applicationId: string) => void,
+  onChipButtonSelect?: (
+    button: ProgressButtonsProps,
+    row: ApplicationRequest
+  ) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
   const [selectedRowId, setSelectedRowId] = useState<string>('')
@@ -51,6 +60,7 @@ export const RegistrationRequestsTableColumns = (
       field: 'dateCreated',
       headerName: t('content.admin.registration-requests.columns.date'),
       flex: 1.5,
+      disableColumnMenu: true,
       valueGetter: ({ row }: { row: ApplicationRequest }) =>
         dayjs(row.dateCreated).format('YYYY-MM-DD'),
     },
@@ -60,6 +70,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: t('content.admin.registration-requests.columns.companyinfo'),
       flex: 2.5,
       sortable: false,
+      disableColumnMenu: true,
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <div>
           <p style={{ margin: '3px 0' }}>{row.companyName}</p>
@@ -93,6 +104,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: t('content.admin.registration-requests.columns.documents'),
       flex: 2,
       sortable: false,
+      disableColumnMenu: true,
       cellClassName: 'documents-column--cell',
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <div className="document-cell-container">
@@ -124,13 +136,10 @@ export const RegistrationRequestsTableColumns = (
       flex: 1,
       align: 'center',
       headerAlign: 'center',
+      disableColumnMenu: true,
       sortable: false,
       renderCell: () => (
-        <IconButton
-          color="secondary"
-          size="small"
-          style={{ alignSelf: 'center' }}
-        >
+        <IconButton color="secondary" size="small">
           <ArrowForwardIcon />
         </IconButton>
       ),
@@ -140,6 +149,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: t('content.admin.registration-requests.columns.state'),
       align: 'center',
       headerAlign: 'center',
+      disableColumnMenu: true,
       flex: 1,
       sortable: false,
       renderCell: ({ row }: { row: ApplicationRequest }) => {
@@ -210,6 +220,38 @@ export const RegistrationRequestsTableColumns = (
             </div>
           )
       },
+    },
+    {
+      field: 'applicationChecklist',
+      headerName: '',
+      disableColumnMenu: true,
+      flex: 0,
+      renderCell: ({ row }: { row: ApplicationRequest }) => (
+        <div
+          style={{
+            position: 'absolute',
+            left: '-35px',
+            marginTop: '90px',
+            width: '100%',
+          }}
+        >
+          {row.applicationChecklist && row.applicationChecklist.length > 0 ? (
+            <CheckList
+              headerText="Confirmation in progress: "
+              progressButtons={row.applicationChecklist}
+              showCancel={true}
+              cancelText="Cancel Confirmation"
+              alignRow="center"
+              onButtonClick={(button) =>
+                onChipButtonSelect && onChipButtonSelect(button, row)
+              }
+              onCancel={() =>
+                onConfirmationCancel && onConfirmationCancel(row.applicationId)
+              }
+            />
+          ) : null}
+        </div>
+      ),
     },
   ]
 }
