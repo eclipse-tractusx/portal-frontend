@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import Box from '@mui/material/Box'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography, Button } from 'cx-portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
@@ -145,6 +145,8 @@ export default function CheckList({
     }
   }, [progressButtons, selectedButton, updateCheckListStatusButtons])
 
+  const isCancelPresent = () => showCancel && getProgressValue() < 100
+
   return (
     <>
       {checkListButtons && (
@@ -180,7 +182,7 @@ export default function CheckList({
                   variant="filled"
                   icon={button?.icon}
                   sx={{
-                    width: '120px',
+                    width: isCancelPresent() ? '120px' : '145px',
                     height: button.highlight ? '56px' : '40px',
                     padding: '8px 12px',
                     borderRadius: '8px',
@@ -200,19 +202,21 @@ export default function CheckList({
             })}
           </Box>
           {showCancel && getProgressValue() < 100 && (
-            <Box onClick={() => onCancel}>
-              <Typography
-                sx={{
-                  fontSize: '12px',
-                  color: '#D91E18',
-                  cursor: 'pointer',
-                  marginLeft: '25px',
-                }}
-                variant="subtitle2"
-              >
-                {cancelText}
-              </Typography>
-            </Box>
+            <Button
+              variant="text"
+              size="small"
+              sx={{
+                fontSize: '12px',
+                color: '#D91E18',
+                marginLeft: '25px',
+                ':hover': {
+                  backgroundColor: '#FEE7E2',
+                },
+              }}
+              onClick={onCancel}
+            >
+              {cancelText}
+            </Button>
           )}
         </Box>
       )}
