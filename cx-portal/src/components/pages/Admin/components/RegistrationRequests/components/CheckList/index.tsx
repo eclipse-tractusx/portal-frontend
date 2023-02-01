@@ -144,7 +144,7 @@ export default function CheckList({
 
   return (
     <>
-      {checkListButtons && getProgressValue() !== 100 && (
+      {checkListButtons && (
         <Box
           sx={{
             display: 'flex',

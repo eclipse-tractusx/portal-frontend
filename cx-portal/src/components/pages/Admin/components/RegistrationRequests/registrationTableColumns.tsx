@@ -157,7 +157,6 @@ export const RegistrationRequestsTableColumns = (
                     type: 'progress',
                     onClick: () => {},
                     withIcon: true,
-                    disabled: row.bpn ? false : true,
                   }}
                 />
               )}
