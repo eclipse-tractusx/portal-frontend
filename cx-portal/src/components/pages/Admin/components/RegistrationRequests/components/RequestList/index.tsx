@@ -35,9 +35,6 @@ import './RequestListStyle.scss'
 
 export const RequestList = ({
   fetchHook,
-  onApproveClick,
-  onDeclineClick,
-  isLoading,
   onTableCellClick,
   loaded,
   handleDownloadDocument,
@@ -46,9 +43,6 @@ export const RequestList = ({
   onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  onApproveClick: (id: string) => void
-  onDeclineClick: (id: string) => void
-  isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
@@ -106,9 +100,6 @@ export const RequestList = ({
 
   const columns = RegistrationRequestsTableColumns(
     useTranslation,
-    onApproveClick,
-    onDeclineClick,
-    isLoading,
     handleDownloadDocument,
     showConfirmOverlay,
     onConfirmationCancel,

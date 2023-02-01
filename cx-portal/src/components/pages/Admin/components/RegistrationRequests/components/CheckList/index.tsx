@@ -27,6 +27,7 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
 import {
   ProgressButtonsProps,
+  progressMapper,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
@@ -55,12 +56,6 @@ export default function CheckList({
 }: CheckListProps) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
-  const progressMapper = {
-    DONE: 20,
-    IN_PROGRESS: 5,
-    TO_DO: 0,
-    FAILED: 0,
-  }
 
   const getProgressValue = () => {
     let progressValue = 0
@@ -149,7 +144,7 @@ export default function CheckList({
 
   return (
     <>
-      {checkListButtons && (
+      {checkListButtons && getProgressValue() !== 100 && (
         <Box
           sx={{
             display: 'flex',
