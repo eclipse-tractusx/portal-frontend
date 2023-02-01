@@ -23,12 +23,41 @@ import { PageNotificationsProps } from 'cx-portal-shared-components'
 
 export const name = 'admin/notification'
 
+export const PAGE_SIZE = 10
+export const PAGE = 0
+export const SORT_OPTION = 'DateDesc'
+
+export enum NOTIFICATION_TOPIC {
+  ALL = 'ALL',
+  ACTION = 'ACTION',
+  INFO = 'INFO',
+  OFFER = 'OFFER',
+}
+
+export type InitialNotificationType = {
+  page: number
+  size: number
+  args: {
+    notificationTopic: string
+    sorting: string
+  }
+}
+
 export interface ServiceAccountState {
   notification: PageNotificationsProps
+  initialNotificationState: InitialNotificationType
 }
 
 export const initialState: ServiceAccountState = {
   notification: initServicetNotifications,
+  initialNotificationState: {
+    page: PAGE,
+    size: PAGE_SIZE,
+    args: {
+      notificationTopic: NOTIFICATION_TOPIC.ALL,
+      sorting: SORT_OPTION,
+    },
+  },
 }
 
 export enum NotificationType {
