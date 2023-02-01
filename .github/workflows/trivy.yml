@@ -69,7 +69,7 @@ jobs:
         with:
           sarif_file: "trivy-results1.sarif"
 
-  analyze-product-portal-frontend:
+  analyze-portal-frontend:
     runs-on: ubuntu-latest
     permissions:
       actions: read

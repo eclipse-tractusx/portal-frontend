@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export FRONTEND=catenax-ng/product-portal-frontend
+export FRONTEND=catenax-ng/tx-portal-frontend
 export VERSION=$(cat package.json | jq -r .version)
 
 ghcr-token() {
