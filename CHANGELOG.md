@@ -5,6 +5,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 Registration list
    * Cancel process flow implemented
+   * Display checklist if result is != all "done" 
+   * For all applications in status "SUBMITTED" the process should be displayed as "IN PROGRESS"
 
 ## 1.0.0-RC5
 
