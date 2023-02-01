@@ -27,6 +27,10 @@ import {
 import {
   CXNotificationContent,
   CXNotificationPagination,
+  PAGE,
+  PAGE_SIZE,
+  SORT_OPTION,
+  NOTIFICATION_TOPIC,
 } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
@@ -45,6 +49,8 @@ import {
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
 import { Box } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { initialNotificationState } from 'features/notification/slice'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -73,20 +79,19 @@ export default function NotificationCenter() {
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [filterOption, setFilterOption] = useState<string>(t('ALL'))
+  const [filterOption, setFilterOption] = useState<string>(NOTIFICATION_TOPIC.ALL)
   const [loaded, setLoaded] = useState<boolean>(false)
-  const [sortOption, setSortOption] = useState<string>('DateDesc')
-  const [page, setPage] = useState<number>(0)
-  const PAGE_SIZE = 10
-  const [notificationState, setNotificationState] = useState({
-    page: page,
-    size: PAGE_SIZE,
-    args: {
-      notificationTopic: filterOption,
-      sorting: sortOption,
-    },
-  })
+  const [sortOption, setSortOption] = useState<string>(SORT_OPTION)
+  const [page, setPage] = useState<number>(PAGE)
+  const initialNotification = useSelector(initialNotificationState)
+  const [notificationState, setNotificationState] =
+    useState(initialNotification)
   const { data, isFetching } = useGetNotificationsQuery(notificationState)
+
+  useEffect(() => {
+    setLoaded(true)
+    setPage(initialNotification.page)
+  }, [initialNotification])
 
   const [notificationItems, setNotificationItems] = useState<
     CXNotificationContent[]
@@ -103,13 +108,9 @@ export default function NotificationCenter() {
     if (data) {
       setPaginationData(data?.meta)
       setNotificationItems(
-        data?.meta.page !== page
-          ? (i) => i.concat(data?.content)
-          : data?.content
+        data?.meta.page === 0 ? data.content : (i) => i.concat(data?.content)
       )
     }
-    //Disabled link check - Because can not run this block on change of Page value. It has to run only when data changes
-    // eslint-disable-next-line
   }, [data])
 
   const nextPage = () => setPage(page + 1)
@@ -149,24 +150,24 @@ export default function NotificationCenter() {
   const filterButtons = [
     {
       buttonText: `${t('sortOptions.all')} (${getTotalCount(pages?.unread)})`,
-      buttonValue: 'ALL',
+      buttonValue: NOTIFICATION_TOPIC.ALL,
       onButtonClick: setView,
     },
     {
       buttonText: `${t('sortOptions.app')} (${pages?.offerUnread || 0})`,
-      buttonValue: 'OFFER',
+      buttonValue: NOTIFICATION_TOPIC.OFFER,
       onButtonClick: setView,
     },
     {
       buttonText: `${t('sortOptions.info')} (${pages?.infoUnread || 0})`,
-      buttonValue: 'INFO',
+      buttonValue: NOTIFICATION_TOPIC.INFO,
       onButtonClick: setView,
     },
     {
       buttonText: `${t('sortOptions.withaction')} (${
         pages?.actionRequired || 0
       })`,
-      buttonValue: 'ACTION',
+      buttonValue: NOTIFICATION_TOPIC.ACTION,
       onButtonClick: setView,
     },
   ]

@@ -20,7 +20,7 @@
 
 import { createAction } from '@reduxjs/toolkit'
 import { PageNotificationsProps } from 'cx-portal-shared-components'
-import { name } from './types'
+import { InitialNotificationType, name } from './types'
 
 const setNotification = createAction(
   `${name}/setNotification`,
@@ -35,4 +35,15 @@ const setNotification = createAction(
 
 const resetNotification = createAction(`${name}/resetNotification`)
 
-export { setNotification, resetNotification }
+const resetInitialNotificationState = createAction(
+  `${name}/resetInitialNotificationState`,
+  function update(initialNotificationState: InitialNotificationType) {
+    return {
+      payload: {
+        initialNotificationState,
+      },
+    }
+  }
+)
+
+export { setNotification, resetNotification, resetInitialNotificationState }

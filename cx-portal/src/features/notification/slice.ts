@@ -36,11 +36,18 @@ export const notificationSlice = createSlice({
       ...state,
       notification: initServicetNotifications,
     }),
+    resetInitialNotificationState: (state, { payload }) => ({
+      ...state,
+      initialNotificationState: payload.initialNotificationState,
+    }),
   },
 })
 
 export const notificationSelector = (
   state: RootState
 ): PageNotificationsProps => state.notification.notification
+
+export const initialNotificationState = (state: RootState) =>
+  state.notification.initialNotificationState
 
 export default notificationSlice
