@@ -79,7 +79,9 @@ export default function NotificationCenter() {
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [filterOption, setFilterOption] = useState<string>(NOTIFICATION_TOPIC.ALL)
+  const [filterOption, setFilterOption] = useState<string>(
+    NOTIFICATION_TOPIC.ALL
+  )
   const [loaded, setLoaded] = useState<boolean>(false)
   const [sortOption, setSortOption] = useState<string>(SORT_OPTION)
   const [page, setPage] = useState<number>(PAGE)
@@ -231,7 +233,7 @@ export default function NotificationCenter() {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              minHeight: '200px',
+              minHeight: '400px',
             }}
           >
             <CircleProgress

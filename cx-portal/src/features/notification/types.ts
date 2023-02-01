@@ -23,7 +23,7 @@ import { PageNotificationsProps } from 'cx-portal-shared-components'
 
 export const name = 'admin/notification'
 
-export const PAGE_SIZE = 4
+export const PAGE_SIZE = 10
 export const PAGE = 0
 export const SORT_OPTION = 'DateDesc'
 
