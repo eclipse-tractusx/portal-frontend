@@ -82,6 +82,11 @@ export interface ApplicationRequest {
   applicationChecklist: Array<ProgressButtonsProps>
 }
 
+type DeclineRequestType = {
+  applicationId: string
+  comment: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/applicationRequest',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -92,10 +97,11 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
-    declineRequest: builder.mutation<boolean, string>({
-      query: (applicationId) => ({
-        url: `/api/administration/registration/application/${applicationId}/declineRequest`,
+    declineRequest: builder.mutation<boolean, DeclineRequestType>({
+      query: (obj) => ({
+        url: `/api/administration/registration/application/${obj.applicationId}/declineRequest`,
         method: 'PUT',
+        body: { comment: obj.comment },
       }),
     }),
     fetchCompanySearch: builder.query<

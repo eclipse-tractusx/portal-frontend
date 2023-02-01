@@ -46,7 +46,7 @@ export const RegistrationRequestsTableColumns = (
   isLoading: boolean,
   handleDownloadDocument: (documentId: string, documentType: string) => void,
   showConfirmOverlay?: (applicationId: string) => void,
-  onConfirmationCancel?: (applicationId: string) => void,
+  onConfirmationCancel?: (applicationId: string, name: string) => void,
   onChipButtonSelect?: (
     button: ProgressButtonsProps,
     row: ApplicationRequest
@@ -167,22 +167,24 @@ export const RegistrationRequestsTableColumns = (
                 />
               ) : (
                 <>
-                  <TransitionChip
-                    {...{
-                      color: 'secondary',
-                      variant: 'filled',
-                      label: t(
-                        'content.admin.registration-requests.buttondecline'
-                      ),
-                      type: 'decline',
-                      onClick: () => {
-                        setSelectedRowId(row.applicationId)
-                        onDeclineClick(row.applicationId)
-                      },
-                      withIcon: true,
-                      disabled: row.bpn ? false : true,
-                    }}
-                  />
+                  {row.applicationChecklist?.length === 0 && (
+                    <TransitionChip
+                      {...{
+                        color: 'secondary',
+                        variant: 'filled',
+                        label: t(
+                          'content.admin.registration-requests.buttondecline'
+                        ),
+                        type: 'decline',
+                        onClick: () => {
+                          setSelectedRowId(row.applicationId)
+                          onDeclineClick(row.applicationId)
+                        },
+                        withIcon: true,
+                        disabled: row.bpn ? false : true,
+                      }}
+                    />
+                  )}
 
                   <TransitionChip
                     {...{
@@ -237,16 +239,17 @@ export const RegistrationRequestsTableColumns = (
         >
           {row.applicationChecklist && row.applicationChecklist.length > 0 ? (
             <CheckList
-              headerText="Confirmation in progress: "
+              headerText={t('content.admin.registration-requests.progress')}
               progressButtons={row.applicationChecklist}
-              showCancel={true}
-              cancelText="Cancel Confirmation"
+              showCancel={row.applicationStatus === 'SUBMITTED'}
+              cancelText={t('content.admin.registration-requests.cancel')}
               alignRow="center"
               onButtonClick={(button) =>
                 onChipButtonSelect && onChipButtonSelect(button, row)
               }
               onCancel={() =>
-                onConfirmationCancel && onConfirmationCancel(row.applicationId)
+                onConfirmationCancel &&
+                onConfirmationCancel(row.applicationId, row.companyName)
               }
             />
           ) : null}

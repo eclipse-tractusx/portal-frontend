@@ -3,6 +3,8 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+Registration list
+   * Cancel process flow implemented
 
 ## 1.0.0-RC5
 

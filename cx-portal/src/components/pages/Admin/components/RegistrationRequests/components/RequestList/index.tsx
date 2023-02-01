@@ -53,7 +53,7 @@ export const RequestList = ({
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
   showConfirmOverlay?: (applicationId: string) => void
-  onConfirmationCancel?: (applicationId: string) => void
+  onConfirmationCancel?: (applicationId: string, name: string) => void
   onChipButtonSelect?: (
     button: ProgressButtonsProps,
     row: ApplicationRequest
