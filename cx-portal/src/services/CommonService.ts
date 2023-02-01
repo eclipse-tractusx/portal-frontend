@@ -75,6 +75,41 @@ const fetchLeadPictureImage = (data: any[]) => {
   return newPromies
 }
 
+const fetchLeadPictures = (images: string[]) => {
+  const promises = images?.map((image: any) => {
+    return [
+      new Promise((resolve, reject) => {
+        let url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
+          image
+        )}`
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+            authorization: `Bearer ${UserService.getToken()}`,
+          },
+        })
+          .then((response) => response.blob())
+          .then(
+            (blob) =>
+              new Promise((callback) => {
+                let reader = new FileReader()
+                reader.onload = function () {
+                  resolve({
+                    url: this.result,
+                    text: '',
+                  })
+                }
+                reader.readAsDataURL(blob)
+              })
+          )
+      }),
+    ]
+  })
+
+  const newPromies = promises.map((promise) => Promise.all(promise))
+  return newPromies
+}
+
 const isValidPictureId = (id: string) => {
   return id === '00000000-0000-0000-0000-000000000000'
     ? '00000000-0000-0000-0000-000000000001'
@@ -100,6 +135,7 @@ const CommonService = {
   isValidPictureId,
   getCompanyRoles,
   getUseCases,
+  fetchLeadPictures,
 }
 
 export default CommonService
