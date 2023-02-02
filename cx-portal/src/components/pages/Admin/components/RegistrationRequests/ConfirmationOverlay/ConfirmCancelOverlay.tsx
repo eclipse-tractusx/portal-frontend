@@ -129,7 +129,7 @@ const ConfirmaCancelOverlay = ({
                     'content.admin.registration-requests.confirmCancelModal.inputLabel'
                   )}
                   sx={{
-                    paddingTop: '10px',            
+                    paddingTop: '10px',
                   }}
                   multiline
                   rows={2}
