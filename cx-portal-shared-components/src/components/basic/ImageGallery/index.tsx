@@ -25,16 +25,18 @@ export const ImageGallery = ({
   gallery,
   grid = false,
   modalWidth,
+  align = 'flex-start'
 }: {
   gallery: ImageType[]
   grid?: boolean
   modalWidth?: string
+  align?: string
 }) => (
   <div
     style={{
       display: grid ? 'grid' : 'flex',
       gap: '30px',
-      placeContent: 'center',
+      placeContent: align,
       gridTemplateColumns: 'repeat(3, 1fr)',
     }}
   >
