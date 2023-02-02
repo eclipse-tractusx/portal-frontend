@@ -7,6 +7,7 @@ Registration list
    * Cancel process flow implemented
    * Display checklist if result is != all "done" 
    * For all applications in status "SUBMITTED" the process should be displayed as "IN PROGRESS"
+* Bugfix - App Access Management: Styling location of elements
 
 ## 1.0.0-RC5
 
