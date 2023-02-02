@@ -3,6 +3,10 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+Registration list
+   * Cancel process flow implemented
+   * Display checklist if result is != all "done" 
+   * For all applications in status "SUBMITTED" the process should be displayed as "IN PROGRESS"
 
 ### Bugfix
 * App Access Management: Styling location of elements

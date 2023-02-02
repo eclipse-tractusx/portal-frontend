@@ -88,17 +88,6 @@ export default function RegistrationRequests() {
     }
   }
 
-  const onApproveClick = (id: string) => {
-    setConfirmModalOpen(true)
-    setSelectedRequestId(id)
-  }
-
-  const onDeclineClick = (id: string) => {
-    setConfirmModalOpen(true)
-    setActionType('decline')
-    setSelectedRequestId(id)
-  }
-
   const onErrorAlertClose = () => {
     setShowErrorAlert('')
   }
@@ -275,9 +264,6 @@ export default function RegistrationRequests() {
       <div className={'table-container'}>
         <RequestList
           fetchHook={useFetchCompanySearchQuery}
-          onApproveClick={onApproveClick}
-          onDeclineClick={onDeclineClick}
-          isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}
