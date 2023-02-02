@@ -27,6 +27,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * App release process - Document upload in 'technical guide' field
 * Refetch updated notification list on delete action
 * Connector file type/size error updated
+* App release process - Fixed the error messages for multiselect fields in app card
 
 ## 1.0.0-RC4
 
