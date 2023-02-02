@@ -25,7 +25,7 @@ export const ImageGallery = ({
   gallery,
   grid = false,
   modalWidth,
-  align = 'flex-start'
+  align = 'flex-start',
 }: {
   gallery: ImageType[]
   grid?: boolean
