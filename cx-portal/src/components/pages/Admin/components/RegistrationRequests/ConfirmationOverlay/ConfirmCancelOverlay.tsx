@@ -94,13 +94,13 @@ const ConfirmaCancelOverlay = ({
           />
           <DialogContent>
             <div style={{ textAlign: 'center' }}>
-              <Typography variant="h6">
+              <Typography variant="body1">
                 {t(
                   'content.admin.registration-requests.confirmCancelModal.description'
                 ).replace('{companyName}', companyName ? companyName : '')}
               </Typography>
               <Typography
-                variant="h6"
+                variant="body1"
                 sx={{
                   paddingTop: '20px',
                 }}
@@ -110,7 +110,7 @@ const ConfirmaCancelOverlay = ({
                 )}
               </Typography>
               <Typography
-                variant="h6"
+                variant="body1"
                 sx={{
                   paddingTop: '20px',
                 }}
@@ -129,8 +129,11 @@ const ConfirmaCancelOverlay = ({
                     'content.admin.registration-requests.confirmCancelModal.inputLabel'
                   )}
                   sx={{
-                    paddingTop: '10px',
+                    paddingTop: '10px',            
                   }}
+                  multiline
+                  rows={2}
+                  maxRows={4}
                   placeholder={''}
                   onChange={(e: any) => {
                     onChangeText(e)
