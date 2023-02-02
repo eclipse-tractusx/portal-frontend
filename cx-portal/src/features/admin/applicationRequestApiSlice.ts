@@ -71,6 +71,13 @@ export type ProgressButtonsProps = {
   icon?: JSX.Element
 }
 
+export const progressMapper = {
+  DONE: 20,
+  IN_PROGRESS: 5,
+  TO_DO: 0,
+  FAILED: 0,
+}
+
 export interface ApplicationRequest {
   applicationId: string
   applicationStatus: ApplicationRequestStatus
