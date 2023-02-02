@@ -3,6 +3,7 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+* Bugfix - App Access Management: Styling location of elements
 
 ## 1.0.0-RC5
 
