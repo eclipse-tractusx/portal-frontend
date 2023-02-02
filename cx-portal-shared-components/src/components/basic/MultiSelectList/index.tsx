@@ -115,6 +115,12 @@ export const MultiSelectList = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items])
 
+  useEffect(() => {
+    if (error) {
+      setShowItems(false)
+    }
+  }, [error])
+
   return (
     <Box>
       {!showItems ? (
@@ -190,7 +196,7 @@ export const MultiSelectList = ({
             )
           }}
           onChange={(_, selectedItems: any[]) => handleChange(selectedItems)}
-          onBlur={() => setShowItems(true)}
+          onBlur={() => (error ? setShowItems(false) : setShowItems(true))}
           defaultValue={defaultValues}
         />
       ) : (
