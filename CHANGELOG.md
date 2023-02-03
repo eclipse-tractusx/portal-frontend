@@ -13,8 +13,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Feature
 * Company Registration Approval Board
-   * implemented and backedn connected the application cancel process flow
-   * checklist worker fully implemented for not finalized/closed applications
+   * implemented and backend connected the application cancel process flow
+   * checklist-worker fully implemented for not finalized/closed applications
 
 ### Technical Support
 n/a
