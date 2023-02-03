@@ -3,14 +3,24 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-Registration list
-   * Cancel process flow implemented
-   * Display checklist if result is != all "done" 
-   * For all applications in status "SUBMITTED" the process should be displayed as "IN PROGRESS"
+
+## 1.0.0-RC6
+
+### Change
+* App Release Process
+    * Set 'UseCase selection' and 'app supported language' to mandatory
+    * app role upload further refined with better user support
+
+### Feature
+* Company Registration Approval Board
+   * implemented and backedn connected the application cancel process flow
+   * checklist worker fully implemented for not finalized/closed applications
+
+### Technical Support
+n/a
 
 ### Bugfix
-* App Access Management: Styling location of elements
-* App release process - Fixed the error messages for multiselect fields in app card
+n/a
 
 ## 1.0.0-RC5
 
