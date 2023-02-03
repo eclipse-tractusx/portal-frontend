@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,18 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  IconButton,
-  StatusTag,
-  TransitionChip,
-  CircleProgress,
-} from 'cx-portal-shared-components'
+import { IconButton, StatusTag, Chip } from 'cx-portal-shared-components'
 import { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
-import { useState } from 'react'
 import {
   ApplicationRequest,
   ProgressButtonsProps,
@@ -41,19 +35,15 @@ import CheckList from './components/CheckList'
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
   translationHook: any,
-  onApproveClick: (id: string) => void,
-  onDeclineClick: (id: string) => void,
-  isLoading: boolean,
   handleDownloadDocument: (documentId: string, documentType: string) => void,
   showConfirmOverlay?: (applicationId: string) => void,
-  onConfirmationCancel?: (applicationId: string) => void,
+  onConfirmationCancel?: (applicationId: string, name: string) => void,
   onChipButtonSelect?: (
     button: ProgressButtonsProps,
     row: ApplicationRequest
   ) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
-  const [selectedRowId, setSelectedRowId] = useState<string>('')
 
   return [
     {
@@ -156,51 +146,19 @@ export const RegistrationRequestsTableColumns = (
         if (row.applicationStatus === 'SUBMITTED')
           return (
             <div className="state-cell-container">
-              {selectedRowId === row.applicationId && isLoading ? (
-                <CircleProgress
-                  size={40}
-                  step={1}
-                  interval={0.1}
-                  colorVariant={'primary'}
-                  variant={'indeterminate'}
-                  thickness={8}
+              {row.applicationStatus === 'SUBMITTED' && (
+                <Chip
+                  {...{
+                    color: 'secondary',
+                    variant: 'filled',
+                    label: t(
+                      'content.admin.registration-requests.buttonprogress'
+                    ),
+                    type: 'progress',
+                    onClick: () => {},
+                    withIcon: true,
+                  }}
                 />
-              ) : (
-                <>
-                  <TransitionChip
-                    {...{
-                      color: 'secondary',
-                      variant: 'filled',
-                      label: t(
-                        'content.admin.registration-requests.buttondecline'
-                      ),
-                      type: 'decline',
-                      onClick: () => {
-                        setSelectedRowId(row.applicationId)
-                        onDeclineClick(row.applicationId)
-                      },
-                      withIcon: true,
-                      disabled: row.bpn ? false : true,
-                    }}
-                  />
-
-                  <TransitionChip
-                    {...{
-                      color: 'secondary',
-                      variant: 'filled',
-                      label: t(
-                        'content.admin.registration-requests.buttonconfirm'
-                      ),
-                      type: 'confirm',
-                      onClick: () => {
-                        setSelectedRowId(row.applicationId)
-                        onApproveClick(row.applicationId)
-                      },
-                      withIcon: true,
-                      disabled: row.bpn ? false : true,
-                    }}
-                  />
-                </>
               )}
             </div>
           )
@@ -235,18 +193,21 @@ export const RegistrationRequestsTableColumns = (
             width: '100%',
           }}
         >
-          {row.applicationChecklist && row.applicationChecklist.length > 0 ? (
+          {row.applicationChecklist &&
+          row.applicationChecklist.length > 0 &&
+          row.applicationStatus === 'SUBMITTED' ? (
             <CheckList
-              headerText="Confirmation in progress: "
+              headerText={t('content.admin.registration-requests.progress')}
               progressButtons={row.applicationChecklist}
-              showCancel={true}
-              cancelText="Cancel Confirmation"
+              showCancel={row.applicationStatus === 'SUBMITTED'}
+              cancelText={t('content.admin.registration-requests.cancel')}
               alignRow="center"
               onButtonClick={(button) =>
                 onChipButtonSelect && onChipButtonSelect(button, row)
               }
               onCancel={() =>
-                onConfirmationCancel && onConfirmationCancel(row.applicationId)
+                onConfirmationCancel &&
+                onConfirmationCancel(row.applicationId, row.companyName)
               }
             />
           ) : null}

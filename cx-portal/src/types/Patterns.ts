@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -67,6 +67,7 @@ export const Patterns = {
     NAME: /^[a-zA-Z0-9 @]{2,20}$/,
     COUNTRY: /^[A-Z]{2}$/,
   },
+  CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
 }
 
 export const isID = (expr: string) => Patterns.ID.test(expr)
@@ -94,5 +95,7 @@ export const isUUIDOrEmpty = (expr: string) =>
 export const isCName = (expr: string) => Patterns.connectors.NAME.test(expr)
 export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
+export const isValidCancelInput = (expr: string) =>
+  Patterns.CANCEL_INPUT.test(expr)
 
 export default Patterns

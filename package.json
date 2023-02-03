@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-RC5",
+  "version": "1.0.0-RC6",
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
@@ -7,7 +7,7 @@
     "cx-portal-shared-components"
   ],
   "config": {
-    "image": "ghcr.io/catenax-ng/product-portal-frontend"
+    "image": "ghcr.io/catenax-ng/tx-portal-frontend"
   },
   "scripts": {
     "prepare": "husky install",

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,6 +28,10 @@ import {
 import {
   CXNotificationContent,
   NotificationType,
+  PAGE,
+  PAGE_SIZE,
+  SORT_OPTION,
+  NOTIFICATION_TOPIC,
 } from 'features/notification/types'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -41,6 +45,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay'
+import { useDispatch } from 'react-redux'
+import { resetInitialNotificationState } from 'features/notification/actions'
 
 dayjs.extend(relativeTime)
 
@@ -161,6 +167,8 @@ export default function NotificationItem({
   const [deleteNotification] = useDeleteNotificationMutation()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const dispatch = useDispatch()
+
   const setRead = async (id: string) => {
     try {
       await setNotificationRead(id)
@@ -180,6 +188,16 @@ export default function NotificationItem({
   const onDelete = async () => {
     setLoading(true)
     await deleteNotification(item.id).unwrap()
+    dispatch(
+      resetInitialNotificationState({
+        page: PAGE,
+        size: PAGE_SIZE,
+        args: {
+          notificationTopic: NOTIFICATION_TOPIC.ALL,
+          sorting: SORT_OPTION,
+        },
+      })
+    )
     setShowDeleteModal(false)
   }
 

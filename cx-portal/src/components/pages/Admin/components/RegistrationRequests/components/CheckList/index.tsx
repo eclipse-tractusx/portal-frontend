@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import Box from '@mui/material/Box'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography, Button } from 'cx-portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
@@ -27,6 +27,7 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
 import {
   ProgressButtonsProps,
+  progressMapper,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
@@ -55,12 +56,6 @@ export default function CheckList({
 }: CheckListProps) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
-  const progressMapper = {
-    DONE: 20,
-    IN_PROGRESS: 5,
-    TO_DO: 0,
-    FAILED: 0,
-  }
 
   const getProgressValue = () => {
     let progressValue = 0
@@ -145,6 +140,8 @@ export default function CheckList({
     }
   }, [progressButtons, selectedButton, updateCheckListStatusButtons])
 
+  const isCancelPresent = () => showCancel && getProgressValue() < 100
+
   return (
     <>
       {checkListButtons && (
@@ -180,7 +177,7 @@ export default function CheckList({
                   variant="filled"
                   icon={button?.icon}
                   sx={{
-                    width: '120px',
+                    width: isCancelPresent() ? '120px' : '145px',
                     height: button.highlight ? '56px' : '40px',
                     padding: '8px 12px',
                     borderRadius: '8px',
@@ -200,19 +197,21 @@ export default function CheckList({
             })}
           </Box>
           {showCancel && getProgressValue() < 100 && (
-            <Box onClick={() => onCancel}>
-              <Typography
-                sx={{
-                  fontSize: '12px',
-                  color: '#D91E18',
-                  cursor: 'pointer',
-                  marginLeft: '25px',
-                }}
-                variant="subtitle2"
-              >
-                {cancelText}
-              </Typography>
-            </Box>
+            <Button
+              variant="text"
+              size="small"
+              sx={{
+                fontSize: '12px',
+                color: '#D91E18',
+                marginLeft: '25px',
+                ':hover': {
+                  backgroundColor: '#FEE7E2',
+                },
+              }}
+              onClick={onCancel}
+            >
+              {cancelText}
+            </Button>
           )}
         </Box>
       )}

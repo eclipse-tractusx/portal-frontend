@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification, CXNotificationMeta } from './types'
+import { CXNotification, CXNotificationMeta, NOTIFICATION_TOPIC } from './types'
 interface FetchArgs {
   page: number
   size: number
@@ -34,7 +34,6 @@ export interface NotificationArgsProps {
 export const apiSlice = createApi({
   reducerPath: 'info/notifications',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
-  tagTypes: ['Notification'], // this will enable auto-refetching feature in rtk queries
   endpoints: (builder) => ({
     getNotificationCount: builder.query<number, boolean>({
       query: (read) => `/api/notification/count?isRead=${read}`,
@@ -50,19 +49,18 @@ export const apiSlice = createApi({
         }
         if (
           fetchArgs.args.notificationTopic &&
-          fetchArgs.args.notificationTopic !== 'ALL'
+          fetchArgs.args.notificationTopic !== NOTIFICATION_TOPIC.ALL
         ) {
           base += `&notificationTopicId=${fetchArgs.args.notificationTopic}`
         }
         if (
           fetchArgs.args.notificationTopic &&
-          fetchArgs.args.notificationTopic === 'ACTION'
+          fetchArgs.args.notificationTopic === NOTIFICATION_TOPIC.ACTION
         ) {
           base += `&onlyDueDate=true`
         }
         return base
       },
-      providesTags: ['Notification'],
       // configuration for an individual endpoint, overriding the api setting
       keepUnusedDataFor: 10,
     }),
@@ -77,7 +75,6 @@ export const apiSlice = createApi({
         url: `/api/notification/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Notification'],
     }),
   }),
 })

@@ -108,8 +108,11 @@
         "pending": "anstehend",
         "buttonconfirm": "bestätigen",
         "buttondecline": "ablehnen",
+        "buttonprogress": "in progress",
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
+        "progress": "Confirmation in progress: ",
+        "cancel": "Cancel Process",
         "overlay": {
           "title": "Company Registration Details",
           "companydatatitle": "Overview",
@@ -138,6 +141,14 @@
         "confirmmodal": {
           "title": "Aktion bestätigen",
           "description": "Möchten Sie die ausgewählte Anfrage wirklich ausführen?"
+        },
+        "confirmCancelModal": {
+          "title": "Cancel Application Process of {companyName}",
+          "description": "Are you sure you want to cancel the application process of {companyName}?",
+          "details": "With the cancellation an information about the cancellation as well es details of the cancellation (if added in the message box below) will get shared.",
+          "note": "Please note that the cancellation wont allow the company to register again, as long as no new registration is triggered.",
+          "inputLabel": "Confirmation Message",
+          "error": "Do not start with ="
         },
         "addBpn": {
           "successTitle": "Update BPN number successfully completed",

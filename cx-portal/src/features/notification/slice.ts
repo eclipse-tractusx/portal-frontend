@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -36,11 +36,18 @@ export const notificationSlice = createSlice({
       ...state,
       notification: initServicetNotifications,
     }),
+    resetInitialNotificationState: (state, { payload }) => ({
+      ...state,
+      initialNotificationState: payload.initialNotificationState,
+    }),
   },
 })
 
 export const notificationSelector = (
   state: RootState
 ): PageNotificationsProps => state.notification.notification
+
+export const initialNotificationState = (state: RootState) =>
+  state.notification.initialNotificationState
 
 export default notificationSlice

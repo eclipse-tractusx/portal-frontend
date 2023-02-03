@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -71,6 +71,13 @@ export type ProgressButtonsProps = {
   icon?: JSX.Element
 }
 
+export const progressMapper = {
+  DONE: 20,
+  IN_PROGRESS: 5,
+  TO_DO: 0,
+  FAILED: 0,
+}
+
 export interface ApplicationRequest {
   applicationId: string
   applicationStatus: ApplicationRequestStatus
@@ -80,6 +87,11 @@ export interface ApplicationRequest {
   bpn: string
   documents: Array<DocumentMapper>
   applicationChecklist: Array<ProgressButtonsProps>
+}
+
+type DeclineRequestType = {
+  applicationId: string
+  comment: string
 }
 
 export const apiSlice = createApi({
@@ -92,10 +104,11 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
-    declineRequest: builder.mutation<boolean, string>({
-      query: (applicationId) => ({
-        url: `/api/administration/registration/application/${applicationId}/declineRequest`,
+    declineRequest: builder.mutation<boolean, DeclineRequestType>({
+      query: (obj) => ({
+        url: `/api/administration/registration/application/${obj.applicationId}/declineRequest`,
         method: 'PUT',
+        body: { comment: obj.comment },
       }),
     }),
     fetchCompanySearch: builder.query<
