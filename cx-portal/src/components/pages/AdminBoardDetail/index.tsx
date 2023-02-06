@@ -24,20 +24,11 @@ import { t } from 'i18next'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import BoardContentDetails from './BoardContentDetails'
 import './AdminBoardDetail.scss'
-import { useSelector } from 'react-redux'
-import { currentSuccessType } from 'features/serviceMarketplace/slice'
-import { useEffect } from 'react'
 
 export default function AdminBoardDetail() {
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data, refetch } = useFetchAppDetailsQuery(appId ?? '')
-
-  const success = useSelector(currentSuccessType)
-
-  useEffect(() => {
-    refetch()
-  }, [success, refetch])
+  const { data } = useFetchAppDetailsQuery(appId ?? '')
 
   return (
     <main className="adminboard-main">
