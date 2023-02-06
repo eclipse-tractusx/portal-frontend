@@ -40,7 +40,7 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
       const id = CommonService.isValidPictureId(item?.leadPictureId)
       getImage(id)
     }
-  }, [item?.leadPictureId])
+  }, [item])
 
   const getImage = async (documentId: string) => {
     try {

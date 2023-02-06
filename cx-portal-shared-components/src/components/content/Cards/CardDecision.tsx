@@ -32,9 +32,9 @@ export interface AppContent {
 
 export interface CardDecisionProps {
   items: AppContent[]
-  onApprove: (e : string) => void
-  onDelete: (e : string) => void
-  onClick: (e : string) => void
+  onApprove: (e: string) => void
+  onDelete: (e: string) => void
+  onClick: (e: string) => void
 }
 
 export const CardDecision = ({
