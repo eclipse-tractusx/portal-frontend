@@ -93,12 +93,13 @@ export default function NotificationCenter() {
 
   useEffect(() => {
     setLoaded(true)
-    if (initialNotification.page === 0) {
+    if (page === 0) {
       refetch()
     } else {
       setPage(initialNotification.page)
     }
-  }, [initialNotification])
+    // eslint-disable-next-line
+  }, [initialNotification, refetch])
 
   const [notificationItems, setNotificationItems] = useState<
     CXNotificationContent[]
