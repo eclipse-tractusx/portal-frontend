@@ -56,23 +56,21 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
       <ul>
         {item.documents &&
           item.documents['APP_CONTRACT'] &&
-          item.documents['APP_CONTRACT'].map(
-            (document: DocumentData) => (
-              <li key={document.documentId}>
-                <button
-                  className="document-button-link"
-                  onClick={() =>
-                    handleDownloadClick(
-                      document.documentId,
-                      document.documentName
-                    )
-                  }
-                >
-                  {document.documentName}
-                </button>
-              </li>
-            )
-          )}
+          item.documents['APP_CONTRACT'].map((document: DocumentData) => (
+            <li key={document.documentId}>
+              <button
+                className="document-button-link"
+                onClick={() =>
+                  handleDownloadClick(
+                    document.documentId,
+                    document.documentName
+                  )
+                }
+              >
+                {document.documentName}
+              </button>
+            </li>
+          ))}
       </ul>
     </div>
   )
