@@ -45,7 +45,7 @@ export const CardDecision = ({
 }: CardDecisionProps) => {
   const { spacing } = useTheme()
 
-  const handleDecision = (e: any, id: string, type: string) => {
+  const handleDecision = (e: React.SyntheticEvent, id: string, type: string) => {
     e.stopPropagation()
     type === 'approve' ? onApprove(id) : onDelete(id)
   }
