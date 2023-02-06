@@ -148,7 +148,7 @@
           "details": "With confirming the cancellation, the registration company will get informed and the cancellation message added below will be shared.",
           "note": "Please note that the cancellation wont allow the company to register again, as long as no new registration is triggered.",
           "inputLabel": "Cancellation Message",
-          "error": "Please revalidate the cancellation message; the cancellation should not start with '='."
+          "error": "Please revalidate your input; the message should not start with '='."
         },
         "addBpn": {
           "successTitle": "Update BPN number successfully completed",
