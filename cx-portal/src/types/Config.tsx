@@ -68,6 +68,7 @@ import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
 import AdminBoard from 'components/pages/AdminBoard'
+import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 
 /**
  * ALL_PAGES
@@ -218,6 +219,21 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.ADMINBOARD,
     role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
     element: <AdminBoard />,
+  },
+  {
+    name: PAGES.ADMINBOARD_DETAIL,
+    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.ADMINBOARD_DETAIL}
+        path={PAGES.ADMINBOARD_DETAIL}
+        element={<AdminBoardDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":appId" element={<AdminBoardDetail />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.APP_RELEASE_PROCESS_FORM,

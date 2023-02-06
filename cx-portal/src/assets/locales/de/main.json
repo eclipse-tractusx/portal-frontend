@@ -1067,6 +1067,35 @@
       },
       "errorMsg": "Error! Something went wrong",
       "successMsg": "Successfully completed"
+    },
+    "adminboardDetail": {
+      "usecase": "Use Case",
+      "language": "Language",
+      "price": "Price",
+      "backToBoard": "Back to Admin Board",
+      "connectedData": {
+        "heading": "Connected Data",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
+        "message2": "When using the app, the following data may be collected but NOT linked to your identity:",
+        "linked": "Linked to your Identity",
+        "notLinked": "Linked NOT to your Identity"
+      },
+      "securityInfo": {
+        "heading": "Data Security Information",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
+      },
+      "documents": {
+        "heading": "Documents",
+        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+      },
+      "providerInformation": {
+        "heading": "Provider Information",
+        "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+        "appProvider": "App Provider",
+        "website": "Website",
+        "email": "Email",
+        "phone": "Phone"
+      }
     }
   },
   "navigation": {
