@@ -145,10 +145,10 @@
         "confirmCancelModal": {
           "title": "Cancel Application Process of {companyName}",
           "description": "Are you sure you want to cancel the application process of {companyName}?",
-          "details": "With the cancellation an information about the cancellation as well es details of the cancellation (if added in the message box below) will get shared.",
+          "details": "With confirming the cancellation, the registration company will get informed and the cancellation message added below will be shared.",
           "note": "Please note that the cancellation wont allow the company to register again, as long as no new registration is triggered.",
-          "inputLabel": "Confirmation Message",
-          "error": "Do not start with ="
+          "inputLabel": "Cancellation Message",
+          "error": "Please revalidate the cancellation message; the cancellation should not start with '='."
         },
         "addBpn": {
           "successTitle": "Update BPN number successfully completed",
