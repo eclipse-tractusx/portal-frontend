@@ -40,19 +40,21 @@ export default function BoardConnectedData({ item }: { item: AppDetails }) {
 
   const tableData2: TableType = {
     head: [t('linked'), t('notLinked')],
-    body: [
-      ['Usage Data', '--.--']
-    ],
+    body: [['Usage Data', '--.--']],
   }
 
   return (
     <div className="board-data">
       <Typography variant="h4">{t('heading')}</Typography>
-      <Typography variant="body2" className="data-content">{t('message')}</Typography>
+      <Typography variant="body2" className="data-content">
+        {t('message')}
+      </Typography>
       <div className="mb-30">
-        <StaticTable data={tableData1} horizontal={false}/>
+        <StaticTable data={tableData1} horizontal={false} />
       </div>
-      <Typography variant="body2" className="data-content">{t('message2')}</Typography>
+      <Typography variant="body2" className="data-content">
+        {t('message2')}
+      </Typography>
       <StaticTable data={tableData2} horizontal={false} />
     </div>
   )

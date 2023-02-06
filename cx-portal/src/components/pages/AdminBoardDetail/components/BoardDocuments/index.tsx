@@ -51,12 +51,8 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
 
   return (
     <div className="adminboard-documents">
-      <Typography variant="h4">
-        {t('heading')}
-      </Typography>
-      <Typography variant="body2">
-        {t('message')}
-      </Typography>
+      <Typography variant="h4">{t('heading')}</Typography>
+      <Typography variant="body2">{t('message')}</Typography>
       <ul>
         {item.documents &&
           item.documents['APP_CONTRACT'] &&

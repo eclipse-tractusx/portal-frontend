@@ -75,7 +75,7 @@ export const CardDecision = ({
             order: 1,
             alignSelf: 'stretch',
             flexGrow: 0,
-            cursor: 'pointer'
+            cursor: 'pointer',
           }}
           onClick={() => onClick(item.appId)}
         >

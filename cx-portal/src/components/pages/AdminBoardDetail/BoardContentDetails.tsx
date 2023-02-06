@@ -66,7 +66,9 @@ export default function AppDetailContentDetails({
           color="secondary"
           size="small"
           onClick={() => navigate('/adminboard')}
-        >{t('content.adminboardDetail.backToBoard')}</Button>
+        >
+          {t('content.adminboardDetail.backToBoard')}
+        </Button>
       </>
     )
   )

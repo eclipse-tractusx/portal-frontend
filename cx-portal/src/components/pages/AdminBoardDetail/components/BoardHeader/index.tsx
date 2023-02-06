@@ -85,7 +85,7 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
           <Typography variant="caption2" className="head">
             {t('content.adminboardDetail.price')}:{' '}
           </Typography>
-          { item.price }
+          {item.price}
         </div>
       </div>
     </div>

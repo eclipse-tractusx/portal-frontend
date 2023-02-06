@@ -28,7 +28,6 @@ export default function BoardSecurityInfo() {
     keyPrefix: 'content.adminboardDetail.securityInfo',
   })
 
-
   return (
     <div className="board-security">
       <Typography variant="h4">{t('heading')}</Typography>
