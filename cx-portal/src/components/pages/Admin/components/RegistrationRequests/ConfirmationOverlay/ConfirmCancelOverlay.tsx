@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -94,13 +94,13 @@ const ConfirmaCancelOverlay = ({
           />
           <DialogContent>
             <div style={{ textAlign: 'center' }}>
-              <Typography variant="h6">
+              <Typography variant="body1">
                 {t(
                   'content.admin.registration-requests.confirmCancelModal.description'
                 ).replace('{companyName}', companyName ? companyName : '')}
               </Typography>
               <Typography
-                variant="h6"
+                variant="body1"
                 sx={{
                   paddingTop: '20px',
                 }}
@@ -110,7 +110,7 @@ const ConfirmaCancelOverlay = ({
                 )}
               </Typography>
               <Typography
-                variant="h6"
+                variant="body1"
                 sx={{
                   paddingTop: '20px',
                 }}
@@ -131,6 +131,9 @@ const ConfirmaCancelOverlay = ({
                   sx={{
                     paddingTop: '10px',
                   }}
+                  multiline
+                  rows={2}
+                  maxRows={4}
                   placeholder={''}
                   onChange={(e: any) => {
                     onChangeText(e)

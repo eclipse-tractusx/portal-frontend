@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -35,9 +35,6 @@ import './RequestListStyle.scss'
 
 export const RequestList = ({
   fetchHook,
-  onApproveClick,
-  onDeclineClick,
-  isLoading,
   onTableCellClick,
   loaded,
   handleDownloadDocument,
@@ -46,9 +43,6 @@ export const RequestList = ({
   onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  onApproveClick: (id: string) => void
-  onDeclineClick: (id: string) => void
-  isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (documentId: string, documentType: string) => void
@@ -106,9 +100,6 @@ export const RequestList = ({
 
   const columns = RegistrationRequestsTableColumns(
     useTranslation,
-    onApproveClick,
-    onDeclineClick,
-    isLoading,
     handleDownloadDocument,
     showConfirmOverlay,
     onConfirmationCancel,

@@ -5,6 +5,24 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Feature - Design/BL&API for display app details for Admin Board
 
+## 1.0.0-RC6
+
+### Change
+* App Release Process
+    * Set 'UseCase selection' and 'app supported language' to mandatory
+    * app role upload further refined with better user support
+
+### Feature
+* Company Registration Approval Board
+   * implemented and backend connected the application cancel process flow
+   * checklist-worker fully implemented for not finalized/closed applications
+
+### Technical Support
+n/a
+
+### Bugfix
+n/a
+
 ## 1.0.0-RC5
 
 ### Change

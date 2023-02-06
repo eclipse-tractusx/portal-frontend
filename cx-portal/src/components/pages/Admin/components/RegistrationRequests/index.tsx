@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -86,17 +86,6 @@ export default function RegistrationRequests() {
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
     }
-  }
-
-  const onApproveClick = (id: string) => {
-    setConfirmModalOpen(true)
-    setSelectedRequestId(id)
-  }
-
-  const onDeclineClick = (id: string) => {
-    setConfirmModalOpen(true)
-    setActionType('decline')
-    setSelectedRequestId(id)
   }
 
   const onErrorAlertClose = () => {
@@ -275,9 +264,6 @@ export default function RegistrationRequests() {
       <div className={'table-container'}>
         <RequestList
           fetchHook={useFetchCompanySearchQuery}
-          onApproveClick={onApproveClick}
-          onDeclineClick={onDeclineClick}
-          isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}

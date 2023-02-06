@@ -108,6 +108,7 @@
         "pending": "anstehend",
         "buttonconfirm": "bestätigen",
         "buttondecline": "ablehnen",
+        "buttonprogress": "in progress",
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
         "progress": "Confirmation in progress: ",

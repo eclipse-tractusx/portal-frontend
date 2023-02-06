@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -27,6 +27,7 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { ChipProps } from '@mui/material/Chip'
 import {
   ProgressButtonsProps,
+  progressMapper,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
@@ -55,12 +56,6 @@ export default function CheckList({
 }: CheckListProps) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
-  const progressMapper = {
-    DONE: 20,
-    IN_PROGRESS: 5,
-    TO_DO: 0,
-    FAILED: 0,
-  }
 
   const getProgressValue = () => {
     let progressValue = 0

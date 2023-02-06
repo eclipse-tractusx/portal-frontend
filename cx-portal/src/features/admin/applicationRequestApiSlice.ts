@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -69,6 +69,13 @@ export type ProgressButtonsProps = {
   backgroundColor?: string
   border?: string
   icon?: JSX.Element
+}
+
+export const progressMapper = {
+  DONE: 20,
+  IN_PROGRESS: 5,
+  TO_DO: 0,
+  FAILED: 0,
 }
 
 export interface ApplicationRequest {
