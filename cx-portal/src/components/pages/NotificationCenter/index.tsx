@@ -88,12 +88,18 @@ export default function NotificationCenter() {
   const initialNotification = useSelector(initialNotificationState)
   const [notificationState, setNotificationState] =
     useState(initialNotification)
-  const { data, isFetching } = useGetNotificationsQuery(notificationState)
+  const { data, isFetching, refetch } =
+    useGetNotificationsQuery(notificationState)
 
   useEffect(() => {
     setLoaded(true)
-    setPage(initialNotification.page)
-  }, [initialNotification])
+    if (page === 0) {
+      refetch()
+    } else {
+      setPage(initialNotification.page)
+    }
+    // eslint-disable-next-line
+  }, [initialNotification, refetch])
 
   const [notificationItems, setNotificationItems] = useState<
     CXNotificationContent[]

@@ -55,8 +55,8 @@ export const Chip = ({
       break
     case 'progress':
       icon = <AutorenewIcon />
-      hoverBgColor = theme.palette.confirmed.main
-      hoverTextColor = theme.palette.confirmed.contrastText
+      hoverBgColor = theme.palette.info.main
+      hoverTextColor = theme.palette.info.contrastText
   }
 
   return (
@@ -66,8 +66,9 @@ export const Chip = ({
       icon={withIcon ? icon : undefined}
       onDelete={type === 'delete' ? handleDelete : undefined}
       sx={{
-        borderRadius: '36px',
+        borderRadius: type === 'progress' ? '6px' : '36px',
         ':hover': {
+          cursor: type === 'progress' ? 'auto' : 'pointer',
           backgroundColor: type !== 'plain' ? hoverBgColor : undefined,
           color: type !== 'plain' ? hoverTextColor : undefined,
         },
