@@ -24,6 +24,7 @@ import {
   PageNotifications,
   PageSnackbar,
 } from 'cx-portal-shared-components'
+import { useNavigate } from 'react-router-dom'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import './AdminBoard.scss'
@@ -40,6 +41,7 @@ export default function AdminBoardElements({
   apps?: AppContent[]
   handleApproveDeclineSuccess: any
 }) {
+  const navigate = useNavigate()
   const theme = useTheme()
   const { t } = useTranslation()
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
@@ -97,6 +99,7 @@ export default function AdminBoardElements({
           items={apps}
           onDelete={(appId: string) => handleDecision(appId, 'decline')}
           onApprove={(appId: string) => handleDecision(appId, 'approve')}
+          onClick={(appId: string) => navigate(`/adminboarddetail/${appId}`)}
         />
       ) : (
         <div className="loading-progress">
