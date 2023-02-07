@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
 import {
   useGetNotificationsQuery,
@@ -76,6 +76,7 @@ const NotificationGroup = ({
 
 export default function NotificationCenter() {
   const { t } = useTranslation('notification')
+  const sectionElement: any = useRef()
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -88,12 +89,18 @@ export default function NotificationCenter() {
   const initialNotification = useSelector(initialNotificationState)
   const [notificationState, setNotificationState] =
     useState(initialNotification)
-  const { data, isFetching } = useGetNotificationsQuery(notificationState)
+  const { data, isFetching, refetch } =
+    useGetNotificationsQuery(notificationState)
 
   useEffect(() => {
     setLoaded(true)
-    setPage(initialNotification.page)
-  }, [initialNotification])
+    if (page === 0) {
+      refetch()
+    } else {
+      setPage(initialNotification.page)
+    }
+    // eslint-disable-next-line
+  }, [initialNotification, refetch])
 
   const [notificationItems, setNotificationItems] = useState<
     CXNotificationContent[]
@@ -182,6 +189,11 @@ export default function NotificationCenter() {
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
 
+  const height =
+    sectionElement && sectionElement.current
+      ? `${sectionElement?.current?.clientHeight}px`
+      : '400px'
+
   return (
     <main className="notifications">
       <StageHeader title={t('pages.notifications')} />
@@ -228,12 +240,13 @@ export default function NotificationCenter() {
         </div>
         {isFetching && (
           <Box
+            ref={sectionElement}
             sx={{
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              minHeight: '400px',
+              minHeight: height,
             }}
           >
             <CircleProgress
@@ -247,14 +260,21 @@ export default function NotificationCenter() {
           </Box>
         )}
         {!isFetching && (
-          <ul>
-            {groups &&
-              Object.entries(groups).map((entry: any) => (
-                <li key={entry[0]}>
-                  <NotificationGroup label={entry[0]} items={entry[1]} />
-                </li>
-              ))}
-          </ul>
+          <Box
+            ref={sectionElement}
+            sx={{
+              minHeight: height,
+            }}
+          >
+            <ul>
+              {groups &&
+                Object.entries(groups).map((entry: any) => (
+                  <li key={entry[0]}>
+                    <NotificationGroup label={entry[0]} items={entry[1]} />
+                  </li>
+                ))}
+            </ul>
+          </Box>
         )}
         {!isFetching &&
           paginationData &&

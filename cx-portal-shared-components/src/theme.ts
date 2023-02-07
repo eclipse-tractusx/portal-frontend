@@ -181,6 +181,10 @@ const palette = createPalette({
     main: '#F2F3FB',
     contrastText: '#676BC6',
   },
+  info: {
+    main: '#F2F3FB',
+    contrastText: '#676BC6',
+  },
 })
 
 const typography = createTypography(palette, {
@@ -566,6 +570,15 @@ export const theme = createTheme({
           style: {
             backgroundColor: palette.declined.main,
             color: palette.declined.contrastText,
+          },
+        },
+        {
+          props: {
+            color: 'info',
+          },
+          style: {
+            backgroundColor: palette.info.main,
+            color: palette.info.contrastText,
           },
         },
         {

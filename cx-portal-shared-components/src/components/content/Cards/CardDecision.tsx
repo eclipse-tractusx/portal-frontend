@@ -32,16 +32,28 @@ export interface AppContent {
 
 export interface CardDecisionProps {
   items: AppContent[]
-  onApprove: any
-  onDelete: any
+  onApprove: (e: string) => void
+  onDelete: (e: string) => void
+  onClick: (e: string) => void
 }
 
 export const CardDecision = ({
   items,
   onApprove,
   onDelete,
+  onClick,
 }: CardDecisionProps) => {
   const { spacing } = useTheme()
+
+  const handleDecision = (
+    e: React.SyntheticEvent,
+    id: string,
+    type: string
+  ) => {
+    e.stopPropagation()
+    type === 'approve' ? onApprove(id) : onDelete(id)
+  }
+
   return (
     <Box
       sx={{
@@ -67,7 +79,9 @@ export const CardDecision = ({
             order: 1,
             alignSelf: 'stretch',
             flexGrow: 0,
+            cursor: 'pointer',
           }}
+          onClick={() => onClick(item.appId)}
         >
           <Typography
             variant="h5"
@@ -112,7 +126,7 @@ export const CardDecision = ({
                     backgroundColor: 'transparent',
                   },
                 }}
-                onClick={() => onApprove(item.appId)}
+                onClick={(e) => handleDecision(e, item.appId, 'approve')}
               >
                 <ApprovalIcon sx={{ color: '#00AA55' }} />
               </IconButton>
@@ -125,7 +139,7 @@ export const CardDecision = ({
                     backgroundColor: 'transparent',
                   },
                 }}
-                onClick={() => onDelete(item.appId)}
+                onClick={(e) => handleDecision(e, item.appId, 'delete')}
               >
                 <DeleteOutlineIcon sx={{ color: '#D91E18' }} />
               </IconButton>

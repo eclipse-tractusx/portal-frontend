@@ -149,6 +149,8 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return <NotificationContent item={item} navlinks={['adminboard']} />
     case NotificationType.APP_RELEASE_APPROVAL:
       return <NotificationContent item={item} navlinks={['appoverview']} />
+    case NotificationType.APP_RELEASE_REJECTION:
+      return <NotificationContent item={item} navlinks={['appoverview']} />
     case NotificationType.TECHNICAL_USER_CREATION:
       return <NotificationContent item={item} navlinks={['technicaluser']} />
     default:

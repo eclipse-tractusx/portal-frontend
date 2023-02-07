@@ -149,7 +149,7 @@ export const RegistrationRequestsTableColumns = (
               {row.applicationStatus === 'SUBMITTED' && (
                 <Chip
                   {...{
-                    color: 'secondary',
+                    color: 'info',
                     variant: 'filled',
                     label: t(
                       'content.admin.registration-requests.buttonprogress'
