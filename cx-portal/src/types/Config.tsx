@@ -83,7 +83,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
-  { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
+  { name: PAGES.DOCUMENTATION, element: <Redirect path="/documentation/" /> },
   { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
     name: PAGES.MARKETPLACE,
@@ -500,7 +500,7 @@ export const ALL_ACTIONS: IAction[] = [
  * it will be restricted by personal user permissions
  */
 export const mainMenuFullTree = [
-  { name: PAGES.HOME },
+  { name: PAGES.DOCUMENTATION },
   {
     name: PAGES.INTRODUCTION,
     children: [
@@ -571,7 +571,7 @@ export const userMenuFull = [
  * it will be restricted by personal user permissions
  */
 export const footerMenuFull = [
-  PAGES.HELP,
+  PAGES.DOCUMENTATION,
   PAGES.CONTACT,
   PAGES.IMPRINT,
   PAGES.PRIVACY,

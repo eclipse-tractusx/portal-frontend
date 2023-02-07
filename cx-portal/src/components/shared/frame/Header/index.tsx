@@ -52,7 +52,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             size="small"
             color="secondary"
             variant="contained"
-            onClick={() => navigate('/help')}
+            onClick={() => navigate('/documentation/')}
             sx={{ backgroundColor: 'white', marginRight: '16px' }}
           >
             {t('pages.help')}

@@ -59,6 +59,7 @@ export enum PAGES {
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
   HELP = 'help',
+  DOCUMENTATION = 'documentation',
   CONTACT = 'contact',
   IMPRINT = 'imprint',
   PRIVACY = 'privacy',
