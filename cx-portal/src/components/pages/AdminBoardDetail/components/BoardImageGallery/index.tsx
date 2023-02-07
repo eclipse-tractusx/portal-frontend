@@ -19,12 +19,26 @@
  ********************************************************************************/
 
 import './BoardImageGallery.scss'
-import { ImageGallery, ImageType } from 'cx-portal-shared-components'
+import { Carousel, ImageType } from 'cx-portal-shared-components'
 
 export default function BoardImageGallery({ images }: { images: ImageType[] }) {
   return (
     <div className="adminboard-gallery">
-      <ImageGallery gallery={images} />
+      <Carousel
+        gapBetweenSlides={32}
+        gapCarouselTop={32}
+        gapToArrows={32}
+        infinite
+        itemHeight={279}
+        itemWidth={266}
+        slidesToShow={3}
+      >
+        {images?.map((image) => (
+          <div className="img-col" key={image.url}>
+            <img src={image.url} alt={image.text} />
+          </div>
+        ))}
+      </Carousel>
     </div>
   )
 }
