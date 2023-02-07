@@ -500,7 +500,7 @@ export const ALL_ACTIONS: IAction[] = [
  * it will be restricted by personal user permissions
  */
 export const mainMenuFullTree = [
-  { name: PAGES.DOCUMENTATION },
+  { name: PAGES.HOME },
   {
     name: PAGES.INTRODUCTION,
     children: [
