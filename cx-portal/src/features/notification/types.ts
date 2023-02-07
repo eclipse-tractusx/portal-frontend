@@ -91,6 +91,7 @@ export enum NotificationType {
   AppSubscriptionReceived = 'AppSubscriptionReceived',
   AppSubscriptionApproved = 'AppSubscriptionApproved',
   AppSubscriptionRejected = 'AppSubscriptionRejected',
+  APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
 }
 
 export interface NotificationContent {
