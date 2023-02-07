@@ -2,8 +2,12 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### Unreleased
-* Feature - Design/BL&API for display app details for Admin Board
+## Unreleased
+
+### Feature
+* New Help Center
+* Design/BL&API for display app details for Admin Board
+
 
 ## 1.0.0-RC6
 
