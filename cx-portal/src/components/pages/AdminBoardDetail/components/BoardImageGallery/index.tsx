@@ -33,7 +33,7 @@ export default function BoardImageGallery({ images }: { images: ImageType[] }) {
         itemWidth={266}
         slidesToShow={3}
       >
-        {images.map((image) => (
+        {images?.map((image) => (
           <div className="img-col" key={image.url}>
             <img src={image.url} alt={image.text} />
           </div>
