@@ -33,18 +33,11 @@ export default function BoardImageGallery({ images }: { images: ImageType[] }) {
         itemWidth={266}
         slidesToShow={3}
       >
-        {images
-          .map((image) => (
-            <div
-              className="img-col"
-            >
-              <img 
-                key={image.url}
-                src={image.url}
-                alt={image.text}
-              />
-            </div>
-          ))}
+        {images.map((image) => (
+          <div className="img-col">
+            <img key={image.url} src={image.url} alt={image.text} />
+          </div>
+        ))}
       </Carousel>
     </div>
   )
