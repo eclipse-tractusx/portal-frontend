@@ -29,6 +29,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
@@ -67,14 +68,12 @@ export default function TechnicalIntegration() {
   )
 
   const dispatch = useDispatch()
-  const [enableUploadAppRoles, setEnableUploadAppRoles] = useState(false)
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   // To-Do : the below code will get enhanced again in R.3.1
   // const [disableCreateClient, setDisableCreateClient] = useState(true)
   // const [createClientSuccess, setCreateClientSuccess] = useState(false)
   // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
   // const [showUserButton, setShowUserButton] = useState(true)
-
   const appId = useSelector(appIdSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -84,6 +83,7 @@ export default function TechnicalIntegration() {
   })
   const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
   const [deleteRoles] = useDeleteRolesMutation()
+  const [uploadCSVError, setUploadCSVError] = useState(false)
 
   const defaultValues = {
     // To-Do : the below code will get enhanced again in R.3.1
@@ -94,7 +94,6 @@ export default function TechnicalIntegration() {
 
   const {
     handleSubmit,
-    getValues,
     control,
     trigger,
     formState: { errors },
@@ -123,19 +122,29 @@ export default function TechnicalIntegration() {
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
-          const roles = str
+          const CSVCell = str
             ?.split('\n')
             .filter((item) => item !== '')
-            .map((item) => item.substring(0, item.indexOf(';')))
-          setRolesPreviews(roles?.splice(1))
+            .map((item) => item)
+
+          if (CSVCell[0] === 'roles;description\r') {
+            const roles = str
+              ?.split('\n')
+              .filter((item) => item !== '')
+              .map((item) => item.substring(0, item.indexOf(';')))
+
+            setRolesPreviews(roles?.splice(1))
+            setUploadCSVError(false)
+          } else {
+            setRolesPreviews([])
+            setUploadCSVError(true)
+          }
         }
         reader.readAsText(file)
       })
   }
 
   const postRoles = async () => {
-    getValues().uploadAppRoles === '' && setEnableUploadAppRoles(true)
-
     const updateRolesData: updateRoleType = {
       appId: appId,
       body: rolesPreviews?.map((item) => ({
@@ -156,7 +165,6 @@ export default function TechnicalIntegration() {
           setRolesPreviews([])
           reset(defaultValues)
           refetch()
-          setEnableUploadAppRoles(false)
         })
         .catch((error) => {
           console.error(error, 'ERROR WHILE UPDATING ROLES')
@@ -194,7 +202,32 @@ export default function TechnicalIntegration() {
         <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
           <Typography variant="body2" align="center">
             {t('content.apprelease.technicalIntegration.headerDescription')}
+            {t(
+              'content.apprelease.technicalIntegration.uploadRolesDescription'
+            )}
           </Typography>
+          <Grid item container xs={12} mt={2}>
+            <Grid item xs={6}>
+              <a
+                href="../../AppProvider-example-role-upload-file.csv"
+                download
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <ArrowForwardIcon />
+                Template
+              </a>
+            </Grid>
+            <Grid item xs={6}>
+              <a
+                href="/"
+                target="_blank"
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <ArrowForwardIcon />
+                Get Help
+              </a>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
@@ -284,152 +317,136 @@ export default function TechnicalIntegration() {
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step2Header')}
         </Typography> */}
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.uploadRolesDescription')}
-        </Typography>
-        {enableUploadAppRoles && (
-          <>
-            <Controller
-              name={'uploadAppRoles'}
-              control={control}
-              render={({
-                field: { onChange: reactHookFormOnChange, value },
-              }) => (
-                <Dropzone
-                  onChange={(files, addedFiles, deletedFiles) => {
-                    if (deletedFiles?.length) {
-                      setRolesPreviews([])
-                    }
-                    reactHookFormOnChange(files[0]?.name)
-                    trigger('uploadAppRoles')
-                    csvPreview(files)
-                  }}
-                  acceptFormat={{ 'text/csv': ['.csv'] }}
-                  maxFilesToUpload={1}
-                  enableDeleteOverlay={true}
-                  deleteOverlayTranslation={{
-                    title: '',
-                    content:
-                      'Deletion will not be reversable, do you still want to delete?',
-                    action_no: `${t('global.actions.no')}`,
-                    action_yes: `${t('global.actions.yes')}`,
-                  }}
-                />
-              )}
+        <Controller
+          name={'uploadAppRoles'}
+          control={control}
+          render={({ field: { onChange: reactHookFormOnChange, value } }) => (
+            <Dropzone
+              onChange={(files, addedFiles, deletedFiles) => {
+                if (deletedFiles?.length) {
+                  setRolesPreviews([])
+                }
+                reactHookFormOnChange(files[0]?.name)
+                trigger('uploadAppRoles')
+                csvPreview(files)
+              }}
+              acceptFormat={{ 'text/csv': ['.csv'] }}
+              maxFilesToUpload={1}
+              enableDeleteOverlay={true}
+              deleteOverlayTranslation={{
+                title: '',
+                content:
+                  'Deletion will not be reversable, do you still want to delete?',
+                action_no: `${t('global.actions.no')}`,
+                action_yes: `${t('global.actions.yes')}`,
+              }}
             />
-            {errors?.uploadAppRoles?.type === 'required' && (
-              <Typography variant="body2" className="file-error-msg">
-                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </Typography>
-            )}
-            {rolesPreviews?.length > 0 && (
-              <>
-                <Typography variant="h6" mb={2} textAlign="center">
-                  {t('content.apprelease.technicalIntegration.rolesPreview')}
-                </Typography>
-                <Grid item container xs={12}>
-                  {rolesPreviews?.map((role: string) => (
-                    <Grid item xs={6} key={role}>
-                      <Chip
-                        key={role}
-                        label={role}
-                        withIcon={false}
-                        type="plain"
-                        variant="filled"
-                        color="secondary"
-                        sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
-                      />
-                    </Grid>
-                  ))}
+          )}
+        />
+        {errors?.uploadAppRoles?.type === 'required' && (
+          <Typography variant="body2" className="file-error-msg">
+            {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
+          </Typography>
+        )}
+        {uploadCSVError && (
+          <Typography variant="body2" className="file-error-msg">
+            "CSV file formatting incorrect. Please recheck the columns inside
+            the csv"
+          </Typography>
+        )}
+        {rolesPreviews?.length > 0 && (
+          <>
+            <Typography variant="h6" mb={2} textAlign="center">
+              {t('content.apprelease.technicalIntegration.rolesPreview')}
+            </Typography>
+            <Grid item container xs={12}>
+              {rolesPreviews?.map((role: string) => (
+                <Grid item xs={6} key={role}>
+                  <Chip
+                    key={role}
+                    label={role}
+                    withIcon={false}
+                    type="plain"
+                    variant="filled"
+                    color="secondary"
+                    sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                  />
                 </Grid>
-              </>
-            )}
+              ))}
+            </Grid>
           </>
         )}
-
         <Box textAlign="center">
           {/* <Button
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
-            // onClick={() => {
-            //   getValues().uploadAppRoles === ''
-            //     ? setEnableUploadAppRoles(true)
-            //     : setEnableUploadAppRoles(false)
-            // }}
             onClick={postRoles}
             // To-Do : the below code will get enhanced again in R.3.1
             // disabled={!createClientSuccess}
-            // onClick={() => {
-            //   getValues().uploadAppRoles === ''
-            //     ? setEnableUploadAppRoles(true)
-            //     : setEnableTestUserButton(true)
-            // }}
           >
             {getValues().uploadAppRoles === ''
               ? t(
                   'content.apprelease.technicalIntegration.clickToOpenDialogBox'
                 )
               : t(
-                  'content.apprelease.technicalIntegration.createThoseForYourApp'
+                  'content.apprelease.technicalIntegration.uploadAppRolesButton'
                 )}
           </Button> */}
 
-          <LoadingButton
-            loading={isLoading}
-            variant="contained"
-            onButtonClick={postRoles}
-            sx={{
-              textAlign: 'center',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              marginTop: '30px',
-            }}
-            loadIndicator={
-              getValues().uploadAppRoles === ''
-                ? t(
-                    'content.apprelease.technicalIntegration.clickToOpenDialogBox'
-                  )
-                : t(
-                    'content.apprelease.technicalIntegration.createThoseForYourApp'
-                  )
-            }
-            label={
-              getValues().uploadAppRoles === '' ||
-              getValues().uploadAppRoles === undefined
-                ? t(
-                    'content.apprelease.technicalIntegration.clickToOpenDialogBox'
-                  )
-                : t(
-                    'content.apprelease.technicalIntegration.createThoseForYourApp'
-                  )
-            }
-            fullWidth={false}
-          />
-          {data && data.length > 0 && (
-            <>
-              <Typography variant="h4" mb={4} mt={4}>
-                {t(
-                  'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
-                )}
-              </Typography>
+          {rolesPreviews.length > 0 && (
+            <LoadingButton
+              loading={isLoading}
+              variant="contained"
+              onButtonClick={postRoles}
+              sx={{
+                textAlign: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '30px',
+              }}
+              loadIndicator={t(
+                'content.apprelease.technicalIntegration.uploadAppRolesButton'
+              )}
+              label={t(
+                'content.apprelease.technicalIntegration.uploadAppRolesButton'
+              )}
+              fullWidth={false}
+            />
+          )}
+          <Typography variant="h4" mb={4} mt={4}>
+            {t(
+              'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
+            )}
+          </Typography>
 
-              <Grid item container xs={12}>
-                {data?.map((role: rolesType) => (
-                  <Grid item xs={6} key={role.roleId}>
-                    <Chip
-                      key={role.roleId}
-                      label={role.role}
-                      withIcon={true}
-                      type="delete"
-                      variant="filled"
-                      color="secondary"
-                      sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
-                      handleDelete={() => onChipDelete(role.roleId)}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-            </>
+          {data && data.length > 0 ? (
+            <Grid item container xs={12}>
+              {data?.map((role: rolesType) => (
+                <Grid
+                  item
+                  xs={6}
+                  key={role.roleId}
+                  style={{ textAlign: 'left' }}
+                >
+                  <Chip
+                    key={role.roleId}
+                    label={role.role}
+                    withIcon={true}
+                    type="delete"
+                    variant="filled"
+                    color="secondary"
+                    sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                    handleDelete={() => onChipDelete(role.roleId)}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Box className="no-roles-box">
+              <Typography variant="h4" mb={4} mt={4}>
+                {`Currently no roles loaded for app (${fetchAppStatus?.title})`}
+              </Typography>
+            </Box>
           )}
         </Box>
 
