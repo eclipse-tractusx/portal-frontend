@@ -127,7 +127,10 @@ export default function TechnicalIntegration() {
             .filter((item) => item !== '')
             .map((item) => item)
 
-          if (CSVCells[0] === 'roles;description\r' || CSVCells[0] === 'roles;description') {
+          if (
+            CSVCells[0] === 'roles;description\r' ||
+            CSVCells[0] === 'roles;description'
+          ) {
             const roles = str
               ?.split('\n')
               .filter((item) => item !== '')
@@ -350,7 +353,9 @@ export default function TechnicalIntegration() {
         )}
         {uploadCSVError && (
           <Typography variant="body2" className="file-error-msg">
-            {t('content.apprelease.technicalIntegration.incorrectCSVFileFormat')}
+            {t(
+              'content.apprelease.technicalIntegration.incorrectCSVFileFormat'
+            )}
           </Typography>
         )}
         {rolesPreviews?.length > 0 && (
