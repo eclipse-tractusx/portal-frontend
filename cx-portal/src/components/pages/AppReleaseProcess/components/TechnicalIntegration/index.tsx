@@ -122,12 +122,12 @@ export default function TechnicalIntegration() {
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
-          const CSVCell = str
+          const CSVCells = str
             ?.split('\n')
             .filter((item) => item !== '')
             .map((item) => item)
 
-          if (CSVCell[0] === 'roles;description\r') {
+          if (CSVCells[0] === 'roles;description\r' || CSVCells[0] === 'roles;description') {
             const roles = str
               ?.split('\n')
               .filter((item) => item !== '')
@@ -350,8 +350,7 @@ export default function TechnicalIntegration() {
         )}
         {uploadCSVError && (
           <Typography variant="body2" className="file-error-msg">
-            "CSV file formatting incorrect. Please recheck the columns inside
-            the csv"
+            {t('content.apprelease.technicalIntegration.incorrectCSVFileFormat')}
           </Typography>
         )}
         {rolesPreviews?.length > 0 && (

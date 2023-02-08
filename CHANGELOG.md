@@ -4,6 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
+### Change
+* App release process: Technical integration modifications
+
 ## 1.0.0-RC7
 
 ### Change

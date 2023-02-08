@@ -871,7 +871,8 @@
         "createTestUser": "Create Test User",
         "password": "Password",
         "username": "Username",
-        "successfullyUploadedAppRoles": "Successfully uploaded app roles"
+        "successfullyUploadedAppRoles": "Successfully uploaded app roles",
+        "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
