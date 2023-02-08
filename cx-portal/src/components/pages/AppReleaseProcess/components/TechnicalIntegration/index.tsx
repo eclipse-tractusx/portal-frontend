@@ -212,7 +212,7 @@ export default function TechnicalIntegration() {
           <Grid item container xs={12} mt={2}>
             <Grid item xs={6}>
               <a
-                href="../../AppProvider-example-role-upload-file.csv"
+                href="../../app-provider-role-upload-example.csv"
                 download
                 style={{ display: 'flex', justifyContent: 'center' }}
               >
@@ -225,6 +225,7 @@ export default function TechnicalIntegration() {
                 href="https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md"
                 target="_blank"
                 style={{ display: 'flex', justifyContent: 'center' }}
+                rel="noreferrer"
               >
                 <ArrowForwardIcon />
                 {t('content.apprelease.technicalIntegration.getHelp')}
