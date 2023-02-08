@@ -222,7 +222,7 @@ export default function TechnicalIntegration() {
             </Grid>
             <Grid item xs={6}>
               <a
-                href="/"
+                href="https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md"
                 target="_blank"
                 style={{ display: 'flex', justifyContent: 'center' }}
               >
