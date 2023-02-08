@@ -912,7 +912,10 @@
         "password": "Password",
         "username": "Username",
         "successfullyUploadedAppRoles": "Successfully uploaded app roles",
-        "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv"
+        "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
+        "template": "Template",
+        "getHelp": "Get Help",
+        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

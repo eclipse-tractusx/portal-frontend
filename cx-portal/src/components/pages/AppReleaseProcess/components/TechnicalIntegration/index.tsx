@@ -217,7 +217,7 @@ export default function TechnicalIntegration() {
                 style={{ display: 'flex', justifyContent: 'center' }}
               >
                 <ArrowForwardIcon />
-                Template
+                {t('content.apprelease.technicalIntegration.template')}
               </a>
             </Grid>
             <Grid item xs={6}>
@@ -227,7 +227,7 @@ export default function TechnicalIntegration() {
                 style={{ display: 'flex', justifyContent: 'center' }}
               >
                 <ArrowForwardIcon />
-                Get Help
+                {t('content.apprelease.technicalIntegration.getHelp')}
               </a>
             </Grid>
           </Grid>
@@ -338,8 +338,9 @@ export default function TechnicalIntegration() {
               enableDeleteOverlay={true}
               deleteOverlayTranslation={{
                 title: '',
-                content:
-                  'Deletion will not be reversable, do you still want to delete?',
+                content: t(
+                  'content.apprelease.technicalIntegration.deleteOverlayContent'
+                ),
                 action_no: `${t('global.actions.no')}`,
                 action_yes: `${t('global.actions.yes')}`,
               }}
