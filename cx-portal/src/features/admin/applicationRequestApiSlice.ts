@@ -69,6 +69,8 @@ export type ProgressButtonsProps = {
   backgroundColor?: string
   border?: string
   icon?: JSX.Element
+  details?: string
+  retriggerable?: boolean
 }
 
 export const progressMapper = {
@@ -87,6 +89,17 @@ export interface ApplicationRequest {
   bpn: string
   documents: Array<DocumentMapper>
   applicationChecklist: Array<ProgressButtonsProps>
+}
+
+type CheckListDetailsButton = {
+  status: string
+  type: string
+  details: string
+  retriggerable: string | boolean
+}
+
+export interface CheckListDetailsType {
+  applicationChecklist: Array<CheckListDetailsButton>
 }
 
 type DeclineRequestType = {
@@ -163,6 +176,22 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    fetchCheckListDetails: builder.query({
+      query: (applicationId) => ({
+        url: `api/administration/registration/applications/${applicationId}/checklistDetails`,
+      }),
+      transformResponse: (response: any) => {
+        const obj = response.map((res: CheckListDetailsButton) => {
+          return {
+            statusId: res.status,
+            typeId: res.type,
+            details: res.details,
+            retriggerable: res.retriggerable,
+          }
+        })
+        return obj
+      },
+    }),
   }),
 })
 
@@ -172,4 +201,5 @@ export const {
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
+  useFetchCheckListDetailsQuery,
 } = apiSlice

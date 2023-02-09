@@ -28,7 +28,6 @@ import { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
-  ApplicationRequest,
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
@@ -76,7 +75,6 @@ export default function RegistrationRequests() {
   const [selectedButton, setSelectedButton] = useState<ProgressButtonsProps>()
   const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
     useState<boolean>(false)
-  const [checkList, setCheckList] = useState<ProgressButtonsProps[]>()
   const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
     useState<boolean>(false)
   const [selectedRequestName, setSelectedRequestName] = useState<string>('')
@@ -151,12 +149,9 @@ export default function RegistrationRequests() {
     setConfirmCancelModalOpen(true)
   }
 
-  const onChipButtonSelect = (
-    selected: ProgressButtonsProps,
-    row: ApplicationRequest
-  ) => {
+  const onChipButtonSelect = (selected: ProgressButtonsProps, id: string) => {
     setSelectedButton(selected)
-    setCheckList(row.applicationChecklist)
+    setSelectedRequestId(id)
     setStatusConfirmationOverlay(true)
   }
 
@@ -223,14 +218,16 @@ export default function RegistrationRequests() {
         companyName={selectedRequestName}
         selectedRequestId={selectedRequestId}
       />
-      <CheckListStatusOverlay
-        openDialog={statusConfirmationOverlay}
-        handleOverlayClose={() => {
-          setStatusConfirmationOverlay(false)
-        }}
-        progressButtons={checkList}
-        selectedButton={selectedButton}
-      />
+      {statusConfirmationOverlay && selectedRequestId && (
+        <CheckListStatusOverlay
+          openDialog={statusConfirmationOverlay}
+          handleOverlayClose={() => {
+            setStatusConfirmationOverlay(false)
+          }}
+          selectedButton={selectedButton}
+          selectedRequestId={selectedRequestId}
+        />
+      )}
       <AddBpnOveraly
         openDialog={enableBpnInput}
         isLoading={isLoading}
@@ -276,10 +273,9 @@ export default function RegistrationRequests() {
           onConfirmationCancel={(id: string, name: string) =>
             onConfirmationCancel(id, name)
           }
-          onChipButtonSelect={(
-            selected: ProgressButtonsProps,
-            row: ApplicationRequest
-          ) => onChipButtonSelect(selected, row)}
+          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) =>
+            onChipButtonSelect(selected, id)
+          }
         />
       </div>
     </main>

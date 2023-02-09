@@ -42,6 +42,7 @@ interface CheckListProps extends ChipProps {
   alignRow?: string
   onButtonClick?: (button: ProgressButtonsProps) => void
   selectedButton?: ProgressButtonsProps
+  showFullWidth?: boolean
 }
 
 export default function CheckList({
@@ -53,9 +54,20 @@ export default function CheckList({
   alignRow = 'center',
   onButtonClick,
   selectedButton,
+  showFullWidth = false,
 }: CheckListProps) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
+
+  const isCancelPresent = () => showCancel && getProgressValue() < 100
+
+  const getWidth = () => {
+    if (showFullWidth) {
+      return '100%'
+    } else {
+      return isCancelPresent() ? '120px' : '130px'
+    }
+  }
 
   const getProgressValue = () => {
     let progressValue = 0
@@ -78,7 +90,11 @@ export default function CheckList({
         return {
           icon: (
             <LoopIcon
-              style={{ color: '#0F71CB', height: '20px', width: '15px' }}
+              style={{
+                color: '#0F71CB',
+                height: '20px',
+                width: '15px',
+              }}
             />
           ),
           border: highlight ? '1px solid #0F71CB' : '0px',
@@ -88,7 +104,11 @@ export default function CheckList({
         return {
           icon: (
             <PendingActionsIcon
-              style={{ color: '#0F71CB', height: '20px', width: '15px' }}
+              style={{
+                color: '#0F71CB',
+                height: '20px',
+                width: '15px',
+              }}
             />
           ),
           border: highlight ? '1px solid #0F71CB' : '0px',
@@ -98,7 +118,11 @@ export default function CheckList({
         return {
           icon: (
             <CheckCircleOutlineIcon
-              style={{ color: '#00AA55', height: '20px', width: '15px' }}
+              style={{
+                color: '#00AA55',
+                height: '20px',
+                width: '15px',
+              }}
             />
           ),
           border: highlight ? '1px solid #00AA55' : '0px',
@@ -108,7 +132,11 @@ export default function CheckList({
         return {
           icon: (
             <ReportProblemIcon
-              style={{ color: '#D91E18', height: '20px', width: '15px' }}
+              style={{
+                color: '#D91E18',
+                height: '20px',
+                width: '15px',
+              }}
             />
           ),
           border: highlight ? '1px solid #D91E18' : '0px',
@@ -123,9 +151,9 @@ export default function CheckList({
         progressButtons.map((button: ProgressButtonsProps) => ({
           statusId: button.statusId,
           typeId: button.typeId,
-          label: t(
-            `content.admin.registration-requests.checkList.${button.typeId}`
-          ),
+          details: button.details,
+          retriggerable: button.retriggerable,
+          label: t(`content.checklistOverlay.checkList.${button.typeId}`),
           highlight: isButtonSelected(button.typeId),
           ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
         }))
@@ -139,8 +167,6 @@ export default function CheckList({
       updateCheckListStatusButtons(progressButtons)
     }
   }, [progressButtons, selectedButton, updateCheckListStatusButtons])
-
-  const isCancelPresent = () => showCancel && getProgressValue() < 100
 
   return (
     <>
@@ -177,7 +203,7 @@ export default function CheckList({
                   variant="filled"
                   icon={button?.icon}
                   sx={{
-                    width: isCancelPresent() ? '120px' : '145px',
+                    width: getWidth(),
                     height: button.highlight ? '56px' : '40px',
                     padding: '8px 12px',
                     borderRadius: '8px',

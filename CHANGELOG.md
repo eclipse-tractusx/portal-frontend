@@ -4,6 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 * Feature - Design/BL&API for display app details for Admin Board
+* Checklist overlay
+   * Show information from the checklist details API
+   * Approve and Decline action
 
 ## 1.0.0-RC6
 

@@ -38,10 +38,7 @@ export const RegistrationRequestsTableColumns = (
   handleDownloadDocument: (documentId: string, documentType: string) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void,
-  onChipButtonSelect?: (
-    button: ProgressButtonsProps,
-    row: ApplicationRequest
-  ) => void
+  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
 ): Array<GridColDef> => {
   const { t } = translationHook()
 
@@ -203,7 +200,8 @@ export const RegistrationRequestsTableColumns = (
               cancelText={t('content.admin.registration-requests.cancel')}
               alignRow="center"
               onButtonClick={(button) =>
-                onChipButtonSelect && onChipButtonSelect(button, row)
+                onChipButtonSelect &&
+                onChipButtonSelect(button, row.applicationId)
               }
               onCancel={() =>
                 onConfirmationCancel &&
