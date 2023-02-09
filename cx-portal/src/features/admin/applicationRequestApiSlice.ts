@@ -110,6 +110,7 @@ type DeclineRequestType = {
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/applicationRequest',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: ['checklist'],
   endpoints: (builder) => ({
     approveRequest: builder.mutation<boolean, string>({
       query: (applicationId) => ({
@@ -123,6 +124,21 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: { comment: obj.comment },
       }),
+    }),
+    approveChecklist: builder.mutation<boolean, string>({
+      query: (applicationId) => ({
+        url: `/api/administration/registration/applications/${applicationId}/approve`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['checklist'],
+    }),
+    declineChecklist: builder.mutation<boolean, DeclineRequestType>({
+      query: (obj) => ({
+        url: `/api/administration/registration/applications/${obj.applicationId}/decline`,
+        method: 'POST',
+        body: { comment: obj.comment },
+      }),
+      invalidatesTags: ['checklist'],
     }),
     fetchCompanySearch: builder.query<
       PaginResult<ApplicationRequest>,
@@ -160,6 +176,7 @@ export const apiSlice = createApi({
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }
       },
+      providesTags: ['checklist'],
     }),
     fetchDocumentById: builder.mutation({
       query: (documentId) => ({
@@ -180,6 +197,7 @@ export const apiSlice = createApi({
       query: (applicationId) => ({
         url: `api/administration/registration/applications/${applicationId}/checklistDetails`,
       }),
+      providesTags: ['checklist'],
       transformResponse: (response: any) => {
         const obj = response.map((res: CheckListDetailsButton) => {
           return {
@@ -202,4 +220,6 @@ export const {
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
   useFetchCheckListDetailsQuery,
+  useApproveChecklistMutation,
+  useDeclineChecklistMutation,
 } = apiSlice

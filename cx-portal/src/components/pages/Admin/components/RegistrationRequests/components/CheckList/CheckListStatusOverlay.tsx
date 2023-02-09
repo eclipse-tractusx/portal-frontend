@@ -22,14 +22,19 @@ import React, { useEffect, useReducer } from 'react'
 import MuiDialog from '@mui/material/Dialog'
 import MuiDialogContent from '@mui/material/DialogContent'
 import MuiDialogActions from '@mui/material/DialogActions'
-import { Button, CircleProgress, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  CircleProgress,
+  Input,
+  Typography,
+} from 'cx-portal-shared-components'
 import CheckList from '.'
 import {
   ProgressButtonsProps,
   ProgressStatus,
   StatusType,
-  useApproveRequestMutation,
-  useDeclineRequestMutation,
+  useApproveChecklistMutation,
+  useDeclineChecklistMutation,
   useFetchCheckListDetailsQuery,
 } from 'features/admin/applicationRequestApiSlice'
 import { useTranslation } from 'react-i18next'
@@ -51,6 +56,9 @@ enum ActionKind {
   SET_CHECKLIST_BUTTONS = 'SET_CHECKLIST_BUTTONS',
   SET_ERROR = 'SET_ERROR',
   SET_CHECKLISTBUTTONS_AND_SELECTEDBUTTON = 'SET_CHECKLISTBUTTONS_AND_SELECTEDBUTTON',
+  SET_SHOW_INPUT = 'SET_SHOW_INPUT',
+  STOP_DECLINE_LOADIN_SHOW_INPUT = 'STOP_DECLINE_LOADIN_SHOW_INPUT',
+  SET_DECLINE_COMMENT = 'SET_DECLINE_COMMENT',
 }
 
 type State = {
@@ -61,6 +69,8 @@ type State = {
   selectedCheckListButton: ProgressButtonsProps
   checkListButton: ProgressButtonsProps[]
   error: string
+  showInput: boolean
+  declineComment: string
 }
 
 const initialState: State = {
@@ -74,6 +84,8 @@ const initialState: State = {
   },
   checkListButton: [],
   error: '',
+  showInput: false,
+  declineComment: '',
 }
 
 type Action = {
@@ -97,11 +109,24 @@ function reducer(state: State, { type, payload }: Action) {
       return { ...state, checkListButton: payload }
     case ActionKind.SET_ERROR:
       return { ...state, error: payload }
+    case ActionKind.SET_SHOW_INPUT:
+      return { ...state, showInput: payload }
     case ActionKind.SET_CHECKLISTBUTTONS_AND_SELECTEDBUTTON:
       return {
         ...state,
         selectedCheckListButton: payload.selected,
         checkListButton: payload.buttons,
+      }
+    case ActionKind.STOP_DECLINE_LOADIN_SHOW_INPUT:
+      return {
+        ...state,
+        declineLoading: payload.declineLoading,
+        showInput: payload.showInput,
+      }
+    case ActionKind.SET_DECLINE_COMMENT:
+      return {
+        ...state,
+        declineComment: payload,
       }
     default:
       return state
@@ -116,9 +141,9 @@ const CheckListStatusOverlay = ({
   selectedRequestId,
 }: CheckListStatusOverlayProps) => {
   const { t } = useTranslation()
-  const [approveRequest] = useApproveRequestMutation()
-  const [declineRequest] = useDeclineRequestMutation()
-  const { data, refetch } = useFetchCheckListDetailsQuery(selectedRequestId)
+  const [approveChecklist] = useApproveChecklistMutation()
+  const [declineChecklist] = useDeclineChecklistMutation()
+  const { data } = useFetchCheckListDetailsQuery(selectedRequestId)
   const [
     {
       cancelLoading,
@@ -128,6 +153,8 @@ const CheckListStatusOverlay = ({
       selectedCheckListButton,
       checkListButton,
       error,
+      showInput,
+      declineComment,
     },
     setState,
   ] = useReducer(reducer, initialState)
@@ -158,31 +185,43 @@ const CheckListStatusOverlay = ({
     setState({ type: ActionKind.SET_SELECTED_CHECKLISTBUTTON, payload: button })
   }
 
+  const onUpdateComment = (e: any) => {
+    setState({
+      type: ActionKind.SET_DECLINE_COMMENT,
+      payload: e.target.value,
+    })
+  }
+
   const onApprove = async () => {
     setState({ type: ActionKind.SET_APPROVE_LOADING, payload: true })
-    await approveRequest(selectedRequestId)
+    await approveChecklist(selectedRequestId)
       .unwrap()
       .then((payload) => console.log('fulfilled', payload))
       .catch((error) =>
-        setState({ type: ActionKind.SET_ERROR, payload: error.title })
+        setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
       )
-    refetch()
     setState({ type: ActionKind.SET_APPROVE_LOADING, payload: false })
   }
 
-  const onDecline = async () => {
+  const onDecline = () => {
+    setState({ type: ActionKind.SET_SHOW_INPUT, payload: true })
+  }
+
+  const onConfirmDecline = async () => {
     setState({ type: ActionKind.SET_DECLINE_LOADING, payload: true })
-    await declineRequest({
+    await declineChecklist({
       applicationId: selectedRequestId,
-      comment: '',
+      comment: declineComment,
     })
       .unwrap()
       .then((payload) => console.log('fulfilled', payload))
       .catch((error) =>
-        setState({ type: ActionKind.SET_ERROR, payload: error.title })
+        setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
       )
-    refetch()
-    setState({ type: ActionKind.SET_DECLINE_LOADING, payload: false })
+    setState({
+      type: ActionKind.STOP_DECLINE_LOADIN_SHOW_INPUT,
+      payload: { declineLoading: false, showInput: false },
+    })
   }
 
   const onCancel = () => {
@@ -217,8 +256,6 @@ const CheckListStatusOverlay = ({
     )
 
   const canShowCancelAndRetrigger = () => selectedCheckListButton.retriggerable
-
-  console.log('selectedCheckListButton = = ', selectedCheckListButton)
 
   const canShowApproveAndDecline = () =>
     selectedCheckListButton?.typeId === StatusType.REGISTRATION_VERIFICATION &&
@@ -341,7 +378,7 @@ const CheckListStatusOverlay = ({
               display: '-webkit-box',
               WebkitLineClamp: '2',
               WebkitBoxOrient: 'vertical',
-              height: selectedCheckListButton?.details ? '50px' : '20px',
+              maxHeight: selectedCheckListButton?.details ? '50px' : '20px',
             }}
             variant="body2"
           >
@@ -361,7 +398,7 @@ const CheckListStatusOverlay = ({
           style={{
             textAlign: 'left',
             marginTop: '30px',
-            marginBottom: '30px',
+            marginBottom: '10px',
           }}
         >
           <Typography
@@ -453,7 +490,66 @@ const CheckListStatusOverlay = ({
             </div>
           </div>
         )}
-        {canShowApproveAndDecline() && (
+        {showInput && (
+          <>
+            <div>
+              <Input
+                label={t(
+                  'content.admin.registration-requests.confirmCancelModal.inputLabel'
+                )}
+                sx={{
+                  paddingTop: '10px',
+                }}
+                multiline
+                rows={2}
+                maxRows={4}
+                placeholder={''}
+                onChange={(e: any) => {
+                  onUpdateComment(e)
+                }}
+                value={declineComment}
+              />
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                marginTop: '30px',
+                marginBottom: '30px',
+              }}
+            >
+              <div style={{ marginRight: '20px' }}>
+                {declineLoading && (
+                  <span
+                    style={{
+                      marginRight: '50px',
+                      width: '116px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <CircleProgress
+                      size={40}
+                      step={1}
+                      interval={0.1}
+                      colorVariant={'primary'}
+                      variant={'indeterminate'}
+                      thickness={8}
+                    />
+                  </span>
+                )}
+                {!declineLoading && (
+                  <Button
+                    onClick={() => onConfirmDecline()}
+                    size="small"
+                    variant="contained"
+                  >
+                    {t('content.checklistOverlay.buttonConfirm')}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+        {canShowApproveAndDecline() && !showInput && (
           <div
             style={{
               display: 'flex',
@@ -461,12 +557,11 @@ const CheckListStatusOverlay = ({
               marginBottom: '30px',
             }}
           >
-            <div style={{ marginRight: '20px' }}>
+            <div style={{ marginRight: '10px' }}>
               {approveLoading && (
                 <span
                   style={{
-                    marginRight: '75px',
-                    marginLeft: '50px',
+                    marginRight: '50px',
                     width: '116px',
                     textAlign: 'center',
                   }}
@@ -493,34 +588,14 @@ const CheckListStatusOverlay = ({
               )}
             </div>
             <div>
-              {declineLoading && (
-                <span
-                  style={{
-                    marginLeft: '50px',
-                    width: '116px',
-                    textAlign: 'center',
-                  }}
-                >
-                  <CircleProgress
-                    size={40}
-                    step={1}
-                    interval={0.1}
-                    colorVariant={'primary'}
-                    variant={'indeterminate'}
-                    thickness={8}
-                  />
-                </span>
-              )}
-              {!declineLoading && (
-                <Button
-                  onClick={() => onDecline()}
-                  size="small"
-                  variant="outlined"
-                  disabled={approveLoading}
-                >
-                  {t('content.checklistOverlay.buttonDecline')}
-                </Button>
-              )}
+              <Button
+                onClick={() => onDecline()}
+                size="small"
+                variant="outlined"
+                disabled={approveLoading}
+              >
+                {t('content.checklistOverlay.buttonDecline')}
+              </Button>
             </div>
           </div>
         )}

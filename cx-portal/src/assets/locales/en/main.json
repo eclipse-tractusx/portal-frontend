@@ -1063,6 +1063,7 @@
         "SELF_DESCRIPTION_LP": "Self Description"
       },
       "buttonApprove": "Approve",
+      "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
       "buttonCancel": "Cancel Process",
