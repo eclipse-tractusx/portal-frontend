@@ -8,6 +8,23 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Show information from the checklist details API
    * Approve and Decline action
 
+### Change
+* App release process: Technical integration modifications
+
+## 1.0.0-RC7
+
+### Change
+* Admin App Approval Board - app detail page released when clicking on app card
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* Notification delete mechanism updated - auto page reload
+
 ## 1.0.0-RC6
 
 ### Change
