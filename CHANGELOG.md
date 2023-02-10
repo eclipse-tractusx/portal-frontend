@@ -2,7 +2,10 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### Unreleased
+## Unreleased
+
+### Change
+* New Help Center
 
 ### Change
 * App release process: Technical integration modifications
