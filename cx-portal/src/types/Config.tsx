@@ -82,8 +82,8 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
-  { name: PAGES.HELP, element: <Redirect path="/documentation/" /> },
-  { name: PAGES.DOCUMENTATION, element: <Redirect path="/documentation/" /> },
+  { name: PAGES.HELP, element: <Redirect path="documentation" /> },
+  { name: PAGES.DOCUMENTATION, element: <Redirect path="documentation" /> },
   { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
     name: PAGES.MARKETPLACE,
