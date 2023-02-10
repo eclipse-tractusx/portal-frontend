@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Checklist overlay
    * Show information from the checklist details API
    * Approve and Decline action
+* Bugfix - User Management - App role assignment - Cache Issue
 
 ### Change
 * App release process: Technical integration modifications
