@@ -37,12 +37,12 @@ import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPa
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   ApplicationRequest,
-  ProgressStatus,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
+import { getTitle } from './CompanyDetailsHelper'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -134,21 +134,6 @@ const CompanyDetailOverlay = ({
     setActiveTab(newValue)
   }
 
-  const isComplete = () => {
-    let flag = true
-    if (company) {
-      company.applicationChecklist.forEach(
-        (btn: { typeId: string; statusId: string }) => {
-          if (btn.statusId !== ProgressStatus.DONE) {
-            flag = false
-            return flag
-          }
-        }
-      )
-    }
-    return flag
-  }
-
   return (
     <div className={'company-detail-overlay'}>
       <Dialog
@@ -161,21 +146,7 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title:
-              activeTab === 0
-                ? t('content.admin.registration-requests.overlay.tab1Title')
-                : t(
-                    'content.admin.registration-requests.overlay.tab2Title'
-                  ).replace(
-                    '{status}',
-                    isComplete()
-                      ? t(
-                          'content.admin.registration-requests.overlay.statusComplete'
-                        )
-                      : t(
-                          'content.admin.registration-requests.overlay.statusIncomplete'
-                        )
-                  ),
+            title: getTitle(activeTab, company?.applicationChecklist || [], t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}

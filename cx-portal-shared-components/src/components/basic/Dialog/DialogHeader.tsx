@@ -86,7 +86,7 @@ export const DialogHeader = ({
           {intro}
         </Typography>
       )}
-      {children && children}
+      {children}
     </Box>
   )
 }
