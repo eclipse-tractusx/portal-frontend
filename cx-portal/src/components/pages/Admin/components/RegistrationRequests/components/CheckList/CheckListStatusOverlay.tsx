@@ -537,13 +537,30 @@ const CheckListStatusOverlay = ({
                   </span>
                 )}
                 {!declineLoading && (
-                  <Button
-                    onClick={() => onConfirmDecline()}
-                    size="small"
-                    variant="contained"
-                  >
-                    {t('content.checklistOverlay.buttonConfirm')}
-                  </Button>
+                  <>
+                    <Button
+                      onClick={() => onConfirmDecline()}
+                      size="small"
+                      variant="contained"
+                    >
+                      {t('content.checklistOverlay.buttonConfirm')}
+                    </Button>
+                    <Button
+                      sx={{
+                        marginLeft: '10px',
+                      }}
+                      onClick={() =>
+                        setState({
+                          type: ActionKind.SET_SHOW_INPUT,
+                          payload: false,
+                        })
+                      }
+                      size="small"
+                      variant="outlined"
+                    >
+                      {t('content.checklistOverlay.cancel')}
+                    </Button>
+                  </>
                 )}
               </div>
             </div>
