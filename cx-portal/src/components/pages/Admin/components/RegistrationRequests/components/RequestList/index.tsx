@@ -48,10 +48,7 @@ export const RequestList = ({
   handleDownloadDocument: (documentId: string, documentType: string) => void
   showConfirmOverlay?: (applicationId: string) => void
   onConfirmationCancel?: (applicationId: string, name: string) => void
-  onChipButtonSelect?: (
-    button: ProgressButtonsProps,
-    row: ApplicationRequest
-  ) => void
+  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()

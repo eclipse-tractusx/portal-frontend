@@ -2,14 +2,16 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## Unreleased
+### Unreleased
+* Feature - Design/BL&API for display app details for Admin Board
+* Checklist overlay
+   * Show information from the checklist details API
+   * Approve and Decline action
 * Bugfix - User Management - App role assignment - Cache Issue
 
 ### Change
-* New Help Center
-
-### Change
 * App release process: Technical integration modifications
+* New Help Center
 
 ## 1.0.0-RC7
 
