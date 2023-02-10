@@ -161,8 +161,8 @@ const CompanyDetailOverlay = ({
                 sx={{
                   fontSize: '18px',
                   '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb'
-                  }
+                    borderBottom: '3px solid #0f71cb',
+                  },
                 }}
                 label={t('content.admin.registration-requests.overlay.tab1')}
                 id={`simple-tab-${activeTab}`}
@@ -172,8 +172,8 @@ const CompanyDetailOverlay = ({
                 sx={{
                   fontSize: '18px',
                   '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb'
-                  }
+                    borderBottom: '3px solid #0f71cb',
+                  },
                 }}
                 label={t('content.admin.registration-requests.overlay.tab2')}
                 id={`simple-tab-${activeTab}`}
