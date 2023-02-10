@@ -35,7 +35,6 @@ import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
-import Help from 'components/pages/Help'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
 import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
@@ -83,7 +82,8 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
-  { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
+  { name: PAGES.HELP, element: <Redirect path="/documentation/" /> },
+  { name: PAGES.DOCUMENTATION, element: <Redirect path="/documentation/" /> },
   { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
   {
     name: PAGES.MARKETPLACE,
@@ -334,7 +334,6 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.CX_ADMIN,
     element: <Translator />,
   },
-  { name: PAGES.HELP, element: <Help /> },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },

@@ -26,36 +26,24 @@ import { useSelector } from 'react-redux'
 import { updateIDPSelector } from 'features/control/updatesSlice'
 import IDPListItem from './IDPListItem'
 import './style.scss'
-import { Checkbox } from 'cx-portal-shared-components'
-import { useState } from 'react'
 
 export const IDPList = () => {
   const update = useSelector(updateIDPSelector)
   const { data } = useFetchIDPListQuery(update)
-  const [buttons, setButtons] = useState<boolean>(false)
 
   return (
-    <>
-      <div style={{ width: '100%', textAlign: 'right' }}>
-        <Checkbox
-          sx={{ color: '#ccc' }}
-          label=""
-          onClick={() => setButtons(!buttons)}
-        />
-      </div>
-      <ul className="idp-list">
-        {data &&
-          data
-            .slice()
-            .sort((a: IdentityProvider, b: IdentityProvider) =>
-              a.alias.localeCompare(b.alias)
-            )
-            .map((idp) => (
-              <li key={idp.identityProviderId}>
-                <IDPListItem idp={idp} buttons={buttons} />
-              </li>
-            ))}
-      </ul>
-    </>
+    <ul className="idp-list">
+      {data &&
+        data
+          .slice()
+          .sort((a: IdentityProvider, b: IdentityProvider) =>
+            a.alias.localeCompare(b.alias)
+          )
+          .map((idp) => (
+            <li key={idp.identityProviderId}>
+              <IDPListItem idp={idp} />
+            </li>
+          ))}
+    </ul>
   )
 }
