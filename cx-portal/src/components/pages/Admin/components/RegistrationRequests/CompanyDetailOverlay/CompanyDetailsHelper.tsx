@@ -52,10 +52,10 @@ export const getTitle = (
         t('content.admin.registration-requests.overlay.statusComplete')
       )
     } else {
-        return t('content.admin.registration-requests.overlay.tab2Title').replace(
-          '{status}',
-          t('content.admin.registration-requests.overlay.statusIncomplete')
-        )
-      }
-  } 
+      return t('content.admin.registration-requests.overlay.tab2Title').replace(
+        '{status}',
+        t('content.admin.registration-requests.overlay.statusIncomplete')
+      )
+    }
+  }
 }

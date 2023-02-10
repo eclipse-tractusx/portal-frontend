@@ -159,8 +159,10 @@ const CompanyDetailOverlay = ({
             <Tabs value={activeTab} onChange={handleChange}>
               <Tab
                 sx={{
-                  color: '#111111',
                   fontSize: '18px',
+                  '&.Mui-selected': {
+                    borderBottom: '3px solid #0f71cb'
+                  }
                 }}
                 label={t('content.admin.registration-requests.overlay.tab1')}
                 id={`simple-tab-${activeTab}`}
@@ -168,8 +170,10 @@ const CompanyDetailOverlay = ({
               />
               <Tab
                 sx={{
-                  color: '#111111',
                   fontSize: '18px',
+                  '&.Mui-selected': {
+                    borderBottom: '3px solid #0f71cb'
+                  }
                 }}
                 label={t('content.admin.registration-requests.overlay.tab2')}
                 id={`simple-tab-${activeTab}`}
