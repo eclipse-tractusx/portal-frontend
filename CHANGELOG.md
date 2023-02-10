@@ -3,6 +3,7 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ## Unreleased
+* Bugfix - User Management - App role assignment - Cache Issue
 
 ### Change
 * New Help Center
