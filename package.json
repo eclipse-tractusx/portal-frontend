@@ -45,5 +45,10 @@
     "rimraf": "^3.0.2",
     "yarn": "^1.22.18"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": { 
+    "**/nth-check": "^2.0.1",
+    "**/cx-portal/react-scripts/react-dev-utils/loader-utils": "^3.2.0",
+    "**/loader-utils": "^2.0.4"
+  }
 }
