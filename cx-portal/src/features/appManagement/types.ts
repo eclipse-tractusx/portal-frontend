@@ -41,6 +41,7 @@ export interface AppStatusDataState {
   contactEmail: string
   contactNumber: string
   documents: any
+  privacyPolicies: string[]
 }
 
 export interface DescriptionState {
@@ -85,5 +86,6 @@ export const initialState: AppManagementState = {
     contactEmail: '',
     contactNumber: '',
     documents: {},
+    privacyPolicies: [],
   },
 }

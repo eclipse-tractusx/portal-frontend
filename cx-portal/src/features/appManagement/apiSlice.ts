@@ -48,6 +48,7 @@ export type CreateAppStep1Item = {
   }[]
   supportedLanguageCodes: string[]
   price: string
+  privacyPolicies: string[]
 }
 
 export type ImageType = {

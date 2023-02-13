@@ -28,6 +28,7 @@
     "developer": "Entwicklung",
     "invite": "Einladung CX Teilnehmer",
     "help": "Hilfe",
+    "documentation": "Dokumentation & Hilfe",
     "contact": "Kontakt",
     "imprint": "Impressum",
     "privacy": "Privatsphäre",
@@ -130,13 +131,6 @@
           "leiCode": "LEI Code",
           "vies": "VIES",
           "eori": "EORI"
-        },
-        "checkList": {
-          "REGISTRATION_VERIFICATION": "Data Validation",
-          "BUSINESS_PARTNER_NUMBER": "BPN Creation",
-          "IDENTITY_WALLET": "Identity Wallet Creation",
-          "CLEARING_HOUSE": "Clearing House",
-          "SELF_DESCRIPTION_LP": "Self Description"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
@@ -902,17 +896,20 @@
         "step2Header": "2. Upload App Roles",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of roles contained in the uploaded files:",
-        "createThoseForYourApp": "Create those for your App",
+        "uploadAppRolesButton": "Upload App Roles",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "step4Header": "4. Get Test Users to Test Integration",
         "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
         "createClient": "Create Client",
         "createTestUser": "Create Test User",
-        "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
         "password": "Password",
         "username": "Username",
-        "successfullyUploadedAppRoles": "Successfully uploaded app roles"
+        "successfullyUploadedAppRoles": "Successfully uploaded app roles",
+        "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
+        "template": "Template",
+        "getHelp": "Get Help",
+        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1096,6 +1093,129 @@
         "website": "Website",
         "email": "Email",
         "phone": "Phone"
+      }
+    },
+    "checklistOverlay": {
+      "checkList": {
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description"
+      },
+      "buttonApprove": "Approve",
+      "buttonConfirm": "Confirm",
+      "buttonDecline": "Decline",
+      "buttonRetrigger": "Retrigger Process",
+      "buttonCancel": "Cancel Process",
+      "comments": "Comments",
+      "nocomments": " No comments available",
+      "buttonClose": "Close",
+      "resolveTitle": "Your option to resolve the issue",
+      "REGISTRATION_VERIFICATION": {
+        "stepName": "Data Validation",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
+        "TO_DO": {
+          "title": "Your action is needed to resolve the issue",
+          "description": ""
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "No action needed from your side",
+          "description": "The registration company got informed about the declined registration form. A new application is needed if you want to proceed."
+        }
+      },
+      "BUSINESS_PARTNER_NUMBER": {
+        "stepName": "BPN Creation",
+        "stepDescription": "Each registration company need to have a business partner number created. In this step the creation of the bpdm is triggered against the bpdm data pool.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "IDENTITY_WALLET": {
+        "stepName": "Identity Wallet Creation",
+        "stepDescription": "With successful business partner number creation as well as the manual validation of the company registration data; the managed identity wallet is getting generated for the participant.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "CLEARING_HOUSE": {
+        "stepName": "Clearing House",
+        "stepDescription": "Gaia-X Clearinghouse provider is validating the company registration form (company name; address and unique identifier) and after successful validation verified credentials are added to the managed wallet of the customer.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The clearinghouse check was unsuccessful. Details to the unsuccessful validation can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        }
+      },
+      "SELF_DESCRIPTION_LP": {
+        "stepName": "Self Description",
+        "stepDescription": "Legal person / company Self Description is created by the SD Factory and signed and send back by the clearinghouse. The process might take a while since its an asyncron interface.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        }
       }
     }
   },

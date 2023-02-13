@@ -69,6 +69,8 @@ export type ProgressButtonsProps = {
   backgroundColor?: string
   border?: string
   icon?: JSX.Element
+  details?: string
+  retriggerable?: boolean
 }
 
 export const progressMapper = {
@@ -89,6 +91,17 @@ export interface ApplicationRequest {
   applicationChecklist: Array<ProgressButtonsProps>
 }
 
+type CheckListDetailsButton = {
+  status: string
+  type: string
+  details: string
+  retriggerable: string | boolean
+}
+
+export interface CheckListDetailsType {
+  applicationChecklist: Array<CheckListDetailsButton>
+}
+
 type DeclineRequestType = {
   applicationId: string
   comment: string
@@ -97,6 +110,7 @@ type DeclineRequestType = {
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/applicationRequest',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: ['checklist'],
   endpoints: (builder) => ({
     approveRequest: builder.mutation<boolean, string>({
       query: (applicationId) => ({
@@ -110,6 +124,21 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: { comment: obj.comment },
       }),
+    }),
+    approveChecklist: builder.mutation<boolean, string>({
+      query: (applicationId) => ({
+        url: `/api/administration/registration/applications/${applicationId}/approve`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['checklist'],
+    }),
+    declineChecklist: builder.mutation<boolean, DeclineRequestType>({
+      query: (obj) => ({
+        url: `/api/administration/registration/applications/${obj.applicationId}/decline`,
+        method: 'POST',
+        body: { comment: obj.comment },
+      }),
+      invalidatesTags: ['checklist'],
     }),
     fetchCompanySearch: builder.query<
       PaginResult<ApplicationRequest>,
@@ -147,6 +176,7 @@ export const apiSlice = createApi({
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }
       },
+      providesTags: ['checklist'],
     }),
     fetchDocumentById: builder.mutation({
       query: (documentId) => ({
@@ -163,6 +193,23 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    fetchCheckListDetails: builder.query({
+      query: (applicationId) => ({
+        url: `api/administration/registration/applications/${applicationId}/checklistDetails`,
+      }),
+      providesTags: ['checklist'],
+      transformResponse: (response: any) => {
+        const obj = response.map((res: CheckListDetailsButton) => {
+          return {
+            statusId: res.status,
+            typeId: res.type,
+            details: res.details,
+            retriggerable: res.retriggerable,
+          }
+        })
+        return obj
+      },
+    }),
   }),
 })
 
@@ -172,4 +219,7 @@ export const {
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
+  useFetchCheckListDetailsQuery,
+  useApproveChecklistMutation,
+  useDeclineChecklistMutation,
 } = apiSlice
