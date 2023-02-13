@@ -9,6 +9,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Approve and Decline action
 * Bugfix - User Management - App role assignment - Cache Issue
 * Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
+* Digital Twin
+   * Text updates
 
 ### Change
 * App release process: Technical integration modifications
