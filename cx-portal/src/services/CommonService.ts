@@ -79,9 +79,17 @@ const fetchLeadPictures = (images: string[]) => {
   const promises = images?.map((image: any) => {
     return [
       new Promise((resolve, reject) => {
-        let url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
-          image
-        )}`
+        let url = ''
+        if (!image.documentId) {
+          url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
+            image
+          )}`
+        } else {
+          url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
+            image.documentId
+          )}`
+        }
+
         return fetch(url, {
           method: 'GET',
           headers: {
