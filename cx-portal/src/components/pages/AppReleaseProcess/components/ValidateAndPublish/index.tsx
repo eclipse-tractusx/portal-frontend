@@ -66,6 +66,8 @@ export default function ValidateAndPublish({
   const appStatusData: any = useSelector(appStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState('')
+  const [multipleImages, setMultipleImages] = useState<any[]>([])
+  const [images, setImages] = useState<string[]>([])
 
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -81,17 +83,40 @@ export default function ValidateAndPublish({
       statusData?.documents?.APP_LEADIMAGE &&
       statusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
-      fetchImage(statusData?.documents?.APP_LEADIMAGE[0].documentId)
+      fetchImage(
+        statusData?.documents?.APP_LEADIMAGE[0].documentId,
+        'APP_LEADIMAGE'
+      )
     }
+
+    if (
+      statusData?.documents?.APP_IMAGE &&
+      statusData?.documents?.APP_IMAGE[0].documentId
+    ) {
+      statusData?.documents?.APP_IMAGE.map((item: any, i: number) => {
+        if (i < 2) {
+          fetchImage(item.documentId, 'APP_IMAGE')
+        }
+      })
+    }
+
     reset(defaultValues)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusData])
 
-  const fetchImage = async (documentId: string) => {
+  const fetchImage = async (documentId: string, documentType: string) => {
     try {
       const response = await fetchDocumentById(documentId).unwrap()
       const file = response.data
-      return setCardImage(URL.createObjectURL(file))
+      if (documentType === 'APP_LEADIMAGE') {
+        return setCardImage(URL.createObjectURL(file))
+      }
+      if (documentType === 'APP_IMAGE') {
+        const image = URL.createObjectURL(file)
+        images.push(image)
+        setImages(images)
+        return setMultipleImages(images.concat(image))
+      }
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
     }
@@ -114,10 +139,10 @@ export default function ValidateAndPublish({
     providerTableData: {
       head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
       body: [
-        [statusData.providerName],
-        [statusData.providerUri],
-        [statusData.contactEmail],
-        [statusData.contactNumber],
+        [statusData?.providerName],
+        [statusData?.providerUri],
+        [statusData?.contactEmail],
+        [statusData?.contactNumber],
       ],
     },
     cxTestRuns: [
@@ -154,9 +179,10 @@ export default function ValidateAndPublish({
   }
 
   const getAppData = (item: string) => {
-    if (item === 'language') return statusData.supportedLanguageCodes.join(', ')
-    else if (item === 'useCase') return statusData.useCase.join(', ')
-    else if (item === 'price') return statusData.price
+    if (item === 'language')
+      return statusData?.supportedLanguageCodes.join(', ')
+    else if (item === 'useCase') return statusData?.useCase.join(', ')
+    else if (item === 'price') return statusData?.price
   }
 
   return (
@@ -184,8 +210,8 @@ export default function ValidateAndPublish({
               image={{
                 src: cardImage || LogoGrayData,
               }}
-              title={statusData.title}
-              subtitle={statusData.provider}
+              title={statusData?.title}
+              subtitle={statusData?.provider}
               description={
                 statusData?.descriptions?.filter(
                   (lang: { languageCode: string }) =>
@@ -256,15 +282,17 @@ export default function ValidateAndPublish({
           </div>
         ))}
         <div style={{ display: 'flex' }}>
-          {defaultValues.images?.map((img, i) => (
-            <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
-              <img
-                src={img}
-                alt={'images'}
-                className="verify-validate-images"
-              />
-            </Box>
-          ))}
+          {multipleImages?.map((img: string | undefined, i: number) => {
+            return (
+              <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
+                <img
+                  src={img}
+                  alt={'images'}
+                  className="verify-validate-images"
+                />
+              </Box>
+            )
+          })}
         </div>
 
         <Divider className="verify-validate-form-divider" />
