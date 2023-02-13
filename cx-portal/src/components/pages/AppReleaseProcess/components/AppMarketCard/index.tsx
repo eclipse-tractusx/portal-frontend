@@ -409,6 +409,7 @@ export default function AppMarketCard() {
       ],
       supportedLanguageCodes: data.appLanguage,
       price: data.price,
+      privacyPolicies: [],
     }
 
     const uploadImageValue = getValues().uploadImage
