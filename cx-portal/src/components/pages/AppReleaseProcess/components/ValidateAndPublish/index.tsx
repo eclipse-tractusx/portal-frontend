@@ -67,7 +67,7 @@ export default function ValidateAndPublish({
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState('')
   const [multipleImages, setMultipleImages] = useState<any[]>([])
-  const [images, setImages] = useState<string[]>([])
+  const images: string[] = []
 
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
