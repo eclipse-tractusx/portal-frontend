@@ -45,5 +45,19 @@
     "rimraf": "^3.0.2",
     "yarn": "^1.22.18"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": { 
+    "**/nth-check": "^2.0.1",
+    "**/cx-portal/react-scripts/react-dev-utils/loader-utils": "^3.2.0",
+    "**/loader-utils": "^2.0.4",
+    "**/json5": "^2.2.2",
+    "**/cx-portal/react-scripts/workbox-webpack-plugin/workbox-build/@surma/rollup-plugin-off-main-thread/ejs/jake/filelist/minimatch": "^5.0.1",
+    "**/minimatch": "^3.0.5",
+    "**/terser": "^5.14.2",
+    "**/cx-portal/eslint/glob-parent": "^6.0.2",
+    "**/cx-portal/react-scripts/tailwindcss/glob-parent": "^6.0.2",
+    "**/glob-parent": "^5.1.2",
+    "**/trim": "^0.0.3",
+    "**/decode-uri-component": "^0.2.1"
+  }
 }
