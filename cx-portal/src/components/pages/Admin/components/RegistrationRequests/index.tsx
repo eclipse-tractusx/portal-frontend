@@ -29,7 +29,7 @@ import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
   useApproveRequestMutation,
-  useDeclineRequestMutation,
+  useDeclineChecklistMutation,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
@@ -56,7 +56,7 @@ export default function RegistrationRequests() {
   const [actionType, setActionType] = useState<string>('approve')
 
   const [approveRequest] = useApproveRequestMutation()
-  const [declineRequest] = useDeclineRequestMutation()
+  const [declineRequest] = useDeclineChecklistMutation()
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
   const [updateBpn] = useUpdateBPNMutation()
