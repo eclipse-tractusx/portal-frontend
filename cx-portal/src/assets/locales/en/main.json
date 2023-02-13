@@ -286,7 +286,8 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Search by party instance id",
+        "searchfielddefaulttext": "enter the part instance id of the asset",
+        "norows": "no data found with the part instance id value {data}",
         "columns": {
           "idShort": "Name",
           "sm_count": "Submodel Count",
