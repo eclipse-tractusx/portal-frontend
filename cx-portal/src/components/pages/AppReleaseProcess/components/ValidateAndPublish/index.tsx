@@ -112,7 +112,6 @@ export default function ValidateAndPublish({
       if (documentType === 'APP_IMAGE') {
         const image = URL.createObjectURL(file)
         images.push(image)
-        setImages(images)
         return setMultipleImages(images.concat(image))
       }
     } catch (error) {
