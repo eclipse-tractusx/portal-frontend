@@ -51,6 +51,7 @@ import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { setAppStatus } from 'features/appManagement/actions'
+import CommonService from 'services/CommonService'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -67,7 +68,6 @@ export default function ValidateAndPublish({
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState('')
   const [multipleImages, setMultipleImages] = useState<any[]>([])
-  const images: string[] = []
 
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -88,13 +88,15 @@ export default function ValidateAndPublish({
         'APP_LEADIMAGE'
       )
     }
-
     if (
       statusData?.documents?.APP_IMAGE &&
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
-      statusData?.documents?.APP_IMAGE.map((item: any, i: number) => {
-        return i < 2 && fetchImage(item.documentId, 'APP_IMAGE')
+      const newPromies = CommonService.fetchLeadPictures(
+        statusData?.documents?.APP_IMAGE
+      )
+      Promise.all(newPromies).then((result) => {
+        setMultipleImages(result.flat())
       })
     }
 
@@ -108,11 +110,6 @@ export default function ValidateAndPublish({
       const file = response.data
       if (documentType === 'APP_LEADIMAGE') {
         return setCardImage(URL.createObjectURL(file))
-      }
-      if (documentType === 'APP_IMAGE') {
-        const image = URL.createObjectURL(file)
-        images.push(image)
-        return setMultipleImages(images.concat(image))
       }
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
@@ -279,11 +276,11 @@ export default function ValidateAndPublish({
           </div>
         ))}
         <div style={{ display: 'flex' }}>
-          {multipleImages?.map((img: string | undefined, i: number) => {
+          {multipleImages?.map((img: { url: string }, i: number) => {
             return (
               <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
                 <img
-                  src={img}
+                  src={img.url}
                   alt={'images'}
                   className="verify-validate-images"
                 />
