@@ -7,7 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ## 1.0.0-RC8
 
 ### Change
-* App Release Process: 
+* App Release Process:
   * Technical integration - role upload ui changes to ease the usability
   * Added new attribute "privacyPolicies" to  app creation
 * New 'Help Center' connected with the portal help button
@@ -18,7 +18,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * enabled approval and decline interfaces for the manual data validation
 
 ### Technical Support
-* Dependabot findings and temp fix for cve-2023-0286
+* resolve dependabot findings
+* temp fix for cve-2023-0286
+* add missing '--no-cache': apk update && apk add
 
 ### Bugfix
 * User Management: App role assignment - cache issue resolved
