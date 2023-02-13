@@ -3,16 +3,25 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-* Feature - Design/BL&API for display app details for Admin Board
-* Checklist overlay
-   * Show information from the checklist details API
-   * Approve and Decline action
-* Bugfix - User Management - App role assignment - Cache Issue
-* Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
+
+## 1.0.0-RC8
 
 ### Change
-* App release process: Technical integration modifications
-* New Help Center
+* App Release Process: 
+  * Technical integration - role upload ui changes to ease the usability
+  * Added new attribute "privacyPolicies" to  app creation
+* New 'Help Center' connected with the portal help button
+
+### Feature
+* Application Approval Board - Checklist overlay
+   * enabled checklist details with comments and status via backend api connection
+   * enabled approval and decline interfaces for the manual data validation
+
+### Technical Support
+* Dependabot findings and temp fix for cve-2023-0286
+
+### Bugfix
+* User Management: App role assignment - cache issue resolved
 
 ## 1.0.0-RC7
 
