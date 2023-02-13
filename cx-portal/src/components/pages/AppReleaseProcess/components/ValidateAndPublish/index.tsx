@@ -94,9 +94,7 @@ export default function ValidateAndPublish({
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
       statusData?.documents?.APP_IMAGE.map((item: any, i: number) => {
-        if (i < 2) {
-          fetchImage(item.documentId, 'APP_IMAGE')
-        }
+        return i < 2 && fetchImage(item.documentId, 'APP_IMAGE')
       })
     }
 
