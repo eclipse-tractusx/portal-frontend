@@ -98,6 +98,8 @@ export interface NotificationContent {
   message?: string
   appId?: string
   userId?: string
+  AppName?: string
+  CompanyName?: string
 }
 
 export interface CXNotificationContent {

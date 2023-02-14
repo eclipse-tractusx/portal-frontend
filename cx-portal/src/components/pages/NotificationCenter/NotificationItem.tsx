@@ -77,14 +77,15 @@ const NotificationContent = ({
   const userId = item.contentParsed?.userId
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
-
+  const appName = item.contentParsed?.AppName
+  const companyName = item.contentParsed?.CompanyName
   return (
     <>
       <div>
         <Trans
           ns="notification"
           i18nKey={`${item.typeId}.content`}
-          values={{ you }}
+          values={{ you, app: appName, company: companyName }}
         >
           <NameLink
             fetchHook={useFetchUserDetailsQuery}
