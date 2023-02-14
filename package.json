@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-RC7",
+  "version": "1.0.0-RC8",
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
@@ -46,7 +46,7 @@
     "yarn": "^1.22.18"
   },
   "dependencies": {},
-  "resolutions": { 
+  "resolutions": {
     "**/nth-check": "^2.0.1",
     "**/cx-portal/react-scripts/react-dev-utils/loader-utils": "^3.2.0",
     "**/loader-utils": "^2.0.4",
