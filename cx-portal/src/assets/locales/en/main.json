@@ -286,7 +286,7 @@
     "digitaltwin": {
       "table": {
         "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "enter the part instance id of the asset",
+        "searchfielddefaulttext": "Part Instance ID of the Asset",
         "norows": "no data found with the part instance id value {data}",
         "columns": {
           "idShort": "Name",
