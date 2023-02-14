@@ -294,7 +294,8 @@
     "digitaltwin": {
       "table": {
         "title": "Übersicht Digitale Zwillinge",
-        "searchfielddefaulttext": "Suche nach Name/Kennung",
+        "searchfielddefaulttext": "Teile-Instanz-ID des Assets",
+        "norows": "Keine Daten mit der Teile-Instanz-ID {data} gefunden",
         "columns": {
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",

@@ -11,6 +11,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Company Data overlay
    * Show tabs to display company data and registration process status
 * Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
+* Digital Twin
+   * Text updates
 
 ## 1.0.0-RC8
 

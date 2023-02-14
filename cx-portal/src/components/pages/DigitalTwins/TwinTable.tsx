@@ -106,6 +106,10 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         getRowId={(row) => uniqueId(row.idShort)}
         rowHeight={50}
         hasBorder={false}
+        noRowsMsg={t('content.digitaltwin.table.norows').replace(
+          '{data}',
+          searchValue
+        )}
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (
