@@ -22,21 +22,13 @@ import {
   ProgressButtonsProps,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
+import { Trans } from 'react-i18next'
 
-export const isComplete = (applicationChecklist: ProgressButtonsProps[]) => {
-  let flag = true
-  if (applicationChecklist) {
-    applicationChecklist.forEach(
-      (btn: { typeId: string; statusId: string }) => {
-        if (btn.statusId !== ProgressStatus.DONE) {
-          flag = false
-          return flag
-        }
-      }
-    )
-  }
-  return flag
-}
+export const isComplete = (applicationChecklist: ProgressButtonsProps[]) =>
+  applicationChecklist.reduce(
+    (a, b) => b && b.statusId === ProgressStatus.DONE,
+    true
+  )
 
 export const getTitle = (
   activeTab: number,
@@ -45,17 +37,27 @@ export const getTitle = (
 ) => {
   if (activeTab === 0) {
     return t('content.admin.registration-requests.overlay.tab1Title')
-  } else {
-    if (isComplete(applicationChecklist)) {
-      return t('content.admin.registration-requests.overlay.tab2Title').replace(
-        '{status}',
-        t('content.admin.registration-requests.overlay.statusComplete')
-      )
-    } else {
-      return t('content.admin.registration-requests.overlay.tab2Title').replace(
-        '{status}',
-        t('content.admin.registration-requests.overlay.statusIncomplete')
-      )
-    }
   }
+  if (isComplete(applicationChecklist)) {
+    return (
+      <Trans
+        i18nKey={'content.admin.registration-requests.overlay.tab2Title'}
+        values={{
+          status: t(
+            'content.admin.registration-requests.overlay.statusComplete'
+          ),
+        }}
+      ></Trans>
+    )
+  }
+  return (
+    <Trans
+      i18nKey={'content.admin.registration-requests.overlay.tab2Title'}
+      values={{
+        status: t(
+          'content.admin.registration-requests.overlay.statusIncomplete'
+        ),
+      }}
+    ></Trans>
+  )
 }

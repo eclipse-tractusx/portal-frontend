@@ -134,7 +134,7 @@
           "tab1": "Company Data",
           "tab2": "Registration Process",
           "tab1Title": "Company Data",
-          "tab2Title": "Confirmation {status}",
+          "tab2Title": "Confirmation {{status}}",
           "statusComplete": "[complete]",
           "statusIncomplete": "[incomplete]",
           "approvedButton": "approved",

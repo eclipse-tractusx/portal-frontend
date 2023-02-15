@@ -55,6 +55,7 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#EAF1FE',
+          statusTag: 'label',
         }
       case ProgressStatus.TO_DO:
         return {
@@ -68,6 +69,7 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#EAF1FE',
+          statusTag: 'label',
         }
       case ProgressStatus.DONE:
         return {
@@ -81,6 +83,7 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#F5F9EE',
+          statusTag: 'confirmed',
         }
       case ProgressStatus.FAILED:
         return {
@@ -94,6 +97,7 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#FFF6FF',
+          statusTag: 'declined',
         }
     }
   }, [])
@@ -127,66 +131,60 @@ export default function CheckListFullButtons({
     <>
       {checkListButtons && (
         <Box>
-          {checkListButtons.map((button: ProgressButtonsProps) => {
-            return (
+          {checkListButtons.map((button: ProgressButtonsProps) => (
+            <Box
+              key={button.typeId}
+              sx={{
+                display: 'flex',
+                placeItems: 'center',
+                flexDirection: 'row',
+                margin: '0px 0px 20px 0px',
+                width: '100%',
+                height: '60px',
+                padding: '12px 8px',
+                borderRadius: '6px',
+                backgroundColor: button?.backgroundColor || '#fff',
+                color: '#111',
+                fontSize: '14px',
+                outlined: 'none',
+              }}
+            >
               <Box
-                key={button.typeId}
                 sx={{
                   display: 'flex',
-                  placeItems: 'center',
+                  justifyContent: 'space-between',
                   flexDirection: 'row',
-                  margin: '0px 0px 20px 0px',
                   width: '100%',
-                  height: '60px',
-                  padding: '12px 8px',
-                  borderRadius: '6px',
-                  backgroundColor: button?.backgroundColor || '#fff',
-                  color: '#111',
-                  fontSize: '14px',
-                  outlined: 'none',
                 }}
               >
                 <Box
                   sx={{
+                    paddingLeft: '5px',
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    placeItems: 'center',
                     flexDirection: 'row',
-                    width: '100%',
                   }}
                 >
-                  <Box
+                  {button.icon}
+                  <Typography
                     sx={{
-                      paddingLeft: '5px',
-                      display: 'flex',
-                      placeItems: 'center',
-                      flexDirection: 'row',
+                      paddingLeft: '15px',
                     }}
+                    variant="h4"
                   >
-                    {button.icon}
-                    <Typography
-                      sx={{
-                        paddingLeft: '15px',
-                      }}
-                      variant="h4"
-                    >
-                      {' '}
-                      {button.label}
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <StatusTag
-                      color={
-                        button.statusId === ProgressStatus.DONE
-                          ? 'confirmed'
-                          : 'declined'
-                      }
-                      label={button.statusLabel}
-                    />
-                  </Box>
+                    {' '}
+                    {button.label}
+                  </Typography>
+                </Box>
+                <Box>
+                  <StatusTag
+                    color={button.statusTag}
+                    label={button.statusLabel}
+                  />
                 </Box>
               </Box>
-            )
-          })}
+            </Box>
+          ))}
         </Box>
       )}
     </>
