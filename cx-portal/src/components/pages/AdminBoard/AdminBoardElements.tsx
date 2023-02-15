@@ -46,8 +46,6 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
   const navigate = useNavigate()
   const theme = useTheme()
   const { t } = useTranslation()
-  // const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
-  // const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false)
 
   const [approveRequest] = useApproveRequestMutation()
   const isDecisionSuccess = useSelector(currentSuccessType)
