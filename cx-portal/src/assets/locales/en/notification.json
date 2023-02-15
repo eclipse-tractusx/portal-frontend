@@ -25,7 +25,7 @@
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
     "title": "App request activated",
-    "content": "Your subscription for {{company}} is now active"
+    "content": "Your subscription for {{app}} is now active"
   },
   "CONNECTOR_REGISTERED": {
     "title": "Connector registered successfully",

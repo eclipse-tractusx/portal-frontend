@@ -25,7 +25,7 @@
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
     "title": "App-Anfrage aktiviert",
-    "content": "Ihr Abonnement für {{company}} ist jetzt aktiv"
+    "content": "Ihr Abonnement für {{app}} ist jetzt aktiv"
   },
   "CONNECTOR_REGISTERED": {
     "title": "Connector erfolgreich registriert",
