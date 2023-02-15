@@ -127,7 +127,7 @@ const NotificationContent = ({
 const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
-      return <NotificationContent item={item} />
+      return <NotificationContent item={item} navlinks={['usermanagement']} />
     case NotificationType.WELCOME:
       return <NotificationContent item={item} navlinks={['home']} />
     case NotificationType.WELCOME_APP_MARKETPLACE:

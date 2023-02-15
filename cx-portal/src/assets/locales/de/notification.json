@@ -24,8 +24,8 @@
     "content": "{{user}} mag es, App {{app}} zu abonnieren"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
-    "title": "App-Anfrage aktiviert",
-    "content": "Ihr Abonnement für {{app}} ist jetzt aktiv"
+    "title": "Congratulations! - {{app}} ist nun aktiv!",
+    "content": "Glückwunsch! Ihr Zugriff auf Ihre abonnierte App <strong>{{app}}</strong> wurde aktiviert. Sie können jetzt mit der Verwendung der App beginnen. Vor dem direkten Zugriff auf die App; gehen Sie bitte in die Benutzerverwaltung und weisen Sie den jeweiligen Benutzern App-Rollen zu. Nur Benutzer mit einer zugewiesenen Rolle können auf die Anwendung zugreifen."
   },
   "CONNECTOR_REGISTERED": {
     "title": "Connector erfolgreich registriert",
@@ -44,8 +44,8 @@
     "content": "Ihre Anfrage für App {{app}} wurde erfolgreich genehmigt. Sie können nun damit beginnen, Benutzerberechtigungen über das Benutzerverwaltungspanel zuzuweisen."
   },
   "APP_RELEASE_REJECTION": {
-    "title": "App-Anfrage abgelehnt",
-    "content": "Ihre Anfrage für App {{app}} wurde abgelehnt. Bei Fragen wenden Sie sich bitte an {{user}}."
+    "title": "App-Anfrage wurde abgelehnt",
+    "content": "Ihre Anfrage für App {{app}} wurde abgelehnt. Wir bedauern, Ihnen mitteilen zu müssen, dass Ihre Anfrage zur Veröffentlichung der App abgelehnt wurde. Wir sind sehr stolz auf die Qualität unserer Apps und die Benutzererfahrung, die sie bieten. Obwohl Ihre App viel Potenzial hat, erfüllt sie nicht unsere Standards für die Markteinführung. Mit den entsprechenden Änderungen kann Ihre App das Qualitätsniveau erreichen, das unseren Standards entspricht. Wenn Sie Unterstützung benötigen, zögern Sie bitte nicht, sich an den Support zu wenden. Wir freuen uns darauf, zu sehen, wie Ihre App ihr volles Potenzial ausschöpft und veröffentlicht wird. Mit freundlichen Grüßen, Catena-X."
   },
   "AppTermsChange": {
     "title": "Geänderte Geschäftsbedingungen",
@@ -88,7 +88,8 @@
     "usecases": "Zu den Use Cases",
     "serviceprovider": "Go to service provider",
     "appmanagementboard": "App Management Board öffnen",
-    "servicemanagementboard": "Service Management Board öffnen"
+    "servicemanagementboard": "Service Management Board öffnen",
+    "usermanagement": "...open the user management"
   },
   "due": "fällig",
   "search": "...suchen",
