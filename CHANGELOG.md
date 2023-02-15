@@ -13,6 +13,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Text updates
 * Connector
    * Connector Registration UI with Self Description
+* Notification
+   * Bugfix - Show approriate info in description instead {{app}}
 
 ## 1.0.0-RC8
 
