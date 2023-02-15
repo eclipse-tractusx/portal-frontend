@@ -37,6 +37,8 @@ import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPa
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   ApplicationRequest,
+  ProgressButtonsProps,
+  useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
   useFetchDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
@@ -46,11 +48,13 @@ import { getTitle } from './CompanyDetailsHelper'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
+  selectedRequestId?: string
   handleOverlayClose: React.MouseEventHandler
 }
 
 const CompanyDetailOverlay = ({
   openDialog = false,
+  selectedRequestId,
   handleOverlayClose,
 }: CompanyDetailOverlayProps) => {
   const modalElement: any = useRef()
@@ -61,9 +65,11 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
+  const [checklist, setCheckList] = useState<ProgressButtonsProps[]>()
   const [getDocumentById] = useFetchDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [height, setHeight] = useState<string>('')
+  const { data: res } = useFetchCheckListDetailsQuery(selectedRequestId)
   const { data } = useFetchCompanySearchQuery({
     page: 0,
     args: {
@@ -82,6 +88,10 @@ const CompanyDetailOverlay = ({
       setCompany(selected[0])
     }
   }, [data, selectedCompany])
+
+  useEffect(() => {
+    setCheckList(res)
+  }, [res])
 
   const getLocaleStr = (str: string) => {
     if (str === 'ACTIVE_PARTICIPANT') {
@@ -146,7 +156,7 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: getTitle(activeTab, company?.applicationChecklist || [], t),
+            title: getTitle(activeTab, checklist || [], t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}
@@ -420,9 +430,7 @@ const CompanyDetailOverlay = ({
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <Box sx={{ width: '100%', height: height }}>
-                <CheckListFullButtons
-                  progressButtons={company?.applicationChecklist}
-                />
+                <CheckListFullButtons progressButtons={checklist} />
               </Box>
             </TabPanel>
           </DialogContent>

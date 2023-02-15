@@ -81,6 +81,7 @@ export default function RegistrationRequests() {
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
+      setSelectedRequestId(params.row.applicationId)
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
     }
@@ -168,6 +169,7 @@ export default function RegistrationRequests() {
       <CompanyDetailOverlay
         {...{
           openDialog: overlayOpen,
+          selectedRequestId: selectedRequestId,
           handleOverlayClose: () => setOverlayOpen(false),
         }}
       />
