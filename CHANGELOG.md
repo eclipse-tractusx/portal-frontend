@@ -11,6 +11,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
 * Digital Twin
    * Text updates
+* Connector
+   * Connector Registration UI with Self Description
 
 ## 1.0.0-RC8
 
