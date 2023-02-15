@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { Tooltips, Typography } from 'cx-portal-shared-components'
+import { StatusTag, Tooltips, Typography } from 'cx-portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import LockIcon from '@mui/icons-material/Lock'
 import Box from '@mui/material/Box'
 import { ConnectorContentAPIResponse } from 'features/connector/types'
@@ -87,62 +87,76 @@ export const ConnectorTableColumns = (
       ),
     },
     {
-      field: 'detail',
-      headerName: '',
-      flex: 0.3,
+      field: 'selfDescriptionDocumentId',
+      headerName: t('content.edcconnector.columns.sdDescription'),
+      flex: 1,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Box>
-          <DeleteOutlineIcon
-            sx={{
-              color: '#adadad',
-              marginRight: '-30px',
-              ':hover': {
-                color: 'blue',
-                cursor: 'pointer',
-              },
-            }}
-            onClick={() => onDelete(row)}
-          />
-        </Box>
+        <Tooltips
+          additionalStyles={{
+            cursor: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="bottom"
+          tooltipText={t('content.edcconnector.columns.sdRegistrationToolTip')}
+          children={
+            <span>
+              <Box>
+                <CheckBoxIcon
+                  sx={{
+                    color: row.selfDescriptionDocumentId ? 'green' : '#b6b6b6',
+                    cursor: 'pointer',
+                  }}
+                />
+              </Box>
+            </span>
+          }
+        />
       ),
     },
     {
-      field: 'none',
+      field: 'details',
       headerName: '',
-      flex: 0.3,
+      flex: 1,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <>
-          {row.status === 'PENDING' && (
-            <Tooltips
-              additionalStyles={{
-                cursor: 'pointer',
-                marginTop: '30px !important',
-              }}
-              tooltipPlacement="bottom"
-              tooltipText={t('content.edcconnector.columns.tooltipText')}
-              children={
-                <span>
-                  <Box>
-                    <AccessTimeIcon
-                      sx={{
-                        marginLeft: '-30px',
-                        color: '#adadad',
-                      }}
-                    />
-                  </Box>
-                </span>
-              }
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <Box>
+            <StatusTag
+              color={row.status === 'PENDING' ? 'pending' : 'confirmed'}
+              label={row.status}
             />
-          )}
-        </>
+          </Box>
+          <Box
+            sx={{
+              marginLeft: '20px',
+              marginTop: '5px',
+            }}
+          >
+            <DeleteOutlineIcon
+              sx={{
+                color: '#adadad',
+                ':hover': {
+                  color: 'blue',
+                  cursor: 'pointer',
+                },
+              }}
+              onClick={() => onDelete(row)}
+            />
+          </Box>
+        </Box>
       ),
     },
   ]
