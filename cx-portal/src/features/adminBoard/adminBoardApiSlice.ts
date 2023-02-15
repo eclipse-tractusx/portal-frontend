@@ -49,6 +49,11 @@ export type AppResponse = {
   content: AppContent[]
 }
 
+export type DeclineRequestType = {
+  appId: string
+  message: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/adminBoard',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -70,10 +75,11 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
-    declineRequest: builder.mutation<boolean, string>({
-      query: (appId) => ({
-        url: `/api/apps/appreleaseprocess/${appId}/declineApp`,
+    declineRequest: builder.mutation<boolean, DeclineRequestType>({
+      query: (body) => ({
+        url: `/api/apps/appreleaseprocess/${body.appId}/declineApp`,
         method: 'PUT',
+        body: { message: body.message },
       }),
     }),
   }),

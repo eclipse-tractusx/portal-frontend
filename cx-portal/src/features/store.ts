@@ -31,6 +31,7 @@ import managementSlice from './appManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
 import serviceProviderSlice from './serviceProvider/slice'
 import appSubscriptionSlice from './appSubscription/slice'
+import adminBoardSlice from './adminBoard/slice'
 import userAddSlice from './admin/userApiSlice'
 import userRoleSlice from './admin/appuserApiSlice'
 import { reducer as apps } from './apps/reducer'
@@ -64,6 +65,7 @@ export const reducers = {
   serviceMarketplace: serviceMarketplaceSlice.reducer,
   serviceProvider: serviceProviderSlice.reducer,
   appSubscription: appSubscriptionSlice.reducer,
+  adminBoard: adminBoardSlice.reducer,
   userAdd: userAddSlice.reducer,
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
