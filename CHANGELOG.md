@@ -13,6 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Text updates
 * Connector
    * Connector Registration UI with Self Description
+   * Get help to open new tab with url
 * Notification
    * Bugfix - Show approriate info in description instead {{app}}
 
