@@ -18,39 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
-
-const name = 'admin/adminBoard'
-
-export interface AdminBoardState {
-  isSuccess: boolean
-  isError: boolean
+.decline-modal-main {
+  p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .decline-modal-input {
+    padding: 0 50px 0 50px;
+  }
 }
-
-export const initialState: AdminBoardState = {
-  isSuccess: false,
-  isError: false,
-}
-
-const slice = createSlice({
-  name,
-  initialState,
-  reducers: {
-    setSuccessType: (state, action) => {
-      state.isSuccess = action.payload
-    },
-    setErrorType: (state, action) => {
-      state.isError = action.payload
-    },
-  },
-})
-
-export const currentSuccessType = (state: RootState): any =>
-  state.adminBoard.isSuccess
-
-export const currentErrorType = (state: RootState): any =>
-  state.adminBoard.isError
-
-export const { setSuccessType, setErrorType } = slice.actions
-export default slice

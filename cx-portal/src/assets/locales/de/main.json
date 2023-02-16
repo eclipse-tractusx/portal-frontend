@@ -1075,7 +1075,16 @@
         "AppTitle": "App Title (A-Z)"
       },
       "errorMsg": "Error! Something went wrong",
-      "successMsg": "Successfully completed"
+      "successMsg": "Successfully completed",
+      "declineModal": {
+        "title": "Reject App Release Request {appName}",
+        "subheading": "Are you sure you want to reject the app release request ?",
+        "declineReason": "The rejection will",
+        "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
+        "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+        "declineReason3Label": "The app will get set back to the status “in progress“",
+        "inputLabel": "Cancellation Message"
+      }
     },
     "adminboardDetail": {
       "usecase": "Use Case",

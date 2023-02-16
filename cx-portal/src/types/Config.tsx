@@ -484,6 +484,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_SERVICE_PROVIDER,
   },
+  {
+    name: OVERLAYS.DECLINE_ADMINBOARD,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

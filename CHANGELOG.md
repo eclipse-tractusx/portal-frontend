@@ -13,6 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
 * Digital Twin
    * Text updates
+* Feature - App Release Decline - Overlay handling
 * Connector
    * Connector Registration UI with Self Description
 * Notification
