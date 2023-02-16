@@ -18,7 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export default function Redirect({ path }: { path: string }) {
-  document.location.href = `${document.location.origin}/${path}/`
+export default function Redirect({
+  path,
+  tab,
+}: {
+  path: string
+  tab?: string
+}) {
+  const target = `${document.location.origin}/${path}/`
+  if (tab) window.open(target, '_blank', 'noreferrer')
+  else {
+    document.location.href = target
+  }
   return null
 }
