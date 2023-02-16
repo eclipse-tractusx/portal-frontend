@@ -41,6 +41,9 @@ export const getClientIdSemantic = () => 'Cl3-CX-Semantic'
 
 export const getClientIdDigitalTwin = () => 'Cl4-CX-DigitalTwin'
 
+export const getFrontEndBase = () =>
+  typeof ENV === 'undefined' ? '' : ENV.PORTAL_FRONTEND_URL
+
 const EnvironmentService = {
   getApiBase,
   getAssetBase,
@@ -50,6 +53,7 @@ const EnvironmentService = {
   getClientId,
   getClientIdSemantic,
   getClientIdDigitalTwin,
+  getFrontEndBase,
 }
 
 export default EnvironmentService

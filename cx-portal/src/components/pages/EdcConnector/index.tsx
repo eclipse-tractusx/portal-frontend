@@ -49,6 +49,7 @@ import {
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsRegistration'
+import { getFrontEndBase } from 'services/EnvironmentService'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -233,7 +234,7 @@ const EdcConnector = () => {
   }, [])
 
   const onHelpButtonClicked = () => {
-    const url = `https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md`
+    const url = `${getFrontEndBase()}/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md`
     window.open(url, '_blank')
   }
 
