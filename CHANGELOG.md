@@ -15,6 +15,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Connector Registration UI with Self Description
 * Notification
    * Bugfix - Show approriate info in description instead {{app}}
+   * Bugfix - Back navigation issue fix
 
 ## 1.0.0-RC8
 
