@@ -68,6 +68,13 @@ export const ConnectorTableColumns = (
       ),
     },
     {
+      field: 'hostCompanyName',
+      headerName: t('content.edcconnector.columns.hostCompanyName'),
+      flex: 1,
+      sortable: false,
+      disableColumnMenu: true,
+    },
+    {
       field: 'dapsRegistrationSuccessful',
       headerName: t('content.edcconnector.columns.status'),
       flex: 1,
@@ -95,26 +102,41 @@ export const ConnectorTableColumns = (
       align: 'center',
       headerAlign: 'center',
       renderCell: ({ row }: { row: any }) => (
-        <Tooltips
-          additionalStyles={{
-            cursor: 'pointer',
-            marginTop: '30px !important',
-          }}
-          tooltipPlacement="bottom"
-          tooltipText={t('content.edcconnector.columns.sdRegistrationToolTip')}
-          children={
-            <span>
-              <Box>
-                <CheckBoxIcon
-                  sx={{
-                    color: row.selfDescriptionDocumentId ? 'green' : '#b6b6b6',
-                    cursor: 'pointer',
-                  }}
-                />
-              </Box>
-            </span>
-          }
-        />
+        <>
+          {row.selfDescriptionDocumentId ? (
+            <Box>
+              <CheckBoxIcon
+                sx={{
+                  color: 'green',
+                  cursor: 'pointer',
+                }}
+              />
+            </Box>
+          ) : (
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
+              }}
+              tooltipPlacement="bottom"
+              tooltipText={t(
+                'content.edcconnector.columns.sdRegistrationToolTip'
+              )}
+              children={
+                <span>
+                  <Box>
+                    <CheckBoxIcon
+                      sx={{
+                        color: '#b6b6b6',
+                        cursor: 'pointer',
+                      }}
+                    />
+                  </Box>
+                </span>
+              }
+            />
+          )}
+        </>
       ),
     },
     {
@@ -130,18 +152,13 @@ export const ConnectorTableColumns = (
           sx={{
             display: 'flex',
             flexDirection: 'row',
+            justifyContent: 'flex-start',
             alignItems: 'center',
           }}
         >
-          <Box>
-            <StatusTag
-              color={row.status === 'PENDING' ? 'pending' : 'confirmed'}
-              label={row.status}
-            />
-          </Box>
           <Box
             sx={{
-              marginLeft: '20px',
+              marginRight: '20px',
               marginTop: '5px',
             }}
           >
@@ -154,6 +171,15 @@ export const ConnectorTableColumns = (
                 },
               }}
               onClick={() => onDelete(row)}
+            />
+          </Box>
+          <Box>
+            <StatusTag
+              sx={{
+                minWidth: '100px',
+              }}
+              color={row.status === 'PENDING' ? 'pending' : 'confirmed'}
+              label={row.status}
             />
           </Box>
         </Box>
