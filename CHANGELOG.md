@@ -19,6 +19,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Get help to open new tab with url
 * Notification
    * Bugfix - Show approriate info in description instead {{app}}
+   * Bugfix - Back navigation issue fix
 
 ## 1.0.0-RC8
 

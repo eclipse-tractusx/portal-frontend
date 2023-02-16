@@ -24,8 +24,8 @@
     "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
-    "title": "Congratulations! - {{app}} is activated",
-    "content": "Congratulations! Your access to your subscribed app <strong>{{app}}</strong> have got activated. You are now ready to start using the app. Before accessing the app directly; please got to the user management and assign app roles to the respective users. Only users with an assigned role can access the application."
+    "title": "Congratulations! - {{offer}} is activated",
+    "content": "Congratulations! Your access to your subscribed app <strong>{{offer}}</strong> have got activated. You are now ready to start using the app. Before accessing the app directly; please got to the user management and assign app roles to the respective users. Only users with an assigned role can access the application."
   },
   "CONNECTOR_REGISTERED": {
     "title": "Connector registered successfully",
@@ -45,7 +45,7 @@
   },
   "APP_RELEASE_REJECTION": {
     "title": "App Release request rejected",
-    "content": "Your request for app {{app}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Catena-X."
+    "content": "Your request for app {{offer}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Catena-X."
   },
   "AppTermsChange": {
     "title": "Changed terms and conditions",
@@ -85,7 +85,7 @@
     "home": "Go to home page",
     "app": "Go to app",
     "user": "Go to user",
-    "usecase": "Go to use cases",
+    "usecases": "Go to use cases",
     "serviceprovider": "Go to service provider",
     "appmanagementboard": "Get there",
     "servicemanagementboard": "Get there",
@@ -93,7 +93,8 @@
     "appsubscription": "Get theme",
     "adminboard": "Get there",
     "technicaluser": "Get there",
-    "companyrolesserviceprovider": "Get there"
+    "companyrolesserviceprovider": "Get there",
+    "usermanagement": "Get there"
   },
   "due": "due",
   "search": "Enter your search value",
