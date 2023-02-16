@@ -26,7 +26,7 @@ import { Trans } from 'react-i18next'
 
 export const isComplete = (applicationChecklist: ProgressButtonsProps[]) =>
   applicationChecklist.reduce(
-    (a, b) => b && b.statusId === ProgressStatus.DONE,
+    (a, b) => a && b.statusId === ProgressStatus.DONE,
     true
   )
 
