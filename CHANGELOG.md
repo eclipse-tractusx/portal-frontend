@@ -8,6 +8,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Show information from the checklist details API
    * Approve and Decline action
 * Bugfix - User Management - App role assignment - Cache Issue
+* Company Data overlay
+   * Show tabs to display company data and registration process status
 * Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
 * Digital Twin
    * Text updates

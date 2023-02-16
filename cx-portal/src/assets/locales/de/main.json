@@ -130,7 +130,15 @@
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
           "vies": "VIES",
-          "eori": "EORI"
+          "eori": "EORI",
+          "tab1": "Company Data",
+          "tab2": "Registration Process",
+          "tab1Title": "Company Data",
+          "tab2Title": "Confirmation {{status}}",
+          "statusComplete": "[complete]",
+          "statusIncomplete": "[incomplete]",
+          "approvedButton": "approved",
+          "failedButton": "falied"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
@@ -1106,11 +1114,18 @@
         "CLEARING_HOUSE": "Clearing House",
         "SELF_DESCRIPTION_LP": "Self Description"
       },
+      "checkListProgress": {
+        "DONE": "approved",
+        "IN_PROGRESS": "in progress",
+        "FAILED": "failed",
+        "TO_DO": "to do"
+      },
       "buttonApprove": "Approve",
       "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
       "buttonCancel": "Cancel Process",
+      "cancel": "Cancel",
       "comments": "Comments",
       "nocomments": " No comments available",
       "buttonClose": "Close",

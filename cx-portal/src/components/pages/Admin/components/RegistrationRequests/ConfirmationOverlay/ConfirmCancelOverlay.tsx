@@ -31,7 +31,7 @@ import {
   CircleProgress,
 } from 'cx-portal-shared-components'
 import { isValidCancelInput } from 'types/Patterns'
-import { useDeclineRequestMutation } from 'features/admin/applicationRequestApiSlice'
+import { useDeclineChecklistMutation } from 'features/admin/applicationRequestApiSlice'
 interface ConfirmationOverlayProps {
   openDialog: boolean
   companyName?: string
@@ -51,7 +51,7 @@ const ConfirmaCancelOverlay = ({
   const [text, setText] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
-  const [declineRequest] = useDeclineRequestMutation()
+  const [declineRequest] = useDeclineChecklistMutation()
 
   const onChangeText = (e: any) => {
     setText(e.target.value)

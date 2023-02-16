@@ -42,7 +42,6 @@ interface CheckListProps extends ChipProps {
   alignRow?: string
   onButtonClick?: (button: ProgressButtonsProps) => void
   selectedButton?: ProgressButtonsProps
-  showFullWidth?: boolean
 }
 
 export default function CheckList({
@@ -54,20 +53,13 @@ export default function CheckList({
   alignRow = 'center',
   onButtonClick,
   selectedButton,
-  showFullWidth = false,
 }: CheckListProps) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
 
   const isCancelPresent = () => showCancel && getProgressValue() < 100
 
-  const getWidth = () => {
-    if (showFullWidth) {
-      return '100%'
-    } else {
-      return isCancelPresent() ? '120px' : '130px'
-    }
-  }
+  const getWidth = () => (isCancelPresent() ? '120px' : '130px')
 
   const getProgressValue = () => {
     let progressValue = 0
