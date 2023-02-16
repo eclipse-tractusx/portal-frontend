@@ -394,7 +394,9 @@
         "details": "Details",
         "location": "Location",
         "status": "Authentication Status",
-        "tooltipText": "Connector's status is pending"
+        "tooltipText": "Connector's status is pending",
+        "sdDescription": "SD Registration",
+        "sdRegistrationToolTip": "The Self-Description is triggered. Process might take up to a couple of minutes."
       },
       "rowValue": {
         "owned": "Owned",
