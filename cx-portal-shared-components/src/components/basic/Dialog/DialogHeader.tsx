@@ -28,12 +28,13 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export interface DialogHeaderProps {
-  title: string | JSX.Element
+  title?: string | JSX.Element
   intro?: string | JSX.Element
   icon?: boolean
   closeWithIcon?: boolean
   onCloseWithIcon?: (event: React.MouseEvent) => void
   iconComponent?: JSX.Element
+  children?: JSX.Element
 }
 
 export const DialogHeader = ({
@@ -44,6 +45,7 @@ export const DialogHeader = ({
   iconComponent = (
     <CheckCircleOutlineOutlinedIcon sx={{ fontSize: 60 }} color="success" />
   ),
+  children,
   onCloseWithIcon,
 }: DialogHeaderProps) => {
   const { spacing, palette } = useTheme()
@@ -55,33 +57,36 @@ export const DialogHeader = ({
         textAlign: 'center',
       }}
     >
-      <MuiDialogTitle
-        sx={{
-          fontSize: '24px',
-        }}
-      >
-        {icon && <Box>{iconComponent}</Box>}
-        {title}
-        {closeWithIcon && (
-          <IconButton
-            aria-label="close"
-            onClick={onCloseWithIcon}
-            sx={{
-              position: 'absolute',
-              right: 16,
-              top: 16,
-              color: palette.action.active,
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        )}
-      </MuiDialogTitle>
+      {title && (
+        <MuiDialogTitle
+          sx={{
+            fontSize: '24px',
+          }}
+        >
+          {icon && <Box>{iconComponent}</Box>}
+          {title}
+          {closeWithIcon && (
+            <IconButton
+              aria-label="close"
+              onClick={onCloseWithIcon}
+              sx={{
+                position: 'absolute',
+                right: 16,
+                top: 16,
+                color: palette.action.active,
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          )}
+        </MuiDialogTitle>
+      )}
       {intro && (
         <Typography variant="body2" sx={{ marginTop: 1 }}>
           {intro}
         </Typography>
       )}
+      {children}
     </Box>
   )
 }
