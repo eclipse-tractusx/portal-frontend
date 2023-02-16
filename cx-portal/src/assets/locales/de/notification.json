@@ -81,7 +81,7 @@
   },
   "link": {
     "appmarketplace": "Zum App Marketplace",
-    "technicalsetup": "Zur Konnektor Konfiguration",
+    "technicalsetup": "Zur Connector Registrierung",
     "home": "Zur Startseite",
     "app": "Zur App",
     "user": "Zum Benutzer",
@@ -89,7 +89,11 @@
     "serviceprovider": "Go to service provider",
     "appmanagementboard": "App Management Board öffnen",
     "servicemanagementboard": "Service Management Board öffnen",
-    "usermanagement": "...open the user management"
+    "appoverview": "Get there",
+    "appsubscription": "Get theme",
+    "adminboard": "Get there",
+    "technicaluser": "Get there",
+    "companyrolesserviceprovider": "Get there"
   },
   "due": "fällig",
   "search": "...suchen",
