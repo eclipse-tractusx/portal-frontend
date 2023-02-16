@@ -93,7 +93,8 @@
     "appsubscription": "Get theme",
     "adminboard": "Get there",
     "technicaluser": "Get there",
-    "companyrolesserviceprovider": "Get there"
+    "companyrolesserviceprovider": "Get there",
+    "usermanagement": "Get there"
   },
   "due": "fällig",
   "search": "...suchen",
