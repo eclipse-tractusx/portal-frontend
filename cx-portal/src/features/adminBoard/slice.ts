@@ -21,14 +21,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 
-const name = 'admin/appSubscription'
+const name = 'admin/adminBoard'
 
-export interface AppSubscriptionState {
+export interface AdminBoardState {
   isSuccess: boolean
+  isError: boolean
 }
 
-export const initialState: AppSubscriptionState = {
+export const initialState: AdminBoardState = {
   isSuccess: false,
+  isError: false,
 }
 
 const slice = createSlice({
@@ -38,11 +40,17 @@ const slice = createSlice({
     setSuccessType: (state, action) => {
       state.isSuccess = action.payload
     },
+    setErrorType: (state, action) => {
+      state.isError = action.payload
+    },
   },
 })
 
 export const currentSuccessType = (state: RootState): any =>
-  state.appSubscription.isSuccess
+  state.adminBoard.isSuccess
 
-export const { setSuccessType } = slice.actions
+export const currentErrorType = (state: RootState): any =>
+  state.adminBoard.isError
+
+export const { setSuccessType, setErrorType } = slice.actions
 export default slice

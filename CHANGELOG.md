@@ -4,6 +4,24 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
+## 1.0.0-RC9
+
+### Change
+* App Release Approval Board
+  * Enabled overlay for decline scenario with customer message
+* Notification message content updated and incl. links
+* Several help connections implemented (connector, app release, etc.)
+
+### Feature
+* Connector Registration
+   * new design with additional information such as host, self-description and status released
+
+### Technical Support
+n/a
+
+### Bugfix
+* Back navigation issue resolved from notifications to any specific page and back
+
 ## 1.0.0-RC8
 
 ### Change

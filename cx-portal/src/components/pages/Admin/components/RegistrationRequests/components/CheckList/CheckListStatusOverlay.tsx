@@ -21,10 +21,10 @@
 import React, { useEffect, useReducer } from 'react'
 import MuiDialog from '@mui/material/Dialog'
 import MuiDialogContent from '@mui/material/DialogContent'
-import MuiDialogActions from '@mui/material/DialogActions'
 import {
   Button,
   CircleProgress,
+  IconButton,
   Input,
   Typography,
 } from 'cx-portal-shared-components'
@@ -38,6 +38,7 @@ import {
   useFetchCheckListDetailsQuery,
 } from 'features/admin/applicationRequestApiSlice'
 import { useTranslation } from 'react-i18next'
+import CloseIcon from '@mui/icons-material/Close'
 
 interface CheckListStatusOverlayProps {
   openDialog?: boolean
@@ -59,6 +60,7 @@ enum ActionKind {
   SET_SHOW_INPUT = 'SET_SHOW_INPUT',
   STOP_DECLINE_LOADIN_SHOW_INPUT = 'STOP_DECLINE_LOADIN_SHOW_INPUT',
   SET_DECLINE_COMMENT = 'SET_DECLINE_COMMENT',
+  SET_CHECKLIST_BUTTONS_AND_SHOWINPUT = 'SET_CHECKLIST_BUTTONS_AND_SHOWINPUT',
 }
 
 type State = {
@@ -128,6 +130,12 @@ function reducer(state: State, { type, payload }: Action) {
         ...state,
         declineComment: payload,
       }
+    case ActionKind.SET_CHECKLIST_BUTTONS_AND_SHOWINPUT:
+      return {
+        ...state,
+        checkListButton: payload.checkListButton,
+        showInput: payload.showInput,
+      }
     default:
       return state
   }
@@ -178,8 +186,11 @@ const CheckListStatusOverlay = ({
 
   const reset = (button: ProgressButtonsProps) => {
     setState({
-      type: ActionKind.SET_CHECKLIST_BUTTONS,
-      payload: data,
+      type: ActionKind.SET_CHECKLIST_BUTTONS_AND_SHOWINPUT,
+      payload: {
+        checkListButton: data,
+        showInput: false,
+      },
     })
     button.highlight = true
     setState({ type: ActionKind.SET_SELECTED_CHECKLISTBUTTON, payload: button })
@@ -278,6 +289,17 @@ const CheckListStatusOverlay = ({
           padding: '60px 110px',
         }}
       >
+        <IconButton
+          aria-label="close"
+          onClick={handleOverlayClose}
+          sx={{
+            position: 'absolute',
+            right: 16,
+            top: 16,
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
         <div
           style={{
             marginBottom: '35px',
@@ -302,21 +324,28 @@ const CheckListStatusOverlay = ({
               />
             </span>
           ) : (
-            <CheckList
-              progressButtons={checkListButton}
-              showCancel={false}
-              alignRow="center"
-              selectedButton={selectedCheckListButton}
-              onButtonClick={(button) => {
-                reset(button)
+            <div
+              style={{
+                minHeight: '60px',
               }}
-            />
+            >
+              <CheckList
+                progressButtons={checkListButton}
+                showCancel={false}
+                alignRow="center"
+                selectedButton={selectedCheckListButton}
+                onButtonClick={(button) => {
+                  reset(button)
+                }}
+              />
+            </div>
           )}
         </div>
         <div
           style={{
             textAlign: 'left',
             marginBottom: '30px',
+            minHeight: '220px',
           }}
         >
           <Typography
@@ -359,6 +388,7 @@ const CheckListStatusOverlay = ({
             textAlign: 'left',
             marginTop: '30px',
             marginBottom: '30px',
+            minHeight: '100px',
           }}
         >
           <Typography
@@ -378,7 +408,7 @@ const CheckListStatusOverlay = ({
               display: '-webkit-box',
               WebkitLineClamp: '2',
               WebkitBoxOrient: 'vertical',
-              maxHeight: selectedCheckListButton?.details ? '50px' : '20px',
+              maxHeight: '50px',
             }}
             variant="body2"
           >
@@ -399,6 +429,7 @@ const CheckListStatusOverlay = ({
             textAlign: 'left',
             marginTop: '30px',
             marginBottom: '10px',
+            minHeight: '125px',
           }}
         >
           <Typography
@@ -419,97 +450,144 @@ const CheckListStatusOverlay = ({
             {getDescription()}
           </Typography>
         </div>
-        {canShowCancelAndRetrigger() && (
-          <div
-            style={{
-              display: 'flex',
-              marginTop: '30px',
-              marginBottom: '30px',
-            }}
-          >
-            <div style={{ marginRight: '20px' }}>
-              {retriggerLoading && (
-                <span
-                  style={{
-                    marginRight: '75px',
-                    marginLeft: '40px',
-                    width: '116px',
-                    textAlign: 'center',
-                  }}
-                >
-                  <CircleProgress
-                    size={40}
-                    step={1}
-                    interval={0.1}
-                    colorVariant={'primary'}
-                    variant={'indeterminate'}
-                    thickness={8}
-                  />
-                </span>
+        {showInput && (
+          <div>
+            <Input
+              label={t(
+                'content.admin.registration-requests.confirmCancelModal.inputLabel'
               )}
-              {!retriggerLoading && (
-                <Button
-                  onClick={() => onRetrigger()}
-                  size="small"
-                  variant="contained"
-                  disabled={cancelLoading}
-                >
-                  {t('content.checklistOverlay.buttonRetrigger')}
-                </Button>
-              )}
-            </div>
-            <div>
-              {cancelLoading && (
-                <span
-                  style={{
-                    marginLeft: '50px',
-                    width: '116px',
-                    textAlign: 'center',
-                  }}
-                >
-                  <CircleProgress
-                    size={40}
-                    step={1}
-                    interval={0.1}
-                    colorVariant={'primary'}
-                    variant={'indeterminate'}
-                    thickness={8}
-                  />
-                </span>
-              )}
-              {!cancelLoading && (
-                <Button
-                  onClick={() => onCancel()}
-                  size="small"
-                  variant="outlined"
-                  disabled={retriggerLoading}
-                >
-                  {t('content.checklistOverlay.buttonCancel')}
-                </Button>
-              )}
-            </div>
+              sx={{
+                paddingTop: '10px',
+              }}
+              multiline
+              rows={2}
+              maxRows={4}
+              placeholder={''}
+              onChange={(e: any) => {
+                onUpdateComment(e)
+              }}
+              value={declineComment}
+            />
           </div>
         )}
-        {showInput && (
-          <>
-            <div>
-              <Input
-                label={t(
-                  'content.admin.registration-requests.confirmCancelModal.inputLabel'
+        <div
+          style={{
+            display: 'flex',
+            marginTop: '30px',
+            marginBottom: '30px',
+            minHeight: '50px',
+          }}
+        >
+          {canShowCancelAndRetrigger() && (
+            <>
+              <div style={{ marginRight: '20px' }}>
+                {retriggerLoading && (
+                  <span
+                    style={{
+                      marginRight: '75px',
+                      marginLeft: '40px',
+                      width: '116px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <CircleProgress
+                      size={40}
+                      step={1}
+                      interval={0.1}
+                      colorVariant={'primary'}
+                      variant={'indeterminate'}
+                      thickness={8}
+                    />
+                  </span>
                 )}
-                sx={{
-                  paddingTop: '10px',
-                }}
-                multiline
-                rows={2}
-                maxRows={4}
-                placeholder={''}
-                onChange={(e: any) => {
-                  onUpdateComment(e)
-                }}
-                value={declineComment}
-              />
-            </div>
+                {!retriggerLoading && (
+                  <Button
+                    onClick={() => onRetrigger()}
+                    size="small"
+                    variant="contained"
+                    disabled={cancelLoading}
+                  >
+                    {t('content.checklistOverlay.buttonRetrigger')}
+                  </Button>
+                )}
+              </div>
+              <div>
+                {cancelLoading && (
+                  <span
+                    style={{
+                      marginLeft: '50px',
+                      width: '116px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <CircleProgress
+                      size={40}
+                      step={1}
+                      interval={0.1}
+                      colorVariant={'primary'}
+                      variant={'indeterminate'}
+                      thickness={8}
+                    />
+                  </span>
+                )}
+                {!cancelLoading && (
+                  <Button
+                    onClick={() => onCancel()}
+                    size="small"
+                    variant="outlined"
+                    disabled={retriggerLoading}
+                  >
+                    {t('content.checklistOverlay.buttonCancel')}
+                  </Button>
+                )}
+              </div>
+            </>
+          )}
+          {canShowApproveAndDecline() && !showInput && (
+            <>
+              <div style={{ marginRight: '10px' }}>
+                {approveLoading && (
+                  <span
+                    style={{
+                      marginRight: '50px',
+                      width: '116px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <CircleProgress
+                      size={40}
+                      step={1}
+                      interval={0.1}
+                      colorVariant={'primary'}
+                      variant={'indeterminate'}
+                      thickness={8}
+                    />
+                  </span>
+                )}
+                {!approveLoading && (
+                  <Button
+                    onClick={() => onApprove()}
+                    size="small"
+                    variant="contained"
+                    disabled={declineLoading}
+                  >
+                    {t('content.checklistOverlay.buttonApprove')}
+                  </Button>
+                )}
+              </div>
+              <div>
+                <Button
+                  onClick={() => onDecline()}
+                  size="small"
+                  variant="outlined"
+                  disabled={approveLoading}
+                >
+                  {t('content.checklistOverlay.buttonDecline')}
+                </Button>
+              </div>
+            </>
+          )}
+          {showInput && (
             <div
               style={{
                 display: 'flex',
@@ -537,68 +615,35 @@ const CheckListStatusOverlay = ({
                   </span>
                 )}
                 {!declineLoading && (
-                  <Button
-                    onClick={() => onConfirmDecline()}
-                    size="small"
-                    variant="contained"
-                  >
-                    {t('content.checklistOverlay.buttonConfirm')}
-                  </Button>
+                  <>
+                    <Button
+                      onClick={() => onConfirmDecline()}
+                      size="small"
+                      variant="contained"
+                    >
+                      {t('content.checklistOverlay.buttonConfirm')}
+                    </Button>
+                    <Button
+                      sx={{
+                        marginLeft: '10px',
+                      }}
+                      onClick={() =>
+                        setState({
+                          type: ActionKind.SET_SHOW_INPUT,
+                          payload: false,
+                        })
+                      }
+                      size="small"
+                      variant="outlined"
+                    >
+                      {t('content.checklistOverlay.cancel')}
+                    </Button>
+                  </>
                 )}
               </div>
             </div>
-          </>
-        )}
-        {canShowApproveAndDecline() && !showInput && (
-          <div
-            style={{
-              display: 'flex',
-              marginTop: '30px',
-              marginBottom: '30px',
-            }}
-          >
-            <div style={{ marginRight: '10px' }}>
-              {approveLoading && (
-                <span
-                  style={{
-                    marginRight: '50px',
-                    width: '116px',
-                    textAlign: 'center',
-                  }}
-                >
-                  <CircleProgress
-                    size={40}
-                    step={1}
-                    interval={0.1}
-                    colorVariant={'primary'}
-                    variant={'indeterminate'}
-                    thickness={8}
-                  />
-                </span>
-              )}
-              {!approveLoading && (
-                <Button
-                  onClick={() => onApprove()}
-                  size="small"
-                  variant="contained"
-                  disabled={declineLoading}
-                >
-                  {t('content.checklistOverlay.buttonApprove')}
-                </Button>
-              )}
-            </div>
-            <div>
-              <Button
-                onClick={() => onDecline()}
-                size="small"
-                variant="outlined"
-                disabled={approveLoading}
-              >
-                {t('content.checklistOverlay.buttonDecline')}
-              </Button>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
         {error !== '' && (
           <Typography
             sx={{
@@ -611,22 +656,6 @@ const CheckListStatusOverlay = ({
           </Typography>
         )}
       </MuiDialogContent>
-      <MuiDialogActions
-        sx={{
-          '&.MuiDialogActions-root': {
-            background: '#EDF0F4',
-            padding: '20px',
-          },
-        }}
-      >
-        <Button
-          size="small"
-          variant="contained"
-          onClick={(e) => handleOverlayClose(e)}
-        >
-          {t('content.checklistOverlay.buttonClose')}
-        </Button>
-      </MuiDialogActions>
     </MuiDialog>
   )
 }

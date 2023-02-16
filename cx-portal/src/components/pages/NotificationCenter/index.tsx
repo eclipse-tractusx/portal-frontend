@@ -93,7 +93,7 @@ export default function NotificationCenter() {
     useGetNotificationsQuery(notificationState)
 
   useEffect(() => {
-    setLoaded(true)
+    setNotificationItems([])
     if (page === 0) {
       refetch()
     } else {
