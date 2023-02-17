@@ -71,6 +71,8 @@ export type ProgressButtonsProps = {
   icon?: JSX.Element
   details?: string
   retriggerable?: boolean
+  statusLabel?: string
+  statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
 }
 
 export const progressMapper = {

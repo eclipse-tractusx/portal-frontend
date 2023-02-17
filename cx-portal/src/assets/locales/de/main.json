@@ -130,7 +130,15 @@
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
           "vies": "VIES",
-          "eori": "EORI"
+          "eori": "EORI",
+          "tab1": "Company Data",
+          "tab2": "Registration Process",
+          "tab1Title": "Company Data",
+          "tab2Title": "Confirmation {{status}}",
+          "statusComplete": "[complete]",
+          "statusIncomplete": "[incomplete]",
+          "approvedButton": "approved",
+          "failedButton": "falied"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
@@ -388,7 +396,8 @@
         "status": "Authentication Status",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
-        "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern."
+        "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
+        "hostCompanyName": "Host"
       },
       "rowValue": {
         "owned": "Owned",
@@ -1067,7 +1076,16 @@
         "AppTitle": "App Title (A-Z)"
       },
       "errorMsg": "Error! Something went wrong",
-      "successMsg": "Successfully completed"
+      "successMsg": "Successfully completed",
+      "declineModal": {
+        "title": "Reject App Release Request {appName}",
+        "subheading": "Are you sure you want to reject the app release request ?",
+        "declineReason": "The rejection will",
+        "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
+        "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+        "declineReason3Label": "The app will get set back to the status “in progress“",
+        "inputLabel": "Cancellation Message"
+      }
     },
     "adminboardDetail": {
       "usecase": "Use Case",
@@ -1106,11 +1124,18 @@
         "CLEARING_HOUSE": "Clearing House",
         "SELF_DESCRIPTION_LP": "Self Description"
       },
+      "checkListProgress": {
+        "DONE": "approved",
+        "IN_PROGRESS": "in progress",
+        "FAILED": "failed",
+        "TO_DO": "to do"
+      },
       "buttonApprove": "Approve",
       "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
       "buttonCancel": "Cancel Process",
+      "cancel": "Cancel",
       "comments": "Comments",
       "nocomments": " No comments available",
       "buttonClose": "Close",

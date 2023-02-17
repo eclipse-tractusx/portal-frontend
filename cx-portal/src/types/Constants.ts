@@ -120,6 +120,7 @@ export enum OVERLAYS {
   CONFIRM_USER_ACTION = 'confirm_user_action',
   SAMPLE_FORM = 'sample_form',
   ADD_SERVICE_PROVIDER = 'add_service_provider',
+  DECLINE_ADMINBOARD = 'decline_adminboard',
 }
 
 export enum ACTIONS {

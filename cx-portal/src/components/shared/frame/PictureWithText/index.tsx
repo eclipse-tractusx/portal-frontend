@@ -28,12 +28,14 @@ type PictureWithTextProps = {
   image?: string
   text: string
   onButtonClicked?: () => void
+  onHelpButtonClicked?: () => void
 }
 
 export default function PictureWithText({
   image = './edc-connector-text-image.png',
   text,
   onButtonClicked,
+  onHelpButtonClicked,
 }: PictureWithTextProps) {
   const { t } = useTranslation()
 
@@ -58,7 +60,7 @@ export default function PictureWithText({
           variant="text"
           size="small"
           startIcon={<ArrowForwardIcon />}
-          onClick={onButtonClicked}
+          onClick={onHelpButtonClicked}
         >
           {t('content.edcconnector.helpText')}
         </Button>

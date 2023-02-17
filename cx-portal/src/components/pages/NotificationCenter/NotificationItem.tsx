@@ -78,13 +78,14 @@ const NotificationContent = ({
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
   const appName = item.contentParsed?.AppName
+  const offerName = item.contentParsed?.OfferName
   return (
     <>
       <div>
         <Trans
           ns="notification"
           i18nKey={`${item.typeId}.content`}
-          values={{ you, app: appName }}
+          values={{ you, app: appName, offer: offerName }}
         >
           <NameLink
             fetchHook={useFetchUserDetailsQuery}
@@ -127,7 +128,7 @@ const NotificationContent = ({
 const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
-      return <NotificationContent item={item} />
+      return <NotificationContent item={item} navlinks={['usermanagement']} />
     case NotificationType.WELCOME:
       return <NotificationContent item={item} navlinks={['home']} />
     case NotificationType.WELCOME_APP_MARKETPLACE:
@@ -135,7 +136,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
       return <NotificationContent item={item} navlinks={['technicalsetup']} />
     case NotificationType.WELCOME_USE_CASES:
-      return <NotificationContent item={item} navlinks={['usecase']} />
+      return <NotificationContent item={item} navlinks={['usecases']} />
     case NotificationType.WELCOME_SERVICE_PROVIDER:
       return (
         <NotificationContent
@@ -257,7 +258,10 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`${item.typeId}.title`)}
+              {t(`${item.typeId}.title`, {
+                app: item.contentParsed?.AppName,
+                offer: item.contentParsed?.OfferName,
+              })}
             </Typography>
             {open && (
               <div className="content">

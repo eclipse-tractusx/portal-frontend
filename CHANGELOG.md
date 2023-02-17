@@ -3,18 +3,30 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-* Feature - Design/BL&API for display app details for Admin Board
-* Checklist overlay
-   * Show information from the checklist details API
-   * Approve and Decline action
-* Bugfix - User Management - App role assignment - Cache Issue
-* Bugfix - App release process - Added new attribute "privacyPolicies" to  app creation
-* Digital Twin
-   * Text updates
-* Connector
-   * Connector Registration UI with Self Description
-* Notification
-   * Bugfix - Show approriate info in description instead {{app}}
+* Feature - No items found page
+           * AppMarketplace
+           * ServiceMarketplace
+           * AppOverview
+           * AppSubscription
+           * AdminBoard
+
+## 1.0.0-RC9
+
+### Change
+* App Release Approval Board
+  * Enabled overlay for decline scenario with customer message
+* Notification message content updated and incl. links
+* Several help connections implemented (connector, app release, etc.)
+
+### Feature
+* Connector Registration
+   * new design with additional information such as host, self-description and status released
+
+### Technical Support
+n/a
+
+### Bugfix
+* Back navigation issue resolved from notifications to any specific page and back
 
 ## 1.0.0-RC8
 

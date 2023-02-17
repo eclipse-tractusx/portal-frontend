@@ -18,17 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export default function Redirect({
-  path,
-  tab,
-}: {
-  path: string
-  tab?: string
-}) {
-  const target = `${document.location.origin}/${path}/`
-  if (tab) window.open(target, '_blank', 'noreferrer')
-  else {
-    document.location.href = target
+.decline-modal-main {
+  p {
+    font-size: 18px;
+    font-weight: 600;
   }
-  return null
+  .decline-modal-input {
+    padding: 0 50px 0 50px;
+  }
 }

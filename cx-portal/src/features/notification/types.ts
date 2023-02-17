@@ -99,6 +99,7 @@ export interface NotificationContent {
   appId?: string
   userId?: string
   AppName?: string
+  OfferName?: string
 }
 
 export interface CXNotificationContent {

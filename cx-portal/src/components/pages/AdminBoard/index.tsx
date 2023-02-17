@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -36,17 +37,17 @@ import {
   useFetchAppReleaseAppsQuery,
 } from 'features/adminBoard/adminBoardApiSlice'
 import AdminBoardElements from './AdminBoardElements'
+import { currentSuccessType } from 'features/adminBoard/slice'
 
 export default function AdminBoard() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModalValue] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('InReview')
   const [sortOption, setSortOption] = useState<string>('new')
   const [appCards, setAppCards] = useState<AppContent[]>([])
-  const [approveDeclineSuccess, setApproveDeclineSuccess] =
-    useState<boolean>(false)
 
   let statusId = selected
 
@@ -54,6 +55,8 @@ export default function AdminBoard() {
   if (sortOption === 'title') {
     sortingType = 'NameAsc'
   }
+
+  const isDecisionSuccess = useSelector(currentSuccessType)
 
   const { data, refetch } = useFetchAppReleaseAppsQuery({
     page: 0,
@@ -63,17 +66,13 @@ export default function AdminBoard() {
 
   const apps = data && data.content
 
-  const handleApproveDeclineSuccess = () => {
-    setApproveDeclineSuccess(true)
-  }
-
   useEffect(() => {
     apps && setAppCards(apps)
-  }, [apps])
+  }, [apps, dispatch])
 
   useEffect(() => {
     refetch()
-  }, [approveDeclineSuccess, refetch])
+  }, [isDecisionSuccess, refetch])
 
   const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
@@ -189,10 +188,7 @@ export default function AdminBoard() {
             />
           </div>
         ) : (
-          <AdminBoardElements
-            apps={appCards}
-            handleApproveDeclineSuccess={handleApproveDeclineSuccess}
-          />
+          <AdminBoardElements apps={appCards} />
         )}
       </div>
     </div>
