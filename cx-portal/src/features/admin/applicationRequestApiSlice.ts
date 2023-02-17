@@ -61,6 +61,13 @@ export enum StatusType {
   SELF_DESCRIPTION_LP = 'SELF_DESCRIPTION_LP',
 }
 
+export enum EndUrlMapper {
+  RETRIGGER_IDENTITY_WALLET = 'trigger-identity-wallet',
+  RETRIGGER_CLEARING_HOUSE = 'retrigger-clearinghouse',
+  OVERWRITE_CLEARING_HOUSE = 'override-clearinghouse',
+  RETRIGGER_SELF_DESCRIPTION_LP = 'trigger-self-description',
+}
+
 export type ProgressButtonsProps = {
   statusId: ProgressStatus
   typeId: string
@@ -73,6 +80,7 @@ export type ProgressButtonsProps = {
   retriggerable?: boolean
   statusLabel?: string
   statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
+  retriggerableProcessSteps?: string[]
 }
 
 export const progressMapper = {
@@ -132,7 +140,6 @@ export const apiSlice = createApi({
         url: `/api/administration/registration/applications/${applicationId}/approve`,
         method: 'POST',
       }),
-      invalidatesTags: ['checklist'],
     }),
     declineChecklist: builder.mutation<boolean, DeclineRequestType>({
       query: (obj) => ({
@@ -140,7 +147,6 @@ export const apiSlice = createApi({
         method: 'POST',
         body: { comment: obj.comment },
       }),
-      invalidatesTags: ['checklist'],
     }),
     fetchCompanySearch: builder.query<
       PaginResult<ApplicationRequest>,
@@ -178,11 +184,19 @@ export const apiSlice = createApi({
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }
       },
-      providesTags: ['checklist'],
     }),
     fetchDocumentById: builder.mutation({
       query: (documentId) => ({
         url: `/api/administration/Documents/${documentId}?documentId=${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
+    fetchNewDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/registration/documents/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -212,6 +226,13 @@ export const apiSlice = createApi({
         return obj
       },
     }),
+    retriggerProcess: builder.mutation<boolean, any>({
+      query: (args) => ({
+        url: `/api/administration/registration/application/${args.applicationId}/${args.endUrl}`,
+        invalidatestags: ['checklist'],
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
@@ -224,4 +245,6 @@ export const {
   useFetchCheckListDetailsQuery,
   useApproveChecklistMutation,
   useDeclineChecklistMutation,
+  useRetriggerProcessMutation,
+  useFetchNewDocumentByIdMutation,
 } = apiSlice

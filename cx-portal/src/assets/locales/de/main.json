@@ -1134,6 +1134,7 @@
       "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
+      "buttonOverwrite": "Overwrite Process",
       "buttonCancel": "Cancel Process",
       "cancel": "Cancel",
       "comments": "Comments",

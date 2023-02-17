@@ -30,12 +30,14 @@ import {
 } from 'cx-portal-shared-components'
 import CheckList from '.'
 import {
+  EndUrlMapper,
   ProgressButtonsProps,
   ProgressStatus,
   StatusType,
   useApproveChecklistMutation,
   useDeclineChecklistMutation,
   useFetchCheckListDetailsQuery,
+  useRetriggerProcessMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { useTranslation } from 'react-i18next'
 import CloseIcon from '@mui/icons-material/Close'
@@ -151,6 +153,7 @@ const CheckListStatusOverlay = ({
   const { t } = useTranslation()
   const [approveChecklist] = useApproveChecklistMutation()
   const [declineChecklist] = useDeclineChecklistMutation()
+  const [retriggerProcess] = useRetriggerProcessMutation()
   const { data } = useFetchCheckListDetailsQuery(selectedRequestId)
   const [
     {
@@ -239,8 +242,39 @@ const CheckListStatusOverlay = ({
     setState({ type: ActionKind.SET_CANCEL_LOADING, payload: true })
   }
 
+  const getEndUrl = (process: string) => {
+    switch (process) {
+      case EndUrlMapper.OVERWRITE_CLEARING_HOUSE:
+        return EndUrlMapper.OVERWRITE_CLEARING_HOUSE
+      case EndUrlMapper.RETRIGGER_CLEARING_HOUSE:
+        return EndUrlMapper.RETRIGGER_CLEARING_HOUSE
+      case EndUrlMapper.RETRIGGER_IDENTITY_WALLET:
+        return EndUrlMapper.RETRIGGER_IDENTITY_WALLET
+      case EndUrlMapper.RETRIGGER_SELF_DESCRIPTION_LP:
+        return EndUrlMapper.RETRIGGER_SELF_DESCRIPTION_LP
+    }
+  }
+
   const onRetrigger = () => {
     setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: true })
+    selectedCheckListButton.retriggerableProcessSteps.forEach(
+      async (process: string) => {
+        const args = {
+          applicationId: selectedRequestId,
+          endUrl: getEndUrl(process),
+        }
+        await retriggerProcess(args)
+          .unwrap()
+          .then((payload) => console.log('fulfilled', payload))
+          .catch((error) =>
+            setState({
+              type: ActionKind.SET_APPROVE_LOADING,
+              payload: error.data.title,
+            })
+          )
+      }
+    )
+    setState({ type: ActionKind.SET_APPROVE_LOADING, payload: false })
   }
 
   const getStepName = () =>
@@ -266,7 +300,8 @@ const CheckListStatusOverlay = ({
       `content.checklistOverlay.${selectedCheckListButton?.typeId}.${selectedCheckListButton?.statusId}.description`
     )
 
-  const canShowCancelAndRetrigger = () => selectedCheckListButton.retriggerable
+  const canShowCancelAndRetrigger = () =>
+    selectedCheckListButton.retriggerableProcessSteps?.length > 0
 
   const canShowApproveAndDecline = () =>
     selectedCheckListButton?.typeId === StatusType.REGISTRATION_VERIFICATION &&
@@ -507,7 +542,11 @@ const CheckListStatusOverlay = ({
                     variant="contained"
                     disabled={cancelLoading}
                   >
-                    {t('content.checklistOverlay.buttonRetrigger')}
+                    {selectedCheckListButton.retriggerableProcessSteps.indexOf(
+                      EndUrlMapper['OVERWRITE_CLEARING_HOUSE']
+                    ) > -1
+                      ? t('content.checklistOverlay.buttonOverwrite')
+                      : t('content.checklistOverlay.buttonRetrigger')}
                   </Button>
                 )}
               </div>

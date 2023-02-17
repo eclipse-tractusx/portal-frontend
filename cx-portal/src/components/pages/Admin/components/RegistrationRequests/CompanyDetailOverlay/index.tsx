@@ -40,7 +40,7 @@ import {
   ProgressButtonsProps,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
-  useFetchDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
@@ -66,7 +66,7 @@ const CompanyDetailOverlay = ({
   )
   const [company, setCompany] = useState<ApplicationRequest>()
   const [checklist, setCheckList] = useState<ProgressButtonsProps[]>()
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [height, setHeight] = useState<string>('')
   const { data: res } = useFetchCheckListDetailsQuery(selectedRequestId)
