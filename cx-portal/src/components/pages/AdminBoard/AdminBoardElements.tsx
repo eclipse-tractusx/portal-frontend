@@ -19,11 +19,7 @@
  ********************************************************************************/
 
 import { useState } from 'react'
-import {
-  CardDecision,
-  PageNotifications,
-  PageSnackbar,
-} from 'cx-portal-shared-components'
+import { CardDecision, PageSnackbar } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -33,6 +29,7 @@ import {
   useApproveRequestMutation,
   useDeclineRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
+import NoItems from '../NoItems'
 
 export default function AdminBoardElements({
   apps,
@@ -51,17 +48,7 @@ export default function AdminBoardElements({
   const [declineRequest] = useDeclineRequestMutation()
 
   if (apps && apps.length === 0) {
-    return (
-      <div className="recommended-section">
-        <PageNotifications
-          description={t('content.serviceMarketplace.noDataMessage')}
-          open
-          severity="error"
-          showIcon
-          title="Error"
-        />
-      </div>
-    )
+    return <NoItems />
   }
 
   const handleDecision = async (appId: string, status: string) => {

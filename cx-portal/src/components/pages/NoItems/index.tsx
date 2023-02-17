@@ -18,54 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './AppListGroupView.scss'
-import { Box } from '@mui/material'
-import { Cards } from 'cx-portal-shared-components'
-import { multiMapBy } from 'utils/multiMapBy'
+import { Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { AppListGroup } from '../AppListGroup'
-import NoItems from 'components/pages/NoItems'
-
-export const AppListGroupView = ({
-  items,
-  groupKey,
-}: {
-  items: any[]
-  groupKey: string
-}) => {
+export default function NoItems() {
   const { t } = useTranslation()
-
-  if (items && items.length === 0) {
-    return <NoItems />
-  }
-
-  if (!groupKey || groupKey === '') {
-    return (
-      <Box>
-        <Cards
-          buttonText={t('global.actions.details')}
-          columns={4}
-          imageShape={'round'}
-          imageSize={'small'}
-          items={items}
-          variant={'compact'}
-          expandOnHover={true}
-        />
-      </Box>
-    )
-  }
-
-  const group = multiMapBy(items, (item) => item[groupKey])
-
   return (
     <>
-      <ul className="AppListGroupView">
-        {Object.entries(group).map((v) => (
-          <li key={v[0]}>
-            <AppListGroup category={v[0]} items={v[1]} />
-          </li>
-        ))}
-      </ul>
+      <Typography
+        mb={2}
+        variant="h3"
+        align="center"
+        sx={{
+          fontFamily: `"LibreFranklin", "Libre Franklin", "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important`,
+        }}
+      >
+        {t('global.noData.heading')}
+      </Typography>
+      <Typography variant="h5" align="center">
+        {t('global.noData.description')}
+      </Typography>
     </>
   )
 }

@@ -26,6 +26,7 @@ import {
   Typography,
   ViewSelector,
 } from 'cx-portal-shared-components'
+import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
@@ -45,6 +46,7 @@ export const label = 'AppList'
 
 export default function AppListSection() {
   const { t } = useTranslation()
+  const theme = useTheme()
   const [group, setGroup] = useState<string>('')
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [cardsData, setCardsData] = useState<CardItems[]>([])
@@ -144,14 +146,14 @@ export default function AppListSection() {
 
         <Box sx={{ textAlign: 'center' }}>
           <SearchInput
-            sx={{ minWidth: '544px' }}
+            sx={{ minWidth: '544px', marginBottom: '50px' }}
             margin={'normal'}
             placeholder={t('content.home.searchSection.inputPlaceholder')}
             value={filterExpr}
             onChange={(e) => doFilter(e.target.value)}
           />
         </Box>
-        {cardsData && (
+        {cardsData && cardsData.length ? (
           <AppListGroupView
             items={cardsData.map((card) => ({
               ...card,
@@ -161,6 +163,15 @@ export default function AppListSection() {
             }))}
             groupKey={group}
           />
+        ) : (
+          <div style={{ textAlign: 'center' }}>
+            <CircularProgress
+              size={50}
+              sx={{
+                color: theme.palette.primary.main,
+              }}
+            />
+          </div>
         )}
       </section>
     </Box>
