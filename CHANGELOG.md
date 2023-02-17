@@ -3,6 +3,12 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+* Feature - No items found page
+           * AppMarketplace
+           * ServiceMarketplace
+           * AppOverview
+           * AppSubscription
+           * AdminBoard
 
 ## 1.0.0-RC9
 

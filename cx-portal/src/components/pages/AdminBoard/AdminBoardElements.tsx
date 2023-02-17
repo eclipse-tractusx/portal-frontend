@@ -18,12 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { CardDecision, PageSnackbar } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  CardDecision,
-  PageNotifications,
-  PageSnackbar,
-} from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -33,6 +29,7 @@ import {
   AppContent,
   useApproveRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
+import NoItems from '../NoItems'
 import { OVERLAYS } from 'types/Constants'
 import {
   currentErrorType,
@@ -52,17 +49,7 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
   const isDecisionError = useSelector(currentErrorType)
 
   if (apps && apps.length === 0) {
-    return (
-      <div className="recommended-section">
-        <PageNotifications
-          description={t('content.serviceMarketplace.noDataMessage')}
-          open
-          severity="error"
-          showIcon
-          title="Error"
-        />
-      </div>
-    )
+    return <NoItems />
   }
 
   const handleApprove = async (appId: string) => {

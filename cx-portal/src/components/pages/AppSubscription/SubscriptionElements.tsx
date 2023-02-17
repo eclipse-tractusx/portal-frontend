@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  PageNotifications,
-  Typography,
-} from 'cx-portal-shared-components'
+import { Button, Typography } from 'cx-portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -30,6 +26,7 @@ import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
 import './AppSubscription.scss'
+import NoItems from '../NoItems'
 
 export default function SubscriptionElements({
   subscriptions,
@@ -41,17 +38,7 @@ export default function SubscriptionElements({
   const dispatch = useDispatch()
 
   if (subscriptions && subscriptions.length === 0) {
-    return (
-      <div className="recommended-section">
-        <PageNotifications
-          description={t('content.serviceMarketplace.noDataMessage')}
-          open
-          severity="error"
-          showIcon
-          title="Error"
-        />
-      </div>
-    )
+    return <NoItems />
   }
 
   return (
