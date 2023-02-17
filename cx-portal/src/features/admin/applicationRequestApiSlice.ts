@@ -61,11 +61,31 @@ export enum StatusType {
   SELF_DESCRIPTION_LP = 'SELF_DESCRIPTION_LP',
 }
 
-export enum EndUrlMapper {
-  RETRIGGER_IDENTITY_WALLET = 'trigger-identity-wallet',
-  RETRIGGER_CLEARING_HOUSE = 'retrigger-clearinghouse',
-  OVERWRITE_CLEARING_HOUSE = 'override-clearinghouse',
-  RETRIGGER_SELF_DESCRIPTION_LP = 'trigger-self-description',
+interface Map {
+  [key: string]: string | undefined
+}
+
+export const EndUrlMap: Map = {
+  RETRIGGER_IDENTITY_WALLET: 'trigger-identity-wallet',
+  RETRIGGER_CLEARING_HOUSE: 'retrigger-clearinghouse',
+  TRIGGER_OVERRIDE_CLEARING_HOUSE: 'override-clearinghouse',
+  RETRIGGER_SELF_DESCRIPTION_LP: 'trigger-self-description',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH:
+    'trigger-bpn?processTypeId=RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL:
+    'trigger-bpn?processTypeId=RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL',
+  OVERRIDE_BUSINESS_PARTNER_NUMBER:
+    'trigger-bpn?processTypeId=OVERRIDE_BUSINESS_PARTNER_NUMBER',
+}
+
+export enum RetriggerableProcessSteps {
+  RETRIGGER_IDENTITY_WALLET = 'RETRIGGER_IDENTITY_WALLET',
+  RETRIGGER_CLEARING_HOUSE = 'RETRIGGER_CLEARING_HOUSE',
+  TRIGGER_OVERRIDE_CLEARING_HOUSE = 'TRIGGER_OVERRIDE_CLEARING_HOUSE',
+  RETRIGGER_SELF_DESCRIPTION_LP = 'RETRIGGER_SELF_DESCRIPTION_LP',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH = 'RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL = 'RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL',
+  OVERRIDE_BUSINESS_PARTNER_NUMBER = 'OVERRIDE_BUSINESS_PARTNER_NUMBER',
 }
 
 export type ProgressButtonsProps = {
@@ -77,7 +97,6 @@ export type ProgressButtonsProps = {
   border?: string
   icon?: JSX.Element
   details?: string
-  retriggerable?: boolean
   statusLabel?: string
   statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
   retriggerableProcessSteps?: string[]
@@ -105,7 +124,7 @@ type CheckListDetailsButton = {
   status: string
   type: string
   details: string
-  retriggerable: string | boolean
+  retriggerableProcessSteps: string[]
 }
 
 export interface CheckListDetailsType {
@@ -220,7 +239,7 @@ export const apiSlice = createApi({
             statusId: res.status,
             typeId: res.type,
             details: res.details,
-            retriggerable: res.retriggerable,
+            retriggerableProcessSteps: res.retriggerableProcessSteps,
           }
         })
         return obj
@@ -229,9 +248,9 @@ export const apiSlice = createApi({
     retriggerProcess: builder.mutation<boolean, any>({
       query: (args) => ({
         url: `/api/administration/registration/application/${args.applicationId}/${args.endUrl}`,
-        invalidatestags: ['checklist'],
         method: 'POST',
       }),
+      invalidatesTags: ['checklist'],
     }),
   }),
 })
