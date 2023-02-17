@@ -52,7 +52,6 @@ interface CheckListStatusOverlayProps {
 }
 
 enum ActionKind {
-  SET_CANCEL_LOADING = 'SET_CANCEL_LOADING',
   SET_RETRIGGER_LOADING = 'SET_RETRIGGER_LOADING',
   SET_APPROVE_LOADING = 'SET_APPROVE_LOADING',
   SET_DECLINE_LOADING = 'SET_DECLINE_LOADING',
@@ -67,7 +66,6 @@ enum ActionKind {
 }
 
 type State = {
-  cancelLoading: boolean
   retriggerLoading: boolean
   approveLoading: boolean
   declineLoading: boolean
@@ -79,7 +77,6 @@ type State = {
 }
 
 const initialState: State = {
-  cancelLoading: false,
   retriggerLoading: false,
   approveLoading: false,
   declineLoading: false,
@@ -100,8 +97,6 @@ type Action = {
 
 function reducer(state: State, { type, payload }: Action) {
   switch (type) {
-    case ActionKind.SET_CANCEL_LOADING:
-      return { ...state, cancelLoading: payload }
     case ActionKind.SET_RETRIGGER_LOADING:
       return { ...state, retriggerLoading: payload }
     case ActionKind.SET_APPROVE_LOADING:
@@ -158,7 +153,6 @@ const CheckListStatusOverlay = ({
   const { data } = useFetchCheckListDetailsQuery(selectedRequestId)
   const [
     {
-      cancelLoading,
       retriggerLoading,
       approveLoading,
       declineLoading,
@@ -237,10 +231,6 @@ const CheckListStatusOverlay = ({
       type: ActionKind.STOP_DECLINE_LOADIN_SHOW_INPUT,
       payload: { declineLoading: false, showInput: false },
     })
-  }
-
-  const onCancel = () => {
-    setState({ type: ActionKind.SET_CANCEL_LOADING, payload: true })
   }
 
   const onRetrigger = () => {
@@ -514,7 +504,8 @@ const CheckListStatusOverlay = ({
           }}
         >
           {selectedCheckListButton.retriggerableProcessSteps &&
-            selectedCheckListButton.retriggerableProcessSteps?.length > 0 && (
+            selectedCheckListButton.retriggerableProcessSteps?.length > 0 &&
+            !showInput && (
               <>
                 <div style={{ marginRight: '20px' }}>
                   {retriggerLoading && (
@@ -541,41 +532,21 @@ const CheckListStatusOverlay = ({
                       onClick={() => onRetrigger()}
                       size="small"
                       variant="contained"
-                      disabled={cancelLoading}
+                      disabled={declineLoading}
                     >
                       {getButtonTitle()}
                     </Button>
                   )}
                 </div>
                 <div>
-                  {cancelLoading && (
-                    <span
-                      style={{
-                        marginLeft: '50px',
-                        width: '116px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      <CircleProgress
-                        size={40}
-                        step={1}
-                        interval={0.1}
-                        colorVariant={'primary'}
-                        variant={'indeterminate'}
-                        thickness={8}
-                      />
-                    </span>
-                  )}
-                  {!cancelLoading && (
-                    <Button
-                      onClick={() => onCancel()}
-                      size="small"
-                      variant="outlined"
-                      disabled={retriggerLoading}
-                    >
-                      {t('content.checklistOverlay.buttonCancel')}
-                    </Button>
-                  )}
+                  <Button
+                    onClick={() => onDecline()}
+                    size="small"
+                    variant="outlined"
+                    disabled={retriggerLoading}
+                  >
+                    {t('content.checklistOverlay.buttonCancel')}
+                  </Button>
                 </div>
               </>
             )}
