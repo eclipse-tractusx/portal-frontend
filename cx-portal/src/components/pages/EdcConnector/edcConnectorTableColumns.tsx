@@ -37,21 +37,9 @@ export const ConnectorTableColumns = (
     {
       field: 'name',
       headerName: t('content.edcconnector.columns.name'),
-      flex: 1,
+      flex: 1.3,
       disableColumnMenu: true,
       sortable: false,
-    },
-    {
-      field: 'location',
-      headerName: t('content.edcconnector.columns.location'),
-      flex: 0.8,
-      sortable: false,
-      disableColumnMenu: true,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: ({ row }: { row: any }) => (
-        <Typography variant="body2">{row.location}</Typography>
-      ),
     },
     {
       field: 'type',
@@ -70,14 +58,26 @@ export const ConnectorTableColumns = (
     {
       field: 'hostCompanyName',
       headerName: t('content.edcconnector.columns.hostCompanyName'),
-      flex: 0.8,
+      flex: 1,
       sortable: false,
       disableColumnMenu: true,
     },
     {
+      field: 'location',
+      headerName: t('content.edcconnector.columns.location'),
+      flex: 0.8,
+      sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: ({ row }: { row: any }) => (
+        <Typography variant="body2">{row.location}</Typography>
+      ),
+    },
+    {
       field: 'dapsRegistrationSuccessful',
       headerName: t('content.edcconnector.columns.status'),
-      flex: 1,
+      flex: 1.2,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',
@@ -141,7 +141,7 @@ export const ConnectorTableColumns = (
     },
     {
       field: 'details',
-      headerName: '',
+      headerName: t('content.edcconnector.columns.details'),
       flex: 1,
       sortable: false,
       disableColumnMenu: true,
