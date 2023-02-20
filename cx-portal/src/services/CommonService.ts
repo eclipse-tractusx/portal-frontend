@@ -35,9 +35,9 @@ const fetchLeadPictureImage = (data: any[]) => {
   const promises = data?.map((app: any) => {
     return [
       new Promise((resolve, reject) => {
-        let url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
-          app.leadPictureId
-        )}`
+        let url = `${getApiBase()}/api/apps/${
+          app.id
+        }/appImages/${isValidPictureId(app.leadPictureId)}`
         let options = {
           method: 'GET',
           headers: {
@@ -75,17 +75,17 @@ const fetchLeadPictureImage = (data: any[]) => {
   return newPromies
 }
 
-const fetchLeadPictures = (images: string[]) => {
+const fetchLeadPictures = (images: string[], appId: string) => {
   const promises = images?.map((image: any) => {
     return [
       new Promise((resolve, reject) => {
         let url = ''
         if (!image.documentId) {
-          url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
+          url = `${getApiBase()}/api/apps/${appId}/appImages/${isValidPictureId(
             image
           )}`
         } else {
-          url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
+          url = `${getApiBase()}/api/apps/${appId}/appImages/${isValidPictureId(
             image.documentId
           )}`
         }

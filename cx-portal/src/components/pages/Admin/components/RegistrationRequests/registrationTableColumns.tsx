@@ -35,7 +35,11 @@ import CheckList from './components/CheckList'
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
   translationHook: any,
-  handleDownloadDocument: (documentId: string, documentType: string) => void,
+  handleDownloadDocument: (
+    appId: string,
+    documentId: string,
+    documentType: string
+  ) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void,
   onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
@@ -105,6 +109,7 @@ export const RegistrationRequestsTableColumns = (
                 className="document-button-link"
                 onClick={() =>
                   handleDownloadDocument(
+                    row.applicationId,
                     contract.documentId,
                     contract.documentType
                   )

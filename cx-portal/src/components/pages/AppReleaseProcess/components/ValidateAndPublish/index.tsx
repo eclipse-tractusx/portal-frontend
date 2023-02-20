@@ -93,7 +93,8 @@ export default function ValidateAndPublish({
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
       const newPromies = CommonService.fetchLeadPictures(
-        statusData?.documents?.APP_IMAGE
+        statusData?.documents?.APP_IMAGE,
+        appId
       )
       Promise.all(newPromies).then((result) => {
         setMultipleImages(result.flat())
@@ -106,7 +107,7 @@ export default function ValidateAndPublish({
 
   const fetchImage = async (documentId: string, documentType: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
       if (documentType === 'APP_LEADIMAGE') {
         return setCardImage(URL.createObjectURL(file))

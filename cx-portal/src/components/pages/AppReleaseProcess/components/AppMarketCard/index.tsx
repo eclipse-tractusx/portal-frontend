@@ -339,7 +339,7 @@ export default function AppMarketCard() {
 
   const fetchCardImage = async (documentId: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
       return setCardImage(URL.createObjectURL(file))
     } catch (error) {

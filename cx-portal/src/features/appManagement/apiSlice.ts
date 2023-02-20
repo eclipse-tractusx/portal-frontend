@@ -144,6 +144,11 @@ export type updateRolePayload = {
     | null
 }
 
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -226,8 +231,8 @@ export const apiSlice = createApi({
       }),
     }),
     fetchDocumentById: builder.mutation({
-      query: (documentId: string) => ({
-        url: `/api/administration/documents/${documentId}`,
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

@@ -113,11 +113,12 @@ export default function RegistrationRequests() {
   }
 
   const handleDownloadClick = async (
+    appId: string,
     documentId: string,
     documentType: string
   ) => {
     try {
-      const response = await getDocumentById(documentId).unwrap()
+      const response = await getDocumentById({ appId, documentId }).unwrap()
 
       const fileType = response.headers.get('content-type')
       const file = response.data
