@@ -43,7 +43,6 @@ export const CardDecision = ({
   onDelete,
   onClick,
 }: CardDecisionProps) => {
-
   const handleDecision = (
     e: React.SyntheticEvent,
     id: string,
