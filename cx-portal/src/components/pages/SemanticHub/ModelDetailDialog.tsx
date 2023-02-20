@@ -136,7 +136,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   return (
     <>
       <Dialog open={show}>
-        <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
+        <DialogHeader title=" " closeWithIcon onCloseWithIcon={onClose} />
         <DialogContent>
           {model && (
             <>

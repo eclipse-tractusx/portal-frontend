@@ -84,7 +84,7 @@ export default function AddBPN({ id }: { id: string }) {
       {activationResponse ? (
         <div className="activationOverlay">
           <DialogHeader
-            title=""
+            title=" "
             intro={t('content.appSubscription.activation.successDescription')}
             closeWithIcon={true}
             icon={true}

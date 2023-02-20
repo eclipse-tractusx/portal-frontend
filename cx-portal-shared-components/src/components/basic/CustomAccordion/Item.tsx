@@ -50,6 +50,9 @@ export const CustomAccordionItem = ({
       elevation={0}
       sx={{
         mb: 0,
+        '&.MuiAccordion-root': {
+          width: '100%',
+        },
       }}
     >
       <AccordionSummary

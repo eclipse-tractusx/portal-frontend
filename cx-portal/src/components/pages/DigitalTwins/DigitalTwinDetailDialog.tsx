@@ -38,7 +38,7 @@ const DigitalTwinDetailDialog = ({ show, onClose }: TwinDialogProps) => {
 
   return (
     <Dialog open={show}>
-      <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
+      <DialogHeader title=" " closeWithIcon onCloseWithIcon={onClose} />
       <DialogContent>
         {twin && <TwinDetails twin={twin} />}
         {loading && (
