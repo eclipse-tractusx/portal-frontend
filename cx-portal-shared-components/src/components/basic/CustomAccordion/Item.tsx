@@ -51,8 +51,8 @@ export const CustomAccordionItem = ({
       sx={{
         mb: 0,
         '&.MuiAccordion-root': {
-          width: '100%'
-        }
+          width: '100%',
+        },
       }}
     >
       <AccordionSummary
