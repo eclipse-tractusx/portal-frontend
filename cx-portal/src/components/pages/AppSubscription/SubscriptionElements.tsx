@@ -37,7 +37,7 @@ export default function SubscriptionElements({
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  if (subscriptions && subscriptions.length >= 0) {
+  if (subscriptions && subscriptions.length === 0) {
     return <NoItems />
   }
 
