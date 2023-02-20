@@ -109,6 +109,11 @@ type DeclineRequestType = {
   comment: string
 }
 
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/applicationRequest',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -181,8 +186,8 @@ export const apiSlice = createApi({
       providesTags: ['checklist'],
     }),
     fetchDocumentById: builder.mutation({
-      query: (documentId) => ({
-        url: `/api/administration/Documents/${documentId}?documentId=${documentId}`,
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

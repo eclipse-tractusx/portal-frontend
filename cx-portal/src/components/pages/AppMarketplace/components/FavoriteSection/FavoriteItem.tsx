@@ -58,7 +58,7 @@ export default function FavoriteItem({
   const fetchImage = async (documentId: string) => {
     try {
       const id = CommonService.isValidPictureId(documentId)
-      const result = await fetchDocumentById(id).unwrap()
+      const result = await fetchDocumentById({appId: item.id, documentId: id}).unwrap()
       return setCardImage(URL.createObjectURL(result.data))
     } catch (error) {
       console.log(error)

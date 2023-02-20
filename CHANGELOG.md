@@ -9,6 +9,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
            * AppOverview
            * AppSubscription
            * AdminBoard
+* Feature - Update Fetch Document API
+           * AppMarketplace
+           * AppDetails
+           * App Overview
+           * AdminBoard
 
 ## 1.0.0-RC9
 

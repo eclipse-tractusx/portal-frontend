@@ -33,6 +33,8 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
     keyPrefix: 'content.adminboardDetail.documents',
   })
 
+  console.log('item', item)
+
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
   const handleDownloadClick = async (
@@ -40,7 +42,7 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
     documentName: string
   ) => {
     try {
-      const response = await getDocumentById(documentId).unwrap()
+      const response = await getDocumentById({appId: item.id, documentId}).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
       return download(file, fileType, documentName)

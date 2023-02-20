@@ -45,7 +45,7 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
 
   const getImage = async (documentId: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({appId: item.id, documentId}).unwrap()
       const file = response.data
       return setImage(URL.createObjectURL(file))
     } catch (error) {

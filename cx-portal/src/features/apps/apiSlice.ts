@@ -115,6 +115,11 @@ export type SubscriptionAppRequest = {
   body: SubscriptionRequestBody[]
 }
 
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -138,8 +143,8 @@ export const apiSlice = createApi({
       query: () => `/api/apps/business`,
     }),
     fetchDocumentById: builder.mutation({
-      query: (documentId) => ({
-        url: `/api/administration/documents/${documentId}?documentId=${documentId}`,
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

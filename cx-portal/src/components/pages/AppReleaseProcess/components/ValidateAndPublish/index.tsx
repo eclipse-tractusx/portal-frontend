@@ -106,7 +106,7 @@ export default function ValidateAndPublish({
 
   const fetchImage = async (documentId: string, documentType: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({appId, documentId}).unwrap()
       const file = response.data
       if (documentType === 'APP_LEADIMAGE') {
         return setCardImage(URL.createObjectURL(file))

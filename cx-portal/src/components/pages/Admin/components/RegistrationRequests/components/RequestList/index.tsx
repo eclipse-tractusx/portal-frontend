@@ -45,7 +45,7 @@ export const RequestList = ({
   fetchHook: (paginArgs: PaginFetchArgs) => any
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
-  handleDownloadDocument: (documentId: string, documentType: string) => void
+  handleDownloadDocument: (appId: string, documentId: string, documentType: string) => void
   showConfirmOverlay?: (applicationId: string) => void
   onConfirmationCancel?: (applicationId: string, name: string) => void
   onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
