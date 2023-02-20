@@ -17,6 +17,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * Enabled overlay for decline scenario with customer message
 * Notification message content updated and incl. links
 * Several help connections implemented (connector, app release, etc.)
+* Application Registration
+   * Retrigger process apis added
 
 ### Feature
 * Connector Registration

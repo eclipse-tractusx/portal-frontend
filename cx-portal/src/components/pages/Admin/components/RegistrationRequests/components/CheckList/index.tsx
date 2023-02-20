@@ -144,7 +144,7 @@ export default function CheckList({
           statusId: button.statusId,
           typeId: button.typeId,
           details: button.details,
-          retriggerable: button.retriggerable,
+          retriggerableProcessSteps: button.retriggerableProcessSteps,
           label: t(`content.checklistOverlay.checkList.${button.typeId}`),
           highlight: isButtonSelected(button.typeId),
           ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),

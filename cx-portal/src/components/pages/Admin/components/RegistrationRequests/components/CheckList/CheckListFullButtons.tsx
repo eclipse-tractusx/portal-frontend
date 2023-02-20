@@ -109,7 +109,7 @@ export default function CheckListFullButtons({
           statusId: button.statusId,
           typeId: button.typeId,
           details: button.details,
-          retriggerable: button.retriggerable,
+          retriggerableProcessSteps: button.retriggerableProcessSteps,
           label: t(`content.checklistOverlay.checkList.${button.typeId}`),
           statusLabel: t(
             `content.checklistOverlay.checkListProgress.${button.statusId}`
