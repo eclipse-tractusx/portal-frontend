@@ -14,6 +14,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
            * AppDetails
            * App Overview
            * AdminBoard
+* Bugfix - Styling - App Management Board
 
 ## 1.0.0-RC9
 
