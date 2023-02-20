@@ -105,18 +105,17 @@ const CompanyDetailOverlay = ({
     }
   }
 
-  const downloadDocumnet = async (documentId: string, documentType: string) => {
+  const downloadDocument = async (documentId: string, documentType: string) => {
+    if (!company) return
     try {
-      if (company) {
-        const response = await getDocumentById({
-          appId: company.applicationId,
-          documentId,
-        }).unwrap()
-        const fileType = response.headers.get('content-type')
-        const file = response.data
+      const response = await getDocumentById({
+        appId: company.applicationId,
+        documentId,
+      }).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
 
-        return download(file, fileType, documentType)
-      }
+      return download(file, fileType, documentType)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -345,7 +344,7 @@ const CompanyDetailOverlay = ({
                                     paddingLeft: '10px',
                                   }}
                                   onClick={() => {
-                                    downloadDocumnet(
+                                    downloadDocument(
                                       contract.documentId,
                                       contract.documentType
                                     )
