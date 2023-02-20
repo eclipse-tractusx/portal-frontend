@@ -532,7 +532,6 @@ const CheckListStatusOverlay = ({
                       onClick={() => onRetrigger()}
                       size="small"
                       variant="contained"
-                      disabled={declineLoading}
                     >
                       {getButtonTitle()}
                     </Button>
@@ -576,7 +575,6 @@ const CheckListStatusOverlay = ({
                     onClick={() => onApprove()}
                     size="small"
                     variant="contained"
-                    disabled={declineLoading}
                   >
                     {t('content.checklistOverlay.buttonApprove')}
                   </Button>
