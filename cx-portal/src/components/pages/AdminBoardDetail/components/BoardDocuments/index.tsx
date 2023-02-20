@@ -33,8 +33,6 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
     keyPrefix: 'content.adminboardDetail.documents',
   })
 
-  console.log('item', item)
-
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
   const handleDownloadClick = async (
