@@ -369,7 +369,6 @@ const CheckListStatusOverlay = ({
         <div
           style={{
             textAlign: 'left',
-            marginBottom: '30px',
             minHeight: '220px',
           }}
         >
@@ -431,9 +430,9 @@ const CheckListStatusOverlay = ({
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
-              WebkitLineClamp: '2',
+              WebkitLineClamp: '3',
               WebkitBoxOrient: 'vertical',
-              maxHeight: '50px',
+              height: '70px',
             }}
             variant="body2"
           >
