@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 export default function NoItems() {
   const { t } = useTranslation()
   return (
-    <>
+    <div style={{ margin: '130px 0 150px' }}>
       <Typography
         mb={2}
         variant="h3"
@@ -37,6 +37,6 @@ export default function NoItems() {
       <Typography variant="h5" align="center">
         {t('global.noData.description')}
       </Typography>
-    </>
+    </div>
   )
 }

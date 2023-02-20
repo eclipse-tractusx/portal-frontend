@@ -105,10 +105,13 @@ const CompanyDetailOverlay = ({
     }
   }
 
-  const downloadDocumnet = async (documentId: string, documentType: string) => {
+  const downloadDocument = async (documentId: string, documentType: string) => {
+    if (!company) return
     try {
-      const response = await getDocumentById(documentId).unwrap()
-
+      const response = await getDocumentById({
+        appId: company.applicationId,
+        documentId,
+      }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
 
@@ -341,7 +344,7 @@ const CompanyDetailOverlay = ({
                                     paddingLeft: '10px',
                                   }}
                                   onClick={() => {
-                                    downloadDocumnet(
+                                    downloadDocument(
                                       contract.documentId,
                                       contract.documentType
                                     )
