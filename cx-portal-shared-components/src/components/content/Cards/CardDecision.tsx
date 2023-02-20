@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme, Typography, IconButton } from '@mui/material'
+import { Box, Typography, IconButton } from '@mui/material'
 import { CardChip, StatusVariants, Variants } from './CardChip'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import ApprovalIcon from '@mui/icons-material/Approval'
@@ -43,7 +43,6 @@ export const CardDecision = ({
   onDelete,
   onClick,
 }: CardDecisionProps) => {
-  const { spacing } = useTheme()
 
   const handleDecision = (
     e: React.SyntheticEvent,
