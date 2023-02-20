@@ -110,6 +110,7 @@ export const InviteList = ({
             sortable: false,
             renderCell: ({ row }: { row: CompanyInvite }) => (
               <IconButton
+                disabled={true}
                 color="secondary"
                 onClick={() =>
                   console.log('on details click: Company Name', row.companyName)
