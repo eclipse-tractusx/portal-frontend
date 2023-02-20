@@ -108,7 +108,10 @@ const CompanyDetailOverlay = ({
   const downloadDocumnet = async (documentId: string, documentType: string) => {
     try {
       if (company) {
-        const response = await getDocumentById({ appId: company.applicationId, documentId }).unwrap()
+        const response = await getDocumentById({
+          appId: company.applicationId,
+          documentId,
+        }).unwrap()
         const fileType = response.headers.get('content-type')
         const file = response.data
 
@@ -281,16 +284,18 @@ const CompanyDetailOverlay = ({
                     key="Street"
                     {...{
                       variableName: 'Street',
-                      value: `${selectedCompany?.streetName || ''} ${selectedCompany?.streetNumber || ''
-                        }`,
+                      value: `${selectedCompany?.streetName || ''} ${
+                        selectedCompany?.streetNumber || ''
+                      }`,
                     }}
                   />
                   <DetailGridRow
                     key="PLZ / City"
                     {...{
                       variableName: 'PLZ / City',
-                      value: `${selectedCompany?.zipCode || ''} ${selectedCompany?.city || ''
-                        }`,
+                      value: `${selectedCompany?.zipCode || ''} ${
+                        selectedCompany?.city || ''
+                      }`,
                     }}
                   />
                   <DetailGridRow
@@ -380,7 +385,7 @@ const CompanyDetailOverlay = ({
                       </Typography>
                     </Grid>
                     {selectedCompany?.companyRoles &&
-                      selectedCompany?.companyRoles.length > 0 ? (
+                    selectedCompany?.companyRoles.length > 0 ? (
                       <>
                         {selectedCompany?.companyRoles.map(
                           (role: { companyRole: string }) => (
@@ -400,8 +405,8 @@ const CompanyDetailOverlay = ({
                                   margin: '0px 10px',
                                   cursor: 'auto',
                                 }}
-                                onClick={function noRefCheck() { }}
-                                onFocusVisible={function noRefCheck() { }}
+                                onClick={function noRefCheck() {}}
+                                onFocusVisible={function noRefCheck() {}}
                                 size="small"
                                 variant="contained"
                               >

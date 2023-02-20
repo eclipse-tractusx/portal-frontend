@@ -38,7 +38,10 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
     documentName: string
   ) => {
     try {
-      const response = await getDocumentById({appId: item.id, documentId}).unwrap()
+      const response = await getDocumentById({
+        appId: item.id,
+        documentId,
+      }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
       return download(file, fileType, documentName)
