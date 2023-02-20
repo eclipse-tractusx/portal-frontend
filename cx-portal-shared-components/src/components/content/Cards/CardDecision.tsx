@@ -58,7 +58,7 @@ export const CardDecision = ({
     <Box
       sx={{
         display: 'grid',
-        gap: spacing(8, 4),
+        gap: '44px 32px',
         gridTemplateColumns: `repeat(4, 1fr)`,
       }}
     >
