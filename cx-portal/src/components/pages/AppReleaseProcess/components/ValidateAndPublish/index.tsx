@@ -93,7 +93,8 @@ export default function ValidateAndPublish({
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
       const newPromies = CommonService.fetchLeadPictures(
-        statusData?.documents?.APP_IMAGE
+        statusData?.documents?.APP_IMAGE,
+        appId
       )
       Promise.all(newPromies).then((result) => {
         setMultipleImages(result.flat())
