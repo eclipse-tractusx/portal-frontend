@@ -117,7 +117,7 @@ export const RequestList = ({
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={160}
+        rowHeight={group !== AppFilterType.CLOSED ? 80 : 160}
         alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}
@@ -126,7 +126,6 @@ export const RequestList = ({
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          console.log(onValidate(expr))
           if (!onValidate(expr)) return
           setRefresh(Date.now())
           setSearchExpr(expr)
