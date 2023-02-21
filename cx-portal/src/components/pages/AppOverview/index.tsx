@@ -48,7 +48,7 @@ export default function AppOverview() {
   const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data } = useFetchProvidedAppsQuery()
+  const { data, refetch } = useFetchProvidedAppsQuery()
   const [itemCards, setItemCards] = useState<any>([])
   const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
   const [cards, setCards] = useState<any>([])
@@ -62,6 +62,10 @@ export default function AppOverview() {
     inactive: 'inactive',
     active: 'active',
   }
+
+  useEffect(() => {
+    state === 'deactivate-success' && refetch()
+  }, [state, refetch])
 
   useEffect(() => {
     if (cards) {
