@@ -254,7 +254,7 @@ export const apiSlice = createApi({
         url: `/api/apps/appreleaseprocess/${data.appId}/role/${data.roleId}`,
         method: 'DELETE',
       }),
-    }),    
+    }),
     deleteDocument: builder.mutation<void, string>({
       query: (documentId) => ({
         url: `/api/registration/documents/${documentId}`,

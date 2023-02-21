@@ -88,7 +88,8 @@ export default function AppPage() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.longDescription || '',
     images: fetchAppStatus?.documents?.APP_IMAGE || [],
-    uploadDataPrerequisits: fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
+    uploadDataPrerequisits:
+      fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
     uploadTechnicalGuide:
       fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
     uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
