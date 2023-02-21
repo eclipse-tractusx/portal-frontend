@@ -249,7 +249,7 @@ export default function AppMarketCard() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: cardImage || '',
+      leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
       alt: appStatusData?.leadPictureUri || '',
     },
   }
@@ -316,13 +316,17 @@ export default function AppMarketCard() {
     setSalesManagerId(sales)
   }
 
-  const cardImageData = getValues().uploadImage.leadPictureUri
+  const cardImageData: any = getValues().uploadImage.leadPictureUri
   useEffect(() => {
-    if (cardImageData !== LogoGrayData) {
-      const blobFile = new Blob([cardImageData], {
-        type: 'image/png',
-      })
-      setCardImage(URL.createObjectURL(blobFile))
+    if (cardImageData !== null && cardImageData !== LogoGrayData) {
+      let isFile: any = cardImageData instanceof File
+
+      if (isFile) {
+        const blobFile = new Blob([cardImageData], {
+          type: 'image/png',
+        })
+        setCardImage(URL.createObjectURL(blobFile))
+      }
     }
   }, [cardImageData])
 
@@ -331,16 +335,26 @@ export default function AppMarketCard() {
       appStatusData?.documents?.APP_LEADIMAGE &&
       appStatusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
-      fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
+      fetchCardImage(
+        appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
+        appStatusData?.documents?.APP_LEADIMAGE[0].documentName
+      )
     }
     reset(defaultValues)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatusData])
 
-  const fetchCardImage = async (documentId: string) => {
+  const fetchCardImage = async (documentId: string, documentName: string) => {
     try {
       const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
+
+      const setFileStatus = (status: UploadFileStatus) =>
+        setValue('uploadImage.leadPictureUri', {
+          name: documentName,
+          status,
+        } as any)
+      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
       return setCardImage(URL.createObjectURL(file))
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
@@ -356,7 +370,6 @@ export default function AppMarketCard() {
   const cardDescription =
     getValues().shortDescriptionEN ||
     t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')
-  const cardImageSrc = getValues().uploadImage.leadPictureUri || LogoGrayData
   const cardImageAlt =
     getValues().uploadImage.alt ||
     t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
@@ -518,7 +531,7 @@ export default function AppMarketCard() {
             <CardHorizontal
               label={cardAppProvider}
               title={cardAppTitle}
-              imagePath={cardImageSrc}
+              imagePath={cardImage}
               imageAlt={cardImageAlt}
               borderRadius={0}
               description={cardDescription}

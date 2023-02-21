@@ -32,7 +32,7 @@ type PictureWithTextProps = {
 }
 
 export default function PictureWithText({
-  image = './edc-connector-text-image.png',
+  image = './teaser.png',
   text,
   onButtonClicked,
   onHelpButtonClicked,
