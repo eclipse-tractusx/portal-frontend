@@ -255,6 +255,12 @@ export const apiSlice = createApi({
         method: 'DELETE',
       }),
     }),
+    deleteDocument: builder.mutation<void, string>({
+      query: (documentId) => ({
+        url: `/api/registration/documents/${documentId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 })
 
@@ -275,4 +281,5 @@ export const {
   useFetchRolesDataQuery,
   useUpdateRoleDataMutation,
   useDeleteRolesMutation,
+  useDeleteDocumentMutation,
 } = apiSlice

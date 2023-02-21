@@ -172,7 +172,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
             color: isUploading ? 'inherit' : 'textField.placeholderText',
           }}
         >
-          {formatBytes(uploadFile.size)}
+          {uploadFile?.size && formatBytes(uploadFile.size)}
         </Box>
       </Box>
       {tagLabel && (
