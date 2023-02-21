@@ -3,22 +3,26 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-* Feature - No items found page
-           * AppMarketplace
-           * ServiceMarketplace
-           * AppOverview
-           * AppSubscription
-           * AdminBoard
-* Feature - Update Fetch Document API
-           * AppMarketplace
-           * AppDetails
-           * App Overview
-           * AdminBoard
-* Bugfix - Styling - App Management Board
-         -App Release Process - App images preview fix
-         -App Release Process - App Leadimage data binding issue fix
-         -App Release Process - Sales Manager value binding issue fix
-* Bugfix - App Deactivation Success - but page content not updated
+
+## 1.0.0-RC10
+
+### Change
+* Get App Image backend connection updated for (AppMarketplace, AppDetails, App Overview & AdminBoard)
+
+### Feature
+* "No Items Found" page/section implemented for (AppMarketplace, ServiceMarketplace, AppOverview, AppSubscription & AdminBoard)
+* Application Registration Validation Process - enabled retrigger process of application checklist steps in the overlay screens if applicable
+* App Release Process - added delete document function
+
+### Technical Support
+n/a
+
+### Bugfix
+* Update styling App Management Board
+* Invite Business Partner Screen - disabled "detail" button in invitees table
+* Semantic Hub & Digital Twin overlays close icon fixed
+* Digital Twin overlay sizing of content fixed to stay in given frame/overlay size
+* App Release Process - fixed save and edit data handling to display available/saved app data to the user
 
 ## 1.0.0-RC9
 

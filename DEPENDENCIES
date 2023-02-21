@@ -109,11 +109,11 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/facebook/watchman
 │  │  ├─ VendorName: Wez Furlong
 │  │  └─ VendorUrl: https://facebook.github.io/watchman/docs/bser.html
-│  ├─ cx-portal-shared-components@1.0.0-RC8
+│  ├─ cx-portal-shared-components@1.0.0-RC10
 │  │  ├─ URL: https://github.com/eclipse-tractusx/portal-frontend.git
 │  │  ├─ VendorName: Catena-X Contributors
 │  │  └─ VendorUrl: https://catena-x.net/
-│  ├─ cx-portal@1.0.0-RC8
+│  ├─ cx-portal@1.0.0-RC10
 │  ├─ didyoumean@1.2.2
 │  │  ├─ URL: https://github.com/dcporter/didyoumean.js.git
 │  │  ├─ VendorName: Dave Porter
@@ -198,7 +198,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: git://github.com/faye/websocket-extensions-node.git
 │  │  ├─ VendorName: James Coglan
 │  │  └─ VendorUrl: http://github.com/faye/websocket-extensions-node
-│  ├─ workspace-aggregator-4fde30b1-71f6-4d90-bbd8-054f6cc931e3@1.0.0-RC8
+│  ├─ workspace-aggregator-30be49f3-0a45-4ef6-bfad-6bfe9594a518@1.0.0-RC10
 │  └─ xml-name-validator@3.0.0
 │     ├─ URL: https://github.com/jsdom/xml-name-validator.git
 │     ├─ VendorName: Domenic Denicola
@@ -6899,4 +6899,4 @@ yarn licenses v1.5.1
       ├─ URL: https://github.com/pieroxy/lz-string.git
       ├─ VendorName: pieroxy
       └─ VendorUrl: http://pieroxy.net/blog/pages/lz-string/index.html
-Done in 2.40s.
+Done in 3.04s.
