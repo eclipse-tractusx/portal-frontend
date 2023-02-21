@@ -81,6 +81,7 @@ export const SelectList = ({
           key={uniqueId('select-list-option')}
         />
       )}
+      value={defaultValue}
       renderInput={(params) => {
         return (
           <SelectInput
