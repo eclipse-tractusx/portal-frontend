@@ -99,6 +99,7 @@ export const DropArea: FunctionComponent<DropAreaProps> = ({
               draggingBackground ||
               'selected.focus',
           },
+          cursor: disabled ? 'not-allowed' : 'pointer',
         }}
       >
         <Box
@@ -106,7 +107,7 @@ export const DropArea: FunctionComponent<DropAreaProps> = ({
           sx={{
             padding: size === 'normal' ? 5 : 2.5,
             display: 'block',
-            cursor: disabled ? 'no-drop' : 'pointer',
+            pointerEvents: 'none',
           }}
         >
           <Box

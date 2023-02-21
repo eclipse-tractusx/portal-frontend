@@ -13,7 +13,7 @@ export type UploadFileStatus =
 
 export type UploadFile = {
   name: string
-  size: number
+  size?: number
   status: UploadFileStatus
   progressPercent?: number
 }
