@@ -73,7 +73,7 @@ export default function BetaTest() {
         <Grid container sx={{ mt: 0 }}>
           <Grid item md={3}>
             <img
-              src="/idp-teaser.jpg"
+              src="/teaser.png"
               alt="idp teaser"
               height="164px"
               width="164px"
