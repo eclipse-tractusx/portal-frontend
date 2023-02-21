@@ -391,9 +391,9 @@
         "name": "Konnektorname",
         "id": "Konnektor-ID",
         "type": "Steckertyp",
-        "details": "Einzelheiten",
+        "details": "Status",
         "location": "Location",
-        "status": "Authentication Status",
+        "status": "DAPS Auth Status",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
@@ -1134,6 +1134,7 @@
       "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
+      "buttonOverwrite": "Overwrite Process",
       "buttonCancel": "Cancel Process",
       "cancel": "Cancel",
       "comments": "Comments",
@@ -1326,7 +1327,8 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "next": "Next"
     },
     "state": {
       "enabled": "aktiv",
@@ -1370,6 +1372,10 @@
     "table": {
       "search": "Enter email to search",
       "searchName": "Enter name to search"
+    },
+    "noData": {
+      "heading": "No data available",
+      "description": "Currently no data available; change the view or come back later"
     }
   },
   "servicemarketplace": {

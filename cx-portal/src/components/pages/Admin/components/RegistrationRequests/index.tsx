@@ -31,7 +31,7 @@ import {
   useApproveRequestMutation,
   useDeclineChecklistMutation,
   useFetchCompanySearchQuery,
-  useFetchDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
   useUpdateBPNMutation,
   ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
@@ -57,7 +57,7 @@ export default function RegistrationRequests() {
 
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineChecklistMutation()
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   const [updateBpn] = useUpdateBPNMutation()
 
@@ -113,6 +113,7 @@ export default function RegistrationRequests() {
   }
 
   const handleDownloadClick = async (
+    appId: string,
     documentId: string,
     documentType: string
   ) => {
@@ -166,13 +167,15 @@ export default function RegistrationRequests() {
         description={showErrorAlert}
         showIcon={true}
       />
-      <CompanyDetailOverlay
-        {...{
-          openDialog: overlayOpen,
-          selectedRequestId: selectedRequestId,
-          handleOverlayClose: () => setOverlayOpen(false),
-        }}
-      />
+      {overlayOpen && (
+        <CompanyDetailOverlay
+          {...{
+            openDialog: overlayOpen,
+            selectedRequestId: selectedRequestId,
+            handleOverlayClose: () => setOverlayOpen(false),
+          }}
+        />
+      )}
       {successOverlay && (
         <ServerResponseOverlay
           title={t('content.admin.registration-requests.addBpn.successTitle')}

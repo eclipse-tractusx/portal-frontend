@@ -391,9 +391,9 @@
         "name": "Connector Name",
         "id": "Connector_ID",
         "type": "Connector Type",
-        "details": "Details",
+        "details": "Status",
         "location": "Location",
-        "status": "Authentication Status",
+        "status": "DAPS Auth Status",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "The Self-Description is triggered. Process might take up to a couple of minutes.",
@@ -1094,6 +1094,7 @@
       "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
+      "buttonOverwrite": "Overwrite Process",
       "buttonCancel": "Cancel Process",
       "cancel": "Cancel",
       "comments": "Comments",
@@ -1287,7 +1288,8 @@
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "next": "Next"
     },
     "state": {
       "enabled": "enabled",
@@ -1331,6 +1333,10 @@
     "table": {
       "search": "Enter email to search",
       "searchName": "Enter name to search"
+    },
+    "noData": {
+      "heading": "No data available",
+      "description": "Currently no data available; change the view or come back later"
     }
   },
   "servicemarketplace": {

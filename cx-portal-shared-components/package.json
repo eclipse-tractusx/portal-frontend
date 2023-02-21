@@ -1,6 +1,6 @@
 {
   "name": "cx-portal-shared-components",
-  "version": "1.0.0-RC9",
+  "version": "1.0.0-RC10",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
   "license": "Apache-2.0",

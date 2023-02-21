@@ -61,6 +61,33 @@ export enum StatusType {
   SELF_DESCRIPTION_LP = 'SELF_DESCRIPTION_LP',
 }
 
+interface Map {
+  [key: string]: string | undefined
+}
+
+export const EndUrlMap: Map = {
+  RETRIGGER_IDENTITY_WALLET: 'trigger-identity-wallet',
+  RETRIGGER_CLEARING_HOUSE: 'retrigger-clearinghouse',
+  TRIGGER_OVERRIDE_CLEARING_HOUSE: 'override-clearinghouse',
+  RETRIGGER_SELF_DESCRIPTION_LP: 'trigger-self-description',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH:
+    'trigger-bpn?processTypeId=RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL:
+    'trigger-bpn?processTypeId=RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL',
+  OVERRIDE_BUSINESS_PARTNER_NUMBER:
+    'trigger-bpn?processTypeId=OVERRIDE_BUSINESS_PARTNER_NUMBER',
+}
+
+export enum RetriggerableProcessSteps {
+  RETRIGGER_IDENTITY_WALLET = 'RETRIGGER_IDENTITY_WALLET',
+  RETRIGGER_CLEARING_HOUSE = 'RETRIGGER_CLEARING_HOUSE',
+  TRIGGER_OVERRIDE_CLEARING_HOUSE = 'TRIGGER_OVERRIDE_CLEARING_HOUSE',
+  RETRIGGER_SELF_DESCRIPTION_LP = 'RETRIGGER_SELF_DESCRIPTION_LP',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH = 'RETRIGGER_BUSINESS_PARTNER_NUMBER_PUSH',
+  RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL = 'RETRIGGER_BUSINESS_PARTNER_NUMBER_PULL',
+  OVERRIDE_BUSINESS_PARTNER_NUMBER = 'OVERRIDE_BUSINESS_PARTNER_NUMBER',
+}
+
 export type ProgressButtonsProps = {
   statusId: ProgressStatus
   typeId: string
@@ -70,9 +97,9 @@ export type ProgressButtonsProps = {
   border?: string
   icon?: JSX.Element
   details?: string
-  retriggerable?: boolean
   statusLabel?: string
   statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
+  retriggerableProcessSteps?: string[]
 }
 
 export const progressMapper = {
@@ -97,7 +124,7 @@ type CheckListDetailsButton = {
   status: string
   type: string
   details: string
-  retriggerable: string | boolean
+  retriggerableProcessSteps: string[]
 }
 
 export interface CheckListDetailsType {
@@ -107,6 +134,11 @@ export interface CheckListDetailsType {
 type DeclineRequestType = {
   applicationId: string
   comment: string
+}
+
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
 }
 
 export const apiSlice = createApi({
@@ -132,7 +164,6 @@ export const apiSlice = createApi({
         url: `/api/administration/registration/applications/${applicationId}/approve`,
         method: 'POST',
       }),
-      invalidatesTags: ['checklist'],
     }),
     declineChecklist: builder.mutation<boolean, DeclineRequestType>({
       query: (obj) => ({
@@ -140,7 +171,6 @@ export const apiSlice = createApi({
         method: 'POST',
         body: { comment: obj.comment },
       }),
-      invalidatesTags: ['checklist'],
     }),
     fetchCompanySearch: builder.query<
       PaginResult<ApplicationRequest>,
@@ -178,11 +208,19 @@ export const apiSlice = createApi({
           return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }
       },
-      providesTags: ['checklist'],
     }),
     fetchDocumentById: builder.mutation({
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
+    fetchNewDocumentById: builder.mutation({
       query: (documentId) => ({
-        url: `/api/administration/Documents/${documentId}?documentId=${documentId}`,
+        url: `/api/administration/registration/documents/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -206,11 +244,18 @@ export const apiSlice = createApi({
             statusId: res.status,
             typeId: res.type,
             details: res.details,
-            retriggerable: res.retriggerable,
+            retriggerableProcessSteps: res.retriggerableProcessSteps,
           }
         })
         return obj
       },
+    }),
+    retriggerProcess: builder.mutation<boolean, any>({
+      query: (args) => ({
+        url: `/api/administration/registration/application/${args.applicationId}/${args.endUrl}`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['checklist'],
     }),
   }),
 })
@@ -224,4 +269,6 @@ export const {
   useFetchCheckListDetailsQuery,
   useApproveChecklistMutation,
   useDeclineChecklistMutation,
+  useRetriggerProcessMutation,
+  useFetchNewDocumentByIdMutation,
 } = apiSlice

@@ -30,12 +30,15 @@ import {
 } from 'cx-portal-shared-components'
 import CheckList from '.'
 import {
+  EndUrlMap,
+  RetriggerableProcessSteps,
   ProgressButtonsProps,
   ProgressStatus,
   StatusType,
   useApproveChecklistMutation,
   useDeclineChecklistMutation,
   useFetchCheckListDetailsQuery,
+  useRetriggerProcessMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { useTranslation } from 'react-i18next'
 import CloseIcon from '@mui/icons-material/Close'
@@ -49,7 +52,6 @@ interface CheckListStatusOverlayProps {
 }
 
 enum ActionKind {
-  SET_CANCEL_LOADING = 'SET_CANCEL_LOADING',
   SET_RETRIGGER_LOADING = 'SET_RETRIGGER_LOADING',
   SET_APPROVE_LOADING = 'SET_APPROVE_LOADING',
   SET_DECLINE_LOADING = 'SET_DECLINE_LOADING',
@@ -64,7 +66,6 @@ enum ActionKind {
 }
 
 type State = {
-  cancelLoading: boolean
   retriggerLoading: boolean
   approveLoading: boolean
   declineLoading: boolean
@@ -76,7 +77,6 @@ type State = {
 }
 
 const initialState: State = {
-  cancelLoading: false,
   retriggerLoading: false,
   approveLoading: false,
   declineLoading: false,
@@ -97,8 +97,6 @@ type Action = {
 
 function reducer(state: State, { type, payload }: Action) {
   switch (type) {
-    case ActionKind.SET_CANCEL_LOADING:
-      return { ...state, cancelLoading: payload }
     case ActionKind.SET_RETRIGGER_LOADING:
       return { ...state, retriggerLoading: payload }
     case ActionKind.SET_APPROVE_LOADING:
@@ -151,10 +149,10 @@ const CheckListStatusOverlay = ({
   const { t } = useTranslation()
   const [approveChecklist] = useApproveChecklistMutation()
   const [declineChecklist] = useDeclineChecklistMutation()
+  const [retriggerProcess] = useRetriggerProcessMutation()
   const { data } = useFetchCheckListDetailsQuery(selectedRequestId)
   const [
     {
-      cancelLoading,
       retriggerLoading,
       approveLoading,
       declineLoading,
@@ -235,12 +233,27 @@ const CheckListStatusOverlay = ({
     })
   }
 
-  const onCancel = () => {
-    setState({ type: ActionKind.SET_CANCEL_LOADING, payload: true })
-  }
-
   const onRetrigger = () => {
     setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: true })
+    selectedCheckListButton.retriggerableProcessSteps.forEach(
+      async (process: string) => {
+        const args = {
+          applicationId: selectedRequestId,
+          endUrl: EndUrlMap[process],
+        }
+        await retriggerProcess(args)
+          .unwrap()
+          .then((payload) =>
+            setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: false })
+          )
+          .catch((error) =>
+            setState({
+              type: ActionKind.SET_RETRIGGER_LOADING,
+              payload: error.data.title,
+            })
+          )
+      }
+    )
   }
 
   const getStepName = () =>
@@ -266,11 +279,23 @@ const CheckListStatusOverlay = ({
       `content.checklistOverlay.${selectedCheckListButton?.typeId}.${selectedCheckListButton?.statusId}.description`
     )
 
-  const canShowCancelAndRetrigger = () => selectedCheckListButton.retriggerable
-
   const canShowApproveAndDecline = () =>
     selectedCheckListButton?.typeId === StatusType.REGISTRATION_VERIFICATION &&
     selectedCheckListButton?.statusId === ProgressStatus.TO_DO
+
+  const getButtonTitle = () => {
+    if (
+      selectedCheckListButton.retriggerableProcessSteps.indexOf(
+        RetriggerableProcessSteps.TRIGGER_OVERRIDE_CLEARING_HOUSE
+      ) > -1 ||
+      selectedCheckListButton.retriggerableProcessSteps.indexOf(
+        RetriggerableProcessSteps.OVERRIDE_BUSINESS_PARTNER_NUMBER
+      ) > -1
+    ) {
+      return t('content.checklistOverlay.buttonOverwrite')
+    }
+    return t('content.checklistOverlay.buttonRetrigger')
+  }
 
   return (
     <MuiDialog
@@ -344,7 +369,6 @@ const CheckListStatusOverlay = ({
         <div
           style={{
             textAlign: 'left',
-            marginBottom: '30px',
             minHeight: '220px',
           }}
         >
@@ -406,9 +430,9 @@ const CheckListStatusOverlay = ({
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
-              WebkitLineClamp: '2',
+              WebkitLineClamp: '3',
               WebkitBoxOrient: 'vertical',
-              maxHeight: '50px',
+              height: '70px',
             }}
             variant="body2"
           >
@@ -478,71 +502,52 @@ const CheckListStatusOverlay = ({
             minHeight: '50px',
           }}
         >
-          {canShowCancelAndRetrigger() && (
-            <>
-              <div style={{ marginRight: '20px' }}>
-                {retriggerLoading && (
-                  <span
-                    style={{
-                      marginRight: '75px',
-                      marginLeft: '40px',
-                      width: '116px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <CircleProgress
-                      size={40}
-                      step={1}
-                      interval={0.1}
-                      colorVariant={'primary'}
-                      variant={'indeterminate'}
-                      thickness={8}
-                    />
-                  </span>
-                )}
-                {!retriggerLoading && (
+          {selectedCheckListButton.retriggerableProcessSteps &&
+            selectedCheckListButton.retriggerableProcessSteps?.length > 0 &&
+            !showInput && (
+              <>
+                <div style={{ marginRight: '20px' }}>
+                  {retriggerLoading && (
+                    <span
+                      style={{
+                        marginRight: '75px',
+                        marginLeft: '40px',
+                        width: '116px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <CircleProgress
+                        size={40}
+                        step={1}
+                        interval={0.1}
+                        colorVariant={'primary'}
+                        variant={'indeterminate'}
+                        thickness={8}
+                      />
+                    </span>
+                  )}
+                  {!retriggerLoading && (
+                    <Button
+                      onClick={() => onRetrigger()}
+                      size="small"
+                      variant="contained"
+                    >
+                      {getButtonTitle()}
+                    </Button>
+                  )}
+                </div>
+                <div>
                   <Button
-                    onClick={() => onRetrigger()}
-                    size="small"
-                    variant="contained"
-                    disabled={cancelLoading}
-                  >
-                    {t('content.checklistOverlay.buttonRetrigger')}
-                  </Button>
-                )}
-              </div>
-              <div>
-                {cancelLoading && (
-                  <span
-                    style={{
-                      marginLeft: '50px',
-                      width: '116px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <CircleProgress
-                      size={40}
-                      step={1}
-                      interval={0.1}
-                      colorVariant={'primary'}
-                      variant={'indeterminate'}
-                      thickness={8}
-                    />
-                  </span>
-                )}
-                {!cancelLoading && (
-                  <Button
-                    onClick={() => onCancel()}
+                    onClick={() => onDecline()}
                     size="small"
                     variant="outlined"
                     disabled={retriggerLoading}
                   >
                     {t('content.checklistOverlay.buttonCancel')}
                   </Button>
-                )}
-              </div>
-            </>
-          )}
+                </div>
+              </>
+            )}
           {canShowApproveAndDecline() && !showInput && (
             <>
               <div style={{ marginRight: '10px' }}>
@@ -569,7 +574,6 @@ const CheckListStatusOverlay = ({
                     onClick={() => onApprove()}
                     size="small"
                     variant="contained"
-                    disabled={declineLoading}
                   >
                     {t('content.checklistOverlay.buttonApprove')}
                   </Button>

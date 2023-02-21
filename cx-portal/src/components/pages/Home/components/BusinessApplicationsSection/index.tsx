@@ -70,7 +70,7 @@ export default function BusinessApplicationsSection() {
             fontFamily: 'LibreFranklin-Light',
             marginBottom: '48px !important',
           }}
-          variant="h3"
+          variant="h2"
           className="section-title"
         >
           {t('content.home.businessApplicationsSection.title')}

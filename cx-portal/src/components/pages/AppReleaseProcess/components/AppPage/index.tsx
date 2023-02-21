@@ -87,10 +87,12 @@ export default function AppPage() {
       fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.longDescription || '',
-    images: [],
-    uploadDataPrerequisits: null,
-    uploadTechnicalGuide: null,
-    uploadAppContract: null,
+    images: fetchAppStatus?.documents?.APP_IMAGE || [],
+    uploadDataPrerequisits:
+      fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
+    uploadTechnicalGuide:
+      fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
+    uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
     providerHomePage: fetchAppStatus?.providerUri || '',
     providerContactEmail: fetchAppStatus?.contactEmail || '',
     providerPhoneContact: fetchAppStatus?.contactNumber || '',
@@ -115,6 +117,78 @@ export default function AppPage() {
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
+  const defaultImages = defaultValues.images
+  const defaultuploadDataPrerequisits = defaultValues.uploadDataPrerequisits
+  const defaultuploadTechnicalGuide = defaultValues.uploadTechnicalGuide
+  const defaultuploadAppContract = defaultValues.uploadAppContract
+
+  useEffect(() => {
+    const images = defaultImages?.map((item: { documentName: string }) => {
+      return {
+        name: item.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      }
+    })
+
+    if (images.length > 0) {
+      const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
+        const nextFiles = images
+        nextFiles[fileIndex] = {
+          name: images[fileIndex].name,
+          status,
+        }
+        setValue('images', nextFiles)
+      }
+
+      for (let fileIndex = 0; fileIndex < images.length; fileIndex++) {
+        setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
+      }
+    }
+
+    if (
+      defaultuploadDataPrerequisits &&
+      Object.keys(defaultuploadDataPrerequisits).length > 0
+    ) {
+      setValue('uploadDataPrerequisits', {
+        name:
+          defaultuploadDataPrerequisits &&
+          defaultuploadDataPrerequisits[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
+    }
+
+    if (
+      defaultuploadTechnicalGuide &&
+      Object.keys(defaultuploadTechnicalGuide).length > 0
+    ) {
+      setValue('uploadTechnicalGuide', {
+        name:
+          defaultuploadTechnicalGuide &&
+          defaultuploadTechnicalGuide[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
+    }
+
+    if (
+      defaultuploadAppContract &&
+      Object.keys(defaultuploadAppContract).length > 0
+    ) {
+      setValue('uploadAppContract', {
+        name:
+          defaultuploadAppContract && defaultuploadAppContract[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    defaultImages,
+    defaultuploadDataPrerequisits,
+    defaultuploadTechnicalGuide,
+    defaultuploadAppContract,
+  ])
 
   const setFileStatus = (
     fieldName: Parameters<typeof setValue>[0],
@@ -363,18 +437,25 @@ export default function AppPage() {
             name="images"
             control={control}
             rules={{ required: true }}
-            render={({ field: { value, onChange } }) => {
+            render={({ field: { onChange: reactHookFormOnChange, value } }) => {
               return (
                 <Dropzone
                   files={value}
-                  onChange={uploadImages}
+                  onChange={(files, addedFiles, deletedFiles) => {
+                    if (deletedFiles?.length) {
+                      //to do: to call 'useDeleteDocumentMutation' on delete
+                      console.log('deletedFile', deletedFiles)
+                    }
+                    reactHookFormOnChange(files)
+                    trigger('images')
+                    addedFiles && uploadImages(files)
+                  }}
                   acceptFormat={{
                     'image/png': [],
                     'image/jpeg': [],
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
-                  enableDeleteIcon={false}
                 />
               )
             }}
@@ -415,7 +496,6 @@ export default function AppPage() {
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
-                  enableDeleteIcon: false,
                   rules: {
                     required: {
                       value: true,

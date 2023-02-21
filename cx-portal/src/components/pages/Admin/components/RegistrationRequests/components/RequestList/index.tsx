@@ -45,7 +45,11 @@ export const RequestList = ({
   fetchHook: (paginArgs: PaginFetchArgs) => any
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
-  handleDownloadDocument: (documentId: string, documentType: string) => void
+  handleDownloadDocument: (
+    appId: string,
+    documentId: string,
+    documentType: string
+  ) => void
   showConfirmOverlay?: (applicationId: string) => void
   onConfirmationCancel?: (applicationId: string, name: string) => void
   onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
@@ -117,7 +121,7 @@ export const RequestList = ({
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={160}
+        rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
         alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}
@@ -126,7 +130,6 @@ export const RequestList = ({
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          console.log(onValidate(expr))
           if (!onValidate(expr)) return
           setRefresh(Date.now())
           setSearchExpr(expr)

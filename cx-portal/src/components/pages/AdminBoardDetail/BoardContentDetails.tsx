@@ -43,7 +43,7 @@ export default function AppDetailContentDetails({
 
   useEffect(() => {
     if (item) {
-      const newPromies = CommonService.fetchLeadPictures(item.images)
+      const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
       Promise.all(newPromies).then((result) => {
         setImages(result.flat())
       })

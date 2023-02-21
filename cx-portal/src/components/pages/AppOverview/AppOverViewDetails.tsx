@@ -103,7 +103,10 @@ export default function AppOverViewDetails({
 
   const fetchImage = async (documentId: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({
+        appId: id,
+        documentId,
+      }).unwrap()
       const file = response.data
       return setCardImage(URL.createObjectURL(file))
     } catch (error) {

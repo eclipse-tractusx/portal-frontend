@@ -4,6 +4,26 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 
+## 1.0.0-RC10
+
+### Change
+* Get App Image backend connection updated for (AppMarketplace, AppDetails, App Overview & AdminBoard)
+
+### Feature
+* "No Items Found" page/section implemented for (AppMarketplace, ServiceMarketplace, AppOverview, AppSubscription & AdminBoard)
+* Application Registration Validation Process - enabled retrigger process of application checklist steps in the overlay screens if applicable
+* App Release Process - added delete document function
+
+### Technical Support
+n/a
+
+### Bugfix
+* Update styling App Management Board
+* Invite Business Partner Screen - disabled "detail" button in invitees table
+* Semantic Hub & Digital Twin overlays close icon fixed
+* Digital Twin overlay sizing of content fixed to stay in given frame/overlay size
+* App Release Process - fixed save and edit data handling to display available/saved app data to the user
+
 ## 1.0.0-RC9
 
 ### Change
@@ -11,6 +31,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * Enabled overlay for decline scenario with customer message
 * Notification message content updated and incl. links
 * Several help connections implemented (connector, app release, etc.)
+* Application Registration
+   * Retrigger process apis added
 
 ### Feature
 * Connector Registration

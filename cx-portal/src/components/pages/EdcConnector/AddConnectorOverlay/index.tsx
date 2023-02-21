@@ -172,7 +172,9 @@ const AddConnectorOverlay = ({
                   : onFormSubmit()
               }
             >
-              {`${t('global.actions.confirm')}`}
+              {connectorStep === 0
+                ? `${t('global.actions.next')}`
+                : `${t('global.actions.confirm')}`}
             </Button>
           )}
           {loading && (
