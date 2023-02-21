@@ -138,7 +138,7 @@ export default function SemanticHub() {
             <Grid item xs={4}>
               <img
                 style={{ marginTop: '-200px', border: '16px solid white' }}
-                src="/edc-connector-text-image.png"
+                src="/teaser.png"
                 width="100%"
                 alt={'alt tag info'}
               />
