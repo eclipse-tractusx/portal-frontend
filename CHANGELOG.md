@@ -12,6 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Feature
 * "No Items Found" page/section implemented for (AppMarketplace, ServiceMarketplace, AppOverview, AppSubscription & AdminBoard)
 * Application Registration Validation Process - enabled retrigger process of application checklist steps in the overlay screens if applicable
+* App Release Process - added delete document function
 
 ### Technical Support
 n/a
@@ -21,6 +22,7 @@ n/a
 * Inivite Business Partner Screen - disabled "detail" button in invitees table
 * Semantic Hub & Digital Twin overlays close icon fixed
 * Digital Twin overlay sizing of content fixed to stay in given frame/overlay size
+* App Release Process - fixed save and edit data handling to display available/saved app data to the user
 
 ## 1.0.0-RC9
 
