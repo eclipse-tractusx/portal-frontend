@@ -19,7 +19,7 @@ n/a
 
 ### Bugfix
 * Update styling App Management Board
-* Inivite Business Partner Screen - disabled "detail" button in invitees table
+* Invite Business Partner Screen - disabled "detail" button in invitees table
 * Semantic Hub & Digital Twin overlays close icon fixed
 * Digital Twin overlay sizing of content fixed to stay in given frame/overlay size
 * App Release Process - fixed save and edit data handling to display available/saved app data to the user
