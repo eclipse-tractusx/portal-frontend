@@ -182,6 +182,7 @@ export default function AppPage() {
       })
       setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     defaultImages,
     defaultuploadDataPrerequisits,
