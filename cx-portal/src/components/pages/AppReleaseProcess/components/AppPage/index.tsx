@@ -88,7 +88,7 @@ export default function AppPage() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.longDescription || '',
     images: fetchAppStatus?.documents?.APP_IMAGE || [],
-    uploadDataPrerequisits: fetchAppStatus?.documents?.APP_DATA_DETAILS || null,
+    uploadDataPrerequisits: fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
     uploadTechnicalGuide:
       fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
     uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
@@ -116,7 +116,7 @@ export default function AppPage() {
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
-   const defaultImages = defaultValues.images
+  const defaultImages = defaultValues.images
   const defaultuploadDataPrerequisits = defaultValues.uploadDataPrerequisits
   const defaultuploadTechnicalGuide = defaultValues.uploadTechnicalGuide
   const defaultuploadAppContract = defaultValues.uploadAppContract
@@ -441,6 +441,7 @@ export default function AppPage() {
                   files={value}
                   onChange={(files, addedFiles, deletedFiles) => {
                     if (deletedFiles?.length) {
+                      //to do: to call 'useDeleteDocumentMutation' on delete
                       console.log('deletedFile', deletedFiles)
                     }
                     reactHookFormOnChange(files)
