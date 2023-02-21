@@ -137,7 +137,7 @@ export default function AppPage() {
           name: images[fileIndex].name,
           status,
         }
-        setValue('images', nextFiles as any)
+        setValue('images', nextFiles)
       }
 
       for (let fileIndex = 0; fileIndex < images.length; fileIndex++) {
