@@ -121,7 +121,7 @@ export const RequestList = ({
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={group !== AppFilterType.CLOSED ? 80 : 160}
+        rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
         alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}

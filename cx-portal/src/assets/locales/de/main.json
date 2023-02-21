@@ -1327,7 +1327,8 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "next": "Next"
     },
     "state": {
       "enabled": "aktiv",
