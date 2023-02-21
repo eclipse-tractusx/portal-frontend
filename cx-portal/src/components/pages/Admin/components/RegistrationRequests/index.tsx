@@ -118,7 +118,7 @@ export default function RegistrationRequests() {
     documentType: string
   ) => {
     try {
-      const response = await getDocumentById({ appId, documentId }).unwrap()
+      const response = await getDocumentById(documentId).unwrap()
 
       const fileType = response.headers.get('content-type')
       const file = response.data

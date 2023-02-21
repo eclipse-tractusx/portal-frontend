@@ -108,10 +108,7 @@ const CompanyDetailOverlay = ({
   const downloadDocument = async (documentId: string, documentType: string) => {
     if (!company) return
     try {
-      const response = await getDocumentById({
-        appId: company.applicationId,
-        documentId,
-      }).unwrap()
+      const response = await getDocumentById(documentId).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
 
