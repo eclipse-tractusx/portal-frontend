@@ -1288,7 +1288,8 @@
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "next": "Next"
     },
     "state": {
       "enabled": "enabled",
