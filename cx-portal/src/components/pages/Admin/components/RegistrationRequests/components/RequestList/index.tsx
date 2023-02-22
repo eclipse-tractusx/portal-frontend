@@ -32,6 +32,7 @@ import {
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
+import { refetch } from 'features/admin/registration/slice'
 
 export const RequestList = ({
   fetchHook,
@@ -56,6 +57,7 @@ export const RequestList = ({
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const refetchApps = useSelector(refetch)
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateApplicationRequestSelector)
   const [group, setGroup] = useState<string>(AppFilterType.INREVIEW)
@@ -80,6 +82,10 @@ export const RequestList = ({
     }
     // eslint-disable-next-line
   }, [filterStatus, searchExpr])
+
+  useEffect(() => {
+    if (refetchApps) setRefresh(Date.now())
+  }, [refetchApps])
 
   const filterView = [
     {
