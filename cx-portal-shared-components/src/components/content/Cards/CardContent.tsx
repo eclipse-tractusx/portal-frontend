@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -38,27 +38,30 @@ export const CardContent = ({
   description,
 }: CardContentProps) => {
   return (
-    <Box>
-      {subtitle && (
-        <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
-          {subtitle}
+    <Box sx={{ padding: '20px' }}>
+      <Box sx={{ height: '50px' }}>
+        {subtitle && (
+          <Typography variant="label3" sx={{ color: 'text.tertiary' }}>
+            {subtitle}
+          </Typography>
+        )}
+      </Box>
+      <Box sx={{ height: '50px' }}>
+        <Typography
+          variant="h5"
+          sx={{
+            marginTop: 0.5,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'normal',
+            display: 'box',
+            lineClamp: '2',
+            boxOrient: 'vertical',
+          }}
+        >
+          {title}
         </Typography>
-      )}
-      <Typography
-        variant="h5"
-        sx={{
-          marginTop: 0.5,
-          height: '56px',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'normal',
-          display: 'box',
-          lineClamp: '2',
-          boxOrient: 'vertical',
-        }}
-      >
-        {title}
-      </Typography>
+      </Box>
       {rating && price && (
         <Box
           sx={{

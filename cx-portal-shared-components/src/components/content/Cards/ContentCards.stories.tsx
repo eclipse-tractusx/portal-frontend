@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -51,7 +51,7 @@ const items = [
   },
   {
     title: 'Samrt MOM',
-    subtitle: 'Catena-X2',
+    subtitle: 'German Edge Cloud GmbH & Co. KG',
     image: {
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
       alt: 'Catena-X Card',
@@ -67,7 +67,7 @@ const items = [
     statusText: 'Active',
   },
   {
-    title: 'Fraud Reporter',
+    title: 'Project Implementation: Earth Commerce',
     subtitle: 'Catena-X',
     image: {
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
@@ -98,6 +98,14 @@ const items = [
   },
 ]
 
+const submenuOptions = [
+  {
+    label: 'Tab 1',
+    value: 'tab1',
+    url: '/tab1',
+  },
+]
+
 export const ContentCards = Template.bind({})
 ContentCards.args = {
   columns: 6,
@@ -107,4 +115,7 @@ ContentCards.args = {
   imageSize: 'medium',
   imageShape: 'round',
   addButtonClicked: false,
+  subMenu: true,
+  submenuOptions: submenuOptions,
+  tooltipText: 'Action is pending',
 }

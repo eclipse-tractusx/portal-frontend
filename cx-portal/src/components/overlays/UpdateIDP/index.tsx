@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -38,7 +38,7 @@ import { UpdateIDPContent } from './UpdateIDPContent'
 import { OVERLAYS } from 'types/Constants'
 
 export const UpdateIDP = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const [updateIdp] = useUpdateIDPMutation()
@@ -62,8 +62,8 @@ export const UpdateIDP = ({ id }: { id: string }) => {
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.updateIdpHeadline')}
-        intro={t('content.idpmanagement.updateIdpSubheadline')}
+        title={t('edit.title')}
+        intro={t('edit.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
@@ -72,14 +72,14 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button
           variant="contained"
           disabled={!idpUpdateData}
           onClick={doUpdateIDP}
         >
-          {t('global.actions.confirm')}
+          {t('action.confirm')}
         </Button>
       </DialogActions>
     </>

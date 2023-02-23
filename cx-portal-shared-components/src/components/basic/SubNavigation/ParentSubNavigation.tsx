@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -39,8 +39,11 @@ export const ParentSubNavigation = ({
               color="secondary"
               variant="text"
               size="medium"
+              sx={{
+                fontSize: '16px',
+              }}
             >
-              <EastIcon sx={{ marginRight: '16px' }} />
+              <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
               {link.title}
             </Button>
           )

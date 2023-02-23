@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -21,4 +21,15 @@
 export type ImageType = {
   url: string
   text: string
+  size?:
+    | 'small-rectangle'
+    | 'small-square'
+    | 'medium-rectangle'
+    | 'medium-square'
+    | 'large-rectangle'
+    | 'large-square'
+  hover?: boolean
+  borderRadius?: boolean
+  shadow?: boolean
+  modalWidth?: string
 }

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, Table } from 'cx-portal-shared-components'
+import { Table } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,6 +28,7 @@ import {
 } from 'features/digitalTwins/actions'
 import { twinsSelector } from 'features/digitalTwins/slice'
 import { ShellDescriptor } from 'features/digitalTwins/types'
+import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
 import uniqueId from 'lodash/uniqueId'
 import Patterns from 'types/Patterns'
@@ -105,16 +106,16 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         getRowId={(row) => uniqueId(row.idShort)}
         rowHeight={50}
         hasBorder={false}
+        noRowsMsg={t('content.digitaltwin.table.norows').replace(
+          '{data}',
+          searchValue
+        )}
       />
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (
-          <Button
-            size="medium"
-            sx={{ mt: 15 }}
+          <LoadMoreButton
             onClick={() => setPageNumber((prevState) => prevState + 1)}
-          >
-            {t('content.digitaltwin.table.load_button')}
-          </Button>
+          />
         )}
       </div>
     </section>

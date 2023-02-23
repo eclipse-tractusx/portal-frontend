@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -37,7 +37,6 @@ export type AddUser = {
   firstName: string
   lastName: string
   roles?: string[]
-  message: string
 }
 
 export type TechnicalUser = {
@@ -65,7 +64,6 @@ export const InitialAddUser = {
   firstName: '',
   lastName: '',
   roles: [],
-  message: '',
 }
 
 export const initialState: AdminUserState = {

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,11 +22,26 @@ import { useTheme } from '@mui/material'
 import MuiDialogContent, {
   DialogContentProps as MuiDialogContentProps,
 } from '@mui/material/DialogContent'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export type DialogContentProps = MuiDialogContentProps
 
 export const DialogContent = (props: DialogContentProps) => {
   const { spacing } = useTheme()
 
-  return <MuiDialogContent sx={{ padding: spacing(0, 14, 4) }} {...props} />
+  return (
+    <MuiDialogContent
+      sx={{
+        fontFamily: 'fontFamily',
+        padding: spacing(0, CONTENT_SPACING_RIGHT_LEFT, 4),
+        textAlign: 'center',
+        '& > *': {
+          textAlign: 'left',
+        },
+      }}
+      {...props}
+    >
+      {props.children}
+    </MuiDialogContent>
+  )
 }

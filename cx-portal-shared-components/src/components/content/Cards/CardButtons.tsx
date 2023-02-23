@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -43,7 +43,7 @@ export const CardButtons = ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 2,
+        margin: '20px',
       }}
     >
       <Button size="small" onClick={onButtonClick}>

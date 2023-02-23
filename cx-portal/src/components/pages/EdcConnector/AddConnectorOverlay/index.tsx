@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -37,10 +37,11 @@ import Box from '@mui/material/Box'
 interface AddCollectorOverlayProps {
   openDialog?: boolean
   connectorStep: number
-  handleOverlayClose: React.MouseEventHandler
+  handleOverlayClose: () => void
   handleConfirmClick: (data: ConnectorType) => void
   onFormConfirmClick: (data: FormFieldsType) => void
   loading?: boolean
+  onStepChange: () => void
 }
 
 export type FormFieldsType = {
@@ -66,6 +67,7 @@ const AddConnectorOverlay = ({
   handleConfirmClick,
   onFormConfirmClick,
   loading,
+  onStepChange,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
 
@@ -118,6 +120,12 @@ const AddConnectorOverlay = ({
               ? t('content.edcconnector.modal.managed.intro')
               : t('content.edcconnector.modal.company.intro')
           }
+          closeWithIcon={true}
+          onCloseWithIcon={() => {
+            setSelected({})
+            handleOverlayClose()
+            reset(formFields)
+          }}
         />
         <DialogContent
           sx={{
@@ -140,13 +148,19 @@ const AddConnectorOverlay = ({
         <DialogActions>
           <Button
             variant="outlined"
-            onClick={(e) => {
-              setSelected({})
-              handleOverlayClose(e)
-              reset(formFields)
+            onClick={() => {
+              if (connectorStep === 1) {
+                onStepChange()
+              } else {
+                setSelected({})
+                handleOverlayClose()
+                reset(formFields)
+              }
             }}
           >
-            {`${t('global.actions.cancel')}`}
+            {connectorStep === 0
+              ? `${t('global.actions.cancel')}`
+              : `${t('global.actions.back')}`}
           </Button>
           {!loading && (
             <Button
@@ -158,7 +172,9 @@ const AddConnectorOverlay = ({
                   : onFormSubmit()
               }
             >
-              {`${t('global.actions.confirm')}`}
+              {connectorStep === 0
+                ? `${t('global.actions.next')}`
+                : `${t('global.actions.confirm')}`}
             </Button>
           )}
           {loading && (

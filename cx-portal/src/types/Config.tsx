@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -35,7 +35,6 @@ import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
 import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
-import Help from 'components/pages/Help'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
 import InviteBusinessPartner from 'components/pages/InviteBusinessPartner'
@@ -46,6 +45,7 @@ import Organization from 'components/pages/Organization'
 import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
+import AppSubscription from 'components/pages/AppSubscription'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
@@ -64,6 +64,10 @@ import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
+import UseCase from 'components/pages/UseCase'
+import Deactivate from 'components/pages/AppOverview/Deactivate'
+import AdminBoard from 'components/pages/AdminBoard'
+import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 
 /**
  * ALL_PAGES
@@ -78,8 +82,18 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
   { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
-  { name: PAGES.SWAGGER, element: <Redirect path="swagger" /> },
-  { name: PAGES.STORYBOOK, element: <Redirect path="_storybook" /> },
+  {
+    name: PAGES.HELP,
+    element: <Redirect path="documentation" tab={'documentation'} />,
+  },
+  {
+    name: PAGES.DOCUMENTATION,
+    element: <Redirect path="documentation" tab={'documentation'} />,
+  },
+  {
+    name: PAGES.STORYBOOK,
+    element: <Redirect path="_storybook" tab={'storybook'} />,
+  },
   {
     name: PAGES.MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
@@ -206,6 +220,31 @@ export const ALL_PAGES: IPage[] = [
     element: <AppReleaseProcess />,
   },
   {
+    name: PAGES.APPSUBSCRIPTION,
+    role: ROLES.APP_MANAGEMENT,
+    element: <AppSubscription />,
+  },
+  {
+    name: PAGES.ADMINBOARD,
+    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    element: <AdminBoard />,
+  },
+  {
+    name: PAGES.ADMINBOARD_DETAIL,
+    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.ADMINBOARD_DETAIL}
+        path={PAGES.ADMINBOARD_DETAIL}
+        element={<AdminBoardDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":appId" element={<AdminBoardDetail />} />
+      </Route>
+    ),
+  },
+  {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
     isRoute: true,
     element: (
@@ -304,7 +343,6 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.CX_ADMIN,
     element: <Translator />,
   },
-  { name: PAGES.HELP, element: <Help /> },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
@@ -323,12 +361,31 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
+  { name: PAGES.USE_CASE, element: <UseCase /> },
+  { name: PAGES.USE_CASE_TRACABILITY, element: <UseCase /> },
+  {
+    name: PAGES.DEACTIVATE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.DEACTIVATE}
+        path={PAGES.DEACTIVATE}
+        element={<Deactivate />}
+      >
+        <Route path=":appId" element={<Deactivate />} />
+      </Route>
+    ),
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_BPN,
     role: ROLES.MODIFY_USER_ACCOUNT,
+  },
+  {
+    name: OVERLAYS.ADD_SUBSCRIPTION,
+    role: ROLES.ACTIVATE_SUBSCRIPTION,
   },
   {
     name: OVERLAYS.ADD_USER,
@@ -413,6 +470,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_DELETE,
   },
   {
+    name: OVERLAYS.ADDUSERS_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
     name: OVERLAYS.IDP_TEST_RUN,
     role: ROLES.IDP_ADD,
   },
@@ -428,6 +489,12 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.SAMPLE_FORM,
+  },
+  {
+    name: OVERLAYS.ADD_SERVICE_PROVIDER,
+  },
+  {
+    name: OVERLAYS.DECLINE_ADMINBOARD,
   },
 ]
 
@@ -455,6 +522,10 @@ export const mainMenuFullTree = [
     ],
   },
   {
+    name: PAGES.USE_CASE,
+    children: [{ name: PAGES.USE_CASE_TRACABILITY, hint: HINTS.NEW }],
+  },
+  {
     name: PAGES.MARKETPLACE,
     children: [
       { name: PAGES.APP_MARKETPLACE },
@@ -480,6 +551,8 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APPRELEASEPROCESS },
+      { name: PAGES.APPSUBSCRIPTION, hint: HINTS.NEW },
+      { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
     ],
   },
 ]

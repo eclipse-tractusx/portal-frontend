@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,10 +24,16 @@ import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { TenantUserDetails } from 'features/admin/userApiSlice'
 import { AppPermissions } from 'components/shared/frame/AppPermissions'
 
-export const UserDetailInfo = ({ user }: { user: TenantUserDetails }) => {
+export const UserDetailInfo = ({
+  user,
+  parsedToken,
+}: {
+  user: TenantUserDetails
+  parsedToken?: { organisation: string }
+}) => {
   const { spacing } = useTheme()
 
-  const userDetailsCards = userDetailsToCards(user)
+  const userDetailsCards = userDetailsToCards(user, parsedToken)
   const columns = 3
 
   return (

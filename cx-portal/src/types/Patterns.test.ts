@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -50,7 +50,6 @@ const TESTDATA = {
   MAIL: {
     valid: [
       'julia.jeroch@bmw.de',
-      'JULIA.JEROCH@BMW.DE',
       'some_name.123.with-dash@my-host.co.uk',
       'a@b.ce',
       '222.333@444.com', // valid?
@@ -58,6 +57,7 @@ const TESTDATA = {
     invalid: [
       '',
       'word',
+      'JULIA.JEROCH@BMW.DE',
       'some string',
       '   donald.duck@bmw.de',
       'julia.jeroch@bmw',

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import { Typography } from '../Typography'
 
 export const SortOption = ({
@@ -25,12 +26,21 @@ export const SortOption = ({
   setSortOption,
   selectedOption,
   show,
+  singleMenu,
 }: {
   sortOptions: any
   setSortOption?: any
   selectedOption: any
   show: boolean
+  singleMenu?: boolean
 }) => {
+  const handleSortSelection = (e: any, value: string) => {
+    e.stopPropagation()
+    setSortOption(value)
+  }
+
+  const [submenuHover, setSubmenuHover] = useState(false)
+
   return (
     <>
       {show && (
@@ -42,7 +52,7 @@ export const SortOption = ({
           {sortOptions.map((entry: any) => (
             <li
               key={entry.value}
-              onClick={() => setSortOption(entry.value)}
+              onClick={(e) => handleSortSelection(e, entry.value)}
               style={{
                 backgroundColor:
                   selectedOption === entry.value
@@ -53,14 +63,23 @@ export const SortOption = ({
                 borderRadius: '10px',
                 cursor: 'pointer',
                 listStyleType: 'none',
+                ...(singleMenu && submenuHover
+                  ? { backgroundColor: 'rgb(176 206 235 / 40%)' }
+                  : null),
               }}
+              onMouseOver={() => setSubmenuHover(true)}
+              onMouseLeave={() => setSubmenuHover(false)}
             >
               <Typography
                 variant="h1"
                 sx={{
                   fontSize: '14px',
                   fontWeight: '400',
-                  color: selectedOption === entry.value ? '#0D55AF' : '#000',
+                  color:
+                    selectedOption === entry.value ||
+                    (singleMenu && submenuHover)
+                      ? '#0D55AF'
+                      : '#000',
                 }}
               >
                 {entry.label}

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -30,6 +30,8 @@ export type ValidatingInputProps = {
   name: string
   label?: string
   helperText?: string
+  placeholder?: string
+  autofocus?: boolean
   value?: string
   debounceTime?: number
   validate: (data: string) => boolean
@@ -41,6 +43,8 @@ export const ValidatingInput = ({
   name,
   label = '',
   helperText = '',
+  placeholder = '',
+  autofocus = false,
   value = '',
   debounceTime = 300,
   validate,
@@ -76,10 +80,10 @@ export const ValidatingInput = ({
       name={name}
       label={label}
       helperText={helperText}
-      placeholder={label}
+      placeholder={placeholder}
       value={data}
       error={!valid && show > 0}
-      autoFocus={value === 'company'}
+      autoFocus={autofocus}
       onChange={(e) => doValidate(e.currentTarget.value)}
       onBlur={(e) => doValidate(e.currentTarget.value)}
     />

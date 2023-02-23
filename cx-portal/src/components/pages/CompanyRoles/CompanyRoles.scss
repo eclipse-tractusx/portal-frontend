@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,87 +22,5 @@
 
 .companyRoles {
   width: 100%;
-  padding: 0;
-}
-
-.subNavigationContainer {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  padding-top: 25px;
-  padding-left: 80px;
-  padding-right: 80px;
-}
-
-.subNavigationContainer button {
-  padding-right: 80px;
-  margin-right: 20px;
-}
-
-.mainContainer {
-  padding: 0 80px;
-  margin: auto;
-  overflow: hidden;
-}
-
-.subContainer {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.cardsContainer {
-  padding: 20px !important;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 22px;
-  width: 33%;
-}
-
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
   padding: 0px;
-}
-
-.mainContainer img {
-  border-radius: 16px;
-}
-
-.cardsContainer img {
-  margin-bottom: 20px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.cardGridContainer {
-  display: flex;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  place-content: center;
-}
-
-.topFlexContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 20px 0px 20px;
-  padding: 90px 0px;
-}
-
-.topFlexContainer div {
-  padding: 20px;
-  width: 50%;
-}
-
-.readMoreButton {
-  text-decoration: underline;
-  padding-top: 12px;
-  margin-bottom: 15px !important;
-  font-size: 18px;
-  color: #0f71cb;
-  cursor: pointer;
 }

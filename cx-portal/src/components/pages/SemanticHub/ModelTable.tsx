@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, Table } from 'cx-portal-shared-components'
+import { Table } from 'cx-portal-shared-components'
 import { fetchSemanticModels } from 'features/semanticModels/actions'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import {
@@ -29,6 +29,7 @@ import {
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import uniqueId from 'lodash/uniqueId'
 
@@ -180,13 +181,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (
-          <Button
-            size="medium"
-            sx={{ mt: 15 }}
+          <LoadMoreButton
             onClick={() => setPageNumber((prevState) => prevState + 1)}
-          >
-            {t('content.semantichub.table.load_button')}
-          </Button>
+            sx={{ mt: 4 }}
+          />
         )}
       </div>
     </section>

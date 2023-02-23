@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -100,7 +100,26 @@ export interface IdentityProviderUser {
   identityProviderId: string
   companyUserId: string
   userId: string
-  userName: string
+  userName?: string
+}
+
+export interface UserIdentityProvider {
+  companyUserId: string
+  identityProviderId: string
+}
+
+export interface UserIdentityProvidersItem {
+  identityProviderId: string
+  userId: string
+  userName?: string
+}
+
+export interface UserIdentityProviders {
+  companyUserId: string
+  firstName: string
+  lastName: string
+  email: string
+  identityProviders: Array<UserIdentityProvidersItem>
 }
 
 export interface IdentityProvider {
@@ -154,17 +173,6 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
-    addUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
-      query: (idpUser: IdentityProviderUser) => ({
-        url: `/api/administration/identityprovider/owncompany/users/${idpUser.companyUserId}/identityprovider`,
-        method: 'POST',
-        body: {
-          identityProviderId: idpUser.identityProviderId,
-          userId: idpUser.userId,
-          userName: idpUser.userName,
-        },
-      }),
-    }),
     updateUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
       query: (idpUser: IdentityProviderUser) => ({
         url: `/api/administration/identityprovider/owncompany/users/${idpUser.companyUserId}/identityprovider/${idpUser.identityProviderId}`,
@@ -175,16 +183,28 @@ export const apiSlice = createApi({
         },
       }),
     }),
+    fetchIDPUsersList: builder.query<Array<UserIdentityProviders>, string>({
+      query: (id: string) =>
+        `/api/administration/identityprovider/owncompany/users?identityProviderIds=${id}&unlinkedUsersOnly=false`,
+    }),
+    fetchIDPUser: builder.query<
+      UserIdentityProvidersItem,
+      UserIdentityProvider
+    >({
+      query: (useridp: UserIdentityProvider) =>
+        `/api/administration/identityprovider/owncompany/users/${useridp.companyUserId}/identityprovider/${useridp.identityProviderId}`,
+    }),
   }),
 })
 
 export const {
   useFetchIDPListQuery,
   useFetchIDPDetailQuery,
+  useFetchIDPUserQuery,
+  useFetchIDPUsersListQuery,
   useAddIDPMutation,
   useUpdateIDPMutation,
   useRemoveIDPMutation,
   useEnableIDPMutation,
-  useAddUserIDPMutation,
   useUpdateUserIDPMutation,
 } = apiSlice

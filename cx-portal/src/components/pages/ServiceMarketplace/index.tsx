@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -138,7 +138,9 @@ export default function ServiceMarketplace() {
   )
 
   const doFilter = useCallback(
-    (expr: string) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const expr = event.target.value
+
       setSearchExpr(expr)
       debouncedFilter(expr)
     },
@@ -185,7 +187,7 @@ export default function ServiceMarketplace() {
                 placeholder={t('notification.search')}
                 value={searchExpr}
                 autoFocus={false}
-                onChange={(e) => doFilter(e.target.value)}
+                onChange={doFilter}
               />
             </div>
             <div className="filterSection" onMouseLeave={setModalFalse}>

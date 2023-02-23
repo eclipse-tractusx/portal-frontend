@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,23 +22,35 @@ import {
   Button,
   Chip,
   IconButton,
+  LoadingButton,
   PageNotifications,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
-import Patterns from 'types/Patterns'
-import { ConnectorFormInputField } from '../AppMarketCard'
-import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import DoneIcon from '@mui/icons-material/Done'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
+import {
+  rolesType,
+  updateRoleType,
+  useDeleteRolesMutation,
+  useFetchAppStatusQuery,
+  useFetchRolesDataQuery,
+  useUpdateRoleDataMutation,
+} from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -46,48 +58,59 @@ export default function TechnicalIntegration() {
     technicalIntegrationNotification,
     setTechnicalIntegrationNotification,
   ] = useState(false)
+  const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
+    useState<boolean>(false)
+  const [snackBarType, setSnackBarType] = useState<'error' | 'success'>(
+    'success'
+  )
+  const [snackBarMessage, setSnackBarMessage] = useState<string>(
+    t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+  )
+
   const dispatch = useDispatch()
-  const [disableCreateClient, setDisableCreateClient] = useState(true)
-  const [createClientSuccess, setCreateClientSuccess] = useState(false)
-  const [enableUploadAppRoles, setEnableUploadAppRoles] = useState(false)
-  const [enableTestUserButton, setEnableTestUserButton] = useState(false)
-  const [showUserButton, setShowUserButton] = useState(true)
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
+  // To-Do : the below code will get enhanced again in R.3.1
+  // const [disableCreateClient, setDisableCreateClient] = useState(true)
+  // const [createClientSuccess, setCreateClientSuccess] = useState(false)
+  // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
+  // const [showUserButton, setShowUserButton] = useState(true)
+  const appId = useSelector(appIdSelector)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+  const { data, refetch } = useFetchRolesDataQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  })
+  const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
+  const [deleteRoles] = useDeleteRolesMutation()
+  const [uploadCSVError, setUploadCSVError] = useState(false)
 
   const defaultValues = {
-    clientId: '',
-    URL: '',
+    // To-Do : the below code will get enhanced again in R.3.1
+    // clientId: '',
+    // URL: '',
     uploadAppRoles: '',
   }
 
   const {
     handleSubmit,
-    getValues,
     control,
     trigger,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
 
-  const clientIdValue = getValues().clientId
-  const URLValue = getValues().URL
-
-  const onIntegrationSubmit = async (data: any) =>
-    setTechnicalIntegrationNotification(true)
-
   useEffect(() => {
-    if (
-      getValues().clientId !== '' &&
-      getValues().URL !== '' &&
-      !errors?.clientId &&
-      !errors?.URL
-    )
-      setDisableCreateClient(false)
-    else setDisableCreateClient(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientIdValue, URLValue])
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
+  const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
+    buttonLabel === 'saveAndProceed' && dispatch(increment())
+    buttonLabel === 'save' && setTechnicalIntegrationSnackbar(true)
+  }
 
   const csvPreview = (files: File[]) => {
     return files
@@ -99,13 +122,77 @@ export default function TechnicalIntegration() {
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
-          const roles = str
+          const CSVCells = str
             ?.split('\n')
             .filter((item) => item !== '')
-            .map((item) => item.substring(0, item.indexOf(';')))
-          setRolesPreviews(roles)
+            .map((item) => item)
+
+          if (
+            CSVCells[0] === 'roles;description\r' ||
+            CSVCells[0] === 'roles;description'
+          ) {
+            const roles = str
+              ?.split('\n')
+              .filter((item) => item !== '')
+              .map((item) => item.substring(0, item.indexOf(';')))
+
+            setRolesPreviews(roles?.splice(1))
+            setUploadCSVError(false)
+          } else {
+            setRolesPreviews([])
+            setUploadCSVError(true)
+          }
         }
         reader.readAsText(file)
+      })
+  }
+
+  const postRoles = async () => {
+    const updateRolesData: updateRoleType = {
+      appId: appId,
+      body: rolesPreviews?.map((item) => ({
+        role: item,
+        descriptions: [
+          {
+            languageCode: 'en',
+            description: '',
+          },
+        ],
+      })),
+    }
+
+    if (rolesPreviews.length > 0) {
+      await updateRoleData(updateRolesData)
+        .unwrap()
+        .then((data) => {
+          setRolesPreviews([])
+          reset(defaultValues)
+          refetch()
+        })
+        .catch((error) => {
+          console.error(error, 'ERROR WHILE UPDATING ROLES')
+        })
+    }
+  }
+
+  const onChipDelete = (roleId: string) => {
+    deleteRoles({
+      appId: appId,
+      roleId: roleId,
+    })
+      .unwrap()
+      .then(() => {
+        refetch()
+        setSnackBarType('success')
+        setSnackBarMessage(
+          t('content.apprelease.appReleaseForm.roleDeleteSuccessMessage')
+        )
+        setTechnicalIntegrationSnackbar(true)
+      })
+      .catch((error) => {
+        setSnackBarType('error')
+        setSnackBarMessage(t('content.apprelease.appReleaseForm.errormessage'))
+        setTechnicalIntegrationSnackbar(true)
       })
   }
 
@@ -118,12 +205,39 @@ export default function TechnicalIntegration() {
         <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
           <Typography variant="body2" align="center">
             {t('content.apprelease.technicalIntegration.headerDescription')}
+            {t(
+              'content.apprelease.technicalIntegration.uploadRolesDescription'
+            )}
           </Typography>
+          <Grid item container xs={12} mt={2}>
+            <Grid item xs={6}>
+              <a
+                href="../../app-provider-role-upload-example.csv"
+                download
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <ArrowForwardIcon />
+                {t('content.apprelease.technicalIntegration.template')}
+              </a>
+            </Grid>
+            <Grid item xs={6}>
+              <a
+                href="https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md"
+                target="_blank"
+                style={{ display: 'flex', justifyContent: 'center' }}
+                rel="noreferrer"
+              >
+                <ArrowForwardIcon />
+                {t('content.apprelease.technicalIntegration.getHelp')}
+              </a>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
       <form className="header-description">
-        <Typography variant="h5" mb={4}>
+        {/* To-Do : the below code will get enhanced again in R.3.1 */}
+        {/* <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step1Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
@@ -206,79 +320,144 @@ export default function TechnicalIntegration() {
         <Divider className="form-divider" />
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step2Header')}
-        </Typography>
-        {enableUploadAppRoles && (
-          <>
-            <Controller
-              name={'uploadAppRoles'}
-              control={control}
-              rules={{
-                required: true,
+        </Typography> */}
+        <Controller
+          name={'uploadAppRoles'}
+          control={control}
+          render={({ field: { onChange: reactHookFormOnChange, value } }) => (
+            <Dropzone
+              onChange={(files, addedFiles, deletedFiles) => {
+                if (deletedFiles?.length) {
+                  setRolesPreviews([])
+                }
+                reactHookFormOnChange(files[0]?.name)
+                trigger('uploadAppRoles')
+                csvPreview(files)
               }}
-              render={({ field: { onChange, value } }) => (
-                <Dropzone
-                  onFileDrop={(files: File[]) => {
-                    onChange(files[0].name)
-                    trigger('uploadAppRoles')
-                    csvPreview(files)
-                  }}
-                  acceptFormat={{ 'text/csv': ['.csv'] }}
-                  maxFilesToUpload={1}
-                />
-              )}
+              acceptFormat={{ 'text/csv': ['.csv'] }}
+              maxFilesToUpload={1}
+              enableDeleteOverlay={true}
+              deleteOverlayTranslation={{
+                title: '',
+                content: t(
+                  'content.apprelease.technicalIntegration.deleteOverlayContent'
+                ),
+                action_no: `${t('global.actions.no')}`,
+                action_yes: `${t('global.actions.yes')}`,
+              }}
             />
-            {errors?.uploadAppRoles?.type === 'required' && (
-              <Typography variant="body2" className="file-error-msg">
-                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </Typography>
+          )}
+        />
+        {errors?.uploadAppRoles?.type === 'required' && (
+          <Typography variant="body2" className="file-error-msg">
+            {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
+          </Typography>
+        )}
+        {uploadCSVError && (
+          <Typography variant="body2" className="file-error-msg">
+            {t(
+              'content.apprelease.technicalIntegration.incorrectCSVFileFormat'
             )}
-            {rolesPreviews?.length > 0 && (
-              <>
-                <Typography variant="h6" mb={2} textAlign="center">
-                  {t('content.apprelease.technicalIntegration.rolesPreview')}
-                </Typography>
-                <Grid container xs={12}>
-                  {rolesPreviews?.map((role: string, index: number) => (
-                    <Grid xs={6} key={index}>
-                      <Chip
-                        key={index}
-                        label={role}
-                        withIcon={false}
-                        type="plain"
-                        variant="filled"
-                        color="secondary"
-                        sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
-                      />
-                    </Grid>
-                  ))}
+          </Typography>
+        )}
+        {rolesPreviews?.length > 0 && (
+          <>
+            <Typography variant="h6" mb={2} textAlign="center">
+              {t('content.apprelease.technicalIntegration.rolesPreview')}
+            </Typography>
+            <Grid item container xs={12}>
+              {rolesPreviews?.map((role: string) => (
+                <Grid item xs={6} key={role}>
+                  <Chip
+                    key={role}
+                    label={role}
+                    withIcon={false}
+                    type="plain"
+                    variant="filled"
+                    color="secondary"
+                    sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                  />
                 </Grid>
-              </>
-            )}
+              ))}
+            </Grid>
           </>
         )}
-
         <Box textAlign="center">
-          <Button
+          {/* <Button
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
-            disabled={!createClientSuccess}
-            onClick={() => {
-              getValues().uploadAppRoles === ''
-                ? setEnableUploadAppRoles(true)
-                : setEnableTestUserButton(true)
-            }}
+            onClick={postRoles}
+            // To-Do : the below code will get enhanced again in R.3.1
+            // disabled={!createClientSuccess}
           >
             {getValues().uploadAppRoles === ''
               ? t(
                   'content.apprelease.technicalIntegration.clickToOpenDialogBox'
                 )
               : t(
-                  'content.apprelease.technicalIntegration.createThoseForYourApp'
+                  'content.apprelease.technicalIntegration.uploadAppRolesButton'
                 )}
-          </Button>
+          </Button> */}
+
+          {rolesPreviews.length > 0 && (
+            <LoadingButton
+              loading={isLoading}
+              variant="contained"
+              onButtonClick={postRoles}
+              sx={{
+                textAlign: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '30px',
+              }}
+              loadIndicator={t(
+                'content.apprelease.technicalIntegration.uploadAppRolesButton'
+              )}
+              label={t(
+                'content.apprelease.technicalIntegration.uploadAppRolesButton'
+              )}
+              fullWidth={false}
+            />
+          )}
+          <Typography variant="h4" mb={4} mt={4}>
+            {t(
+              'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
+            )}
+          </Typography>
+
+          {data && data.length > 0 ? (
+            <Grid item container xs={12}>
+              {data?.map((role: rolesType) => (
+                <Grid
+                  item
+                  xs={6}
+                  key={role.roleId}
+                  style={{ textAlign: 'left' }}
+                >
+                  <Chip
+                    key={role.roleId}
+                    label={role.role}
+                    withIcon={true}
+                    type="delete"
+                    variant="filled"
+                    color="secondary"
+                    sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                    handleDelete={() => onChipDelete(role.roleId)}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Box className="no-roles-box">
+              <Typography variant="h4" mb={4} mt={4}>
+                {`Currently no roles loaded for app (${fetchAppStatus?.title})`}
+              </Typography>
+            </Box>
+          )}
         </Box>
 
-        <Divider className="form-divider" />
+        {/* To-Do : the below code will get enhanced again in R.3.1 */}
+        {/* <Divider className="form-divider" />
         <Typography variant="h5" mb={4}>
           {t('content.apprelease.technicalIntegration.step3Header')}
         </Typography>
@@ -315,14 +494,14 @@ export default function TechnicalIntegration() {
             </Grid>
             <Grid xs={4}>Lorem Ipsum</Grid>
           </Grid>
-        )}
+        )} */}
       </form>
 
       <Box mb={2}>
         {technicalIntegrationNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
+          <Grid item container xs={12} sx={{ mb: 2 }}>
+            <Grid item xs={6}></Grid>
+            <Grid item xs={6}>
               <PageNotifications
                 title={t('content.apprelease.appReleaseForm.error.title')}
                 description={t(
@@ -337,6 +516,13 @@ export default function TechnicalIntegration() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={technicalIntegrationSnackbar}
+          onCloseNotification={() => setTechnicalIntegrationSnackbar(false)}
+          severity={snackBarType}
+          description={snackBarMessage}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           startIcon={<HelpOutlineIcon />}
@@ -349,8 +535,11 @@ export default function TechnicalIntegration() {
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button
-          disabled={showUserButton}
-          onClick={() => dispatch(increment())}
+          // To-Do : the below code will get enhanced again in R.3.1
+          // disabled={showUserButton}
+          onClick={handleSubmit((data) =>
+            onIntegrationSubmit(data, 'saveAndProceed')
+          )}
           variant="contained"
           sx={{ float: 'right' }}
         >
@@ -360,7 +549,7 @@ export default function TechnicalIntegration() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onIntegrationSubmit)}
+          onClick={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

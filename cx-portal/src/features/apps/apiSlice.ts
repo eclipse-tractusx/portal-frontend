@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -48,6 +48,7 @@ export type AppMarketplaceApp = {
   name?: string
   lastChanged?: string
   timestamp?: number
+  leadPictureId?: string
 }
 
 export enum SubscriptionStatus {
@@ -80,7 +81,7 @@ export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
   contactNumber: string
-  detailPictureUris: string[]
+  images: string[]
   documents: DocumentAppContract
   longDescription: string
   isSubscribed: string
@@ -114,6 +115,11 @@ export type SubscriptionAppRequest = {
   body: SubscriptionRequestBody[]
 }
 
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -137,8 +143,8 @@ export const apiSlice = createApi({
       query: () => `/api/apps/business`,
     }),
     fetchDocumentById: builder.mutation({
-      query: (documentId) => ({
-        url: `/api/administration/documents/${documentId}?documentId=${documentId}`,
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -155,6 +161,12 @@ export const apiSlice = createApi({
     fetchAgreements: builder.query<AgreementRequest[], string>({
       query: (appId) => `/api/apps/appAgreementData/${appId}`,
     }),
+    deactivateApp: builder.mutation<void, string>({
+      query: (appId) => ({
+        url: `/api/apps/${appId}/deactivateApp`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -168,4 +180,5 @@ export const {
   useFetchDocumentByIdMutation,
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
+  useDeactivateAppMutation,
 } = apiSlice

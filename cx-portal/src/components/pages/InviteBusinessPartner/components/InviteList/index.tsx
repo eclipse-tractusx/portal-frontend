@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -69,7 +69,7 @@ export const InviteList = ({
         }}
         searchDebounce={1000}
         title={t('content.invite.tabletitle')}
-        loadLabel={t('global.actions.more')}
+        loadLabel={t('global.actions.loadmore')}
         fetchHook={fetchHook}
         fetchHookArgs={fetchHookArgs}
         fetchHookRefresh={refresh}
@@ -110,6 +110,7 @@ export const InviteList = ({
             sortable: false,
             renderCell: ({ row }: { row: CompanyInvite }) => (
               <IconButton
+                disabled={true}
                 color="secondary"
                 onClick={() =>
                   console.log('on details click: Company Name', row.companyName)

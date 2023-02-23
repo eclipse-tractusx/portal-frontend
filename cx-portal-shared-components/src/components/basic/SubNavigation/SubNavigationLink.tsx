@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -46,8 +46,11 @@ export const SubNavigationLink = ({
               color="secondary"
               variant="text"
               size="medium"
+              sx={{
+                fontSize: '16px',
+              }}
             >
-              <EastIcon sx={{ marginRight: '16px' }} />
+              <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
               {link1Label}
             </Button>
           </>
@@ -61,8 +64,11 @@ export const SubNavigationLink = ({
             color="secondary"
             variant="text"
             size="medium"
+            sx={{
+              fontSize: '16px',
+            }}
           >
-            <EastIcon sx={{ marginRight: '16px' }} />
+            <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
             {link2Label}
           </Button>
         )}

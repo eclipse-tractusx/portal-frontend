@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,10 +20,12 @@
 
 import React from 'react'
 import { SharedThemeProvider } from '../src/components/basic/SharedThemeProvider'
+import { SharedCssBaseline } from '../src/components/basic/SharedCssBaseline'
 
 export const decorators = [
   (Story) => (
     <SharedThemeProvider>
+      <SharedCssBaseline />
       <Story />
     </SharedThemeProvider>
   ),

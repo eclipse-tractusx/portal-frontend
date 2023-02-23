@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -30,6 +30,7 @@ export interface AppStatusDataState {
   provider: string
   leadPictureUri: string
   providerName: string
+  salesManagerId: string
   useCase: string[]
   descriptions: DescriptionState[]
   agreements: AgreementState[]
@@ -40,6 +41,7 @@ export interface AppStatusDataState {
   contactEmail: string
   contactNumber: string
   documents: any
+  privacyPolicies: string[]
 }
 
 export interface DescriptionState {
@@ -73,6 +75,7 @@ export const initialState: AppManagementState = {
     provider: '',
     leadPictureUri: '',
     providerName: '',
+    salesManagerId: '',
     useCase: [],
     descriptions: [],
     agreements: [],
@@ -83,5 +86,6 @@ export const initialState: AppManagementState = {
     contactEmail: '',
     contactNumber: '',
     documents: {},
+    privacyPolicies: [],
   },
 }

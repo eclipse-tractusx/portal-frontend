@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,9 +22,17 @@ import MuiAlert from '@mui/material/Alert'
 
 interface AlertProps {
   severity?: 'error' | 'warning' | 'info' | 'success'
-  children?: JSX.Element
+  children?: string | JSX.Element
+  width?: string
 }
 
-export const Alert = ({ severity = 'info', children }: AlertProps) => (
-  <MuiAlert severity={severity}>{children}</MuiAlert>
+export const Alert = ({ severity = 'info', children, width }: AlertProps) => (
+  <MuiAlert
+    sx={{
+      width: width ? `${width}!important` : '45%',
+    }}
+    severity={severity}
+  >
+    {children}
+  </MuiAlert>
 )

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -41,6 +41,7 @@ import {
 import { OVERLAYS } from 'types/Constants'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isCompanyName } from 'types/Patterns'
+import { getCentralIdp } from 'services/EnvironmentService'
 
 enum IDPType {
   COMPANY = 'Company',
@@ -56,17 +57,18 @@ const SelectIdpAuthType = ({
   return (
     <div style={{ padding: '30px 0px' }}>
       <Radio
+        name="radio-buttons"
         label={IDPAuthType.OIDC}
         checked={type === IDPAuthType.OIDC}
         onChange={() => {
           setType(IDPAuthType.OIDC)
           onChange(IDPAuthType.OIDC)
         }}
-        value="a"
-        name="radio-buttons"
-        inputProps={{ 'aria-label': 'A' }}
+        value={IDPAuthType.OIDC}
+        inputProps={{ 'aria-label': IDPAuthType.OIDC }}
       />
       <Radio
+        name="radio-buttons"
         disabled={true}
         label={IDPAuthType.SAML}
         checked={type === IDPAuthType.SAML}
@@ -74,9 +76,8 @@ const SelectIdpAuthType = ({
           setType(IDPAuthType.SAML)
           onChange(IDPAuthType.SAML)
         }}
-        value="b"
-        name="radio-buttons"
-        inputProps={{ 'aria-label': 'B' }}
+        value={IDPAuthType.SAML}
+        inputProps={{ 'aria-label': IDPAuthType.SAML }}
       />
     </div>
   )
@@ -99,6 +100,7 @@ const AddIDPPrepareForm = ({
 }: {
   onChange: (value: AddIDPPrepareFormType) => void
 }) => {
+  const { t } = useTranslation('idp')
   const [formData, setFormData] = useState<AddIDPPrepareFormType>(
     initialAddIDPPrepareForm
   )
@@ -107,7 +109,7 @@ const AddIDPPrepareForm = ({
     <>
       <ValidatingInput
         name="name"
-        label="IDP name"
+        label={t('field.name')}
         validate={isCompanyName}
         onValid={(_name, value) => {
           if (!value) return
@@ -130,7 +132,7 @@ const AddIDPPrepareForm = ({
 }
 
 export const AddIdp = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const [formData, setFormData] = useState<AddIDPPrepareFormType>(
     initialAddIDPPrepareForm
@@ -146,8 +148,7 @@ export const AddIdp = () => {
         body: {
           displayName: formData.name,
           oidc: {
-            metadataUrl:
-              'https://centralidp.dev.demo.catena-x.net/auth/realms/CX-Central/.well-known/openid-configuration',
+            metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
             clientId: '',
             secret: '',
@@ -166,8 +167,8 @@ export const AddIdp = () => {
   return (
     <>
       <DialogHeader
-        title={t('content.idpmanagement.addIdpHeadline')}
-        intro={t('content.idpmanagement.addIdpSubheadline')}
+        title={t('add.title')}
+        intro={t('add.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
@@ -176,14 +177,14 @@ export const AddIdp = () => {
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button
           variant="contained"
           disabled={!formData.name}
           onClick={() => doCreateIDP()}
         >
-          {t('global.actions.confirm')}
+          {t('action.confirm')}
         </Button>
       </DialogActions>
     </>

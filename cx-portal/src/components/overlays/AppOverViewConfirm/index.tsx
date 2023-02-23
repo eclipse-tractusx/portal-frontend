@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,6 +31,7 @@ import { useDispatch } from 'react-redux'
 import './AppOverviewConfirm.scss'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
+import { setApplicationId } from 'features/appManagement/slice'
 
 export default function AppOverViewConfirm({
   id,
@@ -43,6 +44,7 @@ export default function AppOverViewConfirm({
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
   const navigate = useNavigate()
+  dispatch(setApplicationId(id))
 
   return (
     <div className="small-confirm">

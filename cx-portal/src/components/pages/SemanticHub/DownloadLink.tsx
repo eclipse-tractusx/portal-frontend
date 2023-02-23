@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -70,7 +70,7 @@ const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
         }
       }
       fetch(
-        `${getSemanticApiBase()}hub/api/v1/models/${encodedUrn}/${url}`,
+        `${getSemanticApiBase()}/hub/api/v1/models/${encodedUrn}/${url}`,
         getHeaders()
       )
         .then((response) => {

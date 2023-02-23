@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,16 +22,19 @@ import { Button } from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
+import NewDropzoneTest from './index.newdropzone'
 
 export default function Test() {
   const dispatch = useDispatch()
-
   return (
     <main>
       <section>
         <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
           {'Sample Form'}
         </Button>
+      </section>
+      <section>
+        <NewDropzoneTest />
       </section>
     </main>
   )

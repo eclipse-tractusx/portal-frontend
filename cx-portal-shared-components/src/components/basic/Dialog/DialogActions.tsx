@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,6 +22,7 @@ import { Box, useTheme } from '@mui/material'
 import MuiDialogActions, {
   DialogActionsProps as MuiDialogActionsProps,
 } from '@mui/material/DialogActions'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export interface DialogActionProps extends MuiDialogActionsProps {
   helperText?: string
@@ -37,7 +38,7 @@ export const DialogActions = ({
   return (
     <Box
       sx={{
-        padding: spacing(4, 14),
+        padding: spacing(4, CONTENT_SPACING_RIGHT_LEFT),
         backgroundColor: 'background.background09',
       }}
     >

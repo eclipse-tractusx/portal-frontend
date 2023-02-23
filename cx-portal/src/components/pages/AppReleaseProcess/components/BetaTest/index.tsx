@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,6 +20,7 @@
 
 import {
   Button,
+  Chip,
   IconButton,
   PageNotifications,
   Typography,
@@ -28,14 +29,29 @@ import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
-import { decrement, increment } from 'features/appManagement/slice'
-import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
+import { setAppStatus } from 'features/appManagement/actions'
 
 export default function BetaTest() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [betaTestNotification, setBetaTestNotification] = useState(false)
+  const appId = useSelector(appIdSelector)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   return (
     <>
@@ -49,6 +65,47 @@ export default function BetaTest() {
           </Typography>
         </Grid>
       </Grid>
+
+      <form className="header-description">
+        <Typography variant="h4" mb={5}>
+          {t('content.apprelease.betaTest.betaTests')}
+        </Typography>
+        <Grid container sx={{ mt: 0 }}>
+          <Grid item md={3}>
+            <img
+              src="/teaser.png"
+              alt="idp teaser"
+              height="164px"
+              width="164px"
+              style={{ borderRadius: '16px' }}
+            />
+          </Grid>
+          <Grid item md={8} marginLeft="20px">
+            <div style={{ display: 'flex' }}>
+              <Typography variant="h4">
+                {t(`content.apprelease.betaTest.technicalIntegrationTest`)}
+              </Typography>
+              <Chip
+                key={1}
+                label={'Available Soon'}
+                withIcon={false}
+                type="plain"
+                variant="filled"
+                color="label"
+                sx={{ ml: 5 }}
+              />
+            </div>
+            <Typography variant="body2" marginTop="16px">
+              {t(
+                `content.apprelease.betaTest.technicalIntegrationTestDescription`
+              )}
+            </Typography>
+            <a href="/" style={{ display: 'flex', marginTop: '28px' }}>
+              <ArrowForwardIcon fontSize="small" /> Open test overview
+            </a>
+          </Grid>
+        </Grid>
+      </form>
       <Box mb={2}>
         {betaTestNotification && (
           <Grid container xs={12} sx={{ mb: 2 }}>
@@ -82,10 +139,7 @@ export default function BetaTest() {
           sx={{ float: 'right' }}
           onClick={() => dispatch(increment())}
         >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button variant="outlined" name="send" sx={{ float: 'right', mr: 1 }}>
-          {t('content.apprelease.footerButtons.save')}
+          {t('content.apprelease.footerButtons.proceed')}
         </Button>
       </Box>
     </>

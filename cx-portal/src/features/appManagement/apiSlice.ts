@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -48,6 +48,7 @@ export type CreateAppStep1Item = {
   }[]
   supportedLanguageCodes: string[]
   price: string
+  privacyPolicies: string[]
 }
 
 export type ImageType = {
@@ -62,6 +63,7 @@ export type DocumentData = {
 
 export type DocumentAppContract = {
   APP_CONTRACT: Array<DocumentData>
+  APP_LEADIMAGE?: Array<DocumentData>
 }
 
 export type NewAppDetails = {
@@ -109,6 +111,42 @@ export type salesManagerType = {
   firstName: string
   lastName: string
   fullName?: string
+}
+
+export type rolesType = {
+  roleId: string
+  role: string
+  description: string
+}
+
+export type deleteRoleType = {
+  appId: string
+  roleId: string
+}
+
+export type postRolesResponseType = {
+  roleId: string
+  roleName: string
+}
+
+export type updateRoleType = {
+  appId: string
+  body?: updateRolePayload[] | null
+}
+
+export type updateRolePayload = {
+  role: string
+  descriptions?:
+    | {
+        languageCode: string
+        description: string
+      }[]
+    | null
+}
+
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
 }
 
 export const apiSlice = createApi({
@@ -192,6 +230,37 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchDocumentById: builder.mutation({
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
+    fetchRolesData: builder.query<rolesType[], string>({
+      query: (appId: string) => `api/administration/user/app/${appId}/roles`,
+    }),
+    updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
+      query: (data) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}/role`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
+    deleteRoles: builder.mutation<void, deleteRoleType>({
+      query: (data) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}/role/${data.roleId}`,
+        method: 'DELETE',
+      }),
+    }),
+    deleteDocument: builder.mutation<void, string>({
+      query: (documentId) => ({
+        url: `/api/registration/documents/${documentId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 })
 
@@ -208,4 +277,9 @@ export const {
   useUpdateAgreementConsentsMutation,
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
+  useFetchDocumentByIdMutation,
+  useFetchRolesDataQuery,
+  useUpdateRoleDataMutation,
+  useDeleteRolesMutation,
+  useDeleteDocumentMutation,
 } = apiSlice

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,17 +22,20 @@ import { Typography, Button } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import './PictureWithText.scss'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 type PictureWithTextProps = {
   image?: string
   text: string
   onButtonClicked?: () => void
+  onHelpButtonClicked?: () => void
 }
 
 export default function PictureWithText({
-  image = './edc-connector-text-image.png',
+  image = './teaser.png',
   text,
   onButtonClicked,
+  onHelpButtonClicked,
 }: PictureWithTextProps) {
   const { t } = useTranslation()
 
@@ -43,8 +46,31 @@ export default function PictureWithText({
         <Typography sx={{ fontFamily: 'LibreFranklin-Light' }} variant="body1">
           {t(text)}
         </Typography>
-
-        <Button startIcon={<AddCircleOutlineIcon />} onClick={onButtonClicked}>
+        <Button
+          sx={{
+            marginLeft: '-20px',
+            ':hover': {
+              background: 'transparent',
+              boxShadow: 'none',
+            },
+            ':focus': {
+              boxShadow: 'none',
+            },
+          }}
+          variant="text"
+          size="small"
+          startIcon={<ArrowForwardIcon />}
+          onClick={onHelpButtonClicked}
+        >
+          {t('content.edcconnector.helpText')}
+        </Button>
+        <Button
+          sx={{
+            marginTop: '40px',
+          }}
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={onButtonClicked}
+        >
           {t('content.edcconnector.addconnectorbutton')}
         </Button>
       </div>

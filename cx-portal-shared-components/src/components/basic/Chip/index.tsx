@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,10 +22,13 @@ import MuiChip, { ChipProps } from '@mui/material/Chip'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { theme } from '../../../theme'
+import AutorenewIcon from '@mui/icons-material/Autorenew'
 
 interface ChipCustomProps extends ChipProps {
-  type?: 'decline' | 'confirm' | 'plain'
+  type?: 'decline' | 'confirm' | 'plain' | 'delete' | 'progress'
   withIcon?: true | false
+  onDelete?: () => void
+  handleDelete?: any
 }
 
 export const Chip = ({
@@ -33,7 +36,8 @@ export const Chip = ({
   color = 'label',
   type = 'decline',
   withIcon = true,
-  onDelete = () => null, // To avoid default delete icon appear
+  onDelete,
+  handleDelete,
   ...props
 }: ChipCustomProps) => {
   let icon, hoverBgColor, hoverTextColor
@@ -49,6 +53,10 @@ export const Chip = ({
       hoverBgColor = theme.palette.confirmed.main
       hoverTextColor = theme.palette.confirmed.contrastText
       break
+    case 'progress':
+      icon = <AutorenewIcon />
+      hoverBgColor = theme.palette.info.main
+      hoverTextColor = theme.palette.info.contrastText
   }
 
   return (
@@ -56,9 +64,11 @@ export const Chip = ({
       variant={variant}
       color={color}
       icon={withIcon ? icon : undefined}
+      onDelete={type === 'delete' ? handleDelete : undefined}
       sx={{
-        borderRadius: '36px',
+        borderRadius: type === 'progress' ? '6px' : '36px',
         ':hover': {
+          cursor: type === 'progress' ? 'auto' : 'pointer',
           backgroundColor: type !== 'plain' ? hoverBgColor : undefined,
           color: type !== 'plain' ? hoverTextColor : undefined,
         },

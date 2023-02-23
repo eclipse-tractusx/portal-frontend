@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -178,6 +178,10 @@ const palette = createPalette({
     contrastText: '#FF532F',
   },
   label: {
+    main: '#F2F3FB',
+    contrastText: '#676BC6',
+  },
+  info: {
     main: '#F2F3FB',
     contrastText: '#676BC6',
   },
@@ -570,6 +574,15 @@ export const theme = createTheme({
         },
         {
           props: {
+            color: 'info',
+          },
+          style: {
+            backgroundColor: palette.info.main,
+            color: palette.info.contrastText,
+          },
+        },
+        {
+          props: {
             color: 'label',
           },
           style: {
@@ -601,8 +614,6 @@ export const theme = createTheme({
     MuiDialog: {
       styleOverrides: {
         paper: {
-          minWidth: 930,
-          maxWidth: 1416,
           borderRadius: 40,
         },
       },

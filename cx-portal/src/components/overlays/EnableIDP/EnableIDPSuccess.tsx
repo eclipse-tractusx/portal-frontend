@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -33,28 +33,21 @@ import { ACTIONS } from 'types/Constants'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
 export const EnableIDPSuccess = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
 
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('content.idpmanagement.enableIdpSuccessHeadline')}
-        intro={t('content.idpmanagement.enableIdpSuccessSubheadline')}
+        title={t('enable.success.title')}
+        intro={t('enable.success.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
         <div>
-          <Typography>
-            {t(
-              'Your new Identity Provider has been enabled and your user has been linked to it.'
-            )}
-          </Typography>
-          <Typography>
-            {t('Choose "Sign Out" and then log in again with the IDP named:')}
-          </Typography>
+          <Typography>{t('enable.success.desc')}</Typography>
         </div>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
           <Typography variant="h5">{data?.displayName}</Typography>
@@ -62,13 +55,13 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
+          {t('action.cancel')}
         </Button>
         <Button
           variant="contained"
           onClick={() => dispatch(exec(ACTIONS.SIGNOUT))}
         >
-          {t('Sign Out')}
+          {t('action.signout')}
         </Button>
       </DialogActions>
     </Dialog>

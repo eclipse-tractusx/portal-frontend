@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,20 +31,63 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 )
 
-export const Gallery = Template.bind({})
-Gallery.args = {
+export const GridMediumSquareGallery = Template.bind({})
+GridMediumSquareGallery.args = {
+  grid: true,
+  gallery: [
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption1',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption2',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption3',
+      size: 'medium-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
+    },
+  ],
+}
+
+export const FlexGallery = Template.bind({})
+FlexGallery.args = {
   gallery: [
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: true,
+      shadow: true,
     },
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       text: 'Lorem Image Caption',
+      size: 'small-rectangle',
+      hover: false,
+      borderRadius: true,
+      shadow: false,
     },
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
       text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: false,
+      shadow: true,
     },
   ],
 }

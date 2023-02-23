@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -41,6 +41,7 @@ import {
   useUpdateUserRolesMutation,
   UserRoleRequest,
 } from 'features/admin/appuserApiSlice'
+import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
 export default function AddAppUserRoles() {
   const { t } = useTranslation()
@@ -48,25 +49,33 @@ export default function AddAppUserRoles() {
   const { appId } = useParams()
 
   const roles = useSelector(rolesToAddSelector)
-  const user = useSelector(selectedUserSelector)
+  const users = useSelector(selectedUserSelector)
 
   const [updateUserRoles] = useUpdateUserRolesMutation()
 
   const handleConfirm = async () => {
-    if (!appId || !user || roles.length <= 0) return
-    const data: UserRoleRequest = {
-      appId: appId,
-      companyUserId: user,
-      body: roles,
-    }
-    try {
-      await updateUserRoles(data).unwrap()
-      dispatch(setUserRoleResp('success'))
+    if (!appId || !users || roles.length <= 0) return
+
+    users.map(async (user) => {
+      const data: UserRoleRequest = {
+        appId: appId,
+        companyUserId: user,
+        body: roles,
+      }
+      dispatch(setRolesToAdd([]))
+      try {
+        await updateUserRoles(data).unwrap()
+        dispatch(setUserRoleResp('success'))
+      } catch (err) {
+        dispatch(setUserRoleResp('error'))
+      }
       dispatch(closeOverlay())
-    } catch (err) {
-      dispatch(setUserRoleResp('error'))
-      dispatch(closeOverlay())
-    }
+    })
+  }
+
+  const handleCancel = () => {
+    dispatch(show(OVERLAYS.NONE, ''))
+    dispatch(setRolesToAdd([]))
   }
 
   return (
@@ -75,7 +84,7 @@ export default function AddAppUserRoles() {
         title={t('content.addUserRight.headline')}
         intro={t('content.addUserRight.subheadline')}
         closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(show(OVERLAYS.NONE, ''))}
+        onCloseWithIcon={handleCancel}
       />
 
       <DialogContent className="add-user-overlay-content">
@@ -98,7 +107,7 @@ export default function AddAppUserRoles() {
         <Button
           variant="contained"
           onClick={() => handleConfirm()}
-          disabled={!user || roles.length <= 0}
+          disabled={!users || roles.length <= 0}
         >
           {t('global.actions.confirm')}
         </Button>

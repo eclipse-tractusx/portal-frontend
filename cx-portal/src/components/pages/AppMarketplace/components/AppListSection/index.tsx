@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -26,6 +26,7 @@ import {
   Typography,
   ViewSelector,
 } from 'cx-portal-shared-components'
+import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
@@ -38,13 +39,14 @@ import {
   removeItem,
 } from 'features/apps/favorites/actions'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
-import { appToCard } from 'features/apps/mapper'
 import debounce from 'lodash.debounce'
+import CommonService from 'services/CommonService'
 
 export const label = 'AppList'
 
 export default function AppListSection() {
   const { t } = useTranslation()
+  const theme = useTheme()
   const [group, setGroup] = useState<string>('')
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [cardsData, setCardsData] = useState<CardItems[]>([])
@@ -52,7 +54,7 @@ export default function AppListSection() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
-  const cards = (data || []).map((app) => appToCard(app))
+  const [cards, setCards] = useState<any>([])
   const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
 
@@ -61,10 +63,21 @@ export default function AppListSection() {
   }, [dispatch])
 
   useEffect(() => {
-    if (cardsData && cardsData.length <= 0) {
+    if (cards && cards.length > 0 && cardsData && cardsData.length <= 0) {
       setCardsData(cards)
     }
+    // eslint-disable-next-line
   }, [cards, cardsData])
+
+  useEffect(() => {
+    if (data) {
+      const newPromies = CommonService.fetchLeadPictureImage(data)
+      Promise.all(newPromies).then((result) => {
+        setCards(result.flat())
+      })
+    }
+    // eslint-disable-next-line
+  }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)
@@ -81,9 +94,9 @@ export default function AppListSection() {
       debounce(
         (expr: string) =>
           setCardsData(
-            expr
+            expr && cards?.length > 0
               ? cards.filter(
-                  (card) =>
+                  (card: { title: string; subtitle: string }) =>
                     card.title.toLowerCase().includes(expr.toLowerCase()) ||
                     (card.subtitle &&
                       card.subtitle.toLowerCase().includes(expr.toLowerCase()))
@@ -133,14 +146,14 @@ export default function AppListSection() {
 
         <Box sx={{ textAlign: 'center' }}>
           <SearchInput
-            sx={{ minWidth: '544px' }}
+            sx={{ minWidth: '544px', marginBottom: '50px' }}
             margin={'normal'}
             placeholder={t('content.home.searchSection.inputPlaceholder')}
             value={filterExpr}
             onChange={(e) => doFilter(e.target.value)}
           />
         </Box>
-        {cardsData && (
+        {cardsData && cardsData.length ? (
           <AppListGroupView
             items={cardsData.map((card) => ({
               ...card,
@@ -150,6 +163,15 @@ export default function AppListSection() {
             }))}
             groupKey={group}
           />
+        ) : (
+          <div style={{ textAlign: 'center' }}>
+            <CircularProgress
+              size={50}
+              sx={{
+                color: theme.palette.primary.main,
+              }}
+            />
+          </div>
         )}
       </section>
     </Box>

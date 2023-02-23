@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -25,14 +25,16 @@ import { Typography } from '../Typography'
 import { IconButton } from '../IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
+import { CONTENT_SPACING_RIGHT_LEFT } from './index'
 
 export interface DialogHeaderProps {
-  title: string | JSX.Element
+  title?: string | JSX.Element
   intro?: string | JSX.Element
   icon?: boolean
   closeWithIcon?: boolean
   onCloseWithIcon?: (event: React.MouseEvent) => void
   iconComponent?: JSX.Element
+  children?: JSX.Element
 }
 
 export const DialogHeader = ({
@@ -43,35 +45,48 @@ export const DialogHeader = ({
   iconComponent = (
     <CheckCircleOutlineOutlinedIcon sx={{ fontSize: 60 }} color="success" />
   ),
+  children,
   onCloseWithIcon,
 }: DialogHeaderProps) => {
   const { spacing, palette } = useTheme()
 
   return (
-    <Box sx={{ padding: spacing(7, 14), textAlign: 'center' }}>
-      <MuiDialogTitle>
-        {icon && <Box>{iconComponent}</Box>}
-        {title}
-        {closeWithIcon && (
-          <IconButton
-            aria-label="close"
-            onClick={onCloseWithIcon}
-            sx={{
-              position: 'absolute',
-              right: 16,
-              top: 16,
-              color: palette.action.active,
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        )}
-      </MuiDialogTitle>
+    <Box
+      sx={{
+        padding: spacing(7, CONTENT_SPACING_RIGHT_LEFT),
+        textAlign: 'center',
+      }}
+    >
+      {title && (
+        <MuiDialogTitle
+          sx={{
+            fontSize: '24px',
+          }}
+        >
+          {icon && <Box>{iconComponent}</Box>}
+          {title}
+          {closeWithIcon && (
+            <IconButton
+              aria-label="close"
+              onClick={onCloseWithIcon}
+              sx={{
+                position: 'absolute',
+                right: 16,
+                top: 16,
+                color: palette.action.active,
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          )}
+        </MuiDialogTitle>
+      )}
       {intro && (
         <Typography variant="body2" sx={{ marginTop: 1 }}>
           {intro}
         </Typography>
       )}
+      {children}
     </Box>
   )
 }

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,47 +24,87 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
-import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
+import {
+  AppFilterType,
+  ApplicationRequest,
+  ProgressButtonsProps,
+} from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
+import './RequestListStyle.scss'
 
 export const RequestList = ({
   fetchHook,
-  fetchHookArgs,
-  onSearch,
-  onApproveClick,
-  onDeclineClick,
-  isLoading,
   onTableCellClick,
   loaded,
   handleDownloadDocument,
-  searchExpr,
   showConfirmOverlay,
+  onConfirmationCancel,
+  onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: any
-  onSearch?: (search: string) => void
-  onApproveClick: (id: string) => void
-  onDeclineClick: (id: string) => void
-  isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
-  handleDownloadDocument: (documentId: string, documentType: string) => void
-  searchExpr?: string
-  showConfirmOverlay?: any
+  handleDownloadDocument: (
+    appId: string,
+    documentId: string,
+    documentType: string
+  ) => void
+  showConfirmOverlay?: (applicationId: string) => void
+  onConfirmationCancel?: (applicationId: string, name: string) => void
+  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateApplicationRequestSelector)
+  const [group, setGroup] = useState<string>(AppFilterType.INREVIEW)
+  const [searchExpr, setSearchExpr] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState<string>(
+    AppFilterType.INREVIEW
+  )
+  const [fetchHookArgs, setFetchHookArgs] = useState({})
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    const viewValue = e.currentTarget.value
+    setFilterStatus(viewValue)
+    setGroup(viewValue)
+    setRefresh(Date.now())
+  }
+
+  useEffect(() => {
+    if (onValidate(searchExpr)) {
+      setFetchHookArgs({
+        statusFilter: filterStatus,
+        expr: searchExpr,
+      })
+    }
+    // eslint-disable-next-line
+  }, [filterStatus, searchExpr])
+
+  const filterView = [
+    {
+      buttonText: t('content.admin.registration-requests.filter.all'),
+      buttonValue: AppFilterType.ALL,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.admin.registration-requests.filter.review'),
+      buttonValue: AppFilterType.INREVIEW,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.admin.registration-requests.filter.closed'),
+      buttonValue: AppFilterType.CLOSED,
+      onButtonClick: setView,
+    },
+  ]
 
   const columns = RegistrationRequestsTableColumns(
     useTranslation,
-    onApproveClick,
-    onDeclineClick,
-    isLoading,
     handleDownloadDocument,
-    showConfirmOverlay
+    showConfirmOverlay,
+    onConfirmationCancel,
+    onChipButtonSelect
   )
 
   useEffect(() => {
@@ -78,20 +118,21 @@ export const RequestList = ({
   }
 
   return (
-    <section id="identity-management-id">
+    <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={80}
+        rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
+        alignCell="start"
         onCellClick={onTableCellClick}
-        toolbarVariant={'ultimate'}
+        toolbarVariant={'searchAndFilter'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (!onSearch || !onValidate(expr)) return
+          if (!onValidate(expr)) return
           setRefresh(Date.now())
-          onSearch(expr)
+          setSearchExpr(expr)
         }}
         searchDebounce={1000}
         title={t('content.admin.registration-requests.tabletitle')}
@@ -101,6 +142,11 @@ export const RequestList = ({
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.applicationId}
         columns={columns}
+        descriptionText={`${t(
+          'content.admin.registration-requests.introText1'
+        )}${t('content.admin.registration-requests.introText2')}`}
+        defaultFilter={group}
+        filterViews={filterView}
       />
     </section>
   )

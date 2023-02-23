@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -23,12 +23,15 @@ import {
   Typography,
   IconButton,
   PageNotifications,
+  UploadFileStatus,
+  PageSnackbar,
+  UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, InputLabel, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
@@ -46,14 +49,14 @@ import {
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
+import { Dropzone } from 'components/shared/basic/Dropzone'
 
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: File | null
+  images: any
   uploadDataPrerequisits: File | null
   uploadTechnicalGuide: File | null
-  uploadDataContract: File | null
   uploadAppContract: File | null | string
   providerHomePage: string
   providerContactEmail: string
@@ -63,36 +66,36 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const [appPageNotification, setAppPageNotification] = useState(false)
+  const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '').data
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
-
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const statusData = fetchAppStatus || appStatusData
 
   const defaultValues = {
     longDescriptionEN:
-      appStatusData?.descriptions?.filter(
+      fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
-      )[0].longDescription || '',
+      )[0]?.longDescription || '',
     longDescriptionDE:
-      appStatusData?.descriptions?.filter(
+      fetchAppStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
-      )[0].longDescription || '',
-    images: null,
-    uploadDataPrerequisits: null,
-    uploadTechnicalGuide: null,
-    uploadDataContract: null,
-    uploadAppContract: null,
-    providerHomePage: appStatusData?.providerUri || '',
-    providerContactEmail: appStatusData?.contactEmail || '',
-    providerPhoneContact: appStatusData?.contactNumber || '',
+      )[0]?.longDescription || '',
+    images: fetchAppStatus?.documents?.APP_IMAGE || [],
+    uploadDataPrerequisits:
+      fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
+    uploadTechnicalGuide:
+      fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
+    uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
+    providerHomePage: fetchAppStatus?.providerUri || '',
+    providerContactEmail: fetchAppStatus?.contactEmail || '',
+    providerPhoneContact: fetchAppStatus?.contactNumber || '',
   }
 
   const {
@@ -100,55 +103,178 @@ export default function AppPage() {
     getValues,
     control,
     trigger,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
 
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
   const uploadAppContractValue = getValues().uploadAppContract
-  const uploadDataContractValue = getValues().uploadDataContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
-  const imagesValue = getValues().images
+  const defaultImages = defaultValues.images
+  const defaultuploadDataPrerequisits = defaultValues.uploadDataPrerequisits
+  const defaultuploadTechnicalGuide = defaultValues.uploadTechnicalGuide
+  const defaultuploadAppContract = defaultValues.uploadAppContract
 
   useEffect(() => {
-    if (getValues().uploadAppContract !== null)
-      uploadDocumentApi(appId, 'APP_CONTRACT', uploadAppContractValue)
+    const images = defaultImages?.map((item: { documentName: string }) => {
+      return {
+        name: item.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      }
+    })
+
+    if (images.length > 0) {
+      const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
+        const nextFiles = images
+        nextFiles[fileIndex] = {
+          name: images[fileIndex].name,
+          status,
+        }
+        setValue('images', nextFiles)
+      }
+
+      for (let fileIndex = 0; fileIndex < images.length; fileIndex++) {
+        setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
+      }
+    }
+
+    if (
+      defaultuploadDataPrerequisits &&
+      Object.keys(defaultuploadDataPrerequisits).length > 0
+    ) {
+      setValue('uploadDataPrerequisits', {
+        name:
+          defaultuploadDataPrerequisits &&
+          defaultuploadDataPrerequisits[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
+    }
+
+    if (
+      defaultuploadTechnicalGuide &&
+      Object.keys(defaultuploadTechnicalGuide).length > 0
+    ) {
+      setValue('uploadTechnicalGuide', {
+        name:
+          defaultuploadTechnicalGuide &&
+          defaultuploadTechnicalGuide[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
+    }
+
+    if (
+      defaultuploadAppContract &&
+      Object.keys(defaultuploadAppContract).length > 0
+    ) {
+      setValue('uploadAppContract', {
+        name:
+          defaultuploadAppContract && defaultuploadAppContract[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    defaultImages,
+    defaultuploadDataPrerequisits,
+    defaultuploadTechnicalGuide,
+    defaultuploadAppContract,
+  ])
+
+  const setFileStatus = (
+    fieldName: Parameters<typeof setValue>[0],
+    status: UploadFileStatus
+  ) => {
+    const value = getValues(fieldName)
+
+    setValue(fieldName, {
+      name: value.name,
+      size: value.size,
+      status,
+    } as any)
+  }
+
+  useEffect(() => {
+    const value = getValues().uploadAppContract
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
+
+      uploadDocumentApi(appId, 'APP_CONTRACT', value)
+        .then(() =>
+          setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadAppContract', UploadStatus.UPLOAD_ERROR)
+        )
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadAppContractValue])
 
   useEffect(() => {
-    if (getValues().uploadDataContract !== null)
-      uploadDocumentApi(appId, 'APP_DATA_DETAILS', uploadDataContractValue)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadDataContractValue])
+    const value = getValues().uploadDataPrerequisits
 
-  useEffect(() => {
-    if (getValues().uploadDataPrerequisits !== null)
-      uploadDocumentApi(
-        appId,
-        'ADDITIONAL_DETAILS',
-        uploadDataPrerequisitsValue
-      )
+    if (value && !('status' in value)) {
+      setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
+
+      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', value)
+        .then(() =>
+          setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_ERROR)
+        )
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadDataPrerequisitsValue])
 
   useEffect(() => {
-    if (getValues().uploadTechnicalGuide !== null)
-      uploadDocumentApi(
-        appId,
-        'APP_TECHNICAL_INFORMATION',
-        uploadTechnicalGuideValue
-      )
+    const value = getValues().uploadTechnicalGuide
+
+    if (value && !('status' in value)) {
+      setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
+
+      uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
+        .then(() =>
+          setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_ERROR)
+        )
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadTechnicalGuideValue])
 
-  useEffect(() => {
-    if (getValues().images !== null)
-      uploadDocumentApi(appId, 'APP_IMAGE', imagesValue)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imagesValue])
+  const uploadImages = (files: any) => {
+    const value = files
+    if (value.length > 0) {
+      const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
+        const nextFiles = [...getValues().images] as any[]
+        nextFiles[fileIndex] = {
+          name: value[fileIndex].name,
+          size: value[fileIndex].size,
+          status,
+        }
+        setValue('images', nextFiles as any)
+      }
+
+      for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
+        setFileStatus(fileIndex, UploadStatus.UPLOADING)
+        uploadDocumentApi(appId, 'APP_IMAGE', value[fileIndex])
+          .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
+          .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
+      }
+    }
+  }
 
   const uploadDocumentApi = async (
     appId: string,
@@ -161,58 +287,56 @@ export default function AppPage() {
       body: { file },
     }
 
-    try {
-      await updateDocumentUpload(data).unwrap()
-    } catch (error) {}
+    return updateDocumentUpload(data).unwrap()
   }
 
-  const onAppPageSubmit = async (data: FormDataType) => {
+  const onAppPageSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
       'images',
       'uploadDataPrerequisits',
       'uploadTechnicalGuide',
-      'uploadDataContract',
       'uploadAppContract',
       'providerHomePage',
       'providerContactEmail',
       'providerPhoneContact',
     ])
     if (validateFields) {
-      handleSave(data)
+      handleSave(data, buttonLabel)
     }
   }
 
-  const handleSave = async (data: FormDataType) => {
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       descriptions: [
         {
           languageCode: 'en',
           longDescription: data.longDescriptionEN,
           shortDescription:
-            appStatusData?.descriptions?.filter(
+            statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0].shortDescription || '',
+            )[0]?.shortDescription || '',
         },
         {
           languageCode: 'de',
           longDescription: data.longDescriptionDE,
           shortDescription:
-            appStatusData?.descriptions?.filter(
+            statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
-            )[0].shortDescription || '',
+            )[0]?.shortDescription || '',
         },
       ],
       images: [],
-      providerUri: data.providerHomePage,
-      contactEmail: data.providerContactEmail,
-      contactNumber: data.providerPhoneContact,
+      providerUri: data.providerHomePage || '',
+      contactEmail: data.providerContactEmail || '',
+      contactNumber: data.providerPhoneContact || '',
     }
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
-      dispatch(increment())
+      buttonLabel === 'saveAndProceed' && dispatch(increment())
+      buttonLabel === 'save' && setAppPageSnackbar(true)
     } catch (error: any) {
       setAppPageNotification(true)
     }
@@ -309,24 +433,31 @@ export default function AppPage() {
           <InputLabel sx={{ mb: 3, mt: 3 }}>
             {t('content.apprelease.appPage.images') + ' *'}
           </InputLabel>
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'images',
-              type: 'dropzone',
-              acceptFormat: {
-                'image/png': [],
-                'image/jpeg': [],
-              },
-              maxFilesToUpload: 3,
-              maxFileSize: 819200,
-              rules: {
-                required: {
-                  value: true,
-                },
-              },
+          <Controller
+            name="images"
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange: reactHookFormOnChange, value } }) => {
+              return (
+                <Dropzone
+                  files={value}
+                  onChange={(files, addedFiles, deletedFiles) => {
+                    if (deletedFiles?.length) {
+                      //to do: to call 'useDeleteDocumentMutation' on delete
+                      console.log('deletedFile', deletedFiles)
+                    }
+                    reactHookFormOnChange(files)
+                    trigger('images')
+                    addedFiles && uploadImages(files)
+                  }}
+                  acceptFormat={{
+                    'image/png': [],
+                    'image/jpeg': [],
+                  }}
+                  maxFilesToUpload={3}
+                  maxFileSize={819200}
+                />
+              )
             }}
           />
           {errors?.images?.type === 'required' && (
@@ -345,7 +476,6 @@ export default function AppPage() {
         {[
           'uploadDataPrerequisits',
           'uploadTechnicalGuide',
-          'uploadDataContract',
           'uploadAppContract',
         ].map((item: string, i) => (
           <div key={i}>
@@ -362,7 +492,7 @@ export default function AppPage() {
                   name: item,
                   type: 'dropzone',
                   acceptFormat: {
-                    'text/pdf': ['.pdf'],
+                    'application/pdf': ['.pdf'],
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
@@ -383,14 +513,6 @@ export default function AppPage() {
                 )}
               {item === 'uploadTechnicalGuide' &&
                 errors?.uploadTechnicalGuide?.type === 'required' && (
-                  <Typography variant="body2" className="file-error-msg">
-                    {t(
-                      'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-                    )}
-                  </Typography>
-                )}
-              {item === 'uploadDataContract' &&
-                errors?.uploadDataContract?.type === 'required' && (
                   <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
@@ -420,20 +542,14 @@ export default function AppPage() {
               trigger,
               errors,
               name: 'providerHomePage',
-              label: t('content.apprelease.appPage.providerHomePage') + ' *',
+              label: t('content.apprelease.appPage.providerHomePage'),
               type: 'input',
               rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.appPage.providerHomePage'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
                 pattern: {
-                  value: Patterns.appPage.providerHomePage,
-                  message: `${t(
-                    'content.apprelease.appReleaseForm.validCharactersIncludes'
-                  )} A-Za-z.:@&0-9 !`,
+                  value: Patterns.URL,
+                  message: t(
+                    'content.apprelease.appPage.pleaseEnterValidHomePageURL'
+                  ),
                 },
               },
             }}
@@ -447,16 +563,9 @@ export default function AppPage() {
               trigger,
               errors,
               name: 'providerContactEmail',
-              label:
-                t('content.apprelease.appPage.providerContactEmail') + ' *',
+              label: t('content.apprelease.appPage.providerContactEmail'),
               type: 'input',
               rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.appPage.providerContactEmail'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
                 pattern: {
                   value: Patterns.MAIL,
                   message: t(
@@ -475,19 +584,12 @@ export default function AppPage() {
               trigger,
               errors,
               name: 'providerPhoneContact',
-              label:
-                t('content.apprelease.appPage.providerPhoneContact') + ' *',
+              label: t('content.apprelease.appPage.providerPhoneContact'),
               placeholder: t(
                 'content.apprelease.appPage.providerPhoneContactPlaceholder'
               ),
               type: 'input',
               rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.appPage.providerPhoneContact'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
                 pattern: {
                   value: Patterns.appPage.phone,
                   message: t(
@@ -516,6 +618,15 @@ export default function AppPage() {
             </Grid>
           </Grid>
         )}
+        <PageSnackbar
+          open={appPageSnackbar}
+          onCloseNotification={() => setAppPageSnackbar(false)}
+          severity="success"
+          description={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          autoClose={true}
+        />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           sx={{ mr: 1 }}
@@ -531,7 +642,9 @@ export default function AppPage() {
           sx={{ float: 'right' }}
           variant="contained"
           disabled={!isValid}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) =>
+            onAppPageSubmit(data, 'saveAndProceed')
+          )}
         >
           {t('content.apprelease.footerButtons.saveAndProceed')}
         </Button>
@@ -539,7 +652,7 @@ export default function AppPage() {
           variant="outlined"
           name="send"
           sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit(onAppPageSubmit)}
+          onClick={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
         >
           {t('content.apprelease.footerButtons.save')}
         </Button>

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,84 +18,163 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { DropArea, Typography } from 'cx-portal-shared-components'
-import { useCallback, useState } from 'react'
+import {
+  DropAreaProps,
+  DropPreviewProps,
+  DropPreviewFileProps,
+  DropStatusHeaderProps,
+  UploadFile,
+  deleteConfirmOverlayTranslation,
+  DropArea as DefaultDropArea,
+  DropPreview as DefaultDropPreview,
+  UploadStatus,
+} from 'cx-portal-shared-components'
+import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { IHashMap } from 'types/MainTypes'
-import { Preview } from './components/Preview'
+import { useTranslation } from 'react-i18next'
 
-export const Dropzone = ({
-  onFileDrop,
-  showPreviewAlone = false,
-  preview = (files) => (
-    <Preview files={files} showPreviewAlone={showPreviewAlone} />
-  ),
-  children,
-  acceptFormat = { 'image/*': [] },
-  maxFilesToUpload = 1,
-  previewFiles,
-  maxFileSize,
-}: {
-  onFileDrop: (files: File[]) => void
-  showPreviewAlone?: boolean
-  preview?: (files: File[]) => JSX.Element
-  children?: JSX.Element[] | JSX.Element
+export type DropzoneFile = File & Partial<UploadFile>
+
+export interface DropzoneProps {
+  onChange: (
+    allFiles: DropzoneFile[],
+    addedFiles: DropzoneFile[] | undefined,
+    deletedFiles: DropzoneFile[] | undefined
+  ) => void
+  files?: DropzoneFile[]
   acceptFormat?: any
   maxFilesToUpload?: number
-  previewFiles?: any
   maxFileSize?: number
-}) => {
-  const [dropped, setDropped] = useState<IHashMap<File>>({})
 
-  const onDrop = useCallback(
-    (files: File[]) => {
-      setDropped(
-        files.reduce(
-          (map: any, file: File) => {
-            map[file.name] = file
-            return map
-          },
-          { ...dropped }
-        )
-      )
-      onFileDrop(files)
+  DropArea?: FunctionComponent<DropAreaProps> | false
+  DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
+  DropPreview?: FunctionComponent<DropPreviewProps> | false
+  DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
+  enableDeleteIcon?: boolean
+  enableDeleteOverlay?: boolean
+  deleteOverlayTranslation?: deleteConfirmOverlayTranslation
+}
+
+export const Dropzone = ({
+  onChange,
+  files,
+  acceptFormat,
+  maxFilesToUpload,
+  maxFileSize,
+  DropArea,
+  DropStatusHeader,
+  DropPreview,
+  DropPreviewFile,
+  enableDeleteIcon = true,
+  enableDeleteOverlay = false,
+  deleteOverlayTranslation,
+}: DropzoneProps) => {
+  const { t } = useTranslation()
+
+  const [dropped, setDropped] = useState<DropzoneFile[]>([])
+
+  const currentFiles = files ?? dropped
+
+  const isSingleUpload = maxFilesToUpload === 1
+
+  const isDisabled = isSingleUpload
+    ? false
+    : currentFiles.length === maxFilesToUpload
+
+  const onDropAccepted = useCallback(
+    (droppedFiles: File[]) => {
+      const nextFiles = isSingleUpload
+        ? droppedFiles
+        : [...dropped, ...droppedFiles]
+
+      setDropped(nextFiles)
+      onChange(nextFiles, droppedFiles, undefined)
     },
-    [dropped, onFileDrop]
+    [dropped, isSingleUpload, onChange]
   )
 
-  const { getRootProps, getInputProps, fileRejections } = useDropzone({
-    onDrop,
-    disabled:
-      maxFilesToUpload === Object.keys(dropped)?.length || showPreviewAlone,
-    maxFiles: maxFilesToUpload,
+  const handleDelete = useCallback(
+    (deleteIndex) => {
+      const nextFiles = [...currentFiles]
+      const deletedFiles = nextFiles.splice(deleteIndex, 1)
+
+      setDropped(nextFiles)
+      onChange(nextFiles, undefined, deletedFiles)
+    },
+    [currentFiles, onChange]
+  )
+
+  const {
+    getRootProps,
+    getInputProps,
+    fileRejections,
+    isDragReject,
+    isDragActive,
+  } = useDropzone({
+    onDropAccepted,
+    disabled: isDisabled,
+    maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
     accept: acceptFormat,
-    multiple: false,
+    multiple: !isSingleUpload,
     maxSize: maxFileSize,
   })
 
-  return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {!showPreviewAlone && (
-        <DropArea
-          disabled={maxFilesToUpload === Object.keys(dropped)?.length}
-        />
-      )}
-      {fileRejections?.map(({ errors }, index: number) => (
-        <Typography
-          variant="body2"
-          sx={{ color: '#d32f2f', fontSize: '0.75rem', mt: 1 }}
-          key={index}
-        >
-          {errors && errors[0]?.message}
-        </Typography>
-      ))}
+  let DropAreaComponent = DefaultDropArea
+  if (DropArea) {
+    DropAreaComponent = DropArea
+  } else if (DropArea === false) {
+    DropAreaComponent = () => null
+  }
 
-      {(previewFiles &&
-        Object.keys(previewFiles)?.length > 0 &&
-        preview(Object.values(previewFiles))) ||
-        preview(Object.values(dropped))}
-      {children}
+  let DropPreviewComponent = DefaultDropPreview
+  if (DropPreview) {
+    DropPreviewComponent = DropPreview
+  } else if (DropPreview === false) {
+    DropPreviewComponent = () => null
+  }
+
+  // TODO: read react-dropzone errorCode instead of message and localize
+  const errorMessage =
+    !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
+
+  const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
+    name: file.name,
+    size: file.size,
+    status: file.status ?? UploadStatus.NEW,
+    progressPercent: file.progressPercent,
+  }))
+
+  return (
+    <div>
+      <div {...getRootProps()}>
+        <DropAreaComponent
+          disabled={isDisabled}
+          error={errorMessage || isDragReject}
+          translations={{
+            title: t('shared.dropzone.title'),
+            subTitle: t('shared.dropzone.subTitle'),
+            errorTitle: t('shared.dropzone.errorTitle'),
+          }}
+        >
+          <input {...getInputProps()} />
+        </DropAreaComponent>
+      </div>
+
+      <DropPreviewComponent
+        uploadFiles={uploadFiles}
+        onDelete={handleDelete}
+        DropStatusHeader={DropStatusHeader}
+        DropPreviewFile={DropPreviewFile}
+        translations={{
+          placeholder: t('shared.dropzone.placeholder'),
+          uploadError: t('shared.dropzone.uploadError'),
+          uploadSuccess: t('shared.dropzone.uploadSuccess'),
+          uploadProgess: t('shared.dropzone.uploadProgess'),
+        }}
+        enableDeleteIcon={enableDeleteIcon}
+        enableDeleteOverlay={enableDeleteOverlay}
+        deleteOverlayTranslation={deleteOverlayTranslation}
+      />
     </div>
   )
 }

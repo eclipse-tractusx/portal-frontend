@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -29,7 +29,7 @@ import { SelectInput } from './Components/SelectInput'
 import { SelectOptions } from './Components/SelectOptions'
 import { SelectAddMore } from './Components/SelectAddMore'
 import uniqueId from 'lodash/uniqueId'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export type TagSizeType = 'small' | 'medium' | 'large'
 export type PartsType = {
@@ -51,6 +51,7 @@ export interface MultiSelectListProps
   notItemsText: string
   tagSize?: TagSizeType
   filterOptionsArgs?: {}
+  defaultValues?: any
   onAddItem: (items: any[]) => void
 }
 
@@ -72,6 +73,7 @@ export const MultiSelectList = ({
   notItemsText,
   tagSize,
   filterOptionsArgs = {},
+  defaultValues = [],
   onAddItem,
 }: MultiSelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
@@ -94,6 +96,30 @@ export const MultiSelectList = ({
           stringify: (option: any) => option[keyTitle],
         }
   )
+
+  useEffect(() => {
+    if (defaultValues.length > 0) {
+      setSelected(defaultValues)
+      onAddItem(defaultValues)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues])
+
+  useEffect(() => {
+    if (items.length > 0) {
+      if (defaultValues.length > 0) {
+        onAddItem(defaultValues)
+        setSelected(defaultValues)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items])
+
+  useEffect(() => {
+    if (error) {
+      setShowItems(false)
+    }
+  }, [error])
 
   return (
     <Box>
@@ -170,7 +196,8 @@ export const MultiSelectList = ({
             )
           }}
           onChange={(_, selectedItems: any[]) => handleChange(selectedItems)}
-          onBlur={() => setShowItems(true)}
+          onBlur={() => (error ? setShowItems(false) : setShowItems(true))}
+          defaultValue={defaultValues}
         />
       ) : (
         <SelectAddMore

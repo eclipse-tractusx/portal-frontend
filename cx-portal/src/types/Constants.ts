@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,7 +28,9 @@ export enum PAGES {
   REGISTRATION = 'registration',
   SWAGGER = 'swagger',
   STORYBOOK = 'storybook',
-  APPSTORE = 'appstore',
+  APPSUBSCRIPTION = 'appsubscription',
+  ADMINBOARD = 'adminboard',
+  ADMINBOARD_DETAIL = 'adminboarddetail',
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
@@ -57,6 +59,7 @@ export enum PAGES {
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
   HELP = 'help',
+  DOCUMENTATION = 'documentation',
   CONTACT = 'contact',
   IMPRINT = 'imprint',
   PRIVACY = 'privacy',
@@ -71,6 +74,7 @@ export enum PAGES {
   ERROR = 'error',
   APP_MANAGEMENT = 'appmanagement',
   APPOVERVIEW = 'appoverview',
+  DEACTIVATE = 'deactivate',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',
@@ -78,6 +82,8 @@ export enum PAGES {
   INTRODUCTION_APP_PROVIDER = 'companyrolesappprovider',
   INTRODUCTION_SERVICE_PROVIDER = 'companyrolesserviceprovider',
   INTRODUCTION_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
+  USE_CASE = 'usecase',
+  USE_CASE_TRACABILITY = 'usecasetraceablity',
 }
 
 export enum OVERLAYS {
@@ -92,6 +98,7 @@ export enum OVERLAYS {
   DELETE_TECHUSER = 'delete_techuser',
   NEWS = 'news',
   ADD_BPN = 'add_bpn',
+  ADD_SUBSCRIPTION = 'add_subscription',
   INVITE = 'invite',
   PARTNER = 'partner',
   APP = 'app',
@@ -102,6 +109,7 @@ export enum OVERLAYS {
   ENABLE_IDP = 'enable_idp',
   DISABLE_IDP = 'disable_idp',
   DELETE_IDP = 'delete_idp',
+  ADDUSERS_IDP = 'addusers_idp',
   IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',
@@ -111,6 +119,8 @@ export enum OVERLAYS {
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',
   SAMPLE_FORM = 'sample_form',
+  ADD_SERVICE_PROVIDER = 'add_service_provider',
+  DECLINE_ADMINBOARD = 'decline_adminboard',
 }
 
 export enum ACTIONS {
@@ -137,6 +147,7 @@ export enum ROLES {
   APPSTORE_FILTER = 'filter_apps',
   APPSTORE_DELETE = 'delete_apps',
   APPMANAGEMENT_VIEW = 'add_apps',
+  APP_MANAGEMENT = 'app_management',
   APPOVERVIEW_VIEW = 'add_apps',
   CONNECTOR_SETUP = 'setup_connector',
   DATACATALOG_VIEW = 'view_data_catalog',
@@ -165,6 +176,9 @@ export enum ROLES {
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
   MY_USER_ACCOUNT = 'my_user_account',
+  ACTIVATE_SUBSCRIPTION = 'activate_subscription',
+  APPROVE_APP_RELEASE = 'approve_app_release',
+  DECLINE_APP_RELEASE = 'decline_app_release',
 }
 
 export enum HINTS {

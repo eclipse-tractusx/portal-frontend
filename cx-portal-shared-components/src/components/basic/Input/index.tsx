@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,9 +28,12 @@ import {
   FormControl,
 } from '@mui/material'
 import ErrorOutline from '@mui/icons-material/ErrorOutline'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { Tooltips } from '../ToolTips'
 
 interface InputProps extends Omit<TextFieldProps, 'variant'> {
   variant?: 'filled'
+  tooltipMessage?: string
 }
 
 export const Input = ({
@@ -39,6 +42,7 @@ export const Input = ({
   placeholder,
   helperText,
   error = false,
+  tooltipMessage,
   ...props
 }: InputProps) => {
   return (
@@ -50,7 +54,38 @@ export const Input = ({
         error={error}
         variant="filled"
       >
-        <InputLabel>{label}</InputLabel>
+        <Box
+          sx={{
+            display: 'flex',
+            marginTop: '25px',
+          }}
+        >
+          <InputLabel
+            sx={{
+              marginRight: '10px',
+            }}
+          >
+            {label}
+          </InputLabel>
+          {tooltipMessage && (
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
+              }}
+              tooltipPlacement="top-start"
+              tooltipText={tooltipMessage}
+              children={
+                <span>
+                  <HelpOutlineIcon
+                    sx={{ color: '#B6B6B6' }}
+                    fontSize={'small'}
+                  />
+                </span>
+              }
+            />
+          )}
+        </Box>
         <TextField
           variant={variant}
           placeholder={placeholder}

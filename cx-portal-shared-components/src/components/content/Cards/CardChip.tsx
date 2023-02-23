@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -48,7 +48,7 @@ export const CardChip = ({ status, statusText }: CardChipProps) => {
   const [chipBackground, setChipBackground] = useState('')
 
   useEffect(() => {
-    switch (status) {
+    switch (status?.toLowerCase()) {
       case StatusVariants.release:
         setChipColor(theme.palette.chip.release)
         setChipBackground(theme.palette.chip.bgRelease)

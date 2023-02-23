@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,6 +28,11 @@ export type CardItems = Omit<
   'variant' | 'imageSize' | 'imageShape' | 'buttonText' | 'status'
 >
 
+export type SubItems = {
+  label: string
+  value: string
+}
+
 interface CardsProps {
   items: CardItems[]
   buttonText: CardProps['buttonText']
@@ -44,6 +49,11 @@ interface CardsProps {
   newButtonText?: string
   onNewCardButton?: any
   onCardClick?: any
+  subMenu?: boolean
+  submenuOptions?: SubItems[]
+  submenuClick?: any
+  tooltipText?: string
+  showStatus?: boolean
 }
 
 export const Cards = ({
@@ -62,6 +72,11 @@ export const Cards = ({
   newButtonText,
   onNewCardButton,
   onCardClick = () => {},
+  subMenu = false,
+  submenuOptions = [],
+  submenuClick = () => {},
+  tooltipText,
+  showStatus = true,
 }: CardsProps) => {
   const settings = {
     variant,
@@ -73,6 +88,11 @@ export const Cards = ({
     expandOnHover,
     filledBackground,
     addButtonClicked,
+    subMenu,
+    submenuOptions,
+    submenuClick,
+    tooltipText,
+    showStatus,
   }
   const { spacing } = useTheme()
 

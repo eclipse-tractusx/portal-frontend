@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -26,7 +26,7 @@ export const Patterns = {
   ID: /^[a-z0-9-_]{1,80}$/i,
   LABEL: /^[a-z0-9-_ ]{1,80}$/i,
   BPN: /^BPNL[0-9A-Z]{12}$/i,
-  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z0-9-]+\.)+[a-z]{2,}))$/i,
+  MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*))@(([a-z0-9-]+\.)+[a-z]{2,})$/,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
   URL: new RegExp(
@@ -36,6 +36,8 @@ export const Patterns = {
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   COMPANY_NAME: /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ-_+=.,:;!?'"&#@()]\s?){1,29}$/i,
+  firstName: /^[A-Za-zÀ-ÿ-]{2,40}$/,
+  lastName: /^[A-Za-zÀ-ÿ-]{2,40}$/,
   prefix: {
     BPN: /^BPNL/i,
     URL: /^https:/i,
@@ -44,8 +46,8 @@ export const Patterns = {
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
   appMarketCard: {
-    appTitle: /^([A-Za-z.:_@&0-9 -]){5,40}$/,
-    appProvider: /^([A-Za-z ]){3,30}$/,
+    appTitle: /^([A-Za-z.:_@&0-9' -]){5,40}$/,
+    appProvider: /^([A-Za-z -]){3,30}$/,
     shortDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
     shortDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
     useCaseCategory: /^([A-Za-z])$/,
@@ -55,17 +57,17 @@ export const Patterns = {
   appPage: {
     longDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
     longDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
-    providerHomePage: /^([A-Za-z.:@&0-9 !])+$/,
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {
-    clientId: /^[a-zA-Z0-9-]*$/,
-    clientSecret: /^[a-zA-Z0-9]*$/,
+    clientId: /^[a-zA-Z0-9-_]{2,80}$/,
+    clientSecret: /^[a-zA-Z0-9-_.!?/]{8,200}$/,
   },
   connectors: {
     NAME: /^[a-zA-Z0-9 @]{2,20}$/,
     COUNTRY: /^[A-Z]{2}$/,
   },
+  CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
 }
 
 export const isID = (expr: string) => Patterns.ID.test(expr)
@@ -75,6 +77,11 @@ export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
+export const isFirstName = (expr: string) => Patterns.firstName.test(expr)
+export const isLastName = (expr: string) => Patterns.lastName.test(expr)
+export const isIDPClientID = (expr: string) => Patterns.idp.clientId.test(expr)
+export const isIDPClientSecret = (expr: string) =>
+  Patterns.idp.clientSecret.test(expr)
 export const isMailOrEmpty = (expr: string) =>
   expr === '' || Patterns.MAIL.test(expr)
 export const isBPNOrEmpty = (expr: string) =>
@@ -88,5 +95,7 @@ export const isUUIDOrEmpty = (expr: string) =>
 export const isCName = (expr: string) => Patterns.connectors.NAME.test(expr)
 export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
+export const isValidCancelInput = (expr: string) =>
+  Patterns.CANCEL_INPUT.test(expr)
 
 export default Patterns

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,14 +22,15 @@ import { useTranslation } from 'react-i18next'
 import { Box, Grid, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import {
+  DropArea,
   Input,
   Tooltips,
   Typography,
-  Dropzone,
 } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'
+import { Dropzone } from '../../../../shared/basic/Dropzone'
 
 const ConnectorFormInput = ({
   control,
@@ -64,7 +65,7 @@ const ConnectorFormInput = ({
                 paddingRight: '10px',
               }}
             >
-              {dropzoneProps.formTitle}*
+              {label}
             </Typography>
 
             <Tooltips
@@ -88,55 +89,26 @@ const ConnectorFormInput = ({
             name={name}
             control={control}
             rules={rules}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <Dropzone
-                  inputContentTitle={dropzoneProps.title}
-                  inputContentSubTitle={dropzoneProps.subtitle}
-                  accept={dropzoneProps.accept}
-                  multiple={false}
-                  maxFiles={1}
-                  onChangeStatus={(meta: any, status: string) => {
-                    if (status === 'done' || status === 'preparing') {
-                      trigger(name)
-                      onChange(meta.file)
-                    }
-                  }}
-                />
-              )
-            }}
+            render={({ field: { onChange, value } }) => (
+              <Dropzone
+                acceptFormat={dropzoneProps.accept}
+                maxFilesToUpload={1}
+                onChange={([file]) => {
+                  trigger(name)
+                  onChange(file)
+                }}
+                DropStatusHeader={false}
+                DropArea={(props) => <DropArea {...props} size="small" />}
+              />
+            )}
           />
         </>
       ) : (
         <>
-          <div
-            style={{
-              marginLeft: '50px',
-              position: 'relative',
-              top: '25px',
-              zIndex: '9',
-            }}
-          >
-            <Tooltips
-              additionalStyles={{
-                cursor: 'pointer',
-                marginTop: '30px !important',
-              }}
-              tooltipPlacement="top-start"
-              tooltipText={tooltipMsg}
-              children={
-                <span>
-                  <HelpOutlineIcon
-                    sx={{ color: '#B6B6B6' }}
-                    fontSize={'small'}
-                  />
-                </span>
-              }
-            />
-          </div>
           <Controller
             render={({ field: { onChange, value } }) => (
               <Input
+                tooltipMessage={tooltipMsg}
                 sx={{
                   paddingTop: '10px',
                 }}
@@ -175,10 +147,10 @@ const ConnectorInsertForm = ({
   const { spacing } = theme
 
   const dropzoneProps = {
-    formTitle: t('content.edcconnector.edcUpload.formTitle'),
-    title: t('content.edcconnector.edcUpload.title'),
-    subtitle: t('content.edcconnector.edcUpload.subtitle'),
-    accept: '*',
+    accept: {
+      'application/x-pem-file': [],
+      'application/x-x509-ca-cert': [],
+    },
   }
 
   return (
@@ -311,6 +283,7 @@ const ConnectorInsertForm = ({
                   rules: {
                     required: true,
                   },
+                  label: t('content.edcconnector.modal.insertform.doc.label'),
                   dropzoneProps: dropzoneProps,
                   helperText: t(
                     'content.edcconnector.modal.insertform.doc.error'

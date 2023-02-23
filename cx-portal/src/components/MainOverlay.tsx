@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -47,7 +47,7 @@ export default function MainOverlay() {
       {ov.type === OVERLAYS.NONE && getAction(ov.id) ? (
         getAction(ov.id)?.element
       ) : (
-        <Dialog modalBorderRadius={50} open={ov.type !== OVERLAYS.NONE}>
+        <Dialog modalBorderRadius={20} open={ov.type !== OVERLAYS.NONE}>
           {getOverlay(ov)}
         </Dialog>
       )}

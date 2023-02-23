@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -30,8 +30,14 @@ import {
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
-import { isCompanyName, isID, isURL } from 'types/Patterns'
+import {
+  isCompanyName,
+  isIDPClientID,
+  isIDPClientSecret,
+  isURL,
+} from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
+import { useTranslation } from 'react-i18next'
 
 const RedirectURI = ({ uri }: { uri: string }) => {
   const [copied, setCopied] = useState<boolean>(false)
@@ -98,6 +104,8 @@ const UpdateIDPForm = ({
   idp: IdentityProvider
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
+  const { t } = useTranslation('idp')
+
   const defaultOAM =
     idp.oidc?.clientAuthMethod || (OIDCAuthMethod.SECRET_BASIC as string)
   const defaultOidcAuthMethod = {
@@ -108,7 +116,9 @@ const UpdateIDPForm = ({
 
   return (
     <>
-      <Typography variant="body2">{'Redirect URI (click to copy)'}</Typography>
+      <Typography variant="body2">{`${t('field.redirect.name')} ${t(
+        'field.redirect.hint'
+      )}`}</Typography>
       <RedirectURI uri={`${idp.redirectUrl}*`} />
 
       <div style={{ margin: '20px 0', display: 'flex' }}>
@@ -134,9 +144,9 @@ const UpdateIDPForm = ({
       <div style={{ margin: '20px 0' }}>
         <ValidatingInput
           name="metadataUrl"
-          label="Metadata URL"
+          label={t('field.metadata.name')}
           validate={isWellknownMetadata}
-          helperText="Enter the metadata URL of your IDP that ends with '.well-known/openid-configuration'"
+          helperText={t('field.metadata.hint')}
           onValid={onChange}
         />
       </div>
@@ -152,8 +162,8 @@ const UpdateIDPForm = ({
               title: m,
               value: m,
             }))}
-            label="Client Authentication Method"
-            placeholder="Client Authentication Method"
+            label={t('field.clientAuthMethod')}
+            placeholder={t('field.clientAuthMethod')}
             onChangeItem={(item) => onChange('clientAuthMethod', item.value)}
           />
         </div>
@@ -165,7 +175,7 @@ const UpdateIDPForm = ({
             name="clientId"
             label="Client ID"
             value={idp.oidc?.clientId || ''}
-            validate={isID}
+            validate={isIDPClientID}
             onValid={onChange}
           />
         </div>
@@ -173,7 +183,7 @@ const UpdateIDPForm = ({
           <ValidatingInput
             name="secret"
             label="Client Secret"
-            validate={isID}
+            validate={isIDPClientSecret}
             onValid={onChange}
           />
         </div>

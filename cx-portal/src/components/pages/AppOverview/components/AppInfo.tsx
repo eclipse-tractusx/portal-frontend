@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -52,9 +52,9 @@ export default function AppInfo({
               <Typography
                 sx={{
                   padding: '0px 10px',
-                  fontSize: '18px',
+                  color: 'text.primary',
                 }}
-                variant="caption"
+                variant="caption1"
               >
                 {desc.longDescription}
               </Typography>

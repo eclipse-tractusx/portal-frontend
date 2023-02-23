@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,6 +28,10 @@ import {
 import {
   CXNotificationContent,
   NotificationType,
+  PAGE,
+  PAGE_SIZE,
+  SORT_OPTION,
+  NOTIFICATION_TOPIC,
 } from 'features/notification/types'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -41,6 +45,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay'
+import { useDispatch } from 'react-redux'
+import { resetInitialNotificationState } from 'features/notification/actions'
 
 dayjs.extend(relativeTime)
 
@@ -71,14 +77,15 @@ const NotificationContent = ({
   const userId = item.contentParsed?.userId
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
-
+  const appName = item.contentParsed?.AppName
+  const offerName = item.contentParsed?.OfferName
   return (
     <>
       <div>
         <Trans
           ns="notification"
           i18nKey={`${item.typeId}.content`}
-          values={{ you }}
+          values={{ you, app: appName, offer: offerName }}
         >
           <NameLink
             fetchHook={useFetchUserDetailsQuery}
@@ -120,9 +127,8 @@ const NotificationContent = ({
 
 const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
-    case NotificationType.APP_SUBSCRIPTION_REQUEST:
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
-      return <NotificationContent item={item} />
+      return <NotificationContent item={item} navlinks={['usermanagement']} />
     case NotificationType.WELCOME:
       return <NotificationContent item={item} navlinks={['home']} />
     case NotificationType.WELCOME_APP_MARKETPLACE:
@@ -132,7 +138,22 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.WELCOME_USE_CASES:
       return <NotificationContent item={item} navlinks={['usecases']} />
     case NotificationType.WELCOME_SERVICE_PROVIDER:
-      return <NotificationContent item={item} navlinks={['serviceprovider']} />
+      return (
+        <NotificationContent
+          item={item}
+          navlinks={['companyrolesserviceprovider']}
+        />
+      )
+    case NotificationType.APP_SUBSCRIPTION_REQUEST:
+      return <NotificationContent item={item} navlinks={['appsubscription']} />
+    case NotificationType.APP_RELEASE_REQUEST:
+      return <NotificationContent item={item} navlinks={['adminboard']} />
+    case NotificationType.APP_RELEASE_APPROVAL:
+      return <NotificationContent item={item} navlinks={['appoverview']} />
+    case NotificationType.APP_RELEASE_REJECTION:
+      return <NotificationContent item={item} navlinks={['appoverview']} />
+    case NotificationType.TECHNICAL_USER_CREATION:
+      return <NotificationContent item={item} navlinks={['technicaluser']} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -143,12 +164,14 @@ export default function NotificationItem({
 }: {
   item: CXNotificationContent
 }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation('notification')
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
   const [deleteNotification] = useDeleteNotificationMutation()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const dispatch = useDispatch()
+
   const setRead = async (id: string) => {
     try {
       await setNotificationRead(id)
@@ -168,6 +191,16 @@ export default function NotificationItem({
   const onDelete = async () => {
     setLoading(true)
     await deleteNotification(item.id).unwrap()
+    dispatch(
+      resetInitialNotificationState({
+        page: PAGE,
+        size: PAGE_SIZE,
+        args: {
+          notificationTopic: NOTIFICATION_TOPIC.ALL,
+          sorting: SORT_OPTION,
+        },
+      })
+    )
     setShowDeleteModal(false)
   }
 
@@ -175,8 +208,8 @@ export default function NotificationItem({
     <>
       {showDeleteModal && (
         <DeleteNotificationConfirmOverlay
-          title={t('notification.deleteModal.title')}
-          intro={t('notification.deleteModal.intro')}
+          title={t('deleteModal.title')}
+          intro={t('deleteModal.intro')}
           handleClose={(e: { stopPropagation: () => void }) => {
             setShowDeleteModal(false)
             e.stopPropagation()
@@ -198,7 +231,10 @@ export default function NotificationItem({
             <LabelImportantIcon
               sx={{
                 fontSize: 15,
-                color: item.notificationTopic === 'ACTION' ? '#FDB943' : '#fff',
+                color:
+                  item.notificationTopic === 'ACTION'
+                    ? '#FDB943'
+                    : 'transparent',
               }}
             />
             <Typography
@@ -222,7 +258,10 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`${item.typeId}`)}
+              {t(`${item.typeId}.title`, {
+                app: item.contentParsed?.AppName,
+                offer: item.contentParsed?.OfferName,
+              })}
             </Typography>
             {open && (
               <div className="content">
@@ -249,7 +288,7 @@ export default function NotificationItem({
               }}
             >
               {item.notificationTopic === 'ACTION' && open
-                ? t('notification.actionRequired')
+                ? t('actionRequired')
                 : ''}
             </Typography>
           </div>

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -74,14 +74,14 @@ export default function Test() {
     <main>
       <section>
         <Dropzone
-          onFileDrop={csvPreview}
+          onChange={csvPreview}
           acceptFormat={{ 'application/json': [] }}
           maxFilesToUpload={20}
         />
         <ItemProcessor items={items} process={console.log} autostart={true} />
       </section>
       <section>
-        <Dropzone onFileDrop={appPreview} />
+        <Dropzone onChange={appPreview} />
         <Cards columns={4} buttonText={'click'} items={items.map(appToCard)} />
       </section>
     </main>

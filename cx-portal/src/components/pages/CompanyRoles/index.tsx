@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,38 +19,60 @@
  ********************************************************************************/
 
 import './CompanyRoles.scss'
-import StageSection from './components/StageSection'
 import { useEffect, useState } from 'react'
-import participant from './json/participant.json'
-import serviceProvider from './json/serviceProvider.json'
-import appProvider from './json/appProvider.json'
-import confirmity from './json/confirmity.json'
-import Section from './components/Section'
-import { StageSubNavigation } from './components/StageSubNavigation'
+import StageSection from 'components/shared/templates/StageSection'
+import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
+import { StaticTemplate } from 'cx-portal-shared-components'
+import CommonService from 'services/CommonService'
 
 export default function CompanyRoles() {
-  const [messageContent, setMessageContent] = useState<any>({})
+  const [companyRoles, setCompanyRoles] = useState<any>()
+  const [linkArray, setLinkArray] = useState<any>()
   const url = window.location.href
   useEffect(() => {
-    if (url.indexOf('companyrolesappprovider') > 1) {
-      setMessageContent(appProvider)
-    } else if (url.indexOf('companyrolesserviceprovider') > 1) {
-      setMessageContent(serviceProvider)
-    } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
-      setMessageContent(confirmity)
-    } else {
-      setMessageContent(participant)
-    }
+    CommonService.getCompanyRoles((data: any) => {
+      console.log(data)
+      setLinkArray([
+        {
+          index: 1,
+          title: data.subNavigation.link1Label,
+          navigation: 'intro-id',
+        },
+        {
+          index: 2,
+          title: data.subNavigation.link2Label,
+          navigation: 'data-id',
+        },
+        {
+          index: 3,
+          title: data.subNavigation.link3Label,
+          navigation: 'business-id',
+        },
+      ])
+      if (url.indexOf('companyrolesappprovider') > 1) {
+        setCompanyRoles(data.appProvider)
+      } else if (url.indexOf('companyrolesserviceprovider') > 1) {
+        setCompanyRoles(data.serviceProvider)
+      } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
+        setCompanyRoles(data.confirmity)
+      } else {
+        setCompanyRoles(data.participant)
+      }
+    })
   }, [url])
 
   return (
     <main className="companyRoles">
-      <StageSection
-        title={messageContent.title}
-        description={messageContent.description}
-      />
-      <StageSubNavigation />
-      <Section sectionInfo={messageContent.providers} />
+      {companyRoles && linkArray && (
+        <>
+          <StageSection
+            title={companyRoles.title}
+            description={companyRoles.description}
+          />
+          <StageSubNavigation linkArray={linkArray} />
+          <StaticTemplate sectionInfo={companyRoles.sections} />
+        </>
+      )}
     </main>
   )
 }

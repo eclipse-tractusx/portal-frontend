@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,25 +28,32 @@ import {
   SearchInput,
   CardItems,
   Cards,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
+import { useTheme, CircularProgress } from '@mui/material'
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import './AppOverview.scss'
+import CommonService from 'services/CommonService'
+import { AppOverviewList } from './AppOverviewList'
 
 export default function AppOverview() {
   const { t } = useTranslation()
+  const theme = useTheme()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
+  const { data, refetch } = useFetchProvidedAppsQuery()
+  const [itemCards, setItemCards] = useState<any>([])
+  const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
+  const [cards, setCards] = useState<any>([])
+  const { state } = useLocation()
   const [group, setGroup] = useState<string>('')
-  const { data } = useFetchProvidedAppsQuery()
-  const items = data && appCardStatus(data)
-  const recentlyChangedApps = data && appCardRecentlyApps(data)
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
@@ -55,6 +62,36 @@ export default function AppOverview() {
     inactive: 'inactive',
     active: 'active',
   }
+
+  useEffect(() => {
+    state === 'deactivate-success' && refetch()
+  }, [state, refetch])
+
+  useEffect(() => {
+    if (cards) {
+      const recentCards = appCardRecentlyApps(cards)
+      setRecentlyChangedApps(recentCards)
+      const itemCards = appCardStatus(cards)
+      setItemCards(itemCards)
+    }
+    // eslint-disable-next-line
+  }, [cards])
+
+  useEffect(() => {
+    if (itemCards) {
+      setFilterItem(itemCards)
+    }
+    // eslint-disable-next-line
+  }, [itemCards])
+
+  useEffect(() => {
+    if (data) {
+      const newPromies = CommonService.fetchLeadPictureImage(data)
+      Promise.all(newPromies).then((result) => {
+        setCards(result.flat())
+      })
+    }
+  }, [data])
 
   const debouncedSearch = useMemo(
     () =>
@@ -85,24 +122,17 @@ export default function AppOverview() {
         } else if (group) {
           setFilterItem(data)
         } else if (expr.length === 0) {
-          setFilterItem(items)
+          setFilterItem(itemCards)
         }
       }, 400),
     // eslint-disable-next-line
     [dispatch, filterItem, group]
   )
 
-  useEffect(() => {
-    if (items) {
-      setFilterItem(items)
-    }
-    // eslint-disable-next-line
-  }, [data])
-
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
-    debouncedSearch(searchExpr, items, viewValue)
+    debouncedSearch(searchExpr, itemCards, viewValue)
   }
 
   const categoryViews = [
@@ -135,9 +165,9 @@ export default function AppOverview() {
         return
       }
       setSearchExpr(expr)
-      debouncedSearch(expr, items, group)
+      debouncedSearch(expr, itemCards, group)
     },
-    [debouncedSearch, items, group]
+    [debouncedSearch, itemCards, group]
   )
 
   const showOverlay = (item: AppInfo) => {
@@ -209,28 +239,37 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          {filterItem && filterItem?.length > 0 && (
-            <div className="desc-card">
-              <Cards
-                items={filterItem}
-                columns={4}
-                buttonText="Details"
-                variant="minimal"
-                filledBackground={false}
-                imageSize={'small'}
-                showAddNewCard={true}
-                newButtonText={t('content.appoverview.addbtn')}
-                onNewCardButton={() =>
-                  navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
-                }
-                onCardClick={(item: AppInfo) => {
-                  showOverlay(item)
+          {filterItem && filterItem?.length ? (
+            <AppOverviewList
+              filterItem={filterItem}
+              showOverlay={showOverlay}
+            />
+          ) : (
+            <div style={{ textAlign: 'center' }}>
+              <CircularProgress
+                size={50}
+                sx={{
+                  color: theme.palette.primary.main,
                 }}
               />
             </div>
           )}
         </div>
       </div>
+      {state && (
+        <PageSnackbar
+          open={state !== ''}
+          onCloseNotification={() => {}}
+          severity={state === 'deactivate-success' ? 'success' : 'error'}
+          description={
+            state === 'deactivate-success'
+              ? t('content.deactivate.successMsg')
+              : t('content.deactivate.errorMsg')
+          }
+          showIcon={true}
+          autoClose={true}
+        />
+      )}
     </div>
   )
 }

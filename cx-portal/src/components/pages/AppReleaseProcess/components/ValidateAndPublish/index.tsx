@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -34,7 +34,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Grid, Divider, Box, InputLabel } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
@@ -42,10 +42,16 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { useSubmitappMutation } from 'features/appManagement/apiSlice'
+import {
+  useFetchAppStatusQuery,
+  useFetchDocumentByIdMutation,
+  useSubmitappMutation,
+} from 'features/appManagement/apiSlice'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { setAppStatus } from 'features/appManagement/actions'
+import CommonService from 'services/CommonService'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -59,6 +65,57 @@ export default function ValidateAndPublish({
   const [submitapp] = useSubmitappMutation()
   const appId = useSelector(appIdSelector)
   const appStatusData: any = useSelector(appStatusDataSelector)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [cardImage, setCardImage] = useState('')
+  const [multipleImages, setMultipleImages] = useState<any[]>([])
+
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
+  const statusData = appStatusData || fetchAppStatus
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (
+      statusData?.documents?.APP_LEADIMAGE &&
+      statusData?.documents?.APP_LEADIMAGE[0].documentId
+    ) {
+      fetchImage(
+        statusData?.documents?.APP_LEADIMAGE[0].documentId,
+        'APP_LEADIMAGE'
+      )
+    }
+    if (
+      statusData?.documents?.APP_IMAGE &&
+      statusData?.documents?.APP_IMAGE[0].documentId
+    ) {
+      const newPromies = CommonService.fetchLeadPictures(
+        statusData?.documents?.APP_IMAGE,
+        appId
+      )
+      Promise.all(newPromies).then((result) => {
+        setMultipleImages(result.flat())
+      })
+    }
+
+    reset(defaultValues)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [statusData])
+
+  const fetchImage = async (documentId: string, documentType: string) => {
+    try {
+      const response = await fetchDocumentById({ appId, documentId }).unwrap()
+      const file = response.data
+      if (documentType === 'APP_LEADIMAGE') {
+        return setCardImage(URL.createObjectURL(file))
+      }
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
 
   const defaultValues = {
     images: [LogoGrayData, LogoGrayData, LogoGrayData],
@@ -77,10 +134,10 @@ export default function ValidateAndPublish({
     providerTableData: {
       head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
       body: [
-        [appStatusData.providerName],
-        [appStatusData.providerUri],
-        [appStatusData.contactEmail],
-        [appStatusData.contactNumber],
+        [statusData?.providerName],
+        [statusData?.providerUri],
+        [statusData?.contactEmail],
+        [statusData?.contactNumber],
       ],
     },
     cxTestRuns: [
@@ -100,6 +157,7 @@ export default function ValidateAndPublish({
   const {
     handleSubmit,
     formState: { isValid },
+    reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
@@ -117,9 +175,9 @@ export default function ValidateAndPublish({
 
   const getAppData = (item: string) => {
     if (item === 'language')
-      return appStatusData.supportedLanguageCodes.join(', ')
-    else if (item === 'useCase') return appStatusData.useCase.join(', ')
-    else if (item === 'price') return appStatusData.price
+      return statusData?.supportedLanguageCodes.join(', ')
+    else if (item === 'useCase') return statusData?.useCase.join(', ')
+    else if (item === 'price') return statusData?.price
   }
 
   return (
@@ -145,20 +203,15 @@ export default function ValidateAndPublish({
           >
             <Card
               image={{
-                src: LogoGrayData,
+                src: cardImage || LogoGrayData,
               }}
-              title={appStatusData.title}
-              subtitle={appStatusData.provider}
+              title={statusData?.title}
+              subtitle={statusData?.provider}
               description={
-                i18next.language === 'en'
-                  ? appStatusData?.descriptions?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'en'
-                    )[0].shortDescription
-                  : appStatusData?.descriptions?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'de'
-                    )[0].shortDescription
+                statusData?.descriptions?.filter(
+                  (lang: { languageCode: string }) =>
+                    lang.languageCode === i18next.language
+                )[0]?.shortDescription
               }
               imageSize="normal"
               imageShape="square"
@@ -202,10 +255,10 @@ export default function ValidateAndPublish({
                   [Long Description - EN]{' '}
                 </span>
                 {
-                  appStatusData?.descriptions?.filter(
+                  statusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === 'en'
-                  )[0].longDescription
+                  )[0]?.longDescription
                 }
               </Typography>
             ) : (
@@ -214,25 +267,27 @@ export default function ValidateAndPublish({
                   [Long Description - DE]{' '}
                 </span>
                 {
-                  appStatusData?.descriptions?.filter(
+                  statusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === 'de'
-                  )[0].longDescription
+                  )[0]?.longDescription
                 }
               </Typography>
             )}
           </div>
         ))}
         <div style={{ display: 'flex' }}>
-          {defaultValues.images?.map((img, i) => (
-            <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
-              <img
-                src={img}
-                alt={'images'}
-                className="verify-validate-images"
-              />
-            </Box>
-          ))}
+          {multipleImages?.map((img: { url: string }, i: number) => {
+            return (
+              <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
+                <img
+                  src={img.url}
+                  alt={'images'}
+                  className="verify-validate-images"
+                />
+              </Box>
+            )
+          })}
         </div>
 
         <Divider className="verify-validate-form-divider" />
@@ -259,12 +314,12 @@ export default function ValidateAndPublish({
         <Typography variant="body2" className="form-field">
           {defaultValues.documentsDescription}
         </Typography>
-        {appStatusData?.documents &&
-          Object.keys(appStatusData.documents).map((item, i) => (
+        {statusData?.documents &&
+          Object.keys(statusData.documents).map((item, i) => (
             <InputLabel sx={{ mb: 0, mt: 3 }} key={i}>
               <a href="/" style={{ display: 'flex' }}>
                 <ArrowForwardIcon fontSize="small" />
-                {appStatusData.documents[item][0].documentName}
+                {statusData.documents[item][0].documentName}
               </a>
             </InputLabel>
           ))}
@@ -280,7 +335,7 @@ export default function ValidateAndPublish({
           {t('content.apprelease.validateAndPublish.consent')}
         </Typography>
         <div className="form-field">
-          {appStatusData?.agreements?.map(
+          {statusData?.agreements?.map(
             (item: { name: string; consentStatus: string }, index: number) => (
               <div key={index}>
                 <Checkbox

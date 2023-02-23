@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -155,7 +155,7 @@ export const MainHeader = ({
       <Box
         sx={{
           width: '100%',
-          padding: '0px 100px',
+          padding: '0px 180px',
           margin: '0px',
           paddingTop: '150px',
           zIndex: 1,

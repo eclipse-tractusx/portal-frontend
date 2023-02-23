@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -25,7 +25,7 @@ import match from 'autosuggest-highlight/match'
 import { SelectInput } from '../MultiSelectList/Components/SelectInput'
 import { SelectOptions } from '../MultiSelectList/Components/SelectOptions'
 import uniqueId from 'lodash/uniqueId'
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 
 interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   items: any[]
@@ -81,6 +81,7 @@ export const SelectList = ({
           key={uniqueId('select-list-option')}
         />
       )}
+      value={defaultValue}
       renderInput={(params) => {
         return (
           <SelectInput

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -64,7 +64,7 @@ export default function Organization() {
         <AppSubscriptions
           image={app.image}
           onButtonClick={() => handleClick(app.id)}
-          name={app.title}
+          name={app.name || ''}
           provider={app.provider}
           status={app.status}
         />

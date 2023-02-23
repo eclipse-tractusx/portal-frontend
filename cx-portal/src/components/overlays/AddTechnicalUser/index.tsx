@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   CircleProgress,
+  Typography,
 } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
@@ -41,13 +42,18 @@ import { useState } from 'react'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'
+import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [response, setResponse] = useState<ServiceAccountDetail>()
+  const [error, setError] = useState<boolean>(false)
+
   const [addServiceAccount] = useAddServiceAccountMutation()
   const [loading, setLoading] = useState<boolean>(false)
+  const { data } = useFetchOwnUserDetailsQuery()
 
   const handleConfirm = async (formValues: DefaultFormFieldValuesType) => {
     setLoading(true)
@@ -61,20 +67,31 @@ export const AddTechnicalUser = () => {
       console.log(result)
       setResponse(result)
       setLoading(false)
+      setError(false)
       dispatch(updateData(UPDATES.TECHUSER_LIST))
     } catch (err) {
       console.log(err)
       setLoading(false)
+      setError(true)
     }
     //openAddTechnicalUserResponseOverlay()
   }
 
   const userDetailsData = {
-    cardCategory: 'Single Point of Contact (SPoC):',
+    cardCategory: t('content.addUser.technicalUser.addOverlay.spocHeadline'),
     cardContentItems: {
-      organizsationName: { label: 'Organization name', value: 'BMW' },
-      username: { label: 'Username', value: 'Max Mustermann' },
-      eMailAddress: { label: 'E-Mail Address', value: 'test@test.de' },
+      organizsationName: {
+        label: t('content.addUser.technicalUser.addOverlay.org'),
+        value: data ? data.company : '',
+      },
+      username: {
+        label: t('content.addUser.technicalUser.addOverlay.name'),
+        value: data ? `${data.firstName} ${data.lastName}` : '',
+      },
+      eMailAddress: {
+        label: t('content.addUser.technicalUser.addOverlay.email'),
+        value: data ? data.email : '',
+      },
     },
   }
 
@@ -111,14 +128,16 @@ export const AddTechnicalUser = () => {
     return Object.keys(errors).length > 0
   }
 
+  const handleDispatch = useCallback(() => dispatch(closeOverlay()), [dispatch])
+
   return (
     <>
-      {response ? (
+      {response && (
         <ServerResponseOverlay
           title={t('content.addUser.technicalUserHeadline')}
           intro={t('content.addUser.technicalUserSubheadlineSuccess')}
           dialogOpen={true}
-          handleCallback={() => dispatch(closeOverlay())}
+          handleCallback={handleDispatch}
         >
           <UserDetailCard
             cardContentItems={{
@@ -142,13 +161,29 @@ export const AddTechnicalUser = () => {
             variant="wide"
           />
         </ServerResponseOverlay>
-      ) : (
+      )}
+
+      {error && (
+        <ServerResponseOverlay
+          title={t('content.addUser.technicalUserHeadline')}
+          intro={t('content.addUser.technicalUserSubheadlineError')}
+          dialogOpen={true}
+          iconComponent={
+            <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
+          }
+          handleCallback={handleDispatch}
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
+
+      {!response && !error && (
         <>
           <DialogHeader
             title={t('content.addUser.technicalUserHeadline')}
             intro={t('content.addUser.technicalUserSubheadline')}
             closeWithIcon={true}
-            onCloseWithIcon={() => dispatch(closeOverlay())}
+            onCloseWithIcon={handleDispatch}
           />
           <DialogContent>
             <TechnicalUserAddForm
@@ -162,7 +197,7 @@ export const AddTechnicalUser = () => {
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <Button variant="outlined" onClick={handleDispatch}>
               {t('global.actions.cancel')}
             </Button>
             {loading ? (
