@@ -42,6 +42,8 @@ import {
 } from 'features/admin/applicationRequestApiSlice'
 import { useTranslation } from 'react-i18next'
 import CloseIcon from '@mui/icons-material/Close'
+import { useDispatch } from 'react-redux'
+import { refreshApplicationRequest } from 'features/admin/registration/actions'
 
 interface CheckListStatusOverlayProps {
   openDialog?: boolean
@@ -147,6 +149,7 @@ const CheckListStatusOverlay = ({
   selectedRequestId,
 }: CheckListStatusOverlayProps) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [approveChecklist] = useApproveChecklistMutation()
   const [declineChecklist] = useDeclineChecklistMutation()
   const [retriggerProcess] = useRetriggerProcessMutation()
@@ -210,6 +213,7 @@ const CheckListStatusOverlay = ({
         setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
       )
     setState({ type: ActionKind.SET_APPROVE_LOADING, payload: false })
+    dispatch(refreshApplicationRequest(Date.now()))
   }
 
   const onDecline = () => {
@@ -231,6 +235,7 @@ const CheckListStatusOverlay = ({
       type: ActionKind.STOP_DECLINE_LOADIN_SHOW_INPUT,
       payload: { declineLoading: false, showInput: false },
     })
+    dispatch(refreshApplicationRequest(Date.now()))
   }
 
   const onRetrigger = () => {
@@ -243,9 +248,10 @@ const CheckListStatusOverlay = ({
         }
         await retriggerProcess(args)
           .unwrap()
-          .then((payload) =>
+          .then((payload) => {
             setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: false })
-          )
+            dispatch(refreshApplicationRequest(Date.now()))
+          })
           .catch((error) =>
             setState({
               type: ActionKind.SET_RETRIGGER_LOADING,

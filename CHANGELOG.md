@@ -3,6 +3,8 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+* Application Request
+   * BugFix - Approve/Decline/Retrigger/Cancel Process actions should clear button and update the latest status in both overlay and application list
 * Bugfix - UI fixes in Adminboard
 * Connector
    * BugFix - Register daps via the auth icon in the connector registration, allows all type of files
