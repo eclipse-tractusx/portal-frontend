@@ -82,13 +82,7 @@ const declineRequest = createAsyncThunk(
 
 const refreshApplicationRequest = createAction(
   `${name}/refreshApplicationRequest`,
-  function update(refresh: number) {
-    return {
-      payload: {
-        refresh,
-      },
-    }
-  }
+  (refresh: number) => ({ payload: { refresh } })
 )
 
 export {
