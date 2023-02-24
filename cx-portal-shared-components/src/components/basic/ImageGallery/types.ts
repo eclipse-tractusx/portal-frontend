@@ -35,4 +35,5 @@ export type ImageType = {
   modalWidth?: string
   width?: string
   height?: string
+  additionalStyles?: any
 }

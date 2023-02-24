@@ -36,24 +36,21 @@ export default function ImageImageCenterAligned({
         marginTop: '84px',
       }}
     >
-      <Box
-        sx={{
+      <ImageItem
+        url={provider.imageUrl || ''}
+        text=""
+        size="custom"
+        height="472px"
+        width="100%"
+        hover={true}
+        borderRadius={true}
+        shadow={false}
+        modalWidth="1100"
+        additionalStyles={{
           marginTop: '84px',
           marginBottom: '84px',
         }}
-      >
-        <ImageItem
-          url={provider.imageUrl || ''}
-          text=""
-          size="custom"
-          height="472px"
-          width="100%"
-          hover={true}
-          borderRadius={true}
-          shadow={false}
-          modalWidth="1100"
-        />
-      </Box>
+      />
       <TextCenterAligned provider={provider} />
     </Box>
   )
