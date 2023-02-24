@@ -10,6 +10,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * BugFix - Wrong url link
 * Static Templates
    * Show image on modal for a wider view
+* ImageGallery
+   * Rectangle images to be 16:9 ratio.
+   * Fix 3 images to a row. Show grid layout for rest
 
 ## 1.0.0-RC10
 
