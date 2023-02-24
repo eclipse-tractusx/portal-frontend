@@ -3,7 +3,9 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-- Bugfix - UI fixes in Adminboard
+* Bugfix - UI fixes in Adminboard
+* Connector
+   * BugFix - Register daps via the auth icon in the connector registration, allows all type of files
 * Notification
    * BugFix - Wrong url link
 
