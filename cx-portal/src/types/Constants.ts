@@ -84,6 +84,12 @@ export enum PAGES {
   INTRODUCTION_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
   USE_CASE = 'usecase',
   USE_CASE_TRACABILITY = 'usecasetraceablity',
+  SERVICE_MANAGEMENT = 'servicemanagement',
+  SERVICEOVERVIEW = 'serviceoverview',
+  SERVICERELEASEPROCESS = 'servicereleaseprocess',
+  SERVICEADMINBOARD = 'serviceadminboard',
+  SERVICESUBSCRIPTION = 'servicesubscription',
+  SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
 }
 
 export enum OVERLAYS {
@@ -147,8 +153,11 @@ export enum ROLES {
   APPSTORE_FILTER = 'filter_apps',
   APPSTORE_DELETE = 'delete_apps',
   APPMANAGEMENT_VIEW = 'add_apps',
+  SERVICEMANAGEMENT_VIEW = 'add_service_offering',
   APP_MANAGEMENT = 'app_management',
+  SERVICE_SUBSCRIPTION_MANAGEMENT = 'activate_subscription',
   APPOVERVIEW_VIEW = 'add_apps',
+  SERVICEOVERVIEW_VIEW = 'add_service_offering',
   CONNECTOR_SETUP = 'setup_connector',
   DATACATALOG_VIEW = 'view_data_catalog',
   DIGITALTWIN_VIEW = 'view_digital_twin',
@@ -179,6 +188,9 @@ export enum ROLES {
   ACTIVATE_SUBSCRIPTION = 'activate_subscription',
   APPROVE_APP_RELEASE = 'approve_app_release',
   DECLINE_APP_RELEASE = 'decline_app_release',
+  APPROVE_SERVICE_RELEASE = 'activate_subscription',
+  DECLINE_SERVICE_RELEASE = 'decline_service_release',
+  VIEW_SERVICE_RELEASE = 'add_service_offering',
 }
 
 export enum HINTS {

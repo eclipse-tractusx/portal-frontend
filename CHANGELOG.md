@@ -3,6 +3,9 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+* Service Management
+   * Navigation base setting
+   * Service Release process intro page
 
 ## 1.0.0-RC10
 

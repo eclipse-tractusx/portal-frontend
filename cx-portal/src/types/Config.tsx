@@ -68,6 +68,7 @@ import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
 import AdminBoard from 'components/pages/AdminBoard'
 import AdminBoardDetail from 'components/pages/AdminBoardDetail'
+import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
 
 /**
  * ALL_PAGES
@@ -206,7 +207,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    role: ROLES.APPMANAGEMENT_VIEW,
+    role: ROLES.SERVICEMANAGEMENT_VIEW,
+    element: <AppOverview />,
+  },
+  {
+    name: PAGES.SERVICE_MANAGEMENT,
+    role: ROLES.SERVICEMANAGEMENT_VIEW,
     element: <AppOverview />,
   },
   {
@@ -215,9 +221,19 @@ export const ALL_PAGES: IPage[] = [
     element: <AppOverview />,
   },
   {
+    name: PAGES.SERVICEOVERVIEW,
+    role: ROLES.SERVICEOVERVIEW_VIEW,
+    element: <AppOverview />,
+  },
+  {
     name: PAGES.APPRELEASEPROCESS,
     //role: ROLES.VIEW_APP_RELEASE,
     element: <AppReleaseProcess />,
+  },
+  {
+    name: PAGES.SERVICERELEASEPROCESS,
+    role: ROLES.VIEW_SERVICE_RELEASE,
+    element: <ServiceReleaseProcess />,
   },
   {
     name: PAGES.APPSUBSCRIPTION,
@@ -225,8 +241,18 @@ export const ALL_PAGES: IPage[] = [
     element: <AppSubscription />,
   },
   {
+    name: PAGES.SERVICESUBSCRIPTION,
+    role: ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT,
+    element: <AppSubscription />,
+  },
+  {
     name: PAGES.ADMINBOARD,
     role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    element: <AdminBoard />,
+  },
+  {
+    name: PAGES.SERVICEADMINBOARD,
+    role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
     element: <AdminBoard />,
   },
   {
@@ -553,6 +579,19 @@ export const mainMenuFullTree = [
       { name: PAGES.APPRELEASEPROCESS },
       { name: PAGES.APPSUBSCRIPTION, hint: HINTS.NEW },
       { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
+    ],
+  },
+  {
+    name: PAGES.SERVICE_MANAGEMENT,
+    children: [
+      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.COMING_SOON, disable: true },
+      { name: PAGES.SERVICERELEASEPROCESS, hint: HINTS.NEW },
+      {
+        name: PAGES.SERVICESUBSCRIPTION,
+        hint: HINTS.COMING_SOON,
+        disable: true,
+      },
+      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.COMING_SOON, disable: true },
     ],
   },
 ]

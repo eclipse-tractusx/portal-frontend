@@ -53,7 +53,12 @@
     "companyrolesserviceprovider": "Service Provider",
     "companyrolesconfirmitybody": "Confirmity Body",
     "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity"
+    "usecasetraceablity": "Traceablity",
+    "servicemanagement": "Service Management",
+    "serviceoverview": "Service Overview",
+    "servicereleaseprocess": "Service Release Process",
+    "serviceadminboard": "Admin Board",
+    "servicesubscription": "Service Subscription Mgt"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -832,7 +837,8 @@
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "startCreatingButton": "App Registrierung starten",
-      "appOverviewButton": "Übersicht Unternehmens-Apps",
+      "registerButton": "App Registrierung starten",
+      "overviewButton": "Übersicht Unternehmens-Apps",
       "stepHeading": "The process will guide your through the following steps:",
       "dividerText": "Lets get started to register your app...",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
