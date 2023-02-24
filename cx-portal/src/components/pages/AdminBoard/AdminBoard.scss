@@ -88,7 +88,10 @@
     z-index: 9;
   }
 
-  .admin-board-elements-main {
-    margin-bottom: 22px;
+  .admin-board-main {
+    background-color: #f9f9f9;
+    .admin-board-elements-main {
+      margin-bottom: 22px;
+    }
   }
 }
