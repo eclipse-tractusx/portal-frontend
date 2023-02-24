@@ -3,6 +3,7 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+- Bugfix - UI fixes in Adminboard
 
 ## 1.0.0-RC10
 
