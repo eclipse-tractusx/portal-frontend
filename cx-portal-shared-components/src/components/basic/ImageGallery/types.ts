@@ -28,8 +28,11 @@ export type ImageType = {
     | 'medium-square'
     | 'large-rectangle'
     | 'large-square'
+    | 'custom'
   hover?: boolean
   borderRadius?: boolean
   shadow?: boolean
   modalWidth?: string
+  width?: string
+  height?: string
 }

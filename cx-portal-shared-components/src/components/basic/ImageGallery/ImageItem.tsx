@@ -30,6 +30,8 @@ export const ImageItem = ({
   hover = true,
   borderRadius = true,
   shadow = true,
+  width = '100%',
+  height = '100%',
   modalWidth,
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
@@ -59,6 +61,11 @@ export const ImageItem = ({
         return {
           width: '712px',
           height: '352px',
+        }
+      case 'custom':
+        return {
+          width: width,
+          height: height,
         }
       default:
         return {
