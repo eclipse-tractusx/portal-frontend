@@ -4,6 +4,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Unreleased
 - Bugfix - UI fixes in Adminboard
+* Notification
+   * BugFix - Wrong url link
 
 ## 1.0.0-RC10
 
