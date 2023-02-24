@@ -30,7 +30,10 @@ export const ImageItem = ({
   hover = true,
   borderRadius = true,
   shadow = true,
+  width,
+  height,
   modalWidth,
+  additionalStyles = {},
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
@@ -59,6 +62,11 @@ export const ImageItem = ({
         return {
           width: '625px',
           height: '352px',
+        }
+      case 'custom':
+        return {
+          width: width,
+          height: height,
         }
       default:
         return {
@@ -90,6 +98,7 @@ export const ImageItem = ({
           borderRadius: borderRadius ? '16px' : '0px',
           marginBottom: '20px',
           cursor: 'zoom-in',
+          ...additionalStyles,
         }}
       >
         <img

@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
+import { ImageItem } from '../../ImageGallery/ImageItem'
 import { ProviderProps } from '../StaticTypes'
 import TextCenterAligned from './TextCenterAligned'
 
@@ -36,17 +37,20 @@ export default function TextImageCenterAligned({
       }}
     >
       <TextCenterAligned provider={provider} />
-      <img
-        style={{
+      <ImageItem
+        url={provider.imageUrl || ''}
+        text={''}
+        size="custom"
+        height="472px"
+        width="100%"
+        hover={true}
+        borderRadius={true}
+        shadow={false}
+        modalWidth="1100"
+        additionalStyles={{
           marginTop: '84px',
           marginBottom: '84px',
-          width: '100%',
-          height: '472px',
-          objectFit: 'cover',
-          borderRadius: '16px',
         }}
-        src={provider.imageUrl}
-        alt={'alt tag info'}
       />
     </Box>
   )
