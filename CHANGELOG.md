@@ -5,6 +5,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Unreleased
 * Application Request
    * BugFix - Approve/Decline/Retrigger/Cancel Process actions should clear button and update the latest status in both overlay and application list
+* Connector
+   * BugFix - Register daps via the auth icon in the connector registration, allows all type of files
+* Notification
+   * BugFix - Wrong url link
 
 ## 1.0.0-RC10
 
