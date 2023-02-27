@@ -95,7 +95,7 @@ export const CardHorizontal = ({
       <Box
         sx={{
           flex: 1,
-          padding: '30px',
+          padding: '25px',
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -105,6 +105,7 @@ export const CardHorizontal = ({
           sx={{
             fontWeight: '600',
             lineHeight: '20px',
+            height: '18px',
             color: theme.palette.text.tertiary,
           }}
         >
@@ -114,10 +115,15 @@ export const CardHorizontal = ({
         <Typography
           variant="h4"
           sx={{
-            margin: 0,
+            margin: '5px 0 0 0',
             fontWeight: 600,
-            lineHeight: '28px',
+            lineHeight: '23px',
             color: '#111111',
+            height: '46px',
+            display: '-webkit-box',
+            '-webkit-line-clamp': '2',
+            '-webkit-box-orient': 'vertical',
+            overflow: 'hidden',
           }}
         >
           {title}
@@ -127,6 +133,7 @@ export const CardHorizontal = ({
           sx={{
             fontWeight: '600',
             lineHeight: '20px',
+            height: '18px',
             color: theme.palette.text.tertiary,
           }}
         >
@@ -134,15 +141,19 @@ export const CardHorizontal = ({
         </Typography>
         {description && (
           <Typography
-            variant="caption2"
+            variant="label4"
             sx={{
               color: '#888888',
               fontSize: '12px',
+              display: '-webkit-box',
+              '-webkit-line-clamp': '3',
+              '-webkit-box-orient': 'vertical',
+              overflow: 'hidden',
+              margin: '5px 0 0 0',
+              height: '45px',
             }}
           >
-            {variant === 'preview'
-              ? `${description.substring(0, 35)}...`
-              : description}
+            {description}
           </Typography>
         )}
 
