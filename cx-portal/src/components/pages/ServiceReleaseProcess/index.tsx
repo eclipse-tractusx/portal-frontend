@@ -69,7 +69,7 @@ export default function ServiceReleaseProcess() {
 
   const onOverviewButton = () => {}
 
-  const requirements = [
+  const requeredButtons = [
     {
       neuButton: t('neuButton'),
       marketplaceTitle: t('marketplaceTitle'),
@@ -96,7 +96,7 @@ export default function ServiceReleaseProcess() {
       registerButton={t('registerButton')}
       startCreatingButton={t('startCreatingButton')}
       marketplaceHeading={t('marketplaceHeading')}
-      requirements={requirements}
+      requirements={requeredButtons}
       elementNumbers={4}
     />
   )
