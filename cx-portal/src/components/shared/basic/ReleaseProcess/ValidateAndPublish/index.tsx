@@ -339,7 +339,7 @@ export default function ValidateAndPublish({
             (item: { name: string; consentStatus: string }, index: number) => (
               <div key={item.name}>
                 <Checkbox
-                  key={index}
+                  key={item.name}
                   label={item.name}
                   checked={item.consentStatus === 'ACTIVE'}
                   disabled
@@ -355,9 +355,9 @@ export default function ValidateAndPublish({
         </Typography>
         <div className="form-field">
           {defaultValues.cxTestRuns?.map((item: any, index: number) => (
-            <div key={item}>
+            <div key={item.name}>
               <Checkbox
-                key={index}
+                key={item.name}
                 label={item.name}
                 checked={item.consentStatus === 'ACTIVE'}
                 disabled

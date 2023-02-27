@@ -85,13 +85,13 @@ export default function AppReleaseProcess() {
       neuButton: t('content.apprelease.neuButton'),
       marketplaceTitle: t('content.apprelease.marketplaceTitle'),
       marketplaceExplanation: t('content.apprelease.marketplaceExplanation'),
-      index: 1
+      index: 1,
     },
     {
       neuButton: t('content.apprelease.neuButton'),
       marketplaceTitle: t('content.apprelease.marketplaceTitle'),
       marketplaceExplanation: t('content.apprelease.marketplaceExplanation'),
-      index: 2
+      index: 2,
     },
   ]
 
