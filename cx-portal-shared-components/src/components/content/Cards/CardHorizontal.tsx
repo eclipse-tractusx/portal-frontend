@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { Box, useTheme } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { LogoGrayData } from '../../basic/Logo'
