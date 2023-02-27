@@ -70,8 +70,6 @@ export const CardHorizontal = ({
           boxShadow: theme.shadows['20'],
         },
       }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       <Box
         sx={{
