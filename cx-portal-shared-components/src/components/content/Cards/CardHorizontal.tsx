@@ -55,14 +55,7 @@ export const CardHorizontal = ({
   expandOnHover = false,
 }: CardHorizontalProps) => {
   const theme = useTheme()
-  const [variant, setVariant] = useState('preview')
   const boxRef = useRef<HTMLDivElement>(null)
-
-  const onMouseEnter = () => {
-    if (expandOnHover) setVariant('expanded')
-  }
-
-  const onMouseLeave = () => setVariant('preview')
 
   return (
     <Box
