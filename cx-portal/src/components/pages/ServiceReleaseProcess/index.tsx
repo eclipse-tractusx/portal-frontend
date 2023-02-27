@@ -29,7 +29,6 @@ import { ReleaseProcess } from 'components/shared/basic/ReleaseProcess'
 
 export default function ServiceReleaseProcess() {
   const { t } = useTranslation('servicerelease')
-  console.log(t)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
