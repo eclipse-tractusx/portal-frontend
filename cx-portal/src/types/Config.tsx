@@ -69,6 +69,7 @@ import Deactivate from 'components/pages/AppOverview/Deactivate'
 import AdminBoard from 'components/pages/AdminBoard'
 import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
+import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
 
 /**
  * ALL_PAGES
@@ -278,6 +279,17 @@ export const ALL_PAGES: IPage[] = [
         key={`${PAGES.APPRELEASEPROCESS}/form`}
         path={`${PAGES.APPRELEASEPROCESS}/form`}
         element={<AppReleaseProcessForm />}
+      />
+    ),
+  },
+  {
+    name: PAGES.SERVICE_RELEASE_PROCESS_FORM,
+    isRoute: true,
+    element: (
+      <Route
+        key={`${PAGES.SERVICERELEASEPROCESS}/form`}
+        path={`${PAGES.SERVICERELEASEPROCESS}/form`}
+        element={<ServiceReleaseProcessForm />}
       />
     ),
   },

@@ -72,11 +72,13 @@ export default function AppReleaseProcess() {
   ]
 
   const onStartClick = () => {
-    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+    navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
     dispatch(setCurrentActiveStep())
     dispatch(setAppId(''))
     dispatch(setAppStatus(initialState.appStatusData))
   }
+
+  const onOverviewButton = () => {}
 
   const requirements = [
     {
@@ -93,7 +95,8 @@ export default function AppReleaseProcess() {
 
   return (
     <ReleaseProcess
-      onStartClick={() => onStartClick}
+      onStartClick={onStartClick}
+      onOverviewButton={onOverviewButton}
       stepsLists={stepsLists}
       headerTitle={t('content.apprelease.headerTitle')}
       descHeading={t('content.apprelease.descHeading')}

@@ -37,13 +37,13 @@ export default function ServiceReleaseProcess() {
     {
       description:
         'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      headline: t('stepper.appMarketCard'),
+      headline: t('stepper.marketCard'),
       step: 1,
     },
     {
       description:
         'App Page descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: t('stepper.appPage'),
+      headline: t('stepper.servicePage'),
       step: 2,
     },
     {
@@ -61,11 +61,13 @@ export default function ServiceReleaseProcess() {
   ]
 
   const onStartClick = () => {
-    navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
     dispatch(setCurrentActiveStep())
     dispatch(setAppId(''))
     dispatch(setAppStatus(initialState.appStatusData))
   }
+
+  const onOverviewButton = () => {}
 
   const requirements = [
     {
@@ -82,7 +84,8 @@ export default function ServiceReleaseProcess() {
 
   return (
     <ReleaseProcess
-      onStartClick={() => onStartClick}
+      onStartClick={onStartClick}
+      onOverviewButton={onOverviewButton}
       stepsLists={stepsLists}
       headerTitle={t('headerTitle')}
       descHeading={t('descHeading')}

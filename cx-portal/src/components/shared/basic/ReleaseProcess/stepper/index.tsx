@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -19,41 +19,26 @@
  ********************************************************************************/
 
 import { Stepper } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
 
-export default function AppReleaseStepper({
+export interface StepType {
+  headline?: string
+  step?: number
+}
+
+export default function ReleaseStepper({
   activePage,
+  stepsList,
+  numberOfSteps,
 }: {
   activePage: number
+  stepsList: StepType[]
+  numberOfSteps: number
 }) {
-  const { t } = useTranslation()
-
-  const stepsList = [
-    {
-      headline: t('content.apprelease.stepper.appMarketCard'),
-      step: 1,
-    },
-    {
-      headline: t('content.apprelease.stepper.appPage'),
-      step: 2,
-    },
-    {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
-      step: 3,
-    },
-    {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
-      step: 4,
-    },
-    {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
-      headline: t('content.apprelease.stepper.validateAndPublish'),
-      step: 6,
-    },
-  ]
-
-  return <Stepper list={stepsList} showSteps={6} activeStep={activePage} />
+  return (
+    <Stepper
+      list={stepsList}
+      showSteps={numberOfSteps}
+      activeStep={activePage}
+    />
+  )
 }

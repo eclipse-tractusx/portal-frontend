@@ -42,6 +42,7 @@ type StepListType = {
 
 type ReleaseProcessProps = {
   onStartClick: () => void
+  onOverviewButton: () => void
   stepsLists: StepListType[]
   headerTitle?: string
   descHeading?: string
@@ -58,6 +59,7 @@ type ReleaseProcessProps = {
 
 export const ReleaseProcess = ({
   onStartClick,
+  onOverviewButton,
   stepsLists,
   headerTitle,
   descHeading,
@@ -90,7 +92,7 @@ export const ReleaseProcess = ({
               color="primary"
               size="small"
               className="create-btn"
-              onClick={onStartClick}
+              onClick={() => onStartClick()}
             >
               {registerButton}
             </Button>
@@ -99,6 +101,7 @@ export const ReleaseProcess = ({
               color="secondary"
               size="small"
               className="overview-btn"
+              onClick={() => onOverviewButton()}
             >
               {overviewButton}
             </Button>
@@ -127,7 +130,7 @@ export const ReleaseProcess = ({
                 color="primary"
                 size="small"
                 className="create-btn"
-                onClick={onStartClick}
+                onClick={() => onStartClick()}
               >
                 {startCreatingButton}
               </Button>

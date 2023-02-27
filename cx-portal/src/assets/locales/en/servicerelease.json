@@ -12,8 +12,8 @@
   "marketplaceTitle": "Requirement Lorem ipsum",
   "marketplaceExplanation": "Expalanation of the requirement",
   "stepper": {
-    "appMarketCard": "Service Card",
-    "appPage": "Service Page Details",
+    "marketCard": "Service Card",
+    "servicePage": "Service Page Details",
     "contractAndConsent": "Conformity & Agreements",
     "validateAndPublish": "Verify & Submit"
   },
