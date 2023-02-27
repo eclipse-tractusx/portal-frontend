@@ -103,13 +103,14 @@ export const MenuItem = ({
         {hint && (
           <Box
             sx={{
-              backgroundColor: '#de60de',
+              backgroundColor: '#9AA9E2',
               borderRadius: '5px',
               maxWidth: '40px',
               minWidth: '40px',
               textAlign: 'center',
               whiteSpace: 'normal',
               marginLeft: '12px',
+              padding: '5px 0px',
             }}
           >
             <Typography
@@ -119,7 +120,7 @@ export const MenuItem = ({
                 fontSize: '10px',
                 lineHeight: '14px',
                 fontWeight: 'bold',
-                color: 'white',
+                color: '#2F6DBA',
               }}
             >
               {hint}

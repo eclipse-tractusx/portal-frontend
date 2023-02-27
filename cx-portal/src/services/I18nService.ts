@@ -31,6 +31,8 @@ import idpDE from '../assets/locales/de/idp.json'
 import idpEN from '../assets/locales/en/idp.json'
 import notificationDE from '../assets/locales/de/notification.json'
 import notificationEN from '../assets/locales/en/notification.json'
+import servicereleaseDE from '../assets/locales/de/servicerelease.json'
+import servicereleaseEN from '../assets/locales/en/servicerelease.json'
 
 const resources = {
   de: {
@@ -39,6 +41,7 @@ const resources = {
     apps: appsDE,
     idp: idpDE,
     notification: notificationDE,
+    servicerelease: servicereleaseDE,
   },
   en: {
     translation: mainEN,
@@ -46,6 +49,7 @@ const resources = {
     apps: appsEN,
     idp: idpEN,
     notification: notificationEN,
+    servicerelease: servicereleaseEN,
   },
 }
 
