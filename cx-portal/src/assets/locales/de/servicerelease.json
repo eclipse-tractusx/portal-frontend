@@ -8,9 +8,9 @@
   "stepHeading": "The process will guide your through the following steps:",
   "dividerText": "Lets get started to publishing your service...",
   "marketplaceHeading": "App Marketplace upcomming submission requirements",
-  "neuButton": "New",
-  "marketplaceTitle": "Requirement Lorem ipsum",
-  "marketplaceExplanation": "Expalanation of the requirement",
+  "requiredButton": "New",
+  "requiredtitle": "Requirement Lorem ipsum",
+  "requiredExplaination": "Expalanation of the requirement",
   "stepper": {
     "marketCard": "Service Card",
     "servicePage": "Service Page Details",

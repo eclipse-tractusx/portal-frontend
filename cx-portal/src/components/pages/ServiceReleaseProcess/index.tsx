@@ -33,7 +33,7 @@ export default function ServiceReleaseProcess() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const stepsLists = [
+  const processStepsLists = [
     {
       description:
         'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
@@ -60,33 +60,30 @@ export default function ServiceReleaseProcess() {
     },
   ]
 
-  const onStartClick = () => {
+  const onStartServiceClick = () => {
     navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
     dispatch(setCurrentActiveStep())
     dispatch(setAppId(''))
     dispatch(setAppStatus(initialState.appStatusData))
   }
 
-  const onOverviewButton = () => {}
+  const onOverviewServiceButton = () => {}
 
   const requeredButtons = [
     {
-      neuButton: t('neuButton'),
-      marketplaceTitle: t('marketplaceTitle'),
-      marketplaceExplanation: t('marketplaceExplanation'),
+      neuButton: t('requiredButton'),
+      marketplaceTitle: t('requiredtitle'),
+      marketplaceExplanation: t('requiredExplaination'),
     },
     {
-      neuButton: t('neuButton'),
-      marketplaceTitle: t('marketplaceTitle'),
-      marketplaceExplanation: t('marketplaceExplanation'),
+      neuButton: t('requiredButton'),
+      marketplaceTitle: t('requiredtitle'),
+      marketplaceExplanation: t('requiredExplaination'),
     },
   ]
 
   return (
     <ReleaseProcess
-      onStartClick={onStartClick}
-      onOverviewButton={onOverviewButton}
-      stepsLists={stepsLists}
       headerTitle={t('headerTitle')}
       descHeading={t('descHeading')}
       descMessage={t('descMessage')}
@@ -98,6 +95,9 @@ export default function ServiceReleaseProcess() {
       marketplaceHeading={t('marketplaceHeading')}
       requirements={requeredButtons}
       elementNumbers={4}
+      onStartClick={onStartServiceClick}
+      onOverviewButton={onOverviewServiceButton}
+      stepsLists={processStepsLists}
     />
   )
 }
