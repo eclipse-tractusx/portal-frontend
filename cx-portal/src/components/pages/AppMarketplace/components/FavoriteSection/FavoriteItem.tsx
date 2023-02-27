@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -58,7 +58,10 @@ export default function FavoriteItem({
   const fetchImage = async (documentId: string) => {
     try {
       const id = CommonService.isValidPictureId(documentId)
-      const result = await fetchDocumentById(id).unwrap()
+      const result = await fetchDocumentById({
+        appId: item.id,
+        documentId: id,
+      }).unwrap()
       return setCardImage(URL.createObjectURL(result.data))
     } catch (error) {
       console.log(error)

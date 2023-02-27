@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
 import { useState } from 'react'
+import { Typography } from '../Typography'
 import ImageItemOverlay from './ImageItemOverlay'
 import { ImageType } from './types'
 
@@ -30,14 +30,17 @@ export const ImageItem = ({
   hover = true,
   borderRadius = true,
   shadow = true,
+  width,
+  height,
   modalWidth,
+  additionalStyles = {},
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
     switch (size) {
       case 'small-rectangle':
         return {
-          width: '320px',
+          width: '284px',
           height: '160px',
         }
       case 'small-square':
@@ -47,7 +50,7 @@ export const ImageItem = ({
         }
       case 'medium-rectangle':
         return {
-          width: '512px',
+          width: '456px',
           height: '256px',
         }
       case 'medium-square':
@@ -57,8 +60,13 @@ export const ImageItem = ({
         }
       case 'large-rectangle':
         return {
-          width: '712px',
+          width: '625px',
           height: '352px',
+        }
+      case 'custom':
+        return {
+          width: width,
+          height: height,
         }
       default:
         return {
@@ -90,6 +98,7 @@ export const ImageItem = ({
           borderRadius: borderRadius ? '16px' : '0px',
           marginBottom: '20px',
           cursor: 'zoom-in',
+          ...additionalStyles,
         }}
       >
         <img

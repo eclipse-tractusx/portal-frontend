@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -26,6 +26,9 @@ import {
   DialogHeader,
   Typography,
   Button,
+  Tabs,
+  Tab,
+  TabPanel,
 } from 'cx-portal-shared-components'
 import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
@@ -34,20 +37,27 @@ import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPa
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   ApplicationRequest,
+  ProgressButtonsProps,
+  useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
-  useFetchDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
+import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
+import { getTitle } from './CompanyDetailsHelper'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
+  selectedRequestId?: string
   handleOverlayClose: React.MouseEventHandler
 }
 
 const CompanyDetailOverlay = ({
   openDialog = false,
+  selectedRequestId,
   handleOverlayClose,
 }: CompanyDetailOverlayProps) => {
+  const modalElement: any = useRef()
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
@@ -55,7 +65,11 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [checklist, setCheckList] = useState<ProgressButtonsProps[]>()
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [activeTab, setActiveTab] = useState<number>(0)
+  const [height, setHeight] = useState<string>('')
+  const { data: res } = useFetchCheckListDetailsQuery(selectedRequestId)
   const { data } = useFetchCompanySearchQuery({
     page: 0,
     args: {
@@ -75,6 +89,10 @@ const CompanyDetailOverlay = ({
     }
   }, [data, selectedCompany])
 
+  useEffect(() => {
+    setCheckList(res)
+  }, [res])
+
   const getLocaleStr = (str: string) => {
     if (str === 'ACTIVE_PARTICIPANT') {
       return t(
@@ -87,10 +105,10 @@ const CompanyDetailOverlay = ({
     }
   }
 
-  const downloadDocumnet = async (documentId: string, documentType: string) => {
+  const downloadDocument = async (documentId: string, documentType: string) => {
+    if (!company) return
     try {
       const response = await getDocumentById(documentId).unwrap()
-
       const fileType = response.headers.get('content-type')
       const file = response.data
 
@@ -98,6 +116,32 @@ const CompanyDetailOverlay = ({
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
+  }
+
+  const getUniqueIdName = (id: { type: string; value: string }) => {
+    switch (id.type) {
+      case 'COMMERCIAL_REG_NUMBER':
+        return t(
+          'content.admin.registration-requests.overlay.commercialRegisterNumber'
+        )
+      case 'VAT_ID':
+        return t('content.admin.registration-requests.overlay.vatId')
+      case 'LEI_CODE':
+        return t('content.admin.registration-requests.overlay.leiCode')
+      case 'VIES':
+        return t('content.admin.registration-requests.overlay.vies')
+      case 'EORI':
+        return t('content.admin.registration-requests.overlay.eori')
+    }
+  }
+
+  const handleChange = (event: any, newValue: number) => {
+    setHeight(
+      modalElement && modalElement.current
+        ? `${modalElement?.current?.clientHeight}px`
+        : '400px'
+    )
+    setActiveTab(newValue)
   }
 
   return (
@@ -112,14 +156,42 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: t('content.admin.registration-requests.overlay.title'),
-            intro: t(
-              'content.admin.registration-requests.overlay.companydatadescription'
-            ),
+            title: getTitle(activeTab, checklist || [], t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}
-        />
+        >
+          <Box
+            sx={{
+              marginLeft: '20px',
+            }}
+          >
+            <Tabs value={activeTab} onChange={handleChange}>
+              <Tab
+                sx={{
+                  fontSize: '18px',
+                  '&.Mui-selected': {
+                    borderBottom: '3px solid #0f71cb',
+                  },
+                }}
+                label={t('content.admin.registration-requests.overlay.tab1')}
+                id={`simple-tab-${activeTab}`}
+                aria-controls={`simple-tabpanel-${activeTab}`}
+              />
+              <Tab
+                sx={{
+                  fontSize: '18px',
+                  '&.Mui-selected': {
+                    borderBottom: '3px solid #0f71cb',
+                  },
+                }}
+                label={t('content.admin.registration-requests.overlay.tab2')}
+                id={`simple-tab-${activeTab}`}
+                aria-controls={`simple-tabpanel-${activeTab}`}
+              />
+            </Tabs>
+          </Box>
+        </DialogHeader>
 
         {detailLoading ? (
           <div
@@ -145,87 +217,53 @@ const CompanyDetailOverlay = ({
               marginBottom: 5,
             }}
           >
-            <Box sx={{ width: '100%' }}>
-              <Grid container spacing={1.5} style={{ marginTop: 0 }}>
-                <Grid
-                  xs={12}
-                  item
-                  style={{
-                    backgroundColor: theme.palette.grey['100'],
-                    padding: spacing(2),
-                  }}
-                >
-                  <Typography variant="h5">
-                    {t(
-                      'content.admin.registration-requests.overlay.companydatatitle'
+            <TabPanel value={activeTab} index={0}>
+              <Box ref={modalElement} sx={{ width: '100%' }}>
+                <Grid container spacing={1.5} style={{ marginTop: 0 }}>
+                  <Grid
+                    xs={12}
+                    item
+                    style={{
+                      backgroundColor: theme.palette.grey['100'],
+                      padding: spacing(2),
+                    }}
+                  >
+                    <Typography variant="h5">
+                      {t(
+                        'content.admin.registration-requests.overlay.companydatatitle'
+                      )}
+                    </Typography>
+                  </Grid>
+                  <DetailGridRow
+                    key={t('content.partnernetwork.columns.name') as string}
+                    {...{
+                      variableName: `${t(
+                        'content.partnernetwork.columns.name'
+                      )}`,
+                      value: selectedCompany?.name,
+                    }}
+                  />
+                  <DetailGridRow
+                    key={t('content.partnernetwork.columns.bpn') as string}
+                    {...{
+                      variableName: `${t(
+                        'content.partnernetwork.columns.bpn'
+                      )}`,
+                      value: selectedCompany?.bpn,
+                    }}
+                  />
+                  {selectedCompany.uniqueIds &&
+                    selectedCompany.uniqueIds.map(
+                      (id: { type: string; value: string }) => (
+                        <DetailGridRow
+                          key={id.type}
+                          {...{
+                            variableName: getUniqueIdName(id) as string,
+                            value: id.value || '',
+                          }}
+                        />
+                      )
                     )}
-                  </Typography>
-                </Grid>
-                <DetailGridRow
-                  key={t('content.partnernetwork.columns.name') as string}
-                  {...{
-                    variableName: `${t('content.partnernetwork.columns.name')}`,
-                    value: selectedCompany?.name,
-                  }}
-                />
-                <DetailGridRow
-                  key={t('content.partnernetwork.columns.bpn') as string}
-                  {...{
-                    variableName: `${t('content.partnernetwork.columns.bpn')}`,
-                    value: selectedCompany?.bpn,
-                  }}
-                />
-                <DetailGridRow
-                  key={
-                    t(
-                      'content.admin.registration-requests.overlay.taxid'
-                    ) as string
-                  }
-                  {...{
-                    variableName: `${t(
-                      'content.admin.registration-requests.overlay.taxid'
-                    )}`,
-                    value: selectedCompany?.taxId || '',
-                  }}
-                />
-                <Grid
-                  xs={12}
-                  item
-                  style={{
-                    backgroundColor: theme.palette.grey['100'],
-                    padding: spacing(2),
-                  }}
-                >
-                  <Typography variant="h5">
-                    {t('content.admin.registration-requests.overlay.address')}
-                  </Typography>
-                </Grid>
-                <DetailGridRow
-                  key="Street"
-                  {...{
-                    variableName: 'Street',
-                    value: `${selectedCompany?.streetName || ''} ${
-                      selectedCompany?.streetNumber || ''
-                    }`,
-                  }}
-                />
-                <DetailGridRow
-                  key="PLZ / City"
-                  {...{
-                    variableName: 'PLZ / City',
-                    value: `${selectedCompany?.zipCode || ''} ${
-                      selectedCompany?.city || ''
-                    }`,
-                  }}
-                />
-                <DetailGridRow
-                  key="Country"
-                  {...{
-                    variableName: 'Country',
-                    value: selectedCompany?.countryDe || '',
-                  }}
-                />
-                <>
                   <Grid
                     xs={12}
                     item
@@ -235,118 +273,166 @@ const CompanyDetailOverlay = ({
                     }}
                   >
                     <Typography variant="h5">
-                      {t('content.admin.registration-requests.overlay.docs')}
+                      {t('content.admin.registration-requests.overlay.address')}
                     </Typography>
                   </Grid>
-                  {company?.documents && company.documents.length > 0 ? (
-                    <>
-                      {company.documents.map(
-                        (contract: {
-                          documentId: string
-                          documentType: string
-                        }) => (
-                          <div
-                            key={contract.documentId}
-                            style={{
-                              display: 'flex',
-                              padding: '20px',
-                              alignItems: 'center',
-                            }}
-                          >
-                            <>
-                              <ArticleOutlinedIcon />
-                              <button
-                                style={{
-                                  textDecoration: 'underline',
-                                  cursor: 'pointer',
-                                  fontSize: '14px',
-                                  border: 'none',
-                                  background: 'transparent',
-                                  paddingLeft: '10px',
-                                }}
-                                onClick={() => {
-                                  downloadDocumnet(
-                                    contract.documentId,
-                                    contract.documentType
-                                  )
-                                }}
-                              >
-                                {contract?.documentType}
-                              </button>
-                            </>
-                          </div>
-                        )
-                      )}
-                    </>
-                  ) : (
-                    <Typography
-                      sx={{
-                        padding: '20px',
+                  <DetailGridRow
+                    key="Street"
+                    {...{
+                      variableName: 'Street',
+                      value: `${selectedCompany?.streetName || ''} ${
+                        selectedCompany?.streetNumber || ''
+                      }`,
+                    }}
+                  />
+                  <DetailGridRow
+                    key="PLZ / City"
+                    {...{
+                      variableName: 'PLZ / City',
+                      value: `${selectedCompany?.zipCode || ''} ${
+                        selectedCompany?.city || ''
+                      }`,
+                    }}
+                  />
+                  <DetailGridRow
+                    key="Country"
+                    {...{
+                      variableName: 'Country',
+                      value: selectedCompany?.countryDe || '',
+                    }}
+                  />
+                  <>
+                    <Grid
+                      xs={12}
+                      item
+                      style={{
+                        backgroundColor: theme.palette.grey['100'],
+                        padding: spacing(2),
                       }}
-                      variant="body1"
                     >
-                      {t('content.admin.registration-requests.overlay.noinfo')}
-                    </Typography>
-                  )}
-                </>
-                <>
-                  <Grid
-                    xs={12}
-                    item
-                    style={{
-                      backgroundColor: theme.palette.grey['100'],
-                      padding: spacing(2),
-                    }}
-                  >
-                    <Typography variant="h5">
-                      {t('content.admin.registration-requests.overlay.roles')}
-                    </Typography>
-                  </Grid>
-                  {selectedCompany?.companyRoles &&
-                  selectedCompany?.companyRoles.length > 0 ? (
-                    <>
-                      {selectedCompany?.companyRoles.map(
-                        (role: { companyRole: string }) => (
-                          <div
-                            key={role.companyRole}
-                            style={{
-                              display: 'flex',
-                              padding: '20px 10px 10px 10px',
-                              alignItems: 'center',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            <Button
-                              color="secondary"
-                              sx={{
-                                borderRadius: '6px',
-                                margin: '0px 10px',
-                                cursor: 'auto',
+                      <Typography variant="h5">
+                        {t('content.admin.registration-requests.overlay.docs')}
+                      </Typography>
+                    </Grid>
+                    {company?.documents && company.documents.length > 0 ? (
+                      <>
+                        {company.documents.map(
+                          (contract: {
+                            documentId: string
+                            documentType: string
+                          }) => (
+                            <div
+                              key={contract.documentId}
+                              style={{
+                                display: 'flex',
+                                padding: '20px',
+                                alignItems: 'center',
                               }}
-                              onClick={function noRefCheck() {}}
-                              onFocusVisible={function noRefCheck() {}}
-                              size="small"
-                              variant="contained"
                             >
-                              {getLocaleStr(role.companyRole)}
-                            </Button>
-                          </div>
-                        )
-                      )}
-                    </>
-                  ) : (
-                    <Typography
-                      sx={{
-                        padding: '20px',
+                              <>
+                                <ArticleOutlinedIcon />
+                                <button
+                                  style={{
+                                    textDecoration: 'underline',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    border: 'none',
+                                    background: 'transparent',
+                                    paddingLeft: '10px',
+                                  }}
+                                  onClick={() => {
+                                    downloadDocument(
+                                      contract.documentId,
+                                      contract.documentType
+                                    )
+                                  }}
+                                >
+                                  {contract?.documentType}
+                                </button>
+                              </>
+                            </div>
+                          )
+                        )}
+                      </>
+                    ) : (
+                      <Typography
+                        sx={{
+                          padding: '20px',
+                        }}
+                        variant="body1"
+                      >
+                        {t(
+                          'content.admin.registration-requests.overlay.noinfo'
+                        )}
+                      </Typography>
+                    )}
+                  </>
+                  <>
+                    <Grid
+                      xs={12}
+                      item
+                      style={{
+                        backgroundColor: theme.palette.grey['100'],
+                        padding: spacing(2),
                       }}
-                      variant="body1"
                     >
-                      {t('content.admin.registration-requests.overlay.noinfo')}
-                    </Typography>
-                  )}
-                </>
-              </Grid>
-            </Box>
+                      <Typography variant="h5">
+                        {t('content.admin.registration-requests.overlay.roles')}
+                      </Typography>
+                    </Grid>
+                    {selectedCompany?.companyRoles &&
+                    selectedCompany?.companyRoles.length > 0 ? (
+                      <>
+                        {selectedCompany?.companyRoles.map(
+                          (role: { companyRole: string }) => (
+                            <div
+                              key={role.companyRole}
+                              style={{
+                                display: 'flex',
+                                padding: '20px 10px 10px 10px',
+                                alignItems: 'center',
+                                flexDirection: 'row',
+                              }}
+                            >
+                              <Button
+                                color="secondary"
+                                sx={{
+                                  borderRadius: '6px',
+                                  margin: '0px 10px',
+                                  cursor: 'auto',
+                                }}
+                                onClick={function noRefCheck() {}}
+                                onFocusVisible={function noRefCheck() {}}
+                                size="small"
+                                variant="contained"
+                              >
+                                {getLocaleStr(role.companyRole)}
+                              </Button>
+                            </div>
+                          )
+                        )}
+                      </>
+                    ) : (
+                      <Typography
+                        sx={{
+                          padding: '20px',
+                        }}
+                        variant="body1"
+                      >
+                        {t(
+                          'content.admin.registration-requests.overlay.noinfo'
+                        )}
+                      </Typography>
+                    )}
+                  </>
+                </Grid>
+              </Box>
+            </TabPanel>
+            <TabPanel value={activeTab} index={1}>
+              <Box sx={{ width: '100%', height: height }}>
+                <CheckListFullButtons progressButtons={checklist} />
+              </Box>
+            </TabPanel>
           </DialogContent>
         )}
       </Dialog>

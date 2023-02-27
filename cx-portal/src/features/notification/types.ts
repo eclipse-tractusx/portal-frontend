@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -23,12 +23,41 @@ import { PageNotificationsProps } from 'cx-portal-shared-components'
 
 export const name = 'admin/notification'
 
+export const PAGE_SIZE = 10
+export const PAGE = 0
+export const SORT_OPTION = 'DateDesc'
+
+export enum NOTIFICATION_TOPIC {
+  ALL = 'ALL',
+  ACTION = 'ACTION',
+  INFO = 'INFO',
+  OFFER = 'OFFER',
+}
+
+export type InitialNotificationType = {
+  page: number
+  size: number
+  args: {
+    notificationTopic: string
+    sorting: string
+  }
+}
+
 export interface ServiceAccountState {
   notification: PageNotificationsProps
+  initialNotificationState: InitialNotificationType
 }
 
 export const initialState: ServiceAccountState = {
   notification: initServicetNotifications,
+  initialNotificationState: {
+    page: PAGE,
+    size: PAGE_SIZE,
+    args: {
+      notificationTopic: NOTIFICATION_TOPIC.ALL,
+      sorting: SORT_OPTION,
+    },
+  },
 }
 
 export enum NotificationType {
@@ -41,6 +70,9 @@ export enum NotificationType {
   WELCOME_APP_MARKETPLACE = 'WELCOME_APP_MARKETPLACE',
   APP_SUBSCRIPTION_REQUEST = 'APP_SUBSCRIPTION_REQUEST',
   APP_SUBSCRIPTION_ACTIVATION = 'APP_SUBSCRIPTION_ACTIVATION',
+  APP_RELEASE_REQUEST = 'APP_RELEASE_REQUEST',
+  APP_RELEASE_APPROVAL = 'APP_RELEASE_APPROVAL',
+  TECHNICAL_USER_CREATION = 'TECHNICAL_USER_CREATION',
   CONNECTOR_REGISTERED = 'CONNECTOR_REGISTERED',
   Welcome = 'Welcome',
   WelcomeInvite = 'WelcomeInvite',
@@ -59,12 +91,15 @@ export enum NotificationType {
   AppSubscriptionReceived = 'AppSubscriptionReceived',
   AppSubscriptionApproved = 'AppSubscriptionApproved',
   AppSubscriptionRejected = 'AppSubscriptionRejected',
+  APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
 }
 
 export interface NotificationContent {
   message?: string
   appId?: string
   userId?: string
+  AppName?: string
+  OfferName?: string
 }
 
 export interface CXNotificationContent {
@@ -77,6 +112,7 @@ export interface CXNotificationContent {
   isRead?: boolean
   dueDate?: string
   notificationTopic?: string
+  type?: string
 }
 
 export type CXNotificationMeta = {

@@ -24,8 +24,8 @@
     "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
-    "title": "App request activated",
-    "content": "Your subscription for {{app}} is now active"
+    "title": "Congratulations! - {{offer}} is activated",
+    "content": "Congratulations! Your access to your subscribed app <strong>{{offer}}</strong> have got activated. You are now ready to start using the app. Before accessing the app directly; please got to the user management and assign app roles to the respective users. Only users with an assigned role can access the application."
   },
   "CONNECTOR_REGISTERED": {
     "title": "Connector registered successfully",
@@ -44,8 +44,8 @@
     "content": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel."
   },
   "APP_RELEASE_REJECTION": {
-    "title": "App request rejected",
-    "content": "Your request for app {{app}} got declined."
+    "title": "App Release request rejected",
+    "content": "Your request for app {{offer}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Catena-X."
   },
   "AppTermsChange": {
     "title": "Changed terms and conditions",
@@ -88,16 +88,22 @@
     "usecases": "Go to use cases",
     "serviceprovider": "Go to service provider",
     "appmanagementboard": "Get there",
-    "servicemanagementboard": "Get there"
+    "servicemanagementboard": "Get there",
+    "appoverview": "Get there",
+    "appsubscription": "Get theme",
+    "adminboard": "Get there",
+    "technicaluser": "Get there",
+    "companyrolesserviceprovider": "Get there",
+    "usermanagement": "Get there"
   },
   "due": "due",
   "search": "Enter your search value",
   "cancelButton": "CANCEL",
-  "deleteButton": "DELETE ALWAYS",
+  "deleteButton": "DELETE",
   "actionRequired": "Your action is required",
   "deleteModal": {
-    "title": "Delete Message",
-    "intro": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey."
+    "title": "Delete Notification",
+    "intro": "Do you want to delete this notification? The deletion is not reversible."
   },
   "sortOptions": {
     "new": "Newest First",
@@ -106,6 +112,6 @@
     "all": "all",
     "app": "app only",
     "info": "info only",
-    "withaction": "message with action required"
+    "withaction": "action required"
   }
 }

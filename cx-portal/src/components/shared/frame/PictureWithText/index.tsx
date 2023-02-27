@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,12 +28,14 @@ type PictureWithTextProps = {
   image?: string
   text: string
   onButtonClicked?: () => void
+  onHelpButtonClicked?: () => void
 }
 
 export default function PictureWithText({
-  image = './edc-connector-text-image.png',
+  image = './teaser.png',
   text,
   onButtonClicked,
+  onHelpButtonClicked,
 }: PictureWithTextProps) {
   const { t } = useTranslation()
 
@@ -58,7 +60,7 @@ export default function PictureWithText({
           variant="text"
           size="small"
           startIcon={<ArrowForwardIcon />}
-          onClick={onButtonClicked}
+          onClick={onHelpButtonClicked}
         >
           {t('content.edcconnector.helpText')}
         </Button>

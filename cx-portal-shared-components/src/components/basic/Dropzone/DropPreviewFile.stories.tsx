@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -21,6 +21,7 @@
 import { ComponentStory } from '@storybook/react'
 
 import { DropPreviewFile as Component } from './components/DropPreviewFile'
+import { UploadStatus } from './types'
 
 export default {
   title: 'Dropzone',
@@ -28,7 +29,7 @@ export default {
   args: {
     name: 'Document.pdf',
     size: 65402,
-    status: 'new',
+    status: UploadStatus.NEW,
     progressPercent: 0,
     translations: {
       placeholder: 'Lorem Ipsum: Wieviele sachen willst du hochladen',
@@ -41,7 +42,12 @@ export default {
   argTypes: {
     status: {
       control: 'radio',
-      options: ['new', 'uploading', 'upload_success', 'upload_error'],
+      options: [
+        UploadStatus.NEW,
+        UploadStatus.UPLOADING,
+        UploadStatus.UPLOAD_SUCCESS,
+        UploadStatus.UPLOAD_ERROR,
+      ],
     },
   },
 }

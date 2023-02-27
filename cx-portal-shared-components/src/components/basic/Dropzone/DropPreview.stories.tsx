@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -21,33 +21,34 @@
 import { ComponentStory } from '@storybook/react'
 
 import { DropPreview as Component } from './components/DropPreview'
+import { UploadStatus } from './types'
 
 export default {
   title: 'Dropzone',
   component: Component,
   args: {
     uploadFiles: [
-      { name: 'Test123.pdf', size: 44345000, status: 'new' },
+      { name: 'Test123.pdf', size: 44345000, status: UploadStatus.NEW },
       {
         name: 'Document.pdf',
         size: 65402,
-        status: 'uploading',
+        status: UploadStatus.UPLOADING,
         progressPercent: 45,
       },
       {
         name: 'Das ist ein sehr langer Name von einer Datei - der Name ist wirklich äußerst, äußerst lang...!.pdf',
         size: 32003,
-        status: 'new',
+        status: UploadStatus.NEW,
       },
       {
         name: 'My pretty PDF.pdf',
         size: 54676543,
-        status: 'upload_success',
+        status: UploadStatus.UPLOAD_SUCCESS,
       },
       {
         name: 'Nix wars.xls',
         size: 543545,
-        status: 'upload_error',
+        status: UploadStatus.UPLOAD_ERROR,
       },
     ],
     translations: {

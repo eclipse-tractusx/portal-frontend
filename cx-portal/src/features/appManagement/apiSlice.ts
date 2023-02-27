@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -48,6 +48,7 @@ export type CreateAppStep1Item = {
   }[]
   supportedLanguageCodes: string[]
   price: string
+  privacyPolicies: string[]
 }
 
 export type ImageType = {
@@ -143,6 +144,11 @@ export type updateRolePayload = {
     | null
 }
 
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -225,8 +231,8 @@ export const apiSlice = createApi({
       }),
     }),
     fetchDocumentById: builder.mutation({
-      query: (documentId: string) => ({
-        url: `/api/administration/documents/${documentId}`,
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -246,6 +252,12 @@ export const apiSlice = createApi({
     deleteRoles: builder.mutation<void, deleteRoleType>({
       query: (data) => ({
         url: `/api/apps/appreleaseprocess/${data.appId}/role/${data.roleId}`,
+        method: 'DELETE',
+      }),
+    }),
+    deleteDocument: builder.mutation<void, string>({
+      query: (documentId) => ({
+        url: `/api/registration/documents/${documentId}`,
         method: 'DELETE',
       }),
     }),
@@ -269,4 +281,5 @@ export const {
   useFetchRolesDataQuery,
   useUpdateRoleDataMutation,
   useDeleteRolesMutation,
+  useDeleteDocumentMutation,
 } = apiSlice

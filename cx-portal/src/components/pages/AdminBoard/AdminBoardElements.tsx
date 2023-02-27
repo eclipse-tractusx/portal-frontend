@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,81 +18,76 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import {
-  CardDecision,
-  PageNotifications,
-  PageSnackbar,
-} from 'cx-portal-shared-components'
+import { CardDecision, PageSnackbar } from 'cx-portal-shared-components'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { show } from 'features/control/overlay/actions'
 import './AdminBoard.scss'
 import {
   AppContent,
   useApproveRequestMutation,
-  useDeclineRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
+import NoItems from '../NoItems'
+import { OVERLAYS } from 'types/Constants'
+import {
+  currentErrorType,
+  currentSuccessType,
+  setErrorType,
+  setSuccessType,
+} from 'features/adminBoard/slice'
 
 export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const theme = useTheme()
   const { t } = useTranslation()
-  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
-  const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false)
 
   const [approveRequest] = useApproveRequestMutation()
-  const [declineRequest] = useDeclineRequestMutation()
+  const isDecisionSuccess = useSelector(currentSuccessType)
+  const isDecisionError = useSelector(currentErrorType)
 
   if (apps && apps.length === 0) {
-    return (
-      <div className="recommended-section">
-        <PageNotifications
-          description={t('content.serviceMarketplace.noDataMessage')}
-          open
-          severity="error"
-          showIcon
-          title="Error"
-        />
-      </div>
-    )
+    return <NoItems />
   }
 
-  const onDecisionApprove = async (appId: string) => {
+  const handleApprove = async (appId: string) => {
     await approveRequest(appId)
       .unwrap()
-      .then(() => setShowSuccessAlert(true))
-      .catch((error) => setShowErrorAlert(true))
-  }
-
-  const onDecisionDelete = async (appId: string) => {
-    await declineRequest(appId)
-      .unwrap()
-      .then(() => setShowSuccessAlert(true))
-      .catch((error) => setShowErrorAlert(true))
+      .then(() => {
+        dispatch(setSuccessType(true))
+      })
+      .catch((error) => dispatch(setErrorType(true)))
   }
 
   const onAlertClose = () => {
-    setShowSuccessAlert(false)
-    setShowErrorAlert(false)
+    dispatch(setSuccessType(false))
+    dispatch(setErrorType(false))
   }
 
   return (
     <div className="admin-board-elements-main">
       <PageSnackbar
-        open={showSuccessAlert || showErrorAlert}
+        open={isDecisionSuccess || isDecisionError}
         onCloseNotification={onAlertClose}
-        severity={showSuccessAlert ? 'success' : 'error'}
+        severity={isDecisionSuccess ? 'success' : 'error'}
         description={
-          showSuccessAlert
+          isDecisionSuccess
             ? t('content.adminBoard.successMsg')
             : t('content.adminBoard.errorMsg')
         }
         showIcon={true}
+        autoClose={true}
       />
       {apps && apps.length ? (
         <CardDecision
           items={apps}
-          onDelete={onDecisionDelete}
-          onApprove={onDecisionApprove}
+          onDelete={(appId: string) =>
+            dispatch(show(OVERLAYS.DECLINE_ADMINBOARD, appId))
+          }
+          onApprove={(appId: string) => handleApprove(appId)}
+          onClick={(appId: string) => navigate(`/adminboarddetail/${appId}`)}
         />
       ) : (
         <div className="loading-progress">

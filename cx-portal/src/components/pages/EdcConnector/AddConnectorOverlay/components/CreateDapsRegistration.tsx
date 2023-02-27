@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -52,7 +52,10 @@ const CreateDapsRegistration = ({
   const [error, setError] = useState(false)
   const [file, setFile] = useState<File>()
   const dropzoneProps = {
-    accept: '*',
+    accept: {
+      'application/x-pem-file': [],
+      'application/x-x509-ca-cert': [],
+    },
   }
 
   return (

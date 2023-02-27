@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -41,6 +41,7 @@ import {
   useUpdateUserRolesMutation,
   UserRoleRequest,
 } from 'features/admin/appuserApiSlice'
+import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
 export default function AddAppUserRoles() {
   const { t } = useTranslation()
@@ -61,6 +62,7 @@ export default function AddAppUserRoles() {
         companyUserId: user,
         body: roles,
       }
+      dispatch(setRolesToAdd([]))
       try {
         await updateUserRoles(data).unwrap()
         dispatch(setUserRoleResp('success'))
@@ -71,13 +73,18 @@ export default function AddAppUserRoles() {
     })
   }
 
+  const handleCancel = () => {
+    dispatch(show(OVERLAYS.NONE, ''))
+    dispatch(setRolesToAdd([]))
+  }
+
   return (
     <>
       <DialogHeader
         title={t('content.addUserRight.headline')}
         intro={t('content.addUserRight.subheadline')}
         closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(show(OVERLAYS.NONE, ''))}
+        onCloseWithIcon={handleCancel}
       />
 
       <DialogContent className="add-user-overlay-content">

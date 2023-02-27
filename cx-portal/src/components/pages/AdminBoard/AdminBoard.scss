@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -35,7 +35,7 @@
   }
 
   .searchContainer {
-    margin-top: 50px;
+    margin-top: 88px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -71,7 +71,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 88px;
   }
 
   .filterSection .chipContainer {
@@ -88,7 +88,11 @@
     z-index: 9;
   }
 
+  .admin-board-main {
+    background-color: #f9f9f9;
+  }
+
   .admin-board-elements-main {
-    margin-bottom: 50px;
+    margin-bottom: 22px;
   }
 }

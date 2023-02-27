@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect, useState } from 'react'
 import { Typography } from 'cx-portal-shared-components'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
@@ -25,15 +26,26 @@ import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailHowToUse from './components/AppDetailHowToUse'
 import AppDetailProvider from './components/AppDetailProvider'
 import AppDetailTags from './components/AppDetailTags'
-import { getAppImage } from 'features/apps/mapper'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
+import CommonService from 'services/CommonService'
 
 export default function AppDetailContentDetails({
   item,
 }: {
   item: AppDetails
 }) {
+  const [images, setImages] = useState<any>()
+
+  useEffect(() => {
+    if (item) {
+      const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
+      Promise.all(newPromies).then((result) => {
+        setImages(result.flat())
+      })
+    }
+  }, [item])
+
   return (
     item && (
       <>
@@ -41,11 +53,7 @@ export default function AppDetailContentDetails({
         <div className="product-description">
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
-        <AppDetailImageGallery
-          images={item.detailPictureUris.map((image) =>
-            getAppImage(item.id, image)
-          )}
-        />
+        {images && <AppDetailImageGallery images={images} />}
         <AppDetailPrivacy />
         <AppDetailHowToUse item={item} />
         <AppDetailProvider item={item} />

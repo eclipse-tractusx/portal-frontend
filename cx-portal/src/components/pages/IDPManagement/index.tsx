@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -48,7 +48,7 @@ export default function IDPManagement() {
       <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT]} />
       <section>
         <div className="idp-management-header">
-          <img src="/idp-teaser.jpg" alt={'idp management'} />
+          <img src="/teaser.png" alt={'idp management'} />
           <div className="idp-management-title">
             <Typography>{t('page.desc')}</Typography>
             <Button

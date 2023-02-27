@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,7 +20,12 @@
 
 import Box from '@mui/material/Box'
 import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
-import { Button, DropArea, UploadFileStatus } from 'cx-portal-shared-components'
+import {
+  Button,
+  DropArea,
+  UploadFileStatus,
+  UploadStatus,
+} from 'cx-portal-shared-components'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
@@ -48,14 +53,14 @@ export default function NewDropzoneTest() {
     }
 
     for (let fileIndex = 0; fileIndex < myUploadFiles.length; fileIndex++) {
-      setFileStatus(fileIndex, 'uploading')
+      setFileStatus(fileIndex, UploadStatus.UPLOADING)
 
       try {
         await fetch('https://httpbin.org/post', { method: 'POST' })
-        setFileStatus(fileIndex, 'upload_success')
+        setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
       } catch (e) {
         // TODO: it should display an error notification snackbar
-        setFileStatus(fileIndex, 'upload_error')
+        setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR)
       }
     }
   }
@@ -81,7 +86,11 @@ export default function NewDropzoneTest() {
               maxFilesToUpload={3}
               maxFileSize={819200}
               DropArea={(props) => (
-                <DropArea {...props} disabled={uploadStarted} size="small" />
+                <DropArea
+                  {...props}
+                  disabled={props.disabled || uploadStarted}
+                  size="small"
+                />
               )}
             />
           )

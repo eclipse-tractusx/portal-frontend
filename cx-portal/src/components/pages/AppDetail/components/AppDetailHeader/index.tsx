@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -107,7 +107,10 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
 
   const getImage = async (documentId: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({
+        appId: item.id,
+        documentId,
+      }).unwrap()
       const file = response.data
       return setImage(URL.createObjectURL(file))
     } catch (error) {

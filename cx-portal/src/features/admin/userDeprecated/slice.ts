@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,11 +19,11 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { AdminUserState, AddUser, name, initialState } from './types'
+import { AdminUserState, name, initialState } from './types'
 import { addTenantUsers, fetchTenantUsers } from './actions'
 import { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
-import { TenantUser } from '../userApiSlice'
+import { TenantUser, AddUserIdp } from '../userApiSlice'
 
 export const slice = createSlice({
   name,
@@ -97,7 +97,7 @@ export const addOpenSelector = (state: RootState): boolean =>
 export const tenantUsersSelector = (state: RootState): TenantUser[] =>
   state.admin.user.tenantUsers
 
-export const usersToAddSelector = (state: RootState): AddUser =>
+export const usersToAddSelector = (state: RootState): AddUserIdp =>
   state.admin.user.usersToAdd
 
 export const rolesToAddSelector = (state: RootState): string[] =>

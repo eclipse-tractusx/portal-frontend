@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,7 +24,11 @@ import { ImageGallery, ImageType } from 'cx-portal-shared-components'
 export default function AppDetailImage({ images }: { images: ImageType[] }) {
   return (
     <div className="appdetail-gallery">
-      <ImageGallery gallery={images} />
+      <ImageGallery
+        grid={images && images.length > 2 ? true : false}
+        gallery={images}
+        modalWidth="900"
+      />
     </div>
   )
 }

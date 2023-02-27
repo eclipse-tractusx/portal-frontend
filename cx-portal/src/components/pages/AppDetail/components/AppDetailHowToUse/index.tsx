@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -38,7 +38,10 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
     documentName: string
   ) => {
     try {
-      const response = await getDocumentById(documentId).unwrap()
+      const response = await getDocumentById({
+        appId: item.id,
+        documentId,
+      }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
       return download(file, fileType, documentName)

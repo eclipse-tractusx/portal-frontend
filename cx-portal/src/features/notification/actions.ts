@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,7 +20,7 @@
 
 import { createAction } from '@reduxjs/toolkit'
 import { PageNotificationsProps } from 'cx-portal-shared-components'
-import { name } from './types'
+import { InitialNotificationType, name } from './types'
 
 const setNotification = createAction(
   `${name}/setNotification`,
@@ -35,4 +35,15 @@ const setNotification = createAction(
 
 const resetNotification = createAction(`${name}/resetNotification`)
 
-export { setNotification, resetNotification }
+const resetInitialNotificationState = createAction(
+  `${name}/resetInitialNotificationState`,
+  function update(initialNotificationState: InitialNotificationType) {
+    return {
+      payload: {
+        initialNotificationState,
+      },
+    }
+  }
+)
+
+export { setNotification, resetNotification, resetInitialNotificationState }

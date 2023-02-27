@@ -109,11 +109,11 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/facebook/watchman
 │  │  ├─ VendorName: Wez Furlong
 │  │  └─ VendorUrl: https://facebook.github.io/watchman/docs/bser.html
-│  ├─ cx-portal-shared-components@1.0.0-RC2
-│  │  ├─ URL: https://github.com/catenax-ng/product-portal-frontend.git
-│  │  ├─ VendorName: Catena-X NG
+│  ├─ cx-portal-shared-components@1.0.0-RC10
+│  │  ├─ URL: https://github.com/eclipse-tractusx/portal-frontend.git
+│  │  ├─ VendorName: Catena-X Contributors
 │  │  └─ VendorUrl: https://catena-x.net/
-│  ├─ cx-portal@1.0.0-RC2
+│  ├─ cx-portal@1.0.0-RC10
 │  ├─ didyoumean@1.2.2
 │  │  ├─ URL: https://github.com/dcporter/didyoumean.js.git
 │  │  ├─ VendorName: Dave Porter
@@ -198,7 +198,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: git://github.com/faye/websocket-extensions-node.git
 │  │  ├─ VendorName: James Coglan
 │  │  └─ VendorUrl: http://github.com/faye/websocket-extensions-node
-│  ├─ workspace-aggregator-348d715c-e664-4a04-8222-379f12eee2c3@1.0.0-RC2
+│  ├─ workspace-aggregator-30be49f3-0a45-4ef6-bfad-6bfe9594a518@1.0.0-RC10
 │  └─ xml-name-validator@3.0.0
 │     ├─ URL: https://github.com/jsdom/xml-name-validator.git
 │     ├─ VendorName: Domenic Denicola
@@ -304,10 +304,6 @@ yarn licenses v1.5.1
 │  ├─ normalize-package-data@2.5.0
 │  │  ├─ URL: git://github.com/npm/normalize-package-data.git
 │  │  └─ VendorName: Meryn Stol
-│  ├─ nth-check@1.0.2
-│  │  ├─ URL: https://github.com/fb55/nth-check
-│  │  ├─ VendorName: Felix Boehm
-│  │  └─ VendorUrl: https://github.com/fb55/nth-check
 │  ├─ nth-check@2.0.1
 │  │  ├─ URL: https://github.com/fb55/nth-check
 │  │  ├─ VendorName: Felix Boehm
@@ -320,11 +316,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/yeoman/stringify-object.git
 │  │  ├─ VendorName: Sindre Sorhus
 │  │  └─ VendorUrl: sindresorhus.com
-│  ├─ terser@4.8.1
-│  │  ├─ URL: https://github.com/terser/terser
-│  │  ├─ VendorName: Mihai Bazon
-│  │  └─ VendorUrl: https://terser.org/
-│  ├─ terser@5.12.1
+│  ├─ terser@5.16.3
 │  │  ├─ URL: https://github.com/terser/terser
 │  │  ├─ VendorName: Mihai Bazon
 │  │  └─ VendorUrl: https://terser.org/
@@ -776,10 +768,6 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/Flet/github-slugger.git
 │  │  ├─ VendorName: Dan Flettre
 │  │  └─ VendorUrl: https://github.com/Flet/github-slugger
-│  ├─ glob-parent@3.1.0
-│  │  ├─ URL: https://github.com/es128/glob-parent
-│  │  ├─ VendorName: Elan Shanker
-│  │  └─ VendorUrl: https://github.com/es128/glob-parent
 │  ├─ glob-parent@5.1.2
 │  │  ├─ URL: https://github.com/gulpjs/glob-parent.git
 │  │  ├─ VendorName: Gulp Team
@@ -851,15 +839,11 @@ yarn licenses v1.5.1
 │  ├─ minimalistic-assert@1.0.1
 │  │  ├─ URL: https://github.com/calvinmetcalf/minimalistic-assert.git
 │  │  └─ VendorUrl: https://github.com/calvinmetcalf/minimalistic-assert
-│  ├─ minimatch@3.0.4
-│  │  ├─ URL: git://github.com/isaacs/minimatch.git
-│  │  ├─ VendorName: Isaac Z. Schlueter
-│  │  └─ VendorUrl: http://blog.izs.me
 │  ├─ minimatch@3.1.2
 │  │  ├─ URL: git://github.com/isaacs/minimatch.git
 │  │  ├─ VendorName: Isaac Z. Schlueter
 │  │  └─ VendorUrl: http://blog.izs.me
-│  ├─ minimatch@5.0.1
+│  ├─ minimatch@5.1.6
 │  │  ├─ URL: git://github.com/isaacs/minimatch.git
 │  │  ├─ VendorName: Isaac Z. Schlueter
 │  │  └─ VendorUrl: http://blog.izs.me
@@ -1668,12 +1652,30 @@ yarn licenses v1.5.1
 │  │  └─ URL: https://github.com/facebook/jest.git
 │  ├─ @jest/types@27.5.1
 │  │  └─ URL: https://github.com/facebook/jest.git
+│  ├─ @jridgewell/gen-mapping@0.3.2
+│  │  ├─ URL: https://github.com/jridgewell/gen-mapping
+│  │  └─ VendorName: Justin Ridgewell
 │  ├─ @jridgewell/resolve-uri@3.0.5
 │  │  ├─ URL: https://github.com/jridgewell/resolve-uri
+│  │  └─ VendorName: Justin Ridgewell
+│  ├─ @jridgewell/resolve-uri@3.1.0
+│  │  ├─ URL: https://github.com/jridgewell/resolve-uri
+│  │  └─ VendorName: Justin Ridgewell
+│  ├─ @jridgewell/set-array@1.1.2
+│  │  ├─ URL: https://github.com/jridgewell/set-array
+│  │  └─ VendorName: Justin Ridgewell
+│  ├─ @jridgewell/source-map@0.3.2
+│  │  ├─ URL: https://github.com/jridgewell/source-map
 │  │  └─ VendorName: Justin Ridgewell
 │  ├─ @jridgewell/sourcemap-codec@1.4.11
 │  │  ├─ URL: git+https://github.com/jridgewell/sourcemap-codec.git
 │  │  └─ VendorName: Rich Harris
+│  ├─ @jridgewell/sourcemap-codec@1.4.14
+│  │  ├─ URL: git+https://github.com/jridgewell/sourcemap-codec.git
+│  │  └─ VendorName: Rich Harris
+│  ├─ @jridgewell/trace-mapping@0.3.17
+│  │  ├─ URL: git+https://github.com/jridgewell/trace-mapping.git
+│  │  └─ VendorName: Justin Ridgewell
 │  ├─ @jridgewell/trace-mapping@0.3.4
 │  │  ├─ URL: git+https://github.com/jridgewell/trace-mapping.git
 │  │  └─ VendorName: Justin Ridgewell
@@ -3263,7 +3265,7 @@ yarn licenses v1.5.1
 │  ├─ decimal.js@10.3.1
 │  │  ├─ URL: https://github.com/MikeMcl/decimal.js.git
 │  │  └─ VendorName: Michael Mclaughlin
-│  ├─ decode-uri-component@0.2.0
+│  ├─ decode-uri-component@0.2.2
 │  │  ├─ URL: https://github.com/SamVerschueren/decode-uri-component.git
 │  │  ├─ VendorName: Sam Verschueren
 │  │  └─ VendorUrl: github.com/SamVerschueren
@@ -4564,11 +4566,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/akiran/json2mq
 │  │  ├─ VendorName: Kiran Abburi
 │  │  └─ VendorUrl: https://github.com/akiran/json2mq
-│  ├─ json5@1.0.1
-│  │  ├─ URL: git+https://github.com/json5/json5.git
-│  │  ├─ VendorName: Aseem Kishore
-│  │  └─ VendorUrl: http://json5.org/
-│  ├─ json5@2.2.0
+│  ├─ json5@2.2.3
 │  │  ├─ URL: git+https://github.com/json5/json5.git
 │  │  ├─ VendorName: Aseem Kishore
 │  │  └─ VendorUrl: http://json5.org/
@@ -4647,16 +4645,10 @@ yarn licenses v1.5.1
 │  │  ├─ URL: git+https://github.com/webpack/loader-runner.git
 │  │  ├─ VendorName: Tobias Koppers @sokra
 │  │  └─ VendorUrl: https://github.com/webpack/loader-runner#readme
-│  ├─ loader-utils@1.4.2
+│  ├─ loader-utils@2.0.4
 │  │  ├─ URL: https://github.com/webpack/loader-utils.git
 │  │  └─ VendorName: Tobias Koppers @sokra
-│  ├─ loader-utils@2.0.0
-│  │  ├─ URL: https://github.com/webpack/loader-utils.git
-│  │  └─ VendorName: Tobias Koppers @sokra
-│  ├─ loader-utils@2.0.2
-│  │  ├─ URL: https://github.com/webpack/loader-utils.git
-│  │  └─ VendorName: Tobias Koppers @sokra
-│  ├─ loader-utils@3.2.0
+│  ├─ loader-utils@3.2.1
 │  │  ├─ URL: https://github.com/webpack/loader-utils.git
 │  │  └─ VendorName: Tobias Koppers @sokra
 │  ├─ locate-path@2.0.0
@@ -5173,9 +5165,6 @@ yarn licenses v1.5.1
 │  │  ├─ URL: git://github.com/browserify/path-browserify.git
 │  │  ├─ VendorName: James Halliday
 │  │  └─ VendorUrl: https://github.com/browserify/path-browserify
-│  ├─ path-dirname@1.0.2
-│  │  ├─ URL: https://github.com/es128/path-dirname.git
-│  │  └─ VendorName: Elan Shanker
 │  ├─ path-exists@3.0.0
 │  │  ├─ URL: https://github.com/sindresorhus/path-exists.git
 │  │  ├─ VendorName: Sindre Sorhus
@@ -6420,7 +6409,8 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/wooorm/trim-trailing-lines.git
 │  │  ├─ VendorName: Titus Wormer
 │  │  └─ VendorUrl: https://wooorm.com
-│  ├─ trim@0.0.1
+│  ├─ trim@0.0.3
+│  │  ├─ URL: https://github.com/component/trim.git
 │  │  └─ VendorName: TJ Holowaychuk
 │  ├─ trough@1.0.5
 │  │  ├─ URL: https://github.com/wooorm/trough.git
@@ -6909,4 +6899,4 @@ yarn licenses v1.5.1
       ├─ URL: https://github.com/pieroxy/lz-string.git
       ├─ VendorName: pieroxy
       └─ VendorUrl: http://pieroxy.net/blog/pages/lz-string/index.html
-Done in 21.89s.
+Done in 3.04s.

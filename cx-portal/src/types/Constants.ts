@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -30,6 +30,7 @@ export enum PAGES {
   STORYBOOK = 'storybook',
   APPSUBSCRIPTION = 'appsubscription',
   ADMINBOARD = 'adminboard',
+  ADMINBOARD_DETAIL = 'adminboarddetail',
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
@@ -58,6 +59,7 @@ export enum PAGES {
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
   HELP = 'help',
+  DOCUMENTATION = 'documentation',
   CONTACT = 'contact',
   IMPRINT = 'imprint',
   PRIVACY = 'privacy',
@@ -118,6 +120,7 @@ export enum OVERLAYS {
   CONFIRM_USER_ACTION = 'confirm_user_action',
   SAMPLE_FORM = 'sample_form',
   ADD_SERVICE_PROVIDER = 'add_service_provider',
+  DECLINE_ADMINBOARD = 'decline_adminboard',
 }
 
 export enum ACTIONS {

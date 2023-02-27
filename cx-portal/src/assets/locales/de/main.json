@@ -28,6 +28,7 @@
     "developer": "Entwicklung",
     "invite": "Einladung CX Teilnehmer",
     "help": "Hilfe",
+    "documentation": "Dokumentation & Hilfe",
     "contact": "Kontakt",
     "imprint": "Impressum",
     "privacy": "Privatsphäre",
@@ -108,8 +109,11 @@
         "pending": "anstehend",
         "buttonconfirm": "bestätigen",
         "buttondecline": "ablehnen",
+        "buttonprogress": "in progress",
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
+        "progress": "Confirmation in progress: ",
+        "cancel": "Cancel Process",
         "overlay": {
           "title": "Company Registration Details",
           "companydatatitle": "Overview",
@@ -121,11 +125,32 @@
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
           "serviceProvider": "Service Anbieter",
-          "noinfo": "no data available"
+          "noinfo": "no data available",
+          "commercialRegisterNumber": "Handelsregisternummer",
+          "vatId": "VAT ID",
+          "leiCode": "LEI Code",
+          "vies": "VIES",
+          "eori": "EORI",
+          "tab1": "Company Data",
+          "tab2": "Registration Process",
+          "tab1Title": "Company Data",
+          "tab2Title": "Confirmation {{status}}",
+          "statusComplete": "[complete]",
+          "statusIncomplete": "[incomplete]",
+          "approvedButton": "approved",
+          "failedButton": "falied"
         },
         "confirmmodal": {
           "title": "Aktion bestätigen",
           "description": "Möchten Sie die ausgewählte Anfrage wirklich ausführen?"
+        },
+        "confirmCancelModal": {
+          "title": "Registrierungsprozess abbrechen",
+          "description": "Sind Sie sicher, dass Sie den Bewerbungsprozess von {companyName} abbrechen möchten?",
+          "details": "Mit der Stornierung wird das Unternehmen informiert und die optional Stornierungsnachricht (wenn verfügbar) wird übermittelt.",
+          "note": "Bitte beachten Sie, dass die Stornierung dem Unternehmen keine erneute Registrierung ermöglicht, solange keine neue Einladung ausgelöst wird.",
+          "inputLabel": "Stornierungsnachricht",
+          "error": "Bitte überprüfen Sie Ihre Eingabe erneut; Die Nachricht sollte nicht mit '=' beginnen."
         },
         "addBpn": {
           "successTitle": "Update BPN number successfully completed",
@@ -269,7 +294,8 @@
     "digitaltwin": {
       "table": {
         "title": "Übersicht Digitale Zwillinge",
-        "searchfielddefaulttext": "Suche nach Name/Kennung",
+        "searchfielddefaulttext": "Teile-Instanz-ID des Assets",
+        "norows": "Keine Daten mit der Teile-Instanz-ID {data} gefunden",
         "columns": {
           "idShort": "Name",
           "sm_count": "Anzahl Submodelle",
@@ -365,10 +391,13 @@
         "name": "Konnektorname",
         "id": "Konnektor-ID",
         "type": "Steckertyp",
-        "details": "Einzelheiten",
+        "details": "Status",
         "location": "Location",
-        "status": "Authentication Status",
-        "tooltipText": "Connector's status is pending"
+        "status": "DAPS Auth Status",
+        "tooltipText": "Connector's status is pending",
+        "sdDescription": "SD Registration",
+        "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
+        "hostCompanyName": "Host"
       },
       "rowValue": {
         "owned": "Owned",
@@ -521,10 +550,10 @@
     },
     "usermanagement": {
       "title": "User Management",
-      "description": "View and manage all users assigned to the company. Assign roles; create new user accounts and create technical users.",
+      "description": "Alle dem Unternehmen zugewiesenen Benutzer anzeigen und verwalten. Rollenzuweisung, erstelle neue Benutzerkonten, sowie technische Accounts.",
       "apparea": {
         "headline": "App Zugriffsmanagement",
-        "appsNotAvailable": "Apps will be available as soon as any business applications are purchases"
+        "appsNotAvailable": "Apps sind verfügbar, sobald Geschäftsanwendungen abonniert und aktiviert sind"
       },
       "table": {
         "headline": "Benutzerkontenverwaltung",
@@ -534,7 +563,7 @@
         "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
-        "headline": "App Zugriffsmanagement - <1>App-Title</1>",
+        "headline": "App Zugriffsmanagement - {{app}}",
         "subheadline": "App Zugriffsmanagement",
         "userRoleSuccessMsg": "Benutzerrollen wurden erfolgreich aktualisiert.",
         "userRoleErrorMsg": "Etwas ist schief gelaufen. Benutzerrollen wurden nicht aktualisiert.",
@@ -836,7 +865,8 @@
         "salesManager": "Sales Manager",
         "salesManagerPlaceholder": "Please select a Sales Manager",
         "salesManagerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
-        "pricingInformation": "Preisinformation"
+        "pricingInformation": "Preisinformation",
+        "appLeadImageUpload": "App Lead Image Upload"
       },
       "appPage": {
         "headerTitle": "App Details",
@@ -850,13 +880,13 @@
         "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
-        "uploadDataContract": "Upload “Data Contract”",
         "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
         "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
+        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
         "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
       },
@@ -878,17 +908,20 @@
         "step2Header": "2. Upload App Roles",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of roles contained in the uploaded files:",
-        "createThoseForYourApp": "Create those for your App",
+        "uploadAppRolesButton": "Upload App Roles",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "step4Header": "4. Get Test Users to Test Integration",
         "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
         "createClient": "Create Client",
         "createTestUser": "Create Test User",
-        "clickToOpenDialogBox": "Click here to open the Explorer dialogue box",
         "password": "Password",
         "username": "Username",
-        "successfullyUploadedAppRoles": "Successfully uploaded app roles"
+        "successfullyUploadedAppRoles": "Successfully uploaded app roles",
+        "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
+        "template": "Template",
+        "getHelp": "Get Help",
+        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -936,7 +969,10 @@
           "title": "Error - something went wrong.",
           "message": "Please try it again"
         },
-        "dataSavedSuccessMessage": "Data saved successfully"
+        "dataSavedSuccessMessage": "Data saved successfully",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "rolesDeleteSuccessMessage": "Roles deleted successfully",
+        "errormessage": "Error! Something went wrong"
       },
       "footerButtons": {
         "help": "Help",
@@ -1040,7 +1076,176 @@
         "AppTitle": "App Title (A-Z)"
       },
       "errorMsg": "Error! Something went wrong",
-      "successMsg": "Successfully completed"
+      "successMsg": "Successfully completed",
+      "declineModal": {
+        "title": "Reject App Release Request {appName}",
+        "subheading": "Are you sure you want to reject the app release request ?",
+        "declineReason": "The rejection will",
+        "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
+        "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+        "declineReason3Label": "The app will get set back to the status “in progress“",
+        "inputLabel": "Cancellation Message"
+      }
+    },
+    "adminboardDetail": {
+      "usecase": "Use Case",
+      "language": "Language",
+      "price": "Price",
+      "backToBoard": "Back to Admin Board",
+      "connectedData": {
+        "heading": "Connected Data",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
+        "message2": "When using the app, the following data may be collected but NOT linked to your identity:",
+        "linked": "Linked to your Identity",
+        "notLinked": "Linked NOT to your Identity"
+      },
+      "securityInfo": {
+        "heading": "Data Security Information",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
+      },
+      "documents": {
+        "heading": "Documents",
+        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+      },
+      "providerInformation": {
+        "heading": "Provider Information",
+        "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+        "appProvider": "App Provider",
+        "website": "Website",
+        "email": "Email",
+        "phone": "Phone"
+      }
+    },
+    "checklistOverlay": {
+      "checkList": {
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description"
+      },
+      "checkListProgress": {
+        "DONE": "approved",
+        "IN_PROGRESS": "in progress",
+        "FAILED": "failed",
+        "TO_DO": "to do"
+      },
+      "buttonApprove": "Approve",
+      "buttonConfirm": "Confirm",
+      "buttonDecline": "Decline",
+      "buttonRetrigger": "Retrigger Process",
+      "buttonOverwrite": "Overwrite Process",
+      "buttonCancel": "Cancel Process",
+      "cancel": "Cancel",
+      "comments": "Comments",
+      "nocomments": " No comments available",
+      "buttonClose": "Close",
+      "resolveTitle": "Your option to resolve the issue",
+      "REGISTRATION_VERIFICATION": {
+        "stepName": "Data Validation",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
+        "TO_DO": {
+          "title": "Your action is needed to resolve the issue",
+          "description": ""
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "No action needed from your side",
+          "description": "The registration company got informed about the declined registration form. A new application is needed if you want to proceed."
+        }
+      },
+      "BUSINESS_PARTNER_NUMBER": {
+        "stepName": "BPN Creation",
+        "stepDescription": "Each registration company need to have a business partner number created. In this step the creation of the bpdm is triggered against the bpdm data pool.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "IDENTITY_WALLET": {
+        "stepName": "Identity Wallet Creation",
+        "stepDescription": "With successful business partner number creation as well as the manual validation of the company registration data; the managed identity wallet is getting generated for the participant.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "CLEARING_HOUSE": {
+        "stepName": "Clearing House",
+        "stepDescription": "Gaia-X Clearinghouse provider is validating the company registration form (company name; address and unique identifier) and after successful validation verified credentials are added to the managed wallet of the customer.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The clearinghouse check was unsuccessful. Details to the unsuccessful validation can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        }
+      },
+      "SELF_DESCRIPTION_LP": {
+        "stepName": "Self Description",
+        "stepDescription": "Legal person / company Self Description is created by the SD Factory and signed and send back by the clearinghouse. The process might take a while since its an asyncron interface.",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "No action needed from your side",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "Your action is needed.",
+          "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        }
+      }
     }
   },
   "navigation": {
@@ -1048,16 +1253,6 @@
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
       "link2Label": "Identity User Management"
-    },
-    "companyRoleSubNavigation": {
-      "link1Label": "marketplace",
-      "link2Label": "marketplace subscriptions",
-      "link3Label": "dataspace participants"
-    },
-    "useCaseNavigation": {
-      "link1Label": "Intro",
-      "link2Label": "Data Provisioning",
-      "link3Label": "Business Applications"
     }
   },
   "notification": {
@@ -1132,7 +1327,8 @@
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "next": "Next"
     },
     "state": {
       "enabled": "aktiv",
@@ -1176,6 +1372,10 @@
     "table": {
       "search": "Enter email to search",
       "searchName": "Enter name to search"
+    },
+    "noData": {
+      "heading": "No data available",
+      "description": "Currently no data available; change the view or come back later"
     }
   },
   "servicemarketplace": {

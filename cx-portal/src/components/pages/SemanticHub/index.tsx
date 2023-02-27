@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -138,7 +138,7 @@ export default function SemanticHub() {
             <Grid item xs={4}>
               <img
                 style={{ marginTop: '-200px', border: '16px solid white' }}
-                src="/edc-connector-text-image.png"
+                src="/teaser.png"
                 width="100%"
                 alt={'alt tag info'}
               />

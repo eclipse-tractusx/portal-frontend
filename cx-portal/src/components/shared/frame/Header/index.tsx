@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { UserInfo } from '../UserInfo'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Button, MainNavigation } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { MenuItem, Tree } from 'types/MainTypes'
@@ -28,7 +28,6 @@ import './Header.scss'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -52,7 +51,13 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             size="small"
             color="secondary"
             variant="contained"
-            onClick={() => navigate('/help')}
+            onClick={() => {
+              window.open(
+                `${document.location.origin}/documentation/`,
+                'documentation',
+                'noreferrer'
+              )
+            }}
             sx={{ backgroundColor: 'white', marginRight: '16px' }}
           >
             {t('pages.help')}

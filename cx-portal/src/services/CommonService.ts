@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase } from './EnvironmentService'
+import { getApiBase, getAssetBase } from './EnvironmentService'
+import i18next from 'i18next'
 import UserService from './UserService'
 
 const getName = (app: any) => app.name ?? ''
@@ -34,9 +35,9 @@ const fetchLeadPictureImage = (data: any[]) => {
   const promises = data?.map((app: any) => {
     return [
       new Promise((resolve, reject) => {
-        let url = `${getApiBase()}/api/administration/documents/${isValidPictureId(
-          app.leadPictureId
-        )}`
+        let url = `${getApiBase()}/api/apps/${
+          app.id
+        }/appImages/${isValidPictureId(app.leadPictureId)}`
         let options = {
           method: 'GET',
           headers: {
@@ -74,15 +75,75 @@ const fetchLeadPictureImage = (data: any[]) => {
   return newPromies
 }
 
+const fetchLeadPictures = (images: string[], appId: string) => {
+  const promises = images?.map((image: any) => {
+    return [
+      new Promise((resolve, reject) => {
+        let url = ''
+        if (!image.documentId) {
+          url = `${getApiBase()}/api/apps/${appId}/appImages/${isValidPictureId(
+            image
+          )}`
+        } else {
+          url = `${getApiBase()}/api/apps/${appId}/appImages/${isValidPictureId(
+            image.documentId
+          )}`
+        }
+
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+            authorization: `Bearer ${UserService.getToken()}`,
+          },
+        })
+          .then((response) => response.blob())
+          .then(
+            (blob) =>
+              new Promise((callback) => {
+                let reader = new FileReader()
+                reader.onload = function () {
+                  resolve({
+                    url: this.result,
+                    text: '',
+                  })
+                }
+                reader.readAsDataURL(blob)
+              })
+          )
+      }),
+    ]
+  })
+
+  const newPromies = promises.map((promise) => Promise.all(promise))
+  return newPromies
+}
+
 const isValidPictureId = (id: string) => {
   return id === '00000000-0000-0000-0000-000000000000'
     ? '00000000-0000-0000-0000-000000000001'
     : id
 }
 
+const getCompanyRoles = (callback: any) => {
+  let url = `${getAssetBase()}/content/${i18next.language}/companyroles.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+}
+
+const getUseCases = (callback: any) => {
+  let url = `${getAssetBase()}/content/${i18next.language}/usecase.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+}
+
 const CommonService = {
   fetchLeadPictureImage,
   isValidPictureId,
+  getCompanyRoles,
+  getUseCases,
+  fetchLeadPictures,
 }
 
 export default CommonService

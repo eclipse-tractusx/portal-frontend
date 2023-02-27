@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -103,7 +103,10 @@ export default function AppOverViewDetails({
 
   const fetchImage = async (documentId: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({
+        appId: id,
+        documentId,
+      }).unwrap()
       const file = response.data
       return setCardImage(URL.createObjectURL(file))
     } catch (error) {

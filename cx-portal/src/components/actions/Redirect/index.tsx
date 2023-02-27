@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export default function Redirect({ path }: { path: string }) {
-  document.location.href = `${document.location.origin}/${path}/`
+export default function Redirect({
+  path,
+  tab,
+}: {
+  path: string
+  tab?: string
+}) {
+  const target = `${document.location.origin}/${path}/`
+  if (tab) window.open(target, '_blank', 'noreferrer')
+  else {
+    document.location.href = target
+  }
   return null
 }

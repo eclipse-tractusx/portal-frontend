@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -61,6 +61,7 @@ import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess
 import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
 import { AddusersIDP } from 'components/overlays/AddusersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
+import DeclineAdminboard from 'components/overlays/DeclineAdminboard'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -181,6 +182,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <SampleForm />
     case OVERLAYS.ADD_SERVICE_PROVIDER:
       return <AddServiceProvider />
+    case OVERLAYS.DECLINE_ADMINBOARD:
+      return <DeclineAdminboard id={overlay.id} />
     default:
       return <NotFound />
   }

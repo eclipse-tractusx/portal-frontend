@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -49,10 +49,7 @@ export type SubscriptionServiceRequest = {
 }
 
 export type ServiceRequest = {
-  method: string
-  body: {
-    url: string
-  }
+  url: string
 }
 
 export const apiSlice = createApi({
@@ -65,8 +62,8 @@ export const apiSlice = createApi({
     addServiceProvider: builder.mutation<void, ServiceRequest>({
       query: (data) => ({
         url: `/api/administration/serviceprovider/owncompany`,
-        method: data.method,
-        body: data.body,
+        method: 'PUT',
+        body: data,
       }),
     }),
   }),

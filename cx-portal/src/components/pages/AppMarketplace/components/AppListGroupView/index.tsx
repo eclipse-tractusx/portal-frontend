@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,6 +24,7 @@ import { Cards } from 'cx-portal-shared-components'
 import { multiMapBy } from 'utils/multiMapBy'
 import { useTranslation } from 'react-i18next'
 import { AppListGroup } from '../AppListGroup'
+import NoItems from 'components/pages/NoItems'
 
 export const AppListGroupView = ({
   items,
@@ -34,9 +35,13 @@ export const AppListGroupView = ({
 }) => {
   const { t } = useTranslation()
 
+  if (items && items.length === 0) {
+    return <NoItems />
+  }
+
   if (!groupKey || groupKey === '') {
     return (
-      <Box sx={{ marginTop: '52px' }}>
+      <Box>
         <Cards
           buttonText={t('global.actions.details')}
           columns={4}

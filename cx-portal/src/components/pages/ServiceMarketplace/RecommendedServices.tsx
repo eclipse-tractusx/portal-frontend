@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,12 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal, PageNotifications } from 'cx-portal-shared-components'
+import { CardHorizontal } from 'cx-portal-shared-components'
 import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
+import NoItems from '../NoItems'
 
 export default function RecommendedServices({
   services,
@@ -34,7 +34,6 @@ export default function RecommendedServices({
 }) {
   const theme = useTheme()
   const navigate = useNavigate()
-  const { t } = useTranslation()
 
   const handleClick = (id: string) => {
     navigate(`/servicemarketplacedetail/${id}`)
@@ -43,13 +42,7 @@ export default function RecommendedServices({
   if (services && services.length === 0) {
     return (
       <div className="recommended-section">
-        <PageNotifications
-          description={t('content.serviceMarketplace.noDataMessage')}
-          open
-          severity="error"
-          showIcon
-          title="Error"
-        />
+        <NoItems />
       </div>
     )
   }

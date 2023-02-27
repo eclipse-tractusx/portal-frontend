@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -83,7 +83,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     setDiagram('')
     if (model) {
       fetch(
-        `${getSemanticApiBase()}hub/api/v1/models/${encodeURIComponent(
+        `${getSemanticApiBase()}/hub/api/v1/models/${encodeURIComponent(
           model.urn
         )}/diagram`,
         getHeaders()
@@ -136,7 +136,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   return (
     <>
       <Dialog open={show}>
-        <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
+        <DialogHeader title=" " closeWithIcon onCloseWithIcon={onClose} />
         <DialogContent>
           {model && (
             <>

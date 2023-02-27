@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
 import { SearchParams } from '../../connector/types'
@@ -80,10 +80,16 @@ const declineRequest = createAsyncThunk(
   }
 )
 
+const refreshApplicationRequest = createAction(
+  `${name}/refreshApplicationRequest`,
+  (refresh: number) => ({ payload: { refresh } })
+)
+
 export {
   fetchCompanyDetail,
   fetchRegistrationRequests,
   fetchPage,
   approveRequest,
   declineRequest,
+  refreshApplicationRequest,
 }

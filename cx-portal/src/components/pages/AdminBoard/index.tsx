@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -36,9 +37,11 @@ import {
   useFetchAppReleaseAppsQuery,
 } from 'features/adminBoard/adminBoardApiSlice'
 import AdminBoardElements from './AdminBoardElements'
+import { currentSuccessType } from 'features/adminBoard/slice'
 
-export default function AppSubscription() {
+export default function AdminBoard() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModalValue] = useState<boolean>(false)
@@ -53,7 +56,9 @@ export default function AppSubscription() {
     sortingType = 'NameAsc'
   }
 
-  const { data } = useFetchAppReleaseAppsQuery({
+  const isDecisionSuccess = useSelector(currentSuccessType)
+
+  const { data, refetch } = useFetchAppReleaseAppsQuery({
     page: 0,
     statusId: statusId,
     sortingType: sortingType,
@@ -61,10 +66,17 @@ export default function AppSubscription() {
 
   const apps = data && data.content
 
-  useEffect(() => apps && setAppCards(apps), [apps])
+  useEffect(() => {
+    apps && setAppCards(apps)
+  }, [apps, dispatch])
 
-  const setView = (e: React.MouseEvent<HTMLInputElement>) =>
+  useEffect(() => {
+    refetch()
+  }, [isDecisionSuccess, refetch])
+
+  const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
+  }
 
   const sortOptions = [
     {
@@ -77,20 +89,18 @@ export default function AppSubscription() {
     },
   ]
 
-  const filterButtons: any[] = [
+  const tabButtons: any[] = [
     {
       buttonText: t('content.adminBoard.tabs.open'),
       buttonValue: 'InReview',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => {},
+      onButtonClick: setBtnView,
     },
     {
       buttonText: t('content.adminBoard.tabs.all'),
       buttonValue: 'All',
-      onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => {},
+      onButtonClick: setBtnView,
     },
-  ].map((btn) => (btn.onButtonClick = setView))
-
-  console.log('testing')
+  ]
 
   const debouncedFilter = useMemo(
     () =>
@@ -141,13 +151,14 @@ export default function AppSubscription() {
             value={searchExpr}
             autoFocus={false}
             onChange={(e) => handleSearch(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div
           className="filterSection"
           onMouseLeave={() => setShowModalValue(false)}
         >
-          <ViewSelector activeView={selected} views={filterButtons} />
+          <ViewSelector activeView={selected} views={tabButtons} />
           <div className="iconSection">
             <SortIcon
               onClick={() => setShowModalValue(true)}
@@ -167,18 +178,24 @@ export default function AppSubscription() {
             />
           </div>
         </div>
-        {!apps ? (
-          <div className="loading-progress">
-            <CircularProgress
-              size={50}
-              sx={{
-                color: theme.palette.primary.main,
-              }}
-            />
-          </div>
-        ) : (
-          <AdminBoardElements apps={appCards} />
-        )}
+      </div>
+      <div className="admin-board-main">
+        <div style={{ height: '60px' }}></div>
+        <div className="mainContainer">
+          {!apps ? (
+            <div className="loading-progress">
+              <CircularProgress
+                size={50}
+                sx={{
+                  color: theme.palette.primary.main,
+                }}
+              />
+            </div>
+          ) : (
+            <AdminBoardElements apps={appCards} />
+          )}
+        </div>
+        <div style={{ height: '66px' }}></div>
       </div>
     </div>
   )

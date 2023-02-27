@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -29,16 +29,19 @@ import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
   useApproveRequestMutation,
-  useDeclineRequestMutation,
+  useDeclineChecklistMutation,
   useFetchCompanySearchQuery,
-  useFetchDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
   useUpdateBPNMutation,
+  ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
+import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
+import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -53,8 +56,8 @@ export default function RegistrationRequests() {
   const [actionType, setActionType] = useState<string>('approve')
 
   const [approveRequest] = useApproveRequestMutation()
-  const [declineRequest] = useDeclineRequestMutation()
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [declineRequest] = useDeclineChecklistMutation()
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   const [updateBpn] = useUpdateBPNMutation()
 
@@ -66,26 +69,22 @@ export default function RegistrationRequests() {
 
   const [enableBpnInput, setEnableBpnInput] = useState<boolean>(false)
 
-  const [successOverlay, setSuccessOverlay] = useState(false)
-  const [errorOverlay, setErrorOverlay] = useState(false)
+  const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
+  const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
 
+  const [selectedButton, setSelectedButton] = useState<ProgressButtonsProps>()
+  const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
+    useState<boolean>(false)
+  const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
+    useState<boolean>(false)
+  const [selectedRequestName, setSelectedRequestName] = useState<string>('')
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
+      setSelectedRequestId(params.row.applicationId)
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
     }
-  }
-
-  const onApproveClick = (id: string) => {
-    setConfirmModalOpen(true)
-    setSelectedRequestId(id)
-  }
-
-  const onDeclineClick = (id: string) => {
-    setConfirmModalOpen(true)
-    setActionType('decline')
-    setSelectedRequestId(id)
   }
 
   const onErrorAlertClose = () => {
@@ -101,7 +100,10 @@ export default function RegistrationRequests() {
         .then((payload) => console.log('fulfilled', payload))
         .catch((error) => setShowErrorAlert(error.data.title))
     } else if (actionType === 'decline' && selectedRequestId) {
-      await declineRequest(selectedRequestId)
+      await declineRequest({
+        applicationId: selectedRequestId,
+        comment: '',
+      })
         .unwrap()
         .then((payload) => console.log('fulfilled', payload))
         .catch((error) => setShowErrorAlert(error.data.title))
@@ -111,6 +113,7 @@ export default function RegistrationRequests() {
   }
 
   const handleDownloadClick = async (
+    appId: string,
     documentId: string,
     documentType: string
   ) => {
@@ -141,6 +144,19 @@ export default function RegistrationRequests() {
       })
   }
 
+  const onConfirmationCancel = (id: string, name: string) => {
+    setSelectedRequestName(name)
+    setActionType('decline')
+    setSelectedRequestId(id)
+    setConfirmCancelModalOpen(true)
+  }
+
+  const onChipButtonSelect = (selected: ProgressButtonsProps, id: string) => {
+    setSelectedButton(selected)
+    setSelectedRequestId(id)
+    setStatusConfirmationOverlay(true)
+  }
+
   return (
     <main className="page-main-container">
       <PageSnackbar
@@ -151,12 +167,15 @@ export default function RegistrationRequests() {
         description={showErrorAlert}
         showIcon={true}
       />
-      <CompanyDetailOverlay
-        {...{
-          openDialog: overlayOpen,
-          handleOverlayClose: () => setOverlayOpen(false),
-        }}
-      />
+      {overlayOpen && (
+        <CompanyDetailOverlay
+          {...{
+            openDialog: overlayOpen,
+            selectedRequestId: selectedRequestId,
+            handleOverlayClose: () => setOverlayOpen(false),
+          }}
+        />
+      )}
       {successOverlay && (
         <ServerResponseOverlay
           title={t('content.admin.registration-requests.addBpn.successTitle')}
@@ -190,6 +209,30 @@ export default function RegistrationRequests() {
         }}
         handleConfirmClick={() => makeActionSelectedRequest()}
       />
+      <ConfirmCancelOverlay
+        openDialog={confirmCancelModalOpen}
+        handleOverlayClose={() => {
+          setIsLoading(false)
+          setConfirmCancelModalOpen(false)
+        }}
+        handleConfirmClick={(title: string) => {
+          setConfirmCancelModalOpen(false)
+          setLoaded(Date.now())
+          if (title !== '') setShowErrorAlert(title)
+        }}
+        companyName={selectedRequestName}
+        selectedRequestId={selectedRequestId}
+      />
+      {statusConfirmationOverlay && selectedRequestId && (
+        <CheckListStatusOverlay
+          openDialog={statusConfirmationOverlay}
+          handleOverlayClose={() => {
+            setStatusConfirmationOverlay(false)
+          }}
+          selectedButton={selectedButton}
+          selectedRequestId={selectedRequestId}
+        />
+      )}
       <AddBpnOveraly
         openDialog={enableBpnInput}
         isLoading={isLoading}
@@ -223,9 +266,6 @@ export default function RegistrationRequests() {
       <div className={'table-container'}>
         <RequestList
           fetchHook={useFetchCompanySearchQuery}
-          onApproveClick={onApproveClick}
-          onDeclineClick={onDeclineClick}
-          isLoading={isLoading}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
           handleDownloadDocument={handleDownloadClick}
@@ -235,6 +275,12 @@ export default function RegistrationRequests() {
             setSuccessOverlay(false)
             setErrorOverlay(false)
           }}
+          onConfirmationCancel={(id: string, name: string) =>
+            onConfirmationCancel(id, name)
+          }
+          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) =>
+            onChipButtonSelect(selected, id)
+          }
         />
       </div>
     </main>

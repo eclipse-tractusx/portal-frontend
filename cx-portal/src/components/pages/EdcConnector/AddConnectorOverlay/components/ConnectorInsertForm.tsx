@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -105,34 +105,10 @@ const ConnectorFormInput = ({
         </>
       ) : (
         <>
-          <div
-            style={{
-              marginLeft: '65px',
-              position: 'relative',
-              top: '25px',
-              zIndex: '9',
-            }}
-          >
-            <Tooltips
-              additionalStyles={{
-                cursor: 'pointer',
-                marginTop: '30px !important',
-              }}
-              tooltipPlacement="top-start"
-              tooltipText={tooltipMsg}
-              children={
-                <span>
-                  <HelpOutlineIcon
-                    sx={{ color: '#B6B6B6' }}
-                    fontSize={'small'}
-                  />
-                </span>
-              }
-            />
-          </div>
           <Controller
             render={({ field: { onChange, value } }) => (
               <Input
+                tooltipMessage={tooltipMsg}
                 sx={{
                   paddingTop: '10px',
                 }}
@@ -171,7 +147,10 @@ const ConnectorInsertForm = ({
   const { spacing } = theme
 
   const dropzoneProps = {
-    accept: '*',
+    accept: {
+      'application/x-pem-file': [],
+      'application/x-x509-ca-cert': [],
+    },
   }
 
   return (

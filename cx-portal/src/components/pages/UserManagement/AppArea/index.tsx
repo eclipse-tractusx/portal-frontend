@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -50,7 +50,7 @@ export const AppArea = () => {
           variant="h3"
         />
       </div>
-      <Carousel gapToDots={5}>
+      <Carousel gapToDots={5} position={cards.length > 0 ? 'relative' : ''}>
         {cards.length > 0
           ? cards?.map((item: CardItems) => {
               return (

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -54,6 +54,7 @@ export interface TableProps extends DataGridProps {
   descriptionText?: string
   defaultFilter?: string
   filterViews?: any
+  alignCell?: string
 }
 
 export const Table = ({
@@ -82,6 +83,7 @@ export const Table = ({
   descriptionText,
   defaultFilter,
   filterViews,
+  alignCell = 'center',
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -157,7 +159,10 @@ export const Table = ({
     >
       <DataGrid
         sx={{
-          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus':
+          '&.MuiDataGrid-root .MuiDataGrid-cell': {
+            alignItems: alignCell,
+          },
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus-within':
             {
               outline: 'none',
             },

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import StageHeader from 'components/shared/frame/StageHeader'
 import {
   useGetNotificationsQuery,
@@ -27,6 +27,10 @@ import {
 import {
   CXNotificationContent,
   CXNotificationPagination,
+  PAGE,
+  PAGE_SIZE,
+  SORT_OPTION,
+  NOTIFICATION_TOPIC,
 } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
@@ -45,6 +49,8 @@ import {
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
 import { Box } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { initialNotificationState } from 'features/notification/slice'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -70,23 +76,31 @@ const NotificationGroup = ({
 
 export default function NotificationCenter() {
   const { t } = useTranslation('notification')
+  const sectionElement: any = useRef()
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [filterOption, setFilterOption] = useState<string>(t('ALL'))
+  const [filterOption, setFilterOption] = useState<string>(
+    NOTIFICATION_TOPIC.ALL
+  )
   const [loaded, setLoaded] = useState<boolean>(false)
-  const [sortOption, setSortOption] = useState<string>('DateDesc')
-  const [page, setPage] = useState<number>(0)
-  const PAGE_SIZE = 10
-  const [notificationState, setNotificationState] = useState({
-    page: page,
-    size: PAGE_SIZE,
-    args: {
-      notificationTopic: filterOption,
-      sorting: sortOption,
-    },
-  })
-  const { data, isFetching } = useGetNotificationsQuery(notificationState)
+  const [sortOption, setSortOption] = useState<string>(SORT_OPTION)
+  const [page, setPage] = useState<number>(PAGE)
+  const initialNotification = useSelector(initialNotificationState)
+  const [notificationState, setNotificationState] =
+    useState(initialNotification)
+  const { data, isFetching, refetch } =
+    useGetNotificationsQuery(notificationState)
+
+  useEffect(() => {
+    setNotificationItems([])
+    if (page === 0) {
+      refetch()
+    } else {
+      setPage(initialNotification.page)
+    }
+    // eslint-disable-next-line
+  }, [initialNotification, refetch])
 
   const [notificationItems, setNotificationItems] = useState<
     CXNotificationContent[]
@@ -102,7 +116,9 @@ export default function NotificationCenter() {
   useEffect(() => {
     if (data) {
       setPaginationData(data?.meta)
-      setNotificationItems((i) => i.concat(data?.content))
+      setNotificationItems(
+        data?.meta.page === 0 ? data.content : (i) => i.concat(data?.content)
+      )
     }
   }, [data])
 
@@ -138,43 +154,29 @@ export default function NotificationCenter() {
     })
   }, [filterOption, sortOption, page, loaded])
 
-  const getTotalCount = (
-    infoUnread = 0,
-    unread = 0,
-    offerUnread = 0,
-    actionRequired = 0
-  ) => {
-    return infoUnread && unread && offerUnread && actionRequired
-      ? infoUnread + unread + offerUnread + actionRequired
-      : 0
-  }
+  const getTotalCount = (unread = 0) => (unread ? unread : 0)
 
   const filterButtons = [
     {
-      buttonText: `${t('sortOptions.all')} (${getTotalCount(
-        pages?.infoUnread,
-        pages?.unread,
-        pages?.offerUnread,
-        pages?.actionRequired
-      )})`,
-      buttonValue: 'ALL',
+      buttonText: `${t('sortOptions.all')} (${getTotalCount(pages?.unread)})`,
+      buttonValue: NOTIFICATION_TOPIC.ALL,
       onButtonClick: setView,
     },
     {
       buttonText: `${t('sortOptions.app')} (${pages?.offerUnread || 0})`,
-      buttonValue: 'OFFER',
+      buttonValue: NOTIFICATION_TOPIC.OFFER,
       onButtonClick: setView,
     },
     {
       buttonText: `${t('sortOptions.info')} (${pages?.infoUnread || 0})`,
-      buttonValue: 'INFO',
+      buttonValue: NOTIFICATION_TOPIC.INFO,
       onButtonClick: setView,
     },
     {
       buttonText: `${t('sortOptions.withaction')} (${
         pages?.actionRequired || 0
       })`,
-      buttonValue: 'ACTION',
+      buttonValue: NOTIFICATION_TOPIC.ACTION,
       onButtonClick: setView,
     },
   ]
@@ -186,6 +188,11 @@ export default function NotificationCenter() {
     })),
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
+
+  const height =
+    sectionElement && sectionElement.current
+      ? `${sectionElement?.current?.clientHeight}px`
+      : '400px'
 
   return (
     <main className="notifications">
@@ -233,12 +240,13 @@ export default function NotificationCenter() {
         </div>
         {isFetching && (
           <Box
+            ref={sectionElement}
             sx={{
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              minHeight: '200px',
+              minHeight: height,
             }}
           >
             <CircleProgress
@@ -252,14 +260,21 @@ export default function NotificationCenter() {
           </Box>
         )}
         {!isFetching && (
-          <ul>
-            {groups &&
-              Object.entries(groups).map((entry: any) => (
-                <li key={entry[0]}>
-                  <NotificationGroup label={entry[0]} items={entry[1]} />
-                </li>
-              ))}
-          </ul>
+          <Box
+            ref={sectionElement}
+            sx={{
+              minHeight: height,
+            }}
+          >
+            <ul>
+              {groups &&
+                Object.entries(groups).map((entry: any) => (
+                  <li key={entry[0]}>
+                    <NotificationGroup label={entry[0]} items={entry[1]} />
+                  </li>
+                ))}
+            </ul>
+          </Box>
         )}
         {!isFetching &&
           paginationData &&

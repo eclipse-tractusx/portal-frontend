@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,7 +20,7 @@
 
 import { Box, IconButton, useTheme } from '@mui/material'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
-import { DropZonePreviewTranslations, UploadFile } from '../types'
+import { DropZonePreviewTranslations, UploadFile, UploadStatus } from '../types'
 import { FileIcon } from '../../CustomIcons/FileIcon'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
@@ -43,12 +43,14 @@ export interface DropPreviewFileProps {
   uploadFile: UploadFile
   onDelete?: () => void
   translations: DropZonePreviewTranslations
+  enableDeleteIcon?: boolean
 }
 
 export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
   uploadFile,
   translations,
   onDelete,
+  enableDeleteIcon = true,
 }) => {
   const theme = useTheme()
 
@@ -59,7 +61,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
 
   useEffect(() => {
     if (
-      uploadFile.status === 'uploading' &&
+      uploadFile.status === UploadStatus.UPLOADING &&
       fakeProgressTimeRef.current === 0
     ) {
       const intervalFrequency = 50
@@ -84,21 +86,23 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
     }
   }, [uploadFile.status])
 
-  const isUploading = uploadFile.status === 'uploading'
+  const isUploading = uploadFile.status === UploadStatus.UPLOADING
 
   let tagLabel
 
   switch (uploadFile.status) {
-    case 'upload_success':
+    case UploadStatus.UPLOAD_SUCCESS:
       tagLabel = translations.uploadSuccess
       break
-    case 'upload_error':
+    case UploadStatus.UPLOAD_ERROR:
       tagLabel = translations.uploadError
       break
   }
 
   const showDeleteButton =
-    uploadFile.status !== 'uploading' && uploadFile.status !== 'upload_error'
+    enableDeleteIcon &&
+    uploadFile.status !== UploadStatus.UPLOADING &&
+    uploadFile.status !== UploadStatus.UPLOAD_ERROR
 
   return (
     <Box
@@ -168,7 +172,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
             color: isUploading ? 'inherit' : 'textField.placeholderText',
           }}
         >
-          {formatBytes(uploadFile.size)}
+          {uploadFile?.size && formatBytes(uploadFile.size)}
         </Box>
       </Box>
       {tagLabel && (
@@ -183,7 +187,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
               border: '2px solid currentColor',
               typography: 'label4',
               color:
-                uploadFile.status === 'upload_error'
+                uploadFile.status === UploadStatus.UPLOAD_ERROR
                   ? 'support.error'
                   : 'support.success',
             }}

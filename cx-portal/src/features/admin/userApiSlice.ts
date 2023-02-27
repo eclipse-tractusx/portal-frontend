@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,13 +31,26 @@ export interface UserAppRoles {
   roles: string[]
 }
 
-export type AddUser = {
+export interface AddUser {
   userName: string
   email: string
   firstName: string
   lastName: string
   roles?: string[]
-  message: string
+}
+
+export interface AddUserIdp {
+  userId?: string
+  userName?: string
+  email: string
+  firstName: string
+  lastName: string
+  roles?: string[]
+}
+
+export interface AddUserIdpArgs {
+  identityProviderId: string
+  user: AddUserIdp
 }
 
 export interface UserBase {
@@ -86,7 +99,14 @@ export const apiSlice = createApi({
     },
   }),
   endpoints: (builder) => ({
-    addTenantUsers: builder.mutation<void, AddUser[]>({
+    addUserIdp: builder.mutation<void, AddUserIdpArgs>({
+      query: (args: AddUserIdpArgs) => ({
+        url: `/api/administration/user/owncompany/identityprovider/${args.identityProviderId}/users`,
+        method: 'POST',
+        body: args.user,
+      }),
+    }),
+    addTenantUsers: builder.mutation<void, AddUserIdp[]>({
       query: (body) => ({
         url: `/api/administration/user/owncompany/users`,
         method: 'POST',
@@ -143,6 +163,7 @@ export const {
   useFetchUsersSearchQuery,
   useFetchUserDetailsQuery,
   useFetchOwnUserDetailsQuery,
+  useAddUserIdpMutation,
   useAddTenantUsersMutation,
   useRemoveTenantUserMutation,
   useFetchOwnCompanyDetailsQuery,

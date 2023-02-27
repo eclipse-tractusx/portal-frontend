@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -30,10 +30,15 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { Box } from '@mui/material'
 import './AppReleaseProcess.scss'
+import { setCurrentActiveStep } from 'features/appManagement/slice'
+import { useDispatch } from 'react-redux'
+import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import { initialState } from 'features/appManagement/types'
 
 export default function AppReleaseProcess() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const stepsLists = [
     {
@@ -74,6 +79,13 @@ export default function AppReleaseProcess() {
     },
   ]
 
+  const onStartClick = () => {
+    navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+    dispatch(setCurrentActiveStep())
+    dispatch(setAppId(''))
+    dispatch(setAppStatus(initialState.appStatusData))
+  }
+
   return (
     <div className="appoverview-main">
       <PageHeader
@@ -97,7 +109,7 @@ export default function AppReleaseProcess() {
               color="primary"
               size="small"
               className="create-btn"
-              onClick={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+              onClick={onStartClick}
             >
               {t('content.apprelease.startCreatingButton')}
             </Button>
@@ -134,7 +146,7 @@ export default function AppReleaseProcess() {
                 color="primary"
                 size="small"
                 className="create-btn"
-                onClick={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+                onClick={onStartClick}
               >
                 {t('content.apprelease.startCreatingButton')}
               </Button>

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -43,7 +43,12 @@ import { PaginResult } from 'cx-portal-shared-components'
 export const slice = createSlice({
   name,
   initialState,
-  reducers: {},
+  reducers: {
+    refreshApplicationRequest: (state, { payload }) => ({
+      ...state,
+      refresh: payload.refresh,
+    }),
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchRegistrationRequests.pending, (state) => {
       state.paginationData = {} as PaginationData
@@ -124,6 +129,8 @@ export const registrationRequestsSelector = (
 
 export const itemsSelector = (state: RootState): PaginResult<InvitesDataGrid> =>
   state.admin.registration.data
+
+export const refetch = (state: RootState) => state.admin.registration.refresh
 
 const Slice = { slice }
 

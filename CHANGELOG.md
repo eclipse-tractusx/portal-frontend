@@ -2,10 +2,170 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-
 ### Unreleased
+* Application Request
+   * BugFix - Approve/Decline/Retrigger/Cancel Process actions should clear button and update the latest status in both overlay and application list
+* Bugfix - UI fixes in Adminboard
 * Connector
-   * Overlay text update
+   * BugFix - Register daps via the auth icon in the connector registration, allows all type of files
+* Notification
+   * BugFix - Wrong url link
+* Static Templates
+   * Show image on modal for a wider view
+* ImageGallery
+   * Rectangle images to be 16:9 ratio.
+   * Fix 3 images to a row. Show grid layout for rest
+
+## 1.0.0-RC10
+
+### Change
+* Get App Image backend connection updated for (AppMarketplace, AppDetails, App Overview & AdminBoard)
+
+### Feature
+* "No Items Found" page/section implemented for (AppMarketplace, ServiceMarketplace, AppOverview, AppSubscription & AdminBoard)
+* Application Registration Validation Process - enabled retrigger process of application checklist steps in the overlay screens if applicable
+* App Release Process - added delete document function
+
+### Technical Support
+n/a
+
+### Bugfix
+* Update styling App Management Board
+* Invite Business Partner Screen - disabled "detail" button in invitees table
+* Semantic Hub & Digital Twin overlays close icon fixed
+* Digital Twin overlay sizing of content fixed to stay in given frame/overlay size
+* App Release Process - fixed save and edit data handling to display available/saved app data to the user
+
+## 1.0.0-RC9
+
+### Change
+* App Release Approval Board
+  * Enabled overlay for decline scenario with customer message
+* Notification message content updated and incl. links
+* Several help connections implemented (connector, app release, etc.)
+* Application Registration
+   * Retrigger process apis added
+
+### Feature
+* Connector Registration
+   * new design with additional information such as host, self-description and status released
+
+### Technical Support
+n/a
+
+### Bugfix
+* Back navigation issue resolved from notifications to any specific page and back
+
+## 1.0.0-RC8
+
+### Change
+* App Release Process:
+  * Technical integration - role upload ui changes to ease the usability
+  * Added new attribute "privacyPolicies" to  app creation
+* New 'Help Center' connected with the portal help button
+
+### Feature
+* Application Approval Board - Checklist overlay
+   * enabled checklist details with comments and status via backend api connection
+   * enabled approval and decline interfaces for the manual data validation
+
+### Technical Support
+* resolve dependabot findings
+* temp fix for cve-2023-0286
+* add missing '--no-cache': apk update && apk add
+
+### Bugfix
+* User Management: App role assignment - cache issue resolved
+
+## 1.0.0-RC7
+
+### Change
+* Admin App Approval Board - app detail page released when clicking on app card
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* Notification delete mechanism updated - auto page reload
+
+## 1.0.0-RC6
+
+### Change
+* App Release Process
+    * Set 'UseCase selection' and 'app supported language' to mandatory
+    * app role upload further refined with better user support
+
+### Feature
+* Company Registration Approval Board
+   * implemented and backend connected the application cancel process flow
+   * checklist-worker fully implemented for not finalized/closed applications
+
+### Technical Support
+n/a
+
+### Bugfix
+n/a
+
+## 1.0.0-RC5
+
+### Change
+* Application company detail overlay updated to manage unique ids based on the backend response
+* App Release Process
+  * Technical Integration - roles upload & deletion functionality 
+
+### Feature
+* Application approval checklist implementation with checklist worker; status and overlay (ongoing)
+* Shared Components
+  * Dropzone file deletion overlay for deletion confirmation released
+
+### Technical Support
+* Static Template handling updated to fetch content from asset repo for more flexibility and code separation from content & support of multi-language activated
+
+### Bugfix
+* App details page fixed
+* Add/Create user account field validations re-activated
+* App release process - Changed regex validation for 'Provider Homepage' field
+* App release process - Document upload in 'technical guide' field
+* Refetch updated notification list on delete action
+* Connector file type/size error updated
+
+## 1.0.0-RC4
+
+### Change
+n/a
+
+### Feature
+n/a
+
+### Technical Support
+* Static Template handling updated to fetch content from asset repo for more flexibility and code separation from content & support of multi-language activated
+
+### Bugfix
+* App release process bugs fixed such as multiple document upload, fetch uploaded roles from backend
+* App release management board - views tabs fixed
+* Notification URLs for notification messages updated
+* Connector registration overlay overlapping tooltip icon fixed
+
+
+## 1.0.0-RC3
+
+### Change
+
+### Feature
+* User Management
+   * create single user account support of company idp
+* Released App Management Board for Operator to managed app publishing requests
+
+### Technical Support
+n/a
+
+### Bugfix
+* Translations and couple of text messages updated
+* My business apllication area fixed by removing cache relation for app card images
+* App release process bugs fixed such as incorrect mandatory fields; file upload handling, etc.
 
 ## 1.0.0-RC2
 

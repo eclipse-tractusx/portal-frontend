@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
+import { ImageItem } from '../../ImageGallery/ImageItem'
 import { Typography } from '../../Typography'
 import { ProviderProps } from '../StaticTypes'
 
@@ -37,7 +38,17 @@ export default function ImageTextSideBySide({
         padding: '90px 0px',
       }}
     >
-      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+      <ImageItem
+        url={provider.imageUrl || ''}
+        text={''}
+        size="custom"
+        height="472px"
+        width="100%"
+        hover={true}
+        borderRadius={true}
+        shadow={false}
+        modalWidth="1100"
+      />
       <Box
         sx={{
           padding: '20px',

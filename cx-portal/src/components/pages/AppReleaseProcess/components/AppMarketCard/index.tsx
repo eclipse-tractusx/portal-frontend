@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -32,10 +32,11 @@ import {
   SelectList,
   UploadFileStatus,
   PageSnackbar,
+  UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, Divider, Box } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { useState, useEffect, useMemo } from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -100,6 +101,7 @@ export const ConnectorFormInputField = ({
   maxFilesToUpload,
   maxFileSize,
   defaultValues,
+  enableDeleteIcon,
 }: any) => (
   <Controller
     name={name}
@@ -139,6 +141,7 @@ export const ConnectorFormInputField = ({
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             maxFileSize={maxFileSize}
+            enableDeleteIcon={enableDeleteIcon}
           />
         )
       } else if (type === 'checkbox') {
@@ -194,8 +197,16 @@ export default function AppMarketCard() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
-  const useCasesList = useFetchUseCasesQuery().data || []
-  const appLanguagesList = useFetchAppLanguagesQuery().data || []
+
+  const useCasesListData = useFetchUseCasesQuery().data
+  const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
+
+  const appLanguagesListData = useFetchAppLanguagesQuery().data
+  const appLanguagesList = useMemo(
+    () => appLanguagesListData || [],
+    [appLanguagesListData]
+  )
+
   const [addCreateApp] = useAddCreateAppMutation()
   const [saveApp] = useSaveAppMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -219,6 +230,8 @@ export default function AppMarketCard() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
+  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
 
   const defaultValues = {
     title: appStatusData?.title,
@@ -226,7 +239,6 @@ export default function AppMarketCard() {
     price: appStatusData?.price,
     useCaseCategory: appStatusData?.useCase,
     appLanguage: appStatusData?.supportedLanguageCodes,
-    //To do: to be changed once api is available
     salesManagerId: appStatusData?.salesManagerId,
     shortDescriptionEN:
       appStatusData?.descriptions?.filter(
@@ -237,7 +249,7 @@ export default function AppMarketCard() {
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
-      leadPictureUri: cardImage || '',
+      leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
       alt: appStatusData?.leadPictureUri || '',
     },
   }
@@ -254,6 +266,24 @@ export default function AppMarketCard() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    if (useCasesList.length > 0) {
+      const defaultUseCaseIds = useCasesList?.filter((item) =>
+        appStatusData?.useCase?.some((x) => x === item.name)
+      )
+      setDefaultUseCaseVal(defaultUseCaseIds)
+    }
+    if (appLanguagesList.length > 0) {
+      const defaultAppLanguages = appLanguagesList?.filter((item) =>
+        appStatusData?.supportedLanguageCodes?.some(
+          (x) => x === item.languageShortName
+        )
+      )
+      setDefaultAppLanguageVal(defaultAppLanguages)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
@@ -275,8 +305,8 @@ export default function AppMarketCard() {
         const defaultsalesMgr: any = uniqueSalesManagerList?.filter(
           (item) => item.userId === appStatusData?.salesManagerId
         )
-        onSalesManagerChange(defaultsalesMgr[0].userId)
-        setDefaultSalesManagerValue(defaultsalesMgr[0])
+        onSalesManagerChange(defaultsalesMgr && defaultsalesMgr[0]?.userId)
+        setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -286,13 +316,17 @@ export default function AppMarketCard() {
     setSalesManagerId(sales)
   }
 
-  const cardImageData = getValues().uploadImage.leadPictureUri
+  const cardImageData: any = getValues().uploadImage.leadPictureUri
   useEffect(() => {
-    if (cardImageData !== LogoGrayData) {
-      const blobFile = new Blob([cardImageData], {
-        type: 'image/png',
-      })
-      setCardImage(URL.createObjectURL(blobFile))
+    if (cardImageData !== null && cardImageData !== LogoGrayData) {
+      let isFile: any = cardImageData instanceof File
+
+      if (isFile) {
+        const blobFile = new Blob([cardImageData], {
+          type: 'image/png',
+        })
+        setCardImage(URL.createObjectURL(blobFile))
+      }
     }
   }, [cardImageData])
 
@@ -301,16 +335,26 @@ export default function AppMarketCard() {
       appStatusData?.documents?.APP_LEADIMAGE &&
       appStatusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
-      fetchCardImage(appStatusData?.documents?.APP_LEADIMAGE[0].documentId)
+      fetchCardImage(
+        appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
+        appStatusData?.documents?.APP_LEADIMAGE[0].documentName
+      )
     }
     reset(defaultValues)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatusData])
 
-  const fetchCardImage = async (documentId: string) => {
+  const fetchCardImage = async (documentId: string, documentName: string) => {
     try {
-      const response = await fetchDocumentById(documentId).unwrap()
+      const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
+
+      const setFileStatus = (status: UploadFileStatus) =>
+        setValue('uploadImage.leadPictureUri', {
+          name: documentName,
+          status,
+        } as any)
+      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
       return setCardImage(URL.createObjectURL(file))
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
@@ -326,7 +370,6 @@ export default function AppMarketCard() {
   const cardDescription =
     getValues().shortDescriptionEN ||
     t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')
-  const cardImageSrc = getValues().uploadImage.leadPictureUri || LogoGrayData
   const cardImageAlt =
     getValues().uploadImage.alt ||
     t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
@@ -379,6 +422,7 @@ export default function AppMarketCard() {
       ],
       supportedLanguageCodes: data.appLanguage,
       price: data.price,
+      privacyPolicies: [],
     }
 
     const uploadImageValue = getValues().uploadImage
@@ -413,14 +457,14 @@ export default function AppMarketCard() {
                 status,
               } as any)
 
-            setFileStatus('uploading')
+            setFileStatus(UploadStatus.UPLOADING)
 
             uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
               .then(() => {
-                setFileStatus('upload_success')
+                setFileStatus(UploadStatus.UPLOAD_SUCCESS)
               })
               .catch(() => {
-                setFileStatus('upload_error')
+                setFileStatus(UploadStatus.UPLOAD_ERROR)
               })
 
             dispatch(setAppId(result))
@@ -487,7 +531,7 @@ export default function AppMarketCard() {
             <CardHorizontal
               label={cardAppProvider}
               title={cardAppTitle}
-              imagePath={cardImageSrc}
+              imagePath={cardImage}
               imageAlt={cardImageAlt}
               borderRadius={0}
               description={cardDescription}
@@ -700,6 +744,7 @@ export default function AppMarketCard() {
                     'content.apprelease.appReleaseForm.noItemsSelected'
                   ),
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
+                  defaultValues: defaultUseCaseVal,
                 }}
               />
             </div>
@@ -745,6 +790,7 @@ export default function AppMarketCard() {
                       option.languageLongNames.de +
                       option.languageLongNames.en,
                   },
+                  defaultValues: defaultAppLanguageVal,
                 }}
               />
             </div>
@@ -816,38 +862,44 @@ export default function AppMarketCard() {
               />
             </div>
 
-            <ConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-                name: 'uploadImage.leadPictureUri',
-                type: 'dropzone',
-                acceptFormat: {
-                  'image/png': [],
-                  'image/jpeg': [],
-                },
-                maxFilesToUpload: 1,
-                maxFileSize: 819200,
-                rules: {
-                  required: {
-                    value: true,
+            <div className="form-field">
+              <InputLabel sx={{ mb: 3, mt: 3 }}>
+                {t('content.apprelease.appMarketCard.appLeadImageUpload') +
+                  ' *'}
+              </InputLabel>
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'uploadImage.leadPictureUri',
+                  type: 'dropzone',
+                  acceptFormat: {
+                    'image/png': [],
+                    'image/jpeg': [],
                   },
-                },
-              }}
-            />
-            {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-              <Typography variant="body2" className="file-error-msg">
-                {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-              </Typography>
-            )}
+                  maxFilesToUpload: 1,
+                  maxFileSize: 819200,
+                  rules: {
+                    required: {
+                      value: true,
+                    },
+                  },
+                }}
+              />
+              {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
+                <Typography variant="body2" className="file-error-msg">
+                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
+                </Typography>
+              )}
 
-            <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-              {t('content.apprelease.appReleaseForm.note')}
-            </Typography>
-            <Typography variant="body2" mb={3}>
-              {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
-            </Typography>
+              <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+                {t('content.apprelease.appReleaseForm.note')}
+              </Typography>
+              <Typography variant="body2" mb={3}>
+                {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
+              </Typography>
+            </div>
           </form>
         </Grid>
       </Grid>

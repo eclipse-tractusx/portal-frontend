@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -49,6 +49,7 @@ import {
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsRegistration'
+import { getFrontEndBase } from 'services/EnvironmentService'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -232,6 +233,11 @@ const EdcConnector = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const onHelpButtonClicked = () => {
+    const url = `${getFrontEndBase()}/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md`
+    window.open(url, '_blank')
+  }
+
   return (
     <main className="connector-page-container">
       <PageSnackbar
@@ -269,6 +275,7 @@ const EdcConnector = () => {
       <section className={'picture-with-text-section'}>
         <PictureWithText
           text={'content.edcconnector.imagetext'}
+          onHelpButtonClicked={() => onHelpButtonClicked()}
           onButtonClicked={() => setAddConnectorOverlayOpen(true)}
         />
       </section>

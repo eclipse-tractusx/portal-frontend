@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme, Typography, IconButton } from '@mui/material'
+import { Box, Typography, IconButton } from '@mui/material'
 import { CardChip, StatusVariants, Variants } from './CardChip'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import ApprovalIcon from '@mui/icons-material/Approval'
@@ -32,21 +32,31 @@ export interface AppContent {
 
 export interface CardDecisionProps {
   items: AppContent[]
-  onApprove: any
-  onDelete: any
+  onApprove: (e: string) => void
+  onDelete: (e: string) => void
+  onClick: (e: string) => void
 }
 
 export const CardDecision = ({
   items,
   onApprove,
   onDelete,
+  onClick,
 }: CardDecisionProps) => {
-  const { spacing } = useTheme()
+  const handleDecision = (
+    e: React.SyntheticEvent,
+    id: string,
+    type: string
+  ) => {
+    e.stopPropagation()
+    type === 'approve' ? onApprove(id) : onDelete(id)
+  }
+
   return (
     <Box
       sx={{
         display: 'grid',
-        gap: spacing(8, 4),
+        gap: '44px 32px',
         gridTemplateColumns: `repeat(4, 1fr)`,
       }}
     >
@@ -67,7 +77,9 @@ export const CardDecision = ({
             order: 1,
             alignSelf: 'stretch',
             flexGrow: 0,
+            cursor: 'pointer',
           }}
+          onClick={() => onClick(item.appId)}
         >
           <Typography
             variant="h5"
@@ -112,7 +124,7 @@ export const CardDecision = ({
                     backgroundColor: 'transparent',
                   },
                 }}
-                onClick={() => onApprove(item.appId)}
+                onClick={(e) => handleDecision(e, item.appId, 'approve')}
               >
                 <ApprovalIcon sx={{ color: '#00AA55' }} />
               </IconButton>
@@ -125,7 +137,7 @@ export const CardDecision = ({
                     backgroundColor: 'transparent',
                   },
                 }}
-                onClick={() => onDelete(item.appId)}
+                onClick={(e) => handleDecision(e, item.appId, 'delete')}
               >
                 <DeleteOutlineIcon sx={{ color: '#D91E18' }} />
               </IconButton>

@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,6 +31,7 @@ import managementSlice from './appManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
 import serviceProviderSlice from './serviceProvider/slice'
 import appSubscriptionSlice from './appSubscription/slice'
+import adminBoardSlice from './adminBoard/slice'
 import userAddSlice from './admin/userApiSlice'
 import userRoleSlice from './admin/appuserApiSlice'
 import { reducer as apps } from './apps/reducer'
@@ -64,6 +65,7 @@ export const reducers = {
   serviceMarketplace: serviceMarketplaceSlice.reducer,
   serviceProvider: serviceProviderSlice.reducer,
   appSubscription: appSubscriptionSlice.reducer,
+  adminBoard: adminBoardSlice.reducer,
   userAdd: userAddSlice.reducer,
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,

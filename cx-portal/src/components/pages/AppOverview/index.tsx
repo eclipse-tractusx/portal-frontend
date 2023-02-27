@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -30,23 +30,25 @@ import {
   Cards,
   PageSnackbar,
 } from 'cx-portal-shared-components'
+import { useTheme, CircularProgress } from '@mui/material'
 import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import './AppOverview.scss'
 import CommonService from 'services/CommonService'
+import { AppOverviewList } from './AppOverviewList'
 
 export default function AppOverview() {
   const { t } = useTranslation()
+  const theme = useTheme()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  const { data } = useFetchProvidedAppsQuery()
+  const { data, refetch } = useFetchProvidedAppsQuery()
   const [itemCards, setItemCards] = useState<any>([])
   const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
   const [cards, setCards] = useState<any>([])
@@ -60,6 +62,10 @@ export default function AppOverview() {
     inactive: 'inactive',
     active: 'active',
   }
+
+  useEffect(() => {
+    state === 'deactivate-success' && refetch()
+  }, [state, refetch])
 
   useEffect(() => {
     if (cards) {
@@ -172,14 +178,6 @@ export default function AppOverview() {
     }
   }
 
-  const submenuOptions = [
-    {
-      label: t('content.appoverview.sortOptions.deactivate'),
-      value: 'deactivate',
-      url: '',
-    },
-  ]
-
   return (
     <div className="appoverview-app">
       <PageHeader
@@ -241,34 +239,20 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          {filterItem && filterItem?.length > 0 && (
-            <div className="desc-card">
-              <Cards
-                items={filterItem}
-                columns={4}
-                buttonText="Details"
-                variant="minimal"
-                filledBackground={false}
-                imageSize={'small'}
-                showAddNewCard={true}
-                newButtonText={t('content.appoverview.addbtn')}
-                onNewCardButton={() =>
-                  navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
-                }
-                onCardClick={(item: AppInfo) => {
-                  showOverlay(item)
+          {!filterItem ? (
+            <div style={{ textAlign: 'center' }}>
+              <CircularProgress
+                size={50}
+                sx={{
+                  color: theme.palette.primary.main,
                 }}
-                subMenu={true}
-                submenuOptions={submenuOptions}
-                submenuClick={(value: string, appId: string) =>
-                  value === 'deactivate' &&
-                  navigate(`/deactivate/${appId}`, {
-                    state: filterItem,
-                  })
-                }
-                tooltipText={t('content.appoverview.submenuNotAvail')}
               />
             </div>
+          ) : (
+            <AppOverviewList
+              filterItem={filterItem}
+              showOverlay={showOverlay}
+            />
           )}
         </div>
       </div>

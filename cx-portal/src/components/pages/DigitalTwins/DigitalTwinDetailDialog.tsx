@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 T-Systems International GmbH and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 T-Systems International GmbH and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -38,7 +38,7 @@ const DigitalTwinDetailDialog = ({ show, onClose }: TwinDialogProps) => {
 
   return (
     <Dialog open={show}>
-      <DialogHeader title="" closeWithIcon onCloseWithIcon={onClose} />
+      <DialogHeader title=" " closeWithIcon onCloseWithIcon={onClose} />
       <DialogContent>
         {twin && <TwinDetails twin={twin} />}
         {loading && (

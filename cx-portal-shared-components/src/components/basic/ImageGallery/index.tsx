@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -25,25 +25,27 @@ export const ImageGallery = ({
   gallery,
   grid = false,
   modalWidth,
+  align = 'flex-start',
 }: {
   gallery: ImageType[]
   grid?: boolean
   modalWidth?: string
+  align?: string
 }) => (
   <div
     style={{
       display: grid ? 'grid' : 'flex',
       gap: '30px',
-      placeContent: 'center',
+      placeContent: align,
       gridTemplateColumns: 'repeat(3, 1fr)',
     }}
   >
     {gallery.map((image) => (
       <ImageItem
-        key={image.text}
+        key={image.url}
         url={image.url}
         text={image.text}
-        size={image.size || 'large-square'}
+        size={image.size || 'medium-rectangle'}
         hover={image.hover || true}
         borderRadius={image.borderRadius || true}
         shadow={image.shadow || true}

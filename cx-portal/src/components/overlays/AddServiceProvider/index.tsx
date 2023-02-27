@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -67,10 +67,7 @@ export default function AddServiceProvider() {
   const addURL = async () => {
     setLoading(true)
     try {
-      await addServiceProvider({
-        method: data && data.url ? 'PUT' : 'POST',
-        body: { url: inputURL },
-      }).unwrap()
+      await addServiceProvider({ url: inputURL }).unwrap()
       dispatch(setSuccessType(true))
       dispatch(closeOverlay())
     } catch (error) {

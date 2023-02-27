@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,18 +20,7 @@
 
 import { IdentityProvider } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import ToggleOffIcon from '@mui/icons-material/ToggleOff'
-import ToggleOnIcon from '@mui/icons-material/ToggleOn'
-import EditIcon from '@mui/icons-material/Edit'
-import InfoIcon from '@mui/icons-material/Info'
-import GroupAddIcon from '@mui/icons-material/GroupAdd'
-import {
-  Checkbox,
-  DropdownMenu,
-  IconButton,
-  MenuItem,
-} from 'cx-portal-shared-components'
+import { Checkbox, DropdownMenu, MenuItem } from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import { useTranslation } from 'react-i18next'
@@ -40,11 +29,9 @@ import { useState } from 'react'
 
 export default function IDPListItem({
   idp,
-  buttons,
   showInfo = false,
 }: {
   idp: IdentityProvider
-  buttons?: boolean
   showInfo?: boolean
 }) {
   const { t } = useTranslation('idp')
@@ -91,66 +78,6 @@ export default function IDPListItem({
     }
   }
 
-  const renderButtons = () => {
-    return (
-      <>
-        {showInfo && (
-          <IconButton
-            title={t('action.details')}
-            color={open ? 'primary' : 'secondary'}
-            onClick={toggle}
-          >
-            <InfoIcon />
-          </IconButton>
-        )}
-        <IconButton
-          title={t('action.edit')}
-          disabled={idp.alias === 'CX-Test-Access'}
-          color="secondary"
-          onClick={doEdit}
-        >
-          <EditIcon />
-        </IconButton>
-        {idp.enabled ? (
-          <IconButton
-            title={t('action.disable')}
-            disabled={idp.alias === 'CX-Test-Access'}
-            color="primary"
-            onClick={doEnableToggle}
-          >
-            <ToggleOnIcon />
-          </IconButton>
-        ) : (
-          <IconButton
-            title={t('action.enable')}
-            color="secondary"
-            onClick={doEnableToggle}
-          >
-            <ToggleOffIcon />
-          </IconButton>
-        )}
-
-        {idp.enabled ? (
-          <IconButton
-            title={t('action.users')}
-            color="secondary"
-            onClick={doAddUsers}
-          >
-            <GroupAddIcon />
-          </IconButton>
-        ) : (
-          <IconButton
-            title={t('action.delete')}
-            color="secondary"
-            onClick={doConfirmDelete}
-          >
-            <DeleteForeverIcon />
-          </IconButton>
-        )}
-      </>
-    )
-  }
-
   const renderMenu = () => {
     return (
       <DropdownMenu buttonText={t('action.actions')}>
@@ -179,9 +106,7 @@ export default function IDPListItem({
         <span className="state">
           <Checkbox disabled={true} checked={idp.enabled} />
         </span>
-        <span className={`action ${buttons ? 'buttons' : 'menu'}`}>
-          {buttons ? renderButtons() : renderMenu()}
-        </span>
+        <span className={'action menu'}>{renderMenu()}</span>
       </div>
       {open && showInfo && <div className="content">{idp.displayName}</div>}
     </>

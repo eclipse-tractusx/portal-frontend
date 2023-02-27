@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ImageItem } from '../../ImageGallery/ImageItem'
 import { ProviderProps } from '../StaticTypes'
 import ImageVideoWrapper from './ImageVideoWrapper'
 
@@ -30,13 +31,16 @@ export default function TextImageSideBySide({
     <ImageVideoWrapper
       provider={provider}
       children={
-        <img
-          style={{
-            borderRadius: '16px',
-          }}
-          src={provider.imageUrl}
-          width="482"
-          alt={'alt tag info'}
+        <ImageItem
+          url={provider.imageUrl || ''}
+          text={''}
+          size="custom"
+          height="472px"
+          width="100%"
+          hover={true}
+          borderRadius={true}
+          shadow={false}
+          modalWidth="1100"
         />
       }
     />

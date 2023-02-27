@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,37 +24,47 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
-import { ApplicationRequest } from 'features/admin/applicationRequestApiSlice'
+import {
+  AppFilterType,
+  ApplicationRequest,
+  ProgressButtonsProps,
+} from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
+import { refetch } from 'features/admin/registration/slice'
 
 export const RequestList = ({
   fetchHook,
-  onApproveClick,
-  onDeclineClick,
-  isLoading,
   onTableCellClick,
   loaded,
   handleDownloadDocument,
   showConfirmOverlay,
+  onConfirmationCancel,
+  onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  onApproveClick: (id: string) => void
-  onDeclineClick: (id: string) => void
-  isLoading: boolean
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
-  handleDownloadDocument: (documentId: string, documentType: string) => void
-  showConfirmOverlay?: any
+  handleDownloadDocument: (
+    appId: string,
+    documentId: string,
+    documentType: string
+  ) => void
+  showConfirmOverlay?: (applicationId: string) => void
+  onConfirmationCancel?: (applicationId: string, name: string) => void
+  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const refetchApps = useSelector(refetch)
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateApplicationRequestSelector)
-  const [group, setGroup] = useState<string>('InReview')
+  const [group, setGroup] = useState<string>(AppFilterType.INREVIEW)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterStatus, setFilterStatus] = useState<string>('InReview')
+  const [filterStatus, setFilterStatus] = useState<string>(
+    AppFilterType.INREVIEW
+  )
   const [fetchHookArgs, setFetchHookArgs] = useState({})
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -73,31 +83,34 @@ export const RequestList = ({
     // eslint-disable-next-line
   }, [filterStatus, searchExpr])
 
+  useEffect(() => {
+    if (refetchApps) setRefresh(Date.now())
+  }, [refetchApps])
+
   const filterView = [
     {
       buttonText: t('content.admin.registration-requests.filter.all'),
-      buttonValue: '',
+      buttonValue: AppFilterType.ALL,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.admin.registration-requests.filter.review'),
-      buttonValue: 'InReview',
+      buttonValue: AppFilterType.INREVIEW,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.admin.registration-requests.filter.closed'),
-      buttonValue: 'Closed',
+      buttonValue: AppFilterType.CLOSED,
       onButtonClick: setView,
     },
   ]
 
   const columns = RegistrationRequestsTableColumns(
     useTranslation,
-    onApproveClick,
-    onDeclineClick,
-    isLoading,
     handleDownloadDocument,
-    showConfirmOverlay
+    showConfirmOverlay,
+    onConfirmationCancel,
+    onChipButtonSelect
   )
 
   useEffect(() => {
@@ -114,7 +127,8 @@ export const RequestList = ({
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest>
         searchExpr={searchExpr}
-        rowHeight={80}
+        rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
+        alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}
@@ -122,7 +136,6 @@ export const RequestList = ({
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          console.log(onValidate(expr))
           if (!onValidate(expr)) return
           setRefresh(Date.now())
           setSearchExpr(expr)

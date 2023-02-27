@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -99,6 +99,7 @@ export const DropArea: FunctionComponent<DropAreaProps> = ({
               draggingBackground ||
               'selected.focus',
           },
+          cursor: disabled ? 'not-allowed' : 'pointer',
         }}
       >
         <Box
@@ -106,7 +107,7 @@ export const DropArea: FunctionComponent<DropAreaProps> = ({
           sx={{
             padding: size === 'normal' ? 5 : 2.5,
             display: 'block',
-            cursor: disabled ? 'no-drop' : 'pointer',
+            pointerEvents: 'none',
           }}
         >
           <Box
@@ -161,7 +162,9 @@ export const DropArea: FunctionComponent<DropAreaProps> = ({
       </Box>
       {hasErrorMessage && (
         <Box sx={{ marginY: 2 }}>
-          <Alert severity="error">{error}</Alert>
+          <Alert width={'100%'} severity="error">
+            {error}
+          </Alert>
         </Box>
       )}
     </Fragment>

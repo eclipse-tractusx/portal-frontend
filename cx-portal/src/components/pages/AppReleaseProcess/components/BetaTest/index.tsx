@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -73,7 +73,7 @@ export default function BetaTest() {
         <Grid container sx={{ mt: 0 }}>
           <Grid item md={3}>
             <img
-              src="/idp-teaser.jpg"
+              src="/teaser.png"
               alt="idp teaser"
               height="164px"
               width="164px"

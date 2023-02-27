@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,8 +24,10 @@ import {
   DropPreviewFileProps,
   DropStatusHeaderProps,
   UploadFile,
+  deleteConfirmOverlayTranslation,
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
+  UploadStatus,
 } from 'cx-portal-shared-components'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
@@ -48,6 +50,9 @@ export interface DropzoneProps {
   DropStatusHeader?: FunctionComponent<DropStatusHeaderProps> | false
   DropPreview?: FunctionComponent<DropPreviewProps> | false
   DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
+  enableDeleteIcon?: boolean
+  enableDeleteOverlay?: boolean
+  deleteOverlayTranslation?: deleteConfirmOverlayTranslation
 }
 
 export const Dropzone = ({
@@ -60,6 +65,9 @@ export const Dropzone = ({
   DropStatusHeader,
   DropPreview,
   DropPreviewFile,
+  enableDeleteIcon = true,
+  enableDeleteOverlay = false,
+  deleteOverlayTranslation,
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
@@ -132,7 +140,7 @@ export const Dropzone = ({
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     name: file.name,
     size: file.size,
-    status: file.status ?? 'new',
+    status: file.status ?? UploadStatus.NEW,
     progressPercent: file.progressPercent,
   }))
 
@@ -163,6 +171,9 @@ export const Dropzone = ({
           uploadSuccess: t('shared.dropzone.uploadSuccess'),
           uploadProgess: t('shared.dropzone.uploadProgess'),
         }}
+        enableDeleteIcon={enableDeleteIcon}
+        enableDeleteOverlay={enableDeleteOverlay}
+        deleteOverlayTranslation={deleteOverlayTranslation}
       />
     </div>
   )

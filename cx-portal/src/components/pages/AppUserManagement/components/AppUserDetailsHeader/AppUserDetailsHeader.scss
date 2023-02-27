@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -36,7 +36,7 @@
   width: 350px;
   border: 1px solid color(primary);
   border-radius: 8px;
-  margin: 16px;
+  margin: 15px;
   padding: 30px 0px 30px 30px;
 }
 
@@ -48,8 +48,7 @@
 
 .app-user-details-header-description {
   font-size: 14px !important;
-  text-decoration-line: underline;
-  color: color(primary) !important;
+  color: #888888 !important;
 }
 
 .app-user-details-header-title {
