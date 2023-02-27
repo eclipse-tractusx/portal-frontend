@@ -74,11 +74,13 @@ export default function ServiceReleaseProcess() {
       neuButton: t('requiredButton'),
       marketplaceTitle: t('requiredtitle'),
       marketplaceExplanation: t('requiredExplaination'),
+      index: 1
     },
     {
       neuButton: t('requiredButton'),
       marketplaceTitle: t('requiredtitle'),
       marketplaceExplanation: t('requiredExplaination'),
+      index: 1
     },
   ]
 

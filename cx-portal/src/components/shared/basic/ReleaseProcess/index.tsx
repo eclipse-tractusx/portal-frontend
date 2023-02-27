@@ -32,6 +32,7 @@ type RequerementStepType = {
   neuButton: string
   marketplaceTitle: string
   marketplaceExplanation: string
+  index: number
 }
 
 type StepListType = {
@@ -142,7 +143,7 @@ export const ReleaseProcess = ({
               <ul>
                 {requirements &&
                   requirements.map((req: RequerementStepType, index) => (
-                    <li key={req.neuButton + index}>
+                    <li key={req.index}>
                       <Button
                         color="secondary"
                         size="small"
