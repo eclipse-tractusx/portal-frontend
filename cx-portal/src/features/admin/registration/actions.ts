@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
 import { SearchParams } from '../../connector/types'
@@ -80,10 +80,16 @@ const declineRequest = createAsyncThunk(
   }
 )
 
+const refreshApplicationRequest = createAction(
+  `${name}/refreshApplicationRequest`,
+  (refresh: number) => ({ payload: { refresh } })
+)
+
 export {
   fetchCompanyDetail,
   fetchRegistrationRequests,
   fetchPage,
   approveRequest,
   declineRequest,
+  refreshApplicationRequest,
 }

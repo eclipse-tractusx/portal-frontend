@@ -52,7 +52,10 @@ const CreateDapsRegistration = ({
   const [error, setError] = useState(false)
   const [file, setFile] = useState<File>()
   const dropzoneProps = {
-    accept: '*',
+    accept: {
+      'application/x-pem-file': [],
+      'application/x-x509-ca-cert': [],
+    },
   }
 
   return (

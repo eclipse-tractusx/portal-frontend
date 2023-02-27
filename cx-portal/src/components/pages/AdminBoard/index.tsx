@@ -178,18 +178,24 @@ export default function AdminBoard() {
             />
           </div>
         </div>
-        {!apps ? (
-          <div className="loading-progress">
-            <CircularProgress
-              size={50}
-              sx={{
-                color: theme.palette.primary.main,
-              }}
-            />
-          </div>
-        ) : (
-          <AdminBoardElements apps={appCards} />
-        )}
+      </div>
+      <div className="admin-board-main">
+        <div style={{ height: '60px' }}></div>
+        <div className="mainContainer">
+          {!apps ? (
+            <div className="loading-progress">
+              <CircularProgress
+                size={50}
+                sx={{
+                  color: theme.palette.primary.main,
+                }}
+              />
+            </div>
+          ) : (
+            <AdminBoardElements apps={appCards} />
+          )}
+        </div>
+        <div style={{ height: '66px' }}></div>
       </div>
     </div>
   )

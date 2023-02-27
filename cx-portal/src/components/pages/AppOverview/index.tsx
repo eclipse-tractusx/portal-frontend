@@ -239,12 +239,7 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          {filterItem && filterItem?.length ? (
-            <AppOverviewList
-              filterItem={filterItem}
-              showOverlay={showOverlay}
-            />
-          ) : (
+          {!filterItem ? (
             <div style={{ textAlign: 'center' }}>
               <CircularProgress
                 size={50}
@@ -253,6 +248,11 @@ export default function AppOverview() {
                 }}
               />
             </div>
+          ) : (
+            <AppOverviewList
+              filterItem={filterItem}
+              showOverlay={showOverlay}
+            />
           )}
         </div>
       </div>
