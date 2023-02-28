@@ -24,7 +24,6 @@ on:
   push:
     branches:
       - 'dev'
-      - 'main'
 
 env:
   REGISTRY: ghcr.io
@@ -76,7 +75,7 @@ jobs:
           file: .conf/Dockerfile.prebuilt
           push: true
           # build tag :dev with commit-sha and latest
-          tags: ${{ steps.meta.outputs.tags }}_${{ env.COMMIT_SHA }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.COMMIT_SHA }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev
           labels: ${{ steps.meta.outputs.labels }}
 
   auth-and-dispatch:
