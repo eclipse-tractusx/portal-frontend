@@ -25,8 +25,10 @@ import TextCenterAligned from './TextCenterAligned'
 
 export default function TextImageCenterAligned({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
     <Box

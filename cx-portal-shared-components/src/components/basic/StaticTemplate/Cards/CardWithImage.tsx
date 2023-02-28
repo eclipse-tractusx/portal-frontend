@@ -25,9 +25,11 @@ import { Box } from '@mui/material'
 export default function CardWithImage({
   detail,
   grid = 3,
+  baseUrl,
 }: {
   detail: CardDetailsProps
   grid: number
+  baseUrl: string
 }) {
   const cardStyle = {
     borderRadius: '0px',

@@ -30,11 +30,17 @@ import VideoTextSideBySide from './Cards/VideoTextSideBySide'
 import ImageTextCenterAligned from './Cards/ImageTextCenterAligned'
 import TextCenterAlignedBody2 from './Cards/TextCenterAlignedBody2'
 
-const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
+const TemplateConfig = ({
+  provider,
+  baseUrl,
+}: {
+  provider: ProviderProps
+  baseUrl: string
+}) => {
   switch (provider.template) {
     //Text in the left and image in the right side
     case 'TextImageSideBySide':
-      return <TextImageSideBySide provider={provider} />
+      return <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
     //Text in the left and video in the right side
     case 'TextVideoSideBySide':
       return <TextVideoSideBySide provider={provider} />
@@ -43,10 +49,10 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
       return <VideoTextSideBySide provider={provider} />
     //Text and image component both center aligned
     case 'TextImageCenterAligned':
-      return <TextImageCenterAligned provider={provider} />
+      return <TextImageCenterAligned baseUrl={baseUrl} provider={provider} />
     //Image and text component both center aligned
     case 'ImageTextCenterAligned':
-      return <ImageTextCenterAligned provider={provider} />
+      return <ImageTextCenterAligned baseUrl={baseUrl} provider={provider} />
     //Text component center aligned
     case 'TextCenterAligned':
       return <TextCenterAligned provider={provider} />
@@ -57,8 +63,13 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
     case 'TextImageCenterAlignedWithCardGrid':
       return (
         <>
-          <TextImageCenterAligned provider={provider} />
-          <CardGrid align="center" provider={provider} grid={provider.grid} />
+          <TextImageCenterAligned baseUrl={baseUrl} provider={provider} />
+          <CardGrid
+            baseUrl={baseUrl}
+            align="center"
+            provider={provider}
+            grid={provider.grid}
+          />
         </>
       )
     //Combination of Text center aligned component with grid layout card component
@@ -66,15 +77,24 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
       return (
         <>
           <TextCenterAligned provider={provider} />
-          <CardGrid align="center" provider={provider} grid={provider.grid} />
+          <CardGrid
+            align="center"
+            baseUrl={baseUrl}
+            provider={provider}
+            grid={provider.grid}
+          />
         </>
       )
     //Combination of Text and image side by side with grid layout card component
     case 'TextImageSideBySideWithCardGrid':
       return (
         <>
-          <TextImageSideBySide provider={provider} />
-          <CardGrid provider={provider} grid={provider.grid} />
+          <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
+          <CardGrid
+            baseUrl={baseUrl}
+            provider={provider}
+            grid={provider.grid}
+          />
         </>
       )
     //Combination of Text center aligned component with grid layout link component
@@ -86,11 +106,17 @@ const TemplateConfig = ({ provider }: { provider: ProviderProps }) => {
         </>
       )
     default:
-      return <TextImageSideBySide provider={provider} />
+      return <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
   }
 }
 
-export const StaticTemplate = ({ sectionInfo }: { sectionInfo: any }) => {
+export const StaticTemplate = ({
+  sectionInfo,
+  baseUrl,
+}: {
+  sectionInfo: any
+  baseUrl: string
+}) => {
   return (
     <div>
       {sectionInfo &&
@@ -112,7 +138,7 @@ export const StaticTemplate = ({ sectionInfo }: { sectionInfo: any }) => {
                   margin: 'auto',
                 }}
               >
-                <TemplateConfig provider={provider} />
+                <TemplateConfig provider={provider} baseUrl={baseUrl} />
               </Box>
             </Box>
           )

@@ -24,8 +24,10 @@ import ImageVideoWrapper from './ImageVideoWrapper'
 
 export default function TextImageSideBySide({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
     <ImageVideoWrapper
