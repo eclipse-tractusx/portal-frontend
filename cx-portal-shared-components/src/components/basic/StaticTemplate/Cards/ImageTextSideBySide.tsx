@@ -25,8 +25,10 @@ import { ProviderProps } from '../StaticTypes'
 
 export default function ImageTextSideBySide({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
     <Box
@@ -39,7 +41,7 @@ export default function ImageTextSideBySide({
       }}
     >
       <ImageItem
-        url={provider.imageUrl || ''}
+        url={baseUrl + provider.imageUrl || ''}
         text={''}
         size="custom"
         height="472px"

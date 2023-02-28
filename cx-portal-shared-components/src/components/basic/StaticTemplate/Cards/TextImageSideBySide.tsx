@@ -34,7 +34,7 @@ export default function TextImageSideBySide({
       provider={provider}
       children={
         <ImageItem
-          url={provider.imageUrl || ''}
+          url={baseUrl + provider.imageUrl || ''}
           text={''}
           size="custom"
           height="472px"

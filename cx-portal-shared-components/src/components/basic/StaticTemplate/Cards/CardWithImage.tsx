@@ -65,7 +65,7 @@ export default function CardWithImage({
               ? '100%'
               : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
         }}
-        src={detail.imageUrl}
+        src={baseUrl + detail.imageUrl}
         width="100%"
         alt={'alt tag info'}
       />
