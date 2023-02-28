@@ -34,6 +34,15 @@ export type SubscriptionData = {
   offerSubscriptionStatus: string
 }
 
+export type DocumentData = {
+  documentId: string
+  documentName: string
+}
+
+export type DocumentAdditionalDetails = {
+  ADDITIONAL_DETAILS: Array<DocumentData>
+}
+
 export type ServiceRequest = {
   id: string
   title: string
@@ -46,6 +55,7 @@ export type ServiceRequest = {
   website: string
   phone: string
   offerSubscriptionDetailData: Array<SubscriptionData>
+  documents: DocumentAdditionalDetails
 }
 
 export type PaginationData = {
@@ -81,6 +91,11 @@ export type ServiceBody = {
   sortingType: string
 }
 
+export type DocumentRequestData = {
+  appId: string
+  documentId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -113,6 +128,15 @@ export const apiSlice = createApi({
     fetchAgreements: builder.query<AgreementRequest[], string>({
       query: (serviceId) => `/api/services/serviceAgreementData/${serviceId}`,
     }),
+    fetchDocumentById: builder.mutation({
+      query: (data: DocumentRequestData) => ({
+        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -122,4 +146,5 @@ export const {
   useAddSubscribeServiceMutation,
   useFetchSubscriptionQuery,
   useFetchAgreementsQuery,
+  useFetchDocumentByIdMutation,
 } = apiSlice
