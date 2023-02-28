@@ -3,6 +3,10 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
+* Service Management
+   * Navigation base setting
+   * Created a new component to support both App Release process & Service Release process intro pages
+   * Service Release Steps
 * Application Request
    * BugFix - Approve/Decline/Retrigger/Cancel Process actions should clear button and update the latest status in both overlay and application list
 * Bugfix - UI fixes in Adminboard
