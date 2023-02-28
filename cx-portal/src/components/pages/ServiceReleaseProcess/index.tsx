@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -27,90 +27,78 @@ import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { initialState } from 'features/appManagement/types'
 import { ReleaseProcess } from 'components/shared/basic/ReleaseProcess'
 
-export default function AppReleaseProcess() {
-  const { t } = useTranslation()
+export default function ServiceReleaseProcess() {
+  const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const stepsLists = [
+  const processStepsLists = [
     {
       description:
         'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      headline: 'App Market Card',
+      headline: t('stepper.marketCard'),
       step: 1,
     },
     {
       description:
         'App Page descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'App Page',
+      headline: t('stepper.servicePage'),
       step: 2,
     },
     {
       description:
         'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Contract & Consent',
+      headline: t('stepper.contractAndConsent'),
       step: 3,
     },
     {
       description:
-        'Technical Integration descsription consetetur sadipscing elitr Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Technical Integration',
-      step: 4,
-    },
-    {
-      description:
-        'Beta Test descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Beta Test',
-      step: 5,
-    },
-    {
-      description:
         'Validate & Publish descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      headline: 'Validate & Publish',
-      step: 6,
+      headline: t('stepper.validateAndPublish'),
+      step: 4,
     },
   ]
 
-  const onStartClick = () => {
-    navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+  const onStartServiceClick = () => {
+    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
     dispatch(setCurrentActiveStep())
     dispatch(setAppId(''))
     dispatch(setAppStatus(initialState.appStatusData))
   }
 
-  const onOverviewButton = () => {}
+  const onOverviewServiceButton = () => {}
 
-  const requirements = [
+  const requeredButtons = [
     {
-      neuButton: t('content.apprelease.neuButton'),
-      marketplaceTitle: t('content.apprelease.marketplaceTitle'),
-      marketplaceExplanation: t('content.apprelease.marketplaceExplanation'),
+      neuButton: t('requiredButton'),
+      marketplaceTitle: t('requiredtitle'),
+      marketplaceExplanation: t('requiredExplaination'),
       index: 1,
     },
     {
-      neuButton: t('content.apprelease.neuButton'),
-      marketplaceTitle: t('content.apprelease.marketplaceTitle'),
-      marketplaceExplanation: t('content.apprelease.marketplaceExplanation'),
-      index: 2,
+      neuButton: t('requiredButton'),
+      marketplaceTitle: t('requiredtitle'),
+      marketplaceExplanation: t('requiredExplaination'),
+      index: 1,
     },
   ]
 
   return (
     <ReleaseProcess
-      onStartClick={onStartClick}
-      onOverviewButton={onOverviewButton}
-      stepsLists={stepsLists}
-      headerTitle={t('content.apprelease.headerTitle')}
-      descHeading={t('content.apprelease.descHeading')}
-      descMessage={t('content.apprelease.descMessage')}
-      overviewButton={t('content.apprelease.overviewButton')}
-      stepHeading={t('content.apprelease.stepHeading')}
-      dividerText={t('content.apprelease.dividerText')}
-      startCreatingButton={t('content.apprelease.startCreatingButton')}
-      marketplaceHeading={t('content.apprelease.marketplaceHeading')}
-      requirements={requirements}
-      elementNumbers={6}
-      registerButton={t('content.apprelease.registerButton')}
+      headerTitle={t('headerTitle')}
+      descHeading={t('descHeading')}
+      descMessage={t('descMessage')}
+      overviewButton={t('overviewButton')}
+      stepHeading={t('stepHeading')}
+      dividerText={t('dividerText')}
+      registerButton={t('registerButton')}
+      startCreatingButton={t('startCreatingButton')}
+      marketplaceHeading={t('marketplaceHeading')}
+      requirements={requeredButtons}
+      elementNumbers={4}
+      onStartClick={onStartServiceClick}
+      onOverviewButton={onOverviewServiceButton}
+      stepsLists={processStepsLists}
     />
   )
 }

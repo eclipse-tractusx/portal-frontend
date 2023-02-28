@@ -636,7 +636,7 @@ export default function AppMarketCard() {
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
                 (item: string, i) => (
-                  <div key={i}>
+                  <div key={item}>
                     <ConnectorFormInputField
                       {...{
                         control,

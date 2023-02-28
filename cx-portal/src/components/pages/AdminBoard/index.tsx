@@ -178,8 +178,10 @@ export default function AdminBoard() {
             />
           </div>
         </div>
-        <div className="admin-board-main">
-          <div style={{ height: '60px' }}></div>
+      </div>
+      <div className="admin-board-main">
+        <div style={{ height: '60px' }}></div>
+        <div className="mainContainer">
           {!apps ? (
             <div className="loading-progress">
               <CircularProgress
@@ -192,8 +194,8 @@ export default function AdminBoard() {
           ) : (
             <AdminBoardElements apps={appCards} />
           )}
-          <div style={{ height: '66px' }}></div>
         </div>
+        <div style={{ height: '66px' }}></div>
       </div>
     </div>
   )

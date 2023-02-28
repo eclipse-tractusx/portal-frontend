@@ -233,7 +233,7 @@ export default function ValidateAndPublish({
 
           <Grid item sx={{ paddingLeft: '71px', marginTop: '22%' }} md={8}>
             {['language', 'useCase', 'price'].map((item, i) => (
-              <div style={{ display: 'flex', marginBottom: '5px' }} key={i}>
+              <div style={{ display: 'flex', marginBottom: '5px' }} key={item}>
                 <Typography variant="body2">
                   <b>{t(`content.apprelease.validateAndPublish.${item}`)}</b>
                   {getAppData(item)}
@@ -248,7 +248,7 @@ export default function ValidateAndPublish({
           {t('content.apprelease.validateAndPublish.appDetails')}
         </Typography>
         {['longDescriptionEN', 'longDescriptionDE'].map((item, i) => (
-          <div key={i}>
+          <div key={item}>
             {item === 'longDescriptionEN' ? (
               <Typography variant="body2" className="form-field">
                 <span style={{ fontWeight: 'bold' }}>
@@ -279,7 +279,7 @@ export default function ValidateAndPublish({
         <div style={{ display: 'flex' }}>
           {multipleImages?.map((img: { url: string }, i: number) => {
             return (
-              <Box sx={{ margin: '37px auto 0 auto' }} key={i}>
+              <Box sx={{ margin: '37px auto 0 auto' }} key={img.url}>
                 <img
                   src={img.url}
                   alt={'images'}
@@ -316,7 +316,7 @@ export default function ValidateAndPublish({
         </Typography>
         {statusData?.documents &&
           Object.keys(statusData.documents).map((item, i) => (
-            <InputLabel sx={{ mb: 0, mt: 3 }} key={i}>
+            <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
               <a href="/" style={{ display: 'flex' }}>
                 <ArrowForwardIcon fontSize="small" />
                 {statusData.documents[item][0].documentName}
@@ -337,9 +337,9 @@ export default function ValidateAndPublish({
         <div className="form-field">
           {statusData?.agreements?.map(
             (item: { name: string; consentStatus: string }, index: number) => (
-              <div key={index}>
+              <div key={item.name}>
                 <Checkbox
-                  key={index}
+                  key={item.name}
                   label={item.name}
                   checked={item.consentStatus === 'ACTIVE'}
                   disabled
@@ -355,9 +355,9 @@ export default function ValidateAndPublish({
         </Typography>
         <div className="form-field">
           {defaultValues.cxTestRuns?.map((item: any, index: number) => (
-            <div key={index}>
+            <div key={item.name}>
               <Checkbox
-                key={index}
+                key={item.name}
                 label={item.name}
                 checked={item.consentStatus === 'ACTIVE'}
                 disabled

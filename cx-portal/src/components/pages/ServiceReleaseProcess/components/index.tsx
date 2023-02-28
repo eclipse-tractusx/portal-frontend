@@ -27,9 +27,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/ReleaseProcessWrapper'
 
-export default function AppReleaseProcessForm() {
+export default function ServiceReleaseProcessForm() {
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t } = useTranslation('servicerelease')
   let activePage = useSelector(currentActiveStep)
   const dispatch = useDispatch()
 
@@ -40,38 +40,30 @@ export default function AppReleaseProcessForm() {
 
   const stepsList = [
     {
-      headline: t('content.apprelease.stepper.appMarketCard'),
+      headline: t('stepper.marketCard'),
       step: 1,
     },
     {
-      headline: t('content.apprelease.stepper.appPage'),
+      headline: t('stepper.servicePage'),
       step: 2,
     },
     {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
+      headline: t('stepper.contractAndConsent'),
       step: 3,
     },
     {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
+      headline: t('stepper.validateAndPublish'),
       step: 4,
-    },
-    {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
-      headline: t('content.apprelease.stepper.validateAndPublish'),
-      step: 6,
     },
   ]
 
   return (
     <ReleaseProcessWrapper
-      processType="apprelease"
+      processType="servicerelease"
       onAppsOverviewClick={() => onAppsOverviewClick()}
       activePage={activePage}
       stepsList={stepsList}
-      numberOfSteps={6}
+      numberOfSteps={4}
       pageHeaderTitle={t('content.apprelease.headerTitle')}
       headerTitle={t('content.apprelease.submitApp.headerTitle')}
       headerDescription={t('content.apprelease.submitApp.headerDescription')}
