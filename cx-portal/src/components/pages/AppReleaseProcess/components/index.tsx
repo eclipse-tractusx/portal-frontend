@@ -18,19 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  currentActiveStep,
-  setCurrentActiveStep,
-} from 'features/appManagement/slice'
+import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/ReleaseProcessWrapper'
 
 export default function AppReleaseProcessForm() {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  let activePage = useSelector(currentActiveStep)
   const dispatch = useDispatch()
 
   const onAppsOverviewClick = () => {
@@ -69,7 +65,6 @@ export default function AppReleaseProcessForm() {
     <ReleaseProcessWrapper
       processType="apprelease"
       onAppsOverviewClick={() => onAppsOverviewClick()}
-      activePage={activePage}
       stepsList={stepsList}
       numberOfSteps={6}
       pageHeaderTitle={t('content.apprelease.headerTitle')}

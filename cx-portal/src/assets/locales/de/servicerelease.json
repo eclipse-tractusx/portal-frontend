@@ -12,55 +12,38 @@
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Expalanation of the requirement",
   "stepper": {
-    "marketCard": "Service Card",
-    "servicePage": "Service Page Details",
-    "contractAndConsent": "Conformity & Agreements",
+    "marketCard": "Offer Card",
+    "servicePage": "Offer Page Details",
+    "contractAndConsent": "Contract & Consent",
     "validateAndPublish": "Verify & Submit"
   },
-  "appMarketCard": {
-    "headerTitle": "Create App Card",
-    "headerDescription": "The following input fields and uploads are used to create your app 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer. While entering the data below, have a look at the app card on the left side which is getting autoupdated based on your input.",
-    "defaultCardAppImageAlt": "Part Chain",
-    "defaultCardAppProvider": "Catena-X",
-    "defaultCardAppTitle": "This is the app title",
-    "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your app short description",
-    "appTitle": "App Title",
-    "appProvider": "App Provider",
+  "step1": {
+    "headerTitle": "Create Service",
+    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer. While entering the data below, have a look at the service card on the left side which is getting autoupdated based on your input.",
+    "defaultCardServiceImageAlt": "Part Chain",
+    "defaultCardServiceProvider": "Catena-X",
+    "defaultCardServiceTitle": "This is the service title",
+    "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
+    "serviceTitle": "Service Title",
+    "serviceProvider": "Service Type",
     "shortDescriptionEN": "Short Description (en)",
     "shortDescriptionDE": "Short Description (de)",
-    "useCaseCategory": "Use Case /Category",
-    "useCaseCategoryPlaceholder": "Choose the relevant Use Case",
-    "appLanguage": "App Language",
-    "appLanguagePlaceholder": "Select app supported languages",
-    "salesManager": "Sales Manager",
-    "salesManagerPlaceholder": "Please select a Sales Manager",
-    "salesManagerDescription": "Please select the app sales manager via the dropdown below. The sales manager can only get set if a user of your company has the respective portal role. The sales manager will get informed as soon as a app subscribtion request is triggered by the customer.",
-    "pricingInformation": "Pricing Information (e.g. free / charged ( to be defined)",
-    "appLeadImageUpload": "App Lead Image Upload"
+    "serviceLeadImageUpload": "Service Lead Image Upload"
   },
-  "appPage": {
-    "headerTitle": "App Details",
+  "step2": {
+    "headerTitle": "Service Details",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "longDescriptionEN": "Long Description (en)",
     "longDescriptionDE": "Long Description (de)",
-    "images": "Images",
+    "images": "Image",
     "note": "Note:",
-    "maxThreeImages": "Max.3 Images are supported",
-    "connectData": "Connect Data",
-    "dataSecurityInformation": "Data Security Information",
-    "uploadDataPrerequisits": "Upload “Data Prerequisits”",
-    "uploadTechnicalGuide": "Upload “Technical Guide”",
-    "uploadAppContract": "Upload “App Contract”",
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
     "providerContactEmail": "Customer Contact E-Mail",
-    "providerPhoneContact": "Provider Phone Contact",
-    "providerPhoneContactPlaceholder": "Following formats are supported: +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
     "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
-    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-    "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx"
+    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
   },
-  "contractAndConsent": {
+  "step3": {
     "headerTitle": "Consent & Contract",
     "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "allAgreementsMandatory": "All agreements are mandatory"
@@ -121,7 +104,7 @@
     "yourCatenaXTeam": "Your Catena-X team",
     "myAppsOverview": "My apps overview"
   },
-  "appReleaseForm": {
+  "serviceReleaseForm": {
     "headerTitle": "Create App",
     "addMore": "Add More",
     "noItemsSelected": "No Items Selected",

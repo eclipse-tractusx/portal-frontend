@@ -35,11 +35,15 @@ import ContractAndConsent from '../ContractAndConsent'
 import TechnicalIntegration from '../TechnicalIntegration'
 import BetaTest from '../BetaTest'
 import ValidateAndPublish from '../ValidateAndPublish'
+import OfferCard from '../OfferCard'
+import { currentActiveStep } from 'features/appManagement/slice'
+import { useSelector } from 'react-redux'
+import OfferPage from '../OfferPage'
+import ContractAndConsentWithDoc from '../ContractAndConsentWithDoc'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
   processType: string
-  activePage: number
   stepsList: StepType[]
   imagePath?: string
   headerDescription?: string
@@ -54,7 +58,6 @@ interface ReleaseProcessWrapperType {
 export default function ReleaseProcessWrapper({
   headerTitle,
   processType,
-  activePage,
   stepsList,
   imagePath = '../../submit-app-background.png',
   headerDescription,
@@ -66,7 +69,7 @@ export default function ReleaseProcessWrapper({
   onAppsOverviewClick,
 }: ReleaseProcessWrapperType) {
   const [showSubmitPage, setShowSubmitPage] = useState(false)
-
+  let activePage = useSelector(currentActiveStep)
   useEffect(() => {
     activeStep()
     window.scrollTo(0, 0)
@@ -74,13 +77,21 @@ export default function ReleaseProcessWrapper({
   }, [activePage])
 
   const activeStep = () => {
-    if (activePage === 1) return <AppMarketCard />
-    else if (activePage === 2) return <AppPage />
-    else if (activePage === 3) return <ContractAndConsent />
-    else if (activePage === 4) return <TechnicalIntegration />
-    else if (activePage === 5) return <BetaTest />
-    else if (activePage === 6)
-      return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+    if (processType === 'apprelease') {
+      if (activePage === 1) return <AppMarketCard />
+      else if (activePage === 2) return <AppPage />
+      else if (activePage === 3) return <ContractAndConsent />
+      else if (activePage === 4) return <TechnicalIntegration />
+      else if (activePage === 5) return <BetaTest />
+      else if (activePage === 6)
+        return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+    } else {
+      if (activePage === 1) return <OfferCard />
+      else if (activePage === 2) return <OfferPage />
+      else if (activePage === 3) return <ContractAndConsentWithDoc />
+      else if (activePage === 4)
+        return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+    }
   }
 
   return (
