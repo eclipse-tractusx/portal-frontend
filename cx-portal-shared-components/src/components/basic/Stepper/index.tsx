@@ -45,6 +45,7 @@ export const Stepper = ({ list, showSteps, activeStep }: StepperProps) => {
               headline={item.headline}
               activeStep={activeStep}
               index={i + 1}
+              totalSteps={list.length}
             />
           ))}
     </Box>

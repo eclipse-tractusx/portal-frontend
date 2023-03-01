@@ -53,7 +53,12 @@
     "companyrolesserviceprovider": "Service Provider",
     "companyrolesconfirmitybody": "Confirmity Body",
     "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity"
+    "usecasetraceablity": "Traceablity",
+    "servicemanagement": "Service Management",
+    "serviceoverview": "Service Overview",
+    "servicereleaseprocess": "Service Release Process",
+    "serviceadminboard": "Admin Board",
+    "servicesubscription": "Service Subscription Mgt"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -792,7 +797,8 @@
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Register your app and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the app release process.",
       "startCreatingButton": "Register your app",
-      "appOverviewButton": "Overview my apps",
+      "registerButton": "Register your app",
+      "overviewButton": "Overview my apps",
       "stepHeading": "The process will guide your through the following steps:",
       "dividerText": "Lets get started to publishing your app...",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",

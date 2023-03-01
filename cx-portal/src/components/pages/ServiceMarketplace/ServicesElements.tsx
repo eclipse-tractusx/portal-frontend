@@ -73,6 +73,7 @@ export default function ServicesElements({
                       onBtnClick={() => handleClick(service.id)}
                       title={service.title}
                       subTitle={getServices(service.serviceTypeIds)}
+                      description={service.description}
                       backgroundColor="#fff"
                     />
                   </Grid>
