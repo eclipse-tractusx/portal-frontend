@@ -39,7 +39,6 @@ import OfferCard from '../OfferCard'
 import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'
 import OfferPage from '../OfferPage'
-import ContractAndConsentWithDoc from '../ContractAndConsentWithDoc'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
@@ -88,7 +87,7 @@ export default function ReleaseProcessWrapper({
     } else {
       if (activePage === 1) return <OfferCard />
       else if (activePage === 2) return <OfferPage />
-      else if (activePage === 3) return <ContractAndConsentWithDoc />
+      else if (activePage === 3) return <ContractAndConsent />
       else if (activePage === 4)
         return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
     }

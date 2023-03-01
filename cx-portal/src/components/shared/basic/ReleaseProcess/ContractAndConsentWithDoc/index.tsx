@@ -18,35 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  IconButton,
-  PageNotifications,
-  PageSnackbar,
-  Typography,
-} from 'cx-portal-shared-components'
+import { Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { ConnectorFormInputField } from '../AppMarketCard'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  appIdSelector,
-  decrement,
-  increment,
-} from 'features/appManagement/slice'
-import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
-import { setAppStatus } from 'features/appManagement/actions'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 export default function ContractAndConsentWithDoc() {
   const { t } = useTranslation('servicerelease')
   const [contractNotification, setContractNotification] = useState(false)
   const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
-  const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
   const defaultValue = {
     agreements: [],
   }
@@ -67,9 +50,6 @@ export default function ContractAndConsentWithDoc() {
       name: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply",
     },
   ]
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
-    refetchOnMountOrArgChange: true,
-  }).data
 
   const {
     control,
@@ -79,11 +59,6 @@ export default function ContractAndConsentWithDoc() {
     defaultValues: defaultValue,
     mode: 'onChange',
   })
-
-  const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
-    dispatch(decrement())
-  }
 
   return (
     <div className="contract-consent">
@@ -120,56 +95,12 @@ export default function ContractAndConsentWithDoc() {
           </div>
         ))}
       </form>
-      <Box mb={2}>
-        {contractNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('appReleaseForm.error.title')}
-                description={t('appReleaseForm.error.message')}
-                open
-                severity="error"
-                onCloseNotification={() => setContractNotification(false)}
-              />
-            </Grid>
-          </Grid>
-        )}
-        <PageSnackbar
-          open={contractSnackbar}
-          onCloseNotification={() => setContractSnackbar(false)}
-          severity="success"
-          description={t('appReleaseForm.dataSavedSuccessMessage')}
-          autoClose={true}
-        />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('footerButtons.help')}
-        </Button>
-        <IconButton color="secondary" onClick={() => onBackIconClick()}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          disabled={false}
-          sx={{ float: 'right' }}
-          onClick={() => dispatch(increment())}
-        >
-          {t('footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={() => dispatch(increment())}
-        >
-          {t('footerButtons.save')}
-        </Button>
-      </Box>
+      <SnackbarNotificationWithButtons
+        appPageNotification={contractNotification}
+        appPageSnackbar={contractSnackbar}
+        setAppPageNotification={setContractNotification}
+        setAppPageSnackbar={setContractSnackbar}
+      />
     </div>
   )
 }

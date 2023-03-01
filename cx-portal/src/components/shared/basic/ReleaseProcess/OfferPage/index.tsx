@@ -48,6 +48,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
@@ -312,55 +313,12 @@ export default function OfferPage() {
           />
         </div>
       </form>
-      <Box mb={2}>
-        {appPageNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('serviceReleaseForm.error.title')}
-                description={t('serviceReleaseForm.error.message')}
-                open
-                severity="error"
-                onCloseNotification={() => setAppPageNotification(false)}
-              />
-            </Grid>
-          </Grid>
-        )}
-        <PageSnackbar
-          open={appPageSnackbar}
-          onCloseNotification={() => setAppPageSnackbar(false)}
-          severity="success"
-          description={t('serviceReleaseForm.dataSavedSuccessMessage')}
-          autoClose={true}
-        />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          sx={{ mr: 1 }}
-          variant="outlined"
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('footerButtons.help')}
-        </Button>
-        <IconButton onClick={() => onBackIconClick()} color="secondary">
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          sx={{ float: 'right' }}
-          variant="contained"
-          onClick={() => dispatch(increment())}
-        >
-          {t('footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={() => dispatch(increment())}
-        >
-          {t('footerButtons.save')}
-        </Button>
-      </Box>
+      <SnackbarNotificationWithButtons
+        appPageNotification={appPageNotification}
+        appPageSnackbar={appPageSnackbar}
+        setAppPageNotification={setAppPageNotification}
+        setAppPageSnackbar={setAppPageSnackbar}
+      />
     </div>
   )
 }
