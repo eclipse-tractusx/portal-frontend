@@ -35,10 +35,10 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const Image = Template.bind({})
 Image.args = {
-  src: 'https://picsum.photos/seed/picsum/200/300',
+  src: 'https://raw.githubusercontent.com/catenax-ng/tx-portal-assets/main/public/assets/images/logos/cx-short.svg',
   style: {
-    width: '360px',
-    height: '240px',
+    width: '240px',
+    height: '254px',
     borderRadius: '15px',
   },
 }
