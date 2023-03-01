@@ -360,9 +360,9 @@ export default function OfferCard() {
                         rules: {
                           required: {
                             value: true,
-                            message: `${t(`step1.${item}`)} ${t(
-                              'serviceReleaseForm.isMandatory'
-                            )}`,
+                            message:
+                              t(`step1.${item}`) +
+                              t('serviceReleaseForm.isMandatory'),
                           },
                           minLength: {
                             value: 10,
@@ -450,32 +450,6 @@ export default function OfferCard() {
       </Grid>
 
       <Box mb={2}>
-        {/* {serviceCardNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('serviceReleaseForm.error.title')}
-                description={t(
-                  'serviceReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() => setServiceCardNotification(false)}
-              />
-            </Grid>
-          </Grid>
-        )}
-        <PageSnackbar
-          open={serviceCardSnackbar}
-          onCloseNotification={() => setServiceCardSnackbar(false)}
-          severity="success"
-          description={t(
-            'serviceReleaseForm.dataSavedSuccessMessage'
-          )}
-          autoClose={true}
-        /> */}
-
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <Button
           variant="outlined"
