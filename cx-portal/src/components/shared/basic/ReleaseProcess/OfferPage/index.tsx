@@ -19,34 +19,27 @@
  ********************************************************************************/
 
 import {
-  Button,
   Typography,
   IconButton,
-  PageNotifications,
   UploadFileStatus,
-  PageSnackbar,
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, Box, InputLabel, Grid } from '@mui/material'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import { Divider, InputLabel, Grid } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   appIdSelector,
-  decrement,
-  increment,
 } from 'features/appManagement/slice'
 import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
-import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
@@ -54,7 +47,6 @@ export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
-  const dispatch = useDispatch()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
@@ -148,11 +140,6 @@ export default function OfferPage() {
     }
 
     return updateDocumentUpload(data).unwrap()
-  }
-
-  const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
-    dispatch(decrement())
   }
 
   return (
