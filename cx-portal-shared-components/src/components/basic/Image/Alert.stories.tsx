@@ -18,14 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import ImageTest from './index.image'
+import { ComponentStory } from '@storybook/react'
 
-export default function Test() {
-  return (
-    <main>
-      <section>
-        <ImageTest />
-      </section>
-    </main>
-  )
+import { Image as Component } from '.'
+
+export default {
+  title: 'Image',
+  component: Component,
+  argTypes: {
+    children: {},
+  },
+}
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const Image = Template.bind({})
+Image.args = {
+  src: 'https://picsum.photos/seed/picsum/200/300',
+  style: {
+    width: '360px',
+    height: '240px',
+    borderRadius: '15px',
+  },
 }

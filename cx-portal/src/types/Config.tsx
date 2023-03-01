@@ -26,6 +26,7 @@ import RegistrationRequests from 'components/pages/Admin/components/Registration
 import AppDetail from 'components/pages/AppDetail'
 import AppMarketplace from 'components/pages/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
+import AppOverviewNew from 'components/pages/AppOverviewNew'
 import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
@@ -213,6 +214,11 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPOVERVIEW,
     role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverview />,
+  },
+  {
+    name: PAGES.APPOVERVIEW_NEW,
+    role: ROLES.APPOVERVIEW_VIEW,
+    element: <AppOverviewNew />,
   },
   {
     name: PAGES.APPRELEASEPROCESS,

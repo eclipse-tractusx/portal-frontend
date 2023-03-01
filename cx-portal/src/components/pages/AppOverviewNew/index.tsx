@@ -18,13 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import ImageTest from './index.image'
+import { useTranslation } from 'react-i18next'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import { PageHeader } from 'cx-portal-shared-components'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import NoItems from '../NoItems'
+import { AppOverviewList } from './AppOverviewList'
+import { appToCard } from 'features/apps/mapper'
 
-export default function Test() {
+export default function AppOverviewNew() {
+  const { t } = useTranslation()
+  const { data } = useFetchProvidedAppsQuery()
+
+  console.log('data', data)
+
   return (
     <main>
+      <PageHeader
+        title={t('content.appoverview.headerTitle')}
+        topPage={true}
+        headerHeight={200}
+      >
+        <PageBreadcrumb backButtonVariant="contained" />
+      </PageHeader>
       <section>
-        <ImageTest />
+        {data && data.length > 0 ? (
+          <AppOverviewList
+            filterItem={data.map((item) => appToCard(item))}
+            showOverlay={() => {}}
+          />
+        ) : (
+          <NoItems />
+        )}
       </section>
     </main>
   )

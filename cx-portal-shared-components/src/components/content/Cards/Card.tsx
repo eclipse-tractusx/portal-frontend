@@ -73,6 +73,7 @@ export const Card = ({
   image,
   imageSize,
   imageShape,
+  imageLoader,
   buttonText,
   onClick,
   onButtonClick,
@@ -218,6 +219,7 @@ export const Card = ({
             image={image}
             imageSize={imageSize}
             imageShape={imageShape}
+            imageLoader={imageLoader}
             preview={variant === 'preview'}
           />
         </Box>
