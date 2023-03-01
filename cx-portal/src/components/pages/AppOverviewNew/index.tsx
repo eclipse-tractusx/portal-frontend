@@ -23,7 +23,7 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { PageHeader } from 'cx-portal-shared-components'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
 import NoItems from '../NoItems'
-import { AppOverviewList } from './AppOverviewList'
+import { AppOverviewList } from '../AppOverview/AppOverviewList'
 import { appToCard } from 'features/apps/mapper'
 
 export default function AppOverviewNew() {
