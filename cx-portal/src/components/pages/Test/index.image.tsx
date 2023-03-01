@@ -57,69 +57,6 @@ export default function ImageTest() {
           style={style}
           loader={fetchImageWithToken}
         />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/1bb44ae0-32a5-4add-835b-09fcc2c67f70/appImages/097a7d2f-0d10-4f75-a2af-a208e9b2d95a'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/894f5699-6875-4e33-af42-9a2cf86fa60f/appImages/4ed5e572-d2a5-4a53-8b20-2a54bc5bf9a1'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/5533a802-a0ab-4c27-b89c-29919a11cc50/appImages/87e14630-fba5-4fe8-b0bf-1cffe48c7e1e'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/d7bbdbbb-9c2a-4409-9924-00e161783e4e/appImages/d7aad9e6-b672-4dfb-9e5c-17828f6c65b3'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/526c2a23-1bf6-43d4-9519-60699f86836c/appImages/3ff41b32-93d2-4404-bae8-34e7ba2b279d'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/209cce0e-e8cc-43cf-bce7-56c5449f9d95/appImages/fea07681-f12a-4c14-8464-446bbbfc3fe6'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/2b394bcd-51fa-4748-beb2-1cbd8beab9bf/appImages/a0544881-4d0b-4291-9270-1cbbe2607d96'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/c5c25402-3831-4460-b361-707424ae5390/appImages/93cc8c88-bf6a-4d1a-bcf3-0bc43bc57042'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appImages/a0448b5e-73ee-4b33-85f3-9228f321ec14'
-          }
-          style={style}
-          loader={fetchImageWithToken}
-        />
       </article>
       <article>
         <Image src={'sdhjfkljsdklfj'} style={style} />
