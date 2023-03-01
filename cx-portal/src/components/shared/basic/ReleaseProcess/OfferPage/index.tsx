@@ -33,9 +33,7 @@ import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector } from 'react-redux'
-import {
-  appIdSelector,
-} from 'features/appManagement/slice'
+import { appIdSelector } from 'features/appManagement/slice'
 import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,

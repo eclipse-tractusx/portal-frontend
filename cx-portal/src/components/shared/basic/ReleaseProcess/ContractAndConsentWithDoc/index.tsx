@@ -33,7 +33,7 @@ export default function ContractAndConsentWithDoc() {
   const defaultValue = {
     agreements: [],
   }
-  const agreementData = [
+  const agreementDetails = [
     {
       consentStatus: false,
       agreementId: '1',
@@ -73,7 +73,7 @@ export default function ContractAndConsentWithDoc() {
         </Grid>
       </Grid>
       <form className="header-description">
-        {agreementData?.map((item) => (
+        {agreementDetails?.map((item) => (
           <div className="form-field" key={item.agreementId}>
             <ConnectorFormInputField
               {...{
