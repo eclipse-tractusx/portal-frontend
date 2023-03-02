@@ -43,7 +43,7 @@ export default function MarketplaceContentDetails({
         <div className="product-description">
           <Typography variant="body2">{item.description}</Typography>
         </div>
-        <MarketplaceDocuments />
+        <MarketplaceDocuments item={item} />
         <MarketplaceProvider item={item} />
       </>
     )

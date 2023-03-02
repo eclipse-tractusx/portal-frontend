@@ -1008,7 +1008,8 @@
       },
       "document": {
         "heading": "Nutzungsbedingungen",
-        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden.",
+        "notAvailable": "No documents available"
       }
     },
     "appMarketplace": {
