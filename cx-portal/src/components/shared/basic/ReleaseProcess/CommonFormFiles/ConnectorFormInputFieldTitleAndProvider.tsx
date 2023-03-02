@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 
 export default function ConnectorFormInputFieldTitleAndProvider({
