@@ -29,7 +29,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
   rules,
   value,
   item,
-  key,
+  patternKey,
   patternDE,
   patternEN,
 }: any) {
@@ -54,7 +54,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
               message: rules.minLength,
             },
             pattern: {
-              value: item === key ? patternEN : patternDE,
+              value: item === patternKey ? patternEN : patternDE,
               message: rules.pattern,
             },
             maxLength: {

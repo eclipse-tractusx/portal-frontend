@@ -45,7 +45,7 @@ import {
   increment,
 } from 'features/appManagement/slice'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
-import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
 
 export default function OfferPage() {
@@ -161,55 +161,52 @@ export default function OfferPage() {
       />
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map(
-            (description: string) => (
-              <div key={description}>
-                <ConnectorFormInputFieldShortDescription
-                  {...{
-                    control,
-                    trigger,
-                    errors,
-                    description,
-                  }}
-                  label={
-                    <>
-                      {t(`step2.${description}`) + ' *'}
-                      <IconButton sx={{ color: '#939393' }} size="small">
-                        <HelpOutlineIcon />
-                      </IconButton>
-                    </>
-                  }
-                  value={
-                    (description === 'longDescriptionEN'
-                      ? getValues().longDescriptionEN.length
-                      : getValues().longDescriptionDE.length) +
-                    `/${longDescriptionMaxLength}`
-                  }
-                  key="longDescriptionEN"
-                  patternEN={Patterns.appPage.longDescriptionEN}
-                  patternDE={Patterns.appPage.longDescriptionDE}
-                  rules={{
-                    required:
-                      t(`step2.${description}`) +
-                      t('serviceReleaseForm.isMandatory'),
-                    minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
-                      'serviceReleaseForm.charactersRequired'
-                    )}`,
-                    pattern: `${t(
-                      'serviceReleaseForm.validCharactersIncludes'
-                    )} ${
-                      description === 'longDescriptionEN'
-                        ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                        : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                    }`,
-                    maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
-                      'serviceReleaseForm.charactersAllowed'
-                    )}`,
-                  }}
-                />
-              </div>
-            )
-          )}
+          {['longDescriptionEN', 'longDescriptionDE'].map((desc: string) => (
+            <div key={desc}>
+              <ConnectorFormInputFieldShortAndLongDescription
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                }}
+                item={desc}
+                label={
+                  <>
+                    {t(`step2.${desc}`) + ' *'}
+                    <IconButton sx={{ color: '#939393' }} size="small">
+                      <HelpOutlineIcon />
+                    </IconButton>
+                  </>
+                }
+                value={
+                  (desc === 'longDescriptionEN'
+                    ? getValues().longDescriptionEN.length
+                    : getValues().longDescriptionDE.length) +
+                  `/${longDescriptionMaxLength}`
+                }
+                patternKey="longDescriptionEN"
+                patternEN={Patterns.appPage.longDescriptionEN}
+                patternDE={Patterns.appPage.longDescriptionDE}
+                rules={{
+                  required:
+                    t(`step2.${desc}`) + t('serviceReleaseForm.isMandatory'),
+                  minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
+                    'serviceReleaseForm.charactersRequired'
+                  )}`,
+                  pattern: `${t(
+                    'serviceReleaseForm.validCharactersIncludes'
+                  )} ${
+                    desc === 'longDescriptionEN'
+                      ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                      : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                  }`,
+                  maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
+                    'serviceReleaseForm.charactersAllowed'
+                  )}`,
+                }}
+              />
+            </div>
+          ))}
         </div>
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
@@ -249,6 +246,12 @@ export default function OfferPage() {
               {t('serviceReleaseForm.fileUploadIsMandatory')}
             </Typography>
           )}
+          <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+            {t('serviceReleaseForm.note')}
+          </Typography>
+          <Typography variant="body2" mb={3}>
+            {t('serviceReleaseForm.max1Images')}
+          </Typography>
         </div>
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />

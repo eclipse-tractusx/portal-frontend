@@ -34,7 +34,7 @@ export default function ReleaseStepHeader({
         {title}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto' }}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
           <Typography variant="body2" align="center">
             {description}
           </Typography>

@@ -61,7 +61,7 @@ import uniqBy from 'lodash/uniqBy'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
 import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInputField'
-import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
 import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
@@ -464,6 +464,8 @@ export default function AppMarketCard() {
                 errors,
               }}
               name="provider"
+              maxLength={15}
+              minLength={1}
               pattern={Patterns.appMarketCard.appProvider}
               label={t('content.apprelease.appMarketCard.appProvider') + ' *'}
               rules={{
@@ -490,7 +492,7 @@ export default function AppMarketCard() {
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
                 (item: string, i) => (
                   <div key={item}>
-                    <ConnectorFormInputFieldShortDescription
+                    <ConnectorFormInputFieldShortAndLongDescription
                       {...{
                         control,
                         trigger,
@@ -510,7 +512,7 @@ export default function AppMarketCard() {
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
-                      key="shortDescriptionEN"
+                      patternKey="shortDescriptionEN"
                       patternEN={Patterns.appMarketCard.shortDescriptionEN}
                       patternDE={Patterns.appMarketCard.shortDescriptionDE}
                       rules={{
@@ -659,6 +661,8 @@ export default function AppMarketCard() {
               }}
               name="price"
               pattern={Patterns.appMarketCard.pricingInformation}
+              maxLength={15}
+              minLength={1}
               label={
                 t('content.apprelease.appMarketCard.pricingInformation') + ' *'
               }

@@ -48,8 +48,8 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
-import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
 import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
+import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -355,9 +355,9 @@ export default function AppPage() {
       />
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map((item: string, i) => (
+          {['longDescriptionEN', 'longDescriptionDE'].map((item: string) => (
             <div key={item}>
-              <ConnectorFormInputFieldShortDescription
+              <ConnectorFormInputFieldShortAndLongDescription
                 {...{
                   control,
                   trigger,
@@ -378,7 +378,7 @@ export default function AppPage() {
                     : getValues().longDescriptionDE.length) +
                   `/${longDescriptionMaxLength}`
                 }
-                key="longDescriptionEN"
+                patternKey="longDescriptionEN"
                 patternEN={Patterns.appPage.longDescriptionEN}
                 patternDE={Patterns.appPage.longDescriptionDE}
                 rules={{

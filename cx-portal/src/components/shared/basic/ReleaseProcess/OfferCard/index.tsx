@@ -43,7 +43,7 @@ import {
 } from 'features/appManagement/slice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
 import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInputField'
 import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
@@ -160,8 +160,9 @@ export default function OfferCard() {
               pattern={Patterns.appMarketCard.appTitle}
               label={t('step1.serviceTitle') + ' *'}
               rules={{
-                required:
-                  t('step1.serviceTitle') + t('serviceReleaseForm.isMandatory'),
+                required: `${t('step1.serviceTitle')} ${t(
+                  'serviceReleaseForm.isMandatory'
+                )}`,
                 minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
@@ -180,19 +181,21 @@ export default function OfferCard() {
                 errors,
               }}
               name="provider"
+              maxLength={30}
+              minLength={1}
               pattern={Patterns.appMarketCard.appProvider}
               label={t('step1.serviceProvider') + ' *'}
               rules={{
                 required: `${t('step1.serviceProvider')} ${t(
                   'serviceReleaseForm.isMandatory'
                 )}`,
-                minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
+                minLength: `${t('serviceReleaseForm.minimum')} 1 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
                 pattern: `${t(
                   'serviceReleaseForm.validCharactersIncludes'
                 )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t('serviceReleaseForm.maximum')} 40 ${t(
+                maxLength: `${t('serviceReleaseForm.maximum')} 30 ${t(
                   'serviceReleaseForm.charactersAllowed'
                 )}`,
               }}
@@ -200,34 +203,34 @@ export default function OfferCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (sDesc: string, i) => (
-                  <div key={sDesc}>
-                    <ConnectorFormInputFieldShortDescription
+                (item: string, i) => (
+                  <div key={item}>
+                    <ConnectorFormInputFieldShortAndLongDescription
                       {...{
                         control,
                         trigger,
                         errors,
-                        sDesc,
+                        item,
                       }}
                       label={
                         <>
-                          {t(`step1.${sDesc}`) + ' *'}
+                          {t(`step1.${item}`) + ' *'}
                           <IconButton sx={{ color: '#939393' }} size="small">
                             <HelpOutlineIcon />
                           </IconButton>
                         </>
                       }
                       value={
-                        (sDesc === 'shortDescriptionEN'
+                        (item === 'shortDescriptionEN'
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
-                      key="shortDescriptionEN"
+                      patternKey="shortDescriptionEN"
                       patternEN={Patterns.appMarketCard.shortDescriptionEN}
                       patternDE={Patterns.appMarketCard.shortDescriptionDE}
                       rules={{
                         required:
-                          t(`step1.${sDesc}`) +
+                          t(`step1.${item}`) +
                           t('serviceReleaseForm.isMandatory'),
                         minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
@@ -235,7 +238,7 @@ export default function OfferCard() {
                         pattern: `${t(
                           'serviceReleaseForm.validCharactersIncludes'
                         )} ${
-                          sDesc === 'shortDescriptionEN'
+                          item === 'shortDescriptionEN'
                             ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
                             : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
                         }`,
@@ -248,6 +251,7 @@ export default function OfferCard() {
                 )
               )}
             </div>
+
             <ConnectorFormInputFieldImage
               {...{
                 control,

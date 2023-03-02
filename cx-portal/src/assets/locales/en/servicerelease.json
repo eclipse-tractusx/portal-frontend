@@ -111,6 +111,7 @@
     "note": "Note:",
     "OnlyOneFileAllowed": "Only one file for upload allowed",
     "max3Images": "Max. 3 Images are supported",
+    "max1Images": "Only one Image is supported",
     "minimum": "Minimum",
     "charactersRequired": " characters required",
     "maximum": "Maximum",

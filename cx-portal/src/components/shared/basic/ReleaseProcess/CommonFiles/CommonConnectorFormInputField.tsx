@@ -28,6 +28,8 @@ export default function CommonConnectorFormInputField({
   rules,
   name,
   pattern,
+  maxLength = 40,
+  minLength = 5,
 }: any) {
   return (
     <div className="form-field">
@@ -45,7 +47,7 @@ export default function CommonConnectorFormInputField({
               message: rules.required,
             },
             minLength: {
-              value: 5,
+              value: minLength,
               message: rules.minLength,
             },
             pattern: {
@@ -53,7 +55,7 @@ export default function CommonConnectorFormInputField({
               message: rules.pattern,
             },
             maxLength: {
-              value: 40,
+              value: maxLength,
               message: rules.maxLength,
             },
           },
