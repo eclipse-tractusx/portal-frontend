@@ -30,6 +30,11 @@ export default function ConnectorFormInputFieldImage({
   note,
   requiredText,
   noteDescription,
+  name = 'uploadImage.leadPictureUri',
+  acceptFormat = {
+    'image/png': [],
+    'image/jpeg': [],
+  },
 }: any) {
   return (
     <div className="form-field">
@@ -39,12 +44,9 @@ export default function ConnectorFormInputFieldImage({
           control,
           trigger,
           errors,
-          name: 'uploadImage.leadPictureUri',
+          name: name,
           type: 'dropzone',
-          acceptFormat: {
-            'image/png': [],
-            'image/jpeg': [],
-          },
+          acceptFormat: acceptFormat,
           maxFilesToUpload: 1,
           maxFileSize: 819200,
           rules: {

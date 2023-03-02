@@ -899,7 +899,8 @@
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "allAgreementsMandatory": "All agreements are mandatory"
+        "allAgreementsMandatory": "All agreements are mandatory",
+        "uploadImageConformity": "Conformity App Certificate"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",

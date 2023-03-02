@@ -549,7 +549,7 @@ export default function AppPage() {
           }}
           name="providerPhoneContact"
           label={t('content.apprelease.appPage.providerPhoneContact')}
-          pattern={Patterns.MAIL}
+          pattern={Patterns.appPage.phone}
           ruleMessage={t('content.apprelease.appPage.pleaseEnterValidContact')}
           placeholder={t(
             'content.apprelease.appPage.providerPhoneContactPlaceholder'

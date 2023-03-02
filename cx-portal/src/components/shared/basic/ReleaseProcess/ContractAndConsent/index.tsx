@@ -35,11 +35,14 @@ import {
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
   useFetchAppStatusQuery,
+  useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
+import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 
 type AgreementType = {
   agreementId: string
@@ -56,6 +59,7 @@ export default function ContractAndConsent() {
   const fetchAgreementData = useFetchAgreementDataQuery().data
   const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
   const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
+  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [agreementData, setAgreementData] = useState<AgreementType>([])
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
@@ -101,19 +105,96 @@ export default function ContractAndConsent() {
     reset({ ...defaultCheckboxData, agreements: agreementData })
   }
 
+  const defaultValues = {
+    agreements: defaultValue,
+    uploadImageConformity:
+      fetchAppStatus?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
+  }
+
   const {
     handleSubmit,
     control,
     trigger,
     formState: { errors, isValid },
     reset,
+    getValues,
+    setValue,
   } = useForm({
-    defaultValues: defaultValue,
+    defaultValues: defaultValues,
     mode: 'onChange',
   })
 
+  const uploadImageConformityValue = getValues().uploadImageConformity
+  const defaultuploadImageConformity = defaultValues.uploadImageConformity
+
+  useEffect(() => {
+    if (
+      defaultuploadImageConformity &&
+      Object.keys(defaultuploadImageConformity).length > 0
+    ) {
+      setValue('uploadImageConformity', {
+        id:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentId,
+        name:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultuploadImageConformity])
+
+  const setFileStatus = (
+    fieldName: Parameters<typeof setValue>[0],
+    status: UploadFileStatus
+  ) => {
+    const value = getValues(fieldName)
+
+    setValue(fieldName, {
+      id: value.id,
+      name: value.name,
+      size: value.size,
+      status,
+    } as any)
+  }
+
+  useEffect(() => {
+    const value = getValues().uploadImageConformity
+
+    if (Array.isArray(value)) {
+      setValue('uploadImageConformity', {
+        id:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentId,
+        name:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+    }
+
+    if (value && !Array.isArray(value) && !('status' in value)) {
+      setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
+
+      uploadDocumentApi(appId, 'CONFORMITY_APPROVAL_BUSINESS_APPS', value)
+        .then(() =>
+          setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_ERROR)
+        )
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadImageConformityValue])
+
   const onContractConsentSubmit = async (data: any, buttonLabel: string) => {
-    const validateFields = await trigger(['agreements'])
+    const validateFields = await trigger([
+      'agreements',
+      'uploadImageConformity',
+    ])
     if (validateFields) {
       handleSave(data, buttonLabel)
     }
@@ -150,6 +231,20 @@ export default function ContractAndConsent() {
       .catch(() => {
         setContractNotification(true)
       })
+  }
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    await updateDocumentUpload(data).unwrap()
   }
 
   const onBackIconClick = () => {
@@ -189,6 +284,28 @@ export default function ContractAndConsent() {
             />
           </div>
         ))}
+        <ConnectorFormInputFieldImage
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="uploadImageConformity"
+          acceptFormat={{
+            'application/pdf': ['.pdf'],
+          }}
+          label={
+            t('content.apprelease.contractAndConsent.uploadImageConformity') +
+            ' *'
+          }
+          noteDescription={t(
+            'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
+          )}
+          note={t('content.apprelease.appReleaseForm.note')}
+          requiredText={t(
+            'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+          )}
+        />
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={contractNotification}
