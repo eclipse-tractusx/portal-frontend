@@ -1016,15 +1016,15 @@
       },
       "register": {
         "heading": "Autosetup URL",
-        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "endpointConfigured": "Endpoint Configured",
+        "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
+        "endpointConfigured": "Current Endpoint",
         "autosetupURL": "AutoSetup URL",
-        "providerErrorMessage": "Something went wrong!",
+        "providerErrorMessage": "Something went wrong! Please try it later again.",
         "providerSuccessMessage": "Service Provider Details added successfully."
       },
       "activation": {
-        "heading": "Activate User Subscription",
-        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "heading": "Activate App Subscription",
+        "description": "Activate the app subscription request of the customer by adding your customer specific app endpoint/url in the input field below. We will use the url to register/activate the app authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the app tenant/connector to the centryl CX components/services (where needed).",
         "successDescription": "The technical user has been created with the following data:",
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
@@ -1061,8 +1061,8 @@
       "backToBoard": "Back to Admin Board",
       "connectedData": {
         "heading": "Connected Data",
-        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
-        "message2": "When using the app, the following data may be collected but NOT linked to your identity:",
+        "message": "Following data might be used/stored by the app provider to enable you to use the complete functionality of the app.",
+        "message2": "When using the app, the following data may be collected:",
         "linked": "Linked to your Identity",
         "notLinked": "Linked NOT to your Identity"
       },
@@ -1072,7 +1072,7 @@
       },
       "documents": {
         "heading": "Documents",
-        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
       },
       "providerInformation": {
         "heading": "Provider Information",
