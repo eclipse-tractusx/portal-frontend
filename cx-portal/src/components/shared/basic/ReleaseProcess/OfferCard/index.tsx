@@ -63,21 +63,6 @@ export default function OfferCard() {
     refetchOnMountOrArgChange: true,
   }).data
 
-  const commonRulesSet = {
-    required: `${t('step1.serviceTitle')} ${t(
-      'serviceReleaseForm.isMandatory'
-    )}`,
-    minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
-      'serviceReleaseForm.charactersRequired'
-    )}`,
-    pattern: `${t(
-      'serviceReleaseForm.validCharactersIncludes'
-    )} A-Za-z0-9.:_- @&`,
-    maxLength: `${t('serviceReleaseForm.maximum')} 40 ${t(
-      'serviceReleaseForm.charactersAllowed'
-    )}`,
-  }
-
   const defaultValues = {
     title: appStatusData?.title,
     provider: appStatusData?.provider,
@@ -179,20 +164,16 @@ export default function OfferCard() {
               }}
               label={t('step1.serviceTitle') + ' *'}
               rules={{
-                required: `${t(
-                  'step1.serviceTitle'
-                )} ${t('serviceReleaseForm.isMandatory')}`,
-                minLength: `${t(
-                  'serviceReleaseForm.minimum'
-                )} 5 ${t(
+                required: `${t('step1.serviceTitle')} ${t(
+                  'serviceReleaseForm.isMandatory'
+                )}`,
+                minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
                 pattern: `${t(
                   'serviceReleaseForm.validCharactersIncludes'
                 )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t(
-                  'serviceReleaseForm.maximum'
-                )} 40 ${t(
+                maxLength: `${t('serviceReleaseForm.maximum')} 40 ${t(
                   'serviceReleaseForm.charactersAllowed'
                 )}`,
               }}
@@ -205,20 +186,16 @@ export default function OfferCard() {
               }}
               label={t('step1.serviceProvider') + ' *'}
               rules={{
-                required: `${t(
-                  'step1.serviceProvider'
-                )} ${t('serviceReleaseForm.isMandatory')}`,
-                minLength: `${t(
-                  'serviceReleaseForm.minimum'
-                )} 5 ${t(
+                required: `${t('step1.serviceProvider')} ${t(
+                  'serviceReleaseForm.isMandatory'
+                )}`,
+                minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
                 pattern: `${t(
                   'serviceReleaseForm.validCharactersIncludes'
                 )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t(
-                  'serviceReleaseForm.maximum'
-                )} 40 ${t(
+                maxLength: `${t('serviceReleaseForm.maximum')} 40 ${t(
                   'serviceReleaseForm.charactersAllowed'
                 )}`,
               }}
@@ -249,14 +226,10 @@ export default function OfferCard() {
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
                       rules={{
-                        required: `${t(
-                          `step1.${item}`
-                        )} ${t(
+                        required: `${t(`step1.${item}`)} ${t(
                           'serviceReleaseForm.isMandatory'
                         )}`,
-                        minLength: `${t(
-                          'serviceReleaseForm.minimum'
-                        )} 10 ${t(
+                        minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
                         )}`,
                         pattern: `${t(
@@ -266,9 +239,7 @@ export default function OfferCard() {
                             ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
                             : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
                         }`,
-                        maxLength: `${t(
-                          'serviceReleaseForm.maximum'
-                        )} 255 ${t(
+                        maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
                           'serviceReleaseForm.charactersAllowed'
                         )}`,
                       }}
