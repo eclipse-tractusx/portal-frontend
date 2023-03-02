@@ -161,52 +161,55 @@ export default function OfferPage() {
       />
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map((longDesc: string) => (
-            <div key={longDesc}>
-              <ConnectorFormInputFieldShortAndLongDescription
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                }}
-                item={longDesc}
-                label={
-                  <>
-                    {t(`step2.${longDesc}`) + ' *'}
-                    <IconButton sx={{ color: '#939393' }} size="small">
-                      <HelpOutlineIcon />
-                    </IconButton>
-                  </>
-                }
-                value={
-                  (longDesc === 'longDescriptionEN'
-                    ? getValues().longDescriptionEN.length
-                    : getValues().longDescriptionDE.length) +
-                  `/${longDescriptionMaxLength}`
-                }
-                patternKey="longDescriptionEN"
-                patternEN={Patterns.appPage.longDescriptionEN}
-                patternDE={Patterns.appPage.longDescriptionDE}
-                rules={{
-                  required:
-                    t(`step2.${longDesc}`) + t('serviceReleaseForm.isMandatory'),
-                  minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
-                    'serviceReleaseForm.charactersRequired'
-                  )}`,
-                  pattern: `${t(
-                    'serviceReleaseForm.validCharactersIncludes'
-                  )} ${
-                    longDesc === 'longDescriptionEN'
-                      ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                      : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                  }`,
-                  maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
-                    'serviceReleaseForm.charactersAllowed'
-                  )}`,
-                }}
-              />
-            </div>
-          ))}
+          {['longDescriptionEN', 'longDescriptionDE'].map(
+            (longDesc: string) => (
+              <div key={longDesc}>
+                <ConnectorFormInputFieldShortAndLongDescription
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                  }}
+                  item={longDesc}
+                  label={
+                    <>
+                      {t(`step2.${longDesc}`) + ' *'}
+                      <IconButton sx={{ color: '#939393' }} size="small">
+                        <HelpOutlineIcon />
+                      </IconButton>
+                    </>
+                  }
+                  value={
+                    (longDesc === 'longDescriptionEN'
+                      ? getValues().longDescriptionEN.length
+                      : getValues().longDescriptionDE.length) +
+                    `/${longDescriptionMaxLength}`
+                  }
+                  patternKey="longDescriptionEN"
+                  patternEN={Patterns.appPage.longDescriptionEN}
+                  patternDE={Patterns.appPage.longDescriptionDE}
+                  rules={{
+                    maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
+                      'serviceReleaseForm.charactersAllowed'
+                    )}`,
+                    required:
+                      t(`step2.${longDesc}`) +
+                      t('serviceReleaseForm.isMandatory'),
+                    minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
+                      'serviceReleaseForm.charactersRequired'
+                    )}`,
+                    pattern: `${t(
+                      'serviceReleaseForm.validCharactersIncludes'
+                    )} ${
+                      longDesc === 'longDescriptionEN'
+                        ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                        : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                    }`,
+                  }}
+                />
+              </div>
+            )
+          )}
         </div>
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
