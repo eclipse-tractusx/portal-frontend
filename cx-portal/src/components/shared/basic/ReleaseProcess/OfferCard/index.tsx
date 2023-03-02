@@ -19,11 +19,8 @@
  ********************************************************************************/
 
 import {
-  Input,
   Typography,
   IconButton,
-  MultiSelectList,
-  Checkbox,
   LogoGrayData,
   UploadFileStatus,
   UploadStatus,
@@ -37,8 +34,7 @@ import {
   useFetchDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
-import { Controller, useForm } from 'react-hook-form'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { useForm } from 'react-hook-form'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -47,118 +43,11 @@ import {
   increment,
 } from 'features/appManagement/slice'
 import { setAppStatus } from 'features/appManagement/actions'
-import Patterns from 'types/Patterns'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-
-export const ConnectorFormInputField = ({
-  control,
-  trigger,
-  errors,
-  label,
-  placeholder,
-  name,
-  rules,
-  type,
-  textarea,
-  items,
-  keyTitle,
-  saveKeyTitle,
-  notItemsText,
-  buttonAddMore,
-  filterOptionsArgs,
-  acceptFormat,
-  maxFilesToUpload,
-  maxFileSize,
-  defaultValues,
-  enableDeleteIcon,
-}: any) => (
-  <Controller
-    name={name}
-    control={control}
-    rules={rules}
-    render={({ field: { onChange, value } }) => {
-      if (type === 'input') {
-        return (
-          <Input
-            label={label}
-            placeholder={placeholder}
-            error={!!errors[name]}
-            helperText={errors && errors[name] && errors[name].message}
-            value={value}
-            onChange={(event) => {
-              trigger(name)
-              onChange(event)
-            }}
-            multiline={textarea}
-            minRows={textarea && 3}
-            maxRows={textarea && 3}
-            sx={
-              textarea && {
-                '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
-              }
-            }
-          />
-        )
-      } else if (type === 'dropzone') {
-        return (
-          <Dropzone
-            files={value ? [value] : undefined}
-            onChange={([file]) => {
-              trigger(name)
-              onChange(file)
-            }}
-            acceptFormat={acceptFormat}
-            maxFilesToUpload={maxFilesToUpload}
-            maxFileSize={maxFileSize}
-            enableDeleteIcon={enableDeleteIcon}
-          />
-        )
-      } else if (type === 'checkbox') {
-        return (
-          <>
-            <Checkbox
-              key={name}
-              label={label}
-              defaultChecked={defaultValues}
-              value={defaultValues}
-              checked={value}
-              onChange={(event) => {
-                trigger(name)
-                onChange(event.target.checked)
-              }}
-            />
-            {!!errors[name] && (
-              <Typography variant="body2" className="file-error-msg">
-                {errors[name].message}
-              </Typography>
-            )}
-          </>
-        )
-      } else
-        return (
-          <MultiSelectList
-            label={label}
-            placeholder={placeholder}
-            error={!!errors[name]}
-            helperText={errors && errors[name] && errors[name].message}
-            value={value}
-            items={items}
-            keyTitle={keyTitle}
-            onAddItem={(items: any[]) => {
-              trigger(name)
-              onChange(items?.map((item) => item[saveKeyTitle]))
-            }}
-            notItemsText={notItemsText}
-            buttonAddMore={buttonAddMore}
-            tagSize="small"
-            margin="none"
-            filterOptionsArgs={filterOptionsArgs}
-            defaultValues={defaultValues}
-          />
-        )
-    }}
-  />
-)
+import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
+import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
+import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
 
 export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
@@ -173,6 +62,21 @@ export default function OfferCard() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+
+  const commonRulesSet = {
+    required: `${t('step1.serviceTitle')} ${t(
+      'serviceReleaseForm.isMandatory'
+    )}`,
+    minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
+      'serviceReleaseForm.charactersRequired'
+    )}`,
+    pattern: `${t(
+      'serviceReleaseForm.validCharactersIncludes'
+    )} A-Za-z0-9.:_- @&`,
+    maxLength: `${t('serviceReleaseForm.maximum')} 40 ${t(
+      'serviceReleaseForm.charactersAllowed'
+    )}`,
+  }
 
   const defaultValues = {
     title: appStatusData?.title,
@@ -267,150 +171,108 @@ export default function OfferCard() {
       <Grid container spacing={2} sx={{ mt: 10 }}>
         <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           <form>
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'title',
-                  label: t('step1.serviceTitle') + ' *',
-                  type: 'input',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t('step1.serviceTitle')} ${t(
-                        'serviceReleaseForm.isMandatory'
-                      )}`,
-                    },
-                    minLength: {
-                      value: 5,
-                      message: `${t('serviceReleaseForm.minimum')} 5 ${t(
-                        'serviceReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.appTitle,
-                      message: `${t(
-                        'serviceReleaseForm.validCharactersIncludes'
-                      )} A-Za-z0-9.:_- @&`,
-                    },
-                    maxLength: {
-                      value: 40,
-                      message: `${t('serviceReleaseForm.maximum')} 40 ${t(
-                        'serviceReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-            </div>
-
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'provider',
-                  label: t('step1.serviceProvider') + ' *',
-                  type: 'input',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t('step1.serviceProvider')} ${t(
-                        'serviceReleaseForm.isMandatory'
-                      )}`,
-                    },
-                    minLength: {
-                      value: 3,
-                      message: `${t('serviceReleaseForm.minimum')} 3 ${t(
-                        'serviceReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.appProvider,
-                      message: `${t(
-                        'serviceReleaseForm.validCharactersIncludes'
-                      )} A-Z a-z`,
-                    },
-                    maxLength: {
-                      value: 30,
-                      message: `${t('serviceReleaseForm.maximum')} 30 ${t(
-                        'serviceReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-            </div>
+            <ConnectorFormInputFieldTitle
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              label={t('step1.serviceTitle') + ' *'}
+              rules={{
+                required: `${t(
+                  'step1.serviceTitle'
+                )} ${t('serviceReleaseForm.isMandatory')}`,
+                minLength: `${t(
+                  'serviceReleaseForm.minimum'
+                )} 5 ${t(
+                  'serviceReleaseForm.charactersRequired'
+                )}`,
+                pattern: `${t(
+                  'serviceReleaseForm.validCharactersIncludes'
+                )} A-Za-z0-9.:_- @&`,
+                maxLength: `${t(
+                  'serviceReleaseForm.maximum'
+                )} 40 ${t(
+                  'serviceReleaseForm.charactersAllowed'
+                )}`,
+              }}
+            />
+            <ConnectorFormInputFieldProvider
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              label={t('step1.serviceProvider') + ' *'}
+              rules={{
+                required: `${t(
+                  'step1.serviceProvider'
+                )} ${t('serviceReleaseForm.isMandatory')}`,
+                minLength: `${t(
+                  'serviceReleaseForm.minimum'
+                )} 5 ${t(
+                  'serviceReleaseForm.charactersRequired'
+                )}`,
+                pattern: `${t(
+                  'serviceReleaseForm.validCharactersIncludes'
+                )} A-Za-z0-9.:_- @&`,
+                maxLength: `${t(
+                  'serviceReleaseForm.maximum'
+                )} 40 ${t(
+                  'serviceReleaseForm.charactersAllowed'
+                )}`,
+              }}
+            />
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
                 (item: string, i) => (
                   <div key={item}>
-                    <ConnectorFormInputField
+                    <ConnectorFormInputFieldShortDescription
                       {...{
                         control,
                         trigger,
                         errors,
-                        name: item,
-                        label: (
-                          <>
-                            {t(`step1.${item}`) + ' *'}
-                            <IconButton sx={{ color: '#939393' }} size="small">
-                              <HelpOutlineIcon />
-                            </IconButton>
-                          </>
-                        ),
-                        type: 'input',
-                        textarea: true,
-                        rules: {
-                          required: {
-                            value: true,
-                            message:
-                              t(`step1.${item}`) +
-                              t('serviceReleaseForm.isMandatory'),
-                          },
-                          minLength: {
-                            value: 10,
-                            message: `${t('serviceReleaseForm.minimum')} 10 ${t(
-                              'serviceReleaseForm.charactersRequired'
-                            )}`,
-                          },
-                          pattern: {
-                            value:
-                              item === 'shortDescriptionEN'
-                                ? Patterns.appMarketCard.shortDescriptionEN
-                                : Patterns.appMarketCard.shortDescriptionDE,
-                            message: `${t(
-                              'serviceReleaseForm.validCharactersIncludes'
-                            )} ${
-                              item === 'shortDescriptionEN'
-                                ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
-                                : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
-                            }`,
-                          },
-                          maxLength: {
-                            value: 255,
-                            message: `${t(
-                              'serviceReleaseForm.maximum'
-                            )} 255 ${t(
-                              'serviceReleaseForm.charactersAllowed'
-                            )}`,
-                          },
-                        },
+                        item,
+                      }}
+                      label={
+                        <>
+                          {t(`step1.${item}`) + ' *'}
+                          <IconButton sx={{ color: '#939393' }} size="small">
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </>
+                      }
+                      value={
+                        (item === 'shortDescriptionEN'
+                          ? getValues().shortDescriptionEN.length
+                          : getValues().shortDescriptionDE.length) + `/255`
+                      }
+                      rules={{
+                        required: `${t(
+                          `step1.${item}`
+                        )} ${t(
+                          'serviceReleaseForm.isMandatory'
+                        )}`,
+                        minLength: `${t(
+                          'serviceReleaseForm.minimum'
+                        )} 10 ${t(
+                          'serviceReleaseForm.charactersRequired'
+                        )}`,
+                        pattern: `${t(
+                          'serviceReleaseForm.validCharactersIncludes'
+                        )} ${
+                          item === 'shortDescriptionEN'
+                            ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
+                            : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
+                        }`,
+                        maxLength: `${t(
+                          'serviceReleaseForm.maximum'
+                        )} 255 ${t(
+                          'serviceReleaseForm.charactersAllowed'
+                        )}`,
                       }}
                     />
-                    <Typography
-                      variant="body2"
-                      className="form-field"
-                      align="right"
-                    >
-                      {(item === 'shortDescriptionEN'
-                        ? getValues().shortDescriptionEN.length
-                        : getValues().shortDescriptionDE.length) + `/255`}
-                    </Typography>
                   </div>
                 )
               )}

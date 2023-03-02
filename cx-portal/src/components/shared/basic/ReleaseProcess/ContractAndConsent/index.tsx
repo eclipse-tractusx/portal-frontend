@@ -23,7 +23,6 @@ import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
-import { ConnectorFormInputField } from '../AppMarketCard'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
@@ -41,6 +40,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
 
 type AgreementType = {
   agreementId: string

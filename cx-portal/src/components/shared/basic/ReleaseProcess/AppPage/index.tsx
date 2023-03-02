@@ -29,7 +29,6 @@ import { Divider, InputLabel, Grid } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,6 +46,7 @@ import {
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
 
 type FormDataType = {
   longDescriptionEN: string

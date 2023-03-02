@@ -19,13 +19,10 @@
  ********************************************************************************/
 
 import {
-  Input,
   Typography,
   IconButton,
   CardHorizontal,
   Card,
-  MultiSelectList,
-  Checkbox,
   LogoGrayData,
   SelectList,
   UploadFileStatus,
@@ -48,8 +45,8 @@ import {
   useFetchDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
-import { Controller, useForm } from 'react-hook-form'
-import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
+import { useForm } from 'react-hook-form'
+import { DropzoneFile } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -62,6 +59,10 @@ import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
+import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
+import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
+import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
 
 type FormDataType = {
   title: string
@@ -77,116 +78,6 @@ type FormDataType = {
   }
   salesManagerId: string | null
 }
-
-export const ConnectorFormInputField = ({
-  control,
-  trigger,
-  errors,
-  label,
-  placeholder,
-  name,
-  rules,
-  type,
-  textarea,
-  items,
-  keyTitle,
-  saveKeyTitle,
-  notItemsText,
-  buttonAddMore,
-  filterOptionsArgs,
-  acceptFormat,
-  maxFilesToUpload,
-  maxFileSize,
-  defaultValues,
-  enableDeleteIcon,
-}: any) => (
-  <Controller
-    name={name}
-    control={control}
-    rules={rules}
-    render={({ field: { onChange, value } }) => {
-      if (type === 'input') {
-        return (
-          <Input
-            label={label}
-            placeholder={placeholder}
-            error={!!errors[name]}
-            helperText={errors && errors[name] && errors[name].message}
-            value={value}
-            onChange={(event) => {
-              trigger(name)
-              onChange(event)
-            }}
-            multiline={textarea}
-            minRows={textarea && 3}
-            maxRows={textarea && 3}
-            sx={
-              textarea && {
-                '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
-              }
-            }
-          />
-        )
-      } else if (type === 'dropzone') {
-        return (
-          <Dropzone
-            files={value ? [value] : undefined}
-            onChange={([file]) => {
-              trigger(name)
-              onChange(file)
-            }}
-            acceptFormat={acceptFormat}
-            maxFilesToUpload={maxFilesToUpload}
-            maxFileSize={maxFileSize}
-            enableDeleteIcon={enableDeleteIcon}
-          />
-        )
-      } else if (type === 'checkbox') {
-        return (
-          <>
-            <Checkbox
-              key={name}
-              label={label}
-              defaultChecked={defaultValues}
-              value={defaultValues}
-              checked={value}
-              onChange={(event) => {
-                trigger(name)
-                onChange(event.target.checked)
-              }}
-            />
-            {!!errors[name] && (
-              <Typography variant="body2" className="file-error-msg">
-                {errors[name].message}
-              </Typography>
-            )}
-          </>
-        )
-      } else
-        return (
-          <MultiSelectList
-            label={label}
-            placeholder={placeholder}
-            error={!!errors[name]}
-            helperText={errors && errors[name] && errors[name].message}
-            value={value}
-            items={items}
-            keyTitle={keyTitle}
-            onAddItem={(items: any[]) => {
-              trigger(name)
-              onChange(items?.map((item) => item[saveKeyTitle]))
-            }}
-            notItemsText={notItemsText}
-            buttonAddMore={buttonAddMore}
-            tagSize="small"
-            margin="none"
-            filterOptionsArgs={filterOptionsArgs}
-            defaultValues={defaultValues}
-          />
-        )
-    }}
-  />
-)
 
 export default function AppMarketCard() {
   const { t } = useTranslation()
@@ -543,164 +434,108 @@ export default function AppMarketCard() {
           sx={{ mt: 0, mr: 'auto', mb: 0, ml: pageScrolled ? 0 : 'auto' }}
         >
           <form>
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'title',
-                  label: t('content.apprelease.appMarketCard.appTitle') + ' *',
-                  type: 'input',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.appTitle'
-                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                    },
-                    minLength: {
-                      value: 5,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.minimum'
-                      )} 5 ${t(
-                        'content.apprelease.appReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.appTitle,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Za-z0-9.:_- @&`,
-                    },
-                    maxLength: {
-                      value: 40,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.maximum'
-                      )} 40 ${t(
-                        'content.apprelease.appReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-            </div>
-
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'provider',
-                  label:
-                    t('content.apprelease.appMarketCard.appProvider') + ' *',
-                  type: 'input',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.appProvider'
-                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                    },
-                    minLength: {
-                      value: 3,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.minimum'
-                      )} 3 ${t(
-                        'content.apprelease.appReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.appProvider,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Z a-z`,
-                    },
-                    maxLength: {
-                      value: 30,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.maximum'
-                      )} 30 ${t(
-                        'content.apprelease.appReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-            </div>
+            <ConnectorFormInputFieldTitle
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              label={t('content.apprelease.appMarketCard.appTitle') + ' *'}
+              rules={{
+                required: `${t(
+                  'content.apprelease.appMarketCard.appTitle'
+                )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                minLength: `${t(
+                  'content.apprelease.appReleaseForm.minimum'
+                )} 5 ${t(
+                  'content.apprelease.appReleaseForm.charactersRequired'
+                )}`,
+                pattern: `${t(
+                  'content.apprelease.appReleaseForm.validCharactersIncludes'
+                )} A-Za-z0-9.:_- @&`,
+                maxLength: `${t(
+                  'content.apprelease.appReleaseForm.maximum'
+                )} 40 ${t(
+                  'content.apprelease.appReleaseForm.charactersAllowed'
+                )}`,
+              }}
+            />
+            <ConnectorFormInputFieldProvider
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              label={t('content.apprelease.appMarketCard.appProvider') + ' *'}
+              rules={{
+                required: `${t(
+                  'content.apprelease.appMarketCard.appProvider'
+                )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                minLength: `${t(
+                  'content.apprelease.appReleaseForm.minimum'
+                )} 5 ${t(
+                  'content.apprelease.appReleaseForm.charactersRequired'
+                )}`,
+                pattern: `${t(
+                  'content.apprelease.appReleaseForm.validCharactersIncludes'
+                )} A-Za-z0-9.:_- @&`,
+                maxLength: `${t(
+                  'content.apprelease.appReleaseForm.maximum'
+                )} 40 ${t(
+                  'content.apprelease.appReleaseForm.charactersAllowed'
+                )}`,
+              }}
+            />
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
                 (item: string, i) => (
                   <div key={item}>
-                    <ConnectorFormInputField
+                    <ConnectorFormInputFieldShortDescription
                       {...{
                         control,
                         trigger,
                         errors,
-                        name: item,
-                        label: (
-                          <>
-                            {t(`content.apprelease.appMarketCard.${item}`) +
-                              ' *'}
-                            <IconButton sx={{ color: '#939393' }} size="small">
-                              <HelpOutlineIcon />
-                            </IconButton>
-                          </>
-                        ),
-                        type: 'input',
-                        textarea: true,
-                        rules: {
-                          required: {
-                            value: true,
-                            message: `${t(
-                              `content.apprelease.appMarketCard.${item}`
-                            )} ${t(
-                              'content.apprelease.appReleaseForm.isMandatory'
-                            )}`,
-                          },
-                          minLength: {
-                            value: 10,
-                            message: `${t(
-                              'content.apprelease.appReleaseForm.minimum'
-                            )} 10 ${t(
-                              'content.apprelease.appReleaseForm.charactersRequired'
-                            )}`,
-                          },
-                          pattern: {
-                            value:
-                              item === 'shortDescriptionEN'
-                                ? Patterns.appMarketCard.shortDescriptionEN
-                                : Patterns.appMarketCard.shortDescriptionDE,
-                            message: `${t(
-                              'content.apprelease.appReleaseForm.validCharactersIncludes'
-                            )} ${
-                              item === 'shortDescriptionEN'
-                                ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
-                                : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
-                            }`,
-                          },
-                          maxLength: {
-                            value: 255,
-                            message: `${t(
-                              'content.apprelease.appReleaseForm.maximum'
-                            )} 255 ${t(
-                              'content.apprelease.appReleaseForm.charactersAllowed'
-                            )}`,
-                          },
-                        },
+                        item,
+                      }}
+                      label={
+                        <>
+                          {t(`content.apprelease.appMarketCard.${item}`) + ' *'}
+                          <IconButton sx={{ color: '#939393' }} size="small">
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </>
+                      }
+                      value={
+                        (item === 'shortDescriptionEN'
+                          ? getValues().shortDescriptionEN.length
+                          : getValues().shortDescriptionDE.length) + `/255`
+                      }
+                      rules={{
+                        required: `${t(
+                          `content.apprelease.appMarketCard.${item}`
+                        )} ${t(
+                          'content.apprelease.appReleaseForm.isMandatory'
+                        )}`,
+                        minLength: `${t(
+                          'content.apprelease.appReleaseForm.minimum'
+                        )} 10 ${t(
+                          'content.apprelease.appReleaseForm.charactersRequired'
+                        )}`,
+                        pattern: `${t(
+                          'content.apprelease.appReleaseForm.validCharactersIncludes'
+                        )} ${
+                          item === 'shortDescriptionEN'
+                            ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
+                            : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
+                        }`,
+                        maxLength: `${t(
+                          'content.apprelease.appReleaseForm.maximum'
+                        )} 255 ${t(
+                          'content.apprelease.appReleaseForm.charactersAllowed'
+                        )}`,
                       }}
                     />
-                    <Typography
-                      variant="body2"
-                      className="form-field"
-                      align="right"
-                    >
-                      {(item === 'shortDescriptionEN'
-                        ? getValues().shortDescriptionEN.length
-                        : getValues().shortDescriptionDE.length) + `/255`}
-                    </Typography>
                   </div>
                 )
               )}

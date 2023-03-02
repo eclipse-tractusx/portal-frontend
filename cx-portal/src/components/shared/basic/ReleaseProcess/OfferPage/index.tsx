@@ -29,7 +29,6 @@ import { Divider, InputLabel, Grid } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
@@ -45,6 +44,7 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
+import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
