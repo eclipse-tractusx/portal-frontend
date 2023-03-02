@@ -101,17 +101,17 @@ export default function OfferPage() {
     })
 
     if (imgs.length > 0) {
-      const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
-        const nextFiles = imgs
-        nextFiles[fileIndex] = {
+      const setFiles = (fileIndex: number, status: UploadFileStatus) => {
+        const files = imgs
+        files[fileIndex] = {
           name: imgs[fileIndex].name,
           status,
         }
-        setValue('images', nextFiles)
+        setValue('images', files)
       }
 
       for (let fileIndex = 0; fileIndex < imgs.length; fileIndex++) {
-        setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
+        setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -120,21 +120,21 @@ export default function OfferPage() {
   const uploadImage = (files: any) => {
     const value = files
     if (value.length > 0) {
-      const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
-        const nextFiles = [...getValues().images] as any[]
-        nextFiles[fileIndex] = {
+      const setFiles = (fileIndex: number, status: UploadFileStatus) => {
+        const files = [...getValues().images] as any[]
+        files[fileIndex] = {
           name: value[fileIndex].name,
           size: value[fileIndex].size,
           status,
         }
-        setValue('images', nextFiles as any)
+        setValue('images', files as any)
       }
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
-        setFileStatus(fileIndex, UploadStatus.UPLOADING)
+        setFiles(fileIndex, UploadStatus.UPLOADING)
         uploadDocument(appId, 'APP_IMAGE', value[fileIndex])
-          .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
-          .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
+          .then(() => setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS))
+          .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
     }
   }
