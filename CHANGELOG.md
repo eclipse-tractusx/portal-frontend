@@ -20,8 +20,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Rectangle images to be 16:9 ratio.
    * Fix 3 images to a row. Show grid layout for rest
 * Service Marketplace
-   *  Fetch documents from backend and download
+   * Fetch documents from backend and download
    * Update style multiple order section
+   * Add short description to card
 
 ## 1.0.0-RC10
 
