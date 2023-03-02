@@ -52,6 +52,7 @@ import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonService from 'services/CommonService'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -182,17 +183,12 @@ export default function ValidateAndPublish({
 
   return (
     <div className="validate-and-publish">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.validateAndPublish.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.validateAndPublish.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
-
+      <ReleaseStepHeader
+        title={t('content.apprelease.validateAndPublish.headerTitle')}
+        description={t(
+          'content.apprelease.validateAndPublish.headerDescription'
+        )}
+      />
       <div className="header-description">
         <Grid container sx={{ mt: 0 }}>
           <Grid

@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import {
-  Typography,
   IconButton,
   LogoGrayData,
   UploadFileStatus,
@@ -44,10 +43,11 @@ import {
 } from 'features/appManagement/slice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
-import ConnectorFormInputFieldTitleAndProvider from '../CommonFormFiles/ConnectorFormInputFieldTitleAndProvider'
-import ConnectorFormInputFieldImage from '../CommonFormFiles/ConnectorFormInputFieldImage'
+import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldTitleAndProvider from '../CommonFiles/ConnectorFormInputFieldTitleAndProvider'
+import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
@@ -143,16 +143,10 @@ export default function OfferCard() {
 
   return (
     <div className="app-market-card">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('step1.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto' }}>
-          <Typography variant="body2" align="center">
-            {t('step1.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <ReleaseStepHeader
+        title={t('step1.headerTitle')}
+        description={t('step1.headerDescription')}
+      />
       <Grid container spacing={2} sx={{ mt: 10 }}>
         <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           <form>
@@ -229,9 +223,9 @@ export default function OfferCard() {
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
                       rules={{
-                        required: `${t(`step1.${item}`)} ${t(
-                          'serviceReleaseForm.isMandatory'
-                        )}`,
+                        required:
+                          t(`step1.${item}`) +
+                          t('serviceReleaseForm.isMandatory'),
                         minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
                         )}`,

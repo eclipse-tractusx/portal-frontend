@@ -59,10 +59,11 @@ import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
-import ConnectorFormInputFieldTitleAndProvider from '../CommonFormFiles/ConnectorFormInputFieldTitleAndProvider'
-import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
-import ConnectorFormInputFieldImage from '../CommonFormFiles/ConnectorFormInputFieldImage'
+import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
+import ConnectorFormInputFieldTitleAndProvider from '../CommonFiles/ConnectorFormInputFieldTitleAndProvider'
+import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 type FormDataType = {
   title: string
@@ -383,16 +384,10 @@ export default function AppMarketCard() {
 
   return (
     <div className="app-market-card">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.appMarketCard.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto' }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.appMarketCard.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <ReleaseStepHeader
+        title={t('content.apprelease.appMarketCard.headerTitle')}
+        description={t('content.apprelease.appMarketCard.headerDescription')}
+      />
       <Grid container spacing={2} sx={{ mt: 10 }}>
         {pageScrolled ? (
           <Grid item md={3} className={'app-release-card'}>

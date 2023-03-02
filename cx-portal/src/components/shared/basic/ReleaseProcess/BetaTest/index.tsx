@@ -39,6 +39,7 @@ import { useEffect, useState } from 'react'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 export default function BetaTest() {
   const { t } = useTranslation()
@@ -55,17 +56,10 @@ export default function BetaTest() {
 
   return (
     <>
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.betaTest.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.betaTest.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
-
+      <ReleaseStepHeader
+        title={t('content.apprelease.betaTest.headerTitle')}
+        description={t('content.apprelease.betaTest.headerDescription')}
+      />
       <form className="header-description">
         <Typography variant="h4" mb={5}>
           {t('content.apprelease.betaTest.betaTests')}

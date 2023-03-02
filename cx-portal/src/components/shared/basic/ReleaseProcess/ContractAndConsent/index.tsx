@@ -18,9 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -40,7 +38,8 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
+import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 type AgreementType = {
   agreementId: string
@@ -160,16 +159,12 @@ export default function ContractAndConsent() {
 
   return (
     <div className="contract-consent">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.contractAndConsent.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.contractAndConsent.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <ReleaseStepHeader
+        title={t('content.apprelease.contractAndConsent.headerTitle')}
+        description={t(
+          'content.apprelease.contractAndConsent.headerDescription'
+        )}
+      />
       <form className="header-description">
         {agreementData?.map((item) => (
           <div className="form-field" key={item.agreementId}>

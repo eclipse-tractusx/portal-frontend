@@ -25,7 +25,7 @@ import {
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, InputLabel, Grid } from '@mui/material'
+import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
@@ -44,7 +44,8 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
+import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
@@ -153,16 +154,10 @@ export default function OfferPage() {
 
   return (
     <div className="app-page">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('step2.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
-          <Typography variant="body2" align="center">
-            {t('step2.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <ReleaseStepHeader
+        title={t('step2.headerTitle')}
+        description={t('step2.headerDescription')}
+      />
       <form className="header-description">
         <div className="form-field">
           {['longDescriptionEN', 'longDescriptionDE'].map((item: string) => (

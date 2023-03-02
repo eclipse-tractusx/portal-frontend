@@ -25,7 +25,7 @@ import {
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, InputLabel, Grid } from '@mui/material'
+import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
@@ -46,7 +46,8 @@ import {
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
+import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
+import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -346,16 +347,10 @@ export default function AppPage() {
 
   return (
     <div className="app-page">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.appPage.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.appPage.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <ReleaseStepHeader
+        title={t('content.apprelease.appPage.headerTitle')}
+        description={t('content.apprelease.appPage.headerDescription')}
+      />
       <form className="header-description">
         <div className="form-field">
           {['longDescriptionEN', 'longDescriptionDE'].map((item: string, i) => (
