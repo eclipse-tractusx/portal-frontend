@@ -397,8 +397,10 @@ export default function AppPage() {
                       ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
                       : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
                   }`,
-                  maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
-                    'serviceReleaseForm.charactersAllowed'
+                  maxLength: `${t(
+                    'content.apprelease.appReleaseForm.maximum'
+                  )} 255 ${t(
+                    'content.apprelease.appReleaseForm.charactersAllowed'
                   )}`,
                 }}
               />
