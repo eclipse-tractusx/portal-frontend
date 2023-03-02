@@ -218,9 +218,6 @@ export default function OfferPage() {
             {t('step2.images') + ' *'}
           </InputLabel>
           <Controller
-            name="images"
-            control={control}
-            rules={{ required: true }}
             render={({ field: { onChange: reactHookFormOnChange, value } }) => {
               return (
                 <Dropzone
@@ -243,6 +240,9 @@ export default function OfferPage() {
                 />
               )
             }}
+            name="images"
+            control={control}
+            rules={{ required: true }}
           />
           {errors?.images?.type === 'required' && (
             <Typography variant="body2" className="file-error-msg">
