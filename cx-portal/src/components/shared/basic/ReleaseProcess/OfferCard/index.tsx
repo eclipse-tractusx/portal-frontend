@@ -368,9 +368,9 @@ export default function OfferCard() {
                         rules: {
                           required: {
                             value: true,
-                            message: `${t(`step1.${item}`)} ${t(
-                              'serviceReleaseForm.isMandatory'
-                            )}`,
+                            message:
+                              t(`step1.${item}`) +
+                              t('serviceReleaseForm.isMandatory'),
                           },
                           minLength: {
                             value: 10,
