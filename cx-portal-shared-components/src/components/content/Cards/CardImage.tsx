@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { Box, useTheme } from '@mui/material'
+import { Image } from '../../basic/Image'
 import { LogoGrayData } from '../../basic/Logo'
 
 export type CardImageSize = 'normal' | 'medium' | 'small'
@@ -34,6 +35,7 @@ export interface CardImageProps {
   image?: ICardImage
   imageSize?: CardImageSize
   imageShape?: CardImageShape
+  imageLoader?: (src: string) => Promise<ArrayBuffer>
   preview?: boolean
 }
 
@@ -41,6 +43,7 @@ export const CardImage = ({
   image,
   imageSize = 'normal',
   imageShape = 'round',
+  imageLoader,
   preview = false,
 }: CardImageProps) => {
   const { transitions } = useTheme()
@@ -63,11 +66,11 @@ export const CardImage = ({
 
   return (
     <Box sx={sx.container[imageSize]}>
-      <Box
-        component="img"
+      <Image
         src={image?.src || LogoGrayData}
         alt={image?.alt}
-        sx={{
+        loader={imageLoader}
+        style={{
           objectFit: 'cover',
           transition: transitions.create(['all'], {
             duration: transitions.duration.shorter,

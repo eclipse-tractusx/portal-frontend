@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,14 +17,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import ImageTest from './index.image'
+import UserService from './UserService'
 
-export default function Test() {
-  return (
-    <main>
-      <section>
-        <ImageTest />
-      </section>
-    </main>
-  )
+export const fetchImageWithToken = async (
+  url: string
+): Promise<ArrayBuffer> => {
+  const response = await fetch(url, {
+    headers: {
+      authorization: `Bearer ${UserService.getToken()}`,
+    },
+  })
+  return await response.arrayBuffer()
 }
+
+const ImageService = {
+  fetchImageWithToken,
+}
+
+export default ImageService
