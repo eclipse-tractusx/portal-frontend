@@ -203,25 +203,25 @@ export default function OfferCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string, i) => (
-                  <div key={item}>
+                (desc: string, i) => (
+                  <div key={desc}>
                     <ConnectorFormInputFieldShortAndLongDescription
                       {...{
                         control,
                         trigger,
                         errors,
-                        item,
                       }}
+                      item={desc}
                       label={
                         <>
-                          {t(`step1.${item}`) + ' *'}
+                          {t(`step1.${desc}`) + ' *'}
                           <IconButton sx={{ color: '#939393' }} size="small">
                             <HelpOutlineIcon />
                           </IconButton>
                         </>
                       }
                       value={
-                        (item === 'shortDescriptionEN'
+                        (desc === 'shortDescriptionEN'
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
@@ -230,7 +230,7 @@ export default function OfferCard() {
                       patternDE={Patterns.appMarketCard.shortDescriptionDE}
                       rules={{
                         required:
-                          t(`step1.${item}`) +
+                          t(`step1.${desc}`) +
                           t('serviceReleaseForm.isMandatory'),
                         minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
@@ -238,7 +238,7 @@ export default function OfferCard() {
                         pattern: `${t(
                           'serviceReleaseForm.validCharactersIncludes'
                         )} ${
-                          item === 'shortDescriptionEN'
+                          desc === 'shortDescriptionEN'
                             ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
                             : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
                         }`,

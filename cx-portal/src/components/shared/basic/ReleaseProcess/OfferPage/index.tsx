@@ -161,25 +161,25 @@ export default function OfferPage() {
       />
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map((desc: string) => (
-            <div key={desc}>
+          {['longDescriptionEN', 'longDescriptionDE'].map((longDesc: string) => (
+            <div key={longDesc}>
               <ConnectorFormInputFieldShortAndLongDescription
                 {...{
                   control,
                   trigger,
                   errors,
                 }}
-                item={desc}
+                item={longDesc}
                 label={
                   <>
-                    {t(`step2.${desc}`) + ' *'}
+                    {t(`step2.${longDesc}`) + ' *'}
                     <IconButton sx={{ color: '#939393' }} size="small">
                       <HelpOutlineIcon />
                     </IconButton>
                   </>
                 }
                 value={
-                  (desc === 'longDescriptionEN'
+                  (longDesc === 'longDescriptionEN'
                     ? getValues().longDescriptionEN.length
                     : getValues().longDescriptionDE.length) +
                   `/${longDescriptionMaxLength}`
@@ -189,14 +189,14 @@ export default function OfferPage() {
                 patternDE={Patterns.appPage.longDescriptionDE}
                 rules={{
                   required:
-                    t(`step2.${desc}`) + t('serviceReleaseForm.isMandatory'),
+                    t(`step2.${longDesc}`) + t('serviceReleaseForm.isMandatory'),
                   minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                     'serviceReleaseForm.charactersRequired'
                   )}`,
                   pattern: `${t(
                     'serviceReleaseForm.validCharactersIncludes'
                   )} ${
-                    desc === 'longDescriptionEN'
+                    longDesc === 'longDescriptionEN'
                       ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
                       : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
                   }`,
