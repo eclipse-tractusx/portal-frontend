@@ -18,55 +18,47 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 
-export default function ConnectorFormInputFieldShortAndLongDescription({
+export default function CommonConnectorFormInputField({
   control,
   trigger,
   errors,
   label,
   rules,
-  value,
-  item,
-  key,
-  patternDE,
-  patternEN,
+  name,
+  pattern,
 }: any) {
   return (
-    <>
+    <div className="form-field">
       <ConnectorFormInputField
         {...{
           control,
           trigger,
           errors,
-          name: item,
+          name: name,
           label: label,
           type: 'input',
-          textarea: true,
           rules: {
             required: {
               value: true,
               message: rules.required,
             },
             minLength: {
-              value: 10,
+              value: 5,
               message: rules.minLength,
             },
             pattern: {
-              value: item === key ? patternEN : patternDE,
+              value: pattern,
               message: rules.pattern,
             },
             maxLength: {
-              value: 255,
+              value: 40,
               message: rules.maxLength,
             },
           },
         }}
       />
-      <Typography variant="body2" className="form-field" align="right">
-        {value}
-      </Typography>
-    </>
+    </div>
   )
 }

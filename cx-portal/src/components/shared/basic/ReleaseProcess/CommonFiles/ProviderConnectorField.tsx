@@ -20,14 +20,15 @@
 
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 
-export default function ConnectorFormInputFieldTitleAndProvider({
+export default function ProviderConnectorField({
   control,
   trigger,
   errors,
   label,
-  rules,
+  ruleMessage,
   name,
   pattern,
+  placeholder,
 }: any) {
   return (
     <div className="form-field">
@@ -39,22 +40,11 @@ export default function ConnectorFormInputFieldTitleAndProvider({
           name: name,
           label: label,
           type: 'input',
+          placeholder: placeholder ?? '',
           rules: {
-            required: {
-              value: true,
-              message: rules.required,
-            },
-            minLength: {
-              value: 5,
-              message: rules.minLength,
-            },
             pattern: {
               value: pattern,
-              message: rules.pattern,
-            },
-            maxLength: {
-              value: 40,
-              message: rules.maxLength,
+              message: ruleMessage,
             },
           },
         }}

@@ -60,7 +60,7 @@ import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
-import ConnectorFormInputFieldTitleAndProvider from '../CommonFiles/ConnectorFormInputFieldTitleAndProvider'
+import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInputField'
 import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
 import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
@@ -429,7 +429,7 @@ export default function AppMarketCard() {
           sx={{ mt: 0, mr: 'auto', mb: 0, ml: pageScrolled ? 0 : 'auto' }}
         >
           <form>
-            <ConnectorFormInputFieldTitleAndProvider
+            <CommonConnectorFormInputField
               {...{
                 control,
                 trigger,
@@ -457,7 +457,7 @@ export default function AppMarketCard() {
                 )}`,
               }}
             />
-            <ConnectorFormInputFieldTitleAndProvider
+            <CommonConnectorFormInputField
               {...{
                 control,
                 trigger,
@@ -510,6 +510,9 @@ export default function AppMarketCard() {
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
+                      key="shortDescriptionEN"
+                      patternEN={Patterns.appMarketCard.shortDescriptionEN}
+                      patternDE={Patterns.appMarketCard.shortDescriptionDE}
                       rules={{
                         required: `${t(
                           `content.apprelease.appMarketCard.${item}`
@@ -648,50 +651,36 @@ export default function AppMarketCard() {
               />
             </div>
 
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'price',
-                  label:
-                    t('content.apprelease.appMarketCard.pricingInformation') +
-                    ' *',
-                  type: 'input',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.pricingInformation'
-                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                    },
-                    minLength: {
-                      value: 1,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.minimum'
-                      )} 1 ${t(
-                        'content.apprelease.appReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.pricingInformation,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Za-z0-9/ €`,
-                    },
-                    maxLength: {
-                      value: 15,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.maximum'
-                      )} 15 ${t(
-                        'content.apprelease.appReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
-                }}
-              />
-            </div>
+            <CommonConnectorFormInputField
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              name="price"
+              pattern={Patterns.appMarketCard.pricingInformation}
+              label={
+                t('content.apprelease.appMarketCard.pricingInformation') + ' *'
+              }
+              rules={{
+                required: `${t(
+                  'content.apprelease.appMarketCard.pricingInformation'
+                )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                minLength: `${t(
+                  'content.apprelease.appReleaseForm.minimum'
+                )} 1 ${t(
+                  'content.apprelease.appReleaseForm.charactersRequired'
+                )}`,
+                pattern: `${t(
+                  'content.apprelease.appReleaseForm.validCharactersIncludes'
+                )} A-Za-z0-9/ €`,
+                maxLength: `${t(
+                  'content.apprelease.appReleaseForm.maximum'
+                )} 15 ${t(
+                  'content.apprelease.appReleaseForm.charactersAllowed'
+                )}`,
+              }}
+            />
 
             <ConnectorFormInputFieldImage
               {...{

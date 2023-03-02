@@ -48,6 +48,8 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -355,67 +357,51 @@ export default function AppPage() {
         <div className="form-field">
           {['longDescriptionEN', 'longDescriptionDE'].map((item: string, i) => (
             <div key={item}>
-              <ConnectorFormInputField
+              <ConnectorFormInputFieldShortDescription
                 {...{
                   control,
                   trigger,
                   errors,
-                  name: item,
-                  label: (
-                    <>
-                      {t(`content.apprelease.appPage.${item}`) + ' *'}
-                      <IconButton sx={{ color: '#939393' }} size="small">
-                        <HelpOutlineIcon />
-                      </IconButton>
-                    </>
-                  ),
-                  type: 'input',
-                  textarea: true,
-                  rules: {
-                    required: {
-                      value: true,
-                      message:
-                        t(`content.apprelease.appPage.${item}`) +
-                        t('content.apprelease.appReleaseForm.isMandatory'),
-                    },
-                    minLength: {
-                      value: 10,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.minimum'
-                      )} 10 ${t(
-                        'content.apprelease.appReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value:
-                        item === 'longDescriptionEN'
-                          ? Patterns.appPage.longDescriptionEN
-                          : Patterns.appPage.longDescriptionDE,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} ${
-                        item === 'longDescriptionEN'
-                          ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                          : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                      }`,
-                    },
-                    maxLength: {
-                      value: longDescriptionMaxLength,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.maximum'
-                      )} ${longDescriptionMaxLength} ${t(
-                        'content.apprelease.appReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
+                  item,
+                }}
+                label={
+                  <>
+                    {t(`content.apprelease.appPage.${item}`) + ' *'}
+                    <IconButton sx={{ color: '#939393' }} size="small">
+                      <HelpOutlineIcon />
+                    </IconButton>
+                  </>
+                }
+                value={
+                  (item === 'longDescriptionEN'
+                    ? getValues().longDescriptionEN.length
+                    : getValues().longDescriptionDE.length) +
+                  `/${longDescriptionMaxLength}`
+                }
+                key="longDescriptionEN"
+                patternEN={Patterns.appPage.longDescriptionEN}
+                patternDE={Patterns.appPage.longDescriptionDE}
+                rules={{
+                  required:
+                    t(`content.apprelease.appPage.${item}`) +
+                    t('content.apprelease.appReleaseForm.isMandatory'),
+                  minLength: `${t(
+                    'content.apprelease.appReleaseForm.minimum'
+                  )} 10 ${t(
+                    'content.apprelease.appReleaseForm.charactersRequired'
+                  )}`,
+                  pattern: `${t(
+                    'content.apprelease.appReleaseForm.validCharactersIncludes'
+                  )} ${
+                    item === 'longDescriptionEN'
+                      ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                      : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                  }`,
+                  maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
+                    'serviceReleaseForm.charactersAllowed'
+                  )}`,
                 }}
               />
-              <Typography variant="body2" className="form-field" align="right">
-                {(item === 'longDescriptionEN'
-                  ? getValues().longDescriptionEN.length
-                  : getValues().longDescriptionDE.length) +
-                  `/${longDescriptionMaxLength}`}
-              </Typography>
             </div>
           ))}
         </div>
@@ -527,71 +513,46 @@ export default function AppPage() {
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.providerDetails')}
         </InputLabel>
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'providerHomePage',
-              label: t('content.apprelease.appPage.providerHomePage'),
-              type: 'input',
-              rules: {
-                pattern: {
-                  value: Patterns.URL,
-                  message: t(
-                    'content.apprelease.appPage.pleaseEnterValidHomePageURL'
-                  ),
-                },
-              },
-            }}
-          />
-        </div>
+        <ProviderConnectorField
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="providerHomePage"
+          label={t('content.apprelease.appPage.providerContactEmail')}
+          pattern={Patterns.URL}
+          ruleMessage={t(
+            'content.apprelease.appPage.pleaseEnterValidHomePageURL'
+          )}
+        />
 
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'providerContactEmail',
-              label: t('content.apprelease.appPage.providerContactEmail'),
-              type: 'input',
-              rules: {
-                pattern: {
-                  value: Patterns.MAIL,
-                  message: t(
-                    'content.apprelease.appPage.pleaseEnterValidEmail'
-                  ),
-                },
-              },
-            }}
-          />
-        </div>
+        <ProviderConnectorField
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="providerContactEmail"
+          label={t('content.apprelease.appPage.providerContactEmail')}
+          pattern={Patterns.MAIL}
+          ruleMessage={t('content.apprelease.appPage.pleaseEnterValidEmail')}
+        />
 
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'providerPhoneContact',
-              label: t('content.apprelease.appPage.providerPhoneContact'),
-              placeholder: t(
-                'content.apprelease.appPage.providerPhoneContactPlaceholder'
-              ),
-              type: 'input',
-              rules: {
-                pattern: {
-                  value: Patterns.appPage.phone,
-                  message: t(
-                    'content.apprelease.appPage.pleaseEnterValidContact'
-                  ),
-                },
-              },
-            }}
-          />
-        </div>
+        <ProviderConnectorField
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="providerPhoneContact"
+          label={t('content.apprelease.appPage.providerPhoneContact')}
+          pattern={Patterns.MAIL}
+          ruleMessage={t('content.apprelease.appPage.pleaseEnterValidContact')}
+          placeholder={t(
+            'content.apprelease.appPage.providerPhoneContactPlaceholder'
+          )}
+        />
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}

@@ -44,7 +44,7 @@ import {
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
-import ConnectorFormInputFieldTitleAndProvider from '../CommonFiles/ConnectorFormInputFieldTitleAndProvider'
+import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInputField'
 import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
@@ -150,7 +150,7 @@ export default function OfferCard() {
       <Grid container spacing={2} sx={{ mt: 10 }}>
         <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           <form>
-            <ConnectorFormInputFieldTitleAndProvider
+            <CommonConnectorFormInputField
               {...{
                 control,
                 trigger,
@@ -173,7 +173,7 @@ export default function OfferCard() {
                 )}`,
               }}
             />
-            <ConnectorFormInputFieldTitleAndProvider
+            <CommonConnectorFormInputField
               {...{
                 control,
                 trigger,
@@ -222,6 +222,9 @@ export default function OfferCard() {
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + `/255`
                       }
+                      key="shortDescriptionEN"
+                      patternEN={Patterns.appMarketCard.shortDescriptionEN}
+                      patternDE={Patterns.appMarketCard.shortDescriptionDE}
                       rules={{
                         required:
                           t(`step1.${item}`) +

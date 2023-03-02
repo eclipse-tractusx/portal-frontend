@@ -46,6 +46,8 @@ import {
 } from 'features/appManagement/slice'
 import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
+import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
@@ -160,67 +162,50 @@ export default function OfferPage() {
       />
       <form className="header-description">
         <div className="form-field">
-          {['longDescriptionEN', 'longDescriptionDE'].map((item: string) => (
+          {['longDescriptionEN', 'longDescriptionDE'].map((item: string, i) => (
             <div key={item}>
-              <ConnectorFormInputField
+              <ConnectorFormInputFieldShortDescription
                 {...{
                   control,
                   trigger,
                   errors,
-                  name: item,
-                  label: (
-                    <>
-                      {t(`step2.${item}`) + ' *'}
-                      <IconButton sx={{ color: '#939393' }} size="small">
-                        <HelpOutlineIcon />
-                      </IconButton>
-                    </>
-                  ),
-                  type: 'input',
-                  textarea: true,
-                  rules: {
-                    required: {
-                      value: true,
-                      message:
-                        t(`step2.${item}`) +
-                        t('serviceReleaseForm.isMandatory'),
-                    },
-                    minLength: {
-                      value: 10,
-                      message: `${t('serviceReleaseForm.minimum')} 10 ${t(
-                        'serviceReleaseForm.charactersRequired'
-                      )}`,
-                    },
-                    pattern: {
-                      value:
-                        item === 'longDescriptionEN'
-                          ? Patterns.appPage.longDescriptionEN
-                          : Patterns.appPage.longDescriptionDE,
-                      message: `${t(
-                        'serviceReleaseForm.validCharactersIncludes'
-                      )} ${
-                        item === 'longDescriptionEN'
-                          ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                          : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                      }`,
-                    },
-                    maxLength: {
-                      value: longDescriptionMaxLength,
-                      message: `${t(
-                        'serviceReleaseForm.maximum'
-                      )} ${longDescriptionMaxLength} ${t(
-                        'serviceReleaseForm.charactersAllowed'
-                      )}`,
-                    },
-                  },
+                  item,
+                }}
+                label={
+                  <>
+                    {t(`step2.${item}`) + ' *'}
+                    <IconButton sx={{ color: '#939393' }} size="small">
+                      <HelpOutlineIcon />
+                    </IconButton>
+                  </>
+                }
+                value={
+                  (item === 'longDescriptionEN'
+                    ? getValues().longDescriptionEN.length
+                    : getValues().longDescriptionDE.length) +
+                  `/${longDescriptionMaxLength}`
+                }
+                key="longDescriptionEN"
+                patternEN={Patterns.appPage.longDescriptionEN}
+                patternDE={Patterns.appPage.longDescriptionDE}
+                rules={{
+                  required:
+                    t(`step2.${item}`) + t('serviceReleaseForm.isMandatory'),
+                  minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
+                    'serviceReleaseForm.charactersRequired'
+                  )}`,
+                  pattern: `${t(
+                    'serviceReleaseForm.validCharactersIncludes'
+                  )} ${
+                    item === 'longDescriptionEN'
+                      ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                      : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                  }`,
+                  maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
+                    'serviceReleaseForm.charactersAllowed'
+                  )}`,
                 }}
               />
-              <Typography variant="body2" className="form-field" align="right">
-                {(item === 'longDescriptionEN'
-                  ? getValues().longDescriptionEN.length
-                  : getValues().longDescriptionDE.length) +
-                  `/${longDescriptionMaxLength}`}
-              </Typography>
             </div>
           ))}
         </div>
@@ -251,7 +236,7 @@ export default function OfferPage() {
                     'image/png': [],
                     'image/jpeg': [],
                   }}
-                  maxFilesToUpload={3}
+                  maxFilesToUpload={1}
                   maxFileSize={819200}
                 />
               )
@@ -266,52 +251,38 @@ export default function OfferPage() {
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>{t('step2.providerDetails')}</InputLabel>
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'providerHomePage',
-              label: t('step2.providerHomePage'),
-              type: 'input',
-              rules: {
-                pattern: {
-                  value: Patterns.URL,
-                  message: t('step2.pleaseEnterValidHomePageURL'),
-                },
-              },
-            }}
-          />
-        </div>
+        <ProviderConnectorField
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="providerHomePage"
+          label={t('step2.providerContactEmail')}
+          pattern={Patterns.URL}
+          ruleMessage={t('step2.pleaseEnterValidHomePageURL')}
+        />
 
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'providerContactEmail',
-              label: t('step2.providerContactEmail'),
-              type: 'input',
-              rules: {
-                pattern: {
-                  value: Patterns.MAIL,
-                  message: t('step2.pleaseEnterValidEmail'),
-                },
-              },
-            }}
-          />
-        </div>
+        <ProviderConnectorField
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="providerContactEmail"
+          label={t('step2.providerContactEmail')}
+          pattern={Patterns.MAIL}
+          ruleMessage={t('step2.pleaseEnterValidEmail')}
+        />
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}
         pageSnackBarDescription={t(
-          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          'serviceReleaseForm.dataSavedSuccessMessage'
         )}
         pageNotificationsObject={{
-          title: t('content.apprelease.appReleaseForm.error.title'),
-          description: t('content.apprelease.appReleaseForm.error.message'),
+          title: t('serviceReleaseForm.error.title'),
+          description: t('serviceReleaseForm.error.message'),
         }}
         pageSnackbar={appPageSnackbar}
         setPageNotification={setAppPageNotification}
