@@ -90,34 +90,34 @@ export default function OfferPage() {
     mode: 'onChange',
   })
 
-  const defaultImages = defaultValues.images
+  const dImages = defaultValues.images
 
   useEffect(() => {
-    const images = defaultImages?.map((item: { documentName: string }) => {
+    const imgs = dImages?.map((item: { documentName: string }) => {
       return {
         name: item.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       }
     })
 
-    if (images.length > 0) {
+    if (imgs.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
-        const nextFiles = images
+        const nextFiles = imgs
         nextFiles[fileIndex] = {
-          name: images[fileIndex].name,
+          name: imgs[fileIndex].name,
           status,
         }
         setValue('images', nextFiles)
       }
 
-      for (let fileIndex = 0; fileIndex < images.length; fileIndex++) {
+      for (let fileIndex = 0; fileIndex < imgs.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultImages])
+  }, [dImages])
 
-  const uploadImages = (files: any) => {
+  const uploadImage = (files: any) => {
     const value = files
     if (value.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
@@ -132,14 +132,14 @@ export default function OfferPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOADING)
-        uploadDocumentApi(appId, 'APP_IMAGE', value[fileIndex])
+        uploadDocument(appId, 'APP_IMAGE', value[fileIndex])
           .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
     }
   }
 
-  const uploadDocumentApi = async (
+  const uploadDocument = async (
     appId: string,
     documentTypeId: string,
     file: any
@@ -229,7 +229,7 @@ export default function OfferPage() {
                     }
                     reactHookFormOnChange(files)
                     trigger('images')
-                    addedFiles && uploadImages(files)
+                    addedFiles && uploadImage(files)
                   }}
                   acceptFormat={{
                     'image/png': [],
