@@ -18,17 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  IconButton,
-  PageNotifications,
-  PageSnackbar,
-  Typography,
-} from 'cx-portal-shared-components'
+import { Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { ConnectorFormInputField } from '../AppMarketCard'
@@ -48,6 +40,7 @@ import {
   useFetchAppStatusQuery,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 type AgreementType = {
   agreementId: string
@@ -202,64 +195,25 @@ export default function ContractAndConsent() {
           </div>
         ))}
       </form>
-      <Box mb={2}>
-        {contractNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('content.apprelease.appReleaseForm.error.title')}
-                description={t(
-                  'content.apprelease.appReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() => setContractNotification(false)}
-              />
-            </Grid>
-          </Grid>
+      <SnackbarNotificationWithButtons
+        pageNotification={contractNotification}
+        pageSnackbar={contractSnackbar}
+        pageSnackBarDescription={t(
+          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
         )}
-        <PageSnackbar
-          open={contractSnackbar}
-          onCloseNotification={() => setContractSnackbar(false)}
-          severity="success"
-          description={t(
-            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
-          )}
-          autoClose={true}
-        />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton color="secondary" onClick={() => onBackIconClick()}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          disabled={!isValid}
-          sx={{ float: 'right' }}
-          onClick={handleSubmit((data) =>
-            onContractConsentSubmit(data, 'saveAndProceed')
-          )}
-        >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit((data) =>
-            onContractConsentSubmit(data, 'save')
-          )}
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
-      </Box>
+        pageNotificationsObject={{
+          title: t('content.apprelease.appReleaseForm.error.title'),
+          description: t('content.apprelease.appReleaseForm.error.message'),
+        }}
+        setPageNotification={setContractNotification}
+        setPageSnackbar={setContractSnackbar}
+        onBackIconClick={onBackIconClick}
+        onSave={handleSubmit((data) => onContractConsentSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onContractConsentSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
+      />
     </div>
   )
 }

@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import {
-  Button,
   Input,
   Typography,
   IconButton,
@@ -30,11 +29,13 @@ import {
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { Grid, InputLabel } from '@mui/material'
 import { useState, useEffect } from 'react'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import {
+  useFetchAppStatusQuery,
+  useFetchDocumentByIdMutation,
+} from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
@@ -45,7 +46,9 @@ import {
   appStatusDataSelector,
   increment,
 } from 'features/appManagement/slice'
+import { setAppStatus } from 'features/appManagement/actions'
 import Patterns from 'types/Patterns'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 export const ConnectorFormInputField = ({
   control,
@@ -162,24 +165,29 @@ export default function OfferCard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
-  const serviceStatusData = useSelector(appStatusDataSelector)
+  const [appCardNotification, setAppCardNotification] = useState(false)
+  const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
+  const appStatusData = useSelector(appStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
+  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
 
   const defaultValues = {
-    title: serviceStatusData?.title,
-    provider: serviceStatusData?.provider,
+    title: appStatusData?.title,
+    provider: appStatusData?.provider,
     shortDescriptionEN:
-      serviceStatusData?.descriptions?.filter(
-        (serviceStatus: any) => serviceStatus.languageCode === 'en'
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'en'
       )[0]?.shortDescription || '',
     shortDescriptionDE:
-      serviceStatusData?.descriptions?.filter(
-        (serviceStatus: any) => serviceStatus.languageCode === 'de'
+      appStatusData?.descriptions?.filter(
+        (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
       leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-      alt: serviceStatusData?.leadPictureUri || '',
+      alt: appStatusData?.leadPictureUri || '',
     },
   }
 
@@ -195,9 +203,9 @@ export default function OfferCard() {
     mode: 'onChange',
   })
 
-  // useEffect(() => {
-  //   dispatch(setAppStatus(fetchAppStatus))
-  // }, [dispatch, fetchAppStatus])
+  useEffect(() => {
+    dispatch(setAppStatus(fetchAppStatus))
+  }, [dispatch, fetchAppStatus])
 
   const cardImageData: any = getValues().uploadImage.leadPictureUri
   useEffect(() => {
@@ -215,17 +223,17 @@ export default function OfferCard() {
 
   useEffect(() => {
     if (
-      serviceStatusData?.documents?.APP_LEADIMAGE &&
-      serviceStatusData?.documents?.APP_LEADIMAGE[0].documentId
+      appStatusData?.documents?.APP_LEADIMAGE &&
+      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
       fetchCardImage(
-        serviceStatusData?.documents?.APP_LEADIMAGE[0].documentId,
-        serviceStatusData?.documents?.APP_LEADIMAGE[0].documentName
+        appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
+        appStatusData?.documents?.APP_LEADIMAGE[0].documentName
       )
     }
     reset(defaultValues)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [serviceStatusData])
+  }, [appStatusData])
 
   const fetchCardImage = async (documentId: string, documentName: string) => {
     try {
@@ -339,7 +347,7 @@ export default function OfferCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string) => (
+                (item: string, i) => (
                   <div key={item}>
                     <ConnectorFormInputField
                       {...{
@@ -360,9 +368,9 @@ export default function OfferCard() {
                         rules: {
                           required: {
                             value: true,
-                            message:
-                              t(`step1.${item}`) +
-                              t('serviceReleaseForm.isMandatory'),
+                            message: `${t(`step1.${item}`)} ${t(
+                              'serviceReleaseForm.isMandatory'
+                            )}`,
                           },
                           minLength: {
                             value: 10,
@@ -448,39 +456,23 @@ export default function OfferCard() {
           </form>
         </Grid>
       </Grid>
-
-      <Box mb={2}>
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('footerButtons.help')}
-        </Button>
-        <IconButton
-          color="secondary"
-          onClick={() => navigate('/appmanagement')}
-        >
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          sx={{ float: 'right' }}
-          disabled={false}
-          onClick={() => dispatch(increment())}
-        >
-          {t('footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={() => dispatch(increment())}
-        >
-          {t('footerButtons.save')}
-        </Button>
-      </Box>
+      <SnackbarNotificationWithButtons
+        pageNotification={appCardNotification}
+        pageSnackbar={appCardSnackbar}
+        pageSnackBarDescription={t(
+          'serviceReleaseForm.dataSavedSuccessMessage'
+        )}
+        pageNotificationsObject={{
+          title: t('serviceReleaseForm.error.title'),
+          description: t('serviceReleaseForm.error.message'),
+        }}
+        setPageNotification={setAppCardNotification}
+        setPageSnackbar={setAppCardSnackbar}
+        onBackIconClick={() => navigate('/appmanagement')}
+        onSave={() => dispatch(increment())}
+        onSaveAndProceed={() => dispatch(increment())}
+        isValid={true}
+      />
     </div>
   )
 }

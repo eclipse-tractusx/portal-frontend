@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import {
-  Button,
   Input,
   Typography,
   IconButton,
@@ -27,17 +26,14 @@ import {
   Card,
   MultiSelectList,
   Checkbox,
-  PageNotifications,
   LogoGrayData,
   SelectList,
   UploadFileStatus,
-  PageSnackbar,
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { Grid, InputLabel } from '@mui/material'
 import { useState, useEffect, useMemo } from 'react'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
@@ -65,6 +61,7 @@ import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 type FormDataType = {
   title: string
@@ -903,65 +900,25 @@ export default function AppMarketCard() {
           </form>
         </Grid>
       </Grid>
-
-      <Box mb={2}>
-        {appCardNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('content.apprelease.appReleaseForm.error.title')}
-                description={t(
-                  'content.apprelease.appReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() => setAppCardNotification(false)}
-              />
-            </Grid>
-          </Grid>
+      <SnackbarNotificationWithButtons
+        pageNotification={appCardNotification}
+        pageSnackbar={appCardSnackbar}
+        pageSnackBarDescription={t(
+          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
         )}
-        <PageSnackbar
-          open={appCardSnackbar}
-          onCloseNotification={() => setAppCardSnackbar(false)}
-          severity="success"
-          description={t(
-            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
-          )}
-          autoClose={true}
-        />
-
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton
-          color="secondary"
-          onClick={() => navigate('/appmanagement')}
-        >
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          disabled={!isValid}
-          sx={{ float: 'right' }}
-          onClick={handleSubmit((data) => onSubmit(data, 'saveAndProceed'))}
-        >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit((data) => onSubmit(data, 'save'))}
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
-      </Box>
+        pageNotificationsObject={{
+          title: t('content.apprelease.appReleaseForm.error.title'),
+          description: t('content.apprelease.appReleaseForm.error.message'),
+        }}
+        setPageNotification={setAppCardNotification}
+        setPageSnackbar={setAppCardSnackbar}
+        onBackIconClick={() => navigate('/appmanagement')}
+        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
+      />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -29,78 +29,83 @@ import { Divider, Box, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import '../ReleaseProcessSteps.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  appIdSelector,
-  decrement,
-  increment,
-} from 'features/appManagement/slice'
-import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
-import { setAppStatus } from 'features/appManagement/actions'
+
+type NotificationObject = {
+  title: string
+  description: string
+}
 
 type SnackbarNotificationWithButtonsType = {
-  appPageNotification?: boolean
-  appPageSnackbar?: boolean
-  setAppPageNotification?: (value: boolean) => void
-  setAppPageSnackbar?: (value: boolean) => void
+  pageNotification?: boolean
+  pageSnackbar?: boolean
+  setPageNotification?: (value: boolean) => void
+  setPageSnackbar?: (value: boolean) => void
+  onBackIconClick?: () => void
+  onSaveAndProceed?: () => void
+  onSave?: () => void
+  isValid?: boolean
+  pageSnackBarDescription?: string
+  pageNotificationsObject?: NotificationObject
+  pageSnackBarType?: 'success' | 'error'
 }
 
 export default function SnackbarNotificationWithButtons({
-  appPageNotification,
-  appPageSnackbar,
-  setAppPageNotification,
-  setAppPageSnackbar,
+  pageNotification,
+  pageSnackbar,
+  setPageNotification,
+  setPageSnackbar,
+  onBackIconClick,
+  onSaveAndProceed,
+  onSave,
+  isValid = true,
+  pageSnackBarDescription,
+  pageNotificationsObject,
+  pageSnackBarType = 'success',
 }: SnackbarNotificationWithButtonsType) {
   const { t } = useTranslation('servicerelease')
-  const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
-    refetchOnMountOrArgChange: true,
-  }).data
-
-  const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
-    dispatch(decrement())
-  }
 
   return (
     <Box mb={2}>
-      {appPageNotification && (
+      {pageNotification && (
         <Grid container xs={12} sx={{ mb: 2 }}>
           <Grid xs={6}></Grid>
           <Grid xs={6}>
             <PageNotifications
-              title={t('serviceReleaseForm.error.title')}
-              description={t('serviceReleaseForm.error.message')}
+              title={pageNotificationsObject && pageNotificationsObject.title}
+              description={
+                pageNotificationsObject && pageNotificationsObject.description
+              }
               open
               severity="error"
               onCloseNotification={() =>
-                setAppPageNotification && setAppPageNotification(false)
+                setPageNotification && setPageNotification(false)
               }
             />
           </Grid>
         </Grid>
       )}
       <PageSnackbar
-        open={appPageSnackbar ?? false}
-        onCloseNotification={() =>
-          setAppPageSnackbar && setAppPageSnackbar(false)
-        }
-        severity="success"
-        description={t('serviceReleaseForm.dataSavedSuccessMessage')}
+        open={pageSnackbar ?? false}
+        onCloseNotification={() => setPageSnackbar && setPageSnackbar(false)}
+        severity={pageSnackBarType}
+        description={pageSnackBarDescription}
         autoClose={true}
       />
       <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
       <Button sx={{ mr: 1 }} variant="outlined" startIcon={<HelpOutlineIcon />}>
         {t('footerButtons.help')}
       </Button>
-      <IconButton onClick={() => onBackIconClick()} color="secondary">
+      <IconButton
+        onClick={() => onBackIconClick && onBackIconClick()}
+        color="secondary"
+      >
         <KeyboardArrowLeftIcon />
       </IconButton>
       <Button
         sx={{ float: 'right' }}
+        disabled={!isValid}
         variant="contained"
-        onClick={() => dispatch(increment())}
+        onClick={() => onSaveAndProceed && onSaveAndProceed()}
       >
         {t('footerButtons.saveAndProceed')}
       </Button>
@@ -108,7 +113,7 @@ export default function SnackbarNotificationWithButtons({
         variant="outlined"
         name="send"
         sx={{ float: 'right', mr: 1 }}
-        onClick={() => dispatch(increment())}
+        onClick={() => onSave && onSave()}
       >
         {t('footerButtons.save')}
       </Button>

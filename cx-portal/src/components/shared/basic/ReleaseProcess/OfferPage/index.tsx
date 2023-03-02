@@ -32,25 +32,36 @@ import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from '../AppMarketCard'
 import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
-import { useSelector } from 'react-redux'
-import { appIdSelector } from 'features/appManagement/slice'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import { setAppStatus } from 'features/appManagement/actions'
+import {
+  appIdSelector,
+  decrement,
+  increment,
+} from 'features/appManagement/slice'
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
+  const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+
+  const onBackIconClick = () => {
+    dispatch(setAppStatus(fetchAppStatus))
+    dispatch(decrement())
+  }
 
   const defaultValues = {
     longDescriptionEN:
@@ -299,10 +310,20 @@ export default function OfferPage() {
         </div>
       </form>
       <SnackbarNotificationWithButtons
-        appPageNotification={appPageNotification}
-        appPageSnackbar={appPageSnackbar}
-        setAppPageNotification={setAppPageNotification}
-        setAppPageSnackbar={setAppPageSnackbar}
+        pageNotification={appPageNotification}
+        pageSnackBarDescription={t(
+          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+        )}
+        pageNotificationsObject={{
+          title: t('content.apprelease.appReleaseForm.error.title'),
+          description: t('content.apprelease.appReleaseForm.error.message'),
+        }}
+        pageSnackbar={appPageSnackbar}
+        setPageNotification={setAppPageNotification}
+        setPageSnackbar={setAppPageSnackbar}
+        onBackIconClick={onBackIconClick}
+        onSave={() => {}}
+        onSaveAndProceed={() => dispatch(increment())}
       />
     </div>
   )

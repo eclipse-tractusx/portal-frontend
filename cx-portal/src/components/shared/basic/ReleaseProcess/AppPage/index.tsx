@@ -19,17 +19,13 @@
  ********************************************************************************/
 
 import {
-  Button,
   Typography,
   IconButton,
-  PageNotifications,
   UploadFileStatus,
-  PageSnackbar,
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, Box, InputLabel, Grid } from '@mui/material'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import { Divider, InputLabel, Grid } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
@@ -50,6 +46,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -601,62 +598,25 @@ export default function AppPage() {
           />
         </div>
       </form>
-      <Box mb={2}>
-        {appPageNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('content.apprelease.appReleaseForm.error.title')}
-                description={t(
-                  'content.apprelease.appReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() => setAppPageNotification(false)}
-              />
-            </Grid>
-          </Grid>
+      <SnackbarNotificationWithButtons
+        pageNotification={appPageNotification}
+        pageSnackbar={appPageSnackbar}
+        pageSnackBarDescription={t(
+          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
         )}
-        <PageSnackbar
-          open={appPageSnackbar}
-          onCloseNotification={() => setAppPageSnackbar(false)}
-          severity="success"
-          description={t(
-            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
-          )}
-          autoClose={true}
-        />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          sx={{ mr: 1 }}
-          variant="outlined"
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton onClick={() => onBackIconClick()} color="secondary">
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          sx={{ float: 'right' }}
-          variant="contained"
-          disabled={!isValid}
-          onClick={handleSubmit((data) =>
-            onAppPageSubmit(data, 'saveAndProceed')
-          )}
-        >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
-      </Box>
+        pageNotificationsObject={{
+          title: t('content.apprelease.appReleaseForm.error.title'),
+          description: t('content.apprelease.appReleaseForm.error.message'),
+        }}
+        setPageNotification={setAppPageNotification}
+        setPageSnackbar={setAppPageSnackbar}
+        onBackIconClick={onBackIconClick}
+        onSave={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onAppPageSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
+      />
     </div>
   )
 }
