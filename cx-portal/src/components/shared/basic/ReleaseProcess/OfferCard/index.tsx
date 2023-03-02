@@ -48,6 +48,7 @@ import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputFi
 import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
 import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
 import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
+import ConnectorFormInputFieldImage from '../CommonFormFiles/ConnectorFormInputFieldImage'
 
 export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
@@ -247,44 +248,17 @@ export default function OfferCard() {
                 )
               )}
             </div>
-
-            <div className="form-field">
-              <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t('step1.serviceLeadImageUpload') + ' *'}
-              </InputLabel>
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'uploadImage.leadPictureUri',
-                  type: 'dropzone',
-                  acceptFormat: {
-                    'image/png': [],
-                    'image/jpeg': [],
-                  },
-                  maxFilesToUpload: 1,
-                  maxFileSize: 819200,
-                  rules: {
-                    required: {
-                      value: true,
-                    },
-                  },
-                }}
-              />
-              {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-                <Typography variant="body2" className="file-error-msg">
-                  {t('serviceReleaseForm.fileUploadIsMandatory')}
-                </Typography>
-              )}
-
-              <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-                {t('serviceReleaseForm.note')}
-              </Typography>
-              <Typography variant="body2" mb={3}>
-                {t('serviceReleaseForm.OnlyOneFileAllowed')}
-              </Typography>
-            </div>
+            <ConnectorFormInputFieldImage
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              labe={t('step1.serviceLeadImageUpload') + ' *'}
+              noteDescription={t('serviceReleaseForm.OnlyOneFileAllowed')}
+              note={t('serviceReleaseForm.note')}
+              requiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
+            />
           </form>
         </Grid>
       </Grid>

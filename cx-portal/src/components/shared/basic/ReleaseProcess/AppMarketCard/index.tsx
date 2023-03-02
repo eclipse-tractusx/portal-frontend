@@ -63,6 +63,7 @@ import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputFi
 import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
 import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
 import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
+import ConnectorFormInputFieldImage from '../CommonFormFiles/ConnectorFormInputFieldImage'
 
 type FormDataType = {
   title: string
@@ -694,44 +695,23 @@ export default function AppMarketCard() {
               />
             </div>
 
-            <div className="form-field">
-              <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t('content.apprelease.appMarketCard.appLeadImageUpload') +
-                  ' *'}
-              </InputLabel>
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'uploadImage.leadPictureUri',
-                  type: 'dropzone',
-                  acceptFormat: {
-                    'image/png': [],
-                    'image/jpeg': [],
-                  },
-                  maxFilesToUpload: 1,
-                  maxFileSize: 819200,
-                  rules: {
-                    required: {
-                      value: true,
-                    },
-                  },
-                }}
-              />
-              {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
-                <Typography variant="body2" className="file-error-msg">
-                  {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-                </Typography>
+            <ConnectorFormInputFieldImage
+              {...{
+                control,
+                trigger,
+                errors,
+              }}
+              labe={
+                t('content.apprelease.appMarketCard.appLeadImageUpload') + ' *'
+              }
+              noteDescription={t(
+                'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
               )}
-
-              <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
-                {t('content.apprelease.appReleaseForm.note')}
-              </Typography>
-              <Typography variant="body2" mb={3}>
-                {t('content.apprelease.appReleaseForm.OnlyOneFileAllowed')}
-              </Typography>
-            </div>
+              note={t('content.apprelease.appReleaseForm.note')}
+              requiredText={t(
+                'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+              )}
+            />
           </form>
         </Grid>
       </Grid>
