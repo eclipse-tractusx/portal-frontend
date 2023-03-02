@@ -29,7 +29,7 @@ import {
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, InputLabel } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState, useEffect, useMemo } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {

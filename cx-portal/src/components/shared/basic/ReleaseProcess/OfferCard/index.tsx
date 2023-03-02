@@ -26,7 +26,7 @@ import {
   UploadStatus,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid, InputLabel } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -44,7 +44,6 @@ import {
 } from 'features/appManagement/slice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
 import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
 import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
 import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
