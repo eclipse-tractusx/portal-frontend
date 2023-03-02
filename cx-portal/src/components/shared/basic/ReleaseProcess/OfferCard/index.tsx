@@ -45,9 +45,9 @@ import {
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
-import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
-import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
+import ConnectorFormInputFieldTitleAndProvider from '../CommonFormFiles/ConnectorFormInputFieldTitleAndProvider'
 import ConnectorFormInputFieldImage from '../CommonFormFiles/ConnectorFormInputFieldImage'
+import Patterns from 'types/Patterns'
 
 export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
@@ -156,12 +156,14 @@ export default function OfferCard() {
       <Grid container spacing={2} sx={{ mt: 10 }}>
         <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           <form>
-            <ConnectorFormInputFieldTitle
+            <ConnectorFormInputFieldTitleAndProvider
               {...{
                 control,
                 trigger,
                 errors,
               }}
+              name="title"
+              pattern={Patterns.appMarketCard.appTitle}
               label={t('step1.serviceTitle') + ' *'}
               rules={{
                 required:
@@ -177,12 +179,14 @@ export default function OfferCard() {
                 )}`,
               }}
             />
-            <ConnectorFormInputFieldProvider
+            <ConnectorFormInputFieldTitleAndProvider
               {...{
                 control,
                 trigger,
                 errors,
               }}
+              name="provider"
+              pattern={Patterns.appMarketCard.appProvider}
               label={t('step1.serviceProvider') + ' *'}
               rules={{
                 required: `${t('step1.serviceProvider')} ${t(

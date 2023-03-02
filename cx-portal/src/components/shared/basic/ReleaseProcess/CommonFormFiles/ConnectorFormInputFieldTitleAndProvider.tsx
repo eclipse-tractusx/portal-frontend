@@ -21,12 +21,14 @@
 import Patterns from 'types/Patterns'
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 
-export default function ConnectorFormInputFieldTitle({
+export default function ConnectorFormInputFieldTitleAndProvider({
   control,
   trigger,
   errors,
   label,
   rules,
+  name,
+  pattern,
 }: any) {
   return (
     <div className="form-field">
@@ -35,7 +37,7 @@ export default function ConnectorFormInputFieldTitle({
           control,
           trigger,
           errors,
-          name: 'title',
+          name: name,
           label: label,
           type: 'input',
           rules: {
@@ -48,7 +50,7 @@ export default function ConnectorFormInputFieldTitle({
               message: rules.minLength,
             },
             pattern: {
-              value: Patterns.appMarketCard.appTitle,
+              value: pattern,
               message: rules.pattern,
             },
             maxLength: {

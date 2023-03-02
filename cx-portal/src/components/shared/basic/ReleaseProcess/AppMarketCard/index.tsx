@@ -60,8 +60,7 @@ import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../CommonFormFiles/ConnectorFormInputField'
-import ConnectorFormInputFieldTitle from '../CommonFormFiles/ConnectorFormInputFieldTitle'
-import ConnectorFormInputFieldProvider from '../CommonFormFiles/ConnectorFormInputFieldProvider'
+import ConnectorFormInputFieldTitleAndProvider from '../CommonFormFiles/ConnectorFormInputFieldTitleAndProvider'
 import ConnectorFormInputFieldShortDescription from '../CommonFormFiles/ConnectorFormInputFieldShortDescription'
 import ConnectorFormInputFieldImage from '../CommonFormFiles/ConnectorFormInputFieldImage'
 
@@ -435,12 +434,14 @@ export default function AppMarketCard() {
           sx={{ mt: 0, mr: 'auto', mb: 0, ml: pageScrolled ? 0 : 'auto' }}
         >
           <form>
-            <ConnectorFormInputFieldTitle
+            <ConnectorFormInputFieldTitleAndProvider
               {...{
                 control,
                 trigger,
                 errors,
               }}
+              name="title"
+              pattern={Patterns.appMarketCard.appTitle}
               label={t('content.apprelease.appMarketCard.appTitle') + ' *'}
               rules={{
                 required: `${t(
@@ -461,12 +462,14 @@ export default function AppMarketCard() {
                 )}`,
               }}
             />
-            <ConnectorFormInputFieldProvider
+            <ConnectorFormInputFieldTitleAndProvider
               {...{
                 control,
                 trigger,
                 errors,
               }}
+              name="provider"
+              pattern={Patterns.appMarketCard.appProvider}
               label={t('content.apprelease.appMarketCard.appProvider') + ' *'}
               rules={{
                 required: `${t(
