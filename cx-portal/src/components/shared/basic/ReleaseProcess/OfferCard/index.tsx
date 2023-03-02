@@ -56,7 +56,7 @@ export default function OfferCard() {
   const appId = useSelector(appIdSelector)
   const [appCardNotification, setAppCardNotification] = useState(false)
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
-  const appStatusData = useSelector(appStatusDataSelector)
+  const serviceStatusDate = useSelector(appStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
@@ -64,19 +64,19 @@ export default function OfferCard() {
   }).data
 
   const defaultValues = {
-    title: appStatusData?.title,
-    provider: appStatusData?.provider,
+    title: serviceStatusDate?.title,
+    provider: serviceStatusDate?.provider,
     shortDescriptionEN:
-      appStatusData?.descriptions?.filter(
+      serviceStatusDate?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
       )[0]?.shortDescription || '',
     shortDescriptionDE:
-      appStatusData?.descriptions?.filter(
+      serviceStatusDate?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.shortDescription || '',
     uploadImage: {
       leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-      alt: appStatusData?.leadPictureUri || '',
+      alt: serviceStatusDate?.leadPictureUri || '',
     },
   }
 
@@ -96,33 +96,33 @@ export default function OfferCard() {
     dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
-  const cardImageData: any = getValues().uploadImage.leadPictureUri
+  const offerImageData: any = getValues().uploadImage.leadPictureUri
   useEffect(() => {
-    if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      let isFile: any = cardImageData instanceof File
+    if (offerImageData !== null && offerImageData !== LogoGrayData) {
+      let isFile: any = offerImageData instanceof File
 
       if (isFile) {
-        const blobFile = new Blob([cardImageData], {
+        const blobFile = new Blob([offerImageData], {
           type: 'image/png',
         })
         setCardImage(URL.createObjectURL(blobFile))
       }
     }
-  }, [cardImageData])
+  }, [offerImageData])
 
   useEffect(() => {
     if (
-      appStatusData?.documents?.APP_LEADIMAGE &&
-      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
+      serviceStatusDate?.documents?.APP_LEADIMAGE &&
+      serviceStatusDate?.documents?.APP_LEADIMAGE[0].documentId
     ) {
       fetchCardImage(
-        appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
-        appStatusData?.documents?.APP_LEADIMAGE[0].documentName
+        serviceStatusDate?.documents?.APP_LEADIMAGE[0].documentId,
+        serviceStatusDate?.documents?.APP_LEADIMAGE[0].documentName
       )
     }
     reset(defaultValues)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appStatusData])
+  }, [serviceStatusDate])
 
   const fetchCardImage = async (documentId: string, documentName: string) => {
     try {
@@ -164,9 +164,8 @@ export default function OfferCard() {
               }}
               label={t('step1.serviceTitle') + ' *'}
               rules={{
-                required: `${t('step1.serviceTitle')} ${t(
-                  'serviceReleaseForm.isMandatory'
-                )}`,
+                required:
+                  t('step1.serviceTitle') + t('serviceReleaseForm.isMandatory'),
                 minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
