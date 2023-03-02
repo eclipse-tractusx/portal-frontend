@@ -64,7 +64,6 @@ import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInp
 import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
 import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
-import { fetchImageWithToken } from 'services/ImageService'
 
 type FormDataType = {
   title: string
