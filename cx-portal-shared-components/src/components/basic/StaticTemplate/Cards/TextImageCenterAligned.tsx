@@ -40,7 +40,7 @@ export default function TextImageCenterAligned({
     >
       <TextCenterAligned provider={provider} />
       <ImageItem
-        url={baseUrl + provider.imageUrl || ''}
+        url={baseUrl + provider.imagePath || ''}
         text={''}
         size="custom"
         height="472px"

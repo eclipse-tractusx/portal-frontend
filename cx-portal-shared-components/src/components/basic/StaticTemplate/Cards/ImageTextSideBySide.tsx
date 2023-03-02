@@ -41,7 +41,7 @@ export default function ImageTextSideBySide({
       }}
     >
       <ImageItem
-        url={baseUrl + provider.imageUrl || ''}
+        url={baseUrl + provider.imagePath || ''}
         text={''}
         size="custom"
         height="472px"

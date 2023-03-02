@@ -39,7 +39,7 @@ export default function ImageImageCenterAligned({
       }}
     >
       <ImageItem
-        url={baseUrl + provider.imageUrl || ''}
+        url={baseUrl + provider.imagePath || ''}
         text=""
         size="custom"
         height="472px"
