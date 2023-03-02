@@ -520,7 +520,7 @@ export default function AppPage() {
             errors,
           }}
           name="providerHomePage"
-          label={t('content.apprelease.appPage.providerContactEmail')}
+          label={t('content.apprelease.appPage.providerHomePage')}
           pattern={Patterns.URL}
           ruleMessage={t(
             'content.apprelease.appPage.pleaseEnterValidHomePageURL'

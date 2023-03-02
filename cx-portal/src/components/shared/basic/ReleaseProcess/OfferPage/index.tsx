@@ -44,7 +44,6 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
 import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
 import ConnectorFormInputFieldShortDescription from '../CommonFiles/ConnectorFormInputFieldShortDescription'
 import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
@@ -258,7 +257,7 @@ export default function OfferPage() {
             errors,
           }}
           name="providerHomePage"
-          label={t('step2.providerContactEmail')}
+          label={t('step2.providerHomePage')}
           pattern={Patterns.URL}
           ruleMessage={t('step2.pleaseEnterValidHomePageURL')}
         />
