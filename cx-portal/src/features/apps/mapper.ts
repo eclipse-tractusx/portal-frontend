@@ -29,9 +29,9 @@ import {
 
 const baseAssets = getAssetBase()
 
-export const getAppImageDocumentUrl = (app: AppMarketplaceApp) =>
+export const getAppImageUrl = (app: AppMarketplaceApp) =>
   app.leadPictureId
-    ? `${getApiBase()}/api/administration/documents/${app.leadPictureId}`
+    ? `${getApiBase()}/api/apps/${app.id}/appImages/${app.leadPictureId}`
     : LogoGrayData
 
 // mapper to fetch an app lead-image from the asset repo by using the app image name; default image handling included as well
@@ -58,7 +58,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
-    src: LogoGrayData,
+    src: getAppImageUrl(app),
     alt: app.title,
   },
   onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,

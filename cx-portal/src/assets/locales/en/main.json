@@ -968,7 +968,8 @@
       },
       "document": {
         "heading": "Relevant Documents",
-        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below.",
+        "notAvailable": "No documents available"
       }
     },
     "appMarketplace": {

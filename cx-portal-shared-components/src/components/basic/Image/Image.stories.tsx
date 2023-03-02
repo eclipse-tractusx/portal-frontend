@@ -18,32 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './MarketplaceSubscription.scss'
-import MarketplaceSubscriptionNames from './MarketplaceSubscriptionNames'
+import { ComponentStory } from '@storybook/react'
 
-export default function MarketplaceSubscription({
-  item,
-}: {
-  item: ServiceRequest
-}) {
-  const { t } = useTranslation()
+import { Image as Component } from '.'
 
-  return (
-    <div className="marketplace-subscriptions">
-      <Typography variant="body2" className="subscription-main-heading">
-        {t('content.serviceMarketplace.subscriptionHeading').replace(
-          '{serviceName}',
-          item.title
-        )}
-      </Typography>
-      <div className="subscriptions-content">
-        {item.offerSubscriptionDetailData.map((data, index) => (
-          <MarketplaceSubscriptionNames subscription={data} />
-        ))}
-      </div>
-    </div>
-  )
+export default {
+  title: 'Image',
+  component: Component,
+  argTypes: {
+    children: {},
+  },
+}
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const Image = Template.bind({})
+Image.args = {
+  src: 'https://raw.githubusercontent.com/catenax-ng/tx-portal-assets/main/public/assets/images/logos/cx-short.svg',
+  style: {
+    width: '240px',
+    height: '254px',
+    borderRadius: '15px',
+  },
 }

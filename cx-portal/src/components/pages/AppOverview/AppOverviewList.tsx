@@ -24,6 +24,7 @@ import { useTranslation } from 'react-i18next'
 import NoItems from 'components/pages/NoItems'
 import { PAGES } from 'types/Constants'
 import { AppInfo } from 'features/apps/apiSlice'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const AppOverviewList = ({
   filterItem,
@@ -56,6 +57,7 @@ export const AppOverviewList = ({
         variant="minimal"
         filledBackground={false}
         imageSize={'small'}
+        imageLoader={fetchImageWithToken}
         showAddNewCard={true}
         newButtonText={t('content.appoverview.addbtn')}
         onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
