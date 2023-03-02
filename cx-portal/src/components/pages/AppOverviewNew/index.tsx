@@ -19,31 +19,38 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './MarketplaceSubscription.scss'
-import MarketplaceSubscriptionNames from './MarketplaceSubscriptionNames'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import { PageHeader } from 'cx-portal-shared-components'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import NoItems from '../NoItems'
+import { AppOverviewList } from '../AppOverview/AppOverviewList'
+import { appToCard } from 'features/apps/mapper'
 
-export default function MarketplaceSubscription({
-  item,
-}: {
-  item: ServiceRequest
-}) {
+export default function AppOverviewNew() {
   const { t } = useTranslation()
+  const { data } = useFetchProvidedAppsQuery()
+
+  console.log('data', data)
 
   return (
-    <div className="marketplace-subscriptions">
-      <Typography variant="body2" className="subscription-main-heading">
-        {t('content.serviceMarketplace.subscriptionHeading').replace(
-          '{serviceName}',
-          item.title
+    <main>
+      <PageHeader
+        title={t('content.appoverview.headerTitle')}
+        topPage={true}
+        headerHeight={200}
+      >
+        <PageBreadcrumb backButtonVariant="contained" />
+      </PageHeader>
+      <section>
+        {data && data.length > 0 ? (
+          <AppOverviewList
+            filterItem={data.map((item) => appToCard(item))}
+            showOverlay={() => {}}
+          />
+        ) : (
+          <NoItems />
         )}
-      </Typography>
-      <div className="subscriptions-content">
-        {item.offerSubscriptionDetailData.map((data, index) => (
-          <MarketplaceSubscriptionNames subscription={data} />
-        ))}
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }

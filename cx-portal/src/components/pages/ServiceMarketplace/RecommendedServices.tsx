@@ -62,6 +62,7 @@ export default function RecommendedServices({
                 onBtnClick={() => handleClick(service.id)}
                 title={service.title}
                 subTitle={getServices(service.serviceTypeIds)}
+                description={service.description}
                 backgroundColor="#f7f7f7"
               />
             </Grid>

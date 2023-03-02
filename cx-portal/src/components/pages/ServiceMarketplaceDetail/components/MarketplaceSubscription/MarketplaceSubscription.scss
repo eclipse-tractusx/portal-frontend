@@ -22,23 +22,32 @@
     font-weight: 700;
     color: #0d55af;
   }
+
   .subscriptions-content {
-    border: 1px solid #000;
-    background-color: #d7d7d7;
-    margin-top: 10px;
-    ol {
-      li {
-        .subscription-list {
-          text-transform: capitalize;
-          padding-left: 10px;
-          .subscription-name {
-            display: flex;
-            .subscription-status {
-              margin: 2px 15px;
-              height: 18px;
-              width: 8%;
-            }
-          }
+    display: flex;
+    margin: 10px -5px 0 -5px;
+    flex-wrap: wrap;
+
+    .subscription-list {
+      width: 33.3333%;
+      padding: 0 5px;
+      margin-bottom: 10px;
+
+      .subscription-name {
+        border: 1px solid #0f71cb;
+        border-radius: 4px;
+        text-transform: capitalize;
+        display: inline-block;
+        width: 100%;
+        padding: 5px 10px;
+        .offerId {
+          display: inline-block;
+          width: 100%;
+        }
+        .subscription-status {
+          margin: 2px 15px;
+          height: 18px;
+          // width: 27%;
         }
       }
     }

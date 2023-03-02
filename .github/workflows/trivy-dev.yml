@@ -20,11 +20,11 @@
 # Depending on the location of your Docker container
 # you need to change the path to the specific Docker registry.
 #
-name: "Trivy"
+name: "Trivy Dev"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
   # pull_request:
   # The branches below must be a subset of the branches above
   # branches: [ main ]
@@ -39,7 +39,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: catenax-ng/tx-portal-frontend
 
 jobs:
   analyze-config:
@@ -91,7 +91,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           # Path to Docker image
-          image-ref: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+          image-ref: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev"
           format: "sarif"
           output: "trivy-results2.sarif"
           exit-code: "1"

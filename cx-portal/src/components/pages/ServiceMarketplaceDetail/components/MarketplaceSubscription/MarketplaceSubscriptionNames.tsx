@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
+import { useTranslation } from 'react-i18next'
 import { Chip, Typography } from 'cx-portal-shared-components'
 import {
   SubscriptionData,
@@ -30,22 +30,28 @@ export default function MarketplaceSubscriptionNames({
 }: {
   subscription: SubscriptionData
 }) {
+  const { t } = useTranslation()
   const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
 
   return (
     <div className="subscription-list">
       {data && (
         <span className="subscription-name">
-          <Typography variant="body2">{data.offerName}</Typography>
-          <Chip
-            color={data.status === 'ACTIVE' ? 'success' : 'info'}
-            label={data.status}
-            type="plain"
-            variant="outlined"
-            size="small"
-            withIcon
-            className="subscription-status"
-          />
+          <Typography variant="label3" className="offerId">
+            Id: {subscription.offerSubscriptionId}
+          </Typography>
+          <Typography variant="label3">
+            {t('global.field.status')}:
+            <Chip
+              color={data.status === 'ACTIVE' ? 'success' : 'info'}
+              label={data.status}
+              type="plain"
+              variant="outlined"
+              size="small"
+              withIcon
+              className="subscription-status"
+            />
+          </Typography>
         </span>
       )}
     </div>
