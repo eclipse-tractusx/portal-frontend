@@ -22,7 +22,6 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import './BoardDocuments.scss'
 import {
-  AppDetails,
   DocumentData,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
