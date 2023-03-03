@@ -28,10 +28,16 @@ import {
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 
-export default function BoardDocuments({ item }: { item: AppDetails }) {
-  const { t } = useTranslation('', {
-    keyPrefix: 'content.adminboardDetail.documents',
-  })
+export default function BoardDocuments({
+  type,
+  appId,
+  documents,
+}: {
+  type: string
+  appId: string
+  documents: any
+}) {
+  const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
@@ -41,7 +47,7 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
   ) => {
     try {
       const response = await getDocumentById({
-        appId: item.id,
+        appId: appId,
         documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')
@@ -54,12 +60,15 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
 
   return (
     <div className="adminboard-documents">
-      <Typography variant="h4">{t('heading')}</Typography>
-      <Typography variant="body2">{t('message')}</Typography>
+      <Typography variant="h4">
+        {t(`content.adminboardDetail.${type}.heading`)}
+      </Typography>
+      <Typography variant="body2">
+        {t(`content.adminboardDetail.${type}.message`)}
+      </Typography>
       <ul>
-        {item.documents &&
-          item.documents['APP_CONTRACT'] &&
-          item.documents['APP_CONTRACT'].map((document: DocumentData) => (
+        {documents && documents.length > 0 ? (
+          documents.map((document: DocumentData) => (
             <li key={document.documentId}>
               <button
                 className="document-button-link"
@@ -73,7 +82,12 @@ export default function BoardDocuments({ item }: { item: AppDetails }) {
                 {document.documentName}
               </button>
             </li>
-          ))}
+          ))
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
       </ul>
     </div>
   )

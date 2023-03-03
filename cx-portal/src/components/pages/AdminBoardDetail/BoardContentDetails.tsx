@@ -61,8 +61,16 @@ export default function AppDetailContentDetails({
         {images && <BoardImageGallery images={images} />}
         <BoardConnectedData item={item} />
         <BoardSecurityInfo />
-        <BoardConformityDocuments item={item} />
-        <BoardDocuments item={item} />
+        <BoardDocuments
+          type="conformityDocument"
+          appId={item.id}
+          documents={item.documents['CONFORMITY_APPROVAL_BUSINESS_APPS']}
+        />
+        <BoardDocuments
+          type="documents"
+          appId={item.id}
+          documents={item.documents['APP_CONTRACT']}
+        />
         <BoardProvider item={item} />
         <Button
           color="secondary"
