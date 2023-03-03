@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021,2022 BMW Group AG
+ * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,18 +20,18 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
-import { download } from 'utils/downloadUtils'
-import './MarketplaceDocuments.scss'
+import './BoardConformityDocuments.scss'
 import {
+  AppDetails,
   DocumentData,
-  ServiceRequest,
   useFetchDocumentByIdMutation,
-} from 'features/serviceMarketplace/serviceApiSlice'
+} from 'features/apps/apiSlice'
+import { download } from 'utils/downloadUtils'
 
-export default function MarketplaceDocuments({
+export default function BoardConformityDocuments({
   item,
 }: {
-  item: ServiceRequest
+  item: AppDetails
 }) {
   const { t } = useTranslation()
 
@@ -55,32 +55,33 @@ export default function MarketplaceDocuments({
   }
 
   return (
-    <div className="document-main">
-      <div className="document-content">
-        <Typography variant="h3">
-          {t('content.serviceMarketplace.document.heading')}
-        </Typography>
-        <Typography variant="body2">
-          {t('content.serviceMarketplace.document.message')}
-        </Typography>
-      </div>
+    <div className="adminboard-documents">
+      <Typography variant="h4">
+        {t('content.adminboardDetail.conformityDocument.heading')}
+      </Typography>
+      <Typography variant="body2">
+        {t('content.adminboardDetail.conformityDocument.message')}
+      </Typography>
       <ul>
-        {item.documents && item.documents['ADDITIONAL_DETAILS'] ? (
-          item.documents['ADDITIONAL_DETAILS'].map((document: DocumentData) => (
-            <li key={document.documentId}>
-              <button
-                className="document-button-link"
-                onClick={() =>
-                  handleDownloadClick(
-                    document.documentId,
-                    document.documentName
-                  )
-                }
-              >
-                {document.documentName}
-              </button>
-            </li>
-          ))
+        {item.documents &&
+        item.documents['CONFORMITY_APPROVAL_BUSINESS_APPS'] ? (
+          item.documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
+            (document: DocumentData) => (
+              <li key={document.documentId}>
+                <button
+                  className="document-button-link"
+                  onClick={() =>
+                    handleDownloadClick(
+                      document.documentId,
+                      document.documentName
+                    )
+                  }
+                >
+                  {document.documentName}
+                </button>
+              </li>
+            )
+          )
         ) : (
           <Typography variant="caption2" className="not-available">
             {t('global.errors.noDocumentsAvailable')}

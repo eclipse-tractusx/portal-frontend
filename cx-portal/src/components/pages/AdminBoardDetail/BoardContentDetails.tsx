@@ -31,6 +31,7 @@ import BoardProvider from './components/BoardProvider'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AdminBoardDetail.scss'
 import CommonService from 'services/CommonService'
+import BoardConformityDocuments from './components/BoardConformityDocuments'
 
 export default function AppDetailContentDetails({
   item,
@@ -60,6 +61,7 @@ export default function AppDetailContentDetails({
         {images && <BoardImageGallery images={images} />}
         <BoardConnectedData item={item} />
         <BoardSecurityInfo />
+        <BoardConformityDocuments item={item} />
         <BoardDocuments item={item} />
         <BoardProvider item={item} />
         <Button

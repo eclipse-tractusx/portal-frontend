@@ -92,6 +92,7 @@ export type AppDetails = AppMarketplaceApp & {
 
 export type DocumentAppContract = {
   APP_CONTRACT: Array<DocumentData>
+  CONFORMITY_APPROVAL_BUSINESS_APPS?: Array<DocumentData>
 }
 
 export type AppDetailsState = {
