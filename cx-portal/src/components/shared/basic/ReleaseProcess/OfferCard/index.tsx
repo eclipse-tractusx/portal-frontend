@@ -158,9 +158,9 @@ export default function OfferCard() {
               }}
               name="title"
               pattern={Patterns.appMarketCard.appTitle}
-              label={t('step1.serviceTitle') + ' *'}
+              label={t('step1.serviceName') + ' *'}
               rules={{
-                required: `${t('step1.serviceTitle')} ${t(
+                required: `${t('step1.serviceName')} ${t(
                   'serviceReleaseForm.isMandatory'
                 )}`,
                 minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
@@ -184,9 +184,9 @@ export default function OfferCard() {
               maxLength={30}
               minLength={1}
               pattern={Patterns.appMarketCard.appProvider}
-              label={t('step1.serviceProvider') + ' *'}
+              label={t('step1.serviceType') + ' *'}
               rules={{
-                required: `${t('step1.serviceProvider')} ${t(
+                required: `${t('step1.serviceType')} ${t(
                   'serviceReleaseForm.isMandatory'
                 )}`,
                 minLength: `${t('serviceReleaseForm.minimum')} 1 ${t(

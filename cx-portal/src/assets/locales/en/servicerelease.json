@@ -24,8 +24,8 @@
     "defaultCardServiceProvider": "Catena-X",
     "defaultCardServiceTitle": "This is the service title",
     "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
-    "serviceTitle": "Service Name",
-    "serviceProvider": "Service Type",
+    "serviceName": "Service Name",
+    "serviceType": "Service Type",
     "shortDescriptionEN": "Short Description (en)",
     "shortDescriptionDE": "Short Description (de)",
     "serviceLeadImageUpload": "Service Card Image"
