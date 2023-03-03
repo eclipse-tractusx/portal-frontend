@@ -1,7 +1,7 @@
 {
   "headerTitle": "Service Release Process",
   "descHeading": "Publish your company services inside the Catena-X marketplace",
-  "descMessage": "Register your service and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the app release process.",
+  "descMessage": "Register your service and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the service release process.",
   "startCreatingButton": "Start to register your service offering",
   "registerButton": "Register your service",
   "overviewButton": "Service Übersicht",
@@ -24,18 +24,18 @@
     "defaultCardServiceProvider": "Catena-X",
     "defaultCardServiceTitle": "This is the service title",
     "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
-    "serviceTitle": "Service Title",
+    "serviceTitle": "Service Name",
     "serviceProvider": "Service Type",
     "shortDescriptionEN": "Short Description (en)",
     "shortDescriptionDE": "Short Description (de)",
-    "serviceLeadImageUpload": "Service Lead Image Upload"
+    "serviceLeadImageUpload": "Service Card Image"
   },
   "step2": {
     "headerTitle": "Service Details",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "longDescriptionEN": "Long Description (en)",
     "longDescriptionDE": "Long Description (de)",
-    "images": "Image",
+    "doc": "Supporting Material",
     "note": "Note:",
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
@@ -44,69 +44,22 @@
     "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
   },
   "step3": {
-    "headerTitle": "Consent & Contract",
-    "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "headerTitle": "Conformity and Consent",
+    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "allAgreementsMandatory": "All agreements are mandatory",
-    "uploadImageConformity": "Conformity App Certificate"
+    "uploadImageConformity": "CAB"
   },
-  "technicalIntegration": {
-    "headerTitle": "Technical Integration",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "step1Header": "1. Single Sign On integration between CX Network and Provider App",
-    "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
-    "clientID": "Client ID",
-    "URL": "URL",
-    "pleaseEnterValidURL": "Please enter a valid URL",
-    "URLPlaceholder": "http://www.loremipsum.de",
-    "clientCreated": "Client created",
-    "step2Header": "2. Upload App Roles",
-    "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
-    "rolesPreview": "Preview of roles contained in the uploaded files:",
-    "uploadAppRolesButton": "Upload App Roles",
-    "step3Header": "3. Enable your Identity Management Solution",
-    "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
-    "step4Header": "4. Get Test Users to Test Integration",
-    "step4HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, ",
-    "createClient": "Create Client",
-    "createTestUser": "Create Test User",
-    "password": "Password",
-    "username": "Username",
-    "successfullyUploadedAppRoles": "Successfully uploaded app roles",
-    "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
-    "template": "Template",
-    "getHelp": "Get Help",
-    "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?"
-  },
-  "betaTest": {
-    "headerTitle": "CX Test Runs",
-    "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release.",
-    "betaTests": "Beta Tests",
-    "technicalIntegrationTest": "Technical Integration Test",
-    "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
-  },
-  "validateAndPublish": {
+  "step4": {
     "headerTitle": "Validate & Publish",
-    "headerDescription": "Below you can find a summary of all your app registration inputs as well as the look of the marketplace app card and detail page. Please check your entered data carefully before sending the app for release. We will validate your app registration shortly after the app submission.",
-    "appDetails": "App Details",
-    "language": "Language :  ",
-    "useCase": "Use Case :  ",
-    "price": "Price :  ",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "appDetails": "Service Details",
     "connectedData": "Connected Data",
-    "dataSecurityInformation": "Data Security Information",
     "documents": "Documents",
     "providerInformation": "Provider Information",
-    "consent": "Consent",
-    "cxTestRuns": "CX Test Runs"
-  },
-  "submitApp": {
-    "headerTitle": "Thank you for submitting the app!",
-    "headerDescription": "After a review by a Catena-X administrator, you will receive",
-    "headerDescriptionComplete": "further information on app release",
-    "yourCatenaXTeam": "Your Catena-X team",
-    "myAppsOverview": "My apps overview"
+    "consent": "Consent"
   },
   "serviceReleaseForm": {
-    "headerTitle": "Create App",
+    "headerTitle": "Create Service",
     "addMore": "Add More",
     "noItemsSelected": "No Items Selected",
     "note": "Note:",
@@ -135,5 +88,12 @@
     "save": "Save",
     "submit": "Submit",
     "proceed": "Proceed"
+  },
+  "submit": {
+    "headerTitle": "Service erfolgreich eingereicht!",
+    "headerDescription": "After a review by a Catena-X administrator, you will receive",
+    "headerDescriptionComplete": "further information on service release",
+    "yourCatenaXTeam": "Dein Catena-X team",
+    "myAppsOverview": "My services overview"
   }
 }

@@ -388,7 +388,7 @@ export default function AppMarketCard() {
         title={t('content.apprelease.appMarketCard.headerTitle')}
         description={t('content.apprelease.appMarketCard.headerDescription')}
       />
-      <Grid container spacing={2} sx={{ mt: 10 }}>
+      <Grid container spacing={2}>
         {pageScrolled ? (
           <Grid item md={3} className={'app-release-card'}>
             <Card

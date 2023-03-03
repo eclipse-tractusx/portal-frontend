@@ -916,7 +916,7 @@
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Your Catena-X team",
-        "myAppsOverview": "My apps overview"
+        "overview": "My apps overview"
       },
       "appReleaseForm": {
         "headerTitle": "Create App",

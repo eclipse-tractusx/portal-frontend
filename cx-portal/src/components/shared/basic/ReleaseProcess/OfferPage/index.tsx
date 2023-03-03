@@ -214,9 +214,7 @@ export default function OfferPage() {
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <div className="form-field">
-          <InputLabel sx={{ mb: 3, mt: 3 }}>
-            {t('step2.images') + ' *'}
-          </InputLabel>
+          <InputLabel sx={{ mb: 3, mt: 3 }}>{t('step2.doc')}</InputLabel>
           <Controller
             render={({ field: { onChange: reactHookFormOnChange, value } }) => {
               return (
@@ -242,13 +240,8 @@ export default function OfferPage() {
             }}
             name="images"
             control={control}
-            rules={{ required: true }}
+            rules={{ required: false }}
           />
-          {errors?.images?.type === 'required' && (
-            <Typography variant="body2" className="file-error-msg">
-              {t('serviceReleaseForm.fileUploadIsMandatory')}
-            </Typography>
-          )}
           <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
             {t('serviceReleaseForm.note')}
           </Typography>

@@ -147,7 +147,7 @@ export default function OfferCard() {
         title={t('step1.headerTitle')}
         description={t('step1.headerDescription')}
       />
-      <Grid container spacing={2} sx={{ mt: 10 }}>
+      <Grid container spacing={2}>
         <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           <form>
             <CommonConnectorFormInputField

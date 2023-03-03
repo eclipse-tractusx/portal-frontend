@@ -60,11 +60,11 @@ export default function ServiceReleaseProcessForm() {
       stepsList={stepsList}
       numberOfSteps={4}
       pageHeaderTitle={t('headerTitle')}
-      headerTitle={t('submitApp.headerTitle')}
-      headerDescription={t('submitApp.headerDescription')}
-      headerDescriptionComplete={t('submitApp.headerDescriptionComplete')}
-      yourCatenaXTeam={t('submitApp.yourCatenaXTeam')}
-      myAppsOverview={t('submitApp.myAppsOverview')}
+      headerTitle={t('submit.headerTitle')}
+      headerDescription={t('submit.headerDescription')}
+      headerDescriptionComplete={t('submit.headerDescriptionComplete')}
+      yourCatenaXTeam={t('submit.yourCatenaXTeam')}
+      myAppsOverview={t('submit.myAppsOverview')}
     />
   )
 }
