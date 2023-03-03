@@ -23,7 +23,6 @@ import { Typography } from 'cx-portal-shared-components'
 import './BoardDocuments.scss'
 import {
   DocumentData,
-  Documents,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
