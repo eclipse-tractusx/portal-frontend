@@ -78,25 +78,29 @@ export default function ImageTest() {
           loader={fetchImageWithToken}
         />
       </article>
-      {/* error cases 
-      <article>
-        <Image src={'sdhjfkljsdklfj'} style={style} />
-        <Image
-          src={
-            'data:image/svg+xml;utf8,<html><body><h1>NOT FOUND</h1></body></html>'
-          }
-          style={style}
-        />
-        <Image src={'data:image/svg+xml;base64,ertiouiertui'} style={style} />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appImages/id_not_existing'
-          }
-          style={style}
-        />
-        <Image src={'https://unknown.server.address/image.png'} style={style} />
-      </article>
-        */}
+      {
+        /* error cases */
+        <article>
+          <Image src={'sdhjfkljsdklfj'} style={style} />
+          <Image
+            src={
+              'data:image/svg+xml;utf8,<html><body><h1>NOT FOUND</h1></body></html>'
+            }
+            style={style}
+          />
+          <Image src={'data:image/svg+xml;base64,ertiouiertui'} style={style} />
+          <Image
+            src={
+              'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appImages/id_not_existing'
+            }
+            style={style}
+          />
+          <Image
+            src={'https://unknown.server.address/image.png'}
+            style={style}
+          />
+        </article>
+      }
     </>
   )
 }
