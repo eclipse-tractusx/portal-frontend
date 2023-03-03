@@ -25,6 +25,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { useTheme } from '@mui/material'
 import MuiDialogContent from '@mui/material/DialogContent'
 import { Typography } from '../Typography'
+import { Image } from '../Image'
 
 type ImageItemOverlayProps = {
   onClose: () => void
@@ -68,7 +69,7 @@ export default function ImageItemOverlay({
             >
               <CloseIcon />
             </IconButton>
-            <img
+            <Image
               src={url}
               alt={text}
               style={{
