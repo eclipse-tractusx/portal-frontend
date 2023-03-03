@@ -41,29 +41,27 @@ export default function MarketplaceSubscription({
       <div className="subscriptions-content">
         {item.offerSubscriptionDetailData.map((data) => (
           <div className="subscription-list" key={data.offerSubscriptionId}>
-            {data && (
-              <span className="subscription-name">
-                <Typography variant="label3" className="offerId">
-                  Id: {data.offerSubscriptionId}
-                </Typography>
-                <Typography variant="label3">
-                  {t('global.field.status')}:
-                  <Chip
-                    color={
-                      data.offerSubscriptionStatus === 'ACTIVE'
-                        ? 'success'
-                        : 'info'
-                    }
-                    label={data.offerSubscriptionStatus}
-                    type="plain"
-                    variant="outlined"
-                    size="small"
-                    withIcon
-                    className="subscription-status"
-                  />
-                </Typography>
-              </span>
-            )}
+            <span className="subscription-name">
+              <Typography variant="label3" className="offerId">
+                Id: {data.offerSubscriptionId}
+              </Typography>
+              <Typography variant="label3">
+                {t('global.field.status')}:
+                <Chip
+                  color={
+                    data.offerSubscriptionStatus === 'ACTIVE'
+                      ? 'success'
+                      : 'info'
+                  }
+                  label={data.offerSubscriptionStatus}
+                  type="plain"
+                  variant="outlined"
+                  size="small"
+                  withIcon
+                  className="subscription-status"
+                />
+              </Typography>
+            </span>
           </div>
         ))}
       </div>
