@@ -23,11 +23,24 @@ import {
   LogoGrayData,
   TransparentPixel,
 } from 'cx-portal-shared-components'
+import { useEffect, useState } from 'react'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
 
 export default function ImageTest() {
   const style = { margin: '10px', width: '240px', height: '240px' }
+
+  const [data, setData] = useState<string>(TransparentPixel)
+
+  useEffect(() => {
+    fetchImageWithToken(
+      'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.png'
+    ).then((buffer) =>
+      setData(URL.createObjectURL(new Blob([buffer], { type: 'image/png' })))
+    )
+  }, [])
+
+  console.log(data)
 
   return (
     <>
@@ -53,28 +66,41 @@ export default function ImageTest() {
           style={style}
         />
         <Image
+          src={
+            'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.jpg'
+          }
+          style={style}
+        />
+        <Image src={data} style={style} />
+        <Image
           src={`${getApiBase()}/api/Apps/5cf74ef8-e0b7-4984-a872-474828beb5d7/appImages/35ca3d61-b05b-4a66-9a6b-d02600d2fe45`}
           style={style}
           loader={fetchImageWithToken}
         />
       </article>
-      <article>
-        <Image src={'sdhjfkljsdklfj'} style={style} />
-        <Image
-          src={
-            'data:image/svg+xml;utf8,<html><body><h1>NOT FOUND</h1></body></html>'
-          }
-          style={style}
-        />
-        <Image src={'data:image/svg+xml;base64,ertiouiertui'} style={style} />
-        <Image
-          src={
-            'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appImages/id_not_existing'
-          }
-          style={style}
-        />
-        <Image src={'https://unknown.server.address/image.png'} style={style} />
-      </article>
+      {
+        /* error cases */
+        <article>
+          <Image src={'sdhjfkljsdklfj'} style={style} />
+          <Image
+            src={
+              'data:image/svg+xml;utf8,<html><body><h1>NOT FOUND</h1></body></html>'
+            }
+            style={style}
+          />
+          <Image src={'data:image/svg+xml;base64,ertiouiertui'} style={style} />
+          <Image
+            src={
+              'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appImages/id_not_existing'
+            }
+            style={style}
+          />
+          <Image
+            src={'https://unknown.server.address/image.png'}
+            style={style}
+          />
+        </article>
+      }
     </>
   )
 }
