@@ -39,8 +39,8 @@ export default function MarketplaceSubscription({
         )}
       </Typography>
       <div className="subscriptions-content">
-        {item.offerSubscriptionDetailData.map((data, index) => (
-          <div className="subscription-list">
+        {item.offerSubscriptionDetailData.map((data) => (
+          <div className="subscription-list" key={data.offerSubscriptionId}>
             {data && (
               <span className="subscription-name">
                 <Typography variant="label3" className="offerId">
