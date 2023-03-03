@@ -23,6 +23,7 @@ import { Typography } from 'cx-portal-shared-components'
 import './BoardDocuments.scss'
 import {
   DocumentData,
+  Documents,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
@@ -34,7 +35,7 @@ export default function BoardDocuments({
 }: {
   type: string
   appId: string
-  documents: any
+  documents: DocumentData[]
 }) {
   const { t } = useTranslation()
 
