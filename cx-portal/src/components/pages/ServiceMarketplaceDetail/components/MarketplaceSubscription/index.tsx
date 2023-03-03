@@ -49,7 +49,11 @@ export default function MarketplaceSubscription({
                 <Typography variant="label3">
                   {t('global.field.status')}:
                   <Chip
-                    color={data.offerSubscriptionStatus === 'ACTIVE' ? 'success' : 'info'}
+                    color={
+                      data.offerSubscriptionStatus === 'ACTIVE'
+                        ? 'success'
+                        : 'info'
+                    }
                     label={data.offerSubscriptionStatus}
                     type="plain"
                     variant="outlined"
