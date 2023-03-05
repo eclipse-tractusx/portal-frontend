@@ -1114,7 +1114,7 @@
         "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
         "TO_DO": {
           "title": "Your action is needed to resolve the issue",
-          "description": ""
+          "description": "Validate the company registration data and the uploaded documents and confirm or reject the registration. Further process steps are only carried out after confirmation."
         },
         "IN_PROGRESS": {
           "title": "No action needed from your side",
