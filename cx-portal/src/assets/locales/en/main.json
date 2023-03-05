@@ -1160,15 +1160,15 @@
         },
         "IN_PROGRESS": {
           "title": "No action needed from your side",
-          "description": "The process is ongoing."
+          "description": "The process is currently running/in progress. As soon as the Wallet is created, the status will get automatically updated."
         },
         "DONE": {
           "title": "No action needed from your side",
-          "description": "The process is successfully completed."
+          "description": "The process is successfully completed. The Managed Identity Wallet got created."
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+          "description": "The Identity Wallet creation failed. You can retrigger the endpoint or close/reject the company registration."
         }
       },
       "CLEARING_HOUSE": {
@@ -1189,7 +1189,7 @@
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The clearinghouse check was unsuccessful. Details to the unsuccessful validation can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+          "description": "The clearinghouse check was unsuccessful/failed. Details regarding the unsuccessful validation run may get found above. You can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       },
       "SELF_DESCRIPTION_LP": {
