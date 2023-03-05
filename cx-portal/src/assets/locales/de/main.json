@@ -464,9 +464,9 @@
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
-            "label": "Public Authentication Key Upload*",
-            "error": "Please use a valid type. E.g. .pem; .cert",
-            "tooltipMsg": "Public key"
+            "label": "Öffentlicher Authentifizierungsschlüssel/Zertifikat*",
+            "error": "Please use a valid type. e.g. .pem; .cert",
+            "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           }
         },
         "create": {
@@ -483,7 +483,7 @@
         }
       },
       "edcUpload": {
-        "formTitle": "Update your public key"
+        "formTitle": "Update your public key."
       }
     },
     "partnernetwork": {
