@@ -415,12 +415,12 @@
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {
-        "successmessage": "Edc connector successfully added",
+        "successmessage": "Connector successfully added",
         "errormessage": "Error! Something went wrong"
       },
       "deletemodal": {
-        "title": "Delete EDC Connector",
-        "description": "Are you sure to delete selected connector?"
+        "title": "Delete Connector",
+        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable."
       },
       "modal": {
         "company": {
@@ -433,7 +433,7 @@
         },
         "daps": {
           "title": "Create DAPS Registration",
-          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+          "intro": "To retrigger the daps authentication interface, please upload the public authentication key/certificate of your connector.",
           "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Connect company connector",
@@ -446,7 +446,7 @@
             "tooltipMsg": "Own selected connector name for verification"
           },
           "url": {
-            "label": "Connector URL*",
+            "label": "Connector URL/Endpoint*",
             "placeholder": "Connector URL",
             "error": "Enter a valid url - eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
@@ -454,19 +454,19 @@
           "bpn": {
             "label": "Connector Owner*",
             "placeholder": "BPNL's are allowed only",
-            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
+            "error": "BPN is mandatory. Valid BPN eg: BPNL+12 characters",
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           },
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
-            "tooltipMsg": "Connector Location - Message to be added"
+            "tooltipMsg": "Connector Location Country Code - e.g. DE, US, etc."
           },
           "doc": {
-            "label": "Public Authentication Key Upload*",
+            "label": "Public Authentication Key/Certificate*",
             "error": "Please use a valid type. E.g. .pem; .cert",
-            "tooltipMsg": "Public key"
+            "tooltipMsg": "Upload the certificate that contains your connector's public key information."
           }
         },
         "create": {
