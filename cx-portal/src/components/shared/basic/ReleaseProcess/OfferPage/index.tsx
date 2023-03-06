@@ -44,9 +44,9 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
-import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
-import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import ProviderConnectorField from '../components/ProviderConnectorField'
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')

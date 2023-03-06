@@ -43,11 +43,11 @@ import {
 } from 'features/appManagement/slice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
-import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInputField'
-import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
+import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
+import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
 
 export default function OfferCard() {
   const { t } = useTranslation('servicerelease')

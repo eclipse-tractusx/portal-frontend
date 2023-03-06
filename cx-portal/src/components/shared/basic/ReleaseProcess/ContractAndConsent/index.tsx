@@ -39,10 +39,10 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
-import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
+import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 
 type AgreementType = {
   agreementId: string

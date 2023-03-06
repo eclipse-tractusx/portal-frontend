@@ -52,7 +52,7 @@ import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonService from 'services/CommonService'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
 
 export default function ValidateAndPublish({
   showSubmitPage,
