@@ -83,7 +83,7 @@ export default function MarketplaceDocuments({
           ))
         ) : (
           <Typography variant="caption2" className="not-available">
-            {t('content.serviceMarketplace.document.notAvailable')}
+            {t('global.errors.noDocumentsAvailable')}
           </Typography>
         )}
       </ul>

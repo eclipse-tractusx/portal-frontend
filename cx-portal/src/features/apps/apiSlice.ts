@@ -82,7 +82,7 @@ export type AppDetails = AppMarketplaceApp & {
   contactEmail: string
   contactNumber: string
   images: string[]
-  documents: DocumentAppContract
+  documents: Documents
   longDescription: string
   isSubscribed: string
   tags: string[]
@@ -90,8 +90,9 @@ export type AppDetails = AppMarketplaceApp & {
   leadPictureUri?: ImageType
 }
 
-export type DocumentAppContract = {
+export type Documents = {
   APP_CONTRACT: Array<DocumentData>
+  CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
 }
 
 export type AppDetailsState = {

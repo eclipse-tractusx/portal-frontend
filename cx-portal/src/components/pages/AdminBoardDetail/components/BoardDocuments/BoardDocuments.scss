@@ -20,6 +20,10 @@
 
 .adminboard-documents {
   margin-bottom: 60px;
+  .not-available {
+    display: block;
+    text-align: center;
+  }
 }
 .document-button-link {
   background-color: transparent;

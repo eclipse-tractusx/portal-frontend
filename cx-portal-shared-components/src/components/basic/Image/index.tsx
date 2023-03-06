@@ -31,16 +31,6 @@ const IMAGE_TYPES: any = {
   '474946': 'image/gif',
 }
 
-const bufferToB64 = (buffer: ArrayBuffer): string => {
-  let binary = ''
-  const bytes = new Uint8Array(buffer)
-  const len = bytes.byteLength
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i])
-  }
-  return btoa(binary)
-}
-
 const buf2hex = (buffer: ArrayBuffer) =>
   [...new Uint8Array(buffer)]
     .map((x) => x.toString(16).padStart(2, '0'))
@@ -70,7 +60,7 @@ export const Image = ({ src, alt, style, loader }: ImageProps) => {
       const first3Bytes = buf2hex(buffer.slice(0, 3))
       const imageType =
         IMAGE_TYPES[firstByte] || IMAGE_TYPES[first3Bytes] || 'image/*'
-      setData(`data:${imageType};base64,${bufferToB64(buffer)}`)
+      setData(URL.createObjectURL(new Blob([buffer], { type: imageType })))
     } catch (e) {
       setError(true)
     }
@@ -78,7 +68,7 @@ export const Image = ({ src, alt, style, loader }: ImageProps) => {
 
   return (
     <img
-      src={data}
+      src={!load && !error && src.startsWith('blob:') ? src : data}
       alt={alt || 'Catena-X'}
       onError={() => {
         setData(LogoGrayData)
