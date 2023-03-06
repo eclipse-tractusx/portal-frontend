@@ -59,11 +59,11 @@ import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
-import CommonConnectorFormInputField from '../CommonFiles/CommonConnectorFormInputField'
-import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
-import ConnectorFormInputFieldImage from '../CommonFiles/ConnectorFormInputFieldImage'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
+import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
+import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
 
 type FormDataType = {
   title: string

@@ -39,7 +39,7 @@ import { useEffect, useState } from 'react'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
 
 export default function BetaTest() {
   const { t } = useTranslation()

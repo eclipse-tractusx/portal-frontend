@@ -46,10 +46,10 @@ import {
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../CommonFiles/ConnectorFormInputField'
-import ReleaseStepHeader from '../CommonFiles/ReleaseStepHeader'
-import ProviderConnectorField from '../CommonFiles/ProviderConnectorField'
-import ConnectorFormInputFieldShortAndLongDescription from '../CommonFiles/ConnectorFormInputFieldShortAndLongDescription'
+import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import ProviderConnectorField from '../components/ProviderConnectorField'
+import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 
 type FormDataType = {
   longDescriptionEN: string
