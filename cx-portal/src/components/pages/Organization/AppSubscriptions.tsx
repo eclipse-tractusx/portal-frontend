@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
 import { SubscriptionStatus, ImageType } from 'features/apps/apiSlice'
 import { Image, LogoGrayData } from 'cx-portal-shared-components'
 
