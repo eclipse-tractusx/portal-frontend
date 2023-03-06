@@ -20,6 +20,7 @@
 
 import { SubscriptionStatus, ImageType } from 'features/apps/apiSlice'
 import { Image, LogoGrayData } from 'cx-portal-shared-components'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function AppSubscriptions({
   name,
@@ -55,6 +56,7 @@ export default function AppSubscriptions({
           borderRadius: '50%',
           marginRight: '5px',
         }}
+        loader={fetchImageWithToken}
       />
 
       <span>
