@@ -481,9 +481,6 @@
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
-      },
-      "edcUpload": {
-        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
