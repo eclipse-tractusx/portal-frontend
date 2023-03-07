@@ -899,7 +899,8 @@
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "allAgreementsMandatory": "All agreements are mandatory"
+        "allAgreementsMandatory": "All agreements are mandatory",
+        "uploadImageConformity": "Conformity App Certificate"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -950,12 +951,12 @@
         "consent": "Consent",
         "cxTestRuns": "CX Test Runs"
       },
-      "submitApp": {
+      "submit": {
         "headerTitle": "App erfolgreich eingereicht!",
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Dein Catena-X team",
-        "myAppsOverview": "My apps overview"
+        "overview": "My apps overview"
       },
       "appReleaseForm": {
         "headerTitle": "Create App",

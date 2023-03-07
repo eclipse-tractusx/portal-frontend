@@ -18,42 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { ProviderProps } from '../StaticTypes'
-import TextCenterAligned from './TextCenterAligned'
+import { ConnectorFormInputField } from './ConnectorFormInputField'
 
-export default function TextImageCenterAligned({
-  provider,
-  baseUrl,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-}) {
+export default function ProviderConnectorField({
+  control,
+  trigger,
+  errors,
+  label,
+  ruleMessage,
+  name,
+  pattern,
+  placeholder,
+}: any) {
   return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <TextCenterAligned provider={provider} />
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-        additionalStyles={{
-          marginTop: '84px',
-          marginBottom: '84px',
+    <div className="form-field">
+      <ConnectorFormInputField
+        {...{
+          control,
+          trigger,
+          errors,
+          name: name,
+          label: label,
+          type: 'input',
+          placeholder: placeholder ?? '',
+          rules: {
+            pattern: {
+              value: pattern,
+              message: ruleMessage,
+            },
+          },
         }}
       />
-    </Box>
+    </div>
   )
 }

@@ -105,12 +105,11 @@ export const MenuItem = ({
             sx={{
               backgroundColor: '#9AA9E2',
               borderRadius: '5px',
-              maxWidth: '40px',
               minWidth: '40px',
               textAlign: 'center',
-              whiteSpace: 'normal',
+              whiteSpace: 'nowrap',
               marginLeft: '12px',
-              padding: '5px 0px',
+              padding: '5px 5px',
             }}
           >
             <Typography

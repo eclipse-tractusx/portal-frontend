@@ -18,42 +18,49 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { ProviderProps } from '../StaticTypes'
-import TextCenterAligned from './TextCenterAligned'
+import { ConnectorFormInputField } from './ConnectorFormInputField'
 
-export default function TextImageCenterAligned({
-  provider,
-  baseUrl,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-}) {
+export default function CommonConnectorFormInputField({
+  control,
+  trigger,
+  errors,
+  label,
+  rules,
+  name,
+  pattern,
+  maxLength = 40,
+  minLength = 5,
+}: any) {
   return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <TextCenterAligned provider={provider} />
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-        additionalStyles={{
-          marginTop: '84px',
-          marginBottom: '84px',
+    <div className="form-field">
+      <ConnectorFormInputField
+        {...{
+          control,
+          trigger,
+          errors,
+          name: name,
+          label: label,
+          type: 'input',
+          rules: {
+            required: {
+              value: true,
+              message: rules.required,
+            },
+            minLength: {
+              value: minLength,
+              message: rules.minLength,
+            },
+            pattern: {
+              value: pattern,
+              message: rules.pattern,
+            },
+            maxLength: {
+              value: maxLength,
+              message: rules.maxLength,
+            },
+          },
         }}
       />
-    </Box>
+    </div>
   )
 }

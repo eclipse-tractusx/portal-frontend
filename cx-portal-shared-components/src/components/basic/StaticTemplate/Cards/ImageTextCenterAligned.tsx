@@ -25,8 +25,10 @@ import TextCenterAligned from './TextCenterAligned'
 
 export default function ImageImageCenterAligned({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
     <Box
@@ -37,7 +39,7 @@ export default function ImageImageCenterAligned({
       }}
     >
       <ImageItem
-        url={provider.imageUrl || ''}
+        url={baseUrl + provider.imagePath || ''}
         text=""
         size="custom"
         height="472px"

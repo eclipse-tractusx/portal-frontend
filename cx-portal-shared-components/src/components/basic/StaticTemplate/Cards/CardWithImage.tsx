@@ -21,13 +21,16 @@
 import CardWithText from './CardWithText'
 import { CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
+import { Image } from '../../Image'
 
 export default function CardWithImage({
   detail,
   grid = 3,
+  baseUrl,
 }: {
   detail: CardDetailsProps
   grid: number
+  baseUrl: string
 }) {
   const cardStyle = {
     borderRadius: '0px',
@@ -49,8 +52,10 @@ export default function CardWithImage({
         width: `${100 / grid}%`,
       }}
     >
-      <img
+      <Image
+        src={baseUrl + detail.imagePath}
         style={{
+          width: '100%',
           marginBottom: '24px',
           objectFit: 'cover',
           borderRadius: '8px',
@@ -63,9 +68,6 @@ export default function CardWithImage({
               ? '100%'
               : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
         }}
-        src={detail.imageUrl}
-        width="100%"
-        alt={'alt tag info'}
       />
       <CardWithText card={detail} isImage={true} />
     </Box>

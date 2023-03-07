@@ -53,6 +53,7 @@ export interface DropzoneProps {
   enableDeleteIcon?: boolean
   enableDeleteOverlay?: boolean
   deleteOverlayTranslation?: deleteConfirmOverlayTranslation
+  handleDownload?: () => void
 }
 
 export const Dropzone = ({
@@ -68,6 +69,7 @@ export const Dropzone = ({
   enableDeleteIcon = true,
   enableDeleteOverlay = false,
   deleteOverlayTranslation,
+  handleDownload,
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
@@ -77,9 +79,7 @@ export const Dropzone = ({
 
   const isSingleUpload = maxFilesToUpload === 1
 
-  const isDisabled = isSingleUpload
-    ? false
-    : currentFiles.length === maxFilesToUpload
+  const isDisabled = currentFiles.length === maxFilesToUpload
 
   const onDropAccepted = useCallback(
     (droppedFiles: File[]) => {
@@ -138,6 +138,7 @@ export const Dropzone = ({
     !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
+    id: file.id,
     name: file.name,
     size: file.size,
     status: file.status ?? UploadStatus.NEW,
@@ -163,6 +164,7 @@ export const Dropzone = ({
       <DropPreviewComponent
         uploadFiles={uploadFiles}
         onDelete={handleDelete}
+        onDownload={handleDownload}
         DropStatusHeader={DropStatusHeader}
         DropPreviewFile={DropPreviewFile}
         translations={{

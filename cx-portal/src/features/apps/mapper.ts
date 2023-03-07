@@ -97,7 +97,7 @@ export const appToStatus = (
         (e) => e.appId === app.id
       )?.offerSubscriptionStatus
       const image = {
-        src: getAppLeadImage(app),
+        src: getAppImageUrl(app),
         alt: app.title,
       }
       return { ...app, status, image }

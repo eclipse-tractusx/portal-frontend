@@ -24,6 +24,7 @@ import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { StaticTemplate } from 'cx-portal-shared-components'
 import CommonService from 'services/CommonService'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<any>()
@@ -70,7 +71,10 @@ export default function CompanyRoles() {
             description={companyRoles.description}
           />
           <StageSubNavigation linkArray={linkArray} />
-          <StaticTemplate sectionInfo={companyRoles.sections} />
+          <StaticTemplate
+            sectionInfo={companyRoles.sections}
+            baseUrl={getAssetBase()}
+          />
         </>
       )}
     </main>

@@ -27,10 +27,12 @@ export default function CardGrid({
   provider,
   grid = 3,
   align = 'left',
+  baseUrl,
 }: {
   provider: ProviderProps
   grid: number
   align?: string
+  baseUrl: string
 }) {
   const isCenter = align === 'center'
   const gridStyle = {
@@ -52,7 +54,12 @@ export default function CardGrid({
           >
             {provider.detailsWithImageRow1.map((card: CardDetailsProps) => {
               return (
-                <CardWithImage key={card.title} detail={card} grid={grid} />
+                <CardWithImage
+                  baseUrl={baseUrl}
+                  key={card.title}
+                  detail={card}
+                  grid={grid}
+                />
               )
             })}
           </Box>
@@ -67,7 +74,12 @@ export default function CardGrid({
           >
             {provider.detailsWithImageRow2.map((card: CardDetailsProps) => {
               return (
-                <CardWithImage key={card.title} detail={card} grid={grid} />
+                <CardWithImage
+                  baseUrl={baseUrl}
+                  key={card.title}
+                  detail={card}
+                  grid={grid}
+                />
               )
             })}
           </Box>

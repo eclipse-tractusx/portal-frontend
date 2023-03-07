@@ -859,7 +859,8 @@
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
-        "allAgreementsMandatory": "All agreements are mandatory"
+        "allAgreementsMandatory": "All agreements are mandatory",
+        "uploadImageConformity": "Conformity App Certificate"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -910,12 +911,12 @@
         "consent": "Consent",
         "cxTestRuns": "CX Test Runs"
       },
-      "submitApp": {
+      "submit": {
         "headerTitle": "Thank you for submitting the app!",
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Your Catena-X team",
-        "myAppsOverview": "My apps overview"
+        "overview": "My apps overview"
       },
       "appReleaseForm": {
         "headerTitle": "Create App",

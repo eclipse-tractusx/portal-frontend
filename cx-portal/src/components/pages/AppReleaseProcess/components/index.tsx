@@ -18,19 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  currentActiveStep,
-  setCurrentActiveStep,
-} from 'features/appManagement/slice'
+import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/ReleaseProcessWrapper'
 
 export default function AppReleaseProcessForm() {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  let activePage = useSelector(currentActiveStep)
   const dispatch = useDispatch()
 
   const onAppsOverviewClick = () => {
@@ -69,17 +65,16 @@ export default function AppReleaseProcessForm() {
     <ReleaseProcessWrapper
       processType="apprelease"
       onAppsOverviewClick={() => onAppsOverviewClick()}
-      activePage={activePage}
       stepsList={stepsList}
       numberOfSteps={6}
       pageHeaderTitle={t('content.apprelease.headerTitle')}
-      headerTitle={t('content.apprelease.submitApp.headerTitle')}
-      headerDescription={t('content.apprelease.submitApp.headerDescription')}
+      headerTitle={t('content.apprelease.submit.headerTitle')}
+      headerDescription={t('content.apprelease.submit.headerDescription')}
       headerDescriptionComplete={t(
-        'content.apprelease.submitApp.headerDescriptionComplete'
+        'content.apprelease.submit.headerDescriptionComplete'
       )}
-      yourCatenaXTeam={t('content.apprelease.submitApp.yourCatenaXTeam')}
-      myAppsOverview={t('content.apprelease.submitApp.myAppsOverview')}
+      yourCatenaXTeam={t('content.apprelease.submit.yourCatenaXTeam')}
+      myAppsOverview={t('content.apprelease.submit.overview')}
     />
   )
 }

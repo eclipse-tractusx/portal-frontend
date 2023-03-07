@@ -24,15 +24,17 @@ import ImageVideoWrapper from './ImageVideoWrapper'
 
 export default function TextImageSideBySide({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
     <ImageVideoWrapper
       provider={provider}
       children={
         <ImageItem
-          url={provider.imageUrl || ''}
+          url={baseUrl + provider.imagePath || ''}
           text={''}
           size="custom"
           height="472px"
