@@ -25,6 +25,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add short description to card
 * App Admin Board
    * Add Section for Conformity Document & display via api
+* AppOverview
+   * Page Load handling
 
 ## 1.0.0-RC10
 
