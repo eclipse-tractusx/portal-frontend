@@ -29,9 +29,11 @@ import {
   DropPreview as DefaultDropPreview,
   UploadStatus,
 } from 'cx-portal-shared-components'
+import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
+import { download } from 'utils/downloadUtils'
 
 export type DropzoneFile = File & Partial<UploadFile>
 
@@ -71,15 +73,15 @@ export const Dropzone = ({
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+
   const [dropped, setDropped] = useState<DropzoneFile[]>([])
 
   const currentFiles = files ?? dropped
 
   const isSingleUpload = maxFilesToUpload === 1
 
-  const isDisabled = isSingleUpload
-    ? false
-    : currentFiles.length === maxFilesToUpload
+  const isDisabled = currentFiles.length === maxFilesToUpload
 
   const onDropAccepted = useCallback(
     (droppedFiles: File[]) => {
@@ -103,6 +105,19 @@ export const Dropzone = ({
     },
     [currentFiles, onChange]
   )
+
+  const handleDownload = async (documentName: string, documentId: string) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
 
   const {
     getRootProps,
@@ -138,6 +153,7 @@ export const Dropzone = ({
     !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
+    id: file.id,
     name: file.name,
     size: file.size,
     status: file.status ?? UploadStatus.NEW,
@@ -163,6 +179,7 @@ export const Dropzone = ({
       <DropPreviewComponent
         uploadFiles={uploadFiles}
         onDelete={handleDelete}
+        onDownload={handleDownload}
         DropStatusHeader={DropStatusHeader}
         DropPreviewFile={DropPreviewFile}
         translations={{

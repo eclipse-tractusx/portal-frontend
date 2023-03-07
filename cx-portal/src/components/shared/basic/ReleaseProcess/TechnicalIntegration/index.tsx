@@ -18,20 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  Chip,
-  IconButton,
-  LoadingButton,
-  PageNotifications,
-  PageSnackbar,
-  Typography,
-} from 'cx-portal-shared-components'
+import { Chip, LoadingButton, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box, Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -51,6 +41,7 @@ import {
   useUpdateRoleDataMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -496,64 +487,25 @@ export default function TechnicalIntegration() {
           </Grid>
         )} */}
       </form>
-
-      <Box mb={2}>
-        {technicalIntegrationNotification && (
-          <Grid item container xs={12} sx={{ mb: 2 }}>
-            <Grid item xs={6}></Grid>
-            <Grid item xs={6}>
-              <PageNotifications
-                title={t('content.apprelease.appReleaseForm.error.title')}
-                description={t(
-                  'content.apprelease.appReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() =>
-                  setTechnicalIntegrationNotification(false)
-                }
-              />
-            </Grid>
-          </Grid>
+      <SnackbarNotificationWithButtons
+        pageNotification={technicalIntegrationNotification}
+        pageSnackbar={technicalIntegrationSnackbar}
+        setPageNotification={setTechnicalIntegrationNotification}
+        setPageSnackbar={setTechnicalIntegrationSnackbar}
+        onBackIconClick={() => dispatch(decrement())}
+        onSave={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onIntegrationSubmit(data, 'saveAndProceed')
         )}
-        <PageSnackbar
-          open={technicalIntegrationSnackbar}
-          onCloseNotification={() => setTechnicalIntegrationSnackbar(false)}
-          severity={snackBarType}
-          description={snackBarMessage}
-          autoClose={true}
-        />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          startIcon={<HelpOutlineIcon />}
-          sx={{ mr: 1 }}
-          variant="outlined"
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton color="secondary" onClick={() => dispatch(decrement())}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          // To-Do : the below code will get enhanced again in R.3.1
-          // disabled={showUserButton}
-          onClick={handleSubmit((data) =>
-            onIntegrationSubmit(data, 'saveAndProceed')
-          )}
-          variant="contained"
-          sx={{ float: 'right' }}
-        >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
-      </Box>
+        pageSnackBarType={snackBarType}
+        pageSnackBarDescription={snackBarMessage}
+        pageNotificationsObject={{
+          title: t('content.apprelease.appReleaseForm.error.title'),
+          description: t('content.apprelease.appReleaseForm.error.message'),
+        }}
+        // To-Do : the below code will get enhanced again in R.3.1
+        // isValid={showUserButton}
+      />
     </div>
   )
 }

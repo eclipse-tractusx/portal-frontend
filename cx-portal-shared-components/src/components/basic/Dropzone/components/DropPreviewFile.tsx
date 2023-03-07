@@ -44,6 +44,7 @@ export interface DropPreviewFileProps {
   onDelete?: () => void
   translations: DropZonePreviewTranslations
   enableDeleteIcon?: boolean
+  onDownload?: () => void
 }
 
 export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
@@ -51,6 +52,7 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
   translations,
   onDelete,
   enableDeleteIcon = true,
+  onDownload,
 }) => {
   const theme = useTheme()
 
@@ -164,7 +166,14 @@ export const DropPreviewFile: FunctionComponent<DropPreviewFileProps> = ({
             : 'none',
         }}
       >
-        <Box>{uploadFile.name}</Box>
+        <Box
+          sx={{
+            cursor: 'pointer',
+          }}
+          onClick={() => onDownload?.()}
+        >
+          {uploadFile.name}
+        </Box>
         <Box
           sx={{
             marginTop: 0.5,

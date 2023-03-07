@@ -18,20 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  IconButton,
-  PageNotifications,
-  PageSnackbar,
-  Typography,
-} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Divider, Box, Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
-import { ConnectorFormInputField } from '../AppMarketCard'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
@@ -46,8 +35,14 @@ import {
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
   useFetchAppStatusQuery,
+  useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
+import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
+import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 
 type AgreementType = {
   agreementId: string
@@ -64,6 +59,7 @@ export default function ContractAndConsent() {
   const fetchAgreementData = useFetchAgreementDataQuery().data
   const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
   const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
+  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [agreementData, setAgreementData] = useState<AgreementType>([])
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
@@ -109,19 +105,96 @@ export default function ContractAndConsent() {
     reset({ ...defaultCheckboxData, agreements: agreementData })
   }
 
+  const defaultValues = {
+    agreements: defaultValue,
+    uploadImageConformity:
+      fetchAppStatus?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
+  }
+
   const {
     handleSubmit,
     control,
     trigger,
     formState: { errors, isValid },
     reset,
+    getValues,
+    setValue,
   } = useForm({
-    defaultValues: defaultValue,
+    defaultValues: defaultValues,
     mode: 'onChange',
   })
 
+  const uploadImageConformityValue = getValues().uploadImageConformity
+  const defaultuploadImageConformity = defaultValues.uploadImageConformity
+
+  useEffect(() => {
+    if (
+      defaultuploadImageConformity &&
+      Object.keys(defaultuploadImageConformity).length > 0
+    ) {
+      setValue('uploadImageConformity', {
+        id:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentId,
+        name:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultuploadImageConformity])
+
+  const setFileStatus = (
+    fieldName: Parameters<typeof setValue>[0],
+    status: UploadFileStatus
+  ) => {
+    const value = getValues(fieldName)
+
+    setValue(fieldName, {
+      id: value.id,
+      name: value.name,
+      size: value.size,
+      status,
+    } as any)
+  }
+
+  useEffect(() => {
+    const value = getValues().uploadImageConformity
+
+    if (Array.isArray(value)) {
+      setValue('uploadImageConformity', {
+        id:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentId,
+        name:
+          defaultuploadImageConformity &&
+          defaultuploadImageConformity[0]?.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
+      setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+    }
+
+    if (value && !Array.isArray(value) && !('status' in value)) {
+      setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
+
+      uploadDocumentApi(appId, 'CONFORMITY_APPROVAL_BUSINESS_APPS', value)
+        .then(() =>
+          setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+        )
+        .catch(() =>
+          setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_ERROR)
+        )
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadImageConformityValue])
+
   const onContractConsentSubmit = async (data: any, buttonLabel: string) => {
-    const validateFields = await trigger(['agreements'])
+    const validateFields = await trigger([
+      'agreements',
+      'uploadImageConformity',
+    ])
     if (validateFields) {
       handleSave(data, buttonLabel)
     }
@@ -160,6 +233,20 @@ export default function ContractAndConsent() {
       })
   }
 
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    await updateDocumentUpload(data).unwrap()
+  }
+
   const onBackIconClick = () => {
     dispatch(setAppStatus(fetchAppStatus))
     dispatch(decrement())
@@ -167,16 +254,12 @@ export default function ContractAndConsent() {
 
   return (
     <div className="contract-consent">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.contractAndConsent.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.contractAndConsent.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <ReleaseStepHeader
+        title={t('content.apprelease.contractAndConsent.headerTitle')}
+        description={t(
+          'content.apprelease.contractAndConsent.headerDescription'
+        )}
+      />
       <form className="header-description">
         {agreementData?.map((item) => (
           <div className="form-field" key={item.agreementId}>
@@ -201,65 +284,48 @@ export default function ContractAndConsent() {
             />
           </div>
         ))}
-      </form>
-      <Box mb={2}>
-        {contractNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={t('content.apprelease.appReleaseForm.error.title')}
-                description={t(
-                  'content.apprelease.appReleaseForm.error.message'
-                )}
-                open
-                severity="error"
-                onCloseNotification={() => setContractNotification(false)}
-              />
-            </Grid>
-          </Grid>
-        )}
-        <PageSnackbar
-          open={contractSnackbar}
-          onCloseNotification={() => setContractSnackbar(false)}
-          severity="success"
-          description={t(
-            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+        <ConnectorFormInputFieldImage
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="uploadImageConformity"
+          acceptFormat={{
+            'application/pdf': ['.pdf'],
+          }}
+          label={
+            t('content.apprelease.contractAndConsent.uploadImageConformity') +
+            ' *'
+          }
+          noteDescription={t(
+            'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
           )}
-          autoClose={true}
+          note={t('content.apprelease.appReleaseForm.note')}
+          requiredText={t(
+            'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+          )}
         />
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          sx={{ mr: 1 }}
-          startIcon={<HelpOutlineIcon />}
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton color="secondary" onClick={() => onBackIconClick()}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          disabled={!isValid}
-          sx={{ float: 'right' }}
-          onClick={handleSubmit((data) =>
-            onContractConsentSubmit(data, 'saveAndProceed')
-          )}
-        >
-          {t('content.apprelease.footerButtons.saveAndProceed')}
-        </Button>
-        <Button
-          variant="outlined"
-          name="send"
-          sx={{ float: 'right', mr: 1 }}
-          onClick={handleSubmit((data) =>
-            onContractConsentSubmit(data, 'save')
-          )}
-        >
-          {t('content.apprelease.footerButtons.save')}
-        </Button>
-      </Box>
+      </form>
+      <SnackbarNotificationWithButtons
+        pageNotification={contractNotification}
+        pageSnackbar={contractSnackbar}
+        pageSnackBarDescription={t(
+          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+        )}
+        pageNotificationsObject={{
+          title: t('content.apprelease.appReleaseForm.error.title'),
+          description: t('content.apprelease.appReleaseForm.error.message'),
+        }}
+        setPageNotification={setContractNotification}
+        setPageSnackbar={setContractSnackbar}
+        onBackIconClick={onBackIconClick}
+        onSave={handleSubmit((data) => onContractConsentSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onContractConsentSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
+      />
     </div>
   )
 }

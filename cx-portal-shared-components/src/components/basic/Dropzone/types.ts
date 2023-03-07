@@ -12,6 +12,7 @@ export type UploadFileStatus =
   | UploadStatus.UPLOAD_ERROR
 
 export type UploadFile = {
+  id?: string
   name: string
   size?: number
   status: UploadFileStatus
