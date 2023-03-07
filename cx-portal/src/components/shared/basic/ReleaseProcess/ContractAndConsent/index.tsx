@@ -36,6 +36,7 @@ import {
   useUpdateAgreementConsentsMutation,
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
+  useFetchNewDocumentByIdMutation
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
@@ -43,7 +44,6 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { download } from 'utils/downloadUtils'
 
 type AgreementType = {
