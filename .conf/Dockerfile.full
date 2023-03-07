@@ -47,8 +47,8 @@ COPY ./scripts/inject-dynamic-env.sh /docker-entrypoint.d/00-inject-dynamic-env.
 RUN chmod +x /docker-entrypoint.d/00-inject-dynamic-env.sh
 # Install bash for env variables inject script
 RUN apk update && apk add --no-cache bash
-# temp fix for CVE-2023-0286
-RUN apk upgrade --no-cache libssl3 libcrypto3
+# temp fix for CVE-2023-23916
+RUN apk upgrade --no-cache curl libcurl
 # Make nginx owner of /usr/share/nginx/html/ and change to nginx user
 RUN chown -R 101:101 /usr/share/nginx/html/
 USER 101
