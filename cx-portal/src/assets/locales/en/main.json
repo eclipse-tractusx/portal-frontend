@@ -911,7 +911,7 @@
         "consent": "Consent",
         "cxTestRuns": "CX Test Runs"
       },
-      "submitApp": {
+      "submit": {
         "headerTitle": "Thank you for submitting the app!",
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",

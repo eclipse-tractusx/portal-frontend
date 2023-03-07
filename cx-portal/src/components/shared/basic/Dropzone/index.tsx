@@ -29,11 +29,9 @@ import {
   DropPreview as DefaultDropPreview,
   UploadStatus,
 } from 'cx-portal-shared-components'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { download } from 'utils/downloadUtils'
 
 export type DropzoneFile = File & Partial<UploadFile>
 
@@ -55,6 +53,7 @@ export interface DropzoneProps {
   enableDeleteIcon?: boolean
   enableDeleteOverlay?: boolean
   deleteOverlayTranslation?: deleteConfirmOverlayTranslation
+  handleDownload?: () => void
 }
 
 export const Dropzone = ({
@@ -70,10 +69,9 @@ export const Dropzone = ({
   enableDeleteIcon = true,
   enableDeleteOverlay = false,
   deleteOverlayTranslation,
+  handleDownload,
 }: DropzoneProps) => {
   const { t } = useTranslation()
-
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   const [dropped, setDropped] = useState<DropzoneFile[]>([])
 
@@ -105,19 +103,6 @@ export const Dropzone = ({
     },
     [currentFiles, onChange]
   )
-
-  const handleDownload = async (documentName: string, documentId: string) => {
-    try {
-      const response = await getDocumentById(documentId).unwrap()
-
-      const fileType = response.headers.get('content-type')
-      const file = response.data
-
-      return download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-    }
-  }
 
   const {
     getRootProps,

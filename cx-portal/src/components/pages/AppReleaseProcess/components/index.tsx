@@ -68,13 +68,13 @@ export default function AppReleaseProcessForm() {
       stepsList={stepsList}
       numberOfSteps={6}
       pageHeaderTitle={t('content.apprelease.headerTitle')}
-      headerTitle={t('content.apprelease.submitApp.headerTitle')}
-      headerDescription={t('content.apprelease.submitApp.headerDescription')}
+      headerTitle={t('content.apprelease.submit.headerTitle')}
+      headerDescription={t('content.apprelease.submit.headerDescription')}
       headerDescriptionComplete={t(
-        'content.apprelease.submitApp.headerDescriptionComplete'
+        'content.apprelease.submit.headerDescriptionComplete'
       )}
-      yourCatenaXTeam={t('content.apprelease.submitApp.yourCatenaXTeam')}
-      myAppsOverview={t('content.apprelease.submitApp.myAppsOverview')}
+      yourCatenaXTeam={t('content.apprelease.submit.yourCatenaXTeam')}
+      myAppsOverview={t('content.apprelease.submit.overview')}
     />
   )
 }
