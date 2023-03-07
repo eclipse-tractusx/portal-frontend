@@ -21,7 +21,7 @@
 export type CardDetailsProps = {
   title: string
   description: string
-  imageUrl?: string
+  imagePath?: string
   backgroundColor: string
   readMore: string
   readMoreTitle: string
@@ -32,7 +32,7 @@ export type CardDetailsProps = {
 export type ProviderProps = {
   title: string
   description: string
-  imageUrl?: string
+  imagePath?: string
   videoUrl?: string
   backgroundColor: string
   id: string

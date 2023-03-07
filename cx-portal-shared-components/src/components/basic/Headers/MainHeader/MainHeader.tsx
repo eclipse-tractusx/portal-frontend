@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
+import { Image } from '../../Image'
 import { mainNavigationHeight } from '../../MainNavigation'
 import { MainHeaderTitle } from './Components/MainHeaderTitle'
 
@@ -134,10 +135,9 @@ export const MainHeader = ({
             overflow: 'hidden',
           }}
         >
-          <img
+          <Image
             src={imagePath}
             alt="home stage"
-            className="object-fit x-left-40"
             style={{
               bottom: 0,
               height: '100%',

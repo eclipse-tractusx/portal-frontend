@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { useState } from 'react'
+import { Image } from '../Image'
 import { Typography } from '../Typography'
 import ImageItemOverlay from './ImageItemOverlay'
 import { ImageType } from './types'
@@ -101,7 +102,7 @@ export const ImageItem = ({
           ...additionalStyles,
         }}
       >
-        <img
+        <Image
           src={url}
           alt={text}
           style={{
