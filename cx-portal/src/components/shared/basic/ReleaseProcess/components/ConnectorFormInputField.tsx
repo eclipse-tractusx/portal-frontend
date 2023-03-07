@@ -47,6 +47,7 @@ export const ConnectorFormInputField = ({
   maxFileSize,
   defaultValues,
   enableDeleteIcon,
+  handleDownload,
 }: any) => (
   <Controller
     name={name}
@@ -83,6 +84,7 @@ export const ConnectorFormInputField = ({
               trigger(name)
               onChange(file)
             }}
+            handleDownload={handleDownload}
             acceptFormat={acceptFormat}
             maxFilesToUpload={maxFilesToUpload}
             maxFileSize={maxFileSize}

@@ -36,6 +36,7 @@ import {
   useUpdateAgreementConsentsMutation,
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
+  useFetchNewDocumentByIdMutation
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
@@ -43,6 +44,7 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
+import { download } from 'utils/downloadUtils'
 
 type AgreementType = {
   agreementId: string
@@ -67,6 +69,7 @@ export default function ContractAndConsent() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   useEffect(() => {
     dispatch(setAppStatus(fetchAppStatus))
@@ -252,6 +255,19 @@ export default function ContractAndConsent() {
     dispatch(decrement())
   }
 
+  const handleDownload = async (documentName: string, documentId: string) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
+
   return (
     <div className="contract-consent">
       <ReleaseStepHeader
@@ -305,6 +321,7 @@ export default function ContractAndConsent() {
           requiredText={t(
             'content.apprelease.appReleaseForm.fileUploadIsMandatory'
           )}
+          handleDownload={handleDownload}
         />
       </form>
       <SnackbarNotificationWithButtons
