@@ -25,6 +25,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add short description to card
 * App Admin Board
    * Add Section for Conformity Document & display via api
+* Organization
+   * Active subscription image issue fix
 
 ## 1.0.0-RC10
 
