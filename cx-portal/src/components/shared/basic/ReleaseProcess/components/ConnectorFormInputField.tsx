@@ -25,6 +25,7 @@ import {
   Typography,
   MultiSelectList,
   Checkbox,
+  DropArea,
 } from 'cx-portal-shared-components'
 export const ConnectorFormInputField = ({
   control,
@@ -48,6 +49,7 @@ export const ConnectorFormInputField = ({
   defaultValues,
   enableDeleteIcon,
   handleDownload,
+  size,
 }: any) => (
   <Controller
     name={name}
@@ -89,6 +91,9 @@ export const ConnectorFormInputField = ({
             maxFilesToUpload={maxFilesToUpload}
             maxFileSize={maxFileSize}
             enableDeleteIcon={enableDeleteIcon}
+            DropArea={(props) => (
+              <DropArea {...props} size={size || 'normal'} />
+            )}
           />
         )
       } else if (type === 'checkbox') {

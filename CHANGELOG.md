@@ -25,6 +25,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add short description to card
 * AppReleaseProcess
    * Conformity Document Type - Add Dropzone & Document handling
+   * Changed PDF uploads from mandatory to optional and changed dropzone parameter size
 * App Admin Board
    * Add Section for Conformity Document & display via api
 * Organization
