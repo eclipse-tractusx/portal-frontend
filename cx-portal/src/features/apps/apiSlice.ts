@@ -145,7 +145,7 @@ export const apiSlice = createApi({
     }),
     fetchDocumentById: builder.mutation({
       query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
