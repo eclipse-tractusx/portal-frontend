@@ -18,42 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { ProviderProps } from '../StaticTypes'
-import TextCenterAligned from './TextCenterAligned'
+import { Typography } from 'cx-portal-shared-components'
+import { Grid } from '@mui/material'
 
-export default function TextImageCenterAligned({
-  provider,
-  baseUrl,
+export default function ReleaseStepHeader({
+  title,
+  description,
 }: {
-  provider: ProviderProps
-  baseUrl: string
+  title: string
+  description: string
 }) {
   return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <TextCenterAligned provider={provider} />
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-        additionalStyles={{
-          marginTop: '84px',
-          marginBottom: '84px',
-        }}
-      />
-    </Box>
+    <div>
+      <Typography variant="h3" mt={10} mb={4} align="center">
+        {title}
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
+          <Typography variant="body2" align="center">
+            {description}
+          </Typography>
+        </Grid>
+      </Grid>
+    </div>
   )
 }

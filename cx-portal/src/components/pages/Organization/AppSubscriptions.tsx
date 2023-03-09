@@ -18,9 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
 import { SubscriptionStatus, ImageType } from 'features/apps/apiSlice'
-import { LogoGrayData } from 'cx-portal-shared-components'
+import { Image, LogoGrayData } from 'cx-portal-shared-components'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function AppSubscriptions({
   name,
@@ -47,19 +47,17 @@ export default function AppSubscriptions({
 
   return (
     <div className="organization-subscriptions" onClick={onButtonClick}>
-      <Box sx={{ paddingRight: 2 }}>
-        <Box
-          component="img"
-          src={image?.src || LogoGrayData}
-          alt={image?.alt}
-          sx={{
-            objectFit: 'cover',
-            width: 30,
-            height: 30,
-            borderRadius: '50%',
-          }}
-        />
-      </Box>
+      <Image
+        src={image?.src || LogoGrayData}
+        style={{
+          objectFit: 'cover',
+          width: 30,
+          height: 30,
+          borderRadius: '50%',
+          marginRight: '5px',
+        }}
+        loader={fetchImageWithToken}
+      />
 
       <span>
         {name} - by {provider} -

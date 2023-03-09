@@ -43,6 +43,7 @@ import {
   increment,
 } from 'features/appManagement/slice'
 import {
+  DocumentData,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
   useSubmitappMutation,
@@ -52,6 +53,7 @@ import I18nService from 'services/I18nService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonService from 'services/CommonService'
+import ReleaseStepHeader from '../components/ReleaseStepHeader'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -129,6 +131,8 @@ export default function ValidateAndPublish({
     },
     dataSecurityInformation:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    conformityDocumentsDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     documentsDescription:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     providerTableData: {
@@ -182,17 +186,12 @@ export default function ValidateAndPublish({
 
   return (
     <div className="validate-and-publish">
-      <Typography variant="h3" mt={10} mb={4} align="center">
-        {t('content.apprelease.validateAndPublish.headerTitle')}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
-          <Typography variant="body2" align="center">
-            {t('content.apprelease.validateAndPublish.headerDescription')}
-          </Typography>
-        </Grid>
-      </Grid>
-
+      <ReleaseStepHeader
+        title={t('content.apprelease.validateAndPublish.headerTitle')}
+        description={t(
+          'content.apprelease.validateAndPublish.headerDescription'
+        )}
+      />
       <div className="header-description">
         <Grid container sx={{ mt: 0 }}>
           <Grid
@@ -298,6 +297,25 @@ export default function ValidateAndPublish({
           data={defaultValues.connectedTableData}
           horizontal={false}
         />
+
+        <Divider className="verify-validate-form-divider" />
+        <Typography variant="h4" sx={{ mb: 4 }}>
+          {t('content.apprelease.validateAndPublish.conformityDocument')}
+        </Typography>
+        <Typography variant="body2" className="form-field">
+          {defaultValues.conformityDocumentsDescription}
+        </Typography>
+        {statusData?.documents &&
+          statusData.documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
+            (item: DocumentData) => (
+              <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
+                <a href="/" style={{ display: 'flex' }}>
+                  <ArrowForwardIcon fontSize="small" />
+                  {item.documentName}
+                </a>
+              </InputLabel>
+            )
+          )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>

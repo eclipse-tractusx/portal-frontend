@@ -464,9 +464,9 @@
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
-            "label": "Public Authentication Key Upload*",
-            "error": "Please use a valid type. E.g. .pem; .cert",
-            "tooltipMsg": "Public key"
+            "label": "Öffentlicher Authentifizierungsschlüssel/Zertifikat*",
+            "error": "Please use a valid type. e.g. .pem; .cert",
+            "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           }
         },
         "create": {
@@ -481,9 +481,6 @@
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
-      },
-      "edcUpload": {
-        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
@@ -899,7 +896,8 @@
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "allAgreementsMandatory": "All agreements are mandatory"
+        "allAgreementsMandatory": "All agreements are mandatory",
+        "uploadImageConformity": "Conformity App Certificate"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -945,17 +943,18 @@
         "price": "Price :  ",
         "connectedData": "Connected Data",
         "dataSecurityInformation": "Data Security Information",
+        "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
         "consent": "Consent",
         "cxTestRuns": "CX Test Runs"
       },
-      "submitApp": {
+      "submit": {
         "headerTitle": "App erfolgreich eingereicht!",
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Dein Catena-X team",
-        "myAppsOverview": "My apps overview"
+        "overview": "My apps overview"
       },
       "appReleaseForm": {
         "headerTitle": "Create App",
@@ -1156,19 +1155,19 @@
         "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
         "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
         "TO_DO": {
-          "title": "Your action is needed to resolve the issue",
-          "description": ""
+          "title": "Ihre Aktion ist erforderlich, um den Prozess zu starten.",
+          "description": "Validiere die Firmenregistrierungsdaten, sowie die hochgeladenen Dokument und bestätigen sie die Registrierung oder lehnen sie diese ab. Nur durch die Bestätigung werden weitere Prozesschritte ausgeführt."
         },
         "IN_PROGRESS": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is ongoing."
         },
         "DONE": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is successfully completed."
         },
         "FAILED": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The registration company got informed about the declined registration form. A new application is needed if you want to proceed."
         }
       },
@@ -1177,15 +1176,15 @@
         "stepDescription": "Each registration company need to have a business partner number created. In this step the creation of the bpdm is triggered against the bpdm data pool.",
         "additionalText": "",
         "TO_DO": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process gets auto triggered with the next automation run."
         },
         "IN_PROGRESS": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is ongoing."
         },
         "DONE": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is successfully completed."
         },
         "FAILED": {
@@ -1198,20 +1197,20 @@
         "stepDescription": "With successful business partner number creation as well as the manual validation of the company registration data; the managed identity wallet is getting generated for the participant.",
         "additionalText": "",
         "TO_DO": {
-          "title": "No action needed from your side",
-          "description": "The process gets auto triggered with the next automation run."
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
+          "description": "Der Prozess wird beim nächsten Automatisierungslauf automatisch ausgelöst."
         },
         "IN_PROGRESS": {
-          "title": "No action needed from your side",
-          "description": "The process is ongoing."
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
+          "description": "Der Prozess läuft/in Bearbeitung. Sobald das Wallet erstellt ist, wird der Status automatisch aktualisiert."
         },
         "DONE": {
-          "title": "No action needed from your side",
-          "description": "The process is successfully completed."
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
+          "description": "Der Vorgang ist erfolgreich abgeschlossen. Das Managed Identity Wallet wurde erstellt."
         },
         "FAILED": {
-          "title": "Your action is needed.",
-          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+          "title": "Ihre Aktion ist erforderlich, um fortzufahren",
+          "description": "Die Identity-Wallet-Erstellung ist fehlgeschlagen. Sie können den Job erneut auslösen oder die Firmenregistrierung schließen/ablehnen."
         }
       },
       "CLEARING_HOUSE": {
@@ -1219,19 +1218,19 @@
         "stepDescription": "Gaia-X Clearinghouse provider is validating the company registration form (company name; address and unique identifier) and after successful validation verified credentials are added to the managed wallet of the customer.",
         "additionalText": "",
         "TO_DO": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process gets auto triggered with the next automation run."
         },
         "IN_PROGRESS": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is ongoing."
         },
         "DONE": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is successfully completed."
         },
         "FAILED": {
-          "title": "Your action is needed.",
+          "title": "Ihre Aktion ist erforderlich, um fortzufahren.",
           "description": "The clearinghouse check was unsuccessful. Details to the unsuccessful validation can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       },
@@ -1240,19 +1239,19 @@
         "stepDescription": "Legal person / company Self Description is created by the SD Factory and signed and send back by the clearinghouse. The process might take a while since its an asyncron interface.",
         "additionalText": "",
         "TO_DO": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process gets auto triggered with the next automation run."
         },
         "IN_PROGRESS": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is ongoing."
         },
         "DONE": {
-          "title": "No action needed from your side",
+          "title": "Es sind keine Schritte Ihrerseits erforderlich.",
           "description": "The process is successfully completed."
         },
         "FAILED": {
-          "title": "Your action is needed.",
+          "title": "Ihre Aktion ist erforderlich, um fortzufahren.",
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       }
