@@ -27,7 +27,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * implemented service release form (initial)
 
 ### Technical Support
-* "allProps" replaced by intelligent image load handling
+* added a new smart image component to handle all kinds of images, display placeholder while loading and error image on failure
 * created new component to reduce code duplications between app release process & service release process intro pages
 
 ### Bugfix
