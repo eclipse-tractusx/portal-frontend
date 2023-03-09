@@ -80,7 +80,6 @@ export const Image = ({ src, alt, style, loader }: ImageProps) => {
         }
       }}
       style={{
-        backgroundColor: error ? '#ffddcc' : '#eeeeee',
         objectFit: 'cover',
         ...style,
       }}
