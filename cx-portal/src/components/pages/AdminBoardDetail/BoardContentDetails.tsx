@@ -63,12 +63,12 @@ export default function AppDetailContentDetails({
         <BoardDocuments
           type="conformityDocument"
           appId={item.id}
-          documents={item.documents['CONFORMITY_APPROVAL_BUSINESS_APPS']}
+          documents={item.documents}
         />
         <BoardDocuments
           type="documents"
           appId={item.id}
-          documents={item.documents['APP_CONTRACT']}
+          documents={item.documents}
         />
         <BoardProvider item={item} />
         <Button

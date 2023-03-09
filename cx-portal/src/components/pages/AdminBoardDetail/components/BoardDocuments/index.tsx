@@ -34,7 +34,7 @@ export default function BoardDocuments({
 }: {
   type: string
   appId: string
-  documents: DocumentData[]
+  documents: any
 }) {
   const { t } = useTranslation()
 
@@ -57,6 +57,14 @@ export default function BoardDocuments({
     }
   }
 
+  if (documents && documents.length > 0) {
+    return (
+      <Typography variant="caption2" className="not-available">
+        {t('global.errors.noDocumentsAvailable')}
+      </Typography>
+    )
+  }
+
   return (
     <div className="adminboard-documents">
       <Typography variant="h4">
@@ -66,27 +74,42 @@ export default function BoardDocuments({
         {t(`content.adminboardDetail.${type}.message`)}
       </Typography>
       <ul>
-        {documents && documents.length > 0 ? (
-          documents.map((document: DocumentData) => (
-            <li key={document.documentId}>
-              <button
-                className="document-button-link"
-                onClick={() =>
-                  handleDownloadClick(
-                    document.documentId,
-                    document.documentName
-                  )
-                }
-              >
-                {document.documentName}
-              </button>
-            </li>
-          ))
-        ) : (
-          <Typography variant="caption2" className="not-available">
-            {t('global.errors.noDocumentsAvailable')}
-          </Typography>
-        )}
+        {type === 'conformityDocument'
+          ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
+              (document: DocumentData) => (
+                <li key={document.documentId}>
+                  <button
+                    className="document-button-link"
+                    onClick={() =>
+                      handleDownloadClick(
+                        document.documentId,
+                        document.documentName
+                      )
+                    }
+                  >
+                    {document.documentName}
+                  </button>
+                </li>
+              )
+            )
+          : Object.keys(documents).map(
+              (document) =>
+                document !== 'CONFORMITY_APPROVAL_BUSINESS_APPS' && (
+                  <li key={document}>
+                    <button
+                      className="document-button-link"
+                      onClick={() =>
+                        handleDownloadClick(
+                          documents[document][0].documentId,
+                          documents[document][0].documentName
+                        )
+                      }
+                    >
+                      {documents[document][0].documentName}
+                    </button>
+                  </li>
+                )
+            )}
       </ul>
     </div>
   )

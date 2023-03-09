@@ -29,6 +29,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add Section for Conformity Document & display via api
 * Organization
    * Active subscription image issue fix
+* AdminBoardDetail
+   * Approval Board - missing documents
 
 ## 1.0.0-RC10
 
