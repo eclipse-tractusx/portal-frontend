@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { useState } from 'react'
+import { Image } from '../Image'
 import { Typography } from '../Typography'
 import ImageItemOverlay from './ImageItemOverlay'
 import { ImageType } from './types'
@@ -30,14 +31,17 @@ export const ImageItem = ({
   hover = true,
   borderRadius = true,
   shadow = true,
+  width,
+  height,
   modalWidth,
+  additionalStyles = {},
 }: ImageType) => {
   const [hovered, setHovered] = useState(false)
   const getWidth = () => {
     switch (size) {
       case 'small-rectangle':
         return {
-          width: '320px',
+          width: '284px',
           height: '160px',
         }
       case 'small-square':
@@ -47,7 +51,7 @@ export const ImageItem = ({
         }
       case 'medium-rectangle':
         return {
-          width: '512px',
+          width: '456px',
           height: '256px',
         }
       case 'medium-square':
@@ -57,8 +61,13 @@ export const ImageItem = ({
         }
       case 'large-rectangle':
         return {
-          width: '712px',
+          width: '625px',
           height: '352px',
+        }
+      case 'custom':
+        return {
+          width: width,
+          height: height,
         }
       default:
         return {
@@ -90,9 +99,10 @@ export const ImageItem = ({
           borderRadius: borderRadius ? '16px' : '0px',
           marginBottom: '20px',
           cursor: 'zoom-in',
+          ...additionalStyles,
         }}
       >
-        <img
+        <Image
           src={url}
           alt={text}
           style={{

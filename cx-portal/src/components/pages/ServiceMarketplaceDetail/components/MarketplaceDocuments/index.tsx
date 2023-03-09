@@ -20,10 +20,39 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
+import { download } from 'utils/downloadUtils'
 import './MarketplaceDocuments.scss'
+import {
+  DocumentData,
+  ServiceRequest,
+  useFetchDocumentByIdMutation,
+} from 'features/serviceMarketplace/serviceApiSlice'
 
-export default function MarketplaceDocuments() {
+export default function MarketplaceDocuments({
+  item,
+}: {
+  item: ServiceRequest
+}) {
   const { t } = useTranslation()
+
+  const [getDocumentById] = useFetchDocumentByIdMutation()
+
+  const handleDownloadClick = async (
+    documentId: string,
+    documentName: string
+  ) => {
+    try {
+      const response = await getDocumentById({
+        appId: item.id,
+        documentId,
+      }).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
 
   return (
     <div className="document-main">
@@ -36,18 +65,27 @@ export default function MarketplaceDocuments() {
         </Typography>
       </div>
       <ul>
-        <li>
-          <button className="document-button-link">Document 1</button>
-        </li>
-        <li>
-          <button className="document-button-link">Document 2</button>
-        </li>
-        <li>
-          <button className="document-button-link">Document 3</button>
-        </li>
-        <li>
-          <button className="document-button-link">Document 4</button>
-        </li>
+        {item.documents && item.documents['ADDITIONAL_DETAILS'] ? (
+          item.documents['ADDITIONAL_DETAILS'].map((document: DocumentData) => (
+            <li key={document.documentId}>
+              <button
+                className="document-button-link"
+                onClick={() =>
+                  handleDownloadClick(
+                    document.documentId,
+                    document.documentName
+                  )
+                }
+              >
+                {document.documentName}
+              </button>
+            </li>
+          ))
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
       </ul>
     </div>
   )

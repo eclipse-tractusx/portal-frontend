@@ -20,7 +20,7 @@
 # Depending on the location of your Docker container
 # you need to change the path to the specific Docker registry.
 #
-name: "Trivy"
+name: "Trivy Stable"
 
 on:
   push:
@@ -39,7 +39,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: catenax-ng/tx-portal-frontend
 
 jobs:
   analyze-config:

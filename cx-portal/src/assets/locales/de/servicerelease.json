@@ -1,0 +1,100 @@
+{
+  "headerTitle": "Service Release Process",
+  "descHeading": "Publish your company services inside the Catena-X marketplace",
+  "descMessage": "Register your service and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the service release process.",
+  "startCreatingButton": "Start to register your service offering",
+  "registerButton": "Register your service",
+  "overviewButton": "Service Übersicht",
+  "stepHeading": "The process will guide your through the following steps:",
+  "dividerText": "Lets get started to publishing your service...",
+  "marketplaceHeading": "App Marketplace upcomming submission requirements",
+  "requiredButton": "New",
+  "requiredtitle": "Requirement Lorem ipsum",
+  "requiredExplaination": "Expalanation of the requirement",
+  "stepper": {
+    "marketCard": "Offer Card",
+    "servicePage": "Offer Page Details",
+    "contractAndConsent": "Contract & Consent",
+    "validateAndPublish": "Verify & Submit"
+  },
+  "step1": {
+    "headerTitle": "Create Service",
+    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer. While entering the data below, have a look at the service card on the left side which is getting autoupdated based on your input.",
+    "defaultCardServiceImageAlt": "Part Chain",
+    "defaultCardServiceProvider": "Catena-X",
+    "defaultCardServiceTitle": "This is the service title",
+    "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
+    "serviceName": "Service Name",
+    "serviceType": "Service Type",
+    "serviceProvider": "Service Type",
+    "shortDescriptionEN": "Short Description (en)",
+    "shortDescriptionDE": "Short Description (de)",
+    "serviceLeadImageUpload": "Service Card Image"
+  },
+  "step2": {
+    "headerTitle": "Service Details",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "longDescriptionEN": "Long Description (en)",
+    "longDescriptionDE": "Long Description (de)",
+    "doc": "Supporting Material",
+    "note": "Note:",
+    "providerDetails": "Provider Details",
+    "providerHomePage": "Provider Homepage",
+    "providerContactEmail": "Customer Contact E-Mail",
+    "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
+    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
+  },
+  "step3": {
+    "headerTitle": "Conformity and Consent",
+    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "allAgreementsMandatory": "All agreements are mandatory",
+    "uploadImageConformity": "CAB"
+  },
+  "step4": {
+    "headerTitle": "Validate & Publish",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "appDetails": "Service Details",
+    "connectedData": "Connected Data",
+    "documents": "Documents",
+    "providerInformation": "Provider Information",
+    "consent": "Consent"
+  },
+  "serviceReleaseForm": {
+    "headerTitle": "Create Service",
+    "addMore": "Add More",
+    "noItemsSelected": "No Items Selected",
+    "note": "Note:",
+    "OnlyOneFileAllowed": "Only one file for upload allowed",
+    "max3Images": "Max. 3 Images are supported",
+    "max1Images": "Only one Image is supported",
+    "minimum": "Minimum",
+    "charactersRequired": " characters required",
+    "maximum": "Maximum",
+    "charactersAllowed": " characters allowed",
+    "validCharactersIncludes": "Valid characters includes: ",
+    "isMandatory": " is mandatory",
+    "fileUploadIsMandatory": "File upload is mandatory",
+    "error": {
+      "title": "Error - something went wrong.",
+      "message": "Please try it again"
+    },
+    "dataSavedSuccessMessage": "Data saved successfully",
+    "roleDeleteSuccessMessage": "Role deleted successfully",
+    "rolesDeleteSuccessMessage": "Roles deleted successfully",
+    "errormessage": "Error! Something went wrong"
+  },
+  "footerButtons": {
+    "help": "Help",
+    "saveAndProceed": "Save & proceed",
+    "save": "Save",
+    "submit": "Submit",
+    "proceed": "Proceed"
+  },
+  "submit": {
+    "headerTitle": "Service erfolgreich eingereicht!",
+    "headerDescription": "After a review by a Catena-X administrator, you will receive",
+    "headerDescriptionComplete": "further information on service release",
+    "yourCatenaXTeam": "Dein Catena-X team",
+    "overview": "My services overview"
+  }
+}

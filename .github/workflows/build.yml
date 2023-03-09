@@ -24,7 +24,6 @@ on:
   push:
     branches:
       - 'dev'
-      - 'main'
 
 env:
   REGISTRY: ghcr.io
@@ -76,7 +75,7 @@ jobs:
           file: .conf/Dockerfile.prebuilt
           push: true
           # build tag :dev with commit-sha and latest
-          tags: ${{ steps.meta.outputs.tags }}_${{ env.COMMIT_SHA }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.COMMIT_SHA }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev
           labels: ${{ steps.meta.outputs.labels }}
 
   auth-and-dispatch:
@@ -91,7 +90,6 @@ jobs:
           application_id: ${{ secrets.ORG_PORTAL_DISPATCH_APPID }}
           application_private_key: ${{ secrets.ORG_PORTAL_DISPATCH_KEY }}
 
-      # The triggered workflow isn't enabled for branch names / github.ref_name containing special characters like '/' for example 'feature/...'
       - name: Trigger workflow
         id: call_action
         env:
@@ -102,5 +100,5 @@ jobs:
             --url https://api.github.com/repos/catenax-ng/tx-portal-cd/actions/workflows/portal-image-update.yml/dispatches \
             --header "authorization: Bearer $TOKEN" \
             --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"helm-environments", "inputs": { "new-image":"${{ github.ref_name }}_${{ env.COMMIT_SHA }}" }}' \
+            --data '{"ref":"helm-environments", "inputs": { "new-image":"${{ env.COMMIT_SHA }}" }}' \
             --fail

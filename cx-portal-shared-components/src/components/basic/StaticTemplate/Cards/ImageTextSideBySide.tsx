@@ -19,13 +19,16 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
+import { ImageItem } from '../../ImageGallery/ImageItem'
 import { Typography } from '../../Typography'
 import { ProviderProps } from '../StaticTypes'
 
 export default function ImageTextSideBySide({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
     <Box
@@ -37,7 +40,17 @@ export default function ImageTextSideBySide({
         padding: '90px 0px',
       }}
     >
-      <img src={provider.imageUrl} width="482" alt={'alt tag info'} />
+      <ImageItem
+        url={baseUrl + provider.imagePath || ''}
+        text={''}
+        size="custom"
+        height="472px"
+        width="100%"
+        hover={true}
+        borderRadius={true}
+        shadow={false}
+        modalWidth="1100"
+      />
       <Box
         sx={{
           padding: '20px',

@@ -164,6 +164,7 @@ export const apiSlice = createApi({
         url: `/api/administration/registration/applications/${applicationId}/approve`,
         method: 'POST',
       }),
+      invalidatesTags: ['checklist'],
     }),
     declineChecklist: builder.mutation<boolean, DeclineRequestType>({
       query: (obj) => ({
@@ -171,6 +172,7 @@ export const apiSlice = createApi({
         method: 'POST',
         body: { comment: obj.comment },
       }),
+      invalidatesTags: ['checklist'],
     }),
     fetchCompanySearch: builder.query<
       PaginResult<ApplicationRequest>,
@@ -211,7 +213,7 @@ export const apiSlice = createApi({
     }),
     fetchDocumentById: builder.mutation({
       query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

@@ -24,6 +24,7 @@ import { StageSubNavigation } from 'components/shared/templates/StageSubNavigati
 import { StaticTemplate } from 'cx-portal-shared-components'
 import { useEffect, useState } from 'react'
 import CommonService from 'services/CommonService'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function UseCase() {
   const [useCase, setUseCase] = useState<any>()
@@ -66,7 +67,10 @@ export default function UseCase() {
             description={useCase.traceability.description}
           />
           <StageSubNavigation linkArray={linkArray} />
-          <StaticTemplate sectionInfo={useCase.traceability.sections} />
+          <StaticTemplate
+            sectionInfo={useCase.traceability.sections}
+            baseUrl={getAssetBase()}
+          />
         </>
       )}
     </main>

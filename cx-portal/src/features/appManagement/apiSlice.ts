@@ -232,7 +232,7 @@ export const apiSlice = createApi({
     }),
     fetchDocumentById: builder.mutation({
       query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -261,6 +261,15 @@ export const apiSlice = createApi({
         method: 'DELETE',
       }),
     }),
+    fetchNewDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -282,4 +291,5 @@ export const {
   useUpdateRoleDataMutation,
   useDeleteRolesMutation,
   useDeleteDocumentMutation,
+  useFetchNewDocumentByIdMutation,
 } = apiSlice

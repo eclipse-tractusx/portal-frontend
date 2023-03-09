@@ -20,7 +20,14 @@
 
 .document-main {
   margin-bottom: 50px;
+
+  .not-available {
+    display: block;
+    width: 70%;
+    text-align: center;
+  }
 }
+
 .document-button-link {
   background-color: transparent;
   border: none;
