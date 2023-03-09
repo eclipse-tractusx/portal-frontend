@@ -17,6 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Feature
 * App Conformity Document handling enabled
   * enhanced app release process with conformity upload section
+  * enhance app release process "verify data" with conformity document view and download option
   * app admin board - app detail page enhanced by adding conformity document view and download
 * SharedUIComponents
   * image gallery - added grid layout & parameter to display images in 16:9 ratio
