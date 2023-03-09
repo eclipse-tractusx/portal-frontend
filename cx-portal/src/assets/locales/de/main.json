@@ -946,6 +946,7 @@
         "price": "Price :  ",
         "connectedData": "Connected Data",
         "dataSecurityInformation": "Data Security Information",
+        "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
         "consent": "Consent",
