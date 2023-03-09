@@ -25,12 +25,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add short description to card
 * AppReleaseProcess
    * Conformity Document Type - Add Dropzone & Document handling
+   * Add Section for Conformity Document & display via api
 * App Admin Board
    * Add Section for Conformity Document & display via api
 * Organization
    * Active subscription image issue fix
 * AdminBoardDetail
    * Approval Board - missing documents
+* DropZone
+   * Custom error message can be shown on invalid file type
 
 ## 1.0.0-RC10
 

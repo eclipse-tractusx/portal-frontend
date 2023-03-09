@@ -54,6 +54,7 @@ export interface DropzoneProps {
   enableDeleteOverlay?: boolean
   deleteOverlayTranslation?: deleteConfirmOverlayTranslation
   handleDownload?: () => void
+  errorText?: string
 }
 
 export const Dropzone = ({
@@ -70,6 +71,7 @@ export const Dropzone = ({
   enableDeleteOverlay = false,
   deleteOverlayTranslation,
   handleDownload,
+  errorText,
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
@@ -135,7 +137,9 @@ export const Dropzone = ({
 
   // TODO: read react-dropzone errorCode instead of message and localize
   const errorMessage =
-    !isDragActive && fileRejections?.[0]?.errors?.[0]?.message
+    !isDragActive && fileRejections?.[0]?.errors?.[0] && errorText
+      ? errorText
+      : fileRejections?.[0]?.errors?.[0]?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     id: file.id,

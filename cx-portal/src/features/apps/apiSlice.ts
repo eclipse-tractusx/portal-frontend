@@ -72,6 +72,12 @@ export type SubscriptionStatusItem = {
   offerSubscriptionStatus: SubscriptionStatus
 }
 
+export enum DocumentTypeText {
+  CONFORMITY_DOCUMENT = 'ConformityDocument',
+  DOCUMENTS = 'Documents',
+  CONFORMITY_APPROVAL_BUSINESS_APPS = 'CONFORMITY_APPROVAL_BUSINESS_APPS',
+}
+
 export type DocumentData = {
   documentId: string
   documentName: string
@@ -91,7 +97,9 @@ export type AppDetails = AppMarketplaceApp & {
 }
 
 export type Documents = {
+  ADDITIONAL_DETAILS: Array<DocumentData>
   APP_CONTRACT: Array<DocumentData>
+  APP_TECHNICAL_INFORMATION: Array<DocumentData>
   CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
 }
 
@@ -145,7 +153,7 @@ export const apiSlice = createApi({
     }),
     fetchDocumentById: builder.mutation({
       query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appImages/${data.documentId}`,
+        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

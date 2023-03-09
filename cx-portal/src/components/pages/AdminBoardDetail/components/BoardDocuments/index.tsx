@@ -22,7 +22,9 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import './BoardDocuments.scss'
 import {
+  Documents,
   DocumentData,
+  DocumentTypeText,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
@@ -34,15 +36,15 @@ export default function BoardDocuments({
 }: {
   type: string
   appId: string
-  documents: any
+  documents: Documents
 }) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
   const checkDocumentExist =
-    type === 'conformityDocument'
-      ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS']?.length
+    type === DocumentTypeText.CONFORMITY_DOCUMENT
+      ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS]?.length
       : Object.keys(documents)?.length
 
   const handleDownloadClick = async (
@@ -63,8 +65,8 @@ export default function BoardDocuments({
   }
 
   const renderDocuments = () => {
-    return type === 'conformityDocument'
-      ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
+    return type === DocumentTypeText.CONFORMITY_DOCUMENT
+      ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS].map(
           (document: DocumentData) => (
             <li key={document.documentId}>
               <button
@@ -83,18 +85,18 @@ export default function BoardDocuments({
         )
       : Object.keys(documents).map(
           (document) =>
-            document !== 'CONFORMITY_APPROVAL_BUSINESS_APPS' && (
+            document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
               <li key={document}>
                 <button
                   className="document-button-link"
                   onClick={() =>
                     handleDownloadClick(
-                      documents[document][0].documentId,
-                      documents[document][0].documentName
+                      documents[document as keyof Documents][0].documentId,
+                      documents[document as keyof Documents][0].documentName
                     )
                   }
                 >
-                  {documents[document][0].documentName}
+                  {documents[document as keyof Documents][0].documentName}
                 </button>
               </li>
             )
