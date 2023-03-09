@@ -3,9 +3,6 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-* Static Templates
-   * Show image on modal for a wider view
-
 
 ## 1.1.0
 
@@ -14,6 +11,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * documents displayed on service detail page connected to backend call (view and download documents)
    * updated styling of multiple subscription display section
    * service marketplace service card enhanced by short description
+* SharedUIComponents
+  * modal image behavior for different devices updated
 
 ### Feature
 * App Conformity Document handling enabled
@@ -28,6 +27,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Technical Support
 * added a new smart image component to handle all kinds of images, display placeholder while loading and error image on failure
+* fix(cve-2023-23916): add package upgrade as temp fix
+* chore (gh-org-checks): rename file for stable trivy scan
+* chore enable multi branch: add latest tag to released images
 * created new component to reduce code duplications between app release process & service release process intro pages
 
 ### Bugfix
