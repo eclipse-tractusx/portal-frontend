@@ -40,6 +40,8 @@ export default function BoardDocuments({
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
+  const checkDocumentExist = type === 'conformityDocument' ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS']?.length : Object.keys(documents)?.length
+
   const handleDownloadClick = async (
     documentId: string,
     documentName: string
@@ -57,11 +59,44 @@ export default function BoardDocuments({
     }
   }
 
-  if (documents && documents.length > 0) {
+  const renderDocuments = () => {
     return (
-      <Typography variant="caption2" className="not-available">
-        {t('global.errors.noDocumentsAvailable')}
-      </Typography>
+      type === 'conformityDocument'
+        ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
+          (document: DocumentData) => (
+            <li key={document.documentId}>
+              <button
+                className="document-button-link"
+                onClick={() =>
+                  handleDownloadClick(
+                    document.documentId,
+                    document.documentName
+                  )
+                }
+              >
+                {document.documentName}
+              </button>
+            </li>
+          )
+        )
+        : Object.keys(documents).map(
+          (document) =>
+            document !== 'CONFORMITY_APPROVAL_BUSINESS_APPS' && (
+              <li key={document}>
+                <button
+                  className="document-button-link"
+                  onClick={() =>
+                    handleDownloadClick(
+                      documents[document][0].documentId,
+                      documents[document][0].documentName
+                    )
+                  }
+                >
+                  {documents[document][0].documentName}
+                </button>
+              </li>
+            )
+        )
     )
   }
 
@@ -74,42 +109,14 @@ export default function BoardDocuments({
         {t(`content.adminboardDetail.${type}.message`)}
       </Typography>
       <ul>
-        {type === 'conformityDocument'
-          ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
-              (document: DocumentData) => (
-                <li key={document.documentId}>
-                  <button
-                    className="document-button-link"
-                    onClick={() =>
-                      handleDownloadClick(
-                        document.documentId,
-                        document.documentName
-                      )
-                    }
-                  >
-                    {document.documentName}
-                  </button>
-                </li>
-              )
-            )
-          : Object.keys(documents).map(
-              (document) =>
-                document !== 'CONFORMITY_APPROVAL_BUSINESS_APPS' && (
-                  <li key={document}>
-                    <button
-                      className="document-button-link"
-                      onClick={() =>
-                        handleDownloadClick(
-                          documents[document][0].documentId,
-                          documents[document][0].documentName
-                        )
-                      }
-                    >
-                      {documents[document][0].documentName}
-                    </button>
-                  </li>
-                )
-            )}
+        {
+          checkDocumentExist ?
+            renderDocuments()
+            :
+            <Typography variant="caption2" className="not-available">
+              {t('global.errors.noDocumentsAvailable')}
+            </Typography>
+        }
       </ul>
     </div>
   )
