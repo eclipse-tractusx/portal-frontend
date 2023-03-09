@@ -120,10 +120,7 @@ export default function ValidateAndPublish({
     }
   }
 
-  const handleDownloadFn = async (
-    documentId: string,
-    documentName: string
-  ) => {
+  const handleDownloadFn = async (documentId: string, documentName: string) => {
     try {
       const response = await fetchDocumentById({
         appId: appId,
@@ -328,12 +325,9 @@ export default function ValidateAndPublish({
         {statusData?.documents &&
           statusData.documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
             (item: DocumentData) => (
-              <InputLabel
-                sx={{ mb: 0, mt: 3 }}
-                key={item.documentId}
-              >
+              <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
                 <button
-                  style={{ 
+                  style={{
                     display: 'flex',
                     background: 'transparent',
                     border: 'none',
@@ -343,10 +337,7 @@ export default function ValidateAndPublish({
                     lineHeight: '20px',
                   }}
                   onClick={() =>
-                    handleDownloadFn(
-                      item.documentId,
-                      item.documentName
-                    )
+                    handleDownloadFn(item.documentId, item.documentName)
                   }
                 >
                   <ArrowForwardIcon fontSize="small" />
