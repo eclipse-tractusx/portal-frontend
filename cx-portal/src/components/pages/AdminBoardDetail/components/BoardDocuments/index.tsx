@@ -40,7 +40,10 @@ export default function BoardDocuments({
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
 
-  const checkDocumentExist = type === 'conformityDocument' ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS']?.length : Object.keys(documents)?.length
+  const checkDocumentExist =
+    type === 'conformityDocument'
+      ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS']?.length
+      : Object.keys(documents)?.length
 
   const handleDownloadClick = async (
     documentId: string,
@@ -60,9 +63,8 @@ export default function BoardDocuments({
   }
 
   const renderDocuments = () => {
-    return (
-      type === 'conformityDocument'
-        ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
+    return type === 'conformityDocument'
+      ? documents['CONFORMITY_APPROVAL_BUSINESS_APPS'].map(
           (document: DocumentData) => (
             <li key={document.documentId}>
               <button
@@ -79,7 +81,7 @@ export default function BoardDocuments({
             </li>
           )
         )
-        : Object.keys(documents).map(
+      : Object.keys(documents).map(
           (document) =>
             document !== 'CONFORMITY_APPROVAL_BUSINESS_APPS' && (
               <li key={document}>
@@ -97,7 +99,6 @@ export default function BoardDocuments({
               </li>
             )
         )
-    )
   }
 
   return (
@@ -109,14 +110,13 @@ export default function BoardDocuments({
         {t(`content.adminboardDetail.${type}.message`)}
       </Typography>
       <ul>
-        {
-          checkDocumentExist ?
-            renderDocuments()
-            :
-            <Typography variant="caption2" className="not-available">
-              {t('global.errors.noDocumentsAvailable')}
-            </Typography>
-        }
+        {checkDocumentExist ? (
+          renderDocuments()
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
       </ul>
     </div>
   )
