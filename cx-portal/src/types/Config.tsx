@@ -423,7 +423,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ROLE_DETAILS,
-    element: <RoleDetails />
+    element: <RoleDetails />,
   },
 ]
 

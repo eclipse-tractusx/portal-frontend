@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
   AppRole,
@@ -81,7 +81,7 @@ export const UserRoles = () => {
           rel="noreferrer"
           style={{ display: 'flex', fontSize: '14px', textDecoration: 'none' }}
         >
-          <ChevronRightIcon sx={{ fontSize: '20px' }}/>
+          <ChevronRightIcon sx={{ fontSize: '20px' }} />
           {t('content.addUser.roleDesc')}
         </a>
       </div>

@@ -21,42 +21,38 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
-import {
-    Typography,
-    Tabs,
-    Tab,
-} from 'cx-portal-shared-components'
+import { Typography, Tabs, Tab } from 'cx-portal-shared-components'
 import './RoleDetails.scss'
 
 export default function RoleDetails() {
-    const { t } = useTranslation('', { keyPrefix: 'content.roleDetails' })
+  const { t } = useTranslation('', { keyPrefix: 'content.roleDetails' })
 
-    const [activeTab, setActiveTab] = useState<number>(0)
+  const [activeTab, setActiveTab] = useState<number>(0)
 
-    const handleChange = (event: any, newValue: number) => {
-        // setHeight(
-        //   modalElement && modalElement.current
-        //     ? `${modalElement?.current?.clientHeight}px`
-        //     : '400px'
-        // )
-        setActiveTab(newValue)
-      }
+  const handleChange = (event: any, newValue: number) => {
+    // setHeight(
+    //   modalElement && modalElement.current
+    //     ? `${modalElement?.current?.clientHeight}px`
+    //     : '400px'
+    // )
+    setActiveTab(newValue)
+  }
 
-    return (
-        <div className="role-details">
-            <div className="role-details-main">
-                <Box sx={{ marginTop: '20px' }} className="overview-section">
-                    <section>
-                        <div className="heading">
-                            <Typography
-                                sx={{ fontFamily: 'LibreFranklin-Light' }}
-                                variant="h3"
-                                className="section-title"
-                            >
-                                {t('heading')}
-                            </Typography>
-                        </div>
-                        <Tabs value={activeTab} onChange={handleChange}>
+  return (
+    <div className="role-details">
+      <div className="role-details-main">
+        <Box sx={{ marginTop: '20px' }} className="overview-section">
+          <section>
+            <div className="heading">
+              <Typography
+                sx={{ fontFamily: 'LibreFranklin-Light' }}
+                variant="h3"
+                className="section-title"
+              >
+                {t('heading')}
+              </Typography>
+            </div>
+            <Tabs value={activeTab} onChange={handleChange}>
               <Tab
                 sx={{
                   fontSize: '18px',
@@ -80,9 +76,9 @@ export default function RoleDetails() {
                 aria-controls={`simple-tabpanel-${activeTab}`}
               />
             </Tabs>
-                    </section>
-                </Box>
-            </div>
-        </div>
-    )
+          </section>
+        </Box>
+      </div>
+    </div>
+  )
 }
