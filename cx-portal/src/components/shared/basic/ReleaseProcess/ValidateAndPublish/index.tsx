@@ -55,6 +55,7 @@ import { setAppStatus } from 'features/appManagement/actions'
 import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
+import { download } from 'utils/downloadUtils'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -117,6 +118,22 @@ export default function ValidateAndPublish({
       }
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
+
+  const handleDownloadFn = async (documentId: string, documentName: string) => {
+    try {
+      const response = await fetchDocumentById({
+        appId: appId,
+        documentId,
+      }).unwrap()
+
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
   }
 
@@ -311,10 +328,23 @@ export default function ValidateAndPublish({
             DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
           ].map((item: DocumentData) => (
             <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
-              <a href="/" style={{ display: 'flex' }}>
+              <button
+                style={{
+                  display: 'flex',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#0f71cb',
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                }}
+                onClick={() =>
+                  handleDownloadFn(item.documentId, item.documentName)
+                }
+              >
                 <ArrowForwardIcon fontSize="small" />
                 {item.documentName}
-              </a>
+              </button>
             </InputLabel>
           ))}
 

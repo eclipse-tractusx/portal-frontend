@@ -28,6 +28,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add Section for Conformity Document & display via api
 * App Admin Board
    * Add Section for Conformity Document & display via api
+* AppOverview
+   * Page Load handling
 * Organization
    * Active subscription image issue fix
 * AdminBoardDetail
