@@ -31,7 +31,11 @@ import {
   PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
-import { appCardStatus, appCardRecentlyApps } from 'features/apps/mapper'
+import {
+  appCardStatus,
+  appCardRecentlyApps,
+  appToCard,
+} from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
@@ -40,7 +44,6 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import { useLocation } from 'react-router-dom'
 import './AppOverview.scss'
-import CommonService from 'services/CommonService'
 import { AppOverviewList } from './AppOverviewList'
 
 export default function AppOverview() {
@@ -86,10 +89,8 @@ export default function AppOverview() {
 
   useEffect(() => {
     if (data) {
-      const newPromies = CommonService.fetchLeadPictureImage(data)
-      Promise.all(newPromies).then((result) => {
-        setCards(result.flat())
-      })
+      const filterItems = data.map((item) => appToCard(item))
+      setCards(filterItems)
     }
   }, [data])
 
