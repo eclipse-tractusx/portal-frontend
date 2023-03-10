@@ -6,6 +6,14 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppOverview
    * Page Load handling
+<<<<<<< HEAD
+* Organization
+   * Active subscription image issue fix
+* AdminBoardDetail
+   * Approval Board - missing documents
+* DropZone
+   * Custom error message can be shown on invalid file type
+=======
 
 ## 1.1.0
 
@@ -40,6 +48,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Notification - App Subscription Activation - linked URL updated to 'User Management'
 * Connector - DAPS registration retriggering allowed upload document types restricted
 * Application Request - Approve/Decline/Retrigger/Cancel Process actions will clear button section and update the checklist/process status inside the overlay as well as the application list
+>>>>>>> 5a192f94c335a2a8aa9e0a9a583f2a1f079870e1
 
 ## 1.0.0-RC10
 

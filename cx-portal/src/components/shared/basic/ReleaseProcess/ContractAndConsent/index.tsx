@@ -45,6 +45,7 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
+import { DocumentTypeText } from 'features/apps/apiSlice'
 
 type AgreementType = {
   agreementId: string
@@ -182,7 +183,11 @@ export default function ContractAndConsent() {
     if (value && !Array.isArray(value) && !('status' in value)) {
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'CONFORMITY_APPROVAL_BUSINESS_APPS', value)
+      uploadDocumentApi(
+        appId,
+        DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
+        value
+      )
         .then(() =>
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
         )

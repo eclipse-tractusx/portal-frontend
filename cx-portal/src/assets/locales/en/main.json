@@ -1068,11 +1068,11 @@
         "heading": "Data Security Information",
         "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
       },
-      "conformityDocument": {
+      "ConformityDocument": {
         "heading": "Conformity Document",
         "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
       },
-      "documents": {
+      "Documents": {
         "heading": "Documents",
         "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
       },
