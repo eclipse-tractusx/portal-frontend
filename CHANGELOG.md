@@ -34,7 +34,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Active subscription image issue fix
 * DropZone
    * Custom error message can be shown on invalid file type
-
+* UserManagement
+   * Add role description link
+   * Page "Role Description"
 ## 1.0.0-RC10
 
 ### Change
