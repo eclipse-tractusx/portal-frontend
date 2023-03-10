@@ -18,94 +18,63 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  MainHeader,
-  PageHeader,
-  Typography,
-} from 'cx-portal-shared-components'
-import {
-  currentActiveStep,
-  setCurrentActiveStep,
-} from 'features/appManagement/slice'
-import { useEffect, useState } from 'react'
+import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import AppMarketCard from './AppMarketCard'
-import AppPage from './AppPage'
-import BetaTest from './BetaTest'
-import ContractAndConsent from './ContractAndConsent'
-import AppReleaseStepper from './stepper'
-import TechnicalIntegration from './TechnicalIntegration'
-import ValidateAndPublish from './ValidateAndPublish'
-import './ReleaseProcessSteps.scss'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/ReleaseProcessWrapper'
 
 export default function AppReleaseProcessForm() {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  let activePage = useSelector(currentActiveStep)
-  const [showSubmitPage, setShowSubmitPage] = useState(false)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    activeStep()
-    window.scrollTo(0, 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage])
-
-  const activeStep = () => {
-    if (activePage === 1) return <AppMarketCard />
-    else if (activePage === 2) return <AppPage />
-    else if (activePage === 3) return <ContractAndConsent />
-    else if (activePage === 4) return <TechnicalIntegration />
-    else if (activePage === 5) return <BetaTest />
-    else if (activePage === 6)
-      return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
-  }
   const onAppsOverviewClick = () => {
     navigate(`/appoverview`)
     dispatch(setCurrentActiveStep())
   }
 
+  const stepsList = [
+    {
+      headline: t('content.apprelease.stepper.appMarketCard'),
+      step: 1,
+    },
+    {
+      headline: t('content.apprelease.stepper.appPage'),
+      step: 2,
+    },
+    {
+      headline: t('content.apprelease.stepper.contractAndConsent'),
+      step: 3,
+    },
+    {
+      headline: t('content.apprelease.stepper.technicalIntegration'),
+      step: 4,
+    },
+    {
+      headline: t('content.apprelease.stepper.betaTest'),
+      step: 5,
+    },
+    {
+      headline: t('content.apprelease.stepper.validateAndPublish'),
+      step: 6,
+    },
+  ]
+
   return (
-    <div className="app-release-process-form">
-      {showSubmitPage ? (
-        <MainHeader
-          subTitle={t('content.apprelease.submitApp.headerTitle')}
-          headerHeight={731}
-          subTitleWidth={500}
-          background="LinearGradient1"
-          imagePath="../../submit-app-background.png"
-        >
-          <Typography variant="body1" sx={{ mt: 2 }}>
-            {t('content.apprelease.submitApp.headerDescription')}
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 2 }}>
-            {t('content.apprelease.submitApp.headerDescriptionComplete')}
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 2 }}>
-            {t('content.apprelease.submitApp.yourCatenaXTeam')}
-          </Typography>
-          <Button onClick={onAppsOverviewClick}>
-            {t('content.apprelease.submitApp.myAppsOverview')}
-          </Button>
-        </MainHeader>
-      ) : (
-        <>
-          <PageHeader
-            title={t('content.apprelease.headerTitle')}
-            topPage={true}
-            headerHeight={200}
-          />
-          <div className="create-app-section">
-            <div className="container">
-              <AppReleaseStepper activePage={activePage} />
-              {activeStep()}
-            </div>
-          </div>
-        </>
+    <ReleaseProcessWrapper
+      processType="apprelease"
+      onAppsOverviewClick={() => onAppsOverviewClick()}
+      stepsList={stepsList}
+      numberOfSteps={6}
+      pageHeaderTitle={t('content.apprelease.headerTitle')}
+      headerTitle={t('content.apprelease.submit.headerTitle')}
+      headerDescription={t('content.apprelease.submit.headerDescription')}
+      headerDescriptionComplete={t(
+        'content.apprelease.submit.headerDescriptionComplete'
       )}
-    </div>
+      yourCatenaXTeam={t('content.apprelease.submit.yourCatenaXTeam')}
+      myAppsOverview={t('content.apprelease.submit.overview')}
+    />
   )
 }

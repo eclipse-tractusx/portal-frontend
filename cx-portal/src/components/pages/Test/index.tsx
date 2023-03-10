@@ -18,23 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
-import NewDropzoneTest from './index.newdropzone'
+import ImageTest from './index.image'
 
 export default function Test() {
-  const dispatch = useDispatch()
   return (
     <main>
       <section>
-        <Button onClick={() => dispatch(show(OVERLAYS.SAMPLE_FORM))}>
-          {'Sample Form'}
-        </Button>
-      </section>
-      <section>
-        <NewDropzoneTest />
+        <ImageTest />
       </section>
     </main>
   )

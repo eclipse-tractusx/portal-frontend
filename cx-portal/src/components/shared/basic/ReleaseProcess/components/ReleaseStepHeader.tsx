@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,36 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from 'cx-portal-shared-components'
-import {
-  SubscriptionData,
-  useFetchSubscriptionQuery,
-} from 'features/serviceMarketplace/serviceApiSlice'
-import './MarketplaceSubscription.scss'
+import { Typography } from 'cx-portal-shared-components'
+import { Grid } from '@mui/material'
 
-export default function MarketplaceSubscriptionNames({
-  subscription,
+export default function ReleaseStepHeader({
+  title,
+  description,
 }: {
-  subscription: SubscriptionData
+  title: string
+  description: string
 }) {
-  const { data } = useFetchSubscriptionQuery(subscription.offerSubscriptionId)
-
   return (
-    <div className="subscription-list">
-      {data && (
-        <span className="subscription-name">
-          <Typography variant="body2">{data.offerName}</Typography>
-          <Chip
-            color={data.status === 'ACTIVE' ? 'success' : 'info'}
-            label={data.status}
-            type="plain"
-            variant="outlined"
-            size="small"
-            withIcon
-            className="subscription-status"
-          />
-        </span>
-      )}
+    <div>
+      <Typography variant="h3" mt={10} mb={4} align="center">
+        {title}
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
+          <Typography variant="body2" align="center">
+            {description}
+          </Typography>
+        </Grid>
+      </Grid>
     </div>
   )
 }

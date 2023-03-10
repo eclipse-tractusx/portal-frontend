@@ -19,10 +19,9 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
+import { Chip, Typography } from 'cx-portal-shared-components'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceSubscription.scss'
-import MarketplaceSubscriptionNames from './MarketplaceSubscriptionNames'
 
 export default function MarketplaceSubscription({
   item,
@@ -40,13 +39,31 @@ export default function MarketplaceSubscription({
         )}
       </Typography>
       <div className="subscriptions-content">
-        <ol>
-          {item.offerSubscriptionDetailData.map((data, index) => (
-            <li key={index}>
-              <MarketplaceSubscriptionNames subscription={data} />
-            </li>
-          ))}
-        </ol>
+        {item.offerSubscriptionDetailData.map((data) => (
+          <div className="subscription-list" key={data.offerSubscriptionId}>
+            <span className="subscription-name">
+              <Typography variant="label3" className="offerId">
+                Id: {data.offerSubscriptionId}
+              </Typography>
+              <Typography variant="label3">
+                {t('global.field.status')}:
+                <Chip
+                  color={
+                    data.offerSubscriptionStatus === 'ACTIVE'
+                      ? 'success'
+                      : 'info'
+                  }
+                  label={data.offerSubscriptionStatus}
+                  type="plain"
+                  variant="outlined"
+                  size="small"
+                  withIcon
+                  className="subscription-status"
+                />
+              </Typography>
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   )

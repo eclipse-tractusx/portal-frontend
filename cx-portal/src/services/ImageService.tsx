@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,42 +17,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from 'cx-portal-shared-components'
-import { useTranslation } from 'react-i18next'
+import UserService from './UserService'
 
-export default function AppReleaseStepper({
-  activePage,
-}: {
-  activePage: number
-}) {
-  const { t } = useTranslation()
-
-  const stepsList = [
-    {
-      headline: t('content.apprelease.stepper.appMarketCard'),
-      step: 1,
+export const fetchImageWithToken = async (
+  url: string
+): Promise<ArrayBuffer> => {
+  const response = await fetch(url, {
+    headers: {
+      authorization: `Bearer ${UserService.getToken()}`,
     },
-    {
-      headline: t('content.apprelease.stepper.appPage'),
-      step: 2,
-    },
-    {
-      headline: t('content.apprelease.stepper.contractAndConsent'),
-      step: 3,
-    },
-    {
-      headline: t('content.apprelease.stepper.technicalIntegration'),
-      step: 4,
-    },
-    {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
-      headline: t('content.apprelease.stepper.validateAndPublish'),
-      step: 6,
-    },
-  ]
-
-  return <Stepper list={stepsList} showSteps={6} activeStep={activePage} />
+  })
+  return await response.arrayBuffer()
 }
+
+const ImageService = {
+  fetchImageWithToken,
+}
+
+export default ImageService

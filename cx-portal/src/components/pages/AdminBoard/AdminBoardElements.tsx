@@ -78,6 +78,7 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
             : t('content.adminBoard.errorMsg')
         }
         showIcon={true}
+        autoClose={true}
       />
       {apps && apps.length ? (
         <CardDecision

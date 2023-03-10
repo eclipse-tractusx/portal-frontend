@@ -53,7 +53,12 @@
     "companyrolesserviceprovider": "Service Provider",
     "companyrolesconfirmitybody": "Confirmity Body",
     "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity"
+    "usecasetraceablity": "Traceablity",
+    "servicemanagement": "Service Management",
+    "serviceoverview": "Service Overview",
+    "servicereleaseprocess": "Service Release Process",
+    "serviceadminboard": "Admin Board",
+    "servicesubscription": "Service Subscription Mgt"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -410,12 +415,12 @@
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {
-        "successmessage": "Edc connector successfully added",
+        "successmessage": "Connector successfully added",
         "errormessage": "Error! Something went wrong"
       },
       "deletemodal": {
-        "title": "Delete EDC Connector",
-        "description": "Are you sure to delete selected connector?"
+        "title": "Delete Connector",
+        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable."
       },
       "modal": {
         "company": {
@@ -428,7 +433,7 @@
         },
         "daps": {
           "title": "Create DAPS Registration",
-          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+          "intro": "To retrigger the daps authentication interface, please upload the public authentication key/certificate of your connector.",
           "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Connect company connector",
@@ -441,7 +446,7 @@
             "tooltipMsg": "Own selected connector name for verification"
           },
           "url": {
-            "label": "Connector URL*",
+            "label": "Connector URL/Endpoint*",
             "placeholder": "Connector URL",
             "error": "Enter a valid url - eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
@@ -449,19 +454,19 @@
           "bpn": {
             "label": "Connector Owner*",
             "placeholder": "BPNL's are allowed only",
-            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
+            "error": "BPN is mandatory. Valid BPN eg: BPNL+12 characters",
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           },
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
-            "tooltipMsg": "Connector Location - Message to be added"
+            "tooltipMsg": "Connector Location Country Code - e.g. DE, US, etc."
           },
           "doc": {
-            "label": "Public Authentication Key Upload*",
+            "label": "Public Authentication Key/Certificate*",
             "error": "Please use a valid type. E.g. .pem; .cert",
-            "tooltipMsg": "Public key"
+            "tooltipMsg": "Upload the certificate that contains your connector's public key information."
           }
         },
         "create": {
@@ -476,9 +481,6 @@
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
-      },
-      "edcUpload": {
-        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
@@ -792,7 +794,8 @@
       "descHeading": "Publish your company app inside the Catena-X marketplace",
       "descMessage": "Register your app and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the app release process.",
       "startCreatingButton": "Register your app",
-      "appOverviewButton": "Overview my apps",
+      "registerButton": "Register your app",
+      "overviewButton": "Overview my apps",
       "stepHeading": "The process will guide your through the following steps:",
       "dividerText": "Lets get started to publishing your app...",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
@@ -853,7 +856,8 @@
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
-        "allAgreementsMandatory": "All agreements are mandatory"
+        "allAgreementsMandatory": "All agreements are mandatory",
+        "uploadImageConformity": "Conformity App Certificate"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -899,17 +903,18 @@
         "price": "Price :  ",
         "connectedData": "Connected Data",
         "dataSecurityInformation": "Data Security Information",
+        "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
         "consent": "Consent",
         "cxTestRuns": "CX Test Runs"
       },
-      "submitApp": {
+      "submit": {
         "headerTitle": "Thank you for submitting the app!",
         "headerDescription": "After a review by a Catena-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Your Catena-X team",
-        "myAppsOverview": "My apps overview"
+        "overview": "My apps overview"
       },
       "appReleaseForm": {
         "headerTitle": "Create App",
@@ -1009,15 +1014,15 @@
       },
       "register": {
         "heading": "Autosetup URL",
-        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "endpointConfigured": "Endpoint Configured",
+        "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
+        "endpointConfigured": "Current Endpoint",
         "autosetupURL": "AutoSetup URL",
-        "providerErrorMessage": "Something went wrong!",
+        "providerErrorMessage": "Something went wrong! Please try it later again.",
         "providerSuccessMessage": "Service Provider Details added successfully."
       },
       "activation": {
-        "heading": "Activate User Subscription",
-        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "heading": "Activate App Subscription",
+        "description": "Activate the app subscription request of the customer by adding your customer specific app endpoint/url in the input field below. We will use the url to register/activate the app authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the app tenant/connector to the centryl CX components/services (where needed).",
         "successDescription": "The technical user has been created with the following data:",
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
@@ -1054,8 +1059,8 @@
       "backToBoard": "Back to Admin Board",
       "connectedData": {
         "heading": "Connected Data",
-        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
-        "message2": "When using the app, the following data may be collected but NOT linked to your identity:",
+        "message": "Following data might be used/stored by the app provider to enable you to use the complete functionality of the app.",
+        "message2": "When using the app, the following data may be collected:",
         "linked": "Linked to your Identity",
         "notLinked": "Linked NOT to your Identity"
       },
@@ -1063,9 +1068,13 @@
         "heading": "Data Security Information",
         "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
       },
+      "conformityDocument": {
+        "heading": "Conformity Document",
+        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+      },
       "documents": {
         "heading": "Documents",
-        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
       },
       "providerInformation": {
         "heading": "Provider Information",
@@ -1107,7 +1116,7 @@
         "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
         "TO_DO": {
           "title": "Your action is needed to resolve the issue",
-          "description": ""
+          "description": "Validate the company registration data and the uploaded documents and confirm or reject the registration. Further process steps are only carried out after confirmation."
         },
         "IN_PROGRESS": {
           "title": "No action needed from your side",
@@ -1153,15 +1162,15 @@
         },
         "IN_PROGRESS": {
           "title": "No action needed from your side",
-          "description": "The process is ongoing."
+          "description": "The process is currently running/in progress. As soon as the Wallet is created, the status will get automatically updated."
         },
         "DONE": {
           "title": "No action needed from your side",
-          "description": "The process is successfully completed."
+          "description": "The process is successfully completed. The Managed Identity Wallet got created."
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+          "description": "The Identity Wallet creation failed. You can retrigger the endpoint or close/reject the company registration."
         }
       },
       "CLEARING_HOUSE": {
@@ -1182,7 +1191,7 @@
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The clearinghouse check was unsuccessful. Details to the unsuccessful validation can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+          "description": "The clearinghouse check was unsuccessful/failed. Details regarding the unsuccessful validation run may get found above. You can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       },
       "SELF_DESCRIPTION_LP": {
@@ -1328,7 +1337,8 @@
     "errors": {
       "title": "Oops, Something went wrong.",
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
-      "additionalDescription": "Please contact your admin."
+      "additionalDescription": "Please contact your admin.",
+      "noDocumentsAvailable": "No documents available"
     },
     "table": {
       "search": "Enter email to search",
