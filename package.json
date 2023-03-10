@@ -27,7 +27,7 @@
     "build:docker": "if [ -d \"./cx-portal/build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
     "build:docker:full": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.full --build-arg \"http_proxy=${http_proxy}\" --build-arg \"https_proxy=${https_proxy}\" --build-arg \"no_proxy=${no_proxy}\" .",
     "build:docker:prebuilt": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
-    "start:docker": "IMAGE=$npm_package_config_image  && docker run --rm -d -p 3000:8080 --name cx-portal $IMAGE",
+    "start:docker": "IMAGE=$npm_package_config_image  && docker run --rm -d -p 3001:8080 --name cx-portal $IMAGE",
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
     "build": "yarn clean && yarn build:licenses && yarn build:lib && yarn build:storybook && yarn build:portal",
     "start": "yarn start:portal",
