@@ -45,11 +45,13 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
+import { DocumentTypeText } from 'features/apps/apiSlice'
 
 type AgreementType = {
   agreementId: string
   name: string
   consentStatus?: boolean | string
+  documentId: string
 }[]
 
 export default function ContractAndConsent() {
@@ -182,7 +184,11 @@ export default function ContractAndConsent() {
     if (value && !Array.isArray(value) && !('status' in value)) {
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'CONFORMITY_APPROVAL_BUSINESS_APPS', value)
+      uploadDocumentApi(
+        appId,
+        DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
+        value
+      )
         .then(() =>
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -286,7 +292,16 @@ export default function ContractAndConsent() {
                 errors,
                 name: item.agreementId,
                 defaultValues: item.consentStatus,
-                label: item.name,
+                label: item.documentId ? (
+                  <span
+                    className={item.documentId ? 'agreement-span' : ''}
+                    onClick={() => handleDownload(item.name, item.documentId)}
+                  >
+                    {item.name}
+                  </span>
+                ) : (
+                  <span>{item.name}</span>
+                ),
                 type: 'checkbox',
                 rules: {
                   required: {
