@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
@@ -32,9 +32,11 @@ import {
 } from 'features/admin/appuserApiSlice'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import { PAGES } from 'types/Constants'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
   const { data } = useFetchCoreoffersRolesQuery()
@@ -76,9 +78,10 @@ export const UserRoles = () => {
           variant="body1"
         />
         <Link
-          to="/role-details"
+          to={`/${PAGES.ROLE_DETAILS}`}
           target="_blank"
           style={{
+            display: 'flex',
             fontSize: '14px',
             textDecoration: 'none',
           }}
