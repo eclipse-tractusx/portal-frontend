@@ -76,7 +76,7 @@ export const UserRoles = () => {
           variant="body1"
         />
         <a
-          href={`http://localhost:3000/role-details/`}
+          href={`${getFrontEndBase}/role-details/`}
           target="_blank"
           rel="noreferrer"
           style={{ display: 'flex', fontSize: '14px', textDecoration: 'none' }}
