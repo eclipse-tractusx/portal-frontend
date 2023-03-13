@@ -18,14 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box } from '@mui/material'
-import { Typography, Tabs, Tab } from 'cx-portal-shared-components'
-import './RoleDetails.scss'
+import { Grid, Box } from '@mui/material'
+import {
+  Typography,
+  Tabs,
+  Tab,
+  TabPanel,
+  Image,
+} from 'cx-portal-shared-components'
+import CommonService from 'services/CommonService'
+import { getAssetBase } from 'services/EnvironmentService'
+import { uniqueId } from 'lodash'
+
+export type RoleDescData = {
+  title: string
+  subTitles: string[]
+  descriptions: string[]
+}
 
 export default function RoleDetails() {
   const { t } = useTranslation('', { keyPrefix: 'content.roleDetails' })
+
+  const [dataArray, setDataArray] = useState<RoleDescData[]>()
+
+  useEffect(() => {
+    CommonService.getRoleDescription((data: RoleDescData[]) => {
+      setDataArray(data)
+    })
+  }, [])
 
   const [activeTab, setActiveTab] = useState<number>(0)
 
@@ -39,46 +61,93 @@ export default function RoleDetails() {
   }
 
   return (
-    <div className="role-details">
-      <div className="role-details-main">
-        <Box sx={{ marginTop: '20px' }} className="overview-section">
-          <section>
-            <div className="heading">
-              <Typography
-                sx={{ fontFamily: 'LibreFranklin-Light' }}
-                variant="h3"
-                className="section-title"
-              >
-                {t('heading')}
-              </Typography>
-            </div>
-            <Tabs value={activeTab} onChange={handleChange}>
-              <Tab
-                sx={{
-                  fontSize: '18px',
-                  '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb',
-                  },
-                }}
-                label={t('tab1')}
-                id={`simple-tab-${activeTab}`}
-                aria-controls={`simple-tabpanel-${activeTab}`}
-              />
-              <Tab
-                sx={{
-                  fontSize: '18px',
-                  '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb',
-                  },
-                }}
-                label={t('tab2')}
-                id={`simple-tab-${activeTab}`}
-                aria-controls={`simple-tabpanel-${activeTab}`}
-              />
-            </Tabs>
-          </section>
-        </Box>
-      </div>
-    </div>
+    <Box sx={{ marginTop: '20px' }} className="overview-section">
+      <section>
+        <div className="heading">
+          <Typography
+            sx={{
+              fontFamily: 'LibreFranklin-Light',
+              marginBottom: '40px !important',
+              maxWidth: '30%',
+              margin: '0 auto',
+              fontWeight: '600',
+            }}
+            variant="h3"
+            className="section-title"
+          >
+            {t('heading')}
+          </Typography>
+        </div>
+        <Tabs value={activeTab} onChange={handleChange}>
+          <Tab
+            sx={{
+              fontSize: '18px',
+              width: '100%',
+              maxWidth: '550px',
+              '&.Mui-selected': {
+                borderBottom: '3px solid #0f71cb',
+              },
+            }}
+            label={t('tab1')}
+            id={`simple-tab-${activeTab}`}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+          />
+          <Tab
+            sx={{
+              fontSize: '18px',
+              width: '100%',
+              maxWidth: '550px',
+              '&.Mui-selected': {
+                borderBottom: '3px solid #0f71cb',
+              },
+            }}
+            label={t('tab2')}
+            id={`simple-tab-${activeTab}`}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+          />
+        </Tabs>
+        <div style={{ margin: '20px' }}>
+          <TabPanel value={activeTab} index={0}>
+            {dataArray &&
+              dataArray.map((data: RoleDescData) => (
+                <div key={uniqueId(data.title)}>
+                  <Typography
+                    variant="h4"
+                    sx={{ textDecoration: 'underline', marginBottom: '5px' }}
+                  >
+                    {data.title}
+                  </Typography>
+                  <Grid container spacing={2} sx={{ margin: '0px 0 40px' }}>
+                    <>
+                      {data.subTitles.map((subTitle: string, index: number) => (
+                        <Grid item xs={6} key={uniqueId(subTitle)}>
+                          <Typography variant="h5">{subTitle}</Typography>
+                          <Typography variant="caption3">
+                            {data.descriptions[index]}
+                          </Typography>
+                        </Grid>
+                      ))}
+                    </>
+                  </Grid>
+                </div>
+              ))}
+          </TabPanel>
+          <TabPanel value={activeTab} index={1}>
+            <Image
+              src={`${getAssetBase()}/images/docs/PortalRoleAndPermissionMatrix.png`}
+              style={{
+                width: '100%',
+              }}
+            />
+            <Image
+              src={`${getAssetBase()}/images/docs/RegistrationRoleAndPermissionMatrix.png`}
+              style={{
+                width: '100%',
+              }}
+            />
+          </TabPanel>
+        </div>
+      </section>
+    </Box>
   )
 }

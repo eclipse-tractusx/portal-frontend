@@ -3,31 +3,7 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ### Unreleased
-* Service Management
-   * Navigation base setting
-   * Created a new component to support both App Release process & Service Release process intro pages
-   * Service Release Steps
-* Application Request
-   * BugFix - Approve/Decline/Retrigger/Cancel Process actions should clear button and update the latest status in both overlay and application list
-* Bugfix - UI fixes in Adminboard
-* Connector
-   * BugFix - Register daps via the auth icon in the connector registration, allows all type of files
-* Notification
-   * BugFix - Wrong url link
-* Static Templates
-   * Show image on modal for a wider view
-* ImageGallery
-   * Rectangle images to be 16:9 ratio.
-   * Fix 3 images to a row. Show grid layout for rest
-* Service Marketplace
-   * Fetch documents from backend and download
-   * Update style multiple order section
-   * Add short description to card
-* AppReleaseProcess
-   * Conformity Document Type - Add Dropzone & Document handling
-   * Add Section for Conformity Document & display via api
-* App Admin Board
-   * Add Section for Conformity Document & display via api
+
 * AppOverview
    * Page Load handling
 * Organization
@@ -37,6 +13,41 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * UserManagement
    * Add role description link
    * Page "Role Description"
+
+## 1.1.0
+
+### Change
+* Service Marketplace
+   * documents displayed on service detail page connected to backend call (view and download documents)
+   * updated styling of multiple subscription display section
+   * service marketplace service card enhanced by short description
+* SharedUIComponents
+  * modal image behavior for different devices updated
+
+### Feature
+* App Conformity Document handling enabled
+  * enhanced app release process with conformity upload section
+  * enhance app release process "verify data" with conformity document view and download option
+  * app admin board - app detail page enhanced by adding conformity document view and download
+* SharedUIComponents
+  * image gallery - added grid layout & parameter to display images in 16:9 ratio
+* Service Release Management
+  * implemented new top navigation section und sub-menu
+  * implemented service release process intro page
+  * implemented service release form (initial)
+
+### Technical Support
+* added a new smart image component to handle all kinds of images, display placeholder while loading and error image on failure
+* fix(cve-2023-23916): add package upgrade as temp fix
+* chore (gh-org-checks): rename file for stable trivy scan
+* chore enable multi branch: add latest tag to released images
+* created new component to reduce code duplications between app release process & service release process intro pages
+
+### Bugfix
+* Notification - App Subscription Activation - linked URL updated to 'User Management'
+* Connector - DAPS registration retriggering allowed upload document types restricted
+* Application Request - Approve/Decline/Retrigger/Cancel Process actions will clear button section and update the checklist/process status inside the overlay as well as the application list
+
 ## 1.0.0-RC10
 
 ### Change
