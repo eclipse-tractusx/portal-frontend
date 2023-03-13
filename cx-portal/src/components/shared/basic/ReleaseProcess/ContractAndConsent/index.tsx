@@ -51,6 +51,7 @@ type AgreementType = {
   agreementId: string
   name: string
   consentStatus?: boolean | string
+  documentId: string
 }[]
 
 export default function ContractAndConsent() {
@@ -291,7 +292,16 @@ export default function ContractAndConsent() {
                 errors,
                 name: item.agreementId,
                 defaultValues: item.consentStatus,
-                label: item.name,
+                label: item.documentId ? (
+                  <span
+                    className={item.documentId ? 'agreement-span' : ''}
+                    onClick={() => handleDownload(item.name, item.documentId)}
+                  >
+                    {item.name}
+                  </span>
+                ) : (
+                  <span>{item.name}</span>
+                ),
                 type: 'checkbox',
                 rules: {
                   required: {
