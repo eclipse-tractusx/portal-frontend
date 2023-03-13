@@ -11,6 +11,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppOverview
    * Page Load handling
+* Organization
+   * Active subscription image issue fix
+* DropZone
+   * Custom error message can be shown on invalid file type
+* UserManagement
+   * Add role description link
+   * Page "Role Description"
 * Local Development
    * Change local port to run behind reverse proxy
 * Organization

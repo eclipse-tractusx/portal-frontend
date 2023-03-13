@@ -707,6 +707,7 @@
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Select CX Portal User Role",
       "helperText": "Please enter all required information before proceeding.",
+      "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
@@ -1215,6 +1216,11 @@
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       }
+    },
+    "roleDetails": {
+      "heading": "Overview of the available Catena-X portal roles",
+      "tab1": "Role Descriptions",
+      "tab2": "Role Comparison"
     }
   },
   "navigation": {

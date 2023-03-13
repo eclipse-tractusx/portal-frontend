@@ -18,18 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
   AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
-import { useEffect, useState } from 'react'
+import { PAGES } from 'types/Constants'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
@@ -73,8 +76,19 @@ export const UserRoles = () => {
           title={t('content.addUser.chooseUserRole')}
           variant="body1"
         />
+        <Link
+          to={`/${PAGES.ROLE_DETAILS}`}
+          target="_blank"
+          style={{
+            display: 'flex',
+            fontSize: '14px',
+            textDecoration: 'none',
+          }}
+        >
+          <ChevronRightIcon sx={{ fontSize: '20px' }} />
+          {t('content.addUser.roleDesc')}
+        </Link>
       </div>
-
       {allRoles.length > 0 ? (
         <div className="checkbox-section">
           {allRoles.map((role: AppRole) => (
