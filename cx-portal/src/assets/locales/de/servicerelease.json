@@ -26,7 +26,7 @@
     "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
     "serviceName": "Service Name",
     "serviceType": "Service Type",
-    "serviceProvider": "Service Type",
+    "serviceTypePlaceholder": "Select a Service Type Id",
     "shortDescriptionEN": "Short Description (en)",
     "shortDescriptionDE": "Short Description (de)",
     "serviceLeadImageUpload": "Service Card Image"

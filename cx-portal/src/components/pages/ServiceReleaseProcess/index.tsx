@@ -23,8 +23,8 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useDispatch } from 'react-redux'
-import { setAppId, setAppStatus } from 'features/appManagement/actions'
-import { initialState } from 'features/appManagement/types'
+import { setAppId, setServiceStatus } from 'features/appManagement/actions'
+import { initialServiceState } from 'features/appManagement/types'
 import { ReleaseProcess } from 'components/shared/basic/ReleaseProcess'
 
 export default function ServiceReleaseProcess() {
@@ -63,7 +63,7 @@ export default function ServiceReleaseProcess() {
     navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
     dispatch(setCurrentActiveStep())
     dispatch(setAppId(''))
-    dispatch(setAppStatus(initialState.appStatusData))
+    dispatch(setServiceStatus(initialServiceState.serviceStatusData))
   }
 
   const onOverviewServiceButton = () => {}

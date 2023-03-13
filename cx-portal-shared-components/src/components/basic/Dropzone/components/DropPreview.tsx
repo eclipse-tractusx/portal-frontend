@@ -71,7 +71,9 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
 
   const finishedFilesCount = uploadFiles.filter(isFinished).length
   const uploadedFilesCount = uploadFiles.filter(
-    (file) => file.status === UploadStatus.UPLOAD_SUCCESS
+    (file) =>
+      file.status === UploadStatus.UPLOAD_SUCCESS ||
+      file.status === UploadStatus.NEW
   ).length
 
   const DefaultDropStatusHeader: typeof DropStatusHeader = ({

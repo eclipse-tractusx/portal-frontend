@@ -61,7 +61,7 @@ export const ConnectorFormInputField = ({
             placeholder={placeholder}
             error={!!errors[name]}
             helperText={errors && errors[name] && errors[name].message}
-            value={value}
+            value={value || ''}
             onChange={(event) => {
               trigger(name)
               onChange(event)

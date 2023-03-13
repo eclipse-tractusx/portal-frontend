@@ -44,6 +44,20 @@ export interface AppStatusDataState {
   privacyPolicies: string[]
 }
 
+export interface ServiceStatusDataState {
+  title: string
+  price: string
+  leadPictureUri: string
+  descriptions: DescriptionState[]
+  agreements: AgreementState[]
+  providerUri: string
+  contactEmail: string
+  contactNumber: string
+  documents: any
+  privacyPolicies: string[]
+  serviceTypeIds: string[]
+}
+
 export interface DescriptionState {
   languageCode: string
   longDescription: string
@@ -61,6 +75,13 @@ export interface AppManagementState {
   currentActiveStep: number
   appId: string
   appStatusData: AppStatusDataState
+}
+
+export interface ServiceManagementState {
+  searchInput: SearchInputState
+  currentActiveStep: number
+  appId: string
+  serviceStatusData: ServiceStatusDataState
 }
 
 export const initialState: AppManagementState = {
@@ -82,6 +103,28 @@ export const initialState: AppManagementState = {
     supportedLanguageCodes: [],
     price: '',
     images: [],
+    providerUri: '',
+    contactEmail: '',
+    contactNumber: '',
+    documents: {},
+    privacyPolicies: [],
+  },
+}
+
+export const initialServiceState: ServiceManagementState = {
+  searchInput: {
+    open: false,
+    text: '',
+  },
+  currentActiveStep: 1,
+  appId: '',
+  serviceStatusData: {
+    title: '',
+    serviceTypeIds: [],
+    price: '',
+    leadPictureUri: '',
+    descriptions: [],
+    agreements: [],
     providerUri: '',
     contactEmail: '',
     contactNumber: '',

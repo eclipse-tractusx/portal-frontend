@@ -692,7 +692,7 @@ export default function AppMarketCard() {
                 trigger,
                 errors,
               }}
-              labe={
+              label={
                 t('content.apprelease.appMarketCard.appLeadImageUpload') + ' *'
               }
               noteDescription={t(

@@ -51,6 +51,20 @@ export type CreateAppStep1Item = {
   privacyPolicies: string[]
 }
 
+export type CreateServiceStep1Item = {
+  title: string
+  price: string | null
+  leadPictureUri: string
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  privacyPolicies: string[]
+  salesManager: string | null
+  serviceTypeIds: string[]
+}
+
 export type ImageType = {
   src: string
   alt?: string
@@ -104,6 +118,11 @@ export type UpdateAgreementConsentType = {
 export type saveAppType = {
   appId: string
   body: CreateAppStep1Item
+}
+
+export type saveServiceType = {
+  id: string
+  body: CreateServiceStep1Item
 }
 
 export type salesManagerType = {
@@ -270,6 +289,23 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    createService: builder.mutation<void, saveServiceType>({
+      query: (data) => ({
+        url: `/api/services/addService`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
+    saveService: builder.mutation<void, saveServiceType>({
+      query: (data) => ({
+        url: `/api/services/${data.id}`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
+    fetchServiceStatus: builder.query<any, string>({
+      query: (id) => `api/services/${id}`,
+    }),
   }),
 })
 
@@ -292,4 +328,7 @@ export const {
   useDeleteRolesMutation,
   useDeleteDocumentMutation,
   useFetchNewDocumentByIdMutation,
+  useSaveServiceMutation,
+  useCreateServiceMutation,
+  useFetchServiceStatusQuery,
 } = apiSlice

@@ -32,6 +32,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
   patternKey,
   patternDE,
   patternEN,
+  isRequired = true,
 }: any) {
   return (
     <>
@@ -46,7 +47,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
           textarea: true,
           rules: {
             required: {
-              value: true,
+              value: isRequired,
               message: rules.required,
             },
             minLength: {

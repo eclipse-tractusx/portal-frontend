@@ -36,6 +36,7 @@ export default function ConnectorFormInputFieldImage({
     'image/jpeg': [],
   },
   handleDownload,
+  isRequired = true,
 }: any) {
   return (
     <div className="form-field">
@@ -52,7 +53,7 @@ export default function ConnectorFormInputFieldImage({
           maxFileSize: 819200,
           rules: {
             required: {
-              value: true,
+              value: isRequired,
             },
           },
           handleDownload: handleDownload,
