@@ -21,6 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
 import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
@@ -34,6 +35,7 @@ import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
   const { data } = useFetchCoreoffersRolesQuery()
@@ -74,15 +76,16 @@ export const UserRoles = () => {
           title={t('content.addUser.chooseUserRole')}
           variant="body1"
         />
-        <a
-          href={`https://portal.dev.demo.catena-x.net/role-details/`}
+        <Link
+          to='/role-details'
           target="_blank"
-          rel="noreferrer"
-          style={{ display: 'flex', fontSize: '14px', textDecoration: 'none' }}
+          style={{
+            fontSize: '14px',
+            textDecoration: 'none'
+          }}
         >
-          <ChevronRightIcon sx={{ fontSize: '20px' }} />
           {t('content.addUser.roleDesc')}
-        </a>
+        </Link>
       </div>
       {allRoles.length > 0 ? (
         <div className="checkbox-section">
