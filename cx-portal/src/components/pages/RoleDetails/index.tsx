@@ -52,11 +52,6 @@ export default function RoleDetails() {
   const [activeTab, setActiveTab] = useState<number>(0)
 
   const handleChange = (event: any, newValue: number) => {
-    // setHeight(
-    //   modalElement && modalElement.current
-    //     ? `${modalElement?.current?.clientHeight}px`
-    //     : '400px'
-    // )
     setActiveTab(newValue)
   }
 
