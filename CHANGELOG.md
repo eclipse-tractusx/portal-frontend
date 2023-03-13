@@ -2,7 +2,9 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### Unreleased
+## Unreleased
+
+### Change
 
 * AppOverview
    * Page Load handling
@@ -13,6 +15,14 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * UserManagement
    * Add role description link
    * Page "Role Description"
+* Local Development
+   * Change local port to run behind reverse proxy
+* Organization
+   * Active subscription image issue fix
+* AdminBoardDetail
+   * Approval Board - missing documents
+* DropZone
+   * Custom error message can be shown on invalid file type
 
 ## 1.1.0
 

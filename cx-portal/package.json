@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "react-scripts start",
-    "start:portal": "react-scripts start",
+    "start:portal": "PORT=3001 BROWSER=none react-scripts start",
     "build:portal": "react-scripts build",
     "test": "react-scripts test",
     "test:watch": "react-scripts test --watch",

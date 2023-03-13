@@ -28,15 +28,11 @@ import BoardConnectedData from './components/BoardConnectedData'
 import BoardSecurityInfo from './components/BoardSecurityInfo'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'
-import { AppDetails } from 'features/apps/apiSlice'
+import { AppDetails, DocumentTypeText } from 'features/apps/apiSlice'
 import './AdminBoardDetail.scss'
 import CommonService from 'services/CommonService'
 
-export default function AppDetailContentDetails({
-  item,
-}: {
-  item: AppDetails
-}) {
+export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [images, setImages] = useState<any>()
@@ -61,14 +57,14 @@ export default function AppDetailContentDetails({
         <BoardConnectedData item={item} />
         <BoardSecurityInfo />
         <BoardDocuments
-          type="conformityDocument"
+          type={DocumentTypeText.CONFORMITY_DOCUMENT}
           appId={item.id}
-          documents={item.documents['CONFORMITY_APPROVAL_BUSINESS_APPS']}
+          documents={item.documents}
         />
         <BoardDocuments
-          type="documents"
+          type={DocumentTypeText.DOCUMENTS}
           appId={item.id}
-          documents={item.documents['APP_CONTRACT']}
+          documents={item.documents}
         />
         <BoardProvider item={item} />
         <Button
