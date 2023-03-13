@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Checkbox, Alert } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
@@ -36,7 +36,6 @@ import { PAGES } from 'types/Constants'
 
 export const UserRoles = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const roles = useSelector(rolesToAddSelector)
   const { data } = useFetchCoreoffersRolesQuery()
