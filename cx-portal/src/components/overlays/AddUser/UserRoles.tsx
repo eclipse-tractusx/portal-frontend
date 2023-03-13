@@ -29,7 +29,6 @@ import {
   AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
-import { getFrontEndBase } from 'services/EnvironmentService'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
@@ -76,7 +75,7 @@ export const UserRoles = () => {
           variant="body1"
         />
         <a
-          href={`${getFrontEndBase}/role-details/`}
+          href={`https://portal.dev.demo.catena-x.net/role-details/`}
           target="_blank"
           rel="noreferrer"
           style={{ display: 'flex', fontSize: '14px', textDecoration: 'none' }}
