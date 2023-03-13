@@ -4,6 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+* AppReleaseProcess
+   * enabled document download in contract and consent
+
 ### Change
 
 * AppOverview
