@@ -33,7 +33,7 @@ import {
   useFetchDocumentByIdMutation,
   useCreateServiceMutation,
   useSaveServiceMutation,
-  useUpdateDocumentUploadMutation,
+  // useUpdateDocumentUploadMutation,
   CreateServiceStep1Item,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
@@ -83,7 +83,7 @@ export default function OfferCard() {
   }).data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
-  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
+  // const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<any>([])
 
   const commonServiceTypeIds = useMemo(() => {
@@ -214,26 +214,26 @@ export default function OfferCard() {
       })
   }
 
-  const uploadDocumentApi = async (
-    appId: string,
-    documentTypeId: string,
-    file: any
-  ) => {
-    const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
-      body: { file },
-    }
+  // const uploadDocumentApi = async (
+  //   appId: string,
+  //   documentTypeId: string,
+  //   file: any
+  // ) => {
+  //   const data = {
+  //     appId: appId,
+  //     documentTypeId: documentTypeId,
+  //     body: { file },
+  //   }
 
-    await updateDocumentUpload(data).unwrap()
-  }
+  //   await updateDocumentUpload(data).unwrap()
+  // }
 
   const handleCreate = async (
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
-    const uploadImageValue = getValues().uploadImage
-      .leadPictureUri as unknown as DropzoneFile
+    // const uploadImageValue = getValues().uploadImage
+    //   .leadPictureUri as unknown as DropzoneFile
     await createService({
       id: '',
       body: apiBody,
