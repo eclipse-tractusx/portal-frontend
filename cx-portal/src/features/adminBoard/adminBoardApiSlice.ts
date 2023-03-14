@@ -21,6 +21,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { StatusVariants } from 'cx-portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import i18next from 'i18next'
+import { AppDetails } from 'features/apps/apiSlice'
 
 const PAGE_SIZE = 15
 
@@ -82,6 +84,10 @@ export const apiSlice = createApi({
         body: { message: body.message },
       }),
     }),
+    fetchBoardAppDetails: builder.query<AppDetails, string>({
+      query: (id: string) =>
+        `/api/apps/appreleaseprocess/inReview/${id}?lang=${i18next.language}`,
+    }),
   }),
 })
 
@@ -89,4 +95,5 @@ export const {
   useFetchAppReleaseAppsQuery,
   useApproveRequestMutation,
   useDeclineRequestMutation,
+  useFetchBoardAppDetailsQuery,
 } = apiSlice
