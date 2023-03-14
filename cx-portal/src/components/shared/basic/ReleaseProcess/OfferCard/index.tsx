@@ -332,7 +332,7 @@ export default function OfferCard() {
               }}
               name="title"
               pattern={Patterns.offerCard.serviceName}
-              label={t('step1.serviceName') + ' *'}
+              label={t('step1.serviceName')}
               rules={{
                 required: `${t('step1.serviceName')} ${t(
                   'serviceReleaseForm.isMandatory'
@@ -358,7 +358,7 @@ export default function OfferCard() {
                   trigger,
                   errors,
                   name: 'serviceTypeIds',
-                  label: t('step1.serviceType') + ' *',
+                  label: t('step1.serviceType'),
                   placeholder: t('step1.serviceTypePlaceholder'),
                   type: 'multiSelectList',
                   rules: {
@@ -419,7 +419,7 @@ export default function OfferCard() {
                       isRequired={false}
                       rules={{
                         required:
-                          t(`step1.${desc}` + ' *') +
+                          t(`step1.${desc}`) +
                           t('serviceReleaseForm.isMandatory'),
                         minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
