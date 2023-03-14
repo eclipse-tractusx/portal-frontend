@@ -6,6 +6,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppReleaseProcess
    * enabled document download in contract and consent
+* BugFix
+   * Application Request
+      * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place yet
 
 ### Change
 
