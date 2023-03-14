@@ -23,7 +23,6 @@ import { Typography } from 'cx-portal-shared-components'
 import { Grid } from '@mui/material'
 import { uniqueId } from 'lodash'
 import { AppDetails } from 'features/apps/apiSlice'
-import './BoardRoles.scss'
 
 export default function BoardRoles({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
@@ -31,7 +30,7 @@ export default function BoardRoles({ item }: { item: AppDetails }) {
   })
 
   return (
-    <div className="board-security">
+    <div style={{ marginBottom: '60px' }}>
       <Typography variant="h4">{t('heading')}</Typography>
       <Typography variant="body2">{t('message')}</Typography>
       <Grid container spacing={2} sx={{ margin: '30px 0 40px' }}>
