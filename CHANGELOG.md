@@ -6,6 +6,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppReleaseProcess
    * enabled document download in contract and consent
+* AdminBoardDetail
+   * Switch Endpoint
+   * Add Roles section
 
 ### Change
 

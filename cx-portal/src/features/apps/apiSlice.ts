@@ -94,6 +94,7 @@ export type AppDetails = AppMarketplaceApp & {
   tags: string[]
   languages: string[]
   leadPictureUri?: ImageType
+  roles?: string[]
 }
 
 export type Documents = {
@@ -134,7 +135,8 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchAppDetails: builder.query<AppDetails, string>({
-      query: (id: string) => `/api/apps/${id}?lang=${i18next.language}`,
+      query: (id: string) =>
+        `/api/apps/appreleaseprocess/inReview/${id}?lang=${i18next.language}`,
     }),
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/active`,

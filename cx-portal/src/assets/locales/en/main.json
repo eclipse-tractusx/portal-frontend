@@ -1077,6 +1077,11 @@
         "heading": "Documents",
         "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
       },
+      "roles": {
+        "heading": "App Roles",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "roleDescription": "The role description is expected to get displayed here in future."
+      },
       "providerInformation": {
         "heading": "Provider Information",
         "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
