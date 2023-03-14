@@ -135,8 +135,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchAppDetails: builder.query<AppDetails, string>({
-      query: (id: string) =>
-        `/api/apps/${id}?lang=${i18next.language}`,
+      query: (id: string) => `/api/apps/${id}?lang=${i18next.language}`,
     }),
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/active`,
