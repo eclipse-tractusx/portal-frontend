@@ -20,6 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
+import { uniqueId } from 'lodash'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import './AppDetailPrivacy.scss'
 import { AppDetails } from 'features/apps/apiSlice'
@@ -53,7 +54,11 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
       {item.privacyPolicies && item.privacyPolicies.length ? (
         <div className="policies-list">
           {item.privacyPolicies.map((policy: string) => (
-            <Typography variant="body2" className="policy-name">
+            <Typography
+              variant="body2"
+              className="policy-name"
+              key={uniqueId(policy)}
+            >
               {renderPrivacy(policy)}
               {t(policy)}
             </Typography>
