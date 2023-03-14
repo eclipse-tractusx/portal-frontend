@@ -44,7 +44,6 @@ import {
   appIdSelector,
   decrement,
   increment,
-  serviceStatusDataSelector,
 } from 'features/appManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -65,7 +64,6 @@ export default function OfferPage() {
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
-  const serviceStatusData = useSelector(serviceStatusDataSelector)
   const longDescriptionMaxLength = 2000
   const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -170,7 +168,6 @@ export default function OfferPage() {
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
-      'images',
       'providerHomePage',
       'providerContactEmail',
     ])
@@ -181,14 +178,14 @@ export default function OfferPage() {
 
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const apiBody = {
-      title: serviceStatusData?.title,
-      serviceTypeIds: serviceStatusData?.serviceTypeIds,
+      title: fetchServiceStatus?.title,
+      serviceTypeIds: fetchServiceStatus?.serviceTypeIds,
       descriptions: [
         {
           languageCode: 'en',
           longDescription: data.longDescriptionEN,
           shortDescription:
-            serviceStatusData?.descriptions?.filter(
+            fetchServiceStatus?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
             )[0]?.shortDescription || '',
         },
@@ -196,7 +193,7 @@ export default function OfferPage() {
           languageCode: 'de',
           longDescription: data.longDescriptionDE,
           shortDescription:
-            serviceStatusData?.descriptions?.filter(
+            fetchServiceStatus?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
             )[0]?.shortDescription || '',
         },
@@ -206,7 +203,7 @@ export default function OfferPage() {
       price: '',
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
-      leadPictureUri: serviceStatusData?.leadPictureUri,
+      leadPictureUri: fetchServiceStatus?.leadPictureUri,
     }
 
     try {

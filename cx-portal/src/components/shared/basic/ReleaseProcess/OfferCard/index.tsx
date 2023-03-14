@@ -35,6 +35,7 @@ import {
   useSaveServiceMutation,
   // useUpdateDocumentUploadMutation,
   CreateServiceStep1Item,
+  useFetchServiceTypeIdsQuery,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -77,7 +78,6 @@ export default function OfferCard() {
   const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  //"e4b15975-8f3c-4341-a1b5-b4c478ec9e7f"
   const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
@@ -85,17 +85,8 @@ export default function OfferCard() {
   const [saveService] = useSaveServiceMutation()
   // const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<any>([])
-
-  const commonServiceTypeIds = useMemo(() => {
-    return [
-      {
-        name: 'DATASPACE_SERVICE',
-      },
-      {
-        name: 'CONSULTANT_SERVICE',
-      },
-    ]
-  }, [])
+  const serviceTypeData = useFetchServiceTypeIdsQuery()
+  const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
 
   const defaultValues = useMemo(() => {
     return {
@@ -305,6 +296,8 @@ export default function OfferCard() {
       privacyPolicies: [],
       salesManager: null,
       price: '',
+      providerUri: '',
+      contactEmail: '',
     }
     if (validateFields) {
       if (appId) {
@@ -375,7 +368,7 @@ export default function OfferCard() {
                       )} A-Za-z`,
                     },
                   },
-                  items: commonServiceTypeIds,
+                  items: serviceTypeIds || [],
                   keyTitle: 'name',
                   saveKeyTitle: 'name',
                   notItemsText: t('serviceReleaseForm.noItemsSelected'),

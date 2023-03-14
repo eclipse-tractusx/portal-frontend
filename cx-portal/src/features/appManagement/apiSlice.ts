@@ -306,6 +306,9 @@ export const apiSlice = createApi({
     fetchServiceStatus: builder.query<any, string>({
       query: (id) => `api/services/${id}`,
     }),
+    fetchServiceTypeIds: builder.query<any, void>({
+      query: () => `/api/services/servicerelease/serviceTypes`,
+    }),
   }),
 })
 
@@ -331,4 +334,5 @@ export const {
   useSaveServiceMutation,
   useCreateServiceMutation,
   useFetchServiceStatusQuery,
+  useFetchServiceTypeIdsQuery,
 } = apiSlice
