@@ -21,15 +21,15 @@
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
-import './AppDetailPrivacy.scss'
+import './BoardPrivacy.scss'
 import { AppDetails } from 'features/apps/apiSlice'
 
-export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
+export default function BoardPrivacy({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.privacy',
   })
 
-  const renderPrivacy = (policy: string) => {
+  const renderBoardPrivacy = (policy: string) => {
     switch (policy) {
       case 'COMPANY_DATA':
         return <Apartment className="policy-icon" />
@@ -45,7 +45,7 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-privacy">
+    <div className="board-privacy">
       <div className="privacy-content">
         <Typography variant="h4">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
@@ -54,7 +54,7 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
         <div className="policies-list">
           {item.privacyPolicies.map((policy: string) => (
             <Typography variant="body2" className="policy-name">
-              {renderPrivacy(policy)}
+              {renderBoardPrivacy(policy)}
               {t(policy)}
             </Typography>
           ))}
