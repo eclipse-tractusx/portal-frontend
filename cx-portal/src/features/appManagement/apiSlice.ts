@@ -120,7 +120,7 @@ export type saveAppType = {
   body: CreateAppStep1Item
 }
 
-export type saveServiceType = {
+export type createServiceType = {
   id: string
   body: CreateServiceStep1Item
 }
@@ -289,14 +289,14 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    createService: builder.mutation<void, saveServiceType>({
+    createService: builder.mutation<void, createServiceType>({
       query: (data) => ({
         url: `/api/services/addService`,
         method: 'POST',
         body: data.body,
       }),
     }),
-    saveService: builder.mutation<void, saveServiceType>({
+    saveService: builder.mutation<void, createServiceType>({
       query: (data) => ({
         url: `/api/services/${data.id}`,
         method: 'PUT',

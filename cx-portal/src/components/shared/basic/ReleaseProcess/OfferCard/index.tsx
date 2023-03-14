@@ -271,7 +271,12 @@ export default function OfferCard() {
   }
 
   const onSubmit = async (data: FormDataType, buttonLabel: string) => {
-    const validateFields = await trigger(['title', 'serviceTypeIds'])
+    const validateFields = await trigger([
+      'title',
+      'serviceTypeIds',
+      'shortDescriptionEN',
+      'shortDescriptionDE',
+    ])
     const apiBody = {
       serviceTypeIds: data.serviceTypeIds,
       title: data.title,
@@ -342,6 +347,8 @@ export default function OfferCard() {
                   'serviceReleaseForm.charactersAllowed'
                 )}`,
               }}
+              maxLength={20}
+              minLength={3}
             />
 
             <div className="form-field">
@@ -412,7 +419,7 @@ export default function OfferCard() {
                       isRequired={false}
                       rules={{
                         required:
-                          t(`step1.${desc}`) +
+                          t(`step1.${desc}` + ' *') +
                           t('serviceReleaseForm.isMandatory'),
                         minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
@@ -428,6 +435,8 @@ export default function OfferCard() {
                           'serviceReleaseForm.charactersAllowed'
                         )}`,
                       }}
+                      maxLength={120}
+                      minLength={10}
                     />
                   </div>
                 )

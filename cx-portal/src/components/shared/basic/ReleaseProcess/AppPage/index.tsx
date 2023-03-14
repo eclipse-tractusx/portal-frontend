@@ -566,8 +566,8 @@ export default function AppPage() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={setAppPageNotification}
-        setPageSnackbar={setAppPageSnackbar}
+        setPageNotification={() => setAppPageNotification(false)}
+        setPageSnackbar={() => setAppPageSnackbar(false)}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
         onSaveAndProceed={handleSubmit((data) =>

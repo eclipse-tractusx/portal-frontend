@@ -34,6 +34,7 @@ import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   useFetchServiceStatusQuery,
+  useSaveServiceMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
@@ -43,22 +44,33 @@ import {
   appIdSelector,
   decrement,
   increment,
+  serviceStatusDataSelector,
 } from 'features/appManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 
+type FormDataType = {
+  longDescriptionEN: string
+  longDescriptionDE: string
+  images: any
+  providerHomePage: string
+  providerContactEmail: string
+}
+
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
-  const [appPageNotification, setAppPageNotification] = useState(false)
-  const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
+  const [appPageNotification, setServicePageNotification] = useState(false)
+  const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
+  const serviceStatusData = useSelector(serviceStatusDataSelector)
   const longDescriptionMaxLength = 2000
   const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [saveService] = useSaveServiceMutation()
 
   const onBackIconClick = () => {
     dispatch(setAppStatus(fetchServiceStatus))
@@ -80,11 +92,12 @@ export default function OfferPage() {
   }
 
   const {
+    handleSubmit,
     getValues,
     control,
     trigger,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
@@ -153,6 +166,61 @@ export default function OfferPage() {
     return updateDocumentUpload(data).unwrap()
   }
 
+  const onSubmit = async (data: FormDataType, buttonLabel: string) => {
+    const validateFields = await trigger([
+      'longDescriptionEN',
+      'longDescriptionDE',
+      'images',
+      'providerHomePage',
+      'providerContactEmail',
+    ])
+    if (validateFields) {
+      handleSave(data, buttonLabel)
+    }
+  }
+
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
+    const apiBody = {
+      title: serviceStatusData?.title,
+      serviceTypeIds: serviceStatusData?.serviceTypeIds,
+      descriptions: [
+        {
+          languageCode: 'en',
+          longDescription: data.longDescriptionEN,
+          shortDescription:
+            serviceStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.shortDescription || '',
+        },
+        {
+          languageCode: 'de',
+          longDescription: data.longDescriptionDE,
+          shortDescription:
+            serviceStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'de'
+            )[0]?.shortDescription || '',
+        },
+      ],
+      privacyPolicies: [],
+      salesManager: null,
+      price: '',
+      providerUri: data.providerHomePage || '',
+      contactEmail: data.providerContactEmail || '',
+      leadPictureUri: serviceStatusData?.leadPictureUri,
+    }
+
+    try {
+      await saveService({
+        id: appId,
+        body: apiBody,
+      }).unwrap()
+      buttonLabel === 'saveAndProceed' && dispatch(increment())
+      buttonLabel === 'save' && setServicePageSnackbar(true)
+    } catch (error: any) {
+      setServicePageNotification(true)
+    }
+  }
+
   return (
     <div className="app-page">
       <ReleaseStepHeader
@@ -206,6 +274,8 @@ export default function OfferPage() {
                         : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
                     }`,
                   }}
+                  maxLength={255}
+                  minLength={10}
                 />
               </div>
             )
@@ -286,11 +356,14 @@ export default function OfferPage() {
           description: t('serviceReleaseForm.error.message'),
         }}
         pageSnackbar={appPageSnackbar}
-        setPageNotification={setAppPageNotification}
-        setPageSnackbar={setAppPageSnackbar}
+        setPageNotification={() => setServicePageNotification(false)}
+        setPageSnackbar={() => setServicePageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={() => {}}
-        onSaveAndProceed={() => dispatch(increment())}
+        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
       />
     </div>
   )
