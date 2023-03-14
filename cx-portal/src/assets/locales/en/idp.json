@@ -1,7 +1,7 @@
 {
   "idpmanagement": {
     "addIdpHeadline": "New IdP Connection",
-    "addIdpSubheadline": "Enter an IdP name and choose the idp type to start the configuration",
+    "addIdpSubheadline": "Enter a name for the new Identity Provider to start the configuration",
     "updateIdpHeadline": "Identity Provider Configuration",
     "updateIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed.",
     "idpHelp": "help",
@@ -20,7 +20,7 @@
     "alias": "Alias",
     "status": "Status",
     "displayName": "Display Name",
-    "authType": "IDP Typ",
+    "authType": "IDP Type",
     "authorizationUrl": "Authorization URL",
     "metadataUrl": "Metadata URL",
     "clientId": "Client ID",
@@ -49,7 +49,7 @@
   },
   "add": {
     "title": "New IdP Connection",
-    "subtitle": "Enter an IdP name and choose the idp type to start the configuration"
+    "subtitle": "Enter an IdP name and choose the type to start the configuration"
   },
   "edit": {
     "title": "Edit Identity Provider Details",
@@ -99,18 +99,43 @@
     "ERROR_UPLOAD_USERS": "Uploading users failed"
   },
   "field": {
-    "name": "IdP name",
-    "enabled": "enabled",
-    "disabled": "disabled",
-    "clientAuthMethod": "Client Authentication Method",
-    "redirect": {
+    "display": {
+      "name": "Display name",
+      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)"
+    },
+    "alias": {
+      "name": "Alias",
+      "hint": "The IdP alias is a generated value and cannot be changed"
+    },
+    "type": {
+      "name": "Authentication type",
+      "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
+    },
+    "redirectUri": {
       "name": "Redirect URI",
-      "hint": "(click to copy)"
+      "hint": "Click to copy the shown URI and enter it as valid redirect URI for your IdP client"
     },
     "metadata": {
       "name": "Metadata URI",
-      "hint": "Enter the metadata URL of your IDP that ends with '.well-known/openid-configuration'"
-    }
+      "hint": "Enter the metadata URL from your IDP that ends with '.well-known/openid-configuration'"
+    },
+    "clientId": {
+      "name": "Client ID",
+      "hint": "Enter the client ID provided by your IdP"
+    },
+    "clientSecret": {
+      "name": "Client Secret",
+      "hint": "Enter the client Secret provided by your IdP"
+    },
+    "clientAuthMethod": {
+      "name": "Auth Method",
+      "hint": "The way how the central IdP authenticates with this IdP"
+    },
+    "copy": {
+      "hint": "click to copy"
+    },
+    "enabled": "enabled",
+    "disabled": "disabled"
   },
   "action": {
     "actions": "Actions",
@@ -124,6 +149,8 @@
     "signout": "Sign out",
     "confirm": "Confirm",
     "close": "Close",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "next": "Next",
+    "help": "Get help"
   }
 }

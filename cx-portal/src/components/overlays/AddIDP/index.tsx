@@ -25,6 +25,8 @@ import {
   DialogContent,
   DialogHeader,
   Radio,
+  Tooltips,
+  Typography,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay/actions'
@@ -42,6 +44,7 @@ import { OVERLAYS } from 'types/Constants'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isCompanyName } from 'types/Patterns'
 import { getCentralIdp } from 'services/EnvironmentService'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 enum IDPType {
   COMPANY = 'Company',
@@ -53,9 +56,28 @@ const SelectIdpAuthType = ({
 }: {
   onChange: (value: IDPAuthType) => void
 }) => {
+  const { t } = useTranslation('idp')
   const [type, setType] = useState<IDPAuthType>(IDPAuthType.OIDC)
   return (
     <div style={{ padding: '30px 0px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Typography sx={{ marginRight: '12px' }} variant="label3">
+          {t('field.type.name')}
+        </Typography>
+        <Tooltips
+          additionalStyles={{
+            cursor: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="top-start"
+          tooltipText={t('field.type.hint')}
+          children={
+            <div>
+              <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
+            </div>
+          }
+        />
+      </div>
       <Radio
         name="radio-buttons"
         label={IDPAuthType.OIDC}
@@ -109,7 +131,8 @@ const AddIDPPrepareForm = ({
     <>
       <ValidatingInput
         name="name"
-        label={t('field.name')}
+        label={t('field.display.name')}
+        tooltipMessage={t('field.display.hint')}
         validate={isCompanyName}
         onValid={(_name, value) => {
           if (!value) return
@@ -184,7 +207,7 @@ export const AddIdp = () => {
           disabled={!formData.name}
           onClick={() => doCreateIDP()}
         >
-          {t('action.confirm')}
+          {t('action.next')}
         </Button>
       </DialogActions>
     </>

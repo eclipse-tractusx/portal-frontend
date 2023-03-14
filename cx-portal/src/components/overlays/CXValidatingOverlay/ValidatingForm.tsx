@@ -31,6 +31,7 @@ export type ValidatingInputProps = {
   label?: string
   helperText?: string
   placeholder?: string
+  tooltipMessage?: string
   autofocus?: boolean
   value?: string
   debounceTime?: number
@@ -44,6 +45,7 @@ export const ValidatingInput = ({
   label = '',
   helperText = '',
   placeholder = '',
+  tooltipMessage = undefined,
   autofocus = false,
   value = '',
   debounceTime = 300,
@@ -81,6 +83,7 @@ export const ValidatingInput = ({
       label={label}
       helperText={helperText}
       placeholder={placeholder}
+      tooltipMessage={tooltipMessage}
       value={data}
       error={!valid && show > 0}
       autoFocus={autofocus}

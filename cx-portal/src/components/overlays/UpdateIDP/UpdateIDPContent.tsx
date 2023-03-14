@@ -20,7 +20,7 @@
 
 import { Box } from '@mui/material'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import { Input, SelectList, Typography } from 'cx-portal-shared-components'
+import { Tooltips, Typography } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import {
   IdentityProvider,
@@ -30,44 +30,11 @@ import {
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
-import {
-  isCompanyName,
-  isIDPClientID,
-  isIDPClientSecret,
-  isURL,
-} from 'types/Patterns'
+import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
-
-const RedirectURI = ({ uri }: { uri: string }) => {
-  const [copied, setCopied] = useState<boolean>(false)
-
-  return (
-    <Box
-      sx={{
-        margin: '4px 0 30px 0',
-        cursor: 'pointer',
-        display: 'flex',
-        color: copied ? '#44aa44' : '#cccccc',
-        ':hover': {
-          color: copied ? '#44aa44' : '#888888',
-        },
-      }}
-      onClick={async () => {
-        await navigator.clipboard.writeText(uri)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1000)
-      }}
-    >
-      {uri}
-      <ContentCopyIcon
-        sx={{
-          marginLeft: '10px',
-        }}
-      />
-    </Box>
-  )
-}
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { Link } from 'react-router-dom'
 
 const isWellknownMetadata = (expr: string) =>
   (isURL(expr) || expr.startsWith('http://localhost')) &&
@@ -97,6 +64,73 @@ const formToUpdate = (form: IHashMap<string>): IdentityProviderUpdateBody => ({
   },
 })
 
+const CopyValue = ({ value }: { value: string }) => {
+  const [copied, setCopied] = useState<boolean>(false)
+
+  return (
+    <Box
+      sx={{
+        margin: '4px 0',
+        cursor: 'pointer',
+        display: 'flex',
+        color: copied ? '#44aa44' : '#cccccc',
+        ':hover': {
+          color: copied ? '#44aa44' : '#888888',
+        },
+      }}
+      onClick={async () => {
+        await navigator.clipboard.writeText(value)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1000)
+      }}
+    >
+      {value}
+      <ContentCopyIcon
+        sx={{
+          marginLeft: '10px',
+        }}
+      />
+    </Box>
+  )
+}
+
+const ReadOnlyValue = ({
+  label,
+  tooltipMessage = '',
+  value,
+  style,
+}: {
+  label: string
+  tooltipMessage?: string
+  value: string
+  style?: IHashMap<string>
+}) => {
+  return (
+    <div style={style}>
+      <div style={{ display: 'flex' }}>
+        <Typography
+          variant="label3"
+          sx={{ textAlign: 'left', marginRight: '10px' }}
+        >
+          {label}
+        </Typography>
+        <Tooltips
+          additionalStyles={{
+            cursor: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="top-start"
+          tooltipText={tooltipMessage}>
+            <div>
+              <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
+            </div>
+        </Tooltips>
+      </div>
+              <CopyValue value={value} />
+    </div>
+  )
+}
+
 const UpdateIDPForm = ({
   idp,
   onChange,
@@ -104,6 +138,7 @@ const UpdateIDPForm = ({
   idp: IdentityProvider
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
+  const HELPLINK = '/documentation/?path=docs%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md#create-the-new-idp-record'
   const { t } = useTranslation('idp')
 
   const defaultOAM =
@@ -116,64 +151,56 @@ const UpdateIDPForm = ({
 
   return (
     <>
-      <Typography variant="body2">{`${t('field.redirect.name')} ${t(
-        'field.redirect.hint'
-      )}`}</Typography>
-      <RedirectURI uri={`${idp.redirectUrl}*`} />
+      <Link
+        to={HELPLINK}
+        target='_help'>{t('action.help')}</Link>
 
-      <div style={{ margin: '20px 0', display: 'flex' }}>
-        <div style={{ width: '48%', marginRight: '2%' }}>
-          <ValidatingInput
-            name="displayName"
-            label="IDP name"
-            value={idp.displayName || ''}
-            validate={isCompanyName}
-            onValid={onChange}
-          />
-        </div>
-        <div style={{ width: '48%', marginLeft: '2%' }}>
-          <Input
-            name="alias"
-            label="Alias"
-            value={idp.alias || ''}
-            disabled={true}
-          />
-        </div>
+      <ReadOnlyValue
+        label={t('field.redirectUri.name')}
+        tooltipMessage={t('field.redirectUri.hint')}
+        value={`${idp.redirectUrl}*`}
+        style={{marginTop:'10px'}}
+      />
+
+      <div style={{ marginTop: '40px', display: 'flex' }}>
+        <ReadOnlyValue
+          label={t('field.display.name')}
+          tooltipMessage={t('field.display.hint')}
+          value={idp.displayName || ''}
+          style={{ width: '40%', marginRight: '2%' }}
+        />
+        <ReadOnlyValue
+          label={t('field.alias.name')}
+          tooltipMessage={t('field.alias.hint')}
+          value={idp.alias}
+          style={{ width: '31%', margin: '0 2%' }}
+        />
+        <ReadOnlyValue
+          label={t('field.clientAuthMethod.name')}
+          tooltipMessage={t('field.clientAuthMethod.hint')}
+          value={defaultOidcAuthMethod.value}
+          style={{ width: '23%', marginLeft: '2%' }}
+        />
       </div>
 
-      <div style={{ margin: '20px 0' }}>
+      <div style={{ marginTop: '10px' }}>
         <ValidatingInput
           name="metadataUrl"
           label={t('field.metadata.name')}
           validate={isWellknownMetadata}
-          helperText={t('field.metadata.hint')}
+          tooltipMessage={t('field.metadata.hint')}          
+          helperText={t('field.metadata.hint')}          
           onValid={onChange}
         />
       </div>
 
       <div style={{ margin: '20px 0', display: 'flex' }}>
         <div style={{ width: '48%', marginRight: '2%' }}>
-          <SelectList
-            clearText="clear"
-            defaultValue={defaultOidcAuthMethod}
-            keyTitle={'title'}
-            items={Object.keys(OIDCAuthMethod).map((m) => ({
-              id: m,
-              title: m,
-              value: m,
-            }))}
-            label={t('field.clientAuthMethod')}
-            placeholder={t('field.clientAuthMethod')}
-            onChangeItem={(item) => onChange('clientAuthMethod', item.value)}
-          />
-        </div>
-      </div>
-
-      <div style={{ margin: '20px 0', display: 'flex' }}>
-        <div style={{ width: '48%', marginRight: '2%' }}>
           <ValidatingInput
             name="clientId"
-            label="Client ID"
+            label={t('field.clientId.name')}
+            tooltipMessage={t('field.clientId.hint')}
+            helperText={t('field.clientId.hint')}
             value={idp.oidc?.clientId || ''}
             validate={isIDPClientID}
             onValid={onChange}
@@ -182,7 +209,9 @@ const UpdateIDPForm = ({
         <div style={{ width: '48%', marginLeft: '2%' }}>
           <ValidatingInput
             name="secret"
-            label="Client Secret"
+            label={t('field.clientSecret.name')}
+            tooltipMessage={t('field.clientSecret.hint')}
+            helperText={t('field.clientSecret.hint')}
             validate={isIDPClientSecret}
             onValid={onChange}
           />
