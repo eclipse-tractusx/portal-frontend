@@ -41,7 +41,7 @@ import {
   useUpdateRoleDataMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()

@@ -58,7 +58,7 @@ import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -716,8 +716,8 @@ export default function AppMarketCard() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={setAppCardNotification}
-        setPageSnackbar={setAppCardSnackbar}
+        setPageNotification={() => setAppCardNotification(false)}
+        setPageSnackbar={() => setAppCardSnackbar(false)}
         onBackIconClick={() => navigate('/appmanagement')}
         onSave={handleSubmit((data) => onSubmit(data, 'save'))}
         onSaveAndProceed={handleSubmit((data) =>

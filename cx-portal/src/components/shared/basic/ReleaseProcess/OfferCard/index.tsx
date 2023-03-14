@@ -46,7 +46,7 @@ import {
   serviceStatusDataSelector,
 } from 'features/appManagement/slice'
 import { setAppId, setServiceStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
@@ -77,12 +77,10 @@ export default function OfferCard() {
   const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchServiceStatus = useFetchServiceStatusQuery(
-    'c1b1ebc7-e92d-4ca8-8484-8810547d7d49' ?? '',
-    {
-      refetchOnMountOrArgChange: true,
-    }
-  ).data
+  //"e4b15975-8f3c-4341-a1b5-b4c478ec9e7f"
+  const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -210,7 +208,8 @@ export default function OfferCard() {
         buttonLabel === 'save' && setServiceCardSnackbar(true)
         dispatch(setServiceStatus(fetchServiceStatus))
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log('error = ', error)
         setServiceCardNotification(true)
       })
   }
@@ -242,22 +241,22 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          const setFileStatus = (status: UploadFileStatus) =>
-            setValue('uploadImage.leadPictureUri', {
-              name: uploadImageValue.name,
-              size: uploadImageValue.size,
-              status,
-            } as any)
+          // const setFileStatus = (status: UploadFileStatus) =>
+          //   setValue('uploadImage.leadPictureUri', {
+          //     name: uploadImageValue.name,
+          //     size: uploadImageValue.size,
+          //     status,
+          //   } as any)
 
-          setFileStatus(UploadStatus.UPLOADING)
+          // setFileStatus(UploadStatus.UPLOADING)
 
-          uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
-            .then(() => {
-              setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-            })
-            .catch(() => {
-              setFileStatus(UploadStatus.UPLOAD_ERROR)
-            })
+          // uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+          //   .then(() => {
+          //     setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+          //   })
+          //   .catch(() => {
+          //     setFileStatus(UploadStatus.UPLOAD_ERROR)
+          //   })
 
           dispatch(setAppId(result))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
@@ -265,7 +264,8 @@ export default function OfferCard() {
           dispatch(setServiceStatus(fetchServiceStatus))
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log('error =', error)
         setServiceCardNotification(true)
       })
   }
@@ -286,10 +286,7 @@ export default function OfferCard() {
             serviceStatusData?.descriptions?.filter(
               (serviceStatus: any) => serviceStatus.languageCode === 'de'
             )[0]?.longDescription || '',
-          shortDescription:
-            serviceStatusData?.descriptions?.filter(
-              (serviceStatus: any) => serviceStatus.languageCode === 'de'
-            )[0]?.shortDescription || '',
+          shortDescription: data.shortDescriptionDE || '',
         },
         {
           languageCode: 'en',
@@ -297,10 +294,7 @@ export default function OfferCard() {
             serviceStatusData?.descriptions?.filter(
               (serviceStatus: any) => serviceStatus.languageCode === 'en'
             )[0]?.longDescription || '',
-          shortDescription:
-            serviceStatusData?.descriptions?.filter(
-              (serviceStatus: any) => serviceStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
+          shortDescription: data.shortDescriptionEN || '',
         },
       ],
       privacyPolicies: [],
@@ -465,8 +459,8 @@ export default function OfferCard() {
           title: t('serviceReleaseForm.error.title'),
           description: t('serviceReleaseForm.error.message'),
         }}
-        setPageNotification={setServiceCardNotification}
-        setPageSnackbar={setServiceCardSnackbar}
+        setPageNotification={() => setServiceCardNotification(false)}
+        setPageSnackbar={() => setServiceCardSnackbar(false)}
         onBackIconClick={() => navigate('/home')}
         onSave={handleSubmit((data) => onSubmit(data, 'save'))}
         onSaveAndProceed={handleSubmit((data) =>

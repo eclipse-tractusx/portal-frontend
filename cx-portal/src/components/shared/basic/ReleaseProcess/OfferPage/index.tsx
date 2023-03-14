@@ -33,11 +33,11 @@ import { useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  useFetchAppStatusQuery,
+  useFetchServiceStatusQuery,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { setAppStatus } from 'features/appManagement/actions'
 import {
   appIdSelector,
@@ -56,27 +56,27 @@ export default function OfferPage() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
+    dispatch(setAppStatus(fetchServiceStatus))
     dispatch(decrement())
   }
 
   const defaultValues = {
     longDescriptionEN:
-      fetchAppStatus?.descriptions?.filter(
+      fetchServiceStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'en'
       )[0]?.longDescription || '',
     longDescriptionDE:
-      fetchAppStatus?.descriptions?.filter(
+      fetchServiceStatus?.descriptions?.filter(
         (appStatus: any) => appStatus.languageCode === 'de'
       )[0]?.longDescription || '',
-    images: fetchAppStatus?.documents?.APP_IMAGE || [],
-    providerHomePage: fetchAppStatus?.providerUri || '',
-    providerContactEmail: fetchAppStatus?.contactEmail || '',
+    images: fetchServiceStatus?.documents?.APP_IMAGE || [],
+    providerHomePage: fetchServiceStatus?.providerUri || '',
+    providerContactEmail: fetchServiceStatus?.contactEmail || '',
   }
 
   const {
