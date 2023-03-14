@@ -21,14 +21,14 @@
 import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
+import { useFetchBoardAppDetailsQuery } from 'features/adminBoard/adminBoardApiSlice'
 import BoardContentDetails from './BoardContentDetails'
 import './AdminBoardDetail.scss'
 
 export default function AdminBoardDetail() {
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data } = useFetchAppDetailsQuery(appId ?? '')
+  const { data } = useFetchBoardAppDetailsQuery(appId ?? '')
 
   return (
     <main className="adminboard-main">
