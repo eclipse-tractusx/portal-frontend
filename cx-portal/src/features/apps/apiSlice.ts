@@ -94,6 +94,7 @@ export type AppDetails = AppMarketplaceApp & {
   tags: string[]
   languages: string[]
   leadPictureUri?: ImageType
+  roles?: string[]
 }
 
 export type Documents = {
