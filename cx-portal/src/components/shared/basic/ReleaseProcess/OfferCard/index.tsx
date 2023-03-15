@@ -72,7 +72,7 @@ export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const serviceId = 'e4b15975-8f3c-4341-a1b5-b4c478ec9e7f'
+  const serviceId = useSelector(serviceIdSelector)
   const [serviceCardNotification, setServiceCardNotification] = useState(false)
   const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
   const serviceStatusData = useSelector(serviceStatusDataSelector)
