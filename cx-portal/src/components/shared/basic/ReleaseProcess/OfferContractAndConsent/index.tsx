@@ -37,9 +37,7 @@ export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
-  const fetchAgreementData = useFetchServiceAgreementDataQuery(
-    serviceId ?? ''
-  ).data
+  const fetchAgreementData = useFetchServiceAgreementDataQuery().data
   const fetchConsentData = useFetchServiceConsentDataQuery(serviceId ?? '').data
   const [updateAgreementConsents] = useUpdateServiceAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -70,7 +68,7 @@ export default function OfferContractAndConsent() {
         imageFieldNote={t('serviceReleaseForm.note')}
         imageFieldRequiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
         id={serviceId}
-        fetchAgreementData={fetchAgreementData}
+        fetchAgreementData={fetchAgreementData || []}
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}

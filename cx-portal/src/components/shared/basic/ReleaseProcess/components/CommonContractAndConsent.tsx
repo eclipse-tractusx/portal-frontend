@@ -58,10 +58,14 @@ type CommonConsentType = {
   imageFieldNote: string
   imageFieldRequiredText: string
   id: string
-  fetchAgreementData?: AgreementType[]
+  fetchAgreementData: AgreementType[]
   fetchConsentData?: ConsentType
   updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
-  updateDocumentUpload?: any
+  updateDocumentUpload?: (obj: {
+    appId: string
+    documentTypeId: string
+    body: any
+  }) => any
   fetchStatusData: any
   getDocumentById?: (id: string) => any
 }
@@ -134,7 +138,7 @@ export default function CommonContractAndConsent({
   }
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchStatusData))
+    if (fetchStatusData) dispatch(setAppStatus(fetchStatusData))
   }, [dispatch, fetchStatusData])
 
   const loadData = useCallback(() => {
@@ -166,7 +170,7 @@ export default function CommonContractAndConsent({
   }, [agreementData, fetchAgreementData, fetchConsentData, reset])
 
   useEffect(() => {
-    if (agreementData && agreementData.length === 0) loadData()
+    if (!agreementData || agreementData.length === 0) loadData()
   }, [loadData, agreementData])
 
   useEffect(() => {
@@ -270,7 +274,7 @@ export default function CommonContractAndConsent({
       documentTypeId: documentTypeId,
       body: { file },
     }
-    await updateDocumentUpload(data).unwrap()
+    if (updateDocumentUpload) await updateDocumentUpload(data).unwrap()
   }
 
   const onBackIconClick = () => {

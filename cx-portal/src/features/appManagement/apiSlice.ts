@@ -319,11 +319,11 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
-    fetchServiceAgreementData: builder.query<AgreementType[], string>({
-      query: (appId: string) => `api/services/agreementData/${appId}`,
+    fetchServiceAgreementData: builder.query<AgreementType[], void>({
+      query: () => `api/services/servicerelease/agreementData`,
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
-      query: (appId: string) => `/api/services/consent/${appId}`,
+      query: (appId: string) => `/api/services/servicerelease/consent/${appId}`,
     }),
   }),
 })
