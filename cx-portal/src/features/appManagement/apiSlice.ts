@@ -20,7 +20,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { ServiceStatusDataState } from './types'
 
 export type useCasesItem = {
   useCaseId: string

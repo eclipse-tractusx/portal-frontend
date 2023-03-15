@@ -36,7 +36,6 @@ import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/apiSlice'
-import { AppStatusDataState, ServiceStatusDataState } from 'features/appManagement/types'
 
 type AgreementDataType = {
   agreementId: string

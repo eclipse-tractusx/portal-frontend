@@ -32,7 +32,6 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setServiceStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
-import { ServiceStatusDataState } from 'features/appManagement/types'
 
 export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
