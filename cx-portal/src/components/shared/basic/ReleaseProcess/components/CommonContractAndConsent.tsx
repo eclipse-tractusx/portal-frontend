@@ -123,13 +123,13 @@ export default function CommonContractAndConsent({
     status: UploadFileStatus
   ) => {
     const value = getValues(fieldName)
-
-    setValue(fieldName, {
-      id: value.id,
-      name: value.name,
-      size: value.size,
-      status,
-    } as any)
+    if (value)
+      setValue(fieldName, {
+        id: value.id,
+        name: value.name,
+        size: value.size,
+        status,
+      } as any)
   }
 
   useEffect(() => {
@@ -165,7 +165,7 @@ export default function CommonContractAndConsent({
   }, [agreementData, fetchAgreementData, fetchConsentData, reset])
 
   useEffect(() => {
-    if (agreementData.length === 0) loadData()
+    if (agreementData && agreementData.length === 0) loadData()
   }, [loadData, agreementData])
 
   useEffect(() => {
@@ -207,7 +207,6 @@ export default function CommonContractAndConsent({
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
       uploadDocumentApi(
-        id,
         DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
         value
       )
@@ -264,17 +263,12 @@ export default function CommonContractAndConsent({
       })
   }
 
-  const uploadDocumentApi = async (
-    id: string,
-    documentTypeId: string,
-    file: any
-  ) => {
+  const uploadDocumentApi = async (documentTypeId: string, file: any) => {
     const data = {
-      id: id,
+      appId: id,
       documentTypeId: documentTypeId,
       body: { file },
     }
-
     await updateDocumentUpload(data).unwrap()
   }
 
