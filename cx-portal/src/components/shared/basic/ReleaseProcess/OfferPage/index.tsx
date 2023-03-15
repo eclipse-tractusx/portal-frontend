@@ -37,7 +37,7 @@ import {
   useSaveServiceMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { setServiceStatus } from 'features/appManagement/actions'
 import {
@@ -48,6 +48,7 @@ import {
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../components/ProviderConnectorField'
+import { LanguageStatusType } from 'features/appManagement/types'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -78,11 +79,11 @@ export default function OfferPage() {
   const defaultValues = {
     longDescriptionEN:
       fetchServiceStatus?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
+        (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
       )[0]?.longDescription || '',
     longDescriptionDE:
       fetchServiceStatus?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
+        (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
       )[0]?.longDescription || '',
     images: fetchServiceStatus?.documents?.APP_IMAGE || [],
     providerHomePage: fetchServiceStatus?.providerUri || '',
@@ -128,7 +129,7 @@ export default function OfferPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dImages])
 
-  const uploadImage = (files: any) => {
+  const uploadImage = (files: DropzoneFile[]) => {
     const value = files
     if (value.length > 0) {
       const setFiles = (fileIndex: number, status: UploadFileStatus) => {
@@ -153,7 +154,7 @@ export default function OfferPage() {
   const uploadDocument = async (
     appId: string,
     documentTypeId: string,
-    file: any
+    file: DropzoneFile
   ) => {
     const data = {
       appId: appId,
@@ -186,7 +187,7 @@ export default function OfferPage() {
           longDescription: data.longDescriptionEN,
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
             )[0]?.shortDescription || '',
         },
         {
@@ -194,7 +195,7 @@ export default function OfferPage() {
           longDescription: data.longDescriptionDE,
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'de'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
             )[0]?.shortDescription || '',
         },
       ],
@@ -213,7 +214,7 @@ export default function OfferPage() {
       }).unwrap()
       buttonLabel === 'saveAndProceed' && dispatch(increment())
       buttonLabel === 'save' && setServicePageSnackbar(true)
-    } catch (error: any) {
+    } catch (error) {
       setServicePageNotification(true)
     }
   }

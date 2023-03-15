@@ -69,7 +69,7 @@ export default function ReleaseProcessWrapper({
   onAppsOverviewClick,
 }: ReleaseProcessWrapperType) {
   const [showSubmitPage, setShowSubmitPage] = useState(false)
-  let activePage: any = useSelector(currentActiveStep)
+  let activePage: number = useSelector(currentActiveStep)
   useEffect(() => {
     activeStep()
     window.scrollTo(0, 0)

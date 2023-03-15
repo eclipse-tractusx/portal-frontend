@@ -152,14 +152,14 @@ export default function CommonContractAndConsent({
     const consentAgreementData: any =
       fetchAgreementData &&
       fetchConsent &&
-      fetchAgreementData?.map((item: any, index: number) =>
+      fetchAgreementData?.map((item: AgreementType, index: number) =>
         Object.assign({}, item, fetchConsent[index])
       )
 
     fetchAgreementData && setAgreementData(consentAgreementData)
 
     const defaultCheckboxData = consentAgreementData?.reduce(
-      (data: any, item: AgreementStatusType) => {
+      (data: ConsentType, item: AgreementStatusType) => {
         return { ...data, [item.agreementId]: item.consentStatus }
       },
       {}

@@ -55,6 +55,7 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
+import { LanguageStatusType } from 'features/appManagement/types'
 
 type FormDataType = {
   title: string
@@ -94,11 +95,13 @@ export default function OfferCard() {
       price: null,
       shortDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
-          (serviceStatus: any) => serviceStatus.languageCode === 'en'
+          (serviceStatus: LanguageStatusType) =>
+            serviceStatus.languageCode === 'en'
         )[0]?.shortDescription || '',
       shortDescriptionDE:
         fetchServiceStatus?.descriptions?.filter(
-          (serviceStatus: any) => serviceStatus.languageCode === 'de'
+          (serviceStatus: LanguageStatusType) =>
+            serviceStatus.languageCode === 'de'
         )[0]?.shortDescription || '',
       uploadImage: {
         leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
@@ -154,12 +157,7 @@ export default function OfferCard() {
       )
     }
     if (serviceStatusData && serviceStatusData.serviceTypeIds) {
-      let values = serviceStatusData?.serviceTypeIds.map((item: string) => {
-        return {
-          name: item,
-        }
-      })
-      setDefaultServiceTypeVal(values)
+      setDefaultServiceTypeVal(serviceStatusData?.serviceTypeIds)
     }
   }, [serviceStatusData, fetchCardImage])
 
@@ -230,7 +228,8 @@ export default function OfferCard() {
           languageCode: 'de',
           longDescription:
             serviceStatusData?.descriptions?.filter(
-              (serviceStatus: any) => serviceStatus.languageCode === 'de'
+              (serviceStatus: LanguageStatusType) =>
+                serviceStatus.languageCode === 'de'
             )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionDE || '',
         },
@@ -238,7 +237,8 @@ export default function OfferCard() {
           languageCode: 'en',
           longDescription:
             serviceStatusData?.descriptions?.filter(
-              (serviceStatus: any) => serviceStatus.languageCode === 'en'
+              (serviceStatus: LanguageStatusType) =>
+                serviceStatus.languageCode === 'en'
             )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionEN || '',
         },
@@ -323,10 +323,6 @@ export default function OfferCard() {
                   saveKeyTitle: 'name',
                   notItemsText: t('serviceReleaseForm.noItemsSelected'),
                   buttonAddMore: t('serviceReleaseForm.addMore'),
-                  filterOptionsArgs: {
-                    matchFrom: 'any',
-                    stringify: (option: any) => option.name,
-                  },
                   defaultValues: defaultServiceTypeVal,
                 }}
               />
@@ -414,8 +410,8 @@ export default function OfferCard() {
         setPageNotification={() => setServiceCardNotification(false)}
         setPageSnackbar={() => setServiceCardSnackbar(false)}
         onBackIconClick={() => navigate('/home')}
-        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
-        onSaveAndProceed={handleSubmit((data: any) =>
+        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
           onSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}

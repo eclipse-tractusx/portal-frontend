@@ -25,6 +25,10 @@ export type SearchInputState = {
   text: string
 }
 
+export type LanguageStatusType = {
+  languageCode: string
+}
+
 export interface AppStatusDataState {
   title: string
   provider: string
