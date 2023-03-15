@@ -39,9 +39,9 @@ import {
 } from 'features/appManagement/apiSlice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
-import { setAppStatus } from 'features/appManagement/actions'
+import { setServiceStatus } from 'features/appManagement/actions'
 import {
-  appIdSelector,
+  serviceIdSelector,
   decrement,
   increment,
 } from 'features/appManagement/slice'
@@ -63,15 +63,15 @@ export default function OfferPage() {
   const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
+  const serviceId = useSelector(serviceIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const [saveService] = useSaveServiceMutation()
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchServiceStatus))
+    dispatch(setServiceStatus(fetchServiceStatus))
     dispatch(decrement())
   }
 
@@ -143,7 +143,7 @@ export default function OfferPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFiles(fileIndex, UploadStatus.UPLOADING)
-        uploadDocument(appId, 'APP_IMAGE', value[fileIndex])
+        uploadDocument(serviceId, 'APP_IMAGE', value[fileIndex])
           .then(() => setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
@@ -208,7 +208,7 @@ export default function OfferPage() {
 
     try {
       await saveService({
-        id: appId,
+        id: serviceId,
         body: apiBody,
       }).unwrap()
       buttonLabel === 'saveAndProceed' && dispatch(increment())

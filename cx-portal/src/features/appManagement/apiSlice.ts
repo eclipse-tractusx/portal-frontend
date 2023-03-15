@@ -309,6 +309,22 @@ export const apiSlice = createApi({
     fetchServiceTypeIds: builder.query<any, void>({
       query: () => `/api/services/servicerelease/serviceTypes`,
     }),
+    updateServiceAgreementConsents: builder.mutation<
+      void,
+      UpdateAgreementConsentType
+    >({
+      query: (data: UpdateAgreementConsentType) => ({
+        url: `/api/services/${data.appId}/serviceAgreementConsent`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
+    fetchServiceAgreementData: builder.query<AgreementType[], void>({
+      query: () => `api/services/agreementData`,
+    }),
+    fetchServiceConsentData: builder.query<ConsentType, string>({
+      query: (appId: string) => `/api/services/consent/${appId}`,
+    }),
   }),
 })
 
@@ -335,4 +351,7 @@ export const {
   useCreateServiceMutation,
   useFetchServiceStatusQuery,
   useFetchServiceTypeIdsQuery,
+  useUpdateServiceAgreementConsentsMutation,
+  useFetchServiceAgreementDataQuery,
+  useFetchServiceConsentDataQuery,
 } = apiSlice

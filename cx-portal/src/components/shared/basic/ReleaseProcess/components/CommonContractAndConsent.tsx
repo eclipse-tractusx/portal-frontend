@@ -18,34 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  appIdSelector,
-  decrement,
-  increment,
-} from 'features/appManagement/slice'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { decrement, increment } from 'features/appManagement/slice'
 import {
   AgreementStatusType,
   ConsentType,
   UpdateAgreementConsentType,
-  useFetchAgreementDataQuery,
-  useFetchConsentDataQuery,
-  useUpdateAgreementConsentsMutation,
-  useFetchAppStatusQuery,
-  useUpdateDocumentUploadMutation,
-  useFetchNewDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/apiSlice'
-import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 
 type AgreementType = {
   agreementId: string
@@ -54,67 +43,61 @@ type AgreementType = {
   documentId: string
 }[]
 
-export default function ContractAndConsent() {
-  const { t } = useTranslation()
+type CommonConsentType = {
+  stepperTitle: string
+  stepperDescription: string
+  checkBoxMandatoryText: string
+  imageFieldLabel: string
+  pageSnackbarDescription: string
+  pageNotificationObject: {
+    title: string
+    description: string
+  }
+  imageFieldNoDescription: string
+  imageFieldNote: string
+  imageFieldRequiredText: string
+  id: string
+  fetchAgreementData?: any
+  fetchConsentData?: any
+  updateAgreementConsents?: any
+  updateDocumentUpload?: any
+  fetchDataStatus: any
+  getDocumentById?: any
+}
+
+export default function CommonContractAndConsent({
+  stepperTitle,
+  stepperDescription,
+  checkBoxMandatoryText,
+  imageFieldLabel,
+  pageSnackbarDescription,
+  pageNotificationObject,
+  imageFieldNoDescription,
+  imageFieldNote,
+  imageFieldRequiredText,
+  id,
+  fetchAgreementData,
+  fetchConsentData,
+  updateAgreementConsents,
+  updateDocumentUpload,
+  fetchDataStatus,
+  getDocumentById,
+}: CommonConsentType) {
   const [contractNotification, setContractNotification] = useState(false)
   const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
-  const fetchAgreementData = useFetchAgreementDataQuery().data
-  const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
-  const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
-  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [agreementData, setAgreementData] = useState<AgreementType>([])
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
   })
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
-    refetchOnMountOrArgChange: true,
-  }).data
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-  }, [dispatch, fetchAppStatus])
-
-  useEffect(() => {
-    loadData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchConsentData, fetchAgreementData])
-
-  const loadData = () => {
-    const fetchConsent = fetchConsentData?.agreements.map(
-      (item: AgreementStatusType) => ({
-        ...item,
-        consentStatus: item.consentStatus === 'ACTIVE',
-      })
-    )
-
-    const consentAgreementData: any =
-      fetchAgreementData &&
-      fetchConsent &&
-      fetchAgreementData?.map((item, index: number) =>
-        Object.assign({}, item, fetchConsent[index])
-      )
-
-    fetchAgreementData && setAgreementData(consentAgreementData)
-
-    const defaultCheckboxData = consentAgreementData?.reduce(
-      (data: any, item: AgreementStatusType) => {
-        return { ...data, [item.agreementId]: item.consentStatus }
-      },
-      {}
-    )
-
-    setDefaultValue({ ...defaultCheckboxData, agreements: agreementData })
-    reset({ ...defaultCheckboxData, agreements: agreementData })
-  }
-
-  const defaultValues = {
-    agreements: defaultValue,
-    uploadImageConformity:
-      fetchAppStatus?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      agreements: defaultValue,
+      uploadImageConformity:
+        fetchDataStatus?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
+    }
+  }, [fetchDataStatus, defaultValue])
 
   const {
     handleSubmit,
@@ -130,7 +113,60 @@ export default function ContractAndConsent() {
   })
 
   const uploadImageConformityValue = getValues().uploadImageConformity
-  const defaultuploadImageConformity = defaultValues.uploadImageConformity
+  const defaultuploadImageConformity = useMemo(
+    () => defaultValues.uploadImageConformity,
+    [defaultValues]
+  )
+
+  const setFileStatus = (
+    fieldName: Parameters<typeof setValue>[0],
+    status: UploadFileStatus
+  ) => {
+    const value = getValues(fieldName)
+
+    setValue(fieldName, {
+      id: value.id,
+      name: value.name,
+      size: value.size,
+      status,
+    } as any)
+  }
+
+  useEffect(() => {
+    dispatch(setAppStatus(fetchDataStatus))
+  }, [dispatch, fetchDataStatus])
+
+  const loadData = useCallback(() => {
+    const fetchConsent = fetchConsentData?.agreements.map(
+      (item: AgreementStatusType) => ({
+        ...item,
+        consentStatus: item.consentStatus === 'ACTIVE',
+      })
+    )
+
+    const consentAgreementData: any =
+      fetchAgreementData &&
+      fetchConsent &&
+      fetchAgreementData?.map((item: any, index: number) =>
+        Object.assign({}, item, fetchConsent[index])
+      )
+
+    fetchAgreementData && setAgreementData(consentAgreementData)
+
+    const defaultCheckboxData = consentAgreementData?.reduce(
+      (data: any, item: AgreementStatusType) => {
+        return { ...data, [item.agreementId]: item.consentStatus }
+      },
+      {}
+    )
+
+    setDefaultValue({ ...defaultCheckboxData, agreements: agreementData })
+    reset({ ...defaultCheckboxData, agreements: agreementData })
+  }, [agreementData, fetchAgreementData, fetchConsentData, reset])
+
+  useEffect(() => {
+    if (agreementData.length === 0) loadData()
+  }, [loadData, agreementData])
 
   useEffect(() => {
     if (
@@ -150,20 +186,6 @@ export default function ContractAndConsent() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultuploadImageConformity])
-
-  const setFileStatus = (
-    fieldName: Parameters<typeof setValue>[0],
-    status: UploadFileStatus
-  ) => {
-    const value = getValues(fieldName)
-
-    setValue(fieldName, {
-      id: value.id,
-      name: value.name,
-      size: value.size,
-      status,
-    } as any)
-  }
 
   useEffect(() => {
     const value = getValues().uploadImageConformity
@@ -185,7 +207,7 @@ export default function ContractAndConsent() {
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
       uploadDocumentApi(
-        appId,
+        id,
         DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
         value
       )
@@ -225,7 +247,7 @@ export default function ContractAndConsent() {
     )
 
     const updateData: UpdateAgreementConsentType = {
-      appId: appId,
+      appId: id,
       body: {
         agreements: updateAgreementData,
       },
@@ -243,12 +265,12 @@ export default function ContractAndConsent() {
   }
 
   const uploadDocumentApi = async (
-    appId: string,
+    id: string,
     documentTypeId: string,
     file: any
   ) => {
     const data = {
-      appId: appId,
+      id: id,
       documentTypeId: documentTypeId,
       body: { file },
     }
@@ -257,7 +279,7 @@ export default function ContractAndConsent() {
   }
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
+    dispatch(setAppStatus(fetchDataStatus))
     dispatch(decrement())
   }
 
@@ -277,10 +299,8 @@ export default function ContractAndConsent() {
   return (
     <div className="contract-consent">
       <ReleaseStepHeader
-        title={t('content.apprelease.contractAndConsent.headerTitle')}
-        description={t(
-          'content.apprelease.contractAndConsent.headerDescription'
-        )}
+        title={stepperTitle}
+        description={stepperDescription}
       />
       <form className="header-description">
         {agreementData?.map((item) => (
@@ -306,9 +326,7 @@ export default function ContractAndConsent() {
                 rules: {
                   required: {
                     value: true,
-                    message: `${item.name} ${t(
-                      'content.apprelease.appReleaseForm.isMandatory'
-                    )}`,
+                    message: `${item.name} ${checkBoxMandatoryText}`,
                   },
                 },
               }}
@@ -325,30 +343,18 @@ export default function ContractAndConsent() {
           acceptFormat={{
             'application/pdf': ['.pdf'],
           }}
-          label={
-            t('content.apprelease.contractAndConsent.uploadImageConformity') +
-            ' *'
-          }
-          noteDescription={t(
-            'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
-          )}
-          note={t('content.apprelease.appReleaseForm.note')}
-          requiredText={t(
-            'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-          )}
+          label={imageFieldLabel}
+          noteDescription={imageFieldNoDescription}
+          note={imageFieldNote}
+          requiredText={imageFieldRequiredText}
           handleDownload={handleDownload}
         />
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={contractNotification}
         pageSnackbar={contractSnackbar}
-        pageSnackBarDescription={t(
-          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
-        )}
-        pageNotificationsObject={{
-          title: t('content.apprelease.appReleaseForm.error.title'),
-          description: t('content.apprelease.appReleaseForm.error.message'),
-        }}
+        pageSnackBarDescription={pageSnackbarDescription}
+        pageNotificationsObject={pageNotificationObject}
         setPageNotification={setContractNotification}
         setPageSnackbar={setContractSnackbar}
         onBackIconClick={onBackIconClick}

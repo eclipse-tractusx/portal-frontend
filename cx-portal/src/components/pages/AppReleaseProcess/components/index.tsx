@@ -18,11 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/components/ReleaseProcessWrapper'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/ReleaseProcessWrapper'
 
 export default function AppReleaseProcessForm() {
   const navigate = useNavigate()

@@ -33,7 +33,6 @@ import {
   useFetchDocumentByIdMutation,
   useCreateServiceMutation,
   useSaveServiceMutation,
-  // useUpdateDocumentUploadMutation,
   CreateServiceStep1Item,
   useFetchServiceTypeIdsQuery,
 } from 'features/appManagement/apiSlice'
@@ -42,11 +41,11 @@ import { useForm } from 'react-hook-form'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  appIdSelector,
   increment,
+  serviceIdSelector,
   serviceStatusDataSelector,
 } from 'features/appManagement/slice'
-import { setAppId, setServiceStatus } from 'features/appManagement/actions'
+import { setServiceId, setServiceStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
@@ -72,18 +71,17 @@ export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
+  const serviceId = useSelector(serviceIdSelector)
   const [serviceCardNotification, setServiceCardNotification] = useState(false)
   const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
   const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchServiceStatus = useFetchServiceStatusQuery(appId ?? '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
-  // const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<any>([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
@@ -91,11 +89,7 @@ export default function OfferCard() {
   const defaultValues = useMemo(() => {
     return {
       title: fetchServiceStatus?.title,
-      serviceTypeIds: fetchServiceStatus?.serviceTypeIds.map((item: string) => {
-        return {
-          name: item,
-        }
-      }),
+      serviceTypeIds: fetchServiceStatus?.serviceTypeIds,
       price: null,
       shortDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
@@ -125,24 +119,13 @@ export default function OfferCard() {
     mode: 'onChange',
   })
 
-  const offerImageData: any = getValues().uploadImage.leadPictureUri
-
-  useEffect(() => {
-    if (offerImageData !== null && offerImageData !== LogoGrayData) {
-      let isFile: any = offerImageData instanceof File
-      if (isFile) {
-        const blobFile = new Blob([offerImageData], {
-          type: 'image/png',
-        })
-        setCardImage(URL.createObjectURL(blobFile))
-      }
-    }
-  }, [offerImageData])
-
   const fetchCardImage = useCallback(
     async (documentId: string, documentName: string) => {
       try {
-        const response = await fetchDocumentById({ appId, documentId }).unwrap()
+        const response = await fetchDocumentById({
+          appId: serviceId,
+          documentId,
+        }).unwrap()
         const file = response.data
 
         const setFileStatus = (status: UploadFileStatus) =>
@@ -156,7 +139,7 @@ export default function OfferCard() {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
     },
-    [fetchDocumentById, appId, setValue]
+    [fetchDocumentById, serviceId, setValue]
   )
 
   useEffect(() => {
@@ -189,12 +172,12 @@ export default function OfferCard() {
     buttonLabel: string
   ) => {
     await saveService({
-      id: appId,
+      id: serviceId,
       body: apiBody,
     })
       .unwrap()
       .then(() => {
-        dispatch(setAppId(appId))
+        dispatch(setServiceId(serviceId))
         buttonLabel === 'saveAndProceed' && dispatch(increment())
         buttonLabel === 'save' && setServiceCardSnackbar(true)
         dispatch(setServiceStatus(fetchServiceStatus))
@@ -205,26 +188,10 @@ export default function OfferCard() {
       })
   }
 
-  // const uploadDocumentApi = async (
-  //   appId: string,
-  //   documentTypeId: string,
-  //   file: any
-  // ) => {
-  //   const data = {
-  //     appId: appId,
-  //     documentTypeId: documentTypeId,
-  //     body: { file },
-  //   }
-
-  //   await updateDocumentUpload(data).unwrap()
-  // }
-
   const handleCreate = async (
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
-    // const uploadImageValue = getValues().uploadImage
-    //   .leadPictureUri as unknown as DropzoneFile
     await createService({
       id: '',
       body: apiBody,
@@ -232,31 +199,13 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          // const setFileStatus = (status: UploadFileStatus) =>
-          //   setValue('uploadImage.leadPictureUri', {
-          //     name: uploadImageValue.name,
-          //     size: uploadImageValue.size,
-          //     status,
-          //   } as any)
-
-          // setFileStatus(UploadStatus.UPLOADING)
-
-          // uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
-          //   .then(() => {
-          //     setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-          //   })
-          //   .catch(() => {
-          //     setFileStatus(UploadStatus.UPLOAD_ERROR)
-          //   })
-
-          dispatch(setAppId(result))
+          dispatch(setServiceId(result))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
           buttonLabel === 'save' && setServiceCardSnackbar(true)
           dispatch(setServiceStatus(fetchServiceStatus))
         }
       })
-      .catch((error) => {
-        console.log('error =', error)
+      .catch(() => {
         setServiceCardNotification(true)
       })
   }
@@ -300,7 +249,7 @@ export default function OfferCard() {
       contactEmail: '',
     }
     if (validateFields) {
-      if (appId) {
+      if (serviceId) {
         handleSave(apiBody, buttonLabel)
       } else {
         handleCreate(apiBody, buttonLabel)
