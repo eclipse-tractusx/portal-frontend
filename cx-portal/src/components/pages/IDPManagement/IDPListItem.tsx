@@ -110,9 +110,12 @@ export default function IDPListItem({
     )
   }
 
+  const getStateConjunction = (enabled: boolean) =>
+    enabled ? ' &' : `, ${t('field.not')}`
+
   const getStateText = (configured: boolean, enabled: boolean) =>
     configured
-      ? `${t('field.configured')}${enabled ? ' &' : `, ${t('field.not')}`} ${t(
+      ? `${t('field.configured')}${getStateConjunction(enabled)} ${t(
           'field.enabled'
         )}`
       : `${t('field.not')} ${t('field.configured')}`
