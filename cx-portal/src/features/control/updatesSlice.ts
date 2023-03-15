@@ -27,7 +27,6 @@ import { SearchInputState } from 'features/appManagement/types'
 const name = 'control/update'
 
 export enum UPDATES {
-  IDP_LIST = 'IDP_LIST',
   USER_LIST = 'USER_LIST',
   TECHUSER_LIST = 'TECHUSER_LIST',
   APPS_ACTIVE_LIST = 'APPS_ACTIVE_LIST',
@@ -50,9 +49,6 @@ export const slice = createSlice({
 })
 
 export const { updateData } = slice.actions
-
-export const updateIDPSelector = (state: RootState): number =>
-  state.control.update[UPDATES.IDP_LIST]
 
 export const updateUserSelector = (state: RootState): number =>
   state.control.update[UPDATES.USER_LIST]

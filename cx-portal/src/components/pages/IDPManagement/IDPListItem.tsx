@@ -20,7 +20,12 @@
 
 import { IdentityProvider } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
-import { Checkbox, DropdownMenu, MenuItem } from 'cx-portal-shared-components'
+import {
+  DropdownMenu,
+  Image,
+  MenuItem,
+  Tooltips,
+} from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import { useTranslation } from 'react-i18next'
@@ -29,15 +34,18 @@ import { useState } from 'react'
 
 export default function IDPListItem({
   idp,
+  allowDisable = false,
   showInfo = false,
 }: {
   idp: IdentityProvider
+  allowDisable?: boolean
   showInfo?: boolean
 }) {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const [open, setOpen] = useState<boolean>(false)
   const toggle = () => setOpen(!open)
+  const configured = idp.oidc?.clientId ? true : false
 
   const doConfirmDelete = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation()
@@ -53,7 +61,7 @@ export default function IDPListItem({
     }
   }
 
-  const doEdit = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const doConfigure = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     try {
       e.stopPropagation()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
@@ -82,12 +90,17 @@ export default function IDPListItem({
     return (
       <DropdownMenu buttonText={t('action.actions')}>
         {showInfo && <MenuItem title={t('action.details')} onClick={toggle} />}
-        <MenuItem title={t('action.edit')} onClick={doEdit} />
-        {idp.enabled ? (
-          <MenuItem title={t('action.disable')} onClick={doEnableToggle} />
-        ) : (
-          <MenuItem title={t('action.enable')} onClick={doEnableToggle} />
-        )}
+        <MenuItem title={t('action.configure')} onClick={doConfigure} />
+        {idp.oidc?.clientId &&
+          (idp.enabled ? (
+            <MenuItem
+              title={t('action.disable')}
+              onClick={doEnableToggle}
+              disable={!allowDisable}
+            />
+          ) : (
+            <MenuItem title={t('action.enable')} onClick={doEnableToggle} />
+          ))}
         {idp.enabled ? (
           <MenuItem title={t('action.users')} onClick={doAddUsers} />
         ) : (
@@ -97,6 +110,23 @@ export default function IDPListItem({
     )
   }
 
+  const getStateText = (configured: boolean, enabled: boolean) =>
+    configured
+      ? `${t('field.configured')}${enabled ? ' &' : `, ${t('field.not')}`} ${t(
+          'field.enabled'
+        )}`
+      : `${t('field.not')} ${t('field.configured')}`
+
+  const getStateImage = (configured: boolean, enabled: boolean) =>
+    `<svg viewBox="-6 -6 112 36" xmlns="http://www.w3.org/2000/svg"><g stroke="gray" stroke-width="2">
+    <path d="M 12 12 H 80"/>
+    <circle fill="gray" cx="12" cy="12" r="11"/>
+    <circle fill="${configured ? 'gray' : 'white'}" cx="50" cy="12" r="11"/>
+    <circle fill="${enabled ? 'gray' : 'white'}" cx="88" cy="12" r="11"/>
+    </g></svg>`
+
+  const stateMessage = getStateText(configured, idp.enabled)
+
   return (
     <>
       <div className="idp-list-item">
@@ -104,7 +134,18 @@ export default function IDPListItem({
         <span className="name">{idp.displayName || '-'}</span>
         <span className="alias">{idp.alias}</span>
         <span className="state">
-          <Checkbox disabled={true} checked={idp.enabled} />
+          <Tooltips tooltipPlacement="left" tooltipText={stateMessage}>
+            <div>
+              <Image
+                alt={stateMessage}
+                style={{ width: '112px', height: '40px' }}
+                src={`data:image/svg+xml;utf8,${getStateImage(
+                  configured,
+                  idp.enabled
+                )}`}
+              />
+            </div>
+          </Tooltips>
         </span>
         <span className={'action menu'}>{renderMenu()}</span>
       </div>

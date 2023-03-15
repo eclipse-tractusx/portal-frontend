@@ -120,13 +120,14 @@ const ReadOnlyValue = ({
             marginTop: '30px !important',
           }}
           tooltipPlacement="top-start"
-          tooltipText={tooltipMessage}>
-            <div>
-              <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
-            </div>
+          tooltipText={tooltipMessage}
+        >
+          <div>
+            <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
+          </div>
         </Tooltips>
       </div>
-              <CopyValue value={value} />
+      <CopyValue value={value} />
     </div>
   )
 }
@@ -138,7 +139,8 @@ const UpdateIDPForm = ({
   idp: IdentityProvider
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
-  const HELPLINK = '/documentation/?path=docs%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md#create-the-new-idp-record'
+  const HELPLINK =
+    '/documentation/?path=docs%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md#create-the-new-idp-record'
   const { t } = useTranslation('idp')
 
   const defaultOAM =
@@ -151,15 +153,15 @@ const UpdateIDPForm = ({
 
   return (
     <>
-      <Link
-        to={HELPLINK}
-        target='_help'>{t('action.help')}</Link>
+      <Link to={HELPLINK} target="_help">
+        {t('action.help')}
+      </Link>
 
       <ReadOnlyValue
         label={t('field.redirectUri.name')}
         tooltipMessage={t('field.redirectUri.hint')}
         value={`${idp.redirectUrl}*`}
-        style={{marginTop:'10px'}}
+        style={{ marginTop: '10px' }}
       />
 
       <div style={{ marginTop: '40px', display: 'flex' }}>
@@ -188,8 +190,8 @@ const UpdateIDPForm = ({
           name="metadataUrl"
           label={t('field.metadata.name')}
           validate={isWellknownMetadata}
-          tooltipMessage={t('field.metadata.hint')}          
-          helperText={t('field.metadata.hint')}          
+          tooltipMessage={t('field.metadata.hint')}
+          helperText={t('field.metadata.hint')}
           onValid={onChange}
         />
       </div>

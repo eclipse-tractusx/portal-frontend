@@ -13,7 +13,6 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import { useTranslation, Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay/actions'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { useRemoveIDPMutation } from 'features/admin/idpApiSlice'
 
 import './idpdelete.scss'
@@ -80,7 +79,6 @@ function IDPDelete({ id, title }: { id: string; title?: string }) {
   const handleDelete = async () => {
     try {
       await removeIDP(id)
-      dispatch(updateData(UPDATES.IDP_LIST))
       setStatus({ success: true, error: false })
 
       //to close the overlay on success after three seconds

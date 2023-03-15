@@ -117,7 +117,7 @@
     },
     "metadata": {
       "name": "Metadata URI",
-      "hint": "Enter the metadata URL from your IDP that ends with '.well-known/openid-configuration'"
+      "hint": "Enter the metadata URL from your IDP that ends with '/.well-known/openid-configuration'"
     },
     "clientId": {
       "name": "Client ID",
@@ -125,7 +125,7 @@
     },
     "clientSecret": {
       "name": "Client Secret",
-      "hint": "Enter the client Secret provided by your IdP"
+      "hint": "Enter the client secret provided by your IdP"
     },
     "clientAuthMethod": {
       "name": "Auth Method",
@@ -134,6 +134,8 @@
     "copy": {
       "hint": "click to copy"
     },
+    "not": "not",
+    "configured": "configured",
     "enabled": "enabled",
     "disabled": "disabled"
   },
@@ -145,6 +147,7 @@
     "disable": "Disable",
     "delete": "Delete",
     "edit": "Edit",
+    "configure": "Configure",
     "users": "Users",
     "signout": "Sign out",
     "confirm": "Confirm",

@@ -31,7 +31,6 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay/actions'
 import { useState } from 'react'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 import {
   IdentityProviderUpdate,
   IDPAuthType,
@@ -180,7 +179,6 @@ export const AddIdp = () => {
         },
       }
       await updateIdp(idpUpdateData).unwrap()
-      dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
     } catch (err) {
       console.log(err)

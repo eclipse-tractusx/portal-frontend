@@ -134,15 +134,17 @@ export interface IdentityProvider {
   saml?: OIDCType
 }
 
+const TAG_IDP = 'idp'
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/idp',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: [TAG_IDP],
   endpoints: (builder) => ({
-    fetchIDPList: builder.query<Array<IdentityProvider>, number | null>({
-      query: (update: number) =>
-        `/api/administration/identityprovider/owncompany/identityproviders${
-          update ? '?' + update : ''
-        }`,
+    fetchIDPList: builder.query<Array<IdentityProvider>, void>({
+      query: () =>
+        `/api/administration/identityprovider/owncompany/identityproviders`,
+      providesTags: [TAG_IDP],
     }),
     fetchIDPDetail: builder.query<IdentityProvider, string>({
       query: (id: string) =>
@@ -153,6 +155,7 @@ export const apiSlice = createApi({
         url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${protocol}`,
         method: 'POST',
       }),
+      invalidatesTags: [TAG_IDP],
     }),
     updateIDP: builder.mutation<IdentityProvider, IdentityProviderUpdate>({
       query: (idpUpdate: IdentityProviderUpdate) => ({
@@ -160,18 +163,21 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: idpUpdate.body,
       }),
+      invalidatesTags: [TAG_IDP],
     }),
     removeIDP: builder.mutation<IdentityProvider, string>({
       query: (id: string) => ({
         url: `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: [TAG_IDP],
     }),
     enableIDP: builder.mutation<IdentityProvider, IDPStatus>({
       query: (status: IDPStatus) => ({
         url: `/api/administration/identityprovider/owncompany/identityproviders/${status.id}/status?enabled=${status.enabled}`,
         method: 'POST',
       }),
+      invalidatesTags: [TAG_IDP],
     }),
     updateUserIDP: builder.mutation<IdentityProvider, IdentityProviderUser>({
       query: (idpUser: IdentityProviderUser) => ({
