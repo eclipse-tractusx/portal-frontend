@@ -83,7 +83,7 @@ export default function ContractAndConsent() {
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
-        fetchDataStatus={fetchAppStatus}
+        fetchStatusData={fetchAppStatus}
         getDocumentById={getDocumentById}
       />
     </div>

@@ -71,7 +71,7 @@ export default function OfferPage() {
   const [saveService] = useSaveServiceMutation()
 
   const onBackIconClick = () => {
-    dispatch(setServiceStatus(fetchServiceStatus))
+    if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     dispatch(decrement())
   }
 

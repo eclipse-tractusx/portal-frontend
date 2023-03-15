@@ -20,6 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { ServiceStatusDataState } from './types'
 
 export type useCasesItem = {
   useCaseId: string
@@ -52,17 +53,17 @@ export type CreateAppStep1Item = {
 }
 
 export type CreateServiceStep1Item = {
-  title: string
-  price: string | null
-  leadPictureUri: string
-  descriptions: {
+  title?: string
+  price?: string | null
+  leadPictureUri?: string
+  descriptions?: {
     languageCode: string
     longDescription: string
     shortDescription: string
   }[]
-  privacyPolicies: string[]
-  salesManager: string | null
-  serviceTypeIds: string[]
+  privacyPolicies?: string[]
+  salesManager?: string | null
+  serviceTypeIds?: string[]
 }
 
 export type ImageType = {
@@ -319,8 +320,8 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
-    fetchServiceAgreementData: builder.query<AgreementType[], void>({
-      query: () => `api/services/agreementData`,
+    fetchServiceAgreementData: builder.query<AgreementType[], string>({
+      query: (appId: string) => `api/services/agreementData/${appId}`,
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
       query: (appId: string) => `/api/services/consent/${appId}`,

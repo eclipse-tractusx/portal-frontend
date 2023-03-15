@@ -24,6 +24,7 @@ import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 import {
   AgreementStatusType,
+  AgreementType,
   ConsentType,
   UpdateAgreementConsentType,
 } from 'features/appManagement/apiSlice'
@@ -35,8 +36,9 @@ import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/apiSlice'
+import { AppStatusDataState, ServiceStatusDataState } from 'features/appManagement/types'
 
-type AgreementType = {
+type AgreementDataType = {
   agreementId: string
   name: string
   consentStatus?: boolean | string
@@ -57,12 +59,12 @@ type CommonConsentType = {
   imageFieldNote: string
   imageFieldRequiredText: string
   id: string
-  fetchAgreementData?: any
-  fetchConsentData?: any
-  updateAgreementConsents?: any
+  fetchAgreementData?: AgreementType[]
+  fetchConsentData?: ConsentType
+  updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
   updateDocumentUpload?: any
-  fetchDataStatus: any
-  getDocumentById?: any
+  fetchStatusData: any
+  getDocumentById?: (id: string) => any
 }
 
 export default function CommonContractAndConsent({
@@ -80,13 +82,13 @@ export default function CommonContractAndConsent({
   fetchConsentData,
   updateAgreementConsents,
   updateDocumentUpload,
-  fetchDataStatus,
+  fetchStatusData,
   getDocumentById,
 }: CommonConsentType) {
   const [contractNotification, setContractNotification] = useState(false)
   const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const [agreementData, setAgreementData] = useState<AgreementType>([])
+  const [agreementData, setAgreementData] = useState<AgreementDataType>([])
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
   })
@@ -95,9 +97,9 @@ export default function CommonContractAndConsent({
     return {
       agreements: defaultValue,
       uploadImageConformity:
-        fetchDataStatus?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
+        fetchStatusData?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
     }
-  }, [fetchDataStatus, defaultValue])
+  }, [fetchStatusData, defaultValue])
 
   const {
     handleSubmit,
@@ -133,8 +135,8 @@ export default function CommonContractAndConsent({
   }
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchDataStatus))
-  }, [dispatch, fetchDataStatus])
+    dispatch(setAppStatus(fetchStatusData))
+  }, [dispatch, fetchStatusData])
 
   const loadData = useCallback(() => {
     const fetchConsent = fetchConsentData?.agreements.map(
@@ -251,16 +253,16 @@ export default function CommonContractAndConsent({
         agreements: updateAgreementData,
       },
     }
-
-    await updateAgreementConsents(updateData)
-      .unwrap()
-      .then(() => {
-        buttonLabel === 'saveAndProceed' && dispatch(increment())
-        buttonLabel === 'save' && setContractSnackbar(true)
-      })
-      .catch(() => {
-        setContractNotification(true)
-      })
+    if (updateAgreementConsents)
+      await updateAgreementConsents(updateData)
+        .unwrap()
+        .then(() => {
+          buttonLabel === 'saveAndProceed' && dispatch(increment())
+          buttonLabel === 'save' && setContractSnackbar(true)
+        })
+        .catch(() => {
+          setContractNotification(true)
+        })
   }
 
   const uploadDocumentApi = async (documentTypeId: string, file: any) => {
@@ -273,21 +275,22 @@ export default function CommonContractAndConsent({
   }
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchDataStatus))
+    dispatch(setAppStatus(fetchStatusData))
     dispatch(decrement())
   }
 
   const handleDownload = async (documentName: string, documentId: string) => {
-    try {
-      const response = await getDocumentById(documentId).unwrap()
+    if (getDocumentById)
+      try {
+        const response = await getDocumentById(documentId).unwrap()
 
-      const fileType = response.headers.get('content-type')
-      const file = response.data
+        const fileType = response.headers.get('content-type')
+        const file = response.data
 
-      return download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-    }
+        return download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
   }
 
   return (

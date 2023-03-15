@@ -32,12 +32,15 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setServiceStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
+import { ServiceStatusDataState } from 'features/appManagement/types'
 
 export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
-  const fetchAgreementData = useFetchServiceAgreementDataQuery().data
+  const fetchAgreementData = useFetchServiceAgreementDataQuery(
+    serviceId ?? ''
+  ).data
   const fetchConsentData = useFetchServiceConsentDataQuery(serviceId ?? '').data
   const [updateAgreementConsents] = useUpdateServiceAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
@@ -47,7 +50,7 @@ export default function OfferContractAndConsent() {
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   useEffect(() => {
-    dispatch(setServiceStatus(fetchServiceStatus))
+    if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
   }, [dispatch, fetchServiceStatus])
 
   return (
@@ -72,7 +75,7 @@ export default function OfferContractAndConsent() {
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
-        fetchDataStatus={fetchServiceStatus}
+        fetchStatusData={fetchServiceStatus}
         getDocumentById={getDocumentById}
       />
     </div>

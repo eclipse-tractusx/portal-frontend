@@ -65,6 +65,7 @@ type FormDataType = {
     leadPictureUri: DropzoneFile | string | null
     alt?: string
   }
+  price: string | null
 }
 
 export default function OfferCard() {
@@ -180,7 +181,7 @@ export default function OfferCard() {
         dispatch(setServiceId(serviceId))
         buttonLabel === 'saveAndProceed' && dispatch(increment())
         buttonLabel === 'save' && setServiceCardSnackbar(true)
-        dispatch(setServiceStatus(fetchServiceStatus))
+        if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
       })
       .catch((error) => {
         console.log('error = ', error)
@@ -202,7 +203,7 @@ export default function OfferCard() {
           dispatch(setServiceId(result))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
           buttonLabel === 'save' && setServiceCardSnackbar(true)
-          dispatch(setServiceStatus(fetchServiceStatus))
+          if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
         }
       })
       .catch(() => {
@@ -413,8 +414,8 @@ export default function OfferCard() {
         setPageNotification={() => setServiceCardNotification(false)}
         setPageSnackbar={() => setServiceCardSnackbar(false)}
         onBackIconClick={() => navigate('/home')}
-        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
-        onSaveAndProceed={handleSubmit((data) =>
+        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}
