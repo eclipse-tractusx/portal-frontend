@@ -119,8 +119,8 @@ export default function UserDetail() {
             <UserAvatar size="large" />
           </Box>
         </Box>
-        {data && <UserDetailInfo user={data} />}
       </section>
+      {data && <UserDetailInfo user={data} />}
     </main>
   )
 }

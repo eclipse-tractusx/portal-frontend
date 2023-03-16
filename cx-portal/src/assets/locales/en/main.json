@@ -1263,6 +1263,10 @@
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
       "uploadProgess": "Uploaded % of % files"
+    },
+    "userRoles": {
+      "title": "Assigned Catena-X Portal Roles",
+      "changeRoleBtn": "Change Portal Role"
     }
   },
   "global": {

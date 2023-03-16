@@ -23,6 +23,7 @@ import { UserDetailCard } from './UserDetailCard'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { TenantUserDetails } from 'features/admin/userApiSlice'
 import { AppPermissions } from 'components/shared/frame/AppPermissions'
+import { UserRoles } from '../UserRoles'
 
 export const UserDetailInfo = ({
   user,
@@ -38,23 +39,27 @@ export const UserDetailInfo = ({
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'grid',
-          gap: spacing(8, 3),
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          marginBottom: '80px',
-        }}
-      >
-        {userDetailsCards.map((card, i) => (
-          <UserDetailCard
-            cardCategory={card.cardCategory}
-            cardContentItems={card.cardContentItems}
-            key={i}
-          />
-        ))}
-      </Box>
-      <AppPermissions user={user} />
+      <section>
+        <Box
+          sx={{
+            display: 'grid',
+            gap: spacing(8, 3),
+            gridTemplateColumns: `repeat(${columns}, 1fr)`,
+          }}
+        >
+          {userDetailsCards.map((card, i) => (
+            <UserDetailCard
+              cardCategory={card.cardCategory}
+              cardContentItems={card.cardContentItems}
+              key={i}
+            />
+          ))}
+        </Box>
+      </section>
+      <UserRoles user={user} />
+      <section>
+        <AppPermissions user={user} />
+      </section>
     </>
   )
 }
