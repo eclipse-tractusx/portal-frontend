@@ -43,6 +43,7 @@ import {
   useSaveAppMutation,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
+  DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -356,7 +357,11 @@ export default function AppMarketCard() {
 
             setFileStatus(UploadStatus.UPLOADING)
 
-            uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+            uploadDocumentApi(
+              result,
+              DocumentTypeId.APP_LEADIMAGE,
+              uploadImageValue
+            )
               .then(() => {
                 setFileStatus(UploadStatus.UPLOAD_SUCCESS)
               })

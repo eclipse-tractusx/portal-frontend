@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ConsentStatusEnum } from './apiSlice'
+
 export const name = 'admin/appManagement'
 
 export type SearchInputState = {
@@ -43,7 +45,7 @@ export interface AppStatusDataState {
   agreements?: {
     id: string
     name: string
-    consentStatus: string
+    consentStatus: ConsentStatusEnum
   }[]
   supportedLanguageCodes?: string[]
   price: string
@@ -90,7 +92,7 @@ export interface DescriptionState {
 export interface AgreementState {
   id: string
   name: string
-  consentStatus: string
+  consentStatus: ConsentStatusEnum
 }
 
 export interface AppManagementState {

@@ -39,6 +39,7 @@ import {
   increment,
 } from 'features/appManagement/slice'
 import {
+  DocumentTypeId,
   useFetchAppStatusQuery,
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
@@ -209,7 +210,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'APP_CONTRACT', value)
+      uploadDocumentApi(appId, DocumentTypeId.APP_CONTRACT, value)
         .then(() =>
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -226,7 +227,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', value)
+      uploadDocumentApi(appId, DocumentTypeId.ADDITIONAL_DETAILS, value)
         .then(() =>
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -243,7 +244,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
+      uploadDocumentApi(appId, DocumentTypeId.APP_TECHNICAL_INFORMATION, value)
         .then(() =>
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -269,7 +270,7 @@ export default function AppPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOADING)
-        uploadDocumentApi(appId, 'APP_IMAGE', value[fileIndex])
+        uploadDocumentApi(appId, DocumentTypeId.APP_IMAGE, value[fileIndex])
           .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
       }

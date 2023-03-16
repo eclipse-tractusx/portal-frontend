@@ -104,7 +104,7 @@ export type AgreementType = {
 
 export type AgreementStatusType = {
   agreementId: string
-  consentStatus: string | boolean
+  consentStatus: ConsentStatusEnum
 }
 
 export type ConsentType = {
@@ -172,6 +172,26 @@ export type DocumentRequestData = {
 export interface ServiceTypeIdsType {
   serviceTypeId: number
   name: string
+}
+
+export enum ConsentStatusEnum {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+}
+
+export enum DocumentTypeId {
+  CX_FRAME_CONTRACT = 'CX_FRAME_CONTRACT',
+  COMMERCIAL_REGISTER_EXTRACT = 'COMMERCIAL_REGISTER_EXTRACT',
+  APP_CONTRACT = 'APP_CONTRACT',
+  CONFORMITY_APPROVAL_REGISTRATION = 'CONFORMITY_APPROVAL_REGISTRATION',
+  ADDITIONAL_DETAILS = 'ADDITIONAL_DETAILS',
+  APP_LEADIMAGE = 'APP_LEADIMAGE',
+  APP_IMAGE = 'APP_IMAGE',
+  SELF_DESCRIPTION = 'SELF_DESCRIPTION',
+  APP_TECHNICAL_INFORMATION = 'APP_TECHNICAL_INFORMATION',
+  CONFORMITY_APPROVAL_CONNECTOR = 'CONFORMITY_APPROVAL_CONNECTOR',
+  CONFORMITY_APPROVAL_BUSINESS_APPS = 'CONFORMITY_APPROVAL_BUSINESS_APPS',
 }
 
 export const apiSlice = createApi({
@@ -333,7 +353,7 @@ export const apiSlice = createApi({
     }),
     updateServiceDocumentUpload: builder.mutation({
       async queryFn(
-        data: { appId: string; documentTypeId: string; body: { file: File } },
+        data: { appId: string; documentTypeId: DocumentTypeId; body: { file: File } },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery

@@ -25,6 +25,7 @@ import { decrement, increment } from 'features/appManagement/slice'
 import {
   AgreementStatusType,
   AgreementType,
+  ConsentStatusEnum,
   ConsentType,
   UpdateAgreementConsentType,
 } from 'features/appManagement/apiSlice'
@@ -44,7 +45,7 @@ import {
 type AgreementDataType = {
   agreementId: string
   name: string
-  consentStatus?: boolean | string
+  consentStatus?: ConsentStatusEnum
   documentId: string
 }[]
 
@@ -151,7 +152,7 @@ export default function CommonContractAndConsent({
     const fetchConsent = fetchConsentData?.agreements.map(
       (item: AgreementStatusType) => ({
         ...item,
-        consentStatus: item.consentStatus === 'ACTIVE',
+        consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
       })
     )
 
@@ -268,7 +269,10 @@ export default function CommonContractAndConsent({
         {},
         {
           agreementId: entry[0],
-          consentStatus: entry[1] === true ? 'ACTIVE' : 'INACTIVE',
+          consentStatus:
+            entry[1] === true
+              ? ConsentStatusEnum.ACTIVE
+              : ConsentStatusEnum.INACTIVE,
         }
       )
     )

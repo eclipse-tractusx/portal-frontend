@@ -37,6 +37,7 @@ import {
   useFetchServiceTypeIdsQuery,
   useUpdateServiceDocumentUploadMutation,
   ServiceTypeIdsType,
+  DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -160,7 +161,7 @@ export default function OfferCard() {
 
   const uploadServiceImageApi = async (
     appId: string,
-    documentTypeId: string,
+    documentTypeId: DocumentTypeId,
     file: File
   ) => {
     const data = {
@@ -241,7 +242,7 @@ export default function OfferCard() {
 
           setFileStatus(UploadStatus.UPLOADING)
 
-          uploadServiceImageApi(result, 'APP_LEADIMAGE', uploadImageValue)
+          uploadServiceImageApi(result, DocumentTypeId.APP_LEADIMAGE, uploadImageValue)
             .then(() => {
               setFileStatus(UploadStatus.UPLOAD_SUCCESS)
             })
