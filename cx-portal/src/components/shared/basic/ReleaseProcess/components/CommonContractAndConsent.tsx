@@ -27,6 +27,7 @@ import {
   AgreementType,
   ConsentStatusEnum,
   ConsentType,
+  DocumentTypeId,
   UpdateAgreementConsentType,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -36,7 +37,6 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
-import { DocumentTypeText } from 'features/apps/apiSlice'
 import {
   AppStatusDataState,
   ServiceStatusDataState,
@@ -68,7 +68,7 @@ type CommonConsentType = {
   updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
   updateDocumentUpload?: (obj: {
     appId: string
-    documentTypeId: string
+    documentTypeId: DocumentTypeId
     body: {
       file: File
     }
@@ -181,7 +181,7 @@ export default function CommonContractAndConsent({
   }, [loadData, agreementData])
 
   const uploadDocumentApi = useCallback(
-    async (documentTypeId: string, file: File) => {
+    async (documentTypeId: DocumentTypeId, file: File) => {
       const data = {
         appId: id,
         documentTypeId: documentTypeId,
@@ -230,7 +230,7 @@ export default function CommonContractAndConsent({
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
       uploadDocumentApi(
-        DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
+        DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS,
         uploadImageConformityValue
       )
         .then(() =>

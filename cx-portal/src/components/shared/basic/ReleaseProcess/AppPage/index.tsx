@@ -279,7 +279,7 @@ export default function AppPage() {
 
   const uploadDocumentApi = async (
     appId: string,
-    documentTypeId: string,
+    documentTypeId: DocumentTypeId,
     file: any
   ) => {
     const data = {

@@ -33,6 +33,7 @@ import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  DocumentTypeId,
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
@@ -145,7 +146,11 @@ export default function OfferPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFiles(fileIndex, UploadStatus.UPLOADING)
-        uploadDocument(serviceId, 'ADDITIONAL_DETAILS', value[fileIndex])
+        uploadDocument(
+          serviceId,
+          DocumentTypeId.ADDITIONAL_DETAILS,
+          value[fileIndex]
+        )
           .then(() => setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
@@ -154,7 +159,7 @@ export default function OfferPage() {
 
   const uploadDocument = async (
     appId: string,
-    documentTypeId: string,
+    documentTypeId: DocumentTypeId,
     file: DropzoneFile
   ) => {
     const data = {

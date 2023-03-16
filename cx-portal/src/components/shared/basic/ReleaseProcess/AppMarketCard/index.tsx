@@ -382,7 +382,7 @@ export default function AppMarketCard() {
 
   const uploadDocumentApi = async (
     appId: string,
-    documentTypeId: string,
+    documentTypeId: DocumentTypeId,
     file: any
   ) => {
     const data = {
