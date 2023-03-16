@@ -24,24 +24,27 @@ import { uniqueId } from 'lodash'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import { AppDetails } from 'features/apps/apiSlice'
 import './BoardPrivacy.scss'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
 export default function BoardPrivacy({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.privacy',
   })
 
-  const renderBoardPrivacy = (policy: string) => {
+  const renderBoardPrivacy = (policy: PrivacyPolicyType) => {
     switch (policy) {
-      case 'COMPANY_DATA':
+      case PrivacyPolicyType.COMPANY_DATA:
         return <Apartment className="policy-icon" />
-      case 'USER_DATA':
+      case PrivacyPolicyType.USER_DATA:
         return <Person className="policy-icon" />
-      case 'LOCATION':
+      case PrivacyPolicyType.LOCATION:
         return <LocationOn className="policy-icon" />
-      case 'BROWSER_HISTORY':
+      case PrivacyPolicyType.BROWSER_HISTORY:
         return <Web className="policy-icon" />
-      case 'NONE':
+      case PrivacyPolicyType.NONE:
         return <Info className="policy-icon" />
+      default:
+        return <Apartment className="policy-icon" />
     }
   }
 
@@ -53,7 +56,7 @@ export default function BoardPrivacy({ item }: { item: AppDetails }) {
       </div>
       {item.privacyPolicies && item.privacyPolicies.length ? (
         <div className="policies-list">
-          {item.privacyPolicies.map((policy: string) => (
+          {item.privacyPolicies.map((policy: PrivacyPolicyType) => (
             <Typography
               variant="body2"
               className="policy-name"
