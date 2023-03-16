@@ -95,7 +95,7 @@ export default function TechnicalIntegration() {
   })
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   const onIntegrationSubmit = async (data: any, buttonLabel: string) => {

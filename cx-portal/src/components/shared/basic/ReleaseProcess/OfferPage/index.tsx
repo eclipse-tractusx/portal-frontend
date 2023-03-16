@@ -35,7 +35,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
-  useUpdateDocumentUploadMutation,
+  useUpdateServiceDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
@@ -62,14 +62,14 @@ export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
   const [appPageNotification, setServicePageNotification] = useState(false)
   const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
-  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? ' ', {
     refetchOnMountOrArgChange: true,
   }).data
   const [saveService] = useSaveServiceMutation()
+  const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -144,7 +144,7 @@ export default function OfferPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFiles(fileIndex, UploadStatus.UPLOADING)
-        uploadDocument(serviceId, 'APP_IMAGE', value[fileIndex])
+        uploadDocument(serviceId, 'ADDITIONAL_DETAILS', value[fileIndex])
           .then(() => setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
@@ -298,8 +298,7 @@ export default function OfferPage() {
                     addedFiles && uploadImage(files)
                   }}
                   acceptFormat={{
-                    'image/png': [],
-                    'image/jpeg': [],
+                    'application/pdf': ['.pdf'],
                   }}
                   maxFilesToUpload={1}
                   maxFileSize={819200}

@@ -36,6 +36,10 @@ import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/apiSlice'
+import {
+  AppStatusDataState,
+  ServiceStatusDataState,
+} from 'features/appManagement/types'
 
 type AgreementDataType = {
   agreementId: string
@@ -66,7 +70,7 @@ type CommonConsentType = {
     documentTypeId: string
     body: any
   }) => any
-  fetchStatusData: any
+  fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
   getDocumentById?: (id: string) => any
 }
 
@@ -278,7 +282,7 @@ export default function CommonContractAndConsent({
   }
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchStatusData))
+    if (fetchStatusData) dispatch(setAppStatus(fetchStatusData))
     dispatch(decrement())
   }
 

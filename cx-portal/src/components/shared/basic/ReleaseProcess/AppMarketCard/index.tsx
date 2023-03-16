@@ -175,7 +175,7 @@ export default function AppMarketCard() {
   }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
@@ -329,7 +329,7 @@ export default function AppMarketCard() {
           dispatch(setAppId(appId))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
           buttonLabel === 'save' && setAppCardSnackbar(true)
-          dispatch(setAppStatus(fetchAppStatus))
+          if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -359,7 +359,7 @@ export default function AppMarketCard() {
             dispatch(setAppId(result))
             buttonLabel === 'saveAndProceed' && dispatch(increment())
             buttonLabel === 'save' && setAppCardSnackbar(true)
-            dispatch(setAppStatus(fetchAppStatus))
+            if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
           }
         })
         .catch(() => {
@@ -412,7 +412,7 @@ export default function AppMarketCard() {
         ) : (
           <Grid item md={7} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
-              label={cardAppProvider}
+              label={cardAppProvider || ''}
               title={cardAppTitle}
               imagePath={cardImage}
               imageAlt={cardImageAlt}
@@ -719,8 +719,8 @@ export default function AppMarketCard() {
         setPageNotification={() => setAppCardNotification(false)}
         setPageSnackbar={() => setAppCardSnackbar(false)}
         onBackIconClick={() => navigate('/appmanagement')}
-        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
-        onSaveAndProceed={handleSubmit((data) =>
+        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}

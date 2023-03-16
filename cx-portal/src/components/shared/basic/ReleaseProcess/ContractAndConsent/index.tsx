@@ -47,7 +47,7 @@ export default function ContractAndConsent() {
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   return (
@@ -83,7 +83,7 @@ export default function ContractAndConsent() {
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
-        fetchStatusData={fetchAppStatus}
+        fetchStatusData={fetchAppStatus || undefined}
         getDocumentById={getDocumentById}
       />
     </div>

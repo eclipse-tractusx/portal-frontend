@@ -79,7 +79,7 @@ export default function ValidateAndPublish({
   const statusData = appStatusData || fetchAppStatus
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {

@@ -111,7 +111,7 @@ export default function AppPage() {
   })
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
@@ -343,7 +343,7 @@ export default function AppPage() {
   }
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
     dispatch(decrement())
   }
 

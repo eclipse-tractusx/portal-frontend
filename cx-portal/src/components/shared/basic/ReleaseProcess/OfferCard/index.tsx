@@ -35,6 +35,7 @@ import {
   useSaveServiceMutation,
   CreateServiceStep1Item,
   useFetchServiceTypeIdsQuery,
+  useUpdateServiceDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -87,11 +88,19 @@ export default function OfferCard() {
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<any>([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
+  const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
   const defaultValues = useMemo(() => {
     return {
       title: fetchServiceStatus?.title,
-      serviceTypeIds: fetchServiceStatus?.serviceTypeIds,
+      serviceTypeIds: fetchServiceStatus?.serviceTypeIds.map(
+        (item: string, index: number) => {
+          return {
+            name: item,
+            serviceTypeId: index,
+          }
+        }
+      ),
       price: null,
       shortDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
@@ -146,6 +155,20 @@ export default function OfferCard() {
     [fetchDocumentById, serviceId, setValue]
   )
 
+  const uploadServiceImageApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: any
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
+    }
+
+    await updateServiceDocumentUpload(data).unwrap()
+  }
+
   useEffect(() => {
     if (
       serviceStatusData?.documents?.APP_LEADIMAGE &&
@@ -157,7 +180,14 @@ export default function OfferCard() {
       )
     }
     if (serviceStatusData && serviceStatusData.serviceTypeIds) {
-      setDefaultServiceTypeVal(serviceStatusData?.serviceTypeIds)
+      setDefaultServiceTypeVal(
+        serviceStatusData?.serviceTypeIds.map((item: string, index: number) => {
+          return {
+            name: item,
+            serviceTypeId: index,
+          }
+        })
+      )
     }
   }, [serviceStatusData, fetchCardImage])
 
@@ -181,8 +211,7 @@ export default function OfferCard() {
         buttonLabel === 'save' && setServiceCardSnackbar(true)
         if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
       })
-      .catch((error) => {
-        console.log('error = ', error)
+      .catch(() => {
         setServiceCardNotification(true)
       })
   }
@@ -191,6 +220,8 @@ export default function OfferCard() {
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
     await createService({
       id: '',
       body: apiBody,
@@ -198,6 +229,23 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
+          const setFileStatus = (status: UploadFileStatus) =>
+            setValue('uploadImage.leadPictureUri', {
+              name: uploadImageValue.name,
+              size: uploadImageValue.size,
+              status,
+            } as any)
+
+          setFileStatus(UploadStatus.UPLOADING)
+
+          uploadServiceImageApi(result, 'APP_LEADIMAGE', uploadImageValue)
+            .then(() => {
+              setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+            })
+            .catch(() => {
+              setFileStatus(UploadStatus.UPLOAD_ERROR)
+            })
+
           dispatch(setServiceId(result))
           buttonLabel === 'saveAndProceed' && dispatch(increment())
           buttonLabel === 'save' && setServiceCardSnackbar(true)
@@ -410,8 +458,8 @@ export default function OfferCard() {
         setPageNotification={() => setServiceCardNotification(false)}
         setPageSnackbar={() => setServiceCardSnackbar(false)}
         onBackIconClick={() => navigate('/home')}
-        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
-        onSaveAndProceed={handleSubmit((data) =>
+        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}

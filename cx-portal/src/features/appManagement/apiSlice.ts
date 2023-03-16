@@ -20,6 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { AppStatusDataState, ServiceStatusDataState } from './types'
 
 export type useCasesItem = {
   useCaseId: string
@@ -168,6 +169,11 @@ export type DocumentRequestData = {
   documentId: string
 }
 
+export interface ServiceTypeIdsType {
+  serviceTypeId: number
+  name: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -221,7 +227,7 @@ export const apiSlice = createApi({
           : { error: response.error }
       },
     }),
-    fetchAppStatus: builder.query<any, string>({
+    fetchAppStatus: builder.query<AppStatusDataState, string>({
       query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
     }),
     fetchAgreementData: builder.query<AgreementType[], void>({
@@ -303,10 +309,10 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
-    fetchServiceStatus: builder.query<any, string>({
+    fetchServiceStatus: builder.query<ServiceStatusDataState, string>({
       query: (id) => `api/services/${id}`,
     }),
-    fetchServiceTypeIds: builder.query<any, void>({
+    fetchServiceTypeIds: builder.query<ServiceTypeIdsType, void>({
       query: () => `/api/services/servicerelease/serviceTypes`,
     }),
     updateServiceAgreementConsents: builder.mutation<
@@ -324,6 +330,26 @@ export const apiSlice = createApi({
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
       query: (appId: string) => `/api/services/servicerelease/consent/${appId}`,
+    }),
+    updateServiceDocumentUpload: builder.mutation({
+      async queryFn(
+        data: { appId: string; documentTypeId: string; body: any },
+        _queryApi,
+        _extraOptions,
+        fetchWithBaseQuery
+      ) {
+        const formData = new FormData()
+        formData.append('document', data.body.file)
+
+        const response = await fetchWithBaseQuery({
+          url: `/api/services/updateservicedoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
+          method: 'PUT',
+          body: formData,
+        })
+        return response.data
+          ? { data: response.data }
+          : { error: response.error }
+      },
     }),
   }),
 })
@@ -354,4 +380,5 @@ export const {
   useUpdateServiceAgreementConsentsMutation,
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
+  useUpdateServiceDocumentUploadMutation,
 } = apiSlice

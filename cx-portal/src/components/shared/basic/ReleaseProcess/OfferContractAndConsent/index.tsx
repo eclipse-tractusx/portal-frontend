@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -24,11 +24,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { serviceIdSelector } from 'features/appManagement/slice'
 import {
   useUpdateServiceAgreementConsentsMutation,
-  useUpdateDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
   useFetchServiceStatusQuery,
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
+  useUpdateServiceDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setServiceStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
@@ -40,7 +40,7 @@ export default function OfferContractAndConsent() {
   const fetchAgreementData = useFetchServiceAgreementDataQuery().data
   const fetchConsentData = useFetchServiceConsentDataQuery(serviceId ?? '').data
   const [updateAgreementConsents] = useUpdateServiceAgreementConsentsMutation()
-  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
+  const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
@@ -72,7 +72,7 @@ export default function OfferContractAndConsent() {
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
-        fetchStatusData={fetchServiceStatus}
+        fetchStatusData={fetchServiceStatus || undefined}
         getDocumentById={getDocumentById}
       />
     </div>

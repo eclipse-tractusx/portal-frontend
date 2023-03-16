@@ -31,35 +31,54 @@ export type LanguageStatusType = {
 
 export interface AppStatusDataState {
   title: string
-  provider: string
-  leadPictureUri: string
-  providerName: string
-  salesManagerId: string
-  useCase: string[]
-  descriptions: DescriptionState[]
-  agreements: AgreementState[]
-  supportedLanguageCodes: string[]
+  provider?: string
+  leadPictureId?: string
+  providerName?: string
+  useCase?: string[]
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  agreements?: {
+    id: string
+    name: string
+    consentStatus: string
+  }[]
+  supportedLanguageCodes?: string[]
   price: string
-  images: string[]
+  images?: string[] | undefined
   providerUri: string
   contactEmail: string
-  contactNumber: string
+  contactNumber?: string
   documents: any
-  privacyPolicies: string[]
+  salesManagerId?: string | null
+  privacyPolicies?: []
+  leadPictureUri?: string
 }
 
 export interface ServiceStatusDataState {
+  id: string
   title: string
-  price: string
-  leadPictureUri: string
-  descriptions: DescriptionState[]
-  agreements: AgreementState[]
   providerUri: string
   contactEmail: string
-  contactNumber: string
-  documents: any
-  privacyPolicies: string[]
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  price: string
+  offerSubscriptionDetailData: {
+    offerSubscriptionId: string
+    offerSubscriptionStatus: string
+  }[]
   serviceTypeIds: string[]
+  documents: any
+  leadPictureUri?: string
+  leadPictureId?: string
+  images?: string[] | undefined
+  salesManagerId?: string | null
+  privacyPolicies?: []
 }
 
 export interface DescriptionState {
@@ -98,9 +117,8 @@ export const initialState: AppManagementState = {
   appStatusData: {
     title: '',
     provider: '',
-    leadPictureUri: '',
+    leadPictureId: '',
     providerName: '',
-    salesManagerId: '',
     useCase: [],
     descriptions: [],
     agreements: [],
@@ -111,7 +129,9 @@ export const initialState: AppManagementState = {
     contactEmail: '',
     contactNumber: '',
     documents: {},
+    salesManagerId: null,
     privacyPolicies: [],
+    leadPictureUri: '',
   },
 }
 
@@ -123,16 +143,18 @@ export const initialServiceState: ServiceManagementState = {
   currentActiveStep: 1,
   appId: '',
   serviceStatusData: {
+    id: '',
     title: '',
-    serviceTypeIds: [],
-    price: '',
-    leadPictureUri: '',
-    descriptions: [],
-    agreements: [],
     providerUri: '',
     contactEmail: '',
-    contactNumber: '',
+    descriptions: [],
+    price: '',
+    offerSubscriptionDetailData: [],
+    serviceTypeIds: [],
     documents: {},
-    privacyPolicies: [],
+    leadPictureUri: '',
+    leadPictureId: '',
+    images: [],
+    salesManagerId: null,
   },
 }
