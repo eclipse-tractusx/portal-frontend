@@ -47,7 +47,7 @@ export interface AppStatusDataState {
   }[]
   supportedLanguageCodes?: string[]
   price: string
-  images?: string[] | undefined
+  images?: string[] | []
   providerUri: string
   contactEmail: string
   contactNumber?: string
@@ -76,7 +76,7 @@ export interface ServiceStatusDataState {
   documents: any
   leadPictureUri?: string
   leadPictureId?: string
-  images?: string[] | undefined
+  images?: string[] | []
   salesManagerId?: string | null
   privacyPolicies?: []
 }
