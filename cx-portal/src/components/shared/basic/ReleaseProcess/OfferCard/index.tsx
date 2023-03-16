@@ -86,9 +86,7 @@ export default function OfferCard() {
   }).data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
-  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
-    ServiceTypeIdsType[]
-  >([])
+  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<ServiceTypeIdsType[]>([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
@@ -161,7 +159,7 @@ export default function OfferCard() {
   const uploadServiceImageApi = async (
     appId: string,
     documentTypeId: string,
-    file: any
+    file: File
   ) => {
     const data = {
       appId: appId,
