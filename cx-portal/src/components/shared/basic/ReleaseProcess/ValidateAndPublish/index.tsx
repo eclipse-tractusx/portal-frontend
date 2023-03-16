@@ -43,6 +43,7 @@ import {
   increment,
 } from 'features/appManagement/slice'
 import {
+  ConsentStatusEnum,
   DocumentData,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
@@ -79,7 +80,7 @@ export default function ValidateAndPublish({
   const statusData = appStatusData || fetchAppStatus
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
@@ -165,12 +166,12 @@ export default function ValidateAndPublish({
     cxTestRuns: [
       {
         agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
+        consentStatus: ConsentStatusEnum.ACTIVE,
         name: 'Test run A - done',
       },
       {
         agreementId: 'uuid',
-        consentStatus: 'ACTIVE',
+        consentStatus: ConsentStatusEnum.ACTIVE,
         name: 'Test run B - done',
       },
     ],
@@ -385,12 +386,15 @@ export default function ValidateAndPublish({
         </Typography>
         <div className="form-field">
           {statusData?.agreements?.map(
-            (item: { name: string; consentStatus: string }, index: number) => (
+            (
+              item: { name: string; consentStatus: ConsentStatusEnum },
+              index: number
+            ) => (
               <div key={item.name}>
                 <Checkbox
                   key={item.name}
                   label={item.name}
-                  checked={item.consentStatus === 'ACTIVE'}
+                  checked={item.consentStatus === ConsentStatusEnum.ACTIVE}
                   disabled
                 />
               </div>
@@ -408,7 +412,7 @@ export default function ValidateAndPublish({
               <Checkbox
                 key={item.name}
                 label={item.name}
-                checked={item.consentStatus === 'ACTIVE'}
+                checked={item.consentStatus === ConsentStatusEnum.ACTIVE}
                 disabled
               />
             </div>

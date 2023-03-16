@@ -43,6 +43,7 @@ import {
   useSaveAppMutation,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
+  DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -58,7 +59,7 @@ import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import { isString } from 'lodash'
 import Patterns from 'types/Patterns'
 import uniqBy from 'lodash/uniqBy'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -175,7 +176,7 @@ export default function AppMarketCard() {
   }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
@@ -281,6 +282,15 @@ export default function AppMarketCard() {
     }
   }
 
+  const callDispatch = () => {
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+  }
+
+  const onSave = (buttonLabel: string) => {
+    buttonLabel === 'saveAndProceed' && dispatch(increment())
+    buttonLabel === 'save' && setAppCardSnackbar(true)
+  }
+
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       title: data.title,
@@ -327,9 +337,8 @@ export default function AppMarketCard() {
         .unwrap()
         .then(() => {
           dispatch(setAppId(appId))
-          buttonLabel === 'saveAndProceed' && dispatch(increment())
-          buttonLabel === 'save' && setAppCardSnackbar(true)
-          dispatch(setAppStatus(fetchAppStatus))
+          onSave(buttonLabel)
+          callDispatch()
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -348,7 +357,11 @@ export default function AppMarketCard() {
 
             setFileStatus(UploadStatus.UPLOADING)
 
-            uploadDocumentApi(result, 'APP_LEADIMAGE', uploadImageValue)
+            uploadDocumentApi(
+              result,
+              DocumentTypeId.APP_LEADIMAGE,
+              uploadImageValue
+            )
               .then(() => {
                 setFileStatus(UploadStatus.UPLOAD_SUCCESS)
               })
@@ -357,9 +370,8 @@ export default function AppMarketCard() {
               })
 
             dispatch(setAppId(result))
-            buttonLabel === 'saveAndProceed' && dispatch(increment())
-            buttonLabel === 'save' && setAppCardSnackbar(true)
-            dispatch(setAppStatus(fetchAppStatus))
+            onSave(buttonLabel)
+            callDispatch()
           }
         })
         .catch(() => {
@@ -370,7 +382,7 @@ export default function AppMarketCard() {
 
   const uploadDocumentApi = async (
     appId: string,
-    documentTypeId: string,
+    documentTypeId: DocumentTypeId,
     file: any
   ) => {
     const data = {
@@ -412,7 +424,7 @@ export default function AppMarketCard() {
         ) : (
           <Grid item md={7} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
-              label={cardAppProvider}
+              label={cardAppProvider || ''}
               title={cardAppTitle}
               imagePath={cardImage}
               imageAlt={cardImageAlt}
@@ -692,7 +704,7 @@ export default function AppMarketCard() {
                 trigger,
                 errors,
               }}
-              labe={
+              label={
                 t('content.apprelease.appMarketCard.appLeadImageUpload') + ' *'
               }
               noteDescription={t(
@@ -716,11 +728,11 @@ export default function AppMarketCard() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={setAppCardNotification}
-        setPageSnackbar={setAppCardSnackbar}
+        setPageNotification={() => setAppCardNotification(false)}
+        setPageSnackbar={() => setAppCardSnackbar(false)}
         onBackIconClick={() => navigate('/appmanagement')}
-        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
-        onSaveAndProceed={handleSubmit((data) =>
+        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}

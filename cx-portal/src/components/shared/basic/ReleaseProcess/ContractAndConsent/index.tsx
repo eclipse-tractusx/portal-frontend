@@ -19,18 +19,10 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { appIdSelector } from 'features/appManagement/slice'
 import {
-  appIdSelector,
-  decrement,
-  increment,
-} from 'features/appManagement/slice'
-import {
-  AgreementStatusType,
-  ConsentType,
-  UpdateAgreementConsentType,
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
@@ -39,324 +31,60 @@ import {
   useFetchNewDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
-import ReleaseStepHeader from '../components/ReleaseStepHeader'
-import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
-import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
-import { download } from 'utils/downloadUtils'
-import { DocumentTypeText } from 'features/apps/apiSlice'
-
-type AgreementType = {
-  agreementId: string
-  name: string
-  consentStatus?: boolean | string
-  documentId: string
-}[]
+import CommonContractAndConsent from '../components/CommonContractAndConsent'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
-  const [contractNotification, setContractNotification] = useState(false)
-  const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
   const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
   const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
-  const [agreementData, setAgreementData] = useState<AgreementType>([])
-  const [defaultValue, setDefaultValue] = useState<ConsentType>({
-    agreements: [],
-  })
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
-
-  useEffect(() => {
-    loadData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchConsentData, fetchAgreementData])
-
-  const loadData = () => {
-    const fetchConsent = fetchConsentData?.agreements.map(
-      (item: AgreementStatusType) => ({
-        ...item,
-        consentStatus: item.consentStatus === 'ACTIVE',
-      })
-    )
-
-    const consentAgreementData: any =
-      fetchAgreementData &&
-      fetchConsent &&
-      fetchAgreementData?.map((item, index: number) =>
-        Object.assign({}, item, fetchConsent[index])
-      )
-
-    fetchAgreementData && setAgreementData(consentAgreementData)
-
-    const defaultCheckboxData = consentAgreementData?.reduce(
-      (data: any, item: AgreementStatusType) => {
-        return { ...data, [item.agreementId]: item.consentStatus }
-      },
-      {}
-    )
-
-    setDefaultValue({ ...defaultCheckboxData, agreements: agreementData })
-    reset({ ...defaultCheckboxData, agreements: agreementData })
-  }
-
-  const defaultValues = {
-    agreements: defaultValue,
-    uploadImageConformity:
-      fetchAppStatus?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
-  }
-
-  const {
-    handleSubmit,
-    control,
-    trigger,
-    formState: { errors, isValid },
-    reset,
-    getValues,
-    setValue,
-  } = useForm({
-    defaultValues: defaultValues,
-    mode: 'onChange',
-  })
-
-  const uploadImageConformityValue = getValues().uploadImageConformity
-  const defaultuploadImageConformity = defaultValues.uploadImageConformity
-
-  useEffect(() => {
-    if (
-      defaultuploadImageConformity &&
-      Object.keys(defaultuploadImageConformity).length > 0
-    ) {
-      setValue('uploadImageConformity', {
-        id:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentId,
-        name:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentName,
-        status: UploadStatus.UPLOAD_SUCCESS,
-      })
-      setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultuploadImageConformity])
-
-  const setFileStatus = (
-    fieldName: Parameters<typeof setValue>[0],
-    status: UploadFileStatus
-  ) => {
-    const value = getValues(fieldName)
-
-    setValue(fieldName, {
-      id: value.id,
-      name: value.name,
-      size: value.size,
-      status,
-    } as any)
-  }
-
-  useEffect(() => {
-    const value = getValues().uploadImageConformity
-
-    if (Array.isArray(value)) {
-      setValue('uploadImageConformity', {
-        id:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentId,
-        name:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentName,
-        status: UploadStatus.UPLOAD_SUCCESS,
-      })
-      setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
-    }
-
-    if (value && !Array.isArray(value) && !('status' in value)) {
-      setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
-
-      uploadDocumentApi(
-        appId,
-        DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
-        value
-      )
-        .then(() =>
-          setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
-          setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_ERROR)
-        )
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadImageConformityValue])
-
-  const onContractConsentSubmit = async (data: any, buttonLabel: string) => {
-    const validateFields = await trigger([
-      'agreements',
-      'uploadImageConformity',
-    ])
-    if (validateFields) {
-      handleSave(data, buttonLabel)
-    }
-  }
-
-  const handleSave = async (data: any, buttonLabel: string) => {
-    const filteredData = Object.fromEntries(
-      Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
-    )
-
-    const updateAgreementData = Object.entries(filteredData).map((entry) =>
-      Object.assign(
-        {},
-        {
-          agreementId: entry[0],
-          consentStatus: entry[1] === true ? 'ACTIVE' : 'INACTIVE',
-        }
-      )
-    )
-
-    const updateData: UpdateAgreementConsentType = {
-      appId: appId,
-      body: {
-        agreements: updateAgreementData,
-      },
-    }
-
-    await updateAgreementConsents(updateData)
-      .unwrap()
-      .then(() => {
-        buttonLabel === 'saveAndProceed' && dispatch(increment())
-        buttonLabel === 'save' && setContractSnackbar(true)
-      })
-      .catch(() => {
-        setContractNotification(true)
-      })
-  }
-
-  const uploadDocumentApi = async (
-    appId: string,
-    documentTypeId: string,
-    file: any
-  ) => {
-    const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
-      body: { file },
-    }
-
-    await updateDocumentUpload(data).unwrap()
-  }
-
-  const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
-    dispatch(decrement())
-  }
-
-  const handleDownload = async (documentName: string, documentId: string) => {
-    try {
-      const response = await getDocumentById(documentId).unwrap()
-
-      const fileType = response.headers.get('content-type')
-      const file = response.data
-
-      return download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-    }
-  }
 
   return (
     <div className="contract-consent">
-      <ReleaseStepHeader
-        title={t('content.apprelease.contractAndConsent.headerTitle')}
-        description={t(
+      <CommonContractAndConsent
+        stepperTitle={t('content.apprelease.contractAndConsent.headerTitle')}
+        stepperDescription={t(
           'content.apprelease.contractAndConsent.headerDescription'
         )}
-      />
-      <form className="header-description">
-        {agreementData?.map((item) => (
-          <div className="form-field" key={item.agreementId}>
-            <ConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-                name: item.agreementId,
-                defaultValues: item.consentStatus,
-                label: item.documentId ? (
-                  <span
-                    className={item.documentId ? 'agreement-span' : ''}
-                    onClick={() => handleDownload(item.name, item.documentId)}
-                  >
-                    {item.name}
-                  </span>
-                ) : (
-                  <span>{item.name}</span>
-                ),
-                type: 'checkbox',
-                rules: {
-                  required: {
-                    value: true,
-                    message: `${item.name} ${t(
-                      'content.apprelease.appReleaseForm.isMandatory'
-                    )}`,
-                  },
-                },
-              }}
-            />
-          </div>
-        ))}
-        <ConnectorFormInputFieldImage
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="uploadImageConformity"
-          acceptFormat={{
-            'application/pdf': ['.pdf'],
-          }}
-          label={
-            t('content.apprelease.contractAndConsent.uploadImageConformity') +
-            ' *'
-          }
-          noteDescription={t(
-            'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
-          )}
-          note={t('content.apprelease.appReleaseForm.note')}
-          requiredText={t(
-            'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-          )}
-          handleDownload={handleDownload}
-        />
-      </form>
-      <SnackbarNotificationWithButtons
-        pageNotification={contractNotification}
-        pageSnackbar={contractSnackbar}
-        pageSnackBarDescription={t(
+        checkBoxMandatoryText={t(
+          'content.apprelease.appReleaseForm.isMandatory'
+        )}
+        imageFieldLabel={
+          t('content.apprelease.contractAndConsent.uploadImageConformity') +
+          ' *'
+        }
+        pageSnackbarDescription={t(
           'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
         )}
-        pageNotificationsObject={{
+        pageNotificationObject={{
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={setContractNotification}
-        setPageSnackbar={setContractSnackbar}
-        onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onContractConsentSubmit(data, 'save'))}
-        onSaveAndProceed={handleSubmit((data) =>
-          onContractConsentSubmit(data, 'saveAndProceed')
+        imageFieldNoDescription={t(
+          'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
         )}
-        isValid={isValid}
+        imageFieldNote={t('content.apprelease.appReleaseForm.note')}
+        imageFieldRequiredText={t(
+          'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+        )}
+        id={appId}
+        fetchAgreementData={fetchAgreementData || []}
+        fetchConsentData={fetchConsentData}
+        updateAgreementConsents={updateAgreementConsents}
+        updateDocumentUpload={updateDocumentUpload}
+        fetchStatusData={fetchAppStatus || undefined}
+        getDocumentById={getDocumentById}
       />
     </div>
   )
