@@ -8,9 +8,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * enabled document download in contract and consent
 * Service Release Process
    * Create Service, fetch service and Update service apis added
+* AppDetails
+   * Privacy Policy
 * AdminBoardDetail
    * Switch Endpoint
    * Add Roles section
+   * Privacy Policy
 * BugFix
    * Application Request
       * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place yet
