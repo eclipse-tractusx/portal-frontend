@@ -129,19 +129,19 @@ export default function CommonContractAndConsent({
     [defaultValues]
   )
 
-  const setFileStatus = (
-    fieldName: Parameters<typeof setValue>[0],
-    status: UploadFileStatus
-  ) => {
-    const value = getValues(fieldName)
-    if (value)
-      setValue(fieldName, {
-        id: value.id,
-        name: value.name,
-        size: value.size,
-        status,
-      } as any)
-  }
+  const setFileStatus = useCallback(
+    (fieldName: Parameters<typeof setValue>[0], status: UploadFileStatus) => {
+      const value = getValues(fieldName)
+      if (value)
+        setValue(fieldName, {
+          id: value.id,
+          name: value.name,
+          size: value.size,
+          status,
+        } as any)
+    },
+    [getValues, setValue]
+  )
 
   useEffect(() => {
     if (fetchStatusData) dispatch(setAppStatus(fetchStatusData))
@@ -179,6 +179,18 @@ export default function CommonContractAndConsent({
     if (!agreementData || agreementData.length === 0) loadData()
   }, [loadData, agreementData])
 
+  const uploadDocumentApi = useCallback(
+    async (documentTypeId: string, file: File) => {
+      const data = {
+        appId: id,
+        documentTypeId: documentTypeId,
+        body: { file },
+      }
+      if (updateDocumentUpload) await updateDocumentUpload(data).unwrap()
+    },
+    [id, updateDocumentUpload]
+  )
+
   useEffect(() => {
     if (
       defaultuploadImageConformity &&
@@ -195,8 +207,7 @@ export default function CommonContractAndConsent({
       })
       setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultuploadImageConformity])
+  }, [defaultuploadImageConformity, setFileStatus, setValue])
 
   useEffect(() => {
     const value = getValues().uploadImageConformity
@@ -219,7 +230,7 @@ export default function CommonContractAndConsent({
 
       uploadDocumentApi(
         DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS,
-        value
+        uploadImageConformityValue
       )
         .then(() =>
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
@@ -228,8 +239,14 @@ export default function CommonContractAndConsent({
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_ERROR)
         )
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadImageConformityValue])
+  }, [
+    uploadImageConformityValue,
+    setFileStatus,
+    setValue,
+    uploadDocumentApi,
+    defaultuploadImageConformity,
+    getValues,
+  ])
 
   const onContractConsentSubmit = async (data: Object, buttonLabel: string) => {
     const validateFields = await trigger([
@@ -272,15 +289,6 @@ export default function CommonContractAndConsent({
         .catch(() => {
           setContractNotification(true)
         })
-  }
-
-  const uploadDocumentApi = async (documentTypeId: string, file: File) => {
-    const data = {
-      appId: id,
-      documentTypeId: documentTypeId,
-      body: { file },
-    }
-    if (updateDocumentUpload) await updateDocumentUpload(data).unwrap()
   }
 
   const onBackIconClick = () => {

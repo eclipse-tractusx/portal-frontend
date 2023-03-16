@@ -29,7 +29,7 @@ import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -76,19 +76,21 @@ export default function OfferPage() {
     dispatch(decrement())
   }
 
-  const defaultValues = {
-    longDescriptionEN:
-      fetchServiceStatus?.descriptions?.filter(
-        (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-      )[0]?.longDescription || '',
-    longDescriptionDE:
-      fetchServiceStatus?.descriptions?.filter(
-        (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-      )[0]?.longDescription || '',
-    images: fetchServiceStatus?.documents?.APP_IMAGE || [],
-    providerHomePage: fetchServiceStatus?.providerUri || '',
-    providerContactEmail: fetchServiceStatus?.contactEmail || '',
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      longDescriptionEN:
+        fetchServiceStatus?.descriptions?.filter(
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
+        )[0]?.longDescription || '',
+      longDescriptionDE:
+        fetchServiceStatus?.descriptions?.filter(
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
+        )[0]?.longDescription || '',
+      images: fetchServiceStatus?.documents?.APP_IMAGE || [],
+      providerHomePage: fetchServiceStatus?.providerUri || '',
+      providerContactEmail: fetchServiceStatus?.contactEmail || '',
+    }
+  }, [fetchServiceStatus])
 
   const {
     handleSubmit,
@@ -102,7 +104,7 @@ export default function OfferPage() {
     mode: 'onChange',
   })
 
-  const dImages = defaultValues.images
+  const dImages = useMemo(() => defaultValues.images, [defaultValues])
 
   useEffect(() => {
     const imgs = dImages?.map((item: { documentName: string }) => {
@@ -126,8 +128,7 @@ export default function OfferPage() {
         setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dImages])
+  }, [dImages, setValue])
 
   const uploadImage = (files: DropzoneFile[]) => {
     const value = files

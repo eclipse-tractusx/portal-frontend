@@ -86,7 +86,9 @@ export default function OfferCard() {
   }).data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
-  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<ServiceTypeIdsType[]>([])
+  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
+    ServiceTypeIdsType[]
+  >([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
