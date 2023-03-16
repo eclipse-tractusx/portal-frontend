@@ -75,11 +75,20 @@
   "users": {
     "title": "Link existing users to new IdP",
     "subtitle": "Make sure users can continue working",
-    "desc1": "Now link the existing users to your new IDP",
-    "desc2": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
+    "desc1": "With the user migration function you can migrate/connect users created under the Keycloak shared IdP to your own IdP. This ensures that all user data and settings stay in place and assigned to the correct user.",
+    "desc2": "Download the user list; enhance the csv file with the unique user id (available in your own idp) and upload the csv again. With the upload of the own idp user id; the existing user accounts will get linked to the own idp user account with the login of the user on the CX platform.",
+    "desc3": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
+    "preview": "Preview User Export",
     "download": "Download",
     "pretty": "Pretty",
-    "hide_linked": "Hide linked",
+    "unlinked": "Hide linked",
+    "drop": {
+      "intro": "Upload mapped user list with ProviderUserID",
+      "title": "Drag & drop your files here",
+      "subTitle": "Or browse files on your computer",
+      "errorTitle": "Invalid upload",
+      "note": "only one CSV or JSON file allowed for upload"
+    },
     "success": {
       "title": "Request successful",
       "subtitle": "Your request to update the users has completed",
@@ -137,7 +146,8 @@
     "not": "not",
     "configured": "configured",
     "enabled": "enabled",
-    "disabled": "disabled"
+    "disabled": "disabled",
+    "note": "Note"
   },
   "action": {
     "actions": "Actions",
