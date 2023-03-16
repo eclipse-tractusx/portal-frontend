@@ -36,6 +36,7 @@ import {
   CreateServiceStep1Item,
   useFetchServiceTypeIdsQuery,
   useUpdateServiceDocumentUploadMutation,
+  ServiceTypeIdsType,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -85,7 +86,9 @@ export default function OfferCard() {
   }).data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
-  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<any>([])
+  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
+    ServiceTypeIdsType[]
+  >([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()

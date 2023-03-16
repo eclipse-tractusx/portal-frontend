@@ -53,7 +53,7 @@ import { LanguageStatusType } from 'features/appManagement/types'
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: any
+  images: []
   providerHomePage: string
   providerContactEmail: string
 }

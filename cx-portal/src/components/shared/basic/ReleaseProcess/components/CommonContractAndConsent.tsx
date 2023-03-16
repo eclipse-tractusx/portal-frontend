@@ -68,7 +68,9 @@ type CommonConsentType = {
   updateDocumentUpload?: (obj: {
     appId: string
     documentTypeId: string
-    body: any
+    body: {
+      file: File
+    }
   }) => any
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
   getDocumentById?: (id: string) => any
@@ -229,7 +231,7 @@ export default function CommonContractAndConsent({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadImageConformityValue])
 
-  const onContractConsentSubmit = async (data: any, buttonLabel: string) => {
+  const onContractConsentSubmit = async (data: Object, buttonLabel: string) => {
     const validateFields = await trigger([
       'agreements',
       'uploadImageConformity',
@@ -239,7 +241,7 @@ export default function CommonContractAndConsent({
     }
   }
 
-  const handleSave = async (data: any, buttonLabel: string) => {
+  const handleSave = async (data: Object, buttonLabel: string) => {
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
     )
@@ -272,7 +274,7 @@ export default function CommonContractAndConsent({
         })
   }
 
-  const uploadDocumentApi = async (documentTypeId: string, file: any) => {
+  const uploadDocumentApi = async (documentTypeId: string, file: File) => {
     const data = {
       appId: id,
       documentTypeId: documentTypeId,
