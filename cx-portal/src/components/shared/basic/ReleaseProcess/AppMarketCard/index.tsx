@@ -281,6 +281,15 @@ export default function AppMarketCard() {
     }
   }
 
+  const callDispatch = () => {
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+  }
+
+  const onSave = (buttonLabel: string) => {
+    buttonLabel === 'saveAndProceed' && dispatch(increment())
+    buttonLabel === 'save' && setAppCardSnackbar(true)
+  }
+
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       title: data.title,
@@ -327,9 +336,8 @@ export default function AppMarketCard() {
         .unwrap()
         .then(() => {
           dispatch(setAppId(appId))
-          buttonLabel === 'saveAndProceed' && dispatch(increment())
-          buttonLabel === 'save' && setAppCardSnackbar(true)
-          if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+          onSave(buttonLabel)
+          callDispatch()
         })
         .catch(() => {
           setAppCardNotification(true)
@@ -357,9 +365,8 @@ export default function AppMarketCard() {
               })
 
             dispatch(setAppId(result))
-            buttonLabel === 'saveAndProceed' && dispatch(increment())
-            buttonLabel === 'save' && setAppCardSnackbar(true)
-            if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+            onSave(buttonLabel)
+            callDispatch()
           }
         })
         .catch(() => {
