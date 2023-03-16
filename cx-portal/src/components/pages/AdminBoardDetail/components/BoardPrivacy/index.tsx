@@ -31,7 +31,7 @@ export default function BoardPrivacy({ item }: { item: AppDetails }) {
     keyPrefix: 'content.appdetail.privacy',
   })
 
-  const renderBoardPrivacy = (policy: PrivacyPolicyType) => {
+  const renderBoardPrivacy = (policy: string) => {
     switch (policy) {
       case PrivacyPolicyType.COMPANY_DATA:
         return <Apartment className="policy-icon" />
@@ -56,7 +56,7 @@ export default function BoardPrivacy({ item }: { item: AppDetails }) {
       </div>
       {item.privacyPolicies && item.privacyPolicies.length ? (
         <div className="policies-list">
-          {item.privacyPolicies.map((policy: PrivacyPolicyType) => (
+          {item.privacyPolicies.map((policy: string) => (
             <Typography
               variant="body2"
               className="policy-name"
