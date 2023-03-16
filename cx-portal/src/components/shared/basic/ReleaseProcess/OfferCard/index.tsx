@@ -242,7 +242,11 @@ export default function OfferCard() {
 
           setFileStatus(UploadStatus.UPLOADING)
 
-          uploadServiceImageApi(result, DocumentTypeId.APP_LEADIMAGE, uploadImageValue)
+          uploadServiceImageApi(
+            result,
+            DocumentTypeId.APP_LEADIMAGE,
+            uploadImageValue
+          )
             .then(() => {
               setFileStatus(UploadStatus.UPLOAD_SUCCESS)
             })

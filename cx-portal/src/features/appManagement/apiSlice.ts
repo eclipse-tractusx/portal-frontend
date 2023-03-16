@@ -353,7 +353,11 @@ export const apiSlice = createApi({
     }),
     updateServiceDocumentUpload: builder.mutation({
       async queryFn(
-        data: { appId: string; documentTypeId: DocumentTypeId; body: { file: File } },
+        data: {
+          appId: string
+          documentTypeId: DocumentTypeId
+          body: { file: File }
+        },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery
