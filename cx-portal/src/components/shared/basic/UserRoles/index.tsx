@@ -19,25 +19,34 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Button, Chip, Typography } from 'cx-portal-shared-components'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  Button,
+  Chip,
+  PageSnackbar,
+  Typography,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
 import EditIcon from '@mui/icons-material/Edit'
+import { show } from 'features/control/overlay/actions'
+import { OVERLAYS } from 'types/Constants'
 import {
   TenantUserDetails,
-  useFetchUsersSearchQuery,
+  useFetchUsersRolesQuery,
 } from 'features/admin/userApiSlice'
 import './UserRole.scss'
+import { currentUserRoleResp } from 'features/admin/appuserApiSlice'
 
 export const UserRoles = ({ user }: { user: TenantUserDetails }) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const windowUrl = window.location.href
 
-  const { data } = useFetchUsersSearchQuery({
-    page: 0,
-    args: { expr: '', companyUserId: user.companyUserId },
-  })
+  const { data } = useFetchUsersRolesQuery(user.companyUserId)
   const roles = data?.content[0].roles ?? []
+
+  const portalRoleResponse = useSelector(currentUserRoleResp)
 
   return (
     <>
@@ -51,7 +60,9 @@ export const UserRoles = ({ user }: { user: TenantUserDetails }) => {
               <Button
                 color="secondary"
                 size="small"
-                onClick={function noRefCheck() {}}
+                onClick={() =>
+                  dispatch(show(OVERLAYS.EDIT_PORTAL_ROLES, user.companyUserId))
+                }
               >
                 <EditIcon className="edit-icon" />
                 {t('shared.userRoles.changeRoleBtn')}
@@ -61,13 +72,26 @@ export const UserRoles = ({ user }: { user: TenantUserDetails }) => {
 
           <div className="policies-list-main">
             {roles.map((role: string) => (
-              <div className="policy-list">
-                <Chip key={uniqueId(role)} label={role} type="plain" />
+              <div className="policy-list" key={uniqueId(role)}>
+                <Chip label={role} type="plain" />
               </div>
             ))}
           </div>
         </section>
       </Box>
+      <PageSnackbar
+        open={
+          portalRoleResponse === 'error' || portalRoleResponse === 'success'
+        }
+        autoClose
+        description={
+          portalRoleResponse === 'error'
+            ? t('content.account.editRoles.errorDescription')
+            : t('content.account.editRoles.successDescription')
+        }
+        severity={portalRoleResponse === 'error' ? 'error' : 'success'}
+        showIcon
+      />
     </>
   )
 }

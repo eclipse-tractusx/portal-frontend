@@ -62,6 +62,7 @@ import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
 import { AddusersIDP } from 'components/overlays/AddusersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
 import DeclineAdminboard from 'components/overlays/DeclineAdminboard'
+import EditPortalRoles from 'components/overlays/EditPortalRoles'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -184,6 +185,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddServiceProvider />
     case OVERLAYS.DECLINE_ADMINBOARD:
       return <DeclineAdminboard id={overlay.id} />
+    case OVERLAYS.EDIT_PORTAL_ROLES:
+      return <EditPortalRoles id={overlay.id} />
     default:
       return <NotFound />
   }
