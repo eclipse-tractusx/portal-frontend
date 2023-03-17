@@ -24,6 +24,7 @@ import {
   UploadFileStatus,
   UploadStatus,
   DropArea,
+  DropAreaProps,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel } from '@mui/material'
@@ -349,6 +350,10 @@ export default function AppPage() {
     dispatch(decrement())
   }
 
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
+  }
+
   return (
     <div className="app-page">
       <ReleaseStepHeader
@@ -438,7 +443,7 @@ export default function AppPage() {
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
-                  DropArea={(props) => <DropArea {...props} size="small" />}
+                  DropArea={renderDropArea}
                 />
               )
             }}

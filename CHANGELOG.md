@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppReleaseProcess
    * enabled document download in contract and consent
+   * Changed PDF uploads from mandatory to optional and changed dropzone parameter size
 * Service Release Process
    * Create Service, fetch service and Update service apis added
 * AppDetails
