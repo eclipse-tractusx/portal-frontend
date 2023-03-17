@@ -59,6 +59,6 @@
     "**/glob-parent": "^5.1.2",
     "**/trim": "^0.0.3",
     "**/decode-uri-component": "^0.2.1",
-    "**/webpack": "^5.76.0"
+    "**/webpack@5.70.0": "^5.76.0"
   }
 }
