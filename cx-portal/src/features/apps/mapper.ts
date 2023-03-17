@@ -31,7 +31,7 @@ const baseAssets = getAssetBase()
 
 export const getAppImageUrl = (app: AppMarketplaceApp) =>
   app.leadPictureId
-    ? `${getApiBase()}/api/apps/${app.id}/appImages/${app.leadPictureId}`
+    ? `${getApiBase()}/api/apps/${app.id}/appDocuments/${app.leadPictureId}`
     : LogoGrayData
 
 // mapper to fetch an app lead-image from the asset repo by using the app image name; default image handling included as well

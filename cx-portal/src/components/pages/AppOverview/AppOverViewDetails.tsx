@@ -29,19 +29,17 @@ import { Grid } from '@mui/material'
 import I18nService from 'services/I18nService'
 import i18next, { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
-import {
-  NewAppDetails,
-  useFetchDocumentByIdMutation,
-} from 'features/appManagement/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import AppInfo from './components/AppInfo'
 import AppConsent from './components/AppConsent'
 import { useEffect, useState } from 'react'
+import { AppStatusDataState } from 'features/appManagement/types'
 
 export default function AppOverViewDetails({
   item,
   id,
 }: {
-  item: NewAppDetails
+  item: AppStatusDataState
   id: string
 }) {
   const { t } = useTranslation()

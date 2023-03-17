@@ -54,9 +54,19 @@ export const Patterns = {
     appLanguage: /^([A-Za-z ])$/,
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
   },
+  offerCard: {
+    serviceName: /^[^-\s][A-Za-z0-9.:_@&' -]((?!\s{2}).){2,20}$/,
+    serviceType: /^([A-Za-z])$/,
+    shortDescriptionEN:
+      /^[^-\s]([a-zA-Z0-9 !?@&#'"()_\-=/*.,;:])((?!\s{2}).){10,120}$/,
+    shortDescriptionDE:
+      /^[^-\s]([a-zA-ZÀ-ÿ0-9 !?@&#'"()_\-=/*.,;:])((?!\s{2}).){10,120}$/,
+  },
   appPage: {
-    longDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
-    longDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:]){10,2000}$/,
+    longDescriptionEN:
+      /^[^-\s]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:])((?!\s{2}).){10,2000}$/,
+    longDescriptionDE:
+      /^[^-\s]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:])((?!\s{2}).){10,2000}$/,
     phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {

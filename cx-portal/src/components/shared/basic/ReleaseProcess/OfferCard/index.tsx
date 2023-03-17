@@ -26,118 +26,291 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
-  useFetchAppStatusQuery,
+  useFetchServiceStatusQuery,
   useFetchDocumentByIdMutation,
+  useCreateServiceMutation,
+  useSaveServiceMutation,
+  CreateServiceStep1Item,
+  useFetchServiceTypeIdsQuery,
+  useUpdateServiceDocumentUploadMutation,
+  ServiceTypeIdsType,
+  DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  appIdSelector,
-  appStatusDataSelector,
   increment,
+  serviceIdSelector,
+  serviceStatusDataSelector,
 } from 'features/appManagement/slice'
-import { setAppStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import { setServiceId, setServiceStatus } from 'features/appManagement/actions'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import { isString } from 'lodash'
+import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
+import { LanguageStatusType } from 'features/appManagement/types'
+
+type FormDataType = {
+  title: string
+  serviceTypeIds: string[]
+  shortDescriptionEN: string
+  shortDescriptionDE: string
+  uploadImage: {
+    leadPictureUri: DropzoneFile | string | null
+    alt?: string
+  }
+  price: string | null
+}
 
 export default function OfferCard() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
-  const [appCardNotification, setAppCardNotification] = useState(false)
-  const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
-  const serviceStatusDate = useSelector(appStatusDataSelector)
+  const serviceId = useSelector(serviceIdSelector)
+  const [serviceCardNotification, setServiceCardNotification] = useState(false)
+  const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
+  const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [createService] = useCreateServiceMutation()
+  const [saveService] = useSaveServiceMutation()
+  const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
+    ServiceTypeIdsType[]
+  >([])
+  const serviceTypeData = useFetchServiceTypeIdsQuery()
+  const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
+  const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
-  const defaultValues = {
-    title: serviceStatusDate?.title,
-    provider: serviceStatusDate?.provider,
-    shortDescriptionEN:
-      serviceStatusDate?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
-      )[0]?.shortDescription || '',
-    shortDescriptionDE:
-      serviceStatusDate?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
-      )[0]?.shortDescription || '',
-    uploadImage: {
-      leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-      alt: serviceStatusDate?.leadPictureUri || '',
-    },
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      title: fetchServiceStatus?.title,
+      serviceTypeIds: fetchServiceStatus?.serviceTypeIds.map(
+        (item: string, index: number) => {
+          return {
+            name: item,
+            serviceTypeId: index,
+          }
+        }
+      ),
+      price: null,
+      shortDescriptionEN:
+        fetchServiceStatus?.descriptions?.filter(
+          (serviceStatus: LanguageStatusType) =>
+            serviceStatus.languageCode === 'en'
+        )[0]?.shortDescription || '',
+      shortDescriptionDE:
+        fetchServiceStatus?.descriptions?.filter(
+          (serviceStatus: LanguageStatusType) =>
+            serviceStatus.languageCode === 'de'
+        )[0]?.shortDescription || '',
+      uploadImage: {
+        leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
+        alt: fetchServiceStatus?.leadPictureUri || '',
+      },
+    }
+  }, [fetchServiceStatus, cardImage])
 
   const {
+    handleSubmit,
     getValues,
     control,
     trigger,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
 
-  useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
-  }, [dispatch, fetchAppStatus])
+  const fetchCardImage = useCallback(
+    async (documentId: string, documentName: string) => {
+      try {
+        const response = await fetchDocumentById({
+          appId: serviceId,
+          documentId,
+        }).unwrap()
+        const file = response.data
 
-  const offerImageData: any = getValues().uploadImage.leadPictureUri
-  useEffect(() => {
-    if (offerImageData !== null && offerImageData !== LogoGrayData) {
-      let isFile: any = offerImageData instanceof File
-
-      if (isFile) {
-        const blobFile = new Blob([offerImageData], {
-          type: 'image/png',
-        })
-        setCardImage(URL.createObjectURL(blobFile))
+        const setFileStatus = (status: UploadFileStatus) =>
+          setValue('uploadImage.leadPictureUri', {
+            name: documentName,
+            status,
+          } as any)
+        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+        return setCardImage(URL.createObjectURL(file))
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
+    },
+    [fetchDocumentById, serviceId, setValue]
+  )
+
+  const uploadServiceImageApi = async (
+    appId: string,
+    documentTypeId: DocumentTypeId,
+    file: File
+  ) => {
+    const data = {
+      appId: appId,
+      documentTypeId: documentTypeId,
+      body: { file },
     }
-  }, [offerImageData])
+
+    await updateServiceDocumentUpload(data).unwrap()
+  }
 
   useEffect(() => {
     if (
-      serviceStatusDate?.documents?.APP_LEADIMAGE &&
-      serviceStatusDate?.documents?.APP_LEADIMAGE[0].documentId
+      serviceStatusData?.documents?.APP_LEADIMAGE &&
+      serviceStatusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
       fetchCardImage(
-        serviceStatusDate?.documents?.APP_LEADIMAGE[0].documentId,
-        serviceStatusDate?.documents?.APP_LEADIMAGE[0].documentName
+        serviceStatusData?.documents?.APP_LEADIMAGE[0].documentId,
+        serviceStatusData?.documents?.APP_LEADIMAGE[0].documentName
       )
     }
+    if (serviceStatusData && serviceStatusData.serviceTypeIds) {
+      setDefaultServiceTypeVal(
+        serviceStatusData?.serviceTypeIds.map((item: string, index: number) => {
+          return {
+            name: item,
+            serviceTypeId: index,
+          }
+        })
+      )
+    }
+  }, [serviceStatusData, fetchCardImage])
+
+  useEffect(() => {
+    if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     reset(defaultValues)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [serviceStatusDate])
+  }, [dispatch, fetchServiceStatus, defaultValues, reset])
 
-  const fetchCardImage = async (documentId: string, documentName: string) => {
-    try {
-      const response = await fetchDocumentById({ appId, documentId }).unwrap()
-      const file = response.data
+  const handleSave = async (
+    apiBody: CreateServiceStep1Item,
+    buttonLabel: string
+  ) => {
+    await saveService({
+      id: serviceId,
+      body: apiBody,
+    })
+      .unwrap()
+      .then(() => {
+        dispatch(setServiceId(serviceId))
+        buttonLabel === 'saveAndProceed' && dispatch(increment())
+        buttonLabel === 'save' && setServiceCardSnackbar(true)
+        if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+      })
+      .catch(() => {
+        setServiceCardNotification(true)
+      })
+  }
 
-      const setFileStatus = (status: UploadFileStatus) =>
-        setValue('uploadImage.leadPictureUri', {
-          name: documentName,
-          status,
-        } as any)
-      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+  const handleCreate = async (
+    apiBody: CreateServiceStep1Item,
+    buttonLabel: string
+  ) => {
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
+    await createService({
+      id: '',
+      body: apiBody,
+    })
+      .unwrap()
+      .then((result) => {
+        if (isString(result)) {
+          const setFileStatus = (status: UploadFileStatus) =>
+            setValue('uploadImage.leadPictureUri', {
+              name: uploadImageValue.name,
+              size: uploadImageValue.size,
+              status,
+            } as any)
+
+          setFileStatus(UploadStatus.UPLOADING)
+
+          uploadServiceImageApi(
+            result,
+            DocumentTypeId.APP_LEADIMAGE,
+            uploadImageValue
+          )
+            .then(() => {
+              setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+            })
+            .catch(() => {
+              setFileStatus(UploadStatus.UPLOAD_ERROR)
+            })
+
+          dispatch(setServiceId(result))
+          buttonLabel === 'saveAndProceed' && dispatch(increment())
+          buttonLabel === 'save' && setServiceCardSnackbar(true)
+          if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+        }
+      })
+      .catch(() => {
+        setServiceCardNotification(true)
+      })
+  }
+
+  const onSubmit = async (data: FormDataType, buttonLabel: string) => {
+    const validateFields = await trigger([
+      'title',
+      'serviceTypeIds',
+      'shortDescriptionEN',
+      'shortDescriptionDE',
+    ])
+    const apiBody = {
+      serviceTypeIds: data.serviceTypeIds,
+      title: data.title,
+      leadPictureUri:
+        data.uploadImage.leadPictureUri !== null &&
+        Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
+        Object.values(data.uploadImage.leadPictureUri)[0],
+      descriptions: [
+        {
+          languageCode: 'de',
+          longDescription:
+            serviceStatusData?.descriptions?.filter(
+              (serviceStatus: LanguageStatusType) =>
+                serviceStatus.languageCode === 'de'
+            )[0]?.longDescription || '',
+          shortDescription: data.shortDescriptionDE || '',
+        },
+        {
+          languageCode: 'en',
+          longDescription:
+            serviceStatusData?.descriptions?.filter(
+              (serviceStatus: LanguageStatusType) =>
+                serviceStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
+          shortDescription: data.shortDescriptionEN || '',
+        },
+      ],
+      privacyPolicies: [],
+      salesManager: null,
+      price: '',
+      providerUri: '',
+      contactEmail: '',
+    }
+    if (validateFields) {
+      if (serviceId) {
+        handleSave(apiBody, buttonLabel)
+      } else {
+        handleCreate(apiBody, buttonLabel)
+      }
     }
   }
 
@@ -157,49 +330,59 @@ export default function OfferCard() {
                 errors,
               }}
               name="title"
-              pattern={Patterns.appMarketCard.appTitle}
-              label={t('step1.serviceName') + ' *'}
+              pattern={Patterns.offerCard.serviceName}
+              label={t('step1.serviceName')}
               rules={{
                 required: `${t('step1.serviceName')} ${t(
                   'serviceReleaseForm.isMandatory'
                 )}`,
-                minLength: `${t('serviceReleaseForm.minimum')} 5 ${t(
+                minLength: `${t('serviceReleaseForm.minimum')} 3 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
                 pattern: `${t(
                   'serviceReleaseForm.validCharactersIncludes'
                 )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t('serviceReleaseForm.maximum')} 40 ${t(
+                maxLength: `${t('serviceReleaseForm.maximum')} 20 ${t(
                   'serviceReleaseForm.charactersAllowed'
                 )}`,
               }}
+              maxLength={20}
+              minLength={3}
             />
-            <CommonConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-              }}
-              name="provider"
-              maxLength={30}
-              minLength={1}
-              pattern={Patterns.appMarketCard.appProvider}
-              label={t('step1.serviceType') + ' *'}
-              rules={{
-                required: `${t('step1.serviceType')} ${t(
-                  'serviceReleaseForm.isMandatory'
-                )}`,
-                minLength: `${t('serviceReleaseForm.minimum')} 1 ${t(
-                  'serviceReleaseForm.charactersRequired'
-                )}`,
-                pattern: `${t(
-                  'serviceReleaseForm.validCharactersIncludes'
-                )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t('serviceReleaseForm.maximum')} 30 ${t(
-                  'serviceReleaseForm.charactersAllowed'
-                )}`,
-              }}
-            />
+
+            <div className="form-field">
+              <ConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                  name: 'serviceTypeIds',
+                  label: t('step1.serviceType'),
+                  placeholder: t('step1.serviceTypePlaceholder'),
+                  type: 'multiSelectList',
+                  rules: {
+                    required: {
+                      value: true,
+                      message: `${t('step1.serviceType')} ${t(
+                        'serviceReleaseForm.isMandatory'
+                      )}`,
+                    },
+                    pattern: {
+                      value: Patterns.offerCard.serviceType,
+                      message: `${t(
+                        'serviceReleaseForm.validCharactersIncludes'
+                      )} A-Za-z`,
+                    },
+                  },
+                  items: serviceTypeIds || [],
+                  keyTitle: 'name',
+                  saveKeyTitle: 'name',
+                  notItemsText: t('serviceReleaseForm.noItemsSelected'),
+                  buttonAddMore: t('serviceReleaseForm.addMore'),
+                  defaultValues: defaultServiceTypeVal,
+                }}
+              />
+            </div>
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
@@ -214,7 +397,7 @@ export default function OfferCard() {
                       item={desc}
                       label={
                         <>
-                          {t(`step1.${desc}`) + ' *'}
+                          {t(`step1.${desc}`)}
                           <IconButton sx={{ color: '#939393' }} size="small">
                             <HelpOutlineIcon />
                           </IconButton>
@@ -223,11 +406,12 @@ export default function OfferCard() {
                       value={
                         (desc === 'shortDescriptionEN'
                           ? getValues().shortDescriptionEN.length
-                          : getValues().shortDescriptionDE.length) + `/255`
+                          : getValues().shortDescriptionDE.length) + `/120`
                       }
                       patternKey="shortDescriptionEN"
-                      patternEN={Patterns.appMarketCard.shortDescriptionEN}
-                      patternDE={Patterns.appMarketCard.shortDescriptionDE}
+                      patternEN={Patterns.offerCard.shortDescriptionEN}
+                      patternDE={Patterns.offerCard.shortDescriptionDE}
+                      isRequired={false}
                       rules={{
                         required:
                           t(`step1.${desc}`) +
@@ -242,10 +426,12 @@ export default function OfferCard() {
                             ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
                             : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
                         }`,
-                        maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
+                        maxLength: `${t('serviceReleaseForm.maximum')} 120 ${t(
                           'serviceReleaseForm.charactersAllowed'
                         )}`,
                       }}
+                      maxLength={120}
+                      minLength={10}
                     />
                   </div>
                 )
@@ -258,17 +444,18 @@ export default function OfferCard() {
                 trigger,
                 errors,
               }}
-              labe={t('step1.serviceLeadImageUpload') + ' *'}
+              label={t('step1.serviceLeadImageUpload')}
               noteDescription={t('serviceReleaseForm.OnlyOneFileAllowed')}
               note={t('serviceReleaseForm.note')}
               requiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
+              isRequired={false}
             />
           </form>
         </Grid>
       </Grid>
       <SnackbarNotificationWithButtons
-        pageNotification={appCardNotification}
-        pageSnackbar={appCardSnackbar}
+        pageNotification={serviceCardNotification}
+        pageSnackbar={serviceCardSnackbar}
         pageSnackBarDescription={t(
           'serviceReleaseForm.dataSavedSuccessMessage'
         )}
@@ -276,12 +463,14 @@ export default function OfferCard() {
           title: t('serviceReleaseForm.error.title'),
           description: t('serviceReleaseForm.error.message'),
         }}
-        setPageNotification={setAppCardNotification}
-        setPageSnackbar={setAppCardSnackbar}
-        onBackIconClick={() => navigate('/appmanagement')}
-        onSave={() => dispatch(increment())}
-        onSaveAndProceed={() => dispatch(increment())}
-        isValid={true}
+        setPageNotification={() => setServiceCardNotification(false)}
+        setPageSnackbar={() => setServiceCardSnackbar(false)}
+        onBackIconClick={() => navigate('/home')}
+        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data: any) =>
+          onSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
       />
     </div>
   )

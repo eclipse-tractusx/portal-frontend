@@ -97,6 +97,7 @@ const ConnectorFormInput = ({
                   trigger(name)
                   onChange(file)
                 }}
+                errorText={helperText}
                 DropStatusHeader={false}
                 DropArea={(props) => <DropArea {...props} size="small" />}
               />

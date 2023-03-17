@@ -78,7 +78,7 @@ export const ImageItem = ({
   }
   return (
     <>
-      {hovered && (
+      {hovered ? (
         <ImageItemOverlay
           onClose={() => setHovered(false)}
           url={url}
@@ -89,40 +89,41 @@ export const ImageItem = ({
           shadow={shadow}
           modalWidth={modalWidth}
         />
-      )}
-      <div
-        onClick={() => hover && setHovered(true)}
-        style={{
-          width: getWidth().width,
-          height: getWidth().height,
-          boxShadow: shadow ? '0px 10px 20px rgb(80 80 80 / 30%)' : 'none',
-          borderRadius: borderRadius ? '16px' : '0px',
-          marginBottom: '20px',
-          cursor: 'zoom-in',
-          ...additionalStyles,
-        }}
-      >
-        <Image
-          src={url}
-          alt={text}
+      ) : (
+        <div
+          onClick={() => hover && setHovered(true)}
           style={{
             width: getWidth().width,
             height: getWidth().height,
+            boxShadow: shadow ? '0px 10px 20px rgb(80 80 80 / 30%)' : 'none',
             borderRadius: borderRadius ? '16px' : '0px',
-            objectFit: 'contain',
-          }}
-        />
-        <Typography
-          variant="body2"
-          sx={{
-            color: '#888888',
-            margin: '5px 0',
-            fontSize: '14px',
+            marginBottom: '20px',
+            cursor: 'zoom-in',
+            ...additionalStyles,
           }}
         >
-          {text}
-        </Typography>
-      </div>
+          <Image
+            src={url}
+            alt={text}
+            style={{
+              width: getWidth().width,
+              height: getWidth().height,
+              borderRadius: borderRadius ? '16px' : '0px',
+              objectFit: 'contain',
+            }}
+          />
+          <Typography
+            variant="body2"
+            sx={{
+              color: '#888888',
+              margin: '5px 0',
+              fontSize: '14px',
+            }}
+          >
+            {text}
+          </Typography>
+        </div>
+      )}
     </>
   )
 }

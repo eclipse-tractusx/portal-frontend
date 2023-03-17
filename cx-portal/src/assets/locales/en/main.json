@@ -415,12 +415,12 @@
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {
-        "successmessage": "Edc connector successfully added",
+        "successmessage": "Connector successfully added",
         "errormessage": "Error! Something went wrong"
       },
       "deletemodal": {
-        "title": "Delete EDC Connector",
-        "description": "Are you sure to delete selected connector?"
+        "title": "Delete Connector",
+        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable."
       },
       "modal": {
         "company": {
@@ -433,7 +433,7 @@
         },
         "daps": {
           "title": "Create DAPS Registration",
-          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+          "intro": "To retrigger the daps authentication interface, please upload the public authentication key/certificate of your connector.",
           "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Connect company connector",
@@ -446,7 +446,7 @@
             "tooltipMsg": "Own selected connector name for verification"
           },
           "url": {
-            "label": "Connector URL*",
+            "label": "Connector URL/Endpoint*",
             "placeholder": "Connector URL",
             "error": "Enter a valid url - eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
@@ -454,19 +454,19 @@
           "bpn": {
             "label": "Connector Owner*",
             "placeholder": "BPNL's are allowed only",
-            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
+            "error": "BPN is mandatory. Valid BPN eg: BPNL+12 characters",
             "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
           },
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
             "error": "Valid code eg: DE, US",
-            "tooltipMsg": "Connector Location - Message to be added"
+            "tooltipMsg": "Connector Location Country Code - e.g. DE, US, etc."
           },
           "doc": {
-            "label": "Public Authentication Key Upload*",
+            "label": "Public Authentication Key/Certificate*",
             "error": "Please use a valid type. E.g. .pem; .cert",
-            "tooltipMsg": "Public key"
+            "tooltipMsg": "Upload the certificate that contains your connector's public key information."
           }
         },
         "create": {
@@ -481,9 +481,6 @@
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
         }
-      },
-      "edcUpload": {
-        "formTitle": "Update your public key"
       }
     },
     "partnernetwork": {
@@ -710,6 +707,7 @@
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Select CX Portal User Role",
       "helperText": "Please enter all required information before proceeding.",
+      "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
@@ -775,7 +773,13 @@
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
-        "notSupportedMessage": "Currently not yet supported"
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "COMPANY_DATA_ICON": "ApartmentIcon",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
       },
       "howtouse": {
         "heading": "Relevant Documents",
@@ -906,6 +910,7 @@
         "price": "Price :  ",
         "connectedData": "Connected Data",
         "dataSecurityInformation": "Data Security Information",
+        "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
         "consent": "Consent",
@@ -1070,13 +1075,18 @@
         "heading": "Data Security Information",
         "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
       },
-      "conformityDocument": {
+      "ConformityDocument": {
         "heading": "Conformity Document",
         "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
       },
-      "documents": {
+      "Documents": {
         "heading": "Documents",
         "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
+      },
+      "roles": {
+        "heading": "App Roles",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {
         "heading": "Provider Information",
@@ -1118,7 +1128,7 @@
         "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
         "TO_DO": {
           "title": "Your action is needed to resolve the issue",
-          "description": ""
+          "description": "Validate the company registration data and the uploaded documents and confirm or reject the registration. Further process steps are only carried out after confirmation."
         },
         "IN_PROGRESS": {
           "title": "No action needed from your side",
@@ -1164,15 +1174,15 @@
         },
         "IN_PROGRESS": {
           "title": "No action needed from your side",
-          "description": "The process is ongoing."
+          "description": "The process is currently running/in progress. As soon as the Wallet is created, the status will get automatically updated."
         },
         "DONE": {
           "title": "No action needed from your side",
-          "description": "The process is successfully completed."
+          "description": "The process is successfully completed. The Managed Identity Wallet got created."
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The BPN creation was unsuccessful. You can retrigger the endpoint or close/reject the company registration."
+          "description": "The Identity Wallet creation failed. You can retrigger the endpoint or close/reject the company registration."
         }
       },
       "CLEARING_HOUSE": {
@@ -1193,7 +1203,7 @@
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The clearinghouse check was unsuccessful. Details to the unsuccessful validation can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+          "description": "The clearinghouse check was unsuccessful/failed. Details regarding the unsuccessful validation run may get found above. You can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       },
       "SELF_DESCRIPTION_LP": {
@@ -1217,6 +1227,11 @@
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       }
+    },
+    "roleDetails": {
+      "heading": "Overview of the available Catena-X portal roles",
+      "tab1": "Role Descriptions",
+      "tab2": "Role Comparison"
     }
   },
   "navigation": {

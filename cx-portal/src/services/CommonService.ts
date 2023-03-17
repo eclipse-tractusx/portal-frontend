@@ -37,7 +37,7 @@ const fetchLeadPictureImage = (data: any[]) => {
       new Promise((resolve, reject) => {
         let url = `${getApiBase()}/api/apps/${
           app.id
-        }/appImages/${isValidPictureId(app.leadPictureId)}`
+        }/appDocuments/${isValidPictureId(app.leadPictureId)}`
         let options = {
           method: 'GET',
           headers: {
@@ -81,11 +81,11 @@ const fetchLeadPictures = (images: string[], appId: string) => {
       new Promise((resolve, reject) => {
         let url = ''
         if (!image.documentId) {
-          url = `${getApiBase()}/api/apps/${appId}/appImages/${isValidPictureId(
+          url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
             image
           )}`
         } else {
-          url = `${getApiBase()}/api/apps/${appId}/appImages/${isValidPictureId(
+          url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
             image.documentId
           )}`
         }
@@ -138,12 +138,20 @@ const getUseCases = (callback: any) => {
     .then((data) => callback(data))
 }
 
+const getRoleDescription = (callback: any) => {
+  let url = `${getAssetBase()}/content/${i18next.language}/roledescription.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+}
+
 const CommonService = {
   fetchLeadPictureImage,
   isValidPictureId,
   getCompanyRoles,
   getUseCases,
   fetchLeadPictures,
+  getRoleDescription,
 }
 
 export default CommonService

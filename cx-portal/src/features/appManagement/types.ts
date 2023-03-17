@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ConsentStatusEnum } from './apiSlice'
+
 export const name = 'admin/appManagement'
 
 export type SearchInputState = {
@@ -25,23 +27,60 @@ export type SearchInputState = {
   text: string
 }
 
+export type LanguageStatusType = {
+  languageCode: string
+}
+
 export interface AppStatusDataState {
   title: string
-  provider: string
-  leadPictureUri: string
-  providerName: string
-  salesManagerId: string
-  useCase: string[]
-  descriptions: DescriptionState[]
-  agreements: AgreementState[]
-  supportedLanguageCodes: string[]
+  provider?: string
+  leadPictureId?: string
+  providerName?: string
+  useCase?: string[]
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  agreements?: {
+    id: string
+    name: string
+    consentStatus: ConsentStatusEnum
+  }[]
+  supportedLanguageCodes?: string[]
   price: string
-  images: string[]
+  images?: string[] | []
   providerUri: string
   contactEmail: string
-  contactNumber: string
+  contactNumber?: string
   documents: any
-  privacyPolicies: string[]
+  salesManagerId?: string | null
+  privacyPolicies?: []
+  leadPictureUri?: string
+}
+
+export interface ServiceStatusDataState {
+  id: string
+  title: string
+  providerUri: string
+  contactEmail: string
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  price: string
+  offerSubscriptionDetailData: {
+    offerSubscriptionId: string
+    offerSubscriptionStatus: string
+  }[]
+  serviceTypeIds: string[]
+  documents: any
+  leadPictureUri?: string
+  leadPictureId?: string
+  images?: string[] | []
+  salesManagerId?: string | null
+  privacyPolicies?: []
 }
 
 export interface DescriptionState {
@@ -53,7 +92,7 @@ export interface DescriptionState {
 export interface AgreementState {
   id: string
   name: string
-  consentStatus: string
+  consentStatus: ConsentStatusEnum
 }
 
 export interface AppManagementState {
@@ -61,6 +100,13 @@ export interface AppManagementState {
   currentActiveStep: number
   appId: string
   appStatusData: AppStatusDataState
+}
+
+export interface ServiceManagementState {
+  searchInput: SearchInputState
+  currentActiveStep: number
+  appId: string
+  serviceStatusData: ServiceStatusDataState
 }
 
 export const initialState: AppManagementState = {
@@ -73,9 +119,8 @@ export const initialState: AppManagementState = {
   appStatusData: {
     title: '',
     provider: '',
-    leadPictureUri: '',
+    leadPictureId: '',
     providerName: '',
-    salesManagerId: '',
     useCase: [],
     descriptions: [],
     agreements: [],
@@ -86,6 +131,32 @@ export const initialState: AppManagementState = {
     contactEmail: '',
     contactNumber: '',
     documents: {},
+    salesManagerId: null,
     privacyPolicies: [],
+    leadPictureUri: '',
+  },
+}
+
+export const initialServiceState: ServiceManagementState = {
+  searchInput: {
+    open: false,
+    text: '',
+  },
+  currentActiveStep: 1,
+  appId: '',
+  serviceStatusData: {
+    id: '',
+    title: '',
+    providerUri: '',
+    contactEmail: '',
+    descriptions: [],
+    price: '',
+    offerSubscriptionDetailData: [],
+    serviceTypeIds: [],
+    documents: {},
+    leadPictureUri: '',
+    leadPictureId: '',
+    images: [],
+    salesManagerId: null,
   },
 }

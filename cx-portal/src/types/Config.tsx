@@ -71,6 +71,7 @@ import AdminBoard from 'components/pages/AdminBoard'
 import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
 import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
+import RoleDetails from 'components/pages/RoleDetails'
 
 /**
  * ALL_PAGES
@@ -419,6 +420,10 @@ export const ALL_PAGES: IPage[] = [
         <Route path=":appId" element={<Deactivate />} />
       </Route>
     ),
+  },
+  {
+    name: PAGES.ROLE_DETAILS,
+    element: <RoleDetails />,
   },
 ]
 

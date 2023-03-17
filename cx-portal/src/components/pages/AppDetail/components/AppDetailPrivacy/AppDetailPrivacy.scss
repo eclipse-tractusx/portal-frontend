@@ -23,6 +23,22 @@
   .privacy-content {
     margin-bottom: 30px;
   }
+  .policies-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+    .policy-name {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .policy-icon {
+      font-size: 20;
+      margin-right: 5px;
+    }
+  }
   .table-text {
     max-width: 850px;
     font-weight: 600;
