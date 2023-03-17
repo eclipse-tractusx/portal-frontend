@@ -18,28 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAction } from '@reduxjs/toolkit'
-import {
-  name,
-  SearchInputState,
-  AppStatusDataState,
-  ServiceStatusDataState,
-} from './types'
-
-const setSearchInput = createAction<SearchInputState>(`${name}/setSearchOpen`)
-const setAppId = createAction<string>(`${name}/setApplicationId`)
-const setServiceId = createAction<string>(`${name}/setServiceId`)
-const setAppStatus = createAction<AppStatusDataState>(
-  `${name}/setAppStatusData`
-)
-const setServiceStatus = createAction<ServiceStatusDataState>(
-  `${name}/setServiceStatusData`
-)
-
-export {
-  setSearchInput,
-  setAppId,
-  setAppStatus,
-  setServiceStatus,
-  setServiceId,
+.board-privacy {
+  margin-bottom: 93px;
+  .privacy-content {
+    margin-bottom: 30px;
+  }
+  .policies-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+    .policy-name {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .policy-icon {
+      font-size: 20;
+      margin-right: 5px;
+    }
+  }
+  .table-text {
+    max-width: 850px;
+    font-weight: 600;
+    text-align: center;
+    background-color: #ecf0f4;
+    padding: 2px;
+    border-radius: 5px;
+    margin: 0 auto;
+  }
 }

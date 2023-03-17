@@ -26,6 +26,14 @@ import { AppDetails } from 'features/apps/apiSlice'
 
 const PAGE_SIZE = 15
 
+export enum PrivacyPolicyType {
+  COMPANY_DATA = 'COMPANY_DATA',
+  USER_DATA = 'USER_DATA',
+  LOCATION = 'LOCATION',
+  BROWSER_HISTORY = 'BROWSER_HISTORY',
+  NONE = 'NONE',
+}
+
 export interface AppRequestBody {
   page: number
   statusId: string

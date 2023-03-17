@@ -29,68 +29,83 @@ import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  useFetchAppStatusQuery,
-  useUpdateDocumentUploadMutation,
+  DocumentTypeId,
+  useFetchServiceStatusQuery,
+  useSaveServiceMutation,
+  useUpdateServiceDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
-import { Dropzone } from 'components/shared/basic/Dropzone'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
-import { setAppStatus } from 'features/appManagement/actions'
+import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import { setServiceStatus } from 'features/appManagement/actions'
 import {
-  appIdSelector,
+  serviceIdSelector,
   decrement,
   increment,
 } from 'features/appManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../components/ProviderConnectorField'
+import { LanguageStatusType } from 'features/appManagement/types'
+
+type FormDataType = {
+  longDescriptionEN: string
+  longDescriptionDE: string
+  images: []
+  providerHomePage: string
+  providerContactEmail: string
+}
 
 export default function OfferPage() {
   const { t } = useTranslation('servicerelease')
-  const [appPageNotification, setAppPageNotification] = useState(false)
-  const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
-  const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
+  const [appPageNotification, setServicePageNotification] = useState(false)
+  const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const appId = useSelector(appIdSelector)
+  const serviceId = useSelector(serviceIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? ' ', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [saveService] = useSaveServiceMutation()
+  const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     dispatch(decrement())
   }
 
-  const defaultValues = {
-    longDescriptionEN:
-      fetchAppStatus?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
-      )[0]?.longDescription || '',
-    longDescriptionDE:
-      fetchAppStatus?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
-      )[0]?.longDescription || '',
-    images: fetchAppStatus?.documents?.APP_IMAGE || [],
-    providerHomePage: fetchAppStatus?.providerUri || '',
-    providerContactEmail: fetchAppStatus?.contactEmail || '',
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      longDescriptionEN:
+        fetchServiceStatus?.descriptions?.filter(
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
+        )[0]?.longDescription || '',
+      longDescriptionDE:
+        fetchServiceStatus?.descriptions?.filter(
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
+        )[0]?.longDescription || '',
+      images: fetchServiceStatus?.documents?.APP_IMAGE || [],
+      providerHomePage: fetchServiceStatus?.providerUri || '',
+      providerContactEmail: fetchServiceStatus?.contactEmail || '',
+    }
+  }, [fetchServiceStatus])
 
   const {
+    handleSubmit,
     getValues,
     control,
     trigger,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',
   })
 
-  const dImages = defaultValues.images
+  const dImages = useMemo(() => defaultValues.images, [defaultValues])
 
   useEffect(() => {
     const imgs = dImages?.map((item: { documentName: string }) => {
@@ -114,10 +129,9 @@ export default function OfferPage() {
         setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dImages])
+  }, [dImages, setValue])
 
-  const uploadImage = (files: any) => {
+  const uploadImage = (files: DropzoneFile[]) => {
     const value = files
     if (value.length > 0) {
       const setFiles = (fileIndex: number, status: UploadFileStatus) => {
@@ -132,7 +146,11 @@ export default function OfferPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFiles(fileIndex, UploadStatus.UPLOADING)
-        uploadDocument(appId, 'APP_IMAGE', value[fileIndex])
+        uploadDocument(
+          serviceId,
+          DocumentTypeId.ADDITIONAL_DETAILS,
+          value[fileIndex]
+        )
           .then(() => setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
@@ -141,8 +159,8 @@ export default function OfferPage() {
 
   const uploadDocument = async (
     appId: string,
-    documentTypeId: string,
-    file: any
+    documentTypeId: DocumentTypeId,
+    file: DropzoneFile
   ) => {
     const data = {
       appId: appId,
@@ -151,6 +169,60 @@ export default function OfferPage() {
     }
 
     return updateDocumentUpload(data).unwrap()
+  }
+
+  const onSubmit = async (data: FormDataType, buttonLabel: string) => {
+    const validateFields = await trigger([
+      'longDescriptionEN',
+      'longDescriptionDE',
+      'providerHomePage',
+      'providerContactEmail',
+    ])
+    if (validateFields) {
+      handleSave(data, buttonLabel)
+    }
+  }
+
+  const handleSave = async (data: FormDataType, buttonLabel: string) => {
+    const apiBody = {
+      title: fetchServiceStatus?.title,
+      serviceTypeIds: fetchServiceStatus?.serviceTypeIds,
+      descriptions: [
+        {
+          languageCode: 'en',
+          longDescription: data.longDescriptionEN,
+          shortDescription:
+            fetchServiceStatus?.descriptions?.filter(
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
+            )[0]?.shortDescription || '',
+        },
+        {
+          languageCode: 'de',
+          longDescription: data.longDescriptionDE,
+          shortDescription:
+            fetchServiceStatus?.descriptions?.filter(
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
+            )[0]?.shortDescription || '',
+        },
+      ],
+      privacyPolicies: [],
+      salesManager: null,
+      price: '',
+      providerUri: data.providerHomePage || '',
+      contactEmail: data.providerContactEmail || '',
+      leadPictureUri: fetchServiceStatus?.leadPictureUri,
+    }
+
+    try {
+      await saveService({
+        id: serviceId,
+        body: apiBody,
+      }).unwrap()
+      buttonLabel === 'saveAndProceed' && dispatch(increment())
+      buttonLabel === 'save' && setServicePageSnackbar(true)
+    } catch (error) {
+      setServicePageNotification(true)
+    }
   }
 
   return (
@@ -173,7 +245,7 @@ export default function OfferPage() {
                   item={longDesc}
                   label={
                     <>
-                      {t(`step2.${longDesc}`) + ' *'}
+                      {t(`step2.${longDesc}`)}
                       <IconButton sx={{ color: '#939393' }} size="small">
                         <HelpOutlineIcon />
                       </IconButton>
@@ -206,6 +278,8 @@ export default function OfferPage() {
                         : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
                     }`,
                   }}
+                  maxLength={255}
+                  minLength={10}
                 />
               </div>
             )
@@ -230,8 +304,7 @@ export default function OfferPage() {
                     addedFiles && uploadImage(files)
                   }}
                   acceptFormat={{
-                    'image/png': [],
-                    'image/jpeg': [],
+                    'application/pdf': ['.pdf'],
                   }}
                   maxFilesToUpload={1}
                   maxFileSize={819200}
@@ -286,11 +359,14 @@ export default function OfferPage() {
           description: t('serviceReleaseForm.error.message'),
         }}
         pageSnackbar={appPageSnackbar}
-        setPageNotification={setAppPageNotification}
-        setPageSnackbar={setAppPageSnackbar}
+        setPageNotification={() => setServicePageNotification(false)}
+        setPageSnackbar={() => setServicePageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={() => {}}
-        onSaveAndProceed={() => dispatch(increment())}
+        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
+        onSaveAndProceed={handleSubmit((data) =>
+          onSubmit(data, 'saveAndProceed')
+        )}
+        isValid={isValid}
       />
     </div>
   )
