@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { LogoGrayData } from '../Logo'
 
 export const TransparentPixel =
@@ -65,6 +65,12 @@ export const Image = ({ src, alt, style, loader }: ImageProps) => {
       setError(true)
     }
   }, [src, loader])
+
+  useEffect(() => {
+    setError(false)
+    setLoad(false)
+    setData(src)
+  }, [src])
 
   return (
     <img
