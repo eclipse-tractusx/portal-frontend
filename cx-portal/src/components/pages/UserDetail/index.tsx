@@ -120,7 +120,7 @@ export default function UserDetail() {
           </Box>
         </Box>
       </section>
-      {data && <UserDetailInfo user={data} />}
+      {data && <UserDetailInfo user={data} isUserDetail={true} />}
     </main>
   )
 }

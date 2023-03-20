@@ -38,10 +38,15 @@ import {
 import './UserRole.scss'
 import { currentUserRoleResp } from 'features/admin/appuserApiSlice'
 
-export const UserRoles = ({ user }: { user: TenantUserDetails }) => {
+export const UserRoles = ({
+  user,
+  isUserDetail,
+}: {
+  user: TenantUserDetails
+  isUserDetail?: boolean
+}) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const windowUrl = window.location.href
 
   const { data } = useFetchUsersRolesQuery(user.companyUserId)
   const roles = data?.content[0].roles ?? []
@@ -55,7 +60,7 @@ export const UserRoles = ({ user }: { user: TenantUserDetails }) => {
           {t('shared.userRoles.title')}
         </Typography>
         <section>
-          {windowUrl.indexOf('userdetails') > 1 && (
+          {isUserDetail && (
             <div className="change-role-btn">
               <Button
                 color="secondary"

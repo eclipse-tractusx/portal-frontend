@@ -135,7 +135,7 @@ export interface IdentityProvider {
 }
 
 enum TAGS {
-  IDP = 'idp'
+  IDP = 'idp',
 }
 
 export const apiSlice = createApi({

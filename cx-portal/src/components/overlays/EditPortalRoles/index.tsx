@@ -55,10 +55,10 @@ export default function EditPortalRoles({ id }: { id: string }) {
   const [updatePortalRoles] = useUpdatePortalRolesMutation()
 
   useEffect(() => {
-    const roles: AppRole[] = []
-    appRoles && appRoles.map((a) => roles.push(...a.roles))
-    setAllRoles(roles)
-    appRoles && setOfferId(appRoles[0].offerId)
+    if (appRoles) {
+      setAllRoles(appRoles[0].roles)
+      setOfferId(appRoles[0].offerId)
+    }
   }, [appRoles])
 
   useEffect(() => {
@@ -98,14 +98,11 @@ export default function EditPortalRoles({ id }: { id: string }) {
     }
   }
 
-  const checkConfirmButton = () => {
-    return (
-      assignedRoles &&
-      selectedRoles &&
-      assignedRoles.length === selectedRoles.length &&
-      assignedRoles.every((value) => selectedRoles.includes(value))
-    )
-  }
+  const checkConfirmButton = () =>
+    assignedRoles &&
+    selectedRoles &&
+    assignedRoles.length === selectedRoles.length &&
+    assignedRoles.every((value) => selectedRoles.includes(value))
 
   return (
     <>

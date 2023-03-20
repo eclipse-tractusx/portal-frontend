@@ -28,9 +28,11 @@ import { UserRoles } from '../UserRoles'
 export const UserDetailInfo = ({
   user,
   parsedToken,
+  isUserDetail,
 }: {
   user: TenantUserDetails
   parsedToken?: { organisation: string }
+  isUserDetail?: boolean
 }) => {
   const { spacing } = useTheme()
 
@@ -56,7 +58,7 @@ export const UserDetailInfo = ({
           ))}
         </Box>
       </section>
-      <UserRoles user={user} />
+      <UserRoles user={user} isUserDetail={isUserDetail} />
       <section>
         <AppPermissions user={user} />
       </section>
