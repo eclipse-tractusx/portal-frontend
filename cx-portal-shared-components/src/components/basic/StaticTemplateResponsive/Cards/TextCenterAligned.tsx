@@ -29,13 +29,13 @@ export default function TextCenterAligned({
   provider: ProviderProps
 }) {
   return (
-    <div className={"textCenterAligned"}>
+    <div className={'textCenterAligned'}>
       <Box>
         {provider.title && (
           <Typography variant="h2">{provider.title}</Typography>
         )}
         {provider.description && (
-          <Typography className={"description"} variant="body1">
+          <Typography className={'description'} variant="body1">
             {provider.description}
           </Typography>
         )}

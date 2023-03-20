@@ -32,7 +32,7 @@ export default function TextVideoSideBySide({
       provider={provider}
       children={
         <iframe
-          className={"video"}
+          className={'video'}
           title="Video"
           src={provider.videoUrl}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

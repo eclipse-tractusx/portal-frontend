@@ -41,7 +41,7 @@ export default function CardGrid({
       {provider.detailsWithImageRow1 &&
         provider.detailsWithImageRow1.length > 0 && (
           <Box
-            className={"gridStyle"}
+            className={'gridStyle'}
             sx={{
               marginTop: isCenter ? '84px' : '96px',
               textAlign: isCenter ? 'center' : 'left',
@@ -63,7 +63,7 @@ export default function CardGrid({
       {provider.detailsWithImageRow2 &&
         provider.detailsWithImageRow2.length > 0 && (
           <Box
-            className={"gridStyle"}
+            className={'gridStyle'}
             sx={{
               textAlign: isCenter ? 'center' : 'left',
               gridTemplateColumns: `repeat(${grid}, 1fr)`,
@@ -84,7 +84,7 @@ export default function CardGrid({
       {provider.detailsWithoutImageRow1 &&
         provider.detailsWithoutImageRow1.length > 0 && (
           <Box
-            className={"gridStyle"}
+            className={'gridStyle'}
             sx={{
               marginBottom:
                 provider.detailsWithoutImageRow2 &&
@@ -104,7 +104,7 @@ export default function CardGrid({
       {provider.detailsWithoutImageRow2 &&
         provider.detailsWithoutImageRow2.length > 0 && (
           <Box
-            className={"gridStyle"}
+            className={'gridStyle'}
             sx={{
               marginBottom: '180px',
               gridTemplateColumns: `repeat(${grid}, 1fr)`,

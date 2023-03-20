@@ -30,7 +30,7 @@ export default function TextCenterAlignedBody2({
 }) {
   return (
     <Box
-      className={"multiTextContainer"}
+      className={'multiTextContainer'}
       sx={{
         textAlign: provider.align || 'left',
         backgroundColor: provider.backgroundColor || '#ffffff',
@@ -43,7 +43,7 @@ export default function TextCenterAlignedBody2({
         {provider.subTitles &&
           provider.subTitles.map((subtitle) => (
             <Typography
-              className={"description"}
+              className={'description'}
               key={subtitle}
               variant="body2"
             >

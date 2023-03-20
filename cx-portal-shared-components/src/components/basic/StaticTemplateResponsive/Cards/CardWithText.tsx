@@ -31,18 +31,18 @@ export default function CardWithText({
   isImage: boolean
 }) {
   return (
-    <Box className={"cardWithTextContainer"}>
+    <Box className={'cardWithTextContainer'}>
       <Box>
-        <Typography className={"title"} variant="h4">
+        <Typography className={'title'} variant="h4">
           {card.title}
         </Typography>
-        <Typography className={"description"} variant="body2">
+        <Typography className={'description'} variant="body2">
           {card.description}
         </Typography>
       </Box>
       {card.readMore ? (
         <a
-          className={"readMoreStyle"}
+          className={'readMoreStyle'}
           style={{
             fontSize: isImage ? '16px' : '14px',
           }}
@@ -51,7 +51,7 @@ export default function CardWithText({
           {card.readMoreTitle}
         </a>
       ) : (
-        <Box className={"readMoreStyle"} />
+        <Box className={'readMoreStyle'} />
       )}
     </Box>
   )

@@ -29,7 +29,7 @@ export default function VideoTextSideBySide({
   provider: ProviderProps
 }) {
   return (
-    <Box className={"imageVideoTextSideBySide"}>
+    <Box className={'imageVideoTextSideBySide'}>
       <div>
         <iframe
           title="Video"
@@ -38,9 +38,9 @@ export default function VideoTextSideBySide({
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
       </div>
-      <Box className={"titleDescriptionBody"}>
+      <Box className={'titleDescriptionBody'}>
         <Typography variant="h2">{provider.title}</Typography>
-        <Typography className={"providerDescription"} variant="body1">
+        <Typography className={'providerDescription'} variant="body1">
           {provider.description}
         </Typography>
       </Box>

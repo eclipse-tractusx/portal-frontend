@@ -30,9 +30,8 @@ export default function ImageImageCenterAligned({
   provider: ProviderProps
   baseUrl: string
 }) {
-
   return (
-    <div className={"textCenterAligned"}>
+    <div className={'textCenterAligned'}>
       <RenderImage
         url={baseUrl + provider.imagePath || ''}
         additionalStyles={{

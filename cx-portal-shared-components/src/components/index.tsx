@@ -93,7 +93,7 @@ export { Tooltips } from './basic/ToolTips'
 export { SortOption } from './basic/SortOption'
 export { ParentSubNavigation } from './basic/SubNavigation/ParentSubNavigation'
 export { StaticTemplate } from './basic/StaticTemplate'
-export {StaticTemplateResponsive} from './basic/StaticTemplateResponsive'
+export { StaticTemplateResponsive } from './basic/StaticTemplateResponsive'
 
 export type { TableProps } from './basic/Table'
 export type {

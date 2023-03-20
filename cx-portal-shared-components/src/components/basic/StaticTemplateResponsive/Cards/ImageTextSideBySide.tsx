@@ -31,11 +31,11 @@ export default function ImageTextSideBySide({
   baseUrl: string
 }) {
   return (
-    <Box className={"imageVideoTextSideBySide"}>
+    <Box className={'imageVideoTextSideBySide'}>
       <RenderImage url={baseUrl + provider.imagePath || ''} />
       <div>
         <Typography variant="h2">{provider.title}</Typography>
-        <Typography className={"providerDescription"} variant="body1">
+        <Typography className={'providerDescription'} variant="body1">
           {provider.description}
         </Typography>
       </div>

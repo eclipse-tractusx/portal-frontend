@@ -34,7 +34,7 @@ export default function LinkButtonGrid({
     <>
       {provider.linksRow1 && (
         <Box
-          className={"linkGridContainer"}
+          className={'linkGridContainer'}
           sx={{
             gridTemplateColumns: `repeat(${grid}, 1fr)`,
           }}
@@ -42,7 +42,7 @@ export default function LinkButtonGrid({
           {provider.linksRow1.map((link: linkProps) => (
             <Box
               key={link.title}
-              className={"linkBox"}
+              className={'linkBox'}
               sx={{
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
@@ -55,7 +55,7 @@ export default function LinkButtonGrid({
       )}
       {provider.linksRow2 && (
         <Box
-          className={"linkGridContainer"}
+          className={'linkGridContainer'}
           sx={{
             gridTemplateColumns: `repeat(${grid}, 1fr)`,
             marginTop: '30px',
@@ -64,7 +64,7 @@ export default function LinkButtonGrid({
           {provider.linksRow2.map((link: linkProps) => (
             <Box
               key={link.title}
-              className={"linkBox"}
+              className={'linkBox'}
               sx={{
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,

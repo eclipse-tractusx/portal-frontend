@@ -32,10 +32,10 @@ export default function ImageVideoWrapper({
   children: ReactElement
 }) {
   return (
-    <Box className={"imageVideoTextSideBySide"}>
-      <Box className={"titleDescriptionBody"}>
+    <Box className={'imageVideoTextSideBySide'}>
+      <Box className={'titleDescriptionBody'}>
         <Typography variant="h2">{provider.title}</Typography>
-        <Typography className={"providerDescription"} variant="body1">
+        <Typography className={'providerDescription'} variant="body1">
           {provider.description}
         </Typography>
       </Box>

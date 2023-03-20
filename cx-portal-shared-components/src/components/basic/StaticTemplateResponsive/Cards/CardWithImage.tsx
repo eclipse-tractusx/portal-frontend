@@ -36,7 +36,7 @@ export default function CardWithImage({
   return (
     <Box
       key={detail.id}
-      className={"cardStyle"}
+      className={'cardStyle'}
       style={{
         backgroundColor: detail.backgroundColor,
         width: `${100 / grid}%`,

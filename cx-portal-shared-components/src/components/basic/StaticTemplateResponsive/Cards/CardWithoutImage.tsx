@@ -33,7 +33,7 @@ export default function CardWithoutImage({
   return (
     <Box
       key={detail.id}
-      className={"cardContainer"}
+      className={'cardContainer'}
       style={{
         backgroundColor: detail.backgroundColor,
         border: '1px solid rgba(15, 113, 203, 1)',
