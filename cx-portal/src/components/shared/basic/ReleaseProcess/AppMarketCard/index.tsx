@@ -158,6 +158,10 @@ export default function AppMarketCard() {
   })
 
   useEffect(() => {
+    trigger('uploadImage.alt')
+  }, [cardImage, trigger])
+
+  useEffect(() => {
     if (useCasesList.length > 0) {
       const defaultUseCaseIds = useCasesList?.filter((item) =>
         appStatusData?.useCase?.some((x) => x === item.name)
