@@ -226,7 +226,7 @@ const EdcConnector = () => {
 
   useEffect(() => {
     if (!token) {
-      setNotificationType('error')
+      setNotificationType(SuccessErrorType.ERROR)
       setNotificationMessage(t('content.edcconnector.snackbar.errormessage'))
       setNotificationOpen(true)
     }

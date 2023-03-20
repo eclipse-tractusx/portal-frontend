@@ -31,6 +31,7 @@ import { PAGES } from 'types/Constants'
 import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
 import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -42,7 +43,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const deleteUserSuccess = () => {
     const notification: PageNotificationsProps = {
       open: true,
-      severity: 'success',
+      severity: SuccessErrorType.SUCCESS,
       title:
         'content.usermanagement.technicalUser.confirmDeleteNotificationTitle',
       description:

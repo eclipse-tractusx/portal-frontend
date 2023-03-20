@@ -36,7 +36,10 @@ import {
   useFetchUsersRolesQuery,
 } from 'features/admin/userApiSlice'
 import './UserRole.scss'
-import { currentUserRoleResp } from 'features/admin/appuserApiSlice'
+import {
+  currentUserRoleResp,
+  SuccessErrorType,
+} from 'features/admin/appuserApiSlice'
 
 export const UserRoles = ({
   user,
@@ -86,15 +89,20 @@ export const UserRoles = ({
       </Box>
       <PageSnackbar
         open={
-          portalRoleResponse === 'error' || portalRoleResponse === 'success'
+          portalRoleResponse === SuccessErrorType.ERROR ||
+          portalRoleResponse === SuccessErrorType.SUCCESS
         }
         autoClose
         description={
-          portalRoleResponse === 'error'
+          portalRoleResponse === SuccessErrorType.ERROR
             ? t('content.account.editRoles.errorDescription')
             : t('content.account.editRoles.successDescription')
         }
-        severity={portalRoleResponse === 'error' ? 'error' : 'success'}
+        severity={
+          portalRoleResponse === SuccessErrorType.ERROR
+            ? SuccessErrorType.ERROR
+            : SuccessErrorType.SUCCESS
+        }
         showIcon
       />
     </>

@@ -61,7 +61,7 @@ export default function SnackbarNotificationWithButtons({
   isValid = true,
   pageSnackBarDescription,
   pageNotificationsObject,
-  pageSnackBarType = 'success',
+  pageSnackBarType = SuccessErrorType.SUCCESS,
 }: SnackbarNotificationWithButtonsType) {
   const { t } = useTranslation('servicerelease')
 
