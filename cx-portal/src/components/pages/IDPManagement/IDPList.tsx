@@ -22,14 +22,12 @@ import {
   IdentityProvider,
   useFetchIDPListQuery,
 } from 'features/admin/idpApiSlice'
-import { useSelector } from 'react-redux'
-import { updateIDPSelector } from 'features/control/updatesSlice'
 import IDPListItem from './IDPListItem'
 import './style.scss'
 
 export const IDPList = () => {
-  const update = useSelector(updateIDPSelector)
-  const { data } = useFetchIDPListQuery(update)
+  const { data } = useFetchIDPListQuery()
+  const allowDisable = data && data.filter((idp) => idp.enabled).length > 1
 
   return (
     <ul className="idp-list">
@@ -41,7 +39,7 @@ export const IDPList = () => {
           )
           .map((idp) => (
             <li key={idp.identityProviderId}>
-              <IDPListItem idp={idp} />
+              <IDPListItem idp={idp} allowDisable={allowDisable} />
             </li>
           ))}
     </ul>

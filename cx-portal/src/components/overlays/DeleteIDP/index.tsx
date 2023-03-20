@@ -24,7 +24,6 @@ import { setNotification } from 'features/notification/actions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { closeOverlay } from 'features/control/overlay/actions'
 import {
   useFetchIDPDetailQuery,
@@ -48,7 +47,6 @@ export const DeleteIDP = ({ id }: { id: string }) => {
         'content.idpmanagement.notification.confirmDeleteDescription',
     }
     dispatch(closeOverlay())
-    dispatch(updateData(UPDATES.IDP_LIST))
     dispatch(setNotification(notification))
     navigate(`/${PAGES.IDP_MANAGEMENT}`)
   }
@@ -62,7 +60,6 @@ export const DeleteIDP = ({ id }: { id: string }) => {
         'content.idpmanagement.notification.failureDeleteDescription',
     }
     dispatch(closeOverlay())
-    dispatch(updateData(UPDATES.IDP_LIST))
     dispatch(setNotification(notification))
     navigate(`/${PAGES.IDP_MANAGEMENT}`)
   }
