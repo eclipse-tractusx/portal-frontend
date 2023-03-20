@@ -135,6 +135,11 @@ export const {
 
 const name = 'admin/user/role/add'
 
+export enum SuccessErrorType {
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
 export interface UserRoleState {
   userRoleResp: string
 }

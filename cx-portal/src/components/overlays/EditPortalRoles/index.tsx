@@ -29,6 +29,7 @@ import {
   AppRole,
   PortalRoleRequest,
   setUserRoleResp,
+  SuccessErrorType,
   useFetchCoreoffersRolesQuery,
   useUpdatePortalRolesMutation,
 } from 'features/admin/appuserApiSlice'
@@ -90,10 +91,10 @@ export default function EditPortalRoles({ id }: { id: string }) {
     try {
       await updatePortalRoles(data).unwrap()
       refetch()
-      dispatch(setUserRoleResp('success'))
+      dispatch(setUserRoleResp(SuccessErrorType.SUCCESS))
       dispatch(closeOverlay())
     } catch (err) {
-      dispatch(setUserRoleResp('error'))
+      dispatch(setUserRoleResp(SuccessErrorType.ERROR))
       dispatch(closeOverlay())
     }
   }
