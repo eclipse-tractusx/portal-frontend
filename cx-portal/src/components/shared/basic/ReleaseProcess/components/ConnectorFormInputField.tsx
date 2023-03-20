@@ -21,6 +21,14 @@
 import { Controller } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { Input, MultiSelectList, Checkbox } from 'cx-portal-shared-components'
+import {
+  Input,
+  Typography,
+  MultiSelectList,
+  Checkbox,
+  DropArea,
+  DropAreaProps,
+} from 'cx-portal-shared-components'
 export const ConnectorFormInputField = ({
   control,
   trigger,
@@ -43,88 +51,96 @@ export const ConnectorFormInputField = ({
   defaultValues,
   enableDeleteIcon,
   handleDownload,
-}: any) => (
-  <Controller
-    name={name}
-    control={control}
-    rules={rules}
-    render={({ field: { onChange, value } }) => {
-      if (type === 'input') {
-        return (
-          <Input
-            label={label}
-            placeholder={placeholder}
-            error={!!errors[name]}
-            helperText={errors && errors[name] && errors[name].message}
-            value={value || ''}
-            onChange={(event) => {
-              trigger(name)
-              onChange(event)
-            }}
-            multiline={textarea}
-            minRows={textarea && 3}
-            maxRows={textarea && 3}
-            sx={
-              textarea && {
-                '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
-              }
-            }
-          />
-        )
-      } else if (type === 'dropzone') {
-        return (
-          <Dropzone
-            files={value ? [value] : undefined}
-            onChange={([file]) => {
-              trigger(name)
-              onChange(file)
-            }}
-            handleDownload={handleDownload}
-            acceptFormat={acceptFormat}
-            maxFilesToUpload={maxFilesToUpload}
-            maxFileSize={maxFileSize}
-            enableDeleteIcon={enableDeleteIcon}
-          />
-        )
-      } else if (type === 'checkbox') {
-        return (
-          <>
-            <Checkbox
-              key={name}
+  size,
+}: any) => {
+  const renderDropArea = (props: DropAreaProps, size: any) => {
+    return <DropArea {...props} size={size || 'normal'} />
+  }
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      rules={rules}
+      render={({ field: { onChange, value } }) => {
+        if (type === 'input') {
+          return (
+            <Input
               label={label}
-              defaultChecked={defaultValues}
-              value={defaultValues}
-              checked={value}
+              placeholder={placeholder}
+              error={!!errors[name]}
+              helperText={errors && errors[name] && errors[name].message}
+              value={value || ''}
               onChange={(event) => {
                 trigger(name)
-                onChange(event.target.checked)
+                onChange(event)
               }}
-              style={{ width: '100%', right: 0 }}
+              multiline={textarea}
+              minRows={textarea && 3}
+              maxRows={textarea && 3}
+              sx={
+                textarea && {
+                  '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },
+                }
+              }
             />
-          </>
-        )
-      } else
-        return (
-          <MultiSelectList
-            label={label}
-            placeholder={placeholder}
-            error={!!errors[name]}
-            helperText={errors && errors[name] && errors[name].message}
-            value={value}
-            items={items}
-            keyTitle={keyTitle}
-            onAddItem={(items: any[]) => {
-              trigger(name)
-              onChange(items?.map((item) => item[saveKeyTitle]))
-            }}
-            notItemsText={notItemsText}
-            buttonAddMore={buttonAddMore}
-            tagSize="small"
-            margin="none"
-            filterOptionsArgs={filterOptionsArgs}
-            defaultValues={defaultValues}
-          />
-        )
-    }}
-  />
-)
+          )
+        } else if (type === 'dropzone') {
+          return (
+            <Dropzone
+              files={value ? [value] : undefined}
+              onChange={([file]) => {
+                trigger(name)
+                onChange(file)
+              }}
+              handleDownload={handleDownload}
+              acceptFormat={acceptFormat}
+              maxFilesToUpload={maxFilesToUpload}
+              maxFileSize={maxFileSize}
+              enableDeleteIcon={enableDeleteIcon}
+              DropArea={(props) => renderDropArea(props, size)}
+            />
+          )
+        } else if (type === 'checkbox') {
+          return (
+            <>
+              <Checkbox
+                key={name}
+                label={label}
+                defaultChecked={defaultValues}
+                value={defaultValues}
+                checked={value}
+                onChange={(event) => {
+                  trigger(name)
+                  onChange(event.target.checked)
+                }}
+                style={{ width: '100%', right: 0 }}
+              />
+            </>
+          )
+        } else
+          return (
+            <MultiSelectList
+              label={label}
+              placeholder={placeholder}
+              error={!!errors[name]}
+              helperText={errors && errors[name] && errors[name].message}
+              value={value}
+              items={items}
+              keyTitle={keyTitle}
+              onAddItem={(items: any[]) => {
+                trigger(name)
+                onChange(items?.map((item) => item[saveKeyTitle]))
+              }}
+              notItemsText={notItemsText}
+              buttonAddMore={buttonAddMore}
+              tagSize="small"
+              margin="none"
+              filterOptionsArgs={filterOptionsArgs}
+              defaultValues={defaultValues}
+            />
+          )
+      }}
+    />
+  )
+}
