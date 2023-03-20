@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import i18next from 'i18next'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
@@ -94,6 +95,7 @@ export type AppDetails = AppMarketplaceApp & {
   tags: string[]
   languages: string[]
   leadPictureUri?: ImageType
+  privacyPolicies: PrivacyPolicyType[]
   roles?: string[]
 }
 

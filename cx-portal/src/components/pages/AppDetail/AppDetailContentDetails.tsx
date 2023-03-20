@@ -54,7 +54,7 @@ export default function AppDetailContentDetails({
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
         {images && <AppDetailImageGallery images={images} />}
-        <AppDetailPrivacy />
+        <AppDetailPrivacy item={item} />
         <AppDetailHowToUse item={item} />
         <AppDetailProvider item={item} />
         <AppDetailTags item={item} />

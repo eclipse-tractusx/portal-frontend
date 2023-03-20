@@ -22,16 +22,16 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import { uniqueId } from 'lodash'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
-import './AppDetailPrivacy.scss'
 import { AppDetails } from 'features/apps/apiSlice'
+import './BoardPrivacy.scss'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
-export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
+export default function BoardPrivacy({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.privacy',
   })
 
-  const renderPrivacy = (policy: PrivacyPolicyType) => {
+  const renderBoardPrivacy = (policy: PrivacyPolicyType) => {
     switch (policy) {
       case PrivacyPolicyType.COMPANY_DATA:
         return <Apartment className="policy-icon" />
@@ -49,7 +49,7 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-privacy">
+    <div className="board-privacy">
       <div className="privacy-content">
         <Typography variant="h4">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
@@ -62,7 +62,7 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
               className="policy-name"
               key={uniqueId(policy)}
             >
-              {renderPrivacy(policy)}
+              {renderBoardPrivacy(policy)}
               {t(policy)}
             </Typography>
           ))}

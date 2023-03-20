@@ -773,7 +773,13 @@
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
-        "notSupportedMessage": "Currently not yet supported"
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "COMPANY_DATA_ICON": "ApartmentIcon",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
       },
       "howtouse": {
         "heading": "Relevant Documents",

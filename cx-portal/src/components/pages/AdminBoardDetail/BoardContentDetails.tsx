@@ -29,9 +29,10 @@ import BoardSecurityInfo from './components/BoardSecurityInfo'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'
 import { AppDetails, DocumentTypeText } from 'features/apps/apiSlice'
-import './AdminBoardDetail.scss'
 import CommonService from 'services/CommonService'
+import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
+import './AdminBoardDetail.scss'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -57,6 +58,7 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
         {images && <BoardImageGallery images={images} />}
         <BoardConnectedData item={item} />
         <BoardSecurityInfo />
+        <BoardPrivacy item={item} />
         <BoardDocuments
           type={DocumentTypeText.CONFORMITY_DOCUMENT}
           appId={item.id}
