@@ -26,6 +26,8 @@ import {
   Radio,
   Alert,
   Checkbox,
+  DropArea,
+  DropAreaProps,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel, Grid, Box } from '@mui/material'
@@ -377,6 +379,10 @@ export default function AppPage() {
       setSelectedPrivacyPolicies([...oldPrivacyPolicies])
     }
   }
+  
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
+  }
 
   return (
     <div className="app-page">
@@ -467,6 +473,7 @@ export default function AppPage() {
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
+                  DropArea={renderDropArea}
                 />
               )
             }}
@@ -493,7 +500,7 @@ export default function AppPage() {
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <div className="form-field" key={item}>
               <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t(`content.apprelease.appPage.${item}`) + ' *'}
+                {t(`content.apprelease.appPage.${item}`)}
               </InputLabel>
               <ConnectorFormInputField
                 {...{
@@ -507,11 +514,7 @@ export default function AppPage() {
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
-                  rules: {
-                    required: {
-                      value: true,
-                    },
-                  },
+                  size: 'small',
                 }}
               />
               {item === 'uploadDataPrerequisits' &&
