@@ -19,44 +19,38 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { ReactElement } from 'react'
-import { Typography } from '../../Typography'
+import { Typography } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
+import '../StaticTemplate.scss'
 
-export default function ImageVideoWrapper({
+export default function TextCenterAlignedBody2({
   provider,
-  children,
 }: {
   provider: ProviderProps
-  children: ReactElement
 }) {
   return (
     <Box
+      className={'multiTextContainer'}
       sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
+        textAlign: provider.align || 'left',
+        backgroundColor: provider.backgroundColor || '#ffffff',
       }}
     >
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
+      <Box>
+        {provider.title && (
+          <Typography variant="h2">{provider.title}</Typography>
+        )}
+        {provider.subTitles &&
+          provider.subTitles.map((subtitle) => (
+            <Typography
+              className={'description'}
+              key={subtitle}
+              variant="body2"
+            >
+              {subtitle}
+            </Typography>
+          ))}
       </Box>
-      {children}
     </Box>
   )
 }

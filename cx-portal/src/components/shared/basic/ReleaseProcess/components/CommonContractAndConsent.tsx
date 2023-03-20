@@ -38,6 +38,7 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import {
   PageSnackbar,
+  Typography,
   UploadFileStatus,
   UploadStatus,
 } from 'cx-portal-shared-components'
@@ -47,6 +48,8 @@ import {
   AppStatusDataState,
   ServiceStatusDataState,
 } from 'features/appManagement/types'
+import { Grid } from '@mui/material'
+import { ErrorMessage } from '@hookform/error-message'
 
 type AgreementDataType = {
   agreementId: string
@@ -338,14 +341,28 @@ export default function CommonContractAndConsent({
       <form className="header-description">
         {agreementData?.map((item) => (
           <div className="form-field" key={item.agreementId}>
-            <ConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-                name: item.agreementId,
-                defaultValues: item.consentStatus,
-                label: item.documentId ? (
+            <Grid container spacing={1.5}>
+              <Grid md={1}>
+                <ConnectorFormInputField
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                    name: item.agreementId,
+                    defaultValues: item.consentStatus,
+                    label: '',
+                    type: 'checkbox',
+                    rules: {
+                      required: {
+                        value: true,
+                        message: `${item.name} ${checkBoxMandatoryText}`,
+                      },
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid md={11} sx={{ marginTop: '8px' }}>
+                {item.documentId ? (
                   <span
                     className={item.documentId ? 'agreement-span' : ''}
                     onClick={() => handleDownload(item.name, item.documentId)}
@@ -354,16 +371,19 @@ export default function CommonContractAndConsent({
                   </span>
                 ) : (
                   <span>{item.name}</span>
-                ),
-                type: 'checkbox',
-                rules: {
-                  required: {
-                    value: true,
-                    message: `${item.name} ${checkBoxMandatoryText}`,
-                  },
-                },
-              }}
-            />
+                )}
+
+                <ErrorMessage
+                  errors={errors}
+                  name={item.agreementId}
+                  render={({ message }) => (
+                    <Typography variant="body2" className="file-error-msg">
+                      {message}
+                    </Typography>
+                  )}
+                />
+              </Grid>
+            </Grid>
           </div>
         ))}
         <ConnectorFormInputFieldImage

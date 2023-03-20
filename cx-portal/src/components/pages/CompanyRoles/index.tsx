@@ -22,9 +22,9 @@ import './CompanyRoles.scss'
 import { useEffect, useState } from 'react'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import { StaticTemplate } from 'cx-portal-shared-components'
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
+import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 
 export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<any>()
@@ -71,7 +71,7 @@ export default function CompanyRoles() {
             description={companyRoles.description}
           />
           <StageSubNavigation linkArray={linkArray} />
-          <StaticTemplate
+          <StaticTemplateResponsive
             sectionInfo={companyRoles.sections}
             baseUrl={getAssetBase()}
           />

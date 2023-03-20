@@ -18,42 +18,48 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import CardWithText from './CardWithText'
+import { CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { ProviderProps } from '../StaticTypes'
-import TextCenterAligned from './TextCenterAligned'
+import { Image } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
 
-export default function ImageImageCenterAligned({
-  provider,
+export default function CardWithImage({
+  detail,
+  grid = 3,
   baseUrl,
 }: {
-  provider: ProviderProps
+  detail: CardDetailsProps
+  grid: number
   baseUrl: string
 }) {
   return (
     <Box
+      key={detail.id}
+      className={'cardStyle'}
       sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
+        backgroundColor: detail.backgroundColor,
+        width: `${100 / grid}%`,
       }}
     >
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text=""
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-        additionalStyles={{
-          marginTop: '84px',
-          marginBottom: '84px',
+      <Image
+        src={baseUrl + detail.imagePath}
+        style={{
+          width: '100%',
+          marginBottom: '24px',
+          objectFit: 'cover',
+          borderRadius: '8px',
+          padding:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '0px 90px'
+              : '0px', // provide extra padding if the image shape is circle.
+          maxHeight:
+            detail.imageShape && detail.imageShape === 'circle'
+              ? '100%'
+              : '156px', // Do not specify any height if the image shape is circle as it might crop some part in it
         }}
       />
-      <TextCenterAligned provider={provider} />
+      <CardWithText card={detail} isImage={true} />
     </Box>
   )
 }
