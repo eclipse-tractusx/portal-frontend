@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
@@ -29,12 +30,17 @@ import {
   ConsentType,
   DocumentTypeId,
   UpdateAgreementConsentType,
+  useDeleteAppReleaseDocumentMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
-import { UploadFileStatus, UploadStatus } from 'cx-portal-shared-components'
+import {
+  PageSnackbar,
+  UploadFileStatus,
+  UploadStatus,
+} from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
 import {
@@ -95,6 +101,7 @@ export default function CommonContractAndConsent({
   fetchStatusData,
   getDocumentById,
 }: CommonConsentType) {
+  const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
   const [contractSnackbar, setContractSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
@@ -102,6 +109,14 @@ export default function CommonContractAndConsent({
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
   })
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
+
+  const [deleteAppReleaseDocument, deleteResponse] =
+    useDeleteAppReleaseDocumentMutation()
+
+  useEffect(() => {
+    deleteResponse.isSuccess && setDeleteSuccess(true)
+  }, [deleteResponse])
 
   const defaultValues = useMemo(() => {
     return {
@@ -366,6 +381,9 @@ export default function CommonContractAndConsent({
           note={imageFieldNote}
           requiredText={imageFieldRequiredText}
           handleDownload={handleDownload}
+          handleDelete={(documentId: string) => {
+            //deleteAppReleaseDocument(documentId)
+          }}
         />
       </form>
       <SnackbarNotificationWithButtons
@@ -381,6 +399,15 @@ export default function CommonContractAndConsent({
           onContractConsentSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}
+      />
+      <PageSnackbar
+        autoClose
+        description={t(
+          'content.apprelease.contractAndConsent.documentDeleteSuccess'
+        )}
+        open={deleteSuccess}
+        severity={'success'}
+        showIcon
       />
     </div>
   )

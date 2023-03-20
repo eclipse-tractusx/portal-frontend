@@ -864,7 +864,8 @@
         "headerTitle": "Consent & Contract",
         "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
         "allAgreementsMandatory": "All agreements are mandatory",
-        "uploadImageConformity": "Conformity App Certificate"
+        "uploadImageConformity": "Conformity App Certificate",
+        "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -1315,7 +1316,9 @@
       "submit": "Submit",
       "no": "No",
       "yes": "Yes",
-      "next": "Next"
+      "next": "Next",
+      "success": "Success",
+      "error": "Error"
     },
     "state": {
       "enabled": "enabled",

@@ -54,6 +54,7 @@ export interface DropzoneProps {
   enableDeleteOverlay?: boolean
   deleteOverlayTranslation?: deleteConfirmOverlayTranslation
   handleDownload?: () => void
+  handleDelete?: (documentId: string) => void
   errorText?: string
 }
 
@@ -71,9 +72,12 @@ export const Dropzone = ({
   enableDeleteOverlay = false,
   deleteOverlayTranslation,
   handleDownload,
+  handleDelete,
   errorText,
 }: DropzoneProps) => {
   const { t } = useTranslation()
+
+  console.log('files', files)
 
   const [dropped, setDropped] = useState<DropzoneFile[]>([])
 
@@ -95,15 +99,16 @@ export const Dropzone = ({
     [dropped, isSingleUpload, onChange]
   )
 
-  const handleDelete = useCallback(
-    (deleteIndex) => {
+  const handleFEDelete = useCallback(
+    (deleteIndex, documentId) => {
       const nextFiles = [...currentFiles]
       const deletedFiles = nextFiles.splice(deleteIndex, 1)
 
       setDropped(nextFiles)
       onChange(nextFiles, undefined, deletedFiles)
+      handleDelete && handleDelete(documentId)
     },
-    [currentFiles, onChange]
+    [currentFiles, onChange, handleDelete]
   )
 
   const {
@@ -141,6 +146,8 @@ export const Dropzone = ({
       ? errorText
       : fileRejections?.[0]?.errors?.[0]?.message
 
+  console.log('currentFiles', currentFiles)
+
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     id: file.id,
     name: file.name,
@@ -149,6 +156,7 @@ export const Dropzone = ({
     progressPercent: file.progressPercent,
   }))
 
+  console.log('uploadFiles', uploadFiles)
   return (
     <div>
       <div {...getRootProps()}>
@@ -167,7 +175,7 @@ export const Dropzone = ({
 
       <DropPreviewComponent
         uploadFiles={uploadFiles}
-        onDelete={handleDelete}
+        onDelete={handleFEDelete}
         onDownload={handleDownload}
         DropStatusHeader={DropStatusHeader}
         DropPreviewFile={DropPreviewFile}

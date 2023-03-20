@@ -284,6 +284,12 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    deleteAppReleaseDocument: builder.mutation<void, string>({
+      query: (documentId) => ({
+        url: `/api/apps/appreleaseprocess/documents/${documentId}`,
+        method: 'DELETE',
+      }),
+    }),
     fetchRolesData: builder.query<rolesType[], string>({
       query: (appId: string) => `api/administration/user/app/${appId}/roles`,
     }),
@@ -392,6 +398,7 @@ export const {
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
   useFetchDocumentByIdMutation,
+  useDeleteAppReleaseDocumentMutation,
   useFetchRolesDataQuery,
   useUpdateRoleDataMutation,
   useDeleteRolesMutation,
