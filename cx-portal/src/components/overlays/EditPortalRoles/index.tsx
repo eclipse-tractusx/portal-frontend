@@ -55,9 +55,9 @@ export default function EditPortalRoles({ id }: { id: string }) {
   const [updatePortalRoles] = useUpdatePortalRolesMutation()
 
   useEffect(() => {
-    const rolesArr: AppRole[] = []
-    appRoles && appRoles.map((a) => rolesArr.push(...a.roles))
-    setAllRoles(rolesArr)
+    const roles: AppRole[] = []
+    appRoles && appRoles.map((a) => roles.push(...a.roles))
+    setAllRoles(roles)
     appRoles && setOfferId(appRoles[0].offerId)
   }, [appRoles])
 
@@ -69,7 +69,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
     dispatch(setUserRoleResp(''))
   }, [dispatch])
 
-  const selectRole = (role: string, select: boolean) => {
+  const handleSelectRole = (role: string, select: boolean) => {
     const isSelected = selectedRoles.includes(role)
     if (!isSelected && select) {
       setSelectedRoles([...selectedRoles, role])
@@ -80,7 +80,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
     }
   }
 
-  const saveRoles = async () => {
+  const handleSaveRoles = async () => {
     if (!id || !offerId) return
     const data: PortalRoleRequest = {
       companyUserId: id,
@@ -98,7 +98,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
     }
   }
 
-  const checkConfirmBtn = () => {
+  const checkConfirmButton = () => {
     return (
       assignedRoles &&
       selectedRoles &&
@@ -129,7 +129,9 @@ export default function EditPortalRoles({ id }: { id: string }) {
                   <Checkbox
                     label={role.role}
                     checked={selectedRoles.indexOf(role.role) !== -1}
-                    onChange={(e) => selectRole(role.role, e.target.checked)}
+                    onChange={(e) =>
+                      handleSelectRole(role.role, e.target.checked)
+                    }
                   />
                 </li>
               ))}
@@ -146,8 +148,8 @@ export default function EditPortalRoles({ id }: { id: string }) {
         </Button>
         <Button
           variant="contained"
-          onClick={saveRoles}
-          disabled={checkConfirmBtn()}
+          onClick={handleSaveRoles}
+          disabled={checkConfirmButton()}
         >
           {t('global.actions.confirm')}
         </Button>
