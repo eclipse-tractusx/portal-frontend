@@ -29,6 +29,7 @@ import { Divider, Box, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import '../ReleaseProcessSteps.scss'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 type NotificationObject = {
   title: string
@@ -46,7 +47,7 @@ type SnackbarNotificationWithButtonsType = {
   isValid?: boolean
   pageSnackBarDescription?: string
   pageNotificationsObject?: NotificationObject
-  pageSnackBarType?: 'success' | 'error'
+  pageSnackBarType?: SuccessErrorType.SUCCESS | SuccessErrorType.ERROR
 }
 
 export default function SnackbarNotificationWithButtons({

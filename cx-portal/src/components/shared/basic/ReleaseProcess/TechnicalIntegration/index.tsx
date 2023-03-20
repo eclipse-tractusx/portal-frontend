@@ -51,9 +51,9 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
     useState<boolean>(false)
-  const [snackBarType, setSnackBarType] = useState<'error' | 'success'>(
-    'success'
-  )
+  const [snackBarType, setSnackBarType] = useState<
+    SuccessErrorType.ERROR | SuccessErrorType.SUCCESS
+  >(SuccessErrorType.SUCCESS)
   const [snackBarMessage, setSnackBarMessage] = useState<string>(
     t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
   )
