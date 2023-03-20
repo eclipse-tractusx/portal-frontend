@@ -28,7 +28,6 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay/actions'
 import { useState } from 'react'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 import {
   IdentityProviderUpdate,
   useFetchIDPDetailQuery,
@@ -52,7 +51,6 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     try {
       const idpUpdate = await updateIdp(idpUpdateData).unwrap()
       console.log(idpUpdate)
-      dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.ENABLE_IDP, id))
     } catch (error) {
       console.log(error)

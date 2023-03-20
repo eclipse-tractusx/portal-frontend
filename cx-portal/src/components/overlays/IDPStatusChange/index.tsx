@@ -1,21 +1,16 @@
-import React, { useState } from 'react'
-
+import { useState } from 'react'
 import {
   Button,
   DialogActions,
   DialogHeader,
   LoadingButton,
 } from 'cx-portal-shared-components'
-
 import { useTranslation, Trans, TFunction } from 'react-i18next'
 import { useEnableIDPMutation } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
-
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
-
 import { closeOverlay } from 'features/control/overlay/actions'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 
 type Status = { error: boolean; success: boolean }
 
@@ -124,7 +119,6 @@ function IDPStatusChange({
   const handleStatusChange = async () => {
     try {
       await enableIDP({ id, enabled: !idpStatus })
-      dispatch(updateData(UPDATES.IDP_LIST))
       setStatus({ success: true, error: false })
     } catch (error) {
       console.log(error)

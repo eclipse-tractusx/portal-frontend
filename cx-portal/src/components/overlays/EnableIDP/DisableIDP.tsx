@@ -33,7 +33,6 @@ import {
   useEnableIDPMutation,
   useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 
 export const DisableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -45,7 +44,6 @@ export const DisableIDP = ({ id }: { id: string }) => {
     try {
       e.stopPropagation()
       await enableIDP({ id: id, enabled: false })
-      dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(closeOverlay())
     } catch (error) {
       console.log(error)
