@@ -214,6 +214,7 @@ const UpdateIDPForm = ({
             label={t('field.clientSecret.name')}
             tooltipMessage={t('field.clientSecret.hint')}
             helperText={t('field.clientSecret.hint')}
+            type="password"
             validate={isIDPClientSecret}
             onValid={onChange}
           />

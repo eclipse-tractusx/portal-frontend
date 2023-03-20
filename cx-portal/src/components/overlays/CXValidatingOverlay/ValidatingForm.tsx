@@ -34,6 +34,7 @@ export type ValidatingInputProps = {
   tooltipMessage?: string
   autofocus?: boolean
   value?: string
+  type?: string
   debounceTime?: number
   validate: (data: string) => boolean
   onValid: (name: string, data: string | undefined) => void
@@ -48,6 +49,7 @@ export const ValidatingInput = ({
   tooltipMessage = undefined,
   autofocus = false,
   value = '',
+  type = '',
   debounceTime = 300,
   validate,
   onValid,
@@ -85,6 +87,7 @@ export const ValidatingInput = ({
       placeholder={placeholder}
       tooltipMessage={tooltipMessage}
       value={data}
+      type={type}
       error={!valid && show > 0}
       autoFocus={autofocus}
       onChange={(e) => doValidate(e.currentTarget.value)}
