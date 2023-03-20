@@ -18,6 +18,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * Application Request
       * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place yet
+   * App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
 
 ### Change
 
