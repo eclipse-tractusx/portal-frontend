@@ -20,15 +20,14 @@
 
 import { Controller } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
-import { Input, MultiSelectList, Checkbox } from 'cx-portal-shared-components'
 import {
   Input,
-  Typography,
   MultiSelectList,
   Checkbox,
   DropArea,
   DropAreaProps,
 } from 'cx-portal-shared-components'
+
 export const ConnectorFormInputField = ({
   control,
   trigger,
