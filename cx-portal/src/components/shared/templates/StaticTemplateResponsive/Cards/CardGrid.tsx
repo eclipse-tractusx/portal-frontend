@@ -22,6 +22,7 @@ import CardWithImage from './CardWithImage'
 import CardWithoutImage from './CardWithoutImage'
 import { ProviderProps, CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
+import '../StaticTemplate.scss'
 
 export default function CardGrid({
   provider,
@@ -35,21 +36,16 @@ export default function CardGrid({
   baseUrl: string
 }) {
   const isCenter = align === 'center'
-  const gridStyle = {
-    display: 'flex',
-    gap: '30px',
-    placeContent: 'center',
-    gridTemplateColumns: `repeat(${grid}, 1fr)`,
-  }
   return (
     <>
       {provider.detailsWithImageRow1 &&
         provider.detailsWithImageRow1.length > 0 && (
           <Box
+            className={'gridStyle'}
             sx={{
-              ...gridStyle,
               marginTop: isCenter ? '84px' : '96px',
               textAlign: isCenter ? 'center' : 'left',
+              gridTemplateColumns: `repeat(${grid}, 1fr)`,
             }}
           >
             {provider.detailsWithImageRow1.map((card: CardDetailsProps) => {
@@ -67,9 +63,10 @@ export default function CardGrid({
       {provider.detailsWithImageRow2 &&
         provider.detailsWithImageRow2.length > 0 && (
           <Box
+            className={'gridStyle'}
             sx={{
-              ...gridStyle,
               textAlign: isCenter ? 'center' : 'left',
+              gridTemplateColumns: `repeat(${grid}, 1fr)`,
             }}
           >
             {provider.detailsWithImageRow2.map((card: CardDetailsProps) => {
@@ -87,13 +84,14 @@ export default function CardGrid({
       {provider.detailsWithoutImageRow1 &&
         provider.detailsWithoutImageRow1.length > 0 && (
           <Box
+            className={'gridStyle'}
             sx={{
-              ...gridStyle,
               marginBottom:
                 provider.detailsWithoutImageRow2 &&
                 provider.detailsWithoutImageRow2.length > 0
                   ? '0px'
                   : '180px',
+              gridTemplateColumns: `repeat(${grid}, 1fr)`,
             }}
           >
             {provider.detailsWithoutImageRow1.map((card: CardDetailsProps) => {
@@ -106,9 +104,10 @@ export default function CardGrid({
       {provider.detailsWithoutImageRow2 &&
         provider.detailsWithoutImageRow2.length > 0 && (
           <Box
+            className={'gridStyle'}
             sx={{
-              ...gridStyle,
               marginBottom: '180px',
+              gridTemplateColumns: `repeat(${grid}, 1fr)`,
             }}
           >
             {provider.detailsWithoutImageRow2.map((card: CardDetailsProps) => {

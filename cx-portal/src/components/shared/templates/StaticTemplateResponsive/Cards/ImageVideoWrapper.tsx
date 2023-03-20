@@ -18,39 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../StaticTypes'
-import CardWithText from './CardWithText'
-import { Box } from '@mui/material'
+import { Typography } from 'cx-portal-shared-components'
+import { ReactElement } from 'react'
+import { ProviderProps } from '../StaticTypes'
+import '../StaticTemplate.scss'
 
-export default function CardWithoutImage({
-  detail,
-  grid = 3,
+export default function ImageVideoWrapper({
+  provider,
+  children,
 }: {
-  detail: CardDetailsProps
-  grid: number
+  provider: ProviderProps
+  children: ReactElement
 }) {
-  const cardContainer = {
-    borderRadius: '16px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    marginBottom: '96px',
-    maxWidth: '33%',
-  }
   return (
-    <Box
-      key={detail.id}
-      sx={{
-        ...cardContainer,
-      }}
-      style={{
-        backgroundColor: detail.backgroundColor,
-        border: '1px solid rgba(15, 113, 203, 1)',
-        padding: '30px',
-        width: `${100 / grid}%`,
-      }}
-    >
-      <CardWithText card={detail} isImage={false} />
-    </Box>
+    <div className={'imageVideoTextSideBySide'}>
+      <div className={'titleDescriptionBody'}>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography className={'providerDescription'} variant="body1">
+          {provider.description}
+        </Typography>
+      </div>
+      {children}
+    </div>
   )
 }

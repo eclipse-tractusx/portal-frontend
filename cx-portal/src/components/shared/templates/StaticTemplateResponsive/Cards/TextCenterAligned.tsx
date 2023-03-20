@@ -18,38 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography } from '../../Typography'
+import { Typography } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
+import '../StaticTemplate.scss'
 
-export default function TextCenterAlignedBody2({
+export default function TextCenterAligned({
   provider,
 }: {
   provider: ProviderProps
 }) {
   return (
-    <Box
-      sx={{
-        textAlign: provider.align || 'left',
-        padding: '40px 80px',
-        backgroundColor: provider.backgroundColor || '#ffffff',
-      }}
-    >
-      <Box>
-        <Typography variant="h2">{provider.title}</Typography>
-        {provider.subTitles &&
-          provider.subTitles.map((subtitle) => (
-            <Typography
-              key={subtitle}
-              sx={{
-                padding: '30px 0px',
-              }}
-              variant="body2"
-            >
-              {subtitle}
-            </Typography>
-          ))}
-      </Box>
-    </Box>
+    <div className={'textCenterAligned'}>
+      <div>
+        {provider.title && (
+          <Typography variant="h2">{provider.title}</Typography>
+        )}
+        {provider.description && (
+          <Typography className={'description'} variant="body1">
+            {provider.description}
+          </Typography>
+        )}
+      </div>
+    </div>
   )
 }
