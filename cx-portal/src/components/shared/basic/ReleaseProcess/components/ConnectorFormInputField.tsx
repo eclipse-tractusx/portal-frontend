@@ -22,7 +22,6 @@ import { Controller } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import {
   Input,
-  Typography,
   MultiSelectList,
   Checkbox,
 } from 'cx-portal-shared-components'
@@ -104,12 +103,8 @@ export const ConnectorFormInputField = ({
                 trigger(name)
                 onChange(event.target.checked)
               }}
+              style={{ width: '100%', right: 0 }}
             />
-            {!!errors[name] && (
-              <Typography variant="body2" className="file-error-msg">
-                {errors[name].message}
-              </Typography>
-            )}
           </>
         )
       } else
