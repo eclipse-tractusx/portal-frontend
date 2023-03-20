@@ -19,57 +19,27 @@
  ********************************************************************************/
 
 import { ProviderProps } from '../StaticTypes'
-import { Typography } from '../../Typography'
-import { Box } from '@mui/material'
+import RenderImage from './RenderImage'
+import TextCenterAligned from './TextCenterAligned'
+import '../StaticTemplate.scss'
 
-export default function VideoTextSideBySide({
+export default function TextImageCenterAligned({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
-      }}
-    >
-      <Box
-        sx={{
-          padding: '20px',
+    <div className="textCenterAligned">
+      <TextCenterAligned provider={provider} />
+      <RenderImage
+        url={baseUrl + provider.imagePath || ''}
+        additionalStyles={{
+          marginTop: '84px',
+          marginBottom: '84px',
         }}
-      >
-        <iframe
-          width="482"
-          height="331"
-          title="Video"
-          style={{
-            borderRadius: '16px',
-            border: '0px',
-          }}
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
-      </Box>
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-    </Box>
+      />
+    </div>
   )
 }

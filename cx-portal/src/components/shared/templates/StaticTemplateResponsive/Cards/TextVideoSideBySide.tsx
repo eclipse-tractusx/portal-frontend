@@ -18,42 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
 import { ProviderProps } from '../StaticTypes'
-import TextCenterAligned from './TextCenterAligned'
+import ImageVideoWrapper from './ImageVideoWrapper'
+import '../StaticTemplate.scss'
 
-export default function TextImageCenterAligned({
+export default function TextVideoSideBySide({
   provider,
-  baseUrl,
 }: {
   provider: ProviderProps
-  baseUrl: string
 }) {
   return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <TextCenterAligned provider={provider} />
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-        additionalStyles={{
-          marginTop: '84px',
-          marginBottom: '84px',
-        }}
-      />
-    </Box>
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <iframe
+          className={'video'}
+          title="Video"
+          src={provider.videoUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      }
+    />
   )
 }

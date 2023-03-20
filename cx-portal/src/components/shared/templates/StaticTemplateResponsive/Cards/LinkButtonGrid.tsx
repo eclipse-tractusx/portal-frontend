@@ -18,9 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '../../Typography'
 import { ProviderProps, linkProps } from '../StaticTypes'
 import { Box } from '@mui/material'
+import { Typography } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
 
 export default function LinkButtonGrid({
   provider,
@@ -29,34 +30,20 @@ export default function LinkButtonGrid({
   provider: ProviderProps
   grid: number
 }) {
-  const linkGridContainer = {
-    display: 'flex',
-    gap: '30px',
-    placeContent: 'center',
-    marginTop: '60px',
-  }
-
-  const linkBox = {
-    padding: '10px 0px',
-    height: '40px',
-    borderRadius: '10px',
-    textAlign: 'center',
-    minWidth: '472px',
-  }
   return (
     <>
       {provider.linksRow1 && (
         <Box
+          className={'linkGridContainer'}
           sx={{
-            ...linkGridContainer,
             gridTemplateColumns: `repeat(${grid}, 1fr)`,
           }}
         >
           {provider.linksRow1.map((link: linkProps) => (
             <Box
               key={link.title}
+              className={'linkBox'}
               sx={{
-                ...linkBox,
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
               }}
@@ -68,8 +55,8 @@ export default function LinkButtonGrid({
       )}
       {provider.linksRow2 && (
         <Box
+          className={'linkGridContainer'}
           sx={{
-            ...linkGridContainer,
             gridTemplateColumns: `repeat(${grid}, 1fr)`,
             marginTop: '30px',
           }}
@@ -77,8 +64,8 @@ export default function LinkButtonGrid({
           {provider.linksRow2.map((link: linkProps) => (
             <Box
               key={link.title}
+              className={'linkBox'}
               sx={{
-                ...linkBox,
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
               }}

@@ -18,23 +18,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
+import { ImageItem } from 'cx-portal-shared-components'
+import { useMediaQuery } from '@mui/material'
+import '../StaticTemplate.scss'
 
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
+export default function RenderImage({
+  url,
+  additionalStyles,
 }: {
-  provider: ProviderProps
-  baseUrl: string
+  url: string
+  additionalStyles?: any
 }) {
+  const web = useMediaQuery('(min-width:1025px)')
+
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
+    <>
+      {web ? (
         <ImageItem
-          url={baseUrl + provider.imagePath || ''}
+          url={url}
           text={''}
           size="custom"
           height="472px"
@@ -43,8 +44,11 @@ export default function TextImageSideBySide({
           borderRadius={true}
           shadow={false}
           modalWidth="1100"
+          additionalStyles={additionalStyles || {}}
         />
-      }
-    />
+      ) : (
+        <img className={'imageGallery'} src={url} alt="provider" />
+      )}
+    </>
   )
 }

@@ -18,30 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
+import { CardDetailsProps } from '../StaticTypes'
+import { Typography } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
 
-export default function TextVideoSideBySide({
-  provider,
+export default function CardWithText({
+  card,
+  isImage,
 }: {
-  provider: ProviderProps
+  card: CardDetailsProps
+  isImage: boolean
 }) {
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <iframe
-          width="482"
-          height="331"
-          title="Video"
+    <div className={'cardWithTextContainer'}>
+      <div>
+        <Typography className={'title'} variant="h4">
+          {card.title}
+        </Typography>
+        <Typography className={'description'} variant="body2">
+          {card.description}
+        </Typography>
+      </div>
+      {card.readMore ? (
+        <a
+          className={'readMoreStyle'}
           style={{
-            borderRadius: '16px',
-            border: '0px',
+            fontSize: isImage ? '16px' : '14px',
           }}
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
-      }
-    />
+          href={card.readMore}
+        >
+          {card.readMoreTitle}
+        </a>
+      ) : (
+        <div className={'readMoreStyle'} />
+      )}
+    </div>
   )
 }

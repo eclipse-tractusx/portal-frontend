@@ -18,11 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { Typography } from '../../Typography'
+import { Typography } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
-
+import '../StaticTemplate.scss'
+import RenderImage from './RenderImage'
 export default function ImageTextSideBySide({
   provider,
   baseUrl,
@@ -31,42 +30,14 @@ export default function ImageTextSideBySide({
   baseUrl: string
 }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
-      }}
-    >
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-      />
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
+    <div className={'imageVideoTextSideBySide'}>
+      <RenderImage url={baseUrl + provider.imagePath || ''} />
+      <div>
         <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
+        <Typography className={'providerDescription'} variant="body1">
           {provider.description}
         </Typography>
-      </Box>
-    </Box>
+      </div>
+    </div>
   )
 }

@@ -18,34 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography } from '../../Typography'
 import { ProviderProps } from '../StaticTypes'
+import TextCenterAligned from './TextCenterAligned'
+import RenderImage from './RenderImage'
+import '../StaticTemplate.scss'
 
-export default function TextCenterAligned({
+export default function ImageImageCenterAligned({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <Box>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            padding: '34px 100px 0px 100px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-    </Box>
+    <div className={'textCenterAligned'}>
+      <RenderImage
+        url={baseUrl + provider.imagePath || ''}
+        additionalStyles={{
+          marginTop: '84px',
+          marginBottom: '84px',
+        }}
+      />
+      <TextCenterAligned provider={provider} />
+    </div>
   )
 }
