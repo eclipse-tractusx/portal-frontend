@@ -17,6 +17,7 @@
     "deploy": "export CX_ENV=${CX_ENV:-dev003} && az webapp deployment source config-zip --resource-group catenax-${CX_ENV}-rg --name catenax-${CX_ENV}-app-portal-2 --src ./dist/build.zip"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.5.1",
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^1.7.2",
