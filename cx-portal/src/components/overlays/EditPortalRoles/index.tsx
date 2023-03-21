@@ -35,7 +35,7 @@ import {
 } from 'features/admin/appuserApiSlice'
 import { useFetchUsersRolesQuery } from 'features/admin/userApiSlice'
 import { closeOverlay, show } from 'features/control/overlay/actions'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
@@ -47,7 +47,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
 
   const appRoles = useFetchCoreoffersRolesQuery().data
   const { data, refetch } = useFetchUsersRolesQuery(id)
-  const assignedRoles = data?.content[0].roles ?? []
+  const assignedRoles = useMemo(() => data?.content[0].roles || [], [data])
 
   const [allRoles, setAllRoles] = useState<AppRole[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
