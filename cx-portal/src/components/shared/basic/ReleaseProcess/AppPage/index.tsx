@@ -23,11 +23,14 @@ import {
   IconButton,
   UploadFileStatus,
   UploadStatus,
+  Radio,
+  Alert,
+  Checkbox,
   DropArea,
   DropAreaProps,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, InputLabel } from '@mui/material'
+import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
@@ -43,6 +46,7 @@ import {
 import {
   DocumentTypeId,
   useFetchAppStatusQuery,
+  useFetchPrivacyPoliciesQuery,
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
@@ -64,6 +68,7 @@ type FormDataType = {
   providerHomePage: string
   providerContactEmail: string
   providerPhoneContact: string
+  privacyPolicies: string[] | []
 }
 
 export default function AppPage() {
@@ -74,6 +79,14 @@ export default function AppPage() {
   const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const appId = useSelector(appIdSelector)
+
+  const getPrivacyPolicies = useFetchPrivacyPoliciesQuery().data
+  const privacyPolicies =
+    getPrivacyPolicies && getPrivacyPolicies?.privacyPolicies.slice(0, -1)
+  const [selectedPrivacyPolicies, setSelectedPrivacyPolicies] = useState<
+    string[]
+  >([])
+  const privacyPolicyNone = 'NONE'
   const longDescriptionMaxLength = 2000
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -99,6 +112,7 @@ export default function AppPage() {
     providerHomePage: fetchAppStatus?.providerUri || '',
     providerContactEmail: fetchAppStatus?.contactEmail || '',
     providerPhoneContact: fetchAppStatus?.contactNumber || '',
+    privacyPolicies: fetchAppStatus?.privacyPolicies || [],
   }
 
   const {
@@ -114,7 +128,11 @@ export default function AppPage() {
   })
 
   useEffect(() => {
-    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) {
+      dispatch(setAppStatus(fetchAppStatus))
+      fetchAppStatus?.privacyPolicies &&
+        setSelectedPrivacyPolicies(fetchAppStatus?.privacyPolicies)
+    }
   }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
@@ -334,6 +352,7 @@ export default function AppPage() {
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
+      privacyPolicies: selectedPrivacyPolicies || [],
     }
 
     try {
@@ -348,6 +367,32 @@ export default function AppPage() {
   const onBackIconClick = () => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
     dispatch(decrement())
+  }
+
+  const selectPrivacyPolicies = (
+    policy: string,
+    select: boolean,
+    type: string
+  ) => {
+    if (type === 'checkbox') {
+      if (
+        selectedPrivacyPolicies &&
+        selectedPrivacyPolicies[0] === privacyPolicyNone
+      ) {
+        setSelectedPrivacyPolicies([...[], policy])
+      } else {
+        const isSelected = selectedPrivacyPolicies?.includes(policy)
+        if (!isSelected && select) {
+          setSelectedPrivacyPolicies([...selectedPrivacyPolicies, policy])
+        } else if (isSelected && !select) {
+          const oldPrivacyPolicies = [...selectedPrivacyPolicies]
+          oldPrivacyPolicies.splice(oldPrivacyPolicies.indexOf(policy), 1)
+          setSelectedPrivacyPolicies([...oldPrivacyPolicies])
+        }
+      }
+    } else if (type === 'radio') {
+      setSelectedPrivacyPolicies([...[], policy])
+    }
   }
 
   const renderDropArea = (props: DropAreaProps) => {
@@ -559,6 +604,56 @@ export default function AppPage() {
             'content.apprelease.appPage.providerPhoneContactPlaceholder'
           )}
         />
+        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+        <InputLabel sx={{ mb: 3 }}>
+          {t('content.apprelease.appPage.privacyInformation')}
+        </InputLabel>
+        <Typography variant="body2">
+          {t('content.apprelease.appPage.privacyInformationDescription')}
+        </Typography>
+
+        {privacyPolicies ? (
+          <Grid container item spacing={2}>
+            {privacyPolicies &&
+              privacyPolicies?.map((item: string) => (
+                <Grid item md={6} key={item}>
+                  <Checkbox
+                    label={item}
+                    checked={selectedPrivacyPolicies.indexOf(item) !== -1}
+                    onChange={(e) =>
+                      selectPrivacyPolicies(item, e.target.checked, 'checkbox')
+                    }
+                  />
+                </Grid>
+              ))}
+            <Grid item md={6}>
+              <Radio
+                label={
+                  getPrivacyPolicies &&
+                  getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
+                }
+                checked={
+                  selectedPrivacyPolicies &&
+                  selectedPrivacyPolicies[0] === privacyPolicyNone
+                }
+                onChange={(e) =>
+                  selectPrivacyPolicies(
+                    privacyPolicyNone,
+                    e.target.checked,
+                    'radio'
+                  )
+                }
+                name="radio-buttons"
+              />
+            </Grid>
+          </Grid>
+        ) : (
+          <Box sx={{ marginY: 2 }}>
+            <Alert width={'100%'} severity="error">
+              <span>{t('content.apprelease.appPage.privacyInfoError')}</span>
+            </Alert>
+          </Box>
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}

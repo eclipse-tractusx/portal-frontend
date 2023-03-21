@@ -55,7 +55,7 @@ export interface AppStatusDataState {
   contactNumber?: string
   documents: any
   salesManagerId?: string | null
-  privacyPolicies?: []
+  privacyPolicies?: string[] | []
   leadPictureUri?: string
 }
 
