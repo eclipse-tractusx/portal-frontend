@@ -86,7 +86,7 @@ export default function AppPage() {
   const [selectedPrivacyPolicies, setSelectedPrivacyPolicies] = useState<
     string[]
   >([])
-
+  const privacyPolicyNone = 'NONE'
   const longDescriptionMaxLength = 2000
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -128,10 +128,13 @@ export default function AppPage() {
   })
 
   useEffect(() => {
-    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) {
+      dispatch(setAppStatus(fetchAppStatus))
+      fetchAppStatus?.privacyPolicies &&
+        setSelectedPrivacyPolicies(fetchAppStatus?.privacyPolicies)
+    }
   }, [dispatch, fetchAppStatus])
 
-  const getValuesPrivacyPolicies = getValues().privacyPolicies
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
   const uploadTechnicalGuideValue = getValues().uploadTechnicalGuide
@@ -366,20 +369,32 @@ export default function AppPage() {
     dispatch(decrement())
   }
 
-  const selectPrivacyPolicies = (policy: string, select: boolean) => {
-    const isSelected = privacyPolicies?.includes(policy)
-    if (!isSelected && select) {
-      setSelectedPrivacyPolicies([
-        ...(privacyPolicies ? privacyPolicies : []),
-        policy,
-      ])
-    } else if (isSelected && !select) {
-      const oldPrivacyPolicies = [...(privacyPolicies ? privacyPolicies : [])]
-      oldPrivacyPolicies.splice(oldPrivacyPolicies.indexOf(policy), 1)
-      setSelectedPrivacyPolicies([...oldPrivacyPolicies])
+  const selectPrivacyPolicies = (
+    policy: string,
+    select: boolean,
+    type: string
+  ) => {
+    if (type === 'checkbox') {
+      if (
+        selectedPrivacyPolicies &&
+        selectedPrivacyPolicies[0] === privacyPolicyNone
+      ) {
+        setSelectedPrivacyPolicies([...[], policy])
+      } else {
+        const isSelected = selectedPrivacyPolicies?.includes(policy)
+        if (!isSelected && select) {
+          setSelectedPrivacyPolicies([...selectedPrivacyPolicies, policy])
+        } else if (isSelected && !select) {
+          const oldPrivacyPolicies = [...selectedPrivacyPolicies]
+          oldPrivacyPolicies.splice(oldPrivacyPolicies.indexOf(policy), 1)
+          setSelectedPrivacyPolicies([...oldPrivacyPolicies])
+        }
+      }
+    } else if (type === 'radio') {
+      setSelectedPrivacyPolicies([...[], policy])
     }
   }
-  
+
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
   }
@@ -604,9 +619,9 @@ export default function AppPage() {
                 <Grid item md={6} key={item}>
                   <Checkbox
                     label={item}
-                    checked={privacyPolicies.indexOf(item) !== -1}
+                    checked={selectedPrivacyPolicies.indexOf(item) !== -1}
                     onChange={(e) =>
-                      selectPrivacyPolicies(item, e.target.checked)
+                      selectPrivacyPolicies(item, e.target.checked, 'checkbox')
                     }
                   />
                 </Grid>
@@ -618,8 +633,15 @@ export default function AppPage() {
                   getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
                 }
                 checked={
-                  getValuesPrivacyPolicies.length > 0 &&
-                  getValuesPrivacyPolicies[0] === 'NONE'
+                  selectedPrivacyPolicies &&
+                  selectedPrivacyPolicies[0] === privacyPolicyNone
+                }
+                onChange={(e) =>
+                  selectPrivacyPolicies(
+                    privacyPolicyNone,
+                    e.target.checked,
+                    'radio'
+                  )
                 }
                 name="radio-buttons"
               />
