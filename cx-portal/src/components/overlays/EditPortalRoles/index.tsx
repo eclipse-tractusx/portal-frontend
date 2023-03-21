@@ -47,9 +47,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
 
   const appRoles = useFetchCoreoffersRolesQuery().data
   const { data, refetch } = useFetchUsersRolesQuery(id)
-  const assignedRoles = useMemo(()=> (
-    data?.content[0].roles || []
-  ),[data])
+  const assignedRoles = useMemo(() => data?.content[0].roles || [], [data])
 
   const [allRoles, setAllRoles] = useState<AppRole[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
