@@ -402,7 +402,7 @@ export default function CommonContractAndConsent({
           requiredText={imageFieldRequiredText}
           handleDownload={handleDownload}
           handleDelete={(documentId: string) => {
-            //deleteAppReleaseDocument(documentId)
+            deleteAppReleaseDocument(documentId)
           }}
         />
       </form>

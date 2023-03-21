@@ -77,8 +77,6 @@ export const Dropzone = ({
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
-  console.log('files', files)
-
   const [dropped, setDropped] = useState<DropzoneFile[]>([])
 
   const currentFiles = files ?? dropped
@@ -146,8 +144,6 @@ export const Dropzone = ({
       ? errorText
       : fileRejections?.[0]?.errors?.[0]?.message
 
-  console.log('currentFiles', currentFiles)
-
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     id: file.id,
     name: file.name,
@@ -156,7 +152,6 @@ export const Dropzone = ({
     progressPercent: file.progressPercent,
   }))
 
-  console.log('uploadFiles', uploadFiles)
   return (
     <div>
       <div {...getRootProps()}>
