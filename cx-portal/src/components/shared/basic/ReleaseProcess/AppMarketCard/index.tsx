@@ -30,7 +30,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
@@ -103,7 +103,12 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
-  const salesManagerList = useFetchSalesManagerDataQuery().data || []
+  const salesManagerListQuery = useFetchSalesManagerDataQuery()
+  const salesManagerList = useMemo(
+    () => salesManagerListQuery.data,
+    [salesManagerListQuery]
+  )
+
   const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
     useState<salesManagerType>({
       userId: null,
@@ -123,26 +128,28 @@ export default function AppMarketCard() {
   const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
 
-  const defaultValues = {
-    title: appStatusData?.title,
-    provider: appStatusData?.provider,
-    price: appStatusData?.price,
-    useCaseCategory: appStatusData?.useCase,
-    appLanguage: appStatusData?.supportedLanguageCodes,
-    salesManagerId: appStatusData?.salesManagerId,
-    shortDescriptionEN:
-      appStatusData?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
-      )[0]?.shortDescription || '',
-    shortDescriptionDE:
-      appStatusData?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
-      )[0]?.shortDescription || '',
-    uploadImage: {
-      leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-      alt: appStatusData?.leadPictureUri || '',
-    },
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      title: appStatusData?.title,
+      provider: appStatusData?.provider,
+      price: appStatusData?.price,
+      useCaseCategory: appStatusData?.useCase,
+      appLanguage: appStatusData?.supportedLanguageCodes,
+      salesManagerId: appStatusData?.salesManagerId,
+      shortDescriptionEN:
+        appStatusData?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'en'
+        )[0]?.shortDescription || '',
+      shortDescriptionDE:
+        appStatusData?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'de'
+        )[0]?.shortDescription || '',
+      uploadImage: {
+        leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
+        alt: appStatusData?.leadPictureUri || '',
+      },
+    }
+  }, [appStatusData, cardImage])
 
   const {
     handleSubmit,
@@ -156,6 +163,26 @@ export default function AppMarketCard() {
     defaultValues: defaultValues,
     mode: 'onChange',
   })
+
+  const fetchCardImage = useCallback(
+    async (documentId: string, documentName: string) => {
+      try {
+        const response = await fetchDocumentById({ appId, documentId }).unwrap()
+        const file = response.data
+
+        const setFileStatus = (status: UploadFileStatus) =>
+          setValue('uploadImage.leadPictureUri', {
+            name: documentName,
+            status,
+          } as any)
+        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+        return setCardImage(URL.createObjectURL(file))
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      }
+    },
+    [fetchDocumentById, appId, setValue]
+  )
 
   useEffect(() => {
     trigger('uploadImage.alt')
@@ -176,7 +203,6 @@ export default function AppMarketCard() {
       )
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
@@ -184,7 +210,7 @@ export default function AppMarketCard() {
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
-    if (salesManagerList.length > 0) {
+    if (salesManagerList && salesManagerList?.length > 0) {
       let data = salesManagerList?.map((item) => {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
@@ -203,8 +229,13 @@ export default function AppMarketCard() {
         setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [salesManagerList, appStatusData])
+  }, [
+    salesManagerList,
+    appStatusData,
+    defaultValues,
+    reset,
+    salesManagerListData,
+  ])
 
   const onSalesManagerChange = (sales: any) => {
     setSalesManagerId(sales)
@@ -235,25 +266,7 @@ export default function AppMarketCard() {
       )
     }
     reset(defaultValues)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appStatusData])
-
-  const fetchCardImage = async (documentId: string, documentName: string) => {
-    try {
-      const response = await fetchDocumentById({ appId, documentId }).unwrap()
-      const file = response.data
-
-      const setFileStatus = (status: UploadFileStatus) =>
-        setValue('uploadImage.leadPictureUri', {
-          name: documentName,
-          status,
-        } as any)
-      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
+  }, [appStatusData, fetchCardImage, reset, defaultValues])
 
   const cardAppTitle =
     getValues().title ||
