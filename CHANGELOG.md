@@ -18,7 +18,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Privacy Policy
 * BugFix
    * Application Request
-      * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place yet
+      * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place 
+* User Account
+   * Add portal roles
+   * Add Overlay to update users portal roles
    * App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
 * Use Case & Company Roles - Resopnsive static page
 

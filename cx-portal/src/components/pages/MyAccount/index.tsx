@@ -84,9 +84,8 @@ export default function MyAccount() {
             <UserAvatar size="large" />
           </Box>
         </Box>
-
-        {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
       </section>
+      {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
 
       {/* TODO: DEV only needs to be removed when going PROD */}
       <section>
