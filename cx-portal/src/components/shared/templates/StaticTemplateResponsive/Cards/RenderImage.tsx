@@ -18,38 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography } from '../../Typography'
-import { ProviderProps } from '../StaticTypes'
+import { ImageItem } from 'cx-portal-shared-components'
+import { useMediaQuery } from '@mui/material'
+import '../StaticTemplate.scss'
 
-export default function TextCenterAlignedBody2({
-  provider,
+export default function RenderImage({
+  url,
+  additionalStyles,
 }: {
-  provider: ProviderProps
+  url: string
+  additionalStyles?: any
 }) {
+  const web = useMediaQuery('(min-width:1025px)')
+
   return (
-    <Box
-      sx={{
-        textAlign: provider.align || 'left',
-        padding: '40px 80px',
-        backgroundColor: provider.backgroundColor || '#ffffff',
-      }}
-    >
-      <Box>
-        <Typography variant="h2">{provider.title}</Typography>
-        {provider.subTitles &&
-          provider.subTitles.map((subtitle) => (
-            <Typography
-              key={subtitle}
-              sx={{
-                padding: '30px 0px',
-              }}
-              variant="body2"
-            >
-              {subtitle}
-            </Typography>
-          ))}
-      </Box>
-    </Box>
+    <>
+      {web ? (
+        <ImageItem
+          url={url}
+          text={''}
+          size="custom"
+          height="472px"
+          width="100%"
+          hover={true}
+          borderRadius={true}
+          shadow={false}
+          modalWidth="1100"
+          additionalStyles={additionalStyles || {}}
+        />
+      ) : (
+        <img className={'imageGallery'} src={url} alt="provider" />
+      )}
+    </>
   )
 }

@@ -53,6 +53,17 @@ export type AppRole = {
   description: string
 }
 
+export type PortalRoleRequest = {
+  companyUserId: string
+  offerId: string
+  roles: string[]
+}
+
+export type PortalRoleResponse = {
+  companyUserRoleText: string
+  companyUserRoleId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/roles',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -99,6 +110,16 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    updatePortalRoles: builder.mutation<
+      PortalRoleResponse[],
+      PortalRoleRequest
+    >({
+      query: (data) => ({
+        url: `/api/administration/user/owncompany/users/${data.companyUserId}/coreoffers/${data.offerId}/roles`,
+        method: 'PUT',
+        body: data.roles,
+      }),
+    }),
   }),
 })
 
@@ -109,9 +130,15 @@ export const {
   useFetchAppUsersSearchQuery,
   useAddUserRolesMutation,
   useUpdateUserRolesMutation,
+  useUpdatePortalRolesMutation,
 } = apiSlice
 
 const name = 'admin/user/role/add'
+
+export enum SuccessErrorType {
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
 
 export interface UserRoleState {
   userRoleResp: string

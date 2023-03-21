@@ -18,45 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ReactElement } from 'react'
-import { Typography } from '../../Typography'
+import { Typography } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
+import '../StaticTemplate.scss'
 
-export default function ImageVideoWrapper({
+export default function TextCenterAligned({
   provider,
-  children,
 }: {
   provider: ProviderProps
-  children: ReactElement
 }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
-      }}
-    >
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-      {children}
-    </Box>
+    <div className={'textCenterAligned'}>
+      <div>
+        {provider.title && (
+          <Typography variant="h2">{provider.title}</Typography>
+        )}
+        {provider.description && (
+          <Typography className={'description'} variant="body1">
+            {provider.description}
+          </Typography>
+        )}
+      </div>
+    </div>
   )
 }

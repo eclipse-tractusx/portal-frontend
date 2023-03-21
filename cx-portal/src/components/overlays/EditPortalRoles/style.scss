@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,34 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { Typography } from '../../Typography'
-import { ProviderProps } from '../StaticTypes'
+.roles-heading > div > h2 {
+  font-size: 18px !important;
+}
 
-export default function TextCenterAligned({
-  provider,
-}: {
-  provider: ProviderProps
-}) {
-  return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <Box>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            padding: '34px 100px 0px 100px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-    </Box>
-  )
+.roles-heading > div > p {
+  font-weight: normal !important;
+}
+
+.roles-list {
+  display: flex;
+  justify-content: center;
+  max-width: 550px;
+  margin: 0 auto;
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    li {
+      width: 50%;
+    }
+  }
 }

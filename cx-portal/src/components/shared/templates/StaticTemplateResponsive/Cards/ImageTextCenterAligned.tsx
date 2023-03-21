@@ -18,12 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
 import { ProviderProps } from '../StaticTypes'
 import TextCenterAligned from './TextCenterAligned'
+import RenderImage from './RenderImage'
+import '../StaticTemplate.scss'
 
-export default function TextImageCenterAligned({
+export default function ImageImageCenterAligned({
   provider,
   baseUrl,
 }: {
@@ -31,29 +31,15 @@ export default function TextImageCenterAligned({
   baseUrl: string
 }) {
   return (
-    <Box
-      sx={{
-        textAlign: 'center',
-        margin: '0px 20px 0px 20px',
-        marginTop: '84px',
-      }}
-    >
-      <TextCenterAligned provider={provider} />
-      <ImageItem
+    <div className={'textCenterAligned'}>
+      <RenderImage
         url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
         additionalStyles={{
           marginTop: '84px',
           marginBottom: '84px',
         }}
       />
-    </Box>
+      <TextCenterAligned provider={provider} />
+    </div>
   )
 }

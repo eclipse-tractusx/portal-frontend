@@ -545,6 +545,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.DECLINE_ADMINBOARD,
   },
+  {
+    name: OVERLAYS.EDIT_PORTAL_ROLES,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,23 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { OVERLAYS } from 'types/Constants'
+import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
+import RenderImage from './RenderImage'
+import '../StaticTemplate.scss'
 
-export const name = 'control/overlay'
-
-export type OverlayState = {
-  type: OVERLAYS
-  id: string
-  title?: string
-  status?: boolean
-  subTitle?: string
-  roles?: string[]
-}
-
-export const initialState = {
-  type: OVERLAYS.NONE,
-  id: '',
-  title: '',
-  displayName: '',
-  subTitle: '',
+export default function TextImageSideBySide({
+  provider,
+  baseUrl,
+}: {
+  provider: ProviderProps
+  baseUrl: string
+}) {
+  return (
+    <ImageVideoWrapper
+      provider={provider}
+      children={<RenderImage url={baseUrl + provider.imagePath || ''} />}
+    />
+  )
 }

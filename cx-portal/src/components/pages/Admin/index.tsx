@@ -23,6 +23,7 @@ import { useState } from 'react'
 import { info } from 'services/LogService'
 import { ProvisioningApi } from 'features/provisioning/api'
 import { ProvisionIdentityProviderData } from 'features/provisioning/types'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export default function Admin() {
   const [processing, setProcessing] = useState<string>('input')
@@ -33,7 +34,7 @@ export default function Admin() {
     new ProvisioningApi()
       .provisionIdp(data)
       .then(() => {
-        setProcessing('success')
+        setProcessing(SuccessErrorType.SUCCESS)
         info(`provisioning for company ${data.organisationName} started`)
       })
       .catch((error: unknown) => {

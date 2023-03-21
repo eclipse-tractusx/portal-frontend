@@ -1,0 +1,35 @@
+.policy-main {
+  display: inline-block;
+  width: 100%;
+  padding: 40px 0 0;
+  background: #f7f7f7;
+  .change-role-btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    .edit-icon {
+      font-size: 18px;
+      margin-right: 5px;
+    }
+  }
+  .policy-title {
+    max-width: 30%;
+    margin: 0 auto;
+    font-weight: 600;
+    text-align: center;
+  }
+  .policies-list-main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -15px;
+    .policy-list {
+      width: 50%;
+      padding: 0px 15px;
+      margin-bottom: 15px;
+      > div {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+}

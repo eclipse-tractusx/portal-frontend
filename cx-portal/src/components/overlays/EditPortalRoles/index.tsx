@@ -26,61 +26,70 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 import {
+  AppRole,
+  PortalRoleRequest,
   setUserRoleResp,
   SuccessErrorType,
-  useFetchAppRolesQuery,
-  UserRoleRequest,
-  useUpdateUserRolesMutation,
+  useFetchCoreoffersRolesQuery,
+  useUpdatePortalRolesMutation,
 } from 'features/admin/appuserApiSlice'
-import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
+import { useFetchUsersRolesQuery } from 'features/admin/userApiSlice'
 import { closeOverlay, show } from 'features/control/overlay/actions'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
 
-export default function EditAppUserRoles({ id }: { id: string }) {
+export default function EditPortalRoles({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { appId } = useParams()
 
-  const [roles, setRoles] = useState<string[]>([])
-  const [updateUserRoles] = useUpdateUserRolesMutation()
-  const appDetails = useFetchAppDetailsQuery(appId ?? '').data
-  const appRoles = useFetchAppRolesQuery(appId ?? '').data
-  const { data, refetch } = useFetchUserDetailsQuery(id)
-  const assignedRoles =
-    data &&
-    data.assignedRoles.filter((assignedRole) => assignedRole.appId === appId)[0]
-      ?.roles
+  const appRoles = useFetchCoreoffersRolesQuery().data
+  const { data, refetch } = useFetchUsersRolesQuery(id)
+  const assignedRoles = data?.content[0].roles ?? []
+
+  const [allRoles, setAllRoles] = useState<AppRole[]>([])
+  const [selectedRoles, setSelectedRoles] = useState<string[]>([])
+  const [offerId, setOfferId] = useState<string>('')
+
+  const [updatePortalRoles] = useUpdatePortalRolesMutation()
 
   useEffect(() => {
-    setRoles(assignedRoles ?? [])
+    if (appRoles) {
+      setAllRoles(appRoles[0].roles)
+      setOfferId(appRoles[0].offerId)
+    }
+  }, [appRoles])
+
+  useEffect(() => {
+    setSelectedRoles(assignedRoles ?? [])
   }, [assignedRoles])
 
-  const selectRole = (role: string, select: boolean) => {
-    const isSelected = roles.includes(role)
+  useEffect(() => {
+    dispatch(setUserRoleResp(''))
+  }, [dispatch])
+
+  const handleSelectRole = (role: string, select: boolean) => {
+    const isSelected = selectedRoles.includes(role)
     if (!isSelected && select) {
-      setRoles([...roles, role])
+      setSelectedRoles([...selectedRoles, role])
     } else if (isSelected && !select) {
-      const oldRoles = [...roles]
+      const oldRoles = [...selectedRoles]
       oldRoles.splice(oldRoles.indexOf(role), 1)
-      setRoles([...oldRoles])
+      setSelectedRoles([...oldRoles])
     }
   }
 
-  const saveRoles = async () => {
-    if (!appId) return
-    const data: UserRoleRequest = {
-      appId: appId,
+  const handleSaveRoles = async () => {
+    if (!id || !offerId) return
+    const data: PortalRoleRequest = {
       companyUserId: id,
-      body: roles,
+      offerId: offerId,
+      roles: selectedRoles,
     }
     try {
-      await updateUserRoles(data).unwrap()
+      await updatePortalRoles(data).unwrap()
       refetch()
       dispatch(setUserRoleResp(SuccessErrorType.SUCCESS))
       dispatch(closeOverlay())
@@ -90,26 +99,19 @@ export default function EditAppUserRoles({ id }: { id: string }) {
     }
   }
 
-  const checkConfirmBtn = () => {
-    return (
-      assignedRoles &&
-      roles &&
-      assignedRoles.length === roles.length &&
-      assignedRoles.every((value) => roles.includes(value))
-    )
-  }
+  const checkConfirmButton = () =>
+    assignedRoles &&
+    selectedRoles &&
+    assignedRoles.length === selectedRoles.length &&
+    assignedRoles.every((value) => selectedRoles.includes(value))
 
   return (
     <>
       <div className="roles-heading">
         <DialogHeader
           {...{
-            title:
-              t('content.usermanagement.appUserDetails.editRoles.title') +
-              appDetails?.title,
-            intro: t(
-              'content.usermanagement.appUserDetails.editRoles.subtitle'
-            ),
+            title: t('content.account.editRoles.title'),
+            intro: t('content.account.editRoles.subtitle'),
             closeWithIcon: true,
             onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
           }}
@@ -118,14 +120,16 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       <DialogContent>
         <div className="roles-list">
           <ul>
-            {appRoles &&
-              roles &&
-              appRoles.map((role) => (
+            {allRoles &&
+              selectedRoles &&
+              allRoles.map((role) => (
                 <li key={role.roleId}>
                   <Checkbox
                     label={role.role}
-                    checked={roles.indexOf(role.role) !== -1}
-                    onChange={(e) => selectRole(role.role, e.target.checked)}
+                    checked={selectedRoles.indexOf(role.role) !== -1}
+                    onChange={(e) =>
+                      handleSelectRole(role.role, e.target.checked)
+                    }
                   />
                 </li>
               ))}
@@ -142,8 +146,8 @@ export default function EditAppUserRoles({ id }: { id: string }) {
         </Button>
         <Button
           variant="contained"
-          onClick={saveRoles}
-          disabled={checkConfirmBtn()}
+          onClick={handleSaveRoles}
+          disabled={checkConfirmButton()}
         >
           {t('global.actions.confirm')}
         </Button>
