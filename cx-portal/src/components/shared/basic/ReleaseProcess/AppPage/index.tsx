@@ -363,7 +363,7 @@ export default function AppPage() {
       leadPictureUri: statusData.leadPictureId,
       salesManagerId: statusData.salesManagerId,
       //static value to be changed once endpoint is adjusted
-      useCaseIds: ["c065a349-f649-47f8-94d5-1a504a855419"],
+      useCaseIds: ['c065a349-f649-47f8-94d5-1a504a855419'],
       descriptions: [
         {
           languageCode: 'de',
@@ -372,9 +372,9 @@ export default function AppPage() {
               (appStatus: any) => appStatus.languageCode === 'en'
             )[0]?.longDescription || '',
           shortDescription:
-          appStatusData?.descriptions?.filter(
-            (appStatus: any) => appStatus.languageCode === 'en'
-          )[0]?.shortDescription || '',
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.shortDescription || '',
         },
         {
           languageCode: 'en',
@@ -382,21 +382,22 @@ export default function AppPage() {
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
             )[0]?.longDescription || '',
-          shortDescription: appStatusData?.descriptions?.filter(
-            (appStatus: any) => appStatus.languageCode === 'en'
-          )[0]?.shortDescription || '',
+          shortDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.shortDescription || '',
         },
       ],
       supportedLanguageCodes: statusData.supportedLanguageCodes,
       price: statusData.price,
-      privacyPolicies:selectedPrivacyPolicies || [],
+      privacyPolicies: selectedPrivacyPolicies || [],
     }
 
     try {
       await updatePrivacyPolicy({ body: updateSaveData, appId: appId }).unwrap()
     } catch (error: any) {
       console.error(error)
-    }    
+    }
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
