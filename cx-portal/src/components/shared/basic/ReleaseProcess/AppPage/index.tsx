@@ -49,6 +49,7 @@ import {
   useFetchPrivacyPoliciesQuery,
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
+  useUpdatePrivacyPolicyMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
@@ -93,6 +94,7 @@ export default function AppPage() {
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
+  const [updatePrivacyPolicy] = useUpdatePrivacyPolicyMutation()
 
   const defaultValues = {
     longDescriptionEN:
@@ -354,6 +356,47 @@ export default function AppPage() {
       contactNumber: data.providerPhoneContact || '',
       privacyPolicies: selectedPrivacyPolicies || [],
     }
+
+    const updateSaveData = {
+      title: statusData.title,
+      provider: statusData.provider,
+      leadPictureUri: statusData.leadPictureId,
+      salesManagerId: statusData.salesManagerId,
+      //static value to be changed once endpoint is adjusted
+      useCaseIds: ["c065a349-f649-47f8-94d5-1a504a855419"],
+      descriptions: [
+        {
+          languageCode: 'de',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
+          shortDescription:
+          appStatusData?.descriptions?.filter(
+            (appStatus: any) => appStatus.languageCode === 'en'
+          )[0]?.shortDescription || '',
+        },
+        {
+          languageCode: 'en',
+          longDescription:
+            appStatusData?.descriptions?.filter(
+              (appStatus: any) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
+          shortDescription: appStatusData?.descriptions?.filter(
+            (appStatus: any) => appStatus.languageCode === 'en'
+          )[0]?.shortDescription || '',
+        },
+      ],
+      supportedLanguageCodes: statusData.supportedLanguageCodes,
+      price: statusData.price,
+      privacyPolicies:selectedPrivacyPolicies || [],
+    }
+
+    try {
+      await updatePrivacyPolicy({ body: updateSaveData, appId: appId }).unwrap()
+    } catch (error: any) {
+      console.error(error)
+    }    
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()

@@ -382,6 +382,16 @@ export const apiSlice = createApi({
     fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
       query: () => `/api/apps/appreleaseprocess/privacyPolicies`,
     }),
+    updatePrivacyPolicy: builder.mutation<any, any>({
+      query: (data) => {
+        const { body, appId } = data
+        return {
+          url: `/api/apps/appreleaseprocess/${appId}`,
+          method: 'PUT',
+          body,
+        }
+      },
+    }),
   }),
 })
 
@@ -413,4 +423,5 @@ export const {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   useFetchPrivacyPoliciesQuery,
+  useUpdatePrivacyPolicyMutation,
 } = apiSlice
