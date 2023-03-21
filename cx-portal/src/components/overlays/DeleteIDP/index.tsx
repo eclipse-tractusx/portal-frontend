@@ -30,6 +30,7 @@ import {
   useRemoveIDPMutation,
 } from 'features/admin/idpApiSlice'
 import DeleteObjectContent from 'components/shared/basic/DeleteObjectContent'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export const DeleteIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -41,7 +42,7 @@ export const DeleteIDP = ({ id }: { id: string }) => {
   const deleteIDPSuccess = () => {
     const notification: PageNotificationsProps = {
       open: true,
-      severity: 'success',
+      severity: SuccessErrorType.SUCCESS,
       title: 'content.idpManagement.notification.confirmDeleteTitle',
       description:
         'content.idpmanagement.notification.confirmDeleteDescription',

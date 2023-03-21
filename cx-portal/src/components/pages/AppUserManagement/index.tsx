@@ -38,6 +38,7 @@ import {
 import {
   currentUserRoleResp,
   setUserRoleResp,
+  SuccessErrorType,
   useFetchAppRolesQuery,
 } from 'features/admin/appuserApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
@@ -55,7 +56,10 @@ export default function AppUserManagement() {
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
-    setShowAlert(userRoleResponse === 'error' || userRoleResponse === 'success')
+    setShowAlert(
+      userRoleResponse === SuccessErrorType.ERROR ||
+        userRoleResponse === SuccessErrorType.SUCCESS
+    )
   }, [userRoleResponse])
 
   useEffect(() => {
@@ -102,7 +106,7 @@ export default function AppUserManagement() {
           </IconButton>
 
           <Typography mt={7} mb={2} variant="body2" align="center">
-            {userRoleResponse === 'success' ? (
+            {userRoleResponse === SuccessErrorType.SUCCESS ? (
               <CheckCircleOutlineIcon
                 color="success"
                 sx={{ width: 46, height: 46 }}
@@ -115,7 +119,7 @@ export default function AppUserManagement() {
             )}
           </Typography>
           <Typography mb={2} variant="h4" align="center">
-            {userRoleResponse === 'success'
+            {userRoleResponse === SuccessErrorType.SUCCESS
               ? t('content.usermanagement.appUserDetails.userRoleSuccessMsg')
               : t('content.usermanagement.appUserDetails.userRoleErrorMsg')}
           </Typography>

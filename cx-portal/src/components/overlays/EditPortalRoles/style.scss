@@ -18,23 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { OVERLAYS } from 'types/Constants'
-
-export const name = 'control/overlay'
-
-export type OverlayState = {
-  type: OVERLAYS
-  id: string
-  title?: string
-  status?: boolean
-  subTitle?: string
-  roles?: string[]
+.roles-heading > div > h2 {
+  font-size: 18px !important;
 }
 
-export const initialState = {
-  type: OVERLAYS.NONE,
-  id: '',
-  title: '',
-  displayName: '',
-  subTitle: '',
+.roles-heading > div > p {
+  font-weight: normal !important;
+}
+
+.roles-list {
+  display: flex;
+  justify-content: center;
+  max-width: 550px;
+  margin: 0 auto;
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    li {
+      width: 50%;
+    }
+  }
 }

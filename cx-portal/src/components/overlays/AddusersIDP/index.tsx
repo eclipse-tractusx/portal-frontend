@@ -49,6 +49,7 @@ import {
   storeForm,
 } from 'features/control/formSlice'
 import { useDropzone } from 'react-dropzone'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 enum IDPSetupState {
   NONE = 'NONE',
@@ -71,10 +72,12 @@ const IDPSetupNotification = ({ state }: { state: IDPSetupState }) => {
   return (
     <PageSnackbar
       autoClose
-      title={t(`state.${error ? 'error' : 'success'}`)}
+      title={t(
+        `state.${error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}`
+      )}
       description={t(`state.${state}`)}
       open={state !== IDPSetupState.NONE}
-      severity={error ? 'error' : 'success'}
+      severity={error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}
       showIcon
     />
   )
