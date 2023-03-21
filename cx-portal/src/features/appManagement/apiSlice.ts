@@ -194,6 +194,10 @@ export enum DocumentTypeId {
   CONFORMITY_APPROVAL_BUSINESS_APPS = 'CONFORMITY_APPROVAL_BUSINESS_APPS',
 }
 
+export interface PrivacyPolicyType {
+  privacyPolicies: string[] | []
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -384,6 +388,9 @@ export const apiSlice = createApi({
           : { error: response.error }
       },
     }),
+    fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
+      query: () => `/api/apps/appreleaseprocess/privacyPolicies`,
+    }),
   }),
 })
 
@@ -415,4 +422,5 @@ export const {
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
+  useFetchPrivacyPoliciesQuery,
 } = apiSlice
