@@ -37,6 +37,7 @@ import {
   setErrorType,
   setSuccessType,
 } from 'features/adminBoard/slice'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
   const dispatch = useDispatch()
@@ -71,7 +72,9 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
       <PageSnackbar
         open={isDecisionSuccess || isDecisionError}
         onCloseNotification={onAlertClose}
-        severity={isDecisionSuccess ? 'success' : 'error'}
+        severity={
+          isDecisionSuccess ? SuccessErrorType.SUCCESS : SuccessErrorType.ERROR
+        }
         description={
           isDecisionSuccess
             ? t('content.adminBoard.successMsg')

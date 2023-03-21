@@ -45,6 +45,7 @@ import { show } from 'features/control/overlay/actions'
 import { useLocation } from 'react-router-dom'
 import './AppOverview.scss'
 import { AppOverviewList } from './AppOverviewList'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -261,7 +262,11 @@ export default function AppOverview() {
         <PageSnackbar
           open={state !== ''}
           onCloseNotification={() => {}}
-          severity={state === 'deactivate-success' ? 'success' : 'error'}
+          severity={
+            state === 'deactivate-success'
+              ? SuccessErrorType.SUCCESS
+              : SuccessErrorType.ERROR
+          }
           description={
             state === 'deactivate-success'
               ? t('content.deactivate.successMsg')

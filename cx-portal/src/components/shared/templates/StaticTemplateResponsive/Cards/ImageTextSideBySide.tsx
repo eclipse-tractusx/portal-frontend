@@ -18,30 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { Typography } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-
-export default function TextVideoSideBySide({
+import '../StaticTemplate.scss'
+import RenderImage from './RenderImage'
+export default function ImageTextSideBySide({
   provider,
+  baseUrl,
 }: {
   provider: ProviderProps
+  baseUrl: string
 }) {
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <iframe
-          width="482"
-          height="331"
-          title="Video"
-          style={{
-            borderRadius: '16px',
-            border: '0px',
-          }}
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
-      }
-    />
+    <div className={'imageVideoTextSideBySide'}>
+      <RenderImage url={baseUrl + provider.imagePath || ''} />
+      <div>
+        <Typography variant="h2">{provider.title}</Typography>
+        <Typography className={'providerDescription'} variant="body1">
+          {provider.description}
+        </Typography>
+      </div>
+    </div>
   )
 }

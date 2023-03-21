@@ -40,6 +40,7 @@ import {
   setUserRoleResp,
   useUpdateUserRolesMutation,
   UserRoleRequest,
+  SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 
@@ -65,9 +66,9 @@ export default function AddAppUserRoles() {
       dispatch(setRolesToAdd([]))
       try {
         await updateUserRoles(data).unwrap()
-        dispatch(setUserRoleResp('success'))
+        dispatch(setUserRoleResp(SuccessErrorType.SUCCESS))
       } catch (err) {
-        dispatch(setUserRoleResp('error'))
+        dispatch(setUserRoleResp(SuccessErrorType.ERROR))
       }
       dispatch(closeOverlay())
     })

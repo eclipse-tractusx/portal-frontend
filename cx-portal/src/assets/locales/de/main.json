@@ -785,6 +785,12 @@
         "title": "Applikation Berechtigungen",
         "appName": "App Name",
         "appProvider": "App Anbieter"
+      },
+      "editRoles": {
+        "title": "Manage User Assigned Portal Role(s)",
+        "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
+        "successDescription": "Portal Role(s) successfully updated.",
+        "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
       }
     },
     "footer": {
@@ -1309,6 +1315,10 @@
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
       "uploadProgess": "Uploaded % of % files"
+    },
+    "userRoles": {
+      "title": "Assigned Catena-X Portal Roles",
+      "changeRoleBtn": "Change Portal Role"
     }
   },
   "global": {

@@ -18,39 +18,39 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../StaticTypes'
-import CardWithText from './CardWithText'
 import { Box } from '@mui/material'
+import { Typography } from 'cx-portal-shared-components'
+import { ProviderProps } from '../StaticTypes'
+import '../StaticTemplate.scss'
 
-export default function CardWithoutImage({
-  detail,
-  grid = 3,
+export default function TextCenterAlignedBody2({
+  provider,
 }: {
-  detail: CardDetailsProps
-  grid: number
+  provider: ProviderProps
 }) {
-  const cardContainer = {
-    borderRadius: '16px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    marginBottom: '96px',
-    maxWidth: '33%',
-  }
   return (
     <Box
-      key={detail.id}
+      className={'multiTextContainer'}
       sx={{
-        ...cardContainer,
-      }}
-      style={{
-        backgroundColor: detail.backgroundColor,
-        border: '1px solid rgba(15, 113, 203, 1)',
-        padding: '30px',
-        width: `${100 / grid}%`,
+        textAlign: provider.align || 'left',
+        backgroundColor: provider.backgroundColor || '#ffffff',
       }}
     >
-      <CardWithText card={detail} isImage={false} />
+      <Box>
+        {provider.title && (
+          <Typography variant="h2">{provider.title}</Typography>
+        )}
+        {provider.subTitles &&
+          provider.subTitles.map((subtitle) => (
+            <Typography
+              className={'description'}
+              key={subtitle}
+              variant="body2"
+            >
+              {subtitle}
+            </Typography>
+          ))}
+      </Box>
     </Box>
   )
 }

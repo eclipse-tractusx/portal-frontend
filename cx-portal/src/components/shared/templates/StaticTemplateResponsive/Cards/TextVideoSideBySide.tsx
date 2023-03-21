@@ -18,55 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { Typography } from '../../Typography'
 import { ProviderProps } from '../StaticTypes'
+import ImageVideoWrapper from './ImageVideoWrapper'
+import '../StaticTemplate.scss'
 
-export default function ImageTextSideBySide({
+export default function TextVideoSideBySide({
   provider,
-  baseUrl,
 }: {
   provider: ProviderProps
-  baseUrl: string
 }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0px 20px 0px 20px',
-        padding: '90px 0px',
-      }}
-    >
-      <ImageItem
-        url={baseUrl + provider.imagePath || ''}
-        text={''}
-        size="custom"
-        height="472px"
-        width="100%"
-        hover={true}
-        borderRadius={true}
-        shadow={false}
-        modalWidth="1100"
-      />
-      <Box
-        sx={{
-          padding: '20px',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography
-          sx={{
-            paddingTop: '34px',
-          }}
-          variant="body1"
-        >
-          {provider.description}
-        </Typography>
-      </Box>
-    </Box>
+    <ImageVideoWrapper
+      provider={provider}
+      children={
+        <iframe
+          className={'video'}
+          title="Video"
+          src={provider.videoUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      }
+    />
   )
 }

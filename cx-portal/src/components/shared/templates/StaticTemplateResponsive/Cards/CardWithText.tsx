@@ -18,33 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ImageItem } from '../../ImageGallery/ImageItem'
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
+import { CardDetailsProps } from '../StaticTypes'
+import { Typography } from 'cx-portal-shared-components'
+import '../StaticTemplate.scss'
 
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
+export default function CardWithText({
+  card,
+  isImage,
 }: {
-  provider: ProviderProps
-  baseUrl: string
+  card: CardDetailsProps
+  isImage: boolean
 }) {
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <ImageItem
-          url={baseUrl + provider.imagePath || ''}
-          text={''}
-          size="custom"
-          height="472px"
-          width="100%"
-          hover={true}
-          borderRadius={true}
-          shadow={false}
-          modalWidth="1100"
-        />
-      }
-    />
+    <div className={'cardWithTextContainer'}>
+      <div>
+        <Typography className={'title'} variant="h4">
+          {card.title}
+        </Typography>
+        <Typography className={'description'} variant="body2">
+          {card.description}
+        </Typography>
+      </div>
+      {card.readMore ? (
+        <a
+          className={'readMoreStyle'}
+          style={{
+            fontSize: isImage ? '16px' : '14px',
+          }}
+          href={card.readMore}
+        >
+          {card.readMoreTitle}
+        </a>
+      ) : (
+        <div className={'readMoreStyle'} />
+      )}
+    </div>
   )
 }

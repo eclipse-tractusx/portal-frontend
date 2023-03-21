@@ -25,10 +25,10 @@ import TextImageCenterAligned from './Cards/TextImageCenterAligned'
 import TextCenterAligned from './Cards/TextCenterAligned'
 import CardGrid from './Cards/CardGrid'
 import LinkButtonGrid from './Cards/LinkButtonGrid'
-import { Box } from '@mui/material'
 import VideoTextSideBySide from './Cards/VideoTextSideBySide'
 import ImageTextCenterAligned from './Cards/ImageTextCenterAligned'
 import TextCenterAlignedBody2 from './Cards/TextCenterAlignedBody2'
+import './StaticTemplate.scss'
 
 const TemplateConfig = ({
   provider,
@@ -110,7 +110,7 @@ const TemplateConfig = ({
   }
 }
 
-export const StaticTemplate = ({
+export const StaticTemplateResponsive = ({
   sectionInfo,
   baseUrl,
 }: {
@@ -122,25 +122,18 @@ export const StaticTemplate = ({
       {sectionInfo &&
         sectionInfo.map((provider: ProviderProps) => {
           return (
-            <Box
-              sx={{
-                padding: '0 180px',
-                margin: 'auto',
-                overflow: 'hidden',
+            <div
+              className="sectionContainer"
+              style={{
                 backgroundColor: provider.backgroundColor,
               }}
               key={provider.id}
               id={`${provider.id}`}
             >
-              <Box
-                sx={{
-                  maxWidth: '1200px',
-                  margin: 'auto',
-                }}
-              >
+              <div className="sectionSubContainer">
                 <TemplateConfig provider={provider} baseUrl={baseUrl} />
-              </Box>
-            </Box>
+              </div>
+            </div>
           )
         })}
     </div>

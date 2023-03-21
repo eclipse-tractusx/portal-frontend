@@ -92,7 +92,6 @@ export { TransitionChip } from './basic/Chip/TransitionChip'
 export { Tooltips } from './basic/ToolTips'
 export { SortOption } from './basic/SortOption'
 export { ParentSubNavigation } from './basic/SubNavigation/ParentSubNavigation'
-export { StaticTemplate } from './basic/StaticTemplate'
 
 export type { TableProps } from './basic/Table'
 export type {
