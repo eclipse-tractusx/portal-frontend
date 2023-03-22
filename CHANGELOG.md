@@ -19,6 +19,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * Application Request
       * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place 
+   * App Release Process
+      * validation fix for long description
+
 * User Account
    * Add portal roles
    * Add Overlay to update users portal roles
