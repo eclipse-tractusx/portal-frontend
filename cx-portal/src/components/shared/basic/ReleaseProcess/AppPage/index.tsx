@@ -451,10 +451,11 @@ export default function AppPage() {
                   }`,
                   maxLength: `${t(
                     'content.apprelease.appReleaseForm.maximum'
-                  )} 255 ${t(
+                  )} ${longDescriptionMaxLength} ${t(
                     'content.apprelease.appReleaseForm.charactersAllowed'
                   )}`,
                 }}
+                maxLength={longDescriptionMaxLength}
               />
             </div>
           ))}
