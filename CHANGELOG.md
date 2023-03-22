@@ -25,6 +25,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add Overlay to update users portal roles
    * App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
 * Use Case & Company Roles - Resopnsive static page
+* BugFix
+   * AppMarketplaceDetail
+      * Missing documents
 
 ### Change
 
