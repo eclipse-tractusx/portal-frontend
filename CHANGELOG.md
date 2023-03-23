@@ -16,6 +16,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Switch Endpoint
    * Add Roles section
    * Privacy Policy
+   * Remove unnecessary sections and UI changes
 * BugFix
    * Application Request
       * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place 
@@ -29,6 +30,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add Overlay to update users portal roles
    * App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
 * Use Case & Company Roles - Resopnsive static page
+* BugFix
+   * AppMarketplaceDetail
+      * Missing documents
 
 ### Change
 
