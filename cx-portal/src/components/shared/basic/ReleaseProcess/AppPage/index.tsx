@@ -155,13 +155,11 @@ export default function AppPage() {
 
   useEffect(() => {
     const images = defaultImages?.map(
-      (item: { documentId: string; documentName: string }) => {
-        return {
-          id: item.documentId,
-          name: item.documentName,
-          status: UploadStatus.UPLOAD_SUCCESS,
-        }
-      }
+      (item: { documentId: string; documentName: string }) => ({
+        id: item.documentId,
+        name: item.documentName,
+        status: UploadStatus.UPLOAD_SUCCESS,
+      })
     )
 
     if (images.length > 0) {
