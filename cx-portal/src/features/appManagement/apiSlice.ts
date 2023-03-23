@@ -334,7 +334,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceStatus: builder.query<ServiceStatusDataState, string>({
-      query: (id) => `/api/services/servicerelease/${id}/serviceStatus`
+      query: (id) => `/api/services/servicerelease/${id}/serviceStatus`,
     }),
     fetchServiceTypeIds: builder.query<ServiceTypeIdsType, void>({
       query: () => `/api/services/servicerelease/serviceTypes`,
