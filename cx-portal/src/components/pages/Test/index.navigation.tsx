@@ -18,14 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './index.form'
+import { Logo, MainNavigation } from 'cx-portal-shared-components'
+import { useNavigate } from 'react-router-dom'
 
-export default function Test() {
+function NavigationTest() {
+  const navigate = useNavigate()
+
+  const createItem = (target: string, title: string) => ({
+    title,
+    to: target,
+    onClick: () => navigate(target),
+  })
+
   return (
-    <main>
-      <section>
-        <FormTest />
-      </section>
-    </main>
+    <MainNavigation
+      items={[
+        createItem('/companyA', 'Company A'),
+        createItem('/companyB', 'Company B'),
+      ]}
+    >
+      <Logo />
+    </MainNavigation>
   )
 }
+
+export default NavigationTest

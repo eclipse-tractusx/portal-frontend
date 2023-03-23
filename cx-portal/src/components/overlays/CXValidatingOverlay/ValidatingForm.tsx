@@ -20,7 +20,7 @@
 
 import { Input } from 'cx-portal-shared-components'
 import debounce from 'lodash.debounce'
-import { useState, useMemo, useCallback } from 'react'
+import { useEffect, useState, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IHashMap } from 'types/MainTypes'
 import Box from '@mui/material/Box'
@@ -56,27 +56,34 @@ export const ValidatingInput = ({
 }: ValidatingInputProps) => {
   const [data, setData] = useState<string>(value)
   const [valid, setValid] = useState<boolean>(validate(value))
-  const [show, setShow] = useState<number>(0)
 
   const debouncedValidation = useMemo(
     () =>
-      debounce((expr: string, counter: number) => {
+      debounce((expr: string) => {
+        console.log('debounce')
         const isValid = validate(expr)
         setValid(isValid)
-        setShow(counter)
         const validValue = isValid ? expr : undefined
         onValid(name, validValue)
       }, debounceTime),
-    [onValid, setValid, validate, setShow, name, debounceTime]
+    [onValid, setValid, validate, name, debounceTime]
   )
 
   const doValidate = useCallback(
     (expr: string) => {
+      console.log('doValidate')
       setData(expr)
-      debouncedValidation(expr, show + 1)
+      debouncedValidation(expr)
     },
-    [debouncedValidation, setData, show]
+    [debouncedValidation, setData]
   )
+
+  useEffect(() => {
+    console.log('useEffect')
+    if (value) {
+      doValidate(value)
+    }
+  }, [value, doValidate])
 
   return (
     <Input
@@ -88,7 +95,7 @@ export const ValidatingInput = ({
       tooltipMessage={tooltipMessage}
       value={data}
       type={type}
-      error={!valid && show > 0}
+      error={!valid && data !== ''}
       autoFocus={autofocus}
       onChange={(e) => doValidate(e.currentTarget.value)}
       onBlur={(e) => doValidate(e.currentTarget.value)}

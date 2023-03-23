@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { useState } from 'react'
-import { IdentityProviderUser } from 'features/admin/idpApiSlice'
+import {
+  IdentityProviderUser,
+  useFetchIDPUserQuery,
+} from 'features/admin/idpApiSlice'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
@@ -31,7 +34,6 @@ const EnableIDPForm = ({
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
   const { t } = useTranslation('idp')
-
   return (
     <>
       <div style={{ margin: '20px 0' }}>
@@ -47,12 +49,17 @@ const EnableIDPForm = ({
 }
 
 export const EnableIDPContent = ({
+  identityProviderId,
+  companyUserId,
   onValid,
 }: {
+  identityProviderId: string
+  companyUserId: string
   onValid: (form: IdentityProviderUser | undefined) => void
 }) => {
+  const { data } = useFetchIDPUserQuery({ identityProviderId, companyUserId })
   const [formData, setFormData] = useState<IHashMap<string>>({})
-
+  console.log(data)
   const checkData = (key: string, value: string | undefined): boolean => {
     if (!value) {
       onValid(undefined)
