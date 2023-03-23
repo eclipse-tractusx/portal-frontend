@@ -27,6 +27,7 @@ import {
   SelectList,
   UploadFileStatus,
   UploadStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
@@ -44,6 +45,7 @@ import {
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
   DocumentTypeId,
+  useDeleteAppReleaseDocumentMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -87,6 +89,7 @@ export default function AppMarketCard() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
 
   const useCasesListData = useFetchUseCasesQuery().data
   const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
@@ -96,6 +99,12 @@ export default function AppMarketCard() {
     () => appLanguagesListData || [],
     [appLanguagesListData]
   )
+
+  const [deleteAppReleaseDocument, deleteResponse] =
+    useDeleteAppReleaseDocumentMutation()
+  useEffect(() => {
+    deleteResponse.isSuccess && setDeleteSuccess(true)
+  }, [deleteResponse])
 
   const [addCreateApp] = useAddCreateAppMutation()
   const [saveApp] = useSaveAppMutation()
@@ -245,6 +254,7 @@ export default function AppMarketCard() {
 
       const setFileStatus = (status: UploadFileStatus) =>
         setValue('uploadImage.leadPictureUri', {
+          id: documentId,
           name: documentName,
           status,
         } as any)
@@ -295,6 +305,29 @@ export default function AppMarketCard() {
     buttonLabel === 'save' && setAppCardSnackbar(true)
   }
 
+  const handleUploadDocument = (
+    appId: string,
+    buttonLabel: string,
+    uploadImageValue: DropzoneFile
+  ) => {
+    const setFileStatus = (status: UploadFileStatus) =>
+      setValue('uploadImage.leadPictureUri', {
+        id: uploadImageValue.id,
+        name: uploadImageValue.name,
+        size: uploadImageValue.size,
+        status,
+      } as any)
+
+    setFileStatus(UploadStatus.UPLOADING)
+    uploadDocumentApi(appId, DocumentTypeId.APP_LEADIMAGE, uploadImageValue)
+      .then(() => {
+        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+      })
+      .catch(() => {
+        setFileStatus(UploadStatus.UPLOAD_ERROR)
+      })
+  }
+
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
     const saveData = {
       title: data.title,
@@ -340,6 +373,8 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
+          !uploadImageValue.id &&
+            handleUploadDocument(appId, buttonLabel, uploadImageValue)
           dispatch(setAppId(appId))
           onSave(buttonLabel)
           callDispatch()
@@ -352,28 +387,8 @@ export default function AppMarketCard() {
         .unwrap()
         .then((result) => {
           if (isString(result)) {
-            const setFileStatus = (status: UploadFileStatus) =>
-              setValue('uploadImage.leadPictureUri', {
-                name: uploadImageValue.name,
-                size: uploadImageValue.size,
-                status,
-              } as any)
-
-            setFileStatus(UploadStatus.UPLOADING)
-
-            uploadDocumentApi(
-              result,
-              DocumentTypeId.APP_LEADIMAGE,
-              uploadImageValue
-            )
-              .then(() => {
-                setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-              })
-              .catch(() => {
-                setFileStatus(UploadStatus.UPLOAD_ERROR)
-              })
-
-            dispatch(setAppId(result))
+            handleUploadDocument(result, buttonLabel, uploadImageValue)
+            dispatch(setAppId(appId))
             onSave(buttonLabel)
             callDispatch()
           }
@@ -718,6 +733,10 @@ export default function AppMarketCard() {
               requiredText={t(
                 'content.apprelease.appReleaseForm.fileUploadIsMandatory'
               )}
+              handleDelete={(documentId: string) => {
+                setCardImage(LogoGrayData)
+                documentId && deleteAppReleaseDocument(documentId)
+              }}
             />
           </form>
         </Grid>
@@ -740,6 +759,15 @@ export default function AppMarketCard() {
           onSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}
+      />
+      <PageSnackbar
+        autoClose
+        description={t(
+          'content.apprelease.contractAndConsent.documentDeleteSuccess'
+        )}
+        open={deleteSuccess}
+        severity={'success'}
+        showIcon
       />
     </div>
   )

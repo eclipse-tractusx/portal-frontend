@@ -913,7 +913,8 @@
         "headerTitle": "Consent & Contract",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "allAgreementsMandatory": "All agreements are mandatory",
-        "uploadImageConformity": "Conformity App Certificate"
+        "uploadImageConformity": "Conformity App Certificate",
+        "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -1367,7 +1368,9 @@
       "submit": "Einreichen",
       "no": "No",
       "yes": "Yes",
-      "next": "Next"
+      "next": "Next",
+      "success": "Success",
+      "error": "Error"
     },
     "state": {
       "enabled": "aktiv",
