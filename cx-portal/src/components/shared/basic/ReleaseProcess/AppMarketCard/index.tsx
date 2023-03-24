@@ -388,7 +388,7 @@ export default function AppMarketCard() {
         .then((result) => {
           if (isString(result)) {
             handleUploadDocument(result, buttonLabel, uploadImageValue)
-            dispatch(setAppId(appId))
+            dispatch(setAppId(result))
             onSave(buttonLabel)
             callDispatch()
           }
