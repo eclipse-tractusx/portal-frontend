@@ -49,9 +49,9 @@ import {
   useDeleteAppReleaseDocumentMutation,
   useFetchAppStatusQuery,
   useFetchPrivacyPoliciesQuery,
+  useSaveAppMutation,
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
-  useUpdatePrivacyPolicyMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
@@ -60,6 +60,7 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import { UseCaseType } from 'features/appManagement/types'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -98,7 +99,7 @@ export default function AppPage() {
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
-  const [updatePrivacyPolicy] = useUpdatePrivacyPolicyMutation()
+  const [saveApp] = useSaveAppMutation()
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -375,7 +376,6 @@ export default function AppPage() {
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
-      privacyPolicies: selectedPrivacyPolicies || [],
     }
 
     const updateSaveData = {
@@ -383,8 +383,7 @@ export default function AppPage() {
       provider: statusData.provider,
       leadPictureUri: statusData.leadPictureId,
       salesManagerId: statusData.salesManagerId,
-      //static value to be changed once endpoint is adjusted
-      useCaseIds: ['c065a349-f649-47f8-94d5-1a504a855419'],
+      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
       descriptions: [
         {
           languageCode: 'de',
@@ -415,7 +414,7 @@ export default function AppPage() {
     }
 
     try {
-      await updatePrivacyPolicy({ body: updateSaveData, appId: appId }).unwrap()
+      await saveApp({ appId: appId, body: updateSaveData }).unwrap()
     } catch (error: any) {
       console.error(error)
     }

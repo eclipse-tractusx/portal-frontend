@@ -81,6 +81,7 @@ type FormDataType = {
     alt?: string
   }
   salesManagerId: string | null
+  privacyPolicies: string[] | []
 }
 
 export default function AppMarketCard() {
@@ -151,6 +152,7 @@ export default function AppMarketCard() {
       leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
       alt: appStatusData?.leadPictureUri || '',
     },
+    privacyPolicies: appStatusData?.privacyPolicies || [],
   }
 
   const {
@@ -337,7 +339,11 @@ export default function AppMarketCard() {
         Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
         Object.values(data.uploadImage.leadPictureUri)[0],
       salesManagerId: salesManagerId,
-      useCaseIds: data.useCaseCategory,
+      useCaseIds: data.useCaseCategory.some((value) => {
+        return typeof value == 'object'
+      })
+        ? data.useCaseCategory?.map((item: any) => item.id)
+        : data.useCaseCategory,
       descriptions: [
         {
           languageCode: 'de',
@@ -358,7 +364,7 @@ export default function AppMarketCard() {
       ],
       supportedLanguageCodes: data.appLanguage,
       price: data.price,
-      privacyPolicies: [],
+      privacyPolicies: data.privacyPolicies,
     }
 
     const uploadImageValue = getValues().uploadImage
