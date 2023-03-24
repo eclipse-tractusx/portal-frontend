@@ -24,7 +24,7 @@ import {
   PageHeader,
   Typography,
 } from 'cx-portal-shared-components'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import ReleaseStepper, {
   StepType,
@@ -40,6 +40,8 @@ import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'
 import OfferPage from '../OfferPage'
 import OfferContractAndConsent from '../OfferContractAndConsent'
+import { serviceReleaseActiveStep } from 'features/serviceManagement/slice'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
@@ -69,30 +71,31 @@ export default function ReleaseProcessWrapper({
   onAppsOverviewClick,
 }: ReleaseProcessWrapperType) {
   const [showSubmitPage, setShowSubmitPage] = useState(false)
-  let activePage: number = useSelector(currentActiveStep)
-  useEffect(() => {
-    activeStep()
-    window.scrollTo(0, 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage])
+  const activeStep: number = useSelector(currentActiveStep)
+  const serviceActiveStep: number = useSelector(serviceReleaseActiveStep)
 
-  const activeStep = () => {
-    if (processType === 'apprelease') {
-      if (activePage === 1) return <AppMarketCard />
-      else if (activePage === 2) return <AppPage />
-      else if (activePage === 3) return <ContractAndConsent />
-      else if (activePage === 4) return <TechnicalIntegration />
-      else if (activePage === 5) return <BetaTest />
-      else if (activePage === 6)
+  const activePage = useCallback(() => {
+    if (processType === ReleaseProcessTypes.APP_RELEASE) {
+      if (activeStep === 1) return <AppMarketCard />
+      else if (activeStep === 2) return <AppPage />
+      else if (activeStep === 3) return <ContractAndConsent />
+      else if (activeStep === 4) return <TechnicalIntegration />
+      else if (activeStep === 5) return <BetaTest />
+      else if (activeStep === 6)
         return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
     } else {
-      if (activePage === 1) return <OfferCard />
-      else if (activePage === 2) return <OfferPage />
-      else if (activePage === 3) return <OfferContractAndConsent />
-      else if (activePage === 4)
+      if (serviceActiveStep === 1) return <OfferCard />
+      else if (serviceActiveStep === 2) return <OfferPage />
+      else if (serviceActiveStep === 3) return <OfferContractAndConsent />
+      else if (serviceActiveStep === 4)
         return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
     }
-  }
+  }, [activeStep, serviceActiveStep, processType])
+
+  useEffect(() => {
+    activePage()
+    window.scrollTo(0, 0)
+  }, [activePage])
 
   return (
     <div className="app-release-process-form">
@@ -125,11 +128,15 @@ export default function ReleaseProcessWrapper({
           <div className="create-app-section">
             <div className="container">
               <ReleaseStepper
-                activePage={activePage}
+                activePage={
+                  processType === ReleaseProcessTypes.APP_RELEASE
+                    ? activeStep
+                    : serviceActiveStep
+                }
                 stepsList={stepsList}
                 numberOfSteps={numberOfSteps}
               />
-              {activeStep()}
+              {activePage()}
             </div>
           </div>
         </>

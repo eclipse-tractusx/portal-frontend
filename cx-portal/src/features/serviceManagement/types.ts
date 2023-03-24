@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -20,49 +20,30 @@
 
 import { ConsentStatusEnum } from './apiSlice'
 
-export const name = 'admin/appManagement'
+export const name = 'admin/serviceManagement'
 
-export type SearchInputState = {
-  open: boolean
-  text: string
-}
-
-export type LanguageStatusType = {
-  languageCode: string
-}
-
-export interface AppStatusDataState {
+export interface ServiceStatusDataState {
+  id: string
   title: string
-  provider?: string
-  leadPictureId?: string
-  providerName?: string
-  useCase?: string[]
+  providerUri: string
+  contactEmail: string
   descriptions: {
     languageCode: string
     longDescription: string
     shortDescription: string
   }[]
-  agreements?: {
-    id: string
-    name: string
-    consentStatus: ConsentStatusEnum
-  }[]
-  supportedLanguageCodes?: string[]
   price: string
-  images?: string[] | []
-  providerUri: string
-  contactEmail: string
-  contactNumber?: string
+  offerSubscriptionDetailData: {
+    offerSubscriptionId: string
+    offerSubscriptionStatus: string
+  }[]
+  serviceTypeIds: string[]
   documents: any
-  salesManagerId?: string | null
-  privacyPolicies?: string[] | []
   leadPictureUri?: string
-}
-
-export interface DescriptionState {
-  languageCode: string
-  longDescription: string
-  shortDescription: string
+  leadPictureId?: string
+  images?: string[] | []
+  salesManagerId?: string | null
+  privacyPolicies?: []
 }
 
 export interface AgreementState {
@@ -71,37 +52,28 @@ export interface AgreementState {
   consentStatus: ConsentStatusEnum
 }
 
-export interface AppManagementState {
-  searchInput: SearchInputState
-  currentActiveStep: number
-  appId: string
-  appStatusData: AppStatusDataState
+export interface ServiceManagementState {
+  serviceReleaseActiveStep: number
+  serviceId: string
+  serviceStatusData: ServiceStatusDataState
 }
 
-export const initialState: AppManagementState = {
-  searchInput: {
-    open: false,
-    text: '',
-  },
-  currentActiveStep: 1,
-  appId: '',
-  appStatusData: {
+export const initialState: ServiceManagementState = {
+  serviceReleaseActiveStep: 1,
+  serviceId: '',
+  serviceStatusData: {
+    id: '',
     title: '',
-    provider: '',
-    leadPictureId: '',
-    providerName: '',
-    useCase: [],
-    descriptions: [],
-    agreements: [],
-    supportedLanguageCodes: [],
-    price: '',
-    images: [],
     providerUri: '',
     contactEmail: '',
-    contactNumber: '',
+    descriptions: [],
+    price: '',
+    offerSubscriptionDetailData: [],
+    serviceTypeIds: [],
     documents: {},
-    salesManagerId: null,
-    privacyPolicies: [],
     leadPictureUri: '',
+    leadPictureId: '',
+    images: [],
+    salesManagerId: null,
   },
 }

@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -19,12 +19,11 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import { name, SearchInputState, AppStatusDataState } from './types'
+import { name, ServiceStatusDataState } from './types'
 
-const setSearchInput = createAction<SearchInputState>(`${name}/setSearchOpen`)
-const setAppId = createAction<string>(`${name}/setApplicationId`)
-const setAppStatus = createAction<AppStatusDataState>(
-  `${name}/setAppStatusData`
+const setServiceId = createAction<string>(`${name}/setServiceId`)
+const setServiceStatus = createAction<ServiceStatusDataState>(
+  `${name}/setServiceStatus`
 )
 
-export { setSearchInput, setAppId, setAppStatus }
+export { setServiceStatus, setServiceId }

@@ -41,12 +41,15 @@ import {
 } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
-import {
-  AppStatusDataState,
-  ServiceStatusDataState,
-} from 'features/appManagement/types'
+import { AppStatusDataState } from 'features/appManagement/types'
 import { Grid } from '@mui/material'
 import { ErrorMessage } from '@hookform/error-message'
+import { ServiceStatusDataState } from 'features/serviceManagement/types'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import {
+  serviceReleaseStepIncrement,
+  serviceReleaseStepDecrement,
+} from 'features/serviceManagement/slice'
 
 type AgreementDataType = {
   agreementId: string
@@ -56,6 +59,7 @@ type AgreementDataType = {
 }[]
 
 type CommonConsentType = {
+  type: string
   stepperTitle: string
   stepperDescription: string
   checkBoxMandatoryText: string
@@ -84,6 +88,7 @@ type CommonConsentType = {
 }
 
 export default function CommonContractAndConsent({
+  type,
   stepperTitle,
   stepperDescription,
   checkBoxMandatoryText,
@@ -293,7 +298,14 @@ export default function CommonContractAndConsent({
       await updateAgreementConsents(updateData)
         .unwrap()
         .then(() => {
-          buttonLabel === 'saveAndProceed' && dispatch(increment())
+          if (
+            buttonLabel === 'saveAndProceed' &&
+            type === ReleaseProcessTypes.APP_RELEASE
+          ) {
+            dispatch(increment())
+          } else {
+            dispatch(serviceReleaseStepIncrement())
+          }
           buttonLabel === 'save' && setContractSnackbar(true)
         })
         .catch(() => {
@@ -303,7 +315,11 @@ export default function CommonContractAndConsent({
 
   const onBackIconClick = () => {
     if (fetchStatusData) dispatch(setAppStatus(fetchStatusData))
-    dispatch(decrement())
+    if (type === ReleaseProcessTypes.APP_RELEASE) {
+      dispatch(decrement())
+    } else {
+      dispatch(serviceReleaseStepDecrement())
+    }
   }
 
   const handleDownload = async (documentName: string, documentId: string) => {
@@ -389,6 +405,7 @@ export default function CommonContractAndConsent({
           note={imageFieldNote}
           requiredText={imageFieldRequiredText}
           handleDownload={handleDownload}
+          isRequired={false}
         />
       </form>
       <SnackbarNotificationWithButtons
