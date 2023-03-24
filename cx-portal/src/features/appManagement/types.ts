@@ -36,7 +36,10 @@ export interface AppStatusDataState {
   provider?: string
   leadPictureId?: string
   providerName?: string
-  useCase?: string[]
+  useCase?: {
+    id: string
+    label: string
+  }[]
   descriptions: {
     languageCode: string
     longDescription: string

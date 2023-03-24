@@ -199,7 +199,10 @@ export default function ValidateAndPublish({
   const getAppData = (item: string) => {
     if (item === 'language')
       return statusData?.supportedLanguageCodes.join(', ')
-    else if (item === 'useCase') return statusData?.useCase.join(', ')
+    else if (item === 'useCase')
+      return statusData?.useCase
+        ?.map((item: { id: string; label: string }) => item.label)
+        .join(', ')
     else if (item === 'price') return statusData?.price
   }
 
