@@ -60,6 +60,7 @@ import {
   setServiceId,
   setServiceStatus,
 } from 'features/serviceManagement/actions'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   title: string
@@ -195,9 +196,9 @@ export default function OfferCard() {
       .unwrap()
       .then(() => {
         dispatch(setServiceId(serviceId))
-        buttonLabel === 'saveAndProceed' &&
+        buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
           dispatch(serviceReleaseStepIncrement())
-        buttonLabel === 'save' && setServiceCardSnackbar(true)
+        buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
         if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
       })
       .catch(() => {
@@ -218,9 +219,9 @@ export default function OfferCard() {
         if (isString(result)) {
           //TO-DO Image file upload
           dispatch(setServiceId(result))
-          buttonLabel === 'saveAndProceed' &&
+          buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
-          buttonLabel === 'save' && setServiceCardSnackbar(true)
+          buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
         }
       })
       .catch(() => {
@@ -429,9 +430,11 @@ export default function OfferCard() {
         setPageNotification={() => setServiceCardNotification(false)}
         setPageSnackbar={() => setServiceCardSnackbar(false)}
         onBackIconClick={() => navigate('/home')}
-        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data: any) =>
+          onSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data: any) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />

@@ -50,6 +50,7 @@ import ConnectorFormInputFieldShortAndLongDescription from '../components/Connec
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -218,9 +219,9 @@ export default function OfferPage() {
         id: serviceId,
         body: apiBody,
       }).unwrap()
-      buttonLabel === 'saveAndProceed' &&
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
         dispatch(serviceReleaseStepIncrement())
-      buttonLabel === 'save' && setServicePageSnackbar(true)
+      buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
     } catch (error) {
       setServicePageNotification(true)
     }
@@ -363,9 +364,9 @@ export default function OfferPage() {
         setPageNotification={() => setServicePageNotification(false)}
         setPageSnackbar={() => setServicePageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data) => onSubmit(data, ButtonLabelTypes.SAVE))}
         onSaveAndProceed={handleSubmit((data) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />

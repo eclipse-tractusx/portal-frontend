@@ -67,6 +67,7 @@ import CommonConnectorFormInputField from '../components/CommonConnectorFormInpu
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   title: string
@@ -301,8 +302,8 @@ export default function AppMarketCard() {
   }
 
   const onSave = (buttonLabel: string) => {
-    buttonLabel === 'saveAndProceed' && dispatch(increment())
-    buttonLabel === 'save' && setAppCardSnackbar(true)
+    buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+    buttonLabel === ButtonLabelTypes.SAVE && setAppCardSnackbar(true)
   }
 
   const handleUploadDocument = (
@@ -754,9 +755,11 @@ export default function AppMarketCard() {
         setPageNotification={() => setAppCardNotification(false)}
         setPageSnackbar={() => setAppCardSnackbar(false)}
         onBackIconClick={() => navigate('/appmanagement')}
-        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data: any) =>
+          onSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data: any) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />

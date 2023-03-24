@@ -53,6 +53,7 @@ import {
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
 } from 'features/serviceManagement/slice'
+import { ButtonLabelTypes } from '..'
 
 type AgreementDataType = {
   agreementId: string
@@ -311,14 +312,14 @@ export default function CommonContractAndConsent({
         .unwrap()
         .then(() => {
           if (
-            buttonLabel === 'saveAndProceed' &&
+            buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             type === ReleaseProcessTypes.APP_RELEASE
           ) {
             dispatch(increment())
           } else {
             dispatch(serviceReleaseStepIncrement())
           }
-          buttonLabel === 'save' && setContractSnackbar(true)
+          buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
         })
         .catch(() => {
           setContractNotification(true)
@@ -430,9 +431,11 @@ export default function CommonContractAndConsent({
         setPageNotification={setContractNotification}
         setPageSnackbar={setContractSnackbar}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onContractConsentSubmit(data, 'save'))}
+        onSave={handleSubmit((data) =>
+          onContractConsentSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data) =>
-          onContractConsentSubmit(data, 'saveAndProceed')
+          onContractConsentSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />
