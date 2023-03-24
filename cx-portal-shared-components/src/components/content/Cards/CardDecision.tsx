@@ -70,7 +70,7 @@ export const CardDecision = ({
             display: 'flex',
             flexDirection: 'column',
             padding: '16px 28px',
-            width: '256px',
+            width: 'auto',
             height: '200px',
             background: '#FFFFFF',
             border: '1px solid #DCDCDC',
@@ -103,12 +103,11 @@ export const CardDecision = ({
             sx={{
               color: '#999999',
               height: '48px',
-              marginBottom: '5px',
             }}
           >
             {item.provider}
           </Typography>
-          <Box>
+          <Box sx={{ marginBottom: '10px' }}>
             <CardChip status={item.status} statusText={item.status} />
           </Box>
           {item.status?.toLowerCase() !== StatusVariants.active && (
