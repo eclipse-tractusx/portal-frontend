@@ -18,28 +18,49 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ValidatingInput } from 'components/overlays/CXValidatingOverlay/ValidatingForm'
 import { Button } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import { IHashMap } from 'types/MainTypes'
 import { isBPN, isFirstName, isMail, isURL } from 'types/Patterns'
+
+
+const MyValidatingInput = ({
+  name, value, validate, onValid
+}: {
+  name: string,
+  value?: string,
+  validate: (expr: string) => boolean,
+  onValid: (name: string, value: string) => void
+}) => {
+
+  const [valid, setValid] = useState<boolean>(false)
+
+  const doValidate = (expr: string) => {
+    const isValid = validate(expr)
+    setValid(isValid)
+    console.log('doValidate', isValid, expr)
+    if (isValid) {
+      onValid(name, expr)
+    }
+  }
+
+  console.log('value', value)
+
+  return (
+    <input
+      style={{backgroundColor: valid ? '#eeffeeee' : '#ffeeee'}}
+      defaultValue={value}
+      onChange={(e) => doValidate(e.target.value)}
+      />
+  )
+}
 
 const MyForm = ({
   onValid,
 }: {
   onValid: (form: IHashMap<string> | undefined) => void
 }) => {
-  const [formData, setFormData] = useState<IHashMap<string>>()
   const [mailValue, setMailValue] = useState<string>('')
-
-  const checkData = (key: string, value: string | undefined) => {
-    const current = { ...formData }
-    current[key] = value || ''
-    setFormData(current)
-    const formValid =
-      !!current.name && !!current.mail && !!current.url && !!current.bpn
-    onValid(formValid ? current : undefined)
-  }
 
   console.log('mailValue', mailValue)
 
@@ -69,31 +90,11 @@ const MyForm = ({
       >
         Set invalid
       </Button>
-      <ValidatingInput
-        name={'name'}
-        label={'name'}
-        validate={isFirstName}
-        onValid={checkData}
-      />
-      <ValidatingInput
+      <MyValidatingInput
         name={'mail'}
-        label={'mail'}
         value={mailValue}
         validate={isMail}
-        onValid={checkData}
-      />
-      <ValidatingInput
-        name={'url'}
-        label={'url'}
-        value={''}
-        validate={isURL}
-        onValid={checkData}
-      />
-      <ValidatingInput
-        name={'bpn'}
-        label={'bpn'}
-        validate={isBPN}
-        onValid={checkData}
+        onValid={(name: string, value: string) => {console.log(`valid ${name}: ${value}`)}}
       />
     </div>
   )
