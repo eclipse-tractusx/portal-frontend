@@ -23,16 +23,17 @@ import { useState } from 'react'
 import { IHashMap } from 'types/MainTypes'
 import { isBPN, isFirstName, isMail, isURL } from 'types/Patterns'
 
-
 const MyValidatingInput = ({
-  name, value, validate, onValid
+  name,
+  value,
+  validate,
+  onValid,
 }: {
-  name: string,
-  value?: string,
-  validate: (expr: string) => boolean,
+  name: string
+  value?: string
+  validate: (expr: string) => boolean
   onValid: (name: string, value: string) => void
 }) => {
-
   const [valid, setValid] = useState<boolean>(false)
 
   const doValidate = (expr: string) => {
@@ -48,10 +49,10 @@ const MyValidatingInput = ({
 
   return (
     <input
-      style={{backgroundColor: valid ? '#eeffeeee' : '#ffeeee'}}
+      style={{ backgroundColor: valid ? '#eeffeeee' : '#ffeeee' }}
       defaultValue={value}
       onChange={(e) => doValidate(e.target.value)}
-      />
+    />
   )
 }
 
@@ -94,7 +95,9 @@ const MyForm = ({
         name={'mail'}
         value={mailValue}
         validate={isMail}
-        onValid={(name: string, value: string) => {console.log(`valid ${name}: ${value}`)}}
+        onValid={(name: string, value: string) => {
+          console.log(`valid ${name}: ${value}`)
+        }}
       />
     </div>
   )
