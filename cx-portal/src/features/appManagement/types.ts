@@ -31,15 +31,17 @@ export type LanguageStatusType = {
   languageCode: string
 }
 
+export type UseCaseType = {
+  id: string
+  label: string
+}
+
 export interface AppStatusDataState {
   title: string
   provider?: string
   leadPictureId?: string
   providerName?: string
-  useCase?: {
-    id: string
-    label: string
-  }[]
+  useCase?: UseCaseType[]
   descriptions: {
     languageCode: string
     longDescription: string

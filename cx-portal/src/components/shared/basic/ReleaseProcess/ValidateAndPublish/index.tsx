@@ -57,6 +57,7 @@ import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
+import { UseCaseType } from 'features/appManagement/types'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -201,7 +202,7 @@ export default function ValidateAndPublish({
       return statusData?.supportedLanguageCodes.join(', ')
     else if (item === 'useCase')
       return statusData?.useCase
-        ?.map((item: { id: string; label: string }) => item.label)
+        ?.map((item: UseCaseType) => item.label)
         .join(', ')
     else if (item === 'price') return statusData?.price
   }
