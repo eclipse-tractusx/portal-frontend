@@ -25,7 +25,7 @@ import { AppDetails } from 'features/apps/details/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import './BoardHeader.scss'
-import { UseCase } from 'features/apps/marketplaceDeprecated/types'
+import { UseCaseType } from 'features/appManagement/types'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -81,7 +81,7 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
           <Typography variant="caption2" className="head">
             {t('content.adminboardDetail.usecase')}:{' '}
           </Typography>
-          {item.useCases.map((useCase: UseCase) => (
+          {item.useCases.map((useCase: UseCaseType) => (
             <span key={useCase.id}> {useCase.label} </span>
           ))}
         </div>
