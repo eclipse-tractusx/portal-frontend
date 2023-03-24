@@ -173,7 +173,7 @@ export default function AppMarketCard() {
   useEffect(() => {
     if (useCasesList.length > 0) {
       const defaultUseCaseIds = useCasesList?.filter((item) =>
-        appStatusData?.useCase?.some((x) => x === item.name)
+        appStatusData?.useCase?.some((x) => x.label === item.name)
       )
       setDefaultUseCaseVal(defaultUseCaseIds)
     }
@@ -388,7 +388,7 @@ export default function AppMarketCard() {
         .then((result) => {
           if (isString(result)) {
             handleUploadDocument(result, buttonLabel, uploadImageValue)
-            dispatch(setAppId(appId))
+            dispatch(setAppId(result))
             onSave(buttonLabel)
             callDispatch()
           }
