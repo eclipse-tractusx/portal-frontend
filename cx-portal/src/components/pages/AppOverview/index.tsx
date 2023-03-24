@@ -46,6 +46,7 @@ import { useLocation } from 'react-router-dom'
 import './AppOverview.scss'
 import { AppOverviewList } from './AppOverviewList'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -206,6 +207,7 @@ export default function AppOverview() {
                 variant="minimal"
                 filledBackground={true}
                 imageSize={'small'}
+                imageLoader={fetchImageWithToken}
                 onCardClick={(item: AppInfo) => {
                   showOverlay(item)
                 }}

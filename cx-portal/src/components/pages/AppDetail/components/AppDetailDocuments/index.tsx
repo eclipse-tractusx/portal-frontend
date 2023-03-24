@@ -20,15 +20,16 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
-import './AppDetailHowToUse.scss'
+import './AppDetailDocuments.scss'
 import {
   AppDetails,
-  DocumentData,
+  Documents,
+  DocumentTypeText,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 
-export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
+export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
@@ -61,25 +62,36 @@ export default function AppDetailHowToUse({ item }: { item: AppDetails }) {
         </Typography>
       </div>
       <ul>
-        {item.documents &&
-          item.documents['APP_CONTRACT'] &&
-          item.documents['APP_CONTRACT'].map(
-            (document: DocumentData, index: number) => (
-              <li key={index}>
-                <button
-                  className="document-button-link"
-                  onClick={() =>
-                    handleDownloadClick(
-                      document.documentId,
-                      document.documentName
-                    )
-                  }
-                >
-                  {document.documentName}
-                </button>
-              </li>
-            )
-          )}
+        {item.documents && Object.keys(item.documents)?.length ? (
+          Object.keys(item.documents).map(
+            (document) =>
+              document !==
+                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
+                <li key={document}>
+                  <button
+                    className="document-button-link"
+                    onClick={() =>
+                      handleDownloadClick(
+                        item.documents[document as keyof Documents][0]
+                          .documentId,
+                        item.documents[document as keyof Documents][0]
+                          .documentName
+                      )
+                    }
+                  >
+                    {
+                      item.documents[document as keyof Documents][0]
+                        .documentName
+                    }
+                  </button>
+                </li>
+              )
+          )
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
       </ul>
     </div>
   )

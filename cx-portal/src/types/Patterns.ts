@@ -71,7 +71,7 @@ export const Patterns = {
   },
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
-    clientSecret: /^[a-zA-Z0-9-_.!?/]{8,200}$/,
+    clientSecret: /^.{1,200}$/,
   },
   connectors: {
     NAME: /^[a-zA-Z0-9 @]{2,20}$/,

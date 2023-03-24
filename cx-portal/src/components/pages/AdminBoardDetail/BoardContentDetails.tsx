@@ -24,8 +24,6 @@ import { useTranslation } from 'react-i18next'
 import { Button, Typography } from 'cx-portal-shared-components'
 import BoardHeader from './components/BoardHeader'
 import BoardImageGallery from './components/BoardImageGallery'
-import BoardConnectedData from './components/BoardConnectedData'
-import BoardSecurityInfo from './components/BoardSecurityInfo'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'
 import { AppDetails, DocumentTypeText } from 'features/apps/apiSlice'
@@ -56,8 +54,6 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
         {images && <BoardImageGallery images={images} />}
-        <BoardConnectedData item={item} />
-        <BoardSecurityInfo />
         <BoardPrivacy item={item} />
         <BoardDocuments
           type={DocumentTypeText.CONFORMITY_DOCUMENT}
