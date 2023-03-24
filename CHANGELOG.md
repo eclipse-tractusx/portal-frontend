@@ -35,6 +35,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix
    * AppMarketplaceDetail
       * Missing documents
+   * AppDetail
+      * UseCase response change fix
 
 ### Change
 
