@@ -416,7 +416,7 @@ export default function AppPage() {
     try {
       await saveApp({ appId: appId, body: updateSaveData }).unwrap()
     } catch (error: any) {
-      console.error(error)
+      console.log(error)
     }
 
     try {
