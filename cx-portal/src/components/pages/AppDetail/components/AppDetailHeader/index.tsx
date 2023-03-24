@@ -30,6 +30,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
+import { UseCase } from 'features/apps/marketplaceDeprecated/types'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -143,8 +144,8 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           <Typography variant="caption2" className="head">
             {t('content.appdetail.usecase')}:{' '}
           </Typography>
-          {item.useCases.map((useCase) => (
-            <span key={useCase}> {useCase} </span>
+          {item.useCases.map((useCase: UseCase) => (
+            <span key={useCase.id}> {useCase.label} </span>
           ))}
         </div>
         <div className="language">

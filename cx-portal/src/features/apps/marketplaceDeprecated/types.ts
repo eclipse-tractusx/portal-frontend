@@ -26,10 +26,15 @@ export type AppMarketplaceApp = {
   provider: string
   leadPictureUri: string
   shortDescription: string
-  useCases: string[]
+  useCases: UseCase[]
   price: string
   rating?: number
   link?: string
+}
+
+export type UseCase = {
+  id: string
+  label: string
 }
 
 export type SubscribedApps = {
