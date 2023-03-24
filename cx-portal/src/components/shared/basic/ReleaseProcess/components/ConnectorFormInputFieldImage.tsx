@@ -36,6 +36,7 @@ export default function ConnectorFormInputFieldImage({
     'image/jpeg': [],
   },
   handleDownload,
+  handleDelete,
   isRequired = true,
 }: any) {
   return (
@@ -57,6 +58,7 @@ export default function ConnectorFormInputFieldImage({
             },
           },
           handleDownload: handleDownload,
+          handleDelete: handleDelete,
         }}
       />
       {errors?.uploadImage?.leadPictureUri?.type === 'required' && (

@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppReleaseProcess
    * enabled document download in contract and consent
+   * Delete document for step 1 , step 2 and step 3
    * Changed PDF uploads from mandatory to optional and changed dropzone parameter size
    * Added privacy policy to app page
 * Service Release Process
@@ -16,14 +17,23 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Switch Endpoint
    * Add Roles section
    * Privacy Policy
+   * Remove unnecessary sections and UI changes
 * BugFix
    * Application Request
       * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place 
+   * App Release Process
+      * validation fix for long description
+   * AppOverview
+      * Recommended section images not loading fix
+
 * User Account
    * Add portal roles
    * Add Overlay to update users portal roles
    * App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
 * Use Case & Company Roles - Resopnsive static page
+* BugFix
+   * AppMarketplaceDetail
+      * Missing documents
 
 ### Change
 
