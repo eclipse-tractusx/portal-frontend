@@ -20,7 +20,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
-  DocumentRequestData,
   DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'

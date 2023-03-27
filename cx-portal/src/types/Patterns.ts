@@ -55,14 +55,14 @@ export const Patterns = {
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
   },
   offerCard: {
-    serviceName: /^[^-\s()'"#@.&](?!.*[%\&?,';:!\s-]{2}).{2,200}$/,
+    serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescriptionEN: /^[^-\s()'"#@.&](?!.*[%\&?,';:!\s-]{2}).{10,120}$/,
-    shortDescriptionDE: /^[^-\s()'"#@.&](?!.*[%\&?,';:!\s-]{2}).{10,120}$/,
+    shortDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
+    shortDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
   },
   offerPage: {
-    longDescriptionEN: /^[^-\s()'"#@.&](?!.*[%\&?,';:!\s-]{2}).{10,2000}$/,
-    longDescriptionDE: /^[^-\s()'"#@.&](?!.*[%\&?,';:!\s-]{2}).{10,2000}$/,
+    longDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,2000}$/,
+    longDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,2000}$/,
   },
   appPage: {
     longDescriptionEN:
