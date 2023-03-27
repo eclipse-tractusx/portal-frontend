@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Delete document for step 1 , step 2 and step 3
    * Changed PDF uploads from mandatory to optional and changed dropzone parameter size
    * Added privacy policy to app page
+   * Updated  endpoint for document download in contract and consent
 * Service Release Process
    * Create Service, fetch service and Update service apis added
 * AppDetails

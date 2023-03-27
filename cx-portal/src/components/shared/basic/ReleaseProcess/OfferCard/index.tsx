@@ -51,7 +51,7 @@ import {
   CreateServiceStep1Item,
   ServiceTypeIdsType,
   useCreateServiceMutation,
-  useFetchDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
   useFetchServiceStatusQuery,
   useFetchServiceTypeIdsQuery,
   useSaveServiceMutation,
@@ -82,7 +82,7 @@ export default function OfferCard() {
   const [serviceCardNotification, setServiceCardNotification] = useState(false)
   const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
   const serviceStatusData = useSelector(serviceStatusDataSelector)
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [fetchDocumentById] = useFetchNewDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '').data
   const [createService] = useCreateServiceMutation()
