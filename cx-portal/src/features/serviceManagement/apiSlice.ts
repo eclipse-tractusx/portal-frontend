@@ -19,9 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {
-  DocumentTypeId,
-} from 'features/appManagement/apiSlice'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { ServiceStatusDataState } from './types'
 
