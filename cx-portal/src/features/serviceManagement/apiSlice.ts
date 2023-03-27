@@ -25,7 +25,7 @@ import { ServiceStatusDataState } from './types'
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',
-  SERVICE_RELEAE = 'serviceRelease',
+  SERVICE_RELEASE = 'serviceRelease',
 }
 
 export type CreateServiceStep1Item = {

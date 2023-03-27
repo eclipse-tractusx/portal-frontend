@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -89,6 +89,7 @@ type CommonConsentType = {
   }) => any
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
   getDocumentById?: (id: string) => any
+  documentRequired?: boolean
 }
 
 export default function CommonContractAndConsent({
@@ -109,6 +110,7 @@ export default function CommonContractAndConsent({
   updateDocumentUpload,
   fetchStatusData,
   getDocumentById,
+  documentRequired = true,
 }: CommonConsentType) {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
@@ -421,6 +423,7 @@ export default function CommonContractAndConsent({
           handleDelete={(documentId: string) => {
             deleteAppReleaseDocument(documentId)
           }}
+          isRequired={documentRequired}
         />
       </form>
       <SnackbarNotificationWithButtons

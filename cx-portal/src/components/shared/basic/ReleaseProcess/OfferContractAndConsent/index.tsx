@@ -54,7 +54,7 @@ export default function OfferContractAndConsent() {
   return (
     <div className="contract-consent">
       <CommonContractAndConsent
-        type={ReleaseProcessTypes.SERVICE_RELEAE}
+        type={ReleaseProcessTypes.SERVICE_RELEASE}
         stepperTitle={t('step3.headerTitle')}
         stepperDescription={t('step3.headerDescription')}
         checkBoxMandatoryText={t('serviceReleaseForm.isMandatory')}
@@ -76,6 +76,7 @@ export default function OfferContractAndConsent() {
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchServiceStatus || undefined}
         getDocumentById={getDocumentById}
+        documentRequired={false}
       />
     </div>
   )

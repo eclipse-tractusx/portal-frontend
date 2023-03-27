@@ -52,12 +52,20 @@
   },
   "step4": {
     "headerTitle": "Validate & Publish",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ",
     "appDetails": "Service Details",
+    "language": "Language :  ",
+    "useCase": "Use Case :  ",
+    "price": "Price :  ",
     "connectedData": "Connected Data",
+    "dataSecurityInformation": "Data Security Information",
+    "conformityDocument": "Conformity Document",
     "documents": "Documents",
     "providerInformation": "Provider Information",
-    "consent": "Consent"
+    "consent": "Consent",
+    "cxTestRuns": "CX Test Runs",
+    "longDescriptionTitleEN": "[Long Description - EN] ",
+    "longDescriptionTitleDE": "[Long Description - DE] "
   },
   "serviceReleaseForm": {
     "headerTitle": "Create Service",
@@ -96,5 +104,10 @@
     "headerDescriptionComplete": "further information on service release",
     "yourCatenaXTeam": "Dein Catena-X team",
     "overview": "My services overview"
+  },
+  "defaultValues": {
+    "dataSecurityInformation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   }
 }
