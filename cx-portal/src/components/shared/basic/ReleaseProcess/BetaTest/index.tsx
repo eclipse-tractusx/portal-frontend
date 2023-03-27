@@ -51,7 +51,7 @@ export default function BetaTest() {
   }).data
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   return (

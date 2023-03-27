@@ -2,7 +2,46 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-### Unreleased
+## Unreleased
+
+## 1.2.0
+
+### Change
+* Dropzone costum error support implemented
+
+### Feature
+* UserManagement
+   * add role description details into the user account creation overlay and linking the description with the new developed/released role description detail page
+* App Marketplace
+   * app detail page got enhanced by "Privacy Policies"
+* App Approval Admin Board
+   * app detail page endpoint switched to /inReview/{appId}
+   * app detail page "App Roles" added
+   * app detail page "Privacy Policy" added
+   * removes placeholder sections and implemented UI changes
+* User Account Screen
+   * add section with user assigned portal roles
+   * add action button and overlay to update user assigned portal roles
+* Service Release Process
+   * implement service release process form and connected backend services /createService, /serviceStatus, /and Update service apis added
+* App Release Process
+   * enabled document download in contract and consent
+   * enabled document deletion inside the app release form
+   * changed additional document uploads from mandatory to optional and changed dropzone parameter size
+
+### Technical Support
+* Improved page loading in several places (such as app overview) 
+* Change local port to run behind reverse proxy
+* Improved responsiveness of use case introduction page and company role page
+
+### Bugfix
+* Image import via api image/document endpoint implemented for organization/myCompanySubscription section
+* Fixed display documents feature. Only first document got displayed (Admin App Approval Board - App Detail page, App Marketplace App Detail Page)
+* App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
+* Home - Recommended section images not loading fix
+* Application Request Board styling of the application status bar for application fully "DONE" but activation outstanding
+* App Release Process - updated long description input validation
+* App Release Process - updated business logic to retrieve app use case in new api response format
 
 ## 1.1.0
 

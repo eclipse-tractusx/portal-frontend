@@ -48,6 +48,7 @@ import {
 } from 'features/admin/userDeprecated/actions'
 import { IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
 import { IHashMap } from 'types/MainTypes'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 enum AddUserState {
   NONE = 'NONE',
@@ -61,10 +62,12 @@ const AddUserNotification = ({ state }: { state: AddUserState }) => {
   return (
     <PageSnackbar
       autoClose
-      title={t(`state.${error ? 'error' : 'success'}`)}
+      title={t(
+        `state.${error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}`
+      )}
       description={t(`state.${state}`)}
       open={state !== AddUserState.NONE}
-      severity={error ? 'error' : 'success'}
+      severity={error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}
       showIcon
     />
   )

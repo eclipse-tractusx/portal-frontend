@@ -22,7 +22,9 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import './BoardDocuments.scss'
 import {
+  Documents,
   DocumentData,
+  DocumentTypeText,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
@@ -34,11 +36,16 @@ export default function BoardDocuments({
 }: {
   type: string
   appId: string
-  documents: DocumentData[]
+  documents: Documents
 }) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
+
+  const checkDocumentExist =
+    type === DocumentTypeText.CONFORMITY_DOCUMENT
+      ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS]?.length
+      : Object.keys(documents)?.length
 
   const handleDownloadClick = async (
     documentId: string,
@@ -57,17 +64,10 @@ export default function BoardDocuments({
     }
   }
 
-  return (
-    <div className="adminboard-documents">
-      <Typography variant="h4">
-        {t(`content.adminboardDetail.${type}.heading`)}
-      </Typography>
-      <Typography variant="body2">
-        {t(`content.adminboardDetail.${type}.message`)}
-      </Typography>
-      <ul>
-        {documents && documents.length > 0 ? (
-          documents.map((document: DocumentData) => (
+  const renderDocuments = () => {
+    return type === DocumentTypeText.CONFORMITY_DOCUMENT
+      ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS].map(
+          (document: DocumentData) => (
             <li key={document.documentId}>
               <button
                 className="document-button-link"
@@ -81,7 +81,39 @@ export default function BoardDocuments({
                 {document.documentName}
               </button>
             </li>
-          ))
+          )
+        )
+      : Object.keys(documents).map(
+          (document) =>
+            document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
+              <li key={document}>
+                <button
+                  className="document-button-link"
+                  onClick={() =>
+                    handleDownloadClick(
+                      documents[document as keyof Documents][0].documentId,
+                      documents[document as keyof Documents][0].documentName
+                    )
+                  }
+                >
+                  {documents[document as keyof Documents][0].documentName}
+                </button>
+              </li>
+            )
+        )
+  }
+
+  return (
+    <div className="adminboard-documents">
+      <Typography variant="h4">
+        {t(`content.adminboardDetail.${type}.heading`)}
+      </Typography>
+      <Typography variant="body2">
+        {t(`content.adminboardDetail.${type}.message`)}
+      </Typography>
+      <ul>
+        {checkDocumentExist ? (
+          renderDocuments()
         ) : (
           <Typography variant="caption2" className="not-available">
             {t('global.errors.noDocumentsAvailable')}

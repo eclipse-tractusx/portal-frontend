@@ -23,9 +23,15 @@ import {
   IconButton,
   UploadFileStatus,
   UploadStatus,
+  Radio,
+  Alert,
+  Checkbox,
+  DropArea,
+  DropAreaProps,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { Divider, InputLabel } from '@mui/material'
+import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
@@ -39,13 +45,16 @@ import {
   increment,
 } from 'features/appManagement/slice'
 import {
+  DocumentTypeId,
+  useDeleteAppReleaseDocumentMutation,
   useFetchAppStatusQuery,
+  useFetchPrivacyPoliciesQuery,
   useUpdateappMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone } from 'components/shared/basic/Dropzone'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
@@ -61,22 +70,39 @@ type FormDataType = {
   providerHomePage: string
   providerContactEmail: string
   providerPhoneContact: string
+  privacyPolicies: string[] | []
 }
 
 export default function AppPage() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const appId = useSelector(appIdSelector)
+
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
-  const dispatch = useDispatch()
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
   const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
-  const appId = useSelector(appIdSelector)
+
+  const getPrivacyPolicies = useFetchPrivacyPoliciesQuery().data
+  const privacyPolicies =
+    getPrivacyPolicies && getPrivacyPolicies?.privacyPolicies.slice(0, -1)
+  const [selectedPrivacyPolicies, setSelectedPrivacyPolicies] = useState<
+    string[]
+  >([])
+  const privacyPolicyNone = 'NONE'
   const longDescriptionMaxLength = 2000
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
+
+  const [deleteAppReleaseDocument, deleteResponse] =
+    useDeleteAppReleaseDocumentMutation()
+  useEffect(() => {
+    deleteResponse.isSuccess && setDeleteSuccess(true)
+  }, [deleteResponse])
 
   const defaultValues = {
     longDescriptionEN:
@@ -96,6 +122,7 @@ export default function AppPage() {
     providerHomePage: fetchAppStatus?.providerUri || '',
     providerContactEmail: fetchAppStatus?.contactEmail || '',
     providerPhoneContact: fetchAppStatus?.contactNumber || '',
+    privacyPolicies: fetchAppStatus?.privacyPolicies || [],
   }
 
   const {
@@ -111,7 +138,11 @@ export default function AppPage() {
   })
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) {
+      dispatch(setAppStatus(fetchAppStatus))
+      fetchAppStatus?.privacyPolicies &&
+        setSelectedPrivacyPolicies(fetchAppStatus?.privacyPolicies)
+    }
   }, [dispatch, fetchAppStatus])
 
   const uploadAppContractValue = getValues().uploadAppContract
@@ -123,17 +154,19 @@ export default function AppPage() {
   const defaultuploadAppContract = defaultValues.uploadAppContract
 
   useEffect(() => {
-    const images = defaultImages?.map((item: { documentName: string }) => {
-      return {
+    const images = defaultImages?.map(
+      (item: { documentId: string; documentName: string }) => ({
+        id: item.documentId,
         name: item.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
-      }
-    })
+      })
+    )
 
     if (images.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
         const nextFiles = images
         nextFiles[fileIndex] = {
+          id: images[fileIndex].id,
           name: images[fileIndex].name,
           status,
         }
@@ -150,6 +183,9 @@ export default function AppPage() {
       Object.keys(defaultuploadDataPrerequisits).length > 0
     ) {
       setValue('uploadDataPrerequisits', {
+        id:
+          defaultuploadDataPrerequisits &&
+          defaultuploadDataPrerequisits[0]?.documentId,
         name:
           defaultuploadDataPrerequisits &&
           defaultuploadDataPrerequisits[0]?.documentName,
@@ -163,6 +199,9 @@ export default function AppPage() {
       Object.keys(defaultuploadTechnicalGuide).length > 0
     ) {
       setValue('uploadTechnicalGuide', {
+        id:
+          defaultuploadTechnicalGuide &&
+          defaultuploadTechnicalGuide[0]?.documentId,
         name:
           defaultuploadTechnicalGuide &&
           defaultuploadTechnicalGuide[0]?.documentName,
@@ -176,6 +215,7 @@ export default function AppPage() {
       Object.keys(defaultuploadAppContract).length > 0
     ) {
       setValue('uploadAppContract', {
+        id: defaultuploadAppContract && defaultuploadAppContract[0]?.documentId,
         name:
           defaultuploadAppContract && defaultuploadAppContract[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
@@ -197,6 +237,7 @@ export default function AppPage() {
     const value = getValues(fieldName)
 
     setValue(fieldName, {
+      id: value.id,
       name: value.name,
       size: value.size,
       status,
@@ -209,7 +250,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'APP_CONTRACT', value)
+      uploadDocumentApi(appId, DocumentTypeId.APP_CONTRACT, value)
         .then(() =>
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -226,7 +267,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'ADDITIONAL_DETAILS', value)
+      uploadDocumentApi(appId, DocumentTypeId.ADDITIONAL_DETAILS, value)
         .then(() =>
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -243,7 +284,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, 'APP_TECHNICAL_INFORMATION', value)
+      uploadDocumentApi(appId, DocumentTypeId.APP_TECHNICAL_INFORMATION, value)
         .then(() =>
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -260,6 +301,7 @@ export default function AppPage() {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
         const nextFiles = [...getValues().images] as any[]
         nextFiles[fileIndex] = {
+          id: value[fileIndex].id,
           name: value[fileIndex].name,
           size: value[fileIndex].size,
           status,
@@ -269,7 +311,7 @@ export default function AppPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOADING)
-        uploadDocumentApi(appId, 'APP_IMAGE', value[fileIndex])
+        uploadDocumentApi(appId, DocumentTypeId.APP_IMAGE, value[fileIndex])
           .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
@@ -278,7 +320,7 @@ export default function AppPage() {
 
   const uploadDocumentApi = async (
     appId: string,
-    documentTypeId: string,
+    documentTypeId: DocumentTypeId,
     file: any
   ) => {
     const data = {
@@ -331,6 +373,7 @@ export default function AppPage() {
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
+      privacyPolicies: selectedPrivacyPolicies || [],
     }
 
     try {
@@ -343,8 +386,38 @@ export default function AppPage() {
   }
 
   const onBackIconClick = () => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
     dispatch(decrement())
+  }
+
+  const selectPrivacyPolicies = (
+    policy: string,
+    select: boolean,
+    type: string
+  ) => {
+    if (type === 'checkbox') {
+      if (
+        selectedPrivacyPolicies &&
+        selectedPrivacyPolicies[0] === privacyPolicyNone
+      ) {
+        setSelectedPrivacyPolicies([...[], policy])
+      } else {
+        const isSelected = selectedPrivacyPolicies?.includes(policy)
+        if (!isSelected && select) {
+          setSelectedPrivacyPolicies([...selectedPrivacyPolicies, policy])
+        } else if (isSelected && !select) {
+          const oldPrivacyPolicies = [...selectedPrivacyPolicies]
+          oldPrivacyPolicies.splice(oldPrivacyPolicies.indexOf(policy), 1)
+          setSelectedPrivacyPolicies([...oldPrivacyPolicies])
+        }
+      }
+    } else if (type === 'radio') {
+      setSelectedPrivacyPolicies([...[], policy])
+    }
+  }
+
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
   }
 
   return (
@@ -399,10 +472,11 @@ export default function AppPage() {
                   }`,
                   maxLength: `${t(
                     'content.apprelease.appReleaseForm.maximum'
-                  )} 255 ${t(
+                  )} ${longDescriptionMaxLength} ${t(
                     'content.apprelease.appReleaseForm.charactersAllowed'
                   )}`,
                 }}
+                maxLength={longDescriptionMaxLength}
               />
             </div>
           ))}
@@ -436,6 +510,11 @@ export default function AppPage() {
                   }}
                   maxFilesToUpload={3}
                   maxFileSize={819200}
+                  DropArea={renderDropArea}
+                  handleDelete={(documentId: string) => {
+                    setDeleteSuccess(false)
+                    documentId && deleteAppReleaseDocument(documentId)
+                  }}
                 />
               )
             }}
@@ -462,7 +541,7 @@ export default function AppPage() {
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <div className="form-field" key={item}>
               <InputLabel sx={{ mb: 3, mt: 3 }}>
-                {t(`content.apprelease.appPage.${item}`) + ' *'}
+                {t(`content.apprelease.appPage.${item}`)}
               </InputLabel>
               <ConnectorFormInputField
                 {...{
@@ -476,11 +555,11 @@ export default function AppPage() {
                   },
                   maxFilesToUpload: 1,
                   maxFileSize: 819200,
-                  rules: {
-                    required: {
-                      value: true,
-                    },
-                  },
+                  size: 'small',
+                }}
+                handleDelete={(documentId: string) => {
+                  setDeleteSuccess(false)
+                  documentId && deleteAppReleaseDocument(documentId)
                 }}
               />
               {item === 'uploadDataPrerequisits' &&
@@ -555,6 +634,56 @@ export default function AppPage() {
             'content.apprelease.appPage.providerPhoneContactPlaceholder'
           )}
         />
+        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
+        <InputLabel sx={{ mb: 3 }}>
+          {t('content.apprelease.appPage.privacyInformation')}
+        </InputLabel>
+        <Typography variant="body2">
+          {t('content.apprelease.appPage.privacyInformationDescription')}
+        </Typography>
+
+        {privacyPolicies ? (
+          <Grid container item spacing={2}>
+            {privacyPolicies &&
+              privacyPolicies?.map((item: string) => (
+                <Grid item md={6} key={item}>
+                  <Checkbox
+                    label={item}
+                    checked={selectedPrivacyPolicies.indexOf(item) !== -1}
+                    onChange={(e) =>
+                      selectPrivacyPolicies(item, e.target.checked, 'checkbox')
+                    }
+                  />
+                </Grid>
+              ))}
+            <Grid item md={6}>
+              <Radio
+                label={
+                  getPrivacyPolicies &&
+                  getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
+                }
+                checked={
+                  selectedPrivacyPolicies &&
+                  selectedPrivacyPolicies[0] === privacyPolicyNone
+                }
+                onChange={(e) =>
+                  selectPrivacyPolicies(
+                    privacyPolicyNone,
+                    e.target.checked,
+                    'radio'
+                  )
+                }
+                name="radio-buttons"
+              />
+            </Grid>
+          </Grid>
+        ) : (
+          <Box sx={{ marginY: 2 }}>
+            <Alert width={'100%'} severity="error">
+              <span>{t('content.apprelease.appPage.privacyInfoError')}</span>
+            </Alert>
+          </Box>
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}
@@ -566,14 +695,23 @@ export default function AppPage() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={setAppPageNotification}
-        setPageSnackbar={setAppPageSnackbar}
+        setPageNotification={() => setAppPageNotification(false)}
+        setPageSnackbar={() => setAppPageSnackbar(false)}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
         onSaveAndProceed={handleSubmit((data) =>
           onAppPageSubmit(data, 'saveAndProceed')
         )}
         isValid={isValid}
+      />
+      <PageSnackbar
+        autoClose
+        description={t(
+          'content.apprelease.contractAndConsent.documentDeleteSuccess'
+        )}
+        open={deleteSuccess}
+        severity={'success'}
+        showIcon
       />
     </div>
   )

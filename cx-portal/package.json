@@ -1,10 +1,10 @@
 {
   "name": "cx-portal",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "Apache-2.0",
   "scripts": {
     "start": "react-scripts start",
-    "start:portal": "react-scripts start",
+    "start:portal": "PORT=3001 BROWSER=none react-scripts start",
     "build:portal": "react-scripts build",
     "test": "react-scripts test",
     "test:watch": "react-scripts test --watch",
@@ -17,6 +17,7 @@
     "deploy": "export CX_ENV=${CX_ENV:-dev003} && az webapp deployment source config-zip --resource-group catenax-${CX_ENV}-rg --name catenax-${CX_ENV}-app-portal-2 --src ./dist/build.zip"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.5.1",
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^1.7.2",
@@ -26,7 +27,7 @@
     "@types/react-redux": "^7.1.22",
     "axios": "^0.26.0",
     "cross-env": "5.0.5",
-    "cx-portal-shared-components": "1.1.0",
+    "cx-portal-shared-components": "1.2.0",
     "dayjs": "^1.11.4",
     "i18next": "^21.6.12",
     "i18next-browser-languagedetector": "^6.1.3",

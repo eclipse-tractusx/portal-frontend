@@ -19,6 +19,8 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
@@ -39,7 +41,7 @@ export type AppMarketplaceApp = {
   provider: string
   leadPictureUri: string
   shortDescription: string
-  useCases: string[]
+  useCases: UseCaseType[]
   price: string
   rating?: number
   uri?: string
@@ -72,6 +74,12 @@ export type SubscriptionStatusItem = {
   offerSubscriptionStatus: SubscriptionStatus
 }
 
+export enum DocumentTypeText {
+  CONFORMITY_DOCUMENT = 'ConformityDocument',
+  DOCUMENTS = 'Documents',
+  CONFORMITY_APPROVAL_BUSINESS_APPS = 'CONFORMITY_APPROVAL_BUSINESS_APPS',
+}
+
 export type DocumentData = {
   documentId: string
   documentName: string
@@ -88,10 +96,14 @@ export type AppDetails = AppMarketplaceApp & {
   tags: string[]
   languages: string[]
   leadPictureUri?: ImageType
+  privacyPolicies: PrivacyPolicyType[]
+  roles?: string[]
 }
 
 export type Documents = {
+  ADDITIONAL_DETAILS: Array<DocumentData>
   APP_CONTRACT: Array<DocumentData>
+  APP_TECHNICAL_INFORMATION: Array<DocumentData>
   CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
 }
 

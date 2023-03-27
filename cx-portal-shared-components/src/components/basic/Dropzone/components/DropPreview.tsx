@@ -34,7 +34,7 @@ import {
 
 export interface DropPreviewProps {
   uploadFiles: UploadFile[]
-  onDelete?: (deleteIndex: number) => void
+  onDelete?: (deleteIndex: number, documentId: string) => void
   onDownload?: (name: string, id: string) => void
   translations: DropZonePreviewTranslations
 
@@ -71,7 +71,9 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
 
   const finishedFilesCount = uploadFiles.filter(isFinished).length
   const uploadedFilesCount = uploadFiles.filter(
-    (file) => file.status === UploadStatus.UPLOAD_SUCCESS
+    (file) =>
+      file.status === UploadStatus.UPLOAD_SUCCESS ||
+      file.status === UploadStatus.NEW
   ).length
 
   const DefaultDropStatusHeader: typeof DropStatusHeader = ({
@@ -105,7 +107,7 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
 
   const onCallback = (closeOverlay: boolean) => {
     if (closeOverlay) {
-      onDelete?.(deletestatus.index)
+      onDelete?.(deletestatus.index, '')
     }
     setDeleteStatus({ index: 0, state: false })
   }
@@ -134,7 +136,7 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
                   onDelete={() =>
                     enableDeleteOverlay
                       ? setDeleteStatus({ index: index, state: true })
-                      : onDelete?.(index)
+                      : file.id && onDelete?.(index, file.id)
                   }
                   enableDeleteIcon={enableDeleteIcon}
                   onDownload={() => file.id && onDownload?.(file.name, file.id)}
@@ -154,7 +156,7 @@ export const DropPreview: FunctionComponent<DropPreviewProps> = ({
                   onDelete={() =>
                     enableDeleteOverlay
                       ? setDeleteStatus({ index: index, state: true })
-                      : onDelete?.(index)
+                      : onDelete?.(index, '')
                   }
                 />
               ))}

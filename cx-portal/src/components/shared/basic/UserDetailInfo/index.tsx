@@ -23,13 +23,16 @@ import { UserDetailCard } from './UserDetailCard'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import { TenantUserDetails } from 'features/admin/userApiSlice'
 import { AppPermissions } from 'components/shared/frame/AppPermissions'
+import { UserRoles } from '../UserRoles'
 
 export const UserDetailInfo = ({
   user,
   parsedToken,
+  isUserDetail,
 }: {
   user: TenantUserDetails
   parsedToken?: { organisation: string }
+  isUserDetail?: boolean
 }) => {
   const { spacing } = useTheme()
 
@@ -38,23 +41,27 @@ export const UserDetailInfo = ({
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'grid',
-          gap: spacing(8, 3),
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          marginBottom: '80px',
-        }}
-      >
-        {userDetailsCards.map((card, i) => (
-          <UserDetailCard
-            cardCategory={card.cardCategory}
-            cardContentItems={card.cardContentItems}
-            key={i}
-          />
-        ))}
-      </Box>
-      <AppPermissions user={user} />
+      <section>
+        <Box
+          sx={{
+            display: 'grid',
+            gap: spacing(8, 3),
+            gridTemplateColumns: `repeat(${columns}, 1fr)`,
+          }}
+        >
+          {userDetailsCards.map((card, i) => (
+            <UserDetailCard
+              cardCategory={card.cardCategory}
+              cardContentItems={card.cardContentItems}
+              key={i}
+            />
+          ))}
+        </Box>
+      </section>
+      <UserRoles user={user} isUserDetail={isUserDetail} />
+      <section>
+        <AppPermissions user={user} />
+      </section>
     </>
   )
 }

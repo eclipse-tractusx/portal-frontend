@@ -26,6 +26,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  DropArea,
   PageSnackbar,
   Radio,
   Textarea,
@@ -48,6 +49,7 @@ import {
   storeForm,
 } from 'features/control/formSlice'
 import { useDropzone } from 'react-dropzone'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 enum IDPSetupState {
   NONE = 'NONE',
@@ -70,10 +72,12 @@ const IDPSetupNotification = ({ state }: { state: IDPSetupState }) => {
   return (
     <PageSnackbar
       autoClose
-      title={t(`state.${error ? 'error' : 'success'}`)}
+      title={t(
+        `state.${error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}`
+      )}
       description={t(`state.${state}`)}
       open={state !== IDPSetupState.NONE}
-      severity={error ? 'error' : 'success'}
+      severity={error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}
       showIcon
     />
   )
@@ -87,7 +91,7 @@ const SelectFormat = ({
   onChange: (value: FileFormat) => void
 }) => {
   return (
-    <div style={{ padding: '30px 0px' }}>
+    <div>
       <Radio
         label={FileFormat.JSON}
         checked={format === FileFormat.JSON}
@@ -389,73 +393,95 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <Typography>{t('users.desc1')}</Typography>
+        <Typography sx={{ mb: '12px' }} variant="body2">
+          {t('users.desc1')}
+        </Typography>
+        <Typography sx={{ mb: '12px' }} variant="body2">
+          {t('users.desc2')}
+        </Typography>
+        {/*
         <Typography variant="h4" sx={{ margin: '10px 0' }}>
           {idpData?.displayName} - {idpData?.alias}
         </Typography>
-        <Typography>{t('users.desc2')}</Typography>
-        <>
-          <div {...getRootProps()}>
-            <Textarea
-              style={{
-                ...{
-                  marginTop: '12px',
-                  padding: '12px',
-                  width: '100%',
-                  whiteSpace: 'pre',
-                  color: '#666',
-                  lineHeight: '20px',
-                },
-                ...(status.startsWith('ERROR')
-                  ? { backgroundColor: '#fdd' }
-                  : {}),
-                ...(status.startsWith('SUCCESS')
-                  ? { backgroundColor: '#dfd' }
-                  : {}),
-              }}
-              disabled={true}
-              minRows={10}
-              maxRows={10}
-              value={
-                idpData && userContent?.data
-                  ? store2text(userContent.data)
-                  : fetching
-              }
-              onBlur={() => {}}
-              onChange={(e) => storeData(e.target.value)}
-            />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <SelectFormat
-              format={format}
-              onChange={(selectedFormat: FileFormat) =>
-                setFormat(selectedFormat)
-              }
-            />
-            <Checkbox
-              label={`${t('users.pretty')}`}
-              checked={pretty}
-              onClick={() => setPretty(!pretty)}
-            />
-            <Checkbox
-              label={`${t('users.hide_linked')}`}
-              checked={unlinked}
-              onClick={() => setUnlinked(!unlinked)}
-            />
-            <span style={{ display: 'block', padding: '38px 0px' }}>
-              <Typography
-                onClick={downloadUserfile}
-                sx={{
-                  color: 'blue',
-                  textDecoration: 'underline',
-                  cursor: 'pointer',
-                }}
-              >
-                {t('users.download')}
-              </Typography>
-            </span>
-          </div>
-        </>
+        */}
+        <Typography sx={{ mb: '6px', mt: '24px' }}>
+          {t('users.preview')}
+        </Typography>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <SelectFormat
+            format={format}
+            onChange={(selectedFormat: FileFormat) => setFormat(selectedFormat)}
+          />
+          <Checkbox
+            label={`${t('users.pretty')}`}
+            checked={pretty}
+            onClick={() => setPretty(!pretty)}
+          />
+          <Checkbox
+            label={`${t('users.unlinked')}`}
+            checked={unlinked}
+            onClick={() => setUnlinked(!unlinked)}
+          />
+        </div>
+        <Textarea
+          style={{
+            ...{
+              marginTop: '12px',
+              padding: '12px',
+              width: '100%',
+              whiteSpace: 'pre',
+              color: '#666',
+              lineHeight: '20px',
+              borderRadius: '24px',
+            },
+            ...(status.startsWith('ERROR')
+              ? { backgroundColor: '#FEE7E2' }
+              : {}),
+            ...(status.startsWith('SUCCESS')
+              ? { backgroundColor: '#dfd' }
+              : {}),
+          }}
+          disabled={true}
+          minRows={10}
+          maxRows={10}
+          value={
+            idpData && userContent?.data
+              ? store2text(userContent.data)
+              : fetching
+          }
+          onBlur={() => {}}
+          onChange={(e) => storeData(e.target.value)}
+        />
+        <div
+          style={{ display: 'flex', flexDirection: 'row', margin: '12px 0px' }}
+        >
+          <Button size="small" onClick={downloadUserfile}>
+            {t('users.download')}
+          </Button>
+        </div>
+        <Typography sx={{ margin: '20px 0px' }}>
+          {t('users.drop.intro')}
+        </Typography>
+        <div {...getRootProps()}>
+          <DropArea
+            error={status.startsWith('ERROR')}
+            size="small"
+            translations={{
+              title: t('users.drop.title'),
+              subTitle: t('users.drop.subTitle'),
+              errorTitle: t('users.drop.errorTitle'),
+            }}
+          />
+        </div>
+        <div
+          style={{ display: 'flex', flexDirection: 'row', margin: '20px 0px' }}
+        >
+          <Typography variant="caption1" sx={{ mr: '6px' }}>
+            {t('field.note')}
+            {': '}
+          </Typography>
+          <Typography>{t('users.drop.note')}</Typography>
+        </div>
         <IDPSetupNotification state={status} />
         {userResponse?.data && (
           <AddusersIDPResponse

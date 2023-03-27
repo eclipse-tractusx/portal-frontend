@@ -23,7 +23,7 @@ import { Typography } from 'cx-portal-shared-components'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
-import AppDetailHowToUse from './components/AppDetailHowToUse'
+import AppDetailDocuments from './components/AppDetailDocuments'
 import AppDetailProvider from './components/AppDetailProvider'
 import AppDetailTags from './components/AppDetailTags'
 import { AppDetails } from 'features/apps/apiSlice'
@@ -54,8 +54,8 @@ export default function AppDetailContentDetails({
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
         {images && <AppDetailImageGallery images={images} />}
-        <AppDetailPrivacy />
-        <AppDetailHowToUse item={item} />
+        <AppDetailPrivacy item={item} />
+        <AppDetailDocuments item={item} />
         <AppDetailProvider item={item} />
         <AppDetailTags item={item} />
       </>
