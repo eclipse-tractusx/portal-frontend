@@ -21,7 +21,7 @@
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { serviceIdSelector } from 'features/appManagement/slice'
+import { serviceIdSelector } from 'features/serviceManagement/slice'
 import {
   useUpdateServiceAgreementConsentsMutation,
   useFetchNewDocumentByIdMutation,
@@ -29,8 +29,9 @@ import {
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
-} from 'features/appManagement/apiSlice'
-import { setServiceStatus } from 'features/appManagement/actions'
+  ReleaseProcessTypes,
+} from 'features/serviceManagement/apiSlice'
+import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
 
 export default function OfferContractAndConsent() {
@@ -53,6 +54,7 @@ export default function OfferContractAndConsent() {
   return (
     <div className="contract-consent">
       <CommonContractAndConsent
+        type={ReleaseProcessTypes.SERVICE_RELEAE}
         stepperTitle={t('step3.headerTitle')}
         stepperDescription={t('step3.headerDescription')}
         checkBoxMandatoryText={t('serviceReleaseForm.isMandatory')}
@@ -67,7 +69,7 @@ export default function OfferContractAndConsent() {
         imageFieldNoDescription={t('serviceReleaseForm.OnlyOneFileAllowed')}
         imageFieldNote={t('serviceReleaseForm.note')}
         imageFieldRequiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
-        id={serviceId}
+        id={serviceId ?? ''}
         fetchAgreementData={fetchAgreementData || []}
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}

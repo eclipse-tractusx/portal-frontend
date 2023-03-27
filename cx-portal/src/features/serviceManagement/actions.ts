@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,41 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { UseCaseType } from 'features/appManagement/types'
+import { createAction } from '@reduxjs/toolkit'
+import { name, ServiceStatusDataState } from './types'
 
-export const name = 'apps/marketplace'
+const setServiceId = createAction<string>(`${name}/setServiceId`)
+const setServiceStatus = createAction<ServiceStatusDataState>(
+  `${name}/setServiceStatus`
+)
 
-export type AppMarketplaceApp = {
-  id: string
-  title: string
-  provider: string
-  leadPictureUri: string
-  shortDescription: string
-  useCases: UseCaseType[]
-  price: string
-  rating?: number
-  link?: string
-}
-
-export type SubscribedApps = {
-  appId: string
-  appSubscriptionStatus: string
-}
-
-export type AppMarketplaceState = {
-  items: AppMarketplaceApp[]
-  latest: AppMarketplaceApp[]
-  subscribed: AppMarketplaceApp[]
-  subscribedApps: SubscribedApps[]
-  loading: boolean
-  error: string
-}
-
-export const initialState: AppMarketplaceState = {
-  items: [],
-  latest: [],
-  subscribed: [],
-  subscribedApps: [],
-  loading: true,
-  error: '',
-}
+export { setServiceStatus, setServiceId }
