@@ -28,27 +28,10 @@ import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import {
-  useFetchServiceStatusQuery,
-  useFetchDocumentByIdMutation,
-  useCreateServiceMutation,
-  useSaveServiceMutation,
-  CreateServiceStep1Item,
-  useFetchServiceTypeIdsQuery,
-  useUpdateServiceDocumentUploadMutation,
-  ServiceTypeIdsType,
-  DocumentTypeId,
-} from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  increment,
-  serviceIdSelector,
-  serviceStatusDataSelector,
-} from 'features/appManagement/slice'
-import { setServiceId, setServiceStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import CommonConnectorFormInputField from '../components/CommonConnectorFormInputField'
@@ -59,6 +42,25 @@ import { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import { LanguageStatusType } from 'features/appManagement/types'
+import {
+  serviceIdSelector,
+  serviceStatusDataSelector,
+  serviceReleaseStepIncrement,
+} from 'features/serviceManagement/slice'
+import {
+  CreateServiceStep1Item,
+  ServiceTypeIdsType,
+  useCreateServiceMutation,
+  useFetchDocumentByIdMutation,
+  useFetchServiceStatusQuery,
+  useFetchServiceTypeIdsQuery,
+  useSaveServiceMutation,
+} from 'features/serviceManagement/apiSlice'
+import {
+  setServiceId,
+  setServiceStatus,
+} from 'features/serviceManagement/actions'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   title: string
@@ -82,9 +84,7 @@ export default function OfferCard() {
   const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
-    refetchOnMountOrArgChange: true,
-  }).data
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '').data
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
@@ -92,7 +92,6 @@ export default function OfferCard() {
   >([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
-  const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
   const defaultValues = useMemo(() => {
     return {
@@ -159,20 +158,6 @@ export default function OfferCard() {
     [fetchDocumentById, serviceId, setValue]
   )
 
-  const uploadServiceImageApi = async (
-    appId: string,
-    documentTypeId: DocumentTypeId,
-    file: File
-  ) => {
-    const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
-      body: { file },
-    }
-
-    await updateServiceDocumentUpload(data).unwrap()
-  }
-
   useEffect(() => {
     if (
       serviceStatusData?.documents?.APP_LEADIMAGE &&
@@ -211,8 +196,9 @@ export default function OfferCard() {
       .unwrap()
       .then(() => {
         dispatch(setServiceId(serviceId))
-        buttonLabel === 'saveAndProceed' && dispatch(increment())
-        buttonLabel === 'save' && setServiceCardSnackbar(true)
+        buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+          dispatch(serviceReleaseStepIncrement())
+        buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
         if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
       })
       .catch(() => {
@@ -224,8 +210,6 @@ export default function OfferCard() {
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
-    const uploadImageValue = getValues().uploadImage
-      .leadPictureUri as unknown as DropzoneFile
     await createService({
       id: '',
       body: apiBody,
@@ -233,31 +217,11 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          const setFileStatus = (status: UploadFileStatus) =>
-            setValue('uploadImage.leadPictureUri', {
-              name: uploadImageValue.name,
-              size: uploadImageValue.size,
-              status,
-            } as any)
-
-          setFileStatus(UploadStatus.UPLOADING)
-
-          uploadServiceImageApi(
-            result,
-            DocumentTypeId.APP_LEADIMAGE,
-            uploadImageValue
-          )
-            .then(() => {
-              setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-            })
-            .catch(() => {
-              setFileStatus(UploadStatus.UPLOAD_ERROR)
-            })
-
+          //TO-DO Image file upload
           dispatch(setServiceId(result))
-          buttonLabel === 'saveAndProceed' && dispatch(increment())
-          buttonLabel === 'save' && setServiceCardSnackbar(true)
-          if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+          buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+            dispatch(serviceReleaseStepIncrement())
+          buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
         }
       })
       .catch(() => {
@@ -466,9 +430,11 @@ export default function OfferCard() {
         setPageNotification={() => setServiceCardNotification(false)}
         setPageSnackbar={() => setServiceCardSnackbar(false)}
         onBackIconClick={() => navigate('/home')}
-        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data: any) =>
+          onSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data: any) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />

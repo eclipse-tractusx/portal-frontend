@@ -59,6 +59,7 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -378,8 +379,8 @@ export default function AppPage() {
 
     try {
       await updateapp({ body: saveData, appId: appId }).unwrap()
-      buttonLabel === 'saveAndProceed' && dispatch(increment())
-      buttonLabel === 'save' && setAppPageSnackbar(true)
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+      buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
     } catch (error: any) {
       setAppPageNotification(true)
     }
@@ -698,9 +699,11 @@ export default function AppPage() {
         setPageNotification={() => setAppPageNotification(false)}
         setPageSnackbar={() => setAppPageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
+        onSave={handleSubmit((data) =>
+          onAppPageSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data) =>
-          onAppPageSubmit(data, 'saveAndProceed')
+          onAppPageSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />

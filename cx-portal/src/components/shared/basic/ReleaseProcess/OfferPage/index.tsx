@@ -33,23 +33,24 @@ import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  DocumentTypeId,
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
-} from 'features/appManagement/apiSlice'
+} from 'features/serviceManagement/apiSlice'
 import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
-import { setServiceStatus } from 'features/appManagement/actions'
+import { setServiceStatus } from 'features/serviceManagement/actions'
 import {
   serviceIdSelector,
-  decrement,
-  increment,
-} from 'features/appManagement/slice'
+  serviceReleaseStepIncrement,
+  serviceReleaseStepDecrement,
+} from 'features/serviceManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import { LanguageStatusType } from 'features/appManagement/types'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -74,7 +75,7 @@ export default function OfferPage() {
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
-    dispatch(decrement())
+    dispatch(serviceReleaseStepDecrement())
   }
 
   const defaultValues = useMemo(() => {
@@ -218,8 +219,9 @@ export default function OfferPage() {
         id: serviceId,
         body: apiBody,
       }).unwrap()
-      buttonLabel === 'saveAndProceed' && dispatch(increment())
-      buttonLabel === 'save' && setServicePageSnackbar(true)
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+        dispatch(serviceReleaseStepIncrement())
+      buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
     } catch (error) {
       setServicePageNotification(true)
     }
@@ -258,8 +260,8 @@ export default function OfferPage() {
                     `/${longDescriptionMaxLength}`
                   }
                   patternKey="longDescriptionEN"
-                  patternEN={Patterns.appPage.longDescriptionEN}
-                  patternDE={Patterns.appPage.longDescriptionDE}
+                  patternEN={Patterns.offerPage.longDescriptionEN}
+                  patternDE={Patterns.offerPage.longDescriptionDE}
                   rules={{
                     maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
                       'serviceReleaseForm.charactersAllowed'
@@ -362,9 +364,9 @@ export default function OfferPage() {
         setPageNotification={() => setServicePageNotification(false)}
         setPageSnackbar={() => setServicePageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data) => onSubmit(data, ButtonLabelTypes.SAVE))}
         onSaveAndProceed={handleSubmit((data) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
       />
