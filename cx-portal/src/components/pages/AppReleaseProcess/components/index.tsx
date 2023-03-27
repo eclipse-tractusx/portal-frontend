@@ -20,6 +20,7 @@
 
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/components/ReleaseProcessWrapper'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -63,7 +64,7 @@ export default function AppReleaseProcessForm() {
 
   return (
     <ReleaseProcessWrapper
-      processType="apprelease"
+      processType={ReleaseProcessTypes.APP_RELEASE}
       onAppsOverviewClick={() => onAppsOverviewClick()}
       stepsList={stepsList}
       numberOfSteps={6}

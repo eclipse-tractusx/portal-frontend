@@ -41,6 +41,11 @@ type StepListType = {
   step: number
 }
 
+export enum ButtonLabelTypes {
+  SAVE = 'save',
+  SAVE_AND_PROCEED = 'saveAndProceed',
+}
+
 type ReleaseProcessProps = {
   onStartClick: () => void
   onOverviewButton: () => void

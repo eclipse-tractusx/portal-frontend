@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,14 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.appdetail-howtouse {
-  margin-bottom: 95px;
-}
-.document-button-link {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 18px;
-  color: #0d55af;
-}
+import { createAction } from '@reduxjs/toolkit'
+import { name, ServiceStatusDataState } from './types'
+
+const setServiceId = createAction<string>(`${name}/setServiceId`)
+const setServiceStatus = createAction<ServiceStatusDataState>(
+  `${name}/setServiceStatus`
+)
+
+export { setServiceStatus, setServiceId }

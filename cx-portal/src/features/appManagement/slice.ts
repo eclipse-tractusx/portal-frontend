@@ -24,7 +24,6 @@ import {
   SearchInputState,
   name,
   AppStatusDataState,
-  ServiceStatusDataState,
 } from './types'
 import { RootState } from 'features/store'
 
@@ -54,14 +53,6 @@ const managementSlice = createSlice({
       ...state,
       appStatusData: action.payload,
     }),
-    setServiceStatusData: (state, action) => ({
-      ...state,
-      serviceStatusData: action.payload,
-    }),
-    setServiceId: (state, action) => ({
-      ...state,
-      serviceId: action.payload,
-    }),
   },
 })
 
@@ -74,22 +65,10 @@ export const currentActiveStep = (state: RootState): any =>
 export const appIdSelector = (state: RootState): string =>
   state.management.appId
 
-export const serviceIdSelector = (state: RootState): string =>
-  state.management.serviceId
-
 export const appStatusDataSelector = (state: RootState): AppStatusDataState =>
   state.management.appStatusData
 
-export const serviceStatusDataSelector = (
-  state: RootState
-): ServiceStatusDataState => state.management.serviceStatusData
-
-export const {
-  increment,
-  decrement,
-  setCurrentActiveStep,
-  setApplicationId,
-  setServiceId,
-} = managementSlice.actions
+export const { increment, decrement, setCurrentActiveStep, setApplicationId } =
+  managementSlice.actions
 
 export default managementSlice

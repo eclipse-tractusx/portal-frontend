@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Typography, IconButton } from '@mui/material'
+import { Box, Typography, IconButton, useTheme } from '@mui/material'
 import { CardChip, StatusVariants, Variants } from './CardChip'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import ApprovalIcon from '@mui/icons-material/Approval'
@@ -43,6 +43,8 @@ export const CardDecision = ({
   onDelete,
   onClick,
 }: CardDecisionProps) => {
+  const theme = useTheme()
+
   const handleDecision = (
     e: React.SyntheticEvent,
     id: string,
@@ -68,7 +70,7 @@ export const CardDecision = ({
             display: 'flex',
             flexDirection: 'column',
             padding: '16px 28px',
-            width: '256px',
+            width: 'auto',
             height: '200px',
             background: '#FFFFFF',
             border: '1px solid #DCDCDC',
@@ -78,6 +80,9 @@ export const CardDecision = ({
             alignSelf: 'stretch',
             flexGrow: 0,
             cursor: 'pointer',
+            ':hover': {
+              boxShadow: theme.shadows['20'],
+            },
           }}
           onClick={() => onClick(item.appId)}
         >
@@ -98,12 +103,11 @@ export const CardDecision = ({
             sx={{
               color: '#999999',
               height: '48px',
-              marginBottom: '5px',
             }}
           >
             {item.provider}
           </Typography>
-          <Box>
+          <Box sx={{ marginBottom: '10px' }}>
             <CardChip status={item.status} statusText={item.status} />
           </Box>
           {item.status?.toLowerCase() !== StatusVariants.active && (

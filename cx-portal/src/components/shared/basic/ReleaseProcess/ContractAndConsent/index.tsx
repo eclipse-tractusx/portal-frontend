@@ -32,6 +32,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
@@ -53,6 +54,7 @@ export default function ContractAndConsent() {
   return (
     <div className="contract-consent">
       <CommonContractAndConsent
+        type={ReleaseProcessTypes.APP_RELEASE}
         stepperTitle={t('content.apprelease.contractAndConsent.headerTitle')}
         stepperDescription={t(
           'content.apprelease.contractAndConsent.headerDescription'
@@ -78,7 +80,7 @@ export default function ContractAndConsent() {
         imageFieldRequiredText={t(
           'content.apprelease.appReleaseForm.fileUploadIsMandatory'
         )}
-        id={appId}
+        id={appId ?? ''}
         fetchAgreementData={fetchAgreementData || []}
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}

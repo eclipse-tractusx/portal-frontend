@@ -27,6 +27,7 @@ import {
   SelectList,
   UploadFileStatus,
   UploadStatus,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
@@ -44,6 +45,7 @@ import {
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
   DocumentTypeId,
+  useDeleteAppReleaseDocumentMutation,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -65,6 +67,7 @@ import CommonConnectorFormInputField from '../components/CommonConnectorFormInpu
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   title: string
@@ -87,6 +90,7 @@ export default function AppMarketCard() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
 
   const useCasesListData = useFetchUseCasesQuery().data
   const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
@@ -96,6 +100,12 @@ export default function AppMarketCard() {
     () => appLanguagesListData || [],
     [appLanguagesListData]
   )
+
+  const [deleteAppReleaseDocument, deleteResponse] =
+    useDeleteAppReleaseDocumentMutation()
+  useEffect(() => {
+    deleteResponse.isSuccess && setDeleteSuccess(true)
+  }, [deleteResponse])
 
   const [addCreateApp] = useAddCreateAppMutation()
   const [saveApp] = useSaveAppMutation()
@@ -164,7 +174,7 @@ export default function AppMarketCard() {
   useEffect(() => {
     if (useCasesList.length > 0) {
       const defaultUseCaseIds = useCasesList?.filter((item) =>
-        appStatusData?.useCase?.some((x) => x === item.name)
+        appStatusData?.useCase?.some((x) => x.label === item.name)
       )
       setDefaultUseCaseVal(defaultUseCaseIds)
     }
@@ -245,6 +255,7 @@ export default function AppMarketCard() {
 
       const setFileStatus = (status: UploadFileStatus) =>
         setValue('uploadImage.leadPictureUri', {
+          id: documentId,
           name: documentName,
           status,
         } as any)
@@ -291,8 +302,31 @@ export default function AppMarketCard() {
   }
 
   const onSave = (buttonLabel: string) => {
-    buttonLabel === 'saveAndProceed' && dispatch(increment())
-    buttonLabel === 'save' && setAppCardSnackbar(true)
+    buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+    buttonLabel === ButtonLabelTypes.SAVE && setAppCardSnackbar(true)
+  }
+
+  const handleUploadDocument = (
+    appId: string,
+    buttonLabel: string,
+    uploadImageValue: DropzoneFile
+  ) => {
+    const setFileStatus = (status: UploadFileStatus) =>
+      setValue('uploadImage.leadPictureUri', {
+        id: uploadImageValue.id,
+        name: uploadImageValue.name,
+        size: uploadImageValue.size,
+        status,
+      } as any)
+
+    setFileStatus(UploadStatus.UPLOADING)
+    uploadDocumentApi(appId, DocumentTypeId.APP_LEADIMAGE, uploadImageValue)
+      .then(() => {
+        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+      })
+      .catch(() => {
+        setFileStatus(UploadStatus.UPLOAD_ERROR)
+      })
   }
 
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
@@ -340,6 +374,8 @@ export default function AppMarketCard() {
       await saveApp(saveAppData)
         .unwrap()
         .then(() => {
+          !uploadImageValue.id &&
+            handleUploadDocument(appId, buttonLabel, uploadImageValue)
           dispatch(setAppId(appId))
           onSave(buttonLabel)
           callDispatch()
@@ -352,27 +388,7 @@ export default function AppMarketCard() {
         .unwrap()
         .then((result) => {
           if (isString(result)) {
-            const setFileStatus = (status: UploadFileStatus) =>
-              setValue('uploadImage.leadPictureUri', {
-                name: uploadImageValue.name,
-                size: uploadImageValue.size,
-                status,
-              } as any)
-
-            setFileStatus(UploadStatus.UPLOADING)
-
-            uploadDocumentApi(
-              result,
-              DocumentTypeId.APP_LEADIMAGE,
-              uploadImageValue
-            )
-              .then(() => {
-                setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-              })
-              .catch(() => {
-                setFileStatus(UploadStatus.UPLOAD_ERROR)
-              })
-
+            handleUploadDocument(result, buttonLabel, uploadImageValue)
             dispatch(setAppId(result))
             onSave(buttonLabel)
             callDispatch()
@@ -718,6 +734,10 @@ export default function AppMarketCard() {
               requiredText={t(
                 'content.apprelease.appReleaseForm.fileUploadIsMandatory'
               )}
+              handleDelete={(documentId: string) => {
+                setCardImage(LogoGrayData)
+                documentId && deleteAppReleaseDocument(documentId)
+              }}
             />
           </form>
         </Grid>
@@ -735,11 +755,22 @@ export default function AppMarketCard() {
         setPageNotification={() => setAppCardNotification(false)}
         setPageSnackbar={() => setAppCardSnackbar(false)}
         onBackIconClick={() => navigate('/appmanagement')}
-        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data: any) =>
+          onSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data: any) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+      />
+      <PageSnackbar
+        autoClose
+        description={t(
+          'content.apprelease.contractAndConsent.documentDeleteSuccess'
+        )}
+        open={deleteSuccess}
+        severity={'success'}
+        showIcon
       />
     </div>
   )
