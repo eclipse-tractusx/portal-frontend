@@ -682,7 +682,7 @@ export default function AppPage() {
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.privacyInformation')}
         </InputLabel>
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ marginBottom: '10px' }}>
           {t('content.apprelease.appPage.privacyInformationDescription')}
         </Typography>
 
@@ -690,7 +690,7 @@ export default function AppPage() {
           <Grid container item spacing={2}>
             {privacyPolicies &&
               privacyPolicies?.map((item: string) => (
-                <Grid item md={6} key={item}>
+                <Grid item md={6} key={item} className="privacyPolicies">
                   <Checkbox
                     label={item}
                     checked={selectedPrivacyPolicies.indexOf(item) !== -1}
@@ -700,7 +700,7 @@ export default function AppPage() {
                   />
                 </Grid>
               ))}
-            <Grid item md={6}>
+            <Grid item md={6} className="privacyPolicies">
               <Radio
                 label={
                   getPrivacyPolicies &&
