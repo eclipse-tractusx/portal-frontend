@@ -55,6 +55,8 @@ import { apiSlice as applicationRequestApiSlice } from './admin/applicationReque
 import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
 import { apiSlice as partnerNetworkPortalApiSlice } from './newPartnerNetwork/partnerNetworkPortalApiSlice'
 import { apiSlice as connectorApiSlice } from './connector/connectorApiSlice'
+import { apiSlice as serviceManagementApiSlice } from './serviceManagement/apiSlice'
+import serviceManagementSlice from './serviceManagement/slice'
 
 export const reducers = {
   admin,
@@ -62,6 +64,7 @@ export const reducers = {
   control,
   info,
   management: managementSlice.reducer,
+  serviceManagement: serviceManagementSlice.reducer,
   serviceMarketplace: serviceMarketplaceSlice.reducer,
   serviceProvider: serviceProviderSlice.reducer,
   appSubscription: appSubscriptionSlice.reducer,
@@ -93,6 +96,7 @@ export const reducers = {
   [partnerNetworkPortalApiSlice.reducerPath]:
     partnerNetworkPortalApiSlice.reducer,
   [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
+  [serviceManagementApiSlice.reducerPath]: serviceManagementApiSlice.reducer,
 }
 
 export const store = configureStore({
@@ -115,7 +119,8 @@ export const store = configureStore({
       .concat(applicationRequestApiSlice.middleware)
       .concat(partnerNetworkApiSlice.middleware)
       .concat(partnerNetworkPortalApiSlice.middleware)
-      .concat(connectorApiSlice.middleware),
+      .concat(connectorApiSlice.middleware)
+      .concat(serviceManagementApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>
