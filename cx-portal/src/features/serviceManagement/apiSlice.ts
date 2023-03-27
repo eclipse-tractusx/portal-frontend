@@ -124,7 +124,7 @@ export const apiSlice = createApi({
       UpdateAgreementConsentType
     >({
       query: (data: UpdateAgreementConsentType) => ({
-        url: `/api/services/${data.appId}/serviceAgreementConsent`,
+        url: `/api/services/servicerelease/consent/${data.appId}/agreementConsents`,
         method: 'POST',
         body: data.body,
       }),
@@ -161,16 +161,7 @@ export const apiSlice = createApi({
     }),
     fetchNewDocumentById: builder.mutation({
       query: (documentId) => ({
-        url: `/api/administration/documents/${documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
-    fetchDocumentById: builder.mutation({
-      query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
+        url: `/api/administration/documents/frameDocuments/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -190,5 +181,4 @@ export const {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
-  useFetchDocumentByIdMutation,
 } = apiSlice
