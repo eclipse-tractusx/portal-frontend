@@ -46,7 +46,7 @@ export const AppDetailInitial = {
   provider: '',
   leadPictureUri: 'trans.png',
   shortDescription: '',
-  useCases: [''],
+  useCases: [],
   price: '',
   providerUri: '',
   contactEmail: '',

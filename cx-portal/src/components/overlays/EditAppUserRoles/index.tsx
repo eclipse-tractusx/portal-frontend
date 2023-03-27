@@ -27,6 +27,7 @@ import {
 } from 'cx-portal-shared-components'
 import {
   setUserRoleResp,
+  SuccessErrorType,
   useFetchAppRolesQuery,
   UserRoleRequest,
   useUpdateUserRolesMutation,
@@ -81,10 +82,10 @@ export default function EditAppUserRoles({ id }: { id: string }) {
     try {
       await updateUserRoles(data).unwrap()
       refetch()
-      dispatch(setUserRoleResp('success'))
+      dispatch(setUserRoleResp(SuccessErrorType.SUCCESS))
       dispatch(closeOverlay())
     } catch (err) {
-      dispatch(setUserRoleResp('error'))
+      dispatch(setUserRoleResp(SuccessErrorType.ERROR))
       dispatch(closeOverlay())
     }
   }

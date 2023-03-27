@@ -49,7 +49,7 @@ import {
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsRegistration'
-import { getFrontEndBase } from 'services/EnvironmentService'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -76,9 +76,9 @@ const EdcConnector = () => {
   const [response, setResponse] = useState<boolean>(false)
   const [action, setAction] = useState<string>('create')
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-  const [notificationType, setNotificationType] = useState<'error' | 'success'>(
-    'success'
-  )
+  const [notificationType, setNotificationType] = useState<
+    SuccessErrorType.ERROR | SuccessErrorType.SUCCESS
+  >(SuccessErrorType.SUCCESS)
   const [notificationMessage, setNotificationMessage] = useState<string>(
     t('content.edcconnector.snackbar.successmessage')
   )
@@ -226,7 +226,7 @@ const EdcConnector = () => {
 
   useEffect(() => {
     if (!token) {
-      setNotificationType('error')
+      setNotificationType(SuccessErrorType.ERROR)
       setNotificationMessage(t('content.edcconnector.snackbar.errormessage'))
       setNotificationOpen(true)
     }
@@ -234,7 +234,7 @@ const EdcConnector = () => {
   }, [])
 
   const onHelpButtonClicked = () => {
-    const url = `${getFrontEndBase()}/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md`
+    const url = `/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md`
     window.open(url, '_blank')
   }
 

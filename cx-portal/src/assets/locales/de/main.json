@@ -708,6 +708,7 @@
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
+      "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Dienst",
@@ -784,6 +785,12 @@
         "title": "Applikation Berechtigungen",
         "appName": "App Name",
         "appProvider": "App Anbieter"
+      },
+      "editRoles": {
+        "title": "Manage User Assigned Portal Role(s)",
+        "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
+        "successDescription": "Portal Role(s) successfully updated.",
+        "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
       }
     },
     "footer": {
@@ -812,7 +819,13 @@
       "pending": "Angefragt",
       "privacy": {
         "heading": "Datenschutz",
-        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden."
+        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
       },
       "howtouse": {
         "heading": "Nutzungsbedingungen",
@@ -891,13 +904,17 @@
         "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX"
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
+        "privacyInformation": "Privacy Information",
+        "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
+        "privacyInfoError": "Error - values couldn't get fetched. Please try it later again"
       },
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "allAgreementsMandatory": "All agreements are mandatory",
-        "uploadImageConformity": "Conformity App Certificate"
+        "uploadImageConformity": "Conformity App Certificate",
+        "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -1108,13 +1125,18 @@
         "heading": "Data Security Information",
         "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
       },
-      "conformityDocument": {
+      "ConformityDocument": {
         "heading": "Conformity Document",
         "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
       },
-      "documents": {
+      "Documents": {
         "heading": "Documents",
         "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+      },
+      "roles": {
+        "heading": "App Roles",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {
         "heading": "Provider Information",
@@ -1255,6 +1277,11 @@
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
         }
       }
+    },
+    "roleDetails": {
+      "heading": "Overview of the available Catena-X portal roles",
+      "tab1": "Role Descriptions",
+      "tab2": "Role Comparison"
     }
   },
   "navigation": {
@@ -1292,6 +1319,10 @@
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
       "uploadProgess": "Uploaded % of % files"
+    },
+    "userRoles": {
+      "title": "Assigned Catena-X Portal Roles",
+      "changeRoleBtn": "Change Portal Role"
     }
   },
   "global": {
@@ -1337,7 +1368,9 @@
       "submit": "Einreichen",
       "no": "No",
       "yes": "Yes",
-      "next": "Next"
+      "next": "Next",
+      "success": "Success",
+      "error": "Error"
     },
     "state": {
       "enabled": "aktiv",

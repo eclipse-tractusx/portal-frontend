@@ -25,13 +25,12 @@ import {
   DialogContent,
   DialogHeader,
 } from 'cx-portal-shared-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay/actions'
 import {
   useFetchIDPListQuery,
   IdentityProvider,
 } from 'features/admin/idpApiSlice'
-import { updateIDPSelector } from 'features/control/updatesSlice'
 import { AddUserContent } from './AddUserContent'
 import { AddUserDeny } from './AddUserDeny'
 import { useEffect, useState } from 'react'
@@ -39,8 +38,7 @@ import { useEffect, useState } from 'react'
 export const AddUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const update = useSelector(updateIDPSelector)
-  const { data, isFetching } = useFetchIDPListQuery(update)
+  const { data, isFetching } = useFetchIDPListQuery()
   const [idps, setIdps] = useState<IdentityProvider[]>([])
 
   useEffect(

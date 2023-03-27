@@ -19,17 +19,17 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { NewAppDetails } from 'features/appManagement/apiSlice'
 import { Typography } from 'cx-portal-shared-components'
 import AppProviderInfo from './AppProviderInfo'
 import AppDetailImageGallery from 'components/pages/AppDetail/components/AppDetailImageGallery'
 import { getAppImage } from 'features/apps/mapper'
+import { AppStatusDataState } from 'features/appManagement/types'
 
 export default function AppInfo({
   item,
   id,
 }: {
-  item: NewAppDetails
+  item: AppStatusDataState
   id: string
 }) {
   const { t } = useTranslation()
@@ -65,7 +65,7 @@ export default function AppInfo({
       <AppProviderInfo item={item} />
       <div style={{ marginTop: '50px' }}></div>
       <AppDetailImageGallery
-        images={item.images.map((image) => getAppImage(id, image))}
+        images={item.images?.map((image) => getAppImage(id, image)) || []}
       />
     </div>
   )

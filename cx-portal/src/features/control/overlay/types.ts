@@ -28,6 +28,7 @@ export type OverlayState = {
   title?: string
   status?: boolean
   subTitle?: string
+  roles?: string[]
 }
 
 export const initialState = {

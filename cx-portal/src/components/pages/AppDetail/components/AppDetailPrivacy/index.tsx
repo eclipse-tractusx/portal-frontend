@@ -20,24 +20,58 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
+import { uniqueId } from 'lodash'
+import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import './AppDetailPrivacy.scss'
+import { AppDetails } from 'features/apps/apiSlice'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
-export default function AppDetailPrivacy() {
-  const { t } = useTranslation()
+export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'content.appdetail.privacy',
+  })
+
+  const renderPrivacy = (policy: PrivacyPolicyType) => {
+    switch (policy) {
+      case PrivacyPolicyType.COMPANY_DATA:
+        return <Apartment className="policy-icon" />
+      case PrivacyPolicyType.USER_DATA:
+        return <Person className="policy-icon" />
+      case PrivacyPolicyType.LOCATION:
+        return <LocationOn className="policy-icon" />
+      case PrivacyPolicyType.BROWSER_HISTORY:
+        return <Web className="policy-icon" />
+      case PrivacyPolicyType.NONE:
+        return <Info className="policy-icon" />
+      default:
+        return <Apartment className="policy-icon" />
+    }
+  }
 
   return (
     <div className="appdetail-privacy">
       <div className="privacy-content">
-        <Typography variant="h4">
-          {t('content.appdetail.privacy.heading')}
-        </Typography>
-        <Typography variant="body2">
-          {t('content.appdetail.privacy.message')}
-        </Typography>
+        <Typography variant="h4">{t('heading')}</Typography>
+        <Typography variant="body2">{t('message')}</Typography>
       </div>
-      <Typography variant="body2" className="table-text">
-        {t('content.appdetail.privacy.notSupportedMessage')}
-      </Typography>
+      {item.privacyPolicies && item.privacyPolicies.length ? (
+        <div className="policies-list">
+          {item.privacyPolicies.map((policy: PrivacyPolicyType) => (
+            <Typography
+              variant="body2"
+              className="policy-name"
+              key={uniqueId(policy)}
+            >
+              {renderPrivacy(policy)}
+              {t(policy)}
+            </Typography>
+          ))}
+        </div>
+      ) : (
+        <Typography variant="body2" className="table-text">
+          {t('notSupportedMessage')}
+        </Typography>
+      )}
     </div>
   )
 }
