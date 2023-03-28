@@ -214,7 +214,7 @@ export default function CheckList({
               )
             })}
           </Box>
-          {showCancel && getProgressValue() < 100 && (
+          {showCancel && getProgressValue() < 100 ? (
             <Button
               variant="text"
               size="small"
@@ -230,6 +230,16 @@ export default function CheckList({
             >
               {cancelText}
             </Button>
+          ) : (
+            <Button
+              variant="text"
+              size="small"
+              sx={{
+                fontSize: '12px',
+                color: 'transparent',
+                marginLeft: '25px',
+              }}
+            />
           )}
         </Box>
       )}

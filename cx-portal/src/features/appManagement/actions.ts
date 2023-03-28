@@ -19,12 +19,27 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import { name, SearchInputState, AppStatusDataState } from './types'
+import {
+  name,
+  SearchInputState,
+  AppStatusDataState,
+  ServiceStatusDataState,
+} from './types'
 
 const setSearchInput = createAction<SearchInputState>(`${name}/setSearchOpen`)
 const setAppId = createAction<string>(`${name}/setApplicationId`)
+const setServiceId = createAction<string>(`${name}/setServiceId`)
 const setAppStatus = createAction<AppStatusDataState>(
   `${name}/setAppStatusData`
 )
+const setServiceStatus = createAction<ServiceStatusDataState>(
+  `${name}/setServiceStatusData`
+)
 
-export { setSearchInput, setAppId, setAppStatus }
+export {
+  setSearchInput,
+  setAppId,
+  setAppStatus,
+  setServiceStatus,
+  setServiceId,
+}

@@ -24,19 +24,15 @@ import { useTranslation } from 'react-i18next'
 import { Button, Typography } from 'cx-portal-shared-components'
 import BoardHeader from './components/BoardHeader'
 import BoardImageGallery from './components/BoardImageGallery'
-import BoardConnectedData from './components/BoardConnectedData'
-import BoardSecurityInfo from './components/BoardSecurityInfo'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'
-import { AppDetails } from 'features/apps/apiSlice'
-import './AdminBoardDetail.scss'
+import { AppDetails, DocumentTypeText } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
+import BoardPrivacy from './components/BoardPrivacy'
+import BoardRoles from './components/BoardRoles'
+import './AdminBoardDetail.scss'
 
-export default function AppDetailContentDetails({
-  item,
-}: {
-  item: AppDetails
-}) {
+export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [images, setImages] = useState<any>()
@@ -58,18 +54,18 @@ export default function AppDetailContentDetails({
           <Typography variant="body2">{item.longDescription}</Typography>
         </div>
         {images && <BoardImageGallery images={images} />}
-        <BoardConnectedData item={item} />
-        <BoardSecurityInfo />
+        <BoardPrivacy item={item} />
         <BoardDocuments
-          type="conformityDocument"
+          type={DocumentTypeText.CONFORMITY_DOCUMENT}
           appId={item.id}
-          documents={item.documents['CONFORMITY_APPROVAL_BUSINESS_APPS']}
+          documents={item.documents}
         />
         <BoardDocuments
-          type="documents"
+          type={DocumentTypeText.DOCUMENTS}
           appId={item.id}
-          documents={item.documents['APP_CONTRACT']}
+          documents={item.documents}
         />
+        <BoardRoles item={item} />
         <BoardProvider item={item} />
         <Button
           color="secondary"

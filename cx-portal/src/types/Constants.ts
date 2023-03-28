@@ -91,6 +91,7 @@ export enum PAGES {
   SERVICEADMINBOARD = 'serviceadminboard',
   SERVICESUBSCRIPTION = 'servicesubscription',
   SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
+  ROLE_DETAILS = 'role-details',
 }
 
 export enum OVERLAYS {
@@ -128,6 +129,7 @@ export enum OVERLAYS {
   SAMPLE_FORM = 'sample_form',
   ADD_SERVICE_PROVIDER = 'add_service_provider',
   DECLINE_ADMINBOARD = 'decline_adminboard',
+  EDIT_PORTAL_ROLES = 'edit_portal_roles',
 }
 
 export enum ACTIONS {

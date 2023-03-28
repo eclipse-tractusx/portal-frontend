@@ -37,7 +37,6 @@ import {
 } from 'features/admin/idpApiSlice'
 import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
 import { OVERLAYS } from 'types/Constants'
 
 export const EnableIDP = ({ id }: { id: string }) => {
@@ -70,7 +69,6 @@ export const EnableIDP = ({ id }: { id: string }) => {
       } catch (e) {
         console.log(e)
       }
-      dispatch(updateData(UPDATES.IDP_LIST))
       dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
     } catch (err) {
       console.log(err)

@@ -32,6 +32,9 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
   patternKey,
   patternDE,
   patternEN,
+  isRequired = true,
+  minLength = 10,
+  maxLength = 255,
 }: any) {
   return (
     <>
@@ -46,11 +49,11 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
           textarea: true,
           rules: {
             required: {
-              value: true,
+              value: isRequired,
               message: rules.required,
             },
             minLength: {
-              value: 10,
+              value: minLength,
               message: rules.minLength,
             },
             pattern: {
@@ -58,7 +61,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
               message: rules.pattern,
             },
             maxLength: {
-              value: 255,
+              value: maxLength,
               message: rules.maxLength,
             },
           },

@@ -20,16 +20,24 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
-import { NewAppDetails } from 'features/appManagement/apiSlice'
+import { AppStatusDataState } from 'features/appManagement/types'
 
-export default function AppProviderInfo({ item }: { item: NewAppDetails }) {
+export default function AppProviderInfo({
+  item,
+}: {
+  item: AppStatusDataState
+}) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.providerInformation',
   })
 
   const tableData: TableType = {
     head: [t('appProvider'), t('email'), t('phone')],
-    body: [[item.provider], [item.contactEmail], [item.contactNumber]],
+    body: [
+      [item.provider || ''],
+      [item.contactEmail],
+      [item.contactNumber || ''],
+    ],
   }
 
   return (
@@ -46,7 +54,7 @@ export default function AppProviderInfo({ item }: { item: NewAppDetails }) {
           {t('message')}
         </Typography>
       </div>
-      <StaticTable data={tableData} horizontal={true} />
+      {item && <StaticTable data={tableData} horizontal={true} />}
     </div>
   )
 }

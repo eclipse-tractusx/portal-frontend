@@ -41,7 +41,8 @@ import {
   useUpdateRoleDataMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -51,9 +52,9 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
     useState<boolean>(false)
-  const [snackBarType, setSnackBarType] = useState<'error' | 'success'>(
-    'success'
-  )
+  const [snackBarType, setSnackBarType] = useState<
+    SuccessErrorType.ERROR | SuccessErrorType.SUCCESS
+  >(SuccessErrorType.SUCCESS)
   const [snackBarMessage, setSnackBarMessage] = useState<string>(
     t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
   )
@@ -95,7 +96,7 @@ export default function TechnicalIntegration() {
   })
 
   useEffect(() => {
-    dispatch(setAppStatus(fetchAppStatus))
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
   const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
@@ -174,14 +175,14 @@ export default function TechnicalIntegration() {
       .unwrap()
       .then(() => {
         refetch()
-        setSnackBarType('success')
+        setSnackBarType(SuccessErrorType.SUCCESS)
         setSnackBarMessage(
           t('content.apprelease.appReleaseForm.roleDeleteSuccessMessage')
         )
         setTechnicalIntegrationSnackbar(true)
       })
       .catch((error) => {
-        setSnackBarType('error')
+        setSnackBarType(SuccessErrorType.ERROR)
         setSnackBarMessage(t('content.apprelease.appReleaseForm.errormessage'))
         setTechnicalIntegrationSnackbar(true)
       })

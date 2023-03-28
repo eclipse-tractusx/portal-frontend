@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { UseCaseType } from 'features/appManagement/types'
+
 export const name = 'apps/marketplace'
 
 export type AppMarketplaceApp = {
@@ -26,7 +28,7 @@ export type AppMarketplaceApp = {
   provider: string
   leadPictureUri: string
   shortDescription: string
-  useCases: string[]
+  useCases: UseCaseType[]
   price: string
   rating?: number
   link?: string
