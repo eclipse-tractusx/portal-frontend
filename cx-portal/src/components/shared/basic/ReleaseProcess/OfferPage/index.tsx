@@ -263,7 +263,9 @@ export default function OfferPage() {
                   patternEN={Patterns.offerPage.longDescriptionEN}
                   patternDE={Patterns.offerPage.longDescriptionDE}
                   rules={{
-                    maxLength: `${t('serviceReleaseForm.maximum')} 255 ${t(
+                    maxLength: `${t(
+                      'serviceReleaseForm.maximum'
+                    )} ${longDescriptionMaxLength} ${t(
                       'serviceReleaseForm.charactersAllowed'
                     )}`,
                     required:
@@ -280,8 +282,7 @@ export default function OfferPage() {
                         : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
                     }`,
                   }}
-                  maxLength={255}
-                  minLength={10}
+                  maxLength={longDescriptionMaxLength}
                 />
               </div>
             )
