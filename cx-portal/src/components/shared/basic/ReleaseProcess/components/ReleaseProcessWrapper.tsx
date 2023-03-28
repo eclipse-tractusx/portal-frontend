@@ -42,6 +42,7 @@ import OfferPage from '../OfferPage'
 import OfferContractAndConsent from '../OfferContractAndConsent'
 import { serviceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import OfferValidateAndPublish from '../OfferValidateAndPublish'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
@@ -88,7 +89,7 @@ export default function ReleaseProcessWrapper({
       else if (serviceActiveStep === 2) return <OfferPage />
       else if (serviceActiveStep === 3) return <OfferContractAndConsent />
       else if (serviceActiveStep === 4)
-        return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+        return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
     }
   }, [activeStep, serviceActiveStep, processType])
 

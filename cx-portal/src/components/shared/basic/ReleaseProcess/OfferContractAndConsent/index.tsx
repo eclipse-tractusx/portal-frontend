@@ -30,6 +30,7 @@ import {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
+  useFetchFrameDocumentByIdMutation,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
@@ -45,6 +46,7 @@ export default function OfferContractAndConsent() {
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function OfferContractAndConsent() {
   return (
     <div className="contract-consent">
       <CommonContractAndConsent
-        type={ReleaseProcessTypes.SERVICE_RELEAE}
+        type={ReleaseProcessTypes.SERVICE_RELEASE}
         stepperTitle={t('step3.headerTitle')}
         stepperDescription={t('step3.headerDescription')}
         checkBoxMandatoryText={t('serviceReleaseForm.isMandatory')}
@@ -76,6 +78,8 @@ export default function OfferContractAndConsent() {
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchServiceStatus || undefined}
         getDocumentById={getDocumentById}
+        documentRequired={false}
+        fetchFrameDocumentById={fetchFrameDocumentById}
       />
     </div>
   )
