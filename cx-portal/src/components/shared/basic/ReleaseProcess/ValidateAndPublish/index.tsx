@@ -94,7 +94,7 @@ export default function ValidateAndPublish({
         },
       ],
     }
-  }, [fetchAppStatus])
+  }, [fetchAppStatus, t])
 
   return (
     <div>
