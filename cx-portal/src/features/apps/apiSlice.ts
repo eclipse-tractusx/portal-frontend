@@ -143,19 +143,22 @@ export const apiSlice = createApi({
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
         const activeApps = await fetchWithBQ(`/api/apps/active`)
-        if (activeApps.error)
-          return { error: activeApps.error }
+        if (activeApps.error) return { error: activeApps.error }
         const data: any = activeApps.data
         console.log('data', data)
-        const subscriptionStatus = await fetchWithBQ(`/api/apps/subscribed/subscription-status`)
+        const subscriptionStatus = await fetchWithBQ(
+          `/api/apps/subscribed/subscription-status`
+        )
         const subscriptionData: any = subscriptionStatus.data
         console.log('result', subscriptionData)
         data.forEach(async (appItem: any) => {
           subscriptionData.forEach(async (subscriptionItem: any) => {
-            if(appItem.id === subscriptionItem.appId) appItem.subscriptionStatus = subscriptionItem.offerSubscriptionStatus
+            if (appItem.id === subscriptionItem.appId)
+              appItem.subscriptionStatus =
+                subscriptionItem.offerSubscriptionStatus
           })
         })
-        return {data: data}
+        return { data: data }
       },
     }),
     fetchFavoriteApps: builder.query<string[], void>({
