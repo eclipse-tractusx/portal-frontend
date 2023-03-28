@@ -67,6 +67,7 @@ export const CardDecision = ({
     >
       {items.map((item) => (
         <Box
+          key={item.appId}
           sx={{
             paddingRight: '10px',
             paddingLeft: '10px',
@@ -76,7 +77,6 @@ export const CardDecision = ({
           }}
         >
           <Box
-            key={item.appId}
             sx={{
               boxSizing: 'border-box',
               display: 'flex',
