@@ -61,7 +61,7 @@ export default function RecommendedServices({
                 buttonText="Details"
                 onBtnClick={() => handleClick(service.id)}
                 title={service.title}
-                subTitle={getServices(service.serviceTypeIds)}
+                subTitle={getServices(service.serviceTypes)}
                 description={service.description}
                 backgroundColor="#f7f7f7"
               />
