@@ -33,7 +33,7 @@ import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import {
   TenantUserDetails,
-  useFetchUsersRolesQuery,
+  useFetchUserDetailsQuery,
 } from 'features/admin/userApiSlice'
 import './UserRole.scss'
 import {
@@ -48,11 +48,15 @@ export const UserRoles = ({
   user: TenantUserDetails
   isUserDetail?: boolean
 }) => {
+  console.log('user', user)
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const { data } = useFetchUsersRolesQuery(user.companyUserId)
-  const roles = data?.content[0].roles ?? []
+  const { data } = useFetchUserDetailsQuery(user.companyUserId)
+  const roles =
+    data?.assignedRoles.filter(
+      (item) => item.appId === '9b957704-3505-4445-822c-d7ef80f27fcd' //added static for testing
+    )[0].roles ?? []
 
   const portalRoleResponse = useSelector(currentUserRoleResp)
 
@@ -78,7 +82,11 @@ export const UserRoles = ({
             </div>
           )}
 
-          <div className="policies-list-main">
+          <div
+            className={`policies-list-main ${
+              roles.length === 1 ? 'center' : ''
+            }`}
+          >
             {roles.map((role: string) => (
               <div className="policy-list" key={uniqueId(role)}>
                 <Chip label={role} type="plain" />
