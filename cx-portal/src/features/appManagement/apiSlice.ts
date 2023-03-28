@@ -307,6 +307,15 @@ export const apiSlice = createApi({
     fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
       query: () => `/api/apps/appreleaseprocess/privacyPolicies`,
     }),
+    fetchFrameDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/frameDocuments/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -331,4 +340,5 @@ export const {
   useDeleteDocumentMutation,
   useFetchNewDocumentByIdMutation,
   useFetchPrivacyPoliciesQuery,
+  useFetchFrameDocumentByIdMutation,
 } = apiSlice

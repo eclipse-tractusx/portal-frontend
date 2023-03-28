@@ -90,6 +90,7 @@ type CommonConsentType = {
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
   getDocumentById?: (id: string) => any
   documentRequired?: boolean
+  fetchFrameDocumentById?: (id: string) => any
 }
 
 export default function CommonContractAndConsent({
@@ -111,6 +112,7 @@ export default function CommonContractAndConsent({
   fetchStatusData,
   getDocumentById,
   documentRequired = true,
+  fetchFrameDocumentById,
 }: CommonConsentType) {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
@@ -351,6 +353,23 @@ export default function CommonContractAndConsent({
       }
   }
 
+  const handleFrameDocumentDownload = async (
+    documentName: string,
+    documentId: string
+  ) => {
+    if (fetchFrameDocumentById)
+      try {
+        const response = await fetchFrameDocumentById(documentId).unwrap()
+
+        const fileType = response.headers.get('content-type')
+        const file = response.data
+
+        return download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
+
   return (
     <div className="contract-consent">
       <ReleaseStepHeader
@@ -384,7 +403,9 @@ export default function CommonContractAndConsent({
                 {item.documentId ? (
                   <span
                     className={item.documentId ? 'agreement-span' : ''}
-                    onClick={() => handleDownload(item.name, item.documentId)}
+                    onClick={() =>
+                      handleFrameDocumentDownload(item.name, item.documentId)
+                    }
                   >
                     {item.name}
                   </span>

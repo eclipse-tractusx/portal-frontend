@@ -29,6 +29,7 @@ import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
+  useFetchFrameDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
@@ -46,6 +47,7 @@ export default function ContractAndConsent() {
     refetchOnMountOrArgChange: true,
   }).data
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
 
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
@@ -87,6 +89,7 @@ export default function ContractAndConsent() {
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchAppStatus || undefined}
         getDocumentById={getDocumentById}
+        fetchFrameDocumentById={fetchFrameDocumentById}
       />
     </div>
   )
