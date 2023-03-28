@@ -55,6 +55,7 @@ import {
   serviceReleaseStepDecrement,
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
+import { useTranslation } from 'react-i18next'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -117,6 +118,7 @@ export default function CommonValidateAndPublish({
   type,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const [validatePublishNotification, setValidatePublishNotification] =
     useState(false)
   const [cardImage, setCardImage] = useState('')
@@ -271,7 +273,7 @@ export default function CommonValidateAndPublish({
                   key={item}
                 >
                   <Typography variant="body2">
-                    <b>{`${validateAndPublishItemText}.${item}`}</b>
+                    <b>{t(`${validateAndPublishItemText}.${item}`)}</b>
                     {getAppData(item)}
                   </Typography>
                 </div>
