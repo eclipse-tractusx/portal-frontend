@@ -19,57 +19,27 @@
  ********************************************************************************/
 
 import { ValidatingInput } from 'components/overlays/CXValidatingOverlay/ValidatingForm'
-import { Button, Input } from 'cx-portal-shared-components'
-import { useEffect, useState } from 'react'
+import { Button } from 'cx-portal-shared-components'
+import { useState } from 'react'
 import { IHashMap } from 'types/MainTypes'
-import { isMail } from 'types/Patterns'
-
-const MyValidatingInput = ({
-  name,
-  value,
-  validate,
-  onValid,
-}: {
-  name: string
-  value?: string
-  validate: (expr: string) => boolean
-  onValid: (name: string, value: string) => void
-}) => {
-  const [valid, setValid] = useState<boolean>(false)
-
-  const doValidate = (expr: string) => {
-    const isValid = validate(expr)
-    setValid(isValid)
-    console.log('doValidate', isValid, expr)
-    if (isValid) {
-      onValid(name, expr)
-    }
-  }
-
-  useEffect(() => {
-    console.log('useEffect')
-    if (value) {
-      doValidate(value)
-    }
-  })
-
-  console.log('value', value)
-
-  return (
-    <Input
-      style={{ backgroundColor: valid ? '#eeffeeee' : '#ffeeee' }}
-      defaultValue={value}
-      onChange={(e) => { console.log(e); doValidate(e.target.value)} }
-    />
-  )
-}
+import { isBPN, isFirstName, isMail, isURL } from 'types/Patterns'
 
 const MyForm = ({
   onValid,
 }: {
   onValid: (form: IHashMap<string> | undefined) => void
 }) => {
+  const [formData, setFormData] = useState<IHashMap<string>>()
   const [mailValue, setMailValue] = useState<string>('')
+
+  const checkData = (key: string, value: string | undefined) => {
+    const current = { ...formData }
+    current[key] = value || ''
+    setFormData(current)
+    const formValid =
+      !!current.name && !!current.mail && !!current.url && !!current.bpn
+    onValid(formValid ? current : undefined)
+  }
 
   console.log('mailValue', mailValue)
 
@@ -100,12 +70,29 @@ const MyForm = ({
         Set invalid
       </Button>
       <ValidatingInput
+        name={'name'}
+        label={'name'}
+        validate={isFirstName}
+        onValid={checkData}
+      />
+      <ValidatingInput
         name={'mail'}
+        label={'mail'}
         value={mailValue}
         validate={isMail}
-        onValid={(name: string, value?: string) => {
-          console.log(`valid ${name}: ${value}`)
-        }}
+        onValid={checkData}
+      />
+      <ValidatingInput
+        name={'url'}
+        label={'url'}
+        validate={isURL}
+        onValid={checkData}
+      />
+      <ValidatingInput
+        name={'bpn'}
+        label={'bpn'}
+        validate={isBPN}
+        onValid={checkData}
       />
     </div>
   )
