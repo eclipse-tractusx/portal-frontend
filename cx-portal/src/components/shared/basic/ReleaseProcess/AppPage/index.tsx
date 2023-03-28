@@ -98,6 +98,7 @@ export default function AppPage() {
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -346,6 +347,7 @@ export default function AppPage() {
       'providerPhoneContact',
     ])
     if (validateFields) {
+      setLoading(true)
       handleSave(data, buttonLabel)
     }
   }
@@ -381,7 +383,9 @@ export default function AppPage() {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
       buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
+      setLoading(false)
     } catch (error: any) {
+      setLoading(false)
       setAppPageNotification(true)
     }
   }
@@ -706,6 +710,7 @@ export default function AppPage() {
           onAppPageSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose

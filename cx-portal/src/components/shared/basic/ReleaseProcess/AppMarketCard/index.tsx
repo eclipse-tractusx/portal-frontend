@@ -132,6 +132,7 @@ export default function AppMarketCard() {
   }).data
   const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   const defaultValues = {
     title: appStatusData?.title,
@@ -330,6 +331,7 @@ export default function AppMarketCard() {
   }
 
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
+    setLoading(true)
     const saveData = {
       title: data.title,
       provider: data.provider,
@@ -379,8 +381,10 @@ export default function AppMarketCard() {
           dispatch(setAppId(appId))
           onSave(buttonLabel)
           callDispatch()
+          setLoading(false)
         })
         .catch(() => {
+          setLoading(false)
           setAppCardNotification(true)
         })
     } else {
@@ -392,9 +396,11 @@ export default function AppMarketCard() {
             dispatch(setAppId(result))
             onSave(buttonLabel)
             callDispatch()
+            setLoading(false)
           }
         })
         .catch(() => {
+          setLoading(false)
           setAppCardNotification(true)
         })
     }
@@ -762,6 +768,7 @@ export default function AppMarketCard() {
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose

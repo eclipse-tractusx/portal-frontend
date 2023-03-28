@@ -92,6 +92,7 @@ export default function OfferCard() {
   >([])
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
+  const [loading, setLoading] = useState<boolean>(false)
 
   const defaultValues = useMemo(() => {
     return {
@@ -200,8 +201,10 @@ export default function OfferCard() {
           dispatch(serviceReleaseStepIncrement())
         buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
         if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+        setLoading(false)
       })
       .catch(() => {
+        setLoading(false)
         setServiceCardNotification(true)
       })
   }
@@ -222,9 +225,11 @@ export default function OfferCard() {
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
           buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
+          setLoading(false)
         }
       })
       .catch(() => {
+        setLoading(false)
         setServiceCardNotification(true)
       })
   }
@@ -270,6 +275,7 @@ export default function OfferCard() {
       contactEmail: '',
     }
     if (validateFields) {
+      setLoading(true)
       if (serviceId) {
         handleSave(apiBody, buttonLabel)
       } else {
@@ -437,6 +443,7 @@ export default function OfferCard() {
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
     </div>
   )

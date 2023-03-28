@@ -72,6 +72,7 @@ export default function OfferPage() {
   }).data
   const [saveService] = useSaveServiceMutation()
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -180,6 +181,7 @@ export default function OfferPage() {
       'providerContactEmail',
     ])
     if (validateFields) {
+      setLoading(true)
       handleSave(data, buttonLabel)
     }
   }
@@ -222,7 +224,9 @@ export default function OfferPage() {
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
         dispatch(serviceReleaseStepIncrement())
       buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       setServicePageNotification(true)
     }
   }
@@ -370,6 +374,7 @@ export default function OfferPage() {
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
     </div>
   )

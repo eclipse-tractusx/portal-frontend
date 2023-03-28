@@ -123,6 +123,7 @@ export default function CommonContractAndConsent({
     agreements: [],
   })
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -288,6 +289,7 @@ export default function CommonContractAndConsent({
   }
 
   const handleSave = async (data: Object, buttonLabel: string) => {
+    setLoading(true)
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
     )
@@ -324,8 +326,10 @@ export default function CommonContractAndConsent({
             dispatch(serviceReleaseStepIncrement())
           }
           buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
+          setLoading(false)
         })
         .catch(() => {
+          setLoading(false)
           setContractNotification(true)
         })
   }
@@ -462,6 +466,7 @@ export default function CommonContractAndConsent({
           onContractConsentSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose
