@@ -30,6 +30,7 @@ import {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
+  useFetchFrameDocumentByIdMutation,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
@@ -45,6 +46,7 @@ export default function OfferContractAndConsent() {
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   useEffect(() => {
@@ -77,6 +79,7 @@ export default function OfferContractAndConsent() {
         fetchStatusData={fetchServiceStatus || undefined}
         getDocumentById={getDocumentById}
         documentRequired={false}
+        fetchFrameDocumentById={fetchFrameDocumentById}
       />
     </div>
   )

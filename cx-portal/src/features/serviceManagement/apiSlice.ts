@@ -158,6 +158,15 @@ export const apiSlice = createApi({
     }),
     fetchNewDocumentById: builder.mutation({
       query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
+    fetchFrameDocumentById: builder.mutation({
+      query: (documentId) => ({
         url: `/api/administration/documents/frameDocuments/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
@@ -185,4 +194,5 @@ export const {
   useUpdateServiceDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
   useSubmitServiceMutation,
+  useFetchFrameDocumentByIdMutation,
 } = apiSlice
