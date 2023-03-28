@@ -83,8 +83,8 @@
     "isMandatory": " is mandatory",
     "fileUploadIsMandatory": "File upload is mandatory",
     "error": {
-      "title": "Error - something went wrong.",
-      "message": "Please try it again"
+      "title": "Submission was not successful.",
+      "message": "Please try it again or come back later."
     },
     "dataSavedSuccessMessage": "Data saved successfully",
     "roleDeleteSuccessMessage": "Role deleted successfully",
