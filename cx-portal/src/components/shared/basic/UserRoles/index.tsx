@@ -48,7 +48,6 @@ export const UserRoles = ({
   user: TenantUserDetails
   isUserDetail?: boolean
 }) => {
-  console.log('user', user)
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
