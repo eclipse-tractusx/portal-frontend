@@ -28,6 +28,7 @@ import {
   PageNotifications,
   StaticTable,
   Typography,
+  TableType,
 } from 'cx-portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -55,6 +56,15 @@ import {
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 
+export interface DefaultValueType {
+  images: Array<string>
+  connectedTableData: TableType
+  dataSecurityInformation: string
+  conformityDocumentsDescription: string
+  documentsDescription: string
+  providerTableData: TableType
+  cxTestRuns: []
+}
 interface CommonValidateAndPublishType {
   stepperHeader: string
   stepperDescription: string
@@ -77,24 +87,8 @@ interface CommonValidateAndPublishType {
   error: { title: string; message: string }
   helpText: string
   submitButton: string
-  values: any
+  values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
-}
-
-interface DefaultValueType {
-  images: string[]
-  connectedTableData: {
-    head: string[]
-    body: string[][]
-  }
-  dataSecurityInformation: string
-  conformityDocumentsDescription: string
-  documentsDescription: string
-  providerTableData: {
-    head: string[]
-    body: string[][]
-  }
-  cxTestRuns: []
 }
 
 export default function CommonValidateAndPublish({
@@ -181,7 +175,6 @@ export default function CommonValidateAndPublish({
     setDefaultValues(values)
     reset(values)
   }, [statusData, values, fetchImage, reset, id])
-  console.log(defaultValues)
 
   const handleDownloadFn = async (documentId: string, documentName: string) => {
     try {

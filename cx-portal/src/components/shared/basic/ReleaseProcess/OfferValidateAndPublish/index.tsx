@@ -25,13 +25,13 @@ import { useSelector } from 'react-redux'
 import {
   ConsentStatusEnum,
   useFetchDocumentByIdMutation,
-  useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import CommonValidateAndPublish from '../components/CommonValidateAndPublish'
 import { serviceIdSelector } from 'features/serviceManagement/slice'
 import {
   ReleaseProcessTypes,
   useFetchServiceStatusQuery,
+  useSubmitServiceMutation,
 } from 'features/serviceManagement/apiSlice'
 
 export default function OfferValidateAndPublish({
@@ -40,7 +40,7 @@ export default function OfferValidateAndPublish({
   showSubmitPage: (val: boolean) => void
 }) {
   const { t } = useTranslation('servicerelease')
-  const [submitapp] = useSubmitappMutation()
+  const [submitService] = useSubmitServiceMutation()
   const serviceId = useSelector(serviceIdSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId, {
@@ -86,33 +86,35 @@ export default function OfferValidateAndPublish({
 
   return (
     <div>
-      <CommonValidateAndPublish
-        type={ReleaseProcessTypes.SERVICE_RELEASE}
-        stepperHeader={t('step4.headerTitle')}
-        stepperDescription={t('step4.headerDescription')}
-        statusData={fetchServiceStatus}
-        id={serviceId}
-        fetchDocumentById={fetchDocumentById}
-        showSubmitPage={showSubmitPage}
-        submitData={submitapp}
-        detailsText={t('step4.appDetails')}
-        longDescriptionTitleEN={t('step4.longDescriptionTitleEN')}
-        longDescriptionTitleDE={t('step4.longDescriptionTitleDE')}
-        connectedData={t('step4.connectedData')}
-        conformityDocument={t('step4.conformityDocument')}
-        dataSecurityInformation={t('step4.dataSecurityInformation')}
-        documentsTitle={t('step4.documents')}
-        providerInformation={t('step4.providerInformation')}
-        consentTitle={t('step4.consent')}
-        cxTestRunsTitle={t('step4.cxTestRuns')}
-        error={{
-          title: t('serviceReleaseForm.error.title'),
-          message: t('serviceReleaseForm.error.message'),
-        }}
-        helpText={t('footerButtons.help')}
-        submitButton={t('footerButtons.submit')}
-        values={defaultValues}
-      />
+      {fetchServiceStatus && (
+        <CommonValidateAndPublish
+          type={ReleaseProcessTypes.SERVICE_RELEASE}
+          stepperHeader={t('step4.headerTitle')}
+          stepperDescription={t('step4.headerDescription')}
+          statusData={fetchServiceStatus}
+          id={serviceId}
+          fetchDocumentById={fetchDocumentById}
+          showSubmitPage={showSubmitPage}
+          submitData={submitService}
+          detailsText={t('step4.appDetails')}
+          longDescriptionTitleEN={t('step4.longDescriptionTitleEN')}
+          longDescriptionTitleDE={t('step4.longDescriptionTitleDE')}
+          connectedData={t('step4.connectedData')}
+          conformityDocument={t('step4.conformityDocument')}
+          dataSecurityInformation={t('step4.dataSecurityInformation')}
+          documentsTitle={t('step4.documents')}
+          providerInformation={t('step4.providerInformation')}
+          consentTitle={t('step4.consent')}
+          cxTestRunsTitle={t('step4.cxTestRuns')}
+          error={{
+            title: t('serviceReleaseForm.error.title'),
+            message: t('serviceReleaseForm.error.message'),
+          }}
+          helpText={t('footerButtons.help')}
+          submitButton={t('footerButtons.submit')}
+          values={defaultValues}
+        />
+      )}
     </div>
   )
 }

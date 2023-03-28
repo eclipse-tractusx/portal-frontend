@@ -165,6 +165,12 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    submitService: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `/api/services/${id}/submit`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -178,4 +184,5 @@ export const {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
+  useSubmitServiceMutation,
 } = apiSlice
