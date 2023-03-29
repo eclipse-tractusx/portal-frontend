@@ -47,11 +47,13 @@ export default function EditPortalRoles({ id }: { id: string }) {
 
   const appRoles = useFetchCoreoffersRolesQuery().data
   const { data, refetch } = useFetchUserDetailsQuery(id)
-  const assignedRoles = useMemo(() =>
-    data?.assignedRoles.filter(
-      (item) => item.appId === '9b957704-3505-4445-822c-d7ef80f27fcd' //added static for testing
-    )[0].roles ?? []
-    , [data])
+  const assignedRoles = useMemo(
+    () =>
+      data?.assignedRoles.filter(
+        (item) => item.appId === '9b957704-3505-4445-822c-d7ef80f27fcd' //added static for testing
+      )[0].roles ?? [],
+    [data]
+  )
 
   const [allRoles, setAllRoles] = useState<AppRole[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
