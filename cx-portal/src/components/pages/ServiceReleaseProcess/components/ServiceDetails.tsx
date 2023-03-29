@@ -27,6 +27,7 @@ import {
 import './ServiceDetail.scss'
 import {
   ServiceTypeIdsEnum,
+  useFetchDocumentMutation,
   useFetchServiceStatusQuery,
 } from 'features/serviceManagement/apiSlice'
 import { useCallback } from 'react'
@@ -35,6 +36,7 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { Divider, InputLabel } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useParams } from 'react-router-dom'
+import { download } from 'utils/downloadUtils'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -42,6 +44,7 @@ export default function ServiceDetails() {
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId || '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const [fetchDocument] = useFetchDocumentMutation()
 
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
@@ -53,6 +56,23 @@ export default function ServiceDetails() {
     })
     return newArr.join(', ')
   }, [fetchServiceStatus, t])
+
+  const handleDownload = async (item: {
+    documentId: string
+    documentName: string
+  }) => {
+    try {
+      const response = await fetchDocument({
+        serviceId: serviceId,
+        documentId: item.documentId,
+      }).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+      return download(file, fileType, item.documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
 
   return (
     <main>
@@ -136,7 +156,13 @@ export default function ServiceDetails() {
               </Typography>
               {fetchServiceStatus?.documents &&
                 Object.keys(fetchServiceStatus.documents).map((item, i) => (
-                  <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                  <InputLabel
+                    sx={{ mb: 0, mt: 3 }}
+                    key={item}
+                    onClick={() =>
+                      handleDownload(fetchServiceStatus.documents[item])
+                    }
+                  >
                     <a href="/" style={{ display: 'flex' }}>
                       <ArrowForwardIcon fontSize="small" />
                       {fetchServiceStatus.documents[item][i].documentName}

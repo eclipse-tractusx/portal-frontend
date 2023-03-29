@@ -185,6 +185,15 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    fetchDocument: builder.mutation({
+      query: (obj) => ({
+        url: `/api/services/${obj.serviceId}/serviceDocuments/${obj.documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -200,4 +209,5 @@ export const {
   useFetchNewDocumentByIdMutation,
   useSubmitServiceMutation,
   useFetchFrameDocumentByIdMutation,
+  useFetchDocumentMutation,
 } = apiSlice
