@@ -25,7 +25,7 @@ import { ServiceStatusDataState } from './types'
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',
-  SERVICE_RELEAE = 'serviceRelease',
+  SERVICE_RELEASE = 'serviceRelease',
 }
 
 export type CreateServiceStep1Item = {
@@ -158,11 +158,26 @@ export const apiSlice = createApi({
     }),
     fetchNewDocumentById: builder.mutation({
       query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
+    fetchFrameDocumentById: builder.mutation({
+      query: (documentId) => ({
         url: `/api/administration/documents/frameDocuments/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
         }),
+      }),
+    }),
+    submitService: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `/api/services/${id}/submit`,
+        method: 'PUT',
       }),
     }),
   }),
@@ -178,4 +193,6 @@ export const {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
+  useSubmitServiceMutation,
+  useFetchFrameDocumentByIdMutation,
 } = apiSlice

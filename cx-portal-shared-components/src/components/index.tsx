@@ -77,8 +77,6 @@ export { SelectList } from './basic/SelectList'
 export { Textarea } from './basic/Textarea'
 export { VerticalTabs } from './basic/VerticalTabs'
 export { LoadingButton } from './basic/LoadingButton'
-export { OrderStatusButton } from './basic/OrderStatusButton'
-
 export { Cards } from './content/Cards'
 export { Card } from './content/Cards/Card'
 export { CardAddService } from './content/Cards/CardAddService'

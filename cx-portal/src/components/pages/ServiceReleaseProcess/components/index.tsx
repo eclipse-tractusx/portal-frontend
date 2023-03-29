@@ -56,7 +56,7 @@ export default function ServiceReleaseProcessForm() {
 
   return (
     <ReleaseProcessWrapper
-      processType={ReleaseProcessTypes.SERVICE_RELEAE}
+      processType={ReleaseProcessTypes.SERVICE_RELEASE}
       onAppsOverviewClick={() => onServiceOverviewClick()}
       stepsList={stepsList}
       numberOfSteps={4}
