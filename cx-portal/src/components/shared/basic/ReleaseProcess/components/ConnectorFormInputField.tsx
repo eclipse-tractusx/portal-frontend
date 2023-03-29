@@ -52,6 +52,7 @@ export const ConnectorFormInputField = ({
   handleDownload,
   handleDelete,
   size,
+  errorText,
 }: any) => {
   const renderDropArea = (props: DropAreaProps, size: any) => {
     return <DropArea {...props} size={size || 'normal'} />
@@ -100,6 +101,7 @@ export const ConnectorFormInputField = ({
               maxFileSize={maxFileSize}
               enableDeleteIcon={enableDeleteIcon}
               DropArea={(props) => renderDropArea(props, size)}
+              errorText={errorText}
             />
           )
         } else if (type === 'checkbox') {
