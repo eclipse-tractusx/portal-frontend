@@ -67,6 +67,7 @@ export const Card = ({
   id,
   title,
   subtitle,
+  subscriptionStatus,
   rating,
   price,
   description,
@@ -222,6 +223,7 @@ export const Card = ({
             imageLoader={imageLoader}
             preview={variant === 'preview'}
           />
+          <p>{subscriptionStatus}</p>
         </Box>
         <Box sx={{ marginBottom: '20px' }}>
           {statusText && imageSize === 'small' && showStatus && (

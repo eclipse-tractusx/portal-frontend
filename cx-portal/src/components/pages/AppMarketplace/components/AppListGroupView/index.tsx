@@ -35,6 +35,8 @@ export const AppListGroupView = ({
 }) => {
   const { t } = useTranslation()
 
+  console.log('items', items)
+
   if (items && items.length === 0) {
     return <NoItems />
   }

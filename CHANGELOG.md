@@ -6,6 +6,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppReleaseProcess
    * Updated  endpoint for document download in contract and consent
+* App Marketplace
+   * Add status of the subscription
 
 ## 1.2.0
 
