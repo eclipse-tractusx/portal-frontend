@@ -25,7 +25,10 @@ import {
   StaticTable,
 } from 'cx-portal-shared-components'
 import './ServiceDetail.scss'
-import { useFetchServiceStatusQuery } from 'features/serviceManagement/apiSlice'
+import {
+  ServiceTypeIdsEnum,
+  useFetchServiceStatusQuery,
+} from 'features/serviceManagement/apiSlice'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
@@ -43,9 +46,10 @@ export default function ServiceDetails() {
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
     fetchServiceStatus?.serviceTypeIds.forEach((serviceType: string) => {
-      if (serviceType === 'CONSULTANCE_SERVICE')
-        newArr.push('Consultance Service')
-      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCE_SERVICE)
+        newArr.push(t('consultanceService'))
+      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(t('dataspaceService'))
     })
     return newArr.join(', ')
   }, [fetchServiceStatus])

@@ -28,6 +28,11 @@ export enum ReleaseProcessTypes {
   SERVICE_RELEASE = 'serviceRelease',
 }
 
+export enum ServiceTypeIdsEnum {
+  CONSULTANCE_SERVICE = 'CONSULTANCE_SERVICE',
+  DATASPACE_SERVICE = 'DATASPACE_SERVICE',
+}
+
 export type CreateServiceStep1Item = {
   title?: string
   price?: string | null
