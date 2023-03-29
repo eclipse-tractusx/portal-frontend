@@ -132,7 +132,7 @@ export default function ServiceDetails() {
               </Typography>
               {fetchServiceStatus?.documents &&
                 Object.keys(fetchServiceStatus.documents).map(
-                  (item: any, i) => (
+                  (item, i) => (
                     <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
                       <a href="/" style={{ display: 'flex' }}>
                         <ArrowForwardIcon fontSize="small" />
