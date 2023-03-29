@@ -52,7 +52,7 @@ export default function ServiceDetails() {
         newArr.push(t('dataspaceService'))
     })
     return newArr.join(', ')
-  }, [fetchServiceStatus])
+  }, [fetchServiceStatus, t])
 
   return (
     <main>
