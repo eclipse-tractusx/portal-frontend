@@ -72,7 +72,7 @@ export default function ServicesElements({
                       buttonText="Details"
                       onBtnClick={() => handleClick(service.id)}
                       title={service.title}
-                      subTitle={getServices(service.serviceTypeIds)}
+                      subTitle={getServices(service.serviceTypes)}
                       description={service.description}
                       backgroundColor="#fff"
                     />

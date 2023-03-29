@@ -96,7 +96,7 @@ export default function MarketplaceHeader({
           {item.title}
         </Typography>
         <Typography variant="body2" className="provider">
-          {getAllServices(item.serviceTypeIds)}
+          {getAllServices(item.serviceTypes)}
         </Typography>
         <Typography variant="body2" className="price">
           {item.price}
