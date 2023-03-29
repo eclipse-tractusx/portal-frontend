@@ -516,6 +516,9 @@ export default function AppPage() {
                     setDeleteSuccess(false)
                     documentId && deleteAppReleaseDocument(documentId)
                   }}
+                  errorText={t(
+                    'content.apprelease.appReleaseForm.fileSizeError'
+                  )}
                 />
               )
             }}
@@ -562,6 +565,7 @@ export default function AppPage() {
                   setDeleteSuccess(false)
                   documentId && deleteAppReleaseDocument(documentId)
                 }}
+                errorText={t('content.apprelease.appReleaseForm.fileSizeError')}
               />
               {item === 'uploadDataPrerequisits' &&
                 errors?.uploadDataPrerequisits?.type === 'required' && (
