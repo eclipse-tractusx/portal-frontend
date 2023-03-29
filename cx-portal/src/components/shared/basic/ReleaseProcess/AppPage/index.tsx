@@ -427,6 +427,7 @@ export default function AppPage() {
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
   }
+
   const getLabel = (item: string) =>
     Object.keys(PrivacyPolicyType).includes(item)
       ? t(`content.appdetail.privacy.${item}`)

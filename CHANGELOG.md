@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * AppReleaseProcess
    * Updated  endpoint for document download in contract and consent
    * Common component to handle Submit app
+   * Save Api update and tag name updates to "privacyPolicies"
 * Service Release Process
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
