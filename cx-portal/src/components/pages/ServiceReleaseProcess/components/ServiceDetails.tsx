@@ -48,7 +48,7 @@ export default function ServiceDetails() {
       if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
     })
     return newArr.join(', ')
-  }, [])
+  }, [fetchServiceStatus])
 
   return (
     <main>
