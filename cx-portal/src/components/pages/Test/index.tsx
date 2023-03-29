@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from "./index.form.redux";
-
+import FormTest from './index.form.redux'
 
 export default function Test() {
   return (

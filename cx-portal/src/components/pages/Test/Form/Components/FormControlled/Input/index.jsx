@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 function Input({ error, label, ...rest }) {
-  const [touched, setTouched] = useState(false);
+  const [touched, setTouched] = useState(false)
 
   return (
     <>
@@ -13,7 +13,7 @@ function Input({ error, label, ...rest }) {
       />
       <span className="text-danger">{touched && error}</span>
     </>
-  );
+  )
 }
 
-export default Input;
+export default Input

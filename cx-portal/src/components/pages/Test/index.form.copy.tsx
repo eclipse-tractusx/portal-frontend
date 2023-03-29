@@ -85,6 +85,7 @@ const MyForm = ({
       <ValidatingInput
         name={'url'}
         label={'url'}
+        value={''}
         validate={isURL}
         onValid={checkData}
       />

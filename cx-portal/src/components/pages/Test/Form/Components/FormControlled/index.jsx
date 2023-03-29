@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import Input from "./Input";
-import { FormValidations } from "./index.validations";
-import useValidation from "../../hooks/useValidation";
+import React, { useState } from 'react'
+import Input from './Input'
+import { FormValidations } from './index.validations'
+import useValidation from '../../hooks/useValidation'
 
 const initialFormState = {
-  name: "",
-  email: "",
-  password: "",
-};
+  name: '',
+  email: '',
+  password: '',
+}
 
 function UserForm() {
-  const [form, setForm] = useState(initialFormState);
-  const { errors, isValid } = useValidation(form, FormValidations);
+  const [form, setForm] = useState(initialFormState)
+  const { errors, isValid } = useValidation(form, FormValidations)
 
   const setInput = (newValue) => {
-    setForm((form) => ({ ...form, ...newValue }));
-  };
+    setForm((form) => ({ ...form, ...newValue }))
+  }
 
   return (
     <>
@@ -56,7 +56,7 @@ function UserForm() {
         </div>
       </form>
     </>
-  );
+  )
 }
 
-export default UserForm;
+export default UserForm

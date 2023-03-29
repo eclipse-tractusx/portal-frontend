@@ -1,41 +1,56 @@
-import React, { useState } from "react";
-import Input from "./Input";
-import { FormValidations } from "./index.validations";
-import useValidation from "./../../hooks/useValidation";
+import React, { useState } from 'react'
+import Input from './Input'
+import { FormValidations } from './index.validations'
+import useValidation from './../../hooks/useValidation'
 
 const initialFormState = {
-  name: "",
-  email: "",
-  password: "",
-};
+  name: '',
+  email: '',
+  password: '',
+}
 
 function UserForm() {
-  const [form, setForm] = useState(initialFormState);
-  const { errors, isValid } = useValidation(form, FormValidations);
+  const [form, setForm] = useState(initialFormState)
+  const { errors, isValid } = useValidation(form, FormValidations)
 
   const setInput = (newValue) => {
-    setForm((form) => ({ ...form, ...newValue }));
-  };
+    setForm((form) => ({ ...form, ...newValue }))
+  }
 
   return (
     <>
       <h3>Form Debounce</h3>
       <form>
-        <button type="button" onClick={() => {
-          const mail = document.getElementById('password')
-          mail.value = ''
-          setInput({ password: mail.value })
-        }}>clear</button>
-        <button type="button" onClick={() => {
-          const mail = document.getElementById('password')
-          mail.value = 'valid@email.is'
-          setInput({ password: mail.value })
-        }}>valid</button>
-        <button type="button" onClick={() => {
-          const mail = document.getElementById('password')
-          mail.value = 'invalid'
-          setInput({ password: mail.value })
-        }}>invalid</button>
+        <button
+          type="button"
+          onClick={() => {
+            const mail = document.getElementById('password')
+            mail.value = ''
+            setInput({ password: mail.value })
+          }}
+        >
+          clear
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const mail = document.getElementById('password')
+            mail.value = 'valid@email.is'
+            setInput({ password: mail.value })
+          }}
+        >
+          valid
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const mail = document.getElementById('password')
+            mail.value = 'invalid'
+            setInput({ password: mail.value })
+          }}
+        >
+          invalid
+        </button>
         <div className="form-group">
           <Input
             name="name"
@@ -73,7 +88,7 @@ function UserForm() {
         </div>
       </form>
     </>
-  );
+  )
 }
 
-export default UserForm;
+export default UserForm

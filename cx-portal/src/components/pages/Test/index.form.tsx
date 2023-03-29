@@ -59,7 +59,10 @@ const MyValidatingInput = ({
     <Input
       style={{ backgroundColor: valid ? '#eeffeeee' : '#ffeeee' }}
       defaultValue={value}
-      onChange={(e) => { console.log(e); doValidate(e.target.value)} }
+      onChange={(e) => {
+        console.log(e)
+        doValidate(e.target.value)
+      }}
     />
   )
 }

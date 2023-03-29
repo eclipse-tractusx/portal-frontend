@@ -33,9 +33,13 @@ const MyForm = ({
 }) => {
   const dispatch = useDispatch()
   const generic = useSelector(genericSelector)
-  const setMailValue = (value: string) => dispatch(storeForm({
-    form: FORMS.GENERIC, att: { mail: value }
-  }))
+  const setMailValue = (value: string) =>
+    dispatch(
+      storeForm({
+        form: FORMS.GENERIC,
+        att: { mail: value },
+      })
+    )
 
   const [formData, setFormData] = useState<IHashMap<string>>()
 
