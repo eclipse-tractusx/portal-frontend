@@ -383,11 +383,10 @@ export default function AppPage() {
       await updateapp({ body: saveData, appId: appId }).unwrap()
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
       buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
-      setLoading(false)
-    } catch (error: any) {
-      setLoading(false)
+    } catch (error: unknown) {
       setAppPageNotification(true)
     }
+    setLoading(false)
   }
 
   const onBackIconClick = () => {

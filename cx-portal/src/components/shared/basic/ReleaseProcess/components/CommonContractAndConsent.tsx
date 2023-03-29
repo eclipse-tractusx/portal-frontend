@@ -326,12 +326,11 @@ export default function CommonContractAndConsent({
             dispatch(serviceReleaseStepIncrement())
           }
           buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
-          setLoading(false)
         })
         .catch(() => {
-          setLoading(false)
           setContractNotification(true)
         })
+    setLoading(false)
   }
 
   const onBackIconClick = () => {

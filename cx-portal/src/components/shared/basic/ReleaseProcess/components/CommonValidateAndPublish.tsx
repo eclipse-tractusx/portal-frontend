@@ -206,11 +206,10 @@ export default function CommonValidateAndPublish({
         dispatch(serviceReleaseStepIncrement())
       }
       showSubmitPage(true)
-      setLoading(false)
-    } catch (error: any) {
-      setLoading(false)
+    } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
+    setLoading(false)
   }
 
   const getAppData = (item: string) => {

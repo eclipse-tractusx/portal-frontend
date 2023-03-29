@@ -225,13 +225,12 @@ export default function OfferCard() {
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
           buttonLabel === ButtonLabelTypes.SAVE && setServiceCardSnackbar(true)
-          setLoading(false)
         }
       })
       .catch(() => {
-        setLoading(false)
         setServiceCardNotification(true)
       })
+    setLoading(false)
   }
 
   const onSubmit = async (data: FormDataType, buttonLabel: string) => {

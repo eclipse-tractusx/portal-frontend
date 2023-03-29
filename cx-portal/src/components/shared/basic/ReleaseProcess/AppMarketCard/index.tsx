@@ -381,12 +381,11 @@ export default function AppMarketCard() {
           dispatch(setAppId(appId))
           onSave(buttonLabel)
           callDispatch()
-          setLoading(false)
         })
         .catch(() => {
-          setLoading(false)
           setAppCardNotification(true)
         })
+      setLoading(false)
     } else {
       await addCreateApp(saveData)
         .unwrap()
@@ -396,13 +395,12 @@ export default function AppMarketCard() {
             dispatch(setAppId(result))
             onSave(buttonLabel)
             callDispatch()
-            setLoading(false)
           }
         })
         .catch(() => {
-          setLoading(false)
           setAppCardNotification(true)
         })
+      setLoading(false)
     }
   }
 

@@ -224,11 +224,10 @@ export default function OfferPage() {
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
         dispatch(serviceReleaseStepIncrement())
       buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
-      setLoading(false)
     } catch (error) {
-      setLoading(false)
       setServicePageNotification(true)
     }
+    setLoading(false)
   }
 
   return (
