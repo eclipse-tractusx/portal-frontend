@@ -666,7 +666,7 @@ export default function AppPage() {
                     onChange={(e) =>
                       selectPrivacyPolicies(item, e.target.checked, 'checkbox')
                     }
-                    size='small'
+                    size="small"
                   />
                 </Grid>
               ))}
@@ -688,7 +688,7 @@ export default function AppPage() {
                   )
                 }
                 name="radio-buttons"
-                size='small'
+                size="small"
               />
             </Grid>
           </Grid>
