@@ -11,6 +11,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
 
+* BugFix:
+   * AppReleaseProcess
+      * Updated error message for dropzone size error.
+
 ## 1.2.0
 
 ### Change
