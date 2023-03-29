@@ -61,6 +61,7 @@ import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import { UseCaseType } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -426,6 +427,10 @@ export default function AppPage() {
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
   }
+  const getLabel = (item: string) =>
+    Object.keys(PrivacyPolicyType).includes(item)
+      ? t(`content.appdetail.privacy.${item}`)
+      : item
 
   return (
     <div className="app-page">
@@ -655,7 +660,7 @@ export default function AppPage() {
               privacyPolicies?.map((item: string) => (
                 <Grid item md={6} key={item} className="privacyPolicies">
                   <Checkbox
-                    label={item}
+                    label={getLabel(item)}
                     checked={selectedPrivacyPolicies.indexOf(item) !== -1}
                     onChange={(e) =>
                       selectPrivacyPolicies(item, e.target.checked, 'checkbox')
@@ -665,10 +670,10 @@ export default function AppPage() {
               ))}
             <Grid item md={6} className="privacyPolicies">
               <Radio
-                label={
+                label={getLabel(
                   getPrivacyPolicies &&
-                  getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
-                }
+                    getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
+                )}
                 checked={
                   selectedPrivacyPolicies &&
                   selectedPrivacyPolicies[0] === privacyPolicyNone
