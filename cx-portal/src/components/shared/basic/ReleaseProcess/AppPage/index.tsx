@@ -50,7 +50,6 @@ import {
   useFetchAppStatusQuery,
   useFetchPrivacyPoliciesQuery,
   useSaveAppMutation,
-  useUpdateappMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -84,7 +83,6 @@ export default function AppPage() {
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const [deleteSuccess, setDeleteSuccess] = useState(false)
-  const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
 
   const getPrivacyPolicies = useFetchPrivacyPoliciesQuery().data
@@ -373,55 +371,20 @@ export default function AppPage() {
             )[0]?.shortDescription || '',
         },
       ],
-      images: [],
+      title: statusData.title,
+      provider: statusData.provider,
+      salesManagerId: statusData.salesManagerId,
+      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
+      supportedLanguageCodes: statusData.supportedLanguageCodes,
+      price: statusData.price,
+      privacyPolicies: selectedPrivacyPolicies || [],
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
     }
 
-    const updateSaveData = {
-      title: statusData.title,
-      provider: statusData.provider,
-      leadPictureUri: statusData.leadPictureId,
-      salesManagerId: statusData.salesManagerId,
-      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
-      descriptions: [
-        {
-          languageCode: 'de',
-          longDescription:
-            appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
-          shortDescription:
-            appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
-        },
-        {
-          languageCode: 'en',
-          longDescription:
-            appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
-          shortDescription:
-            appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
-        },
-      ],
-      supportedLanguageCodes: statusData.supportedLanguageCodes,
-      price: statusData.price,
-      privacyPolicies: selectedPrivacyPolicies || [],
-    }
-
     try {
-      await saveApp({ appId: appId, body: updateSaveData }).unwrap()
-    } catch (error: any) {
-      console.log(error)
-    }
-
-    try {
-      await updateapp({ body: saveData, appId: appId }).unwrap()
+      await saveApp({ appId: appId, body: saveData }).unwrap()
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
       buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
     } catch (error: any) {

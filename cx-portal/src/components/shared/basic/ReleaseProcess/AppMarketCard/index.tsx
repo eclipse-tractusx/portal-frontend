@@ -335,10 +335,6 @@ export default function AppMarketCard() {
     const saveData = {
       title: data.title,
       provider: data.provider,
-      leadPictureUri:
-        data.uploadImage.leadPictureUri !== null &&
-        Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
-        Object.values(data.uploadImage.leadPictureUri)[0],
       salesManagerId: salesManagerId,
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
@@ -366,6 +362,9 @@ export default function AppMarketCard() {
       supportedLanguageCodes: data.appLanguage,
       price: data.price,
       privacyPolicies: data.privacyPolicies,
+      providerUri: appStatusData?.providerUri || '',
+      contactEmail: appStatusData?.contactEmail || '',
+      contactNumber: appStatusData?.contactNumber || '',
     }
 
     const uploadImageValue = getValues().uploadImage
