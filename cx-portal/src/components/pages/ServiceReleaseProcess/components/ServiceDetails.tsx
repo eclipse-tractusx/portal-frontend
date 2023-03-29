@@ -131,16 +131,14 @@ export default function ServiceDetails() {
                 {t('defaultValues.documentsDescription')}
               </Typography>
               {fetchServiceStatus?.documents &&
-                Object.keys(fetchServiceStatus.documents).map(
-                  (item, i) => (
-                    <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-                      <a href="/" style={{ display: 'flex' }}>
-                        <ArrowForwardIcon fontSize="small" />
-                        {fetchServiceStatus.documents[item][i].documentName}
-                      </a>
-                    </InputLabel>
-                  )
-                )}
+                Object.keys(fetchServiceStatus.documents).map((item, i) => (
+                  <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                    <a href="/" style={{ display: 'flex' }}>
+                      <ArrowForwardIcon fontSize="small" />
+                      {fetchServiceStatus.documents[item][i].documentName}
+                    </a>
+                  </InputLabel>
+                ))}
             </div>
             <Divider className="verify-validate-form-divider" />
             <div className="margin-h-40">
