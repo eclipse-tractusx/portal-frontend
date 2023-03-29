@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { ConsentStatusEnum } from './apiSlice'
+import { UseCaseType } from 'features/appManagement/types'
 
 export const name = 'admin/serviceManagement'
 
@@ -44,6 +45,12 @@ export interface ServiceStatusDataState {
   images?: string[] | []
   salesManagerId?: string | null
   privacyPolicies?: []
+  providerName?: string
+  contactNumber?: string
+  supportedLanguageCodes?: string[]
+  useCase?: UseCaseType[]
+  provider?: string
+  agreements?: []
 }
 
 export interface AgreementState {
@@ -75,5 +82,11 @@ export const initialState: ServiceManagementState = {
     leadPictureId: '',
     images: [],
     salesManagerId: null,
+    providerName: '',
+    contactNumber: '',
+    supportedLanguageCodes: [],
+    useCase: [],
+    provider: '',
+    agreements: [],
   },
 }

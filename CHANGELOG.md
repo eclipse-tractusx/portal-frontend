@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * AppReleaseProcess
    * Updated  endpoint for document download in contract and consent
+   * Common component to handle Submit app
+* Service Release Process
+   * Connect backend service /submitservice api added
+   * Common component to handle Submit service
 
 ## 1.2.0
 
