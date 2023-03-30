@@ -386,7 +386,6 @@ export default function AppMarketCard() {
         .catch(() => {
           setAppCardNotification(true)
         })
-      setLoading(false)
     } else {
       await addCreateApp(saveData)
         .unwrap()
@@ -401,8 +400,8 @@ export default function AppMarketCard() {
         .catch(() => {
           setAppCardNotification(true)
         })
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   const uploadDocumentApi = async (
