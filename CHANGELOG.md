@@ -12,10 +12,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
 * Service Details Page
-
 * BugFix:
    * AppReleaseProcess
       * Updated error message for dropzone size error.
+* Service Overview
+   * Connect backend service /provided api added
+   * Filter services based on the Status id connected to the /provided api
+   * Search service based on the Offer name connected to the /provided api
+   * Pagination support
+   * Navigate to the Service Details page / Service release process based on the status
 
 ## 1.2.0
 

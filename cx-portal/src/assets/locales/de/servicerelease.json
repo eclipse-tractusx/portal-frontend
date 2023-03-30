@@ -120,5 +120,19 @@
       ["Used Content", "Loreum Used Content"],
       ["Catena-X Account Data", "Loreum Catena-X Account Data"]
     ]
+  },
+  "serviceoverview": {
+    "filter": {
+      "all": "Alle",
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "wip": "In Arbeit"
+    },
+    "headerTitle": "Service Overview - Own managed service offers",
+    "inputPlaceholder": "Suchen Sie nach Services",
+    "addbtn": "Registrieren Sie Ihre Services"
+  },
+  "servicedetails": {
+    "headerTitle": "Service Details"
   }
 }

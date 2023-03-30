@@ -58,7 +58,8 @@
     "serviceoverview": "Service Overview",
     "servicereleaseprocess": "Service Release Process",
     "serviceadminboard": "Admin Board",
-    "servicesubscription": "Service Subscription Mgt"
+    "servicesubscription": "Service Subscription Mgt",
+    "servicedetail": "Service Details"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
