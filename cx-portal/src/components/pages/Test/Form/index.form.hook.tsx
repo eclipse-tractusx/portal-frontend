@@ -20,7 +20,7 @@
 
 import { useForm } from 'react-hook-form'
 
-function FormHookTest() {
+function FormTest() {
   const {
     register,
     handleSubmit,
@@ -39,4 +39,4 @@ function FormHookTest() {
   )
 }
 
-export default FormHookTest
+export default FormTest

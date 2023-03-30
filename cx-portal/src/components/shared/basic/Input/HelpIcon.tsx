@@ -18,14 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './Form/index.form.simple'
+import { Tooltips } from 'cx-portal-shared-components'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
-export default function Test() {
+export default function HelpIcon({ msg }: { msg: string }) {
   return (
-    <main>
-      <section>
-        <FormTest />
-      </section>
-    </main>
+    <Tooltips
+      additionalStyles={{
+        cursor: 'pointer',
+        marginTop: '30px !important',
+      }}
+      tooltipPlacement="top-start"
+      tooltipText={msg}
+      children={
+        <span style={{ display: 'inline-block', paddingTop: '20px' }}>
+          <HelpOutlineIcon sx={{ color: '#aaaaaa' }} fontSize={'small'} />
+        </span>
+      }
+    />
   )
 }

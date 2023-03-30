@@ -18,90 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Input } from 'cx-portal-shared-components'
-import debounce from 'lodash.debounce'
-import { useEffect, useState, useMemo, useCallback } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IHashMap } from 'types/MainTypes'
 import Box from '@mui/material/Box'
-
-export type ValidatingInputProps = {
-  sx?: any
-  name: string
-  label?: string
-  helperText?: string
-  placeholder?: string
-  tooltipMessage?: string
-  autofocus?: boolean
-  value?: string
-  type?: string
-  debounceTime?: number
-  validate: (data: string) => boolean
-  onValid: (name: string, data: string | undefined) => void
-}
-
-export const ValidatingInput = ({
-  sx,
-  name,
-  label = '',
-  helperText = '',
-  placeholder = '',
-  tooltipMessage = undefined,
-  autofocus = false,
-  value = '',
-  type = '',
-  debounceTime = 300,
-  validate,
-  onValid,
-}: ValidatingInputProps) => {
-  const [data, setData] = useState<string>(value)
-  const [valid, setValid] = useState<boolean>(validate(value))
-
-  const debouncedValidation = useMemo(
-    () =>
-      debounce((expr: string) => {
-        console.log('debounce')
-        const isValid = validate(expr)
-        setValid(isValid)
-        const validValue = isValid ? expr : undefined
-        onValid(name, validValue)
-      }, debounceTime),
-    [onValid, setValid, validate, name, debounceTime]
-  )
-
-  const doValidate = useCallback(
-    (expr: string) => {
-      console.log('doValidate')
-      setData(expr)
-      debouncedValidation(expr)
-    },
-    [debouncedValidation, setData]
-  )
-
-  useEffect(() => {
-    console.log('useEffect')
-    if (value) {
-      doValidate(value)
-    }
-  }, [value, doValidate])
-
-  return (
-    <Input
-      sx={sx}
-      name={name}
-      label={label}
-      helperText={helperText}
-      placeholder={placeholder}
-      tooltipMessage={tooltipMessage}
-      value={data}
-      type={type}
-      error={!valid && data !== ''}
-      autoFocus={autofocus}
-      onChange={(e) => doValidate(e.currentTarget.value)}
-      onBlur={(e) => doValidate(e.currentTarget.value)}
-    />
-  )
-}
+import { ValidatingInput } from './ValidatingInput'
 
 export type ValidationField = {
   key: string

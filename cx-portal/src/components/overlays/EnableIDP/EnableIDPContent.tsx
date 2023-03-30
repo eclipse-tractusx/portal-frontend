@@ -23,28 +23,30 @@ import {
   IdentityProviderUser,
   useFetchIDPUserQuery,
 } from 'features/admin/idpApiSlice'
-import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
+import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 
 const EnableIDPForm = ({
+  userId = '',
   onChange,
 }: {
+  userId?: string
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
   const { t } = useTranslation('idp')
   return (
-    <>
-      <div style={{ margin: '20px 0' }}>
-        <ValidatingInput
-          name="userId"
-          label={t('enable.hint')}
-          validate={isID}
-          onValid={onChange}
-        />
-      </div>
-    </>
+    <div style={{ margin: '20px 0' }}>
+      <ValidatingInput
+        name={'userId'}
+        label={t('enable.label')}
+        hint={t('enable.hint')}
+        value={userId}
+        validate={isID}
+        onValid={onChange}
+      />
+    </div>
   )
 }
 
@@ -84,7 +86,7 @@ export const EnableIDPContent = ({
 
   return (
     <>
-      <EnableIDPForm onChange={checkData} />
+      <EnableIDPForm onChange={checkData} userId={data?.userId} />
     </>
   )
 }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ValidatingInput } from 'components/overlays/CXValidatingOverlay/ValidatingForm'
+import { ValidatingInput } from 'components/overlays/CXValidatingOverlay/ValidatingInput'
 import { Button } from 'cx-portal-shared-components'
 import { storeForm, FORMS, genericSelector } from 'features/control/formSlice'
 import { useState } from 'react'
@@ -33,13 +33,15 @@ const MyForm = ({
 }) => {
   const dispatch = useDispatch()
   const generic = useSelector(genericSelector)
-  const setMailValue = (value: string) =>
+  const setMailValue = (value: string) => {
+    console.log('dispatch', value)
     dispatch(
       storeForm({
         form: FORMS.GENERIC,
         att: { mail: value },
       })
     )
+  }
 
   const [formData, setFormData] = useState<IHashMap<string>>()
 
@@ -92,6 +94,7 @@ const MyForm = ({
         value={generic.mail}
         validate={isMail}
         onValid={checkData}
+        debounceTime={3000}
       />
       <ValidatingInput
         name={'url'}
