@@ -17,6 +17,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix:
    * AppReleaseProcess
       * Updated error message for dropzone size error.
+   * Admin Detail
+      * use case data display fix
 
 ## 1.2.0
 
