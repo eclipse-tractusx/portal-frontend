@@ -11,6 +11,9 @@
   "requiredButton": "New",
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Expalanation of the requirement",
+  "consultanceService": "Consultance Service",
+  "dataspaceService": "Dataspace Service",
+  "loadmore": "Load More",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -118,5 +121,19 @@
       ["Used Content", "Loreum Used Content"],
       ["Catena-X Account Data", "Loreum Catena-X Account Data"]
     ]
+  },
+  "serviceoverview": {
+    "headerTitle": "Service Overview - Own managed service offers",
+    "inputPlaceholder": "Search for services",
+    "filter": {
+      "all": "All",
+      "active": "Active",
+      "inactive": "Inactive",
+      "wip": "WIP"
+    },
+    "addbtn": "Register your Service"
+  },
+  "servicedetails": {
+    "headerTitle": "Service Details"
   }
 }

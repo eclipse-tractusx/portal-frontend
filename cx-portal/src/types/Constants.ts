@@ -92,6 +92,7 @@ export enum PAGES {
   SERVICESUBSCRIPTION = 'servicesubscription',
   SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
   ROLE_DETAILS = 'role-details',
+  SERVICE_DETAIL = 'servicedetail',
 }
 
 export enum OVERLAYS {

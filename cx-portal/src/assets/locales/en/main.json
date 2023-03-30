@@ -58,7 +58,8 @@
     "serviceoverview": "Service Overview",
     "servicereleaseprocess": "Service Release Process",
     "serviceadminboard": "Admin Board",
-    "servicesubscription": "Service Subscription Mgt"
+    "servicesubscription": "Service Subscription Mgt",
+    "servicedetail": "Service Details"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -970,7 +971,8 @@
         "dataSavedSuccessMessage": "Data saved successfully",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "rolesDeleteSuccessMessage": "Roles deleted successfully",
-        "errormessage": "Error! Something went wrong"
+        "errormessage": "Error! Something went wrong",
+        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
       },
       "footerButtons": {
         "help": "Help",
