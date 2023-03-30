@@ -22,6 +22,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { ServiceStatusDataState } from './types'
+import { PaginFetchArgs } from 'cx-portal-shared-components'
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',
@@ -94,6 +95,38 @@ export enum ConsentStatusEnum {
 
 enum Tags {
   REFETCH_SERVICE = 'service',
+}
+
+export enum ProvidedServiceStatusEnum {
+  CREATED = 'CREATED',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+  IN_REVIEW = 'IN_REVIEW',
+}
+
+export interface ProvidedServiceType {
+  id: string
+  name: string
+  provider: string
+  status: ProvidedServiceStatusEnum
+}
+export interface ProvidedServices {
+  meta: {
+    totalElements: number
+    totalPages: number
+    page: number
+    contentSize: number
+  }
+  content: ProvidedServiceType[]
+}
+
+export enum StatusIdEnum {
+  Active = 'Active',
+  Inactive = 'Inactive',
+  InReview = 'InReview',
+  WIP = 'WIP',
+  All = 'All',
 }
 
 export const apiSlice = createApi({
@@ -194,6 +227,20 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    fetchProvidedServices: builder.query<ProvidedServices, PaginFetchArgs>({
+      query: (fetchArgs) => {
+        const url = `/api/services/provided?page=${fetchArgs.page}&size=15`
+        if (fetchArgs?.args?.statusFilter && !fetchArgs?.args?.expr) {
+          return `${url}&statusId=${fetchArgs?.args?.statusFilter}`
+        } else if (fetchArgs?.args?.expr && !fetchArgs?.args?.statusFilter) {
+          return `${url}&statusId=${StatusIdEnum.All}&offerName=${fetchArgs?.args?.expr}`
+        } else if (fetchArgs?.args?.expr && fetchArgs?.args?.statusFilter) {
+          return `${url}&statusId=${fetchArgs?.args?.statusFilter}&offerName=${fetchArgs?.args?.expr}`
+        } else {
+          return `${url}&statusId=${StatusIdEnum.All}`
+        }
+      },
+    }),
   }),
 })
 
@@ -210,4 +257,5 @@ export const {
   useSubmitServiceMutation,
   useFetchFrameDocumentByIdMutation,
   useFetchDocumentMutation,
+  useFetchProvidedServicesQuery,
 } = apiSlice

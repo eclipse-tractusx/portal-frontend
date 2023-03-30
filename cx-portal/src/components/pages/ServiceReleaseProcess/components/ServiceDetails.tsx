@@ -37,6 +37,7 @@ import { Divider, InputLabel } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -77,7 +78,11 @@ export default function ServiceDetails() {
   return (
     <main>
       <div>
-        <PageHeader title={t('headerTitle')} topPage={true} headerHeight={200}>
+        <PageHeader
+          title={t('servicedetails.headerTitle')}
+          topPage={true}
+          headerHeight={200}
+        >
           <PageBreadcrumb backButtonVariant="contained" />
         </PageHeader>
       </div>
@@ -88,7 +93,7 @@ export default function ServiceDetails() {
               <CardHorizontal
                 borderRadius={6}
                 imageAlt="Service Card"
-                imagePath={'ServiceMarketplace.png'}
+                imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                 label={''}
                 buttonText=""
                 onBtnClick={() => {}}
@@ -156,17 +161,20 @@ export default function ServiceDetails() {
               </Typography>
               {fetchServiceStatus?.documents &&
                 Object.keys(fetchServiceStatus.documents).map((item, i) => (
-                  <InputLabel
-                    sx={{ mb: 0, mt: 3 }}
-                    key={item}
-                    onClick={() =>
-                      handleDownload(fetchServiceStatus.documents[item])
-                    }
-                  >
-                    <a href="/" style={{ display: 'flex' }}>
+                  <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                    <span
+                      style={{
+                        display: 'flex',
+                        cursor: 'pointer',
+                        color: '#0f71cb',
+                      }}
+                      onClick={() =>
+                        handleDownload(fetchServiceStatus.documents[item][i])
+                      }
+                    >
                       <ArrowForwardIcon fontSize="small" />
                       {fetchServiceStatus.documents[item][i].documentName}
-                    </a>
+                    </span>
                   </InputLabel>
                 ))}
             </div>

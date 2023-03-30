@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { CardItems, ImageType, LogoGrayData } from 'cx-portal-shared-components'
+import { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {
   AppMarketplaceApp,
@@ -62,6 +63,13 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
     alt: app.title,
   },
   onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,
+})
+
+export const serviceToCard = (app: ProvidedServiceType): CardItems => ({
+  ...app,
+  statusText: app.status,
+  subtitle: app.provider,
+  title: app.name ?? '',
 })
 
 // mapper to create the app card used for the app access management view on the user management page
