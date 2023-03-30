@@ -13,6 +13,7 @@
   "requiredExplaination": "Expalanation of the requirement",
   "consultanceService": "Consultance Service",
   "dataspaceService": "Dataspace Service",
+  "loadmore": "Load More",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",

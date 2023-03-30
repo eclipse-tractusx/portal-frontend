@@ -71,9 +71,8 @@ export default function ServiceListOverview() {
       )
   }, [data])
 
-  const setDataInfo = (data: ProvidedServices) => {
-    return data.content.map((item: ProvidedServiceType) => serviceToCard(item))
-  }
+  const setDataInfo = (data: ProvidedServices) =>
+    data.content.map((item: ProvidedServiceType) => serviceToCard(item))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -219,7 +218,7 @@ export default function ServiceListOverview() {
         }}
       >
         {data?.meta && data?.meta?.totalPages > page + 1 && (
-          <LoadMoreButton onClick={nextPage} label={'Load More'} />
+          <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
         )}
       </div>
     </main>
