@@ -8,10 +8,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Updated  endpoint for document download in contract and consent
    * Common component to handle Submit app
    * Show loading icon on click of Save/Save & Proceed button
+   * Save Api update and tag name updates to "privacyPolicies"
 * Service Release Process
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
    * Show loading icon on click of Save/Save & Proceed button
+
+* BugFix:
+   * AppReleaseProcess
+      * Updated error message for dropzone size error.
 
 ## 1.2.0
 

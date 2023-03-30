@@ -1010,7 +1010,8 @@
         "dataSavedSuccessMessage": "Data saved successfully",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "rolesDeleteSuccessMessage": "Roles deleted successfully",
-        "errormessage": "Error! Something went wrong"
+        "errormessage": "Error! Something went wrong",
+        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
       },
       "footerButtons": {
         "help": "Help",
