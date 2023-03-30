@@ -18,15 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   IdentityProviderUser,
-  useFetchIDPUserQuery,
+  UserIdentityProvidersItem,
 } from 'features/admin/idpApiSlice'
 import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
+import { getApiBase } from 'services/EnvironmentService'
+import UserService from 'services/UserService'
 
 const EnableIDPForm = ({
   userId = '',
@@ -59,9 +61,9 @@ export const EnableIDPContent = ({
   companyUserId: string
   onValid: (form: IdentityProviderUser | undefined) => void
 }) => {
-  const { data } = useFetchIDPUserQuery({ identityProviderId, companyUserId })
   const [formData, setFormData] = useState<IHashMap<string>>({})
-  console.log(data)
+  const [userId, setUserId] = useState<string>('')
+
   const checkData = (key: string, value: string | undefined): boolean => {
     if (!value) {
       onValid(undefined)
@@ -84,9 +86,25 @@ export const EnableIDPContent = ({
     return true
   }
 
+  useEffect(() => {
+    if (!identityProviderId || !companyUserId) return
+    fetch(
+      `${getApiBase()}/api/administration/identityprovider/owncompany/users/${companyUserId}/identityprovider/${identityProviderId}`,
+      {
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data: UserIdentityProvidersItem) => setUserId(data.userId))
+      .catch((e) => console.log(e))
+  }, [identityProviderId, companyUserId])
+
   return (
     <>
-      <EnableIDPForm onChange={checkData} userId={data?.userId} />
+      <EnableIDPForm onChange={checkData} userId={userId} />
     </>
   )
 }

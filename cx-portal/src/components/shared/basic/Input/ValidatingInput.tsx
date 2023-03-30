@@ -20,7 +20,7 @@
 
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import BasicInput, { BasicInputProps, InputType } from './BasicInput'
+import BasicInput, { BasicInputProps, Colors, InputType } from './BasicInput'
 
 export type ValidatingInputProps = BasicInputProps & {
   name: string
@@ -43,12 +43,12 @@ const ValidatingInput = ({
   validate,
   onValid,
 }: ValidatingInputProps) => {
-  const [valid, setValid] = useState<boolean>(false)
+  const [color, setColor] = useState<Colors>(Colors.secondary)
 
   const immediateValidate = useCallback(
     (expr: string) => {
       const isValid = validate ? validate(expr) : true
-      setValid(isValid)
+      setColor(isValid ? Colors.success : Colors.error)
       isValid && onValid && onValid(name, expr)
     },
     [name, onValid, validate]
@@ -68,15 +68,15 @@ const ValidatingInput = ({
   )
 
   useEffect(() => {
-    doValidate(value)
-  }, [value, doValidate])
+    onValid && onValid(name, value)
+  }, [name, value, onValid])
 
   return (
     <BasicInput
       {...{ name, label, hint, value, onValue, type, toggleHide, errorMessage }}
       style={{
         ...style,
-        borderBottom: `2px solid ${valid ? 'blue' : 'red'}`,
+        borderBottom: `2px solid ${color}`,
       }}
       onValue={doValidate}
     />

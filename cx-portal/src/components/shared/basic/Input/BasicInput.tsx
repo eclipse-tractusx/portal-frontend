@@ -31,7 +31,7 @@ export enum InputType {
   password = 'password',
 }
 
-enum Colors {
+export enum Colors {
   main = 'black',
   secondary = '#aaaaaa',
   error = '#aa0000',
