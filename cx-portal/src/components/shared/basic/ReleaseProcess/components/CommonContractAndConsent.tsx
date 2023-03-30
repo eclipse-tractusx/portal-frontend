@@ -387,7 +387,8 @@ export default function CommonContractAndConsent({
                     trigger,
                     errors,
                     name: item.agreementId,
-                    defaultValues: item.consentStatus,
+                    defaultValues:
+                      item.consentStatus === ConsentStatusEnum.ACTIVE,
                     label: '',
                     type: 'checkbox',
                     rules: {
