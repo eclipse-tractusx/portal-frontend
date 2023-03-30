@@ -19,6 +19,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
       * Updated error message for dropzone size error.
    * Admin Detail
       * use case data display fix
+   * Service Marketplace
+      * Page break issue fix
 
 ## 1.2.0
 
