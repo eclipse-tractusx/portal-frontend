@@ -18,12 +18,12 @@
 ###############################################################
 
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: build
+name: release candidate
 
 on:
   push:
     branches:
-      - 'dev'
+      - 'release/1.3.0*'
   workflow_dispatch:
 
 env:
@@ -32,7 +32,7 @@ env:
   COMMIT_SHA: ${{ github.sha }}
 
 jobs:
-  build-and-push-image:
+  build-and-push-release:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -75,15 +75,21 @@ jobs:
           context: .
           file: .conf/Dockerfile.prebuilt
           push: true
-          # build tag :dev with commit-sha and latest
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.COMMIT_SHA }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.COMMIT_SHA }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:rc
           labels: ${{ steps.meta.outputs.labels }}
 
+#      - name: Publish Shared Components to npm
+#        working-directory: ./cx-portal-shared-components
+#        run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+
   auth-and-dispatch:
-    needs: build-and-push-image
+    needs: build-and-push-release
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Get token
         id: get_workflow_token
         uses: peter-murray/workflow-application-token-action@v2
@@ -98,8 +104,8 @@ jobs:
         run: |
           curl -v \
             --request POST \
-            --url https://api.github.com/repos/catenax-ng/tx-portal-cd/actions/workflows/portal-image-update.yml/dispatches \
+            --url https://api.github.com/repos/catenax-ng/tx-portal-cd/actions/workflows/portal-rc-image-update.yml/dispatches \
             --header "authorization: Bearer $TOKEN" \
             --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"helm-environments", "inputs": { "new-image":"${{ env.COMMIT_SHA }}" }}' \
+            --data '{"ref":"release-candidate", "inputs": { "new-image":"${{ env.COMMIT_SHA }}" }}' \
             --fail
