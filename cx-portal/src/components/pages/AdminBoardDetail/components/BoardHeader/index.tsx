@@ -80,8 +80,8 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
           <Typography variant="caption2" className="head">
             {t('content.adminboardDetail.usecase')}:{' '}
           </Typography>
-          {item.useCases.map((useCase) => (
-            <span> {useCase} </span>
+          {item.useCases.map((useCase, index) => (
+            <span key={index}> {useCase} </span>
           ))}
         </div>
         <div className="price">
