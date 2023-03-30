@@ -46,7 +46,7 @@ export type BasicInputProps = {
   onValue?: (value: string) => void
   type?: InputType
   toggleHide?: boolean
-  errorMessage?: string | undefined
+  errorMessage?: string
   style?: React.CSSProperties
 }
 

@@ -80,16 +80,6 @@ export const ValidatingInput = ({
     [immediate, debouncedValidation, immediateValidation, setData]
   )
 
-  /*
-  useEffect(() => {
-    console.log('useEffect')
-    if (value) {
-      setData(value)
-      immediateValidation(value)
-    }
-  }, [value, immediateValidation])
-  */
-
   return (
     <Input
       sx={sx}

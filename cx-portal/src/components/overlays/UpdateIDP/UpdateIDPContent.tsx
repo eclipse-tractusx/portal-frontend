@@ -119,10 +119,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="metadataUrl"
           label={t('field.metadata.name')}
-          validate={(expr) => {
-            console.log(expr)
-            return isWellknownMetadata(expr)
-          }}
+          validate={(expr) => isWellknownMetadata(expr)}
           hint={t('field.metadata.hint')}
           debounceTime={0}
           onValid={onChange}
