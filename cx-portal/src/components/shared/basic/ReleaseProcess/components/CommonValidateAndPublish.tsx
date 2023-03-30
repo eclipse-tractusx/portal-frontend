@@ -29,6 +29,7 @@ import {
   StaticTable,
   Typography,
   TableType,
+  CircleProgress,
 } from 'cx-portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -124,6 +125,7 @@ export default function CommonValidateAndPublish({
   const [cardImage, setCardImage] = useState('')
   const [multipleImages, setMultipleImages] = useState<any[]>([])
   const [defaultValues, setDefaultValues] = useState<DefaultValueType>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const fetchImage = useCallback(
     async (documentId: string, documentType: string) => {
@@ -195,6 +197,7 @@ export default function CommonValidateAndPublish({
   }
 
   const onValidatePublishSubmit = async (data: any) => {
+    setLoading(true)
     try {
       await submitData(id).unwrap()
       if (type === ReleaseProcessTypes.APP_RELEASE) {
@@ -203,9 +206,10 @@ export default function CommonValidateAndPublish({
         dispatch(serviceReleaseStepIncrement())
       }
       showSubmitPage(true)
-    } catch (error: any) {
+    } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
+    setLoading(false)
   }
 
   const getAppData = (item: string) => {
@@ -493,14 +497,31 @@ export default function CommonValidateAndPublish({
         >
           <KeyboardArrowLeftIcon />
         </IconButton>
-        <Button
-          onClick={handleSubmit(onValidatePublishSubmit)}
-          variant="contained"
-          disabled={!isValid}
-          sx={{ float: 'right' }}
-        >
-          {submitButton}
-        </Button>
+        {loading ? (
+          <span
+            style={{
+              float: 'right',
+            }}
+          >
+            <CircleProgress
+              size={40}
+              step={1}
+              interval={0.1}
+              colorVariant={'primary'}
+              variant={'indeterminate'}
+              thickness={8}
+            />
+          </span>
+        ) : (
+          <Button
+            onClick={handleSubmit(onValidatePublishSubmit)}
+            variant="contained"
+            disabled={!isValid}
+            sx={{ float: 'right' }}
+          >
+            {submitButton}
+          </Button>
+        )}
       </Box>
     </div>
   )
