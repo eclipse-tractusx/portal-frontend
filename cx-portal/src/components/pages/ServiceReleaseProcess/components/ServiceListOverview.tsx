@@ -27,6 +27,7 @@ import {
   SearchInput,
   Cards,
   LoadMoreButton,
+  CardItems,
 } from 'cx-portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { Box } from '@mui/material'
@@ -66,7 +67,7 @@ export default function ServiceListOverview() {
       setItems(
         data?.meta.page === 0
           ? setDataInfo(data)
-          : (i: any) => i.concat(setDataInfo(data))
+          : (i: CardItems[]) => i.concat(setDataInfo(data))
       )
   }, [data])
 
