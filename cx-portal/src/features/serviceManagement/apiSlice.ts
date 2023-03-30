@@ -100,7 +100,7 @@ enum Tags {
 export enum ProvidedServiceStatusEnum {
   CREATED = 'CREATED',
   ACTIVE = 'ACTIVE',
-  INCACTIVE = 'INACTIVE',
+  INACTIVE = 'INACTIVE',
   PENDING = 'PENDING',
   IN_REVIEW = 'IN_REVIEW',
 }
