@@ -23,6 +23,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix:
    * AppReleaseProcess
       * Updated error message for dropzone size error.
+      * consent API call on page load
    * Admin Detail
       * use case data display fix
    * Service Marketplace
