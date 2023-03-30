@@ -13,7 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
    * Show loading icon on click of Save/Save & Proceed button
-
+* Service Details Page
 * BugFix:
    * AppReleaseProcess
       * Updated error message for dropzone size error.

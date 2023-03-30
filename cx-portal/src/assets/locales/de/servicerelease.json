@@ -11,6 +11,8 @@
   "requiredButton": "New",
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Expalanation of the requirement",
+  "consultanceService": "Consultance Service",
+  "dataspaceService": "Dataspace Service",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
