@@ -4,36 +4,45 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
-* AppReleaseProcess
-   * Updated  endpoint for document download in contract and consent
-   * Common component to handle Submit app
-   * Show loading icon on click of Save/Save & Proceed button
-   * Save Api update and tag name updates to "privacyPolicies"
+
+## 1.3.0 RC1
+
+### Change
+* App Release Process
+  * updated endpoint to post and get agreement consent
+  * switched endpoint to retrieve cx frame documents from portal backend for consent section
+  * document upload error message customization activated and new error message for file size set
 * Service Release Process
-   * Connect backend service /submitservice api added
-   * Common component to handle Submit service
-   * Show loading icon on click of Save/Save & Proceed button
-* Service Overview
-   * Connect backend service /provided api added
-   * Filter services based on the Status id connected to the /provided api
-   * Search service based on the Offer name connected to the /provided api
-   * Pagination support
-   * Navigate to the Service Details page / Service release process based on the status
-* Service Details Page
-* BugFix:
-   * AppReleaseProcess
-      * Updated error message for dropzone size error.
-      * consent API call on page load
-   * Admin Detail
-      * use case data display fix
-   * Service Marketplace
-      * Page break issue fix
-   * Service Release Process
-      * Remove unnecessary sections - Step3 and step4
-      * Style updates -  Step4
-      * Text Updates - Step3
-      * Navigation fix - Thank you and Initial screen
-   
+  * updated GET and POST endpoint handling to store and fetch service details from the backend and display them inside the service release form
+  * switched endpoint to retrieve cx frame documents from portal backend
+  * updated endpoint to post agreement consent
+* Switch IdP
+  * additional user support and new style added for easier process handling
+
+### Feature
+* Service Release Process
+  * implement service type function with backend connection
+  * added load button function for service release form - button "submit" and "confirm"/"proceed"
+* App Release Process
+  * added app privacy policy select function inside the app release process form
+* Service Management (Service Provider)
+  * implemented service overview for app provider to display all owned services in all states (incl. search, filter and sort)
+  * implemented service detail page
+
+### Technical Support
+* added temp fix for CVE-2023-0464
+* added build workflow for v1.3.0 release candidate phase
+* updated actions workflows
+
+### Bugfix
+* App Release Process
+  * update input field validation for longDescription input field
+* User Management
+  * payload fixed to portal roles only when updating user assigned portal roles 
+* App Release Admin Page - App Detail Page
+  * updated business logic to consume use case data due to updated api response body style
+* Service Marketplace - Service Detail Page
+  * updated business logic to consume use case data due to updated api response body style
 
 ## 1.2.0
 
