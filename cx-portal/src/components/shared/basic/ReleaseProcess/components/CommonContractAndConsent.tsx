@@ -430,26 +430,28 @@ export default function CommonContractAndConsent({
             </Grid>
           </div>
         ))}
-        <ConnectorFormInputFieldImage
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="uploadImageConformity"
-          acceptFormat={{
-            'application/pdf': ['.pdf'],
-          }}
-          label={imageFieldLabel}
-          noteDescription={imageFieldNoDescription}
-          note={imageFieldNote}
-          requiredText={imageFieldRequiredText}
-          handleDownload={handleDownload}
-          handleDelete={(documentId: string) => {
-            deleteAppReleaseDocument(documentId)
-          }}
-          isRequired={documentRequired}
-        />
+        {documentRequired && (
+          <ConnectorFormInputFieldImage
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="uploadImageConformity"
+            acceptFormat={{
+              'application/pdf': ['.pdf'],
+            }}
+            label={imageFieldLabel}
+            noteDescription={imageFieldNoDescription}
+            note={imageFieldNote}
+            requiredText={imageFieldRequiredText}
+            handleDownload={handleDownload}
+            handleDelete={(documentId: string) => {
+              deleteAppReleaseDocument(documentId)
+            }}
+            isRequired={documentRequired}
+          />
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={contractNotification}
