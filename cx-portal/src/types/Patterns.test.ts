@@ -169,11 +169,21 @@ const TESTDATA = {
   },
   FIRSTNAME: {
     valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
-    invalid: ['Julia  Sophie', 'Julia Sophie ', ' Julia Sophie '],
+    invalid: [
+      'Julia  Sophie',
+      'Julia–Sophie',
+      'Julia Sophie ',
+      ' Julia Sophie ',
+    ],
   },
   LASTNAME: {
     valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
-    invalid: ['Julia  Sophie', 'Julia Sophie ', ' Julia Sophie '],
+    invalid: [
+      'Julia  Sophie',
+      'Julia–Sophie',
+      'Julia Sophie ',
+      ' Julia Sophie ',
+    ],
   },
 }
 
