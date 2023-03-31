@@ -167,7 +167,7 @@ const TESTDATA = {
     valid: ['DE'],
     invalid: ['', 'D', 'de', 'some string'],
   },
-  isFirstName: {
+  FIRSTNAME: {
     valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
     invalid: [
       'Julia  Sophie',
@@ -176,7 +176,7 @@ const TESTDATA = {
       ' Julia Sophie ',
     ],
   },
-  isLastNmae: {
+  LASTNAME: {
     valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
     invalid: [
       'Julia  Sophie',
@@ -238,13 +238,19 @@ describe('Input Pattern Tests', () => {
     )
   })
   it('validates firstName', () => {
-    TESTDATA.BPN.valid.forEach((expr) => expect(isFirstName(expr)).toBe(true))
-    TESTDATA.BPN.invalid.forEach((expr) =>
+    TESTDATA.FIRSTNAME.valid.forEach((expr) =>
+      expect(isFirstName(expr)).toBe(true)
+    )
+    TESTDATA.FIRSTNAME.invalid.forEach((expr) =>
       expect(isFirstName(expr)).toBe(false)
     )
   })
   it('validates lastName', () => {
-    TESTDATA.BPN.valid.forEach((expr) => expect(isLastName(expr)).toBe(true))
-    TESTDATA.BPN.invalid.forEach((expr) => expect(isLastName(expr)).toBe(false))
+    TESTDATA.LASTNAME.valid.forEach((expr) =>
+      expect(isLastName(expr)).toBe(true)
+    )
+    TESTDATA.LASTNAME.invalid.forEach((expr) =>
+      expect(isLastName(expr)).toBe(false)
+    )
   })
 })
