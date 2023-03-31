@@ -55,7 +55,7 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('action.cancel')}
+          {t('action.notnow')}
         </Button>
         <Button
           variant="contained"

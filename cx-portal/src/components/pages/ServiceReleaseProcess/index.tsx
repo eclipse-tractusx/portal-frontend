@@ -21,11 +21,14 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
-import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { useDispatch } from 'react-redux'
-import { setServiceId, setServiceStatus } from 'features/appManagement/actions'
-import { initialServiceState } from 'features/appManagement/types'
 import { ReleaseProcess } from 'components/shared/basic/ReleaseProcess'
+import {
+  setServiceId,
+  setServiceStatus,
+} from 'features/serviceManagement/actions'
+import { initialState } from 'features/serviceManagement/types'
+import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 
 export default function ServiceReleaseProcess() {
   const { t } = useTranslation('servicerelease')
@@ -61,12 +64,14 @@ export default function ServiceReleaseProcess() {
 
   const onStartServiceClick = () => {
     navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-    dispatch(setCurrentActiveStep())
+    dispatch(setServiceReleaseActiveStep())
     dispatch(setServiceId(''))
-    dispatch(setServiceStatus(initialServiceState.serviceStatusData))
+    dispatch(setServiceStatus(initialState.serviceStatusData))
   }
 
-  const onOverviewServiceButton = () => {}
+  const onOverviewServiceButton = () => {
+    navigate(`/serviceoverview`)
+  }
 
   const requeredButtons = [
     {

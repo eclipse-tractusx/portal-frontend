@@ -28,6 +28,7 @@ import {
   Checkbox,
   DropArea,
   DropAreaProps,
+  PageSnackbar,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel, Grid, Box } from '@mui/material'
@@ -45,9 +46,10 @@ import {
 } from 'features/appManagement/slice'
 import {
   DocumentTypeId,
+  useDeleteAppReleaseDocumentMutation,
   useFetchAppStatusQuery,
   useFetchPrivacyPoliciesQuery,
-  useUpdateappMutation,
+  useSaveAppMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -57,6 +59,9 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import { UseCaseType } from 'features/appManagement/types'
+import { ButtonLabelTypes } from '..'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -73,12 +78,13 @@ type FormDataType = {
 
 export default function AppPage() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const appId = useSelector(appIdSelector)
+
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
-  const dispatch = useDispatch()
-  const [updateapp] = useUpdateappMutation()
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
-  const appId = useSelector(appIdSelector)
 
   const getPrivacyPolicies = useFetchPrivacyPoliciesQuery().data
   const privacyPolicies =
@@ -93,6 +99,14 @@ export default function AppPage() {
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
+  const [loading, setLoading] = useState<boolean>(false)
+  const [saveApp] = useSaveAppMutation()
+
+  const [deleteAppReleaseDocument, deleteResponse] =
+    useDeleteAppReleaseDocumentMutation()
+  useEffect(() => {
+    deleteResponse.isSuccess && setDeleteSuccess(true)
+  }, [deleteResponse])
 
   const defaultValues = {
     longDescriptionEN:
@@ -144,17 +158,19 @@ export default function AppPage() {
   const defaultuploadAppContract = defaultValues.uploadAppContract
 
   useEffect(() => {
-    const images = defaultImages?.map((item: { documentName: string }) => {
-      return {
+    const images = defaultImages?.map(
+      (item: { documentId: string; documentName: string }) => ({
+        id: item.documentId,
         name: item.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
-      }
-    })
+      })
+    )
 
     if (images.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
         const nextFiles = images
         nextFiles[fileIndex] = {
+          id: images[fileIndex].id,
           name: images[fileIndex].name,
           status,
         }
@@ -171,6 +187,9 @@ export default function AppPage() {
       Object.keys(defaultuploadDataPrerequisits).length > 0
     ) {
       setValue('uploadDataPrerequisits', {
+        id:
+          defaultuploadDataPrerequisits &&
+          defaultuploadDataPrerequisits[0]?.documentId,
         name:
           defaultuploadDataPrerequisits &&
           defaultuploadDataPrerequisits[0]?.documentName,
@@ -184,6 +203,9 @@ export default function AppPage() {
       Object.keys(defaultuploadTechnicalGuide).length > 0
     ) {
       setValue('uploadTechnicalGuide', {
+        id:
+          defaultuploadTechnicalGuide &&
+          defaultuploadTechnicalGuide[0]?.documentId,
         name:
           defaultuploadTechnicalGuide &&
           defaultuploadTechnicalGuide[0]?.documentName,
@@ -197,6 +219,7 @@ export default function AppPage() {
       Object.keys(defaultuploadAppContract).length > 0
     ) {
       setValue('uploadAppContract', {
+        id: defaultuploadAppContract && defaultuploadAppContract[0]?.documentId,
         name:
           defaultuploadAppContract && defaultuploadAppContract[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
@@ -218,6 +241,7 @@ export default function AppPage() {
     const value = getValues(fieldName)
 
     setValue(fieldName, {
+      id: value.id,
       name: value.name,
       size: value.size,
       status,
@@ -281,6 +305,7 @@ export default function AppPage() {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
         const nextFiles = [...getValues().images] as any[]
         nextFiles[fileIndex] = {
+          id: value[fileIndex].id,
           name: value[fileIndex].name,
           size: value[fileIndex].size,
           status,
@@ -324,6 +349,7 @@ export default function AppPage() {
       'providerPhoneContact',
     ])
     if (validateFields) {
+      setLoading(true)
       handleSave(data, buttonLabel)
     }
   }
@@ -348,20 +374,26 @@ export default function AppPage() {
             )[0]?.shortDescription || '',
         },
       ],
-      images: [],
+      title: statusData.title,
+      provider: statusData.provider,
+      salesManagerId: statusData.salesManagerId,
+      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
+      supportedLanguageCodes: statusData.supportedLanguageCodes,
+      price: statusData.price,
+      privacyPolicies: selectedPrivacyPolicies || [],
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
-      privacyPolicies: selectedPrivacyPolicies || [],
     }
 
     try {
-      await updateapp({ body: saveData, appId: appId }).unwrap()
-      buttonLabel === 'saveAndProceed' && dispatch(increment())
-      buttonLabel === 'save' && setAppPageSnackbar(true)
-    } catch (error: any) {
+      await saveApp({ appId: appId, body: saveData }).unwrap()
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+      buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
+    } catch (error: unknown) {
       setAppPageNotification(true)
     }
+    setLoading(false)
   }
 
   const onBackIconClick = () => {
@@ -398,6 +430,11 @@ export default function AppPage() {
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
   }
+
+  const getLabel = (item: string) =>
+    Object.keys(PrivacyPolicyType).includes(item)
+      ? t(`content.appdetail.privacy.${item}`)
+      : item
 
   return (
     <div className="app-page">
@@ -451,10 +488,11 @@ export default function AppPage() {
                   }`,
                   maxLength: `${t(
                     'content.apprelease.appReleaseForm.maximum'
-                  )} 255 ${t(
+                  )} ${longDescriptionMaxLength} ${t(
                     'content.apprelease.appReleaseForm.charactersAllowed'
                   )}`,
                 }}
+                maxLength={longDescriptionMaxLength}
               />
             </div>
           ))}
@@ -489,6 +527,13 @@ export default function AppPage() {
                   maxFilesToUpload={3}
                   maxFileSize={819200}
                   DropArea={renderDropArea}
+                  handleDelete={(documentId: string) => {
+                    setDeleteSuccess(false)
+                    documentId && deleteAppReleaseDocument(documentId)
+                  }}
+                  errorText={t(
+                    'content.apprelease.appReleaseForm.fileSizeError'
+                  )}
                 />
               )
             }}
@@ -531,6 +576,11 @@ export default function AppPage() {
                   maxFileSize: 819200,
                   size: 'small',
                 }}
+                handleDelete={(documentId: string) => {
+                  setDeleteSuccess(false)
+                  documentId && deleteAppReleaseDocument(documentId)
+                }}
+                errorText={t('content.apprelease.appReleaseForm.fileSizeError')}
               />
               {item === 'uploadDataPrerequisits' &&
                 errors?.uploadDataPrerequisits?.type === 'required' && (
@@ -608,7 +658,7 @@ export default function AppPage() {
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.privacyInformation')}
         </InputLabel>
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ marginBottom: '10px' }}>
           {t('content.apprelease.appPage.privacyInformationDescription')}
         </Typography>
 
@@ -616,22 +666,23 @@ export default function AppPage() {
           <Grid container item spacing={2}>
             {privacyPolicies &&
               privacyPolicies?.map((item: string) => (
-                <Grid item md={6} key={item}>
+                <Grid item md={6} key={item} className="privacyPolicies">
                   <Checkbox
-                    label={item}
+                    label={getLabel(item)}
                     checked={selectedPrivacyPolicies.indexOf(item) !== -1}
                     onChange={(e) =>
                       selectPrivacyPolicies(item, e.target.checked, 'checkbox')
                     }
+                    size="small"
                   />
                 </Grid>
               ))}
-            <Grid item md={6}>
+            <Grid item md={6} className="privacyPolicies">
               <Radio
-                label={
+                label={getLabel(
                   getPrivacyPolicies &&
-                  getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
-                }
+                    getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
+                )}
                 checked={
                   selectedPrivacyPolicies &&
                   selectedPrivacyPolicies[0] === privacyPolicyNone
@@ -644,6 +695,7 @@ export default function AppPage() {
                   )
                 }
                 name="radio-buttons"
+                size="small"
               />
             </Grid>
           </Grid>
@@ -668,11 +720,23 @@ export default function AppPage() {
         setPageNotification={() => setAppPageNotification(false)}
         setPageSnackbar={() => setAppPageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
+        onSave={handleSubmit((data) =>
+          onAppPageSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data) =>
-          onAppPageSubmit(data, 'saveAndProceed')
+          onAppPageSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
+      />
+      <PageSnackbar
+        autoClose
+        description={t(
+          'content.apprelease.contractAndConsent.documentDeleteSuccess'
+        )}
+        open={deleteSuccess}
+        severity={'success'}
+        showIcon
       />
     </div>
   )

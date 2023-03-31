@@ -58,7 +58,8 @@
     "serviceoverview": "Service Overview",
     "servicereleaseprocess": "Service Release Process",
     "serviceadminboard": "Admin Board",
-    "servicesubscription": "Service Subscription Mgt"
+    "servicesubscription": "Service Subscription Mgt",
+    "servicedetail": "Service Details"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -873,7 +874,8 @@
         "headerTitle": "Consent & Contract",
         "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
         "allAgreementsMandatory": "All agreements are mandatory",
-        "uploadImageConformity": "Conformity App Certificate"
+        "uploadImageConformity": "Conformity App Certificate",
+        "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
@@ -923,7 +925,9 @@
         "documents": "Documents",
         "providerInformation": "Provider Information",
         "consent": "Consent",
-        "cxTestRuns": "CX Test Runs"
+        "cxTestRuns": "CX Test Runs",
+        "longDescriptionTitleEN": "[Long Description - EN] ",
+        "longDescriptionTitleDE": "[Long Description - DE] "
       },
       "submit": {
         "headerTitle": "Thank you for submitting the app!",
@@ -931,6 +935,20 @@
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Your Catena-X team",
         "overview": "My apps overview"
+      },
+      "defaultValues": {
+        "dataSecurityInformation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "connectedTableDataHeader": [
+          "Linked to your identity",
+          "Linked NOT to your identity"
+        ],
+        "connectedTableDataBody": [
+          ["personal Information", "Loreum personal Information"],
+          ["Used Content", "Loreum Used Content"],
+          ["Catena-X Account Data", "Loreum Catena-X Account Data"]
+        ]
       },
       "appReleaseForm": {
         "headerTitle": "Create App",
@@ -953,7 +971,8 @@
         "dataSavedSuccessMessage": "Data saved successfully",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "rolesDeleteSuccessMessage": "Roles deleted successfully",
-        "errormessage": "Error! Something went wrong"
+        "errormessage": "Error! Something went wrong",
+        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
       },
       "footerButtons": {
         "help": "Help",
@@ -1328,7 +1347,9 @@
       "submit": "Submit",
       "no": "No",
       "yes": "Yes",
-      "next": "Next"
+      "next": "Next",
+      "success": "Success",
+      "error": "Error"
     },
     "state": {
       "enabled": "enabled",

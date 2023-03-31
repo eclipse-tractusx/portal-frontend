@@ -18,14 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.appdetail-howtouse {
-  margin-bottom: 95px;
+import { Button } from 'cx-portal-shared-components'
+import { useState } from 'react'
+import { IHashMap } from 'types/MainTypes'
+import MyForm from './MyForm'
+
+function FormTest() {
+  const [data, setData] = useState<IHashMap<string> | undefined>(undefined)
+
+  return (
+    <div>
+      <MyForm onValid={setData} />
+      <pre
+        style={{ width: '600px', height: '160px', backgroundColor: '#eeeeee' }}
+      >
+        {data ? JSON.stringify(data, null, 2) : ''}
+      </pre>
+      <Button disabled={!data}>Submit</Button>
+    </div>
+  )
 }
-.document-button-link {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 18px;
-  color: #0d55af;
-}
+
+export default FormTest

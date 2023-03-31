@@ -55,12 +55,14 @@ export const Patterns = {
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
   },
   offerCard: {
-    serviceName: /^[^-\s][A-Za-z0-9.:_@&' -]((?!\s{2}).){2,20}$/,
+    serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescriptionEN:
-      /^[^-\s]([a-zA-Z0-9 !?@&#'"()_\-=/*.,;:])((?!\s{2}).){10,120}$/,
-    shortDescriptionDE:
-      /^[^-\s]([a-zA-ZÀ-ÿ0-9 !?@&#'"()_\-=/*.,;:])((?!\s{2}).){10,120}$/,
+    shortDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
+    shortDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
+  },
+  offerPage: {
+    longDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,2000}$/,
+    longDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,2000}$/,
   },
   appPage: {
     longDescriptionEN:
@@ -71,7 +73,7 @@ export const Patterns = {
   },
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
-    clientSecret: /^[a-zA-Z0-9-_.!?/]{8,200}$/,
+    clientSecret: /^.{1,200}$/,
   },
   connectors: {
     NAME: /^[a-zA-Z0-9 @]{2,20}$/,

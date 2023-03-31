@@ -50,7 +50,9 @@ export const ConnectorFormInputField = ({
   defaultValues,
   enableDeleteIcon,
   handleDownload,
+  handleDelete,
   size,
+  errorText,
 }: any) => {
   const renderDropArea = (props: DropAreaProps, size: any) => {
     return <DropArea {...props} size={size || 'normal'} />
@@ -87,17 +89,19 @@ export const ConnectorFormInputField = ({
         } else if (type === 'dropzone') {
           return (
             <Dropzone
-              files={value ? [value] : undefined}
+              files={value && value.name ? [value] : undefined}
               onChange={([file]) => {
                 trigger(name)
                 onChange(file)
               }}
               handleDownload={handleDownload}
+              handleDelete={handleDelete}
               acceptFormat={acceptFormat}
               maxFilesToUpload={maxFilesToUpload}
               maxFileSize={maxFileSize}
               enableDeleteIcon={enableDeleteIcon}
               DropArea={(props) => renderDropArea(props, size)}
+              errorText={errorText}
             />
           )
         } else if (type === 'checkbox') {

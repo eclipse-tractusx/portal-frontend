@@ -21,6 +21,7 @@
 import { Typography } from 'cx-portal-shared-components'
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 import { InputLabel } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export default function ConnectorFormInputFieldImage({
   control,
@@ -36,8 +37,10 @@ export default function ConnectorFormInputFieldImage({
     'image/jpeg': [],
   },
   handleDownload,
+  handleDelete,
   isRequired = true,
 }: any) {
+  const { t } = useTranslation()
   return (
     <div className="form-field">
       <InputLabel sx={{ mb: 3, mt: 3 }}>{label}</InputLabel>
@@ -57,6 +60,8 @@ export default function ConnectorFormInputFieldImage({
             },
           },
           handleDownload: handleDownload,
+          handleDelete: handleDelete,
+          errorText: t('content.apprelease.appReleaseForm.fileSizeError'),
         }}
       />
       {errors?.uploadImage?.leadPictureUri?.type === 'required' && (

@@ -4,46 +4,84 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
-* AppReleaseProcess
-   * enabled document download in contract and consent
-   * Changed PDF uploads from mandatory to optional and changed dropzone parameter size
-   * Added privacy policy to app page
-* Service Release Process
-   * Create Service, fetch service and Update service apis added
-* AppDetails
-   * Privacy Policy
-* AdminBoardDetail
-   * Switch Endpoint
-   * Add Roles section
-   * Privacy Policy
-* BugFix
-   * Application Request
-      * Layout of the application board is destroyed for those applications which are fully "DONE" but application activation did not take place 
-* User Account
-   * Add portal roles
-   * Add Overlay to update users portal roles
-   * App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
-* Use Case & Company Roles - Resopnsive static page
+
+## 1.3.0 RC1
 
 ### Change
+* App Release Process
+  * updated endpoint to post and get agreement consent
+  * switched endpoint to retrieve cx frame documents from portal backend for consent section
+  * document upload error message customization activated and new error message for file size set
+* Service Release Process
+  * updated GET and POST endpoint handling to store and fetch service details from the backend and display them inside the service release form
+  * switched endpoint to retrieve cx frame documents from portal backend
+  * updated endpoint to post agreement consent
+* Switch IdP
+  * additional user support and new style added for easier process handling
 
-* AppOverview
-   * Page Load handling
-* Organization
-   * Active subscription image issue fix
-* DropZone
-   * Custom error message can be shown on invalid file type
+### Feature
+* Service Release Process
+  * implement service type function with backend connection
+  * added load button function for service release form - button "submit" and "confirm"/"proceed"
+* App Release Process
+  * added app privacy policy select function inside the app release process form
+* Service Management (Service Provider)
+  * implemented service overview for app provider to display all owned services in all states (incl. search, filter and sort)
+  * implemented service detail page
+
+### Technical Support
+* added temp fix for CVE-2023-0464
+* added build workflow for v1.3.0 release candidate phase
+* updated actions workflows
+
+### Bugfix
+* App Release Process
+  * update input field validation for longDescription input field
+* User Management
+  * payload fixed to portal roles only when updating user assigned portal roles 
+* App Release Admin Page - App Detail Page
+  * updated business logic to consume use case data due to updated api response body style
+* Service Marketplace - Service Detail Page
+  * updated business logic to consume use case data due to updated api response body style
+
+## 1.2.0
+
+### Change
+* Dropzone costum error support implemented
+
+### Feature
 * UserManagement
-   * Add role description link
-   * Page "Role Description"
-* Local Development
-   * Change local port to run behind reverse proxy
-* Organization
-   * Active subscription image issue fix
-* AdminBoardDetail
-   * Approval Board - missing documents
-* DropZone
-   * Custom error message can be shown on invalid file type
+   * add role description details into the user account creation overlay and linking the description with the new developed/released role description detail page
+* App Marketplace
+   * app detail page got enhanced by "Privacy Policies"
+* App Approval Admin Board
+   * app detail page endpoint switched to /inReview/{appId}
+   * app detail page "App Roles" added
+   * app detail page "Privacy Policy" added
+   * removes placeholder sections and implemented UI changes
+* User Account Screen
+   * add section with user assigned portal roles
+   * add action button and overlay to update user assigned portal roles
+* Service Release Process
+   * implement service release process form and connected backend services /createService, /serviceStatus, /and Update service apis added
+* App Release Process
+   * enabled document download in contract and consent
+   * enabled document deletion inside the app release form
+   * changed additional document uploads from mandatory to optional and changed dropzone parameter size
+
+### Technical Support
+* Improved page loading in several places (such as app overview) 
+* Change local port to run behind reverse proxy
+* Improved responsiveness of use case introduction page and company role page
+
+### Bugfix
+* Image import via api image/document endpoint implemented for organization/myCompanySubscription section
+* Fixed display documents feature. Only first document got displayed (Admin App Approval Board - App Detail page, App Marketplace App Detail Page)
+* App Release Process - when opening a previously saved app - "save & proceed" is disabled is fixed
+* Home - Recommended section images not loading fix
+* Application Request Board styling of the application status bar for application fully "DONE" but activation outstanding
+* App Release Process - updated long description input validation
+* App Release Process - updated business logic to retrieve app use case in new api response format
 
 ## 1.1.0
 

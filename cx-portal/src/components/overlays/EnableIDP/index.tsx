@@ -87,7 +87,11 @@ export const EnableIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <Typography>{t('enable.desc')}</Typography>
-        <EnableIDPContent onValid={setIdpEnableData} />
+        <EnableIDPContent
+          onValid={setIdpEnableData}
+          identityProviderId={id}
+          companyUserId={data?.companyUserId || ''}
+        />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>

@@ -188,6 +188,11 @@ export default function TechnicalIntegration() {
       })
   }
 
+  const onBackIconClick = () => {
+    if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    dispatch(decrement())
+  }
+
   return (
     <div className="technical-integration">
       <Typography variant="h3" mt={10} mb={4} align="center">
@@ -493,7 +498,7 @@ export default function TechnicalIntegration() {
         pageSnackbar={technicalIntegrationSnackbar}
         setPageNotification={setTechnicalIntegrationNotification}
         setPageSnackbar={setTechnicalIntegrationSnackbar}
-        onBackIconClick={() => dispatch(decrement())}
+        onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
         onSaveAndProceed={handleSubmit((data) =>
           onIntegrationSubmit(data, 'saveAndProceed')
