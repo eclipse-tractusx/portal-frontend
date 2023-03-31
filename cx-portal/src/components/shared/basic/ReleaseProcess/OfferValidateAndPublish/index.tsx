@@ -20,16 +20,14 @@
 
 import { LogoGrayData } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import {
-  ConsentStatusEnum,
-  useFetchDocumentByIdMutation,
-} from 'features/appManagement/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import CommonValidateAndPublish from '../components/CommonValidateAndPublish'
 import { serviceIdSelector } from 'features/serviceManagement/slice'
 import {
   ReleaseProcessTypes,
+  ServiceTypeIdsEnum,
   useFetchServiceStatusQuery,
   useSubmitServiceMutation,
 } from 'features/serviceManagement/apiSlice'
@@ -49,18 +47,6 @@ export default function OfferValidateAndPublish({
   const defaultValues = useMemo(() => {
     return {
       images: [LogoGrayData, LogoGrayData, LogoGrayData],
-      connectedTableData: {
-        head: ['Linked to your identity', 'Linked NOT to your identity'],
-        body: [
-          ['personal Information', 'Loreum personal Information'],
-          ['Used Content', 'Loreum Used Content'],
-          ['Catena-X Account Data', 'Loreum Catena-X Account Data'],
-        ],
-      },
-      dataSecurityInformation: t('defaultValues.dataSecurityInformation'),
-      conformityDocumentsDescription: t(
-        'defaultValues.conformityDocumentsDescription'
-      ),
       documentsDescription: t('defaultValues.documentsDescription'),
       providerTableData: {
         head: ['Homepage', 'E-Mail'],
@@ -69,19 +55,18 @@ export default function OfferValidateAndPublish({
           [fetchServiceStatus?.contactEmail],
         ],
       },
-      cxTestRuns: [
-        {
-          agreementId: 'uuid',
-          consentStatus: ConsentStatusEnum.ACTIVE,
-          name: 'Test run A - done',
-        },
-        {
-          agreementId: 'uuid',
-          consentStatus: ConsentStatusEnum.ACTIVE,
-          name: 'Test run B - done',
-        },
-      ],
     }
+  }, [fetchServiceStatus, t])
+
+  const getServiceTypes = useCallback(() => {
+    const newArr: string[] = []
+    fetchServiceStatus?.serviceTypeIds.forEach((serviceType: string) => {
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCE_SERVICE)
+        newArr.push(t('consultanceService'))
+      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(t('dataspaceService'))
+    })
+    return newArr.join(', ')
   }, [fetchServiceStatus, t])
 
   return (
@@ -99,13 +84,9 @@ export default function OfferValidateAndPublish({
           detailsText={t('step4.appDetails')}
           longDescriptionTitleEN={t('step4.longDescriptionTitleEN')}
           longDescriptionTitleDE={t('step4.longDescriptionTitleDE')}
-          connectedData={t('step4.connectedData')}
-          conformityDocument={t('step4.conformityDocument')}
-          dataSecurityInformation={t('step4.dataSecurityInformation')}
           documentsTitle={t('step4.documents')}
           providerInformation={t('step4.providerInformation')}
           consentTitle={t('step4.consent')}
-          cxTestRunsTitle={t('step4.cxTestRuns')}
           error={{
             title: t('serviceReleaseForm.error.title'),
             message: t('serviceReleaseForm.error.message'),
@@ -113,6 +94,7 @@ export default function OfferValidateAndPublish({
           helpText={t('footerButtons.help')}
           submitButton={t('footerButtons.submit')}
           values={defaultValues}
+          serviceTypes={getServiceTypes()}
         />
       )}
     </div>

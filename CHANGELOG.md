@@ -28,6 +28,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
       * use case data display fix
    * Service Marketplace
       * Page break issue fix
+   * Service Release Process
+      * Remove unnecessary sections - Step3 and step4
+      * Style updates -  Step4
+      * Text Updates - Step3
+      * Navigation fix - Thank you and Initial screen
    
 
 ## 1.2.0

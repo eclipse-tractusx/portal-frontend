@@ -69,7 +69,9 @@ export default function ServiceReleaseProcess() {
     dispatch(setServiceStatus(initialState.serviceStatusData))
   }
 
-  const onOverviewServiceButton = () => {}
+  const onOverviewServiceButton = () => {
+    navigate(`/serviceoverview`)
+  }
 
   const requeredButtons = [
     {
