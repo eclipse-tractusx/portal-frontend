@@ -445,11 +445,7 @@ export default function AppPage() {
       return `${t(
         'content.apprelease.appReleaseForm.validCharactersIncludes'
       )} a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
-    } else if (
-      (item === 'longDescriptionDE' &&
-        /[ @=<>*\-+#?%&_:;]/.test(getValues().longDescriptionDE.charAt(0))) ||
-      item === 'longDescriptionDE'
-    ) {
+    } else {
       return `${t(
         'content.apprelease.appReleaseForm.validCharactersIncludes'
       )} a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
