@@ -67,6 +67,7 @@ import CommonConnectorFormInputField from '../components/CommonConnectorFormInpu
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { ButtonLabelTypes } from '..'
 
 type FormDataType = {
   title: string
@@ -81,6 +82,7 @@ type FormDataType = {
     alt?: string
   }
   salesManagerId: string | null
+  privacyPolicies: Array<string>
 }
 
 export default function AppMarketCard() {
@@ -131,6 +133,7 @@ export default function AppMarketCard() {
   }).data
   const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   const defaultValues = {
     title: appStatusData?.title,
@@ -151,6 +154,7 @@ export default function AppMarketCard() {
       leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
       alt: appStatusData?.leadPictureUri || '',
     },
+    privacyPolicies: appStatusData?.privacyPolicies || [],
   }
 
   const {
@@ -301,8 +305,8 @@ export default function AppMarketCard() {
   }
 
   const onSave = (buttonLabel: string) => {
-    buttonLabel === 'saveAndProceed' && dispatch(increment())
-    buttonLabel === 'save' && setAppCardSnackbar(true)
+    buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+    buttonLabel === ButtonLabelTypes.SAVE && setAppCardSnackbar(true)
   }
 
   const handleUploadDocument = (
@@ -329,13 +333,10 @@ export default function AppMarketCard() {
   }
 
   const handleSave = async (data: FormDataType, buttonLabel: string) => {
+    setLoading(true)
     const saveData = {
       title: data.title,
       provider: data.provider,
-      leadPictureUri:
-        data.uploadImage.leadPictureUri !== null &&
-        Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
-        Object.values(data.uploadImage.leadPictureUri)[0],
       salesManagerId: salesManagerId,
       useCaseIds: data.useCaseCategory,
       descriptions: [
@@ -358,7 +359,10 @@ export default function AppMarketCard() {
       ],
       supportedLanguageCodes: data.appLanguage,
       price: data.price,
-      privacyPolicies: [],
+      privacyPolicies: data.privacyPolicies,
+      providerUri: appStatusData?.providerUri ?? '',
+      contactEmail: appStatusData?.contactEmail ?? '',
+      contactNumber: appStatusData?.contactNumber ?? '',
     }
 
     const uploadImageValue = getValues().uploadImage
@@ -397,6 +401,7 @@ export default function AppMarketCard() {
           setAppCardNotification(true)
         })
     }
+    setLoading(false)
   }
 
   const uploadDocumentApi = async (
@@ -754,11 +759,14 @@ export default function AppMarketCard() {
         setPageNotification={() => setAppCardNotification(false)}
         setPageSnackbar={() => setAppCardSnackbar(false)}
         onBackIconClick={() => navigate('/appmanagement')}
-        onSave={handleSubmit((data: any) => onSubmit(data, 'save'))}
+        onSave={handleSubmit((data: any) =>
+          onSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data: any) =>
-          onSubmit(data, 'saveAndProceed')
+          onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose

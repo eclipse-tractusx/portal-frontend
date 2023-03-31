@@ -49,7 +49,7 @@ import {
   useDeleteAppReleaseDocumentMutation,
   useFetchAppStatusQuery,
   useFetchPrivacyPoliciesQuery,
-  useUpdateappMutation,
+  useSaveAppMutation,
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -59,6 +59,9 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
+import { UseCaseType } from 'features/appManagement/types'
+import { ButtonLabelTypes } from '..'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -81,7 +84,6 @@ export default function AppPage() {
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
   const [deleteSuccess, setDeleteSuccess] = useState(false)
-  const [updateapp] = useUpdateappMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
 
   const getPrivacyPolicies = useFetchPrivacyPoliciesQuery().data
@@ -97,6 +99,8 @@ export default function AppPage() {
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus || appStatusData
+  const [loading, setLoading] = useState<boolean>(false)
+  const [saveApp] = useSaveAppMutation()
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -345,6 +349,7 @@ export default function AppPage() {
       'providerPhoneContact',
     ])
     if (validateFields) {
+      setLoading(true)
       handleSave(data, buttonLabel)
     }
   }
@@ -369,20 +374,26 @@ export default function AppPage() {
             )[0]?.shortDescription || '',
         },
       ],
-      images: [],
+      title: statusData.title,
+      provider: statusData.provider,
+      salesManagerId: statusData.salesManagerId,
+      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
+      supportedLanguageCodes: statusData.supportedLanguageCodes,
+      price: statusData.price,
+      privacyPolicies: selectedPrivacyPolicies || [],
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
-      privacyPolicies: selectedPrivacyPolicies || [],
     }
 
     try {
-      await updateapp({ body: saveData, appId: appId }).unwrap()
-      buttonLabel === 'saveAndProceed' && dispatch(increment())
-      buttonLabel === 'save' && setAppPageSnackbar(true)
-    } catch (error: any) {
+      await saveApp({ appId: appId, body: saveData }).unwrap()
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+      buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
+    } catch (error: unknown) {
       setAppPageNotification(true)
     }
+    setLoading(false)
   }
 
   const onBackIconClick = () => {
@@ -419,6 +430,11 @@ export default function AppPage() {
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
   }
+
+  const getLabel = (item: string) =>
+    Object.keys(PrivacyPolicyType).includes(item)
+      ? t(`content.appdetail.privacy.${item}`)
+      : item
 
   return (
     <div className="app-page">
@@ -515,6 +531,9 @@ export default function AppPage() {
                     setDeleteSuccess(false)
                     documentId && deleteAppReleaseDocument(documentId)
                   }}
+                  errorText={t(
+                    'content.apprelease.appReleaseForm.fileSizeError'
+                  )}
                 />
               )
             }}
@@ -561,6 +580,7 @@ export default function AppPage() {
                   setDeleteSuccess(false)
                   documentId && deleteAppReleaseDocument(documentId)
                 }}
+                errorText={t('content.apprelease.appReleaseForm.fileSizeError')}
               />
               {item === 'uploadDataPrerequisits' &&
                 errors?.uploadDataPrerequisits?.type === 'required' && (
@@ -638,7 +658,7 @@ export default function AppPage() {
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.privacyInformation')}
         </InputLabel>
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ marginBottom: '10px' }}>
           {t('content.apprelease.appPage.privacyInformationDescription')}
         </Typography>
 
@@ -646,22 +666,23 @@ export default function AppPage() {
           <Grid container item spacing={2}>
             {privacyPolicies &&
               privacyPolicies?.map((item: string) => (
-                <Grid item md={6} key={item}>
+                <Grid item md={6} key={item} className="privacyPolicies">
                   <Checkbox
-                    label={item}
+                    label={getLabel(item)}
                     checked={selectedPrivacyPolicies.indexOf(item) !== -1}
                     onChange={(e) =>
                       selectPrivacyPolicies(item, e.target.checked, 'checkbox')
                     }
+                    size="small"
                   />
                 </Grid>
               ))}
-            <Grid item md={6}>
+            <Grid item md={6} className="privacyPolicies">
               <Radio
-                label={
+                label={getLabel(
                   getPrivacyPolicies &&
-                  getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
-                }
+                    getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
+                )}
                 checked={
                   selectedPrivacyPolicies &&
                   selectedPrivacyPolicies[0] === privacyPolicyNone
@@ -674,6 +695,7 @@ export default function AppPage() {
                   )
                 }
                 name="radio-buttons"
+                size="small"
               />
             </Grid>
           </Grid>
@@ -698,11 +720,14 @@ export default function AppPage() {
         setPageNotification={() => setAppPageNotification(false)}
         setPageSnackbar={() => setAppPageSnackbar(false)}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onAppPageSubmit(data, 'save'))}
+        onSave={handleSubmit((data) =>
+          onAppPageSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data) =>
-          onAppPageSubmit(data, 'saveAndProceed')
+          onAppPageSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose

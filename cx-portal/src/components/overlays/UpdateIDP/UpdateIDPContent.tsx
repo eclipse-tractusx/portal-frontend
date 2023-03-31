@@ -18,9 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
-import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import { Tooltips, Typography } from 'cx-portal-shared-components'
 import { useState } from 'react'
 import {
   IdentityProvider,
@@ -29,12 +26,13 @@ import {
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
-import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Link } from 'react-router-dom'
+import ReadOnlyValue from 'components/shared/basic/ReadOnlyValue'
+import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
+import { InputType } from 'components/shared/basic/Input/BasicInput'
 
 const isWellknownMetadata = (expr: string) =>
   (isURL(expr) || expr.startsWith('http://localhost')) &&
@@ -63,74 +61,6 @@ const formToUpdate = (form: IHashMap<string>): IdentityProviderUpdateBody => ({
     signatureAlgorithm: form.signatureAlgorithm as OIDCSignatureAlgorithm,
   },
 })
-
-const CopyValue = ({ value }: { value: string }) => {
-  const [copied, setCopied] = useState<boolean>(false)
-
-  return (
-    <Box
-      sx={{
-        margin: '4px 0',
-        cursor: 'pointer',
-        display: 'flex',
-        color: copied ? '#44aa44' : '#cccccc',
-        ':hover': {
-          color: copied ? '#44aa44' : '#888888',
-        },
-      }}
-      onClick={async () => {
-        await navigator.clipboard.writeText(value)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1000)
-      }}
-    >
-      {value}
-      <ContentCopyIcon
-        sx={{
-          marginLeft: '10px',
-        }}
-      />
-    </Box>
-  )
-}
-
-const ReadOnlyValue = ({
-  label,
-  tooltipMessage = '',
-  value,
-  style,
-}: {
-  label: string
-  tooltipMessage?: string
-  value: string
-  style?: IHashMap<string>
-}) => {
-  return (
-    <div style={style}>
-      <div style={{ display: 'flex' }}>
-        <Typography
-          variant="label3"
-          sx={{ textAlign: 'left', marginRight: '10px' }}
-        >
-          {label}
-        </Typography>
-        <Tooltips
-          additionalStyles={{
-            cursor: 'pointer',
-            marginTop: '30px !important',
-          }}
-          tooltipPlacement="top-start"
-          tooltipText={tooltipMessage}
-        >
-          <div>
-            <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
-          </div>
-        </Tooltips>
-      </div>
-      <CopyValue value={value} />
-    </div>
-  )
-}
 
 const UpdateIDPForm = ({
   idp,
@@ -185,24 +115,23 @@ const UpdateIDPForm = ({
         />
       </div>
 
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '34px' }}>
         <ValidatingInput
           name="metadataUrl"
           label={t('field.metadata.name')}
-          validate={isWellknownMetadata}
-          tooltipMessage={t('field.metadata.hint')}
-          helperText={t('field.metadata.hint')}
+          validate={(expr) => isWellknownMetadata(expr)}
+          hint={t('field.metadata.hint')}
+          debounceTime={0}
           onValid={onChange}
         />
       </div>
 
-      <div style={{ margin: '20px 0', display: 'flex' }}>
+      <div style={{ margin: '12px 0', display: 'flex' }}>
         <div style={{ width: '48%', marginRight: '2%' }}>
           <ValidatingInput
             name="clientId"
             label={t('field.clientId.name')}
-            tooltipMessage={t('field.clientId.hint')}
-            helperText={t('field.clientId.hint')}
+            hint={t('field.clientId.hint')}
             value={idp.oidc?.clientId || ''}
             validate={isIDPClientID}
             onValid={onChange}
@@ -212,8 +141,8 @@ const UpdateIDPForm = ({
           <ValidatingInput
             name="secret"
             label={t('field.clientSecret.name')}
-            tooltipMessage={t('field.clientSecret.hint')}
-            helperText={t('field.clientSecret.hint')}
+            hint={t('field.clientSecret.hint')}
+            type={InputType.password}
             validate={isIDPClientSecret}
             onValid={onChange}
           />

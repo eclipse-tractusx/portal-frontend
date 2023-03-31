@@ -175,7 +175,7 @@ export default function AppOverViewDetails({
                       }}
                       variant="caption1"
                     >
-                      {newCase}
+                      {newCase.label}
                     </Typography>
                   </div>
                 )

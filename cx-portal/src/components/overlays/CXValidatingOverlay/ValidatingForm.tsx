@@ -18,80 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Input } from 'cx-portal-shared-components'
-import debounce from 'lodash.debounce'
-import { useState, useMemo, useCallback } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IHashMap } from 'types/MainTypes'
 import Box from '@mui/material/Box'
-
-export type ValidatingInputProps = {
-  sx?: any
-  name: string
-  label?: string
-  helperText?: string
-  placeholder?: string
-  tooltipMessage?: string
-  autofocus?: boolean
-  value?: string
-  debounceTime?: number
-  validate: (data: string) => boolean
-  onValid: (name: string, data: string | undefined) => void
-}
-
-export const ValidatingInput = ({
-  sx,
-  name,
-  label = '',
-  helperText = '',
-  placeholder = '',
-  tooltipMessage = undefined,
-  autofocus = false,
-  value = '',
-  debounceTime = 300,
-  validate,
-  onValid,
-}: ValidatingInputProps) => {
-  const [data, setData] = useState<string>(value)
-  const [valid, setValid] = useState<boolean>(validate(value))
-  const [show, setShow] = useState<number>(0)
-
-  const debouncedValidation = useMemo(
-    () =>
-      debounce((expr: string, counter: number) => {
-        const isValid = validate(expr)
-        setValid(isValid)
-        setShow(counter)
-        const validValue = isValid ? expr : undefined
-        onValid(name, validValue)
-      }, debounceTime),
-    [onValid, setValid, validate, setShow, name, debounceTime]
-  )
-
-  const doValidate = useCallback(
-    (expr: string) => {
-      setData(expr)
-      debouncedValidation(expr, show + 1)
-    },
-    [debouncedValidation, setData, show]
-  )
-
-  return (
-    <Input
-      sx={sx}
-      name={name}
-      label={label}
-      helperText={helperText}
-      placeholder={placeholder}
-      tooltipMessage={tooltipMessage}
-      value={data}
-      error={!valid && show > 0}
-      autoFocus={autofocus}
-      onChange={(e) => doValidate(e.currentTarget.value)}
-      onBlur={(e) => doValidate(e.currentTarget.value)}
-    />
-  )
-}
+import { ValidatingInput } from './ValidatingInput'
 
 export type ValidationField = {
   key: string

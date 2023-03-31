@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -44,12 +44,16 @@ import {
 } from 'cx-portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
-import {
-  AppStatusDataState,
-  ServiceStatusDataState,
-} from 'features/appManagement/types'
+import { AppStatusDataState } from 'features/appManagement/types'
 import { Grid } from '@mui/material'
 import { ErrorMessage } from '@hookform/error-message'
+import { ServiceStatusDataState } from 'features/serviceManagement/types'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import {
+  serviceReleaseStepIncrement,
+  serviceReleaseStepDecrement,
+} from 'features/serviceManagement/slice'
+import { ButtonLabelTypes } from '..'
 
 type AgreementDataType = {
   agreementId: string
@@ -59,6 +63,7 @@ type AgreementDataType = {
 }[]
 
 type CommonConsentType = {
+  type: string
   stepperTitle: string
   stepperDescription: string
   checkBoxMandatoryText: string
@@ -84,9 +89,12 @@ type CommonConsentType = {
   }) => any
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
   getDocumentById?: (id: string) => any
+  documentRequired?: boolean
+  fetchFrameDocumentById?: (id: string) => any
 }
 
 export default function CommonContractAndConsent({
+  type,
   stepperTitle,
   stepperDescription,
   checkBoxMandatoryText,
@@ -103,6 +111,8 @@ export default function CommonContractAndConsent({
   updateDocumentUpload,
   fetchStatusData,
   getDocumentById,
+  documentRequired = true,
+  fetchFrameDocumentById,
 }: CommonConsentType) {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
@@ -113,6 +123,7 @@ export default function CommonContractAndConsent({
     agreements: [],
   })
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -278,6 +289,7 @@ export default function CommonContractAndConsent({
   }
 
   const handleSave = async (data: Object, buttonLabel: string) => {
+    setLoading(true)
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
     )
@@ -305,23 +317,52 @@ export default function CommonContractAndConsent({
       await updateAgreementConsents(updateData)
         .unwrap()
         .then(() => {
-          buttonLabel === 'saveAndProceed' && dispatch(increment())
-          buttonLabel === 'save' && setContractSnackbar(true)
+          if (
+            buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+            type === ReleaseProcessTypes.APP_RELEASE
+          ) {
+            dispatch(increment())
+          } else {
+            dispatch(serviceReleaseStepIncrement())
+          }
+          buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
         })
         .catch(() => {
           setContractNotification(true)
         })
+    setLoading(false)
   }
 
   const onBackIconClick = () => {
     if (fetchStatusData) dispatch(setAppStatus(fetchStatusData))
-    dispatch(decrement())
+    if (type === ReleaseProcessTypes.APP_RELEASE) {
+      dispatch(decrement())
+    } else {
+      dispatch(serviceReleaseStepDecrement())
+    }
   }
 
   const handleDownload = async (documentName: string, documentId: string) => {
     if (getDocumentById)
       try {
         const response = await getDocumentById(documentId).unwrap()
+
+        const fileType = response.headers.get('content-type')
+        const file = response.data
+
+        return download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
+
+  const handleFrameDocumentDownload = async (
+    documentName: string,
+    documentId: string
+  ) => {
+    if (fetchFrameDocumentById)
+      try {
+        const response = await fetchFrameDocumentById(documentId).unwrap()
 
         const fileType = response.headers.get('content-type')
         const file = response.data
@@ -349,7 +390,8 @@ export default function CommonContractAndConsent({
                     trigger,
                     errors,
                     name: item.agreementId,
-                    defaultValues: item.consentStatus,
+                    defaultValues:
+                      item.consentStatus === ConsentStatusEnum.ACTIVE,
                     label: '',
                     type: 'checkbox',
                     rules: {
@@ -365,7 +407,9 @@ export default function CommonContractAndConsent({
                 {item.documentId ? (
                   <span
                     className={item.documentId ? 'agreement-span' : ''}
-                    onClick={() => handleDownload(item.name, item.documentId)}
+                    onClick={() =>
+                      handleFrameDocumentDownload(item.name, item.documentId)
+                    }
                   >
                     {item.name}
                   </span>
@@ -386,25 +430,28 @@ export default function CommonContractAndConsent({
             </Grid>
           </div>
         ))}
-        <ConnectorFormInputFieldImage
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="uploadImageConformity"
-          acceptFormat={{
-            'application/pdf': ['.pdf'],
-          }}
-          label={imageFieldLabel}
-          noteDescription={imageFieldNoDescription}
-          note={imageFieldNote}
-          requiredText={imageFieldRequiredText}
-          handleDownload={handleDownload}
-          handleDelete={(documentId: string) => {
-            deleteAppReleaseDocument(documentId)
-          }}
-        />
+        {documentRequired && (
+          <ConnectorFormInputFieldImage
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="uploadImageConformity"
+            acceptFormat={{
+              'application/pdf': ['.pdf'],
+            }}
+            label={imageFieldLabel}
+            noteDescription={imageFieldNoDescription}
+            note={imageFieldNote}
+            requiredText={imageFieldRequiredText}
+            handleDownload={handleDownload}
+            handleDelete={(documentId: string) => {
+              deleteAppReleaseDocument(documentId)
+            }}
+            isRequired={documentRequired}
+          />
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={contractNotification}
@@ -414,11 +461,14 @@ export default function CommonContractAndConsent({
         setPageNotification={setContractNotification}
         setPageSnackbar={setContractSnackbar}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onContractConsentSubmit(data, 'save'))}
+        onSave={handleSubmit((data) =>
+          onContractConsentSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data) =>
-          onContractConsentSubmit(data, 'saveAndProceed')
+          onContractConsentSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose

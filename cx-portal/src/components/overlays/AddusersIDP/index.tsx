@@ -417,11 +417,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             checked={pretty}
             onClick={() => setPretty(!pretty)}
           />
-          <Checkbox
-            label={`${t('users.unlinked')}`}
-            checked={unlinked}
-            onClick={() => setUnlinked(!unlinked)}
-          />
+          <div style={{ display: 'none' }}>
+            <Checkbox
+              label={`${t('users.unlinked')}`}
+              checked={unlinked}
+              onClick={() => setUnlinked(!unlinked)}
+            />
+          </div>
         </div>
         <Textarea
           style={{

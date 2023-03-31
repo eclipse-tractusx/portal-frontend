@@ -40,7 +40,7 @@ import {
   useUpdateIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
-import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
+import { ValidatingInput } from '../CXValidatingOverlay/ValidatingInput'
 import { isCompanyName } from 'types/Patterns'
 import { getCentralIdp } from 'services/EnvironmentService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'

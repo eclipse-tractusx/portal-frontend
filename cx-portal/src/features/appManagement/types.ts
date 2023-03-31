@@ -64,30 +64,6 @@ export interface AppStatusDataState {
   leadPictureUri?: string
 }
 
-export interface ServiceStatusDataState {
-  id: string
-  title: string
-  providerUri: string
-  contactEmail: string
-  descriptions: {
-    languageCode: string
-    longDescription: string
-    shortDescription: string
-  }[]
-  price: string
-  offerSubscriptionDetailData: {
-    offerSubscriptionId: string
-    offerSubscriptionStatus: string
-  }[]
-  serviceTypeIds: string[]
-  documents: any
-  leadPictureUri?: string
-  leadPictureId?: string
-  images?: string[] | []
-  salesManagerId?: string | null
-  privacyPolicies?: []
-}
-
 export interface DescriptionState {
   languageCode: string
   longDescription: string
@@ -105,13 +81,6 @@ export interface AppManagementState {
   currentActiveStep: number
   appId: string
   appStatusData: AppStatusDataState
-}
-
-export interface ServiceManagementState {
-  searchInput: SearchInputState
-  currentActiveStep: number
-  appId: string
-  serviceStatusData: ServiceStatusDataState
 }
 
 export const initialState: AppManagementState = {
@@ -139,29 +108,5 @@ export const initialState: AppManagementState = {
     salesManagerId: null,
     privacyPolicies: [],
     leadPictureUri: '',
-  },
-}
-
-export const initialServiceState: ServiceManagementState = {
-  searchInput: {
-    open: false,
-    text: '',
-  },
-  currentActiveStep: 1,
-  appId: '',
-  serviceStatusData: {
-    id: '',
-    title: '',
-    providerUri: '',
-    contactEmail: '',
-    descriptions: [],
-    price: '',
-    offerSubscriptionDetailData: [],
-    serviceTypeIds: [],
-    documents: {},
-    leadPictureUri: '',
-    leadPictureId: '',
-    images: [],
-    salesManagerId: null,
   },
 }

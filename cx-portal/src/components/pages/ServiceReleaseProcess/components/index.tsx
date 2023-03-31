@@ -19,7 +19,8 @@
  ********************************************************************************/
 
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/components/ReleaseProcessWrapper'
-import { setCurrentActiveStep } from 'features/appManagement/slice'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -29,9 +30,9 @@ export default function ServiceReleaseProcessForm() {
   const { t } = useTranslation('servicerelease')
   const dispatch = useDispatch()
 
-  const onAppsOverviewClick = () => {
-    navigate(`/appoverview`)
-    dispatch(setCurrentActiveStep())
+  const onServiceOverviewClick = () => {
+    navigate(`/serviceoverview`)
+    dispatch(setServiceReleaseActiveStep())
   }
 
   const stepsList = [
@@ -55,8 +56,8 @@ export default function ServiceReleaseProcessForm() {
 
   return (
     <ReleaseProcessWrapper
-      processType="servicerelease"
-      onAppsOverviewClick={() => onAppsOverviewClick()}
+      processType={ReleaseProcessTypes.SERVICE_RELEASE}
+      onAppsOverviewClick={() => onServiceOverviewClick()}
       stepsList={stepsList}
       numberOfSteps={4}
       pageHeaderTitle={t('headerTitle')}
