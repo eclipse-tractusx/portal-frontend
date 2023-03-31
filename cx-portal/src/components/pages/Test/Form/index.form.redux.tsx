@@ -18,99 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ValidatingInput } from 'components/overlays/CXValidatingOverlay/ValidatingInput'
 import { Button } from 'cx-portal-shared-components'
-import { storeForm, FORMS, genericSelector } from 'features/control/formSlice'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { IHashMap } from 'types/MainTypes'
-import { isBPN, isFirstName, isMail, isURL } from 'types/Patterns'
-
-const MyForm = ({
-  onValid,
-}: {
-  onValid: (form: IHashMap<string> | undefined) => void
-}) => {
-  const dispatch = useDispatch()
-  const generic = useSelector(genericSelector)
-  const setMailValue = (value: string) => {
-    console.log('dispatch', value)
-    dispatch(
-      storeForm({
-        form: FORMS.GENERIC,
-        att: { mail: value },
-      })
-    )
-  }
-
-  const [formData, setFormData] = useState<IHashMap<string>>()
-
-  const checkData = (key: string, value: string | undefined) => {
-    const current = { ...formData }
-    current[key] = value || ''
-    setFormData(current)
-    const formValid =
-      !!current.name && !!current.mail && !!current.url && !!current.bpn
-    onValid(formValid ? current : undefined)
-  }
-
-  console.log('mailValue', generic.mail)
-
-  return (
-    <div>
-      <Button
-        sx={{ mr: 1 }}
-        onClick={() => {
-          setMailValue('')
-        }}
-      >
-        Clear
-      </Button>
-      <Button
-        sx={{ mr: 1 }}
-        onClick={() => {
-          setMailValue('valid@mail.com')
-        }}
-      >
-        Set valid
-      </Button>
-      <Button
-        sx={{ mr: 1 }}
-        onClick={() => {
-          setMailValue('invalid*mail.com')
-        }}
-      >
-        Set invalid
-      </Button>
-      <ValidatingInput
-        name={'name'}
-        label={'name'}
-        validate={isFirstName}
-        onValid={checkData}
-      />
-      <ValidatingInput
-        name={'mail'}
-        label={'mail'}
-        value={generic.mail}
-        validate={isMail}
-        onValid={checkData}
-        debounceTime={3000}
-      />
-      <ValidatingInput
-        name={'url'}
-        label={'url'}
-        validate={isURL}
-        onValid={checkData}
-      />
-      <ValidatingInput
-        name={'bpn'}
-        label={'bpn'}
-        validate={isBPN}
-        onValid={checkData}
-      />
-    </div>
-  )
-}
+import MyForm from './MyForm'
 
 function FormTest() {
   const [data, setData] = useState<IHashMap<string> | undefined>(undefined)
