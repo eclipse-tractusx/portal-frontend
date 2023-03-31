@@ -36,8 +36,8 @@ export const Patterns = {
   NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   COMPANY_NAME: /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ-_+=.,:;!?'"&#@()]\s?){1,29}$/i,
-  firstName: /^[A-Za-zÀ-ÿ-]{2,40}$/,
-  lastName: /^[A-Za-zÀ-ÿ-]{2,40}$/,
+  firstName: /^([A-Za-zÀ-ÿ-,.']{1,40} ?)[^ ]{1,40}$/,
+  lastName: /^([A-Za-zÀ-ÿ-,.']{1,40} ?)[^ ]{1,40}$/,
   prefix: {
     BPN: /^BPNL/i,
     URL: /^https:/i,
