@@ -43,10 +43,14 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/sindresorhus/type-fest.git
 │  │  ├─ VendorName: Sindre Sorhus
 │  │  └─ VendorUrl: sindresorhus.com
-│  └─ type-fest@0.8.1
+│  ├─ type-fest@0.8.1
+│  │  ├─ URL: https://github.com/sindresorhus/type-fest.git
+│  │  ├─ VendorName: Sindre Sorhus
+│  │  └─ VendorUrl: sindresorhus.com
+│  └─ type-fest@2.19.0
 │     ├─ URL: https://github.com/sindresorhus/type-fest.git
 │     ├─ VendorName: Sindre Sorhus
-│     └─ VendorUrl: sindresorhus.com
+│     └─ VendorUrl: https://sindresorhus.com
 ├─ (MIT OR GPL-3.0)
 │  └─ store2@2.13.2
 │     ├─ URL: http://github.com/nbubna/store.git
@@ -109,11 +113,11 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/facebook/watchman
 │  │  ├─ VendorName: Wez Furlong
 │  │  └─ VendorUrl: https://facebook.github.io/watchman/docs/bser.html
-│  ├─ cx-portal-shared-components@1.2.0
+│  ├─ cx-portal-shared-components@1.3.0-RC1
 │  │  ├─ URL: https://github.com/eclipse-tractusx/portal-frontend.git
 │  │  ├─ VendorName: Catena-X Contributors
 │  │  └─ VendorUrl: https://catena-x.net/
-│  ├─ cx-portal@1.2.0
+│  ├─ cx-portal@1.3.0-RC1
 │  ├─ didyoumean@1.2.2
 │  │  ├─ URL: https://github.com/dcporter/didyoumean.js.git
 │  │  ├─ VendorName: Dave Porter
@@ -198,7 +202,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: git://github.com/faye/websocket-extensions-node.git
 │  │  ├─ VendorName: James Coglan
 │  │  └─ VendorUrl: http://github.com/faye/websocket-extensions-node
-│  ├─ workspace-aggregator-f099bc6e-d97d-4ea3-8bf2-1fcf5e318703@1.2.0
+│  ├─ workspace-aggregator-15687e56-b2cd-4537-87f4-457c85f5effd@1.3.0-RC1
 │  └─ xml-name-validator@3.0.0
 │     ├─ URL: https://github.com/jsdom/xml-name-validator.git
 │     ├─ VendorName: Domenic Denicola
@@ -316,7 +320,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/yeoman/stringify-object.git
 │  │  ├─ VendorName: Sindre Sorhus
 │  │  └─ VendorUrl: sindresorhus.com
-│  ├─ terser@5.16.5
+│  ├─ terser@5.16.8
 │  │  ├─ URL: https://github.com/terser/terser
 │  │  ├─ VendorName: Mihai Bazon
 │  │  └─ VendorUrl: https://terser.org/
@@ -5535,6 +5539,9 @@ yarn licenses v1.5.1
 │  ├─ prop-types@15.8.1
 │  │  ├─ URL: https://github.com/facebook/prop-types.git
 │  │  └─ VendorUrl: https://facebook.github.io/react/
+│  ├─ property-expr@2.0.5
+│  │  ├─ URL: https://github.com/jquense/expr/
+│  │  └─ VendorName: @monasticpanic Jason Quense
 │  ├─ property-information@5.6.0
 │  │  ├─ URL: https://github.com/wooorm/property-information.git
 │  │  ├─ VendorName: Titus Wormer
@@ -6383,6 +6390,9 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/mziccard/node-timsort.git
 │  │  ├─ VendorName: Marco Ziccardi
 │  │  └─ VendorUrl: https://github.com/mziccard/node-timsort
+│  ├─ tiny-case@1.0.3
+│  │  ├─ URL: https://github.com/jquense/tiny-case.git
+│  │  └─ VendorName: Jason Quense
 │  ├─ to-arraybuffer@1.0.1
 │  │  ├─ URL: git://github.com/jhiesey/to-arraybuffer.git
 │  │  ├─ VendorName: John Hiesey
@@ -6414,6 +6424,9 @@ yarn licenses v1.5.1
 │  ├─ toidentifier@1.0.1
 │  │  ├─ URL: https://github.com/component/toidentifier.git
 │  │  └─ VendorName: Douglas Christopher Wilson
+│  ├─ toposort@2.0.2
+│  │  ├─ URL: https://github.com/marcelklehr/toposort.git
+│  │  └─ VendorName: Marcel Klehr
 │  ├─ tr46@0.0.3
 │  │  ├─ URL: git+https://github.com/Sebmaster/tr46.js.git
 │  │  ├─ VendorName: Sebastian Mayr
@@ -6758,7 +6771,7 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/webpack/webpack.git
 │  │  ├─ VendorName: Tobias Koppers @sokra
 │  │  └─ VendorUrl: https://github.com/webpack/webpack
-│  ├─ webpack@5.76.2
+│  ├─ webpack@5.76.3
 │  │  ├─ URL: https://github.com/webpack/webpack.git
 │  │  ├─ VendorName: Tobias Koppers @sokra
 │  │  └─ VendorUrl: https://github.com/webpack/webpack
@@ -6901,6 +6914,10 @@ yarn licenses v1.5.1
 │  │  ├─ URL: https://github.com/sindresorhus/yocto-queue.git
 │  │  ├─ VendorName: Sindre Sorhus
 │  │  └─ VendorUrl: https://sindresorhus.com
+│  ├─ yup@1.0.2
+│  │  ├─ URL: git+https://github.com/jquense/yup.git
+│  │  ├─ VendorName: @monasticpanic Jason Quense
+│  │  └─ VendorUrl: https://github.com/jquense/yup
 │  └─ zwitch@1.0.5
 │     ├─ URL: https://github.com/wooorm/zwitch.git
 │     ├─ VendorName: Titus Wormer

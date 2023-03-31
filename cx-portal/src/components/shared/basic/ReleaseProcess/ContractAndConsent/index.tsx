@@ -29,22 +29,27 @@ import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
   useFetchNewDocumentByIdMutation,
+  useFetchFrameDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
+import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
-  const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
+  const fetchConsentData = useFetchConsentDataQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
   const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
 
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
@@ -53,6 +58,7 @@ export default function ContractAndConsent() {
   return (
     <div className="contract-consent">
       <CommonContractAndConsent
+        type={ReleaseProcessTypes.APP_RELEASE}
         stepperTitle={t('content.apprelease.contractAndConsent.headerTitle')}
         stepperDescription={t(
           'content.apprelease.contractAndConsent.headerDescription'
@@ -78,13 +84,14 @@ export default function ContractAndConsent() {
         imageFieldRequiredText={t(
           'content.apprelease.appReleaseForm.fileUploadIsMandatory'
         )}
-        id={appId}
+        id={appId ?? ''}
         fetchAgreementData={fetchAgreementData || []}
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchAppStatus || undefined}
         getDocumentById={getDocumentById}
+        fetchFrameDocumentById={fetchFrameDocumentById}
       />
     </div>
   )

@@ -18,40 +18,51 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import { IdentityProviderUser } from 'features/admin/idpApiSlice'
-import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
+import { useEffect, useState } from 'react'
+import {
+  IdentityProviderUser,
+  UserIdentityProvidersItem,
+} from 'features/admin/idpApiSlice'
 import { isID } from 'types/Patterns'
 import { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
+import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
+import { getApiBase } from 'services/EnvironmentService'
+import UserService from 'services/UserService'
 
 const EnableIDPForm = ({
+  userId = '',
   onChange,
 }: {
+  userId?: string
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
   const { t } = useTranslation('idp')
-
   return (
-    <>
-      <div style={{ margin: '20px 0' }}>
-        <ValidatingInput
-          name="userId"
-          label={t('enable.hint')}
-          validate={isID}
-          onValid={onChange}
-        />
-      </div>
-    </>
+    <div style={{ margin: '20px 0' }}>
+      <ValidatingInput
+        name={'userId'}
+        label={t('enable.label')}
+        hint={t('enable.hint')}
+        value={userId}
+        validate={isID}
+        onValid={onChange}
+      />
+    </div>
   )
 }
 
 export const EnableIDPContent = ({
+  identityProviderId,
+  companyUserId,
   onValid,
 }: {
+  identityProviderId: string
+  companyUserId: string
   onValid: (form: IdentityProviderUser | undefined) => void
 }) => {
   const [formData, setFormData] = useState<IHashMap<string>>({})
+  const [userId, setUserId] = useState<string>('')
 
   const checkData = (key: string, value: string | undefined): boolean => {
     if (!value) {
@@ -75,9 +86,25 @@ export const EnableIDPContent = ({
     return true
   }
 
+  useEffect(() => {
+    if (!identityProviderId || !companyUserId) return
+    fetch(
+      `${getApiBase()}/api/administration/identityprovider/owncompany/users/${companyUserId}/identityprovider/${identityProviderId}`,
+      {
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data: UserIdentityProvidersItem) => setUserId(data.userId))
+      .catch((e) => console.log(e))
+  }, [identityProviderId, companyUserId])
+
   return (
     <>
-      <EnableIDPForm onChange={checkData} />
+      <EnableIDPForm onChange={checkData} userId={userId} />
     </>
   )
 }

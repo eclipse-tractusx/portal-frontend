@@ -11,6 +11,9 @@
   "requiredButton": "New",
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Expalanation of the requirement",
+  "consultanceService": "Consultance Service",
+  "dataspaceService": "Dataspace Service",
+  "loadmore": "Load More",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -45,19 +48,27 @@
     "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
   },
   "step3": {
-    "headerTitle": "Conformity and Consent",
+    "headerTitle": "Agreements and Consent",
     "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "allAgreementsMandatory": "All agreements are mandatory",
     "uploadImageConformity": "CAB"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ",
     "appDetails": "Service Details",
+    "language": "Language :  ",
+    "useCase": "Use Case :  ",
+    "price": "Price :  ",
     "connectedData": "Connected Data",
+    "dataSecurityInformation": "Data Security Information",
+    "conformityDocument": "Conformity Document",
     "documents": "Documents",
     "providerInformation": "Provider Information",
-    "consent": "Consent"
+    "consent": "Consent",
+    "cxTestRuns": "CX Test Runs",
+    "longDescriptionTitleEN": "[Long Description - EN] ",
+    "longDescriptionTitleDE": "[Long Description - DE] "
   },
   "serviceReleaseForm": {
     "headerTitle": "Create service",
@@ -75,8 +86,8 @@
     "isMandatory": " is mandatory",
     "fileUploadIsMandatory": "File upload is mandatory",
     "error": {
-      "title": "Error - something went wrong.",
-      "message": "Please try it again"
+      "title": "Submission was not successful.",
+      "message": "Please try it again or come back later."
     },
     "dataSavedSuccessMessage": "Data saved successfully",
     "roleDeleteSuccessMessage": "Role deleted successfully",
@@ -96,5 +107,33 @@
     "headerDescriptionComplete": "further information on service release",
     "yourCatenaXTeam": "Your Catena-X team",
     "overview": "My services overview"
+  },
+  "defaultValues": {
+    "dataSecurityInformation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "connectedTableDataHeader": [
+      "Linked to your identity",
+      "Linked NOT to your identity"
+    ],
+    "connectedTableDataBody": [
+      ["personal Information", "Loreum personal Information"],
+      ["Used Content", "Loreum Used Content"],
+      ["Catena-X Account Data", "Loreum Catena-X Account Data"]
+    ]
+  },
+  "serviceoverview": {
+    "headerTitle": "Service Overview - Own managed service offers",
+    "inputPlaceholder": "Search for services",
+    "filter": {
+      "all": "All",
+      "active": "Active",
+      "inactive": "Inactive",
+      "wip": "WIP"
+    },
+    "addbtn": "Register your Service"
+  },
+  "servicedetails": {
+    "headerTitle": "Service Details"
   }
 }

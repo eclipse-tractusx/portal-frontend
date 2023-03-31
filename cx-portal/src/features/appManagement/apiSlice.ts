@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { AppStatusDataState, ServiceStatusDataState } from './types'
+import { AppStatusDataState } from './types'
 
 export type useCasesItem = {
   useCaseId: string
@@ -39,7 +39,6 @@ export type appLanguagesItem = {
 export type CreateAppStep1Item = {
   title: string
   provider: string
-  leadPictureUri: string
   salesManagerId: string | null
   useCaseIds: string[] | useCasesItem[]
   descriptions: {
@@ -50,20 +49,6 @@ export type CreateAppStep1Item = {
   supportedLanguageCodes: string[]
   price: string
   privacyPolicies: string[]
-}
-
-export type CreateServiceStep1Item = {
-  title?: string
-  price?: string | null
-  leadPictureUri?: string
-  descriptions?: {
-    languageCode: string
-    longDescription: string
-    shortDescription: string
-  }[]
-  privacyPolicies?: string[]
-  salesManager?: string | null
-  serviceTypeIds?: string[]
 }
 
 export type ImageType = {
@@ -121,11 +106,6 @@ export type saveAppType = {
   body: CreateAppStep1Item
 }
 
-export type createServiceType = {
-  id: string
-  body: CreateServiceStep1Item
-}
-
 export type salesManagerType = {
   userId: string | null
   firstName: string
@@ -169,11 +149,6 @@ export type DocumentRequestData = {
   documentId: string
 }
 
-export interface ServiceTypeIdsType {
-  serviceTypeId: number
-  name: string
-}
-
 export enum ConsentStatusEnum {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
@@ -215,16 +190,6 @@ export const apiSlice = createApi({
         method: 'POST',
         body,
       }),
-    }),
-    updateapp: builder.mutation<void, any>({
-      query: (data: any) => {
-        const { body, appId } = data
-        return {
-          url: `/api/apps/AppReleaseProcess/updateapp/${appId}`,
-          method: 'PUT',
-          body,
-        }
-      },
     }),
     submitapp: builder.mutation<any, string>({
       query: (appId) => ({
@@ -328,68 +293,17 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    createService: builder.mutation<void, createServiceType>({
-      query: (data) => ({
-        url: `/api/services/addService`,
-        method: 'POST',
-        body: data.body,
-      }),
-    }),
-    saveService: builder.mutation<void, createServiceType>({
-      query: (data) => ({
-        url: `/api/services/${data.id}`,
-        method: 'PUT',
-        body: data.body,
-      }),
-    }),
-    fetchServiceStatus: builder.query<ServiceStatusDataState, string>({
-      query: (id) => `api/services/${id}`,
-    }),
-    fetchServiceTypeIds: builder.query<ServiceTypeIdsType, void>({
-      query: () => `/api/services/servicerelease/serviceTypes`,
-    }),
-    updateServiceAgreementConsents: builder.mutation<
-      void,
-      UpdateAgreementConsentType
-    >({
-      query: (data: UpdateAgreementConsentType) => ({
-        url: `/api/services/${data.appId}/serviceAgreementConsent`,
-        method: 'POST',
-        body: data.body,
-      }),
-    }),
-    fetchServiceAgreementData: builder.query<AgreementType[], void>({
-      query: () => `api/services/servicerelease/agreementData`,
-    }),
-    fetchServiceConsentData: builder.query<ConsentType, string>({
-      query: (appId: string) => `/api/services/servicerelease/consent/${appId}`,
-    }),
-    updateServiceDocumentUpload: builder.mutation({
-      async queryFn(
-        data: {
-          appId: string
-          documentTypeId: DocumentTypeId
-          body: { file: File }
-        },
-        _queryApi,
-        _extraOptions,
-        fetchWithBaseQuery
-      ) {
-        const formData = new FormData()
-        formData.append('document', data.body.file)
-
-        const response = await fetchWithBaseQuery({
-          url: `/api/services/updateservicedoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
-          method: 'PUT',
-          body: formData,
-        })
-        return response.data
-          ? { data: response.data }
-          : { error: response.error }
-      },
-    }),
     fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
       query: () => `/api/apps/appreleaseprocess/privacyPolicies`,
+    }),
+    fetchFrameDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/frameDocuments/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
     }),
   }),
 })
@@ -398,7 +312,6 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
-  useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
   useFetchAppStatusQuery,
@@ -414,13 +327,6 @@ export const {
   useDeleteRolesMutation,
   useDeleteDocumentMutation,
   useFetchNewDocumentByIdMutation,
-  useSaveServiceMutation,
-  useCreateServiceMutation,
-  useFetchServiceStatusQuery,
-  useFetchServiceTypeIdsQuery,
-  useUpdateServiceAgreementConsentsMutation,
-  useFetchServiceAgreementDataQuery,
-  useFetchServiceConsentDataQuery,
-  useUpdateServiceDocumentUploadMutation,
   useFetchPrivacyPoliciesQuery,
+  useFetchFrameDocumentByIdMutation,
 } = apiSlice

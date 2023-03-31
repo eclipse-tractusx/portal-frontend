@@ -72,6 +72,8 @@ import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
 import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
 import RoleDetails from 'components/pages/RoleDetails'
+import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
+import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
 
 /**
  * ALL_PAGES
@@ -216,7 +218,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICE_MANAGEMENT,
     role: ROLES.SERVICEMANAGEMENT_VIEW,
-    element: <AppOverview />,
+    element: <ServiceOverview />,
   },
   {
     name: PAGES.APPOVERVIEW,
@@ -231,7 +233,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICEOVERVIEW,
     role: ROLES.SERVICEOVERVIEW_VIEW,
-    element: <AppOverview />,
+    element: <ServiceOverview />,
   },
   {
     name: PAGES.APPRELEASEPROCESS,
@@ -425,6 +427,20 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.ROLE_DETAILS,
     element: <RoleDetails />,
   },
+  {
+    name: PAGES.SERVICE_DETAIL,
+    role: ROLES.SERVICEOVERVIEW_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICE_DETAIL}
+        path={PAGES.SERVICE_DETAIL}
+        element={<ServiceDetails />}
+      >
+        <Route path=":serviceId" element={<ServiceDetails />} />
+      </Route>
+    ),
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -610,7 +626,7 @@ export const mainMenuFullTree = [
   {
     name: PAGES.SERVICE_MANAGEMENT,
     children: [
-      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.COMING_SOON, disable: true },
+      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW, disable: false },
       { name: PAGES.SERVICERELEASEPROCESS, hint: HINTS.NEW },
       {
         name: PAGES.SERVICESUBSCRIPTION,

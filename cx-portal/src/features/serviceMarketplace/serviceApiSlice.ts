@@ -46,7 +46,7 @@ export type DocumentAdditionalDetails = {
 export type ServiceRequest = {
   id: string
   title: string
-  serviceTypeIds: string[]
+  serviceTypes: string[]
   provider: string
   leadPictureUri: string
   contactEmail: string
