@@ -168,12 +168,7 @@ const TESTDATA = {
     invalid: ['', 'D', 'de', 'some string'],
   },
   isFirstName: {
-    valid: [
-      'Julia Sophie',
-      'Julia-Sophie',
-      'Chloé',
-      'Paŭlo',
-    ],
+    valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
     invalid: [
       'Julia  Sophie',
       'Julia–Sophie',
@@ -182,12 +177,7 @@ const TESTDATA = {
     ],
   },
   isLastNmae: {
-    valid: [
-      'Julia Sophie',
-      'Julia-Sophie',
-      'Chloé',
-      'Paŭlo',
-    ],
+    valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
     invalid: [
       'Julia  Sophie',
       'Julia–Sophie',
@@ -249,7 +239,9 @@ describe('Input Pattern Tests', () => {
   })
   it('validates firstName', () => {
     TESTDATA.BPN.valid.forEach((expr) => expect(isFirstName(expr)).toBe(true))
-    TESTDATA.BPN.invalid.forEach((expr) => expect(isFirstName(expr)).toBe(false))
+    TESTDATA.BPN.invalid.forEach((expr) =>
+      expect(isFirstName(expr)).toBe(false)
+    )
   })
   it('validates lastName', () => {
     TESTDATA.BPN.valid.forEach((expr) => expect(isLastName(expr)).toBe(true))
