@@ -21,7 +21,7 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import { isFirstName, isID, isLastName, isMail } from 'types/Patterns'
-import { ValidatingInput } from '../CXValidatingOverlay/ValidatingForm'
+import { ValidatingInput } from '../CXValidatingOverlay/ValidatingInput'
 
 export const SingleUserContent = ({
   withUserId = false,

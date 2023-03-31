@@ -18,14 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './Form/index.form.simple'
+import { Button } from 'cx-portal-shared-components'
+import { useState } from 'react'
+import { IHashMap } from 'types/MainTypes'
+import MyForm from './MyForm'
 
-export default function Test() {
+function FormTest() {
+  const [data, setData] = useState<IHashMap<string> | undefined>(undefined)
+
   return (
-    <main>
-      <section>
-        <FormTest />
-      </section>
-    </main>
+    <div>
+      <MyForm onValid={setData} />
+      <pre
+        style={{ width: '600px', height: '160px', backgroundColor: '#eeeeee' }}
+      >
+        {data ? JSON.stringify(data, null, 2) : ''}
+      </pre>
+      <Button disabled={!data}>Submit</Button>
+    </div>
   )
 }
+
+export default FormTest

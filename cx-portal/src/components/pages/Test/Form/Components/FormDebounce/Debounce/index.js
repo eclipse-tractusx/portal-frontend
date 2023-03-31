@@ -18,14 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './Form/index.form.simple'
+export function debounce(fn, wait, immediate) {
+  let timeout
 
-export default function Test() {
-  return (
-    <main>
-      <section>
-        <FormTest />
-      </section>
-    </main>
-  )
+  return (...args) => {
+    const context = this
+
+    const later = () => {
+      timeout = null
+      if (!immediate) fn.apply(context, args)
+    }
+
+    const callNow = immediate && !timeout
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+
+    if (callNow) {
+      fn.apply(context, args)
+    }
+  }
 }

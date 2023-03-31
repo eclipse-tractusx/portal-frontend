@@ -59,6 +59,7 @@
     "title": "Enable Identity Provider",
     "subtitle": "This requires to link at least one user ID",
     "desc": "Now link your existing user ID so you keep all permissions. Specify the user ID (not name) for your user at the new IdP.",
+    "label": "Your User ID",
     "hint": "Your existing user ID (not name) on target IDP",
     "success": {
       "title": "Identity Provider Enabled",
@@ -163,6 +164,7 @@
     "confirm": "Confirm",
     "close": "Close",
     "cancel": "Cancel",
+    "notnow": "Not now",
     "next": "Next",
     "help": "Get help"
   }

@@ -18,14 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './Form/index.form.simple'
+import React, { useState } from 'react'
 
-export default function Test() {
+function Input({ error, label, ...rest }) {
+  const [touched, setTouched] = useState(false)
+
   return (
-    <main>
-      <section>
-        <FormTest />
-      </section>
-    </main>
+    <>
+      <label htmlFor={rest.name}>{label}</label>
+      <input
+        className="form-control"
+        {...rest}
+        onBlur={() => setTouched(true)}
+      />
+      <span className="text-danger">{touched && error}</span>
+    </>
   )
 }
+
+export default Input
