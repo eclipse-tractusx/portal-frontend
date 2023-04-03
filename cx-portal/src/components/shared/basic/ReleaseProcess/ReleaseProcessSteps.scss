@@ -87,4 +87,14 @@
       font-size: 14px !important;
     }
   }
+
+  .download-button {
+    display: flex;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #0f71cb;
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
