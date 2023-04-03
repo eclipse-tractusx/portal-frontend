@@ -4,6 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+   * BugFix:
+      * AppReleaseProcess
+         * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
 
 ## 1.3.0 RC1
 
