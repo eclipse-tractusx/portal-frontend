@@ -61,8 +61,6 @@ import { useTranslation } from 'react-i18next'
 
 export interface DefaultValueType {
   images: Array<string>
-  connectedTableData: TableType
-  dataSecurityInformation: string
   conformityDocumentsDescription: string
   documentsDescription: string
   providerTableData: TableType
@@ -80,9 +78,7 @@ interface CommonValidateAndPublishType {
   detailsText: string
   longDescriptionTitleEN: string
   longDescriptionTitleDE: string
-  connectedData?: string
   conformityDocument?: string
-  dataSecurityInformation?: string
   documentsTitle: string
   providerInformation: string
   consentTitle: string
@@ -107,9 +103,7 @@ export default function CommonValidateAndPublish({
   detailsText,
   longDescriptionTitleEN,
   longDescriptionTitleDE,
-  connectedData,
   conformityDocument,
-  dataSecurityInformation,
   documentsTitle,
   providerInformation,
   consentTitle,
@@ -353,21 +347,6 @@ export default function CommonValidateAndPublish({
         )}
 
         <Divider className="verify-validate-form-divider" />
-        {connectedData && (
-          <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {connectedData}
-            </Typography>
-            {defaultValues && (
-              <StaticTable
-                data={defaultValues.connectedTableData}
-                horizontal={false}
-              />
-            )}
-
-            <Divider className="verify-validate-form-divider" />
-          </>
-        )}
         {conformityDocument && (
           <>
             <Typography variant="h4" sx={{ mb: 4 }}>
@@ -407,19 +386,6 @@ export default function CommonValidateAndPublish({
                 </InputLabel>
               ))}
 
-            <Divider className="verify-validate-form-divider" />
-          </>
-        )}
-        {dataSecurityInformation && (
-          <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {dataSecurityInformation}
-            </Typography>
-            {defaultValues && (
-              <Typography variant="body2" className="form-field">
-                {defaultValues.dataSecurityInformation}
-              </Typography>
-            )}
             <Divider className="verify-validate-form-divider" />
           </>
         )}
