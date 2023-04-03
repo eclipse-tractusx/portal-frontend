@@ -31,6 +31,7 @@ import CommonService from 'services/CommonService'
 import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
 import './AdminBoardDetail.scss'
+import i18next from 'i18next'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -51,33 +52,20 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
       <>
         <BoardHeader item={item} />
         <div className="product-description">
-          {['longDescriptionEN', 'longDescriptionDE'].map((desc) => (
+          {['longDescriptionTitleEN', 'longDescriptionTitleDE'].map((desc) => (
             <div key={desc}>
-              {desc === 'longDescriptionEN' ? (
-                <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-                  <span style={{ fontWeight: 'bold' }}>
-                    {t('content.adminboardDetail.longDescriptionTitleEN')}
-                  </span>
-                  {
-                    item?.description?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'en'
-                    )[0]?.longDescription
-                  }
-                </Typography>
-              ) : (
-                <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-                  <span style={{ fontWeight: 'bold' }}>
-                    {t('content.adminboardDetail.longDescriptionTitleDE')}
-                  </span>
-                  {
-                    item?.description?.filter(
-                      (lang: { languageCode: string }) =>
-                        lang.languageCode === 'de'
-                    )[0]?.longDescription
-                  }
-                </Typography>
-              )}
+              <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+                <span style={{ fontWeight: 'bold' }}>
+                  {t(`content.adminboardDetail.${desc}`)}
+                </span>
+                {
+                  item?.description?.filter(
+                    (lang: { languageCode: string }) =>
+                      lang.languageCode ===
+                      (desc === 'longDescriptionTitleEN' ? 'en' : 'de')
+                  )[0]?.longDescription
+                }
+              </Typography>
             </div>
           ))}
         </div>
