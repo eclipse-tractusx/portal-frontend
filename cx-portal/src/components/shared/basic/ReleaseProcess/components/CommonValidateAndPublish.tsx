@@ -310,7 +310,11 @@ export default function CommonValidateAndPublish({
         {['longDescriptionEN', 'longDescriptionDE'].map((item, i) => (
           <div key={item}>
             {item === 'longDescriptionEN' ? (
-              <Typography variant="body2" className="form-field">
+              <Typography
+                variant="body2"
+                className="form-field"
+                style={{ whiteSpace: 'pre-line' }}
+              >
                 <span style={{ fontWeight: 'bold' }}>
                   {longDescriptionTitleEN}
                 </span>
@@ -322,7 +326,11 @@ export default function CommonValidateAndPublish({
                 }
               </Typography>
             ) : (
-              <Typography variant="body2" className="form-field">
+              <Typography
+                variant="body2"
+                className="form-field"
+                style={{ whiteSpace: 'pre-line' }}
+              >
                 <span style={{ fontWeight: 'bold' }}>
                   {longDescriptionTitleDE}
                 </span>

@@ -4,6 +4,14 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+* BugFix:
+   * AppReleaseProcess
+      * update regex expression validation for longDescription input field
+   * App overview
+      * fixed the short description display in submitted app detail page
+   * App Approval Release
+      * Added missing long description in app details
+
 
 ## 1.3.0 RC1
 
@@ -43,8 +51,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * updated business logic to consume use case data due to updated api response body style
 * Service Marketplace - Service Detail Page
   * updated business logic to consume use case data due to updated api response body style
-* App Approval Release
-   * Added missing long description in app details
 
 ## 1.2.0
 

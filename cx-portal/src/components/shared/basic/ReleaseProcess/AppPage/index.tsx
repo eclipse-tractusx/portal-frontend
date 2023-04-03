@@ -436,6 +436,22 @@ export default function AppPage() {
       ? t(`content.appdetail.privacy.${item}`)
       : item
 
+  const patternValidation = (item: string) => {
+    if (
+      (item === 'longDescriptionEN' &&
+        /[ @=<>*\-+#?%&_:;]/.test(getValues().longDescriptionEN.charAt(0))) ||
+      item === 'longDescriptionEN'
+    ) {
+      return `${t(
+        'content.apprelease.appReleaseForm.validCharactersIncludes'
+      )} a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
+    } else {
+      return `${t(
+        'content.apprelease.appReleaseForm.validCharactersIncludes'
+      )} a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
+    }
+  }
+
   return (
     <div className="app-page">
       <ReleaseStepHeader
@@ -479,13 +495,7 @@ export default function AppPage() {
                   )} 10 ${t(
                     'content.apprelease.appReleaseForm.charactersRequired'
                   )}`,
-                  pattern: `${t(
-                    'content.apprelease.appReleaseForm.validCharactersIncludes'
-                  )} ${
-                    item === 'longDescriptionEN'
-                      ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                      : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                  }`,
+                  pattern: patternValidation(item),
                   maxLength: `${t(
                     'content.apprelease.appReleaseForm.maximum'
                   )} ${longDescriptionMaxLength} ${t(
