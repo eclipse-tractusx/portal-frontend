@@ -60,8 +60,6 @@ import serviceManagementSlice from './serviceManagement/slice'
 import serviceSubscriptionSlice from './serviceSubscription/slice'
 import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/serviceSubscriptionApiSlice'
 
-
-
 export const reducers = {
   admin,
   apps,
@@ -102,7 +100,8 @@ export const reducers = {
     partnerNetworkPortalApiSlice.reducer,
   [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
   [serviceManagementApiSlice.reducerPath]: serviceManagementApiSlice.reducer,
-  [serviceSubscriptionApiSlice.reducerPath]: serviceSubscriptionApiSlice.reducer,
+  [serviceSubscriptionApiSlice.reducerPath]:
+    serviceSubscriptionApiSlice.reducer,
 }
 
 export const store = configureStore({
