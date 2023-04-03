@@ -398,7 +398,7 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents &&
+        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
           Object.keys(statusData.documents).map(
             (item) =>
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
@@ -419,7 +419,12 @@ export default function CommonValidateAndPublish({
                   </button>
                 </InputLabel>
               )
-          )}
+          )
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>
