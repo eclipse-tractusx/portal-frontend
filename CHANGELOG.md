@@ -4,9 +4,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
-   * BugFix:
-      * AppReleaseProcess
-         * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
+* BugFix:
+   * AppReleaseProcess
+      * update regex expression validation for longDescription input field
+      * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
+   * App overview
+      * fixed the short description display in submitted app detail page
+   * App Approval Release
+      * Added missing long description in app details
+
 
 ## 1.3.0 RC1
 
@@ -40,15 +46,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bugfix
 * App Release Process
   * update input field validation for longDescription input field
-  * update regex expression validation for longDescription input field
 * User Management
   * payload fixed to portal roles only when updating user assigned portal roles 
 * App Release Admin Page - App Detail Page
   * updated business logic to consume use case data due to updated api response body style
 * Service Marketplace - Service Detail Page
   * updated business logic to consume use case data due to updated api response body style
-* App overview
-  * fixed the short description display in submitted app detail page
 
 ## 1.2.0
 

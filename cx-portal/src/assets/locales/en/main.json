@@ -1077,6 +1077,8 @@
       "usecase": "Use Case",
       "language": "Language",
       "price": "Price",
+      "longDescriptionTitleEN": "[Long Description - EN] ",
+      "longDescriptionTitleDE": "[Long Description - DE] ",
       "backToBoard": "Back to Admin Board",
       "connectedData": {
         "heading": "Connected Data",
