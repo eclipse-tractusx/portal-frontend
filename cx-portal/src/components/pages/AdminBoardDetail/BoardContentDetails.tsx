@@ -31,7 +31,6 @@ import CommonService from 'services/CommonService'
 import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
 import './AdminBoardDetail.scss'
-import i18next from 'i18next'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
