@@ -42,6 +42,7 @@ import { decrement, increment } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   DocumentData,
+  DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
@@ -406,14 +407,19 @@ export default function CommonValidateAndPublish({
           </Typography>
         )}
         {statusData?.documents &&
-          Object.keys(statusData.documents).map((item, i) => (
-            <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-              <a href="/" style={{ display: 'flex' }}>
-                <ArrowForwardIcon fontSize="small" />
-                {statusData.documents[item][0].documentName}
-              </a>
-            </InputLabel>
-          ))}
+          Object.keys(statusData.documents).map(
+            (item) =>
+              (item === DocumentTypeId.ADDITIONAL_DETAILS ||
+                item === DocumentTypeId.APP_TECHNICAL_INFORMATION ||
+                item === DocumentTypeId.APP_CONTRACT) && (
+                <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                  <a href="/" style={{ display: 'flex' }}>
+                    <ArrowForwardIcon fontSize="small" />
+                    {statusData.documents[item][0].documentName}
+                  </a>
+                </InputLabel>
+              )
+          )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>
