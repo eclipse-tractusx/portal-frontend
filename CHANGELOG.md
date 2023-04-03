@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * BugFix:
    * AppReleaseProcess
       * update regex expression validation for longDescription input field
+      * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
    * App overview
       * fixed the short description display in submitted app detail page
    * App Approval Release

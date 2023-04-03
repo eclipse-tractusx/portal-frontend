@@ -853,8 +853,6 @@
         "images": "Images",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images are supported",
-        "connectData": "Connect Data",
-        "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
         "uploadAppContract": "Upload “App Contract”",
@@ -919,8 +917,6 @@
         "language": "Language :  ",
         "useCase": "Use Case :  ",
         "price": "Price :  ",
-        "connectedData": "Connected Data",
-        "dataSecurityInformation": "Data Security Information",
         "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
@@ -937,18 +933,8 @@
         "overview": "My apps overview"
       },
       "defaultValues": {
-        "dataSecurityInformation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "connectedTableDataHeader": [
-          "Linked to your identity",
-          "Linked NOT to your identity"
-        ],
-        "connectedTableDataBody": [
-          ["personal Information", "Loreum personal Information"],
-          ["Used Content", "Loreum Used Content"],
-          ["Catena-X Account Data", "Loreum Catena-X Account Data"]
-        ]
+        "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       },
       "appReleaseForm": {
         "headerTitle": "Create App",
