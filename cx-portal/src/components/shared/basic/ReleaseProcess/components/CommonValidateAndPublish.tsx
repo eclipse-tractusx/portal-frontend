@@ -376,15 +376,7 @@ export default function CommonValidateAndPublish({
               ].map((item: DocumentData) => (
                 <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
                   <button
-                    style={{
-                      display: 'flex',
-                      background: 'transparent',
-                      border: 'none',
-                      cursor: 'pointer',
-                      color: '#0f71cb',
-                      fontSize: '14px',
-                      lineHeight: '20px',
-                    }}
+                    className="download-button"
                     onClick={() =>
                       handleDownloadFn(item.documentId, item.documentName)
                     }
@@ -410,13 +402,21 @@ export default function CommonValidateAndPublish({
           Object.keys(statusData.documents).map(
             (item) =>
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
-                item === DocumentTypeId.APP_TECHNICAL_INFORMATION ||
-                item === DocumentTypeId.APP_CONTRACT) && (
+                item === DocumentTypeId.APP_CONTRACT ||
+                item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
                 <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-                  <a href="/" style={{ display: 'flex' }}>
+                  <button
+                    className="download-button"
+                    onClick={() =>
+                      handleDownloadFn(
+                        statusData?.documents[item][0]?.documentId,
+                        statusData?.documents[item][0]?.documentName
+                      )
+                    }
+                  >
                     <ArrowForwardIcon fontSize="small" />
-                    {statusData.documents[item][0].documentName}
-                  </a>
+                    {statusData?.documents[item][0]?.documentName}
+                  </button>
                 </InputLabel>
               )
           )}
