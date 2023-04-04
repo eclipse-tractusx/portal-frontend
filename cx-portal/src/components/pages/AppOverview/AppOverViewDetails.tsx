@@ -85,9 +85,10 @@ export default function AppOverViewDetails({
     },
   ]
 
-  const getDescription = (item: any) => {
-    return item?.descriptions[0]?.longDescription
-  }
+  const getDescription = (item: any) =>
+    item?.descriptions?.filter(
+      (lang: { languageCode: string }) => lang.languageCode === i18next.language
+    )[0]?.shortDescription
 
   useEffect(() => {
     if (

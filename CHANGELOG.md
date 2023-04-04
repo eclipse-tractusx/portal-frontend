@@ -4,6 +4,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+* BugFix:
+   * AppReleaseProcess
+      * update regex expression validation for longDescription input field
+      * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
+      * Added condition for 'documents' section in 'validate and publish' to display only PDF files from app page.
+      * download functionality added to 'documents' in 'validate and publish'.
+   * App overview
+      * fixed the short description display in submitted app detail page
+   * App Approval Release
+      * Added missing long description in app details
+* User invite - Add missing load icon
 
 ## 1.3.0 RC1
 
