@@ -125,9 +125,9 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
     try {
       idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
         ? await addUserIdp({
-          identityProviderId: idp.identityProviderId,
-          user: addUser,
-        }).unwrap()
+            identityProviderId: idp.identityProviderId,
+            user: addUser,
+          }).unwrap()
         : await addTenantUsers([addUser]).unwrap()
       setStatus(AddUserState.SUCCESS)
     } catch (err) {
@@ -181,7 +181,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => { }}
+            onButtonClick={() => {}}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
