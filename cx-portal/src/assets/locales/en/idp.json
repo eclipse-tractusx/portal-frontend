@@ -55,6 +55,13 @@
     "title": "Edit Identity Provider Details",
     "subtitle": "Configure the connection details to your company IdP"
   },
+  "updatesuccess": {
+    "title": "Identity Provider Configured",
+    "subtitle": "Your IdP has been set up successfully",
+    "desc": "The IdP is disabled for now and can get enabled by following the steps below.",
+    "note": "Please note before enabling the IdP and trying to log in you must link your current Catena-X user to your according user on the own IdP.",
+    "understood": "Click 'Understood' to proceed to enable the IdP."
+  },
   "enable": {
     "title": "Enable Identity Provider",
     "subtitle": "This requires to link at least one user ID",
@@ -169,6 +176,7 @@
     "cancel": "Cancel",
     "notnow": "Not now",
     "next": "Next",
+    "understood": "Understood",
     "help": "Get help"
   }
 }

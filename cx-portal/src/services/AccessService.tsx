@@ -63,6 +63,7 @@ import { AddusersIDP } from 'components/overlays/AddusersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
 import DeclineAdminboard from 'components/overlays/DeclineAdminboard'
 import EditPortalRoles from 'components/overlays/EditPortalRoles'
+import { UpdateIDPSuccess } from 'components/overlays/UpdateIDPSuccess'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -155,6 +156,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddIdp />
     case OVERLAYS.UPDATE_IDP:
       return <UpdateIDP id={overlay.id} />
+    case OVERLAYS.UPDATE_IDP_SUCCESS:
+      return <UpdateIDPSuccess id={overlay.id} />
     case OVERLAYS.ENABLE_IDP:
       return <EnableIDP id={overlay.id} />
     case OVERLAYS.ENABLE_IDP_SUCCESS:

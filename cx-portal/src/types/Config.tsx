@@ -519,6 +519,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_SETUP,
   },
   {
+    name: OVERLAYS.UPDATE_IDP_SUCCESS,
+    role: ROLES.IDP_SETUP,
+  },
+  {
     name: OVERLAYS.ENABLE_IDP,
     role: ROLES.IDP_SETUP,
   },
