@@ -45,6 +45,7 @@ import { PAGES } from 'types/Constants'
 import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
+import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 export default function ServiceListOverview() {
   const { t } = useTranslation('servicerelease')
   const [items, setItems] = useState<any>([])
@@ -63,6 +64,7 @@ export default function ServiceListOverview() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setServiceReleaseActiveStep())
     if (data && data.content)
       setItems(
         data?.meta.page === 0

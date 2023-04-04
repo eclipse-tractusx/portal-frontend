@@ -117,6 +117,7 @@ export default function ServiceDetails() {
                         marginBottom: '40px',
                       }}
                       variant="body2"
+                      style={{ whiteSpace: 'pre-line' }}
                       className="form-field"
                     >
                       <span style={{ fontWeight: 'bold' }}>
@@ -136,6 +137,7 @@ export default function ServiceDetails() {
                       }}
                       variant="body2"
                       className="form-field"
+                      style={{ whiteSpace: 'pre-line' }}
                     >
                       <span style={{ fontWeight: 'bold' }}>
                         {t('step4.longDescriptionTitleDE')}
