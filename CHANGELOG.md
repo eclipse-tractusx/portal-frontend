@@ -4,6 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+* App Release Process:
+   * Added privacy policies to validate and publish
+
 * Application Checklist
    BugFix - Checklist layout issue fix
 
