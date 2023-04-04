@@ -14,7 +14,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
       * fixed the short description display in submitted app detail page
    * App Approval Release
       * Added missing long description in app details
-
+* User invite - Add missing load icon
 
 ## 1.3.0 RC1
 
