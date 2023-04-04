@@ -25,11 +25,7 @@ import { OrderStatusButton as Component } from '.'
 export default {
   title: 'Buttons',
   component: Component,
-  argTypes: {
-    onBackButtonClick: {
-      action: 'onClick',
-    },
-  },
+  argTypes: {},
 }
 
 const Template: ComponentStory<typeof Component> = (args: any) => (
@@ -38,6 +34,11 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const OrderStatusButton = Template.bind({})
 OrderStatusButton.args = {
-  backButtonLabel: 'Back',
-  backButtonVariant: 'text',
+  label: 'Load Data',
+  loadIndicator: 'Loading ...',
+  loading: true,
+  size: 'medium',
+  color: 'primary',
+  helperTextColor: 'success',
+  helperText: 'helperText',
 }
