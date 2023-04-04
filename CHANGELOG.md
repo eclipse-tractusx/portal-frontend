@@ -4,6 +4,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+* Application Checklist
+   BugFix - Checklist layout issue fix
+
 
 ## 1.3.0 RC1
 
