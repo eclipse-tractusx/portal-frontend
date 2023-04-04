@@ -27,7 +27,6 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  PageSnackbar,
   Radio,
   Textarea,
   Typography,
@@ -49,39 +48,10 @@ import {
   storeForm,
 } from 'features/control/formSlice'
 import { useDropzone } from 'react-dropzone'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
-
-enum IDPSetupState {
-  NONE = 'NONE',
-  SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
-  SUCCESS_UPLOAD_USERS = 'SUCCESS_UPLOAD_USERS',
-  ERROR_MULTIPLE_FILES = 'ERROR_MULTIPLE_FILES',
-  ERROR_INVALID_TYPE = 'ERROR_INVALID_TYPE',
-  ERROR_INVALID_FORMAT = 'ERROR_INVALID_FORMAT',
-  ERROR_UPLOAD_USERS = 'ERROR_UPLOAD_USERS',
-}
-
-enum FileFormat {
-  JSON = 'JSON',
-  CSV = 'CSV',
-}
-
-const IDPSetupNotification = ({ state }: { state: IDPSetupState }) => {
-  const { t } = useTranslation('idp')
-  const error = state.toString().startsWith('ERROR')
-  return (
-    <PageSnackbar
-      autoClose
-      title={t(
-        `state.${error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}`
-      )}
-      description={t(`state.${state}`)}
-      open={state !== IDPSetupState.NONE}
-      severity={error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}
-      showIcon
-    />
-  )
-}
+import IDPStateNotification, {
+  FileFormat,
+  IDPState,
+} from 'components/pages/IDPManagement/IDPStateNotification'
 
 const SelectFormat = ({
   format,
@@ -162,7 +132,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const [unlinked, setUnlinked] = useState<boolean>(false)
   const userContent = useSelector(editIDPUserSelector)
   const userResponse = useSelector(editIDPUserResponseSelector)
-  const [status, setStatus] = useState<IDPSetupState>(IDPSetupState.NONE)
+  const [status, setStatus] = useState<IDPState>(IDPState.NONE)
   const fetching = t('state.fetching')
 
   const CSV_COLUMNS = useMemo(
@@ -200,11 +170,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       .then((response) => response.text())
       .then((result) => {
         console.log(result)
-        setStatus(IDPSetupState.SUCCESS_UPLOAD_USERS)
+        setStatus(IDPState.SUCCESS_UPLOAD_USERS)
         storeResponse(result)
-        setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
+        setTimeout(() => setStatus(IDPState.NONE), 5000)
       })
-      .catch((_error) => setStatus(IDPSetupState.ERROR_UPLOAD_USERS))
+      .catch((_error) => setStatus(IDPState.ERROR_UPLOAD_USERS))
   }
 
   const downloadUserfile = () => {
@@ -335,9 +305,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           })
         )
       } catch (e) {
-        setStatus(IDPSetupState.ERROR_INVALID_FORMAT)
+        setStatus(IDPState.ERROR_INVALID_FORMAT)
       }
-      setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
+      setTimeout(() => setStatus(IDPState.NONE), 5000)
     },
     [dispatch]
   )
@@ -345,7 +315,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 1) {
-        setStatus(IDPSetupState.ERROR_MULTIPLE_FILES)
+        setStatus(IDPState.ERROR_MULTIPLE_FILES)
         return
       }
       const MIME_TYPE = {
@@ -354,7 +324,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       acceptedFiles.forEach((file: File) => {
         if (!Object.values(MIME_TYPE).includes(file.type)) {
-          setStatus(IDPSetupState.ERROR_INVALID_TYPE)
+          setStatus(IDPState.ERROR_INVALID_TYPE)
           return
         }
         const reader = new FileReader()
@@ -484,7 +454,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           </Typography>
           <Typography>{t('users.drop.note')}</Typography>
         </div>
-        <IDPSetupNotification state={status} />
+        <IDPStateNotification state={status} />
         {userResponse?.data && (
           <AddusersIDPResponse
             response={userResponse.data}
