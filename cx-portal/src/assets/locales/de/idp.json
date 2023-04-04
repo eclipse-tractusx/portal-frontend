@@ -59,6 +59,7 @@
     "title": "Enable Identity Provider",
     "subtitle": "This requires to link at least one user ID",
     "desc": "Now link your existing user ID so you keep all permissions. Specify the user ID (not name) for your user at the new IdP.",
+    "current": "You are currently logged in as: {{ name }}",
     "label": "Your User ID",
     "hint": "Your existing user ID (not name) on target IDP",
     "success": {
@@ -103,10 +104,12 @@
     "NONE": "",
     "SUCCESS_VALID_FORMAT": "File format valid",
     "SUCCESS_UPLOAD_USERS": "Uploading users succeeded",
+    "SUCCESS_DELETE_IDP": "IDP deleted successfully",
     "ERROR_MULTIPLE_FILES": "Only one file allowed",
     "ERROR_INVALID_TYPE": "Invalid file type",
     "ERROR_INVALID_FORMAT": "Invalid format",
-    "ERROR_UPLOAD_USERS": "Uploading users failed"
+    "ERROR_UPLOAD_USERS": "Uploading users failed",
+    "ERROR_DELETE_IDP": "Error deleting the IDP"
   },
   "field": {
     "display": {
