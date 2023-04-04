@@ -434,10 +434,16 @@ export default function CommonValidateAndPublish({
         {statusData?.documents &&
           Object.keys(statusData.documents).map((item, i) => (
             <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-              <a href="/" style={{ display: 'flex' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  cursor: 'pointer',
+                  color: '#0f71cb',
+                }}
+              >
                 <ArrowForwardIcon fontSize="small" />
                 {statusData.documents[item][0].documentName}
-              </a>
+              </span>
             </InputLabel>
           ))}
 

@@ -61,8 +61,10 @@ export const Patterns = {
     shortDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
   },
   offerPage: {
-    longDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,2000}$/,
-    longDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,2000}$/,
+    longDescriptionEN:
+      /^[^-\s]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:])((?!\s{2}).){10,2000}$/,
+    longDescriptionDE:
+      /^[^-\s]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:])((?!\s{2}).){10,2000}$/,
   },
   appPage: {
     longDescriptionEN:
