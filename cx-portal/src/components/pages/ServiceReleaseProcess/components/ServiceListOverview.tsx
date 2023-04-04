@@ -71,7 +71,7 @@ export default function ServiceListOverview() {
           ? setDataInfo(data)
           : (i: CardItems[]) => i.concat(setDataInfo(data))
       )
-  }, [data])
+  }, [data, dispatch])
 
   const setDataInfo = (data: ProvidedServices) =>
     data.content.map((item: ProvidedServiceType) => serviceToCard(item))
