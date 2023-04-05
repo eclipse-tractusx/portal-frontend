@@ -20,7 +20,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PAGE_SIZE } from 'types/Constants'
 
 export interface SubscriptionRequestType {
   page: number
@@ -56,7 +55,7 @@ export interface SubscriptionStoreRequest {
 }
 
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/serviceSubscription',
+  reducerPath: 'rtk/services/serviceSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchServiceSubscriptions: builder.query<
