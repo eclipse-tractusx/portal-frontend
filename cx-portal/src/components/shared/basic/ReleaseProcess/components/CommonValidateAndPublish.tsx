@@ -58,6 +58,10 @@ import {
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
+import { uniqueId } from 'lodash'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
+import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -229,6 +233,23 @@ export default function CommonValidateAndPublish({
     else if (item === 'price') return statusData?.price
   }
 
+  const renderPrivacy = (policy: string) => {
+    switch (policy) {
+      case PrivacyPolicyType.COMPANY_DATA:
+        return <Apartment className="policy-icon" />
+      case PrivacyPolicyType.USER_DATA:
+        return <Person className="policy-icon" />
+      case PrivacyPolicyType.LOCATION:
+        return <LocationOn className="policy-icon" />
+      case PrivacyPolicyType.BROWSER_HISTORY:
+        return <Web className="policy-icon" />
+      case PrivacyPolicyType.NONE:
+        return <Info className="policy-icon" />
+      default:
+        return <Apartment className="policy-icon" />
+    }
+  }
+
   return (
     <div className="validate-and-publish">
       <ReleaseStepHeader
@@ -364,10 +385,45 @@ export default function CommonValidateAndPublish({
                 horizontal={false}
               />
             )}
-
             <Divider className="verify-validate-form-divider" />
           </>
         )}
+
+        {statusData?.privacyPolicies && (
+          <>
+            <div className="appdetail-privacy" style={{ marginBottom: '0px' }}>
+              <div className="privacy-content">
+                <Typography variant="h4" sx={{ mb: 4 }}>
+                  {t('content.appdetail.privacy.heading')}
+                </Typography>
+                <Typography variant="body2" className="form-field">
+                  {t('content.appdetail.privacy.message')}
+                </Typography>
+              </div>
+              {statusData?.privacyPolicies &&
+              statusData?.privacyPolicies.length ? (
+                <div className="policies-list" style={{ maxWidth: '600px' }}>
+                  {statusData?.privacyPolicies?.map((policy: string) => (
+                    <Typography
+                      variant="body2"
+                      className="policy-name"
+                      key={uniqueId(policy)}
+                    >
+                      {renderPrivacy(policy)}
+                      {t(`content.appdetail.privacy.${policy}`)}
+                    </Typography>
+                  ))}
+                </div>
+              ) : (
+                <Typography variant="body2" className="table-text">
+                  {t('content.appdetail.privacy.notSupportedMessage')}
+                </Typography>
+              )}
+            </div>
+            <Divider className="verify-validate-form-divider" />
+          </>
+        )}
+
         {conformityDocument && (
           <>
             <Typography variant="h4" sx={{ mb: 4 }}>
