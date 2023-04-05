@@ -10,6 +10,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
       * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
       * Added condition for 'documents' section in 'validate and publish' to display only PDF files from app page.
       * download functionality added to 'documents' in 'validate and publish'.
+      * fixed error message display for conformity document
    * App overview
       * fixed the short description display in submitted app detail page
    * App Approval Release

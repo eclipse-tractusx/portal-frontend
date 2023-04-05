@@ -70,6 +70,12 @@ export default function ConnectorFormInputFieldImage({
         </Typography>
       )}
 
+      {errors?.uploadImageConformity?.type === 'required' && (
+        <Typography variant="body2" className="file-error-msg">
+          {requiredText}
+        </Typography>
+      )}
+
       <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
         {note}
       </Typography>
