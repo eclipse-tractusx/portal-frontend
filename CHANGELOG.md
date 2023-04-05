@@ -2,21 +2,27 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## Unreleased
+## 1.3.0 RC2
 
-* BugFix:
-   * App Release Process
-      * update regex expression validation for longDescription input field
-      * Removed 'data security information' and 'connected data' sections which are not relevant from validate and publish.
-      * Added condition for 'documents' section in 'validate and publish' to display only PDF files from app page.
-      * download functionality added to 'documents' in 'validate and publish'.
-      * fixed error message display for conformity document
-      * Reset active step back to 1 in app overview page 
-   * App overview
-      * fixed the short description display in submitted app detail page
-   * App Approval Release
-      * Added missing long description in app details
-* User invite - Add missing load icon
+### Change
+n/a
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* Service Detail Page (Marketplace and Service Management) - document download fixed
+* Service Release Process - update long description pattern to support multiline (as app release process)
+* Service Release Process - reset active step back to 1 in service overview page when re-opening a service in "draft" state
+* User Management - create new user account first and last name pattern updated to alow double names
+* App Release Process
+  * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
+  * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
+  * long description input field pattern
+
 
 ## 1.3.0 RC1
 
