@@ -6,10 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * App Release Process:
    * Added privacy policies to validate and publish
-
 * Application Checklist
    BugFix - Checklist layout issue fix
-
+*AppMarketplace
+   *  Add status of the subscription
 
 ## 1.3.0 RC1
 
