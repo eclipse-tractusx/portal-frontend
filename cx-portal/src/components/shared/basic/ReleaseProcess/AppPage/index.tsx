@@ -59,7 +59,7 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
-import { UseCaseType } from 'features/appManagement/types'
+import { ErrorType, UseCaseType } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
@@ -548,7 +548,7 @@ export default function AppPage() {
               )
             }}
           />
-          {errors?.images?.type === 'required' && (
+          {errors?.images?.type === ErrorType.REQUIRED && (
             <Typography variant="body2" className="file-error-msg">
               {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
             </Typography>
@@ -593,7 +593,7 @@ export default function AppPage() {
                 errorText={t('content.apprelease.appReleaseForm.fileSizeError')}
               />
               {item === 'uploadDataPrerequisits' &&
-                errors?.uploadDataPrerequisits?.type === 'required' && (
+                errors?.uploadDataPrerequisits?.type === ErrorType.REQUIRED && (
                   <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
@@ -601,7 +601,7 @@ export default function AppPage() {
                   </Typography>
                 )}
               {item === 'uploadTechnicalGuide' &&
-                errors?.uploadTechnicalGuide?.type === 'required' && (
+                errors?.uploadTechnicalGuide?.type === ErrorType.REQUIRED && (
                   <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
@@ -609,7 +609,7 @@ export default function AppPage() {
                   </Typography>
                 )}
               {item === 'uploadAppContract' &&
-                errors?.uploadAppContract?.type === 'required' && (
+                errors?.uploadAppContract?.type === ErrorType.REQUIRED && (
                   <Typography variant="body2" className="file-error-msg">
                     {t(
                       'content.apprelease.appReleaseForm.fileUploadIsMandatory'
