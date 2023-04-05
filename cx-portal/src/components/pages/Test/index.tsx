@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './Form/index.form.simple'
+import FormTest from './index.form'
 
 export default function Test() {
   return (

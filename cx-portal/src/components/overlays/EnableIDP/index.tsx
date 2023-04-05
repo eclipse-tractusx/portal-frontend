@@ -38,6 +38,7 @@ import {
 import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
+import UserService from 'services/UserService'
 
 export const EnableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -87,6 +88,9 @@ export const EnableIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <Typography>{t('enable.desc')}</Typography>
+        <Typography variant="body1">
+          {t('enable.current', { name: UserService.getName() })}
+        </Typography>
         <EnableIDPContent
           onValid={setIdpEnableData}
           identityProviderId={id}

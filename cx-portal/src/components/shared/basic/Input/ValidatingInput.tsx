@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import debounce from 'lodash.debounce'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import BasicInput, { BasicInputProps, Colors, InputType } from './BasicInput'
 
 export type ValidatingInputProps = BasicInputProps & {
@@ -66,10 +66,6 @@ const ValidatingInput = ({
     },
     [debounceTime, debouncedValidate, immediateValidate]
   )
-
-  useEffect(() => {
-    onValid && onValid(name, value)
-  }, [name, value, onValid])
 
   return (
     <BasicInput
