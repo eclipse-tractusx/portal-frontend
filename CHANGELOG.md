@@ -30,7 +30,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
 * App Marketplace
-   * Add status of the subscription
   * implement service type function with backend connection
   * added load button function for service release form - button "submit" and "confirm"/"proceed"
 * App Release Process
