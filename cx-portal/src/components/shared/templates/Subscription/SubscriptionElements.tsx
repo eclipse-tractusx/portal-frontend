@@ -25,8 +25,8 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
-import './AppSubscription.scss'
-import NoItems from '../NoItems'
+import './Subscription.scss'
+import NoItems from 'components/pages/NoItems'
 
 export default function SubscriptionElements({
   subscriptions,

@@ -21,24 +21,53 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
-import {
-  SubscriptionRequestBody,
-  SubscriptionResponse,
-} from 'features/appSubscription/appSubscriptionApiSlice'
+
+export interface SubscriptionRequestType {
+  page: number
+  statusId: string
+  sortingType: string
+}
+export interface SubscriptionResponseContentType {
+  companyId: string
+  companyName: string
+  subscriptionId: string
+  offerSubscriptionStatus: string
+}
+
+export type SubscriptionContent = {
+  offerId: string
+  serviceName: string
+  companySubscriptionStatuses: SubscriptionResponseContentType[]
+}
+
+export interface SubscriptionResponseType {
+  meta: {
+    totalElements: number
+    totalPages: number
+    page: number
+    contentSize: number
+  }
+  content: SubscriptionContent[]
+}
+
+export interface SubscriptionStoreRequest {
+  requestId: string
+  offerUrl: string
+}
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/serviceSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchSubscriptions: builder.query<
-      SubscriptionResponse,
-      SubscriptionRequestBody
+    fetchServiceSubscriptions: builder.query<
+      SubscriptionResponseType,
+      SubscriptionRequestType
     >({
       query: (body) => {
         const statusId = `statusId=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
-          url: `/api/services/provided/subscription-status?size${PAGE_SIZE}&page=${
+          url: `/api/services/provided/subscription-status?size=15&page=${
             body.page
           }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
         }
@@ -47,4 +76,4 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { useFetchSubscriptionsQuery } = apiSlice
+export const { useFetchServiceSubscriptionsQuery } = apiSlice

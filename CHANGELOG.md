@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Application Checklist
    BugFix - Checklist layout issue fix
+* Service Management
+   Service subscription Mgt enabled
+* Refactor
+   App Subscription & Service Subscription to use common component
 
 
 ## 1.3.0 RC1
