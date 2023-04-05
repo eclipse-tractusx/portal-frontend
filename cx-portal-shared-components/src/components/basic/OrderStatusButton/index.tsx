@@ -89,7 +89,7 @@ export const OrderStatusButton = ({
           background3: '#f9f9f9',
         })
     }
-  }, [status])
+  }, [status, color])
 
   const fetchButton = (
     zIndex: number,
