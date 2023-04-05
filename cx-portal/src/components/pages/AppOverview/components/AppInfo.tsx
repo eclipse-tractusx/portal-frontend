@@ -53,6 +53,7 @@ export default function AppInfo({
                 sx={{
                   padding: '0px 10px',
                   color: 'text.primary',
+                  whiteSpace: 'pre-line',
                 }}
                 variant="caption1"
               >

@@ -22,12 +22,12 @@ import { LogoGrayData } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import CommonValidateAndPublish from '../components/CommonValidateAndPublish'
 import { serviceIdSelector } from 'features/serviceManagement/slice'
 import {
   ReleaseProcessTypes,
   ServiceTypeIdsEnum,
+  useFetchDocumentMutation,
   useFetchServiceStatusQuery,
   useSubmitServiceMutation,
 } from 'features/serviceManagement/apiSlice'
@@ -40,7 +40,7 @@ export default function OfferValidateAndPublish({
   const { t } = useTranslation('servicerelease')
   const [submitService] = useSubmitServiceMutation()
   const serviceId = useSelector(serviceIdSelector)
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [fetchDocumentById] = useFetchDocumentMutation()
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId, {
     refetchOnMountOrArgChange: true,
   }).data

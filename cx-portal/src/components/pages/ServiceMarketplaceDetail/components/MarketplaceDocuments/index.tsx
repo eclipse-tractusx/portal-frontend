@@ -25,8 +25,8 @@ import './MarketplaceDocuments.scss'
 import {
   DocumentData,
   ServiceRequest,
-  useFetchDocumentByIdMutation,
 } from 'features/serviceMarketplace/serviceApiSlice'
+import { useFetchDocumentMutation } from 'features/serviceManagement/apiSlice'
 
 export default function MarketplaceDocuments({
   item,
@@ -35,7 +35,7 @@ export default function MarketplaceDocuments({
 }) {
   const { t } = useTranslation()
 
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [getDocumentById] = useFetchDocumentMutation()
 
   const handleDownloadClick = async (
     documentId: string,
