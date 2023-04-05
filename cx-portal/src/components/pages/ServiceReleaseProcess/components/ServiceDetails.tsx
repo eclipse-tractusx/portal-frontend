@@ -64,7 +64,7 @@ export default function ServiceDetails() {
   }) => {
     try {
       const response = await fetchDocument({
-        serviceId: serviceId,
+        appId: serviceId,
         documentId: item.documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')

@@ -43,7 +43,7 @@ export default function MarketplaceDocuments({
   ) => {
     try {
       const response = await getDocumentById({
-        serviceId: item.id,
+        appId: item.id,
         documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')
