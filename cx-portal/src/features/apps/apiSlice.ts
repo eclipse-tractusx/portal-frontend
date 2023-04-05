@@ -145,12 +145,10 @@ export const apiSlice = createApi({
         const activeApps = await fetchWithBQ(`/api/apps/active`)
         if (activeApps.error) return { error: activeApps.error }
         const data: any = activeApps.data
-        console.log('data', data)
         const subscriptionStatus = await fetchWithBQ(
           `/api/apps/subscribed/subscription-status`
         )
         const subscriptionData: any = subscriptionStatus.data
-        console.log('result', subscriptionData)
         data.forEach(async (appItem: any) => {
           subscriptionData.forEach(async (subscriptionItem: any) => {
             if (appItem.id === subscriptionItem.appId)

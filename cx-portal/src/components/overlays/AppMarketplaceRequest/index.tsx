@@ -139,7 +139,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           {t('content.appMarketplace.statusHeading')}
         </Typography>
         <OrderStatusButton
-          status={'INACTIVE' as OrderStatusType}
+          status={OrderStatusType.INACTIVE as OrderStatusType}
           label={t('content.appdetail.subscribe')}
         />
       </DialogContent>
