@@ -24,59 +24,42 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  Typography,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay/actions'
-import { useState } from 'react'
-import {
-  IdentityProviderUpdate,
-  useFetchIDPDetailQuery,
-  useUpdateIDPMutation,
-} from 'features/admin/idpApiSlice'
-import { UpdateIDPContent } from './UpdateIDPContent'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
 
-export const UpdateIDP = ({ id }: { id: string }) => {
+export const UpdateIDPSuccess = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
-  const [updateIdp] = useUpdateIDPMutation()
-  const [idpUpdateData, setIdpUpdateData] = useState<
-    IdentityProviderUpdate | undefined
-  >(undefined)
 
   const doUpdateIDP = async () => {
-    if (!(data && idpUpdateData)) return
-    try {
-      const idpUpdate = await updateIdp(idpUpdateData).unwrap()
-      console.log(idpUpdate)
-      dispatch(show(OVERLAYS.UPDATE_IDP_SUCCESS, id))
-    } catch (error) {
-      console.log(error)
-    }
+    dispatch(show(OVERLAYS.ENABLE_IDP, id))
   }
 
   return (
     <>
       <DialogHeader
-        title={t('edit.title')}
-        intro={t('edit.subtitle')}
+        title={t('updatesuccess.title')}
+        intro={t('updatesuccess.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        {data && <UpdateIDPContent idp={data} onValid={setIdpUpdateData} />}
+        <Typography>{t('updatesuccess.desc')}</Typography>
+        <Typography>{t('updatesuccess.note')}</Typography>
+        {data && <Typography variant={'h5'}>{data.displayName}</Typography>}
+        <Typography>{t('updatesuccess.understood')}</Typography>
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('action.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          disabled={!idpUpdateData}
-          onClick={doUpdateIDP}
-        >
-          {t('action.confirm')}
+        <Button variant="contained" onClick={doUpdateIDP}>
+          {t('action.understood')}
         </Button>
       </DialogActions>
     </>

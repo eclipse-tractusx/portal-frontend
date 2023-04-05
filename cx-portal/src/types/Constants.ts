@@ -115,6 +115,7 @@ export enum OVERLAYS {
   APPMARKETPLACE_REQUEST = 'appmarketplace_request',
   ADD_IDP = 'add_idp',
   UPDATE_IDP = 'update_idp',
+  UPDATE_IDP_SUCCESS = 'update_idp_success',
   ENABLE_IDP = 'enable_idp',
   DISABLE_IDP = 'disable_idp',
   DELETE_IDP = 'delete_idp',
