@@ -402,7 +402,7 @@ export default function CommonValidateAndPublish({
               </div>
               {statusData?.privacyPolicies &&
               statusData?.privacyPolicies.length ? (
-                <div className="policies-list">
+                <div className="policies-list" style={{ maxWidth: '600px' }}>
                   {statusData?.privacyPolicies?.map((policy: string) => (
                     <Typography
                       variant="body2"
