@@ -29,6 +29,8 @@ import {
   StaticTable,
   Typography,
   TableType,
+  CircleProgress,
+  CardHorizontal,
 } from 'cx-portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -78,18 +80,19 @@ interface CommonValidateAndPublishType {
   detailsText: string
   longDescriptionTitleEN: string
   longDescriptionTitleDE: string
-  connectedData: string
-  conformityDocument: string
-  dataSecurityInformation: string
+  connectedData?: string
+  conformityDocument?: string
+  dataSecurityInformation?: string
   documentsTitle: string
   providerInformation: string
   consentTitle: string
-  cxTestRunsTitle: string
+  cxTestRunsTitle?: string
   error: { title: string; message: string }
   helpText: string
   submitButton: string
   values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
+  serviceTypes?: string
 }
 
 export default function CommonValidateAndPublish({
@@ -116,6 +119,7 @@ export default function CommonValidateAndPublish({
   submitButton,
   values,
   type,
+  serviceTypes,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -124,6 +128,7 @@ export default function CommonValidateAndPublish({
   const [cardImage, setCardImage] = useState('')
   const [multipleImages, setMultipleImages] = useState<any[]>([])
   const [defaultValues, setDefaultValues] = useState<DefaultValueType>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const fetchImage = useCallback(
     async (documentId: string, documentType: string) => {
@@ -195,6 +200,7 @@ export default function CommonValidateAndPublish({
   }
 
   const onValidatePublishSubmit = async (data: any) => {
+    setLoading(true)
     try {
       await submitData(id).unwrap()
       if (type === ReleaseProcessTypes.APP_RELEASE) {
@@ -203,9 +209,10 @@ export default function CommonValidateAndPublish({
         dispatch(serviceReleaseStepIncrement())
       }
       showSubmitPage(true)
-    } catch (error: any) {
+    } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
+    setLoading(false)
   }
 
   const getAppData = (item: string) => {
@@ -229,43 +236,44 @@ export default function CommonValidateAndPublish({
         description={stepperDescription}
       />
       <div className="header-description">
-        <Grid container sx={{ mt: 0 }}>
-          <Grid
-            item
-            className={'verify-app-release-card'}
-            sx={{ ml: 0, mr: 0 }}
-            md={4}
-          >
-            <Card
-              image={{
-                src: cardImage || LogoGrayData,
-              }}
-              title={statusData?.title || ''}
-              subtitle={statusData?.provider}
-              description={
-                statusData?.descriptions?.filter(
-                  (lang: { languageCode: string }) =>
-                    lang.languageCode === i18next.language
-                )[0]?.shortDescription
-              }
-              imageSize="normal"
-              imageShape="square"
-              variant="text-details"
-              expandOnHover={false}
-              filledBackground={true}
-              buttonText={''}
-            />
-            <div style={{ margin: '35px auto -16px 65px' }}>
-              <LanguageSwitch
-                current={i18next.language}
-                languages={I18nService.supportedLanguages.map((key) => ({
-                  key,
-                }))}
-                onChange={changeLanguage}
+        {type === ReleaseProcessTypes.APP_RELEASE && (
+          <Grid container sx={{ mt: 0 }}>
+            <Grid
+              item
+              className={'verify-app-release-card'}
+              sx={{ ml: 0, mr: 0 }}
+              md={4}
+            >
+              <Card
+                image={{
+                  src: cardImage || LogoGrayData,
+                }}
+                title={statusData?.title || ''}
+                subtitle={statusData?.provider}
+                description={
+                  statusData?.descriptions?.filter(
+                    (lang: { languageCode: string }) =>
+                      lang.languageCode === i18next.language
+                  )[0]?.shortDescription
+                }
+                imageSize="normal"
+                imageShape="square"
+                variant="text-details"
+                expandOnHover={false}
+                filledBackground={true}
+                buttonText={''}
               />
-            </div>
-          </Grid>
-          {type === ReleaseProcessTypes.APP_RELEASE && (
+              <div style={{ margin: '35px auto -16px 65px' }}>
+                <LanguageSwitch
+                  current={i18next.language}
+                  languages={I18nService.supportedLanguages.map((key) => ({
+                    key,
+                  }))}
+                  onChange={changeLanguage}
+                />
+              </div>
+            </Grid>
+
             <Grid item sx={{ paddingLeft: '71px', marginTop: '22%' }} md={8}>
               {['language', 'useCase', 'price'].map((item, i) => (
                 <div
@@ -279,9 +287,22 @@ export default function CommonValidateAndPublish({
                 </div>
               ))}
             </Grid>
-          )}
-        </Grid>
-
+          </Grid>
+        )}
+        {type === ReleaseProcessTypes.SERVICE_RELEASE && (
+          <CardHorizontal
+            borderRadius={6}
+            imageAlt="Service Card"
+            imagePath={LogoGrayData}
+            label={''}
+            buttonText=""
+            onBtnClick={() => {}}
+            title={statusData?.title || ''}
+            subTitle={serviceTypes || ''}
+            description={''}
+            backgroundColor="rgb(224, 225, 226)"
+          />
+        )}
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>
           {detailsText}
@@ -332,62 +353,76 @@ export default function CommonValidateAndPublish({
         )}
 
         <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          {connectedData}
-        </Typography>
-        {defaultValues && (
-          <StaticTable
-            data={defaultValues.connectedTableData}
-            horizontal={false}
-          />
-        )}
-        <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          {conformityDocument}
-        </Typography>
-        {defaultValues && (
-          <Typography variant="body2" className="form-field">
-            {defaultValues.conformityDocumentsDescription}
-          </Typography>
-        )}
-        {statusData?.documents &&
-          statusData.documents[
-            DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-          ] &&
-          statusData.documents[
-            DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-          ].map((item: DocumentData) => (
-            <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
-              <button
-                style={{
-                  display: 'flex',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: '#0f71cb',
-                  fontSize: '14px',
-                  lineHeight: '20px',
-                }}
-                onClick={() =>
-                  handleDownloadFn(item.documentId, item.documentName)
-                }
-              >
-                <ArrowForwardIcon fontSize="small" />
-                {item.documentName}
-              </button>
-            </InputLabel>
-          ))}
+        {connectedData && (
+          <>
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {connectedData}
+            </Typography>
+            {defaultValues && (
+              <StaticTable
+                data={defaultValues.connectedTableData}
+                horizontal={false}
+              />
+            )}
 
-        <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          {dataSecurityInformation}
-        </Typography>
-        {defaultValues && (
-          <Typography variant="body2" className="form-field">
-            {defaultValues.dataSecurityInformation}
-          </Typography>
+            <Divider className="verify-validate-form-divider" />
+          </>
         )}
-        <Divider className="verify-validate-form-divider" />
+        {conformityDocument && (
+          <>
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {conformityDocument}
+            </Typography>
+            {defaultValues && (
+              <Typography variant="body2" className="form-field">
+                {defaultValues.conformityDocumentsDescription}
+              </Typography>
+            )}
+
+            {statusData?.documents &&
+              statusData.documents[
+                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+              ] &&
+              statusData.documents[
+                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+              ].map((item: DocumentData) => (
+                <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
+                  <button
+                    style={{
+                      display: 'flex',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: '#0f71cb',
+                      fontSize: '14px',
+                      lineHeight: '20px',
+                    }}
+                    onClick={() =>
+                      handleDownloadFn(item.documentId, item.documentName)
+                    }
+                  >
+                    <ArrowForwardIcon fontSize="small" />
+                    {item.documentName}
+                  </button>
+                </InputLabel>
+              ))}
+
+            <Divider className="verify-validate-form-divider" />
+          </>
+        )}
+        {dataSecurityInformation && (
+          <>
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {dataSecurityInformation}
+            </Typography>
+            {defaultValues && (
+              <Typography variant="body2" className="form-field">
+                {defaultValues.dataSecurityInformation}
+              </Typography>
+            )}
+            <Divider className="verify-validate-form-divider" />
+          </>
+        )}
         <Typography variant="h4" sx={{ mb: 4 }}>
           {documentsTitle}
         </Typography>
@@ -436,24 +471,30 @@ export default function CommonValidateAndPublish({
             )}
         </div>
 
-        <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          {cxTestRunsTitle}
-        </Typography>
-        {defaultValues && (
-          <div className="form-field">
-            {defaultValues.cxTestRuns &&
-              defaultValues.cxTestRuns?.map((item: any, index: number) => (
-                <div key={item.name}>
-                  <Checkbox
-                    key={item.name}
-                    label={item.name}
-                    checked={item.consentStatus === ConsentStatusEnum.ACTIVE}
-                    disabled
-                  />
-                </div>
-              ))}
-          </div>
+        {cxTestRunsTitle && (
+          <>
+            <Divider className="verify-validate-form-divider" />
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {cxTestRunsTitle}
+            </Typography>
+            {defaultValues && (
+              <div className="form-field">
+                {defaultValues.cxTestRuns &&
+                  defaultValues.cxTestRuns?.map((item: any, index: number) => (
+                    <div key={item.name}>
+                      <Checkbox
+                        key={item.name}
+                        label={item.name}
+                        checked={
+                          item.consentStatus === ConsentStatusEnum.ACTIVE
+                        }
+                        disabled
+                      />
+                    </div>
+                  ))}
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -493,14 +534,31 @@ export default function CommonValidateAndPublish({
         >
           <KeyboardArrowLeftIcon />
         </IconButton>
-        <Button
-          onClick={handleSubmit(onValidatePublishSubmit)}
-          variant="contained"
-          disabled={!isValid}
-          sx={{ float: 'right' }}
-        >
-          {submitButton}
-        </Button>
+        {loading ? (
+          <span
+            style={{
+              float: 'right',
+            }}
+          >
+            <CircleProgress
+              size={40}
+              step={1}
+              interval={0.1}
+              colorVariant={'primary'}
+              variant={'indeterminate'}
+              thickness={8}
+            />
+          </span>
+        ) : (
+          <Button
+            onClick={handleSubmit(onValidatePublishSubmit)}
+            variant="contained"
+            disabled={!isValid}
+            sx={{ float: 'right' }}
+          >
+            {submitButton}
+          </Button>
+        )}
       </Box>
     </div>
   )

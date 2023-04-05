@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useSelector, useDispatch } from 'react-redux'
-import { Button, Typography, Tooltips } from 'cx-portal-shared-components'
+import { Typography, OrderStatusButton } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { userSelector } from 'features/user/slice'
@@ -36,6 +36,12 @@ export interface AppDetailHeaderProps {
   item: AppDetails
 }
 
+export enum OrderStatusType {
+  INACTIVE = 'INACTIVE',
+  ACTIVE = 'ACTIVE',
+  PENDING = 'PENDING',
+}
+
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -44,58 +50,35 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const [image, setImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
-  const getSubscribeBtn = () => {
-    const subscribeStatus = item.isSubscribed
-    if (subscribeStatus === 'PENDING') {
-      return (
-        <Tooltips
-          additionalStyles={{
-            cursor: 'pointer',
-            marginTop: '30px !important',
-          }}
-          tooltipPlacement="bottom-start"
-          tooltipText={t('content.appdetail.pendingTooltip')}
-          children={
-            <span>
-              <Button color="secondary">
-                {t('content.appdetail.pending')}
-              </Button>
-            </span>
-          }
-        />
-      )
-    } else if (subscribeStatus === 'ACTIVE') {
-      return (
-        <Tooltips
-          additionalStyles={{
-            cursor: 'pointer',
-            marginTop: '30px !important',
-          }}
-          tooltipPlacement="bottom-start"
-          tooltipText={t('content.appdetail.subscribedTooltip')}
-          children={
-            <span>
-              <Button color="success">
-                {t('content.appdetail.subscribed')}
-              </Button>
-            </span>
-          }
-        />
-      )
+  const getStatusLabel = (subscribeStatus: string) => {
+    if (subscribeStatus === OrderStatusType.PENDING) {
+      return t('content.appdetail.pending')
+    } else if (subscribeStatus === OrderStatusType.ACTIVE) {
+      return t('content.appdetail.subscribed')
     } else {
-      return (
-        <Button
-          color={
-            user.roles.indexOf('subscribe_apps') !== -1
-              ? 'primary'
-              : 'secondary'
-          }
-          onClick={() => dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))}
-        >
-          {t('content.appdetail.subscribe')}
-        </Button>
-      )
+      return t('content.appdetail.subscribe')
     }
+  }
+
+  const getSubscribeBtn = () => {
+    const subscribeStatus = item.isSubscribed ?? OrderStatusType.INACTIVE
+    return (
+      <OrderStatusButton
+        status={subscribeStatus as OrderStatusType}
+        label={getStatusLabel(subscribeStatus)}
+        color={
+          subscribeStatus === OrderStatusType.INACTIVE &&
+          user.roles.indexOf('subscribe_apps') !== -1
+            ? 'primary'
+            : 'secondary'
+        }
+        onButtonClick={() =>
+          subscribeStatus === OrderStatusType.INACTIVE &&
+          user.roles.indexOf('subscribe_apps') !== -1 &&
+          dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
+        }
+      />
+    )
   }
 
   useEffect(() => {

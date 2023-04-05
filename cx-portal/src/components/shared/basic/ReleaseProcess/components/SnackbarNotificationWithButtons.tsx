@@ -20,6 +20,7 @@
 
 import {
   Button,
+  CircleProgress,
   IconButton,
   PageNotifications,
   PageSnackbar,
@@ -48,6 +49,7 @@ type SnackbarNotificationWithButtonsType = {
   pageSnackBarDescription?: string
   pageNotificationsObject?: NotificationObject
   pageSnackBarType?: SuccessErrorType.SUCCESS | SuccessErrorType.ERROR
+  loader?: boolean
 }
 
 export default function SnackbarNotificationWithButtons({
@@ -62,6 +64,7 @@ export default function SnackbarNotificationWithButtons({
   pageSnackBarDescription,
   pageNotificationsObject,
   pageSnackBarType = SuccessErrorType.SUCCESS,
+  loader,
 }: SnackbarNotificationWithButtonsType) {
   const { t } = useTranslation('servicerelease')
 
@@ -102,22 +105,41 @@ export default function SnackbarNotificationWithButtons({
       >
         <KeyboardArrowLeftIcon />
       </IconButton>
-      <Button
-        sx={{ float: 'right' }}
-        disabled={!isValid}
-        variant="contained"
-        onClick={() => onSaveAndProceed && onSaveAndProceed()}
-      >
-        {t('footerButtons.saveAndProceed')}
-      </Button>
-      <Button
-        variant="outlined"
-        name="send"
-        sx={{ float: 'right', mr: 1 }}
-        onClick={() => onSave && onSave()}
-      >
-        {t('footerButtons.save')}
-      </Button>
+      {loader ? (
+        <span
+          style={{
+            float: 'right',
+          }}
+        >
+          <CircleProgress
+            size={40}
+            step={1}
+            interval={0.1}
+            colorVariant={'primary'}
+            variant={'indeterminate'}
+            thickness={8}
+          />
+        </span>
+      ) : (
+        <>
+          <Button
+            sx={{ float: 'right' }}
+            disabled={!isValid}
+            variant="contained"
+            onClick={() => onSaveAndProceed && onSaveAndProceed()}
+          >
+            {t('footerButtons.saveAndProceed')}
+          </Button>
+          <Button
+            variant="outlined"
+            name="send"
+            sx={{ float: 'right', mr: 1 }}
+            onClick={() => onSave && onSave()}
+          >
+            {t('footerButtons.save')}
+          </Button>
+        </>
+      )}
     </Box>
   )
 }

@@ -40,7 +40,9 @@ export default function ContractAndConsent() {
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
-  const fetchConsentData = useFetchConsentDataQuery(appId ?? '').data
+  const fetchConsentData = useFetchConsentDataQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  }).data
   const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {

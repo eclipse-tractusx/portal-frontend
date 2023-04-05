@@ -26,7 +26,7 @@ import Snackbar from '@mui/material/Snackbar'
 import CheckIcon from '@mui/icons-material/Check'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
-const AUTO_CLOSE_DELAY_MS = 7000
+const AUTO_CLOSE_DELAY_MS = 3000
 
 const SlideTransition = (props: SlideProps) => (
   <Slide {...props} direction="left" />

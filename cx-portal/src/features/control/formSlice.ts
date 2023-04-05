@@ -26,6 +26,7 @@ import { IHashMap } from 'types/MainTypes'
 const name = 'control/form'
 
 export enum FORMS {
+  GENERIC = 'GENERIC',
   IDP_FORM = 'IDP_FORM',
   IDP_USER_FORM = 'IDP_USER_FORM',
   IDP_USER_RESPONSE_FORM = 'IDP_USER_RESPONSE_FORM',
@@ -41,6 +42,7 @@ export type StoreFormType = {
 }
 
 const initialState: IHashMap<any> = {}
+initialState[FORMS.GENERIC] = {}
 initialState[FORMS.IDP_FORM] = {}
 initialState[FORMS.IDP_USER_FORM] = {}
 initialState[FORMS.IDP_USER_RESPONSE_FORM] = {}
@@ -59,6 +61,9 @@ export const slice = createSlice({
 })
 
 export const { storeForm } = slice.actions
+
+export const genericSelector = (state: RootState): any =>
+  state.control.form[FORMS.GENERIC]
 
 export const editIDPSelector = (state: RootState): any =>
   state.control.form[FORMS.IDP_FORM]

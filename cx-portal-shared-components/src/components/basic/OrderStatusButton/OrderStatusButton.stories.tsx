@@ -34,11 +34,6 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const OrderStatusButton = Template.bind({})
 OrderStatusButton.args = {
-  label: 'Load Data',
-  loadIndicator: 'Loading ...',
-  loading: true,
-  size: 'medium',
-  color: 'primary',
-  helperTextColor: 'success',
-  helperText: 'helperText',
+  status: 'INACTIVE',
+  label: 'Subscribe',
 }

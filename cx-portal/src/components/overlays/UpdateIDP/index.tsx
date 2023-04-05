@@ -47,7 +47,6 @@ export const UpdateIDP = ({ id }: { id: string }) => {
 
   const doUpdateIDP = async () => {
     if (!(data && idpUpdateData)) return
-    console.log(idpUpdateData)
     try {
       const idpUpdate = await updateIdp(idpUpdateData).unwrap()
       console.log(idpUpdate)

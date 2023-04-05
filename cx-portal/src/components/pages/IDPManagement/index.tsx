@@ -21,27 +21,16 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import { OVERLAYS, PAGES } from 'types/Constants'
-import {
-  Button,
-  PageNotifications,
-  Typography,
-} from 'cx-portal-shared-components'
-import { resetNotification } from 'features/notification/actions'
-import { notificationSelector } from 'features/notification/slice'
+import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
 import { show } from 'features/control/overlay/actions'
 import './style.scss'
 
 export default function IDPManagement() {
   const { t } = useTranslation('idp')
-  const notification = useSelector(notificationSelector)
   const dispatch = useDispatch()
-
-  const handleCloseNotification = () => {
-    dispatch(resetNotification())
-  }
 
   return (
     <main>
@@ -62,16 +51,6 @@ export default function IDPManagement() {
         </div>
 
         <div style={{ paddingTop: '70px' }}>
-          {notification.title && notification.description && (
-            <PageNotifications
-              open={notification.open}
-              severity={notification.severity}
-              title={t(notification.title)}
-              description={t(notification.description)}
-              onCloseNotification={handleCloseNotification}
-              showIcon={false}
-            />
-          )}
           <IDPList />
         </div>
       </section>

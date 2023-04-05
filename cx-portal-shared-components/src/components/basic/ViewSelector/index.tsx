@@ -31,11 +31,16 @@ export interface view {
 export interface ViewSelectorProps {
   views: view[]
   activeView: string
+  align?: string
 }
 
-export const ViewSelector = ({ views, activeView }: ViewSelectorProps) => {
+export const ViewSelector = ({
+  views,
+  activeView,
+  align = 'right',
+}: ViewSelectorProps) => {
   return (
-    <Box sx={{ textAlign: 'right' }}>
+    <Box sx={{ textAlign: align }}>
       {views?.map(({ buttonText, buttonValue, onButtonClick }) => (
         <Button
           color={'secondary'}

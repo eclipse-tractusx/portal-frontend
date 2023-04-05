@@ -18,175 +18,259 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme } from '@mui/material'
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import { useEffect, useState } from 'react'
+import { Box } from '@mui/material'
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import { Button, ButtonProps } from '../Button'
 import { Typography } from '../Typography'
 
 interface OrderStatusButtonProps extends ButtonProps {
+  status: 'INACTIVE' | 'ACTIVE' | 'PENDING'
   label: string
-  loadIndicator: string
-  loading: boolean
-  helperText?: string
-  helperTextColor?: 'success' | 'error'
-  onButtonClick: React.MouseEventHandler
+  onButtonClick?: React.MouseEventHandler
+}
+
+interface ButtonStyleType {
+  color: ButtonProps['color']
+  background1: string
+  background2: string
+  background3: string
 }
 
 export const OrderStatusButton = ({
+  status,
   label,
-  loadIndicator,
-  loading,
   onButtonClick,
-  helperText,
-  size,
   color,
-  helperTextColor,
   ...props
 }: OrderStatusButtonProps) => {
-  const theme = useTheme()
-  const [tagStyle, setTagStyle] = useState({
-    padding: '10px 24px',
-    fontSize: '18px',
+  const [buttonStyle, setButtonStyle] = useState<ButtonStyleType>({
+    color: 'primary',
+    background1: '#e1e1e1',
+    background2: '#e1e1e1',
+    background3: '#f9f9f9',
   })
 
-  function handleClick(e: any) {
-    onButtonClick(e)
+  const handleClick = (e: any) => {
+    onButtonClick && onButtonClick(e)
   }
 
   useEffect(() => {
-    switch (size) {
-      case 'small':
-        setTagStyle({ padding: '10px 18px', fontSize: '14px' })
+    switch (status) {
+      case 'INACTIVE':
+        setButtonStyle({
+          color: color,
+          background1: '#e1e1e1',
+          background2: '#f3f3f3',
+          background3: '#f9f9f9',
+        })
         break
-      case 'medium':
-        setTagStyle({ padding: '10px 24px', fontSize: '18px' })
+      case 'ACTIVE':
+        setButtonStyle({
+          color: 'success',
+          background1: '#f5f9ee',
+          background2: '#f5f9ee',
+          background3: '#f5f9ee',
+        })
         break
-      case 'large':
-        setTagStyle({ padding: '10px 28px', fontSize: '18px' })
+      case 'PENDING':
+        setButtonStyle({
+          color: 'warning',
+          background1: '#f5f9ee',
+          background2: '#f3f3f3',
+          background3: '#f9f9f9',
+        })
+        break
+      default:
+        setButtonStyle({
+          color: 'primary',
+          background1: '#e1e1e1',
+          background2: '#f3f3f3',
+          background3: '#f9f9f9',
+        })
     }
-  }, [size])
+  }, [status])
+
+  const fetchButton = (
+    zIndex: number,
+    background: string,
+    statusCondition: boolean,
+    ButtonDetail: { numberLabel: number; buttonLabel: string }
+  ) => {
+    return (
+      <Button
+        sx={{
+          width: '97%',
+          position: 'relative',
+          zIndex: zIndex,
+          paddingLeft: '74px',
+          marginLeft: '-50px',
+          color: '#2a2a2a',
+          background: background,
+          height: '55px',
+          textAlign: 'left',
+          ':hover': {
+            background: background,
+          },
+          ':focus': {
+            boxShadow: 'none',
+          },
+        }}
+        {...props}
+      >
+        {statusCondition ? (
+          <Typography
+            variant="label5"
+            sx={{
+              background: '#a2a2a2',
+              color: '#fff',
+              borderRadius: '20px',
+              height: '18px',
+              width: '18px',
+              minHeight: '18px',
+              minWidth: '18px',
+              lineHeight: '18px',
+              marginRight: '10px',
+              textAlign: 'center',
+            }}
+          >
+            {ButtonDetail.numberLabel}
+          </Typography>
+        ) : (
+          <CheckCircleOutlinedIcon
+            sx={{ color: '#0a5', fontSize: '20px', marginRight: '5px' }}
+          />
+        )}
+        <Typography variant="label4">{ButtonDetail.buttonLabel}</Typography>
+      </Button>
+    )
+  }
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto',
+      }}
+    >
       <Button
-        size={size}
-        color={color}
+        color={buttonStyle.color}
         onClick={handleClick}
         sx={{
-          width: 'fit-content',
+          width: '100%',
           position: 'relative',
           zIndex: '5',
         }}
         {...props}
       >
-        {'Subscribe'}
+        {label}
       </Button>
-      <Button
-        size={size}
-        color={color}
+      {fetchButton(4, buttonStyle.background1, status === 'INACTIVE', {
+        numberLabel: 1,
+        buttonLabel: 'Subscribtion initiated',
+      })}
+      {fetchButton(3, buttonStyle.background2, status !== 'ACTIVE', {
+        numberLabel: 2,
+        buttonLabel: 'App Instance deployed',
+      })}
+      {fetchButton(2, buttonStyle.background2, status !== 'ACTIVE', {
+        numberLabel: 3,
+        buttonLabel: 'Activation, Notifications & credentials',
+      })}
+      {/* <Button
         sx={{
-          position: 'relative',
-          zIndex: '4',
-          paddingLeft: '74px',
-          left: '-50px',
-          color: '#2a2a2a',
-          background: '#e1e1e1',
-          width: '18%',
-          height: '55px',
-          textAlign: 'left',
-          ':hover': {
-            background: '#e1e1e1',
-          },
-        }}
-        {...props}
-      >
-        <Typography
-          variant="caption3"
-          sx={{
-            background: '#a2a2a2',
-            borderRadius: '20px',
-            padding: '10px',
-            height: '20px',
-            width: '20px',
-            marginRight: '5px',
-          }}
-        >
-          1
-        </Typography>
-        <Typography variant="body3">{'Subscribtion initiated'}</Typography>
-      </Button>
-      <Button
-        size={size}
-        color={color}
-        sx={{
+          width: '100%',
           position: 'relative',
           zIndex: '3',
           paddingLeft: '74px',
-          left: '-100px',
+          marginLeft: '-50px',
           color: '#2a2a2a',
-          background: '#f3f3f3',
-          width: '18%',
+          background: buttonStyle.background2,
           height: '55px',
           textAlign: 'left',
           ':hover': {
-            background: '#f3f3f3',
+            background: buttonStyle.background2,
           },
+          ':focus' :{
+            boxShadow: 'none'
+          }
         }}
         {...props}
       >
-        <Typography
-          variant="caption3"
-          sx={{
-            background: '#a2a2a2',
-            borderRadius: '20px',
-            padding: '10px',
-            height: '20px',
-            width: '20px',
-            marginRight: '5px',
-          }}
-        >
-          2
-        </Typography>
-        <Typography variant="body3">{'App Instance deployed'}</Typography>
+        {
+          status !== 'ACTIVE' ?
+            <Typography
+              variant="label5"
+              sx={{
+                background: '#a2a2a2',
+                color: '#fff',
+                borderRadius: '20px',
+                height: '18px',
+                width: '18px',
+                minHeight: '18px',
+                minWidth: '18px',
+                lineHeight: '18px',
+                marginRight: '10px',
+                textAlign: 'center'
+              }}
+            >
+              2
+            </Typography>
+          :
+          <CheckCircleOutlinedIcon sx={{ color: '#0a5', fontSize: '20px', marginRight: '5px' }}/>
+        }
+        <Typography variant="label4">{'App Instance deployed'}</Typography>
       </Button>
       <Button
-        size={size}
-        color={color}
         sx={{
+          width: '100%',
           position: 'relative',
           zIndex: '2',
           paddingLeft: '74px',
-          left: '-148px',
+          marginLeft: '-50px',
           color: '#2a2a2a',
-          background: '#f9f9f9',
-          width: '18%',
+          background: buttonStyle.background3,
           height: '55px',
           textAlign: 'left',
           ':hover': {
-            background: '#f9f9f9',
+            background: buttonStyle.background3,
           },
+          ':focus' :{
+            boxShadow: 'none'
+          }
         }}
         {...props}
       >
-        {/* <Typography
-          variant='caption3'
-          sx={{
-            background: '#a2a2a2',
-            borderRadius: '20px',
-            padding: '10px',
-            height: '20px',
-            width: '20px',
-            marginRight: '5px'
-          }}
-        >
-          3
-        </Typography> */}
-        <CheckCircleOutlinedIcon />
-        <Typography variant="body3">
+         {
+          status !== 'ACTIVE' ?
+            <Typography
+              variant='label5'
+              sx={{
+                background: '#a2a2a2',
+                color: '#fff',
+                borderRadius: '20px',
+                height: '18px',
+                width: '18px',
+                minHeight: '18px',
+                minWidth: '18px',
+                lineHeight: '18px',
+                marginRight: '10px',
+                textAlign: 'center'
+              }}
+            >
+              3
+            </Typography>
+          :
+          <CheckCircleOutlinedIcon sx={{ color: '#0a5', fontSize: '20px', marginRight: '5px' }}/>
+        }
+        <Typography variant="label4">
           {'Activation, Notifications & credentials'}
         </Typography>
-      </Button>
+      </Button> */}
     </Box>
   )
 }

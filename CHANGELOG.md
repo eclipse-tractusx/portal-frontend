@@ -4,14 +4,49 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
-* AppReleaseProcess
-   * Updated  endpoint for document download in contract and consent
-   * Common component to handle Submit app
+
+## 1.3.0 RC1
+
+### Change
+* App Release Process
+  * updated endpoint to post and get agreement consent
+  * switched endpoint to retrieve cx frame documents from portal backend for consent section
+  * document upload error message customization activated and new error message for file size set
+* Service Release Process
+  * updated GET and POST endpoint handling to store and fetch service details from the backend and display them inside the service release form
+  * switched endpoint to retrieve cx frame documents from portal backend
+  * updated endpoint to post agreement consent
+* Switch IdP
+  * additional user support and new style added for easier process handling
+
+### Feature
 * Service Release Process
    * Connect backend service /submitservice api added
    * Common component to handle Submit service
 * App Marketplace
    * Add status of the subscription
+  * implement service type function with backend connection
+  * added load button function for service release form - button "submit" and "confirm"/"proceed"
+* App Release Process
+  * added app privacy policy select function inside the app release process form
+* Service Management (Service Provider)
+  * implemented service overview for app provider to display all owned services in all states (incl. search, filter and sort)
+  * implemented service detail page
+
+### Technical Support
+* added temp fix for CVE-2023-0464
+* added build workflow for v1.3.0 release candidate phase
+* updated actions workflows
+
+### Bugfix
+* App Release Process
+  * update input field validation for longDescription input field
+* User Management
+  * payload fixed to portal roles only when updating user assigned portal roles 
+* App Release Admin Page - App Detail Page
+  * updated business logic to consume use case data due to updated api response body style
+* Service Marketplace - Service Detail Page
+  * updated business logic to consume use case data due to updated api response body style
 
 ## 1.2.0
 

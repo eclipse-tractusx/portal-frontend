@@ -11,6 +11,9 @@
   "requiredButton": "New",
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Expalanation of the requirement",
+  "consultanceService": "Consultance Service",
+  "dataspaceService": "Dataspace Service",
+  "loadmore": "Load More",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -45,7 +48,7 @@
     "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
   },
   "step3": {
-    "headerTitle": "Conformity and Consent",
+    "headerTitle": "Agreements and Consent",
     "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "allAgreementsMandatory": "All agreements are mandatory",
     "uploadImageConformity": "CAB"
@@ -118,5 +121,19 @@
       ["Used Content", "Loreum Used Content"],
       ["Catena-X Account Data", "Loreum Catena-X Account Data"]
     ]
+  },
+  "serviceoverview": {
+    "filter": {
+      "all": "Alle",
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "wip": "In Arbeit"
+    },
+    "headerTitle": "Service Overview - Own managed service offers",
+    "inputPlaceholder": "Suchen Sie nach Services",
+    "addbtn": "Registrieren Sie Ihre Services"
+  },
+  "servicedetails": {
+    "headerTitle": "Service Details"
   }
 }

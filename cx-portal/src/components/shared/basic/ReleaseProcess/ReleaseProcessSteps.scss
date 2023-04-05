@@ -81,4 +81,10 @@
     cursor: pointer;
     text-decoration: underline;
   }
+
+  .privacyPolicies {
+    .MuiTypography-root {
+      font-size: 14px !important;
+    }
+  }
 }

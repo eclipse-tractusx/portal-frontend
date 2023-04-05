@@ -39,7 +39,6 @@ export type appLanguagesItem = {
 export type CreateAppStep1Item = {
   title: string
   provider: string
-  leadPictureUri: string
   salesManagerId: string | null
   useCaseIds: string[] | useCasesItem[]
   descriptions: {
@@ -192,16 +191,6 @@ export const apiSlice = createApi({
         body,
       }),
     }),
-    updateapp: builder.mutation<void, any>({
-      query: (data: any) => {
-        const { body, appId } = data
-        return {
-          url: `/api/apps/AppReleaseProcess/updateapp/${appId}`,
-          method: 'PUT',
-          body,
-        }
-      },
-    }),
     submitapp: builder.mutation<any, string>({
       query: (appId) => ({
         url: `/api/apps/appreleaseprocess/${appId}/submit`,
@@ -323,7 +312,6 @@ export const {
   useFetchUseCasesQuery,
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
-  useUpdateappMutation,
   useSubmitappMutation,
   useUpdateDocumentUploadMutation,
   useFetchAppStatusQuery,

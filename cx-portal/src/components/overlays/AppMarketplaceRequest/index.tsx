@@ -24,6 +24,7 @@ import {
   Button,
   Typography,
   Checkbox,
+  OrderStatusButton,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -37,6 +38,7 @@ import {
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay/actions'
 import './AppMarketplaceRequest.scss'
+import { OrderStatusType } from 'components/pages/AppDetail/components/AppDetailHeader'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -133,6 +135,13 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
               </li>
             ))}
         </ul>
+        <Typography variant="body2" sx={{ marginBottom: '15px' }}>
+          {t('content.appMarketplace.statusHeading')}
+        </Typography>
+        <OrderStatusButton
+          status={'INACTIVE' as OrderStatusType}
+          label={t('content.appdetail.subscribe')}
+        />
       </DialogContent>
 
       <DialogActions>

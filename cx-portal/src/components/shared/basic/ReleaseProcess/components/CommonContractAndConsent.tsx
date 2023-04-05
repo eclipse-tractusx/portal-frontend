@@ -123,6 +123,7 @@ export default function CommonContractAndConsent({
     agreements: [],
   })
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -288,6 +289,7 @@ export default function CommonContractAndConsent({
   }
 
   const handleSave = async (data: Object, buttonLabel: string) => {
+    setLoading(true)
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
     )
@@ -328,6 +330,7 @@ export default function CommonContractAndConsent({
         .catch(() => {
           setContractNotification(true)
         })
+    setLoading(false)
   }
 
   const onBackIconClick = () => {
@@ -387,7 +390,8 @@ export default function CommonContractAndConsent({
                     trigger,
                     errors,
                     name: item.agreementId,
-                    defaultValues: item.consentStatus,
+                    defaultValues:
+                      item.consentStatus === ConsentStatusEnum.ACTIVE,
                     label: '',
                     type: 'checkbox',
                     rules: {
@@ -426,26 +430,28 @@ export default function CommonContractAndConsent({
             </Grid>
           </div>
         ))}
-        <ConnectorFormInputFieldImage
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="uploadImageConformity"
-          acceptFormat={{
-            'application/pdf': ['.pdf'],
-          }}
-          label={imageFieldLabel}
-          noteDescription={imageFieldNoDescription}
-          note={imageFieldNote}
-          requiredText={imageFieldRequiredText}
-          handleDownload={handleDownload}
-          handleDelete={(documentId: string) => {
-            deleteAppReleaseDocument(documentId)
-          }}
-          isRequired={documentRequired}
-        />
+        {documentRequired && (
+          <ConnectorFormInputFieldImage
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="uploadImageConformity"
+            acceptFormat={{
+              'application/pdf': ['.pdf'],
+            }}
+            label={imageFieldLabel}
+            noteDescription={imageFieldNoDescription}
+            note={imageFieldNote}
+            requiredText={imageFieldRequiredText}
+            handleDownload={handleDownload}
+            handleDelete={(documentId: string) => {
+              deleteAppReleaseDocument(documentId)
+            }}
+            isRequired={documentRequired}
+          />
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={contractNotification}
@@ -462,6 +468,7 @@ export default function CommonContractAndConsent({
           onContractConsentSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         isValid={isValid}
+        loader={loading}
       />
       <PageSnackbar
         autoClose
