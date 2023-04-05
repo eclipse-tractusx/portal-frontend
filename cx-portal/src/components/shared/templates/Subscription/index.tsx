@@ -32,12 +32,15 @@ import {
   PageSnackbar,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
-import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
-import { currentSuccessType } from 'features/appSubscription/slice'
+import {
+  SubscriptionContent,
+  SubscriptionRequestBody,
+} from 'features/appSubscription/appSubscriptionApiSlice'
 import { currentProviderSuccessType } from 'features/serviceProvider/slice'
 import './Subscription.scss'
 import SubscriptionElements from './SubscriptionElements'
 import { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import { RootState } from 'features/store'
 
 enum FilterType {
   REQUEST = 'request',
@@ -58,7 +61,7 @@ enum SortType {
 
 interface SubscriptionType {
   providerSuccessMessage: string
-  fetchQuery: (Obj: SubscriptionRequestType) => any
+  fetchQuery: (Obj: SubscriptionRequestType | SubscriptionRequestBody) => any
   headline: string
   subHeading: string
   description: string
@@ -74,6 +77,7 @@ interface SubscriptionType {
     active: string
   }
   doNotShowAutoSetup?: boolean
+  currentSuccessType: (state: RootState) => any
 }
 
 export default function Subscription({
@@ -88,6 +92,7 @@ export default function Subscription({
   sortOptionLabels,
   tabLabels,
   doNotShowAutoSetup,
+  currentSuccessType,
 }: SubscriptionType) {
   const dispatch = useDispatch()
   const theme = useTheme()
