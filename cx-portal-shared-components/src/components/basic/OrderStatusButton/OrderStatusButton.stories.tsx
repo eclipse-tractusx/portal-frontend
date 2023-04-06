@@ -21,7 +21,6 @@
 import { ComponentStory } from '@storybook/react'
 
 import { OrderStatusButton as Component } from '.'
-import { useTheme } from '@mui/material'
 
 export default {
   title: 'Buttons',
