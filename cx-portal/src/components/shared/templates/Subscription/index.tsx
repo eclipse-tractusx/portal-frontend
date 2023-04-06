@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useCallback, useMemo, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -30,6 +30,7 @@ import {
   ViewSelector,
   SortOption,
   PageSnackbar,
+  LoadMoreButton,
 } from 'cx-portal-shared-components'
 import SortIcon from '@mui/icons-material/Sort'
 import {
@@ -59,6 +60,126 @@ enum SortType {
   OFFER_IDS_ASC = 'OfferIdAsc',
 }
 
+enum ViewActionEnum {
+  STATUSID = 'STATUSID',
+  SORTOPTION = 'SORTOPTION',
+}
+
+enum ActionKind {
+  SET_SEARCH_EXPR = 'SET_SEARCH_EXPR',
+  SET_SHOW_MODAL = 'SET_SHOW_MODAL',
+  SET_SELECTED = 'SET_SELECTED',
+  SET_SORT_OPTION = 'SET_SORT_OPTION',
+  SET_CARD_SUBSCRIPTION = 'SET_CARD_SUBSCRIPTION',
+  SET_SERVICE_PROVIDER_SUCCESS = 'SET_SERVICE_PROVIDER_SUCCESS',
+  SET_PAGE = 'SET_PAGE',
+  SET_STATUS_ID = 'SET_STATUS_ID',
+  SET_SORTING_TYPE = 'SET_SORTING_TYPE',
+  SET_FETCH_ARGS = 'SET_FETCH_ARGS',
+  SET_PAGE_FETCH_ARGS = 'SET_PAGE_FETCH_ARGS',
+  SET_PAGE_STATUS_FETCH_ARGS = 'SET_PAGE_STATUS_FETCH_ARGS',
+  SET_SUBSCRIPTION = 'SET_SUBSCRIPTION',
+  SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION = 'SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION',
+  SET_PAGE_SORTING_TYPE_FETCH_ARGS = 'SET_PAGE_SORTING_TYPE_FETCH_ARGS',
+  SET_PAGE_STATUS_SORTING_FETCH_ARGS = 'SET_PAGE_STATUS_SORTING_FETCH_ARGS',
+}
+
+type State = {
+  searchExpr: string
+  showModal: boolean
+  selected: string
+  sortOption: string
+  cardSubscriptions: SubscriptionContent[]
+  serviceProviderSuccess: boolean
+  page: number
+  statusId: string
+  sortingType: string
+  fetchArgs: SubscriptionRequestType | SubscriptionRequestBody
+  subscriptions: SubscriptionContent[]
+}
+
+type Action = {
+  type: string
+  payload: any
+}
+
+const initialState: State = {
+  searchExpr: '',
+  showModal: false,
+  selected: FilterType.REQUEST,
+  sortOption: SortType.CUSTOMER,
+  cardSubscriptions: [],
+  serviceProviderSuccess: false,
+  page: 0,
+  statusId: StatusIdType.PENDING,
+  sortingType: SortType.COMPANY_NAME_DESC,
+  fetchArgs: {
+    page: 0,
+    statusId: StatusIdType.PENDING,
+    sortingType: SortType.COMPANY_NAME_DESC,
+  },
+  subscriptions: [],
+}
+
+function reducer(state: State, { type, payload }: Action) {
+  switch (type) {
+    case ActionKind.SET_SEARCH_EXPR:
+      return { ...state, searchExpr: payload }
+    case ActionKind.SET_SHOW_MODAL:
+      return { ...state, showModal: payload }
+    case ActionKind.SET_SELECTED:
+      return { ...state, selected: payload }
+    case ActionKind.SET_SORT_OPTION:
+      return { ...state, sortOption: payload }
+    case ActionKind.SET_CARD_SUBSCRIPTION:
+      return { ...state, cardSubscriptions: payload }
+    case ActionKind.SET_SUBSCRIPTION:
+      return { ...state, subscriptions: payload }
+    case ActionKind.SET_SERVICE_PROVIDER_SUCCESS:
+      return { ...state, serviceProviderSuccess: payload }
+    case ActionKind.SET_PAGE:
+      return { ...state, page: payload }
+    case ActionKind.SET_SORTING_TYPE:
+      return { ...state, sortingType: payload }
+    case ActionKind.SET_FETCH_ARGS:
+      return { ...state, fetchArgs: payload }
+    case ActionKind.SET_PAGE_STATUS_SORTING_FETCH_ARGS:
+      return {
+        ...state,
+        page: payload.page,
+        statusId: payload.statusId,
+        fetchArgs: payload.fetchArgs,
+        sortingType: payload.sortingType,
+      }
+    case ActionKind.SET_PAGE_SORTING_TYPE_FETCH_ARGS:
+      return {
+        ...state,
+        page: payload.page,
+        sortingType: payload.sortingType,
+        fetchArgs: payload.fetchArgs,
+      }
+    case ActionKind.SET_PAGE_FETCH_ARGS:
+      return {
+        ...state,
+        page: payload.page,
+        fetchArgs: payload.fetchArgs,
+      }
+    case ActionKind.SET_STATUS_ID:
+      return {
+        ...state,
+        statusId: payload,
+      }
+    case ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION:
+      return {
+        ...state,
+        subscriptions: payload.subscriptions,
+        cardSubscriptions: payload.cardSubscriptions,
+      }
+    default:
+      return state
+  }
+}
+
 interface SubscriptionType {
   providerSuccessMessage: string
   fetchQuery: (Obj: SubscriptionRequestType | SubscriptionRequestBody) => any
@@ -78,6 +199,7 @@ interface SubscriptionType {
   }
   doNotShowAutoSetup?: boolean
   currentSuccessType: (state: RootState) => any
+  loadMoreButtonText?: string
 }
 
 export default function Subscription({
@@ -93,54 +215,122 @@ export default function Subscription({
   tabLabels,
   doNotShowAutoSetup,
   currentSuccessType,
+  loadMoreButtonText = 'Load More',
 }: SubscriptionType) {
   const dispatch = useDispatch()
   const theme = useTheme()
-  const [searchExpr, setSearchExpr] = useState<string>('')
-  const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>(FilterType.REQUEST)
-  const [sortOption, setSortOption] = useState<string>(SortType.CUSTOMER)
-  const [cardSubscriptions, setCardSubscriptions] = useState<
-    SubscriptionContent[]
-  >([])
-  const [serviceProviderSuccess, setServiceProviderSuccess] =
-    useState<boolean>(false)
-
-  let statusId = ''
-
-  if (selected === FilterType.REQUEST) {
-    statusId = StatusIdType.PENDING
-  } else if (selected === FilterType.ACTIVE) {
-    statusId = StatusIdType.ACTIVE
-  }
-
-  let sortingType = SortType.COMPANY_NAME_DESC
-  if (sortOption === SortType.OFFER) {
-    sortingType = SortType.OFFER_IDS_ASC
-  }
-
-  const { data, refetch } = fetchQuery({
-    page: 0,
-    statusId: statusId,
-    sortingType: sortingType,
-  })
-  const subscriptions = data && data.content
-  useEffect(() => {
-    subscriptions && setCardSubscriptions(subscriptions)
-  }, [subscriptions])
-
-  const success: boolean = useSelector(currentSuccessType)
-  useEffect(() => {
-    refetch()
-  }, [success, refetch])
-
+  const [
+    {
+      searchExpr,
+      showModal,
+      selected,
+      sortOption,
+      cardSubscriptions,
+      serviceProviderSuccess,
+      page,
+      statusId,
+      sortingType,
+      fetchArgs,
+      subscriptions,
+    },
+    setState,
+  ] = useReducer(reducer, initialState)
+  const { data, refetch, isFetching } = fetchQuery(fetchArgs)
   const isSuccess = useSelector(currentProviderSuccessType)
+  const success: boolean = useSelector(currentSuccessType)
+
   useEffect(() => {
-    isSuccess && setServiceProviderSuccess(true)
-  }, [isSuccess])
+    if (data && data?.content) {
+      setState({
+        type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
+        payload: {
+          subscriptions:
+            data?.meta.page === 0
+              ? data.content
+              : subscriptions.concat(data.content),
+          cardSubscriptions:
+            data?.meta.page === 0
+              ? data.content
+              : subscriptions.concat(data.content),
+        },
+      })
+    }
+    // eslint-disable-next-line
+  }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setSelected(e.currentTarget.value)
+    setState({
+      type: ActionKind.SET_SORTING_TYPE,
+      payload:
+        e.currentTarget.value === FilterType.REQUEST
+          ? StatusIdType.PENDING
+          : StatusIdType.ACTIVE,
+    })
+    setState({ type: ActionKind.SET_SELECTED, payload: e.currentTarget.value })
+    resetCardsAndSetFetchArgs(
+      e.currentTarget.value === FilterType.REQUEST
+        ? StatusIdType.PENDING
+        : StatusIdType.ACTIVE,
+      ViewActionEnum.STATUSID
+    )
+  }
+
+  const resetCardsAndSetFetchArgs = (value: string, type: string) => {
+    setState({
+      type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
+      payload: {
+        subscriptions: [],
+        cardSubscriptions: [],
+      },
+    })
+    setState({
+      type: ActionKind.SET_PAGE_STATUS_SORTING_FETCH_ARGS,
+      payload: {
+        page: 0,
+        statusId: type === ViewActionEnum.STATUSID ? value : statusId,
+        sortingType: type === ViewActionEnum.SORTOPTION ? value : sortingType,
+        fetchArgs: {
+          page: 0,
+          statusId: type === ViewActionEnum.STATUSID ? value : statusId,
+          sortingType: type === ViewActionEnum.SORTOPTION ? value : sortingType,
+        },
+      },
+    })
+  }
+
+  const setSortOptionFunc = (value: string) => {
+    setState({
+      type: ActionKind.SET_SORT_OPTION,
+      payload: value,
+    })
+    resetCardsAndSetFetchArgs(
+      value === SortType.OFFER
+        ? SortType.OFFER_IDS_ASC
+        : SortType.COMPANY_NAME_DESC,
+      ViewActionEnum.SORTOPTION
+    )
+  }
+
+  useEffect(() => {
+    isSuccess &&
+      setState({
+        type: ActionKind.SET_SERVICE_PROVIDER_SUCCESS,
+        payload: true,
+      })
+  }, [isSuccess])
+
+  const nextPage = () => {
+    setState({
+      type: ActionKind.SET_PAGE_FETCH_ARGS,
+      payload: {
+        page: page + 1,
+        fetchArgs: {
+          page: page + 1,
+          statusId: statusId,
+          sortingType: sortingType,
+        },
+      },
+    })
   }
 
   const sortOptions = [
@@ -167,34 +357,34 @@ export default function Subscription({
     },
   ]
 
+  useEffect(() => {
+    refetch()
+  }, [success, refetch])
+
   const debouncedFilter = useMemo(
     () =>
       debounce((expr: string) => {
         subscriptions &&
-          setCardSubscriptions(
-            expr
+          setState({
+            type: ActionKind.SET_CARD_SUBSCRIPTION,
+            payload: expr
               ? subscriptions &&
-                  subscriptions.filter((card: SubscriptionContent) =>
-                    card.serviceName.toLowerCase().includes(expr.toLowerCase())
-                  )
-              : subscriptions
-          )
+                subscriptions.filter((card: SubscriptionContent) =>
+                  card.serviceName.toLowerCase().includes(expr.toLowerCase())
+                )
+              : subscriptions,
+          })
       }, 300),
     [subscriptions]
   )
 
   const searchDataFn = useCallback(
     (expr: string) => {
-      setSearchExpr(expr)
+      setState({ type: 'SET_SEARCH_EXPR', payload: expr })
       debouncedFilter(expr)
     },
     [debouncedFilter]
   )
-
-  const setSortOptionFunc = (value: string) => {
-    setSortOption(value)
-    setShowModal(false)
-  }
 
   return (
     <main className="appSubscription">
@@ -237,12 +427,16 @@ export default function Subscription({
             </div>
             <div
               className="filterSection"
-              onMouseLeave={() => setShowModal(false)}
+              onMouseLeave={() =>
+                setState({ type: ActionKind.SET_SHOW_MODAL, payload: false })
+              }
             >
               <ViewSelector activeView={selected} views={filterButtons} />
               <div className="iconSection">
                 <SortIcon
-                  onClick={() => setShowModal(true)}
+                  onClick={() =>
+                    setState({ type: ActionKind.SET_SHOW_MODAL, payload: true })
+                  }
                   sx={{
                     fontSize: 20,
                     color: '#939393',
@@ -272,12 +466,30 @@ export default function Subscription({
               <SubscriptionElements subscriptions={cardSubscriptions} />
             )}
           </div>
+          {!isFetching &&
+            subscriptions?.length &&
+            data?.meta &&
+            data?.meta?.totalPages > page + 1 && (
+              <div
+                style={{
+                  textAlign: 'center',
+                  marginTop: '30px',
+                }}
+              >
+                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+              </div>
+            )}
         </div>
       </div>
       {
         <PageSnackbar
           open={serviceProviderSuccess}
-          onCloseNotification={() => setServiceProviderSuccess(false)}
+          onCloseNotification={() =>
+            setState({
+              type: ActionKind.SET_SERVICE_PROVIDER_SUCCESS,
+              payload: false,
+            })
+          }
           severity="success"
           description={providerSuccessMessage}
           showIcon={true}
