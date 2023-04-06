@@ -51,7 +51,22 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
       <>
         <BoardHeader item={item} />
         <div className="product-description">
-          <Typography variant="body2">{item.longDescription}</Typography>
+          {['longDescriptionTitleEN', 'longDescriptionTitleDE'].map((desc) => (
+            <div key={desc}>
+              <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+                <span style={{ fontWeight: 'bold' }}>
+                  {t(`content.adminboardDetail.${desc}`)}
+                </span>
+                {
+                  item?.description?.filter(
+                    (lang: { languageCode: string }) =>
+                      lang.languageCode ===
+                      (desc === 'longDescriptionTitleEN' ? 'en' : 'de')
+                  )[0]?.longDescription
+                }
+              </Typography>
+            </div>
+          ))}
         </div>
         {images && <BoardImageGallery images={images} />}
         <BoardPrivacy item={item} />

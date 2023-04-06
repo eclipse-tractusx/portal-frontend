@@ -25,6 +25,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  LoadingButton,
   PageSnackbar,
 } from 'cx-portal-shared-components'
 import { UserRoles } from './UserRoles'
@@ -82,6 +83,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const [addUserIdp] = useAddUserIdpMutation()
   const [status, setStatus] = useState<AddUserState>(AddUserState.NONE)
   const [valid, setValid] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const fields: IHashMap<string> = {}
   const [data, setData] = useState(fields)
 
@@ -117,17 +119,16 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   const handleConfirm = async () => {
     dispatch(setAddUserSuccess(false))
     dispatch(setAddUserError(false))
+    setLoading(true)
     const addUser = { ...usersToAdd, roles: rolesToAdd }
     addUser.userName = addUser.email
     try {
-      const response =
-        idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
-          ? await addUserIdp({
-              identityProviderId: idp.identityProviderId,
-              user: addUser,
-            }).unwrap()
-          : await addTenantUsers([addUser]).unwrap()
-      console.log('response', response)
+      idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
+        ? await addUserIdp({
+            identityProviderId: idp.identityProviderId,
+            user: addUser,
+          }).unwrap()
+        : await addTenantUsers([addUser]).unwrap()
       setStatus(AddUserState.SUCCESS)
     } catch (err) {
       setStatus(AddUserState.ERROR)
@@ -139,13 +140,9 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
   }
 
   const setField = (key: string, value: string) => {
-    //console.log('usersToAdd', usersToAdd)
-    //console.log('rolesToAdd', rolesToAdd)
-    //console.log('data', data)
     const updateData = { ...data }
     updateData[key] = value
     setData(updateData)
-    //console.log('update', updateData)
     dispatch(setUsersToAdd(updateData))
   }
 
@@ -175,9 +172,23 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('global.actions.cancel')}
         </Button>
-        <Button variant="contained" disabled={!valid} onClick={handleConfirm}>
-          {t('global.actions.confirm')}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator="Loading ..."
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button variant="contained" disabled={!valid} onClick={handleConfirm}>
+            {t('global.actions.confirm')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )

@@ -51,7 +51,9 @@ export default function AppDetailContentDetails({
       <>
         <AppDetailHeader item={item} />
         <div className="product-description">
-          <Typography variant="body2">{item.longDescription}</Typography>
+          <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+            {item.longDescription}
+          </Typography>
         </div>
         {images && <AppDetailImageGallery images={images} />}
         <AppDetailPrivacy item={item} />
