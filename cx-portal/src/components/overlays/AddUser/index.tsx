@@ -26,7 +26,7 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import {
   useFetchIDPListQuery,
   IdentityProvider,

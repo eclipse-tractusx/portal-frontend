@@ -25,7 +25,7 @@ import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import './style.scss'
 
 export default function IDPManagement() {

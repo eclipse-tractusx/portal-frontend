@@ -26,26 +26,21 @@ export enum LogLevel {
   DEBUG = ' DEBUG',
 }
 
-export const logtime = (date?: number) =>
-  new Date(date || Date.now()).toISOString().substring(11, 19)
-
-export const log = (level: LogLevel, message: string, data?: any) =>
-  console.log(`${logtime()} ${level} ${message}`, data || '')
-
-export const info = (message: string, data?: any) =>
-  log(LogLevel.INFO, message, data)
-export const warn = (message: string, data?: any) =>
-  log(LogLevel.WARN, message, data)
-export const error = (message: string, data?: any) =>
-  log(LogLevel.ERROR, message, data)
-
 const LogService = {
-  LogLevel,
-  logtime,
-  log,
-  info,
-  warn,
-  error,
+  logtime: (date?: number) =>
+    new Date(date || Date.now()).toISOString().substring(11, 19),
+
+  log: (level: LogLevel, message: string, data?: any) =>
+    console.log(`${LogService.logtime()} ${level} ${message}`, data || ''),
+
+  info: (message: string, data?: any) =>
+    LogService.log(LogLevel.INFO, message, data),
+  warn: (message: string, data?: any) =>
+    LogService.log(LogLevel.WARN, message, data),
+  error: (message: string, data?: any) =>
+    LogService.log(LogLevel.ERROR, message, data),
 }
+
+export const { logtime, log, info, warn, error } = LogService
 
 export default LogService

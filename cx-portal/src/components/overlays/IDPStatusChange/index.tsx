@@ -10,7 +10,7 @@ import { useEnableIDPMutation } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 
 type Status = { error: boolean; success: boolean }
 

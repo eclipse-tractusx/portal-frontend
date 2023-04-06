@@ -35,7 +35,7 @@ import {
   useFetchServiceQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import './ServiceRequest.scss'
 
 export default function ServiceRequest({ id }: { id: string }) {

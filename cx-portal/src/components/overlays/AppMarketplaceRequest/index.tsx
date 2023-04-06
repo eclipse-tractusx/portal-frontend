@@ -35,7 +35,7 @@ import {
   useFetchAppDetailsQuery,
 } from 'features/apps/apiSlice'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import './AppMarketplaceRequest.scss'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {

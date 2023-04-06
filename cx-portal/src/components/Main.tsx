@@ -25,10 +25,11 @@ import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
 import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { useEffect } from 'react'
 import { OVERLAYS } from 'types/Constants'
 import './styles/main.scss'
+import MainNotify from './MainNotify'
 
 export default function Main() {
   document.title = useTranslation().t('title')
@@ -49,6 +50,7 @@ export default function Main() {
       <Outlet />
       <Footer pages={AccessService.footerMenu()} />
       <MainOverlay />
+      <MainNotify />
     </>
   )
 }
