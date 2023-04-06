@@ -172,19 +172,31 @@ function reducer(state: State, { type, payload }: Action) {
     case ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION:
       return {
         ...state,
-        subscriptions: payload?.meta
-          ? payload?.meta.page === 0
-            ? payload.content
-            : state.subscriptions.concat(payload.content)
-          : [],
-        cardSubscriptions: payload?.meta
-          ? payload?.meta.page === 0
-            ? payload.content
-            : state.subscriptions.concat(payload.content)
-          : [],
+        subscriptions: setData(state, payload),
+        cardSubscriptions: setData(state, payload),
       }
     default:
       return state
+  }
+}
+
+const setData = (
+  state: {
+    subscriptions: SubscriptionContent[]
+  },
+  payload: {
+    meta: {
+      page: number
+    }
+    content: SubscriptionContent[]
+  }
+) => {
+  if (payload && payload.meta) {
+    return payload.meta.page === 0
+      ? payload.content
+      : state.subscriptions.concat(payload.content)
+  } else {
+    return []
   }
 }
 
