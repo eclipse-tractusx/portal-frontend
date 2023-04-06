@@ -172,8 +172,16 @@ function reducer(state: State, { type, payload }: Action) {
     case ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION:
       return {
         ...state,
-        subscriptions: payload.subscriptions,
-        cardSubscriptions: payload.cardSubscriptions,
+        subscriptions: payload?.meta
+          ? payload?.meta.page === 0
+            ? payload.content
+            : state.subscriptions.concat(payload.content)
+          : [],
+        cardSubscriptions: payload?.meta
+          ? payload?.meta.page === 0
+            ? payload.content
+            : state.subscriptions.concat(payload.content)
+          : [],
       }
     default:
       return state
@@ -243,19 +251,9 @@ export default function Subscription({
     if (data && data?.content) {
       setState({
         type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
-        payload: {
-          subscriptions:
-            data?.meta.page === 0
-              ? data.content
-              : subscriptions.concat(data.content),
-          cardSubscriptions:
-            data?.meta.page === 0
-              ? data.content
-              : subscriptions.concat(data.content),
-        },
+        payload: data,
       })
     }
-    // eslint-disable-next-line
   }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -278,10 +276,7 @@ export default function Subscription({
   const resetCardsAndSetFetchArgs = (value: string, type: string) => {
     setState({
       type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
-      payload: {
-        subscriptions: [],
-        cardSubscriptions: [],
-      },
+      payload: [],
     })
     setState({
       type: ActionKind.SET_PAGE_STATUS_SORTING_FETCH_ARGS,
