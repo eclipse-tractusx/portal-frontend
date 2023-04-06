@@ -18,17 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import { slice as registration } from './registration/slice'
-import { slice as user } from './userDeprecated/slice'
-import { slice as userOwn } from './userOwn/slice'
+import { useSelector } from 'react-redux'
+import { PageSnackbar, PageSnackbarStack } from 'cx-portal-shared-components'
+import { notifySelector } from 'features/control/notify'
 
-export const reducer = combineReducers({
-  user: user.reducer,
-  registration: registration.reducer,
-  userOwn: userOwn.reducer,
-})
-
-const Reducer = { reducer }
-
-export default Reducer
+export default function MainNotify() {
+  const notify = useSelector(notifySelector)
+  return (
+    <div style={{ zIndex: 9999 }}>
+      <PageSnackbarStack>
+        {notify.map((item) => (
+          <PageSnackbar
+            key={item.toString()}
+            severity={item.severity}
+            title={item.title}
+            description={`${item.msg} ${
+              item.data
+                ? Object.entries(item.data)
+                    .filter((entry) => entry[0] === 'status')
+                    .map((entry) => entry[0] + '=' + entry[1])
+                : ''
+            }`}
+            open={true}
+            showIcon
+          />
+        ))}
+      </PageSnackbarStack>
+    </div>
+  )
+}

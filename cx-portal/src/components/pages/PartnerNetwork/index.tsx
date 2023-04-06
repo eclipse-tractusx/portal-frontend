@@ -27,7 +27,7 @@ import {
 import { PageHeader, PageLoadingTable } from 'cx-portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { updatePartnerSelector } from 'features/control/updatesSlice'
+import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import Patterns from 'types/Patterns'

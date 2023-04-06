@@ -380,7 +380,7 @@ export default function OfferCard() {
                       patternKey="shortDescriptionEN"
                       patternEN={Patterns.offerCard.shortDescriptionEN}
                       patternDE={Patterns.offerCard.shortDescriptionDE}
-                      isRequired={false}
+                      isRequired={true}
                       rules={{
                         required:
                           t(`step1.${desc}`) +

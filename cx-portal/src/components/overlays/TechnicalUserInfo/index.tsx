@@ -26,7 +26,7 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 

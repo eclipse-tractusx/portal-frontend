@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import SubscriptionElements from './SubscriptionElements'
 import {

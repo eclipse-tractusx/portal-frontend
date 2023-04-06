@@ -22,6 +22,10 @@ import { ConsentStatusEnum } from './apiSlice'
 
 export const name = 'admin/appManagement'
 
+export enum ErrorType {
+  REQUIRED = 'required',
+}
+
 export type SearchInputState = {
   open: boolean
   text: string

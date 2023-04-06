@@ -27,7 +27,7 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
 

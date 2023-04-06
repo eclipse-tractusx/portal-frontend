@@ -26,7 +26,7 @@ import {
 } from 'cx-portal-shared-components'
 import { fetchAny } from 'features/admin/userOwn/actions'
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'

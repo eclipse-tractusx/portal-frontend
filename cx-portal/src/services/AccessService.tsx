@@ -27,7 +27,7 @@ import ActivateSubscription from 'components/overlays/ActivateSubscription'
 import { AddUser } from 'components/overlays/AddUser'
 import NewsDetail from 'components/overlays/NewsDetail'
 import UserInfo from 'components/overlays/UserInfo'
-import { OverlayState } from 'features/control/overlay/types'
+import { OverlayState } from 'features/control/overlay'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,

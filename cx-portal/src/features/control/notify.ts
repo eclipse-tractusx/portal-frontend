@@ -18,17 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import { slice as licenses } from './licenses/slice'
-import { slice as news } from './news/slice'
-import { slice as search } from './search/slice'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export const reducer = combineReducers({
-  licenses: licenses.reducer,
-  news: news.reducer,
-  search: search.reducer,
+const name = 'control/notify'
+
+export enum SeverityType {
+  ERROR = 'error',
+  SUCCESS = 'success',
+}
+
+export type Notify = {
+  severity: SeverityType
+  title: string
+  msg?: string
+  data?: object | string | number | boolean
+}
+
+const initialState: Array<Notify> = []
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    enq: (state, action: PayloadAction<Notify>) => [...state, action.payload],
+    deq: (state) => state.slice(1),
+  },
 })
 
-const Reducer = { reducer }
+export const { enq, deq } = slice.actions
 
-export default Reducer
+export const notifySelector = (state: RootState): Array<Notify> =>
+  state.control.notify
+
+export default slice.reducer

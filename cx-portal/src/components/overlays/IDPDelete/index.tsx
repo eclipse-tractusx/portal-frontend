@@ -12,7 +12,7 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 
 import { useTranslation, Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useRemoveIDPMutation } from 'features/admin/idpApiSlice'
 
 import './idpdelete.scss'

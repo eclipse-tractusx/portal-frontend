@@ -34,7 +34,7 @@ import {
 } from 'features/admin/appuserApiSlice'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { closeOverlay, show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

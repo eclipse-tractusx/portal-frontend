@@ -21,7 +21,7 @@
 import AppDetailContentDetails from 'components/pages/AppDetail/AppDetailContentDetails'
 import { DialogContent, DialogHeader } from 'cx-portal-shared-components'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 

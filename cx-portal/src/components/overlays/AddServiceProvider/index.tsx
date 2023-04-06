@@ -27,7 +27,7 @@ import {
   LoadingButton,
   PageSnackbar,
 } from 'cx-portal-shared-components'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'

@@ -49,11 +49,18 @@
   },
   "add": {
     "title": "New IdP Connection",
-    "subtitle": "Enter an IdP name and choose the type to start the configuration"
+    "subtitle": "Enter an IdP name and choose the type to start the configuration",
+    "short": "Create IdP"
+  },
+  "delete": {
+    "title": "Delete IdP Connection",
+    "subtitle": "Permanently delete this Identity Provider",
+    "short": "Delete IdP"
   },
   "edit": {
     "title": "Edit Identity Provider Details",
-    "subtitle": "Configure the connection details to your company IdP"
+    "subtitle": "Configure the connection details to your company IdP",
+    "short": "Update IdP"
   },
   "updatesuccess": {
     "title": "Identity Provider Configured",
@@ -65,6 +72,7 @@
   "enable": {
     "title": "Enable Identity Provider",
     "subtitle": "This requires to link at least one user ID",
+    "short": "Enable IdP",
     "desc": "Now link your existing user ID so you keep all permissions. Specify the user ID (not name) for your user at the new IdP.",
     "current": "You are currently logged in as: {{ name }}",
     "label": "Your User ID",
@@ -78,12 +86,14 @@
   "disable": {
     "title": "Disable Identity Provider",
     "subtitle": "You are about to disable an Identity Provider",
+    "short": "Disable IdP",
     "desc": "When you disable your Identity Provider you and other people of your company won't be able to login through this IDP.",
     "ask": "Are you sure you want to proceed."
   },
   "users": {
     "title": "Link existing users to new IdP",
     "subtitle": "Make sure users can continue working",
+    "short": "Link IdP Users",
     "desc1": "With the user migration function you can migrate/connect users created under the Keycloak shared IdP to your own IdP. This ensures that all user data and settings stay in place and assigned to the correct user.",
     "desc2": "Download the user list; enhance the csv file with the unique user id (available in your own idp) and upload the csv again. With the upload of the own idp user id; the existing user accounts will get linked to the own idp user account with the login of the user on the CX platform.",
     "desc3": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
@@ -106,9 +116,8 @@
   },
   "state": {
     "fetching": "fetching users ...",
-    "error": "ERROR",
-    "success": "SUCCESS",
-    "NONE": "",
+    "error": "failed",
+    "success": "successful",
     "SUCCESS_VALID_FORMAT": "File format valid",
     "SUCCESS_UPLOAD_USERS": "Uploading users succeeded",
     "SUCCESS_DELETE_IDP": "IDP deleted successfully",
