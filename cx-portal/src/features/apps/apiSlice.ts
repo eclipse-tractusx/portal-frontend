@@ -57,8 +57,6 @@ export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
   INACTIVE = 'INACTIVE',
-  IN_REVIEW = 'IN_REVIEW',
-  CREATED = 'CREATED',
 }
 
 export enum SubscriptionStatusText {
@@ -72,6 +70,8 @@ export enum SubscriptionStatusText {
 export type SubscriptionStatusItem = {
   appId: string
   offerSubscriptionStatus: SubscriptionStatus
+  name: string
+  provider: string
 }
 
 export enum DocumentTypeText {
@@ -133,6 +133,17 @@ export type DocumentRequestData = {
   documentId: string
 }
 
+export type ActiveAppsData = {
+  id: string
+  name: string
+  shortDescription: string
+  provider: string
+  price: string
+  leadPictureId: string
+  useCases: string[]
+  status?: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -144,17 +155,19 @@ export const apiSlice = createApi({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
         const activeApps = await fetchWithBQ(`/api/apps/active`)
         if (activeApps.error) return { error: activeApps.error }
-        const data: any = activeApps.data
+        const data = activeApps.data as AppMarketplaceApp[]
         const subscriptionStatus = await fetchWithBQ(
           `/api/apps/subscribed/subscription-status`
         )
-        const subscriptionData: any = subscriptionStatus.data
-        data.forEach(async (appItem: any) => {
-          subscriptionData.forEach(async (subscriptionItem: any) => {
-            if (appItem.id === subscriptionItem.appId)
-              appItem.subscriptionStatus =
-                subscriptionItem.offerSubscriptionStatus
-          })
+        const subscriptionData =
+          subscriptionStatus.data as SubscriptionStatusItem[]
+        data.forEach(async (appItem: AppMarketplaceApp) => {
+          subscriptionData.forEach(
+            async (subscriptionItem: SubscriptionStatusItem) => {
+              if (appItem.id === subscriptionItem.appId)
+                appItem.status = subscriptionItem.offerSubscriptionStatus
+            }
+          )
         })
         return { data: data }
       },

@@ -18,84 +18,41 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import { Button, ButtonProps } from '../Button'
 import { Typography } from '../Typography'
 
+interface ButtonInputData {
+  iconLabel: string
+  buttonLabel: string
+  zIndex: number
+  backgroundColor: string
+}
+
 interface OrderStatusButtonProps extends ButtonProps {
-  status: 'INACTIVE' | 'ACTIVE' | 'PENDING'
   label: string
+  buttonData: ButtonInputData[]
   onButtonClick?: React.MouseEventHandler
 }
 
-interface ButtonStyleType {
-  color: ButtonProps['color']
-  background1: string
-  background2: string
-  background3: string
-}
-
 export const OrderStatusButton = ({
-  status,
   label,
-  onButtonClick,
   color,
+  buttonData,
+  onButtonClick,
   ...props
 }: OrderStatusButtonProps) => {
-  const [buttonStyle, setButtonStyle] = useState<ButtonStyleType>({
-    color: 'primary',
-    background1: '#e1e1e1',
-    background2: '#e1e1e1',
-    background3: '#f9f9f9',
-  })
-
   const handleClick = (e: any) => {
     onButtonClick && onButtonClick(e)
   }
 
-  useEffect(() => {
-    switch (status) {
-      case 'INACTIVE':
-        setButtonStyle({
-          color: color,
-          background1: '#e1e1e1',
-          background2: '#f3f3f3',
-          background3: '#f9f9f9',
-        })
-        break
-      case 'ACTIVE':
-        setButtonStyle({
-          color: 'success',
-          background1: '#f5f9ee',
-          background2: '#f5f9ee',
-          background3: '#f5f9ee',
-        })
-        break
-      case 'PENDING':
-        setButtonStyle({
-          color: 'warning',
-          background1: '#f5f9ee',
-          background2: '#f3f3f3',
-          background3: '#f9f9f9',
-        })
-        break
-      default:
-        setButtonStyle({
-          color: 'primary',
-          background1: '#e1e1e1',
-          background2: '#f3f3f3',
-          background3: '#f9f9f9',
-        })
-    }
-  }, [status, color])
-
   const fetchButton = (
     zIndex: number,
-    background: string,
-    statusCondition: boolean,
-    ButtonDetail: { numberLabel: number; buttonLabel: string }
+    numberLabel: number,
+    isIcon: string,
+    buttonLabel: string,
+    background: string
   ) => {
     return (
       <Button
@@ -118,7 +75,7 @@ export const OrderStatusButton = ({
         }}
         {...props}
       >
-        {statusCondition ? (
+        {isIcon === 'number' ? (
           <Typography
             variant="label5"
             sx={{
@@ -134,14 +91,14 @@ export const OrderStatusButton = ({
               textAlign: 'center',
             }}
           >
-            {ButtonDetail.numberLabel}
+            {numberLabel}
           </Typography>
         ) : (
           <CheckCircleOutlinedIcon
             sx={{ color: '#0a5', fontSize: '20px', marginRight: '5px' }}
           />
         )}
-        <Typography variant="label4">{ButtonDetail.buttonLabel}</Typography>
+        <Typography variant="label4">{buttonLabel}</Typography>
       </Button>
     )
   }
@@ -158,7 +115,7 @@ export const OrderStatusButton = ({
       }}
     >
       <Button
-        color={buttonStyle.color}
+        color={color}
         onClick={handleClick}
         sx={{
           width: '100%',
@@ -169,17 +126,14 @@ export const OrderStatusButton = ({
       >
         {label}
       </Button>
-      {fetchButton(4, buttonStyle.background1, status === 'INACTIVE', {
-        numberLabel: 1,
-        buttonLabel: 'Subscribtion initiated',
-      })}
-      {fetchButton(3, buttonStyle.background2, status !== 'ACTIVE', {
-        numberLabel: 2,
-        buttonLabel: 'App Instance deployed',
-      })}
-      {fetchButton(2, buttonStyle.background2, status !== 'ACTIVE', {
-        numberLabel: 3,
-        buttonLabel: 'Activation, Notifications & credentials',
+      {buttonData.map((data: ButtonInputData, index: number) => {
+        return fetchButton(
+          data.zIndex,
+          index + 1,
+          data.iconLabel,
+          data.buttonLabel,
+          data.backgroundColor
+        )
       })}
     </Box>
   )

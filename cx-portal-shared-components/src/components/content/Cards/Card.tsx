@@ -228,8 +228,8 @@ export const Card = ({
             <Typography
               variant="body2"
               sx={{
-                top: '1em',
-                right: '-4.4em',
+                top: '20px',
+                right: '-80px',
                 color: '#fff',
                 display: 'block',
                 position: 'absolute',

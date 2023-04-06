@@ -29,6 +29,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { useTheme } from '@mui/material'
 import {
   AgreementRequest,
   useAddSubscribeAppMutation,
@@ -38,11 +39,11 @@ import {
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay/actions'
 import './AppMarketplaceRequest.scss'
-import { OrderStatusType } from 'components/pages/AppDetail/components/AppDetailHeader'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const theme = useTheme()
 
   const { data } = useFetchAppDetailsQuery(id ?? '')
   const { data: agreements } = useFetchAgreementsQuery(id ?? '')
@@ -54,6 +55,27 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
     dispatch(setSuccessType(true))
     dispatch(closeOverlay())
   }
+
+  const OrderStatusButtonData = [
+    {
+      iconLabel: 'number',
+      buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
+      zIndex: 4,
+      backgroundColor: theme.palette.buttons.darkGrey ?? '',
+    },
+    {
+      iconLabel: 'number',
+      buttonLabel: t('content.appdetail.buttons.appDeployed'),
+      zIndex: 3,
+      backgroundColor: theme.palette.buttons.lightGrey ?? '',
+    },
+    {
+      iconLabel: 'number',
+      buttonLabel: t('content.appdetail.buttons.activation'),
+      zIndex: 2,
+      backgroundColor: theme.palette.buttons.white ?? '',
+    },
+  ]
 
   const handleConfirmApp = async (id: string) => {
     try {
@@ -139,8 +161,9 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           {t('content.appMarketplace.statusHeading')}
         </Typography>
         <OrderStatusButton
-          status={OrderStatusType.INACTIVE as OrderStatusType}
+          color={'primary'}
           label={t('content.appdetail.subscribe')}
+          buttonData={OrderStatusButtonData}
         />
       </DialogContent>
 

@@ -21,6 +21,7 @@
 import { ComponentStory } from '@storybook/react'
 
 import { OrderStatusButton as Component } from '.'
+import { useTheme } from '@mui/material'
 
 export default {
   title: 'Buttons',
@@ -34,6 +35,26 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const OrderStatusButton = Template.bind({})
 OrderStatusButton.args = {
-  status: 'INACTIVE',
   label: 'Subscribe',
+  color: 'primary',
+  buttonData: [
+    {
+      iconLabel: 'number',
+      buttonLabel: 'Subscribtion initiated',
+      zIndex: 4,
+      backgroundColor: '#e1e1e1',
+    },
+    {
+      iconLabel: 'icon',
+      buttonLabel: 'App Instance deployed',
+      zIndex: 3,
+      backgroundColor: '#f3f3f3',
+    },
+    {
+      iconLabel: 'icon',
+      buttonLabel: 'Activation, Notifications & credentials',
+      zIndex: 2,
+      backgroundColor: '#f9f9f9',
+    },
+  ],
 }

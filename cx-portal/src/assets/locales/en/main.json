@@ -776,7 +776,14 @@
       "language": "Language",
       "subscribe": "Subscribe",
       "subscribed": "Subscribed",
-      "pending": "Requested",
+      "pending": "Pending",
+      "purchased": "Purchased",
+      "requested": "Requested",
+      "buttons": {
+        "subscribtionInit": "Subscribtion initiated",
+        "appDeployed": "App Instance deployed",
+        "activation": "Activation, Notifications & credentials"
+      },
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",

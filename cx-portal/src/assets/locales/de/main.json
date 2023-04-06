@@ -817,7 +817,14 @@
       "language": "Verfügbare App Sprachen",
       "subscribe": "Abonnieren",
       "subscribed": "Abonniert",
-      "pending": "Angefragt",
+      "pending": "Pending",
+      "purchased": "Purchased",
+      "requested": "Angefragt",
+      "buttons": {
+        "subscribtionInit": "Subscribtion initiated",
+        "appDeployed": "App Instance deployed",
+        "activation": "Activation, Notifications & credentials"
+      },
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",

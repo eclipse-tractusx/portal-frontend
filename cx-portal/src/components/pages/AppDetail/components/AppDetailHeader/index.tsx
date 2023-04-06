@@ -20,6 +20,7 @@
 
 import { useSelector, useDispatch } from 'react-redux'
 import { Typography, OrderStatusButton } from 'cx-portal-shared-components'
+import { useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { userSelector } from 'features/user/slice'
@@ -28,7 +29,10 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay/actions'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import {
+  SubscriptionStatus,
+  useFetchDocumentByIdMutation,
+} from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import { UseCaseType } from 'features/appManagement/types'
 
@@ -36,14 +40,16 @@ export interface AppDetailHeaderProps {
   item: AppDetails
 }
 
-export enum OrderStatusType {
-  INACTIVE = 'INACTIVE',
-  ACTIVE = 'ACTIVE',
-  PENDING = 'PENDING',
+export interface ButtonColorType {
+  color: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
+  background1: string
+  background2: string
+  background3: string
 }
 
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
+  const theme = useTheme()
   const dispatch = useDispatch()
   const { appId } = useParams()
   const user = useSelector(userSelector)
@@ -51,29 +57,81 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const getStatusLabel = (subscribeStatus: string) => {
-    if (subscribeStatus === OrderStatusType.PENDING) {
-      return t('content.appdetail.pending')
-    } else if (subscribeStatus === OrderStatusType.ACTIVE) {
+    if (subscribeStatus === SubscriptionStatus.PENDING) {
+      return t('content.appdetail.requested')
+    } else if (subscribeStatus === SubscriptionStatus.ACTIVE) {
       return t('content.appdetail.subscribed')
     } else {
       return t('content.appdetail.subscribe')
     }
   }
 
+  const getBtnColor = (subscribeStatus: string) => {
+    let btnColor: ButtonColorType
+    switch (subscribeStatus) {
+      case SubscriptionStatus.ACTIVE:
+        btnColor = {
+          color: 'success',
+          background1: theme.palette.buttons.yellow ?? '',
+          background2: theme.palette.buttons.yellow ?? '',
+          background3: theme.palette.buttons.yellow ?? '',
+        }
+        break
+      case SubscriptionStatus.PENDING:
+        btnColor = {
+          color: 'warning',
+          background1: theme.palette.buttons.yellow ?? '',
+          background2: theme.palette.buttons.lightGrey ?? '',
+          background3: theme.palette.buttons.white ?? '',
+        }
+        break
+      default:
+        btnColor = {
+          color:
+            user.roles.indexOf('subscribe_apps') !== -1
+              ? 'primary'
+              : 'secondary',
+          background1: theme.palette.buttons.darkGrey ?? '',
+          background2: theme.palette.buttons.lightGrey ?? '',
+          background3: theme.palette.buttons.white ?? '',
+        }
+    }
+    return btnColor
+  }
+
   const getSubscribeBtn = () => {
-    const subscribeStatus = item.isSubscribed ?? OrderStatusType.INACTIVE
+    const subscribeStatus = item.isSubscribed ?? SubscriptionStatus.INACTIVE
+    const btnColor = getBtnColor(subscribeStatus)
+    const OrderStatusButtonItems = [
+      {
+        iconLabel:
+          subscribeStatus === SubscriptionStatus.INACTIVE ? 'number' : 'icon',
+        buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
+        zIndex: 4,
+        backgroundColor: btnColor.background1,
+      },
+      {
+        iconLabel:
+          subscribeStatus !== SubscriptionStatus.ACTIVE ? 'number' : 'icon',
+        buttonLabel: t('content.appdetail.buttons.appDeployed'),
+        zIndex: 3,
+        backgroundColor: btnColor.background2,
+      },
+      {
+        iconLabel:
+          subscribeStatus !== SubscriptionStatus.ACTIVE ? 'number' : 'icon',
+        buttonLabel: t('content.appdetail.buttons.activation'),
+        zIndex: 2,
+        backgroundColor: btnColor.background3,
+      },
+    ]
     return (
       <OrderStatusButton
-        status={subscribeStatus as OrderStatusType}
         label={getStatusLabel(subscribeStatus)}
-        color={
-          subscribeStatus === OrderStatusType.INACTIVE &&
-          user.roles.indexOf('subscribe_apps') !== -1
-            ? 'primary'
-            : 'secondary'
-        }
+        color={btnColor.color}
+        buttonData={OrderStatusButtonItems}
         onButtonClick={() =>
-          subscribeStatus === OrderStatusType.INACTIVE &&
+          subscribeStatus === SubscriptionStatus.INACTIVE &&
           user.roles.indexOf('subscribe_apps') !== -1 &&
           dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
         }
