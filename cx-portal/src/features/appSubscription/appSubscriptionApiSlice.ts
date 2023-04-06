@@ -81,7 +81,7 @@ export const apiSlice = createApi({
         const statusId = `statusId=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
-          url: `/api/Apps/provided/subscription-status?size=1&page=${
+          url: `/api/Apps/provided/subscription-status?size=${PAGE_SIZE}&page=${
             body.page
           }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
         }
