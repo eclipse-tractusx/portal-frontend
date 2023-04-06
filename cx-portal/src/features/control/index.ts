@@ -18,27 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
-import { initialState, name, OverlayState } from './types'
+import { combineReducers } from 'redux'
+import overlay from './overlay'
+import form from './form'
+import notify from './notify'
+import update from './updates'
 
-const forward = (_state: any, action: any) => ({
-  ...action.payload,
+export default combineReducers({
+  form,
+  notify,
+  overlay,
+  update,
 })
-
-export const slice = createSlice({
-  name,
-  initialState,
-  reducers: {
-    exec: forward,
-    show: forward,
-    closeOverlay: forward,
-  },
-})
-
-export const stateSelector = (state: RootState): OverlayState =>
-  state.control.overlay
-
-const Slice = { slice }
-
-export default Slice

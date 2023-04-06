@@ -22,6 +22,7 @@ import { Typography } from 'cx-portal-shared-components'
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 import { InputLabel } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { ErrorType } from 'features/appManagement/types'
 
 export default function ConnectorFormInputFieldImage({
   control,
@@ -64,7 +65,13 @@ export default function ConnectorFormInputFieldImage({
           errorText: t('content.apprelease.appReleaseForm.fileSizeError'),
         }}
       />
-      {errors?.uploadImage?.leadPictureUri?.type === 'required' && (
+      {errors?.uploadImage?.leadPictureUri?.type === ErrorType.REQUIRED && (
+        <Typography variant="body2" className="file-error-msg">
+          {requiredText}
+        </Typography>
+      )}
+
+      {errors?.uploadImageConformity?.type === ErrorType.REQUIRED && (
         <Typography variant="body2" className="file-error-msg">
           {requiredText}
         </Typography>

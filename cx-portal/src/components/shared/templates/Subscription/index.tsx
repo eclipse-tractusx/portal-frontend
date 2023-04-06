@@ -22,7 +22,6 @@ import { useEffect, useCallback, useMemo, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
-import { show } from 'features/control/overlay/actions'
 import { OVERLAYS } from 'types/Constants'
 import {
   SearchInput,
@@ -42,6 +41,7 @@ import './Subscription.scss'
 import SubscriptionElements from './SubscriptionElements'
 import { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { RootState } from 'features/store'
+import { show } from 'features/control/overlay'
 
 enum FilterType {
   REQUEST = 'request',

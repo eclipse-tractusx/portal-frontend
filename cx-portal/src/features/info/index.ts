@@ -19,16 +19,12 @@
  ********************************************************************************/
 
 import { combineReducers } from 'redux'
-import { slice as overlay } from './overlay/slice'
-import { slice as form } from './formSlice'
-import { slice as update } from './updatesSlice'
+import { slice as licenses } from './licenses/slice'
+import { slice as news } from './news/slice'
+import { slice as search } from './search/slice'
 
-export const reducer = combineReducers({
-  overlay: overlay.reducer,
-  update: update.reducer,
-  form: form.reducer,
+export default combineReducers({
+  licenses: licenses.reducer,
+  news: news.reducer,
+  search: search.reducer,
 })
-
-const Reducer = { reducer }
-
-export default Reducer

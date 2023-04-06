@@ -18,9 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAction } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 import { OVERLAYS } from 'types/Constants'
-import { name } from './types'
+import { RootState } from 'features/store'
+
+export const name = 'control/overlay'
+
+export type OverlayState = {
+  type: OVERLAYS
+  id: string
+  title?: string
+  status?: boolean
+  subTitle?: string
+  roles?: string[]
+}
+
+const initialState = {
+  type: OVERLAYS.NONE,
+  id: '',
+  title: '',
+  displayName: '',
+  subTitle: '',
+}
 
 const closeOverlay = createAction(`${name}/closeOverlay`, () => ({
   payload: {
@@ -55,4 +74,23 @@ const exec = createAction(`${name}/exec`, (id: string) => ({
   },
 }))
 
+const forward = (_state: any, action: any) => ({
+  ...action.payload,
+})
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    exec: forward,
+    show: forward,
+    closeOverlay: forward,
+  },
+})
+
+export const stateSelector = (state: RootState): OverlayState =>
+  state.control.overlay
+
 export { closeOverlay, show, exec }
+
+export default slice.reducer

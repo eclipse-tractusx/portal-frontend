@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Dialog } from 'cx-portal-shared-components'
-import { stateSelector } from 'features/control/overlay/slice'
+import { stateSelector } from 'features/control/overlay'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'

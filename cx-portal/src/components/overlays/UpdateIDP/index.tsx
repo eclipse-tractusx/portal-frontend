@@ -26,7 +26,7 @@ import {
   DialogHeader,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
   IdentityProviderUpdate,
@@ -35,6 +35,7 @@ import {
 } from 'features/admin/idpApiSlice'
 import { UpdateIDPContent } from './UpdateIDPContent'
 import { OVERLAYS } from 'types/Constants'
+import { error, success } from 'services/NotifyService'
 
 export const UpdateIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -48,11 +49,11 @@ export const UpdateIDP = ({ id }: { id: string }) => {
   const doUpdateIDP = async () => {
     if (!(data && idpUpdateData)) return
     try {
-      const idpUpdate = await updateIdp(idpUpdateData).unwrap()
-      console.log(idpUpdate)
+      await updateIdp(idpUpdateData).unwrap()
+      success(t('edit.short'), t('state.success'))
       dispatch(show(OVERLAYS.UPDATE_IDP_SUCCESS, id))
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      error(t('edit.short'), t('state.error'), err as object)
     }
   }
 

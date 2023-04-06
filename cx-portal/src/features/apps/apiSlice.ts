@@ -98,6 +98,11 @@ export type AppDetails = AppMarketplaceApp & {
   leadPictureUri?: ImageType
   privacyPolicies: PrivacyPolicyType[]
   roles?: string[]
+  description?: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
 }
 
 export type Documents = {

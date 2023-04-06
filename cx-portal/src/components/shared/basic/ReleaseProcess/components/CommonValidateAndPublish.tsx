@@ -42,6 +42,7 @@ import { decrement, increment } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   DocumentData,
+  DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
@@ -65,8 +66,6 @@ import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy
 
 export interface DefaultValueType {
   images: Array<string>
-  connectedTableData: TableType
-  dataSecurityInformation: string
   conformityDocumentsDescription: string
   documentsDescription: string
   providerTableData: TableType
@@ -84,9 +83,7 @@ interface CommonValidateAndPublishType {
   detailsText: string
   longDescriptionTitleEN: string
   longDescriptionTitleDE: string
-  connectedData?: string
   conformityDocument?: string
-  dataSecurityInformation?: string
   documentsTitle: string
   providerInformation: string
   consentTitle: string
@@ -111,9 +108,7 @@ export default function CommonValidateAndPublish({
   detailsText,
   longDescriptionTitleEN,
   longDescriptionTitleDE,
-  connectedData,
   conformityDocument,
-  dataSecurityInformation,
   documentsTitle,
   providerInformation,
   consentTitle,
@@ -331,7 +326,11 @@ export default function CommonValidateAndPublish({
         {['longDescriptionEN', 'longDescriptionDE'].map((item, i) => (
           <div key={item}>
             {item === 'longDescriptionEN' ? (
-              <Typography variant="body2" className="form-field">
+              <Typography
+                variant="body2"
+                className="form-field"
+                style={{ whiteSpace: 'pre-line' }}
+              >
                 <span style={{ fontWeight: 'bold' }}>
                   {longDescriptionTitleEN}
                 </span>
@@ -343,7 +342,11 @@ export default function CommonValidateAndPublish({
                 }
               </Typography>
             ) : (
-              <Typography variant="body2" className="form-field">
+              <Typography
+                variant="body2"
+                className="form-field"
+                style={{ whiteSpace: 'pre-line' }}
+              >
                 <span style={{ fontWeight: 'bold' }}>
                   {longDescriptionTitleDE}
                 </span>
@@ -374,21 +377,6 @@ export default function CommonValidateAndPublish({
         )}
 
         <Divider className="verify-validate-form-divider" />
-        {connectedData && (
-          <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {connectedData}
-            </Typography>
-            {defaultValues && (
-              <StaticTable
-                data={defaultValues.connectedTableData}
-                horizontal={false}
-              />
-            )}
-            <Divider className="verify-validate-form-divider" />
-          </>
-        )}
-
         {statusData?.privacyPolicies && (
           <>
             <div className="appdetail-privacy" style={{ marginBottom: '0px' }}>
@@ -444,15 +432,7 @@ export default function CommonValidateAndPublish({
               ].map((item: DocumentData) => (
                 <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
                   <button
-                    style={{
-                      display: 'flex',
-                      background: 'transparent',
-                      border: 'none',
-                      cursor: 'pointer',
-                      color: '#0f71cb',
-                      fontSize: '14px',
-                      lineHeight: '20px',
-                    }}
+                    className="download-button"
                     onClick={() =>
                       handleDownloadFn(item.documentId, item.documentName)
                     }
@@ -466,19 +446,6 @@ export default function CommonValidateAndPublish({
             <Divider className="verify-validate-form-divider" />
           </>
         )}
-        {dataSecurityInformation && (
-          <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {dataSecurityInformation}
-            </Typography>
-            {defaultValues && (
-              <Typography variant="body2" className="form-field">
-                {defaultValues.dataSecurityInformation}
-              </Typography>
-            )}
-            <Divider className="verify-validate-form-divider" />
-          </>
-        )}
         <Typography variant="h4" sx={{ mb: 4 }}>
           {documentsTitle}
         </Typography>
@@ -487,15 +454,33 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents &&
-          Object.keys(statusData.documents).map((item, i) => (
-            <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-              <a href="/" style={{ display: 'flex' }}>
-                <ArrowForwardIcon fontSize="small" />
-                {statusData.documents[item][0].documentName}
-              </a>
-            </InputLabel>
-          ))}
+        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
+          Object.keys(statusData.documents).map(
+            (item) =>
+              (item === DocumentTypeId.ADDITIONAL_DETAILS ||
+                item === DocumentTypeId.APP_CONTRACT ||
+                item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
+                <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                  <button
+                    className="download-button"
+                    onClick={() =>
+                      handleDownloadFn(
+                        statusData?.documents[item][0]?.documentId,
+                        statusData?.documents[item][0]?.documentName
+                      )
+                    }
+                  >
+                    <ArrowForwardIcon fontSize="small" />
+                    {statusData?.documents[item][0]?.documentName}
+                  </button>
+                </InputLabel>
+              )
+          )
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>

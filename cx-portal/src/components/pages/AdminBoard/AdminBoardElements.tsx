@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
   AppContent,

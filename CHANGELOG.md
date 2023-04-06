@@ -2,7 +2,26 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## Unreleased
+## 1.3.0 RC2
+
+### Change
+n/a
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* Service Detail Page (Marketplace and Service Management) - document download fixed
+* Service Release Process - update long description pattern to support multiline (as app release process)
+* Service Release Process - reset active step back to 1 in service overview page when re-opening a service in "draft" state
+* User Management - create new user account first and last name pattern updated to alow double names
+* App Release Process
+  * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
+  * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
+  * long description input field pattern
 
 * App Release Process:
    * Added privacy policies to validate and publish

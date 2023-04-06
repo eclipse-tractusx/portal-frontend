@@ -28,11 +28,12 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import {
   useEnableIDPMutation,
   useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
+import { error, success } from 'services/NotifyService'
 
 export const DisableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -45,8 +46,9 @@ export const DisableIDP = ({ id }: { id: string }) => {
       e.stopPropagation()
       await enableIDP({ id: id, enabled: false })
       dispatch(closeOverlay())
-    } catch (error) {
-      console.log(error)
+      success(t('disable.short'))
+    } catch (err) {
+      error(t('disable.short'), t('state.error'), err as object)
     }
   }
 
