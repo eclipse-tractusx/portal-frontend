@@ -12,7 +12,8 @@ n/a
    * Support SERVICE_LEADIMAGE document upload in step1
 
 ### Technical Support
-n/a
+* Service release process
+   * API url updated
 
 ### Bugfix
 * Service Detail Page (Marketplace and Service Management) - document download fixed
