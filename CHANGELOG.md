@@ -28,6 +28,8 @@ n/a
 
 * Application Checklist
    BugFix - Checklist layout issue fix
+* Notification
+   BugFix - Service Request title and message issue fix
 
 
 ## 1.3.0 RC1

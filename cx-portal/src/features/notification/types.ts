@@ -92,6 +92,7 @@ export enum NotificationType {
   AppSubscriptionApproved = 'AppSubscriptionApproved',
   AppSubscriptionRejected = 'AppSubscriptionRejected',
   APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
+  SERVICE_REQUEST = 'SERVICE_REQUEST',
 }
 
 export interface NotificationContent {
@@ -100,6 +101,7 @@ export interface NotificationContent {
   userId?: string
   AppName?: string
   OfferName?: string
+  RequestorCompanyName?: string
 }
 
 export interface CXNotificationContent {
