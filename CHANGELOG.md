@@ -32,6 +32,8 @@ n/a
    Service subscription Mgt enabled
 * Refactor
    App Subscription & Service Subscription to use common component
+* Notification
+   BugFix - Service Request title and message issue fix
 
 
 ## 1.3.0 RC1
