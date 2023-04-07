@@ -78,6 +78,7 @@ const NotificationContent = ({
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
   const appName = item.contentParsed?.AppName
+  const compenyName = item.contentParsed?.RequestorCompanyName
   const offerName = item.contentParsed?.OfferName
   return (
     <>
@@ -85,7 +86,7 @@ const NotificationContent = ({
         <Trans
           ns="notification"
           i18nKey={`${item.typeId}.content`}
-          values={{ you, app: appName, offer: offerName }}
+          values={{ you, app: appName, offer: offerName, company: compenyName }}
         >
           <NameLink
             fetchHook={useFetchUserDetailsQuery}
@@ -154,6 +155,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return <NotificationContent item={item} navlinks={['appoverview']} />
     case NotificationType.TECHNICAL_USER_CREATION:
       return <NotificationContent item={item} navlinks={['technicaluser']} />
+    case NotificationType.SERVICE_REQUEST:
+      return (
+        <NotificationContent item={item} navlinks={['servicesubscription']} />
+      )
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
