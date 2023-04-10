@@ -18,15 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogHeader,
-} from 'cx-portal-shared-components'
-import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay'
+import { CircleProgress } from 'cx-portal-shared-components'
 import {
   useFetchIDPListQuery,
   IdentityProvider,
@@ -36,8 +28,6 @@ import { AddUserDeny } from './AddUserDeny'
 import { useEffect, useState } from 'react'
 
 export const AddUser = () => {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
   const { data, isFetching } = useFetchIDPListQuery()
   const [idps, setIdps] = useState<IdentityProvider[]>([])
 
@@ -48,24 +38,22 @@ export const AddUser = () => {
   )
 
   return isFetching ? (
-    <>
-      <DialogHeader
-        {...{
-          title: t('Checking Identity Providers'),
-          intro: t('checking intro'),
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(closeOverlay),
-        }}
+    <div
+      style={{
+        width: '100%',
+        height: '500px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <CircleProgress
+        colorVariant="primary"
+        size={80}
+        thickness={8}
+        variant="indeterminate"
       />
-
-      <DialogContent>{'checking IDPs'}</DialogContent>
-
-      <DialogActions helperText={t('content.addUser.helperText')}>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay)}>
-          {t('global.actions.cancel')}
-        </Button>
-      </DialogActions>
-    </>
+    </div>
   ) : idps.length === 1 ? (
     <AddUserContent idp={idps[0]} />
   ) : (
