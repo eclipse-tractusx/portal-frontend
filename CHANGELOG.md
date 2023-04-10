@@ -8,7 +8,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 n/a
 
 ### Feature
-n/a
+* Service Release Process
+   * Support SERVICE_LEADIMAGE document upload in step1
 
 ### Technical Support
 n/a
@@ -29,6 +30,8 @@ n/a
    BugFix - Checklist layout issue fix
 *AppMarketplace
    *  Add status of the subscription
+* Notification
+   BugFix - Service Request title and message issue fix
 
 ## 1.3.0 RC1
 
