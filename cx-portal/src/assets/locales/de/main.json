@@ -817,7 +817,14 @@
       "language": "Verfügbare App Sprachen",
       "subscribe": "Abonnieren",
       "subscribed": "Abonniert",
-      "pending": "Angefragt",
+      "pending": "Pending",
+      "purchased": "Purchased",
+      "requested": "Angefragt",
+      "buttons": {
+        "subscribtionInit": "Subscribtion initiated",
+        "appDeployed": "App Instance deployed",
+        "activation": "Activation, Notifications & credentials"
+      },
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
@@ -1036,7 +1043,8 @@
       "desc1": "You have started the subscription request for app {appName}.",
       "desc2": "Please note that the subscription request will trigger a service call on provider side.The app provider will align with you all further steps. This may take up to 5 days.",
       "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
-      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
+      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles.",
+      "statusHeading": "You can easily keep track of the subscription status progress by checking the subscription status bar in the app detail page."
     },
     "techUser": {
       "details": {

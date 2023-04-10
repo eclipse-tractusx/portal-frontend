@@ -26,6 +26,7 @@ export interface CardContentProps extends Partial<CardRatingProps> {
   id?: string
   title: string
   subtitle?: string
+  subscriptionStatus?: string
   price?: string
   description?: string
 }

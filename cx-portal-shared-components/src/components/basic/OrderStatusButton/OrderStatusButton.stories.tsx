@@ -18,18 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button'
+import { ComponentStory } from '@storybook/react'
 
-export interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
+import { OrderStatusButton as Component } from '.'
+
+export default {
+  title: 'Buttons',
+  component: Component,
+  argTypes: {},
 }
 
-export const Button = ({
-  variant = 'contained',
-  color: colorProp = 'primary',
-  ...props
-}: ButtonProps) => {
-  const color = ['outlined', 'text'].includes(variant) ? 'primary' : colorProp
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
 
-  return <MuiButton variant={variant} color={color} {...props} />
+export const OrderStatusButton = Template.bind({})
+OrderStatusButton.args = {
+  label: 'Subscribe',
+  color: 'primary',
+  buttonData: [
+    {
+      isIcon: false,
+      buttonLabel: 'Subscribtion initiated',
+      zIndex: 4,
+      backgroundColor: '#e1e1e1',
+    },
+    {
+      isIcon: true,
+      buttonLabel: 'App Instance deployed',
+      zIndex: 3,
+      backgroundColor: '#f3f3f3',
+    },
+    {
+      isIcon: true,
+      buttonLabel: 'Activation, Notifications & credentials',
+      zIndex: 2,
+      backgroundColor: '#f9f9f9',
+    },
+  ],
 }

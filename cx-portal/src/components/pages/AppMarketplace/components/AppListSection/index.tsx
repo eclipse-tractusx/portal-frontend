@@ -38,7 +38,11 @@ import {
   fetchItems,
   removeItem,
 } from 'features/apps/favorites/actions'
-import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
+import {
+  AppMarketplaceApp,
+  SubscriptionStatus,
+  useFetchActiveAppsQuery,
+} from 'features/apps/apiSlice'
 import debounce from 'lodash.debounce'
 import CommonService from 'services/CommonService'
 
@@ -62,9 +66,23 @@ export default function AppListSection() {
     dispatch(fetchItems())
   }, [dispatch])
 
+  const getStatusLabel = (subscribeStatus: string) => {
+    if (subscribeStatus === SubscriptionStatus.PENDING) {
+      return t('content.appdetail.pending')
+    } else if (subscribeStatus === SubscriptionStatus.ACTIVE) {
+      return t('content.appdetail.purchased')
+    } else {
+      return subscribeStatus
+    }
+  }
+
   useEffect(() => {
     if (cards && cards.length > 0 && cardsData && cardsData.length <= 0) {
-      setCardsData(cards)
+      const updatedCards = cards.map((item: AppMarketplaceApp) => ({
+        ...item,
+        subscriptionStatus: getStatusLabel(item.status ?? ''),
+      }))
+      setCardsData(updatedCards)
     }
     // eslint-disable-next-line
   }, [cards, cardsData])

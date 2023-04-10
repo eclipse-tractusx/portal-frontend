@@ -26,16 +26,16 @@ n/a
 
 * App Release Process:
    * Added privacy policies to validate and publish
-
 * Application Checklist
    BugFix - Checklist layout issue fix
+* AppMarketplace
+   * Add status of the subscription
 * Service Management
    Service subscription Mgt enabled
 * Refactor
    App Subscription & Service Subscription to use common component
 * Notification
    BugFix - Service Request title and message issue fix
-
 
 ## 1.3.0 RC1
 
@@ -53,6 +53,9 @@ n/a
 
 ### Feature
 * Service Release Process
+   * Connect backend service /submitservice api added
+   * Common component to handle Submit service
+* App Marketplace
   * implement service type function with backend connection
   * added load button function for service release form - button "submit" and "confirm"/"proceed"
 * App Release Process
