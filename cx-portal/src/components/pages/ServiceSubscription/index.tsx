@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -19,33 +19,34 @@
  ********************************************************************************/
 
 import Subscription from 'components/shared/templates/Subscription'
-import { useFetchSubscriptionsQuery } from 'features/appSubscription/appSubscriptionApiSlice'
-import { currentSuccessType } from 'features/appSubscription/slice'
+import { useFetchServiceSubscriptionsQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import { currentSuccessType } from 'features/serviceSubscription/slice'
 import { useTranslation } from 'react-i18next'
 
-export default function AppSubscription() {
-  const { t } = useTranslation()
+export default function ServiceSubscription() {
+  const { t } = useTranslation('servicerelease')
   return (
     <Subscription
       currentSuccessType={currentSuccessType}
-      fetchQuery={useFetchSubscriptionsQuery}
+      fetchQuery={useFetchServiceSubscriptionsQuery}
       providerSuccessMessage={t(
-        'content.appSubscription.register.providerSuccessMessage'
+        'serviceSubscription.register.providerSuccessMessage'
       )}
-      headline={t('content.appSubscription.headline')}
-      subHeading={t('content.appSubscription.subHeading')}
-      description={t('content.appSubscription.description')}
-      readMore={t('content.appSubscription.readMore')}
-      registerURL={t('content.appSubscription.registerURL')}
-      searchPlaceHoder={t('content.appSubscription.search')}
+      headline={t('serviceSubscription.headline')}
+      subHeading={t('serviceSubscription.subHeading')}
+      description={t('serviceSubscription.description')}
+      readMore={t('serviceSubscription.readMore')}
+      registerURL={t('serviceSubscription.registerURL')}
+      searchPlaceHoder={t('serviceSubscription.search')}
       sortOptionLabels={{
-        customer: t('content.appSubscription.sortOptions.customer'),
-        offer: t('content.appSubscription.sortOptions.offer'),
+        customer: t('serviceSubscription.sortOptions.customer'),
+        offer: t('serviceSubscription.sortOptions.offer'),
       }}
       tabLabels={{
-        request: t('content.appSubscription.tabs.request'),
-        active: t('content.appSubscription.tabs.active'),
+        request: t('serviceSubscription.tabs.request'),
+        active: t('serviceSubscription.tabs.active'),
       }}
+      doNotShowAutoSetup={true}
     />
   )
 }

@@ -74,6 +74,7 @@ import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/co
 import RoleDetails from 'components/pages/RoleDetails'
 import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
+import ServiceSubscription from 'components/pages/ServiceSubscription'
 
 /**
  * ALL_PAGES
@@ -253,7 +254,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICESUBSCRIPTION,
     role: ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT,
-    element: <AppSubscription />,
+    element: <ServiceSubscription />,
   },
   {
     name: PAGES.ADMINBOARD,
@@ -630,12 +631,11 @@ export const mainMenuFullTree = [
   {
     name: PAGES.SERVICE_MANAGEMENT,
     children: [
-      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW, disable: false },
+      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.SERVICERELEASEPROCESS, hint: HINTS.NEW },
       {
         name: PAGES.SERVICESUBSCRIPTION,
-        hint: HINTS.COMING_SOON,
-        disable: true,
+        hint: HINTS.NEW,
       },
       { name: PAGES.SERVICEADMINBOARD, hint: HINTS.COMING_SOON, disable: true },
     ],

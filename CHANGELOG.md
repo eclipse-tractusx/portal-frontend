@@ -28,8 +28,12 @@ n/a
    * Added privacy policies to validate and publish
 * Application Checklist
    BugFix - Checklist layout issue fix
-*AppMarketplace
-   *  Add status of the subscription
+* AppMarketplace
+   * Add status of the subscription
+* Service Management
+   Service subscription Mgt enabled
+* Refactor
+   App Subscription & Service Subscription to use common component
 * Notification
    BugFix - Service Request title and message issue fix
 

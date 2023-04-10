@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -20,22 +20,13 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PAGE_SIZE } from 'types/Constants'
 
-export interface SubscriptionRequestBody {
+export interface SubscriptionRequestType {
   page: number
   statusId: string
   sortingType: string
 }
-
-export type MetaBody = {
-  totalElements: 0
-  totalPages: 0
-  page: 0
-  contentSize: 0
-}
-
-export type CompanySubscriptionData = {
+export interface SubscriptionResponseContentType {
   companyId: string
   companyName: string
   subscriptionId: string
@@ -45,60 +36,43 @@ export type CompanySubscriptionData = {
 export type SubscriptionContent = {
   offerId: string
   serviceName: string
-  companySubscriptionStatuses: CompanySubscriptionData[]
+  companySubscriptionStatuses: SubscriptionResponseContentType[]
 }
 
-export type SubscriptionResponse = {
-  meta: MetaBody
+export interface SubscriptionResponseType {
+  meta: {
+    totalElements: number
+    totalPages: number
+    page: number
+    contentSize: number
+  }
   content: SubscriptionContent[]
 }
 
-export type SubscriptionStoreRequest = {
+export interface SubscriptionStoreRequest {
   requestId: string
   offerUrl: string
 }
 
-export type SubscriptionActivationResponse = {
-  technicalUserInfo: {
-    technicalUserId: string
-    technicalUserSecret: string
-    technicalClientId: string
-  }
-  clientInfo: {
-    clientId: string
-  }
-}
-
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/appSubscription',
+  reducerPath: 'rtk/services/serviceSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchSubscriptions: builder.query<
-      SubscriptionResponse,
-      SubscriptionRequestBody
+    fetchServiceSubscriptions: builder.query<
+      SubscriptionResponseType,
+      SubscriptionRequestType
     >({
       query: (body) => {
         const statusId = `statusId=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
-          url: `/api/Apps/provided/subscription-status?size=${PAGE_SIZE}&page=${
+          url: `/api/services/provided/subscription-status?size=15&page=${
             body.page
           }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
         }
       },
     }),
-    addUserSubscribtion: builder.mutation<
-      SubscriptionActivationResponse,
-      SubscriptionStoreRequest
-    >({
-      query: (data: SubscriptionStoreRequest) => ({
-        url: `/api/Apps/autoSetup`,
-        method: 'POST',
-        body: data,
-      }),
-    }),
   }),
 })
 
-export const { useFetchSubscriptionsQuery, useAddUserSubscribtionMutation } =
-  apiSlice
+export const { useFetchServiceSubscriptionsQuery } = apiSlice
