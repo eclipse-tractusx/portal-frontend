@@ -50,17 +50,20 @@
   "add": {
     "title": "New IdP Connection",
     "subtitle": "Enter an IdP name and choose the type to start the configuration",
-    "short": "Create IdP"
+    "success": "IdP created",
+    "error": "Failed to create IdP"
   },
   "delete": {
     "title": "Delete IdP Connection",
     "subtitle": "Permanently delete this Identity Provider",
-    "short": "Delete IdP"
+    "success": "IdP deleted",
+    "error": "Failed to delete IdP"
   },
   "edit": {
     "title": "Edit Identity Provider Details",
     "subtitle": "Configure the connection details to your company IdP",
-    "short": "Update IdP"
+    "success": "IdP updated",
+    "error": "Failed to update IdP"
   },
   "updatesuccess": {
     "title": "Identity Provider Configured",
@@ -77,18 +80,22 @@
     "current": "You are currently logged in as: {{ name }}",
     "label": "Your User ID",
     "hint": "Your existing user ID (not name) on target IDP",
-    "success": {
-      "title": "Identity Provider Enabled",
-      "subtitle": "Your request has completed successfully",
-      "desc": "Your new Identity Provider has been enabled and your user has been linked to it. Choose 'Sign out' and then log in again with the IDP named"
-    }
+    "success": "IdP enabled",
+    "error": "Failed to enable IdP"
+  },
+  "enablesuccess": {
+    "title": "Identity Provider Enabled",
+    "subtitle": "Your request has completed successfully",
+    "desc": "Your new Identity Provider has been enabled and your user has been linked to it. Choose 'Sign out' and then log in again with the IDP named"
   },
   "disable": {
     "title": "Disable Identity Provider",
     "subtitle": "You are about to disable an Identity Provider",
     "short": "Disable IdP",
     "desc": "When you disable your Identity Provider you and other people of your company won't be able to login through this IDP.",
-    "ask": "Are you sure you want to proceed."
+    "ask": "Are you sure you want to proceed.",
+    "success": "IdP disabled",
+    "error": "Failed to disable IdP"
   },
   "users": {
     "title": "Link existing users to new IdP",
@@ -107,12 +114,12 @@
       "subTitle": "Or browse files on your computer",
       "errorTitle": "Invalid upload",
       "note": "only one CSV or JSON file allowed for upload"
-    },
-    "success": {
-      "title": "Request successful",
-      "subtitle": "Your request to update the users has completed",
-      "desc": "Here the detailed request response"
     }
+  },
+  "userssuccess": {
+    "title": "Request successful",
+    "subtitle": "Your request to update the users has completed",
+    "desc": "Here the detailed request response"
   },
   "state": {
     "fetching": "fetching users ...",

@@ -50,10 +50,10 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     if (!(data && idpUpdateData)) return
     try {
       await updateIdp(idpUpdateData).unwrap()
-      success(t('edit.short'), t('state.success'))
       dispatch(show(OVERLAYS.UPDATE_IDP_SUCCESS, id))
+      success(t('edit.success'))
     } catch (err) {
-      error(t('edit.short'), t('state.error'), err as object)
+      error(t('edit.error'), '', err as object)
     }
   }
 

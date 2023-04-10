@@ -107,14 +107,14 @@ const AddusersIDPResponse = ({
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('users.success.title')}
-        intro={t('users.success.subtitle')}
+        title={t('userssuccess.title')}
+        intro={t('userssuccess.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => storeResponse('')}
       />
       <DialogContent>
         <div>
-          <Typography>{t('users.success.desc')}</Typography>
+          <Typography>{t('userssuccess.desc')}</Typography>
           <pre
             style={{
               padding: '12px',

@@ -181,9 +181,9 @@ export const AddIdp = () => {
       }
       await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
-      success(t('add.short'))
+      success(t('add.success'))
     } catch (err) {
-      error(t('add.short'), t('state.error'), err as object)
+      error(t('add.error'), t('state.error'), err as object)
     }
   }
 
