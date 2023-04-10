@@ -20,16 +20,26 @@
 
 .adminboard-documents {
   margin-bottom: 60px;
+
+  li {
+    display: flex;
+    margin: 10 auto;
+    .document-icon {
+      color: #9c9c9c;
+    }
+    .document-button-link {
+      background-color: transparent;
+      border: none;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 18px;
+      color: #1977cc;
+      margin-left: 10px;
+    }
+  }
+
   .not-available {
     display: block;
     text-align: center;
   }
-}
-.document-button-link {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 18px;
-  color: #0d55af;
 }

@@ -20,6 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import './BoardDocuments.scss'
 import {
   Documents,
@@ -69,6 +70,7 @@ export default function BoardDocuments({
       ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS].map(
           (document: DocumentData) => (
             <li key={document.documentId}>
+              <ArticleOutlinedIcon className="document-icon" />
               <button
                 className="document-button-link"
                 onClick={() =>
@@ -87,6 +89,7 @@ export default function BoardDocuments({
           (document) =>
             document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
               <li key={document}>
+                <ArticleOutlinedIcon className="document-icon" />
                 <button
                   className="document-button-link"
                   onClick={() =>

@@ -20,6 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import './AppDetailDocuments.scss'
 import {
   AppDetails,
@@ -68,6 +69,7 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
               document !==
                 DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
                 <li key={document}>
+                  <ArticleOutlinedIcon className="document-icon" />
                   <button
                     className="document-button-link"
                     onClick={() =>

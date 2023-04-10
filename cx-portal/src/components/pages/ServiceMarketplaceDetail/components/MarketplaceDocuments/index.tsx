@@ -20,6 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { download } from 'utils/downloadUtils'
 import './MarketplaceDocuments.scss'
 import {
@@ -68,6 +69,7 @@ export default function MarketplaceDocuments({
         {item.documents && item.documents['ADDITIONAL_DETAILS'] ? (
           item.documents['ADDITIONAL_DETAILS'].map((document: DocumentData) => (
             <li key={document.documentId}>
+              <ArticleOutlinedIcon className="document-icon" />
               <button
                 className="document-button-link"
                 onClick={() =>
