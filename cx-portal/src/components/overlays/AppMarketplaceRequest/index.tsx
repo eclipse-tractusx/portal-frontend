@@ -58,19 +58,19 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
 
   const OrderStatusButtonData = [
     {
-      iconLabel: 'number',
+      isIcon: false,
       buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
       zIndex: 4,
       backgroundColor: theme.palette.buttons.darkGrey ?? '',
     },
     {
-      iconLabel: 'number',
+      isIcon: false,
       buttonLabel: t('content.appdetail.buttons.appDeployed'),
       zIndex: 3,
       backgroundColor: theme.palette.buttons.lightGrey ?? '',
     },
     {
-      iconLabel: 'number',
+      isIcon: false,
       buttonLabel: t('content.appdetail.buttons.activation'),
       zIndex: 2,
       backgroundColor: theme.palette.buttons.white ?? '',

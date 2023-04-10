@@ -38,19 +38,19 @@ OrderStatusButton.args = {
   color: 'primary',
   buttonData: [
     {
-      iconLabel: 'number',
+      isIcon: false,
       buttonLabel: 'Subscribtion initiated',
       zIndex: 4,
       backgroundColor: '#e1e1e1',
     },
     {
-      iconLabel: 'icon',
+      isIcon: true,
       buttonLabel: 'App Instance deployed',
       zIndex: 3,
       backgroundColor: '#f3f3f3',
     },
     {
-      iconLabel: 'icon',
+      isIcon: true,
       buttonLabel: 'Activation, Notifications & credentials',
       zIndex: 2,
       backgroundColor: '#f9f9f9',

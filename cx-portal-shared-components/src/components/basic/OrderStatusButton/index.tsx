@@ -24,7 +24,7 @@ import { Button, ButtonProps } from '../Button'
 import { Typography } from '../Typography'
 
 interface ButtonInputData {
-  iconLabel: string
+  isIcon: boolean
   buttonLabel: string
   zIndex: number
   backgroundColor: string
@@ -50,7 +50,7 @@ export const OrderStatusButton = ({
   const fetchButton = (
     zIndex: number,
     numberLabel: number,
-    isIcon: string,
+    isIcon: boolean,
     buttonLabel: string,
     background: string
   ) => {
@@ -75,7 +75,11 @@ export const OrderStatusButton = ({
         }}
         {...props}
       >
-        {isIcon === 'number' ? (
+        {isIcon ? (
+          <CheckCircleOutlinedIcon
+            sx={{ color: '#0a5', fontSize: '20px', marginRight: '5px' }}
+          />
+        ) : (
           <Typography
             variant="label5"
             sx={{
@@ -93,10 +97,6 @@ export const OrderStatusButton = ({
           >
             {numberLabel}
           </Typography>
-        ) : (
-          <CheckCircleOutlinedIcon
-            sx={{ color: '#0a5', fontSize: '20px', marginRight: '5px' }}
-          />
         )}
         <Typography variant="label4">{buttonLabel}</Typography>
       </Button>
@@ -130,7 +130,7 @@ export const OrderStatusButton = ({
         return fetchButton(
           data.zIndex,
           index + 1,
-          data.iconLabel,
+          data.isIcon,
           data.buttonLabel,
           data.backgroundColor
         )
