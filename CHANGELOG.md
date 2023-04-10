@@ -29,6 +29,10 @@ n/a
 
 * Application Checklist
    BugFix - Checklist layout issue fix
+* Service Management
+   Service subscription Mgt enabled
+* Refactor
+   App Subscription & Service Subscription to use common component
 * Notification
    BugFix - Service Request title and message issue fix
 

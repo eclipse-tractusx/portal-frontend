@@ -123,5 +123,48 @@
   },
   "servicedetails": {
     "headerTitle": "Service Details"
+  },
+  "serviceSubscription": {
+    "headline": "Service Subscription",
+    "subHeading": "Manage customer subscriptons",
+    "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+    "readMore": "Read More",
+    "registerURL": "RegisterURL",
+    "search": "...search by entering the service name here.",
+    "noDataMessage": "No data available",
+    "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+    "subscribeSuccessMsg": "Subscribed Successfully",
+    "newServices": "New Services",
+    "recommendations": "Recommendations",
+    "allServices": "All Services",
+    "activateBtn": "Activate",
+    "pleaseEnterValidURL": "Please enter a valid URL",
+    "tabs": {
+      "request": "Request",
+      "active": "Active"
+    },
+    "sortOptions": {
+      "customer": "By Customer A-Z",
+      "offer": "By Offer"
+    },
+    "document": {
+      "heading": "Relevant Documents",
+      "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+    },
+    "register": {
+      "heading": "Autosetup URL",
+      "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
+      "endpointConfigured": "Current Endpoint",
+      "autosetupURL": "AutoSetup URL",
+      "providerErrorMessage": "Something went wrong! Please try it later again.",
+      "providerSuccessMessage": "Service Provider Details added successfully."
+    },
+    "activation": {
+      "heading": "Activate Service Subscription",
+      "description": "Activate the service subscription request of the customer by adding your customer specific service endpoint/url in the input field below. We will use the url to register/activate the service authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the service tenant/connector to the centryl CX components/services (where needed).",
+      "successDescription": "The technical user has been created with the following data:",
+      "clientId": "Client Id",
+      "clientSecret": "Client Secret"
+    }
   }
 }
