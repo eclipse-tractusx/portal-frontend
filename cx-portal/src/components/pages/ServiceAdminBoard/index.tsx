@@ -39,7 +39,7 @@ export default function ServiceAdminBoard() {
       }}
       fetchQuery={useFetchInReviewServicesQuery}
       isDynamicSearchEnabled={true}
-      type={PAGES.SERVICEADMINBOARD}
+      type={PAGES.SERVICEADMINBOARD_DETAIL}
     />
   )
 }

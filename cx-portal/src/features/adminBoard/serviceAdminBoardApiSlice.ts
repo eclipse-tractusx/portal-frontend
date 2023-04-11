@@ -61,6 +61,22 @@ export type ServiceResponse = {
   meta: MetaBody
 }
 
+export interface ServiceDetailsType {
+  id: string
+  title: string
+  serviceTypes: string[]
+  provider: string
+  descriptions: {
+    languageCode: string
+    longDescription: string
+    shortDescription: string
+  }[]
+  documents: any
+  providerUri: string
+  contactEmail: string
+  contactNumber: null
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/services/serviceAdminBoardApiSlice',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -79,7 +95,14 @@ export const apiSlice = createApi({
         }
       },
     }),
+    fetchBoardServiceDetails: builder.query<ServiceDetailsType, string>({
+      query: (id: string) =>
+        `/api/services/servicerelease/inReview/${id}`,
+    }),
   }),
 })
 
-export const { useFetchInReviewServicesQuery } = apiSlice
+export const {
+  useFetchInReviewServicesQuery,
+  useFetchBoardServiceDetailsQuery,
+} = apiSlice

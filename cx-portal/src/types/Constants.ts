@@ -89,6 +89,7 @@ export enum PAGES {
   SERVICEOVERVIEW = 'serviceoverview',
   SERVICERELEASEPROCESS = 'servicereleaseprocess',
   SERVICEADMINBOARD = 'serviceadminboard',
+  SERVICEADMINBOARD_DETAIL = 'serviceadminboarddetail',
   SERVICESUBSCRIPTION = 'servicesubscription',
   SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
   ROLE_DETAILS = 'role-details',
