@@ -1,8 +1,11 @@
 # Changelog
-* User Management
-   * Developer Mode error fixes
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
+
+## Unreleased
+
+* User Management
+   * Developer Mode error fixes
 
 ## 1.3.0 RC2
 
