@@ -25,6 +25,7 @@ import {
   StaticTable,
 } from 'cx-portal-shared-components'
 import './ServiceDetail.scss'
+import 'components/styles/document.scss'
 import {
   ServiceTypeIdsEnum,
   useFetchDocumentMutation,
@@ -33,8 +34,8 @@ import {
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { Divider, InputLabel } from '@mui/material'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { Divider } from '@mui/material'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
 import { getAssetBase } from 'services/EnvironmentService'
@@ -161,24 +162,22 @@ export default function ServiceDetails() {
               <Typography variant="body2" className="form-field">
                 {t('defaultValues.documentsDescription')}
               </Typography>
-              {fetchServiceStatus?.documents &&
-                Object.keys(fetchServiceStatus.documents).map((item, i) => (
-                  <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-                    <span
-                      style={{
-                        display: 'flex',
-                        cursor: 'pointer',
-                        color: '#0f71cb',
-                      }}
-                      onClick={() =>
-                        handleDownload(fetchServiceStatus.documents[item][i])
-                      }
-                    >
-                      <ArrowForwardIcon fontSize="small" />
-                      {fetchServiceStatus.documents[item][i].documentName}
-                    </span>
-                  </InputLabel>
-                ))}
+              <ul>
+                {fetchServiceStatus?.documents &&
+                  Object.keys(fetchServiceStatus.documents).map((item, i) => (
+                    <li key={item} className="document-list">
+                      <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                      <button
+                        className="document-button-link"
+                        onClick={() =>
+                          handleDownload(fetchServiceStatus.documents[item][i])
+                        }
+                      >
+                        {fetchServiceStatus.documents[item][i].documentName}
+                      </button>
+                    </li>
+                  ))}
+              </ul>
             </div>
             <Divider className="verify-validate-form-divider" />
             <div className="margin-h-40">
