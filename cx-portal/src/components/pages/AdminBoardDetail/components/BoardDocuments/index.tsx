@@ -88,7 +88,7 @@ export default function BoardDocuments({
       : Object.keys(documents).map(
           (document) =>
             document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
-              <li key={document}>
+              <li key={document} className="document-list">
                 <ArticleOutlinedIcon className="document-icon" />
                 <button
                   className="document-button-link"
