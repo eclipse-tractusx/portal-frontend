@@ -59,6 +59,7 @@ import {
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
+import 'components/styles/document.scss'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -374,26 +375,10 @@ export default function CommonValidateAndPublish({
                 statusData.documents[
                   DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
                 ].map((item: DocumentData) => (
-                  <li
-                    key={item.documentId}
-                    style={{
-                      display: 'flex',
-                      margin: '10px auto',
-                      cursor: 'pointer',
-                      color: '#0f71cb',
-                    }}
-                  >
+                  <li key={item.documentId} className="document-list">
                     <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                     <button
-                      style={{
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
-                        fontSize: '18px',
-                        color: '#1977cc',
-                        marginLeft: '10px',
-                      }}
+                      className="document-button-link"
                       onClick={() =>
                         handleDownloadFn(item.documentId, item.documentName)
                       }
@@ -420,26 +405,10 @@ export default function CommonValidateAndPublish({
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
                 item === DocumentTypeId.APP_CONTRACT ||
                 item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
-                <li
-                  key={item}
-                  style={{
-                    display: 'flex',
-                    margin: '10px auto',
-                    cursor: 'pointer',
-                    color: '#0f71cb',
-                  }}
-                >
+                <li key={item} className="document-list">
                   <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                   <button
-                    style={{
-                      backgroundColor: 'transparent',
-                      border: 'none',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      fontSize: '18px',
-                      color: '#1977cc',
-                      marginLeft: '10px',
-                    }}
+                    className="document-button-link"
                     onClick={() =>
                       handleDownloadFn(
                         statusData?.documents[item][0]?.documentId,

@@ -25,6 +25,7 @@ import {
   StaticTable,
 } from 'cx-portal-shared-components'
 import './ServiceDetail.scss'
+import 'components/styles/document.scss'
 import {
   ServiceTypeIdsEnum,
   useFetchDocumentMutation,
@@ -164,26 +165,10 @@ export default function ServiceDetails() {
               <ul>
                 {fetchServiceStatus?.documents &&
                   Object.keys(fetchServiceStatus.documents).map((item, i) => (
-                    <li
-                      key={item}
-                      style={{
-                        display: 'flex',
-                        margin: '10px auto',
-                        cursor: 'pointer',
-                        color: '#0f71cb',
-                      }}
-                    >
+                    <li key={item} className="document-list">
                       <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                       <button
-                        style={{
-                          backgroundColor: 'transparent',
-                          border: 'none',
-                          textDecoration: 'underline',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          color: '#1977cc',
-                          marginLeft: '10px',
-                        }}
+                        className="document-button-link"
                         onClick={() =>
                           handleDownload(fetchServiceStatus.documents[item][i])
                         }

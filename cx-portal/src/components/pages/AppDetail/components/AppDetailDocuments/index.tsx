@@ -21,7 +21,7 @@
 import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import './AppDetailDocuments.scss'
+import 'components/styles/document.scss'
 import {
   AppDetails,
   Documents,
@@ -53,7 +53,7 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-howtouse">
+    <div className="appdetail-documents">
       <div className="howtouse-content">
         <Typography variant="h4">
           {t('content.appdetail.howtouse.heading')}
@@ -68,7 +68,7 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
             (document) =>
               document !==
                 DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
-                <li key={document}>
+                <li className="document-list" key={document}>
                   <ArticleOutlinedIcon className="document-icon" />
                   <button
                     className="document-button-link"
@@ -90,7 +90,7 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
               )
           )
         ) : (
-          <Typography variant="caption2" className="not-available">
+          <Typography variant="caption2" className="not-available wd-70">
             {t('global.errors.noDocumentsAvailable')}
           </Typography>
         )}
