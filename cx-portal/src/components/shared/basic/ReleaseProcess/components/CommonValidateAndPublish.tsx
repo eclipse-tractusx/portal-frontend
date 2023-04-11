@@ -498,13 +498,13 @@ export default function CommonValidateAndPublish({
             {rolesData.length > 0 ? (
               <Grid container spacing={2} sx={{ margin: '0px' }}>
                 {rolesData?.map((role) => (
-                    <Grid item xs={6} key={role.roleId}>
-                      <Typography variant="h5">{role.role}</Typography>
-                      <Typography variant="caption3">
-                        {role.description}
-                      </Typography>
-                    </Grid>
-                  ))}
+                  <Grid item xs={6} key={role.roleId}>
+                    <Typography variant="h5">{role.role}</Typography>
+                    <Typography variant="caption3">
+                      {role.description}
+                    </Typography>
+                  </Grid>
+                ))}
               </Grid>
             ) : (
               <Typography variant="caption2" className="not-available">
