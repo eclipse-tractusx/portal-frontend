@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  StaticTable,
-  Typography,
-} from 'cx-portal-shared-components'
+import { Button, StaticTable, Typography } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
@@ -165,9 +161,12 @@ export default function ServiceAdminBoardDetail() {
               <Typography variant="h4">
                 {t('adminboardDetail.provider.heading')}
               </Typography>
-              <Typography variant="body2" style={{
-                marginTop: '20px',
-              }}>
+              <Typography
+                variant="body2"
+                style={{
+                  marginTop: '20px',
+                }}
+              >
                 {t('adminboardDetail.provider.message')}
               </Typography>
             </div>
@@ -175,7 +174,14 @@ export default function ServiceAdminBoardDetail() {
             <StaticTable
               data={{
                 head: ['Homepage', 'E-Mail'],
-                body: [[serviceData.providerUri === 'ERROR' ? '' : serviceData.providerUri], [serviceData?.contactEmail]],
+                body: [
+                  [
+                    serviceData.providerUri === 'ERROR'
+                      ? ''
+                      : serviceData.providerUri,
+                  ],
+                  [serviceData?.contactEmail],
+                ],
               }}
               horizontal={true}
             />

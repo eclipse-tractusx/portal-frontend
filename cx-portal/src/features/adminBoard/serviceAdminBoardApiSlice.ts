@@ -96,8 +96,7 @@ export const apiSlice = createApi({
       },
     }),
     fetchBoardServiceDetails: builder.query<ServiceDetailsType, string>({
-      query: (id: string) =>
-        `/api/services/servicerelease/inReview/${id}`,
+      query: (id: string) => `/api/services/servicerelease/inReview/${id}`,
     }),
   }),
 })
