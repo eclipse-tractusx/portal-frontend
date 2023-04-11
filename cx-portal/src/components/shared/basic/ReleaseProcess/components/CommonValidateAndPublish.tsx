@@ -486,7 +486,7 @@ export default function CommonValidateAndPublish({
           </Typography>
         )}
 
-        {rolesData && rolesData.length > 0 && (
+        {rolesData && (
           <>
             <Divider className="verify-validate-form-divider" />
             <Typography variant="h4" sx={{ mb: 4 }}>
@@ -495,17 +495,22 @@ export default function CommonValidateAndPublish({
             <Typography variant="body2" className="form-field">
               {t('content.adminboardDetail.roles.message')}
             </Typography>
-            <Grid container spacing={2} sx={{ margin: '0px' }}>
-              {rolesData &&
-                rolesData.map((role) => (
-                  <Grid item xs={6} key={role.roleId}>
-                    <Typography variant="h5">{role.role}</Typography>
-                    <Typography variant="caption3">
-                      {role.description}
-                    </Typography>
-                  </Grid>
-                ))}
-            </Grid>
+            {rolesData.length > 0 ? (
+              <Grid container spacing={2} sx={{ margin: '0px' }}>
+                {rolesData?.map((role) => (
+                    <Grid item xs={6} key={role.roleId}>
+                      <Typography variant="h5">{role.role}</Typography>
+                      <Typography variant="caption3">
+                        {role.description}
+                      </Typography>
+                    </Grid>
+                  ))}
+              </Grid>
+            ) : (
+              <Typography variant="caption2" className="not-available">
+                {t('global.errors.noRolesAvailable')}
+              </Typography>
+            )}
           </>
         )}
 

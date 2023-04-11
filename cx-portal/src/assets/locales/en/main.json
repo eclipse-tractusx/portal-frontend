@@ -1385,7 +1385,8 @@
       "title": "Oops, Something went wrong.",
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
       "additionalDescription": "Please contact your admin.",
-      "noDocumentsAvailable": "No documents available"
+      "noDocumentsAvailable": "No documents available",
+      "noRolesAvailable": "No Roles available"
     },
     "table": {
       "search": "Enter email to search",
