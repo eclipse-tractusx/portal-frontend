@@ -34,6 +34,7 @@ import {
   useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
 import { filterSubscribed } from 'features/apps/mapper'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const AppArea = () => {
   const navigate = useNavigate()
@@ -60,6 +61,7 @@ export const AppArea = () => {
                   buttonText="Details"
                   imageSize="small"
                   imageShape="round"
+                  imageLoader={fetchImageWithToken}
                   variant="minimal"
                   expandOnHover={false}
                   filledBackground={true}
