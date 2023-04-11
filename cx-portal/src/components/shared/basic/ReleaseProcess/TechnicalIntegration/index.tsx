@@ -43,6 +43,7 @@ import {
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { ErrorType } from 'features/appManagement/types'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -345,7 +346,7 @@ export default function TechnicalIntegration() {
             />
           )}
         />
-        {errors?.uploadAppRoles?.type === 'required' && (
+        {errors?.uploadAppRoles?.type === ErrorType.REQUIRED && (
           <Typography variant="body2" className="file-error-msg">
             {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
           </Typography>

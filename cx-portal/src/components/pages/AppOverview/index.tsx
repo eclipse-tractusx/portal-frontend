@@ -46,7 +46,10 @@ import { useLocation } from 'react-router-dom'
 import './AppOverview.scss'
 import { AppOverviewList } from './AppOverviewList'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { initialState } from 'features/appManagement/types'
 import { fetchImageWithToken } from 'services/ImageService'
+import { setCurrentActiveStep } from 'features/appManagement/slice'
+import { setAppId, setAppStatus } from 'features/appManagement/actions'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -85,6 +88,9 @@ export default function AppOverview() {
   useEffect(() => {
     if (itemCards) {
       setFilterItem(itemCards)
+      dispatch(setCurrentActiveStep())
+      dispatch(setAppId(''))
+      dispatch(setAppStatus(initialState.appStatusData))
     }
     // eslint-disable-next-line
   }, [itemCards])
@@ -127,6 +133,7 @@ export default function AppOverview() {
         } else if (expr.length === 0) {
           setFilterItem(itemCards)
         }
+        dispatch(setCurrentActiveStep())
       }, 400),
     // eslint-disable-next-line
     [dispatch, filterItem, group]

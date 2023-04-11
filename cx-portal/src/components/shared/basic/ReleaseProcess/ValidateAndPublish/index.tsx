@@ -55,17 +55,6 @@ export default function ValidateAndPublish({
   const defaultValues = useMemo(() => {
     return {
       images: [LogoGrayData, LogoGrayData, LogoGrayData],
-      connectedTableData: {
-        head: ['Linked to your identity', 'Linked NOT to your identity'],
-        body: [
-          ['personal Information', 'Loreum personal Information'],
-          ['Used Content', 'Loreum Used Content'],
-          ['Catena-X Account Data', 'Loreum Catena-X Account Data'],
-        ],
-      },
-      dataSecurityInformation: t(
-        'content.apprelease.defaultValues.dataSecurityInformation'
-      ),
       conformityDocumentsDescription: t(
         'content.apprelease.defaultValues.conformityDocumentsDescription'
       ),
@@ -117,12 +106,8 @@ export default function ValidateAndPublish({
         longDescriptionTitleDE={t(
           'content.apprelease.validateAndPublish.longDescriptionTitleDE'
         )}
-        connectedData={t('content.apprelease.validateAndPublish.connectedData')}
         conformityDocument={t(
           'content.apprelease.validateAndPublish.conformityDocument'
-        )}
-        dataSecurityInformation={t(
-          'content.apprelease.validateAndPublish.dataSecurityInformation'
         )}
         documentsTitle={t('content.apprelease.validateAndPublish.documents')}
         providerInformation={t(
