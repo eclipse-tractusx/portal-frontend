@@ -40,14 +40,14 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('enable.success.title')}
-        intro={t('enable.success.subtitle')}
+        title={t('enablesuccess.title')}
+        intro={t('enablesuccess.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
         <div>
-          <Typography>{t('enable.success.desc')}</Typography>
+          <Typography>{t('enablesuccess.desc')}</Typography>
         </div>
         <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
           <Typography variant="h5">{data?.displayName}</Typography>

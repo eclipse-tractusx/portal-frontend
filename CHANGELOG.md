@@ -2,6 +2,11 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+## Unreleased
+
+* App Release Process
+   * Added app roles to validate and publish
+
 ## 1.3.0 RC2
 
 ### Change

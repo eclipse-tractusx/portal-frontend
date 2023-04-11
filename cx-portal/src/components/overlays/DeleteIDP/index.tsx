@@ -30,6 +30,7 @@ import { error, success } from 'services/NotifyService'
 
 export const DeleteIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
+  const ti = useTranslation('idp').t
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id ?? '')
   const [removeIDP] = useRemoveIDPMutation()
@@ -38,9 +39,9 @@ export const DeleteIDP = ({ id }: { id: string }) => {
     if (!data) return
     try {
       await removeIDP(data.identityProviderId).unwrap()
-      success(t('delete.short'))
+      success(ti('delete.success'))
     } catch (err) {
-      error(t('delete.short'), '', err as object)
+      error(ti('delete.error'), '', err as object)
     }
     setTimeout(() => dispatch(closeOverlay()), 3000)
   }

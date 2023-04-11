@@ -20,6 +20,7 @@
 
 import { MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -32,7 +33,7 @@ export default function SearchSection() {
         headerHeight={600}
         subTitleWidth={787}
         background="LinearGradient1"
-        imagePath="./Frame.svg"
+        imagePath={`${getAssetBase()}/images/frame/Frame.svg`}
       />
     </div>
   )
