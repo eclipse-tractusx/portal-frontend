@@ -75,6 +75,7 @@ import RoleDetails from 'components/pages/RoleDetails'
 import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
 import ServiceSubscription from 'components/pages/ServiceSubscription'
+import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 
 /**
  * ALL_PAGES
@@ -264,7 +265,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICEADMINBOARD,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
-    element: <AdminBoard />,
+    element: <ServiceAdminBoard />,
   },
   {
     name: PAGES.ADMINBOARD_DETAIL,
@@ -637,7 +638,7 @@ export const mainMenuFullTree = [
         name: PAGES.SERVICESUBSCRIPTION,
         hint: HINTS.NEW,
       },
-      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.COMING_SOON, disable: true },
+      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.NEW },
     ],
   },
 ]

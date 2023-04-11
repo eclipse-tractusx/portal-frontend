@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -21,8 +21,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { StatusVariants } from 'cx-portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import i18next from 'i18next'
-import { AppDetails } from 'features/apps/apiSlice'
 
 const PAGE_SIZE = 15
 
@@ -34,7 +32,7 @@ export enum PrivacyPolicyType {
   NONE = 'NONE',
 }
 
-export interface AppRequestBody {
+export interface ServiceRequestBody {
   page: number
   statusId: string
   sortingType: string
@@ -48,61 +46,40 @@ export type MetaBody = {
   contentSize: 0
 }
 
-export type AppContent = {
-  appId: string
-  name: string
+export type ServiceContent = {
+  appId?: string
+  name?: string
+  id: string
+  title: string
   provider: string
   status: StatusVariants
+  description: string
 }
 
-export type AppResponse = {
+export type ServiceResponse = {
+  content: ServiceContent[]
   meta: MetaBody
-  content: AppContent[]
-}
-
-export type DeclineRequestType = {
-  appId: string
-  message: string
 }
 
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/adminBoard',
+  reducerPath: 'rtk/services/serviceAdminBoardApiSlice',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchAppReleaseApps: builder.query<AppResponse, AppRequestBody>({
+    fetchInReviewServices: builder.query<ServiceResponse, ServiceRequestBody>({
       query: (body) => {
         const statusId = `offerStatusIdFilter=${body.statusId}`
         const sortingType = `sorting=${body.sortingType}`
+        const expr = `serviceName=${body.expr}`
         return {
-          url: `/api/apps/appreleaseprocess/inReview?size=${PAGE_SIZE}&page=${
+          url: `/api/services/serviceRelease/inReview?size=${PAGE_SIZE}&page=${
             body.page
-          }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
+          }&${body.statusId && statusId}&${body.sortingType && sortingType}&${
+            body.expr && expr
+          }`,
         }
       },
-    }),
-    approveRequest: builder.mutation<boolean, string>({
-      query: (appId) => ({
-        url: `/api/apps/appreleaseprocess/${appId}/approveApp`,
-        method: 'PUT',
-      }),
-    }),
-    declineRequest: builder.mutation<boolean, DeclineRequestType>({
-      query: (body) => ({
-        url: `/api/apps/appreleaseprocess/${body.appId}/declineApp`,
-        method: 'PUT',
-        body: { message: body.message },
-      }),
-    }),
-    fetchBoardAppDetails: builder.query<AppDetails, string>({
-      query: (id: string) =>
-        `/api/apps/appreleaseprocess/inReview/${id}?lang=${i18next.language}`,
     }),
   }),
 })
 
-export const {
-  useFetchAppReleaseAppsQuery,
-  useApproveRequestMutation,
-  useDeclineRequestMutation,
-  useFetchBoardAppDetailsQuery,
-} = apiSlice
+export const { useFetchInReviewServicesQuery } = apiSlice

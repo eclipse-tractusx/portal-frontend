@@ -20,7 +20,6 @@
 
 import { CardDecision, PageSnackbar } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { useTheme, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { show } from 'features/control/overlay'
@@ -29,7 +28,6 @@ import {
   AppContent,
   useApproveRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
-import NoItems from '../NoItems'
 import { OVERLAYS } from 'types/Constants'
 import {
   currentErrorType,
@@ -38,10 +36,17 @@ import {
   setSuccessType,
 } from 'features/adminBoard/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import NoItems from 'components/pages/NoItems'
+import { ServiceContent } from 'features/adminBoard/serviceAdminBoardApiSlice'
 
-export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
+export default function AdminBoardElements({
+  apps,
+  onClick,
+}: {
+  apps?: AppContent[] | ServiceContent[]
+  onClick: (appId: string) => void
+}) {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const theme = useTheme()
   const { t } = useTranslation()
 
@@ -90,7 +95,7 @@ export default function AdminBoardElements({ apps }: { apps?: AppContent[] }) {
             dispatch(show(OVERLAYS.DECLINE_ADMINBOARD, appId))
           }
           onApprove={(appId: string) => handleApprove(appId)}
-          onClick={(appId: string) => navigate(`/adminboarddetail/${appId}`)}
+          onClick={onClick}
         />
       ) : (
         <div className="loading-progress">

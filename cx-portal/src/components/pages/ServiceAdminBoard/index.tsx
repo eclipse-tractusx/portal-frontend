@@ -19,24 +19,27 @@
  ********************************************************************************/
 
 import CommonAdminBoard from 'components/shared/templates/AdminBoard'
-import { useFetchAppReleaseAppsQuery } from 'features/adminBoard/adminBoardApiSlice'
+import { useFetchInReviewServicesQuery } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useTranslation } from 'react-i18next'
+import { PAGES } from 'types/Constants'
 
-export default function AdminBoard() {
-  const { t } = useTranslation()
+export default function ServiceAdminBoard() {
+  const { t } = useTranslation('servicerelease')
   return (
     <CommonAdminBoard
-      headerTitle={t('content.adminBoard.headerTitle')}
-      searchText={t('content.adminBoard.search')}
+      headerTitle={t('adminBoard.headerTitle')}
+      searchText={t('adminBoard.search')}
       filterOptionText={{
-        open: t('content.adminBoard.tabs.open'),
-        all: t('content.adminBoard.tabs.all'),
+        open: t('adminBoard.tabs.open'),
+        all: t('adminBoard.tabs.all'),
       }}
       sortOptionText={{
-        newFirst: t('content.adminBoard.sortOptions.newFirst'),
-        AppTitle: t('content.adminBoard.sortOptions.AppTitle'),
+        newFirst: t('adminBoard.sortOptions.newFirst'),
+        AppTitle: t('adminBoard.sortOptions.AppTitle'),
       }}
-      fetchQuery={useFetchAppReleaseAppsQuery}
+      fetchQuery={useFetchInReviewServicesQuery}
+      isDynamicSearchEnabled={true}
+      type={PAGES.SERVICEADMINBOARD}
     />
   )
 }

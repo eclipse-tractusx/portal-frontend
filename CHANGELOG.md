@@ -10,6 +10,10 @@ n/a
 ### Feature
 * Service Release Process
    * Support SERVICE_LEADIMAGE document upload in step1
+* Service Admin Board
+   * Service Admin Board enabled
+* Refactor
+   App Admin Board & Service Admin Board to use common component
 
 ### Technical Support
 n/a
