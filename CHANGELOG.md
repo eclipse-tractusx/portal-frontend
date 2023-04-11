@@ -1,16 +1,15 @@
 # Changelog
 
-* App Details 
-   * Update document style
-* App Access Management
-   * Styling Update of Roles on hover
-
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ## Unreleased
 
 * User Management
    * Developer Mode error fixes
+* App Details 
+   * Update document style
+* App Access Management
+   * Styling Update of Roles on hover
 
 ## 1.3.0 RC2
 
