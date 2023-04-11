@@ -1149,7 +1149,7 @@
       },
       "roles": {
         "heading": "App Roles",
-        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "message": "Geschäftsanwendungsrollen und -beschreibung für die jeweilige App. Die Rollen werden verwendet, um App-Kunden benutzerspezifischen Zugriff zu gewähren und Berechtigungen zwischen verschiedenen Benutzergruppen einzuschränken.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {

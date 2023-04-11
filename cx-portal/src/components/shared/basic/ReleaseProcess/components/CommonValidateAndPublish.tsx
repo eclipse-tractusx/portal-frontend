@@ -43,6 +43,7 @@ import {
   ConsentStatusEnum,
   DocumentData,
   DocumentTypeId,
+  rolesType,
 } from 'features/appManagement/apiSlice'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
@@ -94,6 +95,7 @@ interface CommonValidateAndPublishType {
   values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
   serviceTypes?: string
+  rolesData?: rolesType[]
 }
 
 export default function CommonValidateAndPublish({
@@ -119,6 +121,7 @@ export default function CommonValidateAndPublish({
   values,
   type,
   serviceTypes,
+  rolesData,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -446,6 +449,7 @@ export default function CommonValidateAndPublish({
             <Divider className="verify-validate-form-divider" />
           </>
         )}
+
         <Typography variant="h4" sx={{ mb: 4 }}>
           {documentsTitle}
         </Typography>
@@ -480,6 +484,29 @@ export default function CommonValidateAndPublish({
           <Typography variant="caption2" className="not-available">
             {t('global.errors.noDocumentsAvailable')}
           </Typography>
+        )}
+
+        {rolesData && rolesData.length > 0 && (
+          <>
+            <Divider className="verify-validate-form-divider" />
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {t('content.adminboardDetail.roles.heading')}
+            </Typography>
+            <Typography variant="body2" className="form-field">
+              {t('content.adminboardDetail.roles.message')}
+            </Typography>
+            <Grid container spacing={2} sx={{ margin: '0px' }}>
+              {rolesData &&
+                rolesData.map((role) => (
+                  <Grid item xs={6} key={role.roleId}>
+                    <Typography variant="h5">{role.role}</Typography>
+                    <Typography variant="caption3">
+                      {role.description}
+                    </Typography>
+                  </Grid>
+                ))}
+            </Grid>
+          </>
         )}
 
         <Divider className="verify-validate-form-divider" />
