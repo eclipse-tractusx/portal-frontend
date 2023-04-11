@@ -387,7 +387,7 @@ export default function Subscription({
 
   const searchDataFn = useCallback(
     (expr: string) => {
-      setState({ type: 'SET_SEARCH_EXPR', payload: expr })
+      setState({ type: ActionKind.SET_SEARCH_EXPR, payload: expr })
       debouncedFilter(expr)
     },
     [debouncedFilter]
