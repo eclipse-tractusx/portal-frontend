@@ -40,6 +40,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function BetaTest() {
   const { t } = useTranslation()
@@ -67,7 +68,7 @@ export default function BetaTest() {
         <Grid container sx={{ mt: 0 }}>
           <Grid item md={3}>
             <img
-              src="/teaser.png"
+              src={`${getAssetBase()}/images/content/teaser.png`}
               alt="idp teaser"
               height="164px"
               width="164px"

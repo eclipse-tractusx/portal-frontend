@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next'
 import PageService from 'services/PageService'
 import { label as AppList } from '../AppListSection'
 import FavoriteSection from '../FavoriteSection'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -35,7 +36,7 @@ export default function SearchSection() {
         headerHeight={731}
         subTitleWidth={787}
         background="LinearGradient1"
-        imagePath="./app-store-stage-desktop.png"
+        imagePath={`${getAssetBase()}/images/content/app-store-stage-desktop.png`}
       >
         <Button
           sx={{ margin: '40px 10px 0 0' }}
