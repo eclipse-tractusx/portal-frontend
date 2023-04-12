@@ -120,7 +120,11 @@ export default function AdminBoardElements({
           items={apps}
           onDelete={(appId: string) => {
             setActionApprove(false)
-            dispatch(show(OVERLAYS.DECLINE_ADMINBOARD, appId, type))
+            if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+              dispatch(show(OVERLAYS.SERVICE_DECLINE_ADMINBOARD, appId))
+            } else {
+              dispatch(show(OVERLAYS.APP_DECLINE_ADMINBOARD, appId))
+            }
           }}
           onApprove={(appId: string) => handleApprove(appId)}
           onClick={onClick}
