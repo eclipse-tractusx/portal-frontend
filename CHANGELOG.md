@@ -10,6 +10,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Update document style
 * App Access Management
    * Styling Update of Roles on hover
+* User Account
+   * User permission updated
+* App Marketplace
+   * Subscription user permission validation
+   * Search- no result found fix
+   * Responsive fix
 
 ## 1.3.0 RC2
 

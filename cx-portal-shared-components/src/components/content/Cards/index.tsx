@@ -102,9 +102,12 @@ export const Cards = ({
   return (
     <Box
       sx={{
-        display: 'grid',
-        gap: spacing(8, 4),
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+        display: 'flex',
+        '-ms-flex-wrap': 'wrap',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        marginRight: '-10px',
+        marginLeft: '-10px',
       }}
     >
       {showAddNewCard && (
