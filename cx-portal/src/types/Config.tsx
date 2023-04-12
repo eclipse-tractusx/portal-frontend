@@ -76,6 +76,7 @@ import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/S
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
 import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
+import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 
 /**
  * ALL_PAGES
@@ -279,6 +280,21 @@ export const ALL_PAGES: IPage[] = [
       >
         <Route index element={null} />
         <Route path=":appId" element={<AdminBoardDetail />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.SERVICEADMINBOARD_DETAIL,
+    role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICEADMINBOARD_DETAIL}
+        path={PAGES.SERVICEADMINBOARD_DETAIL}
+        element={<ServiceAdminBoardDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":appId" element={<ServiceAdminBoardDetail />} />
       </Route>
     ),
   },

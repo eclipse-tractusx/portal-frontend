@@ -17,6 +17,7 @@ n/a
    * Support SERVICE_LEADIMAGE document upload in step1
 * Service Admin Board
    * Service Admin Board enabled
+   * Service admin board details page enabled
 * Refactor
    App Admin Board & Service Admin Board to use common component
 

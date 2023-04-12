@@ -435,7 +435,11 @@ export default function CommonAdminBoard({
               />
             </div>
           ) : (
-            <AdminBoardElements apps={appCards} onClick={onViewDetails} />
+            <AdminBoardElements
+              apps={appCards}
+              onClick={onViewDetails}
+              type={type}
+            />
           )}
           {!isFetching &&
             apps?.length &&

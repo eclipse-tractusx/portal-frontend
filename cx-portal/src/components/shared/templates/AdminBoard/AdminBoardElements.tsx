@@ -28,7 +28,7 @@ import {
   AppContent,
   useApproveRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, PAGES } from 'types/Constants'
 import {
   currentErrorType,
   currentSuccessType,
@@ -42,9 +42,11 @@ import { ServiceContent } from 'features/adminBoard/serviceAdminBoardApiSlice'
 export default function AdminBoardElements({
   apps,
   onClick,
+  type,
 }: {
   apps?: AppContent[] | ServiceContent[]
   onClick: (appId: string) => void
+  type?: string
 }) {
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -92,9 +94,17 @@ export default function AdminBoardElements({
         <CardDecision
           items={apps}
           onDelete={(appId: string) =>
-            dispatch(show(OVERLAYS.DECLINE_ADMINBOARD, appId))
+            // TO-DO - API integration in next PR
+            type !== PAGES.SERVICEADMINBOARD_DETAIL
+              ? dispatch(show(OVERLAYS.DECLINE_ADMINBOARD, appId))
+              : null
           }
-          onApprove={(appId: string) => handleApprove(appId)}
+          onApprove={(appId: string) =>
+            // TO-DO - API integration in next PR
+            type !== PAGES.SERVICEADMINBOARD_DETAIL
+              ? handleApprove(appId)
+              : null
+          }
           onClick={onClick}
         />
       ) : (
