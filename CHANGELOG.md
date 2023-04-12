@@ -11,6 +11,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * App Access Management
    * Styling Update of Roles on hover
 
+* bugfix
+   * App Release Process
+      * Fixed provider name validation in app card
+
 ## 1.3.0 RC2
 
 ### Change
