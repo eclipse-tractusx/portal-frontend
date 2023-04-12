@@ -98,10 +98,14 @@ export const apiSlice = createApi({
     fetchBoardServiceDetails: builder.query<ServiceDetailsType, string>({
       query: (id: string) => `/api/services/servicerelease/inReview/${id}`,
     }),
+    fetchServiceDetails: builder.query<ServiceDetailsType, string>({
+      query: (id: string) => `/api/services/${id}`,
+    }),
   }),
 })
 
 export const {
   useFetchInReviewServicesQuery,
   useFetchBoardServiceDetailsQuery,
+  useFetchServiceDetailsQuery,
 } = apiSlice

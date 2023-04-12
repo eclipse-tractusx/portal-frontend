@@ -22,8 +22,12 @@ import { Button, StaticTable, Typography } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
-import { useFetchBoardServiceDetailsQuery } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import { useCallback } from 'react'
+import {
+  ServiceDetailsType,
+  useFetchBoardServiceDetailsQuery,
+  useFetchServiceDetailsQuery,
+} from 'features/adminBoard/serviceAdminBoardApiSlice'
+import { useCallback, useEffect, useState } from 'react'
 import {
   ServiceTypeIdsEnum,
   useFetchDocumentMutation,
@@ -38,13 +42,25 @@ export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
-  const serviceData = useFetchBoardServiceDetailsQuery(appId || '', {
+  const boardDetails = useFetchBoardServiceDetailsQuery(appId || '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const isFetching = useFetchBoardServiceDetailsQuery(appId || '', {
+    refetchOnMountOrArgChange: true,
+  }).isFetching
+  const detailsData = useFetchServiceDetailsQuery(appId || '').data
   const [fetchDocument] = useFetchDocumentMutation()
+  const [serviceData, setServiceData] = useState<ServiceDetailsType>()
+
+  useEffect(() => {
+    if (!isFetching && boardDetails) {
+      setServiceData(boardDetails)
+    } else if (detailsData) {
+      setServiceData(detailsData)
+    }
+  }, [isFetching, boardDetails, detailsData])
 
   const getTypes = useCallback(() => {
-    console.log('serviceData  == = ', serviceData)
     const newArr: string[] = []
     serviceData?.serviceTypes.forEach((serviceType: string) => {
       if (serviceType === ServiceTypeIdsEnum.CONSULTANCE_SERVICE)
