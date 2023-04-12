@@ -112,6 +112,9 @@ export const apiSlice = createApi({
         body: { message: body.message },
       }),
     }),
+    fetchServiceDetails: builder.query<ServiceDetailsType, string>({
+      query: (id: string) => `/api/services/${id}`,
+    }),
   }),
 })
 
@@ -120,4 +123,5 @@ export const {
   useFetchBoardServiceDetailsQuery,
   useApproveServiceRequestMutation,
   useDeclineServiceRequestMutation,
+  useFetchServiceDetailsQuery,
 } = apiSlice
