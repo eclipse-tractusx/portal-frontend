@@ -36,15 +36,10 @@ export default function ServiceDeclineAdminboard({ id }: { id: string }) {
   const dispatch = useDispatch<typeof store.dispatch>()
   const { data } = useFetchBoardServiceDetailsQuery(id ?? '')
 
-  const [declineRequest] = useDeclineServiceRequestMutation()
+  const [declineServiceRequest] = useDeclineServiceRequestMutation()
 
-  useEffect(() => {
-    dispatch(setSuccessType(false))
-    dispatch(setErrorType(false))
-  }, [dispatch])
-
-  const handleConfirm = async (msg: string) => {
-    await declineRequest({
+  const onConfirm = async (msg: string) => {
+    await declineServiceRequest({
       appId: id,
       message: msg,
     })
@@ -56,10 +51,15 @@ export default function ServiceDeclineAdminboard({ id }: { id: string }) {
     dispatch(closeOverlay())
   }
 
+  useEffect(() => {
+    dispatch(setSuccessType(false))
+    dispatch(setErrorType(false))
+  }, [dispatch])
+
   return (
     <>
       <DeclineAdminBoard
-        handleConfirm={handleConfirm}
+        handleConfirm={onConfirm}
         confirmBtn={t('adminBoard.declineModal.confirm')}
         closeBtn={t('adminBoard.declineModal.close')}
         title={t('adminBoard.declineModal.title').replace(
