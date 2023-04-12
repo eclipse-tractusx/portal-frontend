@@ -515,7 +515,7 @@ export default function AppMarketCard() {
                 )}`,
                 pattern: `${t(
                   'content.apprelease.appReleaseForm.validCharactersIncludes'
-                )} A-Za-z -`,
+                )} A-Za-z0-9.:_- @&`,
                 maxLength: `${t(
                   'content.apprelease.appReleaseForm.maximum'
                 )} 30 ${t(
