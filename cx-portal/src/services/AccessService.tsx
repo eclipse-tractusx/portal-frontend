@@ -187,7 +187,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.ADD_SERVICE_PROVIDER:
       return <AddServiceProvider />
     case OVERLAYS.DECLINE_ADMINBOARD:
-      return <DeclineAdminboard id={overlay.id} />
+      return <DeclineAdminboard id={overlay.id} title={overlay.title} />
     case OVERLAYS.EDIT_PORTAL_ROLES:
       return <EditPortalRoles id={overlay.id} />
     default:

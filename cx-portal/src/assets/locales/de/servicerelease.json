@@ -167,12 +167,29 @@
       "clientSecret": "Client Secret"
     }
   },
+  "content": {
+    "adminBoard": {
+      "declineModal": {
+        "title": "Reject Service Release Request {appName}",
+        "subheading": "Are you sure you want to reject the service release request ?",
+        "declineReason": "The rejection will",
+        "declineReason1Label": "Create a notification & email message to inform the service provider/manager about the rejection",
+        "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+        "declineReason3Label": "The service will get set back to the status “in progress“",
+        "inputLabel": "Cancellation Message",
+        "confirm": "Confirm",
+        "close": "Close"
+      }
+    }
+  },
   "adminBoard": {
     "headerTitle": "Service request management",
     "search": "search company name/service title",
     "noDataMessage": "No data available",
-    "errorMsg": "Error! Something went wrong",
-    "successMsg": "Successfully completed",
+    "successApproveMsg": "Service wurde aktiviert",
+    "errorApproveMsg": "Service-Aktivierung fehlgeschlagen.",
+    "successDeclineMsg": "Service wurde declined & provider informiert",
+    "errorDeclineMsg": "Service-Aktivierung fehlgeschlagen.",
     "tabs": {
       "open": "Open",
       "all": "All"
@@ -180,15 +197,6 @@
     "sortOptions": {
       "newFirst": "Newest First",
       "AppTitle": "Service Title (A-Z)"
-    },
-    "declineModal": {
-      "title": "Reject Service Release Request {appName}",
-      "subheading": "Are you sure you want to reject the service release request ?",
-      "declineReason": "The rejection will",
-      "declineReason1Label": "Create a notification & email message to inform the service provider/manager about the rejection",
-      "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
-      "declineReason3Label": "The service will get set back to the status “in progress“",
-      "inputLabel": "Cancellation Message"
     }
   },
   "adminboardDetail": {

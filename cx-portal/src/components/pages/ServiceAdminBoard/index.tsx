@@ -40,6 +40,10 @@ export default function ServiceAdminBoard() {
       fetchQuery={useFetchInReviewServicesQuery}
       isDynamicSearchEnabled={true}
       type={PAGES.SERVICEADMINBOARD_DETAIL}
+      successApproveMsg={t('adminBoard.successApproveMsg')}
+      errorApproveMsg={t('adminBoard.errorApproveMsg')}
+      successDeclineMsg={t('adminBoard.successDeclineMsg')}
+      errorDeclineMsg={t('adminBoard.errorDeclineMsg')}
     />
   )
 }

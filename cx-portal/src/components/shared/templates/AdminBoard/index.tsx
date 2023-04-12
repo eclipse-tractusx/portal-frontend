@@ -211,6 +211,10 @@ type CommonAdminBoardType = {
   loadMoreButtonText?: string
   isDynamicSearchEnabled?: boolean
   type?: string
+  successApproveMsg?: string
+  errorApproveMsg?: string
+  successDeclineMsg?: string
+  errorDeclineMsg?: string
 }
 
 export default function CommonAdminBoard({
@@ -222,6 +226,10 @@ export default function CommonAdminBoard({
   loadMoreButtonText = 'Load More',
   isDynamicSearchEnabled = false,
   type = 'adminboarddetail',
+  successApproveMsg,
+  errorApproveMsg,
+  successDeclineMsg,
+  errorDeclineMsg,
 }: CommonAdminBoardType) {
   const theme = useTheme()
   const navigate = useNavigate()
@@ -439,6 +447,10 @@ export default function CommonAdminBoard({
               apps={appCards}
               onClick={onViewDetails}
               type={type}
+              successApproveMsg={successApproveMsg}
+              errorApproveMsg={errorApproveMsg}
+              successDeclineMsg={successDeclineMsg}
+              errorDeclineMsg={errorDeclineMsg}
             />
           )}
           {!isFetching &&

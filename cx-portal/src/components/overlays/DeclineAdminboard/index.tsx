@@ -33,18 +33,35 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { useDeclineRequestMutation } from 'features/adminBoard/adminBoardApiSlice'
 import { setErrorType, setSuccessType } from 'features/adminBoard/slice'
+import { PAGES } from 'types/Constants'
+import { useDeclineServiceRequestMutation } from 'features/adminBoard/serviceAdminBoardApiSlice'
+import { useFetchBoardDetailsQuery } from 'features/adminBoard/commonAdminBoardApiSlice'
 
-export default function DeclineAdminBoard({ id }: { id: string }) {
-  const { t } = useTranslation()
+export default function DeclineAdminBoard({
+  id,
+  title,
+}: {
+  id: string
+  title?: string
+}) {
+  const ai = useTranslation().t
+  const si = useTranslation('servicerelease').t
+  const ti = title === PAGES.SERVICEADMINBOARD_DETAIL ? si : ai
   const dispatch = useDispatch<typeof store.dispatch>()
-  const { data } = useFetchAppDetailsQuery(id ?? '')
+  const obj = {
+    id: id,
+    type:
+      title === PAGES.SERVICEADMINBOARD_DETAIL
+        ? PAGES.SERVICEADMINBOARD_DETAIL
+        : PAGES.ADMINBOARD_DETAIL,
+  }
+  const { data } = useFetchBoardDetailsQuery(obj)
   const [inputMessage, setInputMessage] = useState('')
   const [loading, setLoading] = useState<boolean>(false)
-
   const [declineRequest] = useDeclineRequestMutation()
+  const [declineServiceRequest] = useDeclineServiceRequestMutation()
 
   useEffect(() => {
     dispatch(setSuccessType(false))
@@ -53,15 +70,27 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
 
   const handleConfirm = async () => {
     setLoading(true)
-    await declineRequest({
-      appId: id,
-      message: inputMessage,
-    })
-      .unwrap()
-      .then(() => {
-        dispatch(setSuccessType(true))
+    if (title === PAGES.SERVICEADMINBOARD_DETAIL) {
+      await declineServiceRequest({
+        appId: id,
+        message: inputMessage,
       })
-      .catch((error) => dispatch(setErrorType(true)))
+        .unwrap()
+        .then(() => {
+          dispatch(setSuccessType(true))
+        })
+        .catch((error) => dispatch(setErrorType(true)))
+    } else {
+      await declineRequest({
+        appId: id,
+        message: inputMessage,
+      })
+        .unwrap()
+        .then(() => {
+          dispatch(setSuccessType(true))
+        })
+        .catch((error) => dispatch(setErrorType(true)))
+    }
     dispatch(closeOverlay())
   }
 
@@ -69,11 +98,11 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
     <div className="decline-modal-main">
       <DialogHeader
         {...{
-          title: t('content.adminBoard.declineModal.title').replace(
+          title: ti('content.adminBoard.declineModal.title').replace(
             '{appName}',
             data ? data.title : ''
           ),
-          intro: t('content.adminBoard.declineModal.subheading'),
+          intro: ti('content.adminBoard.declineModal.subheading'),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
@@ -81,27 +110,27 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
       <DialogContent>
         <div className="decline-modal-input">
           <Typography variant="label2">
-            {t('content.adminBoard.declineModal.declineReason')}
+            {ti('content.adminBoard.declineModal.declineReason')}
           </Typography>
           <ul>
             <li>
               <Typography variant="label2">
-                {t('content.adminBoard.declineModal.declineReason1Label')}
+                {ti('content.adminBoard.declineModal.declineReason1Label')}
               </Typography>
             </li>
             <li>
               <Typography variant="label2">
-                {t('content.adminBoard.declineModal.declineReason2Label')}
+                {ti('content.adminBoard.declineModal.declineReason2Label')}
               </Typography>
             </li>
             <li>
               <Typography variant="label2">
-                {t('content.adminBoard.declineModal.declineReason3Label')}
+                {ti('content.adminBoard.declineModal.declineReason3Label')}
               </Typography>
             </li>
           </ul>
           <Input
-            label={t('content.adminBoard.declineModal.inputLabel')}
+            label={ti('content.adminBoard.declineModal.inputLabel')}
             sx={{
               paddingTop: '10px',
             }}
@@ -119,7 +148,7 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
 
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          Close
+          {ti('content.adminBoard.declineModal.close')}
         </Button>
         {loading ? (
           <LoadingButton
@@ -135,7 +164,7 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
           />
         ) : (
           <Button variant="contained" onClick={handleConfirm}>
-            {t('global.actions.confirm')}
+            {ti('content.adminBoard.declineModal.confirm')}
           </Button>
         )}
       </DialogActions>
