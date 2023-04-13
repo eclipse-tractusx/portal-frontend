@@ -433,7 +433,7 @@ export default function CommonAdminBoard({
       <div className="admin-board-main">
         <div style={{ height: '60px' }}></div>
         <div className="mainContainer">
-          {!apps ? (
+          {!apps || apps?.length == 0 ? (
             <div className="loading-progress">
               <CircularProgress
                 size={50}
