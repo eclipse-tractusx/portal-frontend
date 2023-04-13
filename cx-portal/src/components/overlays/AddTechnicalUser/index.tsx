@@ -29,7 +29,7 @@ import {
 } from 'cx-portal-shared-components'
 import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useForm } from 'react-hook-form'
 import { DefaultFormFieldValuesType } from './TechnicalUserAddForm'
 import {
@@ -39,7 +39,7 @@ import {
 } from 'features/admin/serviceApiSlice'
 import { TechnicalUserAddForm } from 'components/overlays/AddTechnicalUser/TechnicalUserAddForm'
 import { useState } from 'react'
-import { updateData, UPDATES } from 'features/control/updatesSlice'
+import { updateData, UPDATES } from 'features/control/updates'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'

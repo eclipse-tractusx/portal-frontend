@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 

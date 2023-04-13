@@ -22,7 +22,7 @@
   },
   "step1": {
     "headerTitle": "Create Service",
-    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer. While entering the data below, have a look at the service card on the left side which is getting autoupdated based on your input.",
+    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer.",
     "defaultCardServiceImageAlt": "Part Chain",
     "defaultCardServiceProvider": "Catena-X",
     "defaultCardServiceTitle": "This is the service title",
@@ -60,8 +60,6 @@
     "language": "Language :  ",
     "useCase": "Use Case :  ",
     "price": "Price :  ",
-    "connectedData": "Connected Data",
-    "dataSecurityInformation": "Data Security Information",
     "conformityDocument": "Conformity Document",
     "documents": "Documents",
     "providerInformation": "Provider Information",
@@ -109,18 +107,8 @@
     "overview": "My services overview"
   },
   "defaultValues": {
-    "dataSecurityInformation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "connectedTableDataHeader": [
-      "Linked to your identity",
-      "Linked NOT to your identity"
-    ],
-    "connectedTableDataBody": [
-      ["personal Information", "Loreum personal Information"],
-      ["Used Content", "Loreum Used Content"],
-      ["Catena-X Account Data", "Loreum Catena-X Account Data"]
-    ]
+    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceoverview": {
     "filter": {
@@ -135,5 +123,92 @@
   },
   "servicedetails": {
     "headerTitle": "Service Details"
+  },
+  "serviceSubscription": {
+    "headline": "Service Subscription",
+    "subHeading": "Manage customer subscriptons",
+    "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+    "readMore": "Read More",
+    "registerURL": "RegisterURL",
+    "search": "...search by entering the service name here.",
+    "noDataMessage": "No data available",
+    "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+    "subscribeSuccessMsg": "Subscribed Successfully",
+    "newServices": "New Services",
+    "recommendations": "Recommendations",
+    "allServices": "All Services",
+    "activateBtn": "Activate",
+    "pleaseEnterValidURL": "Please enter a valid URL",
+    "tabs": {
+      "request": "Request",
+      "active": "Active"
+    },
+    "sortOptions": {
+      "customer": "By Customer A-Z",
+      "offer": "By Offer"
+    },
+    "document": {
+      "heading": "Relevant Documents",
+      "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+    },
+    "register": {
+      "heading": "Autosetup URL",
+      "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
+      "endpointConfigured": "Current Endpoint",
+      "autosetupURL": "AutoSetup URL",
+      "providerErrorMessage": "Something went wrong! Please try it later again.",
+      "providerSuccessMessage": "Service Provider Details added successfully."
+    },
+    "activation": {
+      "heading": "Activate Service Subscription",
+      "description": "Activate the service subscription request of the customer by adding your customer specific service endpoint/url in the input field below. We will use the url to register/activate the service authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the service tenant/connector to the centryl CX components/services (where needed).",
+      "successDescription": "The technical user has been created with the following data:",
+      "clientId": "Client Id",
+      "clientSecret": "Client Secret"
+    }
+  },
+  "adminBoard": {
+    "headerTitle": "Service request management",
+    "search": "search company name/service title",
+    "noDataMessage": "No data available",
+    "successApproveMsg": "Service wurde aktiviert",
+    "errorApproveMsg": "Service-Aktivierung fehlgeschlagen.",
+    "successDeclineMsg": "Service wurde declined & provider informiert",
+    "errorDeclineMsg": "Service-Aktivierung fehlgeschlagen.",
+    "tabs": {
+      "open": "Open",
+      "all": "All"
+    },
+    "sortOptions": {
+      "newFirst": "Newest First",
+      "AppTitle": "Service Title (A-Z)"
+    },
+    "declineModal": {
+      "title": "Reject Service Release Request {appName}",
+      "subheading": "Are you sure you want to reject the service release request ?",
+      "declineReason": "The rejection will",
+      "declineReason1Label": "Create a notification & email message to inform the service provider/manager about the rejection",
+      "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+      "declineReason3Label": "The service will get set back to the status “in progress“",
+      "inputLabel": "Cancellation Message",
+      "confirm": "Confirm",
+      "close": "Close"
+    }
+  },
+  "adminboardDetail": {
+    "action": {
+      "back": "Back"
+    },
+    "longDescriptionTitleEN": "Description - English",
+    "longDescriptionTitleDE": "Description - German",
+    "backToBoard": "Back to Admin Board",
+    "documents": {
+      "heading": "Documents",
+      "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
+    },
+    "provider": {
+      "heading": "Provider Information",
+      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+    }
   }
 }

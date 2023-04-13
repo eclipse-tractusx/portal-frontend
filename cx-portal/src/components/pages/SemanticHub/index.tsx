@@ -34,6 +34,7 @@ import { semanticModelsSelector } from 'features/semanticModels/slice'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
@@ -138,7 +139,7 @@ export default function SemanticHub() {
             <Grid item xs={4}>
               <img
                 style={{ marginTop: '-200px', border: '16px solid white' }}
-                src="/teaser.png"
+                src={`${getAssetBase()}/images/content/teaser.png`}
                 width="100%"
                 alt={'alt tag info'}
               />

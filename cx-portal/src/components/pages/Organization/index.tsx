@@ -22,7 +22,7 @@ import { PageHeader, StaticTable, TableType } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppSubscriptions from './AppSubscriptions'
 import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import './Organization.scss'
 import { OVERLAYS } from 'types/Constants'
 import {

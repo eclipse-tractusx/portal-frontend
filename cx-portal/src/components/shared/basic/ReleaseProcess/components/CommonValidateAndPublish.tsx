@@ -42,6 +42,8 @@ import { decrement, increment } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   DocumentData,
+  DocumentTypeId,
+  rolesType,
 } from 'features/appManagement/apiSlice'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
@@ -58,11 +60,13 @@ import {
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
+import { uniqueId } from 'lodash'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
+import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
 
 export interface DefaultValueType {
   images: Array<string>
-  connectedTableData: TableType
-  dataSecurityInformation: string
   conformityDocumentsDescription: string
   documentsDescription: string
   providerTableData: TableType
@@ -80,9 +84,7 @@ interface CommonValidateAndPublishType {
   detailsText: string
   longDescriptionTitleEN: string
   longDescriptionTitleDE: string
-  connectedData?: string
   conformityDocument?: string
-  dataSecurityInformation?: string
   documentsTitle: string
   providerInformation: string
   consentTitle: string
@@ -93,6 +95,7 @@ interface CommonValidateAndPublishType {
   values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
   serviceTypes?: string
+  rolesData?: rolesType[]
 }
 
 export default function CommonValidateAndPublish({
@@ -107,9 +110,7 @@ export default function CommonValidateAndPublish({
   detailsText,
   longDescriptionTitleEN,
   longDescriptionTitleDE,
-  connectedData,
   conformityDocument,
-  dataSecurityInformation,
   documentsTitle,
   providerInformation,
   consentTitle,
@@ -120,6 +121,7 @@ export default function CommonValidateAndPublish({
   values,
   type,
   serviceTypes,
+  rolesData,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -229,6 +231,23 @@ export default function CommonValidateAndPublish({
     else if (item === 'price') return statusData?.price
   }
 
+  const renderPrivacy = (policy: string) => {
+    switch (policy) {
+      case PrivacyPolicyType.COMPANY_DATA:
+        return <Apartment className="policy-icon" />
+      case PrivacyPolicyType.USER_DATA:
+        return <Person className="policy-icon" />
+      case PrivacyPolicyType.LOCATION:
+        return <LocationOn className="policy-icon" />
+      case PrivacyPolicyType.BROWSER_HISTORY:
+        return <Web className="policy-icon" />
+      case PrivacyPolicyType.NONE:
+        return <Info className="policy-icon" />
+      default:
+        return <Apartment className="policy-icon" />
+    }
+  }
+
   return (
     <div className="validate-and-publish">
       <ReleaseStepHeader
@@ -310,7 +329,11 @@ export default function CommonValidateAndPublish({
         {['longDescriptionEN', 'longDescriptionDE'].map((item, i) => (
           <div key={item}>
             {item === 'longDescriptionEN' ? (
-              <Typography variant="body2" className="form-field">
+              <Typography
+                variant="body2"
+                className="form-field"
+                style={{ whiteSpace: 'pre-line' }}
+              >
                 <span style={{ fontWeight: 'bold' }}>
                   {longDescriptionTitleEN}
                 </span>
@@ -322,7 +345,11 @@ export default function CommonValidateAndPublish({
                 }
               </Typography>
             ) : (
-              <Typography variant="body2" className="form-field">
+              <Typography
+                variant="body2"
+                className="form-field"
+                style={{ whiteSpace: 'pre-line' }}
+              >
                 <span style={{ fontWeight: 'bold' }}>
                   {longDescriptionTitleDE}
                 </span>
@@ -353,21 +380,41 @@ export default function CommonValidateAndPublish({
         )}
 
         <Divider className="verify-validate-form-divider" />
-        {connectedData && (
+        {statusData?.privacyPolicies && (
           <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {connectedData}
-            </Typography>
-            {defaultValues && (
-              <StaticTable
-                data={defaultValues.connectedTableData}
-                horizontal={false}
-              />
-            )}
-
+            <div className="appdetail-privacy" style={{ marginBottom: '0px' }}>
+              <div className="privacy-content">
+                <Typography variant="h4" sx={{ mb: 4 }}>
+                  {t('content.appdetail.privacy.heading')}
+                </Typography>
+                <Typography variant="body2" className="form-field">
+                  {t('content.appdetail.privacy.message')}
+                </Typography>
+              </div>
+              {statusData?.privacyPolicies &&
+              statusData?.privacyPolicies.length ? (
+                <div className="policies-list" style={{ maxWidth: '600px' }}>
+                  {statusData?.privacyPolicies?.map((policy: string) => (
+                    <Typography
+                      variant="body2"
+                      className="policy-name"
+                      key={uniqueId(policy)}
+                    >
+                      {renderPrivacy(policy)}
+                      {t(`content.appdetail.privacy.${policy}`)}
+                    </Typography>
+                  ))}
+                </div>
+              ) : (
+                <Typography variant="body2" className="table-text">
+                  {t('content.appdetail.privacy.notSupportedMessage')}
+                </Typography>
+              )}
+            </div>
             <Divider className="verify-validate-form-divider" />
           </>
         )}
+
         {conformityDocument && (
           <>
             <Typography variant="h4" sx={{ mb: 4 }}>
@@ -388,15 +435,7 @@ export default function CommonValidateAndPublish({
               ].map((item: DocumentData) => (
                 <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
                   <button
-                    style={{
-                      display: 'flex',
-                      background: 'transparent',
-                      border: 'none',
-                      cursor: 'pointer',
-                      color: '#0f71cb',
-                      fontSize: '14px',
-                      lineHeight: '20px',
-                    }}
+                    className="download-button"
                     onClick={() =>
                       handleDownloadFn(item.documentId, item.documentName)
                     }
@@ -410,19 +449,7 @@ export default function CommonValidateAndPublish({
             <Divider className="verify-validate-form-divider" />
           </>
         )}
-        {dataSecurityInformation && (
-          <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {dataSecurityInformation}
-            </Typography>
-            {defaultValues && (
-              <Typography variant="body2" className="form-field">
-                {defaultValues.dataSecurityInformation}
-              </Typography>
-            )}
-            <Divider className="verify-validate-form-divider" />
-          </>
-        )}
+
         <Typography variant="h4" sx={{ mb: 4 }}>
           {documentsTitle}
         </Typography>
@@ -431,15 +458,61 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents &&
-          Object.keys(statusData.documents).map((item, i) => (
-            <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-              <a href="/" style={{ display: 'flex' }}>
-                <ArrowForwardIcon fontSize="small" />
-                {statusData.documents[item][0].documentName}
-              </a>
-            </InputLabel>
-          ))}
+        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
+          Object.keys(statusData.documents).map(
+            (item) =>
+              (item === DocumentTypeId.ADDITIONAL_DETAILS ||
+                item === DocumentTypeId.APP_CONTRACT ||
+                item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
+                <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                  <button
+                    className="download-button"
+                    onClick={() =>
+                      handleDownloadFn(
+                        statusData?.documents[item][0]?.documentId,
+                        statusData?.documents[item][0]?.documentName
+                      )
+                    }
+                  >
+                    <ArrowForwardIcon fontSize="small" />
+                    {statusData?.documents[item][0]?.documentName}
+                  </button>
+                </InputLabel>
+              )
+          )
+        ) : (
+          <Typography variant="caption2" className="not-available">
+            {t('global.errors.noDocumentsAvailable')}
+          </Typography>
+        )}
+
+        {rolesData && (
+          <>
+            <Divider className="verify-validate-form-divider" />
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {t('content.adminboardDetail.roles.heading')}
+            </Typography>
+            <Typography variant="body2" className="form-field">
+              {t('content.adminboardDetail.roles.message')}
+            </Typography>
+            {rolesData.length > 0 ? (
+              <Grid container spacing={2} sx={{ margin: '0px' }}>
+                {rolesData?.map((role) => (
+                  <Grid item xs={6} key={role.roleId}>
+                    <Typography variant="h5">{role.role}</Typography>
+                    <Typography variant="caption3">
+                      {role.description}
+                    </Typography>
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Typography variant="caption2" className="not-available">
+                {t('global.errors.noRolesAvailable')}
+              </Typography>
+            )}
+          </>
+        )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>

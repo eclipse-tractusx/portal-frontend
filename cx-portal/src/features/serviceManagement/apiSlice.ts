@@ -220,7 +220,7 @@ export const apiSlice = createApi({
     }),
     fetchDocument: builder.mutation({
       query: (obj) => ({
-        url: `/api/services/${obj.serviceId}/serviceDocuments/${obj.documentId}`,
+        url: `/api/services/${obj.appId}/serviceDocuments/${obj.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

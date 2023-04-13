@@ -817,7 +817,14 @@
       "language": "Verfügbare App Sprachen",
       "subscribe": "Abonnieren",
       "subscribed": "Abonniert",
-      "pending": "Angefragt",
+      "pending": "Pending",
+      "purchased": "Purchased",
+      "requested": "Angefragt",
+      "buttons": {
+        "subscribtionInit": "Subscribtion initiated",
+        "appDeployed": "App Instance deployed",
+        "activation": "Activation, Notifications & credentials"
+      },
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
@@ -893,8 +900,6 @@
         "images": "Images",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images",
-        "connectData": "Connect Data",
-        "dataSecurityInformation": "Data Security Information",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
         "uploadAppContract": "Upload “App Contract”",
@@ -959,8 +964,6 @@
         "language": "Language :  ",
         "useCase": "Use Case :  ",
         "price": "Price :  ",
-        "connectedData": "Connected Data",
-        "dataSecurityInformation": "Data Security Information",
         "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
@@ -977,18 +980,8 @@
         "overview": "My apps overview"
       },
       "defaultValues": {
-        "dataSecurityInformation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "connectedTableDataHeader": [
-          "Linked to your identity",
-          "Linked NOT to your identity"
-        ],
-        "connectedTableDataBody": [
-          ["personal Information", "Loreum personal Information"],
-          ["Used Content", "Loreum Used Content"],
-          ["Catena-X Account Data", "Loreum Catena-X Account Data"]
-        ]
+        "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       },
       "appReleaseForm": {
         "headerTitle": "Create App",
@@ -1050,7 +1043,8 @@
       "desc1": "You have started the subscription request for app {appName}.",
       "desc2": "Please note that the subscription request will trigger a service call on provider side.The app provider will align with you all further steps. This may take up to 5 days.",
       "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
-      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles."
+      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles.",
+      "statusHeading": "You can easily keep track of the subscription status progress by checking the subscription status bar in the app detail page."
     },
     "techUser": {
       "details": {
@@ -1124,13 +1118,17 @@
         "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
         "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
         "declineReason3Label": "The app will get set back to the status “in progress“",
-        "inputLabel": "Cancellation Message"
+        "inputLabel": "Cancellation Message",
+        "confirm": "Confirm",
+        "close": "Close"
       }
     },
     "adminboardDetail": {
       "usecase": "Use Case",
       "language": "Language",
       "price": "Price",
+      "longDescriptionTitleEN": "[Long Description - EN] ",
+      "longDescriptionTitleDE": "[Long Description - DE] ",
       "backToBoard": "Back to Admin Board",
       "connectedData": {
         "heading": "Connected Data",
@@ -1153,7 +1151,7 @@
       },
       "roles": {
         "heading": "App Roles",
-        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "message": "Geschäftsanwendungsrollen und -beschreibung für die jeweilige App. Die Rollen werden verwendet, um App-Kunden benutzerspezifischen Zugriff zu gewähren und Berechtigungen zwischen verschiedenen Benutzergruppen einzuschränken.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {
@@ -1428,7 +1426,8 @@
       "title": "Oops, Etwas ist schief gelaufen.",
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
-      "noDocumentsAvailable": "No documents available"
+      "noDocumentsAvailable": "No documents available",
+      "noRolesAvailable": "No Roles available"
     },
     "table": {
       "search": "Enter email to search",

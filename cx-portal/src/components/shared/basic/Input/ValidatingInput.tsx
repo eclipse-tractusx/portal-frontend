@@ -70,6 +70,7 @@ const ValidatingInput = ({
   return (
     <BasicInput
       {...{ name, label, hint, value, onValue, type, toggleHide, errorMessage }}
+      {...(color === Colors.error ? { errorMessage: hint } : {})}
       style={{
         ...style,
         borderBottom: `2px solid ${color}`,

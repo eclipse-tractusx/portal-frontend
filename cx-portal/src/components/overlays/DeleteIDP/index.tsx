@@ -20,66 +20,46 @@
 
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import {
   useFetchIDPDetailQuery,
   useRemoveIDPMutation,
 } from 'features/admin/idpApiSlice'
 import DeleteObjectContent from 'components/shared/basic/DeleteObjectContent'
-import IDPStateNotification, {
-  IDPState,
-} from 'components/pages/IDPManagement/IDPStateNotification'
-import { useState } from 'react'
+import { error, success } from 'services/NotifyService'
 
 export const DeleteIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
+  const ti = useTranslation('idp').t
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { data } = useFetchIDPDetailQuery(id ?? '')
   const [removeIDP] = useRemoveIDPMutation()
-  const [status, setStatus] = useState<IDPState>(IDPState.NONE)
-
-  const deleteIDPSuccess = () => {
-    setTimeout(() => dispatch(closeOverlay()), 3500)
-    setStatus(IDPState.SUCCESS_DELETE_IDP)
-    navigate(`/${PAGES.IDP_MANAGEMENT}`)
-  }
-
-  const deleteIDPFailure = () => {
-    setTimeout(() => dispatch(closeOverlay()), 3500)
-    setStatus(IDPState.ERROR_DELETE_IDP)
-    navigate(`/${PAGES.IDP_MANAGEMENT}`)
-  }
 
   const handleRemove = async () => {
     if (!data) return
     try {
       await removeIDP(data.identityProviderId).unwrap()
-      deleteIDPSuccess()
+      success(ti('delete.success'))
     } catch (err) {
-      console.log(err)
-      deleteIDPFailure()
+      error(ti('delete.error'), '', err as object)
     }
+    setTimeout(() => dispatch(closeOverlay()), 3000)
   }
+
   return data ? (
-    <>
-      <DeleteObjectContent
-        header={`${t('global.actions.delete')} ${t('global.objects.idp')} ${
-          data.displayName
-        }`}
-        subHeader={t('global.actions.confirmDelete', {
-          object: t('global.objects.idp'),
-          name: data.displayName,
-        })}
-        subHeaderTitle={t('global.actions.noteDelete', {
-          object: t('global.objects.idp'),
-        })}
-        handleConfirm={handleRemove}
-        confirmTitle={t('global.actions.delete')}
-      />
-      <IDPStateNotification state={status} />
-    </>
+    <DeleteObjectContent
+      header={`${t('global.actions.delete')} ${t('global.objects.idp')} ${
+        data.displayName
+      }`}
+      subHeader={t('global.actions.confirmDelete', {
+        object: t('global.objects.idp'),
+        name: data.displayName,
+      })}
+      subHeaderTitle={t('global.actions.noteDelete', {
+        object: t('global.objects.idp'),
+      })}
+      handleConfirm={handleRemove}
+      confirmTitle={t('global.actions.delete')}
+    />
   ) : null
 }

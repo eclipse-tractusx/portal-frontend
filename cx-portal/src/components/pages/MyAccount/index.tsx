@@ -36,7 +36,7 @@ import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 
 export default function MyAccount() {
   const { t } = useTranslation()

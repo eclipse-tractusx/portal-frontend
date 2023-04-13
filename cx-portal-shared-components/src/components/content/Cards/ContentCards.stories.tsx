@@ -36,6 +36,7 @@ const items = [
   {
     title: 'Catena-X News',
     subtitle: 'Catena-X',
+    subscriptionStatus: 'Pending',
     image: {
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
       alt: 'Catena-X Card',
@@ -52,6 +53,7 @@ const items = [
   {
     title: 'Samrt MOM',
     subtitle: 'German Edge Cloud GmbH & Co. KG',
+    subscriptionStatus: 'Purchased',
     image: {
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
       alt: 'Catena-X Card',
@@ -69,6 +71,7 @@ const items = [
   {
     title: 'Project Implementation: Earth Commerce',
     subtitle: 'Catena-X',
+    subscriptionStatus: 'Purchased',
     image: {
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
       alt: 'Catena-X Card',
@@ -85,6 +88,7 @@ const items = [
   {
     title: 'Fraud Dashboard',
     subtitle: 'Catena-X',
+    subscriptionStatus: 'Pending',
     image: {
       src: 'https://images.unsplash.com/photo-1517153295259-74eb0b416cee?auto=format&fit=crop&w=640&q=420',
       alt: 'Catena-X Card',

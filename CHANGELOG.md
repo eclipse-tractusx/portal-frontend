@@ -4,9 +4,49 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+* App Release Process
+   * Added app roles to validate and publish
+
+## 1.3.0 RC2
+
+### Change
+n/a
+
+### Feature
+* Service Release Process
+   * Support SERVICE_LEADIMAGE document upload in step1
+* Service Admin Board
+   * Service Admin Board enabled
+   * Service admin board details page enabled
+   * Approve and Decline service request
+* Refactor
+   App Admin Board & Service Admin Board to use common component
+
+### Technical Support
+n/a
+
+### Bugfix
+* Service Detail Page (Marketplace and Service Management) - document download fixed
+* Service Release Process - update long description pattern to support multiline (as app release process)
+* Service Release Process - reset active step back to 1 in service overview page when re-opening a service in "draft" state
+* User Management - create new user account first and last name pattern updated to alow double names
+* App Release Process
+  * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
+  * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
+  * long description input field pattern
+
+* App Release Process:
+   * Added privacy policies to validate and publish
 * Application Checklist
    BugFix - Checklist layout issue fix
-
+* AppMarketplace
+   * Add status of the subscription
+* Service Management
+   Service subscription Mgt enabled
+* Refactor
+   App Subscription & Service Subscription to use common component
+* Notification
+   BugFix - Service Request title and message issue fix
 
 ## 1.3.0 RC1
 
@@ -24,6 +64,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Feature
 * Service Release Process
+   * Connect backend service /submitservice api added
+   * Common component to handle Submit service
+* App Marketplace
   * implement service type function with backend connection
   * added load button function for service release form - button "submit" and "confirm"/"proceed"
 * App Release Process

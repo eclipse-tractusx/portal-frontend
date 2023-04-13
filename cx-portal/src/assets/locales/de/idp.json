@@ -49,11 +49,21 @@
   },
   "add": {
     "title": "New IdP Connection",
-    "subtitle": "Enter an IdP name and choose the type to start the configuration"
+    "subtitle": "Enter an IdP name and choose the type to start the configuration",
+    "success": "IdP created",
+    "error": "Failed to create IdP"
+  },
+  "delete": {
+    "title": "Delete IdP Connection",
+    "subtitle": "Permanently delete this Identity Provider",
+    "success": "IdP deleted",
+    "error": "Failed to delete IdP"
   },
   "edit": {
     "title": "Edit Identity Provider Details",
-    "subtitle": "Configure the connection details to your company IdP"
+    "subtitle": "Configure the connection details to your company IdP",
+    "success": "IdP updated",
+    "error": "Failed to update IdP"
   },
   "updatesuccess": {
     "title": "Identity Provider Configured",
@@ -65,25 +75,32 @@
   "enable": {
     "title": "Enable Identity Provider",
     "subtitle": "This requires to link at least one user ID",
+    "short": "Enable IdP",
     "desc": "Now link your existing user ID so you keep all permissions. Specify the user ID (not name) for your user at the new IdP.",
     "current": "You are currently logged in as: {{ name }}",
     "label": "Your User ID",
     "hint": "Your existing user ID (not name) on target IDP",
-    "success": {
-      "title": "Identity Provider Enabled",
-      "subtitle": "Your request has completed successfully",
-      "desc": "Your new Identity Provider has been enabled and your user has been linked to it. Choose 'Sign out' and then log in again with the IDP named"
-    }
+    "success": "IdP enabled",
+    "error": "Failed to enable IdP"
+  },
+  "enablesuccess": {
+    "title": "Identity Provider Enabled",
+    "subtitle": "Your request has completed successfully",
+    "desc": "Your new Identity Provider has been enabled and your user has been linked to it. Choose 'Sign out' and then log in again with the IDP named"
   },
   "disable": {
     "title": "Disable Identity Provider",
     "subtitle": "You are about to disable an Identity Provider",
+    "short": "Disable IdP",
     "desc": "When you disable your Identity Provider you and other people of your company won't be able to login through this IDP.",
-    "ask": "Are you sure you want to proceed."
+    "ask": "Are you sure you want to proceed.",
+    "success": "IdP disabled",
+    "error": "Failed to disable IdP"
   },
   "users": {
     "title": "Link existing users to new IdP",
     "subtitle": "Make sure users can continue working",
+    "short": "Link IdP Users",
     "desc1": "With the user migration function you can migrate/connect users created under the Keycloak shared IdP to your own IdP. This ensures that all user data and settings stay in place and assigned to the correct user.",
     "desc2": "Download the user list; enhance the csv file with the unique user id (available in your own idp) and upload the csv again. With the upload of the own idp user id; the existing user accounts will get linked to the own idp user account with the login of the user on the CX platform.",
     "desc3": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
@@ -97,18 +114,17 @@
       "subTitle": "Or browse files on your computer",
       "errorTitle": "Invalid upload",
       "note": "only one CSV or JSON file allowed for upload"
-    },
-    "success": {
-      "title": "Request successful",
-      "subtitle": "Your request to update the users has completed",
-      "desc": "Here the detailed request response"
     }
+  },
+  "userssuccess": {
+    "title": "Request successful",
+    "subtitle": "Your request to update the users has completed",
+    "desc": "Here the detailed request response"
   },
   "state": {
     "fetching": "fetching users ...",
-    "error": "ERROR",
-    "success": "SUCCESS",
-    "NONE": "",
+    "error": "failed",
+    "success": "successful",
     "SUCCESS_VALID_FORMAT": "File format valid",
     "SUCCESS_UPLOAD_USERS": "Uploading users succeeded",
     "SUCCESS_DELETE_IDP": "IDP deleted successfully",

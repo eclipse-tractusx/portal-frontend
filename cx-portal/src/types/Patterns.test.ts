@@ -29,6 +29,8 @@ import {
   isUUID,
   isCName,
   isCountryCode,
+  isFirstName,
+  isLastName,
 } from './Patterns'
 
 const TESTDATA = {
@@ -165,6 +167,24 @@ const TESTDATA = {
     valid: ['DE'],
     invalid: ['', 'D', 'de', 'some string'],
   },
+  FIRSTNAME: {
+    valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
+    invalid: [
+      'Julia  Sophie',
+      'Julia–Sophie',
+      'Julia Sophie ',
+      ' Julia Sophie ',
+    ],
+  },
+  LASTNAME: {
+    valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
+    invalid: [
+      'Julia  Sophie',
+      'Julia–Sophie',
+      'Julia Sophie ',
+      ' Julia Sophie ',
+    ],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -215,6 +235,22 @@ describe('Input Pattern Tests', () => {
     )
     TESTDATA.COUNTRY.invalid.forEach((expr) =>
       expect(isCountryCode(expr)).toBe(false)
+    )
+  })
+  it('validates firstName', () => {
+    TESTDATA.FIRSTNAME.valid.forEach((expr) =>
+      expect(isFirstName(expr)).toBe(true)
+    )
+    TESTDATA.FIRSTNAME.invalid.forEach((expr) =>
+      expect(isFirstName(expr)).toBe(false)
+    )
+  })
+  it('validates lastName', () => {
+    TESTDATA.LASTNAME.valid.forEach((expr) =>
+      expect(isLastName(expr)).toBe(true)
+    )
+    TESTDATA.LASTNAME.invalid.forEach((expr) =>
+      expect(isLastName(expr)).toBe(false)
     )
   })
 })

@@ -25,8 +25,9 @@ import { Button, Typography } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import './style.scss'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function IDPManagement() {
   const { t } = useTranslation('idp')
@@ -37,7 +38,10 @@ export default function IDPManagement() {
       <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT]} />
       <section>
         <div className="idp-management-header">
-          <img src="/teaser.png" alt={'idp management'} />
+          <img
+            src={`${getAssetBase()}/images/content/teaser.png`}
+            alt={'idp management'}
+          />
           <div className="idp-management-title">
             <Typography>{t('page.desc')}</Typography>
             <Button

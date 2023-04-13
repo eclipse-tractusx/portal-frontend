@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { MainHeader } from 'cx-portal-shared-components'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SearchSection({
   title,
@@ -36,7 +37,7 @@ export default function SearchSection({
         headerHeight={551}
         subTitleWidth={800}
         background="LinearGradient1"
-        imagePath="./company-roles.svg"
+        imagePath={`${getAssetBase()}/images/content/company-roles.svg`}
       />
     </div>
   )

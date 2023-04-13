@@ -74,6 +74,9 @@ import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/co
 import RoleDetails from 'components/pages/RoleDetails'
 import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
+import ServiceSubscription from 'components/pages/ServiceSubscription'
+import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
+import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 
 /**
  * ALL_PAGES
@@ -253,7 +256,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICESUBSCRIPTION,
     role: ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT,
-    element: <AppSubscription />,
+    element: <ServiceSubscription />,
   },
   {
     name: PAGES.ADMINBOARD,
@@ -263,7 +266,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICEADMINBOARD,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
-    element: <AdminBoard />,
+    element: <ServiceAdminBoard />,
   },
   {
     name: PAGES.ADMINBOARD_DETAIL,
@@ -277,6 +280,21 @@ export const ALL_PAGES: IPage[] = [
       >
         <Route index element={null} />
         <Route path=":appId" element={<AdminBoardDetail />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.SERVICEADMINBOARD_DETAIL,
+    role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICEADMINBOARD_DETAIL}
+        path={PAGES.SERVICEADMINBOARD_DETAIL}
+        element={<ServiceAdminBoardDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":appId" element={<ServiceAdminBoardDetail />} />
       </Route>
     ),
   },
@@ -563,7 +581,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     name: OVERLAYS.ADD_SERVICE_PROVIDER,
   },
   {
-    name: OVERLAYS.DECLINE_ADMINBOARD,
+    name: OVERLAYS.SERVICE_DECLINE_ADMINBOARD,
+  },
+  {
+    name: OVERLAYS.APP_DECLINE_ADMINBOARD,
   },
   {
     name: OVERLAYS.EDIT_PORTAL_ROLES,
@@ -630,14 +651,13 @@ export const mainMenuFullTree = [
   {
     name: PAGES.SERVICE_MANAGEMENT,
     children: [
-      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW, disable: false },
+      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW },
       { name: PAGES.SERVICERELEASEPROCESS, hint: HINTS.NEW },
       {
         name: PAGES.SERVICESUBSCRIPTION,
-        hint: HINTS.COMING_SOON,
-        disable: true,
+        hint: HINTS.NEW,
       },
-      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.COMING_SOON, disable: true },
+      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.NEW },
     ],
   },
 ]

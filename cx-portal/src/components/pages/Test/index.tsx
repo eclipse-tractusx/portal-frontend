@@ -18,12 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { Button } from 'cx-portal-shared-components'
 import FormTest from './index.form'
+import { error, success } from 'services/NotifyService'
 
 export default function Test() {
   return (
     <main>
       <section>
+        <Button
+          onClick={() =>
+            Date.now() % 2
+              ? error('idp.create', 'the IdP could not be created')
+              : success('idp.create', 'IdP created')
+          }
+        >
+          Notify
+        </Button>
         <FormTest />
       </section>
     </main>

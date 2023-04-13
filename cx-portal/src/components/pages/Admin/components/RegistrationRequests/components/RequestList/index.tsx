@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { setSearchInput } from 'features/appManagement/actions'
-import { updateApplicationRequestSelector } from 'features/control/updatesSlice'
+import { updateApplicationRequestSelector } from 'features/control/updates'
 import {
   AppFilterType,
   ApplicationRequest,
