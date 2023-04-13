@@ -37,6 +37,10 @@ export default function AdminBoard() {
         AppTitle: t('content.adminBoard.sortOptions.AppTitle'),
       }}
       fetchQuery={useFetchAppReleaseAppsQuery}
+      successApproveMsg={t('content.adminBoard.successMsg')}
+      errorApproveMsg={t('content.adminBoard.errorMsg')}
+      successDeclineMsg={t('content.adminBoard.successMsg')}
+      errorDeclineMsg={t('content.adminBoard.errorMsg')}
     />
   )
 }

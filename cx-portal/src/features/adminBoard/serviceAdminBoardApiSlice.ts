@@ -21,6 +21,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { StatusVariants } from 'cx-portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { DeclineRequestType } from './adminBoardApiSlice'
 
 const PAGE_SIZE = 15
 
@@ -98,6 +99,19 @@ export const apiSlice = createApi({
     fetchBoardServiceDetails: builder.query<ServiceDetailsType, string>({
       query: (id: string) => `/api/services/servicerelease/inReview/${id}`,
     }),
+    approveServiceRequest: builder.mutation<boolean, string>({
+      query: (id) => ({
+        url: `/api/services/${id}/approveService`,
+        method: 'PUT',
+      }),
+    }),
+    declineServiceRequest: builder.mutation<boolean, DeclineRequestType>({
+      query: (body) => ({
+        url: `/api/services/${body.appId}/declineService`,
+        method: 'PUT',
+        body: { message: body.message },
+      }),
+    }),
     fetchServiceDetails: builder.query<ServiceDetailsType, string>({
       query: (id: string) => `/api/services/${id}`,
     }),
@@ -107,5 +121,7 @@ export const apiSlice = createApi({
 export const {
   useFetchInReviewServicesQuery,
   useFetchBoardServiceDetailsQuery,
+  useApproveServiceRequestMutation,
+  useDeclineServiceRequestMutation,
   useFetchServiceDetailsQuery,
 } = apiSlice

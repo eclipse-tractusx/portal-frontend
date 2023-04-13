@@ -18,6 +18,7 @@ n/a
 * Service Admin Board
    * Service Admin Board enabled
    * Service admin board details page enabled
+   * Approve and Decline service request
 * Refactor
    App Admin Board & Service Admin Board to use common component
 

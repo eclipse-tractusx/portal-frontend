@@ -21,7 +21,6 @@
 import { CardDecision, PageSnackbar } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme, CircularProgress } from '@mui/material'
-import { useTranslation } from 'react-i18next'
 import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
@@ -37,41 +36,71 @@ import {
 } from 'features/adminBoard/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import NoItems from 'components/pages/NoItems'
-import { ServiceContent } from 'features/adminBoard/serviceAdminBoardApiSlice'
+import {
+  ServiceContent,
+  useApproveServiceRequestMutation,
+} from 'features/adminBoard/serviceAdminBoardApiSlice'
+import { useState } from 'react'
 
 export default function AdminBoardElements({
   apps,
   onClick,
   type,
+  successApproveMsg,
+  errorApproveMsg,
+  successDeclineMsg,
+  errorDeclineMsg,
 }: {
   apps?: AppContent[] | ServiceContent[]
   onClick: (appId: string) => void
   type?: string
+  successApproveMsg?: string
+  errorApproveMsg?: string
+  successDeclineMsg?: string
+  errorDeclineMsg?: string
 }) {
   const dispatch = useDispatch()
   const theme = useTheme()
-  const { t } = useTranslation()
-
   const [approveRequest] = useApproveRequestMutation()
+  const [approveServiceRequest] = useApproveServiceRequestMutation()
   const isDecisionSuccess = useSelector(currentSuccessType)
   const isDecisionError = useSelector(currentErrorType)
+  const [actionApprove, setActionApprove] = useState<boolean>(false)
 
   if (apps && apps.length === 0) {
     return <NoItems />
   }
 
   const handleApprove = async (appId: string) => {
-    await approveRequest(appId)
-      .unwrap()
-      .then(() => {
-        dispatch(setSuccessType(true))
-      })
-      .catch((error) => dispatch(setErrorType(true)))
+    setActionApprove(true)
+    if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+      await approveServiceRequest(appId)
+        .unwrap()
+        .then(() => {
+          dispatch(setSuccessType(true))
+        })
+        .catch((error) => dispatch(setErrorType(true)))
+    } else {
+      await approveRequest(appId)
+        .unwrap()
+        .then(() => {
+          dispatch(setSuccessType(true))
+        })
+        .catch((error) => dispatch(setErrorType(true)))
+    }
   }
 
   const onAlertClose = () => {
     dispatch(setSuccessType(false))
     dispatch(setErrorType(false))
+  }
+
+  const getDescription = () => {
+    if (actionApprove) {
+      return isDecisionSuccess ? successApproveMsg : errorApproveMsg
+    } else {
+      return isDecisionSuccess ? successDeclineMsg : errorDeclineMsg
+    }
   }
 
   return (
@@ -82,29 +111,22 @@ export default function AdminBoardElements({
         severity={
           isDecisionSuccess ? SuccessErrorType.SUCCESS : SuccessErrorType.ERROR
         }
-        description={
-          isDecisionSuccess
-            ? t('content.adminBoard.successMsg')
-            : t('content.adminBoard.errorMsg')
-        }
+        description={getDescription()}
         showIcon={true}
         autoClose={true}
       />
       {apps && apps.length ? (
         <CardDecision
           items={apps}
-          onDelete={(appId: string) =>
-            // TO-DO - API integration in next PR
-            type !== PAGES.SERVICEADMINBOARD_DETAIL
-              ? dispatch(show(OVERLAYS.DECLINE_ADMINBOARD, appId))
-              : null
-          }
-          onApprove={(appId: string) =>
-            // TO-DO - API integration in next PR
-            type !== PAGES.SERVICEADMINBOARD_DETAIL
-              ? handleApprove(appId)
-              : null
-          }
+          onDelete={(appId: string) => {
+            setActionApprove(false)
+            if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+              dispatch(show(OVERLAYS.SERVICE_DECLINE_ADMINBOARD, appId))
+            } else {
+              dispatch(show(OVERLAYS.APP_DECLINE_ADMINBOARD, appId))
+            }
+          }}
+          onApprove={(appId: string) => handleApprove(appId)}
           onClick={onClick}
         />
       ) : (
