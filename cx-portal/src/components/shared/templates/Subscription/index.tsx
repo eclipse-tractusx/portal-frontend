@@ -474,7 +474,7 @@ export default function Subscription({
             )}
           </div>
           {!isFetching &&
-            subscriptions?.length &&
+            subscriptions?.length > 0 &&
             data?.meta &&
             data?.meta?.totalPages > page + 1 && (
               <div
