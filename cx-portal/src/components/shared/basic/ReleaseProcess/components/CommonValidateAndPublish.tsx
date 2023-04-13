@@ -458,7 +458,15 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
+        {statusData?.documents &&
+        Object.keys(statusData.documents)?.length &&
+        (statusData?.documents.hasOwnProperty(
+          DocumentTypeId.ADDITIONAL_DETAILS
+        ) ||
+          statusData?.documents.hasOwnProperty(DocumentTypeId.APP_CONTRACT) ||
+          statusData?.documents.hasOwnProperty(
+            DocumentTypeId.APP_TECHNICAL_INFORMATION
+          )) ? (
           Object.keys(statusData.documents).map(
             (item) =>
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
