@@ -38,8 +38,8 @@ export default function RenderImage({
           url={url}
           text={''}
           size="custom"
-          height="472px"
-          width="100%"
+          height="331px"
+          width="auto"
           hover={true}
           borderRadius={true}
           shadow={false}
