@@ -41,11 +41,7 @@ export default function AppDetail() {
 
   return (
     <main className="appdetail-main">
-      <Button
-        color="secondary"
-        size="small"
-        onClick={() => navigate('/appmarketplace')}
-      >
+      <Button color="secondary" size="small" onClick={() => navigate(-1)}>
         {t('global.actions.back')}
       </Button>
       {data && <AppDetailContentDetails item={data} />}

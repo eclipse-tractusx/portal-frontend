@@ -6,6 +6,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * App Release Process
    * Added app roles to validate and publish
+   * Included role description in technical integration role creation
+
+### Bugfix
+
+* Navigate back to previous screen from App detials screen
+* Show Loading component in admin board screen
 
 ## 1.3.0 RC2
 
