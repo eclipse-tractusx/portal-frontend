@@ -191,7 +191,6 @@ export default function AppMarketCard() {
       )
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
