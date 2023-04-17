@@ -219,7 +219,9 @@
           "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
           "traceability": "Rückverfolgbarkeit",
           "manufacturingasaservice": "Produzieren als Dienst"
-        }
+        },
+        "noMatch": "Keine Treffer",
+        "for": "für"
       }
     },
     "semantichub": {

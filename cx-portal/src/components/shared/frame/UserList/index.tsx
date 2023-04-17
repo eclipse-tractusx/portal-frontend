@@ -18,21 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import {
   IconButton,
   StatusTag,
   PageLoadingTable,
   PaginFetchArgs,
 } from 'cx-portal-shared-components'
-import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
-import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { useEffect, useState } from 'react'
+import { userSelector } from 'features/user/slice'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
+import { ROLES } from 'types/Constants'
 
 export const UserList = ({
   sectionTitle,
@@ -60,6 +62,7 @@ export const UserList = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
+  const user = useSelector(userSelector)
   const searchInputData = useSelector(appManagementSelector)
 
   const validateSearchText = (expr: string) => {
@@ -142,6 +145,10 @@ export const UserList = ({
                 <ArrowForwardIcon />
               </IconButton>
             ),
+            hide:
+              isDetail && user.roles.indexOf(ROLES.VIEW_USER_ACCOUNT) !== -1
+                ? false
+                : true,
           },
         ]}
         disableColumnMenu

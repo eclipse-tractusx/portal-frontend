@@ -174,7 +174,7 @@
     "successApproveMsg": "Service wurde aktiviert",
     "errorApproveMsg": "Service-Aktivierung fehlgeschlagen.",
     "successDeclineMsg": "Service wurde declined & provider informiert",
-    "errorDeclineMsg": "Service-Aktivierung fehlgeschlagen.",
+    "errorDeclineMsg": "Ablehnung der Service-Aktivierung fehlgeschlagen.",
     "tabs": {
       "open": "Open",
       "all": "All"

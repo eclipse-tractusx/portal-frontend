@@ -174,7 +174,7 @@
     "successApproveMsg": "Service successfully activated",
     "errorApproveMsg": "Service not activated. Something went wrong.",
     "successDeclineMsg": "Service got successfully declined and provider informed",
-    "errorDeclineMsg": "Service not declined. Something went wrong.",
+    "errorDeclineMsg": "Service decline failed. Something went wrong.",
     "tabs": {
       "open": "Open",
       "all": "All"

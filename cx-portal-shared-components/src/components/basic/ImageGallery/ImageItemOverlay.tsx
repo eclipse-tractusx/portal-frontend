@@ -54,6 +54,7 @@ export default function ImageItemOverlay({
             fontFamily: 'fontFamily',
             textAlign: 'center',
             padding: '0px',
+            margin: '-2px 0px -10px 0px',
           }}
         >
           <div>
@@ -79,23 +80,25 @@ export default function ImageItemOverlay({
               }}
             />
           </div>
-          <div
-            style={{
-              background: '#b1b1b1',
-              padding: '10px 20px',
-              textAlign: 'left',
-              marginTop: '-10px',
-            }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                color: '#111',
+          {text && (
+            <div
+              style={{
+                background: '#b1b1b1',
+                padding: '10px 20px',
+                textAlign: 'left',
+                marginTop: '-10px',
               }}
             >
-              {text}
-            </Typography>
-          </div>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#111',
+                }}
+              >
+                {text}
+              </Typography>
+            </div>
+          )}
         </MuiDialogContent>
       </MuiDialog>
     </div>

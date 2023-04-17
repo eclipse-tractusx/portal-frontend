@@ -8,11 +8,45 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Added app roles to validate and publish
    * Included role description in technical integration role creation
    * Removed eslint-disable from app release process
+   * Added privacy policies to validate and publish
+* AppMarketplace
+   * Add status of the subscription
+* Service Management
+   Service subscription Mgt enabled
 
 ### Bugfix
 
-* Navigate back to previous screen from App detials screen
+* Navigate back to previous screen from App details screen
 * Show Loading component in admin board screen
+* Blue profile icon is visible as "button" as mouse cursor is not changing
+* Application Checklist
+   BugFix - Checklist layout issue fix
+* Refactor
+   App Subscription & Service Subscription to use common component
+* Notification
+   BugFix - Service Request title and message issue fix
+
+## 1.3.0 RC3
+
+### Change
+* updated document section styling for app and service detail pages
+* Shared Components
+  * StaticTemplate: TextAndImage template spacing/element location updated
+* User Account screen permission validation to access the page updated
+* App Marketplace
+  * enabled search “no result found” response
+  * enabled responsiveness of the app cards to rearrange displayed app cards based on the users screen width
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* App Release Process - fixed provider input field validation; allowed numbers
+* User Management - log errors available in the developer mode fixed
+* Company Role Intro Page - updated zoomed image style by removing grey bottom line
 
 ## 1.3.0 RC2
 
@@ -20,14 +54,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 n/a
 
 ### Feature
-* Service Release Process
-   * Support SERVICE_LEADIMAGE document upload in step1
-* Service Admin Board
-   * Service Admin Board enabled
-   * Service admin board details page enabled
-   * Approve and Decline service request
-* Refactor
-   App Admin Board & Service Admin Board to use common component
+n/a
 
 ### Technical Support
 n/a
@@ -41,19 +68,6 @@ n/a
   * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
   * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
   * long description input field pattern
-
-* App Release Process:
-   * Added privacy policies to validate and publish
-* Application Checklist
-   BugFix - Checklist layout issue fix
-* AppMarketplace
-   * Add status of the subscription
-* Service Management
-   Service subscription Mgt enabled
-* Refactor
-   App Subscription & Service Subscription to use common component
-* Notification
-   BugFix - Service Request title and message issue fix
 
 ## 1.3.0 RC1
 
@@ -71,9 +85,6 @@ n/a
 
 ### Feature
 * Service Release Process
-   * Connect backend service /submitservice api added
-   * Common component to handle Submit service
-* App Marketplace
   * implement service type function with backend connection
   * added load button function for service release form - button "submit" and "confirm"/"proceed"
 * App Release Process
@@ -123,7 +134,7 @@ n/a
    * changed additional document uploads from mandatory to optional and changed dropzone parameter size
 
 ### Technical Support
-* Improved page loading in several places (such as app overview) 
+* Improved page loading in several places (such as app overview)
 * Change local port to run behind reverse proxy
 * Improved responsiveness of use case introduction page and company role page
 
