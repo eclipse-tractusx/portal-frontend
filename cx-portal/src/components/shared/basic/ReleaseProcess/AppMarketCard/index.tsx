@@ -114,7 +114,12 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
-  const salesManagerList = useFetchSalesManagerDataQuery().data || []
+  const salesManagerListQuery = useFetchSalesManagerDataQuery()
+  const salesManagerList = useMemo(
+    () => salesManagerListQuery.data,
+    [salesManagerListQuery]
+  )
+
   const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
     useState<salesManagerType>({
       userId: null,
@@ -198,7 +203,7 @@ export default function AppMarketCard() {
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
-    if (salesManagerList.length > 0) {
+    if (salesManagerList && salesManagerList?.length > 0) {
       let data = salesManagerList?.map((item) => {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
@@ -217,8 +222,13 @@ export default function AppMarketCard() {
         setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [salesManagerList, appStatusData])
+  }, [
+    salesManagerList,
+    appStatusData,
+    defaultValues,
+    reset,
+    salesManagerListData,
+  ])
 
   const onSalesManagerChange = (sales: any) => {
     setSalesManagerId(sales)
