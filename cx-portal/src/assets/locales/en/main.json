@@ -219,7 +219,9 @@
           "demandandcapacitymanagement": "Demand & Capacity Management",
           "traceability": "Traceability",
           "manufacturingasaservice": "Manufacturing as a Service"
-        }
+        },
+        "noMatch": "No Matches",
+        "for": "for"
       }
     },
     "semantichub": {
