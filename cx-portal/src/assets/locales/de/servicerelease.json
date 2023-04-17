@@ -1,19 +1,19 @@
 {
   "headerTitle": "Service Release Process",
-  "descHeading": "Publish your company services inside the Catena-X marketplace",
-  "descMessage": "Register your service and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the service release process.",
-  "startCreatingButton": "Start to register your service offering",
-  "registerButton": "Register your service",
+  "descHeading": "Veröffentlichen Sie Ihre Service auf dem Catena-X Marktplatz",
+  "descMessage": "Registrieren Sie Ihren Service und Ihre Metadaten, um auf dem Marktplatz veröffentlicht zu werden. Wenn Sie nach unten scrollen, finden Sie einen ersten Überblick zu dem Service-Freigabeprozess.",
+  "startCreatingButton": "Beginnen Sie mit der Registrierung Ihres Serviceangebots",
+  "registerButton": "Registrieren Sie Ihre Serviceangebot",
   "overviewButton": "Service Übersicht",
-  "stepHeading": "The process will guide your through the following steps:",
-  "dividerText": "Lets get started to publishing your service...",
-  "marketplaceHeading": "App Marketplace upcomming submission requirements",
-  "requiredButton": "New",
+  "stepHeading": "Der Prozess führt Sie durch die folgenden Schritte:",
+  "dividerText": "Beginnen wir mit der Veröffentlichung Ihres Dienstes...",
+  "marketplaceHeading": "Anforderungen für anstehende Einreichungen im Service Marketplace",
+  "requiredButton": "Neu",
   "requiredtitle": "Requirement Lorem ipsum",
-  "requiredExplaination": "Expalanation of the requirement",
-  "consultanceService": "Consultance Service",
-  "dataspaceService": "Dataspace Service",
-  "loadmore": "Load More",
+  "requiredExplaination": "Erläuterung der Anforderung",
+  "consultanceService": "Beratungsleistung",
+  "dataspaceService": "Tool/Service",
+  "loadmore": "Mehr laden",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -21,37 +21,37 @@
     "validateAndPublish": "Verify & Submit"
   },
   "step1": {
-    "headerTitle": "Create Service",
-    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer. While entering the data below, have a look at the service card on the left side which is getting autoupdated based on your input.",
+    "headerTitle": "Service Card Erstellen",
+    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden. Während Sie die Daten unten eingeben, werfen Sie einen Blick auf die Servicekarte auf der linken Seite, die basierend auf Ihrer Eingabe automatisch aktualisiert wird.",
     "defaultCardServiceImageAlt": "Part Chain",
     "defaultCardServiceProvider": "Catena-X",
-    "defaultCardServiceTitle": "This is the service title",
-    "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
+    "defaultCardServiceTitle": "Dies ist der Service Titel",
+    "defaultCardShortDescriptionEN": "[Kurzbeschreibung EN] Dieser Abschnitt wird durch Ihre Service-Kurzbeschreibung ersetzt",
     "serviceName": "Service Name*",
     "serviceType": "Service Type*",
-    "serviceTypePlaceholder": "Select a Service Type Id",
-    "shortDescriptionEN": "Short Description (en)*",
-    "shortDescriptionDE": "Short Description (de)*",
-    "serviceLeadImageUpload": "Service Card Image"
+    "serviceTypePlaceholder": "Wählen Sie den Servicetyp aus",
+    "shortDescriptionEN": "Kurzbeschreibung (en)*",
+    "shortDescriptionDE": "Kurzbeschreibung (de)*",
+    "serviceLeadImageUpload": "Service Card Bild"
   },
   "step2": {
     "headerTitle": "Service Details",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "longDescriptionEN": "Long Description (en)*",
-    "longDescriptionDE": "Long Description (de)*",
+    "longDescriptionEN": "Service Beschreibung (en)*",
+    "longDescriptionDE": "Service Beschreibun (de)*",
     "doc": "Supporting Material",
-    "note": "Note:",
+    "note": "Info:",
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
     "providerContactEmail": "Customer Contact E-Mail",
-    "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
-    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
+    "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://catena-x.net",
+    "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an"
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
-    "allAgreementsMandatory": "All agreements are mandatory",
-    "uploadImageConformity": "CAB"
+    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
+    "allAgreementsMandatory": "Alle Terms & Conditions sind mandatory",
+    "uploadImageConformity": "Laden Sie hier das Conformity Zertifikat als PDF hoch."
   },
   "step4": {
     "headerTitle": "Validate & Publish",
@@ -59,7 +59,7 @@
     "appDetails": "Service Details",
     "language": "Language :  ",
     "useCase": "Use Case :  ",
-    "price": "Price :  ",
+    "price": "Preis :  ",
     "conformityDocument": "Conformity Document",
     "documents": "Documents",
     "providerInformation": "Provider Information",
@@ -101,10 +101,10 @@
   },
   "submit": {
     "headerTitle": "Service erfolgreich eingereicht!",
-    "headerDescription": "After a review by a Catena-X administrator, you will receive",
-    "headerDescriptionComplete": "further information on service release",
+    "headerDescription": "Nach einer Überprüfung durch einen Catena-X-Administrator erhalten Sie",
+    "headerDescriptionComplete": "weitere Informationen zur Servicefreigabe",
     "yourCatenaXTeam": "Dein Catena-X team",
-    "overview": "My services overview"
+    "overview": "Zu meiner Service Übersicht"
   },
   "defaultValues": {
     "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
