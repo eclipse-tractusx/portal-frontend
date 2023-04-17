@@ -32,7 +32,7 @@ import { useTranslation } from 'react-i18next'
 import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import AppInfo from './components/AppInfo'
 import AppConsent from './components/AppConsent'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { AppStatusDataState } from 'features/appManagement/types'
 
 export default function AppOverViewDetails({
@@ -90,6 +90,22 @@ export default function AppOverViewDetails({
       (lang: { languageCode: string }) => lang.languageCode === i18next.language
     )[0]?.shortDescription
 
+  const fetchImage = useCallback(
+    async (documentId: string) => {
+      try {
+        const response = await fetchDocumentById({
+          appId: id,
+          documentId,
+        }).unwrap()
+        const file = response.data
+        return setCardImage(URL.createObjectURL(file))
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      }
+    },
+    [fetchDocumentById, id]
+  )
+
   useEffect(() => {
     if (
       item?.documents?.APP_LEADIMAGE &&
@@ -97,21 +113,7 @@ export default function AppOverViewDetails({
     ) {
       fetchImage(item?.documents?.APP_LEADIMAGE[0].documentId)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item])
-
-  const fetchImage = async (documentId: string) => {
-    try {
-      const response = await fetchDocumentById({
-        appId: id,
-        documentId,
-      }).unwrap()
-      const file = response.data
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
+  }, [item, fetchImage])
 
   return (
     <>
