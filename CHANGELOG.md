@@ -2,24 +2,27 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## Unreleased
+## 1.3.0 RC3
 
-* User Management
-   * Developer Mode error fixes
-* App Details 
-   * Update document style
-* App Access Management
-   * Styling Update of Roles on hover
-* User Account
-   * User permission updated
+### Change
+* updated document section styling for app and service detail pages
+* Shared Components
+  * StaticTemplate: TextAndImage template spacing/element location updated
+* User Account screen permission validation to access the page updated
 * App Marketplace
-   * Subscription user permission validation
-   * Search- no result found fix
-   * Responsive fix
+  * enabled search “no result found” response
+  * enabled responsiveness of the app cards to rearrange displayed app cards based on the users screen width
 
-* bugfix
-   * App Release Process
-      * Fixed provider name validation in app card
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* App Release Process - fixed provider input field validation; allowed numbers
+* User Management - log errors available in the developer mode fixed
+* Company Role Intro Page - updated zoomed image style by removing grey bottom line
 
 ## 1.3.0 RC2
 
@@ -41,7 +44,6 @@ n/a
   * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
   * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
   * long description input field pattern
-
 
 ## 1.3.0 RC1
 
