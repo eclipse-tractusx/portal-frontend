@@ -49,7 +49,7 @@ export const Patterns = {
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
   appMarketCard: {
     appTitle: /^([A-Za-z.:_@&0-9' -]){5,40}$/,
-    appProvider: /^([A-Za-z -]){3,30}$/,
+    appProvider: /^([A-Za-z.:_@&0-9' -]){3,30}$/,
     shortDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
     shortDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
     useCaseCategory: /^([A-Za-z])$/,

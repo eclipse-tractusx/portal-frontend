@@ -34,7 +34,7 @@ import {
 } from 'cx-portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -45,9 +45,9 @@ import {
   DocumentTypeId,
   rolesType,
 } from 'features/appManagement/apiSlice'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
@@ -64,6 +64,7 @@ import { uniqueId } from 'lodash'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
+import 'components/styles/document.scss'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -425,27 +426,27 @@ export default function CommonValidateAndPublish({
                 {defaultValues.conformityDocumentsDescription}
               </Typography>
             )}
-
-            {statusData?.documents &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ] &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ].map((item: DocumentData) => (
-                <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
-                  <button
-                    className="download-button"
-                    onClick={() =>
-                      handleDownloadFn(item.documentId, item.documentName)
-                    }
-                  >
-                    <ArrowForwardIcon fontSize="small" />
-                    {item.documentName}
-                  </button>
-                </InputLabel>
-              ))}
-
+            <ul>
+              {statusData?.documents &&
+                statusData.documents[
+                  DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                ] &&
+                statusData.documents[
+                  DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                ].map((item: DocumentData) => (
+                  <li key={item.documentId} className="document-list">
+                    <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                    <button
+                      className="document-button-link"
+                      onClick={() =>
+                        handleDownloadFn(item.documentId, item.documentName)
+                      }
+                    >
+                      {item.documentName}
+                    </button>
+                  </li>
+                ))}
+            </ul>
             <Divider className="verify-validate-form-divider" />
           </>
         )}
@@ -472,9 +473,10 @@ export default function CommonValidateAndPublish({
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
                 item === DocumentTypeId.APP_CONTRACT ||
                 item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
-                <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                <li key={item} className="document-list">
+                  <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                   <button
-                    className="download-button"
+                    className="document-button-link"
                     onClick={() =>
                       handleDownloadFn(
                         statusData?.documents[item][0]?.documentId,
@@ -482,10 +484,9 @@ export default function CommonValidateAndPublish({
                       )
                     }
                   >
-                    <ArrowForwardIcon fontSize="small" />
                     {statusData?.documents[item][0]?.documentName}
                   </button>
-                </InputLabel>
+                </li>
               )
           )
         ) : (
