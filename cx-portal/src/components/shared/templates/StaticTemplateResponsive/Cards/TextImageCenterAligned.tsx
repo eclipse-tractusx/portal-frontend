@@ -34,6 +34,7 @@ export default function TextImageCenterAligned({
     <div className="textCenterAligned">
       <TextCenterAligned provider={provider} />
       <RenderImage
+        height="472px"
         url={baseUrl + provider.imagePath || ''}
         additionalStyles={{
           marginTop: '84px',
