@@ -24,10 +24,12 @@ import '../StaticTemplate.scss'
 
 export default function RenderImage({
   url,
+  height,
   additionalStyles,
 }: {
   url: string
   additionalStyles?: any
+  height?: string
 }) {
   const web = useMediaQuery('(min-width:1025px)')
 
@@ -38,7 +40,7 @@ export default function RenderImage({
           url={url}
           text={''}
           size="custom"
-          height="331px"
+          height={height ? height : '331px'}
           width="auto"
           hover={true}
           borderRadius={true}
