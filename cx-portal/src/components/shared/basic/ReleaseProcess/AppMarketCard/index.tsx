@@ -31,7 +31,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
@@ -238,6 +238,27 @@ export default function AppMarketCard() {
     }
   }, [cardImageData])
 
+  const fetchCardImage = useCallback(
+    async (documentId: string, documentName: string) => {
+      try {
+        const response = await fetchDocumentById({ appId, documentId }).unwrap()
+        const file = response.data
+
+        const setFileStatus = (status: UploadFileStatus) =>
+          setValue('uploadImage.leadPictureUri', {
+            id: documentId,
+            name: documentName,
+            status,
+          } as any)
+        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+        return setCardImage(URL.createObjectURL(file))
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      }
+    },
+    [fetchDocumentById, appId, setValue]
+  )
+
   useEffect(() => {
     if (
       appStatusData?.documents?.APP_LEADIMAGE &&
@@ -249,26 +270,7 @@ export default function AppMarketCard() {
       )
     }
     reset(defaultValues)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appStatusData])
-
-  const fetchCardImage = async (documentId: string, documentName: string) => {
-    try {
-      const response = await fetchDocumentById({ appId, documentId }).unwrap()
-      const file = response.data
-
-      const setFileStatus = (status: UploadFileStatus) =>
-        setValue('uploadImage.leadPictureUri', {
-          id: documentId,
-          name: documentName,
-          status,
-        } as any)
-      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-      return setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
+  }, [appStatusData, fetchCardImage, defaultValues, reset])
 
   const cardAppTitle =
     getValues().title ||
