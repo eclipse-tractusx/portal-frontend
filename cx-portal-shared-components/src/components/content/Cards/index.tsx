@@ -105,7 +105,6 @@ export const Cards = ({
         display: 'flex',
         '-ms-flex-wrap': 'wrap',
         flexWrap: 'wrap',
-        justifyContent: 'center',
         marginRight: '-10px',
         marginLeft: '-10px',
       }}
