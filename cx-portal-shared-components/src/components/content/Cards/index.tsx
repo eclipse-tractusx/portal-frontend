@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useTheme } from '@mui/material'
+import { Box } from '@mui/material'
 import { Card, CardProps } from './Card'
 import uniqueId from 'lodash/uniqueId'
 import { CardAddService } from './CardAddService'
@@ -97,7 +97,6 @@ export const Cards = ({
     tooltipText,
     showStatus,
   }
-  const { spacing } = useTheme()
 
   return (
     <Box
