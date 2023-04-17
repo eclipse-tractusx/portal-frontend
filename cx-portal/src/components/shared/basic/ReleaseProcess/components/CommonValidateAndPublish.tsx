@@ -458,7 +458,15 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
+        {statusData?.documents &&
+        Object.keys(statusData.documents)?.length &&
+        (statusData?.documents.hasOwnProperty(
+          DocumentTypeId.ADDITIONAL_DETAILS
+        ) ||
+          statusData?.documents.hasOwnProperty(DocumentTypeId.APP_CONTRACT) ||
+          statusData?.documents.hasOwnProperty(
+            DocumentTypeId.APP_TECHNICAL_INFORMATION
+          )) ? (
           Object.keys(statusData.documents).map(
             (item) =>
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
@@ -499,10 +507,8 @@ export default function CommonValidateAndPublish({
               <Grid container spacing={2} sx={{ margin: '0px' }}>
                 {rolesData?.map((role) => (
                   <Grid item xs={6} key={role.roleId}>
-                    <Typography variant="h5">{role.role}</Typography>
-                    <Typography variant="caption3">
-                      {role.description}
-                    </Typography>
+                    <Typography variant="label2">{role.role}</Typography>
+                    <Typography variant="body3">{role.description}</Typography>
                   </Grid>
                 ))}
               </Grid>
