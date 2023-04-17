@@ -11,6 +11,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * Navigate back to previous screen from App detials screen
 * Show Loading component in admin board screen
+* Blue profile icon is visible as "button" as mouse cursor is not changing
 
 ## 1.3.0 RC2
 
