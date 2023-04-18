@@ -228,7 +228,7 @@ export const Card = ({
             imageLoader={imageLoader}
             preview={variant === 'preview'}
           />
-          {status && (
+          {subscriptionStatus && (
             <Typography
               variant="body2"
               sx={{
@@ -241,13 +241,15 @@ export const Card = ({
                 textDecoration: 'none',
                 letterSpacing: '.06em',
                 backgroundColor:
-                  status?.toLowerCase() === 'pending' ? '#386cac' : '#597d39',
+                  subscriptionStatus?.toLowerCase() === 'pending'
+                    ? '#386cac'
+                    : '#597d39',
                 padding: '0.3em 5em 0.3em 5em',
                 '-webkit-transform': 'rotate(45deg) scale(0.75,1)',
                 zIndex: 10,
               }}
             >
-              {status}
+              {subscriptionStatus}
             </Typography>
           )}
         </Box>
