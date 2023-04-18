@@ -29,7 +29,7 @@ export default function MainNotify() {
       <PageSnackbarStack>
         {notify.map((item) => (
           <PageSnackbar
-            key={item.toString()}
+            key={JSON.stringify(item)}
             severity={item.severity}
             title={item.title}
             description={`${item.msg ?? ''} ${
