@@ -171,7 +171,8 @@ export const apiSlice = createApi({
           subscriptionData.forEach(
             async (subscriptionItem: SubscriptionStatusItem) => {
               if (appItem.id === subscriptionItem.appId)
-                appItem.subscriptionStatus = subscriptionItem.offerSubscriptionStatus
+                appItem.subscriptionStatus =
+                  subscriptionItem.offerSubscriptionStatus
             }
           )
         })
