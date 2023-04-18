@@ -155,6 +155,11 @@ export const Card = ({
     height: boxHeight ? `${boxHeight + 37}px` : '',
     top: `${topValue}px`,
     left: '0px',
+    paddingRight: '10px',
+    paddingLeft: '10px',
+    width: '290px',
+    minWidth: '290px',
+    marginBottom: '64px',
   } as React.CSSProperties
 
   const handleSubmenuFn = (e: any) => {
@@ -187,8 +192,7 @@ export const Card = ({
             border: 'none',
           }),
           ...(variant === 'preview' && {
-            position: 'absolute',
-            width: 'calc(100% - 2px)',
+            width: '100%',
             zIndex: 100,
           }),
           ...(variant === 'text-only' && {

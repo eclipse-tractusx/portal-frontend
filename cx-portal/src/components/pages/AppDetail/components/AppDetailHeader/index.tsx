@@ -90,7 +90,10 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
               ? 'primary'
               : 'secondary'
           }
-          onClick={() => dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))}
+          onClick={() =>
+            user.roles.indexOf('subscribe_apps') !== -1 &&
+            dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
+          }
         >
           {t('content.appdetail.subscribe')}
         </Button>
