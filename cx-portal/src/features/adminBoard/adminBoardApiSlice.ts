@@ -38,6 +38,7 @@ export interface AppRequestBody {
   page: number
   statusId: string
   sortingType: string
+  expr: string
 }
 
 export type MetaBody = {

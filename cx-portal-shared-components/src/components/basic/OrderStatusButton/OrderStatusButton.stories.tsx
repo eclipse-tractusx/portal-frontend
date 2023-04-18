@@ -18,21 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.document-main {
-  margin-bottom: 50px;
+import { ComponentStory } from '@storybook/react'
 
-  .not-available {
-    display: block;
-    width: 70%;
-    text-align: center;
-  }
+import { OrderStatusButton as Component } from '.'
+
+export default {
+  title: 'Buttons',
+  component: Component,
+  argTypes: {},
 }
 
-.document-button-link {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 18px;
-  color: #0d55af;
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
+
+export const OrderStatusButton = Template.bind({})
+OrderStatusButton.args = {
+  label: 'Subscribe',
+  color: 'primary',
+  buttonData: [
+    {
+      isIcon: false,
+      buttonLabel: 'Subscribtion initiated',
+      zIndex: 4,
+      backgroundColor: '#e1e1e1',
+    },
+    {
+      isIcon: true,
+      buttonLabel: 'App Instance deployed',
+      zIndex: 3,
+      backgroundColor: '#f3f3f3',
+    },
+    {
+      isIcon: true,
+      buttonLabel: 'Activation, Notifications & credentials',
+      zIndex: 2,
+      backgroundColor: '#f9f9f9',
+    },
+  ],
 }

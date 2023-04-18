@@ -219,7 +219,9 @@
           "demandandcapacitymanagement": "Demand & Capacity Management",
           "traceability": "Traceability",
           "manufacturingasaservice": "Manufacturing as a Service"
-        }
+        },
+        "noMatch": "No Matches",
+        "for": "for"
       }
     },
     "semantichub": {
@@ -776,7 +778,14 @@
       "language": "Language",
       "subscribe": "Subscribe",
       "subscribed": "Subscribed",
-      "pending": "Requested",
+      "pending": "Pending",
+      "purchased": "Purchased",
+      "requested": "Requested",
+      "buttons": {
+        "subscribtionInit": "Subscribtion initiated",
+        "appDeployed": "App Instance deployed",
+        "activation": "Activation, Notifications & credentials"
+      },
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
@@ -996,7 +1005,8 @@
       "desc1": "You have started the subscription request for app {appName}.",
       "desc2": "Please note that the subscription request will trigger a service call on provider side. The app provider will align with you all further steps. This may take up to 5 days.",
       "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
-      "desc4": "As soon as the service is up and running, a notification will be send to you, which enables you to assign the relevant user roles and start to use your app."
+      "desc4": "As soon as the service is up and running, a notification will be send to you, which enables you to assign the relevant user roles and start to use your app.",
+      "statusHeading": "You can easily keep track of the subscription status progress by checking the subscription status bar in the app detail page."
     },
     "techUser": {
       "details": {
@@ -1070,7 +1080,9 @@
         "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
         "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
         "declineReason3Label": "The app will get set back to the status “in progress“",
-        "inputLabel": "Cancellation Message"
+        "inputLabel": "Cancellation Message",
+        "confirm": "Confirm",
+        "close": "Close"
       }
     },
     "adminboardDetail": {
@@ -1101,7 +1113,7 @@
       },
       "roles": {
         "heading": "App Roles",
-        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "message": "Business application roles and description configured/loaded for the respective app. The roles are used to provide app customers user specific access and restrict permissions between different user groups.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {
@@ -1377,7 +1389,8 @@
       "title": "Oops, Something went wrong.",
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
       "additionalDescription": "Please contact your admin.",
-      "noDocumentsAvailable": "No documents available"
+      "noDocumentsAvailable": "No documents available",
+      "noRolesAvailable": "No Roles available"
     },
     "table": {
       "search": "Enter email to search",

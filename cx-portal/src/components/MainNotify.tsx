@@ -32,7 +32,7 @@ export default function MainNotify() {
             key={item.toString()}
             severity={item.severity}
             title={item.title}
-            description={`${item.msg} ${
+            description={`${item.msg ?? ''} ${
               item.data
                 ? Object.entries(item.data)
                     .filter((entry) => entry[0] === 'status')

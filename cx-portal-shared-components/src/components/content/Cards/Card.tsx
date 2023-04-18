@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Link, useTheme } from '@mui/material'
+import { Box, Link, Typography, useTheme } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useEffect, useRef, useState } from 'react'
 import { CardButtons, CardButtonsProps } from './CardButtons'
@@ -67,6 +67,7 @@ export const Card = ({
   id,
   title,
   subtitle,
+  subscriptionStatus,
   rating,
   price,
   description,
@@ -155,6 +156,11 @@ export const Card = ({
     height: boxHeight ? `${boxHeight + 37}px` : '',
     top: `${topValue}px`,
     left: '0px',
+    paddingRight: '10px',
+    paddingLeft: '10px',
+    width: '290px',
+    minWidth: '290px',
+    marginBottom: '64px',
   } as React.CSSProperties
 
   const handleSubmenuFn = (e: any) => {
@@ -175,6 +181,7 @@ export const Card = ({
       <Box
         sx={{
           overflow: 'hidden',
+          position: 'relative',
           backgroundColor: 'common.white',
           borderRadius: shape.borderRadius,
           border: '1px solid',
@@ -187,8 +194,7 @@ export const Card = ({
             border: 'none',
           }),
           ...(variant === 'preview' && {
-            position: 'absolute',
-            width: 'calc(100% - 2px)',
+            width: '100%',
             zIndex: 100,
           }),
           ...(variant === 'text-only' && {
@@ -222,6 +228,30 @@ export const Card = ({
             imageLoader={imageLoader}
             preview={variant === 'preview'}
           />
+          {subscriptionStatus && (
+            <Typography
+              variant="body2"
+              sx={{
+                top: '20px',
+                right: '-80px',
+                color: '#fff',
+                display: 'block',
+                position: 'absolute',
+                textAlign: 'center',
+                textDecoration: 'none',
+                letterSpacing: '.06em',
+                backgroundColor:
+                  subscriptionStatus?.toLowerCase() === 'pending'
+                    ? '#386cac'
+                    : '#597d39',
+                padding: '0.3em 5em 0.3em 5em',
+                '-webkit-transform': 'rotate(45deg) scale(0.75,1)',
+                zIndex: 10,
+              }}
+            >
+              {subscriptionStatus}
+            </Typography>
+          )}
         </Box>
         <Box sx={{ marginBottom: '20px' }}>
           {statusText && imageSize === 'small' && showStatus && (

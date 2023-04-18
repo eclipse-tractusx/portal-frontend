@@ -34,7 +34,7 @@ import {
 } from 'cx-portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { Grid, Divider, Box, InputLabel } from '@mui/material'
+import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -43,10 +43,11 @@ import {
   ConsentStatusEnum,
   DocumentData,
   DocumentTypeId,
+  rolesType,
 } from 'features/appManagement/apiSlice'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
@@ -63,6 +64,7 @@ import { uniqueId } from 'lodash'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
+import 'components/styles/document.scss'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -94,6 +96,7 @@ interface CommonValidateAndPublishType {
   values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
   serviceTypes?: string
+  rolesData?: rolesType[]
 }
 
 export default function CommonValidateAndPublish({
@@ -119,6 +122,7 @@ export default function CommonValidateAndPublish({
   values,
   type,
   serviceTypes,
+  rolesData,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -422,30 +426,31 @@ export default function CommonValidateAndPublish({
                 {defaultValues.conformityDocumentsDescription}
               </Typography>
             )}
-
-            {statusData?.documents &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ] &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ].map((item: DocumentData) => (
-                <InputLabel sx={{ mb: 0, mt: 3 }} key={item.documentId}>
-                  <button
-                    className="download-button"
-                    onClick={() =>
-                      handleDownloadFn(item.documentId, item.documentName)
-                    }
-                  >
-                    <ArrowForwardIcon fontSize="small" />
-                    {item.documentName}
-                  </button>
-                </InputLabel>
-              ))}
-
+            <ul>
+              {statusData?.documents &&
+                statusData.documents[
+                  DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                ] &&
+                statusData.documents[
+                  DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                ].map((item: DocumentData) => (
+                  <li key={item.documentId} className="document-list">
+                    <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                    <button
+                      className="document-button-link"
+                      onClick={() =>
+                        handleDownloadFn(item.documentId, item.documentName)
+                      }
+                    >
+                      {item.documentName}
+                    </button>
+                  </li>
+                ))}
+            </ul>
             <Divider className="verify-validate-form-divider" />
           </>
         )}
+
         <Typography variant="h4" sx={{ mb: 4 }}>
           {documentsTitle}
         </Typography>
@@ -454,15 +459,24 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
+        {statusData?.documents &&
+        Object.keys(statusData.documents)?.length &&
+        (statusData?.documents.hasOwnProperty(
+          DocumentTypeId.ADDITIONAL_DETAILS
+        ) ||
+          statusData?.documents.hasOwnProperty(DocumentTypeId.APP_CONTRACT) ||
+          statusData?.documents.hasOwnProperty(
+            DocumentTypeId.APP_TECHNICAL_INFORMATION
+          )) ? (
           Object.keys(statusData.documents).map(
             (item) =>
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
                 item === DocumentTypeId.APP_CONTRACT ||
                 item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
-                <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
+                <li key={item} className="document-list">
+                  <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                   <button
-                    className="download-button"
+                    className="document-button-link"
                     onClick={() =>
                       handleDownloadFn(
                         statusData?.documents[item][0]?.documentId,
@@ -470,16 +484,41 @@ export default function CommonValidateAndPublish({
                       )
                     }
                   >
-                    <ArrowForwardIcon fontSize="small" />
                     {statusData?.documents[item][0]?.documentName}
                   </button>
-                </InputLabel>
+                </li>
               )
           )
         ) : (
           <Typography variant="caption2" className="not-available">
             {t('global.errors.noDocumentsAvailable')}
           </Typography>
+        )}
+
+        {rolesData && (
+          <>
+            <Divider className="verify-validate-form-divider" />
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {t('content.adminboardDetail.roles.heading')}
+            </Typography>
+            <Typography variant="body2" className="form-field">
+              {t('content.adminboardDetail.roles.message')}
+            </Typography>
+            {rolesData.length > 0 ? (
+              <Grid container spacing={2} sx={{ margin: '0px' }}>
+                {rolesData?.map((role) => (
+                  <Grid item xs={6} key={role.roleId}>
+                    <Typography variant="label2">{role.role}</Typography>
+                    <Typography variant="body3">{role.description}</Typography>
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Typography variant="caption2" className="not-available">
+                {t('global.errors.noRolesAvailable')}
+              </Typography>
+            )}
+          </>
         )}
 
         <Divider className="verify-validate-form-divider" />

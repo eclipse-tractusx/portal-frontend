@@ -68,10 +68,10 @@ export const EnableIDP = ({ id }: { id: string }) => {
       }
       try {
         await updateUserIDP(idpUser).unwrap()
-        success(t('enable.short'))
         dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
+        success(t('enable.success'))
       } catch (err) {
-        error(t('enable.short'), t('state.error'), err as object)
+        error(t('enable.error'), '', err as object)
       }
     } catch (err) {
       console.log(err)

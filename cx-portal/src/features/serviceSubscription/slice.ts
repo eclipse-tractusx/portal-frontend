@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 BMW Group AG
- * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,18 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.adminboard-documents {
-  margin-bottom: 60px;
-  .not-available {
-    display: block;
-    text-align: center;
-  }
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
+
+const name = 'admin/serviceSubscription'
+
+export interface ServiceSubscriptionState {
+  isSuccess: boolean
 }
-.document-button-link {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 18px;
-  color: #0d55af;
+
+export const initialState: ServiceSubscriptionState = {
+  isSuccess: false,
 }
+
+const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setSuccessType: (state, action) => {
+      state.isSuccess = action.payload
+    },
+  },
+})
+
+export const currentSuccessType = (state: RootState): any =>
+  state.serviceSubscription.isSuccess
+
+export const { setSuccessType } = slice.actions
+export default slice

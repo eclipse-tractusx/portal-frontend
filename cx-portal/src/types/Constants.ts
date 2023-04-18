@@ -89,6 +89,7 @@ export enum PAGES {
   SERVICEOVERVIEW = 'serviceoverview',
   SERVICERELEASEPROCESS = 'servicereleaseprocess',
   SERVICEADMINBOARD = 'serviceadminboard',
+  SERVICEADMINBOARD_DETAIL = 'serviceadminboarddetail',
   SERVICESUBSCRIPTION = 'servicesubscription',
   SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
   ROLE_DETAILS = 'role-details',
@@ -130,8 +131,9 @@ export enum OVERLAYS {
   CONFIRM_USER_ACTION = 'confirm_user_action',
   SAMPLE_FORM = 'sample_form',
   ADD_SERVICE_PROVIDER = 'add_service_provider',
-  DECLINE_ADMINBOARD = 'decline_adminboard',
+  APP_DECLINE_ADMINBOARD = 'app_decline_adminboard',
   EDIT_PORTAL_ROLES = 'edit_portal_roles',
+  SERVICE_DECLINE_ADMINBOARD = 'decline_service_release',
 }
 
 export enum ACTIONS {
@@ -190,6 +192,7 @@ export enum ROLES {
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
   MY_USER_ACCOUNT = 'my_user_account',
+  VIEW_USER_ACCOUNT = 'view_user_account',
   ACTIVATE_SUBSCRIPTION = 'activate_subscription',
   APPROVE_APP_RELEASE = 'approve_app_release',
   DECLINE_APP_RELEASE = 'decline_app_release',

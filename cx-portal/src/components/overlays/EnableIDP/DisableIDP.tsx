@@ -46,9 +46,9 @@ export const DisableIDP = ({ id }: { id: string }) => {
       e.stopPropagation()
       await enableIDP({ id: id, enabled: false })
       dispatch(closeOverlay())
-      success(t('disable.short'))
+      success(t('disable.success'))
     } catch (err) {
-      error(t('disable.short'), t('state.error'), err as object)
+      error(t('disable.error'), '', err as object)
     }
   }
 

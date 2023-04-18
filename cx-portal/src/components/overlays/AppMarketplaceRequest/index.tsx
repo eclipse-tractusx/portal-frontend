@@ -24,10 +24,12 @@ import {
   Button,
   Typography,
   Checkbox,
+  OrderStatusButton,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { useTheme } from '@mui/material'
 import {
   AgreementRequest,
   useAddSubscribeAppMutation,
@@ -41,6 +43,7 @@ import './AppMarketplaceRequest.scss'
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const theme = useTheme()
 
   const { data } = useFetchAppDetailsQuery(id ?? '')
   const { data: agreements } = useFetchAgreementsQuery(id ?? '')
@@ -52,6 +55,27 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
     dispatch(setSuccessType(true))
     dispatch(closeOverlay())
   }
+
+  const OrderStatusButtonData = [
+    {
+      isIcon: false,
+      buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
+      zIndex: 4,
+      backgroundColor: theme.palette.buttons.darkGrey ?? '',
+    },
+    {
+      isIcon: false,
+      buttonLabel: t('content.appdetail.buttons.appDeployed'),
+      zIndex: 3,
+      backgroundColor: theme.palette.buttons.lightGrey ?? '',
+    },
+    {
+      isIcon: false,
+      buttonLabel: t('content.appdetail.buttons.activation'),
+      zIndex: 2,
+      backgroundColor: theme.palette.buttons.white ?? '',
+    },
+  ]
 
   const handleConfirmApp = async (id: string) => {
     try {
@@ -133,6 +157,14 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
               </li>
             ))}
         </ul>
+        <Typography variant="body2" sx={{ marginBottom: '15px' }}>
+          {t('content.appMarketplace.statusHeading')}
+        </Typography>
+        <OrderStatusButton
+          color={'primary'}
+          label={t('content.appdetail.subscribe')}
+          buttonData={OrderStatusButtonData}
+        />
       </DialogContent>
 
       <DialogActions>

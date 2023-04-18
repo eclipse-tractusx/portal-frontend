@@ -28,80 +28,66 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { store } from 'features/store'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useTranslation } from 'react-i18next'
 import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { useDeclineRequestMutation } from 'features/adminBoard/adminBoardApiSlice'
-import { setErrorType, setSuccessType } from 'features/adminBoard/slice'
 
-export default function DeclineAdminBoard({ id }: { id: string }) {
-  const { t } = useTranslation()
+type DeclineType = {
+  handleConfirm: (msg: string) => void
+  confirmBtn: string
+  closeBtn: string
+  title: string
+  subHeading: string
+  declineReason: string
+  declineReason1Label: string
+  declineReason2Label: string
+  declineReason3Label: string
+  inputLabel: string
+}
+
+export default function DeclineAdminBoard({
+  handleConfirm,
+  confirmBtn,
+  closeBtn,
+  title,
+  subHeading,
+  declineReason,
+  declineReason1Label,
+  declineReason2Label,
+  declineReason3Label,
+  inputLabel,
+}: DeclineType) {
   const dispatch = useDispatch<typeof store.dispatch>()
-  const { data } = useFetchAppDetailsQuery(id ?? '')
   const [inputMessage, setInputMessage] = useState('')
   const [loading, setLoading] = useState<boolean>(false)
-
-  const [declineRequest] = useDeclineRequestMutation()
-
-  useEffect(() => {
-    dispatch(setSuccessType(false))
-    dispatch(setErrorType(false))
-  }, [dispatch])
-
-  const handleConfirm = async () => {
-    setLoading(true)
-    await declineRequest({
-      appId: id,
-      message: inputMessage,
-    })
-      .unwrap()
-      .then(() => {
-        dispatch(setSuccessType(true))
-      })
-      .catch((error) => dispatch(setErrorType(true)))
-    dispatch(closeOverlay())
-  }
 
   return (
     <div className="decline-modal-main">
       <DialogHeader
         {...{
-          title: t('content.adminBoard.declineModal.title').replace(
-            '{appName}',
-            data ? data.title : ''
-          ),
-          intro: t('content.adminBoard.declineModal.subheading'),
+          title: title,
+          intro: subHeading,
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
       />
       <DialogContent>
         <div className="decline-modal-input">
-          <Typography variant="label2">
-            {t('content.adminBoard.declineModal.declineReason')}
-          </Typography>
+          <Typography variant="label2">{declineReason}</Typography>
           <ul>
             <li>
-              <Typography variant="label2">
-                {t('content.adminBoard.declineModal.declineReason1Label')}
-              </Typography>
+              <Typography variant="label2">{declineReason1Label}</Typography>
             </li>
             <li>
-              <Typography variant="label2">
-                {t('content.adminBoard.declineModal.declineReason2Label')}
-              </Typography>
+              <Typography variant="label2">{declineReason2Label}</Typography>
             </li>
             <li>
-              <Typography variant="label2">
-                {t('content.adminBoard.declineModal.declineReason3Label')}
-              </Typography>
+              <Typography variant="label2">{declineReason3Label}</Typography>
             </li>
           </ul>
           <Input
-            label={t('content.adminBoard.declineModal.inputLabel')}
+            label={inputLabel}
             sx={{
               paddingTop: '10px',
             }}
@@ -119,7 +105,7 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
 
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          Close
+          {closeBtn}
         </Button>
         {loading ? (
           <LoadingButton
@@ -134,8 +120,14 @@ export default function DeclineAdminBoard({ id }: { id: string }) {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" onClick={handleConfirm}>
-            {t('global.actions.confirm')}
+          <Button
+            variant="contained"
+            onClick={() => {
+              setLoading(true)
+              handleConfirm(inputMessage)
+            }}
+          >
+            {confirmBtn}
           </Button>
         )}
       </DialogActions>

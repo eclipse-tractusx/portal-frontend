@@ -27,6 +27,7 @@ import {
   ConsentStatusEnum,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
+  useFetchRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -47,6 +48,7 @@ export default function ValidateAndPublish({
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  const { data } = useFetchRolesDataQuery(appId ?? '')
 
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
@@ -122,6 +124,7 @@ export default function ValidateAndPublish({
         helpText={t('content.apprelease.footerButtons.help')}
         submitButton={t('content.apprelease.footerButtons.submit')}
         values={defaultValues}
+        rolesData={data}
       />
     </div>
   )
