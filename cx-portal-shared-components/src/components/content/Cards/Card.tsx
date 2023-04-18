@@ -241,9 +241,7 @@ export const Card = ({
                 textDecoration: 'none',
                 letterSpacing: '.06em',
                 backgroundColor:
-                status?.toLowerCase() === 'pending'
-                    ? '#386cac'
-                    : '#597d39',
+                  status?.toLowerCase() === 'pending' ? '#386cac' : '#597d39',
                 padding: '0.3em 5em 0.3em 5em',
                 '-webkit-transform': 'rotate(45deg) scale(0.75,1)',
                 zIndex: 10,
