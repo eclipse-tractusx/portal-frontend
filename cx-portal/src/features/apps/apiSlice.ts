@@ -51,6 +51,7 @@ export type AppMarketplaceApp = {
   lastChanged?: string
   timestamp?: number
   leadPictureId?: string
+  subscriptionStatus?: SubscriptionStatus
 }
 
 export enum SubscriptionStatus {
@@ -170,7 +171,7 @@ export const apiSlice = createApi({
           subscriptionData.forEach(
             async (subscriptionItem: SubscriptionStatusItem) => {
               if (appItem.id === subscriptionItem.appId)
-                appItem.status = subscriptionItem.offerSubscriptionStatus
+                appItem.subscriptionStatus = subscriptionItem.offerSubscriptionStatus
             }
           )
         })
