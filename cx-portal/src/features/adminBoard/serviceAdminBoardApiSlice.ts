@@ -101,19 +101,19 @@ export const apiSlice = createApi({
     }),
     approveServiceRequest: builder.mutation<boolean, string>({
       query: (id) => ({
-        url: `/api/services/${id}/approveService`,
+        url: `/api/services/serviceRelease/${id}/approveService`,
         method: 'PUT',
       }),
     }),
     declineServiceRequest: builder.mutation<boolean, DeclineRequestType>({
       query: (body) => ({
-        url: `/api/services/${body.appId}/declineService`,
+        url: `/api/services/serviceRelease/${body.appId}/declineService`,
         method: 'PUT',
         body: { message: body.message },
       }),
     }),
     fetchServiceDetails: builder.query<ServiceDetailsType, string>({
-      query: (id: string) => `/api/services/${id}`,
+      query: (id: string) => `/api/services/serviceRelease/${id}`,
     }),
   }),
 })
