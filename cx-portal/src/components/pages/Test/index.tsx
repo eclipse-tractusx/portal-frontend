@@ -19,23 +19,18 @@
  ********************************************************************************/
 
 import { Button } from 'cx-portal-shared-components'
-import FormTest from './index.form'
 import { error, success } from 'services/NotifyService'
+
+const checkDate = (date: number) =>
+  date % 2
+    ? success('current time', 'even', date)
+    : error('current time', 'odd ', date)
 
 export default function Test() {
   return (
     <main>
       <section>
-        <Button
-          onClick={() =>
-            Date.now() % 2
-              ? error('idp.create', 'the IdP could not be created')
-              : success('idp.create', 'IdP created')
-          }
-        >
-          Notify
-        </Button>
-        <FormTest />
+        <Button onClick={() => checkDate(Date.now())}>even time?</Button>
       </section>
     </main>
   )
