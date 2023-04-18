@@ -192,6 +192,7 @@ export enum ROLES {
   FE_DEVELOPER = 'FE Developer',
   VIEW_APP_RELEASE = 'view_app_release',
   MY_USER_ACCOUNT = 'my_user_account',
+  VIEW_USER_ACCOUNT = 'view_user_account',
   ACTIVATE_SUBSCRIPTION = 'activate_subscription',
   APPROVE_APP_RELEASE = 'approve_app_release',
   DECLINE_APP_RELEASE = 'decline_app_release',

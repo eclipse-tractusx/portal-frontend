@@ -501,8 +501,8 @@ export default function AppMarketCard() {
                 errors,
               }}
               name="provider"
-              maxLength={15}
-              minLength={1}
+              maxLength={30}
+              minLength={3}
               pattern={Patterns.appMarketCard.appProvider}
               label={t('content.apprelease.appMarketCard.appProvider') + ' *'}
               rules={{
@@ -511,7 +511,7 @@ export default function AppMarketCard() {
                 )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
                 minLength: `${t(
                   'content.apprelease.appReleaseForm.minimum'
-                )} 5 ${t(
+                )} 3 ${t(
                   'content.apprelease.appReleaseForm.charactersRequired'
                 )}`,
                 pattern: `${t(
@@ -519,7 +519,7 @@ export default function AppMarketCard() {
                 )} A-Za-z0-9.:_- @&`,
                 maxLength: `${t(
                   'content.apprelease.appReleaseForm.maximum'
-                )} 40 ${t(
+                )} 30 ${t(
                   'content.apprelease.appReleaseForm.charactersAllowed'
                 )}`,
               }}

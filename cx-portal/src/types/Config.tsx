@@ -327,7 +327,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USER_DETAILS,
-    role: ROLES.USERMANAGEMENT_VIEW,
+    role: ROLES.VIEW_USER_ACCOUNT,
     isRoute: true,
     element: (
       <Route

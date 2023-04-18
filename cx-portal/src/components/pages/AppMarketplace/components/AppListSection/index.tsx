@@ -38,11 +38,7 @@ import {
   fetchItems,
   removeItem,
 } from 'features/apps/favorites/actions'
-import {
-  AppMarketplaceApp,
-  SubscriptionStatus,
-  useFetchActiveAppsQuery,
-} from 'features/apps/apiSlice'
+import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import debounce from 'lodash.debounce'
 import CommonService from 'services/CommonService'
 
@@ -66,26 +62,9 @@ export default function AppListSection() {
     dispatch(fetchItems())
   }, [dispatch])
 
-  const getStatusLabel = (subscribeStatus: string) => {
-    if (subscribeStatus === SubscriptionStatus.PENDING) {
-      return t('content.appdetail.pending')
-    } else if (subscribeStatus === SubscriptionStatus.ACTIVE) {
-      return t('content.appdetail.purchased')
-    } else {
-      return subscribeStatus
-    }
-  }
-
   useEffect(() => {
-    if (cards && cards.length > 0 && cardsData && cardsData.length <= 0) {
-      const updatedCards = cards.map((item: AppMarketplaceApp) => ({
-        ...item,
-        subscriptionStatus: getStatusLabel(item.status ?? ''),
-      }))
-      setCardsData(updatedCards)
-    }
-    // eslint-disable-next-line
-  }, [cards, cardsData])
+    setCardsData(cards)
+  }, [cards])
 
   useEffect(() => {
     if (data) {
@@ -149,6 +128,44 @@ export default function AppListSection() {
     },
   ]
 
+  const renderList = () => {
+    if (filterExpr && cardsData && !cardsData.length) {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <Typography variant="h5">
+            {t('content.appstore.appOverviewSection.noMatch')}
+          </Typography>
+          <Typography variant="body1">
+            {t('content.appstore.appOverviewSection.for') + ' ' + filterExpr}
+          </Typography>
+        </div>
+      )
+    } else if (cardsData && cardsData.length) {
+      return (
+        <AppListGroupView
+          items={cardsData.map((card) => ({
+            ...card,
+            onButtonClick: () => navigate(`/appdetail/${card.id}`),
+            onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
+            addButtonClicked: checkIsFavorite(card.id!),
+          }))}
+          groupKey={group}
+        />
+      )
+    } else {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      )
+    }
+  }
+
   return (
     <Box ref={reference} className="overview-section">
       <section className="overview-section-content">
@@ -171,26 +188,7 @@ export default function AppListSection() {
             onChange={(e) => doFilter(e.target.value)}
           />
         </Box>
-        {cardsData && cardsData.length ? (
-          <AppListGroupView
-            items={cardsData.map((card) => ({
-              ...card,
-              onButtonClick: () => navigate(`/appdetail/${card.id}`),
-              onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
-              addButtonClicked: checkIsFavorite(card.id!),
-            }))}
-            groupKey={group}
-          />
-        ) : (
-          <div style={{ textAlign: 'center' }}>
-            <CircularProgress
-              size={50}
-              sx={{
-                color: theme.palette.primary.main,
-              }}
-            />
-          </div>
-        )}
+        {renderList()}
       </section>
     </Box>
   )
