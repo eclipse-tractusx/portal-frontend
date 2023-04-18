@@ -31,7 +31,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
@@ -114,12 +114,7 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
-  const salesManagerListQuery = useFetchSalesManagerDataQuery()
-  const salesManagerList = useMemo(
-    () => salesManagerListQuery.data,
-    [salesManagerListQuery]
-  )
-
+  const salesManagerList = useFetchSalesManagerDataQuery().data || []
   const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
     useState<salesManagerType>({
       userId: null,
@@ -203,7 +198,7 @@ export default function AppMarketCard() {
   }, [dispatch, fetchAppStatus])
 
   useEffect(() => {
-    if (salesManagerList && salesManagerList?.length > 0) {
+    if (salesManagerList.length > 0) {
       let data = salesManagerList?.map((item) => {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
@@ -222,13 +217,8 @@ export default function AppMarketCard() {
         setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
       }
     }
-  }, [
-    salesManagerList,
-    appStatusData,
-    defaultValues,
-    reset,
-    salesManagerListData,
-  ])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [salesManagerList, appStatusData])
 
   const onSalesManagerChange = (sales: any) => {
     setSalesManagerId(sales)
@@ -248,27 +238,6 @@ export default function AppMarketCard() {
     }
   }, [cardImageData])
 
-  const fetchCardImage = useCallback(
-    async (documentId: string, documentName: string) => {
-      try {
-        const response = await fetchDocumentById({ appId, documentId }).unwrap()
-        const file = response.data
-
-        const setFileStatus = (status: UploadFileStatus) =>
-          setValue('uploadImage.leadPictureUri', {
-            id: documentId,
-            name: documentName,
-            status,
-          } as any)
-        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-        return setCardImage(URL.createObjectURL(file))
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
-      }
-    },
-    [fetchDocumentById, appId, setValue]
-  )
-
   useEffect(() => {
     if (
       appStatusData?.documents?.APP_LEADIMAGE &&
@@ -280,7 +249,26 @@ export default function AppMarketCard() {
       )
     }
     reset(defaultValues)
-  }, [appStatusData, fetchCardImage, defaultValues, reset])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appStatusData])
+
+  const fetchCardImage = async (documentId: string, documentName: string) => {
+    try {
+      const response = await fetchDocumentById({ appId, documentId }).unwrap()
+      const file = response.data
+
+      const setFileStatus = (status: UploadFileStatus) =>
+        setValue('uploadImage.leadPictureUri', {
+          id: documentId,
+          name: documentName,
+          status,
+        } as any)
+      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+      return setCardImage(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
 
   const cardAppTitle =
     getValues().title ||
