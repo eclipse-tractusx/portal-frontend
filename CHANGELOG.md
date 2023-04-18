@@ -12,6 +12,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add status of the subscription
 * Service Management
    Service subscription Mgt enabled
+* Service release process
+   * API url updated
 
 ### Bugfix
 
@@ -56,8 +58,7 @@ n/a
 n/a
 
 ### Technical Support
-* Service release process
-   * API url updated
+n/a
 
 ### Bugfix
 * Service Detail Page (Marketplace and Service Management) - document download fixed
