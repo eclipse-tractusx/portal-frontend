@@ -13,6 +13,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add status of the subscription
 * Service Management
    Service subscription Mgt enabled
+* Service release process
+   * API url updated
 
 ### Bugfix
 

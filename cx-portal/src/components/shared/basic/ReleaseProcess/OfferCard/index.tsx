@@ -55,14 +55,12 @@ import {
   useFetchServiceStatusQuery,
   useFetchServiceTypeIdsQuery,
   useSaveServiceMutation,
-  useUpdateServiceDocumentUploadMutation,
 } from 'features/serviceManagement/apiSlice'
 import {
   setServiceId,
   setServiceStatus,
 } from 'features/serviceManagement/actions'
 import { ButtonLabelTypes } from '..'
-import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 type FormDataType = {
   title: string
@@ -95,7 +93,6 @@ export default function OfferCard() {
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [loading, setLoading] = useState<boolean>(false)
-  const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
   const defaultValues = useMemo(() => {
     return {
@@ -199,10 +196,7 @@ export default function OfferCard() {
     })
       .unwrap()
       .then(() => {
-        const uploadImageValue = getValues().uploadImage
-          .leadPictureUri as unknown as DropzoneFile
-        !uploadImageValue.id &&
-          handleUploadDocument(serviceId, uploadImageValue)
+        //TO-DO API INTEGRATION UPLOAD SERVICE_LEADIMAGE
         dispatch(setServiceId(serviceId))
         buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
           dispatch(serviceReleaseStepIncrement())
@@ -213,29 +207,6 @@ export default function OfferCard() {
       .catch(() => {
         setLoading(false)
         setServiceCardNotification(true)
-      })
-  }
-
-  const handleUploadDocument = (id: string, uploadImageValue: DropzoneFile) => {
-    const setFileStatus = (status: UploadFileStatus) =>
-      setValue('uploadImage.leadPictureUri', {
-        id: uploadImageValue.id,
-        name: uploadImageValue.name,
-        size: uploadImageValue.size,
-        status,
-      } as any)
-
-    setFileStatus(UploadStatus.UPLOADING)
-    updateServiceDocumentUpload({
-      appId: id,
-      documentTypeId: DocumentTypeId.SERVICE_LEADIMAGE,
-      body: { file: uploadImageValue },
-    })
-      .then(() => {
-        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-      })
-      .catch(() => {
-        setFileStatus(UploadStatus.UPLOAD_ERROR)
       })
   }
 
@@ -250,9 +221,7 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          const uploadImageValue = getValues().uploadImage
-            .leadPictureUri as unknown as DropzoneFile
-          handleUploadDocument(result, uploadImageValue)
+          //TO-DO API INTEGRATION UPLOAD SERVICE_LEADIMAGE
           dispatch(setServiceId(result))
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
