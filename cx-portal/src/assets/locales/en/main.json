@@ -829,7 +829,7 @@
       "appMarketCard": {
         "headerTitle": "Create App Card",
         "headerDescription": "The following input fields and uploads are used to create your app 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer. While entering the data below, have a look at the app card on the left side which is getting autoupdated based on your input.",
-        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppImageAlt": "App Logo",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "This is the app title",
         "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your app short description",
