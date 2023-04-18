@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * App Release Process
    * Added app roles to validate and publish
    * Included role description in technical integration role creation
+   * Removed eslint-disable from app release process
    * Added privacy policies to validate and publish
 * AppMarketplace
    * Add status of the subscription

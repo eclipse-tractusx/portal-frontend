@@ -135,27 +135,29 @@ export default function AppMarketCard() {
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
-  const defaultValues = {
-    title: appStatusData?.title,
-    provider: appStatusData?.provider,
-    price: appStatusData?.price,
-    useCaseCategory: appStatusData?.useCase,
-    appLanguage: appStatusData?.supportedLanguageCodes,
-    salesManagerId: appStatusData?.salesManagerId,
-    shortDescriptionEN:
-      appStatusData?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
-      )[0]?.shortDescription || '',
-    shortDescriptionDE:
-      appStatusData?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
-      )[0]?.shortDescription || '',
-    uploadImage: {
-      leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-      alt: appStatusData?.leadPictureUri || '',
-    },
-    privacyPolicies: appStatusData?.privacyPolicies || [],
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      title: appStatusData?.title,
+      provider: appStatusData?.provider,
+      price: appStatusData?.price,
+      useCaseCategory: appStatusData?.useCase,
+      appLanguage: appStatusData?.supportedLanguageCodes,
+      salesManagerId: appStatusData?.salesManagerId,
+      shortDescriptionEN:
+        appStatusData?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'en'
+        )[0]?.shortDescription || '',
+      shortDescriptionDE:
+        appStatusData?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'de'
+        )[0]?.shortDescription || '',
+      uploadImage: {
+        leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
+        alt: appStatusData?.leadPictureUri || '',
+      },
+      privacyPolicies: appStatusData?.privacyPolicies || [],
+    }
+  }, [appStatusData, cardImage])
 
   const {
     handleSubmit,
@@ -189,7 +191,6 @@ export default function AppMarketCard() {
       )
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
