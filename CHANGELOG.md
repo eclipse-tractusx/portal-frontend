@@ -5,7 +5,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ## Unreleased
 * Bugfix - App Access Management - Edit User role button got lost
 
-## 1.3.0 RC4
+## 1.3.0 RC3
 
 ### Change
 * updated document section styling for app and service detail pages
