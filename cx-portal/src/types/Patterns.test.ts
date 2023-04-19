@@ -161,7 +161,7 @@ const TESTDATA = {
   },
   CNAMES: {
     valid: ['word', 'Some word', 'Some@word'],
-    invalid: ['some.word', 'w', '', 'some?@#$word'],
+    invalid: ['some^word', 'w', '', ' some?@#$word'],
   },
   COUNTRY: {
     valid: ['DE'],
