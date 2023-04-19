@@ -139,10 +139,13 @@ export const Dropzone = ({
   }
 
   // TODO: read react-dropzone errorCode instead of message and localize
+  const errorObj = fileRejections?.[0]?.errors?.[0]
+  const fileTypeError =
+    errorObj && fileRejections?.[0]?.errors?.[0].code === 'file-invalid-type'
   const errorMessage =
-    !isDragActive && fileRejections?.[0]?.errors?.[0] && errorText
+    !isDragActive && errorObj && !fileTypeError && errorText
       ? errorText
-      : fileRejections?.[0]?.errors?.[0]?.message
+      : errorObj?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     id: file.id,
