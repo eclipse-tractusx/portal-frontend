@@ -444,6 +444,7 @@ export default function OfferCard() {
         )}
         isValid={isValid}
         loader={loading}
+        helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
       />
     </div>
   )

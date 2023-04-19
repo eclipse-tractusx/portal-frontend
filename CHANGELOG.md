@@ -9,12 +9,14 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Included role description in technical integration role creation
    * Removed eslint-disable from app release process
    * Added privacy policies to validate and publish
+   * Enable app release help button 
 * AppMarketplace
    * Add status of the subscription
 * Service Management
    Service subscription Mgt enabled
 * Service release process
    * API url updated
+   * Enable Service release help button 
 
 ### Bugfix
 

@@ -77,6 +77,7 @@ type CommonConsentType = {
   imageFieldNote: string
   imageFieldRequiredText: string
   id: string
+  helpUrl: string
   fetchAgreementData: AgreementType[]
   fetchConsentData?: ConsentType
   updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
@@ -113,6 +114,7 @@ export default function CommonContractAndConsent({
   getDocumentById,
   documentRequired = true,
   fetchFrameDocumentById,
+  helpUrl,
 }: CommonConsentType) {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
@@ -469,6 +471,7 @@ export default function CommonContractAndConsent({
         )}
         isValid={isValid}
         loader={loading}
+        helpUrl={helpUrl}
       />
       <PageSnackbar
         autoClose

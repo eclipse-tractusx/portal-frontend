@@ -528,6 +528,7 @@ export default function TechnicalIntegration() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
+        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
         // To-Do : the below code will get enhanced again in R.3.1
         // isValid={showUserButton}
       />
