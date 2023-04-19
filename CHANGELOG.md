@@ -27,6 +27,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    App Subscription & Service Subscription to use common component
 * Notification
    BugFix - Service Request title and message issue fix
+* App Release Process
+   * Fixed language switch issue in app card in validate and publish
 
 ## 1.3.0 RC3
 
