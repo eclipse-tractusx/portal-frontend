@@ -22,11 +22,7 @@
   },
   "step1": {
     "headerTitle": "Service Card Erstellen",
-    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden. Während Sie die Daten unten eingeben, werfen Sie einen Blick auf die Servicekarte auf der linken Seite, die basierend auf Ihrer Eingabe automatisch aktualisiert wird.",
-    "defaultCardServiceImageAlt": "Part Chain",
-    "defaultCardServiceProvider": "Catena-X",
-    "defaultCardServiceTitle": "Dies ist der Service Titel",
-    "defaultCardShortDescriptionEN": "[Kurzbeschreibung EN] Dieser Abschnitt wird durch Ihre Service-Kurzbeschreibung ersetzt",
+    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden.",
     "serviceName": "Service Name*",
     "serviceType": "Service Type*",
     "serviceTypePlaceholder": "Wählen Sie den Servicetyp aus",
@@ -49,22 +45,15 @@
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
-    "allAgreementsMandatory": "Alle Terms & Conditions sind mandatory",
-    "uploadImageConformity": "Laden Sie hier das Conformity Zertifikat als PDF hoch."
+    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu."
   },
   "step4": {
     "headerTitle": "Validate & Publish",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ",
     "appDetails": "Service Details",
-    "language": "Language :  ",
-    "useCase": "Use Case :  ",
-    "price": "Preis :  ",
-    "conformityDocument": "Conformity Document",
     "documents": "Documents",
     "providerInformation": "Provider Information",
     "consent": "Consent",
-    "cxTestRuns": "CX Test Runs",
     "longDescriptionTitleEN": "[Long Description - EN] ",
     "longDescriptionTitleDE": "[Long Description - DE] "
   },

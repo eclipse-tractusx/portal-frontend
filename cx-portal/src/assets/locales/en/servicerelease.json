@@ -22,11 +22,7 @@
   },
   "step1": {
     "headerTitle": "Create Service",
-    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer. While entering the data below, have a look at the service card on the left side which is getting autoupdated based on your input.",
-    "defaultCardServiceImageAlt": "Part Chain",
-    "defaultCardServiceProvider": "Catena-X",
-    "defaultCardServiceTitle": "This is the service title",
-    "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your service short description",
+    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer.",
     "serviceName": "Service Name*",
     "serviceType": "Service Type*",
     "serviceTypePlaceholder": "Select a Service Type Id",
@@ -49,22 +45,15 @@
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
-    "allAgreementsMandatory": "All agreements are mandatory",
-    "uploadImageConformity": "CAB"
+    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval."
   },
   "step4": {
     "headerTitle": "Validate & Publish",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ",
     "appDetails": "Service Details",
-    "language": "Language :  ",
-    "useCase": "Use Case :  ",
-    "price": "Price :  ",
-    "conformityDocument": "Conformity Document",
     "documents": "Documents",
     "providerInformation": "Provider Information",
     "consent": "Consent",
-    "cxTestRuns": "CX Test Runs",
     "longDescriptionTitleEN": "[Long Description - EN] ",
     "longDescriptionTitleDE": "[Long Description - DE] "
   },
