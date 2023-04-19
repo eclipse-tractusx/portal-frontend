@@ -93,6 +93,7 @@ interface CommonValidateAndPublishType {
   error: { title: string; message: string }
   helpText: string
   submitButton: string
+  helpUrl: string
   values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
   serviceTypes?: string
@@ -123,6 +124,7 @@ export default function CommonValidateAndPublish({
   type,
   serviceTypes,
   rolesData,
+  helpUrl,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -601,6 +603,7 @@ export default function CommonValidateAndPublish({
           startIcon={<HelpOutlineIcon />}
           variant="outlined"
           sx={{ mr: 1 }}
+          onClick={() => window.open(helpUrl, '_blank')}
         >
           {helpText}
         </Button>

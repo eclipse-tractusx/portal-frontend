@@ -737,6 +737,7 @@ export default function AppPage() {
         )}
         isValid={isValid}
         loader={loading}
+        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
       />
       <PageSnackbar
         autoClose

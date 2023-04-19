@@ -123,6 +123,12 @@ export default function BetaTest() {
           variant="outlined"
           startIcon={<HelpOutlineIcon />}
           sx={{ mr: 1 }}
+          onClick={() =>
+            window.open(
+              `/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`,
+              '_blank'
+            )
+          }
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
