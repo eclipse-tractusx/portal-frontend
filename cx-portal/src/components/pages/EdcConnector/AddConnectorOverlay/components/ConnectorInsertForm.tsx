@@ -112,7 +112,10 @@ const ConnectorFormInput = ({
               let errortext = helperText
               if (rules.pattern.test(value)) {
                 errortext = ''
-              } else if ((value.length <= 2 || value.length > 20) && patternError) {
+              } else if (
+                (value.length <= 2 || value.length > 20) &&
+                patternError
+              ) {
                 errortext = patternError.lengthError
               } else if (!rules.pattern.test(value) && patternError) {
                 errortext = patternError.otherError
