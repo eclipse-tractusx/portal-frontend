@@ -46,8 +46,6 @@ import {
   rolesType,
 } from 'features/appManagement/apiSlice'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import i18next, { changeLanguage } from 'i18next'
-import I18nService from 'services/I18nService'
 import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
@@ -134,6 +132,7 @@ export default function CommonValidateAndPublish({
   const [multipleImages, setMultipleImages] = useState<any[]>([])
   const [defaultValues, setDefaultValues] = useState<DefaultValueType>()
   const [loading, setLoading] = useState<boolean>(false)
+  const [cardLanguage, setCardLanguage] = useState<string>('en')
 
   const fetchImage = useCallback(
     async (documentId: string, documentType: string) => {
@@ -275,7 +274,7 @@ export default function CommonValidateAndPublish({
                 description={
                   statusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
-                      lang.languageCode === i18next.language
+                      lang.languageCode === cardLanguage
                   )[0]?.shortDescription
                 }
                 imageSize="normal"
@@ -287,11 +286,9 @@ export default function CommonValidateAndPublish({
               />
               <div style={{ margin: '35px auto -16px 65px' }}>
                 <LanguageSwitch
-                  current={i18next.language}
-                  languages={I18nService.supportedLanguages.map((key) => ({
-                    key,
-                  }))}
-                  onChange={changeLanguage}
+                  current={cardLanguage}
+                  languages={[{ key: 'de' }, { key: 'en' }]}
+                  onChange={(lang) => setCardLanguage(lang)}
                 />
               </div>
             </Grid>
