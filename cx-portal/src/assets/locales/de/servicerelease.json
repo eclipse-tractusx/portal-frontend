@@ -22,7 +22,7 @@
   },
   "step1": {
     "headerTitle": "Service Card Erstellen",
-    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden. Während Sie die Daten unten eingeben, werfen Sie einen Blick auf die Servicekarte auf der linken Seite, die basierend auf Ihrer Eingabe automatisch aktualisiert wird.",
+    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden.",
     "serviceName": "Service Name*",
     "serviceType": "Service Type*",
     "serviceTypePlaceholder": "Wählen Sie den Servicetyp aus",
