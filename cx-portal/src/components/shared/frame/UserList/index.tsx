@@ -31,10 +31,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
 import './style.scss'
-import { userSelector } from 'features/user/slice'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
-import { ROLES } from 'types/Constants'
 
 export const UserList = ({
   sectionTitle,
@@ -62,7 +60,6 @@ export const UserList = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
-  const user = useSelector(userSelector)
   const searchInputData = useSelector(appManagementSelector)
 
   const validateSearchText = (expr: string) => {
@@ -144,11 +141,7 @@ export const UserList = ({
               <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
                 <ArrowForwardIcon />
               </IconButton>
-            ),
-            hide:
-              isDetail && user.roles.indexOf(ROLES.VIEW_USER_ACCOUNT) !== -1
-                ? false
-                : true,
+            )
           },
         ]}
         disableColumnMenu
