@@ -2,8 +2,10 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## 1.3.0 RC4
+## Unreleased
 * Bugfix - App Access Management - Edit User role button got lost
+
+## 1.3.0 RC4
 
 ### Change
 * updated document section styling for app and service detail pages
