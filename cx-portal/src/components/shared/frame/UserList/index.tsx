@@ -141,7 +141,7 @@ export const UserList = ({
               <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
                 <ArrowForwardIcon />
               </IconButton>
-            )
+            ),
           },
         ]}
         disableColumnMenu
