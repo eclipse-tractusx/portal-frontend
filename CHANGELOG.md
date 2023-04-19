@@ -4,6 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 * Bugfix - User Detail Page not loading fix, if app (portal) is not existing
+* Bugfix - App Access Management - Edit User role button got lost
 
 ## 1.3.0 RC3
 
