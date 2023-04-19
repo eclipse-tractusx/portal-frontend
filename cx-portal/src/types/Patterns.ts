@@ -80,7 +80,7 @@ export const Patterns = {
     clientSecret: /^.{1,200}$/,
   },
   connectors: {
-    NAME: /^[a-zA-Z0-9 @]{2,20}$/,
+    NAME: /^[^-\s][a-zA-Z0-9 %&?_,';:!-@]{2,20}$/,
     COUNTRY: /^[A-Z]{2}$/,
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,

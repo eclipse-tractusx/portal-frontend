@@ -44,6 +44,7 @@ const ConnectorFormInput = ({
   tooltipMsg,
   type,
   dropzoneProps,
+  patternError,
 }: any) => {
   return (
     <>
@@ -107,23 +108,33 @@ const ConnectorFormInput = ({
       ) : (
         <>
           <Controller
-            render={({ field: { onChange, value } }) => (
-              <Input
-                tooltipMessage={tooltipMsg}
-                sx={{
-                  paddingTop: '10px',
-                }}
-                error={!!errors[name]}
-                helperText={helperText}
-                label={label}
-                placeholder={placeholder}
-                onChange={(event) => {
-                  trigger(name)
-                  onChange(event)
-                }}
-                value={value}
-              />
-            )}
+            render={({ field: { onChange, value } }) => {
+              let errortext = helperText
+              if (rules.pattern.test(value)) {
+                errortext = ''
+              } else if ((value.length <= 2 || value.length > 20) && patternError) {
+                errortext = patternError.lengthError
+              } else if (!rules.pattern.test(value) && patternError) {
+                errortext = patternError.otherError
+              }
+              return (
+                <Input
+                  tooltipMessage={tooltipMsg}
+                  sx={{
+                    paddingTop: '10px',
+                  }}
+                  error={!!errors[name]}
+                  helperText={errortext}
+                  label={label}
+                  placeholder={placeholder}
+                  onChange={(event) => {
+                    trigger(name)
+                    onChange(event)
+                  }}
+                  value={value}
+                />
+              )
+            }}
             name={name}
             control={control}
             rules={rules}
@@ -184,6 +195,14 @@ const ConnectorInsertForm = ({
                   helperText: t(
                     'content.edcconnector.modal.insertform.name.error'
                   ),
+                  patternError: {
+                    lengthError: t(
+                      'content.edcconnector.modal.insertform.name.patternError.lengthError'
+                    ),
+                    otherError: t(
+                      'content.edcconnector.modal.insertform.name.patternError.otherError'
+                    ),
+                  },
                   label: t('content.edcconnector.modal.insertform.name.label'),
                   placeholder: t(
                     'content.edcconnector.modal.insertform.name.placeholder'
