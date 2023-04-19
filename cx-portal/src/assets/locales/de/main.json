@@ -447,7 +447,7 @@
             "placeholder": "Connector Name",
             "patternError": {
               "lengthError": "Connector name length should be between 2 and 20.",
-              "otherError": "Connector name can not start with empty space. Allowed special characters are @_:;.-%&?,'!."
+              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
             },
             "error": "Connector name is mandatory.",
             "tooltipMsg": "Own selected connector name for verification"
