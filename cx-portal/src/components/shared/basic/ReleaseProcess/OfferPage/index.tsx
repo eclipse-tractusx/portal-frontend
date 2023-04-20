@@ -33,6 +33,7 @@ import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  useDeleteDocumentMutation,
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
@@ -76,6 +77,7 @@ export default function OfferPage() {
   const [saveService] = useSaveServiceMutation()
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
+  const [deleteDocument] = useDeleteDocumentMutation()
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -113,12 +115,15 @@ export default function OfferPage() {
   const dImages = useMemo(() => defaultValues.images, [defaultValues])
 
   useEffect(() => {
-    const imgs = dImages?.map((item: { documentName: string }) => {
-      return {
-        name: item.documentName,
-        status: UploadStatus.UPLOAD_SUCCESS,
+    const imgs = dImages?.map(
+      (item: { documentName: string; documentId: string }) => {
+        return {
+          name: item.documentName,
+          status: UploadStatus.UPLOAD_SUCCESS,
+          id: item.documentId,
+        }
       }
-    })
+    )
 
     if (imgs.length > 0) {
       const setFiles = (fileIndex: number, status: UploadFileStatus) => {
@@ -126,6 +131,7 @@ export default function OfferPage() {
         files[fileIndex] = {
           name: imgs[fileIndex].name,
           status,
+          id: imgs[fileIndex].id,
         }
         setValue('images', files)
       }
@@ -300,15 +306,14 @@ export default function OfferPage() {
         <div className="form-field">
           <InputLabel sx={{ mb: 3, mt: 3 }}>{t('step2.doc')}</InputLabel>
           <Controller
+            name="images"
+            control={control}
+            rules={{ required: false }}
             render={({ field: { onChange: reactHookFormOnChange, value } }) => {
               return (
                 <Dropzone
                   files={value}
-                  onChange={(files, addedFiles, deletedFiles) => {
-                    if (deletedFiles?.length) {
-                      //to do: to call 'useDeleteDocumentMutation' on delete
-                      console.log('deletedFile', deletedFiles)
-                    }
+                  onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
                     trigger('images')
                     addedFiles && uploadImage(files)
@@ -318,12 +323,12 @@ export default function OfferPage() {
                   }}
                   maxFilesToUpload={1}
                   maxFileSize={819200}
+                  handleDelete={(documentId: string) => {
+                    documentId && deleteDocument(documentId)
+                  }}
                 />
               )
             }}
-            name="images"
-            control={control}
-            rules={{ required: false }}
           />
           <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
             {t('serviceReleaseForm.note')}

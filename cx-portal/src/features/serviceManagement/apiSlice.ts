@@ -241,6 +241,12 @@ export const apiSlice = createApi({
         }
       },
     }),
+    deleteDocument: builder.mutation<void, string>({
+      query: (documentId) => ({
+        url: `/api/services/servicerelease/documents/${documentId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 })
 
@@ -258,4 +264,5 @@ export const {
   useFetchFrameDocumentByIdMutation,
   useFetchDocumentMutation,
   useFetchProvidedServicesQuery,
+  useDeleteDocumentMutation,
 } = apiSlice
