@@ -67,9 +67,12 @@ export default function OfferPage() {
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
   const longDescriptionMaxLength = 2000
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? ' ', {
-    refetchOnMountOrArgChange: true,
-  }).data
+  const { data: fetchServiceStatus, refetch } = useFetchServiceStatusQuery(
+    serviceId ?? ' ',
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  )
   const [saveService] = useSaveServiceMutation()
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
@@ -89,7 +92,7 @@ export default function OfferPage() {
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
         )[0]?.longDescription || '',
-      images: fetchServiceStatus?.documents?.APP_IMAGE || [],
+      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS || [],
       providerHomePage: fetchServiceStatus?.providerUri || '',
       providerContactEmail: fetchServiceStatus?.contactEmail || '',
     }
@@ -224,6 +227,7 @@ export default function OfferPage() {
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
         dispatch(serviceReleaseStepIncrement())
       buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
+      refetch()
     } catch (error) {
       setServicePageNotification(true)
     }
