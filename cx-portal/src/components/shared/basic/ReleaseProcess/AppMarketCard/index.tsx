@@ -68,6 +68,7 @@ import ConnectorFormInputFieldShortAndLongDescription from '../components/Connec
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
+import RetryOverlay from '../components/RetryOverlay'
 
 type FormDataType = {
   title: string
@@ -128,12 +129,25 @@ export default function AppMarketCard() {
   const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+  const {
+    data: fetchAppStatus,
+    isError,
+    refetch,
+  } = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
-  }).data
+  })
   const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const [enableRetryOverlay, setEnableRetryOverlay] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (appId && isError) {
+      setEnableRetryOverlay(true)
+    } else {
+      setEnableRetryOverlay(false)
+    }
+  }, [appId, isError])
 
   const defaultValues = useMemo(() => {
     return {
@@ -421,6 +435,19 @@ export default function AppMarketCard() {
 
   return (
     <div className="app-market-card">
+      <RetryOverlay
+        openDialog={enableRetryOverlay}
+        handleOverlayClose={() => {
+          setEnableRetryOverlay(false)
+          navigate(-1)
+        }}
+        handleConfirmClick={() => {
+          refetch()
+          setEnableRetryOverlay(false)
+        }}
+        title={t('content.apprelease.retryOverlay.title')}
+        description={t('content.apprelease.retryOverlay.description')}
+      />
       <ReleaseStepHeader
         title={t('content.apprelease.appMarketCard.headerTitle')}
         description={t('content.apprelease.appMarketCard.headerDescription')}

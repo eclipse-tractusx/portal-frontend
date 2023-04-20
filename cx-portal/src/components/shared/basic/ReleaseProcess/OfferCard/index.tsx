@@ -61,6 +61,7 @@ import {
   setServiceStatus,
 } from 'features/serviceManagement/actions'
 import { ButtonLabelTypes } from '..'
+import RetryOverlay from '../components/RetryOverlay'
 
 type FormDataType = {
   title: string
@@ -84,7 +85,11 @@ export default function OfferCard() {
   const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchNewDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '').data
+  const {
+    data: fetchServiceStatus,
+    isError,
+    refetch,
+  } = useFetchServiceStatusQuery(serviceId ?? '')
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
@@ -93,6 +98,15 @@ export default function OfferCard() {
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [loading, setLoading] = useState<boolean>(false)
+  const [showRetryOverlay, setShowRetryOverlay] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (serviceId && isError) {
+      setShowRetryOverlay(true)
+    } else {
+      setShowRetryOverlay(false)
+    }
+  }, [serviceId, isError])
 
   const defaultValues = useMemo(() => {
     return {
@@ -286,6 +300,19 @@ export default function OfferCard() {
 
   return (
     <div className="app-market-card">
+      <RetryOverlay
+        openDialog={showRetryOverlay}
+        handleOverlayClose={() => {
+          setShowRetryOverlay(false)
+          navigate(-1)
+        }}
+        handleConfirmClick={() => {
+          refetch()
+          setShowRetryOverlay(false)
+        }}
+        title={t('retryOverlay.title')}
+        description={t('retryOverlay.description')}
+      />
       <ReleaseStepHeader
         title={t('step1.headerTitle')}
         description={t('step1.headerDescription')}
