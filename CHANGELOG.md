@@ -6,6 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Bugfix - User Detail Page not loading fix, if app (portal) is not existing
 * Bugfix - App Access Management - Edit User role button got lost
 * Bugfix - Organization Company data: wrong data after the street number
+* Bugfix - App Access - missing app which is deactivated
 
 ## 1.3.0 RC3
 
