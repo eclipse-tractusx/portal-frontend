@@ -173,10 +173,14 @@ export interface PrivacyPolicyType {
   privacyPolicies: string[] | []
 }
 
+enum Tags {
+  APP = 'App',
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/appManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
-  tagTypes: ['App'],
+  tagTypes: [Tags.APP],
   endpoints: (builder) => ({
     fetchUseCases: builder.query<useCasesItem[], void>({
       query: () => `/api/administration/staticdata/usecases`,
@@ -216,11 +220,11 @@ export const apiSlice = createApi({
           ? { data: response.data }
           : { error: response.error }
       },
-      invalidatesTags: ['App'],
+      invalidatesTags: [Tags.APP],
     }),
     fetchAppStatus: builder.query<AppStatusDataState, string>({
       query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
-      providesTags: ['App'],
+      providesTags: [Tags.APP],
     }),
     fetchAgreementData: builder.query<AgreementType[], void>({
       query: () => `api/apps/AppReleaseProcess/agreementData`,
@@ -261,7 +265,7 @@ export const apiSlice = createApi({
         url: `/api/apps/appreleaseprocess/documents/${documentId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['App'],
+      invalidatesTags: [Tags.APP],
     }),
     fetchRolesData: builder.query<rolesType[], string>({
       query: (appId: string) => `api/administration/user/app/${appId}/roles`,
