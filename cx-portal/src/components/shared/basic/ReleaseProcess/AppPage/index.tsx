@@ -35,7 +35,7 @@ import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -108,26 +108,28 @@ export default function AppPage() {
     deleteResponse.isSuccess && setDeleteSuccess(true)
   }, [deleteResponse])
 
-  const defaultValues = {
-    longDescriptionEN:
-      fetchAppStatus?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
-      )[0]?.longDescription || '',
-    longDescriptionDE:
-      fetchAppStatus?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
-      )[0]?.longDescription || '',
-    images: fetchAppStatus?.documents?.APP_IMAGE || [],
-    uploadDataPrerequisits:
-      fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
-    uploadTechnicalGuide:
-      fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
-    uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
-    providerHomePage: fetchAppStatus?.providerUri || '',
-    providerContactEmail: fetchAppStatus?.contactEmail || '',
-    providerPhoneContact: fetchAppStatus?.contactNumber || '',
-    privacyPolicies: fetchAppStatus?.privacyPolicies || [],
-  }
+  const defaultValues = useMemo(() => {
+    return {
+      longDescriptionEN:
+        fetchAppStatus?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'en'
+        )[0]?.longDescription || '',
+      longDescriptionDE:
+        fetchAppStatus?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'de'
+        )[0]?.longDescription || '',
+      images: fetchAppStatus?.documents?.APP_IMAGE || [],
+      uploadDataPrerequisits:
+        fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
+      uploadTechnicalGuide:
+        fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
+      uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
+      providerHomePage: fetchAppStatus?.providerUri || '',
+      providerContactEmail: fetchAppStatus?.contactEmail || '',
+      providerPhoneContact: fetchAppStatus?.contactNumber || '',
+      privacyPolicies: fetchAppStatus?.privacyPolicies || [],
+    }
+  }, [fetchAppStatus])
 
   const {
     handleSubmit,
@@ -156,6 +158,20 @@ export default function AppPage() {
   const defaultuploadDataPrerequisits = defaultValues.uploadDataPrerequisits
   const defaultuploadTechnicalGuide = defaultValues.uploadTechnicalGuide
   const defaultuploadAppContract = defaultValues.uploadAppContract
+
+  const setFileStatus = useCallback(
+    (fieldName: Parameters<typeof setValue>[0], status: UploadFileStatus) => {
+      const value = getValues(fieldName)
+      if (value)
+        setValue(fieldName, {
+          id: value.id,
+          name: value.name,
+          size: value.size,
+          status,
+        } as any)
+    },
+    [getValues, setValue]
+  )
 
   useEffect(() => {
     const images = defaultImages?.map(
@@ -226,27 +242,27 @@ export default function AppPage() {
       })
       setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     defaultImages,
     defaultuploadDataPrerequisits,
     defaultuploadTechnicalGuide,
     defaultuploadAppContract,
+    setFileStatus,
+    setValue,
   ])
 
-  const setFileStatus = (
-    fieldName: Parameters<typeof setValue>[0],
-    status: UploadFileStatus
-  ) => {
-    const value = getValues(fieldName)
+  const uploadDocumentApi = useCallback(
+    async (documentTypeId: DocumentTypeId, file: any) => {
+      const data = {
+        appId: appId,
+        documentTypeId: documentTypeId,
+        body: { file },
+      }
 
-    setValue(fieldName, {
-      id: value.id,
-      name: value.name,
-      size: value.size,
-      status,
-    } as any)
-  }
+      if (updateDocumentUpload) await updateDocumentUpload(data).unwrap()
+    },
+    [updateDocumentUpload, appId]
+  )
 
   useEffect(() => {
     const value = getValues().uploadAppContract
@@ -254,7 +270,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, DocumentTypeId.APP_CONTRACT, value)
+      uploadDocumentApi(DocumentTypeId.APP_CONTRACT, value)
         .then(() =>
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -262,8 +278,7 @@ export default function AppPage() {
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_ERROR)
         )
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadAppContractValue])
+  }, [uploadAppContractValue, getValues, setFileStatus, uploadDocumentApi])
 
   useEffect(() => {
     const value = getValues().uploadDataPrerequisits
@@ -271,7 +286,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, DocumentTypeId.ADDITIONAL_DETAILS, value)
+      uploadDocumentApi(DocumentTypeId.ADDITIONAL_DETAILS, value)
         .then(() =>
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -279,8 +294,7 @@ export default function AppPage() {
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_ERROR)
         )
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadDataPrerequisitsValue])
+  }, [uploadDataPrerequisitsValue, getValues, setFileStatus, uploadDocumentApi])
 
   useEffect(() => {
     const value = getValues().uploadTechnicalGuide
@@ -288,7 +302,7 @@ export default function AppPage() {
     if (value && !('status' in value)) {
       setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
 
-      uploadDocumentApi(appId, DocumentTypeId.APP_TECHNICAL_INFORMATION, value)
+      uploadDocumentApi(DocumentTypeId.APP_TECHNICAL_INFORMATION, value)
         .then(() =>
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
         )
@@ -296,8 +310,7 @@ export default function AppPage() {
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_ERROR)
         )
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadTechnicalGuideValue])
+  }, [uploadTechnicalGuideValue, getValues, setFileStatus, uploadDocumentApi])
 
   const uploadImages = (files: any) => {
     const value = files
@@ -315,25 +328,11 @@ export default function AppPage() {
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOADING)
-        uploadDocumentApi(appId, DocumentTypeId.APP_IMAGE, value[fileIndex])
+        uploadDocumentApi(DocumentTypeId.APP_IMAGE, value[fileIndex])
           .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
           .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
     }
-  }
-
-  const uploadDocumentApi = async (
-    appId: string,
-    documentTypeId: DocumentTypeId,
-    file: any
-  ) => {
-    const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
-      body: { file },
-    }
-
-    return updateDocumentUpload(data).unwrap()
   }
 
   const onAppPageSubmit = async (data: FormDataType, buttonLabel: string) => {
@@ -521,11 +520,7 @@ export default function AppPage() {
               return (
                 <Dropzone
                   files={value}
-                  onChange={(files, addedFiles, deletedFiles) => {
-                    if (deletedFiles?.length) {
-                      //to do: to call 'useDeleteDocumentMutation' on delete
-                      console.log('deletedFile', deletedFiles)
-                    }
+                  onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
                     trigger('images')
                     addedFiles && uploadImages(files)
