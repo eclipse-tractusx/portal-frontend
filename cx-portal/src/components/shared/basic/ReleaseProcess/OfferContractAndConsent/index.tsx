@@ -60,7 +60,6 @@ export default function OfferContractAndConsent() {
         stepperTitle={t('step3.headerTitle')}
         stepperDescription={t('step3.headerDescription')}
         checkBoxMandatoryText={t('serviceReleaseForm.isMandatory')}
-        imageFieldLabel={t('step3.uploadImageConformity')}
         pageSnackbarDescription={t(
           'serviceReleaseForm.dataSavedSuccessMessage'
         )}

@@ -26,7 +26,7 @@ export const CompanyDetailsToCards = (data: CompanyDetails) => {
       name: { label: 'Company Name', value: data.name },
       address: {
         label: 'Address',
-        value: `${data.streetName} ${data.streetNumber}`,
+        value: `${data.streetName} ${data.streetNumber ?? ''}`,
       },
       city: { label: 'City', value: data.city },
       bpn: { label: 'BPN', value: data.bpn },

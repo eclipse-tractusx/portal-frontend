@@ -18,30 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Typography,
-  Card,
-  CardItems,
-  Carousel,
-} from 'cx-portal-shared-components'
+import { Typography, Card, Carousel } from 'cx-portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
-import uniqueId from 'lodash/uniqueId'
 import { useTranslation } from 'react-i18next'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
-  useFetchActiveAppsQuery,
+  SubscriptionStatus,
+  SubscriptionStatusItem,
   useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
-import { filterSubscribed } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
 
 export const AppArea = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const subscriptionStatus = useFetchSubscriptionStatusQuery().data
-  const { data } = useFetchActiveAppsQuery()
-  const cards = filterSubscribed(data!, subscriptionStatus!)
+  const cards = subscriptionStatus?.filter(
+    (app) => app.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
+  )
 
   return (
     <section id="access-management-id">
@@ -51,13 +46,18 @@ export const AppArea = () => {
           variant="h3"
         />
       </div>
-      <Carousel gapToDots={5} position={cards.length > 0 ? 'relative' : ''}>
-        {cards.length > 0
-          ? cards?.map((item: CardItems) => {
+      <Carousel
+        gapToDots={5}
+        position={cards && cards.length > 0 ? 'relative' : ''}
+      >
+        {cards && cards.length > 0
+          ? cards?.map((item: SubscriptionStatusItem) => {
               return (
                 <Card
                   {...item}
-                  key={uniqueId(item.title)}
+                  title={item.name ?? ''}
+                  subtitle={item.provider}
+                  key={item.appId}
                   buttonText="Details"
                   imageSize="small"
                   imageShape="round"
@@ -66,7 +66,7 @@ export const AppArea = () => {
                   expandOnHover={false}
                   filledBackground={true}
                   onClick={() => {
-                    navigate(`/appusermanagement/${item.id}`)
+                    navigate(`/appusermanagement/${item.appId}`)
                   }}
                 />
               )

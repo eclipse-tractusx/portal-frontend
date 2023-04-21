@@ -2,6 +2,27 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+## 1.3.0 RC4
+
+### Change
+* User Management - app access management app cards backend api connection updated
+* Service Release Process - translations enhanced/added
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* Service Release Process - chapter "Supporting Material" deletion function fixed
+* Service Release Process - "Save" button on "Offer Page Details" fixed
+* Connector Registration - input pattern for connector name updated to support special characters and customer input related error messages
+* Organization data - ignore "null" values provided by backend components/apis
+* Dropzone - error message customized to support multiple error scenarios with different error codes/messages
+* User Account - fixed page load for users without portal roles
+* App Access Management - "Edit" button in user table fixed
+
 ## 1.3.0 RC3
 
 ### Change
