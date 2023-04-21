@@ -142,11 +142,7 @@ export default function AppMarketCard() {
   const [enableRetryOverlay, setEnableRetryOverlay] = useState<boolean>(false)
 
   useEffect(() => {
-    if (appId && isError) {
-      setEnableRetryOverlay(true)
-    } else {
-      setEnableRetryOverlay(false)
-    }
+    setEnableRetryOverlay(appId && isError ? true : false)
   }, [appId, isError])
 
   const defaultValues = useMemo(() => {

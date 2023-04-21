@@ -101,11 +101,7 @@ export default function OfferCard() {
   const [showRetryOverlay, setShowRetryOverlay] = useState<boolean>(false)
 
   useEffect(() => {
-    if (serviceId && isError) {
-      setShowRetryOverlay(true)
-    } else {
-      setShowRetryOverlay(false)
-    }
+    setShowRetryOverlay(serviceId && isError ? true : false)
   }, [serviceId, isError])
 
   const defaultValues = useMemo(() => {
