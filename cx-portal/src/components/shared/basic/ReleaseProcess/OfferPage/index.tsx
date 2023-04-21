@@ -162,7 +162,10 @@ export default function OfferPage() {
           DocumentTypeId.ADDITIONAL_DETAILS,
           value[fileIndex]
         )
-          .then(() => setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS))
+          .then(() => {
+            refetch()
+            setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
+          })
           .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
       }
     }
