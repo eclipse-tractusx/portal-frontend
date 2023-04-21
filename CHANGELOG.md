@@ -4,10 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 * Bugfix:
-   * User Detail Page not loading fix, if app (portal) is not existing
    * Organization Company data: wrong data after the street number
-   * App Access Management 
-      * Edit User role button got lost
    * App Release Process
       * Fixed deletion of images and files that were uploaded before navigating to other page
    * User Detail Page not loading fix, if app (portal) is not existing
