@@ -19,6 +19,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Enable Service release help button 
 * App/Service Release Process - Error Handling
    * On open Pre-saved app/service fails to load the data, allow user to reload or to go back to the previous page.
+* Shared UI Components
+  * Added typography for static table to update headline sizing
 
 ### Bugfix
 
