@@ -210,5 +210,9 @@
       "heading": "Provider Information",
       "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
     }
+  },
+  "retryOverlay": {
+    "title": "Something went wrong",
+    "description": "The data could not get loaded, please try it again or go back to the previous page."
   }
 }

@@ -1015,6 +1015,10 @@
         "save": "Save",
         "submit": "Submit",
         "proceed": "Proceed"
+      },
+      "retryOverlay": {
+        "title": "Something went wrong",
+        "description": "The data could not get loaded, please try it again or go back to the previous page."
       }
     },
     "serviceMarketplace": {
@@ -1388,7 +1392,8 @@
       "yes": "Yes",
       "next": "Next",
       "success": "Success",
-      "error": "Error"
+      "error": "Error",
+      "retry": "Retry"
     },
     "state": {
       "enabled": "aktiv",
