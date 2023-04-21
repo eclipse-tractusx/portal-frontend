@@ -3,12 +3,6 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ## Unreleased
-* Bugfix - 
-   * User Detail Page not loading fix, if app (portal) is not existing
-   * App Access Management - Edit User role button got lost
-   * Organization Company data: wrong data after the street number
-   * App Access - missing app which is deactivated
-
 * Bugfix:
    * User Detail Page not loading fix, if app (portal) is not existing
    * Organization Company data: wrong data after the street number
@@ -16,6 +10,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
       * Edit User role button got lost
    * App Release Process
       * Fixed deletion of images and files that were uploaded before navigating to other page
+   * User Detail Page not loading fix, if app (portal) is not existing
+   * App Access Management - Edit User role button got lost
+   * Organization Company data: wrong data after the street number
+   * App Access - missing app which is deactivated
 
 
 ## 1.3.0 RC3
