@@ -216,6 +216,7 @@ export const apiSlice = createApi({
           ? { data: response.data }
           : { error: response.error }
       },
+      invalidatesTags: ['App'],
     }),
     fetchAppStatus: builder.query<AppStatusDataState, string>({
       query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
