@@ -67,7 +67,7 @@ type CommonConsentType = {
   stepperTitle: string
   stepperDescription: string
   checkBoxMandatoryText: string
-  imageFieldLabel: string
+  imageFieldLabel?: string
   pageSnackbarDescription: string
   pageNotificationObject: {
     title: string
