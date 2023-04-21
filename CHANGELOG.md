@@ -10,6 +10,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Removed eslint-disable from app release process
    * Added privacy policies to validate and publish
    * Enable app release help button 
+   * Updated footer color similar to the app release process form
 * AppMarketplace
    * Add status of the subscription
 * Service Management
