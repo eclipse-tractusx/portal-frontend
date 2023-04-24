@@ -19,13 +19,12 @@
 
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
-name: release
+name: release RC
 
 on:
   push:
     tags:
-      - 'v*.*.*'
-      - '!v*.*.*-RC*'
+      - 'v*.*.*-RC*'
   workflow_dispatch:
 
 env:
@@ -128,5 +127,5 @@ jobs:
             --url https://api.github.com/repos/catenax-ng/tx-portal-cd/actions/workflows/portal-release-image-update.yml/dispatches \
             --header "authorization: Bearer $TOKEN" \
             --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"helm-environments", "inputs": { "new-image":"${{ env.RELEASE_VERSION }}" }}' \
+            --data '{"ref":"release-candidate", "inputs": { "new-image":"${{ env.RELEASE_VERSION }}" }}' \
             --fail
