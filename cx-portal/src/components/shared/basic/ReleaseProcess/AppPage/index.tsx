@@ -520,11 +520,7 @@ export default function AppPage() {
               return (
                 <Dropzone
                   files={value}
-                  onChange={(files, addedFiles, deletedFiles) => {
-                    if (deletedFiles?.length) {
-                      //to do: to call 'useDeleteDocumentMutation' on delete
-                      console.log('deletedFile', deletedFiles)
-                    }
+                  onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
                     trigger('images')
                     addedFiles && uploadImages(files)

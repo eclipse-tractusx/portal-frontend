@@ -9,7 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Included role description in technical integration role creation
    * Removed eslint-disable from app release process
    * Added privacy policies to validate and publish
-   * Enable app release help button 
+   * Enable app release help button
    * Updated footer color similar to the app release process form
 * AppMarketplace
    * Add status of the subscription
@@ -17,7 +17,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    Service subscription Mgt enabled
 * Service release process
    * API url updated
-   * Enable Service release help button 
+   * Enable Service release help button
 * App/Service Release Process - Error Handling
    * On open Pre-saved app/service fails to load the data, allow user to reload or to go back to the previous page.
 * Shared UI Components
@@ -36,6 +36,27 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    BugFix - Service Request title and message issue fix
 * App Release Process
    * Fixed language switch issue in app card in validate and publish and app overview details
+
+## 1.3.0 RC4
+
+### Change
+* User Management - app access management app cards backend api connection updated
+* Service Release Process - translations enhanced/added
+
+### Feature
+n/a
+
+### Technical Support
+n/a
+
+### Bugfix
+* Service Release Process - chapter "Supporting Material" deletion function fixed
+* Service Release Process - "Save" button on "Offer Page Details" fixed
+* Connector Registration - input pattern for connector name updated to support special characters and customer input related error messages
+* Organization data - ignore "null" values provided by backend components/apis
+* Dropzone - error message customized to support multiple error scenarios with different error codes/messages
+* User Account - fixed page load for users without portal roles
+* App Access Management - "Edit" button in user table fixed
 
 ## 1.3.0 RC3
 
