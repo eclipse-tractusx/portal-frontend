@@ -1,0 +1,131 @@
+###############################################################
+# Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+#
+# See the NOTICE file(s) distributed with this work for additional
+# information regarding copyright ownership.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License, Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+###############################################################
+
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: release RC
+
+on:
+  push:
+    tags:
+      - 'v*.*.*-RC*'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  TAG_NAME: ${{ github.ref_name }}
+
+jobs:
+  build-and-push-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get npm version
+        id: npm-tag
+        uses: martinbeentjes/npm-get-version-action@master
+
+      - name: Output versions
+        run: |
+          echo git ${{ env.TAG_NAME }}
+          echo npm ${{ steps.npm-tag.outputs.current-version }}
+
+      - name: Versions not matching
+        if: ${{ env.TAG_NAME }} != steps.npm-tag.outputs.current-version
+        run: |
+          echo git and npm versions not equal - refusing to build release
+          exit 1
+
+      - name: Versions match
+        run: |
+          echo versions equal - building release ${{ env.TAG_NAME }}
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Linter Checks
+        run: yarn lint
+
+      - name: Build Library and Portal
+        run: yarn build
+
+      - name: Unit Tests
+        run: yarn test:ci
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: .conf/Dockerfile.prebuilt
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          labels: ${{ steps.meta.outputs.labels }}
+
+#      - name: Publish Shared Components to npm
+#        working-directory: ./cx-portal-shared-components
+#        run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+
+  auth-and-dispatch:
+    needs: build-and-push-release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set env
+        run: echo "RELEASE_VERSION=${{ env.TAG_NAME }}" >> $GITHUB_ENV
+
+      - name: Get token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v2
+        with:
+          application_id: ${{ secrets.ORG_PORTAL_DISPATCH_APPID }}
+          application_private_key: ${{ secrets.ORG_PORTAL_DISPATCH_KEY }}
+
+      - name: Trigger workflow
+        id: call_action
+        env:
+          TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        run: |
+          curl -v \
+            --request POST \
+            --url https://api.github.com/repos/catenax-ng/tx-portal-cd/actions/workflows/portal-release-image-update.yml/dispatches \
+            --header "authorization: Bearer $TOKEN" \
+            --header "Accept: application/vnd.github.v3+json" \
+            --data '{"ref":"release-candidate", "inputs": { "new-image":"${{ env.RELEASE_VERSION }}" }}' \
+            --fail
