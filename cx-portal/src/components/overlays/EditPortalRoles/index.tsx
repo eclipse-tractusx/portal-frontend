@@ -51,7 +51,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
     () =>
       data?.assignedRoles.filter(
         (item) => item.appId === '9b957704-3505-4445-822c-d7ef80f27fcd' //added static for testing
-      )[0].roles ?? [],
+      )[0]?.roles ?? [],
     [data]
   )
 
