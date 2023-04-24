@@ -22,6 +22,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * On open Pre-saved app/service fails to load the data, allow user to reload or to go back to the previous page.
 * Shared UI Components
   * Added typography for static table to update headline sizing
+* News Section
+   * Fixed UI of news section in home page
 
 ### Bugfix
 
