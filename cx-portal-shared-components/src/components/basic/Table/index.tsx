@@ -112,13 +112,6 @@ export const Table = ({
     filterViews,
   }
 
-  const flexColumn = {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
-  }
-
   const handleOnCellClick = useCallback(
     (selectedIds) => {
       const idsArr: Array<string> = []
