@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { Typography } from '@mui/material'
 import { TableType } from './types'
 
 export const VerticalTable = ({ data }: { data: TableType }) => (
@@ -33,7 +34,7 @@ export const VerticalTable = ({ data }: { data: TableType }) => (
               padding: '10px 15px',
             }}
           >
-            {col}
+            <Typography variant="label3">{col}</Typography>
           </th>
         ))}
       </tr>
@@ -51,7 +52,9 @@ export const VerticalTable = ({ data }: { data: TableType }) => (
                   borderBottom: '1px solid #f1f1f1',
                 }}
               >
-                {isStringTypeProp ? CustomComp : <CustomComp />}
+                <Typography variant="body3">
+                  {isStringTypeProp ? CustomComp : <CustomComp />}
+                </Typography>
               </td>
             )
           })}

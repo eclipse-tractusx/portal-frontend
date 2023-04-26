@@ -448,7 +448,11 @@
           "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
-            "error": "Connector name is mandatory. Length should be between 2 and 20",
+            "patternError": {
+              "lengthError": "Connector name length should be between 2 and 20.",
+              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
+            },
+            "error": "Connector name is mandatory.",
             "tooltipMsg": "Own selected connector name for verification"
           },
           "url": {
@@ -879,7 +883,7 @@
       "appMarketCard": {
         "headerTitle": "Create App",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppImageAlt": "App Logo",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
@@ -1018,6 +1022,10 @@
         "save": "Save",
         "submit": "Submit",
         "proceed": "Proceed"
+      },
+      "retryOverlay": {
+        "title": "Something went wrong",
+        "description": "The data could not get loaded, please try it again or go back to the previous page."
       }
     },
     "serviceMarketplace": {
@@ -1391,7 +1399,8 @@
       "yes": "Yes",
       "next": "Next",
       "success": "Success",
-      "error": "Error"
+      "error": "Error",
+      "retry": "Retry"
     },
     "state": {
       "enabled": "aktiv",

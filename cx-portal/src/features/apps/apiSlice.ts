@@ -19,9 +19,11 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { LogoGrayData } from 'cx-portal-shared-components'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
+import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type ImageType = {
@@ -71,8 +73,9 @@ export enum SubscriptionStatusText {
 export type SubscriptionStatusItem = {
   appId: string
   offerSubscriptionStatus: SubscriptionStatus
-  name: string
-  provider: string
+  name?: string
+  provider?: string
+  image?: ImageType
 }
 
 export enum DocumentTypeText {
@@ -183,7 +186,31 @@ export const apiSlice = createApi({
       query: () => `/api/apps/favourites`,
     }),
     fetchSubscriptionStatus: builder.query<SubscriptionStatusItem[], void>({
-      query: () => `/api/apps/subscribed/subscription-status`,
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const subscriptionApps = await fetchWithBQ(
+          `/api/apps/subscribed/subscription-status`
+        )
+        if (subscriptionApps.error) return { error: subscriptionApps.error }
+        const subscriptionData =
+          subscriptionApps.data as SubscriptionStatusItem[]
+        const activeResponse = await fetchWithBQ(`/api/apps/active`)
+        const activeData = activeResponse.data as AppMarketplaceApp[]
+        activeData.forEach(async (activeItem: AppMarketplaceApp) => {
+          subscriptionData.forEach(
+            async (subscriptionItem: SubscriptionStatusItem) => {
+              if (activeItem.id === subscriptionItem.appId)
+                subscriptionItem.image = {
+                  src: activeItem.leadPictureId
+                    ? `${getApiBase()}/api/apps/${activeItem.id}/appDocuments/${
+                        activeItem.leadPictureId
+                      }`
+                    : LogoGrayData,
+                }
+            }
+          )
+        })
+        return { data: subscriptionData }
+      },
     }),
     fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
       query: () => `/api/apps/provided`,

@@ -448,7 +448,11 @@
           "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
-            "error": "Connector name is mandatory. Length should be between 2 and 20",
+            "patternError": {
+              "lengthError": "Connector name length should be between 2 and 20.",
+              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
+            },
+            "error": "Connector name is mandatory.",
             "tooltipMsg": "Own selected connector name for verification"
           },
           "url": {
@@ -839,7 +843,7 @@
       "appMarketCard": {
         "headerTitle": "Create App Card",
         "headerDescription": "The following input fields and uploads are used to create your app 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer. While entering the data below, have a look at the app card on the left side which is getting autoupdated based on your input.",
-        "defaultCardAppImageAlt": "Part Chain",
+        "defaultCardAppImageAlt": "App Logo",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "This is the app title",
         "defaultCardShortDescriptionEN": "[short description EN] this section will get replaced with your app short description",
@@ -978,6 +982,10 @@
         "save": "Save",
         "submit": "Submit",
         "proceed": "Proceed"
+      },
+      "retryOverlay": {
+        "title": "Something went wrong",
+        "description": "The data could not get loaded, please try it again or go back to the previous page."
       }
     },
     "serviceMarketplace": {
@@ -1352,7 +1360,8 @@
       "yes": "Yes",
       "next": "Next",
       "success": "Success",
-      "error": "Error"
+      "error": "Error",
+      "retry": "Retry"
     },
     "state": {
       "enabled": "enabled",
