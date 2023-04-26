@@ -98,19 +98,20 @@ const EdcConnector = () => {
     setDeleteConnectorConfirmModalOpen(true)
   }
 
+  const swap = (arry: any, from: number, to: number) => {
+    let swapValue = arry[from]
+    arry[from] = arry[to]
+    arry[to] = swapValue
+    return arry
+  }
+
   const rawColumns = ConnectorTableColumns(useTranslation, onDelete) // Common col values for own and managed connectors
   let ownConnectorCols = OwnConnectorTableColumns(useTranslation) // unique col values from own connectors
   let managedConnectorCols = ManagedConnectorTableColumns(useTranslation) // unique col values from managed connectors
   ownConnectorCols.push(...rawColumns)
-  ownConnectorCols[2] = [
-    ownConnectorCols[0],
-    (ownConnectorCols[0] = ownConnectorCols[2]),
-  ][0] // swap position according to the design
+  ownConnectorCols = swap(ownConnectorCols, 2, 0) //swap position according to the design
   managedConnectorCols.push(...rawColumns)
-  managedConnectorCols[2] = [
-    managedConnectorCols[0],
-    (managedConnectorCols[0] = managedConnectorCols[2]),
-  ][0] // swap position according to the design
+  managedConnectorCols = swap(managedConnectorCols, 2, 0) //swap position according to the design
 
   const closeAndResetModalState = () => {
     setAddConnectorOverlayCurrentStep(0)
