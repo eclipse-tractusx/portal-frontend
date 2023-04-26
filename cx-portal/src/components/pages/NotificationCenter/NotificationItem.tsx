@@ -172,6 +172,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
           navlinks={[PAGES.SERVICESUBSCRIPTION]}
         />
       )
+    case NotificationType.SERVICE_RELEASE_REQUEST:
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.SERVICEADMINBOARD]} />
+      )
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
