@@ -26,6 +26,9 @@ import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 import { theme } from '../../../theme'
 import { SearchAndFilterButtonToolbar } from './components/Toolbar/SearchAndFilterButtonToolbar'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import ReportProblemIcon from '@mui/icons-material/ReportProblem'
+import { Typography } from '../Typography'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate' | 'searchAndFilter'
@@ -55,6 +58,10 @@ export interface TableProps extends DataGridProps {
   defaultFilter?: string
   filterViews?: any
   alignCell?: string
+  error?: {
+    status: number
+  }
+  reload?: () => void
 }
 
 export const Table = ({
@@ -84,6 +91,8 @@ export const Table = ({
   defaultFilter,
   filterViews,
   alignCell = 'center',
+  error,
+  reload,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -101,6 +110,20 @@ export const Table = ({
     descriptionText,
     defaultFilter,
     filterViews,
+  }
+
+  const flexColumn = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
+
+  const flexRow = {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingBottom: '20px',
   }
 
   const handleOnCellClick = useCallback(
@@ -131,15 +154,73 @@ export const Table = ({
     }
   }
 
+  const Error400Overlay = () => (
+    <Box
+      sx={{
+        ...flexRow,
+      }}
+    >
+      <ReportProblemIcon
+        sx={{ paddingRight: '20px', fontSize: 50 }}
+        color="error"
+      />
+      <Box
+        sx={{
+          ...flexColumn,
+          paddingTop: '20px',
+        }}
+      >
+        <Typography variant="body2">
+          Something went wrong. Please contact
+        </Typography>
+        <Typography variant="body2">your administrator</Typography>
+      </Box>
+    </Box>
+  )
+
+  const Error500Overlay = () => (
+    <Box
+      sx={{
+        ...flexColumn,
+        paddingTop: '10px',
+      }}
+    >
+      <Typography
+        sx={{
+          paddingTop: '20px',
+        }}
+        variant="body2"
+      >
+        Load Failed. Reload
+      </Typography>
+      <div
+        onClick={() => reload && reload()}
+        style={{
+          marginBottom: '20px',
+          cursor: 'pointer',
+        }}
+      >
+        <RefreshIcon sx={{ fontSize: 40 }} color="primary" />
+      </div>
+    </Box>
+  )
+
   const NoRowsOverlay = () => {
     return (
       <Stack
         height="100%"
         alignItems="center"
         justifyContent="center"
-        sx={{ backgroundColor: '#fff' }}
+        sx={{ backgroundColor: '#fff', pointerEvents: 'auto' }}
       >
-        {noRowsMsg ?? 'No rows'}
+        {error && error.status === 500 && <Error500Overlay />}
+        {error &&
+          (error.status === 400 ||
+            error.status === 404 ||
+            error.status === 401) && <Error400Overlay />}
+        {!error && (
+          <Typography variant="body2">{noRowsMsg ?? 'No rows'}</Typography>
+        )}
       </Stack>
     )
   }

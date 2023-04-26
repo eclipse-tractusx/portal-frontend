@@ -16,7 +16,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    Service subscription Mgt enabled
 * Service release process
    * API url updated
-   * Enable Service release help button 
+   * Enable Service release help button
+* Connectors
+   * Show Managed connectors
+   * Error scenarios implemented in Table component
 
 ### Bugfix
 

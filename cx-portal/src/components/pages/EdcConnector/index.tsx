@@ -45,11 +45,14 @@ import {
   useFetchConnectorsQuery,
   ConnectorResponseBody,
   useTriggerDapsMutation,
+  useFetchManagedConnectorsQuery,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsRegistration'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { ManagedConnectorTableColumns } from './edcManagedConnectorTableColumns'
+import { OwnConnectorTableColumns } from './edcOwnConnectorTableColumns'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -95,7 +98,19 @@ const EdcConnector = () => {
     setDeleteConnectorConfirmModalOpen(true)
   }
 
-  const columns = ConnectorTableColumns(useTranslation, onDelete)
+  const rawColumns = ConnectorTableColumns(useTranslation, onDelete) // Common col values for own and managed connectors
+  let ownConnectorCols = OwnConnectorTableColumns(useTranslation) // unique col values from own connectors
+  let managedConnectorCols = ManagedConnectorTableColumns(useTranslation) // unique col values from managed connectors
+  ownConnectorCols.push(...rawColumns)
+  ownConnectorCols[2] = [
+    ownConnectorCols[0],
+    (ownConnectorCols[0] = ownConnectorCols[2]),
+  ][0] // swap position according to the design
+  managedConnectorCols.push(...rawColumns)
+  managedConnectorCols[2] = [
+    managedConnectorCols[0],
+    (managedConnectorCols[0] = managedConnectorCols[2]),
+  ][0] // swap position according to the design
 
   const closeAndResetModalState = () => {
     setAddConnectorOverlayCurrentStep(0)
@@ -287,7 +302,20 @@ const EdcConnector = () => {
           fetchHook={useFetchConnectorsQuery}
           fetchHookRefresh={refresh}
           getRowId={(row: { [key: string]: string }) => row.id}
-          columns={columns}
+          columns={ownConnectorCols}
+          onCellClick={(params: GridCellParams) => onTableCellClick(params)}
+        />
+      </div>
+      <div className="connector-table-container">
+        <PageLoadingTable<ConnectorResponseBody>
+          toolbarVariant="premium"
+          title={t('content.edcconnector.managedtabletitle')}
+          loadLabel={t('global.actions.more')}
+          fetchHook={useFetchManagedConnectorsQuery}
+          fetchHookRefresh={refresh}
+          getRowId={(row: { [key: string]: string }) => row.id}
+          columns={managedConnectorCols}
+          noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
           onCellClick={(params: GridCellParams) => onTableCellClick(params)}
         />
       </div>

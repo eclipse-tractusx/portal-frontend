@@ -405,7 +405,8 @@
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
-        "hostCompanyName": "Host"
+        "hostCompanyName": "Host",
+        "providerCompanyName": "Customer"
       },
       "rowValue": {
         "owned": "Owned",
@@ -415,6 +416,8 @@
       "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
+      "managedtabletitle": "Managed Connectors",
+      "noConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
       "snackbar": {
