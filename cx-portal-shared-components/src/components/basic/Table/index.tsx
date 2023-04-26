@@ -26,9 +26,9 @@ import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 import { theme } from '../../../theme'
 import { SearchAndFilterButtonToolbar } from './components/Toolbar/SearchAndFilterButtonToolbar'
-import RefreshIcon from '@mui/icons-material/Refresh'
-import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import { Typography } from '../Typography'
+import { Error500Overlay } from './components/Error/Error500Overlay'
+import { Error400Overlay } from './components/Error/Error400Overlay'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate' | 'searchAndFilter'
@@ -119,13 +119,6 @@ export const Table = ({
     alignItems: 'center',
   }
 
-  const flexRow = {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingBottom: '20px',
-  }
-
   const handleOnCellClick = useCallback(
     (selectedIds) => {
       const idsArr: Array<string> = []
@@ -154,57 +147,6 @@ export const Table = ({
     }
   }
 
-  const Error400Overlay = () => (
-    <Box
-      sx={{
-        ...flexRow,
-      }}
-    >
-      <ReportProblemIcon
-        sx={{ paddingRight: '20px', fontSize: 50 }}
-        color="error"
-      />
-      <Box
-        sx={{
-          ...flexColumn,
-          paddingTop: '20px',
-        }}
-      >
-        <Typography variant="body2">
-          Something went wrong. Please contact
-        </Typography>
-        <Typography variant="body2">your administrator</Typography>
-      </Box>
-    </Box>
-  )
-
-  const Error500Overlay = () => (
-    <Box
-      sx={{
-        ...flexColumn,
-        paddingTop: '10px',
-      }}
-    >
-      <Typography
-        sx={{
-          paddingTop: '20px',
-        }}
-        variant="body2"
-      >
-        Load Failed. Reload
-      </Typography>
-      <div
-        onClick={() => reload && reload()}
-        style={{
-          marginBottom: '20px',
-          cursor: 'pointer',
-        }}
-      >
-        <RefreshIcon sx={{ fontSize: 40 }} color="primary" />
-      </div>
-    </Box>
-  )
-
   const NoRowsOverlay = () => {
     return (
       <Stack
@@ -213,7 +155,9 @@ export const Table = ({
         justifyContent="center"
         sx={{ backgroundColor: '#fff', pointerEvents: 'auto' }}
       >
-        {error && error.status === 500 && <Error500Overlay />}
+        {error && error.status === 500 && (
+          <Error500Overlay reload={() => reload && reload()} />
+        )}
         {error &&
           (error.status === 400 ||
             error.status === 404 ||
