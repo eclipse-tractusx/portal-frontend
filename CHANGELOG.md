@@ -4,43 +4,55 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
-* App Release Process
-   * Added app roles to validate and publish
-   * Included role description in technical integration role creation
-   * Removed eslint-disable from app release process
-   * Added privacy policies to validate and publish
-   * Enable app release help button
-   * Updated footer color similar to the app release process form
-* AppMarketplace
-   * Add status of the subscription
-* Service Management
-   Service subscription Mgt enabled
-* Service release process
-   * API url updated
-   * Enable Service release help button
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
-* App/Service Release Process - Error Handling
-   * On open Pre-saved app/service fails to load the data, allow user to reload or to go back to the previous page.
-* Shared UI Components
+
+## 1.4.0
+
+### Change
+* IdP Configuration
+  * ui styling and messages updated
+  * load element added for create/submit/next buttons
+  * implemented success & error messages depending on the error scenario while creating/configuring a new idp
+Shared UI Components
   * Added typography for static table to update headline sizing
-* News Section
-   * Fixed UI of news section in home page
+
+### Feature
+* App Release Process
+  * added privacy policies section to "validate and publish" application form
+  * added app roles section to "validate and publish" application form
+  * added role description information inside the ui for "Technical Integration" step
+  * "help" button enabled along the app release process (form bottom)
+  * extended ui error handling for 500 backend error responses
+* Service Release Process
+  * enabled SERVICE_LEADIMAGE document upload
+  * "help" button enabled along the app release process (form bottom)
+  * extended ui error handling for 500 backend error responses
+* Service Subscription Management released (pre-version)
+* Service Release Admin Board released (pre-version)
+  * enabled search for services
+  * enabled filters
+  * displayed all services waiting for review and active inside the admin board
+  * enabled view service details
+  * enabled approve and decline service
+* App Marketplace
+  * added company subscription status information on the app overview (inside the card component)
+  * app detail page, new order status component implemented for subscription process
+
+### Technical Support
+* moved all portal repo images to asset repo
+* removed existing in code "disable eslinter" statements inside the app release process and fixed eslinter issues
+* service release endpoint path updated/changed due to an endpoint path cleanup on backend side ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+* app release process - app card language switch fixed to only switch the language inside the app card
+* changed release workflow to retrieve tag from github.ref_name (set-output command deprecated)
+* added release workflow for release-candidates
 
 ### Bugfix
-
-* Navigate back to previous screen from App details screen
-* Show Loading component in admin board screen
-* Blue profile icon is visible as "button" as mouse cursor is not changing
-* Application Checklist
-   BugFix - Checklist layout issue fix
-* Refactor
-   App Subscription & Service Subscription to use common component
-* Notification
-   BugFix - Service Request title and message issue fix
-* App Release Process
-   * Fixed language switch issue in app card in validate and publish and app overview details
+* Notifications
+  * Service_Request message configured in locale files updated
+* top right user profile icon hover function enabled
+* image zoom height fixed
 
 ## 1.3.0 RC4
 
