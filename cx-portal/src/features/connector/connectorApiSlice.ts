@@ -101,6 +101,13 @@ export const apiSlice = createApi({
       query: (filters) =>
         `/api/administration/Connectors?page=${filters.page}&size=10`,
     }),
+    fetchManagedConnectors: builder.query<
+      PaginResult<ConnectorResponseBody>,
+      PaginFetchArgs
+    >({
+      query: (filters) =>
+        `/api/administration/connectors/managed?page=${filters.page}&size=10`,
+    }),
   }),
 })
 
@@ -110,4 +117,5 @@ export const {
   useDeleteConnectorMutation,
   useFetchConnectorsQuery,
   useTriggerDapsMutation,
+  useFetchManagedConnectorsQuery,
 } = apiSlice
