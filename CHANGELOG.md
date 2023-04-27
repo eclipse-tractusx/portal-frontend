@@ -24,6 +24,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * Added typography for static table to update headline sizing
 * News Section
    * Fixed UI of news section in home page
+* Sort section
+   * Hover effect added
 
 ### Bugfix
 
