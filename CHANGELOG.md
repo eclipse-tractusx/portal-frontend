@@ -18,6 +18,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Service release process
    * API url updated
    * Enable Service release help button
+* Connectors
+   * Show Managed connectors
+   * Error scenarios implemented in Table component
 * App/Service Release Process - Error Handling
    * On open Pre-saved app/service fails to load the data, allow user to reload or to go back to the previous page.
 * Shared UI Components
