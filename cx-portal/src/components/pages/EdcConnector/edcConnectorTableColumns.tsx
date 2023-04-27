@@ -56,13 +56,6 @@ export const ConnectorTableColumns = (
       ),
     },
     {
-      field: 'hostCompanyName',
-      headerName: t('content.edcconnector.columns.hostCompanyName'),
-      flex: 1,
-      sortable: false,
-      disableColumnMenu: true,
-    },
-    {
       field: 'location',
       headerName: t('content.edcconnector.columns.location'),
       flex: 0.8,
