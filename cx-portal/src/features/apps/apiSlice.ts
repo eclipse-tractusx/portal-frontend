@@ -53,14 +53,13 @@ export type AppMarketplaceApp = {
   lastChanged?: string
   timestamp?: number
   leadPictureId?: string
+  subscriptionStatus?: SubscriptionStatus
 }
 
 export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
   INACTIVE = 'INACTIVE',
-  IN_REVIEW = 'IN_REVIEW',
-  CREATED = 'CREATED',
 }
 
 export enum SubscriptionStatusText {
@@ -143,6 +142,17 @@ export type DocumentRequestData = {
   documentId: string
 }
 
+export type ActiveAppsData = {
+  id: string
+  name: string
+  shortDescription: string
+  provider: string
+  price: string
+  leadPictureId: string
+  useCases: string[]
+  status?: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -151,7 +161,26 @@ export const apiSlice = createApi({
       query: (id: string) => `/api/apps/${id}?lang=${i18next.language}`,
     }),
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
-      query: () => `/api/apps/active`,
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const activeApps = await fetchWithBQ(`/api/apps/active`)
+        if (activeApps.error) return { error: activeApps.error }
+        const data = activeApps.data as AppMarketplaceApp[]
+        const subscriptionStatus = await fetchWithBQ(
+          `/api/apps/subscribed/subscription-status`
+        )
+        const subscriptionData =
+          subscriptionStatus.data as SubscriptionStatusItem[]
+        data.forEach(async (appItem: AppMarketplaceApp) => {
+          subscriptionData.forEach(
+            async (subscriptionItem: SubscriptionStatusItem) => {
+              if (appItem.id === subscriptionItem.appId)
+                appItem.subscriptionStatus =
+                  subscriptionItem.offerSubscriptionStatus
+            }
+          )
+        })
+        return { data: data }
+      },
     }),
     fetchFavoriteApps: builder.query<string[], void>({
       query: () => `/api/apps/favourites`,

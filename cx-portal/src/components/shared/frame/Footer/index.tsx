@@ -52,6 +52,10 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     location.pathname.split('/').includes(e)
   )
 
+  const isAppReleaseProcessForm = [`${PAGES.APPRELEASEPROCESS}/form`].find(() =>
+    location.pathname.split('/').includes('form')
+  )
+
   const [showScrollToTop, setShowScrollToTop] = useState(false)
   let activePage = useSelector(currentActiveStep)
 
@@ -62,6 +66,8 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   const getPreferredColor = () => {
     if (activePage === 7) {
       return '#e4ebf3'
+    } else if (isAppReleaseProcessForm) {
+      return '#ffffff'
     } else if (isAppOverviewPage) {
       return '#F9F9F9'
     } else if (isAppDarkOverviewPage) {

@@ -25,7 +25,7 @@ import {
   DialogContent,
   DialogHeader,
 } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'
 import { useEffect } from 'react'

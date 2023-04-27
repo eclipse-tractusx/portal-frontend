@@ -29,7 +29,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
 import EditIcon from '@mui/icons-material/Edit'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import {
   TenantUserDetails,

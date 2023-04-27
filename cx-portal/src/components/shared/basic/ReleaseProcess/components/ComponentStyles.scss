@@ -1,0 +1,24 @@
+.headerSection {
+  display: flex;
+  flex: row;
+  justify-content: flex-start;
+  padding: 20px 30px;
+  align-items: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.buttonSection {
+  text-align: right;
+  margin: 20px 30px 10px 0px;
+}
+
+.retryButton {
+  margin-left: 20px !important;
+  border-radius: 6px !important;
+  min-width: 150px !important;
+}
+
+.descriptionText {
+  text-align: left;
+  padding: 30px 30px;
+}

@@ -34,7 +34,6 @@ import { Dropzone } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import {
   rolesType,
-  updateRoleType,
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
   useFetchRolesDataQuery,
@@ -62,6 +61,7 @@ export default function TechnicalIntegration() {
 
   const dispatch = useDispatch()
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
+  const [rolesDescription, setRolesDescription] = useState<string[]>([])
   // To-Do : the below code will get enhanced again in R.3.1
   // const [disableCreateClient, setDisableCreateClient] = useState(true)
   // const [createClientSuccess, setCreateClientSuccess] = useState(false)
@@ -128,11 +128,17 @@ export default function TechnicalIntegration() {
               ?.split('\n')
               .filter((item) => item !== '')
               .map((item) => item.substring(0, item.indexOf(';')))
+            const roleDescription = str
+              ?.split('\n')
+              .filter((item) => item !== '')
+              .map((item) => item.substring(item.indexOf(';') + 1))
 
             setRolesPreviews(roles?.splice(1))
+            setRolesDescription(roleDescription?.splice(1))
             setUploadCSVError(false)
           } else {
             setRolesPreviews([])
+            setRolesDescription([])
             setUploadCSVError(true)
           }
         }
@@ -141,24 +147,30 @@ export default function TechnicalIntegration() {
   }
 
   const postRoles = async () => {
-    const updateRolesData: updateRoleType = {
+    const rolesDescriptionData = rolesPreviews.map((data, i) => [
+      data,
+      rolesDescription[i],
+    ])
+
+    const updateRolesData = {
       appId: appId,
-      body: rolesPreviews?.map((item) => ({
-        role: item,
+      body: rolesDescriptionData?.map((item) => ({
+        role: item[0],
         descriptions: [
           {
             languageCode: 'en',
-            description: '',
+            description: item[1],
           },
         ],
       })),
     }
 
-    if (rolesPreviews.length > 0) {
+    if (rolesDescriptionData?.length > 0) {
       await updateRoleData(updateRolesData)
         .unwrap()
         .then((data) => {
           setRolesPreviews([])
+          setRolesDescription([])
           reset(defaultValues)
           refetch()
         })
@@ -327,6 +339,7 @@ export default function TechnicalIntegration() {
               onChange={(files, addedFiles, deletedFiles) => {
                 if (deletedFiles?.length) {
                   setRolesPreviews([])
+                  setRolesDescription([])
                 }
                 reactHookFormOnChange(files[0]?.name)
                 trigger('uploadAppRoles')
@@ -364,17 +377,22 @@ export default function TechnicalIntegration() {
               {t('content.apprelease.technicalIntegration.rolesPreview')}
             </Typography>
             <Grid item container xs={12}>
-              {rolesPreviews?.map((role: string) => (
+              {rolesPreviews?.map((role: string, index) => (
                 <Grid item xs={6} key={role}>
-                  <Chip
-                    key={role}
-                    label={role}
-                    withIcon={false}
-                    type="plain"
-                    variant="filled"
-                    color="secondary"
-                    sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
-                  />
+                  <div>
+                    <Chip
+                      key={role}
+                      label={role}
+                      withIcon={false}
+                      type="plain"
+                      variant="filled"
+                      color="secondary"
+                      sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                    />
+                  </div>
+                  <Typography variant="caption3">
+                    {rolesDescription && rolesDescription[index]}
+                  </Typography>
                 </Grid>
               ))}
             </Grid>
@@ -397,7 +415,7 @@ export default function TechnicalIntegration() {
                 )}
           </Button> */}
 
-          {rolesPreviews.length > 0 && (
+          {rolesPreviews?.length > 0 && (
             <LoadingButton
               loading={isLoading}
               variant="contained"
@@ -510,6 +528,7 @@ export default function TechnicalIntegration() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
+        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
         // To-Do : the below code will get enhanced again in R.3.1
         // isValid={showUserButton}
       />

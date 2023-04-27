@@ -185,6 +185,16 @@ const palette = createPalette({
     main: '#F2F3FB',
     contrastText: '#676BC6',
   },
+  warning: {
+    main: '#ffa602',
+    contrastText: '#ffff',
+  },
+  buttons: {
+    darkGrey: '#e1e1e1',
+    lightGrey: '#f3f3f3',
+    white: '#f9f9f9',
+    yellow: '#f5f9ee',
+  },
 })
 
 const typography = createTypography(palette, {

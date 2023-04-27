@@ -61,6 +61,7 @@ import {
   setServiceStatus,
 } from 'features/serviceManagement/actions'
 import { ButtonLabelTypes } from '..'
+import RetryOverlay from '../components/RetryOverlay'
 
 type FormDataType = {
   title: string
@@ -84,7 +85,11 @@ export default function OfferCard() {
   const serviceStatusData = useSelector(serviceStatusDataSelector)
   const [fetchDocumentById] = useFetchNewDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '').data
+  const {
+    data: fetchServiceStatus,
+    isError,
+    refetch,
+  } = useFetchServiceStatusQuery(serviceId ?? '')
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
@@ -93,6 +98,11 @@ export default function OfferCard() {
   const serviceTypeData = useFetchServiceTypeIdsQuery()
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [loading, setLoading] = useState<boolean>(false)
+  const [showRetryOverlay, setShowRetryOverlay] = useState<boolean>(false)
+
+  useEffect(() => {
+    setShowRetryOverlay(serviceId && isError ? true : false)
+  }, [serviceId, isError])
 
   const defaultValues = useMemo(() => {
     return {
@@ -161,12 +171,12 @@ export default function OfferCard() {
 
   useEffect(() => {
     if (
-      serviceStatusData?.documents?.APP_LEADIMAGE &&
-      serviceStatusData?.documents?.APP_LEADIMAGE[0].documentId
+      serviceStatusData?.documents?.SERVICE_LEADIMAGE &&
+      serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentId
     ) {
       fetchCardImage(
-        serviceStatusData?.documents?.APP_LEADIMAGE[0].documentId,
-        serviceStatusData?.documents?.APP_LEADIMAGE[0].documentName
+        serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentId,
+        serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentName
       )
     }
     if (serviceStatusData && serviceStatusData.serviceTypeIds) {
@@ -196,6 +206,7 @@ export default function OfferCard() {
     })
       .unwrap()
       .then(() => {
+        //TO-DO API INTEGRATION UPLOAD SERVICE_LEADIMAGE
         dispatch(setServiceId(serviceId))
         buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
           dispatch(serviceReleaseStepIncrement())
@@ -220,7 +231,7 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          //TO-DO Image file upload
+          //TO-DO API INTEGRATION UPLOAD SERVICE_LEADIMAGE
           dispatch(setServiceId(result))
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
@@ -285,6 +296,19 @@ export default function OfferCard() {
 
   return (
     <div className="app-market-card">
+      <RetryOverlay
+        openDialog={showRetryOverlay}
+        handleOverlayClose={() => {
+          setShowRetryOverlay(false)
+          navigate(-1)
+        }}
+        handleConfirmClick={() => {
+          refetch()
+          setShowRetryOverlay(false)
+        }}
+        title={t('retryOverlay.title')}
+        description={t('retryOverlay.description')}
+      />
       <ReleaseStepHeader
         title={t('step1.headerTitle')}
         description={t('step1.headerDescription')}
@@ -443,6 +467,7 @@ export default function OfferCard() {
         )}
         isValid={isValid}
         loader={loading}
+        helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
       />
     </div>
   )

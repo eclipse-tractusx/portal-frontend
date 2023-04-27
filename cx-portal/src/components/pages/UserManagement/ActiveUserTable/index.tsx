@@ -25,7 +25,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { UserList } from 'components/shared/frame/UserList'
 import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import { useState } from 'react'
 import UserService from 'services/UserService'

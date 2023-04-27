@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { Typography } from '@mui/material'
 import { TableType } from './types'
 
 export const HorizontalTable = ({ data }: { data: TableType }) => (
@@ -40,7 +41,7 @@ export const HorizontalTable = ({ data }: { data: TableType }) => (
               borderBottom: '1px solid #e0e1e2',
             }}
           >
-            {col}
+            <Typography variant="label3">{col}</Typography>
           </th>
           {data.body[c].map((row, r) => (
             <td
@@ -50,7 +51,7 @@ export const HorizontalTable = ({ data }: { data: TableType }) => (
                 padding: '10px 15px',
               }}
             >
-              {row}
+              <Typography variant="body3">{row}</Typography>
             </td>
           ))}
         </tr>

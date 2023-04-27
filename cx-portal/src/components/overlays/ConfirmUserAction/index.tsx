@@ -28,7 +28,7 @@ import {
   useDeleteMyUserMutation,
 } from 'features/admin/userApiSlice'
 import { Typography } from 'cx-portal-shared-components'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useNavigate } from 'react-router-dom'
 import UserService from 'services/UserService'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
