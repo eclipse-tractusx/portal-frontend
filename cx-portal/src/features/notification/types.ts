@@ -93,6 +93,7 @@ export enum NotificationType {
   AppSubscriptionRejected = 'AppSubscriptionRejected',
   APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
   SERVICE_REQUEST = 'SERVICE_REQUEST',
+  SERVICE_RELEASE_REQUEST = 'SERVICE_RELEASE_REQUEST',
 }
 
 export interface NotificationContent {
