@@ -75,7 +75,7 @@ export const CustomAccordionItem = ({
         {icon && (
           <Box sx={{ marginRight: '10px', color: 'action.active' }}>{icon}</Box>
         )}
-        {titleElement && titleElement}
+        {titleElement}
         <Typography variant="label1">{title}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ mb: 5, bgcolor: color }}>
