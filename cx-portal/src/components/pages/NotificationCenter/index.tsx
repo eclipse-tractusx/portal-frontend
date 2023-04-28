@@ -47,10 +47,10 @@ import {
   SortOption,
   CircleProgress,
 } from 'cx-portal-shared-components'
-import SortIcon from '@mui/icons-material/Sort'
 import { Box } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { initialNotificationState } from 'features/notification/slice'
+import SortImage from 'components/shared/frame/SortImage'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -210,16 +210,10 @@ export default function NotificationCenter() {
             onChange={(e) => setSearchExpr(e.target.value)}
           />
           <div>
-            <div className="iconSection">
-              <SortIcon
-                onClick={() => setShowModal(true)}
-                sx={{
-                  fontSize: 20,
-                  color: '#939393',
-                  ':hover': { color: '#0D55AF' },
-                }}
-              />
-            </div>
+            <SortImage
+              onClick={() => setShowModal(true)}
+              selected={showModal}
+            />
             <div className="sortSection">
               <SortOption
                 show={showModal}
