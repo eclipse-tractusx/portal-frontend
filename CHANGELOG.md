@@ -9,6 +9,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Error scenarios implemented in Table component
 * News Section
    * Fixed UI of news section in home page
+* Sort section
+   * Hover effect added
 * Notification
    * SERVICE_RELEASE_REQUEST and APP_RELEASE_REQUEST content update
 

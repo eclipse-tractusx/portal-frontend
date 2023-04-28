@@ -35,11 +35,11 @@ import {
   ViewSelector,
   SortOption,
 } from 'cx-portal-shared-components'
-import SortIcon from '@mui/icons-material/Sort'
 import {
   ServiceRequest,
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
+import SortImage from 'components/shared/frame/SortImage'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -192,16 +192,7 @@ export default function ServiceMarketplace() {
             </div>
             <div className="filterSection" onMouseLeave={setModalFalse}>
               <ViewSelector activeView={selected} views={filterButtons} />
-              <div className="iconSection">
-                <SortIcon
-                  onClick={setModalTrue}
-                  sx={{
-                    fontSize: 20,
-                    color: '#939393',
-                    ':hover': { color: '#0D55AF' },
-                  }}
-                />
-              </div>
+              <SortImage onClick={setModalTrue} selected={showModal} />
               <div className="sortSection">
                 <SortOption
                   show={showModal}

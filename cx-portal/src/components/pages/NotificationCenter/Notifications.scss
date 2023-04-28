@@ -230,10 +230,20 @@
 
   .sortSection {
     position: absolute;
-    margin-left: 30px;
+    left: 61%;
+    margin-top: 0%;
     background: #f9f9f9;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
     border-radius: 16px;
     z-index: 9;
+  }
+
+  .sortSection .MuiBox-root {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .sortSection .MuiBox-root h1 {
+    padding: 10px 60px 10px 10px;
   }
 }
