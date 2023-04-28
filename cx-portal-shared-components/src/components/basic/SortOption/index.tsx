@@ -55,10 +55,6 @@ export const SortOption = ({
               key={entry.value}
               onClick={(e) => handleSortSelection(e, entry.value)}
               sx={{
-                backgroundColor:
-                  selectedOption === entry.value
-                    ? 'rgba(15, 113, 203, 0.05)'
-                    : 'transparent',
                 padding: '17px',
                 width: '152px',
                 borderRadius: '10px',
