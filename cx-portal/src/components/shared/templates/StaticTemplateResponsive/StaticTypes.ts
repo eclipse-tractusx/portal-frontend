@@ -46,6 +46,7 @@ export type ProviderProps = {
   linksRow2: linkProps[]
   subTitles?: string[]
   align?: 'left' | 'center' | 'right'
+  images?: string[]
 }
 
 export type linkProps = {

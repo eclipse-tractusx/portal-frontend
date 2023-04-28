@@ -29,6 +29,8 @@ import VideoTextSideBySide from './Cards/VideoTextSideBySide'
 import ImageTextCenterAligned from './Cards/ImageTextCenterAligned'
 import TextCenterAlignedBody2 from './Cards/TextCenterAlignedBody2'
 import './StaticTemplate.scss'
+import FlexImages from './Cards/FlexImages'
+import GridImages from './Cards/GridImages'
 
 const TemplateConfig = ({
   provider,
@@ -103,6 +105,26 @@ const TemplateConfig = ({
         <>
           <TextCenterAligned provider={provider} />
           <LinkButtonGrid provider={provider} grid={provider.grid} />
+        </>
+      )
+    //Combination of Text center aligned component with images in a row
+    case 'TextCenterAlignedWithImagesInFlex':
+      return (
+        <>
+          <TextCenterAligned provider={provider} />
+          <FlexImages provider={provider} baseUrl={baseUrl} />
+        </>
+      )
+    //Combination of Text center aligned component with images in grid fashion
+    case 'TextCenterAlignedWithImagesInGrid':
+      return (
+        <>
+          <TextCenterAligned provider={provider} />
+          <GridImages
+            provider={provider}
+            baseUrl={baseUrl}
+            grid={provider.grid}
+          />
         </>
       )
     default:

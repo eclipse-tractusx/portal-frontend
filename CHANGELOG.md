@@ -7,6 +7,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+* Static templete
+   * Two more new templates added
 
 ## 1.4.0
 

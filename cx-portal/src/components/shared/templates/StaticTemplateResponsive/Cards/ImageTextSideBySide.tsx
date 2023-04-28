@@ -31,7 +31,12 @@ export default function ImageTextSideBySide({
 }) {
   return (
     <div className={'imageVideoTextSideBySide'}>
-      <RenderImage url={baseUrl + provider.imagePath || ''} />
+      <RenderImage
+        url={baseUrl + provider.imagePath || ''}
+        additionalStyles={{
+          textAlign: 'center',
+        }}
+      />
       <div>
         <Typography variant="h2">{provider.title}</Typography>
         <Typography className={'providerDescription'} variant="body1">
