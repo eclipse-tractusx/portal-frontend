@@ -84,7 +84,6 @@ export default function TechnicalIntegration() {
   const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
   const [deleteRoles] = useDeleteRolesMutation()
   const [uploadCSVError, setUploadCSVError] = useState(false)
-  const [enableSaveAndProceed, setEnableSaveAndProceed] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState(false)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
@@ -186,7 +185,6 @@ export default function TechnicalIntegration() {
         .then((data) => {
           setRolesPreviews([])
           setRolesDescription([])
-          setEnableSaveAndProceed(true)
           setEnableErrorMessage(false)
           reset(defaultValues)
           refetch()
@@ -586,7 +584,7 @@ export default function TechnicalIntegration() {
         }}
         helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
         // To-Do : the below code will get enhanced again in R.3.1
-        isValid={enableSaveAndProceed}
+        isValid={data && data?.length > 0}
       />
     </div>
   )
