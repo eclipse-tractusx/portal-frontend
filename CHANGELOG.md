@@ -9,6 +9,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Error scenarios implemented in Table component
 * App Release Process
    * technical integration style updates
+* News Section
+   * Fixed UI of news section in home page
+* Sort section
+   * Hover effect added
 
 ## 1.4.0
 

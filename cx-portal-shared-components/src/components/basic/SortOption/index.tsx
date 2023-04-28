@@ -20,6 +20,7 @@
 
 import { useState } from 'react'
 import { Typography } from '../Typography'
+import { Box } from '@mui/material'
 
 export const SortOption = ({
   sortOptions,
@@ -44,25 +45,24 @@ export const SortOption = ({
   return (
     <>
       {show && (
-        <ul
-          style={{
+        <Box
+          sx={{
             padding: '8px',
           }}
         >
           {sortOptions.map((entry: any) => (
-            <li
+            <Box
               key={entry.value}
               onClick={(e) => handleSortSelection(e, entry.value)}
-              style={{
-                backgroundColor:
-                  selectedOption === entry.value
-                    ? 'rgba(15, 113, 203, 0.05)'
-                    : 'transparent',
+              sx={{
                 padding: '17px',
                 width: '152px',
                 borderRadius: '10px',
                 cursor: 'pointer',
                 listStyleType: 'none',
+                '&:hover': {
+                  backgroundColor: 'rgba(15, 113, 203, 0.05)',
+                },
                 ...(singleMenu && submenuHover
                   ? { backgroundColor: 'rgb(176 206 235 / 40%)' }
                   : null),
@@ -75,6 +75,9 @@ export const SortOption = ({
                 sx={{
                   fontSize: '14px',
                   fontWeight: '400',
+                  '&:hover': {
+                    color: '#0D55AF',
+                  },
                   color:
                     selectedOption === entry.value ||
                     (singleMenu && submenuHover)
@@ -84,9 +87,9 @@ export const SortOption = ({
               >
                 {entry.label}
               </Typography>
-            </li>
+            </Box>
           ))}
-        </ul>
+        </Box>
       )}
     </>
   )
