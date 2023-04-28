@@ -18,10 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, LoadingButton, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  Chip,
+  CustomAccordion,
+  LoadingButton,
+  Typography,
+} from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { Box, Grid } from '@mui/material'
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
+import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -77,6 +84,12 @@ export default function TechnicalIntegration() {
   const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
   const [deleteRoles] = useDeleteRolesMutation()
   const [uploadCSVError, setUploadCSVError] = useState(false)
+  const [enableSaveAndProceed, setEnableSaveAndProceed] = useState(false)
+  const [enableErrorMessage, setEnableErrorMessage] = useState(false)
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
 
   const defaultValues = {
     // To-Do : the below code will get enhanced again in R.3.1
@@ -102,7 +115,9 @@ export default function TechnicalIntegration() {
 
   const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
-    buttonLabel === 'save' && setTechnicalIntegrationSnackbar(true)
+    buttonLabel === 'save' && rolesPreviews?.length === 0
+      ? setEnableErrorMessage(true)
+      : setTechnicalIntegrationSnackbar(true)
   }
 
   const csvPreview = (files: File[]) => {
@@ -171,6 +186,8 @@ export default function TechnicalIntegration() {
         .then((data) => {
           setRolesPreviews([])
           setRolesDescription([])
+          setEnableSaveAndProceed(true)
+          setEnableErrorMessage(false)
           reset(defaultValues)
           refetch()
         })
@@ -219,28 +236,29 @@ export default function TechnicalIntegration() {
               'content.apprelease.technicalIntegration.uploadRolesDescription'
             )}
           </Typography>
-          <Grid item container xs={12} mt={2}>
-            <Grid item xs={6}>
-              <a
-                href="../../app-provider-role-upload-example.csv"
-                download
-                style={{ display: 'flex', justifyContent: 'center' }}
-              >
-                <ArrowForwardIcon />
+          <Grid item xs={12} sx={{ mr: 2, mt: 2, textAlign: 'center' }}>
+            <a
+              href="../../app-provider-role-upload-example.csv"
+              download
+              style={{ textDecoration: 'none' }}
+            >
+              <Button variant="outlined" endIcon={<FileDownloadOutlinedIcon />}>
                 {t('content.apprelease.technicalIntegration.template')}
-              </a>
-            </Grid>
-            <Grid item xs={6}>
-              <a
-                href="https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md"
-                target="_blank"
-                style={{ display: 'flex', justifyContent: 'center' }}
-                rel="noreferrer"
-              >
-                <ArrowForwardIcon />
-                {t('content.apprelease.technicalIntegration.getHelp')}
-              </a>
-            </Grid>
+              </Button>
+            </a>
+            <Button
+              sx={{ ml: 2 }}
+              variant="contained"
+              color="secondary"
+              onClick={() =>
+                window.open(
+                  'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
+                  '_blank'
+                )
+              }
+            >
+              {t('content.apprelease.technicalIntegration.getHelp')}
+            </Button>
           </Grid>
         </Grid>
       </Grid>
@@ -372,34 +390,61 @@ export default function TechnicalIntegration() {
           </Typography>
         )}
         {rolesPreviews?.length > 0 && (
-          <>
-            <Typography variant="h6" mb={2} textAlign="center">
+          <Box
+            sx={{ pl: 2, pr: 2, pb: 5, pt: 3, mt: 4 }}
+            style={{
+              background: '#FFFFFF',
+              boxShadow: '0px 20px 40px rgba(80, 80, 80, 0.3)',
+              borderRadius: '24px',
+            }}
+          >
+            <Typography variant="h4" mb={5} textAlign="center">
               {t('content.apprelease.technicalIntegration.rolesPreview')}
             </Typography>
-            <Grid item container xs={12}>
+            <Grid item mb={5} container xs={12}>
               {rolesPreviews?.map((role: string, index) => (
-                <Grid item xs={6} key={role}>
-                  <div>
-                    <Chip
-                      key={role}
-                      label={role}
-                      withIcon={false}
-                      type="plain"
-                      variant="filled"
-                      color="secondary"
-                      sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                <>
+                  <Grid
+                    item
+                    md={6}
+                    xs={12}
+                    key={role}
+                    sx={{
+                      pl: !isMobile && index % 2 === 0 ? 0 : 1,
+                      pr: !isMobile && index % 2 === 0 ? 1 : 0,
+                    }}
+                  >
+                    <CustomAccordion
+                      items={[
+                        {
+                          expanded: false,
+                          id: 'role',
+                          title: '',
+                          titleElement: (
+                            <Chip
+                              key={role}
+                              label={role}
+                              withIcon={false}
+                              type="plain"
+                              variant="filled"
+                              color="secondary"
+                              sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                            />
+                          ),
+                          color: 'background.background09',
+                          children: (
+                            <Typography variant="caption3">
+                              {rolesDescription && rolesDescription[index]}
+                            </Typography>
+                          ),
+                        },
+                      ]}
                     />
-                  </div>
-                  <Typography variant="caption3">
-                    {rolesDescription && rolesDescription[index]}
-                  </Typography>
-                </Grid>
+                  </Grid>
+                </>
               ))}
             </Grid>
-          </>
-        )}
-        <Box textAlign="center">
-          {/* <Button
+            {/* <Button
             variant="contained"
             sx={{ mr: 2, mt: 3 }}
             onClick={postRoles}
@@ -415,26 +460,30 @@ export default function TechnicalIntegration() {
                 )}
           </Button> */}
 
-          {rolesPreviews?.length > 0 && (
-            <LoadingButton
-              loading={isLoading}
-              variant="contained"
-              onButtonClick={postRoles}
-              sx={{
-                textAlign: 'center',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '30px',
-              }}
-              loadIndicator={t(
-                'content.apprelease.technicalIntegration.uploadAppRolesButton'
-              )}
-              label={t(
-                'content.apprelease.technicalIntegration.uploadAppRolesButton'
-              )}
-              fullWidth={false}
-            />
-          )}
+            {rolesPreviews?.length > 0 && (
+              <LoadingButton
+                loading={isLoading}
+                variant="contained"
+                onButtonClick={postRoles}
+                sx={{
+                  textAlign: 'center',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  display: 'flex',
+                }}
+                startIcon={<FileUploadOutlinedIcon />}
+                loadIndicator={t(
+                  'content.apprelease.technicalIntegration.uploadAppRolesButton'
+                )}
+                label={t(
+                  'content.apprelease.technicalIntegration.uploadAppRolesButton'
+                )}
+                fullWidth={false}
+              />
+            )}
+          </Box>
+        )}
+        <Box textAlign="center">
           <Typography variant="h4" mb={4} mt={4}>
             {t(
               'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
@@ -471,6 +520,12 @@ export default function TechnicalIntegration() {
             </Box>
           )}
         </Box>
+
+        {enableErrorMessage && (
+          <Typography variant="body2" className="file-error-msg">
+            {t('content.apprelease.technicalIntegration.roleUploadIsMandatory')}
+          </Typography>
+        )}
 
         {/* To-Do : the below code will get enhanced again in R.3.1 */}
         {/* <Divider className="form-divider" />
@@ -530,7 +585,7 @@ export default function TechnicalIntegration() {
         }}
         helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
         // To-Do : the below code will get enhanced again in R.3.1
-        // isValid={showUserButton}
+        isValid={enableSaveAndProceed}
       />
     </div>
   )

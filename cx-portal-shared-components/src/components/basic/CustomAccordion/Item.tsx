@@ -32,6 +32,7 @@ export interface CustomAccordionProps extends AccordionProps {
   children: React.ReactElement
   color?: string
   icon?: React.ReactElement
+  titleElement?: React.ReactElement
 }
 
 export const CustomAccordionItem = ({
@@ -41,6 +42,7 @@ export const CustomAccordionItem = ({
   children,
   color,
   icon,
+  titleElement,
   ...props
 }: CustomAccordionProps) => {
   return (
@@ -73,6 +75,7 @@ export const CustomAccordionItem = ({
         {icon && (
           <Box sx={{ marginRight: '10px', color: 'action.active' }}>{icon}</Box>
         )}
+        {titleElement && titleElement}
         <Typography variant="label1">{title}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ mb: 5, bgcolor: color }}>
