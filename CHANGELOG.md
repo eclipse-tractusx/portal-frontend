@@ -7,9 +7,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+* News Section
+   * Fixed UI of news section in home page
+* Sort section
+   * Hover effect added
 * Static templete
    * Two more new templates added
-
 ## 1.4.0
 
 ### Change
