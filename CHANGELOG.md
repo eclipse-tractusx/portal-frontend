@@ -15,6 +15,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Hover effect added
 * Notification
    * SERVICE_RELEASE_REQUEST and APP_RELEASE_REQUEST content update
+* Static templete
+   * Two more new templates added
 
 ## 1.4.0
 

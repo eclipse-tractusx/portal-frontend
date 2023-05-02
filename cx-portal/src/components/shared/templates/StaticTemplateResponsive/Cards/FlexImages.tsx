@@ -19,11 +19,10 @@
  ********************************************************************************/
 
 import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
 import '../StaticTemplate.scss'
+import RenderImage from './RenderImage'
 
-export default function TextImageSideBySide({
+export default function FlexImages({
   provider,
   baseUrl,
 }: {
@@ -31,16 +30,11 @@ export default function TextImageSideBySide({
   baseUrl: string
 }) {
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-        />
-      }
-    />
+    <div className={'flex'}>
+      {provider.images &&
+        provider.images.map((path) => (
+          <RenderImage key={path} height="250px" url={baseUrl + path || ''} />
+        ))}
+    </div>
   )
 }

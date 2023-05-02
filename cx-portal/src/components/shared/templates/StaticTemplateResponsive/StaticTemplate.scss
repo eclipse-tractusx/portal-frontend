@@ -40,7 +40,7 @@
   }
   .imageVideoTextSideBySide div {
     padding: 20px;
-    width: 50%;
+    width: 48%;
   }
   .video {
     border-radius: 16px;
@@ -124,6 +124,20 @@
   .multiTextContainer .description {
     padding: 30px 0px;
   }
+
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 30px;
+    margin-top: 84px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 84px;
+  }
 }
 
 //tab layout
@@ -149,7 +163,7 @@
 
   .imageVideoTextSideBySide div {
     padding: 20px;
-    width: 50%;
+    width: 48%;
   }
 
   .video {
@@ -230,6 +244,21 @@
   .multiTextContainer .description {
     padding: 10px 0px;
   }
+
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 30px;
+    margin-top: 84px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 84px;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
 //mobile layout
@@ -267,10 +296,12 @@
   .textCenterAligned {
     text-align: left;
     margin: 20px 10px 0px 10px;
+    line-break: anywhere;
   }
 
   .textCenterAligned .description {
     padding: 20px 0px 0px 0px;
+    line-break: anywhere;
   }
 
   .titleDescriptionBody {
@@ -332,6 +363,21 @@
 
   .multiTextContainer .description {
     padding: 10px 0px;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 
