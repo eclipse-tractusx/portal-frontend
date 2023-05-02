@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from './StaticTypes'
+import { ProviderProps, TemplateNames } from './StaticTypes'
 import TextImageSideBySide from './Cards/TextImageSideBySide'
 import TextVideoSideBySide from './Cards/TextVideoSideBySide'
 import TextImageCenterAligned from './Cards/TextImageCenterAligned'
@@ -41,28 +41,28 @@ const TemplateConfig = ({
 }) => {
   switch (provider.template) {
     //Text in the left and image in the right side
-    case 'TextImageSideBySide':
+    case TemplateNames.TextImageSideBySide:
       return <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
     //Text in the left and video in the right side
-    case 'TextVideoSideBySide':
+    case TemplateNames.TextVideoSideBySide:
       return <TextVideoSideBySide provider={provider} />
     //video in the left and Text in the right side
-    case 'VideoTextSideBySide':
+    case TemplateNames.VideoTextSideBySide:
       return <VideoTextSideBySide provider={provider} />
     //Text and image component both center aligned
-    case 'TextImageCenterAligned':
+    case TemplateNames.TextImageCenterAligned:
       return <TextImageCenterAligned baseUrl={baseUrl} provider={provider} />
     //Image and text component both center aligned
-    case 'ImageTextCenterAligned':
+    case TemplateNames.ImageTextCenterAligned:
       return <ImageTextCenterAligned baseUrl={baseUrl} provider={provider} />
     //Text component center aligned
-    case 'TextCenterAligned':
+    case TemplateNames.TextCenterAligned:
       return <TextCenterAligned provider={provider} />
     //Text component body2
-    case 'TextCenterAlignedBody2':
+    case TemplateNames.TextCenterAlignedBody2:
       return <TextCenterAlignedBody2 provider={provider} />
     //Combination of Text and image component both center aligned with grid layout card component
-    case 'TextImageCenterAlignedWithCardGrid':
+    case TemplateNames.TextImageCenterAlignedWithCardGrid:
       return (
         <>
           <TextImageCenterAligned baseUrl={baseUrl} provider={provider} />
@@ -75,7 +75,7 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text center aligned component with grid layout card component
-    case 'TextCenterAlignedWithCardGrid':
+    case TemplateNames.TextCenterAlignedWithCardGrid:
       return (
         <>
           <TextCenterAligned provider={provider} />
@@ -88,7 +88,7 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text and image side by side with grid layout card component
-    case 'TextImageSideBySideWithCardGrid':
+    case TemplateNames.TextImageSideBySideWithCardGrid:
       return (
         <>
           <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
@@ -100,7 +100,7 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text center aligned component with grid layout link component
-    case 'TextCenterAlignedWithLinkButtonGrid':
+    case TemplateNames.TextCenterAlignedWithLinkButtonGrid:
       return (
         <>
           <TextCenterAligned provider={provider} />
@@ -108,7 +108,7 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text center aligned component with images in a row
-    case 'TextCenterAlignedWithImagesInFlex':
+    case TemplateNames.TextCenterAlignedWithImagesInFlex:
       return (
         <>
           <TextCenterAligned provider={provider} />
@@ -116,7 +116,7 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text center aligned component with images in grid fashion
-    case 'TextCenterAlignedWithImagesInGrid':
+    case TemplateNames.TextCenterAlignedWithImagesInGrid:
       return (
         <>
           <TextCenterAligned provider={provider} />
