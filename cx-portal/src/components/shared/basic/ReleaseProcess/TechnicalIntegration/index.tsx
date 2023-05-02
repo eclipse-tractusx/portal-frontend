@@ -112,11 +112,18 @@ export default function TechnicalIntegration() {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
-  const onIntegrationSubmit = async (data: any, buttonLabel: string) => {
+  const onIntegrationSubmit = async (submitData: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
-    buttonLabel === 'save' && rolesPreviews?.length === 0
-      ? setEnableErrorMessage(true)
-      : setTechnicalIntegrationSnackbar(true)
+    if (buttonLabel === 'save') {
+      if (data?.length === 0) setEnableErrorMessage(true)
+      else {
+        setSnackBarType(SuccessErrorType.SUCCESS)
+        setSnackBarMessage(
+          t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+        )
+        setTechnicalIntegrationSnackbar(true)
+      }
+    }
   }
 
   const csvPreview = (files: File[]) => {
