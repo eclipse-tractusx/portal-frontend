@@ -406,7 +406,8 @@
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
-        "hostCompanyName": "Host"
+        "hostCompanyName": "Host",
+        "providerCompanyName": "Customer"
       },
       "rowValue": {
         "owned": "Owned",
@@ -416,6 +417,8 @@
       "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
+      "managedtabletitle": "Managed Connectors",
+      "noConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
       "snackbar": {
@@ -941,7 +944,7 @@
         "clientCreated": "Client created",
         "step2Header": "2. Upload App Roles",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
-        "rolesPreview": "Preview of roles contained in the uploaded files:",
+        "rolesPreview": "Preview of Roles uploaded",
         "uploadAppRolesButton": "Upload App Roles",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
@@ -955,7 +958,8 @@
         "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
         "template": "Template",
         "getHelp": "Get Help",
-        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?"
+        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
+        "roleUploadIsMandatory": "Role upload is mandatory"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

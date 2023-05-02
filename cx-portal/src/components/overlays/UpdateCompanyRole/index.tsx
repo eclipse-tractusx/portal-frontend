@@ -137,7 +137,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             {data?.map((role: CompanyRolesResponse) => {
               return (
                 roles.indexOf(role.companyRoles) !== -1 &&
-                dataArray && dataArray[
+                dataArray &&
+                dataArray[
                   role.companyRoles as keyof SampleData
                 ]?.selected.roles.map((sampleRole: RoleData) => {
                   return getRolesList(sampleRole)
@@ -154,7 +155,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             {data?.map((role: CompanyRolesResponse) => {
               return (
                 roles.indexOf(role.companyRoles) === -1 &&
-                dataArray && dataArray[
+                dataArray &&
+                dataArray[
                   role.companyRoles as keyof SampleData
                 ]?.deselected.roles.map((sampleRole: RoleData) => {
                   return getRolesList(sampleRole)
@@ -171,7 +173,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             {data?.map((role: CompanyRolesResponse) => {
               return (
                 roles.indexOf(role.companyRoles) !== -1 &&
-                dataArray && dataArray[
+                dataArray &&
+                dataArray[
                   role.companyRoles as keyof SampleData
                 ]?.selected.features.map((sampleRole: RoleData) => {
                   return getRolesList(sampleRole)
@@ -188,7 +191,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             {data?.map((role: CompanyRolesResponse) => {
               return (
                 roles.indexOf(role.companyRoles) === -1 &&
-                dataArray && dataArray[
+                dataArray &&
+                dataArray[
                   role.companyRoles as keyof SampleData
                 ]?.selected.features.map((sampleRole: RoleData) => {
                   return getRolesList(sampleRole)

@@ -18,29 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
+import Sort from '@mui/icons-material/Sort'
+import { Box } from '@mui/material'
 
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-}) {
+interface SortIconProps {
+  onClick: () => void
+  selected?: boolean
+}
+
+export default function SortImage({ onClick, selected }: SortIconProps) {
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-        />
-      }
-    />
+    <Box
+      sx={{
+        marginLeft: '30px',
+        cursor: 'pointer',
+      }}
+    >
+      <Sort
+        onClick={onClick}
+        sx={{
+          fontSize: 35,
+          color: selected ? '#0D55AF' : '#939393',
+          padding: '5px',
+          backgroundColor: selected ? 'rgba(15, 113, 203, 0.05)' : 'white',
+          ':hover': {
+            color: '#0D55AF',
+            backgroundColor: 'rgba(15, 113, 203, 0.05)',
+          },
+        }}
+      />
+    </Box>
   )
 }

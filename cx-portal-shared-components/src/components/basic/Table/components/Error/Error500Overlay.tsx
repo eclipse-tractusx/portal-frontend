@@ -18,29 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
+import { Box } from '@mui/material'
+import { Typography } from '../../../Typography'
+import RefreshIcon from '@mui/icons-material/Refresh'
 
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-}) {
-  return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-        />
-      }
-    />
-  )
+const flexColumn = {
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
 }
+
+export const Error500Overlay = ({ reload }: { reload: () => void }) => (
+  <Box
+    sx={{
+      ...flexColumn,
+      paddingTop: '10px',
+    }}
+  >
+    <Typography
+      sx={{
+        paddingTop: '20px',
+      }}
+      variant="body2"
+    >
+      Load Failed. Reload
+    </Typography>
+    <div
+      onClick={reload}
+      style={{
+        marginBottom: '20px',
+        cursor: 'pointer',
+      }}
+    >
+      <RefreshIcon sx={{ fontSize: 40 }} color="primary" />
+    </div>
+  </Box>
+)

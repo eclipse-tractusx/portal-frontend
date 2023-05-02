@@ -18,29 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
+import { GridColDef } from '@mui/x-data-grid'
 
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-}) {
-  return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-        />
-      }
-    />
-  )
+export const ManagedConnectorTableColumns = (
+  translationHook: any
+): Array<GridColDef> => {
+  const { t } = translationHook()
+
+  return [
+    {
+      field: 'providerCompanyName',
+      headerName: t('content.edcconnector.columns.providerCompanyName'),
+      flex: 1,
+      sortable: false,
+      disableColumnMenu: true,
+    },
+  ]
 }

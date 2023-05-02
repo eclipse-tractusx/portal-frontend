@@ -19,28 +19,30 @@
  ********************************************************************************/
 
 import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
 import '../StaticTemplate.scss'
+import RenderImage from './RenderImage'
+import { Box } from '@mui/material'
 
-export default function TextImageSideBySide({
+export default function GridImages({
   provider,
   baseUrl,
+  grid = 3,
 }: {
   provider: ProviderProps
   baseUrl: string
+  grid: number
 }) {
   return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-        />
-      }
-    />
+    <Box
+      className="grid"
+      sx={{
+        gridTemplateColumns: `repeat(${grid}, 1fr)`,
+      }}
+    >
+      {provider.images &&
+        provider.images.map((path) => (
+          <RenderImage key={path} height="250px" url={baseUrl + path || ''} />
+        ))}
+    </Box>
   )
 }

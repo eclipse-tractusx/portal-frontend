@@ -18,29 +18,44 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
+import ReportProblemIcon from '@mui/icons-material/ReportProblem'
+import { Box } from '@mui/material'
+import { Typography } from '../../../Typography'
 
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-}) {
-  return (
-    <ImageVideoWrapper
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-        />
-      }
-    />
-  )
+const flexRow = {
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  paddingBottom: '20px',
 }
+
+const flexColumn = {
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+}
+
+export const Error400Overlay = () => (
+  <Box
+    sx={{
+      ...flexRow,
+    }}
+  >
+    <ReportProblemIcon
+      sx={{ paddingRight: '20px', fontSize: 50 }}
+      color="error"
+    />
+    <Box
+      sx={{
+        ...flexColumn,
+        paddingTop: '20px',
+      }}
+    >
+      <Typography variant="body2">
+        Something went wrong. Please contact
+      </Typography>
+      <Typography variant="body2">your administrator</Typography>
+    </Box>
+  </Box>
+)

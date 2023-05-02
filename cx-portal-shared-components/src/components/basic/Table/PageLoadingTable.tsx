@@ -62,7 +62,7 @@ export const PageLoadingTable = function <T>({
   const [clear, setClear] = useState(true)
   const [loaded, setLoaded] = useState(0)
   const [items, setItems] = useState<T[]>([])
-  const { data, isFetching, isSuccess } = fetchHook({
+  const { data, isFetching, isSuccess, error, refetch } = fetchHook({
     page: page,
     args: {
       ...fetchHookArgs,
@@ -116,6 +116,9 @@ export const PageLoadingTable = function <T>({
         }
       }
     }
+    if (error) {
+      setLoading(false)
+    }
   }, [isSuccess, isFetching, data, clear, loaded])
 
   return (
@@ -125,7 +128,9 @@ export const PageLoadingTable = function <T>({
         rowsCountMax={maxRows}
         hideFooter={items.length < (props.rowCount || 100)}
         loading={loading}
+        error={error}
         rows={items}
+        reload={refetch}
         {...props}
       />
       {items.length > 0 && hasMore && (

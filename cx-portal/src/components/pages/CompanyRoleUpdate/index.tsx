@@ -55,15 +55,18 @@ export default function CompanyRoles() {
   const handleAgreementCheck = (isChecked: boolean, roleName: string) => {
     const roles = _.cloneDeep(companyRoles)
     roles &&
-      roles.map((role: CompanyRolesResponse) => 
-        role.companyRoles === roleName && (role.companyRolesActive = isChecked)
+      roles.map(
+        (role: CompanyRolesResponse) =>
+          role.companyRoles === roleName &&
+          (role.companyRolesActive = isChecked)
       )
     setCompanyRoles(roles)
 
     //to get selected roles
     const rolesArr: string[] = []
     roles &&
-      roles.map((role) => role.companyRolesActive && rolesArr.push(role.companyRoles)
+      roles.map(
+        (role) => role.companyRolesActive && rolesArr.push(role.companyRoles)
       )
     setSelectedRoles(rolesArr)
   }
