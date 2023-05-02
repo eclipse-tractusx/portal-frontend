@@ -36,8 +36,8 @@
     "content": "{{user}} writes"
   },
   "APP_RELEASE_REQUEST": {
-    "title": "New app release request waiting for review",
-    "content": "A new app release request is available in the app management board. Please validate the request:"
+    "title": "App Release Request - App: {{app}}",
+    "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
   },
   "APP_RELEASE_APPROVAL": {
     "title": "App request approved",
@@ -60,8 +60,8 @@
     "content": "This is a default text and will get enhanced later."
   },
   "SERVICE_RELEASE_REQUEST": {
-    "title": "New service release request waiting for review",
-    "content": "A new service release request is available in the service management board. Please validate the request:"
+    "title": "Service Release Request - Service: {{offer}}",
+    "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
   },
   "SERVICE_RELEASE_APPROVAL": {
     "title": "Service release request approved",
@@ -95,7 +95,8 @@
     "technicaluser": "Get there",
     "companyrolesserviceprovider": "Get there",
     "usermanagement": "Get there",
-    "servicesubscription": "Get there"
+    "servicesubscription": "Get there",
+    "serviceadminboard": "Get there"
   },
   "due": "due",
   "search": "Enter your search value",

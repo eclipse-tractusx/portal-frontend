@@ -29,7 +29,6 @@ import {
   PageHeader,
   LoadMoreButton,
 } from 'cx-portal-shared-components'
-import SortIcon from '@mui/icons-material/Sort'
 import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'
@@ -40,6 +39,7 @@ import {
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
+import SortImage from 'components/shared/frame/SortImage'
 
 enum FilterType {
   INREVIEW = 'InReview',
@@ -405,21 +405,15 @@ export default function CommonAdminBoard({
           }
         >
           <ViewSelector activeView={selected} views={tabButtons} />
-          <div className="iconSection">
-            <SortIcon
-              onClick={() =>
-                setState({
-                  type: ActionKind.SET_SHOW_MODAL,
-                  payload: true,
-                })
-              }
-              sx={{
-                fontSize: 20,
-                color: '#939393',
-                ':hover': { color: '#0D55AF' },
-              }}
-            />
-          </div>
+          <SortImage
+            onClick={() =>
+              setState({
+                type: ActionKind.SET_SHOW_MODAL,
+                payload: true,
+              })
+            }
+            selected={showModal}
+          />
           <div className="sortSection">
             <SortOption
               show={showModal}
