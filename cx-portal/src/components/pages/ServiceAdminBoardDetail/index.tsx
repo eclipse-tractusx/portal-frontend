@@ -25,7 +25,6 @@ import { getAssetBase } from 'services/EnvironmentService'
 import {
   ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
-  useFetchServiceDetailsQuery,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useCallback, useEffect, useState } from 'react'
 import {
@@ -42,23 +41,17 @@ export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
-  const boardDetails = useFetchBoardServiceDetailsQuery(appId || '', {
+  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId || '', {
     refetchOnMountOrArgChange: true,
-  }).data
-  const isFetching = useFetchBoardServiceDetailsQuery(appId || '', {
-    refetchOnMountOrArgChange: true,
-  }).isFetching
-  const detailsData = useFetchServiceDetailsQuery(appId || '').data
+  })
   const [fetchDocument] = useFetchDocumentMutation()
   const [serviceData, setServiceData] = useState<ServiceDetailsType>()
 
   useEffect(() => {
-    if (!isFetching && boardDetails) {
-      setServiceData(boardDetails)
-    } else if (detailsData) {
-      setServiceData(detailsData)
+    if (!isFetching && data) {
+      setServiceData(data)
     }
-  }, [isFetching, boardDetails, detailsData])
+  }, [isFetching, data])
 
   const getTypes = useCallback(() => {
     const newArr: string[] = []
