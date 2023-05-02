@@ -1,0 +1,188 @@
+{
+  "ACTIVE_PARTICIPANT": {
+    "selected": {
+      "roles": [
+        {
+          "title": "CX User",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Purchaser",
+          "description": "short role description will get added here"
+        }
+      ],
+      "features": [
+        {
+          "title": "App Subscription",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "Service Subscription",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        }
+      ]
+    },
+    "deselected": {
+      "roles": [
+        {
+          "title": "CX User",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Purchaser",
+          "description": "short role description will get added here"
+        }
+      ],
+      "features": [
+        {
+          "title": "App Subscription",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "Service Subscription",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        }
+      ]
+    }
+  },
+  "APP_PROVIDER": {
+    "selected": {
+      "roles": [
+        {
+          "title": "App Manager",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "App Developer",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Sales Manager",
+          "description": "short role description will get added here"
+        }
+      ],
+      "features": [
+        {
+          "title": "App Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "App Release Process",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "App Subscription Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        }
+      ]
+    },
+    "deselected": {
+      "roles": [
+        {
+          "title": "App Manager",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "App Developer",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Sales Manager",
+          "description": "short role description will get added here"
+        }
+      ],
+      "features": [
+        {
+          "title": "App Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "App Release Process",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "App Subscription Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        }
+      ]
+    }
+  },
+  "SERVICE_PROVIDER": {
+    "selected": {
+      "roles": [
+        {
+          "title": "Service Manager",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Service Developer",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Sales Manager",
+          "description": "short role description will get added here"
+        }
+      ],
+      "features": [
+        {
+          "title": "Service Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "Service Release Process",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "Service Subscription Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        }
+      ]
+    },
+    "deselected": {
+      "roles": [
+        {
+          "title": "Service Manager",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Service Developer",
+          "description": "short role description will get added here"
+        },
+        {
+          "title": "Sales Manager",
+          "description": "short role description will get added here"
+        }
+      ],
+      "features": [
+        {
+          "title": "Service Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "Service Release Process",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        },
+        {
+          "title": "Service Subscription Management",
+          "description": "description of the feature will get highlevel added in this section",
+          "details": "link to the functional explanation"
+        }
+      ]
+    }
+  }
+}

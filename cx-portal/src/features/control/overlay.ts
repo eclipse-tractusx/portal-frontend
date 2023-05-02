@@ -39,6 +39,7 @@ const initialState = {
   title: '',
   displayName: '',
   subTitle: '',
+  roles: [],
 }
 
 const closeOverlay = createAction(`${name}/closeOverlay`, () => ({
@@ -55,7 +56,8 @@ const show = createAction(
     id?: string,
     title?: string,
     status?: boolean,
-    subTitle?: string
+    subTitle?: string,
+    roles?: string[]
   ) => ({
     payload: {
       type,
@@ -63,6 +65,7 @@ const show = createAction(
       title,
       status,
       subTitle,
+      roles,
     },
   })
 )

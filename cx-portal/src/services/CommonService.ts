@@ -145,6 +145,15 @@ const getRoleDescription = (callback: any) => {
     .then((data) => callback(data))
 }
 
+const getCompanyRoleUpdateData = (callback: any) => {
+  let url = `${getAssetBase()}/content/${
+    i18next.language
+  }/companyRoleChange.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+}
+
 const CommonService = {
   fetchLeadPictureImage,
   isValidPictureId,
@@ -152,6 +161,7 @@ const CommonService = {
   getUseCases,
   fetchLeadPictures,
   getRoleDescription,
+  getCompanyRoleUpdateData,
 }
 
 export default CommonService

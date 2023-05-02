@@ -65,6 +65,7 @@ import EditPortalRoles from 'components/overlays/EditPortalRoles'
 import { UpdateIDPSuccess } from 'components/overlays/UpdateIDPSuccess'
 import ServiceDeclineAdminboard from 'components/overlays/DeclineAdminboard/ServiceDeclineAdminboard'
 import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDeclineAdminboard'
+import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -193,6 +194,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AppDeclineAdminboard id={overlay.id} />
     case OVERLAYS.EDIT_PORTAL_ROLES:
       return <EditPortalRoles id={overlay.id} />
+    case OVERLAYS.UPDATE_COMPANY_ROLE:
+      return <UpdateCompanyRole roles={overlay.roles ?? []} />
     default:
       return <NotFound />
   }
