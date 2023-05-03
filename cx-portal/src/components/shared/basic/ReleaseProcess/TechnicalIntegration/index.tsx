@@ -437,17 +437,17 @@ export default function TechnicalIntegration() {
                               key={role}
                               label={role}
                               withIcon={false}
-                              type="plain"
+                              type="progress"
                               variant="filled"
-                              color="secondary"
+                              color="info"
                               sx={{
                                 '.MuiChip-label': {
-                                  padding: '0px',
+                                  fontSize: '14px',
                                 },
                               }}
                             />
                           ),
-                          color: 'background.background09',
+                          color: 'white',
                           children: (
                             <Typography variant="caption3">
                               {rolesDescription && rolesDescription[index]}
