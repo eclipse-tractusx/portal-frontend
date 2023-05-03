@@ -349,7 +349,11 @@ export default function AppMarketCard() {
       title: data.title,
       provider: data.provider,
       salesManagerId: salesManagerId,
-      useCaseIds: data.useCaseCategory,
+      useCaseIds: data.useCaseCategory.some((value) => {
+        return typeof value == 'object'
+      })
+        ? data.useCaseCategory?.map((item: any) => item.id)
+        : data.useCaseCategory,
       descriptions: [
         {
           languageCode: 'de',
