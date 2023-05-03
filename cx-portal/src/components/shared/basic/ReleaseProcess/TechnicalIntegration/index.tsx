@@ -234,14 +234,14 @@ export default function TechnicalIntegration() {
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 9 }}>
+        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 4 }}>
           <Typography variant="body2" align="center">
             {t('content.apprelease.technicalIntegration.headerDescription')}
             {t(
               'content.apprelease.technicalIntegration.uploadRolesDescription'
             )}
           </Typography>
-          <Grid item xs={12} sx={{ mr: 2, mt: 2, textAlign: 'center' }}>
+          <Grid item xs={12} sx={{ mr: 2, mt: 4, textAlign: 'center' }}>
             <a
               href="../../app-provider-role-upload-example.csv"
               download
