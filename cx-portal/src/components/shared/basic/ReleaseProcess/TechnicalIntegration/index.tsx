@@ -247,12 +247,18 @@ export default function TechnicalIntegration() {
               download
               style={{ textDecoration: 'none' }}
             >
-              <Button variant="outlined" endIcon={<FileDownloadOutlinedIcon />}>
+              <Button
+                variant="outlined"
+                endIcon={<FileDownloadOutlinedIcon />}
+                size="small"
+                sx={{ fontSize: '16px' }}
+              >
                 {t('content.apprelease.technicalIntegration.template')}
               </Button>
             </a>
             <Button
-              sx={{ ml: 2 }}
+              sx={{ ml: 2, fontSize: '16px' }}
+              size="small"
               variant="contained"
               color="secondary"
               onClick={() =>
@@ -434,7 +440,11 @@ export default function TechnicalIntegration() {
                               type="plain"
                               variant="filled"
                               color="secondary"
-                              sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
+                              sx={{
+                                '.MuiChip-label': {
+                                  padding: '0px',
+                                },
+                              }}
                             />
                           ),
                           color: 'background.background09',
