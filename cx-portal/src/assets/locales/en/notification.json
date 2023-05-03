@@ -75,9 +75,13 @@
     "title": "Service Subscription Request - Service: {{app}}",
     "content": "{{company}} triggered a subscription request for service {{app}}. Validate the request details on the subscription board."
   },
-  "SERVICE_ACTIVATION": {
-    "title": "Service request activated",
-    "content": "Your subscription for service offer {{serviceName}} is now active"
+  "ROLE_UPDATE_CORE_OFFER": {
+    "title": "Assigned User Roles Updated - Portal",
+    "content": "Dear {{username}}, \n\nyour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description [Role Matrix]{ {hostname}/role-details} \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
+  },
+  "ROLE_UPDATE_APP_OFFER": {
+    "title": "Assigned User Roles Updated - {{app}}",
+    "content": "Hallo {{username}}, \n\nyour app user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find all details regarding the role change below. \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
   },
   "link": {
     "appmarketplace": "Go to app marketplace",

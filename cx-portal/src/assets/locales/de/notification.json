@@ -79,6 +79,14 @@
     "title": "Service request activated",
     "content": "Your subscription for service offer {{serviceName}} is now active"
   },
+  "ROLE_UPDATE_CORE_OFFER": {
+    "title": "Assigned User Roles Updated - Portal",
+    "content": "Hallo {{username}}, \n\nIhre Portal-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Auswirkungen der Rollenänderung finden Sie in der Rollenmatrix und Rollenbeschreibung des Portals [Role Matrix]{ {hostname}/role-details} \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
+  },
+  "ROLE_UPDATE_APP_OFFER": {
+    "title": "Assigned User Roles Updated - {{app}}",
+    "content": "Hallo {{username}}, \n\nIhre App-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Rollenänderungen finden sie anbei. \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
+  },
   "link": {
     "appmarketplace": "Zum App Marketplace",
     "technicalsetup": "Zur Connector Registrierung",
