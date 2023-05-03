@@ -415,49 +415,47 @@ export default function TechnicalIntegration() {
             </Typography>
             <Grid item mb={5} container xs={12}>
               {rolesPreviews?.map((role: string, index) => (
-                <>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    key={role}
-                    sx={{
-                      pl: !isMobile && index % 2 === 0 ? 0 : 1,
-                      pr: !isMobile && index % 2 === 0 ? 1 : 0,
-                    }}
-                  >
-                    <CustomAccordion
-                      items={[
-                        {
-                          expanded: false,
-                          id: 'role',
-                          title: '',
-                          titleElement: (
-                            <Chip
-                              key={role}
-                              label={role}
-                              withIcon={false}
-                              type="progress"
-                              variant="filled"
-                              color="info"
-                              sx={{
-                                '.MuiChip-label': {
-                                  fontSize: '14px',
-                                },
-                              }}
-                            />
-                          ),
-                          color: 'white',
-                          children: (
-                            <Typography variant="caption3">
-                              {rolesDescription && rolesDescription[index]}
-                            </Typography>
-                          ),
-                        },
-                      ]}
-                    />
-                  </Grid>
-                </>
+                <Grid
+                  item
+                  md={6}
+                  xs={12}
+                  key={role}
+                  sx={{
+                    pl: !isMobile && index % 2 === 0 ? 0 : 1,
+                    pr: !isMobile && index % 2 === 0 ? 1 : 0,
+                  }}
+                >
+                  <CustomAccordion
+                    items={[
+                      {
+                        expanded: false,
+                        id: role,
+                        title: '',
+                        titleElement: (
+                          <Chip
+                            key={role}
+                            label={role}
+                            withIcon={false}
+                            type="progress"
+                            variant="filled"
+                            color="info"
+                            sx={{
+                              '.MuiChip-label': {
+                                fontSize: '14px',
+                              },
+                            }}
+                          />
+                        ),
+                        color: 'white',
+                        children: (
+                          <Typography variant="caption3">
+                            {rolesDescription && rolesDescription[index]}
+                          </Typography>
+                        ),
+                      },
+                    ]}
+                  />
+                </Grid>
               ))}
             </Grid>
             {/* <Button
@@ -499,8 +497,8 @@ export default function TechnicalIntegration() {
             )}
           </Box>
         )}
-        <Box textAlign="center">
-          <Typography variant="h4" mb={4} mt={4}>
+        <Box>
+          <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
             {t(
               'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
             )}
@@ -508,29 +506,54 @@ export default function TechnicalIntegration() {
 
           {data && data.length > 0 ? (
             <Grid item container xs={12}>
-              {data?.map((role: rolesType) => (
+              {data?.map((role: rolesType, index) => (
                 <Grid
                   item
-                  xs={6}
+                  md={6}
+                  xs={12}
                   key={role.roleId}
-                  style={{ textAlign: 'left' }}
+                  sx={{
+                    pl: !isMobile && index % 2 === 0 ? 0 : 1,
+                    pr: !isMobile && index % 2 === 0 ? 1 : 0,
+                  }}
                 >
-                  <Chip
-                    key={role.roleId}
-                    label={role.role}
-                    withIcon={true}
-                    type="delete"
-                    variant="filled"
-                    color="secondary"
-                    sx={{ mb: 1, ml: 1, mr: 1, mt: 1 }}
-                    handleDelete={() => onChipDelete(role.roleId)}
+                  <CustomAccordion
+                    items={[
+                      {
+                        expanded: false,
+                        id: role.roleId,
+                        title: '',
+                        titleElement: (
+                          <Chip
+                            key={role.roleId}
+                            label={role.role}
+                            withIcon={true}
+                            type="delete"
+                            variant="filled"
+                            color="info"
+                            sx={{
+                              '.MuiChip-label': {
+                                fontSize: '14px',
+                              },
+                            }}
+                            handleDelete={() => onChipDelete(role.roleId)}
+                          />
+                        ),
+                        color: 'white',
+                        children: (
+                          <Typography variant="caption3">
+                            {role.description}
+                          </Typography>
+                        ),
+                      },
+                    ]}
                   />
                 </Grid>
               ))}
             </Grid>
           ) : (
             <Box className="no-roles-box">
-              <Typography variant="h4" mb={4} mt={4}>
+              <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
                 {`Currently no roles loaded for app (${fetchAppStatus?.title})`}
               </Typography>
             </Box>
