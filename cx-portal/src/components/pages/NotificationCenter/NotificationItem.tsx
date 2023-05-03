@@ -299,7 +299,7 @@ export default function NotificationItem({
             >
               {' '}
               {t(`${item.typeId}.title`, {
-                app: item.contentParsed?.AppName || item.contentParsed?.appName,
+                app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
                 offer: item.contentParsed?.OfferName,
               })}
             </Typography>
