@@ -41,7 +41,6 @@ import {
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
 import CommonService from 'services/CommonService'
-//import dataArray && dataArray from 'test.json'
 import './style.scss'
 
 export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
@@ -92,37 +91,34 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
           </Typography>
           <table>
             <tbody>
-              {data &&
-                data.map((role: CompanyRolesResponse) => {
-                  return (
-                    <tr key={role.companyRoles}>
-                      <td className="first-td">
-                        {t('content.companyRolesUpdate.overlay.role')}
-                      </td>
-                      <td className="second-td">{`${t(
-                        'content.companyRolesUpdate.' + role.companyRoles
-                      )}`}</td>
-                      <td>
-                        <Chip
-                          color={
-                            roles.indexOf(role.companyRoles) !== -1
-                              ? 'warning'
-                              : 'error'
-                          }
-                          label={
-                            roles.indexOf(role.companyRoles) !== -1
-                              ? t('content.companyRolesUpdate.overlay.added')
-                              : t(
-                                  'content.companyRolesUpdate.overlay.deselected'
-                                )
-                          }
-                          type="plain"
-                          variant="filled"
-                        />
-                      </td>
-                    </tr>
-                  )
-                })}
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  <tr key={role.companyRoles}>
+                    <td className="first-td">
+                      {t('content.companyRolesUpdate.overlay.role')}
+                    </td>
+                    <td className="second-td">{`${t(
+                      'content.companyRolesUpdate.' + role.companyRoles
+                    )}`}</td>
+                    <td>
+                      <Chip
+                        color={
+                          roles.indexOf(role.companyRoles) !== -1
+                            ? 'warning'
+                            : 'error'
+                        }
+                        label={
+                          roles.indexOf(role.companyRoles) !== -1
+                            ? t('content.companyRolesUpdate.overlay.added')
+                            : t('content.companyRolesUpdate.overlay.deselected')
+                        }
+                        type="plain"
+                        variant="filled"
+                      />
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
           <Typography variant="label1" className="changeRolesHeading">

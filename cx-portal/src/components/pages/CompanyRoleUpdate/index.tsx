@@ -54,20 +54,17 @@ export default function CompanyRoles() {
 
   const handleAgreementCheck = (isChecked: boolean, roleName: string) => {
     const roles = _.cloneDeep(companyRoles)
-    roles &&
-      roles.map(
-        (role: CompanyRolesResponse) =>
-          role.companyRoles === roleName &&
-          (role.companyRolesActive = isChecked)
-      )
+    roles.map(
+      (role: CompanyRolesResponse) =>
+        role.companyRoles === roleName && (role.companyRolesActive = isChecked)
+    )
     setCompanyRoles(roles)
 
     //to get selected roles
     const rolesArr: string[] = []
-    roles &&
-      roles.map(
-        (role) => role.companyRolesActive && rolesArr.push(role.companyRoles)
-      )
+    roles.map(
+      (role) => role.companyRolesActive && rolesArr.push(role.companyRoles)
+    )
     setSelectedRoles(rolesArr)
   }
 
@@ -128,41 +125,32 @@ export default function CompanyRoles() {
           </div>
           <div className="role-agreements">
             <ul>
-              {companyRoles &&
-                companyRoles.length &&
-                companyRoles.map(
-                  (role: CompanyRolesResponse, index: number) => {
-                    return (
-                      <li key={role.companyRoles}>
-                        <Checkbox
-                          label={`${t(
-                            'content.companyRolesUpdate.' + role.companyRoles
-                          )}`}
-                          checked={role.companyRolesActive}
-                          onChange={(e) =>
-                            handleAgreementCheck(
-                              e.target.checked,
-                              role.companyRoles
-                            )
-                          }
-                          className="checkbox-input"
-                        />
-                        <Typography variant="caption3" className="roleDesc">
-                          {t(
-                            'content.companyRolesUpdate.roleDesc' + (index + 1)
-                          )}
-                        </Typography>
-                        <Typography
-                          variant="caption3"
-                          className="roleDescDetail"
-                        >
-                          <KeyboardArrowDownIcon />
-                          {t('content.companyRolesUpdate.roleDescTitle')}
-                        </Typography>
-                      </li>
-                    )
-                  }
-                )}
+              {companyRoles.map((role: CompanyRolesResponse, index: number) => {
+                return (
+                  <li key={role.companyRoles}>
+                    <Checkbox
+                      label={`${t(
+                        'content.companyRolesUpdate.' + role.companyRoles
+                      )}`}
+                      checked={role.companyRolesActive}
+                      onChange={(e) =>
+                        handleAgreementCheck(
+                          e.target.checked,
+                          role.companyRoles
+                        )
+                      }
+                      className="checkbox-input"
+                    />
+                    <Typography variant="caption3" className="roleDesc">
+                      {t('content.companyRolesUpdate.roleDesc' + (index + 1))}
+                    </Typography>
+                    <Typography variant="caption3" className="roleDescDetail">
+                      <KeyboardArrowDownIcon />
+                      {t('content.companyRolesUpdate.roleDescTitle')}
+                    </Typography>
+                  </li>
+                )
+              })}
             </ul>
           </div>
           <hr className="seperation" />

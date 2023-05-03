@@ -152,6 +152,7 @@ const getCompanyRoleUpdateData = (callback: any) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
+    .catch((error) => console.log('Fetching Company Roles Data Failed'))
 }
 
 const CommonService = {
