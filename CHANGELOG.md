@@ -22,6 +22,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Two more new templates added
 * ImageComponent
    * Do not hide current on zoom in action
+* Admin board - Service
+   * Filter action issue fix
 
 ## 1.4.0
 

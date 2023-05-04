@@ -84,13 +84,13 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchInReviewServices: builder.query<ServiceResponse, ServiceRequestBody>({
       query: (body) => {
-        const statusId = `offerStatusIdFilter=${body.statusId}`
-        const sortingType = `sorting=${body.sortingType}`
-        const expr = `serviceName=${body.expr}`
+        const statusId = `&status=${body.statusId}`
+        const sortingType = `&sorting=${body.sortingType}`
+        const expr = `&serviceName=${body.expr}`
         return {
           url: `/api/services/serviceRelease/inReview?size=${PAGE_SIZE}&page=${
             body.page
-          }&${body.statusId && statusId}&${body.sortingType && sortingType}&${
+          }${body.statusId && statusId}${body.sortingType && sortingType}${
             body.expr && expr
           }`,
         }
