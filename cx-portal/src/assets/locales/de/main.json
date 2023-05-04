@@ -59,7 +59,8 @@
     "servicereleaseprocess": "Service Release Process",
     "serviceadminboard": "Admin Board",
     "servicesubscription": "Service Subscription Mgt",
-    "servicedetail": "Service Details"
+    "servicedetail": "Service Details",
+    "company-role": "Config - Company Role"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -1312,6 +1313,41 @@
       "heading": "Overview of the available Catena-X portal roles",
       "tab1": "Role Descriptions",
       "tab2": "Role Comparison"
+    },
+    "companyRolesUpdate": {
+      "headerTitle": "Roles",
+      "heading": "Change Company Role",
+      "description": "Below you can manage the roles your company takes in Catena-X.",
+      "step1": "You can change your current role by deselecting it and selecting another role.",
+      "step2": "If you already have more than one role for your company, you can deselect roles. At least one role must always be assigned to your company.",
+      "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
+      "note": "Please note: ",
+      "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
+      "ACTIVE_PARTICIPANT": "Active Participant",
+      "APP_PROVIDER": "App Provider",
+      "SERVICE_PROVIDER": "Service Provider",
+      "roleDesc1": "The participant role is covering the data provider, data consumer or app user scenario. As participant you are an active member of the network with enabled services to particiapte as contributer and user.",
+      "roleDesc2": "The participant role is covering the data provider, data consumer or app user scenario. As participant you are an active member of the network with enabled services to particiapte as contributer and user.",
+      "roleDesc3": "The participant role is covering the data provider, data consumer or app user scenario. As participant you are an active member of the network with enabled services to particiapte as contributer and user.",
+      "roleDescTitle": "Full role description",
+      "overlay": {
+        "title": "Do you really want to change your company's role(s) within Cantena-X?",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "selectedRolesTitle": "You have selected the following changes to your company's role profile:",
+        "role": "Role",
+        "added": "Added",
+        "deselected": "Deselected",
+        "expandLabel": "full role description",
+        "expandedLabel": "close role description",
+        "changeRolesHeading": "The change of your role has the following consequences:",
+        "rolesAddedHeading": "User roles added",
+        "rolesNoLongerHeading": "User roles no longer available",
+        "featuresAddedHeading": "Features added",
+        "featuresNoLongerHeading": "Features no longer available",
+        "termsHeading": "Please agree to the following terms & conditions for new role profile:",
+        "termsLabel": "Yes, I agree to this >terms and conditions",
+        "submit": "Commence role change"
+      }
     }
   },
   "navigation": {

@@ -77,6 +77,7 @@ import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/Se
 import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
+import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
 
 /**
  * ALL_PAGES
@@ -459,6 +460,11 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  {
+    name: PAGES.COMPANY_ROLE,
+    role: ROLES.UPDATE_COMPANY_ROLE,
+    element: <CompanyRoleUpdate />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -589,6 +595,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.EDIT_PORTAL_ROLES,
   },
+  {
+    name: OVERLAYS.UPDATE_COMPANY_ROLE,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -677,6 +686,7 @@ export const userMenuFull = [
   PAGES.TECHNICAL_SETUP,
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
+  PAGES.COMPANY_ROLE,
   PAGES.LOGOUT,
 ]
 

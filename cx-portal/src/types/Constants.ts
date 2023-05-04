@@ -94,6 +94,7 @@ export enum PAGES {
   SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
   ROLE_DETAILS = 'role-details',
   SERVICE_DETAIL = 'servicedetail',
+  COMPANY_ROLE = 'company-role',
 }
 
 export enum OVERLAYS {
@@ -134,6 +135,7 @@ export enum OVERLAYS {
   APP_DECLINE_ADMINBOARD = 'app_decline_adminboard',
   EDIT_PORTAL_ROLES = 'edit_portal_roles',
   SERVICE_DECLINE_ADMINBOARD = 'decline_service_release',
+  UPDATE_COMPANY_ROLE = 'update_company_role',
 }
 
 export enum ACTIONS {
@@ -199,6 +201,7 @@ export enum ROLES {
   APPROVE_SERVICE_RELEASE = 'activate_subscription',
   DECLINE_SERVICE_RELEASE = 'decline_service_release',
   VIEW_SERVICE_RELEASE = 'add_service_offering',
+  UPDATE_COMPANY_ROLE = 'update_company_role',
 }
 
 export enum HINTS {

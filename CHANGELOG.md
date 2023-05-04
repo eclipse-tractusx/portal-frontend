@@ -11,6 +11,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * technical integration style updates
 * News Section
    * Fixed UI of news section in home page
+* Company Role Updates
+   * New page for company role update
 * Sort section
    * Hover effect added
 * Notification
