@@ -50,6 +50,7 @@ type SnackbarNotificationWithButtonsType = {
   pageNotificationsObject?: NotificationObject
   pageSnackBarType?: SuccessErrorType.SUCCESS | SuccessErrorType.ERROR
   loader?: boolean
+  helpUrl: string
 }
 
 export default function SnackbarNotificationWithButtons({
@@ -65,6 +66,7 @@ export default function SnackbarNotificationWithButtons({
   pageNotificationsObject,
   pageSnackBarType = SuccessErrorType.SUCCESS,
   loader,
+  helpUrl,
 }: SnackbarNotificationWithButtonsType) {
   const { t } = useTranslation('servicerelease')
 
@@ -96,7 +98,12 @@ export default function SnackbarNotificationWithButtons({
         autoClose={true}
       />
       <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-      <Button sx={{ mr: 1 }} variant="outlined" startIcon={<HelpOutlineIcon />}>
+      <Button
+        sx={{ mr: 1 }}
+        variant="outlined"
+        startIcon={<HelpOutlineIcon />}
+        onClick={() => window.open(helpUrl, '_blank')}
+      >
         {t('footerButtons.help')}
       </Button>
       <IconButton

@@ -57,10 +57,6 @@ export default function CheckList({
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] = useState<any>()
 
-  const isCancelPresent = () => showCancel && getProgressValue() < 100
-
-  const getWidth = () => (isCancelPresent() ? '120px' : '130px')
-
   const getProgressValue = () => {
     let progressValue = 0
     checkListButtons?.forEach((button: ProgressButtonsProps) => {
@@ -195,7 +191,7 @@ export default function CheckList({
                   variant="filled"
                   icon={button?.icon}
                   sx={{
-                    width: getWidth(),
+                    width: '120px',
                     height: button.highlight ? '56px' : '40px',
                     padding: '8px 12px',
                     borderRadius: '8px',

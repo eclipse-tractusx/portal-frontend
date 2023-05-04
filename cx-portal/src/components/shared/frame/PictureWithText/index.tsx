@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next'
 import './PictureWithText.scss'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { getAssetBase } from 'services/EnvironmentService'
 
 type PictureWithTextProps = {
   image?: string
@@ -32,7 +33,7 @@ type PictureWithTextProps = {
 }
 
 export default function PictureWithText({
-  image = './teaser.png',
+  image = `${getAssetBase()}/images/content/teaser.png`,
   text,
   onButtonClicked,
   onHelpButtonClicked,

@@ -137,6 +137,13 @@ declare module '@mui/material/styles' {
     shadow?: string
   }
 
+  interface ButtonColor {
+    darkGrey?: string
+    lightGrey?: string
+    white?: string
+    yellow?: string
+  }
+
   interface Palette {
     icon: TypeIcons
     border: TypeBorders
@@ -154,6 +161,7 @@ declare module '@mui/material/styles' {
     label: TypeChipColor
     chip: TypeChipCardColor
     stepper: TypeStepper
+    buttons: ButtonColor
   }
   interface PaletteOptions {
     icon?: Partial<TypeIcons>
@@ -172,5 +180,6 @@ declare module '@mui/material/styles' {
     label?: Partial<TypeChipColor>
     chip?: Partial<TypeChipCardColor>
     stepper?: Partial<TypeStepper>
+    buttons?: Partial<ButtonColor>
   }
 }

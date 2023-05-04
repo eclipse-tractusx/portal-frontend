@@ -27,7 +27,7 @@ import {
 } from 'cx-portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 import Box from '@mui/material/Box'

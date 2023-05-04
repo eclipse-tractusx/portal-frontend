@@ -24,10 +24,12 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import ApprovalIcon from '@mui/icons-material/Approval'
 
 export interface AppContent {
-  appId: string
-  name: string
+  appId?: string
+  name?: string
   provider: string
   status: Variants
+  id?: string
+  title?: string
 }
 
 export interface CardDecisionProps {
@@ -65,103 +67,107 @@ export const CardDecision = ({
         marginLeft: '-10px',
       }}
     >
-      {items.map((item) => (
-        <Box
-          key={item.appId}
-          sx={{
-            paddingRight: '10px',
-            paddingLeft: '10px',
-            width: '270px',
-            minWidth: '270px',
-            marginBottom: '20px',
-          }}
-        >
+      {items.map((item) => {
+        const id = item.appId || item.id || ''
+        const name = item.title || item.name || ''
+        return (
           <Box
+            key={id}
             sx={{
-              boxSizing: 'border-box',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '16px 28px',
-              width: 'auto',
-              height: '200px',
-              background: '#FFFFFF',
-              border: '1px solid #DCDCDC',
-              borderRadius: '20px',
-              flex: 'none',
-              order: 1,
-              alignSelf: 'stretch',
-              flexGrow: 0,
-              cursor: 'pointer',
-              ':hover': {
-                boxShadow: theme.shadows['20'],
-              },
+              paddingRight: '10px',
+              paddingLeft: '10px',
+              width: '270px',
+              minWidth: '270px',
+              marginBottom: '20px',
             }}
-            onClick={() => onClick(item.appId)}
           >
-            <Typography
-              variant="h5"
+            <Box
               sx={{
-                height: '48px',
-                '-webkit-line-clamp': '2',
-                display: '-webkit-box',
-                '-webkit-box-orient': 'vertical',
-                overflow: 'hidden',
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '16px 28px',
+                width: 'auto',
+                height: '200px',
+                background: '#FFFFFF',
+                border: '1px solid #DCDCDC',
+                borderRadius: '20px',
+                flex: 'none',
+                order: 1,
+                alignSelf: 'stretch',
+                flexGrow: 0,
+                cursor: 'pointer',
+                ':hover': {
+                  boxShadow: theme.shadows['20'],
+                },
               }}
+              onClick={() => onClick(id)}
             >
-              {item.name}
-            </Typography>
-            <Typography
-              variant="label2"
-              sx={{
-                color: '#999999',
-                height: '48px',
-              }}
-            >
-              {item.provider}
-            </Typography>
-            <Box sx={{ marginBottom: '10px' }}>
-              <CardChip status={item.status} statusText={item.status} />
-            </Box>
-            {item.status?.toLowerCase() !== StatusVariants.active && (
-              <Box
+              <Typography
+                variant="h5"
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-end',
+                  height: '48px',
+                  '-webkit-line-clamp': '2',
+                  display: '-webkit-box',
+                  '-webkit-box-orient': 'vertical',
+                  overflow: 'hidden',
                 }}
               >
-                <IconButton
-                  sx={{
-                    padding: '5px',
-                    border: '1px solid #00AA55',
-                    margin: '0 10px',
-                    ':hover': {
-                      boxShadow: '0px 0px 0px 3px rgb(41 184 112 / 40%)',
-                      backgroundColor: 'transparent',
-                    },
-                  }}
-                  onClick={(e) => handleDecision(e, item.appId, 'approve')}
-                >
-                  <ApprovalIcon sx={{ color: '#00AA55' }} />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    padding: '5px',
-                    border: '1px solid #D91E18',
-                    ':hover': {
-                      boxShadow: '0px 0px 0px 3px rgb(217 30 24 / 40%)',
-                      backgroundColor: 'transparent',
-                    },
-                  }}
-                  onClick={(e) => handleDecision(e, item.appId, 'delete')}
-                >
-                  <DeleteOutlineIcon sx={{ color: '#D91E18' }} />
-                </IconButton>
+                {name}
+              </Typography>
+              <Typography
+                variant="label2"
+                sx={{
+                  color: '#999999',
+                  height: '48px',
+                }}
+              >
+                {item.provider}
+              </Typography>
+              <Box sx={{ marginBottom: '10px' }}>
+                <CardChip status={item.status} statusText={item.status} />
               </Box>
-            )}
+              {item.status?.toLowerCase() !== StatusVariants.active && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <IconButton
+                    sx={{
+                      padding: '5px',
+                      border: '1px solid #00AA55',
+                      margin: '0 10px',
+                      ':hover': {
+                        boxShadow: '0px 0px 0px 3px rgb(41 184 112 / 40%)',
+                        backgroundColor: 'transparent',
+                      },
+                    }}
+                    onClick={(e) => handleDecision(e, id, 'approve')}
+                  >
+                    <ApprovalIcon sx={{ color: '#00AA55' }} />
+                  </IconButton>
+                  <IconButton
+                    sx={{
+                      padding: '5px',
+                      border: '1px solid #D91E18',
+                      ':hover': {
+                        boxShadow: '0px 0px 0px 3px rgb(217 30 24 / 40%)',
+                        backgroundColor: 'transparent',
+                      },
+                    }}
+                    onClick={(e) => handleDecision(e, id, 'delete')}
+                  >
+                    <DeleteOutlineIcon sx={{ color: '#D91E18' }} />
+                  </IconButton>
+                </Box>
+              )}
+            </Box>
           </Box>
-        </Box>
-      ))}
+        )
+      })}
     </Box>
   )
 }

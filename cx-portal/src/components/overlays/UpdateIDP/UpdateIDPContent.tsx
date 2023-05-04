@@ -132,7 +132,6 @@ const UpdateIDPForm = ({
             name="clientId"
             label={t('field.clientId.name')}
             hint={t('field.clientId.hint')}
-            value={idp.oidc?.clientId || ''}
             validate={isIDPClientID}
             onValid={onChange}
           />

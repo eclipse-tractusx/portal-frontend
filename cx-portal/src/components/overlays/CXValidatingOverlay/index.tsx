@@ -26,7 +26,7 @@ import {
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
 import { IHashMap } from 'types/MainTypes'
 import { ValidatingForm, ValidationField } from './ValidatingForm'

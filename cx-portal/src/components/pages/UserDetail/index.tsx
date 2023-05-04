@@ -36,7 +36,7 @@ import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 
 export default function UserDetail() {
   const { t } = useTranslation()

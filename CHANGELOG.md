@@ -2,6 +2,54 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+## Unreleased
+
+## 1.4.0
+
+### Change
+* IdP Configuration
+  * ui styling and messages updated
+  * load element added for create/submit/next buttons
+  * implemented success & error messages depending on the error scenario while creating/configuring a new idp
+Shared UI Components
+  * Added typography for static table to update headline sizing
+
+### Feature
+* App Release Process
+  * added privacy policies section to "validate and publish" application form
+  * added app roles section to "validate and publish" application form
+  * added role description information inside the ui for "Technical Integration" step
+  * "help" button enabled along the app release process (form bottom)
+  * extended ui error handling for 500 backend error responses
+* Service Release Process
+  * enabled SERVICE_LEADIMAGE document upload
+  * "help" button enabled along the app release process (form bottom)
+  * extended ui error handling for 500 backend error responses
+* Service Subscription Management released (pre-version)
+* Service Release Admin Board released (pre-version)
+  * enabled search for services
+  * enabled filters
+  * displayed all services waiting for review and active inside the admin board
+  * enabled view service details
+  * enabled approve and decline service
+* App Marketplace
+  * added company subscription status information on the app overview (inside the card component)
+  * app detail page, new order status component implemented for subscription process
+
+### Technical Support
+* moved all portal repo images to asset repo
+* removed existing in code "disable eslinter" statements inside the app release process and fixed eslinter issues
+* service release endpoint path updated/changed due to an endpoint path cleanup on backend side ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+* app release process - app card language switch fixed to only switch the language inside the app card
+* changed release workflow to retrieve tag from github.ref_name (set-output command deprecated)
+* added release workflow for release-candidates
+
+### Bugfix
+* Notifications
+  * Service_Request message configured in locale files updated
+* top right user profile icon hover function enabled
+* image zoom height fixed
+
 ## 1.3.0
 
 ### Change
@@ -106,7 +154,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * changed additional document uploads from mandatory to optional and changed dropzone parameter size
 
 ### Technical Support
-* Improved page loading in several places (such as app overview) 
+* Improved page loading in several places (such as app overview)
 * Change local port to run behind reverse proxy
 * Improved responsiveness of use case introduction page and company role page
 

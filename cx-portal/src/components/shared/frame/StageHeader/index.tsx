@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { getAssetBase } from 'services/EnvironmentService'
 import SubHeaderTitle from '../SubHeaderTitle'
 
 export default function StageHeader({ title }: { title: string }) {
@@ -29,7 +30,7 @@ export default function StageHeader({ title }: { title: string }) {
       <img
         height="200px"
         loading="eager"
-        src="./../stage-header-background.png"
+        src={`${getAssetBase()}/images/frame/stage-header-background.png`}
         alt="Header Background"
       />
     </div>

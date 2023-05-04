@@ -23,7 +23,7 @@ import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import { OVERLAYS, PAGES } from 'types/Constants'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { Button, PageNotifications } from 'cx-portal-shared-components'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import UserService from 'services/UserService'
 import { resetNotification } from 'features/notification/actions'
 import { notificationSelector } from 'features/notification/slice'
@@ -31,6 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import './style.scss'
 import { TechnicalUserTable } from './TechnicalUserTable'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()
@@ -70,7 +71,10 @@ export default function TechnicalUserManagement() {
             </Button>
           </div>
           <div className="content-technical-user-image">
-            <img src="/teaser.png" alt={'alt tag info'} />
+            <img
+              src={`${getAssetBase()}/images/content/teaser.png`}
+              alt={'alt tag info'}
+            />
           </div>
         </div>
 

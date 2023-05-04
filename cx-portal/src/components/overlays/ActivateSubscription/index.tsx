@@ -34,7 +34,7 @@ import {
   SubscriptionActivationResponse,
   useAddUserSubscribtionMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './style.scss'

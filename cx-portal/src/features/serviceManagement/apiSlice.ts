@@ -139,14 +139,14 @@ export const apiSlice = createApi({
     }),
     createService: builder.mutation<void, createServiceType>({
       query: (data) => ({
-        url: `/api/services/addService`,
+        url: `/api/services/serviceRelease/addservice`,
         method: 'POST',
         body: data.body,
       }),
     }),
     saveService: builder.mutation<void, createServiceType>({
       query: (data) => ({
-        url: `/api/services/${data.id}`,
+        url: `/api/services/serviceRelease/${data.id}`,
         method: 'PUT',
         body: data.body,
       }),
@@ -185,7 +185,7 @@ export const apiSlice = createApi({
         formData.append('document', data.body.file)
 
         const response = await fetchWithBaseQuery({
-          url: `/api/services/updateservicedoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
+          url: `/api/services/serviceRelease/updateservicedoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
           method: 'PUT',
           body: formData,
         })
@@ -214,7 +214,7 @@ export const apiSlice = createApi({
     }),
     submitService: builder.mutation<any, string>({
       query: (id) => ({
-        url: `/api/services/${id}/submit`,
+        url: `/api/services/serviceRelease/${id}/submit`,
         method: 'PUT',
       }),
     }),
