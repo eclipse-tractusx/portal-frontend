@@ -20,6 +20,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * ROLE_UPDATE_APP_OFFER and ROLE_UPDATE_CORE_OFFER types added and corresponding contents updated
 * Static templete
    * Two more new templates added
+* Admin board - Service
+   * Filter action issue fix
 
 ## 1.4.0
 
