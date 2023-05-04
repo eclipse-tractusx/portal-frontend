@@ -94,6 +94,8 @@ export enum NotificationType {
   APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
   SERVICE_REQUEST = 'SERVICE_REQUEST',
   SERVICE_RELEASE_REQUEST = 'SERVICE_RELEASE_REQUEST',
+  ROLE_UPDATE_APP_OFFER = 'ROLE_UPDATE_APP_OFFER',
+  ROLE_UPDATE_CORE_OFFER = 'ROLE_UPDATE_CORE_OFFER',
 }
 
 export interface NotificationContent {
@@ -103,6 +105,11 @@ export interface NotificationContent {
   AppName?: string
   OfferName?: string
   RequestorCompanyName?: string
+  username?: string
+  coreOfferName?: string
+  appName?: string
+  removedRoles?: string
+  addedRoles?: string
 }
 
 export interface CXNotificationContent {

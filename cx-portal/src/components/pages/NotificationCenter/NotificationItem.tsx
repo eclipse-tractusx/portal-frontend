@@ -81,13 +81,27 @@ const NotificationContent = ({
   const appName = item.contentParsed?.AppName
   const companyName = item.contentParsed?.RequestorCompanyName
   const offerName = item.contentParsed?.OfferName
+  const userName = item.contentParsed?.username
+  const coreOfferName = item.contentParsed?.coreOfferName
+  const removedRoles = item.contentParsed?.removedRoles
+  const addedRoles = item.contentParsed?.addedRoles
+
   return (
     <>
       <div>
         <Trans
           ns="notification"
           i18nKey={`${item.typeId}.content`}
-          values={{ you, app: appName, offer: offerName, company: companyName }}
+          values={{
+            you,
+            app: appName,
+            offer: offerName,
+            company: companyName,
+            username: userName,
+            coreOfferName: coreOfferName,
+            removedRoles: removedRoles,
+            addedRoles: addedRoles,
+          }}
         >
           <NameLink
             fetchHook={useFetchUserDetailsQuery}
@@ -176,6 +190,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return (
         <NotificationContent item={item} navlinks={[PAGES.SERVICEADMINBOARD]} />
       )
+    case NotificationType.ROLE_UPDATE_APP_OFFER:
+      return <NotificationContent item={item} />
+    case NotificationType.ROLE_UPDATE_CORE_OFFER:
+      return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -281,7 +299,7 @@ export default function NotificationItem({
             >
               {' '}
               {t(`${item.typeId}.title`, {
-                app: item.contentParsed?.AppName,
+                app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
                 offer: item.contentParsed?.OfferName,
               })}
             </Typography>
