@@ -20,6 +20,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * ROLE_UPDATE_APP_OFFER and ROLE_UPDATE_CORE_OFFER types added and corresponding contents updated
 * Static templete
    * Two more new templates added
+* ImageComponent
+   * Do not hide current on zoom in action
 
 ## 1.4.0
 
