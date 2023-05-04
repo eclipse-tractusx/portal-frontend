@@ -77,7 +77,7 @@
   },
   "ROLE_UPDATE_CORE_OFFER": {
     "title": "Assigned User Roles Updated - Portal",
-    "content": "Dear {{username}}, \n\nyour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description [Role Matrix]{ {hostname}/role-details} \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
+    "content": "Dear {{username}}, \n\nyour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}\n\n"
   },
   "ROLE_UPDATE_APP_OFFER": {
     "title": "Assigned User Roles Updated - {{app}}",
@@ -100,7 +100,8 @@
     "companyrolesserviceprovider": "Get there",
     "usermanagement": "Get there",
     "servicesubscription": "Get there",
-    "serviceadminboard": "Get there"
+    "serviceadminboard": "Get there",
+    "role-details": "Open Role Matrix"
   },
   "due": "due",
   "search": "Enter your search value",

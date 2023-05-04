@@ -81,7 +81,7 @@
   },
   "ROLE_UPDATE_CORE_OFFER": {
     "title": "Assigned User Roles Updated - Portal",
-    "content": "Hallo {{username}}, \n\nIhre Portal-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Auswirkungen der Rollenänderung finden Sie in der Rollenmatrix und Rollenbeschreibung des Portals [Role Matrix]{ {hostname}/role-details} \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
+    "content": "Hallo {{username}}, \n\nIhre Portal-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Auswirkungen der Rollenänderung finden Sie in der Rollenmatrix und Rollenbeschreibung des Portals (Link folgend) \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}\n\n"
   },
   "ROLE_UPDATE_APP_OFFER": {
     "title": "Assigned User Roles Updated - {{app}}",
@@ -104,7 +104,8 @@
     "companyrolesserviceprovider": "Get there",
     "usermanagement": "Get there",
     "servicesubscription": "Get there",
-    "serviceadminboard": "Get there"
+    "serviceadminboard": "Get there",
+    "role-details": "Open Role Matrix"
   },
   "due": "fällig",
   "search": "...suchen",
