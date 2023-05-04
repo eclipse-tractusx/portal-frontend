@@ -69,13 +69,14 @@ import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldI
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
+import { UseCaseType } from 'features/appManagement/types'
 
 type FormDataType = {
   title: string
   provider: string
   shortDescriptionEN: string
   shortDescriptionDE: string
-  useCaseCategory: string[] | useCasesItem[]
+  useCaseCategory: string[] | useCasesItem[] | UseCaseType[]
   appLanguage: string[]
   price: string
   uploadImage: {
