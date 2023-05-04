@@ -1,0 +1,54 @@
+.MuiDialog-paper {
+  max-width: 60% !important;
+}
+.css-1m75dou-MuiDialogContent-root {
+  padding: 0px 130px 32px !important;
+}
+.role-overlay {
+  margin-bottom: 50px;
+  table {
+    border-collapse: collapse;
+    width: 95%;
+    margin: 20px auto 60px;
+  }
+
+  td,
+  th {
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .first-td {
+    width: 30%;
+  }
+  .second-td {
+    width: 60%;
+  }
+  .mb-30 {
+    margin-bottom: 30px;
+  }
+  .mb-80 {
+    margin-bottom: 80px;
+  }
+  .pl-40 {
+    padding-left: 40px;
+  }
+  .changeRolesHeading {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+  }
+  .rolesAddedHeading {
+    margin: 15px auto 40px;
+  }
+  .role-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    > span {
+      width: 165px;
+    }
+  }
+}
