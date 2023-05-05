@@ -30,12 +30,7 @@ export default function VideoTextSideBySide({
   return (
     <div className={'imageVideoTextSideBySide'}>
       <div>
-        <iframe
-          title="Video"
-          className="video"
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+        <video className="video" controls src={provider.videoUrl} />
       </div>
       <div className={'titleDescriptionBody'}>
         <Typography variant="h2">{provider.title}</Typography>

@@ -30,14 +30,7 @@ export default function TextVideoSideBySide({
   return (
     <ImageVideoWrapper
       provider={provider}
-      children={
-        <iframe
-          className={'video'}
-          title="Video"
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
-      }
+      children={<video className="video" controls src={provider.videoUrl} />}
     />
   )
 }
