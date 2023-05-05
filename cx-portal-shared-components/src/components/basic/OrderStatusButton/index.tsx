@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import { Button, ButtonProps } from '../Button'
 import { Typography } from '../Typography'
@@ -33,6 +33,7 @@ interface ButtonInputData {
 interface OrderStatusButtonProps extends ButtonProps {
   label: string
   buttonData: ButtonInputData[]
+  selectable?: boolean
   onButtonClick?: React.MouseEventHandler
 }
 
@@ -40,9 +41,12 @@ export const OrderStatusButton = ({
   label,
   color,
   buttonData,
+  selectable,
   onButtonClick,
   ...props
 }: OrderStatusButtonProps) => {
+  const theme = useTheme()
+
   const handleClick = (e: any) => {
     onButtonClick && onButtonClick(e)
   }
@@ -66,6 +70,7 @@ export const OrderStatusButton = ({
           background: background,
           height: '55px',
           textAlign: 'left',
+          cursor: 'default',
           ':hover': {
             background: background,
           },
@@ -121,6 +126,14 @@ export const OrderStatusButton = ({
           width: '100%',
           position: 'relative',
           zIndex: '5',
+          cursor: selectable ? 'pointer' : 'default',
+          ':hover': {
+            background: selectable ? color : color && theme.palette[color].main,
+            boxShadow: selectable ? '' : 'none',
+          },
+          ':active': {
+            boxShadow: selectable ? '' : 'none',
+          },
         }}
         {...props}
       >

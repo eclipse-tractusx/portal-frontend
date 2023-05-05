@@ -27,6 +27,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Filter action issue fix
 * Package
    * React Player to support all types of video urls
+* Appdetails
+   * App Images size and responsivenes
+   * Subscription Status hover changes
 
 ## 1.4.0
 

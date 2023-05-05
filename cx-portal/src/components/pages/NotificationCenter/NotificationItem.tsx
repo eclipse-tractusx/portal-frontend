@@ -99,8 +99,8 @@ const NotificationContent = ({
             company: companyName,
             username: userName,
             coreOfferName: coreOfferName,
-            removedRoles: removedRoles,
-            addedRoles: addedRoles,
+            removedRoles: removedRoles ? removedRoles : '-',
+            addedRoles: addedRoles ? addedRoles : '-',
           }}
         >
           <NameLink
@@ -193,7 +193,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.ROLE_UPDATE_APP_OFFER:
       return <NotificationContent item={item} />
     case NotificationType.ROLE_UPDATE_CORE_OFFER:
-      return <NotificationContent item={item} />
+      return <NotificationContent item={item} navlinks={[PAGES.ROLE_DETAILS]} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -288,7 +288,13 @@ export default function NotificationItem({
               {dayjs(item.created).format('DD.MM.YY HH:mm')}
             </Typography>
           </div>
-          <div className="middleSection">
+          <div
+            className={
+              item.notificationTopic === 'ACTION'
+                ? 'shortMiddleSection'
+                : 'longMiddleSection'
+            }
+          >
             <Typography
               variant="h1"
               style={{
@@ -309,29 +315,21 @@ export default function NotificationItem({
               </div>
             )}
           </div>
-
-          <div
-            className="actionButton"
-            style={{
-              backgroundColor:
+          {item.notificationTopic === 'ACTION' && (
+            <div
+              className={
                 item.notificationTopic === 'ACTION' && open
-                  ? '#FDB943'
-                  : 'transparent',
-            }}
-          >
-            <Typography
-              variant="h1"
-              style={{
-                fontWeight: 600,
-                marginLeft: '10px',
-                fontSize: '11px',
-              }}
+                  ? 'actionButton'
+                  : 'actionButtonTransparent'
+              }
             >
-              {item.notificationTopic === 'ACTION' && open
-                ? t('actionRequired')
-                : ''}
-            </Typography>
-          </div>
+              <Typography variant="h1" className="actionRequiredText">
+                {item.notificationTopic === 'ACTION' && open
+                  ? t('actionRequired')
+                  : ''}
+              </Typography>
+            </div>
+          )}
           <div className="lastSection">
             <div className="padding-r-5">
               {!open && <KeyboardArrowDownIcon sx={{ fontSize: 15 }} />}
