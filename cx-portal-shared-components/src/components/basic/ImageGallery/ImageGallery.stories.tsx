@@ -33,7 +33,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const GridMediumSquareGallery = Template.bind({})
 GridMediumSquareGallery.args = {
-  grid: true,
   gallery: [
     {
       url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
