@@ -50,6 +50,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const { data } = useFetchRolesQuery()
 
+  const newSelectedRoles = data?.filter(
+    (role) =>
+      roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
+  )
+  const newDeselectedRoles = data?.filter(
+    (role) => roles.indexOf(role.companyRoles) === -1
+  )
+
   const [dataArray, setDataArray] = useState<SampleData>()
 
   useEffect(() => {
@@ -126,76 +134,86 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
           </Typography>
 
           {/* Fetch Roles Data of Added Roles */}
-          <div className="mb-30">
-            <Typography variant="h3" className="rolesAddedHeading">
-              {t('content.companyRolesUpdate.overlay.rolesAddedHeading')}
-            </Typography>
-            {data?.map((role: CompanyRolesResponse) => {
-              return (
-                roles.indexOf(role.companyRoles) !== -1 &&
-                dataArray &&
-                dataArray[
-                  role.companyRoles as keyof SampleData
-                ]?.selected.roles.map((sampleRole: RoleData) => {
-                  return getRolesList(sampleRole)
-                })
-              )
-            })}
-          </div>
+          {newSelectedRoles && newSelectedRoles.length > 0 && (
+            <div className="mb-30">
+              <Typography variant="h3" className="rolesAddedHeading">
+                {t('content.companyRolesUpdate.overlay.rolesAddedHeading')}
+              </Typography>
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  roles.indexOf(role.companyRoles) !== -1 &&
+                  dataArray &&
+                  dataArray[
+                    role.companyRoles as keyof SampleData
+                  ]?.selected.roles.map((sampleRole: RoleData) => {
+                    return getRolesList(sampleRole)
+                  })
+                )
+              })}
+            </div>
+          )}
 
           {/* Fetch Roles Data of Removed Roles */}
-          <div className="mb-30">
-            <Typography variant="h3" className="rolesAddedHeading">
-              {t('content.companyRolesUpdate.overlay.rolesNoLongerHeading')}
-            </Typography>
-            {data?.map((role: CompanyRolesResponse) => {
-              return (
-                roles.indexOf(role.companyRoles) === -1 &&
-                dataArray &&
-                dataArray[
-                  role.companyRoles as keyof SampleData
-                ]?.deselected.roles.map((sampleRole: RoleData) => {
-                  return getRolesList(sampleRole)
-                })
-              )
-            })}
-          </div>
+          {newDeselectedRoles && newDeselectedRoles.length > 0 && (
+            <div className="mb-30">
+              <Typography variant="h3" className="rolesAddedHeading">
+                {t('content.companyRolesUpdate.overlay.rolesNoLongerHeading')}
+              </Typography>
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  roles.indexOf(role.companyRoles) === -1 &&
+                  dataArray &&
+                  dataArray[
+                    role.companyRoles as keyof SampleData
+                  ]?.deselected.roles.map((sampleRole: RoleData) => {
+                    return getRolesList(sampleRole)
+                  })
+                )
+              })}
+            </div>
+          )}
 
-          {/* Fetch Features of Added Roles */}
-          <div className="mb-30">
-            <Typography variant="h3" className="rolesAddedHeading">
-              {t('content.companyRolesUpdate.overlay.featuresAddedHeading')}
-            </Typography>
-            {data?.map((role: CompanyRolesResponse) => {
-              return (
-                roles.indexOf(role.companyRoles) !== -1 &&
-                dataArray &&
-                dataArray[
-                  role.companyRoles as keyof SampleData
-                ]?.selected.features.map((sampleRole: RoleData) => {
-                  return getRolesList(sampleRole)
-                })
-              )
-            })}
-          </div>
+          {/* Fetch Features of Added Features */}
+          {newSelectedRoles && newSelectedRoles.length > 0 && (
+            <div className="mb-30">
+              <Typography variant="h3" className="rolesAddedHeading">
+                {t('content.companyRolesUpdate.overlay.featuresAddedHeading')}
+              </Typography>
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  roles.indexOf(role.companyRoles) !== -1 &&
+                  dataArray &&
+                  dataArray[
+                    role.companyRoles as keyof SampleData
+                  ]?.selected.features.map((sampleRole: RoleData) => {
+                    return getRolesList(sampleRole)
+                  })
+                )
+              })}
+            </div>
+          )}
 
-          {/* Fetch Features of Removed Roles */}
-          <div className="mb-80">
-            <Typography variant="h3" className="rolesAddedHeading">
-              {t('content.companyRolesUpdate.overlay.featuresNoLongerHeading')}
-            </Typography>
-            {data?.map((role: CompanyRolesResponse) => {
-              return (
-                roles.indexOf(role.companyRoles) === -1 &&
-                dataArray &&
-                dataArray[
-                  role.companyRoles as keyof SampleData
-                ]?.selected.features.map((sampleRole: RoleData) => {
-                  return getRolesList(sampleRole)
-                })
-              )
-            })}
-          </div>
+          {/* Fetch Features of Removed Features */}
+          {newDeselectedRoles && newDeselectedRoles.length > 0 && (
+            <div className="mb-80">
+              <Typography variant="h3" className="rolesAddedHeading">
+                {t(
+                  'content.companyRolesUpdate.overlay.featuresNoLongerHeading'
+                )}
+              </Typography>
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  roles.indexOf(role.companyRoles) === -1 &&
+                  dataArray &&
+                  dataArray[
+                    role.companyRoles as keyof SampleData
+                  ]?.selected.features.map((sampleRole: RoleData) => {
+                    return getRolesList(sampleRole)
+                  })
+                )
+              })}
+            </div>
+          )}
 
           <div className="pl-40">
             <Typography variant="h4" className="rolesAddedHeading">
