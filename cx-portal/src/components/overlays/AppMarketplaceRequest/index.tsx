@@ -164,6 +164,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           color={'primary'}
           label={t('content.appdetail.subscribe')}
           buttonData={OrderStatusButtonData}
+          selectable={false}
         />
       </DialogContent>
 

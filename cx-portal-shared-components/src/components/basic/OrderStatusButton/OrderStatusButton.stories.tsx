@@ -36,6 +36,7 @@ export const OrderStatusButton = Template.bind({})
 OrderStatusButton.args = {
   label: 'Subscribe',
   color: 'primary',
+  selectable: false,
   buttonData: [
     {
       isIcon: false,
