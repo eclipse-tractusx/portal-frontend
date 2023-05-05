@@ -69,13 +69,14 @@ import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldI
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
+import { UseCaseType } from 'features/appManagement/types'
 
 type FormDataType = {
   title: string
   provider: string
   shortDescriptionEN: string
   shortDescriptionDE: string
-  useCaseCategory: string[] | useCasesItem[]
+  useCaseCategory: string[] | useCasesItem[] | UseCaseType[]
   appLanguage: string[]
   price: string
   uploadImage: {
@@ -349,7 +350,11 @@ export default function AppMarketCard() {
       title: data.title,
       provider: data.provider,
       salesManagerId: salesManagerId,
-      useCaseIds: data.useCaseCategory,
+      useCaseIds: data.useCaseCategory.some((value) => {
+        return typeof value == 'object'
+      })
+        ? data.useCaseCategory?.map((item: any) => item.id)
+        : data.useCaseCategory,
       descriptions: [
         {
           languageCode: 'de',
