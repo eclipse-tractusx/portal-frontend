@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { Carousel } from '../Carousel'
 import { ImageItem } from './ImageItem'
 import { ImageType } from './types'
 
@@ -32,25 +33,28 @@ export const ImageGallery = ({
   modalWidth?: string
   align?: string
 }) => (
-  <div
-    style={{
-      display: grid ? 'grid' : 'flex',
-      gap: '30px',
-      placeContent: align,
-      gridTemplateColumns: 'repeat(3, 1fr)',
-    }}
+  <Carousel
+    gapBetweenSlides={32}
+    gapCarouselTop={100}
+    dots={false}
+    infinite
+    itemHeight={279}
+    itemWidth={266}
+    slidesToShow={3}
   >
     {gallery.map((image) => (
-      <ImageItem
-        key={image.url}
-        url={image.url}
-        text={image.text}
-        size={image.size || 'medium-rectangle'}
-        hover={image.hover || true}
-        borderRadius={image.borderRadius || true}
-        shadow={image.shadow || true}
-        modalWidth={modalWidth}
-      />
+      <div key={image.url} style={{ height: '100%' }}>
+        <img
+          src={image.url}
+          alt={image.text}
+          style={{
+            height: '60%',
+            width: '100%',
+            objectFit: 'cover',
+            borderRadius: '10px',
+          }}
+        />
+      </div>
     ))}
-  </div>
+  </Carousel>
 )
