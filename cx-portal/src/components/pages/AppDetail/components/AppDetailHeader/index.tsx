@@ -127,6 +127,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         label={getStatusLabel(subscribeStatus)}
         color={btnColor.color}
         buttonData={OrderStatusButtonItems}
+        selectable={
+          subscribeStatus === SubscriptionStatus.INACTIVE ? true : false
+        }
         onButtonClick={() =>
           subscribeStatus === SubscriptionStatus.INACTIVE &&
           user.roles.indexOf('subscribe_apps') !== -1 &&

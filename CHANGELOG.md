@@ -28,6 +28,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Change roles success/error overlay fix
 * App Overview
    * Dropdown UI broken fix
+* Appdetails
+   * App Images size and responsivenes
+   * Subscription Status hover changes
 
 ## 1.4.0
 

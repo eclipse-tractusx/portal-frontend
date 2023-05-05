@@ -89,5 +89,21 @@ FlexGallery.args = {
       borderRadius: false,
       shadow: true,
     },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: false,
+      shadow: true,
+    },
+    {
+      url: 'https://cdn.pixabay.com/photo/2017/09/05/10/20/business-2717066_1280.jpg',
+      text: 'Lorem Image Caption',
+      size: 'small-square',
+      hover: false,
+      borderRadius: false,
+      shadow: true,
+    },
   ],
 }
