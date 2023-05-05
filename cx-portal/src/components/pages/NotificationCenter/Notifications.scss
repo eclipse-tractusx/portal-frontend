@@ -136,7 +136,13 @@
     width: 15%;
   }
 
-  .middleSection {
+  .shortMiddleSection {
+    width: 50%;
+    flex-direction: column;
+  }
+
+  .longMiddleSection {
+    width: 70%;
     flex-direction: column;
   }
 
@@ -152,6 +158,15 @@
     text-align: center;
     border-radius: 6px;
     width: 20%;
+    background-color: #fdb943;
+  }
+
+  .actionButtonTransparent {
+    padding: 6px 12px 6px 6px;
+    text-align: center;
+    border-radius: 6px;
+    width: 20%;
+    background-color: transparent;
   }
 
   .searchContainer {

@@ -289,10 +289,11 @@ export default function NotificationItem({
             </Typography>
           </div>
           <div
-            className="middleSection"
-            style={{
-              width: item.notificationTopic === 'ACTION' ? '50%' : '70%',
-            }}
+            className={
+              item.notificationTopic === 'ACTION'
+                ? 'shortMiddleSection'
+                : 'longMiddleSection'
+            }
           >
             <Typography
               variant="h1"
@@ -316,13 +317,11 @@ export default function NotificationItem({
           </div>
           {item.notificationTopic === 'ACTION' && (
             <div
-              className="actionButton"
-              style={{
-                backgroundColor:
-                  item.notificationTopic === 'ACTION' && open
-                    ? '#FDB943'
-                    : 'transparent',
-              }}
+              className={
+                item.notificationTopic === 'ACTION' && open
+                  ? 'actionButton'
+                  : 'actionButtonTransparent'
+              }
             >
               <Typography
                 variant="h1"
