@@ -27,6 +27,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Appdetails
    * App Images size and responsivenes
    * Subscription Status hover changes
+* Fix build error issue
 
 ## 1.4.0
 
