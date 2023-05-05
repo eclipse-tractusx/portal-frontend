@@ -43,10 +43,9 @@ import {
   ConsentStatusEnum,
   DocumentData,
   DocumentTypeId,
+  rolesType,
 } from 'features/appManagement/apiSlice'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import i18next, { changeLanguage } from 'i18next'
-import I18nService from 'services/I18nService'
 import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
@@ -59,6 +58,10 @@ import {
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
+import { uniqueId } from 'lodash'
+import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
+import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
 import 'components/styles/document.scss'
 
 export interface DefaultValueType {
@@ -88,9 +91,11 @@ interface CommonValidateAndPublishType {
   error: { title: string; message: string }
   helpText: string
   submitButton: string
+  helpUrl: string
   values: DefaultValueType | any
   type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
   serviceTypes?: string
+  rolesData?: rolesType[]
 }
 
 export default function CommonValidateAndPublish({
@@ -116,6 +121,8 @@ export default function CommonValidateAndPublish({
   values,
   type,
   serviceTypes,
+  rolesData,
+  helpUrl,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -125,6 +132,7 @@ export default function CommonValidateAndPublish({
   const [multipleImages, setMultipleImages] = useState<any[]>([])
   const [defaultValues, setDefaultValues] = useState<DefaultValueType>()
   const [loading, setLoading] = useState<boolean>(false)
+  const [cardLanguage, setCardLanguage] = useState<string>('en')
 
   const fetchImage = useCallback(
     async (documentId: string, documentType: string) => {
@@ -225,6 +233,23 @@ export default function CommonValidateAndPublish({
     else if (item === 'price') return statusData?.price
   }
 
+  const renderPrivacy = (policy: string) => {
+    switch (policy) {
+      case PrivacyPolicyType.COMPANY_DATA:
+        return <Apartment className="policy-icon" />
+      case PrivacyPolicyType.USER_DATA:
+        return <Person className="policy-icon" />
+      case PrivacyPolicyType.LOCATION:
+        return <LocationOn className="policy-icon" />
+      case PrivacyPolicyType.BROWSER_HISTORY:
+        return <Web className="policy-icon" />
+      case PrivacyPolicyType.NONE:
+        return <Info className="policy-icon" />
+      default:
+        return <Apartment className="policy-icon" />
+    }
+  }
+
   return (
     <div className="validate-and-publish">
       <ReleaseStepHeader
@@ -249,7 +274,7 @@ export default function CommonValidateAndPublish({
                 description={
                   statusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
-                      lang.languageCode === i18next.language
+                      lang.languageCode === cardLanguage
                   )[0]?.shortDescription
                 }
                 imageSize="normal"
@@ -261,11 +286,9 @@ export default function CommonValidateAndPublish({
               />
               <div style={{ margin: '35px auto -16px 65px' }}>
                 <LanguageSwitch
-                  current={i18next.language}
-                  languages={I18nService.supportedLanguages.map((key) => ({
-                    key,
-                  }))}
-                  onChange={changeLanguage}
+                  current={cardLanguage}
+                  languages={[{ key: 'de' }, { key: 'en' }]}
+                  onChange={(lang) => setCardLanguage(lang)}
                 />
               </div>
             </Grid>
@@ -357,6 +380,41 @@ export default function CommonValidateAndPublish({
         )}
 
         <Divider className="verify-validate-form-divider" />
+        {statusData?.privacyPolicies && (
+          <>
+            <div className="appdetail-privacy" style={{ marginBottom: '0px' }}>
+              <div className="privacy-content">
+                <Typography variant="h4" sx={{ mb: 4 }}>
+                  {t('content.appdetail.privacy.heading')}
+                </Typography>
+                <Typography variant="body2" className="form-field">
+                  {t('content.appdetail.privacy.message')}
+                </Typography>
+              </div>
+              {statusData?.privacyPolicies &&
+              statusData?.privacyPolicies.length ? (
+                <div className="policies-list" style={{ maxWidth: '600px' }}>
+                  {statusData?.privacyPolicies?.map((policy: string) => (
+                    <Typography
+                      variant="body2"
+                      className="policy-name"
+                      key={uniqueId(policy)}
+                    >
+                      {renderPrivacy(policy)}
+                      {t(`content.appdetail.privacy.${policy}`)}
+                    </Typography>
+                  ))}
+                </div>
+              ) : (
+                <Typography variant="body2" className="table-text">
+                  {t('content.appdetail.privacy.notSupportedMessage')}
+                </Typography>
+              )}
+            </div>
+            <Divider className="verify-validate-form-divider" />
+          </>
+        )}
+
         {conformityDocument && (
           <>
             <Typography variant="h4" sx={{ mb: 4 }}>
@@ -391,6 +449,7 @@ export default function CommonValidateAndPublish({
             <Divider className="verify-validate-form-divider" />
           </>
         )}
+
         <Typography variant="h4" sx={{ mb: 4 }}>
           {documentsTitle}
         </Typography>
@@ -399,7 +458,15 @@ export default function CommonValidateAndPublish({
             {defaultValues.documentsDescription}
           </Typography>
         )}
-        {statusData?.documents && Object.keys(statusData.documents)?.length ? (
+        {statusData?.documents &&
+        Object.keys(statusData.documents)?.length &&
+        (statusData?.documents.hasOwnProperty(
+          DocumentTypeId.ADDITIONAL_DETAILS
+        ) ||
+          statusData?.documents.hasOwnProperty(DocumentTypeId.APP_CONTRACT) ||
+          statusData?.documents.hasOwnProperty(
+            DocumentTypeId.APP_TECHNICAL_INFORMATION
+          )) ? (
           Object.keys(statusData.documents).map(
             (item) =>
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
@@ -425,6 +492,32 @@ export default function CommonValidateAndPublish({
           <Typography variant="caption2" className="not-available">
             {t('global.errors.noDocumentsAvailable')}
           </Typography>
+        )}
+
+        {rolesData && (
+          <>
+            <Divider className="verify-validate-form-divider" />
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {t('content.adminboardDetail.roles.heading')}
+            </Typography>
+            <Typography variant="body2" className="form-field">
+              {t('content.adminboardDetail.roles.message')}
+            </Typography>
+            {rolesData.length > 0 ? (
+              <Grid container spacing={2} sx={{ margin: '0px' }}>
+                {rolesData?.map((role) => (
+                  <Grid item xs={6} key={role.roleId}>
+                    <Typography variant="label2">{role.role}</Typography>
+                    <Typography variant="body3">{role.description}</Typography>
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Typography variant="caption2" className="not-available">
+                {t('global.errors.noRolesAvailable')}
+              </Typography>
+            )}
+          </>
         )}
 
         <Divider className="verify-validate-form-divider" />
@@ -507,6 +600,7 @@ export default function CommonValidateAndPublish({
           startIcon={<HelpOutlineIcon />}
           variant="outlined"
           sx={{ mr: 1 }}
+          onClick={() => window.open(helpUrl, '_blank')}
         >
           {helpText}
         </Button>

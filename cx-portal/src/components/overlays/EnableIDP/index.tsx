@@ -27,7 +27,7 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
   useEnableIDPMutation,
@@ -38,6 +38,8 @@ import {
 import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
+import UserService from 'services/UserService'
+import { error, success } from 'services/NotifyService'
 
 export const EnableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -66,10 +68,11 @@ export const EnableIDP = ({ id }: { id: string }) => {
       }
       try {
         await updateUserIDP(idpUser).unwrap()
-      } catch (e) {
-        console.log(e)
+        dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
+        success(t('enable.success'))
+      } catch (err) {
+        error(t('enable.error'), '', err as object)
       }
-      dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
     } catch (err) {
       console.log(err)
     }
@@ -87,6 +90,9 @@ export const EnableIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <Typography>{t('enable.desc')}</Typography>
+        <Typography variant="body1">
+          {t('enable.current', { name: UserService.getName() })}
+        </Typography>
         <EnableIDPContent
           onValid={setIdpEnableData}
           identityProviderId={id}

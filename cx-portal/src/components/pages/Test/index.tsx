@@ -18,13 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import FormTest from './Form/index.form.simple'
+import { Button } from 'cx-portal-shared-components'
+import { error, success } from 'services/NotifyService'
+
+const checkDate = (date: number) =>
+  date % 2
+    ? success('current time', 'even', date)
+    : error('current time', 'odd ', date)
 
 export default function Test() {
   return (
     <main>
       <section>
-        <FormTest />
+        <Button onClick={() => checkDate(Date.now())}>even time?</Button>
       </section>
     </main>
   )

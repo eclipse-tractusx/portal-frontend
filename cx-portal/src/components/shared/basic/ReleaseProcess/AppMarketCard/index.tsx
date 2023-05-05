@@ -68,6 +68,7 @@ import ConnectorFormInputFieldShortAndLongDescription from '../components/Connec
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
+import RetryOverlay from '../components/RetryOverlay'
 
 type FormDataType = {
   title: string
@@ -128,34 +129,45 @@ export default function AppMarketCard() {
   const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
+  const {
+    data: fetchAppStatus,
+    isError,
+    refetch,
+  } = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
-  }).data
+  })
   const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
   const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const [enableRetryOverlay, setEnableRetryOverlay] = useState<boolean>(false)
 
-  const defaultValues = {
-    title: appStatusData?.title,
-    provider: appStatusData?.provider,
-    price: appStatusData?.price,
-    useCaseCategory: appStatusData?.useCase,
-    appLanguage: appStatusData?.supportedLanguageCodes,
-    salesManagerId: appStatusData?.salesManagerId,
-    shortDescriptionEN:
-      appStatusData?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'en'
-      )[0]?.shortDescription || '',
-    shortDescriptionDE:
-      appStatusData?.descriptions?.filter(
-        (appStatus: any) => appStatus.languageCode === 'de'
-      )[0]?.shortDescription || '',
-    uploadImage: {
-      leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-      alt: appStatusData?.leadPictureUri || '',
-    },
-    privacyPolicies: appStatusData?.privacyPolicies || [],
-  }
+  useEffect(() => {
+    setEnableRetryOverlay(appId && isError ? true : false)
+  }, [appId, isError])
+
+  const defaultValues = useMemo(() => {
+    return {
+      title: appStatusData?.title,
+      provider: appStatusData?.provider,
+      price: appStatusData?.price,
+      useCaseCategory: appStatusData?.useCase,
+      appLanguage: appStatusData?.supportedLanguageCodes,
+      salesManagerId: appStatusData?.salesManagerId,
+      shortDescriptionEN:
+        appStatusData?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'en'
+        )[0]?.shortDescription || '',
+      shortDescriptionDE:
+        appStatusData?.descriptions?.filter(
+          (appStatus: any) => appStatus.languageCode === 'de'
+        )[0]?.shortDescription || '',
+      uploadImage: {
+        leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
+        alt: appStatusData?.leadPictureUri || '',
+      },
+      privacyPolicies: appStatusData?.privacyPolicies || [],
+    }
+  }, [appStatusData, cardImage])
 
   const {
     handleSubmit,
@@ -189,7 +201,6 @@ export default function AppMarketCard() {
       )
       setDefaultAppLanguageVal(defaultAppLanguages)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useCasesList, appStatusData, appLanguagesList])
 
   useEffect(() => {
@@ -420,6 +431,19 @@ export default function AppMarketCard() {
 
   return (
     <div className="app-market-card">
+      <RetryOverlay
+        openDialog={enableRetryOverlay}
+        handleOverlayClose={() => {
+          setEnableRetryOverlay(false)
+          navigate(-1)
+        }}
+        handleConfirmClick={() => {
+          refetch()
+          setEnableRetryOverlay(false)
+        }}
+        title={t('content.apprelease.retryOverlay.title')}
+        description={t('content.apprelease.retryOverlay.description')}
+      />
       <ReleaseStepHeader
         title={t('content.apprelease.appMarketCard.headerTitle')}
         description={t('content.apprelease.appMarketCard.headerDescription')}
@@ -767,6 +791,7 @@ export default function AppMarketCard() {
         )}
         isValid={isValid}
         loader={loading}
+        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
       />
       <PageSnackbar
         autoClose

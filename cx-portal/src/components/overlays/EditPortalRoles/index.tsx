@@ -34,7 +34,7 @@ import {
   useUpdatePortalRolesMutation,
 } from 'features/admin/appuserApiSlice'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
-import { closeOverlay, show } from 'features/control/overlay/actions'
+import { closeOverlay, show } from 'features/control/overlay'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

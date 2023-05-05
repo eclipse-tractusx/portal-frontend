@@ -27,13 +27,12 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  PageSnackbar,
   Radio,
   Textarea,
   Typography,
 } from 'cx-portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useFetchIDPDetailQuery,
@@ -47,40 +46,24 @@ import {
   editIDPUserSelector,
   FORMS,
   storeForm,
-} from 'features/control/formSlice'
+} from 'features/control/form'
 import { useDropzone } from 'react-dropzone'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { error, success } from 'services/NotifyService'
 
-enum IDPSetupState {
-  NONE = 'NONE',
+enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
   SUCCESS_UPLOAD_USERS = 'SUCCESS_UPLOAD_USERS',
+  SUCCESS_DELETE_IDP = 'SUCCESS_DELETE_IDP',
   ERROR_MULTIPLE_FILES = 'ERROR_MULTIPLE_FILES',
   ERROR_INVALID_TYPE = 'ERROR_INVALID_TYPE',
   ERROR_INVALID_FORMAT = 'ERROR_INVALID_FORMAT',
   ERROR_UPLOAD_USERS = 'ERROR_UPLOAD_USERS',
+  ERROR_DELETE_IDP = 'ERROR_DELETE_IDP',
 }
 
 enum FileFormat {
   JSON = 'JSON',
   CSV = 'CSV',
-}
-
-const IDPSetupNotification = ({ state }: { state: IDPSetupState }) => {
-  const { t } = useTranslation('idp')
-  const error = state.toString().startsWith('ERROR')
-  return (
-    <PageSnackbar
-      autoClose
-      title={t(
-        `state.${error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}`
-      )}
-      description={t(`state.${state}`)}
-      open={state !== IDPSetupState.NONE}
-      severity={error ? SuccessErrorType.ERROR : SuccessErrorType.SUCCESS}
-      showIcon
-    />
-  )
 }
 
 const SelectFormat = ({
@@ -124,14 +107,14 @@ const AddusersIDPResponse = ({
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('users.success.title')}
-        intro={t('users.success.subtitle')}
+        title={t('userssuccess.title')}
+        intro={t('userssuccess.subtitle')}
         closeWithIcon={true}
         onCloseWithIcon={() => storeResponse('')}
       />
       <DialogContent>
         <div>
-          <Typography>{t('users.success.desc')}</Typography>
+          <Typography>{t('userssuccess.desc')}</Typography>
           <pre
             style={{
               padding: '12px',
@@ -160,9 +143,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const [format, setFormat] = useState<FileFormat>(FileFormat.CSV)
   const [pretty, setPretty] = useState<boolean>(false)
   const [unlinked, setUnlinked] = useState<boolean>(false)
+  const [status, setStatus] = useState<boolean | undefined>(undefined)
   const userContent = useSelector(editIDPUserSelector)
   const userResponse = useSelector(editIDPUserResponseSelector)
-  const [status, setStatus] = useState<IDPSetupState>(IDPSetupState.NONE)
   const fetching = t('state.fetching')
 
   const CSV_COLUMNS = useMemo(
@@ -199,12 +182,15 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     )
       .then((response) => response.text())
       .then((result) => {
-        console.log(result)
-        setStatus(IDPSetupState.SUCCESS_UPLOAD_USERS)
         storeResponse(result)
-        setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
+        success(t(`state.${IDPState.SUCCESS_UPLOAD_USERS}`))
+        setStatus(true)
       })
-      .catch((_error) => setStatus(IDPSetupState.ERROR_UPLOAD_USERS))
+      .catch((err) => {
+        error(t(`state.${IDPState.ERROR_UPLOAD_USERS}`, '', err))
+        setStatus(false)
+      })
+    setTimeout(() => setStatus(undefined), 3000)
   }
 
   const downloadUserfile = () => {
@@ -335,17 +321,18 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           })
         )
       } catch (e) {
-        setStatus(IDPSetupState.ERROR_INVALID_FORMAT)
+        error(t(IDPState.ERROR_INVALID_FORMAT))
       }
-      setTimeout(() => setStatus(IDPSetupState.NONE), 5000)
     },
-    [dispatch]
+    [dispatch, t]
   )
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 1) {
-        setStatus(IDPSetupState.ERROR_MULTIPLE_FILES)
+        error(t(`state.${IDPState.ERROR_MULTIPLE_FILES}`))
+        setStatus(false)
+        setTimeout(() => setStatus(undefined), 3000)
         return
       }
       const MIME_TYPE = {
@@ -354,7 +341,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       acceptedFiles.forEach((file: File) => {
         if (!Object.values(MIME_TYPE).includes(file.type)) {
-          setStatus(IDPSetupState.ERROR_INVALID_TYPE)
+          error(t(`state.${IDPState.ERROR_INVALID_TYPE}`))
+          setStatus(false)
+          setTimeout(() => setStatus(undefined), 3000)
           return
         }
         const reader = new FileReader()
@@ -372,7 +361,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         reader.readAsText(file)
       })
     },
-    [csv2json, storeData]
+    [csv2json, storeData, t]
   )
 
   const { getRootProps } = useDropzone({ onDrop })
@@ -436,12 +425,8 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               lineHeight: '20px',
               borderRadius: '24px',
             },
-            ...(status.startsWith('ERROR')
-              ? { backgroundColor: '#FEE7E2' }
-              : {}),
-            ...(status.startsWith('SUCCESS')
-              ? { backgroundColor: '#dfd' }
-              : {}),
+            ...(status === false ? { backgroundColor: '#FEE7E2' } : {}),
+            ...(status === true ? { backgroundColor: '#dfd' } : {}),
           }}
           disabled={true}
           minRows={10}
@@ -466,7 +451,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         </Typography>
         <div {...getRootProps()}>
           <DropArea
-            error={status.startsWith('ERROR')}
+            error={status === false}
             size="small"
             translations={{
               title: t('users.drop.title'),
@@ -484,7 +469,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           </Typography>
           <Typography>{t('users.drop.note')}</Typography>
         </div>
-        <IDPSetupNotification state={status} />
         {userResponse?.data && (
           <AddusersIDPResponse
             response={userResponse.data}

@@ -34,7 +34,7 @@
     "headerTitle": "Service Details",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "longDescriptionEN": "Service Beschreibung (en)*",
-    "longDescriptionDE": "Service Beschreibun (de)*",
+    "longDescriptionDE": "Service Beschreibung (de)*",
     "doc": "Supporting Material",
     "note": "Info:",
     "providerDetails": "Provider Details",
@@ -111,5 +111,96 @@
   },
   "servicedetails": {
     "headerTitle": "Service Details"
+  },
+  "serviceSubscription": {
+    "headline": "Service Subscription",
+    "subHeading": "Manage customer subscriptons",
+    "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+    "readMore": "Read More",
+    "registerURL": "RegisterURL",
+    "search": "...search by entering the service name here.",
+    "noDataMessage": "No data available",
+    "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+    "subscribeSuccessMsg": "Subscribed Successfully",
+    "newServices": "New Services",
+    "recommendations": "Recommendations",
+    "allServices": "All Services",
+    "activateBtn": "Activate",
+    "pleaseEnterValidURL": "Please enter a valid URL",
+    "tabs": {
+      "request": "Request",
+      "active": "Active"
+    },
+    "sortOptions": {
+      "customer": "By Customer A-Z",
+      "offer": "By Offer"
+    },
+    "document": {
+      "heading": "Relevant Documents",
+      "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+    },
+    "register": {
+      "heading": "Autosetup URL",
+      "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
+      "endpointConfigured": "Current Endpoint",
+      "autosetupURL": "AutoSetup URL",
+      "providerErrorMessage": "Something went wrong! Please try it later again.",
+      "providerSuccessMessage": "Service Provider Details added successfully."
+    },
+    "activation": {
+      "heading": "Activate Service Subscription",
+      "description": "Activate the service subscription request of the customer by adding your customer specific service endpoint/url in the input field below. We will use the url to register/activate the service authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the service tenant/connector to the centryl CX components/services (where needed).",
+      "successDescription": "The technical user has been created with the following data:",
+      "clientId": "Client Id",
+      "clientSecret": "Client Secret"
+    }
+  },
+  "adminBoard": {
+    "headerTitle": "Service request management",
+    "search": "search company name/service title",
+    "noDataMessage": "No data available",
+    "successApproveMsg": "Service wurde aktiviert",
+    "errorApproveMsg": "Service-Aktivierung fehlgeschlagen.",
+    "successDeclineMsg": "Service wurde declined & provider informiert",
+    "errorDeclineMsg": "Ablehnung der Service-Aktivierung fehlgeschlagen.",
+    "tabs": {
+      "open": "Open",
+      "all": "All"
+    },
+    "sortOptions": {
+      "newFirst": "Newest First",
+      "AppTitle": "Service Title (A-Z)"
+    },
+    "declineModal": {
+      "title": "Reject Service Release Request {appName}",
+      "subheading": "Are you sure you want to reject the service release request ?",
+      "declineReason": "The rejection will",
+      "declineReason1Label": "Create a notification & email message to inform the service provider/manager about the rejection",
+      "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+      "declineReason3Label": "The service will get set back to the status “in progress“",
+      "inputLabel": "Cancellation Message",
+      "confirm": "Confirm",
+      "close": "Close"
+    }
+  },
+  "adminboardDetail": {
+    "action": {
+      "back": "Back"
+    },
+    "longDescriptionTitleEN": "Description - English",
+    "longDescriptionTitleDE": "Description - German",
+    "backToBoard": "Back to Admin Board",
+    "documents": {
+      "heading": "Documents",
+      "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
+    },
+    "provider": {
+      "heading": "Provider Information",
+      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+    }
+  },
+  "retryOverlay": {
+    "title": "Something went wrong",
+    "description": "The data could not get loaded, please try it again or go back to the previous page."
   }
 }

@@ -31,7 +31,7 @@ import './style.scss'
 import { useState } from 'react'
 import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
-import { updateInviteSelector } from 'features/control/updatesSlice'
+import { updateInviteSelector } from 'features/control/updates'
 
 export const InviteList = ({
   fetchHook,

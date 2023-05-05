@@ -47,6 +47,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay'
 import { useDispatch } from 'react-redux'
 import { resetInitialNotificationState } from 'features/notification/actions'
+import { PAGES } from 'types/Constants'
 
 dayjs.extend(relativeTime)
 
@@ -78,6 +79,7 @@ const NotificationContent = ({
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
   const appName = item.contentParsed?.AppName
+  const companyName = item.contentParsed?.RequestorCompanyName
   const offerName = item.contentParsed?.OfferName
   return (
     <>
@@ -85,7 +87,7 @@ const NotificationContent = ({
         <Trans
           ns="notification"
           i18nKey={`${item.typeId}.content`}
-          values={{ you, app: appName, offer: offerName }}
+          values={{ you, app: appName, offer: offerName, company: companyName }}
         >
           <NameLink
             fetchHook={useFetchUserDetailsQuery}
@@ -145,15 +147,31 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
         />
       )
     case NotificationType.APP_SUBSCRIPTION_REQUEST:
-      return <NotificationContent item={item} navlinks={['appsubscription']} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.APPSUBSCRIPTION]} />
+      )
     case NotificationType.APP_RELEASE_REQUEST:
-      return <NotificationContent item={item} navlinks={['adminboard']} />
+      return <NotificationContent item={item} navlinks={[PAGES.ADMINBOARD]} />
     case NotificationType.APP_RELEASE_APPROVAL:
-      return <NotificationContent item={item} navlinks={['usermanagement']} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />
+      )
     case NotificationType.APP_RELEASE_REJECTION:
-      return <NotificationContent item={item} navlinks={['appoverview']} />
+      return <NotificationContent item={item} navlinks={[PAGES.APPOVERVIEW]} />
     case NotificationType.TECHNICAL_USER_CREATION:
-      return <NotificationContent item={item} navlinks={['technicaluser']} />
+      return (
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.TECHUSER_MANAGEMENT]}
+        />
+      )
+    case NotificationType.SERVICE_REQUEST:
+      return (
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.SERVICESUBSCRIPTION]}
+        />
+      )
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }

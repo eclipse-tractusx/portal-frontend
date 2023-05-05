@@ -27,7 +27,7 @@ import {
 } from 'features/admin/serviceApiSlice'
 import { useSelector } from 'react-redux'
 import { PAGES } from 'types/Constants'
-import { updateTechuserSelector } from 'features/control/updatesSlice'
+import { updateTechuserSelector } from 'features/control/updates'
 import { useNavigate } from 'react-router-dom'
 
 export const TechnicalUserTable = () => {

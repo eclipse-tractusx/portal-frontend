@@ -20,23 +20,24 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
+import admin from './admin'
+import apps from './apps'
+import control from './control'
+import info from './info'
 import userSliceDep from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
 import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
-import { reducer as admin } from './admin/reducer'
 import managementSlice from './appManagement/slice'
+import serviceManagementSlice from './serviceManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
 import serviceProviderSlice from './serviceProvider/slice'
 import appSubscriptionSlice from './appSubscription/slice'
 import adminBoardSlice from './adminBoard/slice'
 import userAddSlice from './admin/userApiSlice'
 import userRoleSlice from './admin/appuserApiSlice'
-import { reducer as apps } from './apps/reducer'
-import { reducer as control } from './control/reducer'
-import { reducer as info } from './info/reducer'
 import modelsSlice from './semanticModels/slice'
 import { apiSlice as idpSlice } from './admin/idpApiSlice'
 import { apiSlice as userSlice } from './admin/userApiSlice'
@@ -56,7 +57,9 @@ import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerN
 import { apiSlice as partnerNetworkPortalApiSlice } from './newPartnerNetwork/partnerNetworkPortalApiSlice'
 import { apiSlice as connectorApiSlice } from './connector/connectorApiSlice'
 import { apiSlice as serviceManagementApiSlice } from './serviceManagement/apiSlice'
-import serviceManagementSlice from './serviceManagement/slice'
+import serviceSubscriptionSlice from './serviceSubscription/slice'
+import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/serviceSubscriptionApiSlice'
+import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdminBoardApiSlice'
 
 export const reducers = {
   admin,
@@ -68,6 +71,7 @@ export const reducers = {
   serviceMarketplace: serviceMarketplaceSlice.reducer,
   serviceProvider: serviceProviderSlice.reducer,
   appSubscription: appSubscriptionSlice.reducer,
+  serviceSubscription: serviceSubscriptionSlice.reducer,
   adminBoard: adminBoardSlice.reducer,
   userAdd: userAddSlice.reducer,
   userRole: userRoleSlice.reducer,
@@ -97,6 +101,9 @@ export const reducers = {
     partnerNetworkPortalApiSlice.reducer,
   [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
   [serviceManagementApiSlice.reducerPath]: serviceManagementApiSlice.reducer,
+  [serviceSubscriptionApiSlice.reducerPath]:
+    serviceSubscriptionApiSlice.reducer,
+  [serviceAdminBoardApiSlice.reducerPath]: serviceAdminBoardApiSlice.reducer,
 }
 
 export const store = configureStore({
@@ -120,7 +127,9 @@ export const store = configureStore({
       .concat(partnerNetworkApiSlice.middleware)
       .concat(partnerNetworkPortalApiSlice.middleware)
       .concat(connectorApiSlice.middleware)
-      .concat(serviceManagementApiSlice.middleware),
+      .concat(serviceManagementApiSlice.middleware)
+      .concat(serviceSubscriptionApiSlice.middleware)
+      .concat(serviceAdminBoardApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

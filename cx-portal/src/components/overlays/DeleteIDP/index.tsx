@@ -18,79 +18,48 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageNotificationsProps } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { setNotification } from 'features/notification/actions'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
-import { closeOverlay } from 'features/control/overlay/actions'
+import { closeOverlay } from 'features/control/overlay'
 import {
   useFetchIDPDetailQuery,
   useRemoveIDPMutation,
 } from 'features/admin/idpApiSlice'
 import DeleteObjectContent from 'components/shared/basic/DeleteObjectContent'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { error, success } from 'services/NotifyService'
 
 export const DeleteIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation()
+  const ti = useTranslation('idp').t
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { data } = useFetchIDPDetailQuery(id ?? '')
   const [removeIDP] = useRemoveIDPMutation()
-
-  const deleteIDPSuccess = () => {
-    const notification: PageNotificationsProps = {
-      open: true,
-      severity: SuccessErrorType.SUCCESS,
-      title: 'content.idpManagement.notification.confirmDeleteTitle',
-      description:
-        'content.idpmanagement.notification.confirmDeleteDescription',
-    }
-    dispatch(closeOverlay())
-    dispatch(setNotification(notification))
-    navigate(`/${PAGES.IDP_MANAGEMENT}`)
-  }
-
-  const deleteIDPFailure = () => {
-    const notification: PageNotificationsProps = {
-      open: true,
-      severity: 'error',
-      title: 'content.idpManagement.notification.failureDeleteTitle',
-      description:
-        'content.idpmanagement.notification.failureDeleteDescription',
-    }
-    dispatch(closeOverlay())
-    dispatch(setNotification(notification))
-    navigate(`/${PAGES.IDP_MANAGEMENT}`)
-  }
 
   const handleRemove = async () => {
     if (!data) return
     try {
       await removeIDP(data.identityProviderId).unwrap()
-      deleteIDPSuccess()
+      success(ti('delete.success'))
     } catch (err) {
-      console.log(err)
-      deleteIDPFailure()
+      error(ti('delete.error'), '', err as object)
     }
+    setTimeout(() => dispatch(closeOverlay()), 3000)
   }
+
   return data ? (
-    <>
-      <DeleteObjectContent
-        header={`${t('global.actions.delete')} ${t('global.objects.idp')} ${
-          data.displayName
-        }`}
-        subHeader={t('global.actions.confirmDelete', {
-          object: t('global.objects.idp'),
-          name: data.displayName,
-        })}
-        subHeaderTitle={t('global.actions.noteDelete', {
-          object: t('global.objects.idp'),
-        })}
-        handleConfirm={handleRemove}
-        confirmTitle={t('global.actions.delete')}
-      />
-    </>
+    <DeleteObjectContent
+      header={`${t('global.actions.delete')} ${t('global.objects.idp')} ${
+        data.displayName
+      }`}
+      subHeader={t('global.actions.confirmDelete', {
+        object: t('global.objects.idp'),
+        name: data.displayName,
+      })}
+      subHeaderTitle={t('global.actions.noteDelete', {
+        object: t('global.objects.idp'),
+      })}
+      handleConfirm={handleRemove}
+      confirmTitle={t('global.actions.delete')}
+    />
   ) : null
 }

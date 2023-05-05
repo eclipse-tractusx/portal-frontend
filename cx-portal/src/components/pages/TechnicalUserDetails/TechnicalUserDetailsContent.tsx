@@ -28,7 +28,7 @@ import {
 } from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay/actions'
+import { show } from 'features/control/overlay'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 
 export default function TechnicalUserDetailsContent({

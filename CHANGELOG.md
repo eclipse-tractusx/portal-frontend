@@ -2,28 +2,55 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## 1.3.0 RC4
+## Unreleased
+
+## 1.4.0
 
 ### Change
-* User Management - app access management app cards backend api connection updated
-* Service Release Process - translations enhanced/added
+* IdP Configuration
+  * ui styling and messages updated
+  * load element added for create/submit/next buttons
+  * implemented success & error messages depending on the error scenario while creating/configuring a new idp
+Shared UI Components
+  * Added typography for static table to update headline sizing
 
 ### Feature
-n/a
+* App Release Process
+  * added privacy policies section to "validate and publish" application form
+  * added app roles section to "validate and publish" application form
+  * added role description information inside the ui for "Technical Integration" step
+  * "help" button enabled along the app release process (form bottom)
+  * extended ui error handling for 500 backend error responses
+* Service Release Process
+  * enabled SERVICE_LEADIMAGE document upload
+  * "help" button enabled along the app release process (form bottom)
+  * extended ui error handling for 500 backend error responses
+* Service Subscription Management released (pre-version)
+* Service Release Admin Board released (pre-version)
+  * enabled search for services
+  * enabled filters
+  * displayed all services waiting for review and active inside the admin board
+  * enabled view service details
+  * enabled approve and decline service
+* App Marketplace
+  * added company subscription status information on the app overview (inside the card component)
+  * app detail page, new order status component implemented for subscription process
 
 ### Technical Support
-n/a
+* moved all portal repo images to asset repo
+* removed existing in code "disable eslinter" statements inside the app release process and fixed eslinter issues
+* service release endpoint path updated/changed due to an endpoint path cleanup on backend side ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+* app release process - app card language switch fixed to only switch the language inside the app card
+* changed release workflow to retrieve tag from github.ref_name (set-output command deprecated)
+* added release workflow for release-candidates
 
 ### Bugfix
-* Service Release Process - chapter "Supporting Material" deletion function fixed
-* Service Release Process - "Save" button on "Offer Page Details" fixed
-* Connector Registration - input pattern for connector name updated to support special characters and customer input related error messages
-* Organization data - ignore "null" values provided by backend components/apis
-* Dropzone - error message customized to support multiple error scenarios with different error codes/messages
-* User Account - fixed page load for users without portal roles
-* App Access Management - "Edit" button in user table fixed
+* Notifications
+  * Service_Request message configured in locale files updated
+* top right user profile icon hover function enabled
+* image zoom height fixed
 
-## 1.3.0 RC3
+## 1.3.0
 
 ### Change
 * updated document section styling for app and service detail pages
@@ -33,42 +60,7 @@ n/a
 * App Marketplace
   * enabled search “no result found” response
   * enabled responsiveness of the app cards to rearrange displayed app cards based on the users screen width
-
-### Feature
-n/a
-
-### Technical Support
-n/a
-
-### Bugfix
-* App Release Process - fixed provider input field validation; allowed numbers
-* User Management - log errors available in the developer mode fixed
-* Company Role Intro Page - updated zoomed image style by removing grey bottom line
-
-## 1.3.0 RC2
-
-### Change
-n/a
-
-### Feature
-n/a
-
-### Technical Support
-n/a
-
-### Bugfix
-* Service Detail Page (Marketplace and Service Management) - document download fixed
-* Service Release Process - update long description pattern to support multiline (as app release process)
-* Service Release Process - reset active step back to 1 in service overview page when re-opening a service in "draft" state
-* User Management - create new user account first and last name pattern updated to alow double names
-* App Release Process
-  * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
-  * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
-  * long description input field pattern
-
-## 1.3.0 RC1
-
-### Change
+* User Management - app access management app cards backend api connection updated due to new endpoint business logic
 * App Release Process
   * updated endpoint to post and get agreement consent
   * switched endpoint to retrieve cx frame documents from portal backend for consent section
@@ -77,6 +69,7 @@ n/a
   * updated GET and POST endpoint handling to store and fetch service details from the backend and display them inside the service release form
   * switched endpoint to retrieve cx frame documents from portal backend
   * updated endpoint to post agreement consent
+  * translations enhanced/added 
 * Switch IdP
   * additional user support and new style added for easier process handling
 
@@ -96,14 +89,44 @@ n/a
 * updated actions workflows
 
 ### Bugfix
-* App Release Process
-  * update input field validation for longDescription input field
-* User Management
-  * payload fixed to portal roles only when updating user assigned portal roles 
-* App Release Admin Page - App Detail Page
-  * updated business logic to consume use case data due to updated api response body style
+* Company Role Intro Page - updated zoomed image style by removing grey bottom line
 * Service Marketplace - Service Detail Page
   * updated business logic to consume use case data due to updated api response body style
+* Service Release Process
+  * chapter "Supporting Material" deletion function fixed
+  * "Save" button on "Offer Page Details" fixed
+  * update long description pattern to support multiline (as app release process)
+  * reset active step back to 1 in service overview page when re-opening a service in "draft" state
+* Connector Registration - input pattern for connector name updated to support special characters and customer input related error messages
+* Organization data - ignore "null" values provided by backend components/apis
+* Dropzone - error message customized to support multiple error scenarios with different error codes/messages
+* Service Detail Page (Marketplace and Service Management) - document download fixed
+* User Management
+  * recorded log errors fixed
+  * payload fixed to portal roles only when updating user assigned portal roles 
+  * create new user account first and last name pattern updated to alow double names
+* User Account - fixed page load for users without portal roles
+* App Access Management - "Edit" button in user table fixed
+* App Release Process
+  * fixed condition for 'documents' section in 'validate and publish' step to display only relevant document types
+  * removed placeholder section 'data security information' and 'connected data' from 'validate and publish' step
+  * long description input field pattern
+* App Release Process
+  * update input field validation for longDescription input field
+  * fixed provider input field validation; allowed numbers
+* App Release Admin Page - App Detail Page
+  * updated business logic to consume use case data due to updated api response body style
+
+## Known Knowns
+* Eslinter checks disabled in sever code sections related to the app release process
+* Sorting component behavior - preselected selects are not visible and active, hover, inactive state missing
+* App Release Process - step "Verify & Submit" - the app card language switch is impacting the language of the whole party instead of only updating the app card
+* Image zoom in results in the useCase/company introduction page is breaking in the background when user opens the zoom in function
+* User account creation success overlay is displayed. When closing the success overlay, for a millisecond an error overlay is displayed
+* App Management (Provider) sub-menu broken
+* App and Service Marketplace - app cards display width responsiveness missing
+* Service Subscription Management not yet released, only available via API endpoints
+* Service Release Admin Board not yet released, only available via API endpoints
 
 ## 1.2.0
 
@@ -131,7 +154,7 @@ n/a
    * changed additional document uploads from mandatory to optional and changed dropzone parameter size
 
 ### Technical Support
-* Improved page loading in several places (such as app overview) 
+* Improved page loading in several places (such as app overview)
 * Change local port to run behind reverse proxy
 * Improved responsiveness of use case introduction page and company role page
 

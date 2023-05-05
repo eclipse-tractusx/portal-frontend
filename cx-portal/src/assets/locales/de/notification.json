@@ -72,8 +72,8 @@
     "content": "Your request for service offer {{serviceName}} got declined. Please recheck your service management board and solve the findings: {{personalMessage}}."
   },
   "SERVICE_REQUEST": {
-    "title": "Request for service subscription",
-    "content": "A new service subscription request for <1>{{offerName}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link...."
+    "title": "Service Subscription Request - Service: {{app}}",
+    "content": "{{company}} triggered a subscription request for service {{app}}. Validate the request details on the subscription board."
   },
   "SERVICE_ACTIVATION": {
     "title": "Service request activated",
@@ -94,7 +94,8 @@
     "adminboard": "Get there",
     "technicaluser": "Get there",
     "companyrolesserviceprovider": "Get there",
-    "usermanagement": "Get there"
+    "usermanagement": "Get there",
+    "servicesubscription": "Get there"
   },
   "due": "fällig",
   "search": "...suchen",

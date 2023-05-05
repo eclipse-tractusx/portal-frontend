@@ -31,14 +31,12 @@ import {
   putBusinessPartnerNumber,
 } from 'features/admin/userOwn/actions'
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
-import { show } from 'features/control/overlay/actions'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import './style.scss'
 import { OVERLAYS } from 'types/Constants'
-import { stateSelector } from 'features/control/overlay/slice'
-import { OverlayState } from 'features/control/overlay/types'
+import { OverlayState, stateSelector, show } from 'features/control/overlay'
 import { store } from 'features/store'
 
 export default function AddBPN({ id }: { id: string }) {
