@@ -18,43 +18,61 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import { Carousel } from '../Carousel'
-import { ImageItem } from './ImageItem'
 import { ImageType } from './types'
+import ImageItemOverlay from './ImageItemOverlay'
 
 export const ImageGallery = ({
   gallery,
-  grid = false,
   modalWidth,
-  align = 'flex-start',
 }: {
   gallery: ImageType[]
-  grid?: boolean
   modalWidth?: string
-  align?: string
-}) => (
-  <Carousel
-    gapBetweenSlides={32}
-    gapCarouselTop={100}
-    dots={false}
-    infinite
-    itemHeight={279}
-    itemWidth={266}
-    slidesToShow={3}
-  >
-    {gallery.map((image) => (
-      <div key={image.url} style={{ height: '100%' }}>
-        <img
-          src={image.url}
-          alt={image.text}
-          style={{
-            height: '60%',
-            width: '100%',
-            objectFit: 'cover',
-            borderRadius: '10px',
-          }}
+}) => {
+  const [hovered, setHovered] = useState(false)
+  const [hoveredImage, setHoveredImage] = useState<ImageType>()
+
+  const hoverImageFn = (image: ImageType) => {
+    setHovered(true)
+    setHoveredImage(image)
+  }
+
+  return (
+    <>
+      {hovered && hoveredImage && hoveredImage.url && (
+        <ImageItemOverlay
+          onClose={() => setHovered(false)}
+          url={hoveredImage.url}
+          text={hoveredImage.text}
+          modalWidth={modalWidth}
         />
-      </div>
-    ))}
-  </Carousel>
-)
+      )}
+      <Carousel
+        gapBetweenSlides={32}
+        gapCarouselTop={100}
+        dots={false}
+        infinite
+        itemHeight={279}
+        itemWidth={266}
+        slidesToShow={3}
+      >
+        {gallery.map((image) => (
+          <div key={image.url} style={{ height: '100%' }}>
+            <img
+              src={image.url}
+              alt={image.text}
+              style={{
+                height: '60%',
+                width: '100%',
+                objectFit: 'cover',
+                borderRadius: '10px',
+              }}
+              onClick={() => hoverImageFn(image)}
+            />
+          </div>
+        ))}
+      </Carousel>
+    </>
+  )
+}
