@@ -323,14 +323,7 @@ export default function NotificationItem({
                   : 'actionButtonTransparent'
               }
             >
-              <Typography
-                variant="h1"
-                style={{
-                  fontWeight: 600,
-                  marginLeft: '10px',
-                  fontSize: '11px',
-                }}
-              >
+              <Typography variant="h1" className="actionRequiredText">
                 {item.notificationTopic === 'ACTION' && open
                   ? t('actionRequired')
                   : ''}
