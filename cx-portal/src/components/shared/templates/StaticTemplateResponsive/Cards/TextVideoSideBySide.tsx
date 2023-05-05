@@ -21,6 +21,7 @@
 import { ProviderProps } from '../StaticTypes'
 import ImageVideoWrapper from './ImageVideoWrapper'
 import '../StaticTemplate.scss'
+import ReactPlayer from 'react-player'
 
 export default function TextVideoSideBySide({
   provider,
@@ -30,7 +31,13 @@ export default function TextVideoSideBySide({
   return (
     <ImageVideoWrapper
       provider={provider}
-      children={<video className="video" controls src={provider.videoUrl} />}
+      children={
+        <ReactPlayer
+          className="video"
+          url={provider.videoUrl}
+          controls={true}
+        />
+      }
     />
   )
 }

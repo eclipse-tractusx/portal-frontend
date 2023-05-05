@@ -45,8 +45,8 @@
   .video {
     border-radius: 16px;
     border: 0px;
-    width: 482px;
-    height: 331px;
+    width: 482px !important;
+    height: 331px !important;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
   }
 
@@ -170,8 +170,8 @@
   .video {
     border-radius: 16px;
     border: 0px;
-    width: 482px;
-    height: 331px;
+    width: 482px !important;
+    height: 331px !important;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
   }
 
@@ -291,8 +291,8 @@
   .video {
     border-radius: 16px;
     border: 0px;
-    width: 350px;
-    height: 250px;
+    width: 350px !important;
+    height: 250px !important;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
   }
 
@@ -422,4 +422,14 @@
   height: auto;
   border-radius: 16px;
   margin-top: 20px;
+}
+
+.video,
+.video div {
+  padding: 0px !important;
+}
+
+video,
+iframe {
+  border-radius: 16px;
 }
