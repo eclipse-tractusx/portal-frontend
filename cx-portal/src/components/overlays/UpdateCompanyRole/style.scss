@@ -1,11 +1,12 @@
 .MuiDialog-paper {
   max-width: 60% !important;
 }
-.css-1m75dou-MuiDialogContent-root {
-  padding: 0px 130px 32px !important;
-}
+
 .role-overlay {
   margin-bottom: 50px;
+  .css-1m75dou-MuiDialogContent-root {
+    padding: 0px 130px 32px !important;
+  }
   table {
     border-collapse: collapse;
     width: 95%;
