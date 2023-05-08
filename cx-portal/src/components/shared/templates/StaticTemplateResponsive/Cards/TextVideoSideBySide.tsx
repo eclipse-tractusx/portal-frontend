@@ -25,11 +25,17 @@ import ReactPlayer from 'react-player'
 
 export default function TextVideoSideBySide({
   provider,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <ImageVideoWrapper
+      scrollTop={scrollTop}
+      showScroll={showScroll}
       provider={provider}
       children={
         <ReactPlayer

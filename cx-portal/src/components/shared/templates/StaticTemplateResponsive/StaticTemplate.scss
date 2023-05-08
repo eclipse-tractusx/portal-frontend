@@ -433,3 +433,28 @@ video,
 iframe {
   border-radius: 16px;
 }
+
+.titleWithIcon {
+  display: flex;
+  place-items: center;
+  padding: 0px !important;
+  place-content: center;
+}
+
+.titleWithIcon h2 {
+  margin-right: 30px;
+}
+
+.titleWithIcon button {
+  width: 40px;
+  height: 40px;
+}
+
+.titleWithIcon svg {
+  font-size: 30px;
+}
+
+.titleWithIcon.sideBySideTitle {
+  place-content: flex-start;
+  width: 100%;
+}

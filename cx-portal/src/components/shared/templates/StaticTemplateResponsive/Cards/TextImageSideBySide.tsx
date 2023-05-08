@@ -26,12 +26,18 @@ import '../StaticTemplate.scss'
 export default function TextImageSideBySide({
   provider,
   baseUrl,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
   baseUrl: string
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <ImageVideoWrapper
+      scrollTop={scrollTop}
+      showScroll={showScroll}
       provider={provider}
       children={
         <RenderImage

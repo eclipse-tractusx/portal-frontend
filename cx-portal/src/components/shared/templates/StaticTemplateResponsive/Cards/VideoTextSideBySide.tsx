@@ -19,14 +19,19 @@
  ********************************************************************************/
 
 import { ProviderProps } from '../StaticTypes'
-import { Typography } from 'cx-portal-shared-components'
+import { IconButton, Typography } from 'cx-portal-shared-components'
 import '../StaticTemplate.scss'
 import ReactPlayer from 'react-player'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 
 export default function VideoTextSideBySide({
   provider,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <div className={'imageVideoTextSideBySide'}>
@@ -38,7 +43,14 @@ export default function VideoTextSideBySide({
         />
       </div>
       <div className={'titleDescriptionBody'}>
-        <Typography variant="h2">{provider.title}</Typography>
+        <div className="titleWithIcon sideBySideTitle">
+          <Typography variant="h2">{provider.title}</Typography>
+          {showScroll && (
+            <IconButton onClick={scrollTop}>
+              <ArrowUpwardIcon />
+            </IconButton>
+          )}
+        </div>
         <Typography className={'providerDescription'} variant="body1">
           {provider.description}
         </Typography>

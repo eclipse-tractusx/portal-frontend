@@ -21,6 +21,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Static templete
    * Two more new templates added
    * Support language switch
+   * Support arrow up Icon on each section
 * ImageComponent
    * Do not hide current on zoom in action
 * Admin board - Service
