@@ -180,7 +180,6 @@ export const Card = ({
     >
       <Box
         sx={{
-          overflow: 'hidden',
           position: 'relative',
           backgroundColor: 'common.white',
           borderRadius: shape.borderRadius,
