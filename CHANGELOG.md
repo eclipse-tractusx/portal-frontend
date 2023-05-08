@@ -24,6 +24,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Do not hide current on zoom in action
 * Admin board - Service
    * Filter action issue fix
+* Package
+   * React Player to support all types of video urls
 * User Management
    * Change roles success/error overlay fix
 * App Overview

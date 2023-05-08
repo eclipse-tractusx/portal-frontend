@@ -21,6 +21,7 @@
 import { ProviderProps } from '../StaticTypes'
 import { Typography } from 'cx-portal-shared-components'
 import '../StaticTemplate.scss'
+import ReactPlayer from 'react-player'
 
 export default function VideoTextSideBySide({
   provider,
@@ -30,12 +31,11 @@ export default function VideoTextSideBySide({
   return (
     <div className={'imageVideoTextSideBySide'}>
       <div>
-        <iframe
-          title="Video"
+        <ReactPlayer
           className="video"
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+          url={provider.videoUrl}
+          controls={true}
+        />
       </div>
       <div className={'titleDescriptionBody'}>
         <Typography variant="h2">{provider.title}</Typography>
