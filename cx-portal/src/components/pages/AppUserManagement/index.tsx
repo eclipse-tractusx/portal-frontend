@@ -90,41 +90,46 @@ export default function AppUserManagement() {
       )}
       <AppUserDetailsTable userRoleResponse={userRoleResponse} />
       {/* success or error dialog/overlay */}
-      <Dialog open={showAlert} sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}>
-        <DialogContent>
-          <IconButton
-            aria-label="close"
-            onClick={() => onAlertClose()}
-            sx={{
-              position: 'absolute',
-              right: 16,
-              top: 16,
-              color: '#939393',
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
+      {userRoleResponse && (
+        <Dialog
+          open={showAlert}
+          sx={{ '.MuiDialog-paper': { maxWidth: '55%' } }}
+        >
+          <DialogContent>
+            <IconButton
+              aria-label="close"
+              onClick={() => onAlertClose()}
+              sx={{
+                position: 'absolute',
+                right: 16,
+                top: 16,
+                color: '#939393',
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
 
-          <Typography mt={7} mb={2} variant="body2" align="center">
-            {userRoleResponse === SuccessErrorType.SUCCESS ? (
-              <CheckCircleOutlineIcon
-                color="success"
-                sx={{ width: 46, height: 46 }}
-              />
-            ) : (
-              <ErrorOutlineIcon
-                color="error"
-                style={{ height: 20, width: 20 }}
-              />
-            )}
-          </Typography>
-          <Typography mb={2} variant="h4" align="center">
-            {userRoleResponse === SuccessErrorType.SUCCESS
-              ? t('content.usermanagement.appUserDetails.userRoleSuccessMsg')
-              : t('content.usermanagement.appUserDetails.userRoleErrorMsg')}
-          </Typography>
-        </DialogContent>
-      </Dialog>
+            <Typography mt={7} mb={2} variant="body2" align="center">
+              {userRoleResponse === SuccessErrorType.SUCCESS ? (
+                <CheckCircleOutlineIcon
+                  color="success"
+                  sx={{ width: 46, height: 46 }}
+                />
+              ) : (
+                <ErrorOutlineIcon
+                  color="error"
+                  style={{ height: 20, width: 20 }}
+                />
+              )}
+            </Typography>
+            <Typography mb={2} variant="h4" align="center">
+              {userRoleResponse === SuccessErrorType.SUCCESS
+                ? t('content.usermanagement.appUserDetails.userRoleSuccessMsg')
+                : t('content.usermanagement.appUserDetails.userRoleErrorMsg')}
+            </Typography>
+          </DialogContent>
+        </Dialog>
+      )}
     </main>
   )
 }

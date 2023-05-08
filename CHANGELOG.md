@@ -24,6 +24,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Do not hide current on zoom in action
 * Admin board - Service
    * Filter action issue fix
+* User Management
+   * Change roles success/error overlay fix
+* App Overview
+   * Dropdown UI broken fix
 * Appdetails
    * App Images size and responsivenes
    * Subscription Status hover changes
