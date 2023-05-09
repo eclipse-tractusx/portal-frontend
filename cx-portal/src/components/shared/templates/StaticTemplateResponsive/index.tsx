@@ -46,16 +46,6 @@ const TemplateConfig = ({
   showScroll: boolean
 }) => {
   switch (provider.template) {
-    //Text in the left and image in the right side
-    case TemplateNames.TextImageSideBySide:
-      return (
-        <TextImageSideBySide
-          baseUrl={baseUrl}
-          provider={provider}
-          scrollTop={scrollTop}
-          showScroll={showScroll}
-        />
-      )
     //Text in the left and video in the right side
     case TemplateNames.TextVideoSideBySide:
       return (
@@ -205,6 +195,7 @@ const TemplateConfig = ({
         </>
       )
     default:
+      //Text in the left and image in the right side
       return (
         <TextImageSideBySide
           baseUrl={baseUrl}
