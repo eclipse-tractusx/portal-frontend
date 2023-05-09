@@ -28,9 +28,6 @@
   .mb-80 {
     margin-bottom: 80px;
   }
-  .pl-40 {
-    padding-left: 40px;
-  }
   .changeRolesHeading {
     display: inline-block;
     width: 100%;
@@ -47,6 +44,25 @@
     margin-bottom: 20px;
     > span {
       width: 165px;
+    }
+  }
+  .agreement-check-list {
+    padding: 0;
+    .agreement-li {
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      span {
+        padding-top: 0;
+        box-shadow: none;
+      }
+      .agreement-span {
+        color: #0f71cb;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 0 5px 0 5px;
+      }
     }
   }
 }

@@ -35,12 +35,15 @@ import {
 } from 'cx-portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import {
+  AgreementsData,
   CompanyRolesResponse,
   RoleData,
   SampleData,
+  useFetchDocumentByIdMutation,
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
 import CommonService from 'services/CommonService'
+import { download } from 'utils/downloadUtils'
 import './style.scss'
 
 export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
@@ -48,6 +51,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
 
+  const [getDocumentById] = useFetchDocumentByIdMutation()
   const { data } = useFetchRolesQuery()
 
   const newSelectedRoles = data?.filter(
@@ -79,6 +83,20 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
         />
       </div>
     )
+  }
+
+  const handleDownloadClick = async (
+    documentId: string,
+    documentName: string
+  ) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
   }
 
   return (
@@ -215,16 +233,56 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             </div>
           )}
 
-          <div className="pl-40">
+          <div>
             <Typography variant="h4" className="rolesAddedHeading">
               {t('content.companyRolesUpdate.overlay.termsHeading')}
             </Typography>
-            <Checkbox
-              label={`${t('content.companyRolesUpdate.overlay.termsLabel')}`}
-            />
-            <Checkbox
-              label={`${t('content.companyRolesUpdate.overlay.termsLabel')}`}
-            />
+            <ul className="agreement-check-list">
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  roles.indexOf(role.companyRoles) !== -1 &&
+                  role.agreements.map((agreement: AgreementsData) => {
+                    return (
+                      <li key={agreement.agreementId} className="agreement-li">
+                        <Checkbox />
+                        {agreement.documentId ? (
+                          <>
+                            <Typography variant="label2">
+                              {t(
+                                'content.companyRolesUpdate.overlay.TermsAndCondSpan1'
+                              )}{' '}
+                            </Typography>
+                            <Typography
+                              variant="label2"
+                              className={
+                                agreement.documentId ? 'agreement-span' : ''
+                              }
+                              onClick={() =>
+                                handleDownloadClick(
+                                  agreement.documentId,
+                                  agreement.agreementName
+                                )
+                              }
+                            >
+                              {agreement.agreementName}
+                            </Typography>{' '}
+                            <Typography variant="label2">
+                              {t(
+                                'content.companyRolesUpdate.overlay.TermsAndCondSpan2'
+                              )}
+                            </Typography>
+                          </>
+                        ) : (
+                          <Typography variant="label2">
+                            {agreement.agreementName}
+                          </Typography>
+                        )}
+                      </li>
+                    )
+                  })
+                )
+              })}
+            </ul>
           </div>
         </div>
       </DialogContent>

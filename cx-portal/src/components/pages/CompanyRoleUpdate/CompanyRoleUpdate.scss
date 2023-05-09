@@ -83,16 +83,37 @@
           width: 100%;
           display: inline-block;
           padding-left: 32px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2; /* number of lines to show */
+          -webkit-box-orient: vertical;
+        }
+        .showAllDesc {
+          -webkit-line-clamp: unset;
+          overflow: visible;
         }
         .roleDescDetail {
           display: flex;
           padding-left: 28px;
+          cursor: pointer;
           svg {
             height: 21px;
             width: 21px;
             margin-right: 10px;
           }
         }
+        .primary {
+          color: #0f71cb;
+        }
+      }
+    }
+    @media screen and (min-width: '600px') {
+      .roleDescDetail {
+        display: none !important;
+      }
+      .roleDesc {
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
       }
     }
   }

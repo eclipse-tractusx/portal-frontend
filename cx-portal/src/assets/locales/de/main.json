@@ -1326,10 +1326,8 @@
       "ACTIVE_PARTICIPANT": "Active Participant",
       "APP_PROVIDER": "App Provider",
       "SERVICE_PROVIDER": "Service Provider",
-      "roleDesc1": "The participant role is covering the data provider, data consumer or app user scenario. As participant you are an active member of the network with enabled services to particiapte as contributer and user.",
-      "roleDesc2": "The participant role is covering the data provider, data consumer or app user scenario. As participant you are an active member of the network with enabled services to particiapte as contributer and user.",
-      "roleDesc3": "The participant role is covering the data provider, data consumer or app user scenario. As participant you are an active member of the network with enabled services to particiapte as contributer and user.",
-      "roleDescTitle": "Full role description",
+      "roleDescDownTitle": "Full role description",
+      "roleDescUpTitle": "Close role description",
       "overlay": {
         "title": "Do you really want to change your company's role(s) within Cantena-X?",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -1345,7 +1343,8 @@
         "featuresAddedHeading": "Features added",
         "featuresNoLongerHeading": "Features no longer available",
         "termsHeading": "Please agree to the following terms & conditions for new role profile:",
-        "termsLabel": "Yes, I agree to this >terms and conditions",
+        "TermsAndCondSpan1": "Yes, I agree to the",
+        "TermsAndCondSpan2": "of the selected role.",
         "submit": "Commence role change"
       }
     }
