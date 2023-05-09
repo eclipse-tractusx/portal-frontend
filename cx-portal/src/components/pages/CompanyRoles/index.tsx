@@ -33,6 +33,8 @@ export default function CompanyRoles() {
   const [linkArray, setLinkArray] = useState<any>()
   const url = window.location.href
   const language = useSelector(languageSelector)
+  const [topReached, setTopReached] = useState<boolean>(false)
+
   useEffect(() => {
     CommonService.getCompanyRoles((data: any) => {
       setLinkArray([
@@ -64,6 +66,16 @@ export default function CompanyRoles() {
     })
   }, [url, language])
 
+  const scrollStarted = () => {
+    if (window.pageYOffset > 500) {
+      setTopReached(true)
+    } else if (topReached && window.pageYOffset <= 500) {
+      setTopReached(false)
+    }
+  }
+
+  window.addEventListener('scroll', scrollStarted)
+
   return (
     <main className="companyRoles">
       {companyRoles && linkArray && (
@@ -72,7 +84,7 @@ export default function CompanyRoles() {
             title={companyRoles.title}
             description={companyRoles.description}
           />
-          <StageSubNavigation linkArray={linkArray} />
+          <StageSubNavigation fixHeader={topReached} linkArray={linkArray} />
           <StaticTemplateResponsive
             sectionInfo={companyRoles.sections}
             baseUrl={getAssetBase()}

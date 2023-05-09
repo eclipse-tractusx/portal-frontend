@@ -22,6 +22,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Two more new templates added
    * Support language switch
    * Support arrow up Icon on each section
+   * Fix the subnavigation to header on scroll action
 * ImageComponent
    * Do not hide current on zoom in action
 * Admin board - Service
