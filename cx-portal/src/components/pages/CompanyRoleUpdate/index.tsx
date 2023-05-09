@@ -153,25 +153,33 @@ export default function CompanyRoles() {
                     >
                       {role.roleDescription}
                     </Typography>
-                    {showActiveDescRole === role.companyRoles ? (
-                      <Typography
-                        variant="caption3"
-                        className="roleDescDetail primary"
-                        onClick={() => setShowActiveDescRole('')}
-                      >
-                        <KeyboardArrowUpIcon />
-                        {t('content.companyRolesUpdate.roleDescUpTitle')}
-                      </Typography>
-                    ) : (
-                      <Typography
-                        variant="caption3"
-                        className="roleDescDetail"
-                        onClick={() => setShowActiveDescRole(role.companyRoles)}
-                      >
-                        <KeyboardArrowDownIcon />
-                        {t('content.companyRolesUpdate.roleDescDownTitle')}
-                      </Typography>
-                    )}
+                    <Typography
+                      variant="caption3"
+                      className={`roleDescDetail ${
+                        showActiveDescRole === role.companyRoles
+                          ? 'primary'
+                          : ''
+                      }`}
+                      onClick={() =>
+                        setShowActiveDescRole(
+                          showActiveDescRole === role.companyRoles
+                            ? role.companyRoles
+                            : ''
+                        )
+                      }
+                    >
+                      {showActiveDescRole === role.companyRoles ? (
+                        <>
+                          <KeyboardArrowUpIcon />
+                          {t('content.companyRolesUpdate.roleDescUpTitle')}
+                        </>
+                      ) : (
+                        <>
+                          <KeyboardArrowDownIcon />
+                          {t('content.companyRolesUpdate.roleDescDownTitle')}
+                        </>
+                      )}
+                    </Typography>
                   </li>
                 )
               })}

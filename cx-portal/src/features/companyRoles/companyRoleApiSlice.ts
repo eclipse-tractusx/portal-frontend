@@ -35,22 +35,22 @@ export type CompanyRolesResponse = {
   agreements: AgreementsData[]
 }
 
-export type RoleData = {
+export type RoleFeatureData = {
   title: string
   description: string
 }
 
-export type FeatureRoleData = {
-  features: RoleData[]
-  roles: RoleData[]
+export type RoleFeatureArray = {
+  features: RoleFeatureData[]
+  roles: RoleFeatureData[]
 }
 
 export type SampleRoleData = {
-  selected: FeatureRoleData
-  deselected: FeatureRoleData
+  selected: RoleFeatureArray
+  deselected: RoleFeatureArray
 }
 
-export type SampleData = {
+export type RolesData = {
   ACTIVE_PARTICIPANT: SampleRoleData
   APP_PROVIDER: SampleRoleData
   SERVICE_PROVIDER: SampleRoleData
