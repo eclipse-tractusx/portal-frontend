@@ -36,6 +36,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * App Images size and responsivenes
    * Subscription Status hover changes
 * Fix build error issue
+* Company Role Update
+   * Make Role Desc Dynamic
+   * Add Terms and Condition dynamic in overlay and hanlde download document functionality
 
 ## 1.4.0
 

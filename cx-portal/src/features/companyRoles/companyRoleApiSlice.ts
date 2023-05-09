@@ -25,30 +25,32 @@ export type AgreementsData = {
   agreementId: string
   agreementName: string
   consentStatus: string
+  documentId: string
 }
 
 export type CompanyRolesResponse = {
   companyRoles: string
   companyRolesActive: boolean
+  roleDescription: string
   agreements: AgreementsData[]
 }
 
-export type RoleData = {
+export type RoleFeatureData = {
   title: string
   description: string
 }
 
-export type FeatureRoleData = {
-  features: RoleData[]
-  roles: RoleData[]
+export type RoleFeatureArray = {
+  features: RoleFeatureData[]
+  roles: RoleFeatureData[]
 }
 
 export type SampleRoleData = {
-  selected: FeatureRoleData
-  deselected: FeatureRoleData
+  selected: RoleFeatureArray
+  deselected: RoleFeatureArray
 }
 
-export type SampleData = {
+export type RolesData = {
   ACTIVE_PARTICIPANT: SampleRoleData
   APP_PROVIDER: SampleRoleData
   SERVICE_PROVIDER: SampleRoleData
@@ -65,7 +67,16 @@ export const apiSlice = createApi({
         }
       },
     }),
+    fetchDocumentById: builder.mutation({
+      query: (documentId: string) => ({
+        url: `/api/administration/documents/frameDocuments/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
-export const { useFetchRolesQuery } = apiSlice
+export const { useFetchRolesQuery, useFetchDocumentByIdMutation } = apiSlice

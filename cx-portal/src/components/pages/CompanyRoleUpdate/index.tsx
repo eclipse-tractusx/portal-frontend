@@ -33,6 +33,7 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   CompanyRolesResponse,
@@ -46,6 +47,7 @@ export default function CompanyRoles() {
   const dispatch = useDispatch()
   const [companyRoles, setCompanyRoles] = useState<CompanyRolesResponse[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
+  const [showActiveDescRole, setShowActiveDescRole] = useState<string>()
 
   const { data } = useFetchRolesQuery()
   useEffect(() => {
@@ -125,7 +127,7 @@ export default function CompanyRoles() {
           </div>
           <div className="role-agreements">
             <ul>
-              {companyRoles.map((role: CompanyRolesResponse, index: number) => {
+              {companyRoles.map((role: CompanyRolesResponse) => {
                 return (
                   <li key={role.companyRoles}>
                     <Checkbox
@@ -141,12 +143,42 @@ export default function CompanyRoles() {
                       }
                       className="checkbox-input"
                     />
-                    <Typography variant="caption3" className="roleDesc">
-                      {t('content.companyRolesUpdate.roleDesc' + (index + 1))}
+                    <Typography
+                      variant="caption3"
+                      className={`roleDesc ${
+                        showActiveDescRole === role.companyRoles
+                          ? 'showAllDesc'
+                          : ''
+                      }`}
+                    >
+                      {role.roleDescription}
                     </Typography>
-                    <Typography variant="caption3" className="roleDescDetail">
-                      <KeyboardArrowDownIcon />
-                      {t('content.companyRolesUpdate.roleDescTitle')}
+                    <Typography
+                      variant="caption3"
+                      className={`roleDescDetail ${
+                        showActiveDescRole === role.companyRoles
+                          ? 'primary'
+                          : ''
+                      }`}
+                      onClick={() =>
+                        setShowActiveDescRole(
+                          showActiveDescRole === role.companyRoles
+                            ? role.companyRoles
+                            : ''
+                        )
+                      }
+                    >
+                      {showActiveDescRole === role.companyRoles ? (
+                        <>
+                          <KeyboardArrowUpIcon />
+                          {t('content.companyRolesUpdate.roleDescUpTitle')}
+                        </>
+                      ) : (
+                        <>
+                          <KeyboardArrowDownIcon />
+                          {t('content.companyRolesUpdate.roleDescDownTitle')}
+                        </>
+                      )}
                     </Typography>
                   </li>
                 )

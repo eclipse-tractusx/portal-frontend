@@ -35,12 +35,15 @@ import {
 } from 'cx-portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import {
+  AgreementsData,
   CompanyRolesResponse,
-  RoleData,
-  SampleData,
+  RoleFeatureData,
+  RolesData,
+  useFetchDocumentByIdMutation,
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
 import CommonService from 'services/CommonService'
+import { download } from 'utils/downloadUtils'
 import './style.scss'
 
 export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
@@ -48,6 +51,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
 
+  const [getDocumentById] = useFetchDocumentByIdMutation()
   const { data } = useFetchRolesQuery()
 
   const newSelectedRoles = data?.filter(
@@ -58,27 +62,41 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
     (role) => roles.indexOf(role.companyRoles) === -1
   )
 
-  const [dataArray, setDataArray] = useState<SampleData>()
+  const [dataArray, setDataArray] = useState<RolesData>()
 
   useEffect(() => {
-    CommonService.getCompanyRoleUpdateData((data: SampleData) => {
+    CommonService.getCompanyRoleUpdateData((data: RolesData) => {
       setDataArray(data)
     })
   }, [])
 
-  const getRolesList = (sampleRole: RoleData) => {
+  const getRolesFeaturesList = (data: RoleFeatureData) => {
     return (
-      <div className="role-list" key={uniqueId(sampleRole.title)}>
+      <div className="role-list" key={uniqueId(data.title)}>
         <Typography variant="h5" className="role-title">
-          {sampleRole.title}
+          {data.title}
         </Typography>
         <Expand
           label={t('content.companyRolesUpdate.overlay.expandLabel')}
           expandedLabel={t('content.companyRolesUpdate.overlay.expandedLabel')}
-          text={sampleRole.description}
+          text={data.description}
         />
       </div>
     )
+  }
+
+  const handleDownloadClick = async (
+    documentId: string,
+    documentName: string
+  ) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
   }
 
   return (
@@ -144,9 +162,9 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                   roles.indexOf(role.companyRoles) !== -1 &&
                   dataArray &&
                   dataArray[
-                    role.companyRoles as keyof SampleData
-                  ]?.selected.roles.map((sampleRole: RoleData) => {
-                    return getRolesList(sampleRole)
+                    role.companyRoles as keyof RolesData
+                  ]?.selected.roles.map((sampleRole: RoleFeatureData) => {
+                    return getRolesFeaturesList(sampleRole)
                   })
                 )
               })}
@@ -164,16 +182,16 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                   roles.indexOf(role.companyRoles) === -1 &&
                   dataArray &&
                   dataArray[
-                    role.companyRoles as keyof SampleData
-                  ]?.deselected.roles.map((sampleRole: RoleData) => {
-                    return getRolesList(sampleRole)
+                    role.companyRoles as keyof RolesData
+                  ]?.deselected.roles.map((sampleRole: RoleFeatureData) => {
+                    return getRolesFeaturesList(sampleRole)
                   })
                 )
               })}
             </div>
           )}
 
-          {/* Fetch Features of Added Features */}
+          {/* Fetch Features Data of Added Features */}
           {newSelectedRoles && newSelectedRoles.length > 0 && (
             <div className="mb-30">
               <Typography variant="h3" className="rolesAddedHeading">
@@ -184,16 +202,16 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                   roles.indexOf(role.companyRoles) !== -1 &&
                   dataArray &&
                   dataArray[
-                    role.companyRoles as keyof SampleData
-                  ]?.selected.features.map((sampleRole: RoleData) => {
-                    return getRolesList(sampleRole)
+                    role.companyRoles as keyof RolesData
+                  ]?.selected.features.map((sampleRole: RoleFeatureData) => {
+                    return getRolesFeaturesList(sampleRole)
                   })
                 )
               })}
             </div>
           )}
 
-          {/* Fetch Features of Removed Features */}
+          {/* Fetch Features Data of Removed Features */}
           {newDeselectedRoles && newDeselectedRoles.length > 0 && (
             <div className="mb-80">
               <Typography variant="h3" className="rolesAddedHeading">
@@ -206,25 +224,65 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                   roles.indexOf(role.companyRoles) === -1 &&
                   dataArray &&
                   dataArray[
-                    role.companyRoles as keyof SampleData
-                  ]?.selected.features.map((sampleRole: RoleData) => {
-                    return getRolesList(sampleRole)
+                    role.companyRoles as keyof RolesData
+                  ]?.selected.features.map((sampleRole: RoleFeatureData) => {
+                    return getRolesFeaturesList(sampleRole)
                   })
                 )
               })}
             </div>
           )}
 
-          <div className="pl-40">
+          <div>
             <Typography variant="h4" className="rolesAddedHeading">
               {t('content.companyRolesUpdate.overlay.termsHeading')}
             </Typography>
-            <Checkbox
-              label={`${t('content.companyRolesUpdate.overlay.termsLabel')}`}
-            />
-            <Checkbox
-              label={`${t('content.companyRolesUpdate.overlay.termsLabel')}`}
-            />
+            <ul className="agreement-check-list">
+              {data?.map((role: CompanyRolesResponse) => {
+                return (
+                  roles.indexOf(role.companyRoles) !== -1 &&
+                  role.agreements.map((agreement: AgreementsData) => {
+                    return (
+                      <li key={agreement.agreementId} className="agreement-li">
+                        <Checkbox />
+                        {agreement.documentId ? (
+                          <>
+                            <Typography variant="label2">
+                              {t(
+                                'content.companyRolesUpdate.overlay.TermsAndCondSpan1'
+                              )}{' '}
+                            </Typography>
+                            <Typography
+                              variant="label2"
+                              className={
+                                agreement.documentId ? 'agreement-span' : ''
+                              }
+                              onClick={() =>
+                                handleDownloadClick(
+                                  agreement.documentId,
+                                  agreement.agreementName
+                                )
+                              }
+                            >
+                              {agreement.agreementName}
+                            </Typography>{' '}
+                            <Typography variant="label2">
+                              {t(
+                                'content.companyRolesUpdate.overlay.TermsAndCondSpan2'
+                              )}
+                            </Typography>
+                          </>
+                        ) : (
+                          <Typography variant="label2">
+                            {agreement.agreementName}
+                          </Typography>
+                        )}
+                      </li>
+                    )
+                  })
+                )
+              })}
+            </ul>
           </div>
         </div>
       </DialogContent>
