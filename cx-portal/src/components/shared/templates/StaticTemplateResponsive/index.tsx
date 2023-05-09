@@ -46,16 +46,6 @@ const TemplateConfig = ({
   showScroll: boolean
 }) => {
   switch (provider.template) {
-    //Text in the left and image in the right side
-    case TemplateNames.TextImageSideBySide:
-      return (
-        <TextImageSideBySide
-          baseUrl={baseUrl}
-          provider={provider}
-          scrollTop={scrollTop}
-          showScroll={showScroll}
-        />
-      )
     //Text in the left and video in the right side
     case TemplateNames.TextVideoSideBySide:
       return (
@@ -205,6 +195,7 @@ const TemplateConfig = ({
         </>
       )
     default:
+      //Text in the left and image in the right side
       return (
         <TextImageSideBySide
           baseUrl={baseUrl}
@@ -238,9 +229,9 @@ export const StaticTemplateResponsive = ({
     isMobile ? PageOffsetValue.MOBILE : PageOffsetValue.DEFAULT
 
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > getValue()) {
+    if (!showScroll && window.scrollY > getValue()) {
       setShowScroll(true)
-    } else if (showScroll && window.pageYOffset <= getValue()) {
+    } else if (showScroll && window.scrollY <= getValue()) {
       setShowScroll(false)
     }
   }
