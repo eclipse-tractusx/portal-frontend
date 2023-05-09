@@ -18,31 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import { Typography } from 'cx-portal-shared-components'
-import '../StaticTemplate.scss'
-import ReactPlayer from 'react-player'
+import i18next from 'i18next'
 
-export default function VideoTextSideBySide({
-  provider,
-}: {
-  provider: ProviderProps
-}) {
-  return (
-    <div className={'imageVideoTextSideBySide'}>
-      <div>
-        <ReactPlayer
-          className="video"
-          url={provider.videoUrl}
-          controls={true}
-        />
-      </div>
-      <div className={'titleDescriptionBody'}>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography className={'providerDescription'} variant="body1">
-          {provider.description}
-        </Typography>
-      </div>
-    </div>
-  )
+export const name = 'common/language'
+
+export interface LanguageState {
+  language: string
+}
+
+export const initialState: LanguageState = {
+  language: i18next.language,
 }

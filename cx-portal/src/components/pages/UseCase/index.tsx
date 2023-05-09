@@ -25,10 +25,13 @@ import { useEffect, useState } from 'react'
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
+import { useSelector } from 'react-redux'
+import { languageSelector } from 'features/language/slice'
 
 export default function UseCase() {
   const [useCase, setUseCase] = useState<any>()
   const [linkArray, setLinkArray] = useState<any>()
+  const language = useSelector(languageSelector)
 
   useEffect(() => {
     CommonService.getUseCases((data: any) => {
@@ -56,7 +59,7 @@ export default function UseCase() {
         },
       ])
     })
-  }, [])
+  }, [language])
 
   return (
     <main className="useCase">

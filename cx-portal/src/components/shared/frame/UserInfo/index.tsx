@@ -34,11 +34,14 @@ import { Link } from 'react-router-dom'
 import './UserInfo.scss'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
+import { setLanguage } from 'features/language/actions'
+import { useDispatch } from 'react-redux'
 
 export const UserInfo = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
+  const dispatch = useDispatch()
   const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
   })
@@ -99,7 +102,10 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
         <LanguageSwitch
           current={i18next.language}
           languages={I18nService.supportedLanguages.map((key) => ({ key }))}
-          onChange={changeLanguage}
+          onChange={(key: string) => {
+            dispatch(setLanguage({ language: key }))
+            changeLanguage(key)
+          }}
         />
       </UserMenu>
     </div>

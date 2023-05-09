@@ -21,6 +21,7 @@
 import { ProviderProps } from '../StaticTypes'
 import ImageVideoWrapper from './ImageVideoWrapper'
 import '../StaticTemplate.scss'
+import ReactPlayer from 'react-player'
 
 export default function TextVideoSideBySide({
   provider,
@@ -31,12 +32,11 @@ export default function TextVideoSideBySide({
     <ImageVideoWrapper
       provider={provider}
       children={
-        <iframe
-          className={'video'}
-          title="Video"
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+        <ReactPlayer
+          className="video"
+          url={provider.videoUrl}
+          controls={true}
+        />
       }
     />
   )
