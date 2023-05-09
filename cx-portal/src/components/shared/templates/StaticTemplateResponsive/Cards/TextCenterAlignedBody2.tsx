@@ -19,14 +19,19 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography, IconButton } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 
 export default function TextCenterAlignedBody2({
   provider,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <Box
@@ -38,7 +43,14 @@ export default function TextCenterAlignedBody2({
     >
       <Box>
         {provider.title && (
-          <Typography variant="h2">{provider.title}</Typography>
+          <div className="titleWithIcon">
+            <Typography variant="h2">{provider.title}</Typography>
+            {showScroll && (
+              <IconButton onClick={scrollTop}>
+                <ArrowUpwardIcon />
+              </IconButton>
+            )}
+          </div>
         )}
         {provider.subTitles &&
           provider.subTitles.map((subtitle) => (

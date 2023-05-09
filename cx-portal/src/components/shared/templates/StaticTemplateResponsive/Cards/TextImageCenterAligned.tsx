@@ -26,13 +26,21 @@ import '../StaticTemplate.scss'
 export default function TextImageCenterAligned({
   provider,
   baseUrl,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
   baseUrl: string
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <div className="textCenterAligned">
-      <TextCenterAligned provider={provider} />
+      <TextCenterAligned
+        provider={provider}
+        scrollTop={scrollTop}
+        showScroll={showScroll}
+      />
       <RenderImage
         height="472px"
         url={baseUrl + provider.imagePath || ''}

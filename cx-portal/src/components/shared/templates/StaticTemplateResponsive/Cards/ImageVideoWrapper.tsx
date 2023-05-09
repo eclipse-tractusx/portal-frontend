@@ -18,22 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
+import { IconButton, Typography } from 'cx-portal-shared-components'
 import { ReactElement } from 'react'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 
 export default function ImageVideoWrapper({
   provider,
   children,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
   children: ReactElement
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <div className={'imageVideoTextSideBySide'}>
       <div className={'titleDescriptionBody'}>
-        <Typography variant="h2">{provider.title}</Typography>
+        <div className="titleWithIcon sideBySideTitle">
+          <Typography variant="h2">{provider.title}</Typography>
+          {showScroll && (
+            <IconButton onClick={scrollTop}>
+              <ArrowUpwardIcon />
+            </IconButton>
+          )}
+        </div>
         <Typography className={'providerDescription'} variant="body1">
           {provider.description}
         </Typography>
