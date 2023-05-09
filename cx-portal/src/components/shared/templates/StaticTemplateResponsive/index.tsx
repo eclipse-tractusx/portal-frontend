@@ -229,9 +229,9 @@ export const StaticTemplateResponsive = ({
     isMobile ? PageOffsetValue.MOBILE : PageOffsetValue.DEFAULT
 
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > getValue()) {
+    if (!showScroll && window.scrollY > getValue()) {
       setShowScroll(true)
-    } else if (showScroll && window.pageYOffset <= getValue()) {
+    } else if (showScroll && window.scrollY <= getValue()) {
       setShowScroll(false)
     }
   }
