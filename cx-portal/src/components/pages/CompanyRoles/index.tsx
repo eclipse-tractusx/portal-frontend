@@ -67,9 +67,9 @@ export default function CompanyRoles() {
   }, [url, language])
 
   const scrollStarted = () => {
-    if (window.pageYOffset > 500) {
+    if (window.scrollY > 500) {
       setTopReached(true)
-    } else if (topReached && window.pageYOffset <= 500) {
+    } else if (topReached && window.scrollY <= 500) {
       setTopReached(false)
     }
   }
