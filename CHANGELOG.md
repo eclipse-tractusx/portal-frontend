@@ -40,7 +40,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Make Role Desc Dynamic
    * Add Terms and Condition dynamic in overlay and hanlde download document functionality
 * Service Marketplace
-   * BugFix - Images are missing
+   * BugFix - Fetch image from asset repo
 
 ## 1.4.0
 
