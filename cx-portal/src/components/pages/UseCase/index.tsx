@@ -63,11 +63,7 @@ export default function UseCase() {
   }, [language])
 
   const onScroll = () => {
-    if (window.scrollY > 500) {
-      setIsTop(true)
-    } else if (isTop && window.scrollY <= 500) {
-      setIsTop(false)
-    }
+    setIsTop(window.scrollY > 500)
   }
 
   window.addEventListener('scroll', onScroll)
