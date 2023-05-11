@@ -28,6 +28,7 @@ import { OVERLAYS, ROLES } from 'types/Constants'
 import UserService from 'services/UserService'
 import './MarketplaceHeader.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function MarketplaceHeader({
   item,
@@ -86,7 +87,10 @@ export default function MarketplaceHeader({
   return (
     <div className="marketplace-header">
       <div className="lead-image">
-        <img src={'/ServiceMarketplace.png'} alt={item.title} />
+        <img
+          src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
+          alt={item.title}
+        />
       </div>
       <div className="content">
         <Typography variant="body2" className="provider">
