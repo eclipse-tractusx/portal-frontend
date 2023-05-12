@@ -49,6 +49,7 @@ import {
   useFetchUserRolesQuery,
   useSaveTechnicalUserProfilesMutation,
   useUpdateRoleDataMutation,
+  userRolesType,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
@@ -145,7 +146,7 @@ export default function TechnicalIntegration() {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
-  const handleCheckedUserProfiles = (checked: boolean, item: any) => {
+  const handleCheckedUserProfiles = (checked: boolean, item: userRolesType) => {
     const isSelected = techUserProfiles?.includes(item.roleId)
     if (!isSelected && checked) {
       setTechUserProfiles([...techUserProfiles, item.roleId])
@@ -173,7 +174,7 @@ export default function TechnicalIntegration() {
       } else if (
         !(
           techUserProfiles.length === userProfiles.length &&
-          techUserProfiles.every((el) => userProfiles?.includes(el))
+          techUserProfiles.every((item) => userProfiles?.includes(item))
         )
       ) {
         setLoading(true)
@@ -334,7 +335,7 @@ export default function TechnicalIntegration() {
 
       <form className="header-description">
         <Typography variant="h5" mb={2}>
-          {t('content.apprelease.technicalIntegration.step1Header') + ' *'}
+          {t('content.apprelease.technicalIntegration.step1Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
           {t('content.apprelease.technicalIntegration.step1HeaderDescription')}
@@ -692,7 +693,7 @@ export default function TechnicalIntegration() {
 
         <Divider className="form-divider" />
         <Typography variant="h5" mb={2}>
-          {t('content.apprelease.technicalIntegration.step2Header') + ' *'}
+          {t('content.apprelease.technicalIntegration.step2Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
           {t('content.apprelease.technicalIntegration.step2HeaderDescription')}
