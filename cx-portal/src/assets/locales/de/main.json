@@ -935,14 +935,15 @@
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1Header": "1. User Role Upload",
         "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Upload App Roles",
+        "step2Header": "2. Technical User Setup",
+        "step2HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of Roles uploaded",
         "uploadAppRolesButton": "Upload App Roles",
@@ -959,7 +960,8 @@
         "template": "Template",
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
-        "roleUploadIsMandatory": "Role upload is mandatory"
+        "roleUploadIsMandatory": "Role upload is mandatory",
+        "technicalUserSetupMandatory": "Please select atleast one technical user setup"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
