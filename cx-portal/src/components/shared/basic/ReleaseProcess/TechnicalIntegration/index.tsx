@@ -176,44 +176,42 @@ export default function TechnicalIntegration() {
           techUserProfiles.every((el) => userProfiles?.includes(el))
         )
       ) {
-        handleSave(submitData, buttonLabel)
+        setLoading(true)
+        const updateData = {
+          appId: appId,
+          body: [
+            {
+              technicalUserProfileId:
+                (fetchTechnicalUserProfiles &&
+                  fetchTechnicalUserProfiles?.length > 0 &&
+                  fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
+                '',
+              userRoleIds: techUserProfiles,
+            },
+          ],
+        }
+
+        if (updateData)
+          await saveTechnicalUserProfiles(updateData)
+            .unwrap()
+            .then(() => {
+              setEnableUserProfilesErrorMessage(false)
+              setSnackBarType(SuccessErrorType.SUCCESS)
+              setSnackBarMessage(
+                t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+              )
+              setTechnicalIntegrationSnackbar(true)
+              refetchTechnicalUserProfiles()
+            })
+            .catch((error) => {
+              console.error(
+                error,
+                'ERROR WHILE UPDATING TECHNICAL USER PROFILES'
+              )
+            })
+        setLoading(false)
       }
     }
-  }
-
-  const handleSave = async (data: Object, buttonLabel: string) => {
-    setLoading(true)
-    const updateData = {
-      appId: appId,
-      body: [
-        {
-          technicalUserProfileId:
-            (fetchTechnicalUserProfiles &&
-              fetchTechnicalUserProfiles?.length > 0 &&
-              fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
-            '',
-          userRoleIds: techUserProfiles,
-        },
-      ],
-    }
-
-    if (updateData)
-      await saveTechnicalUserProfiles(updateData)
-        .unwrap()
-        .then(() => {
-          // else if(buttonLabel === ButtonLabelTypes.SAVE){
-          setEnableUserProfilesErrorMessage(false)
-          setSnackBarType(SuccessErrorType.SUCCESS)
-          setSnackBarMessage(
-            t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
-          )
-          setTechnicalIntegrationSnackbar(true)
-          refetchTechnicalUserProfiles()
-        })
-        .catch((error) => {
-          console.error(error, 'ERROR WHILE UPDATING TECHNICAL USER PROFILES')
-        })
-    setLoading(false)
   }
 
   const csvPreview = (files: File[]) => {
