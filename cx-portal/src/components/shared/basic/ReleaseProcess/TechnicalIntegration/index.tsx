@@ -110,17 +110,16 @@ export default function TechnicalIntegration() {
   const [enableUserProfilesErrorMessage, setEnableUserProfilesErrorMessage] =
     useState(false)
 
+  const userProfiles =
+    (fetchTechnicalUserProfiles &&
+      fetchTechnicalUserProfiles?.length > 0 &&
+      fetchTechnicalUserProfiles[0]?.userRoles.map(
+        (i: { roleId: string }) => i.roleId
+      )) ||
+    []
+
   useEffect(() => {
-    if (fetchTechnicalUserProfiles && fetchTechnicalUserProfiles?.length > 0) {
-      setTechUserProfiles(
-        (fetchTechnicalUserProfiles &&
-          fetchTechnicalUserProfiles?.length > 0 &&
-          fetchTechnicalUserProfiles[0]?.userRoles?.map(
-            (item) => item.roleId
-          )) ||
-          []
-      )
-    }
+    setTechUserProfiles(userProfiles)
   }, [fetchTechnicalUserProfiles])
 
   const defaultValues = {
@@ -159,11 +158,6 @@ export default function TechnicalIntegration() {
 
   const onIntegrationSubmit = async (submitData: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
-    let userProfiles =
-      (fetchTechnicalUserProfiles &&
-        fetchTechnicalUserProfiles?.length > 0 &&
-        fetchTechnicalUserProfiles[0]?.userRoles.map((i) => i.roleId)) ||
-      []
 
     if (buttonLabel === 'save') {
       if (data?.length === 0) {
@@ -449,7 +443,7 @@ export default function TechnicalIntegration() {
         <Controller
           name={'uploadAppRoles'}
           control={control}
-          render={({ field: { onChange: reactHookFormOnChange, value } }) => (
+          render={({ field: { onChange: reactHookFormOnChange } }) => (
             <Dropzone
               onChange={(files, addedFiles, deletedFiles) => {
                 if (deletedFiles?.length) {
