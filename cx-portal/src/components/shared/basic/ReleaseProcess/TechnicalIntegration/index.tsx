@@ -120,7 +120,7 @@ export default function TechnicalIntegration() {
           []
       )
     }
-  }, [fetchTechnicalUserProfiles, refetchTechnicalUserProfiles])
+  }, [fetchTechnicalUserProfiles])
 
   const defaultValues = {
     // To-Do : the below code will get enhanced again in R.3.1
