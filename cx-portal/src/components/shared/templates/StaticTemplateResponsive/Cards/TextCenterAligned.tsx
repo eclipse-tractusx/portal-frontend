@@ -22,6 +22,7 @@ import { Typography, IconButton } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function TextCenterAligned({
   provider,
@@ -46,9 +47,11 @@ export default function TextCenterAligned({
           </div>
         )}
         {provider.description && (
-          <Typography className={'description'} variant="body1">
-            {provider.description}
-          </Typography>
+          <Trans>
+            <Typography className={'description'} variant="body1">
+              {provider.description}
+            </Typography>
+          </Trans>
         )}
       </div>
     </div>
