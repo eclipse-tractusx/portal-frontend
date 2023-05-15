@@ -66,41 +66,6 @@ export default function UseCase() {
     setIsTop(window.scrollY > 500)
   }
 
-  const json = {
-    subNavigation: {
-      link1Label: 'Intro',
-      link2Label: 'Core Values',
-      link3Label: 'Details',
-      link4Label: 'Business Applications',
-    },
-    traceability: {
-      title: 'Traceability',
-      description:
-        '...as basis for building digital data chains and enabling data chain-focused use cases',
-      sections: [
-        {
-          title: 'Details to the data exchange',
-          description: '',
-          imagePath: '/images/content/traceability_dataexchange(en).png',
-          backgroundColor: '#F9F9F9',
-          id: 'details2-id',
-          template: 'TextImageCenterAligned',
-        },
-        {
-          title: '',
-          subTitles: [
-            "In this example, an “SME” produces components that have a part number (PRT-12345) and the batch (XX1235509). After manufacturing the parts, the SME creates a UUID for the produced batch via App A and automatically registers it in the Digital Twin Registry as a digital twin. The <strong className='tooltip'>“Batch”<0>Each traceable object is mapped via a digital twin and registered in the “Digital Twin Registry</0></strong> aspect model is used for this purpose. On the digital level, a contract is concluded via the SME and the customer's EDC connectors to exchange this data. The physical components (e.g. sensors) are then sent to the 'customer'.<br /><br />",
-            "The 'customer' is the manufacturer of an assembly. He creates a UUID for his manufactured serialized item (item number 5A52429 and serial number 21B294301268) via App B and registers it as a digital twin using the 'SerialPartTypization' aspect model. The assembly relationship with the supplier's batch is established using the 'AssemblyPartRelation' aspect model. He scans the components of the 'SME' and the identified data is linked to the digital twin of its serialized component. On the digital level, a contract is concluded via the EDC connectors of the 'customer' and the 'OEM' to exchange this data. The physical component (e.g. transmission) is then sent to the 'OEM'.<br /><br />",
-            "During the assembly process, the OEM scans the parts to link the vehicle (VIN/VAN = Vehicle Identification Number) to the serialized part. The OEM can then find the digital twin of the component with the information about the serial number and item number and thus read out the digital twin via the UUID. He then creates a UUID for his manufactured vehicle and registers it in the Digital Twin Registry as a digital twin and establishes the assembly relationship with the installed part of the 'customer' using the 'AssemblyPartRelation' aspect model.<br /><br />",
-          ],
-          id: 'details3-id',
-          backgroundColor: '#f9f9f9',
-          template: 'TextCenterAlignedBody2',
-        },
-      ],
-    },
-  }
-
   window.addEventListener('scroll', onScroll)
 
   return (
@@ -113,7 +78,7 @@ export default function UseCase() {
           />
           <StageSubNavigation fixHeader={isTop} linkArray={linkArray} />
           <StaticTemplateResponsive
-            sectionInfo={json.traceability.sections}
+            sectionInfo={useCase.traceability.sections}
             baseUrl={getAssetBase()}
           />
         </>
