@@ -28,16 +28,14 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-  TAG_NAME: ${{ github.ref_name }}
+  IMAGE_NAMESPACE: "tractusx"
+  IMAGE_NAME: "portal-frontend"
 
 jobs:
   build-and-push-release:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
 
     steps:
       - name: Checkout repository
@@ -49,18 +47,18 @@ jobs:
 
       - name: Output versions
         run: |
-          echo git ${{ env.TAG_NAME }}
+          echo git ${{ github.ref_name }}
           echo npm ${{ steps.npm-tag.outputs.current-version }}
 
       - name: Versions not matching
-        if: env.TAG_NAME != steps.npm-tag.outputs.current-version
+        if: github.ref_name != steps.npm-tag.outputs.current-version
         run: |
           echo git and npm versions not equal - refusing to build release
           exit 1
 
       - name: Versions match
         run: |
-          echo versions equal - building release ${{ env.TAG_NAME }}
+          echo versions equal - building release ${{ github.ref_name }}
 
       - name: Install Dependencies
         run: yarn
@@ -74,27 +72,40 @@ jobs:
       - name: Unit Tests
         run: yarn test:ci
 
-      - name: Login to GitHub Container Registry
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Extract Metadata (tags, labels) for Docker
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=raw,value=${{ github.ref_name }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: .conf/Dockerfile.prebuilt
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      # https://github.com/peter-evans/dockerhub-description
+      - name: Update Docker Hub description
+        if: github.event_name != 'pull_request'
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+          readme-filepath: ".conf/notice-portal.md"
 
 #      - name: Publish Shared Components to npm
 #        working-directory: ./cx-portal-shared-components
@@ -108,7 +119,7 @@ jobs:
 
     steps:
       - name: Set env
-        run: echo "RELEASE_VERSION=${{ env.TAG_NAME }}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
 
       - name: Get token
         id: get_workflow_token
@@ -124,8 +135,8 @@ jobs:
         run: |
           curl -v \
             --request POST \
-            --url https://api.github.com/repos/catenax-ng/tx-portal-cd/actions/workflows/portal-release-image-update.yml/dispatches \
+            --url https://api.github.com/repos/eclipse-tractusx/portal-cd/actions/workflows/portal-image-update.yml/dispatches \
             --header "authorization: Bearer $TOKEN" \
             --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"release-candidate", "inputs": { "new-image":"${{ env.RELEASE_VERSION }}" }}' \
+            --data '{"ref":"release-candidate", "inputs": { "new-image":"${{ github.ref_name }}" }}' \
             --fail
