@@ -56,9 +56,11 @@ export default function TextCenterAlignedBody2({
         {provider.subTitles &&
           provider.subTitles.map((subtitle) => (
             <Trans
+              key={subtitle}
               i18nKey={subtitle}
               components={[<span className="tooltiptext"></span>]}
-            ></Trans>
+            >
+            </Trans>
           ))}
       </Box>
     </Box>
