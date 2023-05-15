@@ -21,6 +21,7 @@
 import { CardDetailsProps } from '../StaticTypes'
 import { Typography } from 'cx-portal-shared-components'
 import '../StaticTemplate.scss'
+import { Trans } from 'react-i18next'
 
 export default function CardWithText({
   card,
@@ -35,9 +36,11 @@ export default function CardWithText({
         <Typography className={'title'} variant="h4">
           {card.title}
         </Typography>
-        <Typography className={'description'} variant="body2">
-          {card.description}
-        </Typography>
+        <Trans>
+          <Typography className={'description'} variant="body2">
+            {card.description}
+          </Typography>
+        </Trans>
       </div>
       {card.readMore ? (
         <a

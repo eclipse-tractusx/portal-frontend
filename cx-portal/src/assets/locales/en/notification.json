@@ -36,7 +36,7 @@
     "content": "{{user}} writes"
   },
   "APP_RELEASE_REQUEST": {
-    "title": "App Release Request - App: {{app}}",
+    "title": "App Release Request - App: {{offer}}",
     "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
   },
   "APP_RELEASE_APPROVAL": {

@@ -24,6 +24,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Support language switch
    * Support arrow up Icon on each section
    * Fix the subnavigation to top on scroll action
+   * Support tooltip in usecase section
 * ImageComponent
    * Do not hide current on zoom in action
 * Admin board - Service
