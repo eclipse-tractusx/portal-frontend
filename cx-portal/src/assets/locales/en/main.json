@@ -921,7 +921,10 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select atleast one technical user setup"
+        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "technicalUserProfileError": "Error while updating technical user profiles",
+        "roleUpdateError": "Error while updating roles"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -975,8 +978,6 @@
           "message": "Please try it again"
         },
         "dataSavedSuccessMessage": "Data saved successfully",
-        "roleDeleteSuccessMessage": "Role deleted successfully",
-        "rolesDeleteSuccessMessage": "Roles deleted successfully",
         "errormessage": "Error! Something went wrong",
         "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
       },

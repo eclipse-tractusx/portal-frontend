@@ -31,7 +31,7 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import { Box, Grid, useMediaQuery, useTheme, Divider } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
@@ -53,8 +53,8 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { ErrorType } from 'features/appManagement/types'
+import { error, success } from 'services/NotifyService'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -64,12 +64,6 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
     useState<boolean>(false)
-  const [snackBarType, setSnackBarType] = useState<
-    SuccessErrorType.ERROR | SuccessErrorType.SUCCESS
-  >(SuccessErrorType.SUCCESS)
-  const [snackBarMessage, setSnackBarMessage] = useState<string>(
-    t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
-  )
 
   const dispatch = useDispatch()
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
@@ -110,17 +104,20 @@ export default function TechnicalIntegration() {
   const [enableUserProfilesErrorMessage, setEnableUserProfilesErrorMessage] =
     useState(false)
 
-  const userProfiles =
-    (fetchTechnicalUserProfiles &&
-      fetchTechnicalUserProfiles?.length > 0 &&
-      fetchTechnicalUserProfiles[0]?.userRoles.map(
-        (i: { roleId: string }) => i.roleId
-      )) ||
-    []
+  const userProfiles = useMemo(
+    () =>
+      (fetchTechnicalUserProfiles &&
+        fetchTechnicalUserProfiles?.length > 0 &&
+        fetchTechnicalUserProfiles[0]?.userRoles.map(
+          (i: { roleId: string }) => i.roleId
+        )) ||
+      [],
+    [fetchTechnicalUserProfiles]
+  )
 
   useEffect(() => {
     setTechUserProfiles(userProfiles)
-  }, [fetchTechnicalUserProfiles])
+  }, [userProfiles])
 
   const defaultValues = {
     // To-Do : the below code will get enhanced again in R.3.1
@@ -191,17 +188,18 @@ export default function TechnicalIntegration() {
             .unwrap()
             .then(() => {
               setEnableUserProfilesErrorMessage(false)
-              setSnackBarType(SuccessErrorType.SUCCESS)
-              setSnackBarMessage(
+              success(
                 t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
               )
-              setTechnicalIntegrationSnackbar(true)
               refetchTechnicalUserProfiles()
             })
-            .catch((error) => {
-              console.error(
-                error,
-                'ERROR WHILE UPDATING TECHNICAL USER PROFILES'
+            .catch((err) => {
+              error(
+                t(
+                  'content.apprelease.technicalIntegration.technicalUserProfileError'
+                ),
+                '',
+                err
               )
             })
         setLoading(false)
@@ -272,15 +270,19 @@ export default function TechnicalIntegration() {
     if (rolesDescriptionData?.length > 0) {
       await updateRoleData(updateRolesData)
         .unwrap()
-        .then((data) => {
+        .then(() => {
           setRolesPreviews([])
           setRolesDescription([])
           setEnableErrorMessage(false)
           reset(defaultValues)
           refetchRolesData()
         })
-        .catch((error) => {
-          console.error(error, 'ERROR WHILE UPDATING ROLES')
+        .catch((err) => {
+          error(
+            t('content.apprelease.technicalIntegration.roleUpdateError'),
+            '',
+            err
+          )
         })
     }
   }
@@ -293,16 +295,12 @@ export default function TechnicalIntegration() {
       .unwrap()
       .then(() => {
         refetchRolesData()
-        setSnackBarType(SuccessErrorType.SUCCESS)
-        setSnackBarMessage(
-          t('content.apprelease.appReleaseForm.roleDeleteSuccessMessage')
+        success(
+          t('content.apprelease.technicalIntegration.roleDeleteSuccessMessage')
         )
-        setTechnicalIntegrationSnackbar(true)
       })
-      .catch((error) => {
-        setSnackBarType(SuccessErrorType.ERROR)
-        setSnackBarMessage(t('content.apprelease.appReleaseForm.errormessage'))
-        setTechnicalIntegrationSnackbar(true)
+      .catch((err) => {
+        error(t('content.apprelease.appReleaseForm.errormessage'), '', err)
       })
   }
 
@@ -727,8 +725,6 @@ export default function TechnicalIntegration() {
         onSaveAndProceed={handleSubmit((data) =>
           onIntegrationSubmit(data, 'saveAndProceed')
         )}
-        pageSnackBarType={snackBarType}
-        pageSnackBarDescription={snackBarMessage}
         pageNotificationsObject={{
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
