@@ -58,9 +58,10 @@ export default function TextCenterAlignedBody2({
             <Trans
               key={subtitle}
               i18nKey={subtitle}
-              components={[<span className="tooltiptext"></span>]}
-            >
-            </Trans>
+              components={[
+                <span key={subtitle} className="tooltiptext"></span>,
+              ]}
+            ></Trans>
           ))}
       </Box>
     </Box>
