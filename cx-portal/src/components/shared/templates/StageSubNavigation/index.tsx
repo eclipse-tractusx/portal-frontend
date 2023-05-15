@@ -43,7 +43,7 @@ export const StageSubNavigation = ({
     top: 0,
     width: '100%',
     zIndex: 9,
-    backgroundColor: 'white',
+    backgroundColor: '#F5F9FD',
     boxShadow: '0px 5px 10px rgb(80 80 80 / 30%)',
   }
 
