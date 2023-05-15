@@ -23,6 +23,7 @@ import { ReactElement } from 'react'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function ImageVideoWrapper({
   provider,
@@ -46,9 +47,11 @@ export default function ImageVideoWrapper({
             </IconButton>
           )}
         </div>
-        <Typography className={'providerDescription'} variant="body1">
-          {provider.description}
-        </Typography>
+        <Trans>
+          <Typography className={'providerDescription'} variant="body1">
+            {provider.description}
+          </Typography>
+        </Trans>
       </div>
       {children}
     </div>

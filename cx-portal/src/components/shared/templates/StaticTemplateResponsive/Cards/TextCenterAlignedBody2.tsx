@@ -23,6 +23,7 @@ import { Typography, IconButton } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function TextCenterAlignedBody2({
   provider,
@@ -54,13 +55,10 @@ export default function TextCenterAlignedBody2({
         )}
         {provider.subTitles &&
           provider.subTitles.map((subtitle) => (
-            <Typography
-              className={'description'}
-              key={subtitle}
-              variant="body2"
-            >
-              {subtitle}
-            </Typography>
+            <Trans
+              i18nKey={subtitle}
+              components={[<span className="tooltiptext"></span>]}
+            ></Trans>
           ))}
       </Box>
     </Box>

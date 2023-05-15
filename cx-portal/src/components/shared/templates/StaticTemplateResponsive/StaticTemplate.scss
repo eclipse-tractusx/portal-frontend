@@ -459,3 +459,27 @@ iframe {
   place-content: flex-start;
   width: 100%;
 }
+
+strong {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 10%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+}
+
+strong:hover .tooltiptext {
+  visibility: visible !important;
+}
