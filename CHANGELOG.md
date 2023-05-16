@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Error scenarios implemented in Table component
 * App Release Process
    * technical integration style updates
+   * Added technical user profile section
 * News Section
    * Fixed UI of news section in home page
 * Company Role Updates

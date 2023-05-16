@@ -174,6 +174,28 @@ export interface PrivacyPolicyType {
   privacyPolicies: string[] | []
 }
 
+export type userRolesType = {
+  roleId: string
+  roleName: string
+  roleDescription: string | null
+}
+
+export type updateTechnicalUserProfiles = {
+  appId: string
+  body: {
+    technicalUserProfileId: string | null
+    userRoleIds: string[]
+  }[]
+}
+
+export type technicalUserProfiles = {
+  technicalUserProfileId: string
+  userRoles: {
+    roleId: string
+    roleName: string
+  }[]
+}
+
 enum Tags {
   APP = 'App',
 }
@@ -305,6 +327,23 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    fetchUserRoles: builder.query<userRolesType[], void>({
+      query: () => `api/administration/serviceaccount/user/roles`,
+    }),
+    fetchTechnicalUserProfiles: builder.query<technicalUserProfiles[], string>({
+      query: (appId) =>
+        `/api/apps/appreleaseprocess/${appId}/technical-user-profiles`,
+    }),
+    saveTechnicalUserProfiles: builder.mutation<
+      void,
+      updateTechnicalUserProfiles
+    >({
+      query: (data) => ({
+        url: `/api/apps/appreleaseprocess/${data.appId}/technical-user-profiles`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -328,4 +367,7 @@ export const {
   useFetchNewDocumentByIdMutation,
   useFetchPrivacyPoliciesQuery,
   useFetchFrameDocumentByIdMutation,
+  useFetchUserRolesQuery,
+  useFetchTechnicalUserProfilesQuery,
+  useSaveTechnicalUserProfilesMutation,
 } = apiSlice

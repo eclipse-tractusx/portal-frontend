@@ -20,6 +20,7 @@
 
 import {
   Button,
+  Checkbox,
   Chip,
   CustomAccordion,
   LoadingButton,
@@ -28,9 +29,9 @@ import {
 import { useTranslation } from 'react-i18next'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
-import { Box, Grid, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Grid, useMediaQuery, useTheme, Divider } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
@@ -44,12 +45,16 @@ import {
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
   useFetchRolesDataQuery,
+  useFetchTechnicalUserProfilesQuery,
+  useFetchUserRolesQuery,
+  useSaveTechnicalUserProfilesMutation,
   useUpdateRoleDataMutation,
+  userRolesType,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { ErrorType } from 'features/appManagement/types'
+import { error, success } from 'services/NotifyService'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -59,28 +64,20 @@ export default function TechnicalIntegration() {
   ] = useState(false)
   const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
     useState<boolean>(false)
-  const [snackBarType, setSnackBarType] = useState<
-    SuccessErrorType.ERROR | SuccessErrorType.SUCCESS
-  >(SuccessErrorType.SUCCESS)
-  const [snackBarMessage, setSnackBarMessage] = useState<string>(
-    t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
-  )
 
   const dispatch = useDispatch()
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   const [rolesDescription, setRolesDescription] = useState<string[]>([])
-  // To-Do : the below code will get enhanced again in R.3.1
-  // const [disableCreateClient, setDisableCreateClient] = useState(true)
-  // const [createClientSuccess, setCreateClientSuccess] = useState(false)
-  // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
-  // const [showUserButton, setShowUserButton] = useState(true)
   const appId = useSelector(appIdSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const { data, refetch } = useFetchRolesDataQuery(appId ?? '', {
-    refetchOnMountOrArgChange: true,
-  })
+  const { data, refetch: refetchRolesData } = useFetchRolesDataQuery(
+    appId ?? '',
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  )
   const [updateRoleData, { isLoading }] = useUpdateRoleDataMutation()
   const [deleteRoles] = useDeleteRolesMutation()
   const [uploadCSVError, setUploadCSVError] = useState(false)
@@ -89,12 +86,37 @@ export default function TechnicalIntegration() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
   })
+  const fetchUserRoles = useFetchUserRolesQuery().data
+  const {
+    data: fetchTechnicalUserProfiles,
+    refetch: refetchTechnicalUserProfiles,
+  } = useFetchTechnicalUserProfilesQuery(appId ?? '', {
+    refetchOnMountOrArgChange: true,
+  })
+  const [loading, setLoading] = useState<boolean>(false)
+  const [saveTechnicalUserProfiles] = useSaveTechnicalUserProfilesMutation()
+  const [techUserProfiles, setTechUserProfiles] = useState<string[]>([])
+  const [enableUserProfilesErrorMessage, setEnableUserProfilesErrorMessage] =
+    useState(false)
+
+  const userProfiles = useMemo(
+    () =>
+      (fetchTechnicalUserProfiles &&
+        fetchTechnicalUserProfiles?.length > 0 &&
+        fetchTechnicalUserProfiles[0]?.userRoles.map(
+          (i: { roleId: string }) => i.roleId
+        )) ||
+      [],
+    [fetchTechnicalUserProfiles]
+  )
+
+  useEffect(() => {
+    setTechUserProfiles(userProfiles)
+  }, [userProfiles])
 
   const defaultValues = {
-    // To-Do : the below code will get enhanced again in R.3.1
-    // clientId: '',
-    // URL: '',
     uploadAppRoles: '',
+    technicalUserProfiles: [],
   }
 
   const {
@@ -112,16 +134,67 @@ export default function TechnicalIntegration() {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
+  const handleCheckedUserProfiles = (checked: boolean, item: userRolesType) => {
+    const isSelected = techUserProfiles?.includes(item.roleId)
+    if (!isSelected && checked) {
+      setTechUserProfiles([...techUserProfiles, item.roleId])
+    } else if (isSelected && !checked) {
+      const oldTechUserProfiles = [...techUserProfiles]
+      oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
+      setTechUserProfiles([...oldTechUserProfiles])
+    }
+  }
+
   const onIntegrationSubmit = async (submitData: any, buttonLabel: string) => {
     buttonLabel === 'saveAndProceed' && dispatch(increment())
+
     if (buttonLabel === 'save') {
-      if (data?.length === 0) setEnableErrorMessage(true)
-      else {
-        setSnackBarType(SuccessErrorType.SUCCESS)
-        setSnackBarMessage(
-          t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+      if (data?.length === 0) {
+        setEnableErrorMessage(true)
+      }
+      if (techUserProfiles.length === 0) {
+        setEnableUserProfilesErrorMessage(true)
+      } else if (
+        !(
+          techUserProfiles.length === userProfiles.length &&
+          techUserProfiles.every((item) => userProfiles?.includes(item))
         )
-        setTechnicalIntegrationSnackbar(true)
+      ) {
+        setLoading(true)
+        const updateData = {
+          appId: appId,
+          body: [
+            {
+              technicalUserProfileId:
+                (fetchTechnicalUserProfiles &&
+                  fetchTechnicalUserProfiles?.length > 0 &&
+                  fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
+                null,
+              userRoleIds: techUserProfiles,
+            },
+          ],
+        }
+
+        if (updateData)
+          await saveTechnicalUserProfiles(updateData)
+            .unwrap()
+            .then(() => {
+              setEnableUserProfilesErrorMessage(false)
+              success(
+                t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+              )
+              refetchTechnicalUserProfiles()
+            })
+            .catch((err) => {
+              error(
+                t(
+                  'content.apprelease.technicalIntegration.technicalUserProfileError'
+                ),
+                '',
+                err
+              )
+            })
+        setLoading(false)
       }
     }
   }
@@ -189,15 +262,19 @@ export default function TechnicalIntegration() {
     if (rolesDescriptionData?.length > 0) {
       await updateRoleData(updateRolesData)
         .unwrap()
-        .then((data) => {
+        .then(() => {
           setRolesPreviews([])
           setRolesDescription([])
           setEnableErrorMessage(false)
           reset(defaultValues)
-          refetch()
+          refetchRolesData()
         })
-        .catch((error) => {
-          console.error(error, 'ERROR WHILE UPDATING ROLES')
+        .catch((err) => {
+          error(
+            t('content.apprelease.technicalIntegration.roleUpdateError'),
+            '',
+            err
+          )
         })
     }
   }
@@ -209,17 +286,13 @@ export default function TechnicalIntegration() {
     })
       .unwrap()
       .then(() => {
-        refetch()
-        setSnackBarType(SuccessErrorType.SUCCESS)
-        setSnackBarMessage(
-          t('content.apprelease.appReleaseForm.roleDeleteSuccessMessage')
+        refetchRolesData()
+        success(
+          t('content.apprelease.technicalIntegration.roleDeleteSuccessMessage')
         )
-        setTechnicalIntegrationSnackbar(true)
       })
-      .catch((error) => {
-        setSnackBarType(SuccessErrorType.ERROR)
-        setSnackBarMessage(t('content.apprelease.appReleaseForm.errormessage'))
-        setTechnicalIntegrationSnackbar(true)
+      .catch((err) => {
+        error(t('content.apprelease.appReleaseForm.errormessage'), '', err)
       })
   }
 
@@ -229,7 +302,7 @@ export default function TechnicalIntegration() {
   }
 
   return (
-    <div className="technical-integration">
+    <>
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
@@ -241,130 +314,52 @@ export default function TechnicalIntegration() {
               'content.apprelease.technicalIntegration.uploadRolesDescription'
             )}
           </Typography>
-          <Grid item xs={12} sx={{ mr: 2, mt: 4, textAlign: 'center' }}>
-            <a
-              href="../../app-provider-role-upload-example.csv"
-              download
-              style={{ textDecoration: 'none' }}
-            >
-              <Button
-                variant="outlined"
-                endIcon={<FileDownloadOutlinedIcon />}
-                size="small"
-                sx={{ fontSize: '16px' }}
-              >
-                {t('content.apprelease.technicalIntegration.template')}
-              </Button>
-            </a>
-            <Button
-              sx={{ ml: 2, fontSize: '16px' }}
-              size="small"
-              variant="contained"
-              color="secondary"
-              onClick={() =>
-                window.open(
-                  'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
-                  '_blank',
-                  'noopener'
-                )
-              }
-            >
-              {t('content.apprelease.technicalIntegration.getHelp')}
-            </Button>
-          </Grid>
         </Grid>
       </Grid>
 
       <form className="header-description">
-        {/* To-Do : the below code will get enhanced again in R.3.1 */}
-        {/* <Typography variant="h5" mb={4}>
+        <Typography variant="h5" mb={2}>
           {t('content.apprelease.technicalIntegration.step1Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
           {t('content.apprelease.technicalIntegration.step1HeaderDescription')}
         </Typography>
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'clientId',
-              label:
-                t('content.apprelease.technicalIntegration.clientID') + ' *',
-              placeholder: t(
-                'content.apprelease.technicalIntegration.clientID'
-              ),
-              type: 'input',
-              rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.technicalIntegration.clientID'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
-              },
-            }}
-          />
-        </div>
 
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'URL',
-              label: t('content.apprelease.technicalIntegration.URL') + ' *',
-              placeholder: t(
-                'content.apprelease.technicalIntegration.URLPlaceholder'
-              ),
-              type: 'input',
-              rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.technicalIntegration.URL'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
-                pattern: {
-                  value: Patterns.URL,
-                  message: t(
-                    'content.apprelease.technicalIntegration.pleaseEnterValidURL'
-                  ),
-                },
-              },
-            }}
-          />
-        </div>
-        <Box textAlign="center">
-          <Button
-            variant="contained"
-            startIcon={createClientSuccess && <DoneIcon />}
-            sx={{ mr: 2 }}
-            disabled={disableCreateClient}
-            color={createClientSuccess ? 'success' : 'secondary'}
-            onClick={() => setCreateClientSuccess(true)}
+        <Grid item xs={12} sx={{ mr: 2, mt: 4, mb: 5, textAlign: 'center' }}>
+          <a
+            href="../../app-provider-role-upload-example.csv"
+            download
+            style={{ textDecoration: 'none' }}
           >
-            {createClientSuccess
-              ? t('content.apprelease.technicalIntegration.createClient')
-              : t('content.apprelease.technicalIntegration.clientCreated')}
+            <Button
+              variant="outlined"
+              endIcon={<FileDownloadOutlinedIcon />}
+              size="small"
+              sx={{ fontSize: '16px' }}
+            >
+              {t('content.apprelease.technicalIntegration.template')}
+            </Button>
+          </a>
+          <Button
+            sx={{ ml: 2, fontSize: '16px' }}
+            size="small"
+            variant="contained"
+            color="secondary"
+            onClick={() =>
+              window.open(
+                'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
+                '_blank',
+                'noopener'
+              )
+            }
+          >
+            {t('content.apprelease.technicalIntegration.getHelp')}
           </Button>
-          {createClientSuccess && (
-            <IconButton color="secondary">
-              <DeleteIcon />
-            </IconButton>
-          )}
-        </Box>
-
-        <Divider className="form-divider" />
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.step2Header')}
-        </Typography> */}
+        </Grid>
         <Controller
           name={'uploadAppRoles'}
           control={control}
-          render={({ field: { onChange: reactHookFormOnChange, value } }) => (
+          render={({ field: { onChange: reactHookFormOnChange } }) => (
             <Dropzone
               onChange={(files, addedFiles, deletedFiles) => {
                 if (deletedFiles?.length) {
@@ -458,21 +453,6 @@ export default function TechnicalIntegration() {
                 </Grid>
               ))}
             </Grid>
-            {/* <Button
-            variant="contained"
-            sx={{ mr: 2, mt: 3 }}
-            onClick={postRoles}
-            // To-Do : the below code will get enhanced again in R.3.1
-            // disabled={!createClientSuccess}
-          >
-            {getValues().uploadAppRoles === ''
-              ? t(
-                  'content.apprelease.technicalIntegration.clickToOpenDialogBox'
-                )
-              : t(
-                  'content.apprelease.technicalIntegration.uploadAppRolesButton'
-                )}
-          </Button> */}
 
             {rolesPreviews?.length > 0 && (
               <LoadingButton
@@ -565,46 +545,36 @@ export default function TechnicalIntegration() {
             {t('content.apprelease.technicalIntegration.roleUploadIsMandatory')}
           </Typography>
         )}
-
-        {/* To-Do : the below code will get enhanced again in R.3.1 */}
-        {/* <Divider className="form-divider" />
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.step3Header')}
-        </Typography>
-        <Typography variant="body2" mb={4}>
-          {t('content.apprelease.technicalIntegration.step3HeaderDescription')}
-        </Typography>
-
         <Divider className="form-divider" />
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.step4Header')}
+        <Typography variant="h5" mb={2}>
+          {t('content.apprelease.technicalIntegration.step2Header')}
         </Typography>
         <Typography variant="body2" mb={4}>
-          {t('content.apprelease.technicalIntegration.step4HeaderDescription')}
+          {t('content.apprelease.technicalIntegration.step2HeaderDescription')}
         </Typography>
-        {showUserButton ? (
-          <Box textAlign="center">
-            <Button
-              variant="contained"
-              sx={{ mr: 2 }}
-              disabled={!enableTestUserButton}
-              onClick={() => setShowUserButton(false)}
-            >
-              {t('content.apprelease.technicalIntegration.createTestUser')}
-            </Button>
-          </Box>
-        ) : (
-          <Grid container xs={12}>
-            <Grid xs={2}>
-              {t('content.apprelease.technicalIntegration.password')}
+        {fetchUserRoles?.map((item) => (
+          <Grid container spacing={1.5} key={item.roleId}>
+            <Grid item md={12} className="userRoles">
+              <Checkbox
+                label={`${item.roleName} (${
+                  item.roleDescription === null ? '' : item.roleDescription
+                })`}
+                checked={techUserProfiles.some((role) => item.roleId === role)}
+                onChange={(e) =>
+                  handleCheckedUserProfiles(e.target.checked, item)
+                }
+                size="small"
+              />
             </Grid>
-            <Grid xs={4}>Lorem Ipsum</Grid>
-            <Grid xs={2}>
-              {t('content.apprelease.technicalIntegration.username')}
-            </Grid>
-            <Grid xs={4}>Lorem Ipsum</Grid>
           </Grid>
-        )} */}
+        ))}
+        {enableUserProfilesErrorMessage && (
+          <Typography variant="body2" className="file-error-msg">
+            {t(
+              'content.apprelease.technicalIntegration.technicalUserSetupMandatory'
+            )}
+          </Typography>
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={technicalIntegrationNotification}
@@ -616,16 +586,14 @@ export default function TechnicalIntegration() {
         onSaveAndProceed={handleSubmit((data) =>
           onIntegrationSubmit(data, 'saveAndProceed')
         )}
-        pageSnackBarType={snackBarType}
-        pageSnackBarDescription={snackBarMessage}
         pageNotificationsObject={{
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
         helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
-        // To-Do : the below code will get enhanced again in R.3.1
-        isValid={data && data?.length > 0}
+        isValid={data && data?.length > 0 && techUserProfiles?.length > 0}
+        loader={loading}
       />
-    </div>
+    </>
   )
 }
