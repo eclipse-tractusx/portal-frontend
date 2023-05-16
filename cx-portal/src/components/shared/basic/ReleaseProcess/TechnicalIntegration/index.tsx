@@ -68,11 +68,6 @@ export default function TechnicalIntegration() {
   const dispatch = useDispatch()
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   const [rolesDescription, setRolesDescription] = useState<string[]>([])
-  // To-Do : the below code will get enhanced again in R.3.1
-  // const [disableCreateClient, setDisableCreateClient] = useState(true)
-  // const [createClientSuccess, setCreateClientSuccess] = useState(false)
-  // const [enableTestUserButton, setEnableTestUserButton] = useState(false)
-  // const [showUserButton, setShowUserButton] = useState(true)
   const appId = useSelector(appIdSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -120,9 +115,6 @@ export default function TechnicalIntegration() {
   }, [userProfiles])
 
   const defaultValues = {
-    // To-Do : the below code will get enhanced again in R.3.1
-    // clientId: '',
-    // URL: '',
     uploadAppRoles: '',
     technicalUserProfiles: [],
   }
@@ -177,7 +169,7 @@ export default function TechnicalIntegration() {
                 (fetchTechnicalUserProfiles &&
                   fetchTechnicalUserProfiles?.length > 0 &&
                   fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
-                '',
+                null,
               userRoleIds: techUserProfiles,
             },
           ],
@@ -310,7 +302,7 @@ export default function TechnicalIntegration() {
   }
 
   return (
-    <div className="technical-integration">
+    <>
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
@@ -364,80 +356,6 @@ export default function TechnicalIntegration() {
             {t('content.apprelease.technicalIntegration.getHelp')}
           </Button>
         </Grid>
-        {/* To-Do : the below code will get enhanced again in R.3.1 */}
-        {/* <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'clientId',
-              label:
-                t('content.apprelease.technicalIntegration.clientID') + ' *',
-              placeholder: t(
-                'content.apprelease.technicalIntegration.clientID'
-              ),
-              type: 'input',
-              rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.technicalIntegration.clientID'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
-              },
-            }}
-          />
-        </div>
-
-        <div className="form-field">
-          <ConnectorFormInputField
-            {...{
-              control,
-              trigger,
-              errors,
-              name: 'URL',
-              label: t('content.apprelease.technicalIntegration.URL') + ' *',
-              placeholder: t(
-                'content.apprelease.technicalIntegration.URLPlaceholder'
-              ),
-              type: 'input',
-              rules: {
-                required: {
-                  value: true,
-                  message: `${t(
-                    'content.apprelease.technicalIntegration.URL'
-                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                },
-                pattern: {
-                  value: Patterns.URL,
-                  message: t(
-                    'content.apprelease.technicalIntegration.pleaseEnterValidURL'
-                  ),
-                },
-              },
-            }}
-          />
-        </div>
-        <Box textAlign="center">
-          <Button
-            variant="contained"
-            startIcon={createClientSuccess && <DoneIcon />}
-            sx={{ mr: 2 }}
-            disabled={disableCreateClient}
-            color={createClientSuccess ? 'success' : 'secondary'}
-            onClick={() => setCreateClientSuccess(true)}
-          >
-            {createClientSuccess
-              ? t('content.apprelease.technicalIntegration.createClient')
-              : t('content.apprelease.technicalIntegration.clientCreated')}
-          </Button>
-          {createClientSuccess && (
-            <IconButton color="secondary">
-              <DeleteIcon />
-            </IconButton>
-          )}
-        </Box> */}
         <Controller
           name={'uploadAppRoles'}
           control={control}
@@ -535,21 +453,6 @@ export default function TechnicalIntegration() {
                 </Grid>
               ))}
             </Grid>
-            {/* <Button
-            variant="contained"
-            sx={{ mr: 2, mt: 3 }}
-            onClick={postRoles}
-            // To-Do : the below code will get enhanced again in R.3.1
-            // disabled={!createClientSuccess}
-          >
-            {getValues().uploadAppRoles === ''
-              ? t(
-                  'content.apprelease.technicalIntegration.clickToOpenDialogBox'
-                )
-              : t(
-                  'content.apprelease.technicalIntegration.uploadAppRolesButton'
-                )}
-          </Button> */}
 
             {rolesPreviews?.length > 0 && (
               <LoadingButton
@@ -642,47 +545,6 @@ export default function TechnicalIntegration() {
             {t('content.apprelease.technicalIntegration.roleUploadIsMandatory')}
           </Typography>
         )}
-
-        {/* To-Do : the below code will get enhanced again in R.3.1 */}
-        {/* <Divider className="form-divider" />
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.step3Header')}
-        </Typography>
-        <Typography variant="body2" mb={4}>
-          {t('content.apprelease.technicalIntegration.step3HeaderDescription')}
-        </Typography>
-
-        <Divider className="form-divider" />
-        <Typography variant="h5" mb={4}>
-          {t('content.apprelease.technicalIntegration.step4Header')}
-        </Typography>
-        <Typography variant="body2" mb={4}>
-          {t('content.apprelease.technicalIntegration.step4HeaderDescription')}
-        </Typography>
-        {showUserButton ? (
-          <Box textAlign="center">
-            <Button
-              variant="contained"
-              sx={{ mr: 2 }}
-              disabled={!enableTestUserButton}
-              onClick={() => setShowUserButton(false)}
-            >
-              {t('content.apprelease.technicalIntegration.createTestUser')}
-            </Button>
-          </Box>
-        ) : (
-          <Grid container xs={12}>
-            <Grid xs={2}>
-              {t('content.apprelease.technicalIntegration.password')}
-            </Grid>
-            <Grid xs={4}>Lorem Ipsum</Grid>
-            <Grid xs={2}>
-              {t('content.apprelease.technicalIntegration.username')}
-            </Grid>
-            <Grid xs={4}>Lorem Ipsum</Grid>
-          </Grid>
-        )} */}
-
         <Divider className="form-divider" />
         <Typography variant="h5" mb={2}>
           {t('content.apprelease.technicalIntegration.step2Header')}
@@ -691,20 +553,19 @@ export default function TechnicalIntegration() {
           {t('content.apprelease.technicalIntegration.step2HeaderDescription')}
         </Typography>
         {fetchUserRoles?.map((item) => (
-          <Grid
-            container
-            spacing={1.5}
-            key={item.roleId}
-            sx={{ margin: '10px' }}
-          >
-            <Checkbox
-              label={`${item.roleName} (${item.roleDescription})`}
-              checked={techUserProfiles.some((role) => item.roleId === role)}
-              onChange={(e) =>
-                handleCheckedUserProfiles(e.target.checked, item)
-              }
-              size="small"
-            />
+          <Grid container spacing={1.5} key={item.roleId}>
+            <Grid item md={12} className="userRoles">
+              <Checkbox
+                label={`${item.roleName} (${
+                  item.roleDescription === null ? '' : item.roleDescription
+                })`}
+                checked={techUserProfiles.some((role) => item.roleId === role)}
+                onChange={(e) =>
+                  handleCheckedUserProfiles(e.target.checked, item)
+                }
+                size="small"
+              />
+            </Grid>
           </Grid>
         ))}
         {enableUserProfilesErrorMessage && (
@@ -730,10 +591,9 @@ export default function TechnicalIntegration() {
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
         helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
-        // To-Do : the below code will get enhanced again in R.3.1
         isValid={data && data?.length > 0 && techUserProfiles?.length > 0}
         loader={loading}
       />
-    </div>
+    </>
   )
 }

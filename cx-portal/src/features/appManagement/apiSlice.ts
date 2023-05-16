@@ -183,7 +183,7 @@ export type userRolesType = {
 export type updateTechnicalUserProfiles = {
   appId: string
   body: {
-    technicalUserProfileId: string
+    technicalUserProfileId: string | null
     userRoleIds: string[]
   }[]
 }
@@ -331,14 +331,15 @@ export const apiSlice = createApi({
       query: () => `api/administration/serviceaccount/user/roles`,
     }),
     fetchTechnicalUserProfiles: builder.query<technicalUserProfiles[], string>({
-      query: (appId) => `/api/apps/${appId}/technical-user-profiles`,
+      query: (appId) =>
+        `/api/apps/appreleaseprocess/${appId}/technical-user-profiles`,
     }),
     saveTechnicalUserProfiles: builder.mutation<
       void,
       updateTechnicalUserProfiles
     >({
       query: (data) => ({
-        url: `/api/apps/${data.appId}/technical-user-profiles`,
+        url: `/api/apps/appreleaseprocess/${data.appId}/technical-user-profiles`,
         method: 'PUT',
         body: data.body,
       }),
