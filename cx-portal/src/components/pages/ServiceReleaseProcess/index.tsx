@@ -56,9 +56,15 @@ export default function ServiceReleaseProcess() {
     },
     {
       description:
+        'Technical Integration descsription consetetur sadipscing elitr Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+      headline: t('stepper.technicalIntegration'),
+      step: 4,
+    },
+    {
+      description:
         'Validate & Publish descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
       headline: t('stepper.validateAndPublish'),
-      step: 4,
+      step: 5,
     },
   ]
 
@@ -100,7 +106,7 @@ export default function ServiceReleaseProcess() {
       startCreatingButton={t('startCreatingButton')}
       marketplaceHeading={t('marketplaceHeading')}
       requirements={requeredButtons}
-      elementNumbers={4}
+      elementNumbers={5}
       onStartClick={onStartServiceClick}
       onOverviewButton={onOverviewServiceButton}
       stepsLists={processStepsLists}
