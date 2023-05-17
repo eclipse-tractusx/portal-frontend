@@ -55,6 +55,7 @@ import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ErrorType } from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
+import { ButtonLabelTypes } from '..'
 
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
@@ -146,56 +147,63 @@ export default function TechnicalIntegration() {
   }
 
   const onIntegrationSubmit = async (submitData: any, buttonLabel: string) => {
-    buttonLabel === 'saveAndProceed' && dispatch(increment())
-
-    if (buttonLabel === 'save') {
-      if (data?.length === 0) {
-        setEnableErrorMessage(true)
+    if (data?.length === 0 && buttonLabel === ButtonLabelTypes.SAVE)
+      setEnableErrorMessage(true)
+    else if (
+      techUserProfiles.length === 0 &&
+      buttonLabel === ButtonLabelTypes.SAVE
+    )
+      setEnableUserProfilesErrorMessage(true)
+    else if (
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+      techUserProfiles.length === userProfiles.length &&
+      techUserProfiles.every((item) => userProfiles?.includes(item))
+    )
+      dispatch(increment())
+    else if (
+      !(
+        techUserProfiles.length === userProfiles.length &&
+        techUserProfiles.every((item) => userProfiles?.includes(item))
+      )
+    ) {
+      setLoading(true)
+      const updateData = {
+        appId: appId,
+        body: [
+          {
+            technicalUserProfileId:
+              (fetchTechnicalUserProfiles &&
+                fetchTechnicalUserProfiles?.length > 0 &&
+                fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
+              null,
+            userRoleIds: techUserProfiles,
+          },
+        ],
       }
-      if (techUserProfiles.length === 0) {
-        setEnableUserProfilesErrorMessage(true)
-      } else if (
-        !(
-          techUserProfiles.length === userProfiles.length &&
-          techUserProfiles.every((item) => userProfiles?.includes(item))
-        )
-      ) {
-        setLoading(true)
-        const updateData = {
-          appId: appId,
-          body: [
-            {
-              technicalUserProfileId:
-                (fetchTechnicalUserProfiles &&
-                  fetchTechnicalUserProfiles?.length > 0 &&
-                  fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
-                null,
-              userRoleIds: techUserProfiles,
-            },
-          ],
-        }
 
-        if (updateData)
-          await saveTechnicalUserProfiles(updateData)
-            .unwrap()
-            .then(() => {
-              setEnableUserProfilesErrorMessage(false)
-              success(
-                t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
-              )
-              refetchTechnicalUserProfiles()
-            })
-            .catch((err) => {
-              error(
-                t(
-                  'content.apprelease.technicalIntegration.technicalUserProfileError'
-                ),
-                '',
-                err
-              )
-            })
-        setLoading(false)
-      }
+      if (updateData)
+        await saveTechnicalUserProfiles(updateData)
+          .unwrap()
+          .then(() => {
+            setEnableUserProfilesErrorMessage(false)
+            setEnableErrorMessage(false)
+            refetchTechnicalUserProfiles()
+            buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED
+              ? dispatch(increment())
+              : success(
+                  t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+                )
+          })
+          .catch((err) => {
+            error(
+              t(
+                'content.apprelease.technicalIntegration.technicalUserProfileError'
+              ),
+              '',
+              err
+            )
+          })
+      setLoading(false)
     }
   }
 
@@ -582,9 +590,11 @@ export default function TechnicalIntegration() {
         setPageNotification={setTechnicalIntegrationNotification}
         setPageSnackbar={setTechnicalIntegrationSnackbar}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onIntegrationSubmit(data, 'save'))}
+        onSave={handleSubmit((data) =>
+          onIntegrationSubmit(data, ButtonLabelTypes.SAVE)
+        )}
         onSaveAndProceed={handleSubmit((data) =>
-          onIntegrationSubmit(data, 'saveAndProceed')
+          onIntegrationSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
         pageNotificationsObject={{
           title: t('content.apprelease.appReleaseForm.error.title'),
