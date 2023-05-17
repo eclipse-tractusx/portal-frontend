@@ -146,15 +146,19 @@ export default function TechnicalIntegration() {
     }
   }
 
+  const handleSaveSuccess = (buttonLabel: string) => {
+    setEnableUserProfilesErrorMessage(false)
+    setEnableErrorMessage(false)
+    refetchTechnicalUserProfiles()
+    if (buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED) dispatch(increment())
+    else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
+  }
+
   const onIntegrationSubmit = async (submitData: any, buttonLabel: string) => {
-    if (data?.length === 0 && buttonLabel === ButtonLabelTypes.SAVE)
-      setEnableErrorMessage(true)
-    else if (
-      techUserProfiles.length === 0 &&
-      buttonLabel === ButtonLabelTypes.SAVE
-    )
-      setEnableUserProfilesErrorMessage(true)
-    else if (
+    if (buttonLabel === ButtonLabelTypes.SAVE) {
+      data?.length === 0 && setEnableErrorMessage(true)
+      techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)
+    } else if (
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
       techUserProfiles.length === userProfiles.length &&
       techUserProfiles.every((item) => userProfiles?.includes(item))
@@ -185,14 +189,7 @@ export default function TechnicalIntegration() {
         await saveTechnicalUserProfiles(updateData)
           .unwrap()
           .then(() => {
-            setEnableUserProfilesErrorMessage(false)
-            setEnableErrorMessage(false)
-            refetchTechnicalUserProfiles()
-            buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED
-              ? dispatch(increment())
-              : success(
-                  t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
-                )
+            handleSaveSuccess(buttonLabel)
           })
           .catch((err) => {
             error(
