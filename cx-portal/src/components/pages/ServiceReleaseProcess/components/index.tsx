@@ -49,8 +49,12 @@ export default function ServiceReleaseProcessForm() {
       step: 3,
     },
     {
-      headline: t('stepper.validateAndPublish'),
+      headline: t('stepper.technicalIntegration'),
       step: 4,
+    },
+    {
+      headline: t('stepper.validateAndPublish'),
+      step: 5,
     },
   ]
 
@@ -59,7 +63,7 @@ export default function ServiceReleaseProcessForm() {
       processType={ReleaseProcessTypes.SERVICE_RELEASE}
       onAppsOverviewClick={() => onServiceOverviewClick()}
       stepsList={stepsList}
-      numberOfSteps={4}
+      numberOfSteps={5}
       pageHeaderTitle={t('headerTitle')}
       headerTitle={t('submit.headerTitle')}
       headerDescription={t('submit.headerDescription')}
