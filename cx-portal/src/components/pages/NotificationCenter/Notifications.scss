@@ -95,6 +95,7 @@
     padding: 20px 12px 0px 10px;
     font-size: 16px;
     color: #444;
+    white-space: pre-line;
 
     .NameLink {
       cursor: pointer;
@@ -135,9 +136,14 @@
     width: 15%;
   }
 
-  .middleSection {
-    flex-direction: column;
+  .shortMiddleSection {
     width: 50%;
+    flex-direction: column;
+  }
+
+  .longMiddleSection {
+    width: 70%;
+    flex-direction: column;
   }
 
   .lastSection {
@@ -152,6 +158,21 @@
     text-align: center;
     border-radius: 6px;
     width: 20%;
+    background-color: #fdb943;
+  }
+
+  .actionButtonTransparent {
+    padding: 6px 12px 6px 6px;
+    text-align: center;
+    border-radius: 6px;
+    width: 20%;
+    background-color: transparent;
+  }
+
+  .actionRequiredText {
+    font-weight: 600;
+    margin-left: 10px;
+    font-size: 11px;
   }
 
   .searchContainer {
@@ -230,10 +251,20 @@
 
   .sortSection {
     position: absolute;
-    margin-left: 30px;
+    left: 61%;
+    margin-top: 0%;
     background: #f9f9f9;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
     border-radius: 16px;
     z-index: 9;
+  }
+
+  .sortSection .MuiBox-root {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .sortSection .MuiBox-root h1 {
+    padding: 10px 60px 10px 10px;
   }
 }

@@ -59,7 +59,8 @@
     "servicereleaseprocess": "Service Release Process",
     "serviceadminboard": "Admin Board",
     "servicesubscription": "Service Subscription Mgt",
-    "servicedetail": "Service Details"
+    "servicedetail": "Service Details",
+    "company-role": "Config - Company Role"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -405,7 +406,8 @@
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "The Self-Description is triggered. Process might take up to a couple of minutes.",
-        "hostCompanyName": "Host"
+        "hostCompanyName": "Host",
+        "providerCompanyName": "Customer"
       },
       "rowValue": {
         "owned": "Owned",
@@ -415,6 +417,8 @@
       "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
+      "managedtabletitle": "Managed Connectors",
+      "noConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {
@@ -891,16 +895,17 @@
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1Header": "1. User Role Upload *",
         "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Upload App Roles",
+        "step2Header": "2. Technical User Setup *",
+        "step2HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
-        "rolesPreview": "Preview of roles contained in the uploaded files:",
+        "rolesPreview": "Preview of Roles uploaded",
         "uploadAppRolesButton": "Upload App Roles",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
@@ -914,7 +919,12 @@
         "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
         "template": "Template",
         "getHelp": "Get Help",
-        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?"
+        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
+        "roleUploadIsMandatory": "Role upload is mandatory",
+        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "technicalUserProfileError": "Error while updating technical user profiles",
+        "roleUpdateError": "Error while updating roles"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -968,8 +978,6 @@
           "message": "Please try it again"
         },
         "dataSavedSuccessMessage": "Data saved successfully",
-        "roleDeleteSuccessMessage": "Role deleted successfully",
-        "rolesDeleteSuccessMessage": "Roles deleted successfully",
         "errormessage": "Error! Something went wrong",
         "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
       },
@@ -1268,6 +1276,40 @@
       "heading": "Overview of the available Catena-X portal roles",
       "tab1": "Role Descriptions",
       "tab2": "Role Comparison"
+    },
+    "companyRolesUpdate": {
+      "headerTitle": "Roles",
+      "heading": "Change Company Role",
+      "description": "Below you can manage the roles your company takes in Catena-X.",
+      "step1": "You can change your current role by deselecting it and selecting another role.",
+      "step2": "If you already have more than one role for your company, you can deselect roles. At least one role must always be assigned to your company.",
+      "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
+      "note": "Please note: ",
+      "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
+      "ACTIVE_PARTICIPANT": "Active Participant",
+      "APP_PROVIDER": "App Provider",
+      "SERVICE_PROVIDER": "Service Provider",
+      "roleDescDownTitle": "Full role description",
+      "roleDescUpTitle": "Close role description",
+      "overlay": {
+        "title": "Do you really want to change your company's role(s) within Cantena-X?",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "selectedRolesTitle": "You have selected the following changes to your company's role profile:",
+        "role": "Role",
+        "added": "Added",
+        "deselected": "Deselected",
+        "expandLabel": "full role description",
+        "expandedLabel": "close role description",
+        "changeRolesHeading": "The change of your role has the following consequences:",
+        "rolesAddedHeading": "User roles added",
+        "rolesNoLongerHeading": "User roles no longer available",
+        "featuresAddedHeading": "Features added",
+        "featuresNoLongerHeading": "Features no longer available",
+        "termsHeading": "Please agree to the following terms & conditions for new role profile:",
+        "TermsAndCondSpan1": "Yes, I agree to the",
+        "TermsAndCondSpan2": "of the selected role.",
+        "submit": "Commence role change"
+      }
     }
   },
   "navigation": {

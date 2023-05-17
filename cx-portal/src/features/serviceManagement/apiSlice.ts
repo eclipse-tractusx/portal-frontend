@@ -129,6 +129,28 @@ export enum StatusIdEnum {
   All = 'All',
 }
 
+export type serviceUserRolesType = {
+  roleId: string
+  roleName: string
+  roleDescription: string | null
+}
+
+export type updateTechnicalUserProfile = {
+  serviceId: string
+  body: {
+    technicalUserProfileId: string | null
+    userRoleIds: string[]
+  }[]
+}
+
+export type technicalUserProfile = {
+  technicalUserProfileId: string
+  userRoles: {
+    roleId: string
+    roleName: string
+  }[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/serviceManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -247,6 +269,26 @@ export const apiSlice = createApi({
         method: 'DELETE',
       }),
     }),
+    fetchServiceUserRoles: builder.query<serviceUserRolesType[], void>({
+      query: () => `api/administration/serviceaccount/user/roles`,
+    }),
+    fetchServiceTechnicalUserProfiles: builder.query<
+      technicalUserProfile[],
+      string
+    >({
+      query: (serviceId) =>
+        `/api/services/servicerelease/${serviceId}/technical-user-profiles`,
+    }),
+    saveServiceTechnicalUserProfiles: builder.mutation<
+      void,
+      updateTechnicalUserProfile
+    >({
+      query: (data) => ({
+        url: `/api/services/servicerelease/${data.serviceId}/technical-user-profiles`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -265,4 +307,7 @@ export const {
   useFetchDocumentMutation,
   useFetchProvidedServicesQuery,
   useDeleteDocumentMutation,
+  useFetchServiceUserRolesQuery,
+  useFetchServiceTechnicalUserProfilesQuery,
+  useSaveServiceTechnicalUserProfilesMutation,
 } = apiSlice

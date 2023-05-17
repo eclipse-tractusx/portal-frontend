@@ -2,8 +2,6 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
-## Unreleased
-
 ## 1.4.0
 
 ### Change
@@ -11,8 +9,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * ui styling and messages updated
   * load element added for create/submit/next buttons
   * implemented success & error messages depending on the error scenario while creating/configuring a new idp
-Shared UI Components
-  * Added typography for static table to update headline sizing
+* Shared UI Components
+  * added typography for static table to update headline sizing
+* Notification
+  * Service_Release_Request customer message content updated
+  * App_Release_Request customer message content updated
+* Static Templates - UseCases & CompanyRole
+  * new templates released
+  * real time language switch for static pages enabled where content is fetched from another repository (see features/language)
+  * support scroll-up icon on each sub-title
+  * enabled page sub-menu to stick on the screen top when scrolling down
+  * support hover tooltip in-text component
 
 ### Feature
 * App Release Process
@@ -35,6 +42,14 @@ Shared UI Components
 * App Marketplace
   * added company subscription status information on the app overview (inside the card component)
   * app detail page, new order status component implemented for subscription process
+* Notification
+  * Role_Update_Core_Offer notification enabled
+  * Role_Update_App_Offer notification enabled
+* Connector Registration
+  * added new section for connector providers to view and managed 3rd party/managed connectors
+  * added enhanced error handling for connector tables in case of service/server error
+* Company Configuration - Company Role Change
+  * released company config page for company admins to update CX company participation role (switch between Participant, App Provider, Service Provider) incl. backend connection for agreement consent, document download and business logic to display company role change impact
 
 ### Technical Support
 * moved all portal repo images to asset repo
@@ -43,12 +58,25 @@ Shared UI Components
 * app release process - app card language switch fixed to only switch the language inside the app card
 * changed release workflow to retrieve tag from github.ref_name (set-output command deprecated)
 * added release workflow for release-candidates
+* react player package added to supported multiple formats of in-page videos
+* changed container registry to Docker Hub
+* added pull request template
 
 ### Bugfix
-* Notifications
-  * Service_Request message configured in locale files updated
-* top right user profile icon hover function enabled
-* image zoom height fixed
+* App Management Board (Provider)
+  * app endpoint path updated due to an controller change on the backend side - new path /api/apps/appChange/${appId}/deactivateApp
+* Others
+  * top right user profile icon hover function enabled
+  * image zoom height fixed
+
+### Known Knowns
+* Company Configuration - Company Role Change
+  * Overlay top summary section displays non-changed company roles as "added" instead of ignoring those roles since those are already assigned
+  * Role/Feature change description not correctly fetched from the config file
+* Service Release Process
+  * Technical user profile configuration displayed for "Consultance_Services" even though its not relevant for services with this service type - error appears if user selects roles and wants to proceed
+* Service Release & App Release Process
+  * Issue on displaying given consent after using the "back" button inside the release process. Issue appears in an inconsistent manner.
 
 ## 1.3.0
 

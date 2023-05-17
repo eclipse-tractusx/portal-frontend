@@ -40,13 +40,14 @@
   }
   .imageVideoTextSideBySide div {
     padding: 20px;
-    width: 50%;
+    width: 48%;
   }
   .video {
     border-radius: 16px;
     border: 0px;
-    width: 482px;
-    height: 331px;
+    width: 482px !important;
+    height: 331px !important;
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
   }
 
   .textCenterAligned {
@@ -124,6 +125,29 @@
   .multiTextContainer .description {
     padding: 30px 0px;
   }
+
+  .multiTextContainer div {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(17, 17, 17);
+    letter-spacing: 0px;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 30px;
+    margin-top: 84px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 84px;
+  }
 }
 
 //tab layout
@@ -149,14 +173,15 @@
 
   .imageVideoTextSideBySide div {
     padding: 20px;
-    width: 50%;
+    width: 48%;
   }
 
   .video {
     border-radius: 16px;
     border: 0px;
-    width: 482px;
-    height: 331px;
+    width: 482px !important;
+    height: 331px !important;
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
   }
 
   .textCenterAligned {
@@ -230,6 +255,21 @@
   .multiTextContainer .description {
     padding: 10px 0px;
   }
+
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 30px;
+    margin-top: 84px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 84px;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
 //mobile layout
@@ -260,17 +300,20 @@
   .video {
     border-radius: 16px;
     border: 0px;
-    width: 350px;
-    height: 250px;
+    width: 350px !important;
+    height: 250px !important;
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
   }
 
   .textCenterAligned {
     text-align: left;
     margin: 20px 10px 0px 10px;
+    line-break: anywhere;
   }
 
   .textCenterAligned .description {
     padding: 20px 0px 0px 0px;
+    line-break: anywhere;
   }
 
   .titleDescriptionBody {
@@ -333,6 +376,21 @@
   .multiTextContainer .description {
     padding: 10px 0px;
   }
+
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
 }
 
 .readMoreStyle {
@@ -373,4 +431,65 @@
   height: auto;
   border-radius: 16px;
   margin-top: 20px;
+}
+
+.video,
+.video div {
+  padding: 0px !important;
+}
+
+video,
+iframe {
+  border-radius: 16px;
+}
+
+.titleWithIcon {
+  display: flex;
+  place-items: center;
+  padding: 0px !important;
+  place-content: center;
+}
+
+.titleWithIcon h2 {
+  margin-right: 30px;
+}
+
+.titleWithIcon button {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.titleWithIcon svg {
+  font-size: 30px;
+}
+
+.titleWithIcon.sideBySideTitle {
+  place-content: flex-start;
+  width: 100%;
+}
+
+.multiTextContainer div strong {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: #0f71cb;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  margin-top: 30px;
+}
+
+strong:hover .tooltiptext {
+  visibility: visible !important;
 }

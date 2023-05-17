@@ -36,8 +36,8 @@
     "content": "{{user}} schreibt"
   },
   "APP_RELEASE_REQUEST": {
-    "title": "App-Anfrage eingereicht",
-    "content": "Hallo {{you}}, danke für deine Anfrage zur Genehmigung der App {{app}}. Wir werden Sie wissen lassen, wann es verarbeitet wurde."
+    "title": "App Release Request - App: {{app}}",
+    "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
   },
   "APP_RELEASE_APPROVAL": {
     "title": "App-Anfrage genehmigt",
@@ -60,8 +60,8 @@
     "content": "This is a default text and will get enhanced later."
   },
   "SERVICE_RELEASE_REQUEST": {
-    "title": "New service release request waiting for review",
-    "content": "A new service release request is available in the service management board. Please validate the request:"
+    "title": "Service Release Request - Service: {{offer}}",
+    "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
   },
   "SERVICE_RELEASE_APPROVAL": {
     "title": "Service release request approved",
@@ -79,6 +79,14 @@
     "title": "Service request activated",
     "content": "Your subscription for service offer {{serviceName}} is now active"
   },
+  "ROLE_UPDATE_CORE_OFFER": {
+    "title": "Assigned User Roles Updated - Portal",
+    "content": "Hallo {{username}}, \n\nIhre Portal-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Auswirkungen der Rollenänderung finden Sie in der Rollenmatrix und Rollenbeschreibung des Portals (Link folgend) \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}\n\n"
+  },
+  "ROLE_UPDATE_APP_OFFER": {
+    "title": "Assigned User Roles Updated - {{app}}",
+    "content": "Hallo {{username}}, \n\nIhre App-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Rollenänderungen finden sie anbei. \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
+  },
   "link": {
     "appmarketplace": "Zum App Marketplace",
     "technicalsetup": "Zur Connector Registrierung",
@@ -95,7 +103,9 @@
     "technicaluser": "Get there",
     "companyrolesserviceprovider": "Get there",
     "usermanagement": "Get there",
-    "servicesubscription": "Get there"
+    "servicesubscription": "Get there",
+    "serviceadminboard": "Get there",
+    "role-details": "Open Role Matrix"
   },
   "due": "fällig",
   "search": "...suchen",

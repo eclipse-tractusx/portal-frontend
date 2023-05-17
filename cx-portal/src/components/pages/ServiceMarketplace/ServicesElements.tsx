@@ -24,6 +24,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function ServicesElements({
   services,
@@ -67,7 +68,7 @@ export default function ServicesElements({
                     <CardHorizontal
                       borderRadius={6}
                       imageAlt="App Card"
-                      imagePath={'ServiceMarketplace.png'}
+                      imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                       label={service.provider}
                       buttonText="Details"
                       onBtnClick={() => handleClick(service.id)}

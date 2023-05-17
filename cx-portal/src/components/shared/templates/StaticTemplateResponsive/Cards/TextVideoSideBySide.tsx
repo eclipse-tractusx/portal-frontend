@@ -21,22 +21,28 @@
 import { ProviderProps } from '../StaticTypes'
 import ImageVideoWrapper from './ImageVideoWrapper'
 import '../StaticTemplate.scss'
+import ReactPlayer from 'react-player'
 
 export default function TextVideoSideBySide({
   provider,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <ImageVideoWrapper
+      scrollTop={scrollTop}
+      showScroll={showScroll}
       provider={provider}
       children={
-        <iframe
-          className={'video'}
-          title="Video"
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+        <ReactPlayer
+          className="video"
+          url={provider.videoUrl}
+          controls={true}
+        />
       }
     />
   )

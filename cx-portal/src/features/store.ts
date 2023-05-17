@@ -60,6 +60,8 @@ import { apiSlice as serviceManagementApiSlice } from './serviceManagement/apiSl
 import serviceSubscriptionSlice from './serviceSubscription/slice'
 import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/serviceSubscriptionApiSlice'
 import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdminBoardApiSlice'
+import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSlice'
+import languageSlice from './language/slice'
 
 export const reducers = {
   admin,
@@ -82,6 +84,7 @@ export const reducers = {
   connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
+  languageSlice: languageSlice.reducer,
   [idpSlice.reducerPath]: idpSlice.reducer,
   [userSlice.reducerPath]: userSlice.reducer,
   [serviceSlice.reducerPath]: serviceSlice.reducer,
@@ -104,6 +107,7 @@ export const reducers = {
   [serviceSubscriptionApiSlice.reducerPath]:
     serviceSubscriptionApiSlice.reducer,
   [serviceAdminBoardApiSlice.reducerPath]: serviceAdminBoardApiSlice.reducer,
+  [companyRoleApiSlice.reducerPath]: companyRoleApiSlice.reducer,
 }
 
 export const store = configureStore({
@@ -129,7 +133,8 @@ export const store = configureStore({
       .concat(connectorApiSlice.middleware)
       .concat(serviceManagementApiSlice.middleware)
       .concat(serviceSubscriptionApiSlice.middleware)
-      .concat(serviceAdminBoardApiSlice.middleware),
+      .concat(serviceAdminBoardApiSlice.middleware)
+      .concat(companyRoleApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

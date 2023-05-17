@@ -18,25 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
+import { Typography, IconButton } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function TextCenterAligned({
   provider,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <div className={'textCenterAligned'}>
       <div>
         {provider.title && (
-          <Typography variant="h2">{provider.title}</Typography>
+          <div className="titleWithIcon">
+            <Typography variant="h2">{provider.title}</Typography>
+            {showScroll && (
+              <IconButton onClick={scrollTop}>
+                <ArrowUpwardIcon />
+              </IconButton>
+            )}
+          </div>
         )}
         {provider.description && (
-          <Typography className={'description'} variant="body1">
-            {provider.description}
-          </Typography>
+          <Trans>
+            <Typography className={'description'} variant="body1">
+              {provider.description}
+            </Typography>
+          </Trans>
         )}
       </div>
     </div>

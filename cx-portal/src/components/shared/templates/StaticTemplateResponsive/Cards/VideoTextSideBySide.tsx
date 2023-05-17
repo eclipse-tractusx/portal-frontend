@@ -19,29 +19,44 @@
  ********************************************************************************/
 
 import { ProviderProps } from '../StaticTypes'
-import { Typography } from 'cx-portal-shared-components'
+import { IconButton, Typography } from 'cx-portal-shared-components'
 import '../StaticTemplate.scss'
+import ReactPlayer from 'react-player'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function VideoTextSideBySide({
   provider,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <div className={'imageVideoTextSideBySide'}>
       <div>
-        <iframe
-          title="Video"
+        <ReactPlayer
           className="video"
-          src={provider.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+          url={provider.videoUrl}
+          controls={true}
+        />
       </div>
       <div className={'titleDescriptionBody'}>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography className={'providerDescription'} variant="body1">
-          {provider.description}
-        </Typography>
+        <div className="titleWithIcon sideBySideTitle">
+          <Typography variant="h2">{provider.title}</Typography>
+          {showScroll && (
+            <IconButton onClick={scrollTop}>
+              <ArrowUpwardIcon />
+            </IconButton>
+          )}
+        </div>
+        <Trans>
+          <Typography className={'providerDescription'} variant="body1">
+            {provider.description}
+          </Typography>
+        </Trans>
       </div>
     </div>
   )

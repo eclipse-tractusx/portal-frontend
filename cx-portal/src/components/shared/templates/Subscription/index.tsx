@@ -31,7 +31,6 @@ import {
   PageSnackbar,
   LoadMoreButton,
 } from 'cx-portal-shared-components'
-import SortIcon from '@mui/icons-material/Sort'
 import {
   SubscriptionContent,
   SubscriptionRequestBody,
@@ -42,6 +41,7 @@ import SubscriptionElements from './SubscriptionElements'
 import { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
+import SortImage from 'components/shared/frame/SortImage'
 
 enum FilterType {
   REQUEST = 'request',
@@ -439,18 +439,12 @@ export default function Subscription({
               }
             >
               <ViewSelector activeView={selected} views={filterButtons} />
-              <div className="iconSection">
-                <SortIcon
-                  onClick={() =>
-                    setState({ type: ActionKind.SET_SHOW_MODAL, payload: true })
-                  }
-                  sx={{
-                    fontSize: 20,
-                    color: '#939393',
-                    ':hover': { color: '#0D55AF' },
-                  }}
-                />
-              </div>
+              <SortImage
+                onClick={() =>
+                  setState({ type: ActionKind.SET_SHOW_MODAL, payload: true })
+                }
+                selected={showModal}
+              />
               <div className="sortSection">
                 <SortOption
                   show={showModal}

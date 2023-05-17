@@ -26,9 +26,13 @@ import '../StaticTemplate.scss'
 export default function ImageImageCenterAligned({
   provider,
   baseUrl,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
   baseUrl: string
+  scrollTop: () => void
+  showScroll: boolean
 }) {
   return (
     <div className={'textCenterAligned'}>
@@ -40,7 +44,11 @@ export default function ImageImageCenterAligned({
           marginBottom: '84px',
         }}
       />
-      <TextCenterAligned provider={provider} />
+      <TextCenterAligned
+        provider={provider}
+        scrollTop={scrollTop}
+        showScroll={showScroll}
+      />
     </div>
   )
 }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from './StaticTypes'
+import { ProviderProps, TemplateNames } from './StaticTypes'
 import TextImageSideBySide from './Cards/TextImageSideBySide'
 import TextVideoSideBySide from './Cards/TextVideoSideBySide'
 import TextImageCenterAligned from './Cards/TextImageCenterAligned'
@@ -29,41 +29,89 @@ import VideoTextSideBySide from './Cards/VideoTextSideBySide'
 import ImageTextCenterAligned from './Cards/ImageTextCenterAligned'
 import TextCenterAlignedBody2 from './Cards/TextCenterAlignedBody2'
 import './StaticTemplate.scss'
+import FlexImages from './Cards/FlexImages'
+import GridImages from './Cards/GridImages'
+import { useState } from 'react'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 const TemplateConfig = ({
   provider,
   baseUrl,
+  scrollTop,
+  showScroll,
 }: {
   provider: ProviderProps
   baseUrl: string
+  scrollTop: () => void
+  showScroll: boolean
 }) => {
   switch (provider.template) {
-    //Text in the left and image in the right side
-    case 'TextImageSideBySide':
-      return <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
     //Text in the left and video in the right side
-    case 'TextVideoSideBySide':
-      return <TextVideoSideBySide provider={provider} />
+    case TemplateNames.TextVideoSideBySide:
+      return (
+        <TextVideoSideBySide
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
     //video in the left and Text in the right side
-    case 'VideoTextSideBySide':
-      return <VideoTextSideBySide provider={provider} />
+    case TemplateNames.VideoTextSideBySide:
+      return (
+        <VideoTextSideBySide
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
     //Text and image component both center aligned
-    case 'TextImageCenterAligned':
-      return <TextImageCenterAligned baseUrl={baseUrl} provider={provider} />
+    case TemplateNames.TextImageCenterAligned:
+      return (
+        <TextImageCenterAligned
+          baseUrl={baseUrl}
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
     //Image and text component both center aligned
-    case 'ImageTextCenterAligned':
-      return <ImageTextCenterAligned baseUrl={baseUrl} provider={provider} />
+    case TemplateNames.ImageTextCenterAligned:
+      return (
+        <ImageTextCenterAligned
+          baseUrl={baseUrl}
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
     //Text component center aligned
-    case 'TextCenterAligned':
-      return <TextCenterAligned provider={provider} />
+    case TemplateNames.TextCenterAligned:
+      return (
+        <TextCenterAligned
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
     //Text component body2
-    case 'TextCenterAlignedBody2':
-      return <TextCenterAlignedBody2 provider={provider} />
+    case TemplateNames.TextCenterAlignedBody2:
+      return (
+        <TextCenterAlignedBody2
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
     //Combination of Text and image component both center aligned with grid layout card component
-    case 'TextImageCenterAlignedWithCardGrid':
+    case TemplateNames.TextImageCenterAlignedWithCardGrid:
       return (
         <>
-          <TextImageCenterAligned baseUrl={baseUrl} provider={provider} />
+          <TextImageCenterAligned
+            baseUrl={baseUrl}
+            provider={provider}
+            scrollTop={scrollTop}
+            showScroll={showScroll}
+          />
           <CardGrid
             baseUrl={baseUrl}
             align="center"
@@ -73,10 +121,14 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text center aligned component with grid layout card component
-    case 'TextCenterAlignedWithCardGrid':
+    case TemplateNames.TextCenterAlignedWithCardGrid:
       return (
         <>
-          <TextCenterAligned provider={provider} />
+          <TextCenterAligned
+            provider={provider}
+            scrollTop={scrollTop}
+            showScroll={showScroll}
+          />
           <CardGrid
             align="center"
             baseUrl={baseUrl}
@@ -86,10 +138,15 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text and image side by side with grid layout card component
-    case 'TextImageSideBySideWithCardGrid':
+    case TemplateNames.TextImageSideBySideWithCardGrid:
       return (
         <>
-          <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
+          <TextImageSideBySide
+            baseUrl={baseUrl}
+            provider={provider}
+            scrollTop={scrollTop}
+            showScroll={showScroll}
+          />
           <CardGrid
             baseUrl={baseUrl}
             provider={provider}
@@ -98,15 +155,55 @@ const TemplateConfig = ({
         </>
       )
     //Combination of Text center aligned component with grid layout link component
-    case 'TextCenterAlignedWithLinkButtonGrid':
+    case TemplateNames.TextCenterAlignedWithLinkButtonGrid:
       return (
         <>
-          <TextCenterAligned provider={provider} />
+          <TextCenterAligned
+            provider={provider}
+            scrollTop={scrollTop}
+            showScroll={showScroll}
+          />
           <LinkButtonGrid provider={provider} grid={provider.grid} />
         </>
       )
+    //Combination of Text center aligned component with images in a row
+    case TemplateNames.TextCenterAlignedWithImagesInFlex:
+      return (
+        <>
+          <TextCenterAligned
+            provider={provider}
+            scrollTop={scrollTop}
+            showScroll={showScroll}
+          />
+          <FlexImages provider={provider} baseUrl={baseUrl} />
+        </>
+      )
+    //Combination of Text center aligned component with images in grid fashion
+    case TemplateNames.TextCenterAlignedWithImagesInGrid:
+      return (
+        <>
+          <TextCenterAligned
+            provider={provider}
+            scrollTop={scrollTop}
+            showScroll={showScroll}
+          />
+          <GridImages
+            provider={provider}
+            baseUrl={baseUrl}
+            grid={provider.grid}
+          />
+        </>
+      )
     default:
-      return <TextImageSideBySide baseUrl={baseUrl} provider={provider} />
+      //Text in the left and image in the right side
+      return (
+        <TextImageSideBySide
+          baseUrl={baseUrl}
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
+      )
   }
 }
 
@@ -117,6 +214,33 @@ export const StaticTemplateResponsive = ({
   sectionInfo: any
   baseUrl: string
 }) => {
+  const [showScroll, setShowScroll] = useState(false)
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
+
+  enum PageOffsetValue {
+    MOBILE = 100,
+    DEFAULT = 400,
+  }
+
+  const getValue = () =>
+    isMobile ? PageOffsetValue.MOBILE : PageOffsetValue.DEFAULT
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.scrollY > getValue()) {
+      setShowScroll(true)
+    } else if (showScroll && window.scrollY <= getValue()) {
+      setShowScroll(false)
+    }
+  }
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  window.addEventListener('scroll', checkScrollTop)
   return (
     <div>
       {sectionInfo &&
@@ -131,7 +255,12 @@ export const StaticTemplateResponsive = ({
               id={`${provider.id}`}
             >
               <div className="sectionSubContainer">
-                <TemplateConfig provider={provider} baseUrl={baseUrl} />
+                <TemplateConfig
+                  provider={provider}
+                  baseUrl={baseUrl}
+                  scrollTop={scrollTop}
+                  showScroll={showScroll}
+                />
               </div>
             </div>
           )

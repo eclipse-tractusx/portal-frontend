@@ -55,7 +55,7 @@ export default function AppUserDetailsHeader({
         {roles &&
           roles.map((role) => {
             return (
-              <div className="wrapper">
+              <div className="wrapper" key={role.role}>
                 <div key={role.role} className="app-user-details-header-role">
                   <Typography variant="h5" className="app-user-details-role">
                     {role.role}

@@ -46,10 +46,27 @@ export type ProviderProps = {
   linksRow2: linkProps[]
   subTitles?: string[]
   align?: 'left' | 'center' | 'right'
+  images?: string[]
 }
 
 export type linkProps = {
   background: string
   title: string
   navigate: string
+}
+
+export enum TemplateNames {
+  TextImageSideBySide = 'TextImageSideBySide',
+  TextVideoSideBySide = 'TextVideoSideBySide',
+  VideoTextSideBySide = 'VideoTextSideBySide',
+  TextImageCenterAligned = 'TextImageCenterAligned',
+  ImageTextCenterAligned = 'ImageTextCenterAligned',
+  TextCenterAligned = 'TextCenterAligned',
+  TextCenterAlignedBody2 = 'TextCenterAlignedBody2',
+  TextImageCenterAlignedWithCardGrid = 'TextImageCenterAlignedWithCardGrid',
+  TextCenterAlignedWithCardGrid = 'TextCenterAlignedWithCardGrid',
+  TextImageSideBySideWithCardGrid = 'TextImageSideBySideWithCardGrid',
+  TextCenterAlignedWithLinkButtonGrid = 'TextCenterAlignedWithLinkButtonGrid',
+  TextCenterAlignedWithImagesInFlex = 'TextCenterAlignedWithImagesInFlex',
+  TextCenterAlignedWithImagesInGrid = 'TextCenterAlignedWithImagesInGrid',
 }

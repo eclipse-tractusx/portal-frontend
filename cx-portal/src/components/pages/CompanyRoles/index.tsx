@@ -25,14 +25,18 @@ import { StageSubNavigation } from 'components/shared/templates/StageSubNavigati
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
+import { useSelector } from 'react-redux'
+import { languageSelector } from 'features/language/slice'
 
 export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<any>()
   const [linkArray, setLinkArray] = useState<any>()
   const url = window.location.href
+  const language = useSelector(languageSelector)
+  const [topReached, setTopReached] = useState<boolean>(false)
+
   useEffect(() => {
     CommonService.getCompanyRoles((data: any) => {
-      console.log(data)
       setLinkArray([
         {
           index: 1,
@@ -60,7 +64,13 @@ export default function CompanyRoles() {
         setCompanyRoles(data.participant)
       }
     })
-  }, [url])
+  }, [url, language])
+
+  const scrollStarted = () => {
+    setTopReached(window.scrollY > 500)
+  }
+
+  window.addEventListener('scroll', scrollStarted)
 
   return (
     <main className="companyRoles">
@@ -70,7 +80,7 @@ export default function CompanyRoles() {
             title={companyRoles.title}
             description={companyRoles.description}
           />
-          <StageSubNavigation linkArray={linkArray} />
+          <StageSubNavigation fixHeader={topReached} linkArray={linkArray} />
           <StaticTemplateResponsive
             sectionInfo={companyRoles.sections}
             baseUrl={getAssetBase()}

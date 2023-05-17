@@ -18,25 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from 'cx-portal-shared-components'
+import { IconButton, Typography } from 'cx-portal-shared-components'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import RenderImage from './RenderImage'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
+
 export default function ImageTextSideBySide({
   provider,
   baseUrl,
+  scrollTop,
 }: {
   provider: ProviderProps
   baseUrl: string
+  scrollTop: () => void
 }) {
   return (
     <div className={'imageVideoTextSideBySide'}>
-      <RenderImage url={baseUrl + provider.imagePath || ''} />
+      <RenderImage
+        url={baseUrl + provider.imagePath || ''}
+        additionalStyles={{
+          textAlign: 'center',
+        }}
+      />
       <div>
-        <Typography variant="h2">{provider.title}</Typography>
-        <Typography className={'providerDescription'} variant="body1">
-          {provider.description}
-        </Typography>
+        <div className="titleWithIcon sideBySideTitle">
+          <Typography variant="h2">{provider.title}</Typography>
+          <IconButton onClick={scrollTop}>
+            <ArrowUpwardIcon />
+          </IconButton>
+        </div>
+        <Trans>
+          <Typography className={'providerDescription'} variant="body1">
+            {provider.description}
+          </Typography>
+        </Trans>
       </div>
     </div>
   )

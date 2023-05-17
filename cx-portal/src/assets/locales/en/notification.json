@@ -36,8 +36,8 @@
     "content": "{{user}} writes"
   },
   "APP_RELEASE_REQUEST": {
-    "title": "New app release request waiting for review",
-    "content": "A new app release request is available in the app management board. Please validate the request:"
+    "title": "App Release Request - App: {{offer}}",
+    "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
   },
   "APP_RELEASE_APPROVAL": {
     "title": "App request approved",
@@ -60,8 +60,8 @@
     "content": "This is a default text and will get enhanced later."
   },
   "SERVICE_RELEASE_REQUEST": {
-    "title": "New service release request waiting for review",
-    "content": "A new service release request is available in the service management board. Please validate the request:"
+    "title": "Service Release Request - Service: {{offer}}",
+    "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
   },
   "SERVICE_RELEASE_APPROVAL": {
     "title": "Service release request approved",
@@ -75,9 +75,13 @@
     "title": "Service Subscription Request - Service: {{app}}",
     "content": "{{company}} triggered a subscription request for service {{app}}. Validate the request details on the subscription board."
   },
-  "SERVICE_ACTIVATION": {
-    "title": "Service request activated",
-    "content": "Your subscription for service offer {{serviceName}} is now active"
+  "ROLE_UPDATE_CORE_OFFER": {
+    "title": "Assigned User Roles Updated - Portal",
+    "content": "Dear {{username}}, \n\nyour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}\n\n"
+  },
+  "ROLE_UPDATE_APP_OFFER": {
+    "title": "Assigned User Roles Updated - {{app}}",
+    "content": "Hallo {{username}}, \n\nyour app user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find all details regarding the role change below. \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
   },
   "link": {
     "appmarketplace": "Go to app marketplace",
@@ -95,7 +99,9 @@
     "technicaluser": "Get there",
     "companyrolesserviceprovider": "Get there",
     "usermanagement": "Get there",
-    "servicesubscription": "Get there"
+    "servicesubscription": "Get there",
+    "serviceadminboard": "Get there",
+    "role-details": "Open Role Matrix"
   },
   "due": "due",
   "search": "Enter your search value",

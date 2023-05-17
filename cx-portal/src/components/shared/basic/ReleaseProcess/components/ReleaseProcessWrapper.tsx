@@ -44,6 +44,7 @@ import { serviceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import OfferValidateAndPublish from '../OfferValidateAndPublish'
 import { getAssetBase } from 'services/EnvironmentService'
+import OfferTechnicalIntegration from '../OfferTechnicalIntegration'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
@@ -89,7 +90,8 @@ export default function ReleaseProcessWrapper({
       if (serviceActiveStep === 1) return <OfferCard />
       else if (serviceActiveStep === 2) return <OfferPage />
       else if (serviceActiveStep === 3) return <OfferContractAndConsent />
-      else if (serviceActiveStep === 4)
+      else if (serviceActiveStep === 4) return <OfferTechnicalIntegration />
+      else if (serviceActiveStep === 5)
         return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
     }
   }, [activeStep, serviceActiveStep, processType])

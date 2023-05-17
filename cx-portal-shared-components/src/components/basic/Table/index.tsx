@@ -26,6 +26,9 @@ import { Toolbar, ToolbarProps } from './components/Toolbar'
 import { UltimateToolbar } from './components/Toolbar/UltimateToolbar'
 import { theme } from '../../../theme'
 import { SearchAndFilterButtonToolbar } from './components/Toolbar/SearchAndFilterButtonToolbar'
+import { Typography } from '../Typography'
+import { Error500Overlay } from './components/Error/Error500Overlay'
+import { Error400Overlay } from './components/Error/Error400Overlay'
 
 export { StatusTag }
 export type toolbarType = 'basic' | 'premium' | 'ultimate' | 'searchAndFilter'
@@ -55,6 +58,10 @@ export interface TableProps extends DataGridProps {
   defaultFilter?: string
   filterViews?: any
   alignCell?: string
+  error?: {
+    status: number
+  }
+  reload?: () => void
 }
 
 export const Table = ({
@@ -84,6 +91,8 @@ export const Table = ({
   defaultFilter,
   filterViews,
   alignCell = 'center',
+  error,
+  reload,
   ...props
 }: TableProps) => {
   const toolbarProps = {
@@ -137,9 +146,18 @@ export const Table = ({
         height="100%"
         alignItems="center"
         justifyContent="center"
-        sx={{ backgroundColor: '#fff' }}
+        sx={{ backgroundColor: '#fff', pointerEvents: 'auto' }}
       >
-        {noRowsMsg ?? 'No rows'}
+        {error && error.status === 500 && (
+          <Error500Overlay reload={() => reload && reload()} />
+        )}
+        {error &&
+          (error.status === 400 ||
+            error.status === 404 ||
+            error.status === 401) && <Error400Overlay />}
+        {!error && (
+          <Typography variant="body2">{noRowsMsg ?? 'No rows'}</Typography>
+        )}
       </Stack>
     )
   }
