@@ -1,10 +1,6 @@
 # Catena-X Portal Frontend
 
-This repository contains the frontend code and shared UI components for the Catena-X Portal written in React and Typescript.
-
-* INT: https://portal.int.demo.catena-x.net/
-* DEV: https://portal.dev.demo.catena-x.net/
-* Components: https://portal.dev.demo.catena-x.net/_storybook/
+This repository contains the frontend code and [Shared UI Components](https://www.npmjs.com/package/cx-portal-shared-components) for the Catena-X Portal written in React and Typescript.
 
 The Catena-X Portal application consists of
 
@@ -17,24 +13,43 @@ The Catena-X Portal application consists of
 
 The Catena-X Portal is designed to work with the [Catena-X IAM](https://github.com/eclipse-tractusx/portal-iam).
 
+## Run locally
+
 Here are three ways to run the application locally on http://localhost:3001/
 
 Note: if you'd like to run the complete frontend application, follow the 'Run frontend on localhost' guide available within the developer documentation of [portal-assets](https://github.com/eclipse-tractusx/portal-assets).
 
-## Local build & run
+### Local build & run
 
     yarn
     yarn build
     yarn start
 
-## Local docker build & run & publish
+### Local docker build & run & publish
 
     yarn build:docker
     yarn publish:docker
     yarn start:docker
 
-## Running the image from GitHub container registry
+### Running the image from GitHub container registry
 
-    export IMAGE=ghcr.io/catenax-ng/tx-portal-frontend:latest
+    export IMAGE=tractusx/portal-frontend:latest
     docker pull $IMAGE
     docker run --rm -d -p 3001:8080 --name cx-portal $IMAGE
+
+## Notice for Docker image
+
+This application provides container images for demonstration purposes.
+
+DockerHub: https://hub.docker.com/r/tractusx/portal-frontend
+
+Base image: nginxinc/nginx-unprivileged:alpine
+
+* Dockerfile: [nginxinc/nginx-unprivileged:alpine](https://github.com/nginxinc/docker-nginx-unprivileged/blob/main/Dockerfile-alpine.template)
+* GitHub project: [https://github.com/nginxinc/docker-nginx-unprivileged](https://github.com/nginxinc/docker-nginx-unprivileged)
+* DockerHub: [https://hub.docker.com/r/nginxinc/nginx-unprivileged](https://hub.docker.com/r/nginxinc/nginx-unprivileged)
+
+## License
+
+Distributed under the Apache 2.0 License.
+See [LICENSE](./LICENSE) for more information.
