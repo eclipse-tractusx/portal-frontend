@@ -43,6 +43,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Add Terms and Condition dynamic in overlay and hanlde download document functionality
 * Service Marketplace
    * BugFix - Fetch image from asset repo
+* Shared Component
+   * New About dialog component added
 
 ## 1.4.0
 
