@@ -10,7 +10,6 @@ import CloseIcon from '@mui/icons-material/Close'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Box } from '@mui/material'
 import { Typography } from '../Typography'
-import { Subtitles } from '@mui/icons-material'
 
 const BootstrapDialog = styled(Dialog)(() => ({
   '& .MuiDialogContent-root': {
