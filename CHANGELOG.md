@@ -2,6 +2,9 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+## unreleased
+* Service subscription activation UI updates
+
 ## 1.4.0
 
 ### Change

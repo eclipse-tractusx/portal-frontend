@@ -41,7 +41,7 @@ import './style.scss'
 import { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 
-export default function AddBPN({ id }: { id: string }) {
+export default function ActivateSubscription({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [inputURL, setInputURL] = useState('')
