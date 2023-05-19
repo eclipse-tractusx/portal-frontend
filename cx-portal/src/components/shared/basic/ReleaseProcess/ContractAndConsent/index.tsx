@@ -45,9 +45,12 @@ export default function ContractAndConsent() {
   }).data
   const [updateAgreementConsents] = useUpdateAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateDocumentUploadMutation()
-  const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
-    refetchOnMountOrArgChange: true,
-  }).data
+  const { data: fetchAppStatus, isFetching } = useFetchAppStatusQuery(
+    appId ?? '',
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  )
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
 
@@ -57,43 +60,45 @@ export default function ContractAndConsent() {
 
   return (
     <div className="contract-consent">
-      <CommonContractAndConsent
-        type={ReleaseProcessTypes.APP_RELEASE}
-        stepperTitle={t('content.apprelease.contractAndConsent.headerTitle')}
-        stepperDescription={t(
-          'content.apprelease.contractAndConsent.headerDescription'
-        )}
-        checkBoxMandatoryText={t(
-          'content.apprelease.appReleaseForm.isMandatory'
-        )}
-        imageFieldLabel={
-          t('content.apprelease.contractAndConsent.uploadImageConformity') +
-          ' *'
-        }
-        pageSnackbarDescription={t(
-          'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
-        )}
-        pageNotificationObject={{
-          title: t('content.apprelease.appReleaseForm.error.title'),
-          description: t('content.apprelease.appReleaseForm.error.message'),
-        }}
-        imageFieldNoDescription={t(
-          'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
-        )}
-        imageFieldNote={t('content.apprelease.appReleaseForm.note')}
-        imageFieldRequiredText={t(
-          'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-        )}
-        id={appId ?? ''}
-        fetchAgreementData={fetchAgreementData || []}
-        fetchConsentData={fetchConsentData}
-        updateAgreementConsents={updateAgreementConsents}
-        updateDocumentUpload={updateDocumentUpload}
-        fetchStatusData={fetchAppStatus || undefined}
-        getDocumentById={getDocumentById}
-        fetchFrameDocumentById={fetchFrameDocumentById}
-        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
-      />
+      {!isFetching && (
+        <CommonContractAndConsent
+          type={ReleaseProcessTypes.APP_RELEASE}
+          stepperTitle={t('content.apprelease.contractAndConsent.headerTitle')}
+          stepperDescription={t(
+            'content.apprelease.contractAndConsent.headerDescription'
+          )}
+          checkBoxMandatoryText={t(
+            'content.apprelease.appReleaseForm.isMandatory'
+          )}
+          imageFieldLabel={
+            t('content.apprelease.contractAndConsent.uploadImageConformity') +
+            ' *'
+          }
+          pageSnackbarDescription={t(
+            'content.apprelease.appReleaseForm.dataSavedSuccessMessage'
+          )}
+          pageNotificationObject={{
+            title: t('content.apprelease.appReleaseForm.error.title'),
+            description: t('content.apprelease.appReleaseForm.error.message'),
+          }}
+          imageFieldNoDescription={t(
+            'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
+          )}
+          imageFieldNote={t('content.apprelease.appReleaseForm.note')}
+          imageFieldRequiredText={t(
+            'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+          )}
+          id={appId ?? ''}
+          fetchAgreementData={fetchAgreementData || []}
+          fetchConsentData={fetchConsentData}
+          updateAgreementConsents={updateAgreementConsents}
+          updateDocumentUpload={updateDocumentUpload}
+          fetchStatusData={fetchAppStatus || undefined}
+          getDocumentById={getDocumentById}
+          fetchFrameDocumentById={fetchFrameDocumentById}
+          helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
+        />
+      )}
     </div>
   )
 }

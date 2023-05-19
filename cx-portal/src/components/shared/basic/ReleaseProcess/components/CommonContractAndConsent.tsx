@@ -54,6 +54,7 @@ import {
   serviceReleaseStepDecrement,
 } from 'features/serviceManagement/slice'
 import { ButtonLabelTypes } from '..'
+import { error, success } from 'services/NotifyService'
 
 type AgreementDataType = {
   agreementId: string
@@ -133,6 +134,24 @@ export default function CommonContractAndConsent({
   useEffect(() => {
     deleteResponse.isSuccess && setDeleteSuccess(true)
   }, [deleteResponse])
+
+  const deleteDocument = async (documentId: string) => {
+    documentId &&
+      (await deleteAppReleaseDocument(documentId)
+        .unwrap()
+        .then(() => {
+          success(
+            t('content.apprelease.contractAndConsent.documentDeleteSuccess')
+          )
+        })
+        .catch((err: any) => {
+          if (err.status === 409) {
+            error(err.data.title, '', err)
+          } else {
+            error(t('content.apprelease.appReleaseForm.errormessage'), '', err)
+          }
+        }))
+  }
 
   const defaultValues = useMemo(() => {
     return {
@@ -449,9 +468,7 @@ export default function CommonContractAndConsent({
             note={imageFieldNote}
             requiredText={imageFieldRequiredText}
             handleDownload={handleDownload}
-            handleDelete={(documentId: string) => {
-              deleteAppReleaseDocument(documentId)
-            }}
+            handleDelete={(documentId: string) => deleteDocument(documentId)}
             isRequired={documentRequired}
           />
         )}

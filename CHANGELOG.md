@@ -2,6 +2,12 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
+
+## Unreleased
+* Bugfix:
+   * App Release Process
+      * Fixed Conformity Document Deletion is not backend connected issue
+
 ## 1.4.0
 
 ### Change
