@@ -60,13 +60,15 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const { data } = useFetchRolesQuery()
   const [updateCompanyRoles] = useUpdateCompanyRolesMutation()
 
-  const newSelectedRoles = data ? data.filter(
-    (role) =>
-      roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
-  ) : []
-  const newDeselectedRoles = data ? data.filter(
-    (role) => roles.indexOf(role.companyRoles) === -1
-  ) : []
+  const newSelectedRoles = data
+    ? data.filter(
+        (role) =>
+          roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
+      )
+    : []
+  const newDeselectedRoles = data
+    ? data.filter((role) => roles.indexOf(role.companyRoles) === -1)
+    : []
 
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
 
@@ -114,12 +116,10 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
     setLoading(true)
     const fetchAgreements = (agreements: AgreementsData[]) => {
       return agreements.map((agreement: AgreementsData) => {
-        return (
-          {
-            agreementId: agreement.agreementId,
-            consentStatus: "ACTIVE"
-          }
-        )
+        return {
+          agreementId: agreement.agreementId,
+          consentStatus: 'ACTIVE',
+        }
       })
     }
     const filterRoles: any = []
@@ -129,7 +129,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
         roles.indexOf(role.companyRoles) !== -1 &&
         filterRoles.push({
           companyRoles: role.companyRoles,
-          agreements: fetchAgreements(role.agreements)
+          agreements: fetchAgreements(role.agreements),
         })
       )
     })
@@ -342,14 +342,11 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => { }}
+            onButtonClick={() => {}}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
-            variant="contained"
-            onClick={() => handleSubmit()}
-          >
+          <Button variant="contained" onClick={() => handleSubmit()}>
             {`${t('content.companyRolesUpdate.overlay.submit')}`}
           </Button>
         )}

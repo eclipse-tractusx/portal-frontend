@@ -57,7 +57,7 @@ export type RolesData = {
 }
 
 export type CompanyRoleRequest = {
-  companyRoles: string,
+  companyRoles: string
   agreements: AgreementsData[]
 }
 
@@ -81,7 +81,7 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    updateCompanyRoles: builder.mutation<void,CompanyRoleRequest[]>({
+    updateCompanyRoles: builder.mutation<void, CompanyRoleRequest[]>({
       query: (data: CompanyRoleRequest[]) => ({
         url: `/api/administration/companydata/companyRolesAndConsents`,
         method: 'POST',
@@ -91,4 +91,8 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { useFetchRolesQuery, useFetchDocumentByIdMutation, useUpdateCompanyRolesMutation } = apiSlice
+export const {
+  useFetchRolesQuery,
+  useFetchDocumentByIdMutation,
+  useUpdateCompanyRolesMutation,
+} = apiSlice
