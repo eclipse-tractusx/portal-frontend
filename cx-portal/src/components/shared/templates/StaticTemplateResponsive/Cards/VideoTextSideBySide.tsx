@@ -23,6 +23,7 @@ import { IconButton, Typography } from 'cx-portal-shared-components'
 import '../StaticTemplate.scss'
 import ReactPlayer from 'react-player'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function VideoTextSideBySide({
   provider,
@@ -51,9 +52,11 @@ export default function VideoTextSideBySide({
             </IconButton>
           )}
         </div>
-        <Typography className={'providerDescription'} variant="body1">
-          {provider.description}
-        </Typography>
+        <Trans>
+          <Typography className={'providerDescription'} variant="body1">
+            {provider.description}
+          </Typography>
+        </Trans>
       </div>
     </div>
   )

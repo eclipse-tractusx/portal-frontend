@@ -126,6 +126,15 @@
     padding: 30px 0px;
   }
 
+  .multiTextContainer div {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(17, 17, 17);
+    letter-spacing: 0px;
+  }
+
   .flex {
     display: flex;
     justify-content: flex-start;
@@ -448,6 +457,7 @@ iframe {
 .titleWithIcon button {
   width: 40px;
   height: 40px;
+  z-index: 1;
 }
 
 .titleWithIcon svg {
@@ -457,4 +467,29 @@ iframe {
 .titleWithIcon.sideBySideTitle {
   place-content: flex-start;
   width: 100%;
+}
+
+.multiTextContainer div strong {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: #0f71cb;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  left: 100%;
+  margin-top: -50px;
+}
+
+strong:hover .tooltiptext {
+  visibility: visible !important;
 }

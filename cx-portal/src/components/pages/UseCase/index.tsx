@@ -31,6 +31,7 @@ import { languageSelector } from 'features/language/slice'
 export default function UseCase() {
   const [useCase, setUseCase] = useState<any>()
   const [linkArray, setLinkArray] = useState<any>()
+  const [isTop, setIsTop] = useState<boolean>(false)
   const language = useSelector(languageSelector)
 
   useEffect(() => {
@@ -61,6 +62,12 @@ export default function UseCase() {
     })
   }, [language])
 
+  const onScroll = () => {
+    setIsTop(window.scrollY > 500)
+  }
+
+  window.addEventListener('scroll', onScroll)
+
   return (
     <main className="useCase">
       {useCase && linkArray && (
@@ -69,7 +76,7 @@ export default function UseCase() {
             title={useCase.traceability.title}
             description={useCase.traceability.description}
           />
-          <StageSubNavigation linkArray={linkArray} />
+          <StageSubNavigation fixHeader={isTop} linkArray={linkArray} />
           <StaticTemplateResponsive
             sectionInfo={useCase.traceability.sections}
             baseUrl={getAssetBase()}

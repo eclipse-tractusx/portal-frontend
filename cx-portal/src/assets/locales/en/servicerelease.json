@@ -18,6 +18,7 @@
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
     "contractAndConsent": "Contract & Consent",
+    "technicalIntegration": "technical Integration",
     "validateAndPublish": "Verify & Submit"
   },
   "step1": {
@@ -46,6 +47,12 @@
   "step3": {
     "headerTitle": "Agreements and Consent",
     "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval."
+  },
+  "technicalIntegration": {
+    "headerTitle": "Technical Integration",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+    "technicalUserProfileError": "Error while updating technical user profiles"
   },
   "step4": {
     "headerTitle": "Validate & Publish",

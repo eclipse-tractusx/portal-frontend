@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function RecommendedServices({
   services,
@@ -56,7 +57,7 @@ export default function RecommendedServices({
               <CardHorizontal
                 borderRadius={6}
                 imageAlt="App Card"
-                imagePath={'ServiceMarketplace.png'}
+                imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => handleClick(service.id)}

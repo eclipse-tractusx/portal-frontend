@@ -23,6 +23,7 @@ import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import RenderImage from './RenderImage'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { Trans } from 'react-i18next'
 
 export default function ImageTextSideBySide({
   provider,
@@ -48,9 +49,11 @@ export default function ImageTextSideBySide({
             <ArrowUpwardIcon />
           </IconButton>
         </div>
-        <Typography className={'providerDescription'} variant="body1">
-          {provider.description}
-        </Typography>
+        <Trans>
+          <Typography className={'providerDescription'} variant="body1">
+            {provider.description}
+          </Typography>
+        </Trans>
       </div>
     </div>
   )

@@ -180,12 +180,12 @@ export default function CommonContractAndConsent({
   }, [dispatch, fetchStatusData])
 
   const loadData = useCallback(() => {
-    const fetchConsent = fetchConsentData?.agreements.map(
-      (item: AgreementStatusType) => ({
+    const fetchConsent =
+      fetchStatusData?.agreements &&
+      fetchStatusData?.agreements.map((item) => ({
         ...item,
         consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
-      })
-    )
+      }))
 
     const consentAgreementData: any =
       fetchAgreementData &&
@@ -205,7 +205,7 @@ export default function CommonContractAndConsent({
 
     setDefaultValue({ ...defaultCheckboxData, agreements: agreementData })
     reset({ ...defaultCheckboxData, agreements: agreementData })
-  }, [agreementData, fetchAgreementData, fetchConsentData, reset])
+  }, [agreementData, fetchAgreementData, fetchStatusData, reset])
 
   useEffect(() => {
     if (!agreementData || agreementData.length === 0) loadData()
@@ -327,6 +327,7 @@ export default function CommonContractAndConsent({
           } else {
             dispatch(serviceReleaseStepIncrement())
           }
+          setAgreementData([])
           buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
         })
         .catch(() => {

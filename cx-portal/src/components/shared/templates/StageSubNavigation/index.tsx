@@ -22,7 +22,13 @@ import { ParentSubNavigation } from 'cx-portal-shared-components'
 import '../Templates.scss'
 import { Box } from '@mui/material'
 
-export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
+export const StageSubNavigation = ({
+  linkArray,
+  fixHeader,
+}: {
+  linkArray: any
+  fixHeader: boolean
+}) => {
   const scrollToId = (id: string) => {
     const element = document.getElementById(id)
     const top = element?.offsetTop
@@ -32,11 +38,21 @@ export const StageSubNavigation = ({ linkArray }: { linkArray: any }) => {
     })
   }
 
+  const customStyles = fixHeader && {
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    zIndex: 9,
+    backgroundColor: '#F5F9FD',
+    boxShadow: '0px 5px 10px rgb(80 80 80 / 30%)',
+  }
+
   return (
     <Box
       sx={{
         backgroundColor: 'rgba(15, 113, 203, 0.05)',
         height: '100px',
+        ...customStyles,
       }}
     >
       <div className="subNavigationContainer">
