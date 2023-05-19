@@ -31,6 +31,7 @@ import {
   DialogContent,
   DialogHeader,
   Expand,
+  LoadingButton,
   Typography,
 } from 'cx-portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
@@ -41,6 +42,7 @@ import {
   RolesData,
   useFetchDocumentByIdMutation,
   useFetchRolesQuery,
+  useUpdateCompanyRolesMutation,
 } from 'features/companyRoles/companyRoleApiSlice'
 import CommonService from 'services/CommonService'
 import { download } from 'utils/downloadUtils'
@@ -50,17 +52,26 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const close = () => dispatch(closeOverlay())
+  console.log('rioles', roles)
+
+  const [loading, setLoading] = useState(false)
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
   const { data } = useFetchRolesQuery()
+  const [updateCompanyRoles] = useUpdateCompanyRolesMutation()
 
-  const newSelectedRoles = data?.filter(
+  const newSelectedRoles = data ? data.filter(
     (role) =>
       roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
-  )
-  const newDeselectedRoles = data?.filter(
+  ) : []
+  const newDeselectedRoles = data ? data.filter(
     (role) => roles.indexOf(role.companyRoles) === -1
-  )
+  ) : []
+
+  const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
+
+  console.log('newSelectedRoles', newSelectedRoles)
+  console.log('new&&&&&&&', newDeselectedRoles)
 
   const [dataArray, setDataArray] = useState<RolesData>()
 
@@ -99,6 +110,37 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
     }
   }
 
+  const handleSubmit = () => {
+    setLoading(true)
+    const fetchAgreements = (agreements: AgreementsData[]) => {
+      return agreements.map((agreement: AgreementsData) => {
+        return (
+          {
+            agreementId: agreement.agreementId,
+            consentStatus: "ACTIVE"
+          }
+        )
+      })
+    }
+    const filterRoles: any = []
+
+    data?.map((role: CompanyRolesResponse) => {
+      return (
+        roles.indexOf(role.companyRoles) !== -1 &&
+        filterRoles.push({
+          companyRoles: role.companyRoles,
+          agreements: fetchAgreements(role.agreements)
+        })
+      )
+    })
+    try {
+      updateCompanyRoles(filterRoles).unwrap()
+      //setUpdatesRolesResponse(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Dialog open={true}>
       <DialogHeader
@@ -117,7 +159,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
           </Typography>
           <table>
             <tbody>
-              {data?.map((role: CompanyRolesResponse) => {
+              {newRolesSummary?.map((role: CompanyRolesResponse) => {
                 return (
                   <tr key={role.companyRoles}>
                     <td className="first-td">
@@ -291,9 +333,26 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
         <Button variant="outlined" onClick={close}>
           {`${t('global.actions.cancel')}`}
         </Button>
-        <Button variant="contained" onClick={close}>
-          {`${t('content.companyRolesUpdate.overlay.submit')}`}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator="Loading ..."
+            loading
+            size="medium"
+            onButtonClick={() => { }}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            onClick={() => handleSubmit()}
+          >
+            {`${t('content.companyRolesUpdate.overlay.submit')}`}
+          </Button>
+        )}
       </DialogActions>
     </Dialog>
   )

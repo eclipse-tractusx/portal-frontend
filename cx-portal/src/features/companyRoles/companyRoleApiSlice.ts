@@ -56,6 +56,11 @@ export type RolesData = {
   SERVICE_PROVIDER: SampleRoleData
 }
 
+export type CompanyRoleRequest = {
+  companyRoles: string,
+  agreements: AgreementsData[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/companyRoles',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -76,7 +81,14 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    updateCompanyRoles: builder.mutation<void,CompanyRoleRequest[]>({
+      query: (data: CompanyRoleRequest[]) => ({
+        url: `/api/administration/companydata/companyRolesAndConsents`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
-export const { useFetchRolesQuery, useFetchDocumentByIdMutation } = apiSlice
+export const { useFetchRolesQuery, useFetchDocumentByIdMutation, useUpdateCompanyRolesMutation } = apiSlice

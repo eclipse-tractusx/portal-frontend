@@ -39,6 +39,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * Company Role Update
    * Make Role Desc Dynamic
    * Add Terms and Condition dynamic in overlay and hanlde download document functionality
+* BL & API POST CompanyRole and Consent & Error/Success
 
 ## 1.4.0
 
