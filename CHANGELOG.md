@@ -3,6 +3,8 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
 
 ## 1.4.0
+* UserMangement
+   * Change roles success/error overlay UI fix
 
 ### Change
 * IdP Configuration
