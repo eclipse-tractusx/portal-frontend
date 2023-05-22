@@ -38,19 +38,22 @@ enum ActionKind {
   SET_OVERLAY = 'SET_OVERLAY',
   SET_ID = 'SET_ID',
   SET_TECH_USER = 'SET_TECH_USER',
-  SET_ID_TECH_USER_OVERLEY = 'SET_ID_TECH_USER_OVERLEY',
+  SET_ID_OFFER_ID_TECH_USER_OVERLEY = 'SET_ID_OFFER_ID_TECH_USER_OVERLEY',
+  SET_OFFER_ID = 'SET_OFFER_ID',
 }
 
 type State = {
   id: string
   isTechUser: boolean
   overlay: boolean
+  offerId: string
 }
 
 const initialState: State = {
   id: '',
   isTechUser: false,
   overlay: false,
+  offerId: '',
 }
 
 type Action = {
@@ -62,16 +65,19 @@ function reducer(state: State, { type, payload }: Action) {
   switch (type) {
     case ActionKind.SET_ID:
       return { ...state, id: payload }
+    case ActionKind.SET_OFFER_ID:
+      return { ...state, offerId: payload }
     case ActionKind.SET_TECH_USER:
       return { ...state, isTechUser: payload }
     case ActionKind.SET_OVERLAY:
       return { ...state, overlay: payload }
-    case ActionKind.SET_ID_TECH_USER_OVERLEY:
+    case ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY:
       return {
         ...state,
         id: payload.id,
         isTechUser: payload.isTechUser,
         overlay: payload.overlay,
+        offerId: payload.offerId,
       }
     default:
       return state
@@ -88,7 +94,7 @@ export default function SubscriptionElements({
   const theme = useTheme()
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [{ id, isTechUser, overlay }, setState] = useReducer(
+  const [{ id, isTechUser, overlay, offerId }, setState] = useReducer(
     reducer,
     initialState
   )
@@ -97,14 +103,18 @@ export default function SubscriptionElements({
     return <NoItems />
   }
 
-  const showOverlay = (subscription: CompanySubscriptionData) => {
+  const showOverlay = (
+    subscription: CompanySubscriptionData,
+    offerId: string
+  ) => {
     if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
       dispatch(show(OVERLAYS.ADD_SUBSCRIPTION, subscription.subscriptionId))
     } else {
       setState({
-        type: ActionKind.SET_ID_TECH_USER_OVERLEY,
+        type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
         payload: {
           id: subscription.subscriptionId,
+          offerId: offerId,
           isTechUser: true,
           overlay: true,
         },
@@ -138,7 +148,9 @@ export default function SubscriptionElements({
                         <Button
                           color="primary"
                           className="wd-25"
-                          onClick={() => showOverlay(subscription)}
+                          onClick={() =>
+                            showOverlay(subscription, subscriptionData.offerId)
+                          }
                           size="small"
                           variant="contained"
                         >
@@ -164,7 +176,8 @@ export default function SubscriptionElements({
       </div>
       {overlay && (
         <ActivateServiceSubscription
-          id={id}
+          companyId={id}
+          offerId={offerId}
           isTechUser={isTechUser}
           handleOverlayClose={() =>
             setState({

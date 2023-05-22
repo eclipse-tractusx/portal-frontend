@@ -400,8 +400,6 @@ export default function Subscription({
     [debouncedFilter]
   )
 
-  console.log('data = = ', data)
-
   return (
     <main className="appSubscription">
       <div className="mainContainer">

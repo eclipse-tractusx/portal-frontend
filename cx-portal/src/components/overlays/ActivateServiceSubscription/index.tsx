@@ -32,19 +32,23 @@ import './style.scss'
 import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
 import { Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { useFetchServiceTechnicalUserProfilesQuery } from 'features/serviceManagement/apiSlice'
 
 export default function ActivateserviceSubscription({
-  id,
+  offerId,
+  companyId,
   isTechUser,
   handleOverlayClose,
 }: {
-  id: string
+  offerId: string
+  companyId: string
   isTechUser: boolean
   handleOverlayClose: () => void
 }) {
   const { t } = useTranslation('servicerelease')
   const [loading, setLoading] = useState(false)
   const [activationResponse, setActivationResponse] = useState<boolean>(false)
+  const { data } = useFetchServiceTechnicalUserProfilesQuery(offerId)
 
   const ActivationOverlay = () => (
     <div className="activation">
@@ -212,7 +216,13 @@ export default function ActivateserviceSubscription({
                   placeContent: 'flex-start',
                   cursor: 'pointer',
                 }}
-                onClick={() => {}}
+                onClick={() =>
+                  window.open(
+                    'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md',
+                    '_blank',
+                    'noopener'
+                  )
+                }
               >
                 <HelpOutlineIcon
                   sx={{
