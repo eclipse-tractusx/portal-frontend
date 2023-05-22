@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
@@ -30,6 +30,7 @@ import {
   Button,
   Checkbox,
   PageHeader,
+  PageSnackbar,
   Typography,
 } from 'cx-portal-shared-components'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -40,6 +41,11 @@ import {
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
 import './CompanyRoleUpdate.scss'
+import {
+  updateRoleErrorType,
+  updateRoleSuccessType,
+} from 'features/companyRoles/slice'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export default function CompanyRoles() {
   const navigate = useNavigate()
@@ -48,6 +54,9 @@ export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<CompanyRolesResponse[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
   const [showActiveDescRole, setShowActiveDescRole] = useState<string>()
+
+  const updatedSuccess = useSelector(updateRoleSuccessType)
+  const updatedError = useSelector(updateRoleErrorType)
 
   const { data } = useFetchRolesQuery()
   useEffect(() => {
@@ -218,6 +227,19 @@ export default function CompanyRoles() {
           </Box>
         </div>
       </div>
+      <PageSnackbar
+        open={updatedSuccess || updatedError}
+        autoClose
+        description={
+          updatedSuccess
+            ? t('content.companyRolesUpdate.successDescription')
+            : t('content.companyRolesUpdate.errorDescription')
+        }
+        severity={
+          updatedSuccess ? SuccessErrorType.SUCCESS : SuccessErrorType.ERROR
+        }
+        showIcon
+      />
     </main>
   )
 }

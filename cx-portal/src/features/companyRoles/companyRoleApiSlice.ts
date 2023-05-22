@@ -56,9 +56,14 @@ export type RolesData = {
   SERVICE_PROVIDER: SampleRoleData
 }
 
+export type AgreementsDataRequest = {
+  agreementId: string
+  consentStatus: string
+}
+
 export type CompanyRoleRequest = {
   companyRoles: string
-  agreements: AgreementsData[]
+  agreements: AgreementsDataRequest[]
 }
 
 export const apiSlice = createApi({
