@@ -145,9 +145,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
           agreement.agreementId,
         ])
     } else {
-      const index =
-        checkedAgreementsIds &&
-        checkedAgreementsIds.indexOf(agreement.agreementId)
+      const index = checkedAgreementsIds.indexOf(agreement.agreementId)
       if (index > -1) {
         checkedAgreementsIds.splice(index, 1)
         setCheckedAgreementsIds([...checkedAgreementsIds])
