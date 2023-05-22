@@ -145,11 +145,13 @@ export default function CommonContractAndConsent({
           )
         })
         .catch((err: any) => {
-          if (err.status === 409) {
-            error(err.data.title, '', err)
-          } else {
-            error(t('content.apprelease.appReleaseForm.errormessage'), '', err)
-          }
+          error(
+            err.status === 409
+              ? err.data.title
+              : t('content.apprelease.appReleaseForm.errormessage'),
+            '',
+            err
+          )
         }))
   }
 
