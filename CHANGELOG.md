@@ -1,6 +1,7 @@
 # Changelog
 
-New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
+* App Access Management
+   * Fetch data from single API
 
 ## Unreleased
 

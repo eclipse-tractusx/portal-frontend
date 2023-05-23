@@ -191,24 +191,17 @@ export const apiSlice = createApi({
           `/api/apps/subscribed/subscription-status`
         )
         if (subscriptionApps.error) return { error: subscriptionApps.error }
-        const subscriptionData =
-          subscriptionApps.data as SubscriptionStatusItem[]
-        const activeResponse = await fetchWithBQ(`/api/apps/active`)
-        const activeData = activeResponse.data as AppMarketplaceApp[]
-        activeData.forEach(async (activeItem: AppMarketplaceApp) => {
-          subscriptionData.forEach(
-            async (subscriptionItem: SubscriptionStatusItem) => {
-              if (activeItem.id === subscriptionItem.appId)
-                subscriptionItem.image = {
-                  src: activeItem.leadPictureId
-                    ? `${getApiBase()}/api/apps/${activeItem.id}/appDocuments/${
-                        activeItem.leadPictureId
-                      }`
-                    : LogoGrayData,
-                }
+        const subscriptionData = subscriptionApps.data as SubscriptionStatusItem[]
+        subscriptionData.forEach(
+          async (subscriptionItem: SubscriptionStatusItem) => {
+            subscriptionItem.image = {
+              src: subscriptionItem.image
+                ? `${getApiBase()}/api/apps/${subscriptionItem.appId}/appDocuments/${subscriptionItem.image
+                }`
+                : LogoGrayData,
             }
-          )
-        })
+          }
+        )
         return { data: subscriptionData }
       },
     }),
