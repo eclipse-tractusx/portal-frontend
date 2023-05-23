@@ -7,7 +7,7 @@
     "cx-portal-shared-components"
   ],
   "config": {
-    "image": "ghcr.io/catenax-ng/tx-portal-frontend"
+    "image": "tractusx/portal-frontend"
   },
   "scripts": {
     "prepare": "husky install",
