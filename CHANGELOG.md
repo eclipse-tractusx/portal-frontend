@@ -46,6 +46,8 @@
       * Fixed Conformity Document Deletion is not backend connected issue
 
 ## 1.4.0
+* UserMangement
+   * Change roles success/error overlay UI fix
 
 ### Change
 * IdP Configuration
