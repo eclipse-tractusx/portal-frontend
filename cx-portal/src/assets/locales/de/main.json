@@ -1331,6 +1331,8 @@
       "SERVICE_PROVIDER": "Service Provider",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
+      "successDescription": "Company Roles successfully updated.",
+      "errorDescription": "Something went wrong. Please try it later again.",
       "overlay": {
         "title": "Do you really want to change your company's role(s) within Cantena-X?",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

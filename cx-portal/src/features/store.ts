@@ -39,6 +39,7 @@ import adminBoardSlice from './adminBoard/slice'
 import userAddSlice from './admin/userApiSlice'
 import userRoleSlice from './admin/appuserApiSlice'
 import modelsSlice from './semanticModels/slice'
+import updateCompanyRoleSlice from './companyRoles/slice'
 import { apiSlice as idpSlice } from './admin/idpApiSlice'
 import { apiSlice as userSlice } from './admin/userApiSlice'
 import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
@@ -78,6 +79,7 @@ export const reducers = {
   userAdd: userAddSlice.reducer,
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
+  companyRoles: updateCompanyRoleSlice.reducer,
   user: userSliceDep,
   twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
