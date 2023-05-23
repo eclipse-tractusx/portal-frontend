@@ -1057,12 +1057,12 @@
       }
     },
     "appMarketplace": {
-      "headline": "Order Business Application",
-      "desc1": "You have started the subscription request for app {appName}.",
-      "desc2": "Please note that the subscription request will trigger a service call on provider side.The app provider will align with you all further steps. This may take up to 5 days.",
-      "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
-      "desc4": "As soon as this is done, a notification will be send to you, which enables you to assign the relevant user roles.",
-      "statusHeading": "You can easily keep track of the subscription status progress by checking the subscription status bar in the app detail page."
+      "headline": "Geschäftsanwednung abonnieren",
+      "desc1": "Möchten Sie eine Anfrage zur Nutzung für die App {appName} erstellen?",
+      "desc2": "Wenn Sie unten auf „Bestätigen“ klicken, wird der App-Anbieter automatisch über Ihre Anfrage informiert und startet den Abonnementvorgang. Sollten weitere Informationen benötigt werden, wird sich der Anbieter direkt mit Ihnen in Verbindung setzen. Der Vorgang kann bis zu 5 Tage dauern.",
+      "desc3": "Sobald alle Fragen geklärt sind, kann der App-Anbieter Ihren App-Mandanten freischalten und Sie werden automatisch über die weiteren Schritte informiert.",
+      "desc4": "Bitte beachten Sie: Mit der Bestätigung der App-Abonnementanfrage erhält der App-Anbieter die in Ihrem Datenbereich verfügbaren Geschäftspartnerdaten (Firmenname, BPN, Adresse usw.) sowie Ihre E-Mail-Adresse, falls zusätzliche Informationen benötigt werden.",
+      "statusHeading": "Für eine bessere Transparenz wird die Abonnementstatusleiste auf der App-Detailseite verfügbar sein. Sie können den Abonnementstatus überprüfen, wenn Sie die App-Detailseite über den App-Marktplatz öffnen."
     },
     "techUser": {
       "details": {

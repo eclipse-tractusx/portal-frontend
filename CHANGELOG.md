@@ -40,6 +40,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
    * Make Role Desc Dynamic
    * Add Terms and Condition dynamic in overlay and handle download document functionality
    * BL & API POST CompanyRole and Consent & Error/Success
+* Bugfix:
+   * App Release Process
+      * Fixed Conformity Document Deletion is not backend connected issue
 
 ## 1.4.0
 
