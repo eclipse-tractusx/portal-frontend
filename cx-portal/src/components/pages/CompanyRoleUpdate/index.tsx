@@ -58,10 +58,11 @@ export default function CompanyRoles() {
   const updatedSuccess = useSelector(updateRoleSuccessType)
   const updatedError = useSelector(updateRoleErrorType)
 
-  const { data } = useFetchRolesQuery()
+  const { data, refetch } = useFetchRolesQuery()
   useEffect(() => {
     data && setCompanyRoles(_.cloneDeep(data))
-  }, [data])
+    refetch()
+  }, [data, refetch, updatedSuccess, updatedError])
 
   const handleAgreementCheck = (isChecked: boolean, roleName: string) => {
     const roles = _.cloneDeep(companyRoles)

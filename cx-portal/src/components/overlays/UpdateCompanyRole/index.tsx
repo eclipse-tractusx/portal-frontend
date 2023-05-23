@@ -155,14 +155,12 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const handleSubmit = async () => {
     setLoading(true)
-    const fetchAgreements = (agreements: AgreementsData[]) => {
-      return agreements.map((agreement: AgreementsData) => {
-        return {
-          agreementId: agreement.agreementId,
-          consentStatus: AgreementStatus.ACTIVE,
-        }
-      })
-    }
+    const fetchAgreements = (agreements: AgreementsData[]) =>
+      agreements.map((agreement: AgreementsData) => ({
+        agreementId: agreement.agreementId,
+        consentStatus: AgreementStatus.ACTIVE,
+      }))
+
     const filterRoles: CompanyRoleRequest[] = []
 
     data?.map((role: CompanyRolesResponse) => {
