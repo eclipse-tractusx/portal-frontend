@@ -34,10 +34,10 @@ license=$(jq -r '.license' cx-portal/package.json)
 # Get commit id
 commit_id=$(git rev-parse HEAD)
 
-# Get GitHub context variables
-server_url=${{ github.server_url }}
-repository=${{ github.repository }}
-ref=${{ github.ref_name }}
+# Get GitHub context from environment variables
+server_url=$SERVER_URL
+repository=$REPOSITORY
+ref=$REF_NAME
 
 # Read legal-notice.json as reference
 legal_notice_reference=$(cat cx-portal/src/assets/notice/legal-notice.json)
