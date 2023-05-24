@@ -32,7 +32,8 @@
     "build": "yarn clean && yarn build:licenses && yarn build:lib && yarn build:storybook && yarn build:portal",
     "start": "yarn start:portal",
     "deploy:helm": "helm install portal .chart/portal --namespace portal",
-    "undeploy:helm": "helm uninstall portal --namespace portal"
+    "undeploy:helm": "helm uninstall portal --namespace portal",
+    "legal-notice": "bash scripts/legal-notice.sh"
   },
   "lint:staged": {
     "**/src/**/*.{js,jsx,ts,tsx}": [
