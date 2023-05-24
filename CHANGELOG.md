@@ -1,11 +1,56 @@
 # Changelog
 
-New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
+* App Access Management
+   * Fetch data from single API
+
+## Unreleased
+
+* Connectors
+   * Show Managed connectors
+   * Error scenarios implemented in Table component
+* App Release Process
+   * technical integration style updates
+* News Section
+   * Fixed UI of news section in home page
+* Company Role Updates
+   * New page for company role update
+* Sort section
+   * Hover effect added
+* Notification
+   * SERVICE_RELEASE_REQUEST and APP_RELEASE_REQUEST content update
+   * ROLE_UPDATE_APP_OFFER and ROLE_UPDATE_CORE_OFFER types added and corresponding contents updated
+* Static templete
+   * Two more new templates added
+   * Support language switch
+   * Support arrow up Icon on each section
+* ImageComponent
+   * Do not hide current on zoom in action
+* Admin board - Service
+   * Filter action issue fix
+* Package
+   * React Player to support all types of video urls
+* User Management
+   * Change roles success/error overlay fix
+* App Overview
+   * Dropdown UI broken fix
+* Appdetails
+   * App Images size and responsivenes
+   * Subscription Status hover changes
+* Fix build error issue
+* Company Role Update
+   * Make Role Desc Dynamic
+   * Add Terms and Condition dynamic in overlay and handle download document functionality
+   * BL & API POST CompanyRole and Consent & Error/Success
+* Bugfix:
+   * App Release Process
+      * Fixed Conformity Document Deletion is not backend connected issue
 
 ## unreleased
 * Service subscription activation UI updates
 
 ## 1.4.0
+* UserMangement
+   * Change roles success/error overlay UI fix
 
 ### Change
 * IdP Configuration
