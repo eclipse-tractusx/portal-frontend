@@ -47,6 +47,9 @@ jobs:
       - name: Linter Checks
         run: yarn lint
 
+      - name: Legal Notice
+        run: yarn legal-notice
+
       - name: Build Library and Portal
         run: yarn build
 
