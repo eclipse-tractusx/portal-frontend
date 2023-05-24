@@ -18,14 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import LegalNoticeTest from './legal-notice'
+import data from '../../../assets/notice/legal-notice.json'
 
-export default function Test() {
-  return (
-    <main>
-      <section>
-        <LegalNoticeTest />
-      </section>
-    </main>
-  )
+export default function LegalNoticeTest() {
+  return <pre>{JSON.stringify(data, null, 4)}</pre>
 }
