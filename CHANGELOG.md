@@ -45,6 +45,16 @@
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
 
+
+## Unreleased
+
+* App Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+
 ## 1.4.0
 * UserMangement
    * Change roles success/error overlay UI fix

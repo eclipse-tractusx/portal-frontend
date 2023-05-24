@@ -76,6 +76,9 @@ export interface ServiceDetailsType {
   providerUri: string
   contactEmail: string
   contactNumber: null
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
 }
 
 export const apiSlice = createApi({
