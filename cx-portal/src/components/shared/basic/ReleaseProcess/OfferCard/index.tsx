@@ -166,7 +166,7 @@ export default function OfferCard() {
         setImageData({
           name: documentName,
           id: documentId,
-          status: UploadStatus.UPLOAD_SUCCESS
+          status: UploadStatus.UPLOAD_SUCCESS,
         })
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
@@ -213,7 +213,7 @@ export default function OfferCard() {
     updateServiceDocumentUpload({
       appId: appId,
       documentTypeId: DocumentTypeId.SERVICE_LEADIMAGE,
-      body: { file: uploadImageValue}
+      body: { file: uploadImageValue },
     })
       .then(() => {
         setFileStatus(UploadStatus.UPLOAD_SUCCESS)
@@ -241,7 +241,7 @@ export default function OfferCard() {
       .unwrap()
       .then(() => {
         !uploadImageValue.id &&
-            handleUploadDocument(serviceId, uploadImageValue)
+          handleUploadDocument(serviceId, uploadImageValue)
         dispatch(setServiceId(serviceId))
         buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
           dispatch(serviceReleaseStepIncrement())
@@ -268,8 +268,7 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          !uploadImageValue.id &&
-            handleUploadDocument(result, uploadImageValue)
+          !uploadImageValue.id && handleUploadDocument(result, uploadImageValue)
           dispatch(setServiceId(result))
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
