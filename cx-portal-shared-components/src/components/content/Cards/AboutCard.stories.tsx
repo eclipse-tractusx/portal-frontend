@@ -1,9 +1,9 @@
 import { ComponentStory } from '@storybook/react'
 
-import { AboutDialog as Component } from './AboutDialog'
+import { AboutCard as Component } from './AboutCard'
 
 export default {
-  title: 'Modal',
+  title: 'Cards',
   component: Component,
 }
 
@@ -11,8 +11,8 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
   <Component {...args} />
 )
 
-export const AboutDialogs = Template.bind({})
-AboutDialogs.args = {
+export const AboutCards = Template.bind({})
+AboutCards.args = {
   title: 'Your product name',
   subtitles: [
     'License: Apache-2.0',
@@ -30,5 +30,4 @@ AboutDialogs.args = {
       url: 'https://github.com/eclipse-tractusx/portal-frontend',
     },
   ],
-  footerText: 'Close',
 }
