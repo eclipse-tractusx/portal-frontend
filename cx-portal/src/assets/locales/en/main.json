@@ -895,14 +895,15 @@
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "step1Header": "1. Single Sign On integration between CX Network and Provider App",
+        "step1Header": "1. User Role Upload *",
         "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Upload App Roles",
+        "step2Header": "2. Technical User Setup *",
+        "step2HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of Roles uploaded",
         "uploadAppRolesButton": "Upload App Roles",
@@ -919,7 +920,11 @@
         "template": "Template",
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
-        "roleUploadIsMandatory": "Role upload is mandatory"
+        "roleUploadIsMandatory": "Role upload is mandatory",
+        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "roleDeleteSuccessMessage": "Role deleted successfully",
+        "technicalUserProfileError": "Error while updating technical user profiles",
+        "roleUpdateError": "Error while updating roles"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -973,8 +978,6 @@
           "message": "Please try it again"
         },
         "dataSavedSuccessMessage": "Data saved successfully",
-        "roleDeleteSuccessMessage": "Role deleted successfully",
-        "rolesDeleteSuccessMessage": "Roles deleted successfully",
         "errormessage": "Error! Something went wrong",
         "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
       },
@@ -1014,12 +1017,12 @@
       }
     },
     "appMarketplace": {
-      "headline": "Order Business Application",
-      "desc1": "You have started the subscription request for app {appName}.",
-      "desc2": "Please note that the subscription request will trigger a service call on provider side. The app provider will align with you all further steps. This may take up to 5 days.",
-      "desc3": "As soon as all queries are finalized, the app provider will be able to activate your app tenant.",
-      "desc4": "As soon as the service is up and running, a notification will be send to you, which enables you to assign the relevant user roles and start to use your app.",
-      "statusHeading": "You can easily keep track of the subscription status progress by checking the subscription status bar in the app detail page."
+      "headline": "Business Application Subscription",
+      "desc1": "Do you want to trigger a subscription request for app {appName}?",
+      "desc2": "With click on 'Confirm' below, the app provider will get automatically informed about your request and start the subscription process. If additional informations are needed, the provider will contact you directly. The process may take up to 5 days.",
+      "desc3": "As soon as all queries are clarified, the app provider will be able to activate your app tenant and you will get automatically informed to take further steps.",
+      "desc4": "Please note: with confirming the app subscription request, the app provider will receive your dataspace available business partner data (company name, bpn, address, etc.) as well as your email address in case additional information are needed.",
+      "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace."
     },
     "techUser": {
       "details": {
@@ -1288,6 +1291,8 @@
       "SERVICE_PROVIDER": "Service Provider",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
+      "successDescription": "Company Roles successfully updated.",
+      "errorDescription": "Something went wrong. Please try it later again.",
       "overlay": {
         "title": "Do you really want to change your company's role(s) within Cantena-X?",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
