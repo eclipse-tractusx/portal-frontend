@@ -25,7 +25,7 @@ license_anchor='license-placeholder'
 commit_id_anchor='commit-id-placeholder'
 server_url_anchor='server_url-placeholder'
 repository_anchor='repository-placeholder'
-ref_name_anchor='ref-name-placeholder'
+ref_anchor='ref-placeholder'
 
 # Read values from package.json using jq
 name=$(jq -r '.name' cx-portal/package.json)
@@ -35,16 +35,16 @@ license=$(jq -r '.license' cx-portal/package.json)
 commit_id=$(git rev-parse HEAD)
 
 # Get GitHub context variables
-server_url="${{ github.server_url }}"
-repository="${{ github.repository }}"
-ref_name="${{ github.ref_name }}"
+server_url=${{ github.server_url }}
+repository=${{ github.repository }}
+ref=${{ github.ref_name }}
 
 # Read legal-notice.json as reference
 legal_notice_reference=$(cat cx-portal/src/assets/notice/legal-notice.json)
 
 # Function to check if placeholder substitution was successful
 check_substitution() {
-  if [[ $1 != *"$2"* ]]; then
+  if [[ $1 = *"$2"* ]]; then
     echo "Error: Failed to replace $2"
     exit 1
   fi
@@ -71,9 +71,9 @@ legal_notice_repository="${legal_notice_server_url//$repository_anchor/$reposito
 check_substitution "$legal_notice_repository" "$repository_anchor"
 echo "Replaced repository"
 
-legal_notice_ref_name="${legal_notice_repository//$ref_name_anchor/$ref_name}"
-check_substitution "$legal_notice_ref_name" "$ref_name_anchor"
+legal_notice_ref="${legal_notice_repository//$ref_anchor/$ref}"
+check_substitution "$legal_notice_ref" "$ref_anchor"
 echo "Replaced ref name"
 
 # Write the final result to legal-notice.json
-echo "$legal_notice_ref_name" > cx-portal/src/assets/notice/legal-notice.json
+echo "$legal_notice_ref" > cx-portal/src/assets/notice/legal-notice.json
