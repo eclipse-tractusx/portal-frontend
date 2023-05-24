@@ -253,7 +253,9 @@ export default function CommonValidateAndPublish({
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Typography variant="subtitle2">* {role}</Typography>
+        <Typography variant="subtitle2" key={role}>
+          * {role}
+        </Typography>
       ))
     ) : (
       <Typography variant="caption2" className="not-available">

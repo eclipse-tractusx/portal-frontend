@@ -70,6 +70,7 @@ export interface AppStatusDataState {
     [key: string]: string[] | null
   }
 }
+
 export interface DescriptionState {
   languageCode: string
   longDescription: string
