@@ -1,8 +1,8 @@
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Box } from '@mui/material'
-import { Typography } from '../../basic/Typography';
+import { Typography } from '../../basic/Typography'
 
-function LinkText(props: { title: string; link: string, noBorder: boolean }) {
+function LinkText(props: { title: string; link: string; noBorder: boolean }) {
   return (
     <Box
       sx={{
@@ -27,18 +27,17 @@ export const AboutCard = (props: {
   links: { text: string; url: string }[]
   footerText: string
 }) => {
-  const parentBlock = {
-
-  }
   return (
-    <Box sx={{
-      background: '#FFFFFF',
-      boxShadow: '0px 5px 10px rgba(80, 80, 80, 0.3)',
-      borderRadius: '8px',
-      padding: '20px 20px 0px 20px'
-    }}>
+    <Box
+      sx={{
+        background: '#FFFFFF',
+        boxShadow: '0px 5px 10px rgba(80, 80, 80, 0.3)',
+        borderRadius: '8px',
+        padding: '20px 20px 0px 20px',
+      }}
+    >
       <Box>
-      <Typography variant='h3'>{props.title}</Typography>
+        <Typography variant="h3">{props.title}</Typography>
         <Box>
           <Box
             sx={{
@@ -57,7 +56,12 @@ export const AboutCard = (props: {
             ))}
           </Box>
           {props.links.map((link, index) => (
-            <LinkText key={link.text} title={link.text} link={link.url} noBorder={props.links.length - 1 === index} />
+            <LinkText
+              key={link.text}
+              title={link.text}
+              link={link.url}
+              noBorder={props.links.length - 1 === index}
+            />
           ))}
         </Box>
       </Box>
