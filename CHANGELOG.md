@@ -44,6 +44,10 @@
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
+* Updates
+   * Service release process
+      * SERVICE_LEADIMAGE supported.
+      * Show notifier on delete document
 
 ## 1.4.0
 * UserMangement
