@@ -1172,6 +1172,11 @@
         "message": "Geschäftsanwendungsrollen und -beschreibung für die jeweilige App. Die Rollen werden verwendet, um App-Kunden benutzerspezifischen Zugriff zu gewähren und Berechtigungen zwischen verschiedenen Benutzergruppen einzuschränken.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
+      "technicalUserSetup": {
+        "heading": "Technical User Setup",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "roleDescription": "The role description is expected to get displayed here in future."
+      },
       "providerInformation": {
         "heading": "Provider Information",
         "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
@@ -1480,7 +1485,8 @@
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
       "noDocumentsAvailable": "No documents available",
-      "noRolesAvailable": "No Roles available"
+      "noRolesAvailable": "No roles available",
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     },
     "table": {
       "search": "Enter email to search",

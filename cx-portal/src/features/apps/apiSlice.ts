@@ -107,6 +107,9 @@ export type AppDetails = AppMarketplaceApp & {
     longDescription: string
     shortDescription: string
   }[]
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
 }
 
 export type Documents = {

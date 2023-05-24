@@ -204,6 +204,12 @@
     "provider": {
       "heading": "Provider Information",
       "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+    },
+    "technicalUserSetup": {
+      "heading": "Technical User Setup",
+      "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+      "roleDescription": "The role description is expected to get displayed here in future.",
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     }
   },
   "retryOverlay": {
