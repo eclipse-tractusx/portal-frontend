@@ -44,14 +44,14 @@
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
+* Shared Component
+   * New About page component added
+   * About page created
+   * Removed all Third party related contents
 * Updates
    * Service release process
       * SERVICE_LEADIMAGE supported.
       * Show notifier on delete document
-
-
-## Unreleased
-
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
