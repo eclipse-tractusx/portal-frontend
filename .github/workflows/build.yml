@@ -30,6 +30,7 @@ on:
 env:
   IMAGE_NAMESPACE: "tractusx"
   IMAGE_NAME: "portal-frontend"
+  # variables needed for scripts/legal-notice.sh
   SERVER_URL: "${{ github.server_url }}"
   REPOSITORY: "${{ github.repository }}"
   REF_NAME: "${{ github.ref_name }}"
@@ -50,8 +51,8 @@ jobs:
       - name: Linter Checks
         run: yarn lint
 
-      - name: Legal Notice
-        run: yarn legal-notice
+      - name: Add content to Legal Notice
+        run: yarn build:legal-notice
 
       - name: Build Library and Portal
         run: yarn build
