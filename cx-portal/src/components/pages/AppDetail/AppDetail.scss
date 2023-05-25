@@ -17,36 +17,58 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+html {
+  scroll-behavior: smooth;
+}
+.navigation-main {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #dcdcdc;
+  z-index: 9;
+  .navigation-list {
+    width: 100%;
+    margin: 20px auto;
+    max-width: 1000px;
+  }
+}
+
+.appdetail-main-bg {
+  background: #f9f9f9;
+  padding-bottom: 30px;
+
+  .appdetail-back {
+    width: 100%;
+    padding: 30px 15px;
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+}
 
 .appdetail-main {
   width: 100%;
-  padding: 30px 0;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1140px;
-  min-height: 2000px;
+  margin: 0 auto;
+  max-width: 970px;
 
-  .product-description {
-    p {
-      margin-bottom: 12px;
-    }
-  }
-  .line-border {
+  .ul-list {
     border-bottom: 1px solid #dcdcdc;
   }
-  .back-btn {
-    margin-bottom: 48px;
-    a {
-      background: #eaf1fe;
-      border-radius: 200px;
-      padding: 10px 18px;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 20px;
-      color: #0d61ae;
-      text-decoration: none;
+
+  .menu-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+
+    li {
+      padding-right: 30px;
+    }
+  }
+
+  .product-description {
+    margin-top: 60px;
+
+    p {
+      margin-bottom: 12px;
     }
   }
 }

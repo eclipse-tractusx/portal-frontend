@@ -26,6 +26,7 @@ import { NavItem } from './NavItem'
 export interface NavigationProps extends MenuProps {
   active?: string
   unstyled?: boolean
+  selectedItem?: (item: string) => void
 }
 
 export const Navigation = ({
@@ -33,6 +34,7 @@ export const Navigation = ({
   component,
   active = '',
   unstyled = false,
+  selectedItem,
 }: NavigationProps) => {
   return (
     <Box component="nav" sx={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -46,6 +48,7 @@ export const Navigation = ({
             component={component}
             unstyled={unstyled}
             key={uniqueId('Navigation')}
+            onClick={() => selectedItem && selectedItem(link.href || '')}
           />
         )
       })}

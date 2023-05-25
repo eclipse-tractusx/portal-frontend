@@ -835,6 +835,8 @@
         "appDeployed": "App Instance deployed",
         "activation": "Activation, Notifications & credentials"
       },
+      "description": "Description",
+      "imageGallery": "Images",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
