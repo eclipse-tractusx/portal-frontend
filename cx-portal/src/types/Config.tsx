@@ -52,7 +52,6 @@ import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
-import ThirdPartyLicenses from 'components/pages/ThirdPartyLicenses'
 import Test from 'components/pages/Test'
 import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
@@ -78,6 +77,7 @@ import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
+import AboutPage from 'components/pages/AboutPage'
 
 /**
  * ALL_PAGES
@@ -415,7 +415,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.TERMS, element: <Terms /> },
   { name: PAGES.TEST, element: <Test /> },
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
-  { name: PAGES.THIRD_PARTY_LICENSES, element: <ThirdPartyLicenses /> },
+  { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.TECHNICAL_SETUP,
     role: ROLES.TECHNICAL_SETUP_VIEW,
@@ -703,5 +703,5 @@ export const footerMenuFull = [
   PAGES.PRIVACY,
   PAGES.TERMS,
   PAGES.COOKIE_POLICY,
-  PAGES.THIRD_PARTY_LICENSES,
+  PAGES.ABOUTPAGE,
 ]

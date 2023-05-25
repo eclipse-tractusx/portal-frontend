@@ -60,7 +60,8 @@
     "serviceadminboard": "Admin Board",
     "servicesubscription": "Service Subscription Mgt",
     "servicedetail": "Service Details",
-    "company-role": "Config - Company Role"
+    "company-role": "Config - Company Role",
+    "aboutpage": "About Page"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -777,9 +778,6 @@
       "description3_first": "Strictly Necessary Cookies",
       "description3_second": "Functional Cookies",
       "description3_third": "Targetting Cookies"
-    },
-    "thirdpartylicenses": {
-      "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
     },
     "account": {
       "userAccount": "Benutzer Konto",

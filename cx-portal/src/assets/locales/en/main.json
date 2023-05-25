@@ -34,7 +34,6 @@
     "privacy": "Privacy",
     "terms": "Terms of Service",
     "cookiepolicy": "Cookies",
-    "thirdpartylicenses": "Third Party Licenses",
     "logout": "Sign Out",
     "notfound": "Page not found",
     "appmanagement": "App Management",
@@ -60,7 +59,8 @@
     "serviceadminboard": "Admin Board",
     "servicesubscription": "Service Subscription Mgt",
     "servicedetail": "Service Details",
-    "company-role": "Config - Company Role"
+    "company-role": "Config - Company Role",
+    "aboutpage": "About Page"
   },
   "overlays": {
     "invite": "Invite new Business Partner",

@@ -65,7 +65,6 @@ export enum PAGES {
   PRIVACY = 'privacy',
   TERMS = 'terms',
   COOKIE_POLICY = 'cookiepolicy',
-  THIRD_PARTY_LICENSES = 'thirdpartylicenses',
   SETTINGS = 'settings',
   DEVELOPER = 'developer',
   TEST = 'test',
@@ -95,6 +94,7 @@ export enum PAGES {
   ROLE_DETAILS = 'role-details',
   SERVICE_DETAIL = 'servicedetail',
   COMPANY_ROLE = 'company-role',
+  ABOUTPAGE = 'aboutpage',
 }
 
 export enum OVERLAYS {
