@@ -93,10 +93,7 @@ export const AboutCard = (props: {
             )}
           </Box>
           {props.licensePath && (
-            <LinkText
-              text="Licence Path: "
-              url={props.licensePath}
-            />
+            <LinkText text="Licence Path: " url={props.licensePath} />
           )}
           {props.noticePath && (
             <LinkText text="NOTICE: " url={props.noticePath} />
