@@ -94,7 +94,7 @@ export enum PAGES {
   ROLE_DETAILS = 'role-details',
   SERVICE_DETAIL = 'servicedetail',
   COMPANY_ROLE = 'company-role',
-  ABOUTPAGE = 'aboutpage',
+  ABOUTPAGE = 'about',
 }
 
 export enum OVERLAYS {

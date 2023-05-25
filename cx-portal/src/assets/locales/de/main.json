@@ -61,7 +61,7 @@
     "servicesubscription": "Service Subscription Mgt",
     "servicedetail": "Service Details",
     "company-role": "Config - Company Role",
-    "aboutpage": "About Page"
+    "about": "About"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",

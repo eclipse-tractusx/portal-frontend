@@ -35,9 +35,7 @@ function LinkText(props: LinkType) {
       }}
       onClick={() => window.open(props.url, '_blank')}
     >
-      <Typography>
-        {props.text} {props.url}
-      </Typography>
+      <Typography>{props.text}</Typography>
       <OpenInNewIcon />
     </Box>
   )
@@ -56,7 +54,10 @@ function TitleText(props: LinkType) {
       }}
       onClick={() => window.open(props.url, '_blank')}
     >
-      <Typography variant="h3" sx={{ paddingRight: '10px' }}>
+      <Typography
+        variant="h3"
+        sx={{ paddingRight: '10px', textTransform: 'uppercase' }}
+      >
         {props.text}
       </Typography>
       <OpenInNewIcon />
@@ -83,7 +84,7 @@ export const AboutCard = (props: {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        maxWidth: '1200px',
+        maxWidth: '800px',
         alignItems: 'center',
       }}
     >
@@ -97,29 +98,14 @@ export const AboutCard = (props: {
       >
         <Box>
           <TitleText text={props.name} url={props.repositoryPath} />
-          <Box
-            sx={{
-              borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-            }}
-          >
-            {props.license && (
-              <Typography
-                sx={{
-                  padding: '20px 20px',
-                }}
-              >
-                {props.license}
-              </Typography>
-            )}
-          </Box>
-          {props.licensePath && (
-            <LinkText text="Licence Path: " url={props.licensePath} />
+          {props.license && props.licensePath && (
+            <LinkText text={props.license} url={props.licensePath} />
           )}
           {props.noticePath && (
-            <LinkText text="NOTICE: " url={props.noticePath} />
+            <LinkText text="Notice" url={props.noticePath} />
           )}
           {props.sourcePath && (
-            <LinkText text="Source URL: " url={props.sourcePath} />
+            <LinkText text="Source" url={props.sourcePath} />
           )}
           {props.commitId && (
             <Box>
@@ -128,7 +114,7 @@ export const AboutCard = (props: {
                   padding: '20px 20px',
                 }}
               >
-                Commit Id : {props.commitId}
+                Commit ID : {props.commitId}
               </Typography>
             </Box>
           )}

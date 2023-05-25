@@ -18,13 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AboutCard } from 'cx-portal-shared-components'
-// import legalJson from '../../../../src/assets/notice/legal-notice.json'
+import { AboutCard, PageHeader } from 'cx-portal-shared-components'
+import legalJson from '../../../../src/assets/notice/legal-notice.json'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import { useTranslation } from 'react-i18next'
 
 export default function AboutPage() {
+  const { t } = useTranslation()
   return (
     <main>
-      <section>{/* <AboutCard {...legalJson} /> */}</section>
+      <PageHeader title={t('pages.about')} topPage={true} headerHeight={200}>
+        <PageBreadcrumb backButtonVariant="contained" />
+      </PageHeader>
+      <section
+        style={{
+          maxWidth: '800px',
+        }}
+      >
+        <AboutCard {...legalJson} />
+      </section>
     </main>
   )
 }
