@@ -32,10 +32,10 @@ export default function MarketplaceTechnicalUserSetup({
 
   const getTechUserInfo = (data: string[] | null) => {
     return data && data?.length > 0 ? (
-      data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '30px 0' }} key={role}>
+      data?.map((item: string) => (
+        <Grid container spacing={2} sx={{ margin: '30px 0' }} key={item}>
           <Grid item xs={12}>
-            <Typography variant="subtitle2">* {role}</Typography>
+            <Typography variant="subtitle2">* {item}</Typography>
           </Grid>
         </Grid>
       ))
