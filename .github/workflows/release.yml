@@ -31,6 +31,10 @@ on:
 env:
   IMAGE_NAMESPACE: "tractusx"
   IMAGE_NAME: "portal-frontend"
+  REF_NAME: "${{ github.ref_name }}"
+  # variables needed for scripts/legal-notice.sh
+  SERVER_URL: "${{ github.server_url }}"
+  REPOSITORY: "${{ github.repository }}"
 
 jobs:
   build-and-push-release:
@@ -48,24 +52,27 @@ jobs:
 
       - name: Output versions
         run: |
-          echo git ${{ github.ref_name }}
+          echo git ${{ env.REF_NAME }}
           echo npm ${{ steps.npm-tag.outputs.current-version }}
 
       - name: Versions not matching
-        if: github.ref_name != steps.npm-tag.outputs.current-version
+        if: env.REF_NAME != steps.npm-tag.outputs.current-version
         run: |
           echo git and npm versions not equal - refusing to build release
           exit 1
 
       - name: Versions match
         run: |
-          echo versions equal - building release ${{ github.ref_name }}
+          echo versions equal - building release ${{ env.REF_NAME }}
 
       - name: Install Dependencies
         run: yarn
 
       - name: Linter Checks
         run: yarn lint
+
+      - name: Add content to Legal Notice
+        run: yarn build:legal-notice
 
       - name: Build Library and Portal
         run: yarn build
@@ -87,7 +94,7 @@ jobs:
           images: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
-            type=raw,value=${{ github.ref_name }}
+            type=raw,value=${{ env.REF_NAME }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -120,7 +127,7 @@ jobs:
 
     steps:
       - name: Set env
-        run: echo "RELEASE_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=${{ env.REF_NAME }}" >> $GITHUB_ENV
 
       - name: Get token
         id: get_workflow_token
@@ -139,5 +146,5 @@ jobs:
             --url https://api.github.com/repos/eclipse-tractusx/portal-cd/actions/workflows/portal-image-update.yml/dispatches \
             --header "authorization: Bearer $TOKEN" \
             --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"dev", "inputs": { "new-image":"${{ github.ref_name }}" }}' \
+            --data '{"ref":"dev", "inputs": { "new-image":"${{ env.REF_NAME }}" }}' \
             --fail
