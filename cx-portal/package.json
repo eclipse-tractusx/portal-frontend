@@ -10,7 +10,7 @@
     "test:watch": "react-scripts test --watch",
     "test:ci": "CI=true react-scripts test --watchAll=false --runInBand",
     "eject": "react-scripts eject",
-    "clean": "rimraf ./build ./dist ./storybook-static ./public/_storybook ./public/third-party-licenses.txt",
+    "clean": "rimraf ./build ./dist ./storybook-static ./public/_storybook",
     "start:storybook": "start-storybook -p 6006 -s public",
     "build:storybook": "build-storybook -s public",
     "build:dist": "yarn run build && mkdirp dist && cd build && 7z u ../dist/build.zip .",
