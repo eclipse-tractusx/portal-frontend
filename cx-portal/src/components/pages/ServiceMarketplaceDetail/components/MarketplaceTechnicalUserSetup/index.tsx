@@ -30,14 +30,12 @@ export default function MarketplaceTechnicalUserSetup({
 }) {
   const { t } = useTranslation('')
 
-  const getTechUserData = (data: string[] | null) => {
+  const getTechUserInfo = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '30px 0' }}>
+        <Grid container spacing={2} sx={{ margin: '30px 0' }} key={role}>
           <Grid item xs={12}>
-            <Typography variant="subtitle2" key={role}>
-              * {role}
-            </Typography>
+            <Typography variant="subtitle2">* {role}</Typography>
           </Grid>
         </Grid>
       ))
@@ -49,7 +47,7 @@ export default function MarketplaceTechnicalUserSetup({
   }
 
   return (
-    <div style={{ marginBottom: '95px' }}>
+    <div style={{ marginBottom: '30px' }}>
       <Typography variant="h4">
         {t('content.appdetail.technicalUserSetup.heading')}
       </Typography>
@@ -57,7 +55,7 @@ export default function MarketplaceTechnicalUserSetup({
         {t('content.appdetail.technicalUserSetup.message')}
       </Typography>
       {item.technicalUserProfile &&
-        getTechUserData(Object.values(item?.technicalUserProfile)[0])}
+        getTechUserInfo(Object.values(item?.technicalUserProfile)[0])}
     </div>
   )
 }

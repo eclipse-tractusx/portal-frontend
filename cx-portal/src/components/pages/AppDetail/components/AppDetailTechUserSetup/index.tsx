@@ -29,11 +29,9 @@ export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '30px 0' }}>
+        <Grid container spacing={2} sx={{ margin: '30px 0' }} key={role}>
           <Grid item xs={12}>
-            <Typography variant="subtitle2" key={role}>
-              * {role}
-            </Typography>
+            <Typography variant="subtitle2">* {role}</Typography>
           </Grid>
         </Grid>
       ))
