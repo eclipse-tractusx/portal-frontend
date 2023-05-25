@@ -20,12 +20,12 @@
 ###############################################################
 
 # Define placeholders from legal-notice.json
-name_anchor='name-placeholder'
-license_anchor='license-placeholder'
-commit_id_anchor='commit-id-placeholder'
-server_url_anchor='server_url-placeholder'
-repository_anchor='repository-placeholder'
-ref_anchor='ref-placeholder'
+name_anchor='NAME_PLACEHOLDER'
+license_anchor='LICENSE_PLACEHOLDER'
+commit_id_anchor='COMMIT_ID_PLACEHOLDER'
+server_url_anchor='SERVER_URL_PLACEHOLDER'
+repository_anchor='REPOSITORY_PLACEHOLDER'
+ref_anchor='REF_PLACEHOLDER'
 
 # Read values from package.json using jq
 name=$(jq -r '.name' cx-portal/package.json)
