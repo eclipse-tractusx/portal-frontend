@@ -29,6 +29,7 @@ import AppDetailTags from './components/AppDetailTags'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
 import CommonService from 'services/CommonService'
+import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
 
 export default function AppDetailContentDetails({
   item,
@@ -58,6 +59,7 @@ export default function AppDetailContentDetails({
         {images && <AppDetailImageGallery images={images} />}
         <AppDetailPrivacy item={item} />
         <AppDetailDocuments item={item} />
+        <AppDetailTechUserSetup item={item} />
         <AppDetailProvider item={item} />
         <AppDetailTags item={item} />
       </>

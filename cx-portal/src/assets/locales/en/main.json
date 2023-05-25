@@ -817,6 +817,10 @@
         "email": "Email",
         "phone": "Phone"
       },
+      "technicalUserSetup": {
+        "heading": "Technical User Setup",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
+      },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
       "subscribedTooltip": "The app is already subscribed by your company"
     },

@@ -10,6 +10,8 @@
    * Error scenarios implemented in Table component
 * App Release Process
    * technical integration style updates
+   * added technical user section in validate and publish
+   * added technical user section in admin board
 * News Section
    * Fixed UI of news section in home page
 * Company Role Updates
@@ -41,19 +43,19 @@
    * Make Role Desc Dynamic
    * Add Terms and Condition dynamic in overlay and handle download document functionality
    * BL & API POST CompanyRole and Consent & Error/Success
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* App Marketplace
+   * added technical user section
+* Service Marketplace
+   * added technical user section
+
+
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
 
-
-## Unreleased
-
-* App Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
-* Service Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
 
 ## 1.4.0
 * UserMangement

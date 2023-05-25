@@ -253,14 +253,18 @@ export default function CommonValidateAndPublish({
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Typography variant="subtitle2" key={role}>
-          * {role}
-        </Typography>
+        <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
+          <Grid item xs={12}>
+            <Typography variant="subtitle2">* {role}</Typography>
+          </Grid>
+        </Grid>
       ))
     ) : (
-      <Typography variant="caption2" className="not-available">
-        {t('global.errors.noTechnicalUserProfilesAvailable')}
-      </Typography>
+      <Grid container spacing={2}>
+        <Typography variant="caption2" className="not-available">
+          {t('global.errors.noTechnicalUserProfilesAvailable')}
+        </Typography>
+      </Grid>
     )
   }
 
