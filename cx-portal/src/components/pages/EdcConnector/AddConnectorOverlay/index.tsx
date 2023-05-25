@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -85,6 +85,10 @@ const AddConnectorOverlay = ({
 
   const [selected, setSelected] = useState<ConnectorType>({})
 
+  useEffect(() => {
+    if (openDialog) reset(formFields)
+  }, [openDialog, reset])
+
   const onFormSubmit = async () => {
     const validateFields = await trigger([
       'ConnectorName',
@@ -124,7 +128,6 @@ const AddConnectorOverlay = ({
           onCloseWithIcon={() => {
             setSelected({})
             handleOverlayClose()
-            reset(formFields)
           }}
         />
         <DialogContent
@@ -154,7 +157,6 @@ const AddConnectorOverlay = ({
               } else {
                 setSelected({})
                 handleOverlayClose()
-                reset(formFields)
               }
             }}
           >
