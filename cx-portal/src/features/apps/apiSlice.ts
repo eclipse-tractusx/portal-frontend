@@ -194,13 +194,15 @@ export const apiSlice = createApi({
           `/api/apps/subscribed/subscription-status`
         )
         if (subscriptionApps.error) return { error: subscriptionApps.error }
-        const subscriptionData = subscriptionApps.data as SubscriptionStatusItem[]
+        const subscriptionData =
+          subscriptionApps.data as SubscriptionStatusItem[]
         subscriptionData.forEach(
           async (subscriptionItem: SubscriptionStatusItem) => {
             subscriptionItem.image = {
               src: subscriptionItem.image
-                ? `${getApiBase()}/api/apps/${subscriptionItem.appId}/appDocuments/${subscriptionItem.image
-                }`
+                ? `${getApiBase()}/api/apps/${
+                    subscriptionItem.appId
+                  }/appDocuments/${subscriptionItem.image}`
                 : LogoGrayData,
             }
           }
