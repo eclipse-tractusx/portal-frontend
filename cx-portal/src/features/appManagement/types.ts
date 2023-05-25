@@ -66,6 +66,9 @@ export interface AppStatusDataState {
   salesManagerId?: string | null
   privacyPolicies?: string[] | []
   leadPictureUri?: string
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
 }
 
 export interface DescriptionState {
@@ -112,5 +115,6 @@ export const initialState: AppManagementState = {
     salesManagerId: null,
     privacyPolicies: [],
     leadPictureUri: '',
+    technicalUserProfile: {},
   },
 }

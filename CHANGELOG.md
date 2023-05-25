@@ -44,6 +44,20 @@
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
+* Updates
+   * Service release process
+      * SERVICE_LEADIMAGE supported.
+      * Show notifier on delete document
+
+
+## Unreleased
+
+* App Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
 
 ## 1.4.0
 * UserMangement
