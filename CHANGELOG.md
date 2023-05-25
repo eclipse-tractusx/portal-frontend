@@ -46,6 +46,16 @@
       * Fixed Conformity Document Deletion is not backend connected issue
 * Shared Component
    * New About page component added
+* Updates
+   * Service release process
+      * SERVICE_LEADIMAGE supported.
+      * Show notifier on delete document
+* App Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
 
 ## 1.4.0
 * UserMangement

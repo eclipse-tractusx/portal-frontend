@@ -51,6 +51,9 @@ export interface ServiceStatusDataState {
   useCase?: UseCaseType[]
   provider?: string
   agreements?: []
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
 }
 
 export interface AgreementState {
@@ -88,5 +91,6 @@ export const initialState: ServiceManagementState = {
     useCase: [],
     provider: '',
     agreements: [],
+    technicalUserProfile: {},
   },
 }

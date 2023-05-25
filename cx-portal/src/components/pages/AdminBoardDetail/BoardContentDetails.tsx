@@ -31,6 +31,7 @@ import CommonService from 'services/CommonService'
 import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
 import './AdminBoardDetail.scss'
+import BoardTechnicalUserSetup from './components/BoardTechnicalUserSetup'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -81,6 +82,7 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
           documents={item.documents}
         />
         <BoardRoles item={item} />
+        <BoardTechnicalUserSetup item={item} />
         <BoardProvider item={item} />
         <Button
           color="secondary"
