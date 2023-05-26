@@ -64,6 +64,8 @@
 * Service Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
+* Bugfix:
+   * Registration Process - bpn overlay keeps showing a load element
 
 ## 1.4.0
 * UserMangement
