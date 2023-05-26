@@ -5,6 +5,7 @@
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+   * Clear previously added data in the overlay
 * App Release Process
    * technical integration style updates
 * News Section
