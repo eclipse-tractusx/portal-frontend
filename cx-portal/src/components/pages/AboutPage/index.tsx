@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,23 +17,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Nullable, RequestState, TableType } from 'types/MainTypes'
+import { AboutCard, PageHeader } from 'cx-portal-shared-components'
+import legalJson from '../../../../src/assets/notice/legal-notice.json'
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import { useTranslation } from 'react-i18next'
 
-export const name = 'info/licenses'
-
-export type LicenseType = {
-  type: string
-  data: TableType
-}
-
-export type LicensesState = {
-  items: Nullable<LicenseType>
-  request: RequestState
-  error: string
-}
-
-export const initialState: LicensesState = {
-  items: null,
-  request: RequestState.NONE,
-  error: '',
+export default function AboutPage() {
+  const { t } = useTranslation()
+  return (
+    <main>
+      <PageHeader title={t('pages.about')} topPage={true} headerHeight={200}>
+        <PageBreadcrumb backButtonVariant="contained" />
+      </PageHeader>
+      <section
+        style={{
+          maxWidth: '800px',
+        }}
+      >
+        <AboutCard {...legalJson} />
+      </section>
+    </main>
+  )
 }

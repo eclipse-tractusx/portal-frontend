@@ -34,7 +34,6 @@
     "privacy": "Privacy",
     "terms": "Terms of Service",
     "cookiepolicy": "Cookies",
-    "thirdpartylicenses": "Third Party Licenses",
     "logout": "Sign Out",
     "notfound": "Page not found",
     "appmanagement": "App Management",
@@ -60,7 +59,8 @@
     "serviceadminboard": "Admin Board",
     "servicesubscription": "Service Subscription Mgt",
     "servicedetail": "Service Details",
-    "company-role": "Config - Company Role"
+    "company-role": "Config - Company Role",
+    "about": "About"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -1132,6 +1132,11 @@
         "message": "Business application roles and description configured/loaded for the respective app. The roles are used to provide app customers user specific access and restrict permissions between different user groups.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
+      "technicalUserSetup": {
+        "heading": "Technical User Setup",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "roleDescription": "The role description is expected to get displayed here in future."
+      },
       "providerInformation": {
         "heading": "Provider Information",
         "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
@@ -1443,7 +1448,8 @@
       "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
       "additionalDescription": "Please contact your admin.",
       "noDocumentsAvailable": "No documents available",
-      "noRolesAvailable": "No Roles available"
+      "noRolesAvailable": "No roles available",
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     },
     "table": {
       "search": "Enter email to search",
