@@ -48,7 +48,7 @@ export const Navigation = ({
             component={component}
             unstyled={unstyled}
             key={uniqueId('Navigation')}
-            onClick={() => selectedItem ? selectedItem(link.href ?? '') : ''}
+            onClick={() => (selectedItem ? selectedItem(link.href ?? '') : '')}
           />
         )
       })}

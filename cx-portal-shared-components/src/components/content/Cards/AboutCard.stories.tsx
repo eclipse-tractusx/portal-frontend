@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,23 +17,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { HttpClient } from 'utils/HttpClient'
-import { LicenseType } from './types'
+import { ComponentStory } from '@storybook/react'
 
-export class Api extends HttpClient {
-  private static classInstance?: Api
+import { AboutCard as Component } from './AboutCard'
 
-  public constructor() {
-    super('')
-  }
+export default {
+  title: 'Cards',
+  component: Component,
+}
 
-  public static getInstance() {
-    if (!this.classInstance) {
-      this.classInstance = new Api()
-    }
-    return this.classInstance
-  }
+const Template: ComponentStory<typeof Component> = (args: any) => (
+  <Component {...args} />
+)
 
-  public getItems = () =>
-    this.instance.get<LicenseType>(`/third-party-licenses.json`)
+export const AboutCards = Template.bind({})
+AboutCards.args = {
+  name: 'Example product',
+  repositoryPath: 'https://github.com/eclipse-tractusx/example-product',
+  license: 'License: Apache-2.0',
+  licensePath:
+    'https://github.com/eclipse-tractusx/example-product/blob/v1.0.0-example/LICENSE',
+  noticePath:
+    'https://github.com/eclipse-tractusx/example-product/blob/v1.0.0-example/NOTICE.md',
+  sourcePath:
+    'https://github.com/eclipse-tractusx/example-product/tree/v1.0.0-example',
+  commitId: '67e82n0637d585239c72eda374a17b8cb24046ec',
 }
