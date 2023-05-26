@@ -794,6 +794,8 @@
         "appDeployed": "App Instance deployed",
         "activation": "Activation, Notifications & credentials"
       },
+      "description": "Description",
+      "imageGallery": "Images",
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
@@ -806,7 +808,7 @@
         "NONE": "None"
       },
       "howtouse": {
-        "heading": "Relevant Documents",
+        "heading": "Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "providerInformation": {

@@ -49,7 +49,7 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-privacy">
+    <div className="appdetail-privacy" id="privacy-policy">
       <div className="privacy-content">
         <Typography variant="h4">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>

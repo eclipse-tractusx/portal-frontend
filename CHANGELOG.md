@@ -1,8 +1,5 @@
 # Changelog
 
-* App Access Management
-   * Fetch data from single API
-
 ## Unreleased
 
 * Connectors
@@ -52,6 +49,14 @@
    * Service release process
       * SERVICE_LEADIMAGE supported.
       * Show notifier on delete document
+* App Access Management
+   * Fetch data from single API
+* App Detail
+   * UI Changes
+
+
+## Unreleased
+
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
