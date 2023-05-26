@@ -49,7 +49,9 @@ export default function ActivateserviceSubscription({
   const { t } = useTranslation('servicerelease')
   const [loading, setLoading] = useState(false)
   const [activationResponse, setActivationResponse] = useState<boolean>(false)
-  const { data } = useFetchServiceTechnicalUserProfilesQuery(offerId)
+  const { data } = useFetchServiceTechnicalUserProfilesQuery(offerId, {
+    refetchOnMountOrArgChange: true,
+  })
 
   const techUserProfiles = useMemo(
     () =>
@@ -91,7 +93,7 @@ export default function ActivateserviceSubscription({
             }}
           >
             <Typography sx={{ fontWeight: 600 }} variant="caption1">
-              {isTechUser
+              {data && data.length > 0
                 ? t(
                     'serviceSubscription.activation.successDescriptionWithTechUser'
                   )
@@ -99,7 +101,7 @@ export default function ActivateserviceSubscription({
             </Typography>
           </Trans>
         </Box>
-        {isTechUser && (
+        {data && data.length > 0 && (
           <>
             <Typography
               sx={{
@@ -118,7 +120,7 @@ export default function ActivateserviceSubscription({
                     </Typography>
                   </td>
                   <td>
-                    <Typography variant="subtitle1">jkshdfskjd</Typography>
+                    <Typography variant="subtitle1">userId</Typography>
                   </td>
                 </tr>
                 <tr>
@@ -128,7 +130,7 @@ export default function ActivateserviceSubscription({
                     </Typography>
                   </td>
                   <td>
-                    <Typography variant="subtitle1">lksdfkladf</Typography>
+                    <Typography variant="subtitle1">sercret</Typography>
                   </td>
                 </tr>
                 <tr>
@@ -138,7 +140,7 @@ export default function ActivateserviceSubscription({
                     </Typography>
                   </td>
                   <td>
-                    <Typography variant="subtitle1">lksdfkladf</Typography>
+                    <Typography variant="subtitle1">url</Typography>
                   </td>
                 </tr>
                 <tr>
@@ -148,7 +150,9 @@ export default function ActivateserviceSubscription({
                     </Typography>
                   </td>
                   <td>
-                    <Typography variant="subtitle1">lksdfkladf</Typography>
+                    <Typography variant="subtitle1">
+                      technicaluserType
+                    </Typography>
                   </td>
                 </tr>
               </tbody>
