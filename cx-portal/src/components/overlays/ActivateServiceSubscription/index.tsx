@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -27,7 +26,7 @@ import {
   Typography,
 } from 'cx-portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './style.scss'
 import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
 import { Box } from '@mui/material'
@@ -38,11 +37,13 @@ export default function ActivateserviceSubscription({
   offerId,
   companyId,
   isTechUser,
+  companyName,
   handleOverlayClose,
 }: {
   offerId: string
   companyId: string
   isTechUser: boolean
+  companyName: string
   handleOverlayClose: () => void
 }) {
   const { t } = useTranslation('servicerelease')
@@ -50,14 +51,21 @@ export default function ActivateserviceSubscription({
   const [activationResponse, setActivationResponse] = useState<boolean>(false)
   const { data } = useFetchServiceTechnicalUserProfilesQuery(offerId)
 
+  const techUserProfiles = useMemo(
+    () =>
+      (data &&
+        data?.length > 0 &&
+        data[0]?.userRoles.map((i: { roleName: string }) => i.roleName)) ||
+      [],
+    [data]
+  )
+
   const ActivationOverlay = () => (
     <div className="activation">
       <CustomDialogHeader
         title={t('serviceSubscription.activation.title')}
         icon={true}
-        subtitle={
-          t('serviceSubscription.activation.subtitle') + ' company name'
-        }
+        subtitle={t('serviceSubscription.activation.subtitle') + companyName}
         additionalContainerStyles={{
           display: 'flex',
           placeContent: 'flex-start',
@@ -79,7 +87,7 @@ export default function ActivateserviceSubscription({
               'serviceSubscription.activation.successDescriptionWithTechUser'
             )}
             values={{
-              company: 'Catena-X',
+              company: companyName,
             }}
           >
             <Typography sx={{ fontWeight: 600 }} variant="caption1">
@@ -161,7 +169,7 @@ export default function ActivateserviceSubscription({
       <CustomDialogHeader
         title={t('serviceSubscription.register.title')}
         icon={false}
-        subtitle={t('serviceSubscription.register.subtitle') + ' company name'}
+        subtitle={t('serviceSubscription.register.subtitle') + companyName}
         additionalContainerStyles={{
           display: 'flex',
           placeContent: 'flex-start',
@@ -180,21 +188,21 @@ export default function ActivateserviceSubscription({
         >
           <Trans
             i18nKey={
-              isTechUser
+              data && data.length > 0
                 ? t('serviceSubscription.register.descriptionWithTechUser')
                 : t('serviceSubscription.register.description')
             }
             values={{
-              company: 'Catena-X',
+              company: companyName,
             }}
           >
             <Typography sx={{ fontWeight: 600 }} variant="caption1">
-              {isTechUser
+              {data && data.length > 0
                 ? t('serviceSubscription.register.descriptionWithTechUser')
                 : t('serviceSubscription.register.description')}
             </Typography>
           </Trans>
-          {isTechUser && (
+          {data && data.length > 0 && (
             <>
               <Box
                 sx={{
@@ -204,8 +212,9 @@ export default function ActivateserviceSubscription({
                 <Typography variant="h3" sx={{ marginBottom: '20px' }}>
                   {t('serviceSubscription.register.sectionHeader')}
                 </Typography>
+
                 <Typography variant="caption1">
-                  {t('serviceSubscription.register.sectionDescription')}
+                  {techUserProfiles.join(', ')}
                 </Typography>
               </Box>
               <Box
@@ -261,7 +270,10 @@ export default function ActivateserviceSubscription({
         ) : (
           <Button
             variant="contained"
-            onClick={() => setActivationResponse(true)}
+            onClick={() => {
+              setLoading(false)
+              setActivationResponse(true)
+            }}
           >
             {t('serviceSubscription.register.confirm')}
           </Button>

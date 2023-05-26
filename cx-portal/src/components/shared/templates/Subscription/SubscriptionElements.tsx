@@ -47,6 +47,7 @@ type State = {
   isTechUser: boolean
   overlay: boolean
   offerId: string
+  companyName: string
 }
 
 const initialState: State = {
@@ -54,6 +55,7 @@ const initialState: State = {
   isTechUser: false,
   overlay: false,
   offerId: '',
+  companyName: '',
 }
 
 type Action = {
@@ -78,6 +80,7 @@ function reducer(state: State, { type, payload }: Action) {
         isTechUser: payload.isTechUser,
         overlay: payload.overlay,
         offerId: payload.offerId,
+        companyName: payload.companyName,
       }
     default:
       return state
@@ -94,10 +97,8 @@ export default function SubscriptionElements({
   const theme = useTheme()
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [{ id, isTechUser, overlay, offerId }, setState] = useReducer(
-    reducer,
-    initialState
-  )
+  const [{ id, isTechUser, overlay, offerId, companyName }, setState] =
+    useReducer(reducer, initialState)
 
   if (subscriptions && subscriptions.length === 0) {
     return <NoItems />
@@ -117,6 +118,7 @@ export default function SubscriptionElements({
           offerId: offerId,
           isTechUser: true,
           overlay: true,
+          companyName: subscription.companyName,
         },
       })
     }
@@ -179,6 +181,7 @@ export default function SubscriptionElements({
           companyId={id}
           offerId={offerId}
           isTechUser={isTechUser}
+          companyName={companyName}
           handleOverlayClose={() =>
             setState({
               type: ActionKind.SET_OVERLAY,
