@@ -94,7 +94,7 @@ export default function SubscriptionElements({
 }: {
   subscriptions?: SubscriptionContent[]
   type: string
-  refetch?: () => void
+  refetch: () => void
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -189,7 +189,7 @@ export default function SubscriptionElements({
               type: ActionKind.SET_OVERLAY,
               payload: false,
             })
-            refetch && refetch()
+            refetch()
           }}
         />
       )}

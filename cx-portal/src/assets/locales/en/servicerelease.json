@@ -157,7 +157,8 @@
       "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
       "close": "Close",
       "confirm": "Confirm",
-      "help": "help"
+      "help": "help",
+      "loading": "Loading..."
     },
     "activation": {
       "title": "Service Subscription Activated",
