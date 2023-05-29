@@ -53,7 +53,7 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-documents">
+    <div className="appdetail-documents" id="documents">
       <div className="howtouse-content">
         <Typography variant="h4">
           {t('content.appdetail.howtouse.heading')}

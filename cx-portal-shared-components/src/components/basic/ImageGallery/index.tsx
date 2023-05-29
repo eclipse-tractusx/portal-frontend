@@ -50,7 +50,7 @@ export const ImageGallery = ({
       )}
       <Carousel
         gapBetweenSlides={32}
-        gapCarouselTop={100}
+        gapCarouselTop={0}
         dots={false}
         infinite
         itemHeight={279}

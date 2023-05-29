@@ -1,13 +1,11 @@
 # Changelog
 
-* App Access Management
-   * Fetch data from single API
-
 ## Unreleased
 
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+   * Clear previously added data in the overlay
 * App Release Process
    * technical integration style updates
 * News Section
@@ -52,6 +50,10 @@
    * Service release process
       * SERVICE_LEADIMAGE supported.
       * Show notifier on delete document
+* App Access Management
+   * Fetch data from single API
+* App Detail
+   * UI Changes
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
@@ -61,7 +63,8 @@
 * Service subscription
    * Subscription Activation api integration
    * Subscription flow UI update
-
+* Bugfix:
+   * Registration Process - bpn overlay keeps showing a load element
 
 ## 1.4.0
 * UserMangement
