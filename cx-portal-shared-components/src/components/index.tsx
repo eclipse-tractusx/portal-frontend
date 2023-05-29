@@ -94,6 +94,7 @@ export { Tooltips } from './basic/ToolTips'
 export { SortOption } from './basic/SortOption'
 export { ParentSubNavigation } from './basic/SubNavigation/ParentSubNavigation'
 export { Expand } from './basic/Expand'
+export { AboutCard } from './content/Cards/AboutCard'
 
 export type { TableProps } from './basic/Table'
 export type {

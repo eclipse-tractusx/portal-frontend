@@ -1,13 +1,11 @@
 # Changelog
 
-* App Access Management
-   * Fetch data from single API
-
 ## Unreleased
 
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+   * Clear previously added data in the overlay
 * App Release Process
    * technical integration style updates
    * added technical user section in validate and publish
@@ -55,7 +53,20 @@
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
-
+   * Shared Component
+      * New About page component added
+      * About page created
+      * Removed all Third party related contents
+   * Updates
+      * Service release process
+         * SERVICE_LEADIMAGE supported.
+         * Show notifier on delete document
+   * App Access Management
+      * Fetch data from single API
+   * App Detail
+      * UI Changes
+   * Registration Process 
+      * bpn overlay keeps showing a load element
 
 ## 1.4.0
 * UserMangement

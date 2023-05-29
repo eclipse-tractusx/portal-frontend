@@ -60,7 +60,8 @@
     "serviceadminboard": "Admin Board",
     "servicesubscription": "Service Subscription Mgt",
     "servicedetail": "Service Details",
-    "company-role": "Config - Company Role"
+    "company-role": "Config - Company Role",
+    "about": "About"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -778,9 +779,6 @@
       "description3_second": "Functional Cookies",
       "description3_third": "Targetting Cookies"
     },
-    "thirdpartylicenses": {
-      "message": "Diese Pakete werden aktuell vom Catena-X Portal eingesetzt."
-    },
     "account": {
       "userAccount": "Benutzer Konto",
       "token": "DEV only: Aktuelles Authentisierungstoken",
@@ -835,6 +833,8 @@
         "appDeployed": "App Instance deployed",
         "activation": "Activation, Notifications & credentials"
       },
+      "description": "Description",
+      "imageGallery": "Images",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",

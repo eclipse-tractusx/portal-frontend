@@ -52,6 +52,7 @@ import ProviderConnectorField from '../components/ProviderConnectorField'
 import { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { ButtonLabelTypes } from '..'
+import { success, error } from 'services/NotifyService'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -77,12 +78,17 @@ export default function OfferPage() {
   const [saveService] = useSaveServiceMutation()
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
-  const [deleteDocument] = useDeleteDocumentMutation()
+  const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     dispatch(serviceReleaseStepDecrement())
   }
+
+  useEffect(() => {
+    deleteResponse.isSuccess && success(t('documentDeleteSuccess'))
+    deleteResponse.isError && error(t('documentDeleteError'))
+  }, [deleteResponse, t])
 
   const defaultValues = useMemo(() => {
     return {
