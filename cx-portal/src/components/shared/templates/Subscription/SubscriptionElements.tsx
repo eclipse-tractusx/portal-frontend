@@ -90,9 +90,11 @@ function reducer(state: State, { type, payload }: Action) {
 export default function SubscriptionElements({
   subscriptions,
   type,
+  refetch,
 }: {
   subscriptions?: SubscriptionContent[]
   type: string
+  refetch?: () => void
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -116,7 +118,7 @@ export default function SubscriptionElements({
         payload: {
           id: subscription.subscriptionId,
           offerId: offerId,
-          isTechUser: true,
+          isTechUser: subscription.technicalUser,
           overlay: true,
           companyName: subscription.companyName,
         },
@@ -178,16 +180,17 @@ export default function SubscriptionElements({
       </div>
       {overlay && (
         <ActivateServiceSubscription
-          companyId={id}
+          subscriptionId={id}
           offerId={offerId}
           isTechUser={isTechUser}
           companyName={companyName}
-          handleOverlayClose={() =>
+          handleOverlayClose={() => {
             setState({
               type: ActionKind.SET_OVERLAY,
               payload: false,
             })
-          }
+            refetch && refetch()
+          }}
         />
       )}
     </>

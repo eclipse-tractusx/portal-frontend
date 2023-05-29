@@ -58,9 +58,10 @@
 * Service Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
+* Service subscription
+   * Subscription Activation api integration
+   * Subscription flow UI update
 
-## unreleased
-* Service subscription activation UI updates
 
 ## 1.4.0
 * UserMangement

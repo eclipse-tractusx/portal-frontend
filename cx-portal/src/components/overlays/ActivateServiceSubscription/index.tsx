@@ -31,17 +31,21 @@ import './style.scss'
 import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
 import { Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { useFetchServiceTechnicalUserProfilesQuery } from 'features/serviceManagement/apiSlice'
+import {
+  ActivateSubscriptionResponse,
+  useActivateSubscriptionMutation,
+  useFetchServiceTechnicalUserProfilesQuery,
+} from 'features/serviceManagement/apiSlice'
 
 export default function ActivateserviceSubscription({
   offerId,
-  companyId,
+  subscriptionId,
   isTechUser,
   companyName,
   handleOverlayClose,
 }: {
   offerId: string
-  companyId: string
+  subscriptionId: string
   isTechUser: boolean
   companyName: string
   handleOverlayClose: () => void
@@ -49,9 +53,12 @@ export default function ActivateserviceSubscription({
   const { t } = useTranslation('servicerelease')
   const [loading, setLoading] = useState(false)
   const [activationResponse, setActivationResponse] = useState<boolean>(false)
+  const [techUserInfo, setTechuserInfo] =
+    useState<ActivateSubscriptionResponse>()
   const { data } = useFetchServiceTechnicalUserProfilesQuery(offerId, {
     refetchOnMountOrArgChange: true,
   })
+  const [subscribe] = useActivateSubscriptionMutation()
 
   const techUserProfiles = useMemo(
     () =>
@@ -61,6 +68,23 @@ export default function ActivateserviceSubscription({
       [],
     [data]
   )
+
+  console.log('techUserInfo = = == ', techUserInfo)
+
+  const handleConfrim = async () => {
+    setLoading(true)
+    await subscribe({
+      requestId: subscriptionId,
+      offerUrl: 'https://testonly.google.de|https://testonly.google.de/',
+    })
+      .unwrap()
+      .then((data) => {
+        setActivationResponse(true)
+        setTechuserInfo(data)
+      })
+      .catch(() => {})
+    setLoading(false)
+  }
 
   const ActivationOverlay = () => (
     <div className="activation">
@@ -92,8 +116,8 @@ export default function ActivateserviceSubscription({
               company: companyName,
             }}
           >
-            <Typography sx={{ fontWeight: 600 }} variant="caption1">
-              {data && data.length > 0
+            <Typography variant="body2">
+              {isTechUser
                 ? t(
                     'serviceSubscription.activation.successDescriptionWithTechUser'
                   )
@@ -101,7 +125,7 @@ export default function ActivateserviceSubscription({
             </Typography>
           </Trans>
         </Box>
-        {data && data.length > 0 && (
+        {isTechUser && techUserInfo && (
           <>
             <Typography
               sx={{
@@ -120,7 +144,9 @@ export default function ActivateserviceSubscription({
                     </Typography>
                   </td>
                   <td>
-                    <Typography variant="subtitle1">userId</Typography>
+                    <Typography variant="subtitle1">
+                      {techUserInfo.technicalUserInfo.technicalUserId}
+                    </Typography>
                   </td>
                 </tr>
                 <tr>
@@ -130,7 +156,9 @@ export default function ActivateserviceSubscription({
                     </Typography>
                   </td>
                   <td>
-                    <Typography variant="subtitle1">sercret</Typography>
+                    <Typography variant="subtitle1">
+                      {techUserInfo.technicalUserInfo.technicalUserSecret}
+                    </Typography>
                   </td>
                 </tr>
                 <tr>
@@ -139,9 +167,17 @@ export default function ActivateserviceSubscription({
                       {t('serviceSubscription.activation.url')}
                     </Typography>
                   </td>
-                  <td>
-                    <Typography variant="subtitle1">url</Typography>
-                  </td>
+                  {techUserInfo.clientInfo ? (
+                    <td>
+                      <Typography variant="subtitle1">
+                        {techUserInfo.clientInfo.clientUrl}
+                      </Typography>
+                    </td>
+                  ) : (
+                    <td>
+                      <Typography variant="subtitle1"></Typography>
+                    </td>
+                  )}
                 </tr>
                 <tr>
                   <td>
@@ -151,7 +187,9 @@ export default function ActivateserviceSubscription({
                   </td>
                   <td>
                     <Typography variant="subtitle1">
-                      technicaluserType
+                      {techUserInfo.technicalUserInfo.technicalUserPermissions.join(
+                        ', '
+                      )}
                     </Typography>
                   </td>
                 </tr>
@@ -192,7 +230,7 @@ export default function ActivateserviceSubscription({
         >
           <Trans
             i18nKey={
-              data && data.length > 0
+              isTechUser
                 ? t('serviceSubscription.register.descriptionWithTechUser')
                 : t('serviceSubscription.register.description')
             }
@@ -200,13 +238,13 @@ export default function ActivateserviceSubscription({
               company: companyName,
             }}
           >
-            <Typography sx={{ fontWeight: 600 }} variant="caption1">
-              {data && data.length > 0
+            <Typography variant="body2">
+              {isTechUser
                 ? t('serviceSubscription.register.descriptionWithTechUser')
                 : t('serviceSubscription.register.description')}
             </Typography>
           </Trans>
-          {data && data.length > 0 && (
+          {isTechUser && (
             <>
               <Box
                 sx={{
@@ -217,7 +255,7 @@ export default function ActivateserviceSubscription({
                   {t('serviceSubscription.register.sectionHeader')}
                 </Typography>
 
-                <Typography variant="caption1">
+                <Typography variant="body2">
                   {techUserProfiles.join(', ')}
                 </Typography>
               </Box>
@@ -239,13 +277,13 @@ export default function ActivateserviceSubscription({
               >
                 <HelpOutlineIcon
                   sx={{
-                    fontSize: '30px',
+                    fontSize: '28px',
                     color: '#0f71cb',
                     marginRight: '10px',
                   }}
                 />
                 <Typography
-                  variant="caption1"
+                  variant="body1"
                   sx={{ color: '#0f71cb', fontWeight: '600' }}
                 >
                   {t('serviceSubscription.register.help')}
@@ -272,13 +310,7 @@ export default function ActivateserviceSubscription({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
-            variant="contained"
-            onClick={() => {
-              setLoading(false)
-              setActivationResponse(true)
-            }}
-          >
+          <Button variant="contained" onClick={() => handleConfrim()}>
             {t('serviceSubscription.register.confirm')}
           </Button>
         )}

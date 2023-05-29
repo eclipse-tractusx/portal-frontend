@@ -474,6 +474,7 @@ export default function Subscription({
               <SubscriptionElements
                 type={type}
                 subscriptions={cardSubscriptions}
+                refetch={refetch}
               />
             )}
           </div>
