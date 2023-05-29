@@ -51,6 +51,8 @@
    * Fetch data from single API
 * App Detail
    * UI Changes
+* Static template
+   * Bugfix - Use case section not loading because of br tag in the JSON response
 
 
 * Bugfix:
