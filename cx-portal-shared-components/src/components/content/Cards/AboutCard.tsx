@@ -116,7 +116,7 @@ export const AboutCard = (props: {
                   padding: '20px 20px',
                 }}
               >
-                Commit ID : {props.commitId}
+                Commit ID: {props.commitId}
               </Typography>
             </Box>
           )}
