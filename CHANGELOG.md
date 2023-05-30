@@ -39,9 +39,6 @@
    * Make Role Desc Dynamic
    * Add Terms and Condition dynamic in overlay and handle download document functionality
    * BL & API POST CompanyRole and Consent & Error/Success
-* Bugfix:
-   * App Release Process
-      * Fixed Conformity Document Deletion is not backend connected issue
 * Shared Component
    * New About page component added
    * About page created
