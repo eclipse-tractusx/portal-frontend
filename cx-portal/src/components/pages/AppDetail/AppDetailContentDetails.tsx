@@ -19,7 +19,9 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography, Button, Navigation } from 'cx-portal-shared-components'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
@@ -35,7 +37,33 @@ export default function AppDetailContentDetails({
 }: {
   item: AppDetails
 }) {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
   const [images, setImages] = useState<any>()
+  const [selectedItem, setSelectedItem] = useState<string>('#description')
+
+  const navigationItems = [
+    {
+      href: '#description',
+      title: t('content.appdetail.description'),
+    },
+    {
+      href: '#image-gallery',
+      title: t('content.appdetail.imageGallery'),
+    },
+    {
+      href: '#privacy-policy',
+      title: t('content.appdetail.privacy.heading'),
+    },
+    {
+      href: '#documents',
+      title: t('content.appdetail.howtouse.heading'),
+    },
+    {
+      href: '#provider-info',
+      title: t('content.appdetail.providerInformation.heading'),
+    },
+  ]
 
   useEffect(() => {
     if (item) {
@@ -49,17 +77,35 @@ export default function AppDetailContentDetails({
   return (
     item && (
       <>
-        <AppDetailHeader item={item} />
-        <div className="product-description">
-          <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-            {item.longDescription}
-          </Typography>
+        <div className="appdetail-main-bg">
+          <div className="appdetail-back">
+            <Button color="secondary" size="small" onClick={() => navigate(-1)}>
+              {t('global.actions.back')}
+            </Button>
+          </div>
+          <AppDetailHeader item={item} />
         </div>
-        {images && <AppDetailImageGallery images={images} />}
-        <AppDetailPrivacy item={item} />
-        <AppDetailDocuments item={item} />
-        <AppDetailProvider item={item} />
-        <AppDetailTags item={item} />
+        <div className="navigation-main">
+          <div className="navigation-list">
+            <Navigation
+              active={selectedItem}
+              items={navigationItems}
+              selectedItem={(item: string) => setSelectedItem(item)}
+            />
+          </div>
+        </div>
+        <div className="appdetail-main">
+          <div className="product-description" id="description">
+            <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+              {item.longDescription}
+            </Typography>
+          </div>
+          {images && <AppDetailImageGallery images={images} />}
+          <AppDetailPrivacy item={item} />
+          <AppDetailDocuments item={item} />
+          <AppDetailProvider item={item} />
+          <AppDetailTags item={item} />
+        </div>
       </>
     )
   )

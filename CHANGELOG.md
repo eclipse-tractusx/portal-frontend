@@ -1,13 +1,11 @@
 # Changelog
 
-* App Access Management
-   * Fetch data from single API
-
 ## Unreleased
 
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+   * Clear previously added data in the overlay
 * App Release Process
    * technical integration style updates
 * News Section
@@ -52,12 +50,25 @@
    * Service release process
       * SERVICE_LEADIMAGE supported.
       * Show notifier on delete document
+* App Access Management
+   * Fetch data from single API
+* App Detail
+   * UI Changes
+* Static template
+   * Bugfix - Use case section not loading because of br tag in the JSON response
+* Bugfix:
+   * App Release Process
+      * Fixed Conformity Document Deletion is not backend connected issue
+   * Service Admin Board
+      * Service detail page not displayed issue fixed
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
 * Service Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
+* Bugfix:
+   * Registration Process - bpn overlay keeps showing a load element
 
 ## 1.4.0
 * UserMangement
