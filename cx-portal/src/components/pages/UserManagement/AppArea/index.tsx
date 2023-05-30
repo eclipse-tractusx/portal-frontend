@@ -34,7 +34,7 @@ export const AppArea = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const subscriptionStatus = useFetchSubscriptionStatusQuery().data
-  const cards = subscriptionStatus?.filter(
+  const cards = subscriptionStatus?.content.filter(
     (app) => app.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
   )
 

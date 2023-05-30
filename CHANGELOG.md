@@ -58,14 +58,15 @@
       * Fixed Conformity Document Deletion is not backend connected issue
    * Service Admin Board
       * Service detail page not displayed issue fixed
+   * My Organization
+      * Subscription details missing
+   * Registration Process - bpn overlay keeps showing a load element
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
 * Service Release Process
    * added technical user section in validate and publish
-   * added technical user section in admin board
-* Bugfix:
-   * Registration Process - bpn overlay keeps showing a load element
+   * added technical user section in admin board 
 
 ## 1.4.0
 * UserMangement
