@@ -53,16 +53,11 @@
    * UI Changes
 * Static template
    * Bugfix - Use case section not loading because of br tag in the JSON response
-
-
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
    * Service Admin Board
       * Service detail page not displayed issue fixed
-
-## Unreleased
-
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
