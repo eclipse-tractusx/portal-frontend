@@ -40,6 +40,7 @@ export type CompanySubscriptionData = {
   companyName: string
   subscriptionId: string
   offerSubscriptionStatus: string
+  technicalUser?: boolean
 }
 
 export type SubscriptionContent = {

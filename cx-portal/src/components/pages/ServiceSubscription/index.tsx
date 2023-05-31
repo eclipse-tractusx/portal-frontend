@@ -18,7 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Subscription from 'components/shared/templates/Subscription'
+import Subscription, {
+  SubscriptionTypes,
+} from 'components/shared/templates/Subscription'
 import { useFetchServiceSubscriptionsQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { currentSuccessType } from 'features/serviceSubscription/slice'
 import { useTranslation } from 'react-i18next'
@@ -47,6 +49,7 @@ export default function ServiceSubscription() {
         active: t('serviceSubscription.tabs.active'),
       }}
       doNotShowAutoSetup={true}
+      type={SubscriptionTypes.SERVICE_SUBSCRIPTION}
     />
   )
 }
