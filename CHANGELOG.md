@@ -71,7 +71,19 @@
       * Subscription details missing
   * Static template
       * Use case section not loading because of br tag in the JSON response
-
+   * Registration Process - bpn overlay keeps showing a load element
+* App Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* Service subscription
+   * Subscription Activation api integration
+   * Subscription flow UI update
+* Bugfix:
+   * Registration Process - bpn overlay keeps showing a load element
+   * added technical user section in admin board 
 
 ## 1.4.0
 * UserMangement
