@@ -260,8 +260,12 @@ export default function CommonValidateAndPublish({
         </Grid>
       ))
     ) : (
-      <Grid container spacing={2}>
-        <Typography variant="caption2" className="not-available">
+      <Grid container spacing={2} margin={'0px'}>
+        <Typography
+          variant="caption2"
+          className="not-available"
+          style={{ width: '100%' }}
+        >
           {t('global.errors.noTechnicalUserProfilesAvailable')}
         </Typography>
       </Grid>

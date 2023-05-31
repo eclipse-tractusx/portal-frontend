@@ -33,7 +33,7 @@ export default function MarketplaceTechnicalUserSetup({
   const getTechUserInfo = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((item: string) => (
-        <Grid container spacing={2} sx={{ margin: '30px 0' }} key={item}>
+        <Grid container spacing={2} sx={{ margin: '0px' }} key={item}>
           <Grid item xs={12}>
             <Typography variant="subtitle2">* {item}</Typography>
           </Grid>
@@ -47,7 +47,7 @@ export default function MarketplaceTechnicalUserSetup({
   }
 
   return (
-    <div style={{ marginBottom: '30px' }}>
+    <div style={{ marginBottom: '50px' }}>
       <Typography variant="h4">
         {t('content.appdetail.technicalUserSetup.heading')}
       </Typography>
