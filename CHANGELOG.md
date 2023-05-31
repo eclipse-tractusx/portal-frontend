@@ -8,6 +8,8 @@
    * Clear previously added data in the overlay
 * App Release Process
    * technical integration style updates
+   * added technical user section in validate and publish
+   * added technical user section in admin board
 * News Section
    * Fixed UI of news section in home page
 * Company Role Updates
@@ -51,15 +53,24 @@
    * Fetch data from single API
 * App Detail
    * UI Changes
-* Static template
-   * Bugfix - Use case section not loading because of br tag in the JSON response
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* App Marketplace
+   * added technical user section
+* Service Marketplace
+   * added technical user section
+
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
+   * Registration Process - bpn overlay keeps showing a load element
    * Service Admin Board
-      * Service detail page not displayed issue fixed
+      * Service detail page not displayed issue fixed   
    * My Organization
       * Subscription details missing
+  * Static template
+      * Use case section not loading because of br tag in the JSON response
    * Registration Process - bpn overlay keeps showing a load element
 * App Release Process
    * added technical user section in validate and publish

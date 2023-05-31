@@ -18,36 +18,44 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useTranslation } from 'react-i18next'
 import { Typography } from 'cx-portal-shared-components'
-import MarketplaceHeader from './components/MarketplaceHeader'
-import MarketplaceProvider from './components/MarketplaceProvider'
-import MarketplaceSubscription from './components/MarketplaceSubscription'
+import { Grid } from '@mui/material'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './Marketplace.scss'
-import MarketplaceDocuments from './components/MarketplaceDocuments'
-import MarketplaceTechnicalUserSetup from './components/MarketplaceTechnicalUserSetup'
 
-export default function MarketplaceContentDetails({
+export default function MarketplaceTechnicalUserSetup({
   item,
-  success,
 }: {
   item: ServiceRequest
-  success: boolean
 }) {
-  return (
-    item.offerSubscriptionDetailData && (
-      <>
-        <MarketplaceHeader item={item} success={success} />
-        {item.offerSubscriptionDetailData.length > 0 && (
-          <MarketplaceSubscription item={item} />
-        )}
-        <div className="product-description">
-          <Typography variant="body2">{item.description}</Typography>
-        </div>
-        <MarketplaceDocuments item={item} />
-        <MarketplaceTechnicalUserSetup item={item} />
-        <MarketplaceProvider item={item} />
-      </>
+  const { t } = useTranslation('')
+
+  const getTechUserInfo = (data: string[] | null) => {
+    return data && data?.length > 0 ? (
+      data?.map((item: string) => (
+        <Grid container spacing={2} sx={{ margin: '0px' }} key={item}>
+          <Grid item xs={12}>
+            <Typography variant="subtitle2">* {item}</Typography>
+          </Grid>
+        </Grid>
+      ))
+    ) : (
+      <Typography variant="caption2" className="not-available" mt={2}>
+        {t('global.errors.noTechnicalUserProfilesAvailable')}
+      </Typography>
     )
+  }
+
+  return (
+    <div style={{ marginBottom: '50px' }}>
+      <Typography variant="h4">
+        {t('content.appdetail.technicalUserSetup.heading')}
+      </Typography>
+      <Typography variant="body2">
+        {t('content.appdetail.technicalUserSetup.message')}
+      </Typography>
+      {item.technicalUserProfile &&
+        getTechUserInfo(Object.values(item?.technicalUserProfile)[0])}
+    </div>
   )
 }
