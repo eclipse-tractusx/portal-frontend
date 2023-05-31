@@ -65,6 +65,12 @@
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
    * Registration Process - bpn overlay keeps showing a load element
+   * Service Admin Board
+      * Service detail page not displayed issue fixed   
+   * My Organization
+      * Subscription details missing
+  * Static template
+      * Use case section not loading because of br tag in the JSON response
 
 
 ## 1.4.0

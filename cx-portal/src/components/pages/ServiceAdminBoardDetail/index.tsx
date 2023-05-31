@@ -164,7 +164,7 @@ export default function ServiceAdminBoardDetail() {
               {t(`adminboardDetail.documents.message`)}
             </Typography>
             {serviceData?.documents &&
-              Object.keys(serviceData.documents).map((item, i) => (
+              Object.keys(serviceData.documents).map((item) => (
                 <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
                   <span
                     style={{
@@ -172,10 +172,10 @@ export default function ServiceAdminBoardDetail() {
                       cursor: 'pointer',
                       color: '#0f71cb',
                     }}
-                    onClick={() => onDownload(serviceData.documents[item][i])}
+                    onClick={() => onDownload(serviceData.documents[item][0])}
                   >
                     <ArrowForwardIcon fontSize="small" />
-                    {serviceData.documents[item][i].documentName}
+                    {serviceData.documents[item][0]?.documentName}
                   </span>
                 </InputLabel>
               ))}

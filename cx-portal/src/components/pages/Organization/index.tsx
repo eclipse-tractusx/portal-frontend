@@ -45,7 +45,7 @@ export default function Organization() {
   } = useFetchSubscriptionStatusQuery()
   const { data } = useFetchActiveAppsQuery()
   const appSubscribedData =
-    data && subscriptionStatus && appToStatus(data, subscriptionStatus)
+    data && subscriptionStatus && appToStatus(data, subscriptionStatus.content)
   const {
     data: companyDetails,
     isError: companyDetailsError,
