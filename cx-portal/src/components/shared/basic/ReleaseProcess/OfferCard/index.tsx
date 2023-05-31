@@ -91,7 +91,9 @@ export default function OfferCard() {
     data: fetchServiceStatus,
     isError,
     refetch,
-  } = useFetchServiceStatusQuery(serviceId ?? '')
+  } = useFetchServiceStatusQuery(serviceId ?? '', {
+    refetchOnMountOrArgChange: true,
+  })
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
