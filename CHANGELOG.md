@@ -60,6 +60,8 @@
    * added technical user section
 * Service Marketplace
    * added technical user section
+* Service Provider
+   * Change Endpoints
 
 * Bugfix:
    * App Release Process
