@@ -1045,11 +1045,13 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
+      "viewDetails": "Display more details",
       "activateBtn": "Activate",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "tabs": {
         "request": "Request",
-        "active": "Active"
+        "active": "Active",
+        "showAll": "Show All"
       },
       "sortOptions": {
         "customer": "By Customer A-Z",
@@ -1069,10 +1071,41 @@
       },
       "activation": {
         "heading": "Activate App Subscription",
+        "intro": "for {{companyName}}",
         "description": "Activate the app subscription request of the customer by adding your customer specific app endpoint/url in the input field below. We will use the url to register/activate the app authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the app tenant/connector to the centryl CX components/services (where needed).",
+        "stepDescription": "In order to activate the subscription of {{companyName}}, follow the steps below.",
+        "step1": "Activate the app subscription request",
+        "step2": "System - technical user will get automatically generated and credentials getting shared",
+        "step3": "Configure your app with the specific technical user to ensure that the app is fully usable.",
+        "addTentalURLHeading": "Add Tentant URL",
+        "addTentalURLDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "enterURL": "Enter URL",
+        "technicalUserDetailsHeading": "Technical User Details",
+        "technicalUserDetailsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "technicalUserProfileHeading": "Technical User Profile",
         "successDescription": "The technical user has been created with the following data:",
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
+      },
+      "detailOverlay": {
+        "title": "Provider View",
+        "description": "App Subscription Details & Status",
+        "stepLists": {
+          "firstStep": "Subscription Initiated",
+          "secondStep": "Setup Ongoing",
+          "thirdStep": "Subscription Activate"
+        },
+        "subscriptionDetails": "Subscription Details",
+        "appTitle": "App Title",
+        "status": "Status",
+        "customer": "Customer",
+        "bpn": "BPN",
+        "contact": "Contact",
+        "technicalDetails": "Technical Details",
+        "technicalName": "Technical User Name",
+        "technicalPermission": "Technical User Permission",
+        "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
+        "email": "email_address@catena_support.com"
       }
     },
     "adminBoard": {

@@ -58,6 +58,8 @@
 * Service Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
+* App Subscription
+   * Add "Detail Data" Button
 
 ## 1.4.0
 * UserMangement

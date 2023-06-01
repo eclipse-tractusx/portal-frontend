@@ -32,6 +32,7 @@ import {
   LoadMoreButton,
 } from 'cx-portal-shared-components'
 import {
+  AppFiltersResponse,
   SubscriptionContent,
   SubscriptionRequestBody,
 } from 'features/appSubscription/appSubscriptionApiSlice'
@@ -46,6 +47,7 @@ import SortImage from 'components/shared/frame/SortImage'
 enum FilterType {
   REQUEST = 'request',
   ACTIVE = 'active',
+  SHOWALL = 'showAll',
 }
 
 enum StatusIdType {
@@ -62,6 +64,7 @@ enum SortType {
 
 enum ViewActionEnum {
   STATUSID = 'STATUSID',
+  OFFERID = 'OFFERID',
   SORTOPTION = 'SORTOPTION',
 }
 
@@ -82,6 +85,8 @@ enum ActionKind {
   SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION = 'SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION',
   SET_PAGE_SORTING_TYPE_FETCH_ARGS = 'SET_PAGE_SORTING_TYPE_FETCH_ARGS',
   SET_PAGE_STATUS_SORTING_FETCH_ARGS = 'SET_PAGE_STATUS_SORTING_FETCH_ARGS',
+  SET_APP_FILTERS = 'SET_APP_FILTERS',
+  SET_ACTIVE_APP_FILTER = 'SET_ACTIVE_APP_FILTER',
 }
 
 type State = {
@@ -96,6 +101,8 @@ type State = {
   sortingType: string
   fetchArgs: SubscriptionRequestType | SubscriptionRequestBody
   subscriptions: SubscriptionContent[]
+  appFilters: AppFiltersResponse[]
+  activeAppFilter: string
 }
 
 type Action = {
@@ -119,6 +126,8 @@ const initialState: State = {
     sortingType: SortType.COMPANY_NAME_DESC,
   },
   subscriptions: [],
+  appFilters: [],
+  activeAppFilter: '',
 }
 
 function reducer(state: State, { type, payload }: Action) {
@@ -139,6 +148,8 @@ function reducer(state: State, { type, payload }: Action) {
       return { ...state, serviceProviderSuccess: payload }
     case ActionKind.SET_PAGE:
       return { ...state, page: payload }
+    case ActionKind.SET_STATUS_ID:
+      return { ...state, statusId: payload }
     case ActionKind.SET_SORTING_TYPE:
       return { ...state, sortingType: payload }
     case ActionKind.SET_FETCH_ARGS:
@@ -148,6 +159,7 @@ function reducer(state: State, { type, payload }: Action) {
         ...state,
         page: payload.page,
         statusId: payload.statusId,
+        offerId: payload.offerId,
         fetchArgs: payload.fetchArgs,
         sortingType: payload.sortingType,
       }
@@ -164,16 +176,21 @@ function reducer(state: State, { type, payload }: Action) {
         page: payload.page,
         fetchArgs: payload.fetchArgs,
       }
-    case ActionKind.SET_STATUS_ID:
-      return {
-        ...state,
-        statusId: payload,
-      }
     case ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION:
       return {
         ...state,
         subscriptions: setData(state, payload),
         cardSubscriptions: setData(state, payload),
+      }
+    case ActionKind.SET_APP_FILTERS:
+      return {
+        ...state,
+        appFilters: payload,
+      }
+    case ActionKind.SET_ACTIVE_APP_FILTER:
+      return {
+        ...state,
+        activeAppFilter: payload,
       }
     default:
       return state
@@ -203,6 +220,7 @@ const setData = (
 interface SubscriptionType {
   providerSuccessMessage: string
   fetchQuery: (Obj: SubscriptionRequestType | SubscriptionRequestBody) => any
+  fetchAppFilters?: () => any
   headline: string
   subHeading: string
   description: string
@@ -216,6 +234,7 @@ interface SubscriptionType {
   tabLabels: {
     request: string
     active: string
+    showAll?: string
   }
   doNotShowAutoSetup?: boolean
   currentSuccessType: (state: RootState) => any
@@ -226,6 +245,7 @@ export default function Subscription({
   providerSuccessMessage,
   headline,
   fetchQuery,
+  fetchAppFilters,
   subHeading,
   description,
   readMore,
@@ -252,9 +272,31 @@ export default function Subscription({
       sortingType,
       fetchArgs,
       subscriptions,
+      appFilters,
+      activeAppFilter,
     },
     setState,
   ] = useReducer(reducer, initialState)
+  let appFiltersData: AppFiltersResponse[] = useMemo(() => [], [])
+  if (fetchAppFilters) {
+    const { data } = fetchAppFilters()
+    appFiltersData = data
+  }
+
+  useEffect(() => {
+    if (appFiltersData && appFiltersData.length) {
+      setState({
+        type: ActionKind.SET_APP_FILTERS,
+        payload: appFiltersData,
+      })
+    }
+  }, [appFiltersData])
+
+  useEffect(() => {
+    resetCardsAndSetFetchArgs(activeAppFilter, ViewActionEnum.OFFERID)
+    // eslint-disable-next-line
+  }, [activeAppFilter])
+
   const { data, refetch, isFetching } = fetchQuery(fetchArgs)
   const isSuccess = useSelector(currentProviderSuccessType)
   const success: boolean = useSelector(currentSuccessType)
@@ -269,20 +311,18 @@ export default function Subscription({
   }, [data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    let status = ''
+    if (e.currentTarget.value === FilterType.REQUEST) {
+      status = StatusIdType.PENDING
+    } else if (e.currentTarget.value === FilterType.ACTIVE) {
+      status = StatusIdType.ACTIVE
+    }
     setState({
       type: ActionKind.SET_SORTING_TYPE,
-      payload:
-        e.currentTarget.value === FilterType.REQUEST
-          ? StatusIdType.PENDING
-          : StatusIdType.ACTIVE,
+      payload: status,
     })
     setState({ type: ActionKind.SET_SELECTED, payload: e.currentTarget.value })
-    resetCardsAndSetFetchArgs(
-      e.currentTarget.value === FilterType.REQUEST
-        ? StatusIdType.PENDING
-        : StatusIdType.ACTIVE,
-      ViewActionEnum.STATUSID
-    )
+    resetCardsAndSetFetchArgs(status, ViewActionEnum.STATUSID)
   }
 
   const resetCardsAndSetFetchArgs = (value: string, type: string) => {
@@ -295,10 +335,12 @@ export default function Subscription({
       payload: {
         page: 0,
         statusId: type === ViewActionEnum.STATUSID ? value : statusId,
+        offerId: type === ViewActionEnum.OFFERID ? value : activeAppFilter,
         sortingType: type === ViewActionEnum.SORTOPTION ? value : sortingType,
         fetchArgs: {
           page: 0,
           statusId: type === ViewActionEnum.STATUSID ? value : statusId,
+          offerId: type === ViewActionEnum.OFFERID ? value : activeAppFilter,
           sortingType: type === ViewActionEnum.SORTOPTION ? value : sortingType,
         },
       },
@@ -364,6 +406,26 @@ export default function Subscription({
     },
   ]
 
+  if (tabLabels.showAll) {
+    filterButtons.push({
+      buttonText: tabLabels.showAll,
+      buttonValue: FilterType.SHOWALL,
+      onButtonClick: setView,
+    })
+  }
+
+  useEffect(() => {
+    if (tabLabels.showAll) {
+      setState({ type: ActionKind.SET_SELECTED, payload: FilterType.SHOWALL })
+      setState({ type: ActionKind.SET_STATUS_ID, payload: '' })
+      setState({
+        type: ActionKind.SET_FETCH_ARGS,
+        payload: { ...fetchArgs, statusId: '' },
+      })
+    }
+    // eslint-disable-next-line
+  }, [tabLabels.showAll])
+
   useEffect(() => {
     refetch()
   }, [success, refetch])
@@ -377,7 +439,7 @@ export default function Subscription({
             payload: expr
               ? subscriptions &&
                 subscriptions.filter((card: SubscriptionContent) =>
-                  card.serviceName.toLowerCase().includes(expr.toLowerCase())
+                  card.offerName.toLowerCase().includes(expr.toLowerCase())
                 )
               : subscriptions,
           })
@@ -454,6 +516,29 @@ export default function Subscription({
                 />
               </div>
             </div>
+            {appFilters && appFilters.length > 0 && (
+              <div className="appFilterSection">
+                {appFilters.map((app: AppFiltersResponse) => {
+                  return (
+                    <Typography
+                      className={`appName ${
+                        activeAppFilter === app.id ? 'activeFilter' : ''
+                      }`}
+                      variant="body3"
+                      onClick={() =>
+                        setState({
+                          type: ActionKind.SET_ACTIVE_APP_FILTER,
+                          payload: app.id,
+                        })
+                      }
+                      key={app.id}
+                    >
+                      {app.name}
+                    </Typography>
+                  )
+                })}
+              </div>
+            )}
             {!subscriptions ? (
               <div className="loading-progress">
                 <CircularProgress
@@ -464,7 +549,10 @@ export default function Subscription({
                 />
               </div>
             ) : (
-              <SubscriptionElements subscriptions={cardSubscriptions} />
+              <SubscriptionElements
+                subscriptions={cardSubscriptions}
+                isAppFilters={appFilters.length > 0}
+              />
             )}
           </div>
           {!isFetching &&

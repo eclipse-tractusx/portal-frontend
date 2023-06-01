@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import Subscription from 'components/shared/templates/Subscription'
-import { useFetchSubscriptionsQuery } from 'features/appSubscription/appSubscriptionApiSlice'
+import {
+  useFetchSubscriptionsQuery,
+  useFetchAppFiltersQuery,
+} from 'features/appSubscription/appSubscriptionApiSlice'
 import { currentSuccessType } from 'features/appSubscription/slice'
 import { useTranslation } from 'react-i18next'
 
@@ -29,6 +32,7 @@ export default function AppSubscription() {
     <Subscription
       currentSuccessType={currentSuccessType}
       fetchQuery={useFetchSubscriptionsQuery}
+      fetchAppFilters={useFetchAppFiltersQuery}
       providerSuccessMessage={t(
         'content.appSubscription.register.providerSuccessMessage'
       )}
@@ -45,6 +49,7 @@ export default function AppSubscription() {
       tabLabels={{
         request: t('content.appSubscription.tabs.request'),
         active: t('content.appSubscription.tabs.active'),
+        showAll: t('content.appSubscription.tabs.showAll'),
       }}
     />
   )

@@ -49,6 +49,9 @@ export const HorizontalTable = ({ data }: { data: TableType }) => (
               style={{
                 borderBottom: '1px solid #e0e1e2',
                 padding: '10px 15px',
+                whiteSpace: 'normal',
+                wordBreak: 'break-all',
+                width: '50%',
               }}
             >
               <Typography variant="body3">{row}</Typography>

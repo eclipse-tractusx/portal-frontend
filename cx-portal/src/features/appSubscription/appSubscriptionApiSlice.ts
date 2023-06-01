@@ -22,10 +22,42 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
 
-export interface SubscriptionRequestBody {
+export type SubscriptionRequestBody = {
   page: number
   statusId: string
+  offerId?: string
   sortingType: string
+}
+
+export type SubscriptionDetailRequestBody = {
+  appId: string
+  subscriptionId: string
+}
+
+export type TechnicalUserData = {
+  id: string
+  name: string
+  permissions: string[]
+}
+
+export type SubscriptionDetailResponse = {
+  id: string
+  offerSubscriptionStatus: string
+  name: string
+  customer: string
+  bpn: string
+  contact: string[]
+  technicalUserData: TechnicalUserData[]
+}
+
+export type UserRoles = {
+  roleId: string
+  roleName: string
+}
+
+export type TechnicalProfilesResponse = {
+  technicalUserProfileId: string
+  userRoles: UserRoles[]
 }
 
 export type MetaBody = {
@@ -44,7 +76,7 @@ export type CompanySubscriptionData = {
 
 export type SubscriptionContent = {
   offerId: string
-  serviceName: string
+  offerName: string
   companySubscriptionStatuses: CompanySubscriptionData[]
 }
 
@@ -69,6 +101,15 @@ export type SubscriptionActivationResponse = {
   }
 }
 
+export type AppFiltersResponse = {
+  id: string
+  lastChanged: string
+  leadPictureId: string
+  name: string
+  provider: string
+  status: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/appSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -79,11 +120,34 @@ export const apiSlice = createApi({
     >({
       query: (body) => {
         const statusId = `statusId=${body.statusId}`
+        const offerId = `offerId=${body.offerId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
           url: `/api/Apps/provided/subscription-status?size=${PAGE_SIZE}&page=${
             body.page
-          }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
+          }&${body.statusId && statusId}&${body.offerId && offerId}&${
+            body.sortingType && sortingType
+          }`,
+        }
+      },
+    }),
+    fetchAppFilters: builder.query<AppFiltersResponse[], void>({
+      query: () => `/api/apps/provided`,
+    }),
+    fetchSubscriptionDetail: builder.query<
+      SubscriptionDetailResponse,
+      SubscriptionDetailRequestBody
+    >({
+      query: (body) => {
+        return {
+          url: `/api/apps/${body.appId}/subscription/${body.subscriptionId}/provider`,
+        }
+      },
+    }),
+    fetchTechnicalProfiles: builder.query<TechnicalProfilesResponse[], string>({
+      query: (appId) => {
+        return {
+          url: `/api/apps/appreleaseprocess/${appId}/technical-user-profiles`,
         }
       },
     }),
@@ -100,5 +164,10 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { useFetchSubscriptionsQuery, useAddUserSubscribtionMutation } =
-  apiSlice
+export const {
+  useFetchSubscriptionsQuery,
+  useFetchAppFiltersQuery,
+  useFetchSubscriptionDetailQuery,
+  useFetchTechnicalProfilesQuery,
+  useAddUserSubscribtionMutation,
+} = apiSlice
