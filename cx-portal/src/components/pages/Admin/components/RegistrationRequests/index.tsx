@@ -142,6 +142,7 @@ export default function RegistrationRequests() {
         setEnableBpnInput(false)
         setErrorOverlay(true)
       })
+    setIsLoading(false)
   }
 
   const onConfirmationCancel = (id: string, name: string) => {
@@ -274,6 +275,7 @@ export default function RegistrationRequests() {
             setEnableBpnInput(true)
             setSuccessOverlay(false)
             setErrorOverlay(false)
+            setIsLoading(false)
           }}
           onConfirmationCancel={(id: string, name: string) =>
             onConfirmationCancel(id, name)

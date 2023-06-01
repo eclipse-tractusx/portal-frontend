@@ -56,6 +56,9 @@ export type ServiceRequest = {
   phone: string
   offerSubscriptionDetailData: Array<SubscriptionData>
   documents: DocumentAdditionalDetails
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
 }
 
 export type PaginationData = {

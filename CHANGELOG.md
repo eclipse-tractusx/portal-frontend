@@ -1,15 +1,15 @@
 # Changelog
 
-* App Access Management
-   * Fetch data from single API
-
 ## Unreleased
 
 * Connectors
    * Show Managed connectors
    * Error scenarios implemented in Table component
+   * Clear previously added data in the overlay
 * App Release Process
    * technical integration style updates
+   * added technical user section in validate and publish
+   * added technical user section in admin board
 * News Section
    * Fixed UI of news section in home page
 * Company Role Updates
@@ -41,9 +41,6 @@
    * Make Role Desc Dynamic
    * Add Terms and Condition dynamic in overlay and handle download document functionality
    * BL & API POST CompanyRole and Consent & Error/Success
-* Bugfix:
-   * App Release Process
-      * Fixed Conformity Document Deletion is not backend connected issue
 * Shared Component
    * New About page component added
    * About page created
@@ -52,14 +49,45 @@
    * Service release process
       * SERVICE_LEADIMAGE supported.
       * Show notifier on delete document
+* App Access Management
+   * Fetch data from single API
+* App Detail
+   * UI Changes
+* Service Release Process
+   * added technical user section in validate and publish
+   * added technical user section in admin board
+* App Marketplace
+   * added technical user section
+* Service Marketplace
+   * added technical user section
+* App Subscription
+   * Add "Detail Data" Button and Overlay
+   * Refracting Activate Subscription Page
+   * Add App Filter Search Functionality
+
+* Bugfix:
+   * App Release Process
+      * Fixed Conformity Document Deletion is not backend connected issue
+   * Registration Process - bpn overlay keeps showing a load element
+   * Service Admin Board
+      * Service detail page not displayed issue fixed   
+   * My Organization
+      * Subscription details missing
+  * Static template
+      * Use case section not loading because of br tag in the JSON response
+   * Registration Process - bpn overlay keeps showing a load element
 * App Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
 * Service Release Process
    * added technical user section in validate and publish
    * added technical user section in admin board
-* App Subscription
-   * Add "Detail Data" Button
+* Service subscription
+   * Subscription Activation api integration
+   * Subscription flow UI update
+* Bugfix:
+   * Registration Process - bpn overlay keeps showing a load element
+   * added technical user section in admin board 
 
 ## 1.4.0
 * UserMangement

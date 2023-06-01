@@ -151,6 +151,28 @@ export type technicalUserProfile = {
   }[]
 }
 
+export type ClientInfoType = {
+  clientId: string
+  clientUrl: string
+}
+
+export type TechnicalUserInfoType = {
+  technicalUserId: string
+  technicalUserPermissions: string[]
+  technicalUserSecret: string
+  technicalClientId: string
+}
+
+export type ActivateSubscriptionRequest = {
+  requestId: string
+  offerUrl: string
+}
+
+export type ActivateSubscriptionResponse = {
+  technicalUserInfo: TechnicalUserInfoType
+  clientInfo: ClientInfoType
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/serviceManagement',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -289,6 +311,16 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    activateSubscription: builder.mutation<
+      ActivateSubscriptionResponse,
+      ActivateSubscriptionRequest
+    >({
+      query: (data) => ({
+        url: `/api/services/autoSetup`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
@@ -310,4 +342,5 @@ export const {
   useFetchServiceUserRolesQuery,
   useFetchServiceTechnicalUserProfilesQuery,
   useSaveServiceTechnicalUserProfilesMutation,
+  useActivateSubscriptionMutation,
 } = apiSlice

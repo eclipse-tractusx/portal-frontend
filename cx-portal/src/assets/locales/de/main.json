@@ -833,6 +833,8 @@
         "appDeployed": "App Instance deployed",
         "activation": "Activation, Notifications & credentials"
       },
+      "description": "Description",
+      "imageGallery": "Images",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
@@ -854,6 +856,10 @@
         "website": "Webseite",
         "email": "E-Mail",
         "phone": "Telefon"
+      },
+      "technicalUserSetup": {
+        "heading": "Technical User Setup",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
       "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert."

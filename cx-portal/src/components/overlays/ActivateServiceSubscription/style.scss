@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,12 +17,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.appdetail-provider {
-  padding-top: 75px;
-  margin-bottom: 56px;
-  padding-bottom: 92px;
-  border-bottom: 1px solid #dcdcdc;
-  .provider-content {
-    margin-bottom: 30px;
+.activation {
+  table {
+    width: 90%;
+    margin: 20px 40px;
+    border-collapse: collapse;
+
+    tr td {
+      border-top: 1px solid rgb(220, 220, 220);
+      padding: 10px;
+      text-align: left;
+    }
+
+    tr:first-child td {
+      border: none;
+    }
   }
 }
