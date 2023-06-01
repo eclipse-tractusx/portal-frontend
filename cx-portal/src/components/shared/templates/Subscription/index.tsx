@@ -291,7 +291,7 @@ export default function Subscription({
   }
 
   useEffect(() => {
-    if (appFiltersData && appFiltersData.length) {
+    if (appFiltersData?.length) {
       setState({
         type: ActionKind.SET_APP_FILTERS,
         payload: appFiltersData,

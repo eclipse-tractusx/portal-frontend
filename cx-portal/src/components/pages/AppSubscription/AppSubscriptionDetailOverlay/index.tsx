@@ -67,25 +67,25 @@ const AppSubscriptionDetailOverlay = ({
     body: [
       [
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
-        data && data.name ? data.name : 'N/A',
+        data?.name ? data.name : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        data && data.offerSubscriptionStatus
+        data?.offerSubscriptionStatus
           ? data.offerSubscriptionStatus
           : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
-        data && data.customer ? data.customer : 'N/A',
+        data?.customer ? data.customer : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.bpn')}`,
-        data && data.bpn ? data.bpn : 'N/A',
+        data?.bpn ? data.bpn : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.contact')}`,
-        data && data.contact.length ? data.contact.toString() : 'N/A',
+        data?.contact.length ? data.contact.toString() : 'N/A',
       ],
     ],
   }
@@ -95,13 +95,13 @@ const AppSubscriptionDetailOverlay = ({
     body: [
       [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
-        data && data.technicalUserData && data.technicalUserData.length > 0
+        data?.technicalUserData && data.technicalUserData.length > 0
           ? data.technicalUserData[0].name
           : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-        data && data.technicalUserData && data.technicalUserData.length > 0
+        data?.technicalUserData && data.technicalUserData.length > 0
           ? data.technicalUserData[0].permissions.toString()
           : 'N/A',
       ],

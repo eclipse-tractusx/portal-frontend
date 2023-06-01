@@ -138,9 +138,7 @@ const ActivateSubscriptionOverlay = ({
                     </td>
                     <td>
                       <Typography variant="label3">
-                        {activationResponse &&
-                          activationResponse.technicalUserInfo
-                            .technicalClientId}
+                        {activationResponse?.technicalUserInfo.technicalClientId}
                       </Typography>
                     </td>
                   </tr>
@@ -152,9 +150,7 @@ const ActivateSubscriptionOverlay = ({
                     </td>
                     <td>
                       <Typography variant="label3">
-                        {activationResponse &&
-                          activationResponse.technicalUserInfo
-                            .technicalUserSecret}
+                        {activationResponse?.technicalUserInfo.technicalUserSecret}
                       </Typography>
                     </td>
                   </tr>
@@ -288,7 +284,7 @@ const ActivateSubscriptionOverlay = ({
                 loadIndicator="Loading ..."
                 loading
                 size="medium"
-                onButtonClick={() => {}}
+                onButtonClick={() => { }}
                 sx={{ marginLeft: '10px' }}
               />
             ) : (
