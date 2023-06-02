@@ -18,21 +18,53 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, Typography } from 'cx-portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
-import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { useTheme, CircularProgress } from '@mui/material'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import {
+  Typography,
+  IconButton,
+  Tooltips,
+  Chip,
+} from 'cx-portal-shared-components'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import {
-  CompanySubscriptionData,
   SubscriptionContent,
+  CompanySubscriptionData,
 } from 'features/appSubscription/appSubscriptionApiSlice'
-import './Subscription.scss'
 import NoItems from 'components/pages/NoItems'
+import './Subscription.scss'
+import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'
+import ActivateSubscriptionOverlay from 'components/pages/AppSubscription/ActivateSubscriptionOverlay'
+import { useState } from 'react'
+import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { SubscriptionTypes } from '.'
 import { useReducer } from 'react'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
+
+type ViewDetail = {
+  appId: string
+  subscriptionId: string
+}
+
+const ViewDetailData = {
+  appId: '',
+  subscriptionId: '',
+}
+
+type SubscriptionDataType = {
+  appId: string
+  subscriptionId: string
+  title: string
+}
+
+const SubscriptionInitialData = {
+  appId: '',
+  subscriptionId: '',
+  title: '',
+}
 
 enum ActionKind {
   SET_OVERLAY = 'SET_OVERLAY',
@@ -89,10 +121,12 @@ function reducer(state: State, { type, payload }: Action) {
 
 export default function SubscriptionElements({
   subscriptions,
+  isAppFilters,
   type,
   refetch,
 }: {
   subscriptions?: SubscriptionContent[]
+  isAppFilters?: boolean
   type: string
   refetch: () => void
 }) {
@@ -101,6 +135,10 @@ export default function SubscriptionElements({
   const dispatch = useDispatch()
   const [{ id, isTechUser, overlay, offerId, companyName }, setState] =
     useReducer(reducer, initialState)
+
+  const [viewDetails, setViewDetails] = useState<ViewDetail>(ViewDetailData)
+  const [subscriptionDetail, setSubscriptionDetail] =
+    useState<SubscriptionDataType>(SubscriptionInitialData)
 
   if (subscriptions && subscriptions.length === 0) {
     return <NoItems />
@@ -127,57 +165,96 @@ export default function SubscriptionElements({
   }
 
   return (
-    <>
-      <div className="recommended-main">
-        {subscriptions && subscriptions.length ? (
-          <ul className="subscription-list">
-            {subscriptions.map((subscriptionData) => {
-              return subscriptionData.companySubscriptionStatuses.map(
-                (subscription) => (
-                  <li
-                    key={subscription.subscriptionId}
-                    className="subscription-list-item"
-                  >
-                    <Typography variant="body2" className="firstSection">
-                      {subscription.companyName}
-                    </Typography>
-                    <Typography variant="body2" className="secondSection">
-                      {subscriptionData.serviceName}
-                    </Typography>
+    <div className="recommended-main">
+      {subscriptions && subscriptions.length ? (
+        <ul className="subscription-list">
+          {subscriptions.map((subscriptionData) => {
+            return subscriptionData.companySubscriptionStatuses.map(
+              (subscription) => (
+                <li
+                  key={subscription.subscriptionId}
+                  className="subscription-list-item"
+                >
+                  <Typography variant="body3" className="firstSection">
+                    {subscription.companyName}
+                  </Typography>
+                  <Typography variant="body3" className="secondSection">
+                    {subscriptionData.offerName}
+                  </Typography>
+                  {isAppFilters ? (
+                    <div
+                      className="viewDetails"
+                      onClick={() =>
+                        setViewDetails({
+                          appId: subscriptionData.offerId,
+                          subscriptionId: subscription.subscriptionId,
+                        })
+                      }
+                    >
+                      <IconButton color="secondary" size="small">
+                        <Tooltips
+                          color="dark"
+                          tooltipPlacement="top-start"
+                          tooltipText={t('content.appSubscription.viewDetails')}
+                        >
+                          <ArrowForwardIcon />
+                        </Tooltips>
+                      </IconButton>
+                    </div>
+                  ) : (
                     <Typography variant="body3" className="thirdSection">
                       {'Placeholders for add details such as BPN; etc'}
                     </Typography>
-                    {subscription.offerSubscriptionStatus === 'PENDING' && (
-                      <div className="forthSection">
-                        <Button
-                          color="primary"
-                          className="wd-25"
-                          onClick={() =>
-                            showOverlay(subscription, subscriptionData.offerId)
-                          }
-                          size="small"
-                          variant="contained"
-                        >
-                          {t('content.appSubscription.activateBtn')}
-                        </Button>
-                      </div>
+                  )}
+                  {subscription.offerSubscriptionStatus ===
+                    SubscriptionStatus.PENDING && (
+                    <div className="forthSection">
+                      <Chip
+                        color="primary"
+                        label={t('content.appSubscription.activateBtn')}
+                        type="plain"
+                        variant="filled"
+                        onClick={() =>
+                          isAppFilters
+                            ? setSubscriptionDetail({
+                                appId: subscriptionData.offerId,
+                                subscriptionId: subscription.subscriptionId,
+                                title: subscriptionData.offerName,
+                              })
+                            : showOverlay(
+                                subscription,
+                                subscriptionData.offerId
+                              )
+                        }
+                      />
+                    </div>
+                  )}
+                  {subscription.offerSubscriptionStatus ===
+                    SubscriptionStatus.ACTIVE &&
+                    isAppFilters && (
+                      <Chip
+                        color="success"
+                        label={t('content.appSubscription.tabs.active')}
+                        type="confirm"
+                        variant="filled"
+                        withIcon
+                      />
                     )}
-                  </li>
-                )
+                </li>
               )
-            })}
-          </ul>
-        ) : (
-          <div className="loading-progress">
-            <CircularProgress
-              size={50}
-              sx={{
-                color: theme.palette.primary.main,
-              }}
-            />
-          </div>
-        )}
-      </div>
+            )
+          })}
+        </ul>
+      ) : (
+        <div className="loading-progress">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      )}
       {overlay && (
         <ActivateServiceSubscription
           subscriptionId={id}
@@ -193,6 +270,25 @@ export default function SubscriptionElements({
           }}
         />
       )}
-    </>
+      {viewDetails && (
+        <AppSubscriptionDetailOverlay
+          openDialog={viewDetails.appId ? true : false}
+          appId={viewDetails.appId}
+          subscriptionId={viewDetails.subscriptionId}
+          handleOverlayClose={() => setViewDetails(ViewDetailData)}
+        />
+      )}
+      {subscriptionDetail.appId && (
+        <ActivateSubscriptionOverlay
+          openDialog={subscriptionDetail.appId ? true : false}
+          appId={subscriptionDetail.appId}
+          subscriptionId={subscriptionDetail.subscriptionId}
+          title={subscriptionDetail.title}
+          handleOverlayClose={() =>
+            setSubscriptionDetail(SubscriptionInitialData)
+          }
+        />
+      )}
+    </div>
   )
 }

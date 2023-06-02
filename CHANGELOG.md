@@ -60,6 +60,10 @@
    * added technical user section
 * Service Marketplace
    * added technical user section
+* App Subscription
+   * Add "Detail Data" Button and Overlay
+   * Refracting Activate Subscription Page
+   * Add App Filter Search Functionality
 * Service Provider
    * Change Endpoints
 

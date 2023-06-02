@@ -1089,11 +1089,13 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
+      "viewDetails": "Display more details",
       "activateBtn": "Activate",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "tabs": {
         "request": "Request",
-        "active": "Active"
+        "active": "Active",
+        "showAll": "Show All"
       },
       "sortOptions": {
         "customer": "By Customer A-Z",
@@ -1112,11 +1114,42 @@
         "providerSuccessMessage": "Service Provider Details added successfully."
       },
       "activation": {
-        "heading": "Activate User Subscription",
-        "description": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "successDescription": "The technical user has been created with the following data:",
+        "heading": "Activate App Subscription",
+        "intro": "for {{companyName}}",
+        "description": "Activate the app subscription request of the customer by adding your customer specific app endpoint/url in the input field below. We will use the url to register/activate the app authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the app tenant/connector to the centryl CX components/services (where needed).",
+        "stepDescription": "In order to activate the subscription of {{companyName}}, follow the steps below.",
+        "step1": "Activate the app subscription request",
+        "step2": "System - technical user will get automatically generated and credentials getting shared",
+        "step3": "Configure your app with the specific technical user to ensure that the app is fully usable.",
+        "addTentalURLHeading": "Add Tentant URL",
+        "addTentalURLDescription": "The tenant url of the app is the customer specific url which the customer has to access to receive access to the application. Please note: only https:// addresses are allowed.",
+        "enterURL": "Enter URL",
+        "technicalUserDetailsHeading": "Technical User Details",
+        "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
+        "technicalUserProfileHeading": "Technical User Profile",
+        "successDescription": "The app subscription got successfully activated, the customer got informed via email. Please find the technical user details below:",
         "clientId": "Client Id",
         "clientSecret": "Client Secret"
+      },
+      "detailOverlay": {
+        "title": "Provider View",
+        "description": "App Subscription Details & Status",
+        "stepLists": {
+          "firstStep": "Subscription Initiated",
+          "secondStep": "Setup Ongoing",
+          "thirdStep": "Subscription Activate"
+        },
+        "subscriptionDetails": "Subscription Details",
+        "appTitle": "App Title",
+        "status": "Status",
+        "customer": "Customer",
+        "bpn": "BPN",
+        "contact": "Contact",
+        "technicalDetails": "Technical Details",
+        "technicalName": "Technical User Name",
+        "technicalPermission": "Technical User Permission",
+        "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
+        "email": "email_address@catena_support.com"
       }
     },
     "adminBoard": {

@@ -50,6 +50,9 @@ export const VerticalTable = ({ data }: { data: TableType }) => (
                 style={{
                   padding: '10px 15px',
                   borderBottom: '1px solid #f1f1f1',
+                  whiteSpace: 'normal',
+                  wordBreak: 'break-all',
+                  width: '50%',
                 }}
               >
                 <Typography variant="body3">

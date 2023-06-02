@@ -32,6 +32,7 @@
     display: flex;
     color: #0d55af;
     margin-top: 10px;
+    text-decoration: none;
     svg {
       font-size: 20px;
     }
@@ -46,20 +47,20 @@
   p {
     font-weight: 600;
   }
+}
 
-  table {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    border-collapse: collapse;
+.activationResponse {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-collapse: collapse;
 
-    tr td {
-      border-top: 1px solid rgb(220, 220, 220);
-      padding: 10px;
-    }
+  tr td {
+    border-top: 1px solid rgb(220, 220, 220);
+    padding: 10px;
+  }
 
-    tr:first-child td {
-      border: none;
-    }
+  tr:first-child td {
+    border: none;
   }
 }
