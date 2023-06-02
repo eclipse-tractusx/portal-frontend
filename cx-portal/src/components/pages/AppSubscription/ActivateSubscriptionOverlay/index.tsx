@@ -30,7 +30,7 @@ import {
 } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
-import Patterns from 'types/Patterns'
+import Patterns, { isURL } from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
   SubscriptionActivationResponse,
@@ -78,7 +78,7 @@ const ActivateSubscriptionOverlay = ({
   const addInputURL = (value: string) => {
     setInputURL(value)
     setURLErrorMessage(
-      !Patterns.URL.test(value.trim())
+      !isURL(value.trim())
         ? t('content.appSubscription.pleaseEnterValidURL')
         : ''
     )
