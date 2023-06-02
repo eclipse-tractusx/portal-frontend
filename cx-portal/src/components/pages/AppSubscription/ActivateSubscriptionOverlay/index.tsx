@@ -30,7 +30,7 @@ import {
 } from 'cx-portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
-import Patterns, { isURL } from 'types/Patterns'
+import { isURL } from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
   SubscriptionActivationResponse,
