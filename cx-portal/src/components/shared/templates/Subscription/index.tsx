@@ -118,16 +118,16 @@ type Action = {
 const initialState: State = {
   searchExpr: '',
   showModal: false,
-  selected: FilterType.REQUEST,
+  selected: FilterType.SHOWALL,
   sortOption: SortType.CUSTOMER,
   cardSubscriptions: [],
   serviceProviderSuccess: false,
   page: 0,
-  statusId: StatusIdType.PENDING,
+  statusId: '',
   sortingType: SortType.COMPANY_NAME_DESC,
   fetchArgs: {
     page: 0,
-    statusId: StatusIdType.PENDING,
+    statusId: '',
     sortingType: SortType.COMPANY_NAME_DESC,
   },
   subscriptions: [],
@@ -239,7 +239,7 @@ interface SubscriptionType {
   tabLabels: {
     request: string
     active: string
-    showAll?: string
+    showAll: string
   }
   doNotShowAutoSetup?: boolean
   currentSuccessType: (state: RootState) => any
@@ -297,12 +297,7 @@ export default function Subscription({
         payload: appFiltersData,
       })
     }
-  }, [appFiltersData])
-
-  useEffect(() => {
-    resetCardsAndSetFetchArgs(activeAppFilter, ViewActionEnum.OFFERID)
-    // eslint-disable-next-line
-  }, [activeAppFilter])
+  }, [appFiltersData, type])
 
   const { data, refetch, isFetching } = fetchQuery(fetchArgs)
   const isSuccess = useSelector(currentProviderSuccessType)
@@ -411,27 +406,12 @@ export default function Subscription({
       buttonValue: FilterType.ACTIVE,
       onButtonClick: setView,
     },
-  ]
-
-  if (tabLabels.showAll) {
-    filterButtons.push({
+    {
       buttonText: tabLabels.showAll,
       buttonValue: FilterType.SHOWALL,
       onButtonClick: setView,
-    })
-  }
-
-  useEffect(() => {
-    if (tabLabels.showAll) {
-      setState({ type: ActionKind.SET_SELECTED, payload: FilterType.SHOWALL })
-      setState({ type: ActionKind.SET_STATUS_ID, payload: '' })
-      setState({
-        type: ActionKind.SET_FETCH_ARGS,
-        payload: { ...fetchArgs, statusId: '' },
-      })
-    }
-    // eslint-disable-next-line
-  }, [tabLabels.showAll])
+    },
+  ]
 
   useEffect(() => {
     refetch()
@@ -532,12 +512,16 @@ export default function Subscription({
                         activeAppFilter === app.id ? 'activeFilter' : ''
                       }`}
                       variant="body3"
-                      onClick={() =>
+                      onClick={() => {
                         setState({
                           type: ActionKind.SET_ACTIVE_APP_FILTER,
                           payload: app.id,
                         })
-                      }
+                        resetCardsAndSetFetchArgs(
+                          app.id,
+                          ViewActionEnum.OFFERID
+                        )
+                      }}
                       key={app.id}
                     >
                       {app.name}

@@ -138,7 +138,8 @@
     "pleaseEnterValidURL": "Please enter a valid URL",
     "tabs": {
       "request": "Request",
-      "active": "Active"
+      "active": "Active",
+      "showAll": "Show All"
     },
     "sortOptions": {
       "customer": "By Customer A-Z",

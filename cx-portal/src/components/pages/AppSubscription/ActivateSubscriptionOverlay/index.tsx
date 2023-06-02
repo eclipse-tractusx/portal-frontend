@@ -77,11 +77,11 @@ const ActivateSubscriptionOverlay = ({
 
   const addInputURL = (value: string) => {
     setInputURL(value)
-    if (!Patterns.URL.test(value.trim())) {
-      setURLErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
-    } else {
-      setURLErrorMessage('')
-    }
+    setURLErrorMessage(
+      !Patterns.URL.test(value.trim())
+        ? t('content.appSubscription.pleaseEnterValidURL')
+        : ''
+    )
   }
 
   const addTentantURL = async () => {
@@ -138,7 +138,10 @@ const ActivateSubscriptionOverlay = ({
                     </td>
                     <td>
                       <Typography variant="label3">
-                        {activationResponse?.technicalUserInfo.technicalClientId}
+                        {
+                          activationResponse?.technicalUserInfo
+                            .technicalClientId
+                        }
                       </Typography>
                     </td>
                   </tr>
@@ -150,7 +153,10 @@ const ActivateSubscriptionOverlay = ({
                     </td>
                     <td>
                       <Typography variant="label3">
-                        {activationResponse?.technicalUserInfo.technicalUserSecret}
+                        {
+                          activationResponse?.technicalUserInfo
+                            .technicalUserSecret
+                        }
                       </Typography>
                     </td>
                   </tr>
@@ -284,7 +290,7 @@ const ActivateSubscriptionOverlay = ({
                 loadIndicator="Loading ..."
                 loading
                 size="medium"
-                onButtonClick={() => { }}
+                onButtonClick={() => {}}
                 sx={{ marginLeft: '10px' }}
               />
             ) : (

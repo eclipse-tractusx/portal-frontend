@@ -47,6 +47,7 @@ export default function ServiceSubscription() {
       tabLabels={{
         request: t('serviceSubscription.tabs.request'),
         active: t('serviceSubscription.tabs.active'),
+        showAll: t('serviceSubscription.tabs.showAll'),
       }}
       doNotShowAutoSetup={true}
       type={SubscriptionTypes.SERVICE_SUBSCRIPTION}

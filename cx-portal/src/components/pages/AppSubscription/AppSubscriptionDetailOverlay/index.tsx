@@ -71,9 +71,7 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        data?.offerSubscriptionStatus
-          ? data.offerSubscriptionStatus
-          : 'N/A',
+        data?.offerSubscriptionStatus ? data.offerSubscriptionStatus : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,

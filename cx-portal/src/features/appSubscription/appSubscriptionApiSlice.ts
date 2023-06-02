@@ -139,11 +139,8 @@ export const apiSlice = createApi({
       SubscriptionDetailResponse,
       SubscriptionDetailRequestBody
     >({
-      query: (body) => {
-        return {
-          url: `/api/apps/${body.appId}/subscription/${body.subscriptionId}/provider`,
-        }
-      },
+      query: (body) =>
+        `/api/apps/${body.appId}/subscription/${body.subscriptionId}/provider`,
     }),
     fetchTechnicalProfiles: builder.query<TechnicalProfilesResponse[], string>({
       query: (appId) => {
