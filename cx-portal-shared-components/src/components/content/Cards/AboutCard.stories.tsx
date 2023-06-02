@@ -32,9 +32,9 @@ const Template: ComponentStory<typeof Component> = (args: any) => (
 
 export const AboutCards = Template.bind({})
 AboutCards.args = {
-  name: 'Example product',
+  name: 'Example product name',
   repositoryPath: 'https://github.com/eclipse-tractusx/example-product',
-  license: 'License: Apache-2.0',
+  license: 'Example license',
   licensePath:
     'https://github.com/eclipse-tractusx/example-product/blob/v1.0.0-example/LICENSE',
   noticePath:
