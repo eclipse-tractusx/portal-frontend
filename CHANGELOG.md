@@ -1,95 +1,58 @@
 # Changelog
 
-## Unreleased
+## 1.5.0-RC1
 
-* Connectors
-   * Show Managed connectors
-   * Error scenarios implemented in Table component
-   * Clear previously added data in the overlay
-* App Release Process
-   * technical integration style updates
-   * added technical user section in validate and publish
-   * added technical user section in admin board
-* News Section
-   * Fixed UI of news section in home page
-* Company Role Updates
-   * New page for company role update
-* Sort section
-   * Hover effect added
-* Notification
-   * SERVICE_RELEASE_REQUEST and APP_RELEASE_REQUEST content update
-   * ROLE_UPDATE_APP_OFFER and ROLE_UPDATE_CORE_OFFER types added and corresponding contents updated
-* Static templete
-   * Two more new templates added
-   * Support language switch
-   * Support arrow up Icon on each section
-* ImageComponent
-   * Do not hide current on zoom in action
-* Admin board - Service
-   * Filter action issue fix
-* Package
-   * React Player to support all types of video urls
+### Change
 * User Management
-   * Change roles success/error overlay fix
-* App Overview
-   * Dropdown UI broken fix
-* Appdetails
-   * App Images size and responsivenes
-   * Subscription Status hover changes
-* Fix build error issue
-* Company Role Update
-   * Make Role Desc Dynamic
-   * Add Terms and Condition dynamic in overlay and handle download document functionality
-   * BL & API POST CompanyRole and Consent & Error/Success
-* Shared Component
-   * New About page component added
-   * About page created
-   * Removed all Third party related contents
-* Updates
-   * Service release process
-      * SERVICE_LEADIMAGE supported.
-      * Show notifier on delete document
-* App Access Management
-   * Fetch data from single API
-* App Detail
-   * UI Changes
-* Service Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
-* App Marketplace
-   * added technical user section
-* Service Marketplace
-   * added technical user section
-* Service Provider
-   * Change Endpoints
+   * app access management - api used to display app cards inside the user management 'App Access Management' reduced to single api call
 
-* Bugfix:
-   * App Release Process
-      * Fixed Conformity Document Deletion is not backend connected issue
-   * Registration Process - bpn overlay keeps showing a load element
-   * Service Admin Board
-      * Service detail page not displayed issue fixed   
-   * My Organization
-      * Subscription details missing
-  * Static template
-      * Use case section not loading because of br tag in the JSON response
-   * Registration Process - bpn overlay keeps showing a load element
+### Feature
 * App Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
+   * technical integration enhanced by technical user profile configuration
+   * technical user profile section added inside 'Validate and Publish' step
+* App Marketplace
+   * app detail page - sticky app detail sub-navigation added
+   * app detail page - technical user profile section added
+* App Admin Board
+   * app detail page - technical user profile section added
+* App Management Board
+   * app detail page - technical user profile section added
 * Service Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
+   * technical integration added incl. technical user profile configuration
+   * SERVICE_LEADIMAGE upload integrated
+   * delete document notification/toast message added
+* Service Marketplace
+   * service detail page - technical user profile section added
+* Service Admin Board
+   * service detail page - technical user profile section added
+* Service Management Board
+   * service detail page - technical user profile section added
 * Service subscription
    * Subscription Activation api integration
    * Subscription flow UI update
-* Bugfix:
-   * Registration Process - bpn overlay keeps showing a load element
-   * added technical user section in admin board 
+* Shared Components
+   * about card for legal notice added
+* About page for legal notice
+   * About card added to Shared Components
+   * About page added and linked in footer component
+   * card component integrated in About page
+* Third-party-licenses page removed (replaced by About page)
+
+### Technical Support
+* About page
+   * enabled build and release workflows to provide content
+
+### Bugfix
+* App Release Process
+   * conformity document deletion missing error message in failure case
+* Registration Process
+   * 'add bpn overlay' - manually entering a bpn to an application did result into a load element on the 'add bpn overlay' of the next application (without page reload)
+* My Organization
+   * missing subscription details fetch from api fixed
+* Connectors
+   * Previously added data on 'add connector' overlay got not cleared in case of a success scenario
 
 ## 1.4.0
-* UserMangement
-   * Change roles success/error overlay UI fix
 
 ### Change
 * IdP Configuration
@@ -233,7 +196,7 @@
   * updated business logic to consume use case data due to updated api response body style
 
 ## Known Knowns
-* Eslinter checks disabled in sever code sections related to the app release process
+* Eslinter checks disabled in several code sections related to the app release process
 * Sorting component behavior - preselected selects are not visible and active, hover, inactive state missing
 * App Release Process - step "Verify & Submit" - the app card language switch is impacting the language of the whole party instead of only updating the app card
 * Image zoom in results in the useCase/company introduction page is breaking in the background when user opens the zoom in function
