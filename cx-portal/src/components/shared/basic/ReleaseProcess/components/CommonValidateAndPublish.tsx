@@ -254,8 +254,8 @@ export default function CommonValidateAndPublish({
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
         <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
-          <Grid item xs={12}>
-            <Typography variant="subtitle2">* {role}</Typography>
+          <Grid item xs={12} style={{ padding: '0px 20px 5px 20px' }}>
+            <Typography variant="body2">* {role}</Typography>
           </Grid>
         </Grid>
       ))
@@ -306,7 +306,7 @@ export default function CommonValidateAndPublish({
                 filledBackground={true}
                 buttonText={''}
               />
-              <div style={{ margin: '35px auto -16px 65px' }}>
+              <div style={{ textAlign: 'center', width: '290px' }}>
                 <LanguageSwitch
                   current={cardLanguage}
                   languages={[{ key: 'de' }, { key: 'en' }]}
@@ -415,7 +415,7 @@ export default function CommonValidateAndPublish({
               </div>
               {statusData?.privacyPolicies &&
               statusData?.privacyPolicies.length ? (
-                <div className="policies-list" style={{ maxWidth: '600px' }}>
+                <div className="policies-list" style={{ padding: '0 20px' }}>
                   {statusData?.privacyPolicies?.map((policy: string) => (
                     <Typography
                       variant="body2"
@@ -447,27 +447,30 @@ export default function CommonValidateAndPublish({
                 {defaultValues.conformityDocumentsDescription}
               </Typography>
             )}
-            <ul>
-              {statusData?.documents &&
-                statusData.documents[
-                  DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-                ] &&
-                statusData.documents[
-                  DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-                ].map((item: DocumentData) => (
-                  <li key={item.documentId} className="document-list">
-                    <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
-                    <button
-                      className="document-button-link"
-                      onClick={() =>
-                        handleDownloadFn(item.documentId, item.documentName)
-                      }
-                    >
-                      {item.documentName}
-                    </button>
-                  </li>
-                ))}
-            </ul>
+            {statusData?.documents &&
+              statusData.documents[
+                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+              ] &&
+              statusData.documents[
+                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+              ].map((item: DocumentData) => (
+                <li
+                  key={item.documentId}
+                  className="document-list"
+                  style={{ padding: '0 18px' }}
+                >
+                  <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                  <button
+                    className="document-button-link"
+                    style={{ fontSize: '16px' }}
+                    onClick={() =>
+                      handleDownloadFn(item.documentId, item.documentName)
+                    }
+                  >
+                    {item.documentName}
+                  </button>
+                </li>
+              ))}
             <Divider className="verify-validate-form-divider" />
           </>
         )}
@@ -494,10 +497,15 @@ export default function CommonValidateAndPublish({
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
                 item === DocumentTypeId.APP_CONTRACT ||
                 item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
-                <li key={item} className="document-list">
+                <li
+                  key={item}
+                  className="document-list"
+                  style={{ padding: '0 18px' }}
+                >
                   <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                   <button
                     className="document-button-link"
+                    style={{ fontSize: '16px' }}
                     onClick={() =>
                       handleDownloadFn(
                         statusData?.documents[item][0]?.documentId,
@@ -528,7 +536,12 @@ export default function CommonValidateAndPublish({
             {rolesData.length > 0 ? (
               <Grid container spacing={2} sx={{ margin: '0px' }}>
                 {rolesData?.map((role) => (
-                  <Grid item xs={6} key={role.roleId}>
+                  <Grid
+                    item
+                    xs={6}
+                    key={role.roleId}
+                    style={{ padding: '20px 20px 0 20px' }}
+                  >
                     <Typography variant="label2">{role.role}</Typography>
                     <Typography variant="body3">{role.description}</Typography>
                   </Grid>

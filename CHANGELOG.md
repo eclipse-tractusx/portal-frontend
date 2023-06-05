@@ -10,6 +10,7 @@
    * technical integration style updates
    * added technical user section in validate and publish
    * added technical user section in admin board
+   * validate and publish style updates
 * News Section
    * Fixed UI of news section in home page
 * Company Role Updates
@@ -66,7 +67,10 @@
    * Add App Filter Search Functionality
 * Service Provider
    * Change Endpoints
-
+* Service subscription
+   * Subscription Activation api integration
+   * Subscription flow UI update
+   
 * Bugfix:
    * App Release Process
       * Fixed Conformity Document Deletion is not backend connected issue
@@ -75,21 +79,8 @@
       * Service detail page not displayed issue fixed   
    * My Organization
       * Subscription details missing
-  * Static template
+   * Static template
       * Use case section not loading because of br tag in the JSON response
-   * Registration Process - bpn overlay keeps showing a load element
-* App Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
-* Service Release Process
-   * added technical user section in validate and publish
-   * added technical user section in admin board
-* Service subscription
-   * Subscription Activation api integration
-   * Subscription flow UI update
-* Bugfix:
-   * Registration Process - bpn overlay keeps showing a load element
-   * added technical user section in admin board 
 
 ## 1.4.0
 * UserMangement
