@@ -43,7 +43,7 @@ const managementSlice = createSlice({
       state.currentActiveStep -= 1
     },
     setCurrentActiveStep: (state) => {
-      state.currentActiveStep = 6
+      state.currentActiveStep = 1
     },
     setApplicationId: (state, action) => ({
       ...state,
