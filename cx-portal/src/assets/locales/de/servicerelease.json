@@ -219,7 +219,7 @@
     },
     "technicalUserSetup": {
       "heading": "Technical User Setup",
-      "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+      "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerberechtigung an, die dem technischen Benutzer, der im Rahmen der App-/Dienstaktivierung erstellt wurde, automatisch zugewiesen wird.",
       "roleDescription": "The role description is expected to get displayed here in future.",
       "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     }

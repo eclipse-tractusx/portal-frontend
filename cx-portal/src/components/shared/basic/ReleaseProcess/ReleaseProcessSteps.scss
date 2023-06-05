@@ -53,8 +53,13 @@
   }
 
   .verify-app-release-card {
-    width: 250px !important;
+    width: 290px !important;
     padding-left: 0px !important;
+    > div:first-child {
+      height: auto !important;
+      min-height: 351.4px !important;
+      margin-bottom: 0 !important;
+    }
   }
 
   .verify-validate-images {
@@ -102,5 +107,29 @@
   .not-available {
     display: block;
     text-align: center;
+  }
+
+  .doc-list {
+    padding: 0 18px;
+    .document-button-link {
+      font-size: 16px;
+    }
+  }
+
+  .app-policies {
+    padding: 0 20px;
+  }
+
+  .roles-data {
+    padding: 20px 20px 0 20px;
+  }
+
+  .language-switch {
+    text-align: center;
+    width: 290px;
+  }
+
+  .tech-user-data {
+    padding: 0px 20px 5px 20px !important;
   }
 }
