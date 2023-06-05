@@ -290,11 +290,6 @@ export default function Subscription({
     appFiltersData = data
   }
 
-  // useEffect(() => {
-  //   console.log('activeAppFilter', activeAppFilter)
-  //   if(activeAppFilter === )
-  // },[activeAppFilter])
-
   useEffect(() => {
     if (appFiltersData?.length) {
       setState({
