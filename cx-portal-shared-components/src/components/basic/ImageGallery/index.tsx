@@ -53,12 +53,12 @@ export const ImageGallery = ({
         gapCarouselTop={0}
         dots={false}
         infinite
-        itemHeight={279}
+        itemHeight={0}
         itemWidth={266}
         slidesToShow={3}
       >
         {gallery.map((image) => (
-          <div key={image.url} style={{ height: '100%' }}>
+          <div key={image.url}>
             <img
               src={image.url}
               alt={image.text}

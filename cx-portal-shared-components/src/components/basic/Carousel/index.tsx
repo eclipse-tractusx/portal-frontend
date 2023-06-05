@@ -99,9 +99,6 @@ export const Carousel = ({
   const outerGapToArrow = gapToArrows ? `${gapToArrows}px` : 0
   const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0
   const outerGapToDots = gapToDots && dots ? `${gapToDots}px` : 'auto'
-  const itemTop =
-    itemHeight && gapCarouselTop ? itemHeight + gapCarouselTop : itemHeight
-  const arrowsTop = itemHeight ? itemTop / 2 : 0
 
   const getCarouselWidth = useCallback(
     (slides: number) =>
@@ -188,14 +185,16 @@ export const Carousel = ({
           },
         },
         '.slick-prev': {
-          top: `${arrowsTop}px`,
+          top: `50% !important`,
+          marginTop: '-10px',
           left: '-33px',
           ':before': {
             content: 'none',
           },
         },
         '.slick-next': {
-          top: `${arrowsTop}px`,
+          top: `50% !important`,
+          marginTop: '-10px',
           ':before': {
             content: 'none',
           },
@@ -229,7 +228,7 @@ export const Carousel = ({
                 <Box
                   sx={{
                     width: `${itemWidth}px`,
-                    height: `${itemHeight}px`,
+                    height: itemHeight ? `${itemHeight}px` : '100%',
                     marginTop: `${gapCarouselTop}px`,
                     marginBottom: outerGapToDots,
                   }}

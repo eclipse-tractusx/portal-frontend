@@ -290,6 +290,11 @@ export default function Subscription({
     appFiltersData = data
   }
 
+  // useEffect(() => {
+  //   console.log('activeAppFilter', activeAppFilter)
+  //   if(activeAppFilter === )
+  // },[activeAppFilter])
+
   useEffect(() => {
     if (appFiltersData?.length) {
       setState({
@@ -442,6 +447,15 @@ export default function Subscription({
     [debouncedFilter]
   )
 
+  const handleActiveAppFilter = (appId: string) => {
+    appId = activeAppFilter === appId ? '' : appId
+    setState({
+      type: ActionKind.SET_ACTIVE_APP_FILTER,
+      payload: appId,
+    })
+    resetCardsAndSetFetchArgs(appId, ViewActionEnum.OFFERID)
+  }
+
   return (
     <main className="appSubscription">
       <div className="mainContainer">
@@ -512,16 +526,7 @@ export default function Subscription({
                         activeAppFilter === app.id ? 'activeFilter' : ''
                       }`}
                       variant="body3"
-                      onClick={() => {
-                        setState({
-                          type: ActionKind.SET_ACTIVE_APP_FILTER,
-                          payload: app.id,
-                        })
-                        resetCardsAndSetFetchArgs(
-                          app.id,
-                          ViewActionEnum.OFFERID
-                        )
-                      }}
+                      onClick={() => handleActiveAppFilter(app.id)}
                       key={app.id}
                     >
                       {app.name}
