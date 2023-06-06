@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,17 +17,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Api } from './api'
-import { name } from './types'
+.activation {
+  table {
+    width: 90%;
+    margin: 20px 40px;
+    border-collapse: collapse;
 
-const fetchItems = createAsyncThunk(`${name}/fetch`, async () => {
-  try {
-    return await Api.getInstance().getItems()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
-    throw Error(`${name}/fetch error`)
+    tr td {
+      border-top: 1px solid rgb(220, 220, 220);
+      padding: 10px;
+      text-align: left;
+    }
+
+    tr:first-child td {
+      border: none;
+    }
   }
-})
-
-export { fetchItems }
+}

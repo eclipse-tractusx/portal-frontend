@@ -14,6 +14,8 @@
   "consultanceService": "Consultance Service",
   "dataspaceService": "Dataspace Service",
   "loadmore": "Load More",
+  "documentDeleteSuccess": "Document deleted successfully",
+  "documentDeleteError": "Something went wrong.",
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -147,19 +149,28 @@
       "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
     },
     "register": {
-      "heading": "Autosetup URL",
-      "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
-      "endpointConfigured": "Current Endpoint",
-      "autosetupURL": "AutoSetup URL",
-      "providerErrorMessage": "Something went wrong! Please try it later again.",
-      "providerSuccessMessage": "Service Provider Details added successfully."
+      "title": "Active Service Subscription",
+      "subtitle": "for ",
+      "description": "In order to activate the subscription of {{company}}, follow these steps below, <br /> <br />1. Activate the service subscription request.<br />2. Customer will be informed about the successfully activation<br />",
+      "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /> <br />1. Activate the service subscription request.<br />2. System - technical user (if needed) will get generated and credentials getting shared.<br />3. Configure your service with the specific technical user to ensure that the service is fully usable",
+      "sectionHeader": "Technical User Profile",
+      "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
+      "close": "Close",
+      "confirm": "Confirm",
+      "help": "help",
+      "loading": "Loading..."
     },
     "activation": {
-      "heading": "Activate Service Subscription",
-      "description": "Activate the service subscription request of the customer by adding your customer specific service endpoint/url in the input field below. We will use the url to register/activate the service authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the service tenant/connector to the centryl CX components/services (where needed).",
-      "successDescription": "The technical user has been created with the following data:",
-      "clientId": "Client Id",
-      "clientSecret": "Client Secret"
+      "title": "Service Subscription Activated",
+      "subtitle": "for ",
+      "successDescription": "The service is now activated and is now located in your active contract management",
+      "successDescriptionWithTechUser": "The service is not activated and technical user got successfully created.<br /> Please find the necessary user detials below.",
+      "tableheader": "Technical User Details:",
+      "userId": "User Id:",
+      "sercret": "Secret:",
+      "url": "URL:",
+      "technicaluserType": "Technical User Type:",
+      "close": "Close"
     }
   },
   "adminBoard": {
@@ -204,6 +215,12 @@
     "provider": {
       "heading": "Provider Information",
       "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+    },
+    "technicalUserSetup": {
+      "heading": "Technical User Setup",
+      "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+      "roleDescription": "The role description is expected to get displayed here in future.",
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     }
   },
   "retryOverlay": {

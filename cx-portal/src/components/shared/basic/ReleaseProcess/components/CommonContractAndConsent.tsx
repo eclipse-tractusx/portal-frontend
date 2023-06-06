@@ -54,6 +54,7 @@ import {
   serviceReleaseStepDecrement,
 } from 'features/serviceManagement/slice'
 import { ButtonLabelTypes } from '..'
+import { error, success } from 'services/NotifyService'
 
 type AgreementDataType = {
   agreementId: string
@@ -134,6 +135,26 @@ export default function CommonContractAndConsent({
     deleteResponse.isSuccess && setDeleteSuccess(true)
   }, [deleteResponse])
 
+  const deleteDocument = async (documentId: string) => {
+    documentId &&
+      (await deleteAppReleaseDocument(documentId)
+        .unwrap()
+        .then(() => {
+          success(
+            t('content.apprelease.contractAndConsent.documentDeleteSuccess')
+          )
+        })
+        .catch((err: any) => {
+          error(
+            err.status === 409
+              ? err.data.title
+              : t('content.apprelease.appReleaseForm.errormessage'),
+            '',
+            err
+          )
+        }))
+  }
+
   const defaultValues = useMemo(() => {
     return {
       agreements: defaultValue,
@@ -180,12 +201,12 @@ export default function CommonContractAndConsent({
   }, [dispatch, fetchStatusData])
 
   const loadData = useCallback(() => {
-    const fetchConsent = fetchConsentData?.agreements.map(
-      (item: AgreementStatusType) => ({
+    const fetchConsent =
+      fetchStatusData?.agreements &&
+      fetchStatusData?.agreements.map((item) => ({
         ...item,
         consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
-      })
-    )
+      }))
 
     const consentAgreementData: any =
       fetchAgreementData &&
@@ -205,7 +226,7 @@ export default function CommonContractAndConsent({
 
     setDefaultValue({ ...defaultCheckboxData, agreements: agreementData })
     reset({ ...defaultCheckboxData, agreements: agreementData })
-  }, [agreementData, fetchAgreementData, fetchConsentData, reset])
+  }, [agreementData, fetchAgreementData, fetchStatusData, reset])
 
   useEffect(() => {
     if (!agreementData || agreementData.length === 0) loadData()
@@ -327,6 +348,7 @@ export default function CommonContractAndConsent({
           } else {
             dispatch(serviceReleaseStepIncrement())
           }
+          setAgreementData([])
           buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
         })
         .catch(() => {
@@ -448,9 +470,7 @@ export default function CommonContractAndConsent({
             note={imageFieldNote}
             requiredText={imageFieldRequiredText}
             handleDownload={handleDownload}
-            handleDelete={(documentId: string) => {
-              deleteAppReleaseDocument(documentId)
-            }}
+            handleDelete={(documentId: string) => deleteDocument(documentId)}
             isRequired={documentRequired}
           />
         )}

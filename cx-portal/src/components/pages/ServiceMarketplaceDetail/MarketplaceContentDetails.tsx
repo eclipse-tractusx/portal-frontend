@@ -25,6 +25,7 @@ import MarketplaceSubscription from './components/MarketplaceSubscription'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './Marketplace.scss'
 import MarketplaceDocuments from './components/MarketplaceDocuments'
+import MarketplaceTechnicalUserSetup from './components/MarketplaceTechnicalUserSetup'
 
 export default function MarketplaceContentDetails({
   item,
@@ -44,6 +45,7 @@ export default function MarketplaceContentDetails({
           <Typography variant="body2">{item.description}</Typography>
         </div>
         <MarketplaceDocuments item={item} />
+        <MarketplaceTechnicalUserSetup item={item} />
         <MarketplaceProvider item={item} />
       </>
     )

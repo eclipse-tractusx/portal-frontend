@@ -72,10 +72,31 @@ export enum SubscriptionStatusText {
 
 export type SubscriptionStatusItem = {
   appId: string
-  offerSubscriptionStatus: SubscriptionStatus
+  offerId: string
+  offerSubscriptionStatus?: SubscriptionStatus
   name?: string
   provider?: string
   image?: ImageType
+}
+
+export type SubscriptionStatusResponse = {
+  content: SubscriptionStatusItem[]
+  meta: {
+    contentSize: number
+    page: number
+    totalElements: number
+    totalPages: number
+  }
+}
+
+export type SubscriptionStatusDuplicateItem = {
+  appId?: string
+  offerSubscriptionStatus?: SubscriptionStatus
+  name?: string
+  provider?: string
+  image?: ImageType
+  status?: SubscriptionStatus
+  offerId?: string
 }
 
 export enum DocumentTypeText {
@@ -107,6 +128,9 @@ export type AppDetails = AppMarketplaceApp & {
     longDescription: string
     shortDescription: string
   }[]
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
 }
 
 export type Documents = {
@@ -169,9 +193,17 @@ export const apiSlice = createApi({
           `/api/apps/subscribed/subscription-status`
         )
         const subscriptionData =
-          subscriptionStatus.data as SubscriptionStatusItem[]
+          subscriptionStatus.data as SubscriptionStatusResponse
+
+        subscriptionData.content.forEach(
+          (subscriptionItem: SubscriptionStatusDuplicateItem) => {
+            subscriptionItem.offerSubscriptionStatus = subscriptionItem.status
+            subscriptionItem.appId = subscriptionItem.offerId
+          }
+        )
+
         data.forEach(async (appItem: AppMarketplaceApp) => {
-          subscriptionData.forEach(
+          subscriptionData.content.forEach(
             async (subscriptionItem: SubscriptionStatusItem) => {
               if (appItem.id === subscriptionItem.appId)
                 appItem.subscriptionStatus =
@@ -185,30 +217,31 @@ export const apiSlice = createApi({
     fetchFavoriteApps: builder.query<string[], void>({
       query: () => `/api/apps/favourites`,
     }),
-    fetchSubscriptionStatus: builder.query<SubscriptionStatusItem[], void>({
+    fetchSubscriptionStatus: builder.query<SubscriptionStatusResponse, void>({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
         const subscriptionApps = await fetchWithBQ(
           `/api/apps/subscribed/subscription-status`
         )
         if (subscriptionApps.error) return { error: subscriptionApps.error }
         const subscriptionData =
-          subscriptionApps.data as SubscriptionStatusItem[]
-        const activeResponse = await fetchWithBQ(`/api/apps/active`)
-        const activeData = activeResponse.data as AppMarketplaceApp[]
-        activeData.forEach(async (activeItem: AppMarketplaceApp) => {
-          subscriptionData.forEach(
-            async (subscriptionItem: SubscriptionStatusItem) => {
-              if (activeItem.id === subscriptionItem.appId)
-                subscriptionItem.image = {
-                  src: activeItem.leadPictureId
-                    ? `${getApiBase()}/api/apps/${activeItem.id}/appDocuments/${
-                        activeItem.leadPictureId
-                      }`
-                    : LogoGrayData,
-                }
+          subscriptionApps.data as SubscriptionStatusResponse
+        subscriptionData.content.forEach(
+          (subscriptionItem: SubscriptionStatusDuplicateItem) => {
+            subscriptionItem.offerSubscriptionStatus = subscriptionItem.status
+            subscriptionItem.appId = subscriptionItem.offerId
+          }
+        )
+        subscriptionData.content.forEach(
+          async (subscriptionItem: SubscriptionStatusItem) => {
+            subscriptionItem.image = {
+              src: subscriptionItem.image
+                ? `${getApiBase()}/api/apps/${
+                    subscriptionItem.appId
+                  }/appDocuments/${subscriptionItem.image}`
+                : LogoGrayData,
             }
-          )
-        })
+          }
+        )
         return { data: subscriptionData }
       },
     }),

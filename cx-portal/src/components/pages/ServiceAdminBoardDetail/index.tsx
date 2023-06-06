@@ -34,7 +34,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { PAGES } from 'types/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { InputLabel } from '@mui/material'
+import { InputLabel, Grid } from '@mui/material'
 import { download } from 'utils/downloadUtils'
 
 export default function ServiceAdminBoardDetail() {
@@ -79,6 +79,22 @@ export default function ServiceAdminBoardDetail() {
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
+  }
+
+  const getTechUserData = (data: string[] | null) => {
+    return data && data?.length > 0 ? (
+      data?.map((role: string) => (
+        <Typography variant="subtitle2" key={role}>
+          * {role}
+        </Typography>
+      ))
+    ) : (
+      <Typography variant="caption2" className="not-available">
+        {t(
+          'adminboardDetail.technicalUserSetup.noTechnicalUserProfilesAvailable'
+        )}
+      </Typography>
+    )
   }
 
   return (
@@ -148,7 +164,7 @@ export default function ServiceAdminBoardDetail() {
               {t(`adminboardDetail.documents.message`)}
             </Typography>
             {serviceData?.documents &&
-              Object.keys(serviceData.documents).map((item, i) => (
+              Object.keys(serviceData.documents).map((item) => (
                 <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
                   <span
                     style={{
@@ -156,13 +172,35 @@ export default function ServiceAdminBoardDetail() {
                       cursor: 'pointer',
                       color: '#0f71cb',
                     }}
-                    onClick={() => onDownload(serviceData.documents[item][i])}
+                    onClick={() => onDownload(serviceData.documents[item][0])}
                   >
                     <ArrowForwardIcon fontSize="small" />
-                    {serviceData.documents[item][i].documentName}
+                    {serviceData.documents[item][0]?.documentName}
                   </span>
                 </InputLabel>
               ))}
+          </div>
+
+          <div style={{ marginBottom: '60px' }}>
+            <Typography variant="h4">
+              {t('adminboardDetail.technicalUserSetup.heading')}
+            </Typography>
+            <Typography
+              variant="body2"
+              style={{
+                marginTop: '20px',
+              }}
+            >
+              {t('adminboardDetail.technicalUserSetup.message')}
+            </Typography>
+            <Grid container spacing={2} sx={{ margin: '30px 0' }}>
+              <Grid item xs={12} style={{ padding: '0px' }}>
+                {serviceData.technicalUserProfile &&
+                  getTechUserData(
+                    Object.values(serviceData?.technicalUserProfile)[0]
+                  )}
+              </Grid>
+            </Grid>
           </div>
 
           <div className="adminboard-provider">

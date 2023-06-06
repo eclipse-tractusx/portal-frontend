@@ -189,7 +189,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             <span key={useCase.id}> {useCase.label} </span>
           ))}
         </div>
-        <div className="language">
+        <div className="language mb-30">
           <Typography variant="caption2" className="head">
             {t('content.appdetail.language')}:{' '}
           </Typography>

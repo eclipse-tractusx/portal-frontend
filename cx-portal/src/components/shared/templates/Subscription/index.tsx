@@ -43,6 +43,11 @@ import { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
 import SortImage from 'components/shared/frame/SortImage'
 
+export enum SubscriptionTypes {
+  APP_SUBSCRIPTION = 'app',
+  SERVICE_SUBSCRIPTION = 'service',
+}
+
 enum FilterType {
   REQUEST = 'request',
   ACTIVE = 'active',
@@ -220,6 +225,7 @@ interface SubscriptionType {
   doNotShowAutoSetup?: boolean
   currentSuccessType: (state: RootState) => any
   loadMoreButtonText?: string
+  type?: string
 }
 
 export default function Subscription({
@@ -236,6 +242,7 @@ export default function Subscription({
   doNotShowAutoSetup,
   currentSuccessType,
   loadMoreButtonText = 'Load More',
+  type = SubscriptionTypes.APP_SUBSCRIPTION,
 }: SubscriptionType) {
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -464,7 +471,11 @@ export default function Subscription({
                 />
               </div>
             ) : (
-              <SubscriptionElements subscriptions={cardSubscriptions} />
+              <SubscriptionElements
+                type={type}
+                subscriptions={cardSubscriptions}
+                refetch={refetch}
+              />
             )}
           </div>
           {!isFetching &&

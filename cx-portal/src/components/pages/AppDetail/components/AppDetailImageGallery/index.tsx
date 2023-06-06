@@ -23,7 +23,7 @@ import { ImageGallery, ImageType } from 'cx-portal-shared-components'
 
 export default function AppDetailImage({ images }: { images: ImageType[] }) {
   return (
-    <div className="appdetail-gallery">
+    <div className="appdetail-gallery" id="image-gallery">
       <ImageGallery gallery={images} modalWidth="900" />
     </div>
   )

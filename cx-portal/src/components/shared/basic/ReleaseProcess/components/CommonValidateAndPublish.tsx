@@ -250,6 +250,28 @@ export default function CommonValidateAndPublish({
     }
   }
 
+  const getTechUserData = (data: string[] | null) => {
+    return data && data?.length > 0 ? (
+      data?.map((role: string) => (
+        <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
+          <Grid item xs={12}>
+            <Typography variant="subtitle2">* {role}</Typography>
+          </Grid>
+        </Grid>
+      ))
+    ) : (
+      <Grid container spacing={2} margin={'0px'}>
+        <Typography
+          variant="caption2"
+          className="not-available"
+          style={{ width: '100%' }}
+        >
+          {t('global.errors.noTechnicalUserProfilesAvailable')}
+        </Typography>
+      </Grid>
+    )
+  }
+
   return (
     <div className="validate-and-publish">
       <ReleaseStepHeader
@@ -519,6 +541,22 @@ export default function CommonValidateAndPublish({
             )}
           </>
         )}
+
+        {statusData?.technicalUserProfile &&
+          Object.values(statusData?.technicalUserProfile) && (
+            <>
+              <Divider className="verify-validate-form-divider" />
+              <Typography variant="h4" sx={{ mb: 4 }}>
+                {t('content.adminboardDetail.technicalUserSetup.heading')}
+              </Typography>
+              <Typography variant="body2" className="form-field">
+                {t('content.adminboardDetail.technicalUserSetup.message')}
+              </Typography>
+              {getTechUserData(
+                Object.values(statusData?.technicalUserProfile)[0]
+              )}
+            </>
+          )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>

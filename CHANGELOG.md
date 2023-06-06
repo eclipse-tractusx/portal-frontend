@@ -1,6 +1,56 @@
 # Changelog
 
-New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X Portal Frontend.
+## 1.5.0-RC1
+
+### Change
+* User Management
+   * app access management - api used to display app cards inside the user management 'App Access Management' reduced to single api call
+
+### Feature
+* App Release Process
+   * technical integration enhanced by technical user profile configuration
+   * technical user profile section added inside 'Validate and Publish' step
+* App Marketplace
+   * app detail page - sticky app detail sub-navigation added
+   * app detail page - technical user profile section added
+* App Admin Board
+   * app detail page - technical user profile section added
+* App Management Board
+   * app detail page - technical user profile section added
+* Service Release Process
+   * technical integration added incl. technical user profile configuration
+   * SERVICE_LEADIMAGE upload integrated
+   * delete document notification/toast message added
+* Service Marketplace
+   * service detail page - technical user profile section added
+* Service Admin Board
+   * service detail page - technical user profile section added
+* Service Management Board
+   * service detail page - technical user profile section added
+* Service subscription
+   * Subscription Activation api integration
+   * Subscription flow UI update
+* Shared Components
+   * about card for legal notice added
+* About page for legal notice
+   * About card added to Shared Components
+   * About page added and linked in footer component
+   * card component integrated in About page
+* Third-party-licenses page removed (replaced by About page)
+
+### Technical Support
+* About page
+   * enabled build and release workflows to provide content
+
+### Bugfix
+* App Release Process
+   * conformity document deletion missing error message in failure case
+* Registration Process
+   * 'add bpn overlay' - manually entering a bpn to an application did result into a load element on the 'add bpn overlay' of the next application (without page reload)
+* My Organization
+   * missing subscription details fetch from api fixed
+* Connectors
+   * Previously added data on 'add connector' overlay got not cleared in case of a success scenario
 
 ## 1.4.0
 
@@ -146,7 +196,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * updated business logic to consume use case data due to updated api response body style
 
 ## Known Knowns
-* Eslinter checks disabled in sever code sections related to the app release process
+* Eslinter checks disabled in several code sections related to the app release process
 * Sorting component behavior - preselected selects are not visible and active, hover, inactive state missing
 * App Release Process - step "Verify & Submit" - the app card language switch is impacting the language of the whole party instead of only updating the app card
 * Image zoom in results in the useCase/company introduction page is breaking in the background when user opens the zoom in function

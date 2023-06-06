@@ -39,7 +39,7 @@ export default function AppDetailProvider({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-provider">
+    <div className="appdetail-provider" id="provider-info">
       <div className="provider-content">
         <Typography variant="h4">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>

@@ -18,9 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from 'cx-portal-shared-components'
-import { useNavigate, useParams } from 'react-router-dom'
-import { t } from 'i18next'
+import { useParams } from 'react-router-dom'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import AppDetailContentDetails from './AppDetailContentDetails'
 import './AppDetail.scss'
@@ -29,7 +27,6 @@ import { currentSuccessType } from 'features/serviceMarketplace/slice'
 import { useEffect } from 'react'
 
 export default function AppDetail() {
-  const navigate = useNavigate()
   const { appId } = useParams()
   const { data, refetch } = useFetchAppDetailsQuery(appId ?? '')
 
@@ -39,12 +36,5 @@ export default function AppDetail() {
     refetch()
   }, [success, refetch])
 
-  return (
-    <main className="appdetail-main">
-      <Button color="secondary" size="small" onClick={() => navigate(-1)}>
-        {t('global.actions.back')}
-      </Button>
-      {data && <AppDetailContentDetails item={data} />}
-    </main>
-  )
+  return <>{data && <AppDetailContentDetails item={data} />}</>
 }

@@ -20,7 +20,6 @@
 
 import {
   IconButton,
-  LogoGrayData,
   UploadFileStatus,
   UploadStatus,
 } from 'cx-portal-shared-components'
@@ -51,10 +50,12 @@ import {
   CreateServiceStep1Item,
   ServiceTypeIdsType,
   useCreateServiceMutation,
-  useFetchNewDocumentByIdMutation,
+  useDeleteDocumentMutation,
+  useFetchDocumentMutation,
   useFetchServiceStatusQuery,
   useFetchServiceTypeIdsQuery,
   useSaveServiceMutation,
+  useUpdateServiceDocumentUploadMutation,
 } from 'features/serviceManagement/apiSlice'
 import {
   setServiceId,
@@ -62,6 +63,8 @@ import {
 } from 'features/serviceManagement/actions'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
+import { success, error } from 'services/NotifyService'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 type FormDataType = {
   title: string
@@ -83,13 +86,14 @@ export default function OfferCard() {
   const [serviceCardNotification, setServiceCardNotification] = useState(false)
   const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
   const serviceStatusData = useSelector(serviceStatusDataSelector)
-  const [fetchDocumentById] = useFetchNewDocumentByIdMutation()
-  const [cardImage, setCardImage] = useState(LogoGrayData)
+  const [fetchDocumentById] = useFetchDocumentMutation()
   const {
     data: fetchServiceStatus,
     isError,
     refetch,
-  } = useFetchServiceStatusQuery(serviceId ?? '')
+  } = useFetchServiceStatusQuery(serviceId ?? '', {
+    refetchOnMountOrArgChange: true,
+  })
   const [createService] = useCreateServiceMutation()
   const [saveService] = useSaveServiceMutation()
   const [defaultServiceTypeVal, setDefaultServiceTypeVal] = useState<
@@ -99,22 +103,23 @@ export default function OfferCard() {
   const serviceTypeIds = useMemo(() => serviceTypeData.data, [serviceTypeData])
   const [loading, setLoading] = useState<boolean>(false)
   const [showRetryOverlay, setShowRetryOverlay] = useState<boolean>(false)
+  const [imageData, setImageData] = useState({})
+  const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
+  const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
 
   useEffect(() => {
     setShowRetryOverlay(serviceId && isError ? true : false)
   }, [serviceId, isError])
 
+  useEffect(() => {
+    deleteResponse.isSuccess && success(t('documentDeleteSuccess'))
+    deleteResponse.isError && error(t('documentDeleteError'))
+  }, [deleteResponse, t])
+
   const defaultValues = useMemo(() => {
     return {
       title: fetchServiceStatus?.title,
-      serviceTypeIds: fetchServiceStatus?.serviceTypeIds.map(
-        (item: string, index: number) => {
-          return {
-            name: item,
-            serviceTypeId: index,
-          }
-        }
-      ),
+      serviceTypeIds: fetchServiceStatus?.serviceTypeIds,
       price: null,
       shortDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
@@ -127,11 +132,11 @@ export default function OfferCard() {
             serviceStatus.languageCode === 'de'
         )[0]?.shortDescription || '',
       uploadImage: {
-        leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
+        leadPictureUri: imageData,
         alt: fetchServiceStatus?.leadPictureUri || '',
       },
     }
-  }, [fetchServiceStatus, cardImage])
+  }, [fetchServiceStatus, imageData])
 
   const {
     handleSubmit,
@@ -149,19 +154,22 @@ export default function OfferCard() {
   const fetchCardImage = useCallback(
     async (documentId: string, documentName: string) => {
       try {
-        const response = await fetchDocumentById({
+        await fetchDocumentById({
           appId: serviceId,
           documentId,
         }).unwrap()
-        const file = response.data
-
         const setFileStatus = (status: UploadFileStatus) =>
           setValue('uploadImage.leadPictureUri', {
             name: documentName,
+            id: documentId,
             status,
           } as any)
         setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-        return setCardImage(URL.createObjectURL(file))
+        setImageData({
+          name: documentName,
+          id: documentId,
+          status: UploadStatus.UPLOAD_SUCCESS,
+        })
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
@@ -191,6 +199,32 @@ export default function OfferCard() {
     }
   }, [serviceStatusData, fetchCardImage])
 
+  const handleUploadDocument = (
+    appId: string,
+    uploadImageValue: DropzoneFile
+  ) => {
+    const setFileStatus = (status: UploadFileStatus) =>
+      setValue('uploadImage.leadPictureUri', {
+        id: uploadImageValue.id,
+        name: uploadImageValue.name,
+        size: uploadImageValue.size,
+        status,
+      } as any)
+
+    setFileStatus(UploadStatus.UPLOADING)
+    updateServiceDocumentUpload({
+      appId: appId,
+      documentTypeId: DocumentTypeId.SERVICE_LEADIMAGE,
+      body: { file: uploadImageValue },
+    })
+      .then(() => {
+        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+      })
+      .catch(() => {
+        setFileStatus(UploadStatus.UPLOAD_ERROR)
+      })
+  }
+
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     reset(defaultValues)
@@ -200,13 +234,16 @@ export default function OfferCard() {
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
     await saveService({
       id: serviceId,
       body: apiBody,
     })
       .unwrap()
       .then(() => {
-        //TO-DO API INTEGRATION UPLOAD SERVICE_LEADIMAGE
+        !uploadImageValue.id &&
+          handleUploadDocument(serviceId, uploadImageValue)
         dispatch(setServiceId(serviceId))
         buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
           dispatch(serviceReleaseStepIncrement())
@@ -224,6 +261,8 @@ export default function OfferCard() {
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
+    const uploadImageValue = getValues().uploadImage
+      .leadPictureUri as unknown as DropzoneFile
     await createService({
       id: '',
       body: apiBody,
@@ -231,7 +270,7 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          //TO-DO API INTEGRATION UPLOAD SERVICE_LEADIMAGE
+          !uploadImageValue.id && handleUploadDocument(result, uploadImageValue)
           dispatch(setServiceId(result))
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
@@ -442,6 +481,10 @@ export default function OfferCard() {
               note={t('serviceReleaseForm.note')}
               requiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
               isRequired={false}
+              handleDelete={(documentId: string) => {
+                setImageData({})
+                documentId && deleteDocument(documentId)
+              }}
             />
           </form>
         </Grid>
