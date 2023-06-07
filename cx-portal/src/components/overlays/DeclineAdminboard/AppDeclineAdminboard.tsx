@@ -57,7 +57,7 @@ export default function AppDeclineAdminboard({ id }: { id: string }) {
   return (
     <>
       <DeclineAdminBoard
-        handleConfirm={handleConfirm}
+        handleConfirm={() => void handleConfirm}
         confirmBtn={t('content.adminBoard.declineModal.confirm')}
         closeBtn={t('content.adminBoard.declineModal.close')}
         title={t('content.adminBoard.declineModal.title').replace(
