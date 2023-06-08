@@ -22,7 +22,7 @@ import { AdminData, UserDetail } from './types'
 
 const getAdminEmails = (adminData: AdminData[]) => {
   const emailArr: string[] = []
-  adminData.map((data) => emailArr.push(data.email))
+  adminData?.forEach((data) => emailArr.push(data.email))
   return emailArr
 }
 
@@ -57,7 +57,10 @@ export const userDetailsToCards = (
         value: parsedToken ? parsedToken.organisation : 'N/A',
       },
       adminName: { label: 'Admin Name', value: 'N/A' },
-      adminMail: { label: 'Admin E-Mail', value: getAdminEmails(user.admin) },
+      adminMail: {
+        label: 'Admin E-Mail',
+        value: user.admin?.length ? getAdminEmails(user.admin) : 'N/A',
+      },
     },
   },
 ]
