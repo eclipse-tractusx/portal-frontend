@@ -39,16 +39,20 @@ export default function ServiceDeclineAdminboard({ id }: { id: string }) {
   const [declineServiceRequest] = useDeclineServiceRequestMutation()
 
   const onConfirm = async (msg: string) => {
-    await declineServiceRequest({
-      appId: id,
-      message: msg,
-    })
+    try {
+      await declineServiceRequest({
+        appId: id,
+        message: msg,
+      })
       .unwrap()
       .then(() => {
         dispatch(setSuccessType(true))
       })
       .catch((error) => dispatch(setErrorType(true)))
-    dispatch(closeOverlay())
+      dispatch(closeOverlay())
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -59,7 +63,7 @@ export default function ServiceDeclineAdminboard({ id }: { id: string }) {
   return (
     <>
       <DeclineAdminBoard
-        handleConfirm={() => void (() => onConfirm)}
+        handleConfirm={() => void onConfirm}
         confirmBtn={t('adminBoard.declineModal.confirm')}
         closeBtn={t('adminBoard.declineModal.close')}
         title={t('adminBoard.declineModal.title').replace(
