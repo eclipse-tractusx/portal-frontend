@@ -18,7 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { UserDetail } from './types'
+import { AdminData, UserDetail } from './types'
+
+const getAdminEmails = (adminData: AdminData[]) => {
+  const emailArr: string[] = []
+  adminData.map((data) => emailArr.push(data.email))
+  return emailArr
+}
 
 export const userDetailsToCards = (
   user: UserDetail,
@@ -51,7 +57,7 @@ export const userDetailsToCards = (
         value: parsedToken ? parsedToken.organisation : 'N/A',
       },
       adminName: { label: 'Admin Name', value: 'N/A' },
-      adminMail: { label: 'Admin E-Mail', value: 'N/A' },
+      adminMail: { label: 'Admin E-Mail', value: getAdminEmails(user.admin) },
     },
   },
 ]
