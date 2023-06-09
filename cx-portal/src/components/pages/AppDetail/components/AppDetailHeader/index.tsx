@@ -88,7 +88,8 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       default:
         btnColor = {
           color:
-            user.roles.indexOf('subscribe_apps') !== -1
+            user.roles.indexOf('subscribe_apps') !== -1 &&
+            user.roles.indexOf('subscribe_service') !== -1
               ? 'primary'
               : 'secondary',
           background1: theme.palette.buttons.darkGrey ?? '',
@@ -122,17 +123,23 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         backgroundColor: btnColor.background3,
       },
     ]
+
     return (
       <OrderStatusButton
         label={getStatusLabel(subscribeStatus)}
         color={btnColor.color}
         buttonData={OrderStatusButtonItems}
         selectable={
-          subscribeStatus === SubscriptionStatus.INACTIVE ? true : false
+          subscribeStatus === SubscriptionStatus.INACTIVE &&
+          user.roles.indexOf('subscribe_apps') !== -1 &&
+          user.roles.indexOf('subscribe_service') !== -1
+            ? true
+            : false
         }
         onButtonClick={() =>
           subscribeStatus === SubscriptionStatus.INACTIVE &&
           user.roles.indexOf('subscribe_apps') !== -1 &&
+          user.roles.indexOf('subscribe_service') !== -1 &&
           dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
         }
       />
