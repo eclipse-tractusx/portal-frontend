@@ -36,6 +36,10 @@ import {
   useActivateSubscriptionMutation,
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
+import { Link } from 'react-router-dom'
+
+const ProfileHelpURL =
+  '/documentation/?path=docs%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
 
 export default function ActivateserviceSubscription({
   offerId,
@@ -126,7 +130,7 @@ export default function ActivateserviceSubscription({
                     company: companyName,
                   }}
                 >
-                  <Typography variant="body2">
+                  <Typography variant="caption2">
                     {isTechUser
                       ? t(
                           'serviceSubscription.activation.successDescriptionWithTechUser'
@@ -253,7 +257,7 @@ export default function ActivateserviceSubscription({
                     company: companyName,
                   }}
                 >
-                  <Typography variant="body2">
+                  <Typography variant="caption2">
                     {isTechUser
                       ? t(
                           'serviceSubscription.register.descriptionWithTechUser'
@@ -272,40 +276,16 @@ export default function ActivateserviceSubscription({
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
 
-                      <Typography variant="body2">
+                      <Typography variant="caption2">
                         {t('serviceSubscription.register.sectionDescription')}
                       </Typography>
                     </Box>
-                    <Box
-                      sx={{
-                        marginTop: '30px',
-                        display: 'flex',
-                        placeItems: 'center',
-                        placeContent: 'flex-start',
-                        cursor: 'pointer',
-                      }}
-                      onClick={() =>
-                        window.open(
-                          'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md',
-                          '_blank',
-                          'noopener'
-                        )
-                      }
-                    >
-                      <HelpOutlineIcon
-                        sx={{
-                          fontSize: '28px',
-                          color: '#0f71cb',
-                          marginRight: '10px',
-                        }}
-                      />
-                      <Typography
-                        variant="body1"
-                        sx={{ color: '#0f71cb', fontWeight: '600' }}
-                      >
+                    <Link to={ProfileHelpURL} target="_blank">
+                      <Typography variant="caption2" className="helpText">
+                        <HelpOutlineIcon />
                         {t('serviceSubscription.register.help')}
                       </Typography>
-                    </Box>
+                    </Link>
                     <Box
                       sx={{
                         marginTop: '30px',
@@ -316,11 +296,11 @@ export default function ActivateserviceSubscription({
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
                       {techUserProfiles.length > 0 ? (
-                        <Typography variant="body2">
+                        <Typography variant="caption2">
                           {techUserProfiles.join(', ')}
                         </Typography>
                       ) : (
-                        <Typography variant="body2">
+                        <Typography variant="caption2">
                           {t('serviceSubscription.register.loading')}
                         </Typography>
                       )}

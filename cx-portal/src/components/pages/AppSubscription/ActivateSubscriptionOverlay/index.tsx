@@ -43,6 +43,7 @@ import './style.scss'
 import { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
+import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
 
 const TentantHelpURL =
   '/documentation/?path=docs%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
@@ -179,14 +180,21 @@ const ActivateSubscriptionOverlay = ({
             },
           }}
         >
-          <DialogHeader
+          <CustomDialogHeader
             title={t('content.appSubscription.activation.heading')}
-            intro={t('content.appSubscription.activation.intro').replace(
+            icon={false}
+            subtitle={t('content.appSubscription.activation.intro').replace(
               '{{companyName}}',
               title
             )}
-            closeWithIcon={true}
-            onCloseWithIcon={() => handleOverlayClose()}
+            additionalContainerStyles={{
+              display: 'flex',
+              placeContent: 'flex-start',
+              placeItems: 'center',
+            }}
+            additionalTitleStyles={{
+              paddingLeft: '10px',
+            }}
           />
           <DialogContent>
             <div className="appSubscriptionMain">
@@ -216,7 +224,7 @@ const ActivateSubscriptionOverlay = ({
                   </Typography>
                 </li>
               </ol>
-              <Typography variant="h4">
+              <Typography variant="h3" className="addTentalURLHeading">
                 {t('content.appSubscription.activation.addTentalURLHeading')}
               </Typography>
               <Typography variant="caption2">
@@ -238,43 +246,36 @@ const ActivateSubscriptionOverlay = ({
                 value={inputURL}
               />
               <p>{URLErrorMsg}</p>
-
-              {inputURL && URLErrorMsg === '' && (
-                <div className="mt-30">
-                  <Typography variant="h4">
-                    {t(
-                      'content.appSubscription.activation.technicalUserDetailsHeading'
-                    )}
-                  </Typography>
-                  <Typography variant="caption3">
-                    {t(
-                      'content.appSubscription.activation.technicalUserDetailsDescription'
-                    )}
-                  </Typography>
-                  <Link to={ProfileHelpURL} target="_blank">
-                    <Typography variant="caption2" className="helpText">
-                      <HelpOutlineIcon />
-                      {t('pages.help')}
+              <Typography variant="h3" className="addTentalURLHeading">
+                {t(
+                  'content.appSubscription.activation.technicalUserDetailsHeading'
+                )}
+              </Typography>
+              <Typography variant="caption2">
+                {t(
+                  'content.appSubscription.activation.technicalUserDetailsDescription'
+                )}
+              </Typography>
+              <Link to={ProfileHelpURL} target="_blank">
+                <Typography variant="caption2" className="helpText">
+                  <HelpOutlineIcon />
+                  {t('pages.help')}
+                </Typography>
+              </Link>
+              <div className="technicalUserProfile">
+                <Typography variant="h3">
+                  {t(
+                    'content.appSubscription.activation.technicalUserProfileHeading'
+                  )}
+                </Typography>
+                {data?.map((profiles) => {
+                  return profiles.userRoles?.map((userRole) => (
+                    <Typography variant="caption2" key={userRole.roleId}>
+                      {userRole.roleName}
                     </Typography>
-                  </Link>
-                  <div className="technicalUserProfile">
-                    <Typography variant="h5">
-                      {t(
-                        'content.appSubscription.activation.technicalUserProfileHeading'
-                      )}
-                    </Typography>
-                    <Typography variant="caption3">
-                      {data?.map((profiles) => {
-                        return profiles.userRoles?.map((userRole) => (
-                          <Typography variant="caption3" key={userRole.roleId}>
-                            {userRole.roleName}
-                          </Typography>
-                        ))
-                      })}
-                    </Typography>
-                  </div>
-                </div>
-              )}
+                  ))
+                })}
+              </div>
             </div>
           </DialogContent>
           <DialogActions>
