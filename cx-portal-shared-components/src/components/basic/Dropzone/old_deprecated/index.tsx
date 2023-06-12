@@ -182,7 +182,7 @@ class DropzoneOldDEPRECATED extends React.Component<
   // expects an array of File objects
   handleFiles = (files: File[]) => {
     files.forEach(
-      (f, i) => void this.handleFile(f, `${new Date().getTime()}-${i}`)
+      (f, i) => void this.handleFile(f, `${Date.now()}-${i}`)
     )
     const { current } = this.dropzone
     if (current)
