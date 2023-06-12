@@ -78,7 +78,12 @@ export const UserDetailCard = ({
   ) => (
     <>
       <strong>{value?.label}:</strong>&nbsp;
-      <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+      <span
+        style={{
+          marginLeft: variant === 'wide' ? 'auto' : '',
+          display: 'inline-grid',
+        }}
+      >
         {Array.isArray(value?.value)
           ? value?.value.map((bpn, i) => (
               <span key={i}>

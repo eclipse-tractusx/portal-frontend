@@ -31,6 +31,12 @@ export type UserDetail = {
   created: string
   company: string
   status: string
+  admin: AdminData[]
+}
+
+export type AdminData = {
+  id: string
+  email: string
 }
 
 export const InitialUserDetail = {
@@ -42,6 +48,7 @@ export const InitialUserDetail = {
   created: '',
   company: '',
   status: '',
+  admin: [],
 }
 
 export type AdminUserDetailState = {
