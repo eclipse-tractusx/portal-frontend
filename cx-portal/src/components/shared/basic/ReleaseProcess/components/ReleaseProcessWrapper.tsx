@@ -74,6 +74,8 @@ export default function ReleaseProcessWrapper({
   onAppsOverviewClick,
 }: ReleaseProcessWrapperType) {
   const [showSubmitPage, setShowSubmitPage] = useState(false)
+  const [skipTechnicalIntegrationStep, setSkipTechnicalIntegrationStep] =
+    useState(false)
   const activeStep: number = useSelector(currentActiveStep)
   const serviceActiveStep: number = useSelector(serviceReleaseActiveStep)
 
@@ -88,18 +90,28 @@ export default function ReleaseProcessWrapper({
         return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
     } else {
       if (serviceActiveStep === 1) return <OfferCard />
-      else if (serviceActiveStep === 2) return <OfferPage />
+      else if (serviceActiveStep === 2)
+        return (
+          <OfferPage
+            skipTechnicalIntegrationStep={setSkipTechnicalIntegrationStep}
+          />
+        )
       else if (serviceActiveStep === 3) return <OfferContractAndConsent />
-      else if (serviceActiveStep === 4) return <OfferTechnicalIntegration />
-      else if (serviceActiveStep === 5)
-        return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+      if (skipTechnicalIntegrationStep) {
+        if (serviceActiveStep === 4)
+          return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+      } else {
+        if (serviceActiveStep === 4) return <OfferTechnicalIntegration />
+        else if (serviceActiveStep === 5)
+          return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+      }
     }
-  }, [activeStep, serviceActiveStep, processType])
+  }, [activeStep, serviceActiveStep, processType, skipTechnicalIntegrationStep])
 
   useEffect(() => {
     activePage()
     window.scrollTo(0, 0)
-  }, [activePage])
+  }, [activePage, skipTechnicalIntegrationStep])
 
   return (
     <div className="app-release-process-form">
