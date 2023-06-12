@@ -97,14 +97,12 @@ export default function ReleaseProcessWrapper({
           />
         )
       else if (serviceActiveStep === 3) return <OfferContractAndConsent />
-      if (skipTechnicalIntegrationStep) {
-        if (serviceActiveStep === 4)
-          return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
-      } else {
-        if (serviceActiveStep === 4) return <OfferTechnicalIntegration />
-        else if (serviceActiveStep === 5)
-          return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
-      }
+      else if (skipTechnicalIntegrationStep && serviceActiveStep === 4)
+        return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+      if (!skipTechnicalIntegrationStep && serviceActiveStep === 4)
+        return <OfferTechnicalIntegration />
+      else if (!skipTechnicalIntegrationStep && serviceActiveStep === 5)
+        return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
     }
   }, [activeStep, serviceActiveStep, processType, skipTechnicalIntegrationStep])
 
