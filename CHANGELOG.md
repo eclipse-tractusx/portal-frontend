@@ -7,6 +7,8 @@
    * Add App Filter Search Functionality
 * App Release Process
    * validate and publish style updates
+* User Account & My User Account
+   * Add Admin Info
 * App Detail
    * Subscribe Button - wrong state
 

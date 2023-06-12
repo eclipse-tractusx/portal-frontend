@@ -71,6 +71,12 @@ export interface TenantUserDetails extends TenantUser {
   bpn: string[]
   company: string
   assignedRoles: UserAppRoles[]
+  admin: AdminData[]
+}
+
+export type AdminData = {
+  id: string
+  email: string
 }
 
 export interface CompanyDetails {
