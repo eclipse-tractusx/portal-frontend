@@ -269,7 +269,7 @@ export default function RegistrationRequests() {
           fetchHook={useFetchCompanySearchQuery}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
-          handleDownloadDocument={() => void handleDownloadClick}
+          handleDownloadDocument={handleDownloadClick}
           showConfirmOverlay={(id: string) => {
             setSelectedRequestId(id)
             setEnableBpnInput(true)
