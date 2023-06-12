@@ -7,6 +7,8 @@
    * Add App Filter Search Functionality
 * App Release Process
    * validate and publish style updates
+* App Detail
+   * Subscribe Button - wrong state
 
 ## 1.5.0-RC1
 
