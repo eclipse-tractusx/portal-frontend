@@ -176,12 +176,12 @@ class DropzoneOldDEPRECATED extends React.Component<
     fileWithMeta.meta.percent = 0
     this.handleChangeStatus(fileWithMeta)
     this.forceUpdate()
-    this.uploadFile(fileWithMeta)
+    void this.uploadFile(fileWithMeta)
   }
 
   // expects an array of File objects
   handleFiles = (files: File[]) => {
-    files.forEach((f, i) => this.handleFile(f, `${new Date().getTime()}-${i}`))
+    files.forEach((f, i) => void this.handleFile(f, `${Date.now()}-${i}`))
     const { current } = this.dropzone
     if (current)
       setTimeout(
@@ -258,7 +258,7 @@ class DropzoneOldDEPRECATED extends React.Component<
 
     if (getUploadParams) {
       if (autoUpload) {
-        this.uploadFile(fileWithMeta)
+        void this.uploadFile(fileWithMeta)
         fileWithMeta.meta.status = 'getting_upload_params'
       } else {
         fileWithMeta.meta.status = 'ready'
