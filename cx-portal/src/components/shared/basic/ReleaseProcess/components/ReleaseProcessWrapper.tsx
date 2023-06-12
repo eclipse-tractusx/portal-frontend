@@ -74,32 +74,50 @@ export default function ReleaseProcessWrapper({
   onAppsOverviewClick,
 }: ReleaseProcessWrapperType) {
   const [showSubmitPage, setShowSubmitPage] = useState(false)
+  const [skipTechnicalIntegrationStep, setSkipTechnicalIntegrationStep] =
+    useState(false)
   const activeStep: number = useSelector(currentActiveStep)
   const serviceActiveStep: number = useSelector(serviceReleaseActiveStep)
 
+  const appReleaseSteps = useCallback(() => {
+    if (activeStep === 1) return <AppMarketCard />
+    else if (activeStep === 2) return <AppPage />
+    else if (activeStep === 3) return <ContractAndConsent />
+    else if (activeStep === 4) return <TechnicalIntegration />
+    else if (activeStep === 5) return <BetaTest />
+    else if (activeStep === 6)
+      return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+  }, [activeStep])
+
+  const serviceReleaseSteps = useCallback(() => {
+    if (serviceActiveStep === 1) return <OfferCard />
+    else if (serviceActiveStep === 2)
+      return (
+        <OfferPage
+          skipTechnicalIntegrationStep={setSkipTechnicalIntegrationStep}
+        />
+      )
+    else if (serviceActiveStep === 3) return <OfferContractAndConsent />
+    else if (skipTechnicalIntegrationStep && serviceActiveStep === 4)
+      return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+    else if (!skipTechnicalIntegrationStep && serviceActiveStep === 4)
+      return <OfferTechnicalIntegration />
+    else if (!skipTechnicalIntegrationStep && serviceActiveStep === 5)
+      return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+  }, [serviceActiveStep, skipTechnicalIntegrationStep])
+
   const activePage = useCallback(() => {
     if (processType === ReleaseProcessTypes.APP_RELEASE) {
-      if (activeStep === 1) return <AppMarketCard />
-      else if (activeStep === 2) return <AppPage />
-      else if (activeStep === 3) return <ContractAndConsent />
-      else if (activeStep === 4) return <TechnicalIntegration />
-      else if (activeStep === 5) return <BetaTest />
-      else if (activeStep === 6)
-        return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
+      appReleaseSteps()
     } else {
-      if (serviceActiveStep === 1) return <OfferCard />
-      else if (serviceActiveStep === 2) return <OfferPage />
-      else if (serviceActiveStep === 3) return <OfferContractAndConsent />
-      else if (serviceActiveStep === 4) return <OfferTechnicalIntegration />
-      else if (serviceActiveStep === 5)
-        return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
+      serviceReleaseSteps()
     }
-  }, [activeStep, serviceActiveStep, processType])
+  }, [appReleaseSteps, processType, serviceReleaseSteps])
 
   useEffect(() => {
     activePage()
     window.scrollTo(0, 0)
-  }, [activePage])
+  }, [activePage, skipTechnicalIntegrationStep])
 
   return (
     <div className="app-release-process-form">

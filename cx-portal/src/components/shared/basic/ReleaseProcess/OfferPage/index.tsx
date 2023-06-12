@@ -45,6 +45,7 @@ import {
   serviceIdSelector,
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
+  serviceStatusDataSelector,
 } from 'features/serviceManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -62,7 +63,11 @@ type FormDataType = {
   providerContactEmail: string
 }
 
-export default function OfferPage() {
+export default function OfferPage({
+  skipTechnicalIntegrationStep,
+}: {
+  skipTechnicalIntegrationStep: (val: boolean) => void
+}) {
   const { t } = useTranslation('servicerelease')
   const [appPageNotification, setServicePageNotification] = useState(false)
   const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
@@ -79,6 +84,7 @@ export default function OfferPage() {
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
+  const serviceStatusData = useSelector(serviceStatusDataSelector)
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -243,6 +249,11 @@ export default function OfferPage() {
         dispatch(serviceReleaseStepIncrement())
       buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
       refetch()
+      serviceStatusData?.serviceTypeIds.every((item) =>
+        ['CONSULTANCE_SERVICE']?.includes(item)
+      )
+        ? skipTechnicalIntegrationStep(true)
+        : skipTechnicalIntegrationStep(false)
     } catch (error) {
       setServicePageNotification(true)
     }
