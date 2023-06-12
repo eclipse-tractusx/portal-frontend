@@ -125,7 +125,7 @@ export default function AddServiceProvider() {
           <Button
             variant="contained"
             onClick={() => {
-              addURL()
+              void addURL()
             }}
             disabled={UrlErrorMsg !== '' || !inputURL}
           >

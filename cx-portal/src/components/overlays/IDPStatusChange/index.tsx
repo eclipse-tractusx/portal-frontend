@@ -126,7 +126,7 @@ function IDPStatusChange({
     }
   }
 
-  const retry = () => handleStatusChange()
+  const retry = () => void handleStatusChange()
 
   return (
     <>

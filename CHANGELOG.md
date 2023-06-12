@@ -9,6 +9,8 @@
    * validate and publish style updates
 * User Account & My User Account
    * Add Admin Info
+* App Detail
+   * Subscribe Button - wrong state
 
 ## 1.5.0-RC1
 
