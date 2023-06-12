@@ -326,9 +326,9 @@ export default function OfferCard() {
     if (validateFields) {
       setLoading(true)
       if (serviceId) {
-        handleSave(apiBody, buttonLabel)
+        void handleSave(apiBody, buttonLabel)
       } else {
-        handleCreate(apiBody, buttonLabel)
+        void handleCreate(apiBody, buttonLabel)
       }
     }
   }

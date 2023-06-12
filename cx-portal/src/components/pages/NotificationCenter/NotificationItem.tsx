@@ -223,7 +223,7 @@ export default function NotificationItem({
   const toggle = async () => {
     const nextState = !open
     if (nextState && !item.isRead) {
-      setRead(item.id)
+      void setRead(item.id)
     }
     setOpen(nextState)
   }
@@ -254,7 +254,7 @@ export default function NotificationItem({
             setShowDeleteModal(false)
             e.stopPropagation()
           }}
-          handleCallback={() => onDelete()}
+          handleCallback={() => void onDelete()}
           loading={loading}
         />
       )}

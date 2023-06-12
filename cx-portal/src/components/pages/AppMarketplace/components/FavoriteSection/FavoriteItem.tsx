@@ -50,7 +50,7 @@ export default function FavoriteItem({
 
   useEffect(() => {
     if (item?.leadPictureId) {
-      fetchImage(item?.leadPictureId)
+      void fetchImage(item?.leadPictureId)
     }
     // eslint-disable-next-line
   }, [])

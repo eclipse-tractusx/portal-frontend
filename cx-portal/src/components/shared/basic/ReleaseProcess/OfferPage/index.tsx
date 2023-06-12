@@ -200,7 +200,7 @@ export default function OfferPage() {
     ])
     if (validateFields) {
       setLoading(true)
-      handleSave(data, buttonLabel)
+      void handleSave(data, buttonLabel)
     }
   }
 

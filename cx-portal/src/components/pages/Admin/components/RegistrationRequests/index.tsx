@@ -241,7 +241,7 @@ export default function RegistrationRequests() {
           setIsLoading(false)
           setEnableBpnInput(false)
         }}
-        handleConfirmClick={(bpn: string) => onUpdateBpn(bpn)}
+        handleConfirmClick={(bpn: string) => void onUpdateBpn(bpn)}
       />
 
       <div
@@ -269,7 +269,7 @@ export default function RegistrationRequests() {
           fetchHook={useFetchCompanySearchQuery}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
-          handleDownloadDocument={handleDownloadClick}
+          handleDownloadDocument={() => void handleDownloadClick}
           showConfirmOverlay={(id: string) => {
             setSelectedRequestId(id)
             setEnableBpnInput(true)

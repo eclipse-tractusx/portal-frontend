@@ -341,7 +341,7 @@ const CompanyDetailOverlay = ({
                                     paddingLeft: '10px',
                                   }}
                                   onClick={() => {
-                                    downloadDocument(
+                                    void downloadDocument(
                                       contract.documentId,
                                       contract.documentType
                                     )

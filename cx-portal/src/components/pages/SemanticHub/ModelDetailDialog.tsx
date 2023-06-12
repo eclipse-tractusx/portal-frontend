@@ -100,6 +100,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
             setDiagram(URL.createObjectURL(result))
           }
         })
+        .catch((err) => {
+          console.log(err)
+        })
       setShowDeleteBtn(
         UserService.hasRole(ROLES.SEMANTICHUB_DELETE) &&
           model.status === Status.Draft

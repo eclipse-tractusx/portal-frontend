@@ -69,7 +69,9 @@ export const UserDetailCard = ({
 
   const copyText = (value: any) => {
     setCopied(true)
-    navigator.clipboard.writeText(value)
+    navigator.clipboard.writeText(value).catch((err) => {
+      console.log(err)
+    })
   }
 
   const renderValue = (

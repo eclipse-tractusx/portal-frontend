@@ -73,7 +73,7 @@ export default function ItemProcessor({
   }
 
   useEffect(() => {
-    if (autostart) processNextItem()
+    if (autostart) void processNextItem()
     // eslint-disable-next-line
   }, [queueItems])
 

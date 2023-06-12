@@ -41,9 +41,13 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
   useEffect(() => {
     if (item) {
       const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
-      Promise.all(newPromies).then((result) => {
-        setImages(result.flat())
-      })
+      Promise.all(newPromies)
+        .then((result) => {
+          setImages(result.flat())
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }, [item])
 

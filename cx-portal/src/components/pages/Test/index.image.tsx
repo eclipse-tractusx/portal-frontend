@@ -35,9 +35,13 @@ export default function ImageTest() {
   useEffect(() => {
     fetchImageWithToken(
       'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.png'
-    ).then((buffer) =>
-      setData(URL.createObjectURL(new Blob([buffer], { type: 'image/png' })))
     )
+      .then((buffer) =>
+        setData(URL.createObjectURL(new Blob([buffer], { type: 'image/png' })))
+      )
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
   console.log(data)

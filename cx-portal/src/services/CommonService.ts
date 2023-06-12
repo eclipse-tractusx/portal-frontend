@@ -67,6 +67,9 @@ const fetchLeadPictureImage = (data: any[]) => {
                 reader.readAsDataURL(blob)
               })
           )
+          .catch((err) => {
+            console.log(err)
+          })
       }),
     ]
   })
@@ -129,6 +132,9 @@ const getCompanyRoles = (callback: any) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 const getUseCases = (callback: any) => {
@@ -136,6 +142,9 @@ const getUseCases = (callback: any) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 const getRoleDescription = (callback: any) => {
@@ -143,6 +152,9 @@ const getRoleDescription = (callback: any) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 const getCompanyRoleUpdateData = (callback: any) => {

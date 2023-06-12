@@ -69,9 +69,13 @@ export default function AppListSection() {
   useEffect(() => {
     if (data) {
       const newPromies = CommonService.fetchLeadPictureImage(data)
-      Promise.all(newPromies).then((result) => {
-        setCards(result.flat())
-      })
+      Promise.all(newPromies)
+        .then((result) => {
+          setCards(result.flat())
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
     // eslint-disable-next-line
   }, [data])

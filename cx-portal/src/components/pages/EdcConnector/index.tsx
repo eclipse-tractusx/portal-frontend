@@ -279,7 +279,7 @@ const EdcConnector = () => {
         handleOverlayClose={closeAndResetModalState}
         connectorStep={addConnectorOverlayCurrentStep}
         handleConfirmClick={onConfirmClick}
-        onFormConfirmClick={onFormSubmit}
+        onFormConfirmClick={() => void onFormSubmit}
         loading={loading}
         onStepChange={onStepChange}
       />
