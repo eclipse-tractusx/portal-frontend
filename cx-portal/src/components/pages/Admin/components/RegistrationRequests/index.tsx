@@ -241,7 +241,7 @@ export default function RegistrationRequests() {
           setIsLoading(false)
           setEnableBpnInput(false)
         }}
-        handleConfirmClick={(bpn: string) => onUpdateBpn(bpn)}
+        handleConfirmClick={(bpn: string) => void onUpdateBpn(bpn)}
       />
 
       <div

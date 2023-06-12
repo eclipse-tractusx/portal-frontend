@@ -154,7 +154,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   useEffect(() => {
     if (item?.leadPictureId) {
       const id = CommonService.isValidPictureId(item?.leadPictureId)
-      getImage(id)
+      void getImage(id)
     }
     // eslint-disable-next-line
   }, [])

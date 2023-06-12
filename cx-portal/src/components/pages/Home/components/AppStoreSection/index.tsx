@@ -36,9 +36,13 @@ export default function AppStoreSection() {
     if (data) {
       const items = data?.filter((app, index) => index < 4)
       const newPromies = CommonService.fetchLeadPictureImage(items)
-      Promise.all(newPromies).then((result) => {
-        setCardsData(result.flat())
-      })
+      Promise.all(newPromies)
+        .then((result) => {
+          setCardsData(result.flat())
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
     // eslint-disable-next-line
   }, [data])

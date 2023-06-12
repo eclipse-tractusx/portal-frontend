@@ -57,7 +57,7 @@ export const useApiGet = (url: string): TApiResponse => {
       }
       setLoading(false)
     }
-    getAPIData()
+    void getAPIData()
   }, [url])
 
   return { status, statusText, data, error, loading }

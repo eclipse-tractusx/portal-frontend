@@ -179,9 +179,13 @@ export default function CommonValidateAndPublish({
         statusData?.documents?.APP_IMAGE,
         id
       )
-      Promise.all(newPromies).then((result) => {
-        setMultipleImages(result.flat())
-      })
+      Promise.all(newPromies)
+        .then((result) => {
+          setMultipleImages(result.flat())
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
     setDefaultValues(values)
     reset(values)
