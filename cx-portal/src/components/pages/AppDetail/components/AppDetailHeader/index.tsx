@@ -38,7 +38,7 @@ import { UseCaseType } from 'features/appManagement/types'
 
 enum Roles {
   SUBSCRIBE_APPS = 'subscribe_apps',
-  SUBSCRIBE_SERVICE = 'subscribe_service'
+  SUBSCRIBE_SERVICE = 'subscribe_service',
 }
 
 export interface AppDetailHeaderProps {
