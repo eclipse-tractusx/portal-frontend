@@ -463,8 +463,8 @@ class DropzoneOldDEPRECATED extends React.Component<
           ref: this.dropzone,
           className,
           style: style as React.CSSProperties,
-          onDragEnter: this.handleDragEnter,
-          onDragOver: this.handleDragOver,
+          onDragEnter: (e) => void this.handleDragEnter(e),
+          onDragOver: (e) => void this.handleDragOver(e),
           onDragLeave: this.handleDragLeave,
           onDrop: dropzoneDisabled ? this.handleDropDisabled : this.handleDrop,
         }}
