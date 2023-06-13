@@ -22,6 +22,11 @@ import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
 import UserService from './UserService'
 
+export interface LeadPictureResponse {
+  url: string | ArrayBuffer | null
+  text: ''
+}
+
 const getName = (app: any) => app.name ?? ''
 const getDescription = (app: any) =>
   app.shortDescription === 'ERROR' ? '' : app.shortDescription
@@ -34,7 +39,7 @@ const getPrice = (app: any) => (app.price === 'ERROR' ? '' : app.price)
 const fetchLeadPictureImage = (data: any[]) => {
   const promises = data?.map((app: any) => {
     return [
-      new Promise((resolve, reject) => {
+      new Promise<void>((resolve, reject) => {
         let url = `${getApiBase()}/api/apps/${
           app.id
         }/appDocuments/${isValidPictureId(app.leadPictureId)}`
@@ -81,7 +86,7 @@ const fetchLeadPictureImage = (data: any[]) => {
 const fetchLeadPictures = (images: string[], appId: string) => {
   const promises = images?.map((image: any) => {
     return [
-      new Promise((resolve, reject) => {
+      new Promise<LeadPictureResponse>((resolve, reject) => {
         let url = ''
         if (!image.documentId) {
           url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
