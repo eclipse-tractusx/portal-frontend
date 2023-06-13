@@ -101,8 +101,8 @@ const fetchLeadPictures = (images: string[], appId: string) => {
         })
           .then((response) => response.blob())
           .then(
-            (blob) =>
-              new Promise((callback) => {
+            async (blob) =>
+              await new Promise((callback) => {
                 let reader = new FileReader()
                 reader.onload = function () {
                   resolve({
