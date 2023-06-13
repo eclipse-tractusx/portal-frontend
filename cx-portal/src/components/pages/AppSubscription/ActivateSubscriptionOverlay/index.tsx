@@ -194,6 +194,7 @@ const ActivateSubscriptionOverlay = ({
             }}
             additionalTitleStyles={{
               paddingLeft: '10px',
+              fontSize: '24px',
             }}
           />
           <DialogContent>
@@ -224,7 +225,7 @@ const ActivateSubscriptionOverlay = ({
                   </Typography>
                 </li>
               </ol>
-              <Typography variant="h3" className="addTentalURLHeading">
+              <Typography variant="h4" className="addTentalURLHeading">
                 {t('content.appSubscription.activation.addTentalURLHeading')}
               </Typography>
               <Typography variant="caption2">
@@ -246,7 +247,7 @@ const ActivateSubscriptionOverlay = ({
                 value={inputURL}
               />
               <p>{URLErrorMsg}</p>
-              <Typography variant="h3" className="addTentalURLHeading">
+              <Typography variant="h4" className="addTentalURLHeading">
                 {t(
                   'content.appSubscription.activation.technicalUserDetailsHeading'
                 )}
@@ -263,7 +264,7 @@ const ActivateSubscriptionOverlay = ({
                 </Typography>
               </Link>
               <div className="technicalUserProfile">
-                <Typography variant="h3">
+                <Typography variant="h4">
                   {t(
                     'content.appSubscription.activation.technicalUserProfileHeading'
                   )}

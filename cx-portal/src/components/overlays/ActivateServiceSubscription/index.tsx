@@ -236,6 +236,7 @@ export default function ActivateserviceSubscription({
               }}
               additionalTitleStyles={{
                 paddingLeft: '10px',
+                fontSize: '24px',
               }}
             />
             <DialogContent>
@@ -272,7 +273,7 @@ export default function ActivateserviceSubscription({
                         marginTop: '30px',
                       }}
                     >
-                      <Typography variant="h3" sx={{ marginBottom: '20px' }}>
+                      <Typography variant="h4" sx={{ marginBottom: '20px' }}>
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
 
@@ -292,7 +293,7 @@ export default function ActivateserviceSubscription({
                         marginLeft: '30px',
                       }}
                     >
-                      <Typography variant="h3" sx={{ marginBottom: '20px' }}>
+                      <Typography variant="h4" sx={{ marginBottom: '20px' }}>
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
                       {techUserProfiles.length > 0 ? (
