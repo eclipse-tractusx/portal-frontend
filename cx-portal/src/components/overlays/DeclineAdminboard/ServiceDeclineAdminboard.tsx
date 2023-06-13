@@ -59,7 +59,7 @@ export default function ServiceDeclineAdminboard({ id }: { id: string }) {
   return (
     <>
       <DeclineAdminBoard
-        handleConfirm={onConfirm}
+        handleConfirm={(msg) => void onConfirm(msg)}
         confirmBtn={t('adminBoard.declineModal.confirm')}
         closeBtn={t('adminBoard.declineModal.close')}
         title={t('adminBoard.declineModal.title').replace(
