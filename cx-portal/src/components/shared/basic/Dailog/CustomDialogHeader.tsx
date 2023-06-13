@@ -70,7 +70,7 @@ export const CustomDialogHeader = ({
       )}
       {subtitle && (
         <Box sx={{ textAlign: 'left', margin: '20px 10px' }}>
-          <Typography variant="caption1">{subtitle}</Typography>
+          <Typography variant="label2">{subtitle}</Typography>
         </Box>
       )}
     </Box>
