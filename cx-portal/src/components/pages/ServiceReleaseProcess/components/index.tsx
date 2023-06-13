@@ -20,9 +20,12 @@
 
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/components/ReleaseProcessWrapper'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
-import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+import {
+  serviceStatusDataSelector,
+  setServiceReleaseActiveStep,
+} from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 export default function ServiceReleaseProcessForm() {
@@ -34,6 +37,26 @@ export default function ServiceReleaseProcessForm() {
     navigate(`/serviceoverview`)
     dispatch(setServiceReleaseActiveStep())
   }
+  const serviceStatusData = useSelector(serviceStatusDataSelector)
+
+  const stepsListWithoutTechnicalIntegration = [
+    {
+      headline: t('stepper.marketCard'),
+      step: 1,
+    },
+    {
+      headline: t('stepper.servicePage'),
+      step: 2,
+    },
+    {
+      headline: t('stepper.contractAndConsent'),
+      step: 3,
+    },
+    {
+      headline: t('stepper.validateAndPublish'),
+      step: 4,
+    },
+  ]
 
   const stepsList = [
     {
@@ -62,8 +85,22 @@ export default function ServiceReleaseProcessForm() {
     <ReleaseProcessWrapper
       processType={ReleaseProcessTypes.SERVICE_RELEASE}
       onAppsOverviewClick={() => onServiceOverviewClick()}
-      stepsList={stepsList}
-      numberOfSteps={5}
+      stepsList={
+        serviceStatusData?.serviceTypeIds.length > 0 &&
+        serviceStatusData?.serviceTypeIds.every((item) =>
+          ['CONSULTANCE_SERVICE']?.includes(item)
+        )
+          ? stepsListWithoutTechnicalIntegration
+          : stepsList
+      }
+      numberOfSteps={
+        serviceStatusData?.serviceTypeIds.length > 0 &&
+        serviceStatusData?.serviceTypeIds.every((item) =>
+          ['CONSULTANCE_SERVICE']?.includes(item)
+        )
+          ? 4
+          : 5
+      }
       pageHeaderTitle={t('headerTitle')}
       headerTitle={t('submit.headerTitle')}
       headerDescription={t('submit.headerDescription')}
