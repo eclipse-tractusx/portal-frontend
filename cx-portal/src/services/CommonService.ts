@@ -22,11 +22,6 @@ import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
 import UserService from './UserService'
 
-export type LeadPicturesResponse = {
-  url: string | ArrayBuffer | null
-  text: string
-}
-
 const getName = (app: any) => app.name ?? ''
 const getDescription = (app: any) =>
   app.shortDescription === 'ERROR' ? '' : app.shortDescription
@@ -39,7 +34,7 @@ const getPrice = (app: any) => (app.price === 'ERROR' ? '' : app.price)
 const fetchLeadPictureImage = (data: any[]) => {
   const promises = data?.map((app: any) => {
     return [
-      new Promise<void>((resolve, reject) => {
+      new Promise((resolve, reject) => {
         let url = `${getApiBase()}/api/apps/${
           app.id
         }/appDocuments/${isValidPictureId(app.leadPictureId)}`
@@ -52,8 +47,8 @@ const fetchLeadPictureImage = (data: any[]) => {
         return fetch(url, options)
           .then((response) => response.blob())
           .then(
-            (blob) =>
-              new Promise((callback) => {
+            async (blob) =>
+              await new Promise((callback) => {
                 let reader = new FileReader()
                 reader.onload = function () {
                   resolve({
@@ -86,7 +81,7 @@ const fetchLeadPictureImage = (data: any[]) => {
 const fetchLeadPictures = (images: string[], appId: string) => {
   const promises = images?.map((image: any) => {
     return [
-      new Promise<LeadPicturesResponse>((resolve, reject) => {
+      new Promise((resolve, reject) => {
         let url = ''
         if (!image.documentId) {
           url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
