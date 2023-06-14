@@ -16,6 +16,10 @@
 * Home, Use cases and Company roles
    * Mobile friendly header and stage navigation
    * Slider stage header
+* Service Release Process
+   * Bugfix
+      * Service Release process not working
+      * Service details page crash issue
 
 ## 1.5.0-RC1
 
