@@ -1,6 +1,8 @@
 # Changelog
 
 ## 1.5.0-RC1
+* Service Details
+   * Crash fix
 * Service/App Subscription Management
    * Show Service/App name
 * Service release process

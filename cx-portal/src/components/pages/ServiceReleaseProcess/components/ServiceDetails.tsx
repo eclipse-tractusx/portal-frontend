@@ -164,16 +164,16 @@ export default function ServiceDetails() {
               </Typography>
               <ul>
                 {fetchServiceStatus?.documents &&
-                  Object.keys(fetchServiceStatus.documents).map((item, i) => (
+                  Object.keys(fetchServiceStatus.documents).map((item) => (
                     <li key={item} className="document-list">
                       <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                       <button
                         className="document-button-link"
                         onClick={() =>
-                          handleDownload(fetchServiceStatus.documents[item][i])
+                          handleDownload(fetchServiceStatus.documents[item][0])
                         }
                       >
-                        {fetchServiceStatus.documents[item][i].documentName}
+                        {fetchServiceStatus.documents[item][0].documentName}
                       </button>
                     </li>
                   ))}
