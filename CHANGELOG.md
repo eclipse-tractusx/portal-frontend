@@ -13,6 +13,10 @@
    * Add Admin Info
 * App Detail
    * Subscribe Button - wrong state
+* Service Release Process
+   * Bugfix
+      * Service Release process not working
+      * Service details page crash issue
 
 ## 1.5.0-RC1
 

@@ -106,18 +106,9 @@ export default function ReleaseProcessWrapper({
       return <OfferValidateAndPublish showSubmitPage={setShowSubmitPage} />
   }, [serviceActiveStep, skipTechnicalIntegrationStep])
 
-  const activePage = useCallback(() => {
-    if (processType === ReleaseProcessTypes.APP_RELEASE) {
-      appReleaseSteps()
-    } else {
-      serviceReleaseSteps()
-    }
-  }, [appReleaseSteps, processType, serviceReleaseSteps])
-
   useEffect(() => {
-    activePage()
     window.scrollTo(0, 0)
-  }, [activePage, skipTechnicalIntegrationStep])
+  }, [skipTechnicalIntegrationStep])
 
   return (
     <div className="app-release-process-form">
@@ -158,7 +149,9 @@ export default function ReleaseProcessWrapper({
                 stepsList={stepsList}
                 numberOfSteps={numberOfSteps}
               />
-              {activePage()}
+              {processType === ReleaseProcessTypes.APP_RELEASE
+                ? appReleaseSteps()
+                : serviceReleaseSteps()}
             </div>
           </div>
         </>
