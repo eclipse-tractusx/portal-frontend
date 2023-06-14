@@ -63,11 +63,14 @@ export const SlidingMainHeader = ({
   }
 
   return (
-    <Slider {...settings}>
-      {mainHeaderInfo &&
-        mainHeaderInfo.map((mainHeader) => (
-          <Header key={mainHeader.imagePath} {...mainHeader} />
-        ))}
-    </Slider>
+    <>
+      {mainHeaderInfo && (
+        <Slider {...settings}>
+          {mainHeaderInfo.map((mainHeader) => (
+            <Header key={mainHeader.imagePath} {...mainHeader} />
+          ))}
+        </Slider>
+      )}
+    </>
   )
 }

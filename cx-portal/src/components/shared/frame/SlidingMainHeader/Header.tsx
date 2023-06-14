@@ -30,7 +30,7 @@ export interface HeaderProps {
   titleTextVariant?: 'h1' | 'h2' | 'h3'
   subTitleTextVariant?: 'h1' | 'h2' | 'h3'
   buttonText?: string
-  handleClick?: () => void
+  handleClick: () => void
 }
 
 //TO-DO - Move this component to cx-shared repo after the yarn upgrade
@@ -85,9 +85,7 @@ export const Header = ({
               </Typography>
             )}
             {buttonText && (
-              <Button onClick={() => handleClick && handleClick()}>
-                {buttonText}
-              </Button>
+              <Button onClick={() => handleClick()}>{buttonText}</Button>
             )}
           </Box>
         </Box>
