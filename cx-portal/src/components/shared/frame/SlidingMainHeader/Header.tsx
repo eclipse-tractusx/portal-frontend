@@ -26,50 +26,9 @@ export interface HeaderProps {
   subTitle?: string
   subTitleWidth?: number
   headerHeight?: number
-  background?:
-    | 'LinearGradient1'
-    | 'LinearGradient2'
-    | 'LinearGradient3'
-    | 'LinearGradient4'
   imagePath?: string
-  titleTextVariant?:
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'body1'
-    | 'body2'
-    | 'button'
-    | 'overline'
-    | 'inherit'
-    | 'body3'
-    | 'caption1'
-    | 'caption2'
-    | 'caption3'
-    | 'label1'
-  subTitleTextVariant?:
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'body1'
-    | 'body2'
-    | 'button'
-    | 'overline'
-    | 'inherit'
-    | 'body3'
-    | 'caption1'
-    | 'caption2'
-    | 'caption3'
-    | 'label1'
+  titleTextVariant?: 'h1' | 'h2' | 'h3'
+  subTitleTextVariant?: 'h1' | 'h2' | 'h3'
   buttonText?: string
   handleClick?: () => void
 }
@@ -80,41 +39,12 @@ export const Header = ({
   subTitle,
   subTitleWidth,
   headerHeight = 645,
-  background = 'LinearGradient1',
   imagePath,
   titleTextVariant = 'h1',
   subTitleTextVariant = 'h2',
   buttonText,
   handleClick,
 }: HeaderProps) => {
-  const backgroundstyle = () => {
-    if (background === 'LinearGradient1') {
-      return {
-        direction: 152.33,
-        colorFrom: '#adb9c7 4.24%',
-        colorTo: '#e4ebf3 72.17%',
-      }
-    } else if (background === 'LinearGradient3') {
-      return {
-        direction: 292.62,
-        colorFrom: '#FF782C -16.38%',
-        colorTo: '#FFB326 82.22%',
-      }
-    } else if (background === 'LinearGradient4') {
-      return {
-        direction: 111.81,
-        colorFrom: '#9EABA9 41.97%',
-        colorTo: '#B6A763 72.9%',
-      }
-    } else {
-      return {
-        direction: 145.91,
-        colorFrom: '#F0F2F5 18.42%',
-        colorTo: '#B4BBC3 79.14%',
-      }
-    }
-  }
-
   return (
     <Box
       sx={{
@@ -122,9 +52,6 @@ export const Header = ({
         height: `${headerHeight}px`,
         marginTop: `-85px`,
         position: 'relative',
-        background: `linear-gradient(${backgroundstyle().direction}deg, ${
-          backgroundstyle().colorFrom
-        }, ${backgroundstyle().colorTo})`,
       }}
     >
       {imagePath && (
