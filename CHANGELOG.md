@@ -13,6 +13,9 @@
    * Add Admin Info
 * App Detail
    * Subscribe Button - wrong state
+* Home, Use cases and Company roles
+   * Mobile friendly header and stage navigation
+   * Slider stage header
 
 ## 1.5.0-RC1
 
