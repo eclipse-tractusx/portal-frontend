@@ -25,6 +25,8 @@ import { useTranslation } from 'react-i18next'
 import { MenuItem, Tree } from 'types/MainTypes'
 import { Logo } from '../Logo'
 import './Header.scss'
+import SearchIcon from '@mui/icons-material/Search'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -43,28 +45,57 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const menu = addTitle(main) || []
 
   return (
-    <header>
-      <MainNavigation items={menu} component={NavLink}>
-        <Logo />
-        <div className="d-flex">
-          <Button
-            size="small"
-            color="secondary"
-            variant="contained"
-            onClick={() => {
-              window.open(
-                `${document.location.origin}/documentation/`,
-                'documentation',
-                'noreferrer'
-              )
-            }}
-            sx={{ backgroundColor: 'white', marginRight: '16px' }}
-          >
-            {t('pages.help')}
-          </Button>
-          <UserInfo pages={user} />
-        </div>
-      </MainNavigation>
-    </header>
+    <>
+      <header>
+        <MainNavigation items={menu} component={NavLink}>
+          <Logo />
+          <div className="d-flex">
+            <div
+              onClick={() => {
+                var ele = document.getElementById('new-search')
+                if (ele)
+                  ele.style.visibility === 'hidden'
+                    ? (ele.style.visibility = 'visible')
+                    : (ele.style.visibility = 'hidden')
+              }}
+              className="search-icon"
+            >
+              <SearchIcon sx={{ color: '#0f71cb' }} />
+            </div>
+            <Button
+              size="small"
+              color="secondary"
+              variant="contained"
+              onClick={() => {
+                window.open(
+                  `${document.location.origin}/documentation/`,
+                  'documentation',
+                  'noreferrer'
+                )
+              }}
+              sx={{ backgroundColor: 'white', marginRight: '16px' }}
+            >
+              {t('pages.help')}
+            </Button>
+            <UserInfo pages={user} />
+          </div>
+        </MainNavigation>
+      </header>
+      <div className="mobileHeader">
+        <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
+      </div>
+      <div
+        onClick={() => {
+          var ele = document.getElementById('new-search')
+          if (ele)
+            ele.style.visibility === 'hidden'
+              ? (ele.style.visibility = 'visible')
+              : (ele.style.visibility = 'hidden')
+        }}
+        className="mobile-search-icon"
+      >
+        <SearchIcon sx={{ color: '#0f71cb' }} />
+      </div>
+    </>
   )
 }

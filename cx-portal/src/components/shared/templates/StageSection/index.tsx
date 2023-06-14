@@ -20,6 +20,7 @@
 
 import { MainHeader } from 'cx-portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 export default function SearchSection({
   title,
@@ -28,6 +29,10 @@ export default function SearchSection({
   title: string
   description: string
 }) {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
   return (
     <div className="stage-home">
       <MainHeader
@@ -35,7 +40,7 @@ export default function SearchSection({
         subTitle={description}
         subTitleTextVariant="h3"
         headerHeight={551}
-        subTitleWidth={800}
+        subTitleWidth={isMobile ? '100%' : 800}
         background="LinearGradient1"
         imagePath={`${getAssetBase()}/images/content/company-roles.svg`}
       />

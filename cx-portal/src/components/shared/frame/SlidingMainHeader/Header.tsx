@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,16 +17,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, useMediaQuery, useTheme } from '@mui/material'
-import { Image } from '../../Image'
-import { mainNavigationHeight } from '../../MainNavigation'
-import { MainHeaderTitle } from './Components/MainHeaderTitle'
+import { Box } from '@mui/material'
+import './SlidingMainHeader.scss'
+import { Button, Typography } from 'cx-portal-shared-components'
 
-export interface MainHeaderProps {
-  children?: React.ReactNode
+export interface HeaderProps {
   title?: string
   subTitle?: string
-  subTitleWidth?: number | string
+  subTitleWidth?: number
   headerHeight?: number
   background?:
     | 'LinearGradient1'
@@ -73,27 +70,23 @@ export interface MainHeaderProps {
     | 'caption2'
     | 'caption3'
     | 'label1'
+  buttonText?: string
+  handleClick?: () => void
 }
 
-export const MainHeader = ({
-  children,
+//TO-DO - Move this component to cx-shared repo after the yarn upgrade
+export const Header = ({
   title,
   subTitle,
   subTitleWidth,
   headerHeight = 645,
   background = 'LinearGradient1',
   imagePath,
-  titleTextVariant,
-  subTitleTextVariant,
-}: MainHeaderProps) => {
-  //TO-DO - Use external scss file to handle mobile specifc css after the yarn upgrade
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
-    defaultMatches: true,
-  })
-  const styles = isMobile
-    ? { padding: '0px 20px', paddingTop: '200px', textAlign: 'center' }
-    : { padding: '0px 180px', paddingTop: '150px' }
+  titleTextVariant = 'h1',
+  subTitleTextVariant = 'h2',
+  buttonText,
+  handleClick,
+}: HeaderProps) => {
   const backgroundstyle = () => {
     if (background === 'LinearGradient1') {
       return {
@@ -127,7 +120,7 @@ export const MainHeader = ({
       sx={{
         width: '100%',
         height: `${headerHeight}px`,
-        marginTop: `${-mainNavigationHeight}px`,
+        marginTop: `-85px`,
         position: 'relative',
         background: `linear-gradient(${backgroundstyle().direction}deg, ${
           backgroundstyle().colorFrom
@@ -136,50 +129,42 @@ export const MainHeader = ({
     >
       {imagePath && (
         <Box
+          className="headerImage"
           sx={{
-            height: '100%',
-            width: '100%',
-            position: 'relative',
-            overflow: 'hidden',
+            backgroundImage: `url(${imagePath})`,
           }}
         >
-          <Image
-            src={imagePath}
-            alt="home stage"
-            style={{
-              bottom: 0,
-              height: '100%',
-              left: 0,
-              objectFit: 'cover',
-              right: 0,
-              top: 0,
-              visibility: 'visible',
-              width: '100%',
-            }}
-          />
+          <Box className="headerTitle">
+            {title && (
+              <Typography variant={titleTextVariant}>{title}</Typography>
+            )}
+            <div
+              style={{
+                borderBottom: '3px solid',
+                margin: '-10px auto 30px auto',
+                width: '50px',
+              }}
+            ></div>
+            {subTitle && (
+              <Typography
+                className="subtitle"
+                sx={{
+                  fontFamily: 'LibreFranklin-Light',
+                  width: `${subTitleWidth}px`,
+                }}
+                variant={subTitleTextVariant}
+              >
+                {subTitle}
+              </Typography>
+            )}
+            {buttonText && (
+              <Button onClick={() => handleClick && handleClick()}>
+                {buttonText}
+              </Button>
+            )}
+          </Box>
         </Box>
       )}
-
-      <Box
-        sx={{
-          width: '100%',
-          margin: '0px',
-          zIndex: 1,
-          position: 'absolute',
-          top: '0px',
-          ...styles,
-        }}
-      >
-        <MainHeaderTitle
-          title={title}
-          subTitle={subTitle}
-          subTitleWidth={subTitleWidth}
-          titleTextVariant={titleTextVariant}
-          subTitleTextVariant={subTitleTextVariant}
-        />
-
-        <div className="children-header">{children}</div>
-      </Box>
     </Box>
   )
 }

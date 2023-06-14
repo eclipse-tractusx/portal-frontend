@@ -49,9 +49,9 @@ export const StageSubNavigation = ({
 
   return (
     <Box
+      className="customHeight"
       sx={{
         backgroundColor: 'rgba(15, 113, 203, 0.05)',
-        height: '100px',
         ...customStyles,
       }}
     >
