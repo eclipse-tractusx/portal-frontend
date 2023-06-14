@@ -53,10 +53,11 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <div
               onClick={() => {
                 let ele = document.getElementById('new-search')
-                if (ele)
-                  ele.style.visibility === 'hidden'
-                    ? (ele.style.visibility = 'visible')
-                    : (ele.style.visibility = 'hidden')
+                if (ele && ele.style.visibility === 'hidden') {
+                  ele.style.visibility = 'visible'
+                } else if (ele) {
+                  ele.style.visibility = 'hidden'
+                }
               }}
               className="search-icon"
             >
@@ -87,10 +88,11 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
       <div
         onClick={() => {
           let ele = document.getElementById('new-search')
-          if (ele)
-            ele.style.visibility === 'hidden'
-              ? (ele.style.visibility = 'visible')
-              : (ele.style.visibility = 'hidden')
+          if (ele && ele.style.visibility === 'hidden') {
+            ele.style.visibility = 'visible'
+          } else if (ele) {
+            ele.style.visibility = 'hidden'
+          }
         }}
         className="mobile-search-icon"
       >
