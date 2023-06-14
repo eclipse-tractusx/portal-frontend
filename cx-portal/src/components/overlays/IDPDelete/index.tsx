@@ -90,7 +90,7 @@ function IDPDelete({ id, title }: { id: string; title?: string }) {
     }
   }
 
-  const retry = () => handleDelete()
+  const retry = () => void handleDelete()
 
   return (
     <>

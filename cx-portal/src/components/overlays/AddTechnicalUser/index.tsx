@@ -120,7 +120,7 @@ export const AddTechnicalUser = () => {
 
     if (validateFields) {
       const formValues = getValues() as DefaultFormFieldValuesType
-      handleConfirm(formValues)
+      void handleConfirm(formValues)
     }
   }
 

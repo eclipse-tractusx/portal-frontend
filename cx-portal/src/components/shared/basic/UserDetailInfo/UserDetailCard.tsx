@@ -69,7 +69,9 @@ export const UserDetailCard = ({
 
   const copyText = (value: any) => {
     setCopied(true)
-    navigator.clipboard.writeText(value)
+    navigator.clipboard.writeText(value).catch((err) => {
+      console.log(err)
+    })
   }
 
   const renderValue = (
@@ -78,7 +80,12 @@ export const UserDetailCard = ({
   ) => (
     <>
       <strong>{value?.label}:</strong>&nbsp;
-      <span style={{ marginLeft: variant === 'wide' ? 'auto' : '' }}>
+      <span
+        style={{
+          marginLeft: variant === 'wide' ? 'auto' : '',
+          display: 'inline-grid',
+        }}
+      >
         {Array.isArray(value?.value)
           ? value?.value.map((bpn, i) => (
               <span key={i}>

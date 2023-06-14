@@ -125,7 +125,7 @@ export default function AddBPN({ id }: { id: string }) {
               onChange={(e) => addInputBPN(e.target.value)}
               onKeyPress={(event) => {
                 if (event.key === 'Enter') {
-                  addBPN()
+                  void addBPN()
                 }
               }}
               value={inputBPN}

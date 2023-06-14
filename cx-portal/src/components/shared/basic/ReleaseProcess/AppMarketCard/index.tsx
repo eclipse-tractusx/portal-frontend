@@ -254,7 +254,7 @@ export default function AppMarketCard() {
       appStatusData?.documents?.APP_LEADIMAGE &&
       appStatusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
-      fetchCardImage(
+      void fetchCardImage(
         appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
         appStatusData?.documents?.APP_LEADIMAGE[0].documentName
       )
@@ -308,7 +308,7 @@ export default function AppMarketCard() {
       'uploadImage',
     ])
     if (validateFields) {
-      handleSave(data, buttonLabel)
+      void handleSave(data, buttonLabel)
     }
   }
 

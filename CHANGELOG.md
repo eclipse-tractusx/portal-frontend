@@ -7,6 +7,12 @@
    * Add App Filter Search Functionality
 * App Release Process
    * validate and publish style updates
+* Service Release Process
+   * Skip technical integration for consultancy service
+* User Account & My User Account
+   * Add Admin Info
+* App Detail
+   * Subscribe Button - wrong state
 
 ## 1.5.0-RC1
 

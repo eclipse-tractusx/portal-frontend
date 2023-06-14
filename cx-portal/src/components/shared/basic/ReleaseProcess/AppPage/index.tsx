@@ -349,7 +349,7 @@ export default function AppPage() {
     ])
     if (validateFields) {
       setLoading(true)
-      handleSave(data, buttonLabel)
+      void handleSave(data, buttonLabel)
     }
   }
 

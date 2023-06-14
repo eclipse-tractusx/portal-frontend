@@ -307,7 +307,7 @@ export default function CommonContractAndConsent({
       'uploadImageConformity',
     ])
     if (validateFields) {
-      handleSave(data, buttonLabel)
+      void handleSave(data, buttonLabel)
     }
   }
 

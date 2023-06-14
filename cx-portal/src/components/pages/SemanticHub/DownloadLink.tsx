@@ -85,6 +85,9 @@ const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
             setFile(URL.createObjectURL(result))
           }
         })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 

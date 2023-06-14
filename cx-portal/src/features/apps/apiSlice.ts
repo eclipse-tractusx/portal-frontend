@@ -202,9 +202,9 @@ export const apiSlice = createApi({
           }
         )
 
-        data.forEach(async (appItem: AppMarketplaceApp) => {
+        data.forEach((appItem: AppMarketplaceApp) => {
           subscriptionData.content.forEach(
-            async (subscriptionItem: SubscriptionStatusItem) => {
+            (subscriptionItem: SubscriptionStatusItem) => {
               if (appItem.id === subscriptionItem.appId)
                 appItem.subscriptionStatus =
                   subscriptionItem.offerSubscriptionStatus
@@ -232,7 +232,7 @@ export const apiSlice = createApi({
           }
         )
         subscriptionData.content.forEach(
-          async (subscriptionItem: SubscriptionStatusItem) => {
+          (subscriptionItem: SubscriptionStatusItem) => {
             subscriptionItem.image = {
               src: subscriptionItem.image
                 ? `${getApiBase()}/api/apps/${

@@ -53,7 +53,9 @@ const resources = {
   },
 }
 
-const supportedLanguages = Object.keys(resources).sort()
+const supportedLanguages = Object.keys(resources).sort((a, b) =>
+  a.localeCompare(b)
+)
 
 const init = (): void => {
   i18n
