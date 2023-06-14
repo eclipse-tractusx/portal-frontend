@@ -1,6 +1,8 @@
 # Changelog
 
 ## 1.5.0-RC1
+* Service Details
+   * Crash fix
 
 ### Change
 * User Management
