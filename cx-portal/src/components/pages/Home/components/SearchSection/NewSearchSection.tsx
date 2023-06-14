@@ -32,8 +32,9 @@ export const label = 'Search'
 export default function NewSearchSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const currentExpr = useSelector(searchExprSelector)
-  const [searchExpr, setSearchExpr] = useState<string>(currentExpr)
+  const currentExprssion = useSelector(searchExprSelector)
+  const [searchExpression, setSearchExpression] =
+    useState<string>(currentExprssion)
   const debouncedSearch = useMemo(
     () =>
       debounce((expr: string) => {
@@ -42,9 +43,9 @@ export default function NewSearchSection() {
     [dispatch]
   )
 
-  const doSearch = useCallback(
+  const onSearch = useCallback(
     (expr: string) => {
-      setSearchExpr(expr)
+      setSearchExpression(expr)
       debouncedSearch(expr)
     },
     [debouncedSearch]
@@ -61,9 +62,9 @@ export default function NewSearchSection() {
     >
       <SearchInput
         placeholder={t('content.home.searchSection.inputPlaceholder')}
-        value={searchExpr}
+        value={searchExpression}
         autoFocus={true}
-        onChange={(e) => doSearch(e.target.value)}
+        onChange={(e) => onSearch(e.target.value)}
       />
     </div>
   )
