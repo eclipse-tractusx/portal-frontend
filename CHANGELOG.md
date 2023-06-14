@@ -3,6 +3,10 @@
 ## 1.5.0-RC1
 * Service Details
    * Crash fix
+* Service/App Subscription Management
+   * Show Service/App name
+* Service release process
+   * Show lead service image in validate and publish step
 
 ### Change
 * User Management

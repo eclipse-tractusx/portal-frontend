@@ -46,6 +46,7 @@ export type CompanySubscriptionData = {
 export type SubscriptionContent = {
   offerId: string
   serviceName: string
+  offerName: string
   companySubscriptionStatuses: CompanySubscriptionData[]
 }
 

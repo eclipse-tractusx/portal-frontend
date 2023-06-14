@@ -135,16 +135,14 @@ export default function CommonValidateAndPublish({
   const [cardLanguage, setCardLanguage] = useState<string>('en')
 
   const fetchImage = useCallback(
-    async (documentId: string, documentType: string) => {
+    async (documentId: string) => {
       try {
         const response = await fetchDocumentById({
           appId: id,
           documentId,
         }).unwrap()
         const file = response.data
-        if (documentType === 'APP_LEADIMAGE') {
-          return setCardImage(URL.createObjectURL(file))
-        }
+        return setCardImage(URL.createObjectURL(file))
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
@@ -166,10 +164,13 @@ export default function CommonValidateAndPublish({
       statusData?.documents?.APP_LEADIMAGE &&
       statusData?.documents?.APP_LEADIMAGE[0].documentId
     ) {
-      fetchImage(
-        statusData?.documents?.APP_LEADIMAGE[0].documentId,
-        'APP_LEADIMAGE'
-      )
+      fetchImage(statusData?.documents?.APP_LEADIMAGE[0].documentId)
+    }
+    if (
+      statusData?.documents?.SERVICE_LEADIMAGE &&
+      statusData?.documents?.SERVICE_LEADIMAGE[0].documentId
+    ) {
+      fetchImage(statusData?.documents?.SERVICE_LEADIMAGE[0].documentId)
     }
     if (
       statusData?.documents?.APP_IMAGE &&
@@ -334,7 +335,7 @@ export default function CommonValidateAndPublish({
           <CardHorizontal
             borderRadius={6}
             imageAlt="Service Card"
-            imagePath={LogoGrayData}
+            imagePath={cardImage || LogoGrayData}
             label={''}
             buttonText=""
             onBtnClick={() => {}}
