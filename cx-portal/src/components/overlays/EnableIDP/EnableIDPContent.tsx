@@ -79,7 +79,7 @@ export const EnableIDPContent = ({
             companyUserId: '',
             identityProviderId: '',
             userId: current.userId,
-            userName: '-',
+            userName: '',
           }
         : undefined
     )

@@ -191,7 +191,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 <img
                   style={{ marginBottom: '32px' }}
                   width="100%"
-                  src={diagram}
+                  src={window.encodeURIComponent(diagram)}
                   alt={t('content.semantichub.detail.imgAlt')}
                 />
               ) : (

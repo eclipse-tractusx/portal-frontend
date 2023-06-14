@@ -98,7 +98,7 @@ const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
       } else {
         const link = document.createElement('a')
         if (fileName) link.download = fileName
-        link.href = f
+        link.href = window.encodeURIComponent(f)
         link.target = '_blank'
         link.click()
       }
