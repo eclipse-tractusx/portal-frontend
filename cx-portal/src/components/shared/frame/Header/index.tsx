@@ -52,7 +52,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           <div className="d-flex">
             <div
               onClick={() => {
-                let ele = document.getElementById('new-search')
+                const ele = document.getElementById('new-search')
                 if (ele && ele.style.visibility === 'hidden') {
                   ele.style.visibility = 'visible'
                 } else if (ele) {
@@ -87,7 +87,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
       </div>
       <div
         onClick={() => {
-          let ele = document.getElementById('new-search')
+          const ele = document.getElementById('new-search')
           if (ele && ele.style.visibility === 'hidden') {
             ele.style.visibility = 'visible'
           } else if (ele) {
