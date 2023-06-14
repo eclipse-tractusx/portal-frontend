@@ -67,7 +67,7 @@ export default function TechnicalUserDetailsContent({
       copy: true,
     },
   ]
-
+  
   return (
     <section>
       <Button
@@ -101,9 +101,7 @@ export default function TechnicalUserDetailsContent({
         <KeyValueView
           cols={1}
           title={t('global.field.description')}
-          items={data.roles.map((role: ServiceAccountRole) => ({
-            value: data.description,
-          }))}
+          items={[{ value: data.description }]}
         />
 
         <KeyValueView
