@@ -1,6 +1,8 @@
 # Changelog
 
 ## 1.5.0-RC1
+* Service/App Subscription Management
+   * Show Service/App name
 * Service release process
    * Show lead service image in validate and publish step
 
