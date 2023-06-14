@@ -37,12 +37,9 @@ export default function Translator() {
     axios
       .post(url, input)
       .then(function (response) {
-        console.log(response)
-        console.log(response.data.result)
         setOutput(JSON.stringify(response.data.result, null, 4))
       })
       .catch(function (error) {
-        console.log(error)
         setOutput(error)
       })
   }
