@@ -20,12 +20,13 @@
 import debounce from 'lodash.debounce'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from 'cx-portal-shared-components'
-import { useState, useMemo, useCallback, useRef } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './search-section.scss'
 import PageService from 'services/PageService'
 import { searchExprSelector } from 'features/info/search/slice'
+import { appearSelector, setAppear } from 'features/control/appear'
 
 export const label = 'Search'
 
@@ -35,6 +36,12 @@ export default function NewSearchSection() {
   const currentExprssion = useSelector(searchExprSelector)
   const [searchExpression, setSearchExpression] =
     useState<string>(currentExprssion)
+  const visible = useSelector(appearSelector)
+
+  useEffect(() => {
+    dispatch(setAppear({ appear: 'hidden' }))
+  }, [dispatch])
+
   const debouncedSearch = useMemo(
     () =>
       debounce((expr: string) => {
@@ -56,9 +63,8 @@ export default function NewSearchSection() {
   return (
     <div
       ref={reference}
-      id="new-search"
       className="new-search-section"
-      style={{ visibility: 'hidden' }}
+      style={{ visibility: visible.appear }}
     >
       <SearchInput
         placeholder={t('content.home.searchSection.inputPlaceholder')}

@@ -27,9 +27,13 @@ import { Logo } from '../Logo'
 import './Header.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import { getAssetBase } from 'services/EnvironmentService'
+import { appearSelector, setAppear } from 'features/control/appear'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
+  const visible = useSelector(appearSelector)
+  const dispatch = useDispatch()
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -51,14 +55,13 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           <Logo />
           <div className="d-flex">
             <div
-              onClick={() => {
-                const ele = document.getElementById('new-search')
-                if (ele && ele.style.visibility === 'hidden') {
-                  ele.style.visibility = 'visible'
-                } else if (ele) {
-                  ele.style.visibility = 'hidden'
-                }
-              }}
+              onClick={() =>
+                dispatch(
+                  setAppear({
+                    appear: visible.appear === 'hidden' ? 'visible' : 'hidden',
+                  })
+                )
+              }
               className="search-icon"
             >
               <SearchIcon sx={{ color: '#0f71cb' }} />
@@ -86,14 +89,13 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
       </div>
       <div
-        onClick={() => {
-          const ele = document.getElementById('new-search')
-          if (ele && ele.style.visibility === 'hidden') {
-            ele.style.visibility = 'visible'
-          } else if (ele) {
-            ele.style.visibility = 'hidden'
-          }
-        }}
+        onClick={() =>
+          dispatch(
+            setAppear({
+              appear: visible.appear === 'hidden' ? 'visible' : 'hidden',
+            })
+          )
+        }
         className="mobile-search-icon"
       >
         <SearchIcon sx={{ color: '#0f71cb' }} />

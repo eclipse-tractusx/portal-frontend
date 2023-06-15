@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,17 +17,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import overlay from './overlay'
-import form from './form'
-import notify from './notify'
-import update from './updates'
-import appear from './appear'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export default combineReducers({
-  form,
-  notify,
-  overlay,
-  update,
-  appear,
+const name = 'control/appear'
+
+export interface AppearState {
+  appear: string
+}
+
+export const initialState: AppearState = {
+  appear: 'hidden',
+}
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setAppear: (state, { payload }) => ({
+      ...state,
+      appear: payload.appear,
+    }),
+  },
 })
+
+export const { setAppear } = slice.actions
+
+export const appearSelector = (state: RootState): any => state.control.appear
+
+export default slice.reducer
