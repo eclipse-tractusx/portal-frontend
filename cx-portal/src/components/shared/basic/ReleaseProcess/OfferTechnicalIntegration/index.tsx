@@ -152,23 +152,6 @@ export default function OfferTechnicalIntegration() {
     dispatch(serviceReleaseStepDecrement())
   }
 
-  const isValid = () => {
-    if (
-      fetchServiceStatus?.serviceTypeIds.every((item) =>
-        ['CONSULTANCE_SERVICE']?.includes(item)
-      )
-    ) {
-      return true
-    } else if (
-      !fetchServiceStatus?.serviceTypeIds.every((item) =>
-        ['CONSULTANCE_SERVICE']?.includes(item)
-      ) &&
-      serviceTechUserProfiles?.length === 0
-    ) {
-      return false
-    }
-  }
-
   return (
     <>
       <Typography variant="h3" mt={10} mb={4} align="center">
@@ -223,7 +206,7 @@ export default function OfferTechnicalIntegration() {
         onSaveAndProceed={handleSubmit((data) =>
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
-        isValid={isValid()}
+        isValid={serviceTechUserProfiles?.length > 0}
         loader={loading}
         helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
       />
