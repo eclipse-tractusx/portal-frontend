@@ -33,3 +33,38 @@
   );
   position: relative;
 }
+
+.new-search-section {
+  width: 100%;
+  position: absolute;
+  top: 84px;
+  z-index: 9;
+}
+
+.new-search-section .MuiTextField-root {
+  border: 0px;
+}
+
+.new-search-section .MuiOutlinedInput-root {
+  border-radius: 0px;
+}
+
+.new-search-section .MuiOutlinedInput-input {
+  padding: 30px 0px;
+  background: transparent;
+  border: 0px;
+  border-radius: 0px;
+  font-size: 20px;
+}
+
+//mobile layout
+@media (max-width: 480px) {
+  .new-search-section {
+    top: 70px;
+  }
+
+  .new-search-section .MuiOutlinedInput-input {
+    padding: 15px 0px;
+    font-size: 16px;
+  }
+}

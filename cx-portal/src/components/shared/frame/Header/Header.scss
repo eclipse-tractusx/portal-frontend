@@ -25,5 +25,49 @@ header {
   justify-content: space-between;
   .d-flex {
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+@media (min-width: 481px) {
+  .mobileHeader {
+    display: none;
+  }
+  .mobile-search-icon {
+    display: none;
+  }
+}
+
+.search-icon {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+//mobile layout
+@media (max-width: 480px) {
+  header {
+    display: none;
+  }
+
+  .mobileHeader {
+    display: block;
+    position: absolute;
+    top: 15px;
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    margin-left: 15px;
+  }
+
+  .mobileHeader img {
+    width: 40px;
+  }
+
+  .mobile-search-icon {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    z-index: 999;
   }
 }

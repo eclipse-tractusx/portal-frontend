@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,32 +17,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeader } from 'cx-portal-shared-components'
-import { getAssetBase } from 'services/EnvironmentService'
-import { useMediaQuery, useTheme } from '@mui/material'
+import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'features/store'
 
-export default function SearchSection({
-  title,
-  description,
-}: {
-  title: string
-  description: string
-}) {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
-    defaultMatches: true,
-  })
-  return (
-    <div className="stage-home">
-      <MainHeader
-        title={title}
-        subTitle={description}
-        subTitleTextVariant="h3"
-        headerHeight={551}
-        subTitleWidth={isMobile ? '100%' : 800}
-        background="LinearGradient1"
-        imagePath={`${getAssetBase()}/images/content/company-roles.svg`}
-      />
-    </div>
-  )
+const name = 'control/appear'
+
+export enum AppearItem {
+  SEARCH = 'SEARCH',
 }
+
+const initialState: Record<AppearItem, boolean> = {
+  SEARCH: false,
+}
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    setAppear: (state, { payload }) => ({
+      ...state,
+      ...payload,
+    }),
+  },
+})
+
+export const { setAppear } = slice.actions
+
+export const appearSearchSelector = (state: RootState): boolean =>
+  state.control.appear.SEARCH
+
+export default slice.reducer
