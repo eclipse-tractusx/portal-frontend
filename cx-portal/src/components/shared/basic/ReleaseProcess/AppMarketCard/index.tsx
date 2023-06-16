@@ -263,20 +263,26 @@ export default function AppMarketCard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatusData])
 
+  const setFileStatus = (
+    documentId: string,
+    documentName: string,
+    status: UploadFileStatus
+  ) => {
+    setValue('uploadImage.leadPictureUri', {
+      id: documentId,
+      name: documentName,
+      status,
+    } as any)
+  }
+
   const fetchCardImage = async (documentId: string, documentName: string) => {
     try {
       const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
-
-      const setFileStatus = (status: UploadFileStatus) =>
-        setValue('uploadImage.leadPictureUri', {
-          id: documentId,
-          name: documentName,
-          status,
-        } as any)
-      setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+      setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
       return setCardImage(URL.createObjectURL(file))
     } catch (error) {
+      setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
     }
   }
