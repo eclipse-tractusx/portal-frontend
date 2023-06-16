@@ -8,7 +8,7 @@
 * App Release Process
    * validate and publish style updates
 * Service Release Process
-   * Skip technical integration for consultancy service
+   * Skip technical integration for serviceTypeIds(consultancy)
 * User Account & My User Account
    * Add Admin Info
 * App Detail
