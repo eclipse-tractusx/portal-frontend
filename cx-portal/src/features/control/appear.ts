@@ -22,12 +22,12 @@ import { RootState } from 'features/store'
 
 const name = 'control/appear'
 
-export interface AppearState {
-  appear: string
+export enum AppearItem {
+  SEARCH = 'SEARCH',
 }
 
-export const initialState: AppearState = {
-  appear: 'hidden',
+const initialState: Record<AppearItem, boolean> = {
+  SEARCH: false,
 }
 
 export const slice = createSlice({
@@ -36,13 +36,14 @@ export const slice = createSlice({
   reducers: {
     setAppear: (state, { payload }) => ({
       ...state,
-      appear: payload.appear,
+      ...payload,
     }),
   },
 })
 
 export const { setAppear } = slice.actions
 
-export const appearSelector = (state: RootState): any => state.control.appear
+export const appearSearchSelector = (state: RootState): boolean =>
+  state.control.appear.SEARCH
 
 export default slice.reducer

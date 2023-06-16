@@ -26,7 +26,7 @@ import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './search-section.scss'
 import PageService from 'services/PageService'
 import { searchExprSelector } from 'features/info/search/slice'
-import { appearSelector, setAppear } from 'features/control/appear'
+import { appearSearchSelector, setAppear } from 'features/control/appear'
 
 export const label = 'Search'
 
@@ -36,10 +36,10 @@ export default function NewSearchSection() {
   const currentExprssion = useSelector(searchExprSelector)
   const [searchExpression, setSearchExpression] =
     useState<string>(currentExprssion)
-  const visible = useSelector(appearSelector)
+  const visible = useSelector(appearSearchSelector)
 
   useEffect(() => {
-    dispatch(setAppear({ appear: 'hidden' }))
+    dispatch(setAppear({ SEARCH: false }))
   }, [dispatch])
 
   const debouncedSearch = useMemo(
@@ -64,7 +64,7 @@ export default function NewSearchSection() {
     <div
       ref={reference}
       className="new-search-section"
-      style={{ visibility: visible.appear }}
+      style={{ visibility: visible ? 'visible' : 'hidden' }}
     >
       <SearchInput
         placeholder={t('content.home.searchSection.inputPlaceholder')}

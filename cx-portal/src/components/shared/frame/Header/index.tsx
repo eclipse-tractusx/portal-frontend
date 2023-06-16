@@ -27,12 +27,12 @@ import { Logo } from '../Logo'
 import './Header.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import { getAssetBase } from 'services/EnvironmentService'
-import { appearSelector, setAppear } from 'features/control/appear'
+import { appearSearchSelector, setAppear } from 'features/control/appear'
 import { useSelector, useDispatch } from 'react-redux'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
-  const visible = useSelector(appearSelector)
+  const visible = useSelector(appearSearchSelector)
   const dispatch = useDispatch()
 
   const addTitle = (items: Tree[] | undefined) =>
@@ -55,13 +55,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           <Logo />
           <div className="d-flex">
             <div
-              onClick={() =>
-                dispatch(
-                  setAppear({
-                    appear: visible.appear === 'hidden' ? 'visible' : 'hidden',
-                  })
-                )
-              }
+              onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
               className="search-icon"
             >
               <SearchIcon sx={{ color: '#0f71cb' }} />
@@ -89,13 +83,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
       </div>
       <div
-        onClick={() =>
-          dispatch(
-            setAppear({
-              appear: visible.appear === 'hidden' ? 'visible' : 'hidden',
-            })
-          )
-        }
+        onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
         className="mobile-search-icon"
       >
         <SearchIcon sx={{ color: '#0f71cb' }} />
