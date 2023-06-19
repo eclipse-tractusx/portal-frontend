@@ -46,6 +46,11 @@ export const AppOverviewList = ({
       value: 'deactivate',
       url: '',
     },
+    {
+      label: t('content.appoverview.sortOptions.changeImage'),
+      value: 'changeImage',
+      url: '',
+    },
   ]
 
   return (
@@ -66,12 +71,16 @@ export const AppOverviewList = ({
         }}
         subMenu={true}
         submenuOptions={submenuOptions}
-        submenuClick={(value: string, appId: string) =>
+        submenuClick={(value: string, appId: string) => {
           value === 'deactivate' &&
-          navigate(`/deactivate/${appId}`, {
-            state: filterItem,
-          })
-        }
+            navigate(`/deactivate/${appId}`, {
+              state: filterItem,
+            })
+          value === 'changeImage' &&
+            navigate(`/changeimage/${appId}`, {
+              state: filterItem,
+            })
+        }}
         tooltipText={t('content.appoverview.submenuNotAvail')}
       />
     </div>

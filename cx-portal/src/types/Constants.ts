@@ -75,6 +75,7 @@ export enum PAGES {
   APPOVERVIEW = 'appoverview',
   APPOVERVIEW_NEW = 'appoverview-new',
   DEACTIVATE = 'deactivate',
+  CHANGEIMAGE = 'changeimage',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',

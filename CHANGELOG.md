@@ -13,6 +13,8 @@
    * Add Admin Info
 * App Detail
    * Subscribe Button - wrong state
+* App Overview
+   * Enhance Sub Menu by adding 'Change Image' for active apps
 
 * Bugfix
    * Service Release Process
