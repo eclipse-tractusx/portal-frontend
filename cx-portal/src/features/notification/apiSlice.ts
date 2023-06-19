@@ -66,7 +66,13 @@ export const apiSlice = createApi({
     }),
     setNotificationRead: builder.mutation<void, string>({
       query: (id) => ({
-        url: `/api/notification/${id}/read`,
+        url: `/api/notification/${id}/read?isRead=true`,
+        method: 'PUT',
+      }),
+    }),
+    setNotificationUnRead: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/api/notification/${id}/read?isRead=false`,
         method: 'PUT',
       }),
     }),
@@ -85,4 +91,5 @@ export const {
   useSetNotificationReadMutation,
   useDeleteNotificationMutation,
   useGetNotificationMetaQuery,
+  useSetNotificationUnReadMutation,
 } = apiSlice

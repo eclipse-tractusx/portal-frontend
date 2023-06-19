@@ -123,6 +123,7 @@ export interface CXNotificationContent {
   dueDate?: string
   notificationTopic?: string
   type?: string
+  done?: boolean
 }
 
 export type CXNotificationMeta = {

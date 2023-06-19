@@ -17,6 +17,9 @@
    * Bugfix
       * Service Release process not working
       * Service details page crash issue
+* Notification
+   * Show done state
+   * Provide icon for marking a notification as read/unread
 
 ## 1.5.0-RC1
 
