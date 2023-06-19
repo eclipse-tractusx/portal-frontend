@@ -177,6 +177,26 @@
     },
     "home": {
       "stage": {
+        "slider1": {
+          "title": "Catena-X",
+          "subtitle": "the gateway to the automotive digital network",
+          "buttonName": "My Apps"
+        },
+        "slider2": {
+          "title": "Catena-X",
+          "subtitle": "the gateway to the automotive digital network",
+          "buttonName": "My Apps"
+        },
+        "slider3": {
+          "title": "Catena-X",
+          "subtitle": "the gateway to the automotive digital network",
+          "buttonName": "My Apps"
+        },
+        "slider4": {
+          "title": "Catena-X",
+          "subtitle": "the gateway to the automotive digital network",
+          "buttonName": "My Apps"
+        },
         "title": "Catena-X",
         "subtitle": "the gateway to the automotive digital network",
         "cxButton": "My CX",

@@ -32,31 +32,31 @@ export default function StageSection() {
       <SlidingMainHeader
         mainHeaderInfo={[
           {
-            title: t('content.home.stage.title'),
-            subTitle: t('content.home.stage.subtitle'),
+            title: t('content.home.stage.slider1.title'),
+            subTitle: t('content.home.stage.slider1.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
-            buttonText: t('content.home.stage.appButton'),
+            buttonText: t('content.home.stage.slider1.buttonName'),
             handleClick: () => PageService.scrollTo(BusinessApplications),
           },
           {
-            title: t('content.home.stage.title'),
-            subTitle: t('content.home.stage.subtitle'),
+            title: t('content.home.stage.slider2.title'),
+            subTitle: t('content.home.stage.slider2.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
-            buttonText: t('content.home.stage.appButton'),
+            buttonText: t('content.home.stage.slider2.buttonName'),
             handleClick: () => PageService.scrollTo(BusinessApplications),
           },
           {
-            title: t('content.home.stage.title'),
-            subTitle: t('content.home.stage.subtitle'),
+            title: t('content.home.stage.slider3.title'),
+            subTitle: t('content.home.stage.slider3.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
-            buttonText: t('content.home.stage.appButton'),
+            buttonText: t('content.home.stage.slider3.buttonName'),
             handleClick: () => PageService.scrollTo(BusinessApplications),
           },
           {
-            title: t('content.home.stage.title'),
-            subTitle: t('content.home.stage.subtitle'),
+            title: t('content.home.stage.slider4.title'),
+            subTitle: t('content.home.stage.slider4.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
-            buttonText: t('content.home.stage.appButton'),
+            buttonText: t('content.home.stage.slider4.buttonName'),
             handleClick: () => PageService.scrollTo(BusinessApplications),
           },
         ]}
