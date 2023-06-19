@@ -24,7 +24,6 @@ import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import {
   useDeleteNotificationMutation,
   useSetNotificationReadMutation,
-  useSetNotificationUnReadMutation,
 } from 'features/notification/apiSlice'
 import {
   CXNotificationContent,
@@ -211,24 +210,15 @@ export default function NotificationItem({
   const { t } = useTranslation('notification')
   const [open, setOpen] = useState<boolean>(false)
   const [setNotificationRead] = useSetNotificationReadMutation()
-  const [setNotificationUnRead] = useSetNotificationUnReadMutation()
   const [deleteNotification] = useDeleteNotificationMutation()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
   const [selectedId, setSelectedId] = useState<string>('')
 
-  const setRead = async (id: string) => {
+  const setRead = async (id: string, value: boolean) => {
     try {
-      await setNotificationRead(id)
-    } catch (error: unknown) {
-      console.log(error)
-    }
-  }
-
-  const setUnRead = async (id: string) => {
-    try {
-      await setNotificationUnRead(id)
+      await setNotificationRead({ id: id, flag: value })
     } catch (error: unknown) {
       console.log(error)
     }
@@ -237,7 +227,7 @@ export default function NotificationItem({
   const toggle = async () => {
     const nextState = !open
     if (nextState && !item.isRead) {
-      void setRead(item.id)
+      void setRead(item.id, true)
     }
     setOpen(nextState)
   }
@@ -357,11 +347,7 @@ export default function NotificationItem({
               className="padding-r-10"
               onClick={(e) => {
                 setSelectedId(item.id)
-                if (item.isRead) {
-                  setUnRead(item.id)
-                } else {
-                  setRead(item.id)
-                }
+                setRead(item.id, !item.isRead)
                 e.stopPropagation()
               }}
             >

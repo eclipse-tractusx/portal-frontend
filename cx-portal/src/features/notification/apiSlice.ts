@@ -31,6 +31,11 @@ export interface NotificationArgsProps {
   notificationTopic: string
 }
 
+export interface NotificationReadType {
+  id: string
+  flag: boolean
+}
+
 export const apiSlice = createApi({
   reducerPath: 'info/notifications',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -64,15 +69,9 @@ export const apiSlice = createApi({
       // configuration for an individual endpoint, overriding the api setting
       keepUnusedDataFor: 10,
     }),
-    setNotificationRead: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/api/notification/${id}/read?isRead=true`,
-        method: 'PUT',
-      }),
-    }),
-    setNotificationUnRead: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/api/notification/${id}/read?isRead=false`,
+    setNotificationRead: builder.mutation<void, NotificationReadType>({
+      query: (obj) => ({
+        url: `/api/notification/${obj.id}/read?isRead=${obj.flag}`,
         method: 'PUT',
       }),
     }),
@@ -91,5 +90,4 @@ export const {
   useSetNotificationReadMutation,
   useDeleteNotificationMutation,
   useGetNotificationMetaQuery,
-  useSetNotificationUnReadMutation,
 } = apiSlice
