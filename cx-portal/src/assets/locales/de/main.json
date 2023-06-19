@@ -180,23 +180,23 @@
       "stage": {
         "slider1": {
           "title": "Catena-X",
-          "subtitle": "the gateway to the automotive digital network",
-          "buttonName": "My Apps"
+          "subtitle": "das Tor zum digitalen Automotive-Netzwerk",
+          "buttonName": "Meine Apps"
         },
         "slider2": {
-          "title": "Catena-X",
-          "subtitle": "the gateway to the automotive digital network",
-          "buttonName": "My Apps"
+          "title": "Use Case Introduction",
+          "subtitle": "Lernen Sie die unterstützten Anwendungsfälle, zugehörigen semantischen Modelle und Apps kennen, um Ihre anwendungsfallgesteuerte Onboarding-Reise zu beginnen.",
+          "buttonName": "Use Case Introduction"
         },
         "slider3": {
-          "title": "Catena-X",
-          "subtitle": "the gateway to the automotive digital network",
-          "buttonName": "My Apps"
+          "title": "Marktplätze",
+          "subtitle": "Transparenter und interoperabler Service- und Business-Applikations-Marktplatz, um neue Ideen umzusetzen und Daten optimal zu nutzen.",
+          "buttonName": "Marktplatz"
         },
         "slider4": {
-          "title": "Catena-X",
-          "subtitle": "the gateway to the automotive digital network",
-          "buttonName": "My Apps"
+          "title": "Benutzermanagement",
+          "subtitle": "Verwalten Sie Benutzerzugriffe zentral, um den Verwaltungsaufwand zu reduzieren und einen transparenten Überblick über alle Benutzerrechte zu gewährleisten.",
+          "buttonName": "Benutzermanagement"
         },
         "title": "Catena-X",
         "subtitle": "der Eintritt in das digital automobile Netzwerk",
