@@ -25,9 +25,15 @@ import { useTranslation } from 'react-i18next'
 import { MenuItem, Tree } from 'types/MainTypes'
 import { Logo } from '../Logo'
 import './Header.scss'
+import SearchIcon from '@mui/icons-material/Search'
+import { getAssetBase } from 'services/EnvironmentService'
+import { appearSearchSelector, setAppear } from 'features/control/appear'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
+  const visible = useSelector(appearSearchSelector)
+  const dispatch = useDispatch()
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -43,28 +49,45 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const menu = addTitle(main) || []
 
   return (
-    <header>
-      <MainNavigation items={menu} component={NavLink}>
-        <Logo />
-        <div className="d-flex">
-          <Button
-            size="small"
-            color="secondary"
-            variant="contained"
-            onClick={() => {
-              window.open(
-                `${document.location.origin}/documentation/`,
-                'documentation',
-                'noreferrer'
-              )
-            }}
-            sx={{ backgroundColor: 'white', marginRight: '16px' }}
-          >
-            {t('pages.help')}
-          </Button>
-          <UserInfo pages={user} />
-        </div>
-      </MainNavigation>
-    </header>
+    <>
+      <header>
+        <MainNavigation items={menu} component={NavLink}>
+          <Logo />
+          <div className="d-flex">
+            <div
+              onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
+              className="search-icon"
+            >
+              <SearchIcon sx={{ color: '#0f71cb' }} />
+            </div>
+            <Button
+              size="small"
+              color="secondary"
+              variant="contained"
+              onClick={() => {
+                window.open(
+                  `${document.location.origin}/documentation/`,
+                  'documentation',
+                  'noreferrer'
+                )
+              }}
+              sx={{ backgroundColor: 'white', marginRight: '16px' }}
+            >
+              {t('pages.help')}
+            </Button>
+            <UserInfo pages={user} />
+          </div>
+        </MainNavigation>
+      </header>
+      <div className="mobileHeader">
+        <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
+      </div>
+      <div
+        onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
+        className="mobile-search-icon"
+      >
+        <SearchIcon sx={{ color: '#0f71cb' }} />
+      </div>
+    </>
   )
 }

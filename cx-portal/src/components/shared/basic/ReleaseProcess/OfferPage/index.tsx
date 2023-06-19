@@ -45,7 +45,6 @@ import {
   serviceIdSelector,
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
-  serviceStatusDataSelector,
 } from 'features/serviceManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -84,7 +83,15 @@ export default function OfferPage({
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
-  const serviceStatusData = useSelector(serviceStatusDataSelector)
+
+  useEffect(() => {
+    if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+    fetchServiceStatus?.serviceTypeIds.every((item) =>
+      ['CONSULTANCE_SERVICE']?.includes(item)
+    )
+      ? skipTechnicalIntegrationStep(true)
+      : skipTechnicalIntegrationStep(false)
+  }, [dispatch, fetchServiceStatus, skipTechnicalIntegrationStep])
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -249,11 +256,6 @@ export default function OfferPage({
         dispatch(serviceReleaseStepIncrement())
       buttonLabel === ButtonLabelTypes.SAVE && setServicePageSnackbar(true)
       refetch()
-      serviceStatusData?.serviceTypeIds.every((item) =>
-        ['CONSULTANCE_SERVICE']?.includes(item)
-      )
-        ? skipTechnicalIntegrationStep(true)
-        : skipTechnicalIntegrationStep(false)
     } catch (error) {
       setServicePageNotification(true)
     }
