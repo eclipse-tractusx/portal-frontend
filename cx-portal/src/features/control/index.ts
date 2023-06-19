@@ -23,10 +23,12 @@ import overlay from './overlay'
 import form from './form'
 import notify from './notify'
 import update from './updates'
+import appear from './appear'
 
 export default combineReducers({
   form,
   notify,
   overlay,
   update,
+  appear,
 })

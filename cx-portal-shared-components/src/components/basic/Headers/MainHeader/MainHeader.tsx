@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { Image } from '../../Image'
 import { mainNavigationHeight } from '../../MainNavigation'
 import { MainHeaderTitle } from './Components/MainHeaderTitle'
@@ -27,7 +27,7 @@ export interface MainHeaderProps {
   children?: React.ReactNode
   title?: string
   subTitle?: string
-  subTitleWidth?: number
+  subTitleWidth?: number | string
   headerHeight?: number
   background?:
     | 'LinearGradient1'
@@ -86,6 +86,14 @@ export const MainHeader = ({
   titleTextVariant,
   subTitleTextVariant,
 }: MainHeaderProps) => {
+  //TO-DO - Use external scss file to handle mobile specifc css after the yarn upgrade
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
+  const styles = isMobile
+    ? { padding: '0px 20px', paddingTop: '200px', textAlign: 'center' }
+    : { padding: '0px 180px', paddingTop: '150px' }
   const backgroundstyle = () => {
     if (background === 'LinearGradient1') {
       return {
@@ -155,12 +163,11 @@ export const MainHeader = ({
       <Box
         sx={{
           width: '100%',
-          padding: '0px 180px',
           margin: '0px',
-          paddingTop: '150px',
           zIndex: 1,
           position: 'absolute',
           top: '0px',
+          ...styles,
         }}
       >
         <MainHeaderTitle

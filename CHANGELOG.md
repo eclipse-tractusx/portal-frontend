@@ -13,6 +13,9 @@
    * Add Admin Info
 * App Detail
    * Subscribe Button - wrong state
+* Home, Use cases and Company roles
+   * Mobile friendly header and stage navigation
+   * Slider stage header
 * App Overview
    * Enhance Sub Menu by adding 'Change Image' for active apps
 

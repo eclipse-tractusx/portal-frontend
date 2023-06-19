@@ -18,32 +18,63 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, MainHeader } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import PageService from 'services/PageService'
 import { label as BusinessApplications } from '../BusinessApplicationsSection'
 import { getAssetBase } from 'services/EnvironmentService'
+import { SlidingMainHeader } from 'components/shared/frame/SlidingMainHeader/SlidingMainHeader'
 
-export default function SearchSection() {
+export default function StageSection() {
   const { t } = useTranslation()
 
   return (
     <div className="stage-home">
-      <MainHeader
-        title={t('content.home.stage.title')}
-        subTitle={t('content.home.stage.subtitle')}
-        headerHeight={731}
-        subTitleWidth={787}
-        background="LinearGradient1"
-        imagePath={`${getAssetBase()}/images/frame/home-stage-desktop.png`}
-      >
-        <Button
-          sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => PageService.scrollTo(BusinessApplications)}
-        >
-          {t('content.home.stage.appButton')}
-        </Button>
-      </MainHeader>
+      <SlidingMainHeader
+        mainHeaderInfo={[
+          {
+            title: t('content.home.stage.title'),
+            subTitle: t('content.home.stage.subtitle'),
+            imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
+            buttonText: t('content.home.stage.appButton'),
+            handleClick: () => PageService.scrollTo(BusinessApplications),
+          },
+          {
+            title: t('content.home.stage.title'),
+            subTitle: t('content.home.stage.subtitle'),
+            imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
+            buttonText: t('content.home.stage.appButton'),
+            handleClick: () => PageService.scrollTo(BusinessApplications),
+          },
+          {
+            title: t('content.home.stage.title'),
+            subTitle: t('content.home.stage.subtitle'),
+            imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
+            buttonText: t('content.home.stage.appButton'),
+            handleClick: () => PageService.scrollTo(BusinessApplications),
+          },
+          {
+            title: t('content.home.stage.title'),
+            subTitle: t('content.home.stage.subtitle'),
+            imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
+            buttonText: t('content.home.stage.appButton'),
+            handleClick: () => PageService.scrollTo(BusinessApplications),
+          },
+        ]}
+        stageHeaderInfo={[
+          {
+            title: 'Slider 1',
+          },
+          {
+            title: 'Slider 2',
+          },
+          {
+            title: 'Slider 3',
+          },
+          {
+            title: 'Slider 4',
+          },
+        ]}
+      />
     </div>
   )
 }

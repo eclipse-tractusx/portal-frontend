@@ -36,3 +36,37 @@
   padding-right: 80px;
   margin-right: 20px;
 }
+
+.customHeight {
+  height: 100px;
+}
+
+//mobile layout
+@media (max-width: 480px) {
+  .subNavigationContainer {
+    display: block;
+    width: 100%;
+    padding: 0px;
+  }
+
+  .customHeight {
+    height: 100%;
+    position: relative !important;
+    box-shadow: none !important;
+  }
+
+  .subNavigationContainer button {
+    padding: 30px 0px;
+    margin: 0px;
+    width: 100%;
+  }
+
+  .subNavigationContainer button:hover,
+  .subNavigationContainer button:focus {
+    background-color: #ffffff;
+    border-radius: 0px;
+    border-image-width: 0px;
+    border: none;
+    box-shadow: 0px 0px 0px 1px rgb(15 113 203 / 40%);
+  }
+}
