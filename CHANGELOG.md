@@ -22,6 +22,8 @@
       * Service details page crash issue
    * App Release Process
       * App lead image load issue fix
+   * Service Marketplace
+      * Subscription Button cross service highlighted
 
 ## 1.5.0-RC1
 

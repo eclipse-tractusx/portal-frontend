@@ -20,16 +20,20 @@
 import { Button } from 'cx-portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import MarketplaceContentDetails from './MarketplaceContentDetails'
 import './Marketplace.scss'
 import { useFetchServiceQuery } from 'features/serviceMarketplace/serviceApiSlice'
-import { currentSuccessType } from 'features/serviceMarketplace/slice'
+import {
+  currentSuccessType,
+  setSuccessType,
+} from 'features/serviceMarketplace/slice'
 
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()
   const { serviceId } = useParams()
+  const dispatch = useDispatch()
 
   const { data, refetch } = useFetchServiceQuery(serviceId ?? '')
 
@@ -44,7 +48,10 @@ export default function ServiceMarketplaceDetail() {
       <Button
         color="secondary"
         size="small"
-        onClick={() => navigate('/servicemarketplace')}
+        onClick={() => {
+          dispatch(setSuccessType(false))
+          navigate('/servicemarketplace')
+        }}
       >
         {t('global.actions.back')}
       </Button>
