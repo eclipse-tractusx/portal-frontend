@@ -1,3 +1,10 @@
+# Deprecated!
+
+Note that this version of the library is discontinued and development will continue only in
+* Repository https://github.com/eclipse-tractusx/portal-shared-components
+* NPM Package https://www.npmjs.com/package/@catena-x/portal-shared-components
+
+
 # Catena-X Portal Shared UI Components
 
 Contains the shared UI components that are used to build the Catena-X Portal Frontend.
