@@ -1,6 +1,6 @@
 # Deprecated!
 
-Note that this version of the library is discontinued and development will continue only in
+Please note that this library is discontinued and development will continue only in:
 * Repository https://github.com/eclipse-tractusx/portal-shared-components
 * NPM Package https://www.npmjs.com/package/@catena-x/portal-shared-components
 
