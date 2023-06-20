@@ -1,12 +1,6 @@
 # Changelog
 
-## 1.5.0-RC1
-* Service Details
-   * Crash fix
-* Service/App Subscription Management
-   * Show Service/App name
-* Service release process
-   * Show lead service image in validate and publish step
+## 1.5.0
 
 ### Change
 * User Management
@@ -57,6 +51,8 @@
    * missing subscription details fetch from api fixed
 * Connectors
    * Previously added data on 'add connector' overlay got not cleared in case of a success scenario
+* Service Release Process
+   * display previous uploaded lead service image in "validate and publish" step
 
 ## 1.4.0
 
