@@ -120,10 +120,13 @@ export default function ChangeImage() {
       uploadDocumentApi(appId, uploadImageValue)
         .then(() => {
           setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-          navigate('/appoverview')
+          navigate('/appoverview', {
+            state: 'change-image-success',
+          })
           success(t('content.changeImage.successMsg'))
         })
         .catch((err) => {
+          setIsLoading(false)
           setFileStatus(UploadStatus.UPLOAD_ERROR)
           error(t('content.changeImage.errorMsg'), '', err)
         })
