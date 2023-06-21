@@ -1,7 +1,13 @@
 {
-  "name": "@catena-x/portal-shared-components-app",
+  "name": "@catena-x/portal-frontend",
   "version": "1.5.0",
+  "description": "Catena-X Portal Frontend",
+  "author": "Catena-X Contributors",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-tractusx/portal-frontend.git"
+  },
   "private": true,
   "eslintConfig": {
     "extends": [
