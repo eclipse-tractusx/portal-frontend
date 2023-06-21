@@ -46,12 +46,12 @@ export default function Deactivate() {
   const items: any = state
   const app = items?.filter((item: any) => item.id === appId)
   const [deactivateApp] = useDeactivateAppMutation()
-  const [cardImage, setCardImage] = useState('')
+  const [deactivateCardImage, setDeactivateCardImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const leadImageId = app?.[0]?.leadPictureId
 
   const fetchImage = useCallback(
-    async (documentId: string, documentType: string) => {
+    async (documentId: string, docType: string) => {
       try {
         const response = await fetchDocumentById({
           appId: appId ?? '',
@@ -59,8 +59,8 @@ export default function Deactivate() {
         })
         if (response && 'data' in response) {
           const file = response?.data?.data
-          if (documentType === 'APP_LEADIMAGE') {
-            return setCardImage(URL.createObjectURL(file))
+          if (docType === 'APP_LEADIMAGE') {
+            return setDeactivateCardImage(URL.createObjectURL(file))
           }
         }
       } catch (err) {
@@ -115,7 +115,7 @@ export default function Deactivate() {
               <Box sx={{ width: '50%' }}>
                 <Card
                   image={{
-                    src: cardImage,
+                    src: deactivateCardImage,
                   }}
                   title={app[0]?.title || ''}
                   subtitle={app[0]?.provider}
