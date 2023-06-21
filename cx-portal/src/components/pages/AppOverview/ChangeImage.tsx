@@ -68,7 +68,7 @@ export default function ChangeImage() {
     mode: 'onChange',
   })
 
-  const fetchImage = useCallback(
+  const fetchLeadImage = useCallback(
     async (documentId: string, documentType: string) => {
       try {
         const response = await fetchDocumentById({
@@ -90,9 +90,9 @@ export default function ChangeImage() {
 
   useEffect(() => {
     if (leadImageId) {
-      fetchImage(leadImageId, 'APP_LEADIMAGE')
+      fetchLeadImage(leadImageId, 'APP_LEADIMAGE')
     }
-  }, [fetchImage, leadImageId])
+  }, [fetchLeadImage, leadImageId])
 
   const uploadDocumentApi = async (appId: string, file: any) => {
     const data = {
