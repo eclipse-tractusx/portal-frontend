@@ -115,7 +115,7 @@ export default function ChangeImage() {
           documentId,
         })
         if (response && 'data' in response) {
-          const file = response && response?.data.data
+          const file = response?.data?.data
           if (documentType === 'APP_LEADIMAGE') {
             return setCardImage(URL.createObjectURL(file))
           }
@@ -134,12 +134,12 @@ export default function ChangeImage() {
 
   return (
     <main className="change-image-main">
-      <PageHeader title={app && app[0].title} topPage={true} headerHeight={200}>
+      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
         <Typography variant="body2" mb={3} align="center">
-          {app && app[0].title}
+          {app?.[0]?.title}
         </Typography>
         <Typography variant="h2" mb={3} align="center">
           {t('content.changeImage.headerTitle')}
