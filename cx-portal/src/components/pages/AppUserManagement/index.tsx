@@ -34,7 +34,7 @@ import {
   IconButton,
   PageHeader,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   currentUserRoleResp,
   setUserRoleResp,

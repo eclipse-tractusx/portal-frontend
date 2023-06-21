@@ -29,7 +29,7 @@ import {
   CardItems,
   Cards,
   PageSnackbar,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import {
   appCardStatus,
@@ -216,8 +216,8 @@ export default function AppOverview() {
                 filledBackground={true}
                 imageSize={'small'}
                 imageLoader={fetchImageWithToken}
-                onCardClick={(item: AppInfo) => {
-                  showOverlay(item)
+                onCardClick={(item: unknown) => {
+                  showOverlay(item as AppInfo)
                 }}
               />
             </div>

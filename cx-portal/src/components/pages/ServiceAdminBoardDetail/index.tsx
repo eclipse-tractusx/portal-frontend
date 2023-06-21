@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, StaticTable, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  StaticTable,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'

@@ -29,7 +29,7 @@ import {
   Input,
   Typography,
   CircleProgress,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { isValidCancelInput } from 'types/Patterns'
 import { useDeclineChecklistMutation } from 'features/admin/applicationRequestApiSlice'
 interface ConfirmationOverlayProps {

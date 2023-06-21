@@ -19,7 +19,7 @@
 
 import debounce from 'lodash.debounce'
 import { useTranslation } from 'react-i18next'
-import { SearchInput } from 'cx-portal-shared-components'
+import { SearchInput } from '@catena-x/portal-shared-components'
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearSearch, fetchSearch } from 'features/info/search/actions'
@@ -27,12 +27,13 @@ import './search-section.scss'
 import PageService from 'services/PageService'
 import { searchExprSelector } from 'features/info/search/slice'
 import { appearSearchSelector, setAppear } from 'features/control/appear'
+import { AppDispatch } from 'features/store'
 
 export const label = 'Search'
 
 export default function NewSearchSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const currentExprssion = useSelector(searchExprSelector)
   const [searchExpression, setSearchExpression] =
     useState<string>(currentExprssion)

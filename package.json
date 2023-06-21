@@ -3,34 +3,26 @@
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
-    "cx-portal",
-    "cx-portal-shared-components"
+    "cx-portal"
   ],
   "config": {
     "image": "tractusx/portal-frontend"
   },
   "scripts": {
     "prepare": "husky install",
-    "clean": "yarn workspace cx-portal-shared-components clean && yarn workspace cx-portal clean",
-    "version": "yarn config set version-git-tag false && yarn workspace cx-portal-shared-components version --new-version $npm_package_version && yarn workspace cx-portal version --new-version $npm_package_version && yarn workspace cx-portal add cx-portal-shared-components@$npm_package_version && yarn",
-    "lint": "eslint cx-portal cx-portal-shared-components",
+    "clean": "yarn workspace cx-portal clean",
+    "version": "yarn config set version-git-tag false && yarn workspace cx-portal version --new-version $npm_package_version && yarn",
+    "lint": "eslint cx-portal",
     "pretty": "prettier --write \"./cx-portal*/src/**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
-    "test:ci": "yarn workspace cx-portal-shared-components test:ci && yarn workspace cx-portal test:ci",
-    "build:lib": "yarn workspace cx-portal-shared-components build:lib",
-    "build:storybook": "yarn workspace cx-portal-shared-components build:storybook",
-    "start:storybook": "yarn workspace cx-portal-shared-components start:storybook",
-    "build:portal": "yarn workspace cx-portal build:portal",
-    "start:portal": "yarn workspace cx-portal start:portal",
-    "build:sources": "cp yarn.lock cx-portal | cp yarn.lock cx-portal-shared-components | zip -r portal-frontend.zip cx-portal*/src package.json **/package.json yarn.lock cx-portal/yarn.lock cx-portal-shared-components/yarn.lock -x '*.stories.*' -x '*.test.*' -x '*mock*' -x '*.ttf' -x '*.svg' -x '*.png'",
+    "test:ci": "cd cx-portal && CI=true yarn test",
+    "build": "cd cx-portal && yarn build",
+    "start": "yarn workspace cx-portal start",
+    "build:sources": "cp yarn.lock cx-portal | zip -r portal-frontend.zip cx-portal*/src package.json **/package.json yarn.lock cx-portal/yarn.lock -x '*.stories.*' -x '*.test.*' -x '*mock*' -x '*.ttf' -x '*.svg' -x '*.png'",
     "build:docker": "if [ -d \"./cx-portal/build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
     "build:docker:full": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.full --build-arg \"http_proxy=${http_proxy}\" --build-arg \"https_proxy=${https_proxy}\" --build-arg \"no_proxy=${no_proxy}\" .",
     "build:docker:prebuilt": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
     "start:docker": "IMAGE=$npm_package_config_image  && docker run --rm -d -p 3001:8080 --name cx-portal $IMAGE",
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
-    "build": "yarn clean && yarn build:lib && yarn build:storybook && yarn build:portal",
-    "start": "yarn start:portal",
-    "deploy:helm": "helm install portal .chart/portal --namespace portal",
-    "undeploy:helm": "helm uninstall portal --namespace portal",
     "build:legal-notice": "bash scripts/legal-notice.sh"
   },
   "lint:staged": {
@@ -44,20 +36,5 @@
     "rimraf": "^3.0.2",
     "yarn": "^1.22.18"
   },
-  "dependencies": {},
-  "resolutions": {
-    "**/nth-check": "^2.0.1",
-    "**/cx-portal/react-scripts/react-dev-utils/loader-utils": "^3.2.0",
-    "**/loader-utils": "^2.0.4",
-    "**/json5": "^2.2.2",
-    "**/cx-portal/react-scripts/workbox-webpack-plugin/workbox-build/@surma/rollup-plugin-off-main-thread/ejs/jake/filelist/minimatch": "^5.0.1",
-    "**/minimatch": "^3.0.5",
-    "**/terser": "^5.14.2",
-    "**/cx-portal/eslint/glob-parent": "^6.0.2",
-    "**/cx-portal/react-scripts/tailwindcss/glob-parent": "^6.0.2",
-    "**/glob-parent": "^5.1.2",
-    "**/trim": "^0.0.3",
-    "**/decode-uri-component": "^0.2.1",
-    "**/webpack@5.70.0": "^5.76.0"
-  }
+  "dependencies": {}
 }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems, Cards } from 'cx-portal-shared-components'
+import { CardItems, Cards } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import NoItems from 'components/pages/NoItems'
@@ -71,20 +71,21 @@ export const AppOverviewList = ({
         showAddNewCard={true}
         newButtonText={t('content.appoverview.addbtn')}
         onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
-        onCardClick={(item: AppInfo) => {
-          showOverlay(item)
+        onCardClick={(item: unknown) => {
+          showOverlay(item as AppInfo)
         }}
         subMenu={true}
         submenuOptions={submenuOptions}
-        submenuClick={(value: string, appId: string) => {
-          value === AppSubMenuItems.DEACTIVATE &&
-            navigate(`/deactivate/${appId}`, {
+        submenuClick={(sortMenu: string, id: string | undefined) => {
+          sortMenu === AppSubMenuItems.DEACTIVATE &&
+            navigate(`/deactivate/${id}`, {
               state: filterItem,
             })
-          value === AppSubMenuItems.CHANGE_IMAGE &&
-            navigate(`/changeimage/${appId}`, {
+          sortMenu === AppSubMenuItems.CHANGE_IMAGE &&
+            navigate(`/changeimage/${id}`, {
               state: filterItem,
             })
+          return undefined
         }}
         tooltipText={t('content.appoverview.submenuNotAvail')}
       />

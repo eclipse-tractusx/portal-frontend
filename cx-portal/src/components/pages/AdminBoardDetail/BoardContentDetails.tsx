@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Button, Typography } from 'cx-portal-shared-components'
+import { Button, Typography } from '@catena-x/portal-shared-components'
 import BoardHeader from './components/BoardHeader'
 import BoardImageGallery from './components/BoardImageGallery'
 import BoardDocuments from './components/BoardDocuments'

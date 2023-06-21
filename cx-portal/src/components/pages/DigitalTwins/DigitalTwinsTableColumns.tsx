@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from 'cx-portal-shared-components'
+import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { ShellDescriptor } from 'features/digitalTwins/types'
 

@@ -27,7 +27,7 @@ import {
   Typography,
   Input,
   theme,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -43,6 +43,7 @@ import {
   SelectChangeEvent,
   CircularProgress,
 } from '@mui/material'
+import { AppDispatch } from 'features/store'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -50,7 +51,7 @@ interface ModelDetailDialogProps {
 }
 
 const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { uploading, uploadedModel, error } = useSelector(
     semanticModelsSelector
   )

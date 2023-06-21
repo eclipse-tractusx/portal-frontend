@@ -29,7 +29,7 @@ import {
   Input,
   Button,
   DialogActions,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -53,6 +53,7 @@ import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { Status } from 'features/semanticModels/types'
+import { AppDispatch } from 'features/store'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -65,7 +66,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const { model, loadingModel, openApiLink, error, openApiError } = useSelector(
     semanticModelsSelector
   )
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [diagram, setDiagram] = useState<string>('')
   const [diagramError, setDiagramError] = useState<string>('')
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')

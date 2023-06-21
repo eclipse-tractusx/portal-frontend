@@ -20,7 +20,7 @@
 
 import { IdentityProvider } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
-import { DropdownMenu, MenuItem } from 'cx-portal-shared-components'
+import { DropdownMenu, MenuItem } from '@catena-x/portal-shared-components'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { useTranslation } from 'react-i18next'

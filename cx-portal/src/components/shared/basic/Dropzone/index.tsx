@@ -28,7 +28,7 @@ import {
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
   UploadStatus,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
@@ -98,7 +98,7 @@ export const Dropzone = ({
   )
 
   const handleFEDelete = useCallback(
-    (deleteIndex, documentId) => {
+    (deleteIndex: number, documentId: string) => {
       const nextFiles = [...currentFiles]
       const deletedFiles = nextFiles.splice(deleteIndex, 1)
 

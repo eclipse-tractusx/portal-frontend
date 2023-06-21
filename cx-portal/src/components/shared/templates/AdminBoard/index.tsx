@@ -28,7 +28,7 @@ import {
   SortOption,
   PageHeader,
   LoadMoreButton,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'

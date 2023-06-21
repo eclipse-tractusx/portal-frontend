@@ -24,7 +24,7 @@ import {
   Typography,
   Button,
   ProcessList,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import './ReleaseProcess.scss'
 

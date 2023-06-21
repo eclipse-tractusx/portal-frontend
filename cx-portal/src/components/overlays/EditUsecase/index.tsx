@@ -25,7 +25,7 @@ import {
   DialogHeader,
   DropArea,
   DropAreaProps,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { fetchAny } from 'features/admin/userOwn/actions'
 import { useEffect, useState } from 'react'

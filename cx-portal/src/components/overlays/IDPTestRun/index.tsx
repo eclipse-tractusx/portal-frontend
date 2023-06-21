@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogHeader,
   Input,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'

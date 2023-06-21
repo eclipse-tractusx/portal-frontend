@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { SharedThemeProvider } from 'cx-portal-shared-components'
+import { SharedThemeProvider } from '@catena-x/portal-shared-components'
 import React from 'react'
 import { GlobalStyle } from '../src/components/Global'
 

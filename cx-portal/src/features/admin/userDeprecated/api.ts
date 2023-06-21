@@ -20,7 +20,7 @@
 
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
-import { PaginResult } from 'cx-portal-shared-components'
+import { PaginResult } from '@catena-x/portal-shared-components'
 import { HttpClient } from 'utils/HttpClient'
 import { TenantUser } from '../userApiSlice'
 import { AddUser } from './types'

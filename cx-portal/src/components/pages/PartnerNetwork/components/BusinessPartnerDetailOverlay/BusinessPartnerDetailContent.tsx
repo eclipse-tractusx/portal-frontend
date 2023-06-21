@@ -22,7 +22,7 @@ import { useSelector } from 'react-redux'
 import { partnerNetworkSelector } from 'features/partnerNetwork/slice'
 import { Box, Grid, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
 import DetailGridRow from './DetailGridRow'
 

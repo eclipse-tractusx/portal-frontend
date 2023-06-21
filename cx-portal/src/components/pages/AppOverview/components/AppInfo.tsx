@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import AppProviderInfo from './AppProviderInfo'
 import AppDetailImageGallery from 'components/pages/AppDetail/components/AppDetailImageGallery'
 import { getAppImage } from 'features/apps/mapper'

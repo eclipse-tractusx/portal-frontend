@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { PageHeader } from 'cx-portal-shared-components'
+import { PageHeader } from '@catena-x/portal-shared-components'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
 import NoItems from '../NoItems'
 import { AppOverviewList } from '../AppOverview/AppOverviewList'

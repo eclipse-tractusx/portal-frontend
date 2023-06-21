@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ParentSubNavigation } from 'cx-portal-shared-components'
+import { ParentSubNavigation } from '@catena-x/portal-shared-components'
 import '../Templates.scss'
 import { Box } from '@mui/material'
 

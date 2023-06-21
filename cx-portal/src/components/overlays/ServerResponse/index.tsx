@@ -24,7 +24,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 interface ServerResponseOverlayProps {
   title: string

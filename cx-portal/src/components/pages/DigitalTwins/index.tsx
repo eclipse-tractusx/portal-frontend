@@ -25,10 +25,11 @@ import { useDispatch } from 'react-redux'
 import { fetchTwinById } from 'features/digitalTwins/actions'
 import StageHeader from 'components/shared/frame/StageHeader'
 import { useTranslation } from 'react-i18next'
+import { AppDispatch } from 'features/store'
 
 export default function DigitalTwins() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [showTwin, setShowTwin] = useState<boolean>(false)
 
   const onTwinSelect = (id: string) => {

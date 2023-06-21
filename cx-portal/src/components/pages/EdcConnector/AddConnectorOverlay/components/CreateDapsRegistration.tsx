@@ -29,7 +29,7 @@ import {
   CircleProgress,
   Typography,
   DropArea,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
 import './EdcComponentStyles.scss'

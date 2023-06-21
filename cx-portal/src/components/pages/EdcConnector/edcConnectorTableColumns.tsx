@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { StatusTag, Tooltips, Typography } from 'cx-portal-shared-components'
+import {
+  StatusTag,
+  Tooltips,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import LockIcon from '@mui/icons-material/Lock'

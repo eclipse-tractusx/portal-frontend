@@ -4,8 +4,9 @@ import {
   DialogActions,
   DialogHeader,
   LoadingButton,
-} from 'cx-portal-shared-components'
-import { useTranslation, Trans, TFunction } from 'react-i18next'
+} from '@catena-x/portal-shared-components'
+import { useTranslation, Trans } from 'react-i18next'
+import i18next from 'i18next'
 import { useEnableIDPMutation } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
@@ -14,29 +15,20 @@ import { closeOverlay } from 'features/control/overlay'
 
 type Status = { error: boolean; success: boolean }
 
-const getStatus = (
-  status: boolean,
-  t: TFunction<'translation', undefined>,
-  addSuffix?: boolean
-) => {
+const getStatus = (status: boolean, addSuffix?: boolean) => {
   if (addSuffix) {
-    return t(`global.state.${!status ? 'enabled' : 'disabled'}`)
+    return i18next.t(`global.state.${!status ? 'enabled' : 'disabled'}`)
   }
 
-  return t(`global.state.${!status ? 'enable' : 'disable'}`)
+  return i18next.t(`global.state.${!status ? 'enable' : 'disable'}`)
 }
 
-const getTitle = (
-  status: Status,
-  t: TFunction<'translation', undefined>,
-  idpStatus: boolean,
-  title?: string
-) => {
+const getTitle = (status: Status, idpStatus: boolean, title?: string) => {
   if (status.success) {
     return (
       <Trans
         i18nKey={'overlays.idp_status_change_success'}
-        values={{ name: title, status: getStatus(idpStatus, t, true) }}
+        values={{ name: title, status: getStatus(idpStatus, true) }}
       ></Trans>
     )
   }
@@ -45,7 +37,7 @@ const getTitle = (
     return (
       <Trans
         i18nKey={'overlays.idp_status_change_error'}
-        values={{ status: getStatus(idpStatus, t, true) }}
+        values={{ status: getStatus(idpStatus, true) }}
       ></Trans>
     )
   }
@@ -53,7 +45,7 @@ const getTitle = (
   return (
     <Trans
       i18nKey={'overlays.idp_status_change_info'}
-      values={{ status: getStatus(idpStatus, t) }}
+      values={{ status: getStatus(idpStatus) }}
     ></Trans>
   )
 }
@@ -132,7 +124,7 @@ function IDPStatusChange({
     <>
       <DialogHeader
         {...{
-          title: getTitle(status, t, idpStatus!, title),
+          title: getTitle(status, idpStatus!, title),
           closeWithIcon: true,
           icon: true,
           iconComponent: getIcon(status),

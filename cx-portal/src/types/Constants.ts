@@ -68,7 +68,6 @@ export enum PAGES {
   SETTINGS = 'settings',
   DEVELOPER = 'developer',
   TEST = 'test',
-  TRANSLATOR = 'translator',
   LOGOUT = 'logout',
   ERROR = 'error',
   APP_MANAGEMENT = 'appmanagement',

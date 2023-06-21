@@ -33,7 +33,7 @@ import {
   Expand,
   LoadingButton,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import {
   AgreementsData,

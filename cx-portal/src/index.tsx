@@ -30,7 +30,7 @@ import AuthorizingRouter from 'components/AuthorizingRouter'
 import {
   SharedThemeProvider,
   SharedCssBaseline,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 I18nService.init()
 

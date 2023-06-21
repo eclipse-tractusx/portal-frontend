@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
+import {
+  Typography,
+  StaticTable,
+  TableType,
+} from '@catena-x/portal-shared-components'
 import { AppStatusDataState } from 'features/appManagement/types'
 
 export default function AppProviderInfo({

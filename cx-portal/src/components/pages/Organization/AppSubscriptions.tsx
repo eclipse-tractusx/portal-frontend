@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { SubscriptionStatus, ImageType } from 'features/apps/apiSlice'
-import { Image, LogoGrayData } from 'cx-portal-shared-components'
+import { Image, LogoGrayData } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
 
 export default function AppSubscriptions({
