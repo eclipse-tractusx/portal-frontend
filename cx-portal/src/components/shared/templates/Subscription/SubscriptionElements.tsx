@@ -142,7 +142,7 @@ export default function SubscriptionElements({
                       {subscription.companyName}
                     </Typography>
                     <Typography variant="body2" className="secondSection">
-                      {subscriptionData.serviceName}
+                      {subscriptionData.offerName}
                     </Typography>
                     <Typography variant="body3" className="thirdSection">
                       {'Placeholders for add details such as BPN; etc'}
