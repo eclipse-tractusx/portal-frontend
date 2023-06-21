@@ -68,7 +68,7 @@
 .deactivate-main {
   .mainContainer {
     background: #f9f9f9;
-    padding: 100px 0;
+    padding-top: 100px;
     .mainRow {
       width: 100%;
       max-width: 1100px;
@@ -88,5 +88,18 @@
     font-family: 'LibreFranklin-Light', -apple-system, BlinkMacSystemFont,
       'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
+}
+.change-image-main {
+  .main-container {
+    background: #f9f9f9;
+    padding-top: 100px;
+    .main-row {
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 15px 0 15px !important;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 }

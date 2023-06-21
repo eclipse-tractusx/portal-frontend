@@ -389,6 +389,11 @@
       "successMsg": "Deactivation successfully completed",
       "errorMsg": "Error! Something went wrong"
     },
+    "changeImage": {
+      "headerTitle": "Change Lead Image",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "uploadNewImage": "Upload New Image"
+    },
     "appreleaseprocess": {
       "message": "App Release Process Message"
     },

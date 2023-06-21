@@ -40,6 +40,7 @@ export default function ConnectorFormInputFieldImage({
   handleDownload,
   handleDelete,
   isRequired = true,
+  size,
 }: any) {
   const { t } = useTranslation()
   return (
@@ -63,6 +64,7 @@ export default function ConnectorFormInputFieldImage({
           handleDownload: handleDownload,
           handleDelete: handleDelete,
           errorText: t('content.apprelease.appReleaseForm.fileSizeError'),
+          size: size,
         }}
       />
       {errors?.uploadImage?.leadPictureUri?.type === ErrorType.REQUIRED && (
