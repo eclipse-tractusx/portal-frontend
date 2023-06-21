@@ -18,52 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
 import _ from 'lodash'
-import { Box } from '@mui/material'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import {
-  Button,
-  Checkbox,
-  Chip,
-  PageHeader,
-  PageSnackbar,
-  Typography,
-} from 'cx-portal-shared-components'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Chip, PageHeader, Typography } from 'cx-portal-shared-components'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import {
-  CompanyRolesResponse,
-  useFetchRolesQuery,
-} from 'features/companyRoles/companyRoleApiSlice'
 import './UsecaseParticipation.scss'
-import {
-  updateRoleErrorType,
-  updateRoleSuccessType,
-} from 'features/companyRoles/slice'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 export default function UsecaseParticipation() {
-  const navigate = useNavigate()
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [companyRoles, setCompanyRoles] = useState<CompanyRolesResponse[]>([])
-  const [selectedRoles, setSelectedRoles] = useState<string[]>([])
-  const [showActiveDescRole, setShowActiveDescRole] = useState<string>()
-
-  const updatedSuccess = useSelector(updateRoleSuccessType)
-  const updatedError = useSelector(updateRoleErrorType)
-
-  const { data, refetch } = useFetchRolesQuery()
-  useEffect(() => {
-    data && setCompanyRoles(_.cloneDeep(data))
-    refetch()
-  }, [data, refetch, updatedSuccess, updatedError])
 
   return (
     <main className="usecase-participation">

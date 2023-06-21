@@ -25,21 +25,14 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  Input,
 } from 'cx-portal-shared-components'
-import { useTranslation, Trans } from 'react-i18next'
-import {
-  deleteUserBpn,
-  fetchAny,
-  putBusinessPartnerNumber,
-} from 'features/admin/userOwn/actions'
-import { UserdetailSelector } from 'features/admin/userOwn/slice'
+import { useTranslation } from 'react-i18next'
+import { fetchAny } from 'features/admin/userOwn/actions'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import { useDispatch } from 'react-redux'
 import './style.scss'
 import { OVERLAYS } from 'types/Constants'
-import { OverlayState, stateSelector, show } from 'features/control/overlay'
+import { show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 
