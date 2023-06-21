@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
+  DropAreaProps,
 } from 'cx-portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { fetchAny } from 'features/admin/userOwn/actions'
@@ -45,6 +46,10 @@ export default function AddBPN({ id }: { id: string }) {
   useEffect(() => {
     dispatch(fetchAny(id))
   }, [dispatch, id])
+
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
+  }
 
   return (
     <>
@@ -68,7 +73,7 @@ export default function AddBPN({ id }: { id: string }) {
             }}
             errorText={'helperText'}
             DropStatusHeader={false}
-            DropArea={(props: any) => <DropArea {...props} size="small" />}
+            DropArea={renderDropArea}
           />
           <div className="checkbox-confirmation">
             <Checkbox
