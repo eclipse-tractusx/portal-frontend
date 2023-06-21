@@ -19,6 +19,13 @@
 * App overview
    * Enhance Sub Menu by adding 'Change Image' for active apps
    * Change Image(sub menu) functionality added for active apps
+* Bugfix
+   * Service Release Process
+      * Service Release process not working
+      * Service details page crash issue
+* Usecase Participation
+   * Created New page under User profile
+   * Add edit Overlay UI
 * Service Release Process
    * Service Release process not working
    * Service details page crash issue

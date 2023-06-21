@@ -95,6 +95,7 @@ export enum PAGES {
   ROLE_DETAILS = 'role-details',
   SERVICE_DETAIL = 'servicedetail',
   COMPANY_ROLE = 'company-role',
+  USECASE_PARTICIPATION = 'usecase-participation',
   ABOUTPAGE = 'about',
 }
 
@@ -137,6 +138,7 @@ export enum OVERLAYS {
   EDIT_PORTAL_ROLES = 'edit_portal_roles',
   SERVICE_DECLINE_ADMINBOARD = 'decline_service_release',
   UPDATE_COMPANY_ROLE = 'update_company_role',
+  EDIT_USECASE = 'edit_usecase',
 }
 
 export enum ACTIONS {
@@ -203,6 +205,7 @@ export enum ROLES {
   DECLINE_SERVICE_RELEASE = 'decline_service_release',
   VIEW_SERVICE_RELEASE = 'add_service_offering',
   UPDATE_COMPANY_ROLE = 'update_company_role',
+  USECASE_PARTICIPATION = 'add_use_case_participation',
 }
 
 export enum HINTS {
