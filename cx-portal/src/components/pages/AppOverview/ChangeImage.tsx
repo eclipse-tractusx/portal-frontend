@@ -130,7 +130,7 @@ export default function ChangeImage() {
     if (app[0]?.leadPictureId) {
       fetchImage(app[0].leadPictureId, 'APP_LEADIMAGE')
     }
-  }, [fetchImage])
+  }, [fetchImage, app])
 
   return (
     <main className="change-image-main">
