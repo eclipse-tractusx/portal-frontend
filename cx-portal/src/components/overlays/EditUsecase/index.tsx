@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -37,7 +36,7 @@ import { show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 
-export default function AddBPN({ id }: { id: string }) {
+export default function EditUsecase({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [uploadedFile, setUploadedFile] = useState<any>()
@@ -69,7 +68,6 @@ export default function AddBPN({ id }: { id: string }) {
             maxFilesToUpload={1}
             onChange={([file]) => {
               setUploadedFile(file)
-              console.log('file', file)
             }}
             errorText={'helperText'}
             DropStatusHeader={false}
