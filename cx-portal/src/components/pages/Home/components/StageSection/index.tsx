@@ -62,16 +62,16 @@ export default function StageSection() {
         ]}
         stageHeaderInfo={[
           {
-            title: 'Slider 1',
+            title: t('content.home.slider1'),
           },
           {
-            title: 'Slider 2',
+            title: t('content.home.slider2'),
           },
           {
-            title: 'Slider 3',
+            title: t('content.home.slider3'),
           },
           {
-            title: 'Slider 4',
+            title: t('content.home.slider4'),
           },
         ]}
       />

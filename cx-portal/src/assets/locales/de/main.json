@@ -177,6 +177,10 @@
       "title": "Neuigkeiten"
     },
     "home": {
+      "slider1": "Meine Apps",
+      "slider2": "Use Case Introduction",
+      "slider3": "Marktplatz",
+      "slider4": "Benutzermanagement",
       "stage": {
         "slider1": {
           "title": "Catena-X",
@@ -197,11 +201,7 @@
           "title": "Benutzermanagement",
           "subtitle": "Verwalten Sie Benutzerzugriffe zentral, um den Verwaltungsaufwand zu reduzieren und einen transparenten Überblick über alle Benutzerrechte zu gewährleisten.",
           "buttonName": "Benutzermanagement"
-        },
-        "title": "Catena-X",
-        "subtitle": "der Eintritt in das digital automobile Netzwerk",
-        "cxButton": "Mein CX",
-        "appButton": "Meine Apps"
+        }
       },
       "searchSection": {
         "inputPlaceholder": "Suche in Catena-X"
