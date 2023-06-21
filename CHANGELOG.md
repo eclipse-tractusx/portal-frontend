@@ -16,6 +16,9 @@
 * Home, Use cases and Company roles
    * Mobile friendly header and stage navigation
    * Slider stage header
+* App Overview
+   * Enhance Sub Menu by adding 'Change Image' for active apps
+
 * Bugfix
    * Service Release Process
       * Service Release process not working
@@ -25,6 +28,8 @@
    * Provide icon for marking a notification as read/unread
 * App Release Process
       * App lead image load issue fix
+   * Service Marketplace
+      * Subscription Button cross service highlighted
 
 ## 1.5.0-RC1
 

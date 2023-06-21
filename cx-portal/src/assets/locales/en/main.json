@@ -364,7 +364,8 @@
         "wip": "WIP"
       },
       "sortOptions": {
-        "deactivate": "Deactivate"
+        "deactivate": "Deactivate",
+        "changeImage": "Change Image"
       },
       "addbtn": "Register your App",
       "confirmModal": {
