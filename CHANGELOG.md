@@ -19,7 +19,6 @@
 * App overview
    * Enhance Sub Menu by adding 'Change Image' for active apps
    * Change Image(sub menu) functionality added for active apps
-
 * Bugfix
    * Service Release Process
       * Service Release process not working
@@ -27,6 +26,9 @@
 * Usecase Participation
    * Created New page under User profile
    * Add edit Overlay UI
+* Service Release Process
+   * Service Release process not working
+   * Service details page crash issue
 * Notification
    * Show done state
    * Provide icon for marking a notification as read/unread
@@ -35,7 +37,7 @@
    * Service Marketplace
       * Subscription Button cross service highlighted
 
-## 1.5.0-RC1
+## 1.5.0
 
 ### Change
 * User Management
@@ -86,6 +88,8 @@
    * missing subscription details fetch from api fixed
 * Connectors
    * Previously added data on 'add connector' overlay got not cleared in case of a success scenario
+* Service Release Process
+   * display previous uploaded lead service image in "validate and publish" step
 
 ## 1.4.0
 

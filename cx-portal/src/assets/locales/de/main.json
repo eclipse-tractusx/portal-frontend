@@ -178,11 +178,31 @@
       "title": "Neuigkeiten"
     },
     "home": {
+      "slider1": "Meine Apps",
+      "slider2": "Use Case Introduction",
+      "slider3": "Marktplatz",
+      "slider4": "Benutzermanagement",
       "stage": {
-        "title": "Catena-X",
-        "subtitle": "der Eintritt in das digital automobile Netzwerk",
-        "cxButton": "Mein CX",
-        "appButton": "Meine Apps"
+        "slider1": {
+          "title": "Catena-X",
+          "subtitle": "das Tor zum digitalen Automotive-Netzwerk",
+          "buttonName": "Meine Apps"
+        },
+        "slider2": {
+          "title": "Use Case Introduction",
+          "subtitle": "Lernen Sie die unterstützten Anwendungsfälle, zugehörigen semantischen Modelle und Apps kennen, um Ihre anwendungsfallgesteuerte Onboarding-Reise zu beginnen.",
+          "buttonName": "Use Case Introduction"
+        },
+        "slider3": {
+          "title": "Marktplätze",
+          "subtitle": "Transparenter und interoperabler Service- und Business-Applikations-Marktplatz, um neue Ideen umzusetzen und Daten optimal zu nutzen.",
+          "buttonName": "Marktplatz"
+        },
+        "slider4": {
+          "title": "Benutzermanagement",
+          "subtitle": "Verwalten Sie Benutzerzugriffe zentral, um den Verwaltungsaufwand zu reduzieren und einen transparenten Überblick über alle Benutzerrechte zu gewährleisten.",
+          "buttonName": "Benutzermanagement"
+        }
       },
       "searchSection": {
         "inputPlaceholder": "Suche in Catena-X"

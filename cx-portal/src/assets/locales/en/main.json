@@ -177,11 +177,31 @@
       "title": "News"
     },
     "home": {
+      "slider1": "My Apps",
+      "slider2": "Use Case Introduction",
+      "slider3": "Marketplace",
+      "slider4": "User Management",
       "stage": {
-        "title": "Catena-X",
-        "subtitle": "the gateway to the automotive digital network",
-        "cxButton": "My CX",
-        "appButton": "My Apps"
+        "slider1": {
+          "title": "Catena-X",
+          "subtitle": "the gateway to the automotive digital network",
+          "buttonName": "My Apps"
+        },
+        "slider2": {
+          "title": "Use Case Introduction",
+          "subtitle": "Get to know the supported use cases, related semantic models and apps to start your use case driven onboarding journey.",
+          "buttonName": "Use Case Introduction"
+        },
+        "slider3": {
+          "title": "Marketplaces",
+          "subtitle": "Transparent and interobarble service and business application marketplace to realize new ideas and use data optimally",
+          "buttonName": "Marketplace"
+        },
+        "slider4": {
+          "title": "User Management",
+          "subtitle": "Manage user access centrally to reduce administrative work and ensure a transparent overview of all user rights.",
+          "buttonName": "User Management"
+        }
       },
       "searchSection": {
         "inputPlaceholder": "Search in Catena-X"
