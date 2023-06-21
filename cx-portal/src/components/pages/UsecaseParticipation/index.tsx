@@ -20,7 +20,6 @@
 
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
-import _ from 'lodash'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { Chip, PageHeader, Typography } from 'cx-portal-shared-components'
