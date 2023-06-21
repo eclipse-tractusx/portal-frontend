@@ -22,7 +22,7 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import {
   Typography,
   PageHeader,
-  Cards,
+  Card,
   Checkbox,
   Button,
   Tooltips,
@@ -31,8 +31,10 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDeactivateAppMutation } from 'features/apps/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { error } from 'services/NotifyService'
 
 export default function Deactivate() {
   const { t } = useTranslation()
@@ -40,13 +42,39 @@ export default function Deactivate() {
   const appId = useParams().appId
   const [checked, setChecked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-
   const { state } = useLocation()
   const items: any = state
-
-  const app = items && items.filter((item: any) => item.id === appId)
-
+  const app = items?.filter((item: any) => item.id === appId)
   const [deactivateApp] = useDeactivateAppMutation()
+  const [cardImage, setCardImage] = useState('')
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const leadImageId = app?.[0]?.leadPictureId
+
+  const fetchImage = useCallback(
+    async (documentId: string, documentType: string) => {
+      try {
+        const response = await fetchDocumentById({
+          appId: appId ?? '',
+          documentId,
+        })
+        if (response && 'data' in response) {
+          const file = response?.data?.data
+          if (documentType === 'APP_LEADIMAGE') {
+            return setCardImage(URL.createObjectURL(file))
+          }
+        }
+      } catch (err) {
+        error('ERROR WHILE FETCHING IMAGE', '', err as object)
+      }
+    },
+    [fetchDocumentById, appId]
+  )
+
+  useEffect(() => {
+    if (leadImageId) {
+      fetchImage(leadImageId, 'APP_LEADIMAGE')
+    }
+  }, [fetchImage, leadImageId])
 
   const handleSaveClick = async () => {
     setIsLoading(true)
@@ -85,25 +113,30 @@ export default function Deactivate() {
           {app && (
             <Box sx={{ display: 'flex' }}>
               <Box sx={{ width: '50%' }}>
-                <Cards
-                  items={app}
-                  columns={1}
-                  buttonText=""
+                <Card
+                  image={{
+                    src: cardImage,
+                  }}
+                  title={app[0]?.title || ''}
+                  subtitle={app[0]?.provider}
+                  expandOnHover={false}
+                  buttonText={''}
                   variant="minimal"
                   filledBackground={false}
                   imageShape="round"
                   imageSize="small"
-                  showStatus={false}
                 />
               </Box>
-              <Checkbox
-                label={`${t('content.deactivate.checkboxLabel')}`}
-                key={app[0].id}
-                onChange={(e) =>
-                  e.target.checked ? setChecked(true) : setChecked(false)
-                }
-                className="checkbox-input"
-              />
+              <Box sx={{ marginTop: '10%' }}>
+                <Checkbox
+                  label={`${t('content.deactivate.checkboxLabel')}`}
+                  key={app[0].id}
+                  onChange={(e) =>
+                    e.target.checked ? setChecked(true) : setChecked(false)
+                  }
+                  className="checkbox-input"
+                />
+              </Box>
             </Box>
           )}
         </div>
@@ -133,7 +166,7 @@ export default function Deactivate() {
                     onButtonClick={() => {}}
                     loadIndicator="Loading..."
                     label={`${t('global.actions.confirm')}`}
-                  ></LoadingButton>
+                  />
                 ) : (
                   <Button
                     size="small"

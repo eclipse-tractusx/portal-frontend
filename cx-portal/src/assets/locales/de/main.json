@@ -394,7 +394,9 @@
     "changeImage": {
       "headerTitle": "Change Lead Image",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "uploadNewImage": "Upload New Image"
+      "uploadNewImage": "Upload New Image",
+      "successMsg": "successfully changed app lead image",
+      "errorMsg": "Unable to change the lead image"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"

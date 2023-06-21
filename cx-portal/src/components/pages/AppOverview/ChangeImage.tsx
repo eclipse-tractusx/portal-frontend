@@ -53,6 +53,7 @@ export default function ChangeImage() {
   const [updateImageData] = useUpdateImageDataMutation()
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const app = items?.filter((item: any) => item.id === appId)
+  const leadImageId = app?.[0]?.leadPictureId
 
   const {
     control,
@@ -67,46 +68,6 @@ export default function ChangeImage() {
     mode: 'onChange',
   })
 
-  const uploadDocumentApi = async (appId: string, file: any) => {
-    const data = {
-      appId: appId,
-      body: { file },
-    }
-    await updateImageData(data).unwrap()
-  }
-
-  const handleUploadDocument = (
-    appId: string,
-    uploadImageValue: DropzoneFile
-  ) => {
-    const setFileStatus = (status: UploadFileStatus) =>
-      setValue('uploadLeadImage', {
-        id: uploadImageValue.id,
-        name: uploadImageValue.name,
-        size: uploadImageValue.size,
-        status,
-      } as any)
-
-    setFileStatus(UploadStatus.UPLOADING)
-    uploadDocumentApi(appId, uploadImageValue)
-      .then(() => {
-        setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-        navigate('/appoverview')
-        success('successfully changed app lead image')
-      })
-      .catch((err) => {
-        setFileStatus(UploadStatus.UPLOAD_ERROR)
-        error('Unable to change the lead image', '', err)
-      })
-  }
-  const uploadImageValue = getValues()
-    .uploadLeadImage as unknown as DropzoneFile
-
-  const handleSaveClick = async () => {
-    setIsLoading(true)
-    if (appId && uploadImageValue) handleUploadDocument(appId, uploadImageValue)
-  }
-
   const fetchImage = useCallback(
     async (documentId: string, documentType: string) => {
       try {
@@ -120,17 +81,54 @@ export default function ChangeImage() {
             return setCardImage(URL.createObjectURL(file))
           }
         }
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      } catch (err) {
+        error('ERROR WHILE FETCHING IMAGE', '', err as object)
       }
     },
     [fetchDocumentById, appId]
   )
+
   useEffect(() => {
-    if (app[0]?.leadPictureId) {
-      fetchImage(app[0].leadPictureId, 'APP_LEADIMAGE')
+    if (leadImageId) {
+      fetchImage(leadImageId, 'APP_LEADIMAGE')
     }
-  }, [fetchImage, app])
+  }, [fetchImage, leadImageId])
+
+  const uploadDocumentApi = async (appId: string, file: any) => {
+    const data = {
+      appId: appId,
+      body: { file },
+    }
+    await updateImageData(data).unwrap()
+  }
+
+  const uploadImageValue = getValues()
+    .uploadLeadImage as unknown as DropzoneFile
+
+  const handleSaveClick = async () => {
+    setIsLoading(true)
+    if (appId && uploadImageValue) {
+      const setFileStatus = (status: UploadFileStatus) =>
+        setValue('uploadLeadImage', {
+          id: uploadImageValue.id,
+          name: uploadImageValue.name,
+          size: uploadImageValue.size,
+          status,
+        } as any)
+
+      setFileStatus(UploadStatus.UPLOADING)
+      uploadDocumentApi(appId, uploadImageValue)
+        .then(() => {
+          setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+          navigate('/appoverview')
+          success(t('content.changeImage.successMsg'))
+        })
+        .catch((err) => {
+          setFileStatus(UploadStatus.UPLOAD_ERROR)
+          error(t('content.changeImage.errorMsg'), '', err)
+        })
+    }
+  }
 
   return (
     <main className="change-image-main">
@@ -161,9 +159,9 @@ export default function ChangeImage() {
                   subtitle={app[0]?.provider}
                   imageSize="normal"
                   imageShape="square"
-                  variant="text-details"
+                  variant="minimal"
                   expandOnHover={false}
-                  filledBackground={true}
+                  filledBackground={false}
                   buttonText={''}
                 />
               </Box>
