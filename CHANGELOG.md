@@ -17,13 +17,17 @@
    * Mobile friendly header and stage navigation
    * Slider stage header
 * App overview
-   * image change(sub menu) functionality added for active apps
+   * Enhance Sub Menu by adding 'Change Image' for active apps
+   * Change Image(sub menu) functionality added for active apps
+
 * Bugfix
    * Service Release Process
       * Service Release process not working
       * Service details page crash issue
    * App Release Process
       * App lead image load issue fix
+   * Service Marketplace
+      * Subscription Button cross service highlighted
 
 ## 1.5.0-RC1
 
