@@ -124,6 +124,7 @@ export interface CXNotificationContent {
   notificationTopic?: string
   type?: string
   done?: boolean
+  userRead: boolean
 }
 
 export type CXNotificationMeta = {

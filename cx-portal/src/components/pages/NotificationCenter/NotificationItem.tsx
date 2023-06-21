@@ -33,7 +33,7 @@ import {
   SORT_OPTION,
   NOTIFICATION_TOPIC,
 } from 'features/notification/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
@@ -214,7 +214,7 @@ export default function NotificationItem({
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const [selectedId, setSelectedId] = useState<string>('')
+  const [userRead, setUserRead] = useState<boolean>(false)
 
   const setRead = async (id: string, value: boolean) => {
     try {
@@ -224,9 +224,14 @@ export default function NotificationItem({
     }
   }
 
+  useEffect(() => {
+    setUserRead(item.userRead)
+  }, [item.userRead])
+
   const toggle = async () => {
     const nextState = !open
-    if (nextState && !item.isRead) {
+    if (nextState && !userRead) {
+      setUserRead(true)
       void setRead(item.id, true)
     }
     setOpen(nextState)
@@ -263,15 +268,11 @@ export default function NotificationItem({
         />
       )}
       <li
-        onClick={() => {
-          toggle()
-          setSelectedId(item.id)
-        }}
+        onClick={toggle}
         style={{
-          backgroundColor:
-            item.isRead || selectedId === item.id
-              ? 'rgba(255, 255, 255, 1)'
-              : 'rgba(15, 113, 203, 0.05)',
+          backgroundColor: userRead
+            ? 'rgba(255, 255, 255, 1)'
+            : 'rgba(15, 113, 203, 0.05)',
           borderColor: open ? '#FDB943' : 'transparent',
         }}
       >
@@ -346,12 +347,12 @@ export default function NotificationItem({
             <div
               className="padding-r-10"
               onClick={(e) => {
-                setSelectedId(item.id)
-                setRead(item.id, !item.isRead)
+                setUserRead(!userRead)
+                setRead(item.id, userRead)
                 e.stopPropagation()
               }}
             >
-              {item.isRead || selectedId === item.id ? (
+              {userRead ? (
                 <Tooltips
                   additionalStyles={{
                     cursor: 'pointer',
