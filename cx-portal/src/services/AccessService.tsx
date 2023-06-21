@@ -66,6 +66,7 @@ import { UpdateIDPSuccess } from 'components/overlays/UpdateIDPSuccess'
 import ServiceDeclineAdminboard from 'components/overlays/DeclineAdminboard/ServiceDeclineAdminboard'
 import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDeclineAdminboard'
 import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
+import EditUsecase from 'components/overlays/EditUsecase'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -196,6 +197,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <EditPortalRoles id={overlay.id} />
     case OVERLAYS.UPDATE_COMPANY_ROLE:
       return <UpdateCompanyRole roles={overlay.roles ?? []} />
+    case OVERLAYS.EDIT_USECASE:
+      return <EditUsecase id={overlay.id} />
     default:
       return <NotFound />
   }

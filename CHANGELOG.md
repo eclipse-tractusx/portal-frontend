@@ -17,6 +17,9 @@
    * Bugfix
       * Service Release process not working
       * Service details page crash issue
+* Usecase Participation
+   * Created New page under User profile
+   * Add edit Overlay UI
 
 ## 1.5.0-RC1
 

@@ -67,7 +67,7 @@ export default function TechnicalUserDetailsContent({
       copy: true,
     },
   ]
-  
+
   return (
     <section>
       <Button

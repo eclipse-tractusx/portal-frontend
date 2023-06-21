@@ -77,6 +77,7 @@ import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
+import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 
 /**
@@ -465,6 +466,11 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.UPDATE_COMPANY_ROLE,
     element: <CompanyRoleUpdate />,
   },
+  {
+    name: PAGES.USECASE_PARTICIPATION,
+    role: ROLES.USECASE_PARTICIPATION,
+    element: <UsecaseParticipation />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -598,6 +604,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.UPDATE_COMPANY_ROLE,
   },
+  {
+    name: OVERLAYS.EDIT_USECASE,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -687,6 +696,7 @@ export const userMenuFull = [
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
+  PAGES.USECASE_PARTICIPATION,
   PAGES.LOGOUT,
 ]
 
