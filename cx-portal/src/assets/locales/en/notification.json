@@ -120,5 +120,11 @@
     "app": "app only",
     "info": "info only",
     "withaction": "action required"
+  },
+  "tooltip": {
+    "email": {
+      "read": "Mark it as unread",
+      "unread": "Mark it as read"
+    }
   }
 }

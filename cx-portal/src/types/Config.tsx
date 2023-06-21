@@ -79,6 +79,7 @@ import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
 import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
+import ChangeImage from 'components/pages/AppOverview/ChangeImage'
 
 /**
  * ALL_PAGES
@@ -440,6 +441,19 @@ export const ALL_PAGES: IPage[] = [
         element={<Deactivate />}
       >
         <Route path=":appId" element={<Deactivate />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.CHANGEIMAGE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.CHANGEIMAGE}
+        path={PAGES.CHANGEIMAGE}
+        element={<ChangeImage />}
+      >
+        <Route path=":appId" element={<ChangeImage />} />
       </Route>
     ),
   },

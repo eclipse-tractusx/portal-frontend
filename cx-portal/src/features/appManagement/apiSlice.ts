@@ -344,6 +344,27 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    updateImageData: builder.mutation({
+      async queryFn(
+        data: { appId: string; body: any },
+        _queryApi,
+        _extraOptions,
+        fetchWithBaseQuery
+      ) {
+        const formData = new FormData()
+        formData.append('document', data.body.file)
+
+        const response = await fetchWithBaseQuery({
+          url: `/api/apps/AppChange/${data.appId}/appLeadImage`,
+          method: 'POST',
+          body: formData,
+        })
+        return response.data
+          ? { data: response.data }
+          : { error: response.error }
+      },
+      invalidatesTags: [Tags.APP],
+    }),
   }),
 })
 
@@ -370,4 +391,5 @@ export const {
   useFetchUserRolesQuery,
   useFetchTechnicalUserProfilesQuery,
   useSaveTechnicalUserProfilesMutation,
+  useUpdateImageDataMutation,
 } = apiSlice

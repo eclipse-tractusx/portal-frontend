@@ -26,6 +26,11 @@ import { PAGES } from 'types/Constants'
 import { AppInfo } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
 
+enum AppSubMenuItems {
+  DEACTIVATE = 'deactivate',
+  CHANGE_IMAGE = 'changeImage',
+}
+
 export const AppOverviewList = ({
   filterItem,
   showOverlay,
@@ -43,7 +48,12 @@ export const AppOverviewList = ({
   const submenuOptions = [
     {
       label: t('content.appoverview.sortOptions.deactivate'),
-      value: 'deactivate',
+      value: AppSubMenuItems.DEACTIVATE,
+      url: '',
+    },
+    {
+      label: t('content.appoverview.sortOptions.changeImage'),
+      value: AppSubMenuItems.CHANGE_IMAGE,
       url: '',
     },
   ]
@@ -66,12 +76,16 @@ export const AppOverviewList = ({
         }}
         subMenu={true}
         submenuOptions={submenuOptions}
-        submenuClick={(value: string, appId: string) =>
-          value === 'deactivate' &&
-          navigate(`/deactivate/${appId}`, {
-            state: filterItem,
-          })
-        }
+        submenuClick={(value: string, appId: string) => {
+          value === AppSubMenuItems.DEACTIVATE &&
+            navigate(`/deactivate/${appId}`, {
+              state: filterItem,
+            })
+          value === AppSubMenuItems.CHANGE_IMAGE &&
+            navigate(`/changeimage/${appId}`, {
+              state: filterItem,
+            })
+        }}
         tooltipText={t('content.appoverview.submenuNotAvail')}
       />
     </div>

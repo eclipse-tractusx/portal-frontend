@@ -366,7 +366,8 @@
         "wip": "In Arbeit"
       },
       "sortOptions": {
-        "deactivate": "Deactivate"
+        "deactivate": "Deactivate",
+        "changeImage": "Change Image"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
@@ -390,6 +391,13 @@
       "checkboxErrorMsg": "Bitte bestätigen Sie, dass Sie die obigen Deaktivierungsauswirkungen gelesen haben, bevor Sie fortfahren",
       "successMsg": "Deactivierung war erfolgreich.",
       "errorMsg": "Leider hat die Deaktivierung nicht funktioniert. Bitte versuchen sie es später nochmal"
+    },
+    "changeImage": {
+      "headerTitle": "Change Lead Image",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "uploadNewImage": "Upload New Image",
+      "successMsg": "successfully changed app lead image",
+      "errorMsg": "Unable to change the lead image"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
