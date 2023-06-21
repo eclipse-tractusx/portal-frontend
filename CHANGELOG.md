@@ -23,7 +23,10 @@
    * Service Release Process
       * Service Release process not working
       * Service details page crash issue
-   * App Release Process
+* Notification
+   * Show done state
+   * Provide icon for marking a notification as read/unread
+* App Release Process
       * App lead image load issue fix
    * Service Marketplace
       * Subscription Button cross service highlighted

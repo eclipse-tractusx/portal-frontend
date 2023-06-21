@@ -185,6 +185,7 @@ export default function NotificationCenter() {
     notificationItems.map((item) => ({
       ...item,
       contentParsed: item.content && JSON.parse(item.content),
+      userRead: item.isRead,
     })),
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )

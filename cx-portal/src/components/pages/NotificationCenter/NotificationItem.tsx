@@ -33,13 +33,13 @@ import {
   SORT_OPTION,
   NOTIFICATION_TOPIC,
 } from 'features/notification/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
-import { Typography } from 'cx-portal-shared-components'
+import { Tooltips, Typography } from 'cx-portal-shared-components'
 import LabelImportantIcon from '@mui/icons-material/LabelImportant'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import CloseIcon from '@mui/icons-material/Close'
@@ -48,6 +48,9 @@ import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay
 import { useDispatch } from 'react-redux'
 import { resetInitialNotificationState } from 'features/notification/actions'
 import { PAGES } from 'types/Constants'
+import DoneIcon from '@mui/icons-material/Done'
+import EmailIcon from '@mui/icons-material/Email'
+import DraftsIcon from '@mui/icons-material/Drafts'
 
 dayjs.extend(relativeTime)
 
@@ -211,19 +214,25 @@ export default function NotificationItem({
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
+  const [userRead, setUserRead] = useState<boolean>(false)
 
-  const setRead = async (id: string) => {
+  const setRead = async (id: string, value: boolean) => {
     try {
-      await setNotificationRead(id)
+      await setNotificationRead({ id: id, flag: value })
     } catch (error: unknown) {
       console.log(error)
     }
   }
 
+  useEffect(() => {
+    setUserRead(item.userRead)
+  }, [item.userRead])
+
   const toggle = async () => {
     const nextState = !open
-    if (nextState && !item.isRead) {
-      void setRead(item.id)
+    if (nextState && !userRead) {
+      setUserRead(true)
+      void setRead(item.id, true)
     }
     setOpen(nextState)
   }
@@ -259,14 +268,15 @@ export default function NotificationItem({
         />
       )}
       <li
+        onClick={toggle}
         style={{
-          backgroundColor: item.isRead
+          backgroundColor: userRead
             ? 'rgba(255, 255, 255, 1)'
             : 'rgba(15, 113, 203, 0.05)',
           borderColor: open ? '#FDB943' : 'transparent',
         }}
       >
-        <div onClick={toggle} className="item">
+        <div className="item">
           <div className="firstSection">
             <LabelImportantIcon
               sx={{
@@ -331,6 +341,47 @@ export default function NotificationItem({
             </div>
           )}
           <div className="lastSection">
+            <div className="padding-r-10">
+              {item.done && <DoneIcon sx={{ fontSize: 15 }} />}
+            </div>
+            <div
+              className="padding-r-10"
+              onClick={(e) => {
+                setUserRead(!userRead)
+                setRead(item.id, userRead)
+                e.stopPropagation()
+              }}
+            >
+              {userRead ? (
+                <Tooltips
+                  additionalStyles={{
+                    cursor: 'pointer',
+                    marginTop: '30px !important',
+                  }}
+                  tooltipPlacement="top-start"
+                  tooltipText={t('tooltip.email.read')}
+                  children={
+                    <div>
+                      <DraftsIcon sx={{ fontSize: 15 }} />
+                    </div>
+                  }
+                />
+              ) : (
+                <Tooltips
+                  additionalStyles={{
+                    cursor: 'pointer',
+                    marginTop: '30px !important',
+                  }}
+                  tooltipPlacement="top-start"
+                  tooltipText={t('tooltip.email.unread')}
+                  children={
+                    <div>
+                      <EmailIcon sx={{ fontSize: 15 }} />
+                    </div>
+                  }
+                />
+              )}
+            </div>
             <div className="padding-r-5">
               {!open && <KeyboardArrowDownIcon sx={{ fontSize: 15 }} />}
               {open && <KeyboardArrowUpIcon sx={{ fontSize: 15 }} />}
