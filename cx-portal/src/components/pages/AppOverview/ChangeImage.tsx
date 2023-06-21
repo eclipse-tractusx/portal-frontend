@@ -52,7 +52,7 @@ export default function ChangeImage() {
   const [enableImageUpload, setEnableImageUpload] = useState(false)
   const [updateImageData] = useUpdateImageDataMutation()
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
-  const app = items && items.filter((item: any) => item.id === appId)
+  const app = items?.filter((item: any) => item.id === appId)
 
   const {
     control,
