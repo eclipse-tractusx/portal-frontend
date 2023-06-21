@@ -16,8 +16,9 @@
 * Home, Use cases and Company roles
    * Mobile friendly header and stage navigation
    * Slider stage header
-* App Overview
+* App overview
    * Enhance Sub Menu by adding 'Change Image' for active apps
+   * Change Image(sub menu) functionality added for active apps
 
 * Bugfix
    * Service Release Process

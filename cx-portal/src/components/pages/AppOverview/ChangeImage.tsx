@@ -18,6 +18,218 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import {
+  Typography,
+  PageHeader,
+  Button,
+  LoadingButton,
+  Card,
+  UploadFileStatus,
+  UploadStatus,
+} from 'cx-portal-shared-components'
+import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Box } from '@mui/material'
+import { useCallback, useEffect, useState } from 'react'
+import {
+  useFetchDocumentByIdMutation,
+  useUpdateImageDataMutation,
+} from 'features/appManagement/apiSlice'
+import ConnectorFormInputFieldImage from 'components/shared/basic/ReleaseProcess/components/ConnectorFormInputFieldImage'
+import { useForm } from 'react-hook-form'
+import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import { error, success } from 'services/NotifyService'
+
 export default function ChangeImage() {
-  return <>In Progress</>
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const appId = useParams().appId
+  const [isLoading, setIsLoading] = useState(false)
+  const { state } = useLocation()
+  const items: any = state
+  const [cardImage, setCardImage] = useState('')
+  const [enableImageUpload, setEnableImageUpload] = useState(false)
+  const [updateImageData] = useUpdateImageDataMutation()
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const app = items?.filter((item: any) => item.id === appId)
+  const leadImageId = app?.[0]?.leadPictureId
+
+  const {
+    control,
+    trigger,
+    formState: { errors },
+    getValues,
+    setValue,
+  } = useForm({
+    defaultValues: {
+      uploadLeadImage: null,
+    },
+    mode: 'onChange',
+  })
+
+  const fetchLeadImage = useCallback(
+    async (documentId: string, documentType: string) => {
+      try {
+        const response = await fetchDocumentById({
+          appId: appId ?? '',
+          documentId,
+        })
+        if (response && 'data' in response) {
+          const file = response?.data?.data
+          if (documentType === 'APP_LEADIMAGE') {
+            return setCardImage(URL.createObjectURL(file))
+          }
+        }
+      } catch (err) {
+        error('ERROR WHILE FETCHING IMAGE', '', err as object)
+      }
+    },
+    [fetchDocumentById, appId]
+  )
+
+  useEffect(() => {
+    if (leadImageId) {
+      fetchLeadImage(leadImageId, 'APP_LEADIMAGE')
+    }
+  }, [fetchLeadImage, leadImageId])
+
+  const uploadDocumentApi = async (appId: string, file: any) => {
+    const data = {
+      appId: appId,
+      body: { file },
+    }
+    await updateImageData(data).unwrap()
+  }
+
+  const uploadImageValue = getValues()
+    .uploadLeadImage as unknown as DropzoneFile
+
+  const handleSaveClick = async () => {
+    setIsLoading(true)
+    if (appId && uploadImageValue) {
+      const setFileStatus = (status: UploadFileStatus) =>
+        setValue('uploadLeadImage', {
+          id: uploadImageValue.id,
+          name: uploadImageValue.name,
+          size: uploadImageValue.size,
+          status,
+        } as any)
+
+      setFileStatus(UploadStatus.UPLOADING)
+      uploadDocumentApi(appId, uploadImageValue)
+        .then(() => {
+          setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+          navigate('/appoverview', {
+            state: 'change-image-success',
+          })
+          success(t('content.changeImage.successMsg'))
+        })
+        .catch((err) => {
+          setIsLoading(false)
+          setFileStatus(UploadStatus.UPLOAD_ERROR)
+          error(t('content.changeImage.errorMsg'), '', err)
+        })
+    }
+  }
+
+  return (
+    <main className="change-image-main">
+      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
+        <PageBreadcrumb backButtonVariant="contained" />
+      </PageHeader>
+      <section>
+        <Typography variant="body2" mb={3} align="center">
+          {app?.[0]?.title}
+        </Typography>
+        <Typography variant="h2" mb={3} align="center">
+          {t('content.changeImage.headerTitle')}
+        </Typography>
+        <Typography variant="body2" align="center">
+          {t('content.changeImage.description')}
+        </Typography>
+      </section>
+      <div className="main-container">
+        <div className="main-row">
+          {app && (
+            <Box sx={{ display: 'flex' }}>
+              <Box sx={{ width: '40%' }}>
+                <Card
+                  image={{
+                    src: cardImage,
+                  }}
+                  title={app[0]?.title || ''}
+                  subtitle={app[0]?.provider}
+                  imageSize="normal"
+                  imageShape="square"
+                  variant="minimal"
+                  expandOnHover={false}
+                  filledBackground={false}
+                  buttonText={''}
+                />
+              </Box>
+              {enableImageUpload ? (
+                <Box sx={{ width: '50%' }}>
+                  <ConnectorFormInputFieldImage
+                    {...{
+                      control,
+                      trigger,
+                      errors,
+                    }}
+                    name="uploadLeadImage"
+                    isRequired={false}
+                    size="small"
+                  />
+                </Box>
+              ) : (
+                <Box sx={{ width: '50%', marginTop: '14%' }}>
+                  <Button
+                    color="secondary"
+                    size="small"
+                    onClick={() => setEnableImageUpload(true)}
+                  >
+                    {t('content.changeImage.uploadNewImage')}
+                  </Button>
+                </Box>
+              )}
+            </Box>
+          )}
+        </div>
+      </div>
+      <section>
+        <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
+        <Box sx={{ position: 'relative', marginTop: '30px' }}>
+          <Button
+            color="secondary"
+            size="small"
+            onClick={() => navigate('/appoverview')}
+          >
+            {t('global.actions.cancel')}
+          </Button>
+
+          <span style={{ position: 'absolute', right: '10px' }}>
+            {isLoading ? (
+              <LoadingButton
+                size="small"
+                loading={isLoading}
+                variant="contained"
+                onButtonClick={() => {}}
+                loadIndicator="Loading..."
+                label={`${t('global.actions.confirm')}`}
+              />
+            ) : (
+              <Button
+                size="small"
+                variant="contained"
+                disabled={uploadImageValue === null}
+                onClick={handleSaveClick}
+              >
+                {t('global.actions.save')}
+              </Button>
+            )}
+          </span>
+        </Box>
+      </section>
+    </main>
+  )
 }
