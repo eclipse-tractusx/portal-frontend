@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-// yarn workspace cx-portal test Patterns
-
 import {
   isBPN,
   isCompanyName,

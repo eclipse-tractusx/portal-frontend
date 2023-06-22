@@ -38,7 +38,6 @@ yarn licenses v1.22.19
 │  ├─ @ampproject/remapping@2.2.1
 │  │  ├─ URL: git+https://github.com/ampproject/remapping.git
 │  │  └─ VendorName: Justin Ridgewell
-│  ├─ @catena-x/portal-shared-components-app@1.5.0
 │  ├─ @catena-x/portal-shared-components@2.0.1
 │  │  ├─ URL: https://github.com/eclipse-tractusx/portal-shared-components.git
 │  │  └─ VendorName: Catena-X Contributors
@@ -146,7 +145,6 @@ yarn licenses v1.22.19
 │  │  ├─ URL: git://github.com/faye/websocket-extensions-node.git
 │  │  ├─ VendorName: James Coglan
 │  │  └─ VendorUrl: http://github.com/faye/websocket-extensions-node
-│  ├─ workspace-aggregator-75ee6d3d-839f-47c9-acd1-52192ebca214@1.5.0
 │  └─ xml-name-validator@3.0.0
 │     ├─ URL: https://github.com/jsdom/xml-name-validator.git
 │     ├─ VendorName: Domenic Denicola
@@ -265,12 +263,10 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/jsdom/webidl-conversions.git
 │  │  ├─ VendorName: Domenic Denicola
 │  │  └─ VendorUrl: https://domenic.me/
-│  ├─ webidl-conversions@6.1.0
-│  │  ├─ URL: https://github.com/jsdom/webidl-conversions.git
-│  │  ├─ VendorName: Domenic Denicola
-│  │  └─ VendorUrl: https://domenic.me/
-│  └─ yarn@1.22.19
-│     └─ URL: https://github.com/yarnpkg/yarn.git
+│  └─ webidl-conversions@6.1.0
+│     ├─ URL: https://github.com/jsdom/webidl-conversions.git
+│     ├─ VendorName: Domenic Denicola
+│     └─ VendorUrl: https://domenic.me/
 ├─ BSD-3-Clause
 │  ├─ @humanwhocodes/object-schema@1.2.1
 │  │  ├─ URL: git+https://github.com/humanwhocodes/object-schema.git
@@ -584,7 +580,7 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/Siilwyn/css-declaration-sorter.git
 │  │  ├─ VendorName: Selwyn
 │  │  └─ VendorUrl: https://selwyn.cc/
-│  ├─ electron-to-chromium@1.4.435
+│  ├─ electron-to-chromium@1.4.437
 │  │  ├─ URL: https://github.com/kilian/electron-to-chromium/
 │  │  └─ VendorName: Kilian Valkhof
 │  ├─ eslint-plugin-promise@6.1.1
@@ -1328,6 +1324,9 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/eslint/eslintrc.git
 │  │  ├─ VendorName: Nicholas C. Zakas
 │  │  └─ VendorUrl: https://github.com/eslint/eslintrc#readme
+│  ├─ @eslint/js@8.37.0
+│  │  ├─ URL: https://github.com/eslint/eslint.git
+│  │  └─ VendorUrl: https://eslint.org/
 │  ├─ @eslint/js@8.43.0
 │  │  ├─ URL: https://github.com/eslint/eslint.git
 │  │  └─ VendorUrl: https://eslint.org/
@@ -2564,6 +2563,10 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/webpack-contrib/eslint-webpack-plugin.git
 │  │  ├─ VendorName: Ricardo Gobbo de Souza
 │  │  └─ VendorUrl: https://github.com/webpack-contrib/eslint-webpack-plugin
+│  ├─ eslint@8.37.0
+│  │  ├─ URL: https://github.com/eslint/eslint.git
+│  │  ├─ VendorName: Nicholas C. Zakas
+│  │  └─ VendorUrl: https://eslint.org/
 │  ├─ eslint@8.43.0
 │  │  ├─ URL: https://github.com/eslint/eslint.git
 │  │  ├─ VendorName: Nicholas C. Zakas
@@ -2867,7 +2870,7 @@ yarn licenses v1.22.19
 │  │  ├─ URL: git://github.com/TooTallNate/node-https-proxy-agent.git
 │  │  ├─ VendorName: Nathan Rajlich
 │  │  └─ VendorUrl: http://n8.io/
-│  ├─ husky@7.0.4
+│  ├─ husky@8.0.3
 │  │  ├─ URL: https://github.com/typicode/husky.git
 │  │  ├─ VendorName: Typicode
 │  │  └─ VendorUrl: https://typicode.github.io/husky
@@ -3177,6 +3180,10 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/jquery/jquery.git
 │  │  ├─ VendorName: OpenJS Foundation and other contributors
 │  │  └─ VendorUrl: https://jquery.com/
+│  ├─ js-sdsl@4.4.1
+│  │  ├─ URL: https://github.com/js-sdsl/js-sdsl.git
+│  │  ├─ VendorName: ZLY201
+│  │  └─ VendorUrl: https://js-sdsl.org/
 │  ├─ js-sha256@0.9.0
 │  │  ├─ URL: https://github.com/emn178/js-sha256.git
 │  │  ├─ VendorName: Chen, Yi-Cyuan
@@ -3393,8 +3400,6 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/substack/node-mkdirp.git
 │  │  ├─ VendorName: James Halliday
 │  │  └─ VendorUrl: http://substack.net
-│  ├─ mkdirp@1.0.4
-│  │  └─ URL: https://github.com/isaacs/node-mkdirp.git
 │  ├─ ms@2.0.0
 │  │  └─ URL: https://github.com/zeit/ms.git
 │  ├─ ms@2.1.2
@@ -4109,7 +4114,7 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/webpack-contrib/sass-loader.git
 │  │  ├─ VendorName: J. Tangelder
 │  │  └─ VendorUrl: https://github.com/webpack-contrib/sass-loader
-│  ├─ sass@1.63.5
+│  ├─ sass@1.63.6
 │  │  ├─ URL: https://github.com/sass/dart-sass
 │  │  ├─ VendorName: Natalie Weizenbaum
 │  │  └─ VendorUrl: https://github.com/sass/dart-sass
@@ -4552,7 +4557,7 @@ yarn licenses v1.22.19
 │  │  ├─ URL: git+https://github.com/webpack/webpack-sources.git
 │  │  ├─ VendorName: Tobias Koppers @sokra
 │  │  └─ VendorUrl: https://github.com/webpack/webpack-sources#readme
-│  ├─ webpack@5.87.0
+│  ├─ webpack@5.88.0
 │  │  ├─ URL: https://github.com/webpack/webpack.git
 │  │  ├─ VendorName: Tobias Koppers @sokra
 │  │  └─ VendorUrl: https://github.com/webpack/webpack
@@ -4690,4 +4695,4 @@ yarn licenses v1.22.19
    │  └─ URL: https://github.com/streamich/fs-monkey.git
    └─ memfs@3.5.3
       └─ URL: https://github.com/streamich/memfs.git
-Done in 32.53s.
+Done in 0.48s.

@@ -4,10 +4,11 @@ This repository contains the frontend code for the Catena-X Portal written in Re
 
 The Catena-X Portal application consists of
 
-* [portal-frontend](https://github.com/eclipse-tractusx/portal-frontend),
-* [portal-frontend-registration](https://github.com/eclipse-tractusx/portal-frontend-registration),
-* [portal-assets](https://github.com/eclipse-tractusx/portal-assets) and
-* [portal-backend](https://github.com/eclipse-tractusx/portal-backend).
+- [portal-frontend](https://github.com/eclipse-tractusx/portal-frontend),
+- [portal-frontend-registration](https://github.com/eclipse-tractusx/portal-frontend-registration),
+- [portal-shared-components](https://github.com/eclipse-tractusx/portal-shared-components),
+- [portal-assets](https://github.com/eclipse-tractusx/portal-assets) and
+- [portal-backend](https://github.com/eclipse-tractusx/portal-backend).
 
 ![Tag](https://img.shields.io/static/v1?label=&message=LeadingRepository&color=green&style=flat) The helm chart for installing the Catena-X Portal is available in [portal-cd](https://github.com/eclipse-tractusx/portal-cd).
 
@@ -45,9 +46,9 @@ DockerHub: https://hub.docker.com/r/tractusx/portal-frontend
 
 Base image: nginxinc/nginx-unprivileged:alpine
 
-* Dockerfile: [nginxinc/nginx-unprivileged:alpine](https://github.com/nginxinc/docker-nginx-unprivileged/blob/main/Dockerfile-alpine.template)
-* GitHub project: [https://github.com/nginxinc/docker-nginx-unprivileged](https://github.com/nginxinc/docker-nginx-unprivileged)
-* DockerHub: [https://hub.docker.com/r/nginxinc/nginx-unprivileged](https://hub.docker.com/r/nginxinc/nginx-unprivileged)
+- Dockerfile: [nginxinc/nginx-unprivileged:alpine](https://github.com/nginxinc/docker-nginx-unprivileged/blob/main/Dockerfile-alpine.template)
+- GitHub project: [https://github.com/nginxinc/docker-nginx-unprivileged](https://github.com/nginxinc/docker-nginx-unprivileged)
+- DockerHub: [https://hub.docker.com/r/nginxinc/nginx-unprivileged](https://hub.docker.com/r/nginxinc/nginx-unprivileged)
 
 ## License
 
