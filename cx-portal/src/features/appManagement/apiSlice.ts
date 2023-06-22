@@ -206,14 +206,14 @@ export const apiSlice = createApi({
   tagTypes: [Tags.APP],
   endpoints: (builder) => ({
     fetchUseCases: builder.query<useCasesItem[], void>({
-      query: () => `/api/administration/staticdata/usecases`,
+      query: () => '/api/administration/staticdata/usecases',
     }),
     fetchAppLanguages: builder.query<appLanguagesItem[], void>({
-      query: () => `/api/administration/staticdata/languagetags`,
+      query: () => '/api/administration/staticdata/languagetags',
     }),
     addCreateApp: builder.mutation<void, CreateAppStep1Item>({
       query: (body: CreateAppStep1Item) => ({
-        url: `/api/apps/appreleaseprocess/createapp`,
+        url: '/api/apps/appreleaseprocess/createapp',
         method: 'POST',
         body,
       }),
@@ -250,7 +250,7 @@ export const apiSlice = createApi({
       providesTags: [Tags.APP],
     }),
     fetchAgreementData: builder.query<AgreementType[], void>({
-      query: () => `api/apps/AppReleaseProcess/agreementData`,
+      query: () => 'api/apps/AppReleaseProcess/agreementData',
     }),
     fetchConsentData: builder.query<ConsentType, string>({
       query: (appId: string) => `/api/apps/AppReleaseProcess/consent/${appId}`,
@@ -265,7 +265,7 @@ export const apiSlice = createApi({
       }
     ),
     fetchSalesManagerData: builder.query<salesManagerType[], void>({
-      query: () => `/api/apps/AppReleaseProcess/ownCompany/salesManager`,
+      query: () => '/api/apps/AppReleaseProcess/ownCompany/salesManager',
     }),
     saveApp: builder.mutation<void, saveAppType>({
       query: (data) => ({
@@ -316,7 +316,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
-      query: () => `/api/apps/appreleaseprocess/privacyPolicies`,
+      query: () => '/api/apps/appreleaseprocess/privacyPolicies',
     }),
     fetchFrameDocumentById: builder.mutation({
       query: (documentId) => ({
@@ -328,7 +328,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchUserRoles: builder.query<userRolesType[], void>({
-      query: () => `api/administration/serviceaccount/user/roles`,
+      query: () => 'api/administration/serviceaccount/user/roles',
     }),
     fetchTechnicalUserProfiles: builder.query<technicalUserProfiles[], string>({
       query: (appId) =>

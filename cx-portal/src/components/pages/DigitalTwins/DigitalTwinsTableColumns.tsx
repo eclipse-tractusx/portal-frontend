@@ -55,7 +55,7 @@ export const DigitalTwinsTableColumns = (
     },
     {
       field: 'detail',
-      headerName: `Detail`,
+      headerName: 'Detail',
       flex: 1,
       sortable: false,
       filterable: false,

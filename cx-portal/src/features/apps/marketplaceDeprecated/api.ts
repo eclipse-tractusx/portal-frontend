@@ -39,14 +39,14 @@ export class Api extends HttpClient {
   }
 
   public getActive = () =>
-    this.instance.get<AppMarketplaceApp[]>(`/api/apps/active`, getHeaders())
+    this.instance.get<AppMarketplaceApp[]>('/api/apps/active', getHeaders())
 
   public getLatest = () =>
-    this.instance.get<AppMarketplaceApp[]>(`/api/apps/latest`, getHeaders())
+    this.instance.get<AppMarketplaceApp[]>('/api/apps/latest', getHeaders())
 
   public getSubscriptionStatus = () =>
     this.instance.get<SubscribedApps[]>(
-      `/api/Apps/subscribed/subscription-status`,
+      '/api/Apps/subscribed/subscription-status',
       getHeaders()
     )
 }

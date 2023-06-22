@@ -44,7 +44,7 @@ export const apiSlice = createApi({
       query: (read) => `/api/notification/count?isRead=${read}`,
     }),
     getNotificationMeta: builder.query<CXNotificationMeta, null>({
-      query: () => `/api/notification/count-details`,
+      query: () => '/api/notification/count-details',
     }),
     getNotifications: builder.query<CXNotification, FetchArgs>({
       query: (fetchArgs) => {
@@ -62,7 +62,7 @@ export const apiSlice = createApi({
           fetchArgs.args.notificationTopic &&
           fetchArgs.args.notificationTopic === NOTIFICATION_TOPIC.ACTION
         ) {
-          base += `&onlyDueDate=true`
+          base += '&onlyDueDate=true'
         }
         return base
       },

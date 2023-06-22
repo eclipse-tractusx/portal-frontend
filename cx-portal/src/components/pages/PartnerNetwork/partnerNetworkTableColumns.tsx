@@ -89,7 +89,7 @@ export const PartnerNetworksTableColumns = (
     },
     {
       field: 'detail',
-      headerName: `Detail`,
+      headerName: 'Detail',
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',

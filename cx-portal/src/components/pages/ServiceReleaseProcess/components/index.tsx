@@ -34,7 +34,7 @@ export default function ServiceReleaseProcessForm() {
   const dispatch = useDispatch()
 
   const onServiceOverviewClick = () => {
-    navigate(`/serviceoverview`)
+    navigate('/serviceoverview')
     dispatch(setServiceReleaseActiveStep())
   }
   const serviceStatusData = useSelector(serviceStatusDataSelector)

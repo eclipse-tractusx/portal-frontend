@@ -81,7 +81,7 @@ export const PartnerNetworksBPNTableColumns = (
     },
     {
       field: 'detail',
-      headerName: `Detail`,
+      headerName: 'Detail',
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',

@@ -29,7 +29,8 @@ export default function NoItems() {
         variant="h3"
         align="center"
         sx={{
-          fontFamily: `"LibreFranklin", "Libre Franklin", "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important`,
+          fontFamily:
+            '"LibreFranklin", "Libre Franklin", "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important',
         }}
       >
         {t('global.noData.heading')}

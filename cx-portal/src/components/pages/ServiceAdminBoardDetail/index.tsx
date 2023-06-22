@@ -157,7 +157,7 @@ export default function ServiceAdminBoardDetail() {
           </div>
           <div className="adminboard-documents">
             <Typography variant="h4">
-              {t(`adminboardDetail.documents.heading`)}
+              {t('adminboardDetail.documents.heading')}
             </Typography>
             <Typography
               variant="body2"
@@ -165,7 +165,7 @@ export default function ServiceAdminBoardDetail() {
                 marginTop: '20px',
               }}
             >
-              {t(`adminboardDetail.documents.message`)}
+              {t('adminboardDetail.documents.message')}
             </Typography>
             {serviceData?.documents &&
               Object.keys(serviceData.documents).map((item) => (

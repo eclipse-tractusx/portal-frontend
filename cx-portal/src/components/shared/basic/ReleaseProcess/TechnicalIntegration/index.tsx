@@ -597,7 +597,9 @@ export default function TechnicalIntegration() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+        }
         isValid={data && data?.length > 0 && techUserProfiles?.length > 0}
         loader={loading}
       />

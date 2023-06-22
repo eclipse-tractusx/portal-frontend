@@ -183,7 +183,7 @@ export const apiSlice = createApi({
     }),
     createService: builder.mutation<void, createServiceType>({
       query: (data) => ({
-        url: `/api/services/serviceRelease/addservice`,
+        url: '/api/services/serviceRelease/addservice',
         method: 'POST',
         body: data.body,
       }),
@@ -196,7 +196,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceTypeIds: builder.query<ServiceTypeIdsType, void>({
-      query: () => `/api/services/servicerelease/serviceTypes`,
+      query: () => '/api/services/servicerelease/serviceTypes',
     }),
     updateServiceAgreementConsents: builder.mutation<
       void,
@@ -209,7 +209,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceAgreementData: builder.query<AgreementType[], void>({
-      query: () => `api/services/servicerelease/agreementData`,
+      query: () => 'api/services/servicerelease/agreementData',
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
       query: (id: string) => `/api/services/servicerelease/consent/${id}`,
@@ -292,7 +292,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceUserRoles: builder.query<serviceUserRolesType[], void>({
-      query: () => `api/administration/serviceaccount/user/roles`,
+      query: () => 'api/administration/serviceaccount/user/roles',
     }),
     fetchServiceTechnicalUserProfiles: builder.query<
       technicalUserProfile[],
@@ -316,7 +316,7 @@ export const apiSlice = createApi({
       ActivateSubscriptionRequest
     >({
       query: (data) => ({
-        url: `/api/services/autoSetup`,
+        url: '/api/services/autoSetup',
         method: 'POST',
         body: data,
       }),

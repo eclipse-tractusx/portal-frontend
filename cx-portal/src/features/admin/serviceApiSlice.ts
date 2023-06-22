@@ -67,7 +67,7 @@ export const apiSlice = createApi({
       ServiceAccountCreate
     >({
       query: (body: ServiceAccountCreate) => ({
-        url: `/api/administration/serviceaccount/owncompany/serviceaccounts`,
+        url: '/api/administration/serviceaccount/owncompany/serviceaccounts',
         method: 'POST',
         body,
       }),
@@ -90,7 +90,7 @@ export const apiSlice = createApi({
         `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
     }),
     fetchServiceAccountRoles: builder.query<ServiceAccountRole[], void>({
-      query: () => `/api/administration/serviceaccount/user/roles`,
+      query: () => '/api/administration/serviceaccount/user/roles',
     }),
   }),
 })

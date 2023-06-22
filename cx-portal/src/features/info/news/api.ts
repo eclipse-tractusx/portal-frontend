@@ -37,5 +37,5 @@ export class Api extends HttpClient {
   }
 
   public getItems = () =>
-    this.instance.get<CardItems[]>(`/api/news/latest.json`)
+    this.instance.get<CardItems[]>('/api/news/latest.json')
 }

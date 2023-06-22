@@ -52,7 +52,7 @@ export class ConnectorApi extends HttpClient {
 
   public createConnector = (body: ConnectorCreateBody) =>
     this.instance.post<ConnectorCreateBody>(
-      `/api/administration/Connectors`,
+      '/api/administration/Connectors',
       body,
       getHeaders()
     )

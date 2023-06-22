@@ -37,7 +37,7 @@ export const SemanticModelTableColumns = (
     })),
     {
       field: 'detail',
-      headerName: `Detail`,
+      headerName: 'Detail',
       flex: 1,
       align: 'center',
       headerAlign: 'center',

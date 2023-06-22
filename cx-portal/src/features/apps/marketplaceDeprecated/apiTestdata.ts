@@ -37,10 +37,10 @@ export class Api extends HttpClient {
   }
 
   public getActive = () =>
-    this.instance.get<AppMarketplaceApp[]>(`/api/apps/active.json`)
+    this.instance.get<AppMarketplaceApp[]>('/api/apps/active.json')
 
   public getLatest = () =>
-    this.instance.get<AppMarketplaceApp[]>(`/api/apps/latest.json`)
+    this.instance.get<AppMarketplaceApp[]>('/api/apps/latest.json')
 
   public getSubscribed = (all?: boolean) =>
     this.instance.get<AppMarketplaceApp[]>(

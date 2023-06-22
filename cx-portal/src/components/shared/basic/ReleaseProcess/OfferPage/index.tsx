@@ -313,8 +313,8 @@ export default function OfferPage({
                       'serviceReleaseForm.validCharactersIncludes'
                     )} ${
                       longDesc === 'longDescriptionEN'
-                        ? `a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:`
-                        : `a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:`
+                        ? 'a-zA-Z0-9 !?@&#\'"()[]_-+=<>/*.,;:'
+                        : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'
                     }`,
                   }}
                   maxLength={longDescriptionMaxLength}
@@ -405,7 +405,9 @@ export default function OfferPage({
         )}
         isValid={isValid}
         loader={loading}
-        helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+        }
       />
     </div>
   )

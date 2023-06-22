@@ -37,7 +37,7 @@ export const apiSlice = createApi({
       any
     >({
       query: (arry) => ({
-        url: `/catena/legal-entities/legal-addresses/search`,
+        url: '/catena/legal-entities/legal-addresses/search',
         method: 'POST',
         body: arry,
       }),

@@ -145,7 +145,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchIDPList: builder.query<Array<IdentityProvider>, void>({
       query: () =>
-        `/api/administration/identityprovider/owncompany/identityproviders`,
+        '/api/administration/identityprovider/owncompany/identityproviders',
       providesTags: [TAGS.IDP],
     }),
     fetchIDPDetail: builder.query<IdentityProvider, string>({

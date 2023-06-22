@@ -42,7 +42,7 @@ export class Api extends HttpClient {
 
   public getTenantUsers = () =>
     this.instance.get<PaginResult<TenantUser>>(
-      `/api/administration/user/owncompany/users?status=ACTIVE&page=0&size=20`,
+      '/api/administration/user/owncompany/users?status=ACTIVE&page=0&size=20',
       getHeaders()
     )
 
@@ -54,7 +54,7 @@ export class Api extends HttpClient {
 
   public addTenantUsers = (users: AddUser[]) =>
     this.instance.post<AddUser[]>(
-      `/api/administration/user/owncompany/users`,
+      '/api/administration/user/owncompany/users',
       users,
       getHeaders()
     )

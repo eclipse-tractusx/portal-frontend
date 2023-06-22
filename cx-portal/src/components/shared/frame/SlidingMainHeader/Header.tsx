@@ -50,7 +50,7 @@ export const Header = ({
       sx={{
         width: '100%',
         height: `${headerHeight}px`,
-        marginTop: `-85px`,
+        marginTop: '-85px',
         position: 'relative',
       }}
     >

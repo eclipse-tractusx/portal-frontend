@@ -130,12 +130,12 @@ const NotificationContent = ({
           ))}
           {appId && (
             <NavLink key={appId} to={`/appdetail/${appId}`}>
-              {t(`link.app`)}
+              {t('link.app')}
             </NavLink>
           )}
           {userId && (
             <NavLink key={userId} to={`/userdetails/${userId}`}>
-              {t(`link.user`)}
+              {t('link.user')}
             </NavLink>
           )}
         </div>

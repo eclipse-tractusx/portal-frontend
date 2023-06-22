@@ -581,7 +581,7 @@ export default function AppMarketCard() {
                       value={
                         (item === 'shortDescriptionEN'
                           ? getValues().shortDescriptionEN.length
-                          : getValues().shortDescriptionDE.length) + `/255`
+                          : getValues().shortDescriptionDE.length) + '/255'
                       }
                       patternKey="shortDescriptionEN"
                       patternEN={Patterns.appMarketCard.shortDescriptionEN}
@@ -601,8 +601,8 @@ export default function AppMarketCard() {
                           'content.apprelease.appReleaseForm.validCharactersIncludes'
                         )} ${
                           item === 'shortDescriptionEN'
-                            ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
-                            : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
+                            ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
+                            : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
                         }`,
                         maxLength: `${t(
                           'content.apprelease.appReleaseForm.maximum'
@@ -802,7 +802,9 @@ export default function AppMarketCard() {
         )}
         isValid={isValid}
         loader={loading}
-        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+        }
       />
       <PageSnackbar
         autoClose
