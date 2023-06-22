@@ -25,6 +25,7 @@ import { multiMapBy } from 'utils/multiMapBy'
 import { useTranslation } from 'react-i18next'
 import { AppListGroup } from '../AppListGroup'
 import NoItems from 'components/pages/NoItems'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const AppListGroupView = ({
   items,
@@ -50,6 +51,7 @@ export const AppListGroupView = ({
           items={items}
           variant={'compact'}
           expandOnHover={true}
+          imageLoader={fetchImageWithToken}
         />
       </Box>
     )

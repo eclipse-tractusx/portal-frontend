@@ -21,62 +21,32 @@
 import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
 import UserService from './UserService'
+import { AppMarketplaceApp } from 'features/apps/apiSlice'
 
-const getName = (app: any) => app.name ?? ''
-const getDescription = (app: any) =>
+const getName = (app: AppMarketplaceApp) => app.name ?? ''
+const getDescription = (app: AppMarketplaceApp) =>
   app.shortDescription === 'ERROR' ? '' : app.shortDescription
 
-const onClick = (app: any) =>
+const onClick = (app: AppMarketplaceApp) =>
   app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined
 
-const getPrice = (app: any) => (app.price === 'ERROR' ? '' : app.price)
+const getPrice = (app: AppMarketplaceApp) =>
+  app.price === 'ERROR' ? '' : app.price
 
-const fetchLeadPictureImage = (data: any[]) => {
-  const promises = data?.map((app: any) => {
-    return [
-      new Promise((resolve, reject) => {
-        let url = `${getApiBase()}/api/apps/${
-          app.id
-        }/appDocuments/${isValidPictureId(app.leadPictureId)}`
-        let options = {
-          method: 'GET',
-          headers: {
-            authorization: `Bearer ${UserService.getToken()}`,
-          },
-        }
-        return fetch(url, options)
-          .then((response) => response.blob())
-          .then(
-            async (blob) =>
-              await new Promise((callback) => {
-                let reader = new FileReader()
-                reader.onload = function () {
-                  resolve({
-                    ...app,
-                    subtitle: app.provider,
-                    title: getName(app),
-                    description: getDescription(app),
-                    price: getPrice(app),
-                    onClick: onClick(app),
-                    image: {
-                      src: this.result,
-                      alt: app.title,
-                    },
-                  })
-                }
-                reader.readAsDataURL(blob)
-              })
-          )
-          .catch((err) => {
-            console.log(err)
-          })
-      }),
-    ]
-  })
-
-  const newPromies = promises.map((promise) => Promise.all(promise))
-  return newPromies
-}
+const appToCard = (app: AppMarketplaceApp) => ({
+  ...app,
+  subtitle: app.provider,
+  title: getName(app),
+  description: getDescription(app),
+  price: getPrice(app),
+  onClick: onClick(app),
+  image: {
+    src: `${getApiBase()}/api/apps/${app.id}/appDocuments/${isValidPictureId(
+      app.leadPictureId ?? ''
+    )}`,
+    alt: app.title,
+  },
+})
 
 const fetchLeadPictures = (images: string[], appId: string) => {
   const promises = images?.map((image: any) => {
@@ -168,7 +138,7 @@ const getCompanyRoleUpdateData = (callback: any) => {
 }
 
 const CommonService = {
-  fetchLeadPictureImage,
+  appToCard,
   isValidPictureId,
   getCompanyRoles,
   getUseCases,

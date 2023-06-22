@@ -68,18 +68,8 @@ export default function AppListSection() {
   }, [cards])
 
   useEffect(() => {
-    if (data) {
-      const newPromies = CommonService.fetchLeadPictureImage(data)
-      Promise.all(newPromies)
-        .then((result) => {
-          setCards(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-    // eslint-disable-next-line
-  }, [data])
+    setCards(data?.map(CommonService.appToCard))
+  }, [data, setCards, CommonService.appToCard])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setGroup(e.currentTarget.value)

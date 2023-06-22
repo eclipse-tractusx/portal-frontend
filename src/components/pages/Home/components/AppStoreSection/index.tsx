@@ -23,29 +23,13 @@ import { Cards, Button, Typography } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import './app-store-section.scss'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
-import { useState, useEffect } from 'react'
 import CommonService from 'services/CommonService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function AppStoreSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
-  const [cardsData, setCardsData] = useState<any>([])
-
-  useEffect(() => {
-    if (data) {
-      const items = data?.filter((app, index) => index < 4)
-      const newPromies = CommonService.fetchLeadPictureImage(items)
-      Promise.all(newPromies)
-        .then((result) => {
-          setCardsData(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-    // eslint-disable-next-line
-  }, [data])
 
   return (
     <section className="app-store-section">
@@ -56,9 +40,9 @@ export default function AppStoreSection() {
       >
         {t('content.home.appStoreSection.title')}
       </Typography>
-      {cardsData && cardsData.length > 0 && (
+      {data && data.length > 0 && (
         <Cards
-          items={cardsData}
+          items={data?.slice(0, 4).map(CommonService.appToCard)}
           columns={4}
           buttonText="Details"
           imageSize="small"
@@ -66,6 +50,7 @@ export default function AppStoreSection() {
           variant="compact"
           expandOnHover={false}
           filledBackground={true}
+          imageLoader={fetchImageWithToken}
         />
       )}
       <Button
