@@ -38,6 +38,9 @@
 - App Release Process \* App lead image load issue fix
   - Service Marketplace
     - Subscription Button cross service highlighted
+- BugFix
+  - Home - Carousel
+    - Responsiveness - when switching the portal width screens get rendering issues
 
 ## 1.5.0
 
