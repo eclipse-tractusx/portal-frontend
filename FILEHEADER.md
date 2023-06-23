@@ -11,5 +11,6 @@ Install the extension and assign some [keyboard shortcut](https://code.visualstu
 Every time you create a new file or edit a file that you created and doesn't yet have a header, use the keyboard shortcut to insert the according header template in the file.
 
 Currently the following templates are available:
-* cx_header_default
-* cx_header_with_#
+
+- cx_header_default
+- cx*header_with*#
