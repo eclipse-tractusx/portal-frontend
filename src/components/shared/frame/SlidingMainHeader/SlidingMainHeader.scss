@@ -102,6 +102,12 @@
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .orange-background .slick-track {
+    width: 80% !important;
+  }
+}
+
 //mobile layout
 @media (max-width: 480px) {
   .headerTitle {
@@ -110,6 +116,11 @@
     margin: 0px;
     padding-top: 60%;
     text-align: center;
+  }
+
+  .orange-background .slick-track {
+    display: flex;
+    flex-direction: column;
   }
 
   .headerTitle h2,
