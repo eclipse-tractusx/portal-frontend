@@ -125,7 +125,9 @@ export default function ValidateAndPublish({
         submitButton={t('content.apprelease.footerButtons.submit')}
         values={defaultValues}
         rolesData={data}
-        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+        }
       />
     </div>
   )

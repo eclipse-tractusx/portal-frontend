@@ -77,7 +77,7 @@ interface CommonValidateAndPublishType {
   statusData: AppStatusDataState | ServiceStatusDataState | undefined
   id: string
   fetchDocumentById: (obj: { appId: string; documentId: string }) => any
-  showSubmitPage: (val: boolean) => void
+  showSubmitPage?: (val: boolean) => void
   submitData: (id: string) => any
   validateAndPublishItemText?: string
   detailsText: string
@@ -91,9 +91,12 @@ interface CommonValidateAndPublishType {
   error: { title: string; message: string }
   helpText: string
   submitButton: string
-  helpUrl: string
+  helpUrl?: string
   values: DefaultValueType | any
-  type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
+  type:
+    | ReleaseProcessTypes.APP_RELEASE
+    | ReleaseProcessTypes.SERVICE_RELEASE
+    | 'appOverviewDetails'
   serviceTypes?: string
   rolesData?: rolesType[]
 }
@@ -217,7 +220,7 @@ export default function CommonValidateAndPublish({
       } else {
         dispatch(serviceReleaseStepIncrement())
       }
-      showSubmitPage(true)
+      showSubmitPage && showSubmitPage(true)
     } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
@@ -279,10 +282,12 @@ export default function CommonValidateAndPublish({
 
   return (
     <div className="validate-and-publish">
-      <ReleaseStepHeader
-        title={stepperHeader}
-        description={stepperDescription}
-      />
+      {type !== 'appOverviewDetails' && (
+        <ReleaseStepHeader
+          title={stepperHeader}
+          description={stepperDescription}
+        />
+      )}
       <div className="header-description">
         {type === ReleaseProcessTypes.APP_RELEASE && (
           <Grid container sx={{ mt: 0 }}>
@@ -618,69 +623,70 @@ export default function CommonValidateAndPublish({
         )}
       </div>
 
-      <Box mb={2}>
-        {validatePublishNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={error.title}
-                description={error.message}
-                open
-                severity="error"
-                onCloseNotification={() =>
-                  setValidatePublishNotification(false)
-                }
-              />
+      {type !== 'appOverviewDetails' && (
+        <Box mb={2}>
+          {validatePublishNotification && (
+            <Grid container xs={12} sx={{ mb: 2 }}>
+              <Grid xs={6}></Grid>
+              <Grid xs={6}>
+                <PageNotifications
+                  title={error.title}
+                  description={error.message}
+                  open
+                  severity="error"
+                  onCloseNotification={() =>
+                    setValidatePublishNotification(false)
+                  }
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        )}
-
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          startIcon={<HelpOutlineIcon />}
-          variant="outlined"
-          sx={{ mr: 1 }}
-          onClick={() => window.open(helpUrl, '_blank')}
-        >
-          {helpText}
-        </Button>
-        <IconButton
-          color="secondary"
-          onClick={() =>
-            type === ReleaseProcessTypes.APP_RELEASE
-              ? dispatch(decrement())
-              : dispatch(serviceReleaseStepDecrement())
-          }
-        >
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        {loading ? (
-          <span
-            style={{
-              float: 'right',
-            }}
-          >
-            <CircleProgress
-              size={40}
-              step={1}
-              interval={0.1}
-              colorVariant={'primary'}
-              variant={'indeterminate'}
-              thickness={8}
-            />
-          </span>
-        ) : (
+          )}
+          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           <Button
-            onClick={handleSubmit(onValidatePublishSubmit)}
-            variant="contained"
-            disabled={!isValid}
-            sx={{ float: 'right' }}
+            startIcon={<HelpOutlineIcon />}
+            variant="outlined"
+            sx={{ mr: 1 }}
+            onClick={() => window.open(helpUrl, '_blank')}
           >
-            {submitButton}
+            {helpText}
           </Button>
-        )}
-      </Box>
+          <IconButton
+            color="secondary"
+            onClick={() =>
+              type === ReleaseProcessTypes.APP_RELEASE
+                ? dispatch(decrement())
+                : dispatch(serviceReleaseStepDecrement())
+            }
+          >
+            <KeyboardArrowLeftIcon />
+          </IconButton>
+          {loading ? (
+            <span
+              style={{
+                float: 'right',
+              }}
+            >
+              <CircleProgress
+                size={40}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            </span>
+          ) : (
+            <Button
+              onClick={handleSubmit(onValidatePublishSubmit)}
+              variant="contained"
+              disabled={!isValid}
+              sx={{ float: 'right' }}
+            >
+              {submitButton}
+            </Button>
+          )}
+        </Box>
+      )}
     </div>
   )
 }

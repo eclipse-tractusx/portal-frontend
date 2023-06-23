@@ -95,7 +95,9 @@ export default function OfferValidateAndPublish({
           submitButton={t('footerButtons.submit')}
           values={defaultValues}
           serviceTypes={getServiceTypes()}
-          helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
+          helpUrl={
+            '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+          }
         />
       )}
     </div>

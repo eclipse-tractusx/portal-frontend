@@ -79,7 +79,9 @@ export default function OfferContractAndConsent() {
         getDocumentById={getDocumentById}
         documentRequired={false}
         fetchFrameDocumentById={fetchFrameDocumentById}
-        helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+        }
       />
     </div>
   )
