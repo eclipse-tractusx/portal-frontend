@@ -383,7 +383,7 @@ yarn licenses v1.22.19
 │     ├─ VendorName: Jeremy Stashewsky
 │     └─ VendorUrl: https://github.com/salesforce/tough-cookie
 ├─ CC-BY-4.0
-│  └─ caniuse-lite@1.0.30001506
+│  └─ caniuse-lite@1.0.30001507
 │     ├─ URL: https://github.com/browserslist/caniuse-lite.git
 │     ├─ VendorName: Ben Briggs
 │     └─ VendorUrl: http://beneb.info
@@ -580,7 +580,7 @@ yarn licenses v1.22.19
 │  │  ├─ URL: https://github.com/Siilwyn/css-declaration-sorter.git
 │  │  ├─ VendorName: Selwyn
 │  │  └─ VendorUrl: https://selwyn.cc/
-│  ├─ electron-to-chromium@1.4.437
+│  ├─ electron-to-chromium@1.4.439
 │  │  ├─ URL: https://github.com/kilian/electron-to-chromium/
 │  │  └─ VendorName: Kilian Valkhof
 │  ├─ eslint-plugin-promise@6.1.1
@@ -700,7 +700,7 @@ yarn licenses v1.22.19
 │  │  └─ VendorName: Louis-Dominique Dubeau
 │  ├─ semver@6.3.0
 │  │  └─ URL: https://github.com/npm/node-semver
-│  ├─ semver@7.5.2
+│  ├─ semver@7.5.3
 │  │  ├─ URL: https://github.com/npm/node-semver.git
 │  │  └─ VendorName: GitHub Inc.
 │  ├─ setprototypeof@1.1.0
@@ -1631,6 +1631,9 @@ yarn licenses v1.22.19
 │  ├─ @types/html-minifier-terser@6.1.0
 │  │  ├─ URL: https://github.com/DefinitelyTyped/DefinitelyTyped.git
 │  │  └─ VendorUrl: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/html-minifier-terser
+│  ├─ @types/http-errors@2.0.1
+│  │  ├─ URL: https://github.com/DefinitelyTyped/DefinitelyTyped.git
+│  │  └─ VendorUrl: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/http-errors
 │  ├─ @types/http-proxy@1.17.11
 │  │  ├─ URL: https://github.com/DefinitelyTyped/DefinitelyTyped.git
 │  │  └─ VendorUrl: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/http-proxy
@@ -1725,7 +1728,7 @@ yarn licenses v1.22.19
 │  ├─ @types/serve-index@1.9.1
 │  │  ├─ URL: https://github.com/DefinitelyTyped/DefinitelyTyped.git
 │  │  └─ VendorUrl: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/serve-index
-│  ├─ @types/serve-static@1.15.1
+│  ├─ @types/serve-static@1.15.2
 │  │  ├─ URL: https://github.com/DefinitelyTyped/DefinitelyTyped.git
 │  │  └─ VendorUrl: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/serve-static
 │  ├─ @types/sockjs@0.3.33
@@ -4695,4 +4698,4 @@ yarn licenses v1.22.19
    │  └─ URL: https://github.com/streamich/fs-monkey.git
    └─ memfs@3.5.3
       └─ URL: https://github.com/streamich/memfs.git
-Done in 0.48s.
+Done in 0.46s.
