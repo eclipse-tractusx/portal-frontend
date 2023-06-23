@@ -95,6 +95,13 @@
   border-color: rgba(234, 241, 254, 1);
 }
 
+//web layout
+@media (min-width: 1025px) {
+  .orange-background .slick-track {
+    width: 100% !important;
+  }
+}
+
 //mobile layout
 @media (max-width: 480px) {
   .headerTitle {
