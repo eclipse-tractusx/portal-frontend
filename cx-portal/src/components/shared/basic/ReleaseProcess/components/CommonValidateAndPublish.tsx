@@ -220,7 +220,7 @@ export default function CommonValidateAndPublish({
       } else {
         dispatch(serviceReleaseStepIncrement())
       }
-      showSubmitPage && showSubmitPage(true)
+      if (showSubmitPage) showSubmitPage(true)
     } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
