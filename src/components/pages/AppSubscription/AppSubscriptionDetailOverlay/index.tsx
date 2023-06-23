@@ -23,33 +23,19 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  PageSnackbar,
   StaticTable,
   TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
-import {
-  useFetchSubscriptionDetailQuery,
-  useUpdateTenantUrlMutation,
-} from 'features/appSubscription/appSubscriptionApiSlice'
+import { useFetchSubscriptionDetailQuery } from 'features/appSubscription/appSubscriptionApiSlice'
 import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
-import UserService from 'services/UserService'
-import { ROLES } from 'types/Constants'
-import { useState } from 'react'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
   appId: string
   subscriptionId: string
   handleOverlayClose: () => void
-}
-
-enum TenantUrlState {
-  NONE = 'NONE',
-  SUCCESS = 'SUCCESS',
-  ERROR = 'ERROR',
 }
 
 const AppSubscriptionDetailOverlay = ({
@@ -59,15 +45,7 @@ const AppSubscriptionDetailOverlay = ({
   handleOverlayClose,
 }: AppSubscriptionDetailProps) => {
   const { t } = useTranslation()
-  const { data, refetch } = useFetchSubscriptionDetailQuery({
-    appId,
-    subscriptionId,
-  })
-  const [updateTenantUrl] = useUpdateTenantUrlMutation()
-
-  const [tenantUrlResponse, setTenantUrlResponse] = useState<TenantUrlState>(
-    TenantUrlState.NONE
-  )
+  const { data } = useFetchSubscriptionDetailQuery({ appId, subscriptionId })
 
   const stepLists = [
     {
@@ -114,10 +92,6 @@ const AppSubscriptionDetailOverlay = ({
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
     body: [
       [
-        `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
-        data?.tenantUrl ?? '',
-      ],
-      [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
         data?.technicalUserData && data.technicalUserData.length > 0
           ? data.technicalUserData[0].name
@@ -130,15 +104,6 @@ const AppSubscriptionDetailOverlay = ({
           : 'N/A',
       ],
     ],
-    edit: [
-      [
-        { url: '', editIcon: false },
-        {
-          url: data?.tenantUrl ?? '',
-          editIcon: UserService.hasRole(ROLES.APPSTORE_EDIT),
-        },
-      ],
-    ],
   }
 
   const getActiveSteps = () => {
@@ -148,21 +113,6 @@ const AppSubscriptionDetailOverlay = ({
       return 4
     } else {
       return 3
-    }
-  }
-
-  const handleSaveURL = async (url: string) => {
-    const data = {
-      appId: appId,
-      subscriptionId: subscriptionId,
-      body: { url: url },
-    }
-    try {
-      await updateTenantUrl(data).unwrap()
-      refetch()
-      setTenantUrlResponse(TenantUrlState.SUCCESS)
-    } catch (err) {
-      setTenantUrlResponse(TenantUrlState.ERROR)
     }
   }
 
@@ -192,10 +142,7 @@ const AppSubscriptionDetailOverlay = ({
             <StaticTable data={subscriptionDetails} />
           </div>
           <div style={{ marginTop: '20px' }}>
-            <StaticTable
-              data={technicalDetails}
-              handleEditURL={(url) => handleSaveURL(url)}
-            />
+            <StaticTable data={technicalDetails} />
           </div>
           <div style={{ marginTop: '20px' }}>
             <Typography
@@ -210,21 +157,6 @@ const AppSubscriptionDetailOverlay = ({
           </div>
         </DialogContent>
       </Dialog>
-      <PageSnackbar
-        open={tenantUrlResponse !== TenantUrlState.NONE}
-        severity={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? SuccessErrorType.SUCCESS
-            : SuccessErrorType.ERROR
-        }
-        description={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
-            : t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
-        }
-        showIcon={true}
-        autoClose={true}
-      />
     </div>
   )
 }
