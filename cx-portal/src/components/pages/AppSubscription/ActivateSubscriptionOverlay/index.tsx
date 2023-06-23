@@ -27,7 +27,7 @@ import {
   Input,
   LoadingButton,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
 import { isURL } from 'types/Patterns'

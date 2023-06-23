@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
+import {
+  Typography,
+  StaticTable,
+  TableType,
+} from '@catena-x/portal-shared-components'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetailProvider.scss'
 

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { IdentityProvider } from 'features/admin/idpApiSlice'
-import { Image, Tooltips } from 'cx-portal-shared-components'
+import { Image, Tooltips } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 

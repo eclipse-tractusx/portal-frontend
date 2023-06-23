@@ -73,7 +73,7 @@ export const apiSlice = createApi({
     fetchRoles: builder.query<CompanyRolesResponse[], void>({
       query: () => {
         return {
-          url: `/api/administration/companydata/companyRolesAndConsents`,
+          url: '/api/administration/companydata/companyRolesAndConsents',
         }
       },
     }),
@@ -88,7 +88,7 @@ export const apiSlice = createApi({
     }),
     updateCompanyRoles: builder.mutation<void, CompanyRoleRequest[]>({
       query: (data: CompanyRoleRequest[]) => ({
-        url: `/api/administration/companydata/companyRolesAndConsents`,
+        url: '/api/administration/companydata/companyRolesAndConsents',
         method: 'POST',
         body: data,
       }),

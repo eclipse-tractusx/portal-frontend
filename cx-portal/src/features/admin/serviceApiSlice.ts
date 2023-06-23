@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { PAGE_SIZE } from 'types/Constants'
-import { PaginFetchArgs, PaginResult } from 'cx-portal-shared-components'
+import { PaginFetchArgs, PaginResult } from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum ServiceAccountType {
@@ -67,7 +67,7 @@ export const apiSlice = createApi({
       ServiceAccountCreate
     >({
       query: (body: ServiceAccountCreate) => ({
-        url: `/api/administration/serviceaccount/owncompany/serviceaccounts`,
+        url: '/api/administration/serviceaccount/owncompany/serviceaccounts',
         method: 'POST',
         body,
       }),
@@ -90,7 +90,7 @@ export const apiSlice = createApi({
         `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
     }),
     fetchServiceAccountRoles: builder.query<ServiceAccountRole[], void>({
-      query: () => `/api/administration/serviceaccount/user/roles`,
+      query: () => '/api/administration/serviceaccount/user/roles',
     }),
   }),
 })

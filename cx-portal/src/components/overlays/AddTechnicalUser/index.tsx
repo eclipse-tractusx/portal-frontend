@@ -26,7 +26,7 @@ import {
   DialogHeader,
   CircleProgress,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'

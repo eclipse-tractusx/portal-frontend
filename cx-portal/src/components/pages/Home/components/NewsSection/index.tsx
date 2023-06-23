@@ -18,15 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Cards } from 'cx-portal-shared-components'
+import { Cards } from '@catena-x/portal-shared-components'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'
 import './news-section.scss'
+import { AppDispatch } from 'features/store'
 
 export default function NewsSection() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const items = useSelector(itemsSelector)
 
   useEffect(() => {

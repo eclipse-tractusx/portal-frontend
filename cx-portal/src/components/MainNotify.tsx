@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { useSelector } from 'react-redux'
-import { PageSnackbar, PageSnackbarStack } from 'cx-portal-shared-components'
+import {
+  PageSnackbar,
+  PageSnackbarStack,
+} from '@catena-x/portal-shared-components'
 import { notifySelector } from 'features/control/notify'
 
 export default function MainNotify() {

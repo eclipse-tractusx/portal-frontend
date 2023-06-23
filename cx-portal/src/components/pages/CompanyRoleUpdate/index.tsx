@@ -32,7 +32,7 @@ import {
   PageHeader,
   PageSnackbar,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'

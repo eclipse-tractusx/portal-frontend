@@ -26,7 +26,7 @@ import {
   Checkbox,
   DropArea,
   DropAreaProps,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 export const ConnectorFormInputField = ({
   control,

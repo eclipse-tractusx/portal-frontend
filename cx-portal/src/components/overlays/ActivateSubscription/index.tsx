@@ -26,7 +26,7 @@ import {
   Input,
   LoadingButton,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'

@@ -39,7 +39,7 @@ export class Api extends HttpClient {
 
   public getUserOwn = () =>
     this.instance.get<UserDetail>(
-      `/api/administration/user/ownuser`,
+      '/api/administration/user/ownuser',
       getHeaders()
     )
 

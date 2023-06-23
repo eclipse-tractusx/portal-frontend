@@ -26,7 +26,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchMemberCompanies: builder.query<Array<string | null>, void>({
-      query: () => `api/administration/partnernetwork/memberCompanies`,
+      query: () => 'api/administration/partnernetwork/memberCompanies',
     }),
   }),
 })

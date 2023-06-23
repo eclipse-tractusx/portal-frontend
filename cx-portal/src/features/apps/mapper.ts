@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems, ImageType, LogoGrayData } from 'cx-portal-shared-components'
+import {
+  CardItems,
+  ImageType,
+  LogoGrayData,
+} from '@catena-x/portal-shared-components'
 import { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {

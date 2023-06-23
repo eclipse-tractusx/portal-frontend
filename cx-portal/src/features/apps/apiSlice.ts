@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { LogoGrayData } from 'cx-portal-shared-components'
+import { LogoGrayData } from '@catena-x/portal-shared-components'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
@@ -186,11 +186,11 @@ export const apiSlice = createApi({
     }),
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
-        const activeApps = await fetchWithBQ(`/api/apps/active`)
+        const activeApps = await fetchWithBQ('/api/apps/active')
         if (activeApps.error) return { error: activeApps.error }
         const data = activeApps.data as AppMarketplaceApp[]
         const subscriptionStatus = await fetchWithBQ(
-          `/api/apps/subscribed/subscription-status`
+          '/api/apps/subscribed/subscription-status'
         )
         const subscriptionData =
           subscriptionStatus.data as SubscriptionStatusResponse
@@ -215,12 +215,12 @@ export const apiSlice = createApi({
       },
     }),
     fetchFavoriteApps: builder.query<string[], void>({
-      query: () => `/api/apps/favourites`,
+      query: () => '/api/apps/favourites',
     }),
     fetchSubscriptionStatus: builder.query<SubscriptionStatusResponse, void>({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
         const subscriptionApps = await fetchWithBQ(
-          `/api/apps/subscribed/subscription-status`
+          '/api/apps/subscribed/subscription-status'
         )
         if (subscriptionApps.error) return { error: subscriptionApps.error }
         const subscriptionData =
@@ -246,10 +246,10 @@ export const apiSlice = createApi({
       },
     }),
     fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
-      query: () => `/api/apps/provided`,
+      query: () => '/api/apps/provided',
     }),
     fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
-      query: () => `/api/apps/business`,
+      query: () => '/api/apps/business',
     }),
     fetchDocumentById: builder.mutation({
       query: (data: DocumentRequestData) => ({

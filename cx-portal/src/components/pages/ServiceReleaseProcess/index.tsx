@@ -76,7 +76,7 @@ export default function ServiceReleaseProcess() {
   }
 
   const onOverviewServiceButton = () => {
-    navigate(`/serviceoverview`)
+    navigate('/serviceoverview')
   }
 
   const requeredButtons = [

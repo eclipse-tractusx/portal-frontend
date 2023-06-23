@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { AppDetails } from 'features/apps/apiSlice'
 import { Grid } from '@mui/material'
 

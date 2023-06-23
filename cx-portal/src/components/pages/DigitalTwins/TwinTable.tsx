@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Table } from 'cx-portal-shared-components'
+import { Table } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,6 +32,7 @@ import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
 import uniqueId from 'lodash/uniqueId'
 import Patterns from 'types/Patterns'
+import { AppDispatch } from 'features/store'
 
 interface TwinTableProps {
   onTwinSelect: (id: string) => void
@@ -39,7 +40,7 @@ interface TwinTableProps {
 
 const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { twinList, loading } = useSelector(twinsSelector)
   const [twins, setTwins] = useState<ShellDescriptor[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)

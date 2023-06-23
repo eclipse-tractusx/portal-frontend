@@ -24,7 +24,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   setUserRoleResp,
   SuccessErrorType,

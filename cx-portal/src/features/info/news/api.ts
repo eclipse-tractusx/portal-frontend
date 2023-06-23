@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems } from 'cx-portal-shared-components'
+import { CardItems } from '@catena-x/portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 
@@ -37,5 +37,5 @@ export class Api extends HttpClient {
   }
 
   public getItems = () =>
-    this.instance.get<CardItems[]>(`/api/news/latest.json`)
+    this.instance.get<CardItems[]>('/api/news/latest.json')
 }

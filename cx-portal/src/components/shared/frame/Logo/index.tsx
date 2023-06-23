@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { NavLink } from 'react-router-dom'
-import { Logo as L } from 'cx-portal-shared-components'
+import { Logo as L } from '@catena-x/portal-shared-components'
 
 export const Logo = () => (
   <NavLink to="/">

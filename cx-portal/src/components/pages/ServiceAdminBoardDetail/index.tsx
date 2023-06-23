@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, StaticTable, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  StaticTable,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
@@ -153,7 +157,7 @@ export default function ServiceAdminBoardDetail() {
           </div>
           <div className="adminboard-documents">
             <Typography variant="h4">
-              {t(`adminboardDetail.documents.heading`)}
+              {t('adminboardDetail.documents.heading')}
             </Typography>
             <Typography
               variant="body2"
@@ -161,7 +165,7 @@ export default function ServiceAdminBoardDetail() {
                 marginTop: '20px',
               }}
             >
-              {t(`adminboardDetail.documents.message`)}
+              {t('adminboardDetail.documents.message')}
             </Typography>
             {serviceData?.documents &&
               Object.keys(serviceData.documents).map((item) => (

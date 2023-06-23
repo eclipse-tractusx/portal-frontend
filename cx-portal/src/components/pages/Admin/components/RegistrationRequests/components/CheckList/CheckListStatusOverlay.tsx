@@ -27,7 +27,7 @@ import {
   IconButton,
   Input,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import CheckList from '.'
 import {
   EndUrlMap,

@@ -27,7 +27,7 @@ import {
   IconButton,
   Tooltips,
   Chip,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import {

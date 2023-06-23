@@ -26,7 +26,7 @@ import {
   StaticTable,
   TableType,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useFetchSubscriptionDetailQuery } from 'features/appSubscription/appSubscriptionApiSlice'
 import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
 import { SubscriptionStatus } from 'features/apps/apiSlice'

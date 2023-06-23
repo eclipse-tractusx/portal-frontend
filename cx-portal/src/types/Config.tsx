@@ -53,7 +53,6 @@ import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
 import Test from 'components/pages/Test'
-import Translator from 'components/pages/Translator'
 import UserManagement from 'components/pages/UserManagement'
 import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
@@ -405,11 +404,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPLICATION_REQUESTS,
     role: ROLES.CX_ADMIN,
     element: <RegistrationRequests />,
-  },
-  {
-    name: PAGES.TRANSLATOR,
-    role: ROLES.CX_ADMIN,
-    element: <Translator />,
   },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },

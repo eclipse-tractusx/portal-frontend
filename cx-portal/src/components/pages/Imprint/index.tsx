@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import StageHeader from 'components/shared/frame/StageHeader'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {

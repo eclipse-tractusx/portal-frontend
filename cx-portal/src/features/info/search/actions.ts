@@ -33,7 +33,7 @@ import {
   userToSearchItem,
 } from './mapper'
 import { name, SearchItem } from './types'
-import { CardItems, PaginResult } from 'cx-portal-shared-components'
+import { CardItems, PaginResult } from '@catena-x/portal-shared-components'
 import { isUUID, Patterns } from 'types/Patterns'
 import {
   BusinessPartner,

@@ -24,8 +24,8 @@ import { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
 import { PAGE_SIZE } from 'types/Constants'
 import { SearchParams } from '../../connector/types'
-import qs from 'querystring'
-import { PaginResult } from 'cx-portal-shared-components'
+import qs from 'qs'
+import { PaginResult } from '@catena-x/portal-shared-components'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

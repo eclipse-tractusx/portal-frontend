@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import qs from 'querystring'
+import qs from 'qs'
 import { HttpClient } from 'utils/HttpClient'
 import {
   ConnectorAPIResponse,
@@ -52,7 +52,7 @@ export class ConnectorApi extends HttpClient {
 
   public createConnector = (body: ConnectorCreateBody) =>
     this.instance.post<ConnectorCreateBody>(
-      `/api/administration/Connectors`,
+      '/api/administration/Connectors',
       body,
       getHeaders()
     )

@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageLoadingTable, PaginFetchArgs } from 'cx-portal-shared-components'
+import {
+  PageLoadingTable,
+  PaginFetchArgs,
+} from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'

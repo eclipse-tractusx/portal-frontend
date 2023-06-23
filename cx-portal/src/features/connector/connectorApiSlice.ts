@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PaginFetchArgs, PaginResult } from 'cx-portal-shared-components'
+import { PaginFetchArgs, PaginResult } from '@catena-x/portal-shared-components'
 
 export enum ConnectType {
   MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',
@@ -65,14 +65,14 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     createConnector: builder.mutation({
       query: (body) => ({
-        url: `/api/administration/connectors/daps`,
+        url: '/api/administration/connectors/daps',
         method: 'POST',
         body,
       }),
     }),
     createManagedConnector: builder.mutation({
       query: (body) => ({
-        url: `/api/administration/connectors/managed-daps`,
+        url: '/api/administration/connectors/managed-daps',
         method: 'POST',
         body,
       }),

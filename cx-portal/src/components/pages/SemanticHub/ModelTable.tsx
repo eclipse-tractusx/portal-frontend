@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Table } from 'cx-portal-shared-components'
+import { Table } from '@catena-x/portal-shared-components'
 import { fetchSemanticModels } from 'features/semanticModels/actions'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import {
@@ -32,6 +32,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import uniqueId from 'lodash/uniqueId'
+import { AppDispatch } from 'features/store'
 
 interface ModelTableProps {
   onModelSelect: (id: string) => void
@@ -43,7 +44,7 @@ type SelectedFilter = {
 
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { modelList, loadingModelList, deleteModelId, uploadedModel } =
     useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])

@@ -25,7 +25,7 @@ import {
   Typography,
   Checkbox,
   OrderStatusButton,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import qs from 'querystring'
+import qs from 'qs'
 import { HttpClient } from 'utils/HttpClient'
 import { BusinessPartnerResponse, BusinessPartner } from './types'
 import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'

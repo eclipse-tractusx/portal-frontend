@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, PageSnackbar } from 'cx-portal-shared-components'
+import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './RegistrationRequests.scss'
@@ -42,11 +42,12 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
+import { AppDispatch } from 'features/store'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 

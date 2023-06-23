@@ -22,7 +22,7 @@ import {
   IconButton,
   UploadFileStatus,
   UploadStatus,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback, useMemo } from 'react'
@@ -438,7 +438,7 @@ export default function OfferCard() {
                       value={
                         (desc === 'shortDescriptionEN'
                           ? getValues().shortDescriptionEN.length
-                          : getValues().shortDescriptionDE.length) + `/120`
+                          : getValues().shortDescriptionDE.length) + '/120'
                       }
                       patternKey="shortDescriptionEN"
                       patternEN={Patterns.offerCard.shortDescriptionEN}
@@ -455,8 +455,8 @@ export default function OfferCard() {
                           'serviceReleaseForm.validCharactersIncludes'
                         )} ${
                           desc === 'shortDescriptionEN'
-                            ? `a-zA-Z0-9 !?@&#'"()_-=/*.,;:`
-                            : `a-zA-ZÀ-ÿ0-9 !?@&#'"()_-=/*.,;:`
+                            ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
+                            : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
                         }`,
                         maxLength: `${t('serviceReleaseForm.maximum')} 120 ${t(
                           'serviceReleaseForm.charactersAllowed'
@@ -510,7 +510,9 @@ export default function OfferCard() {
         )}
         isValid={isValid}
         loader={loading}
-        helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+        }
       />
     </div>
   )

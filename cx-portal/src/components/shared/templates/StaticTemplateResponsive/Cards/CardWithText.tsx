@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { CardDetailsProps } from '../StaticTypes'
-import { Typography } from 'cx-portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
 import { Trans } from 'react-i18next'
 

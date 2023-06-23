@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Card } from 'cx-portal-shared-components'
+import { Card } from '@catena-x/portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -26,6 +26,7 @@ import { removeItem } from 'features/apps/favorites/actions'
 import { useDispatch } from 'react-redux'
 import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import CommonService from 'services/CommonService'
+import { AppDispatch } from 'features/store'
 interface FavoriteItemProps {
   item: any
   expandOnHover: boolean
@@ -38,7 +39,7 @@ export default function FavoriteItem({
   cardClick,
 }: FavoriteItemProps) {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [cardImage, setCardImage] = useState('')
   const [addedToFavorite, setAddedToFavorite] = useState(false)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()

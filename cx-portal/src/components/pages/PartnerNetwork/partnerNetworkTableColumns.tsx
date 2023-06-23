@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from 'cx-portal-shared-components'
+import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'
@@ -89,7 +89,7 @@ export const PartnerNetworksTableColumns = (
     },
     {
       field: 'detail',
-      headerName: `Detail`,
+      headerName: 'Detail',
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',

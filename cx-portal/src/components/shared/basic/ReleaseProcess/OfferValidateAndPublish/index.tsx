@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { LogoGrayData } from 'cx-portal-shared-components'
+import { LogoGrayData } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -95,7 +95,9 @@ export default function OfferValidateAndPublish({
           submitButton={t('footerButtons.submit')}
           values={defaultValues}
           serviceTypes={getServiceTypes()}
-          helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
+          helpUrl={
+            '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+          }
         />
       )}
     </div>

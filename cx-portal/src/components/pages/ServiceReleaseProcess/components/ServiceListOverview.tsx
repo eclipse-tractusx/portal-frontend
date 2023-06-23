@@ -28,7 +28,7 @@ import {
   Cards,
   LoadMoreButton,
   CardItems,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import { fetchImageWithToken } from 'services/ImageService'
@@ -196,12 +196,14 @@ export default function ServiceListOverview() {
               onNewCardButton={() =>
                 navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
               }
-              onCardClick={(item: { id: string; status: string }) => {
+              onCardClick={(item: CardItems) => {
+                // TODO: workaround - fix CardItems type
+                const cardItem: any = item
                 if (
-                  item.status === ProvidedServiceStatusEnum.PENDING ||
-                  item.status === ProvidedServiceStatusEnum.CREATED
+                  cardItem.status === ProvidedServiceStatusEnum.PENDING ||
+                  cardItem.status === ProvidedServiceStatusEnum.CREATED
                 ) {
-                  dispatch(setServiceId(item.id))
+                  dispatch(setServiceId(item.id ?? ''))
                   navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
                 } else {
                   navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)

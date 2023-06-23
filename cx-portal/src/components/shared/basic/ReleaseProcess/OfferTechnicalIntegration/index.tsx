@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Checkbox } from 'cx-portal-shared-components'
+import { Typography, Checkbox } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
@@ -208,7 +208,9 @@ export default function OfferTechnicalIntegration() {
         )}
         isValid={serviceTechUserProfiles?.length > 0}
         loader={loading}
-        helpUrl={`/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+        }
       />
     </>
   )

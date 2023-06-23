@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBpdmQuery } from 'utils/rtkUtil'
-import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
+import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { BusinessPartnerSearchResponse } from './types'
 import Patterns from 'types/Patterns'
 import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
@@ -37,7 +37,7 @@ export const apiSlice = createApi({
       any
     >({
       query: (arry) => ({
-        url: `/catena/legal-entities/legal-addresses/search`,
+        url: '/catena/legal-entities/legal-addresses/search',
         method: 'POST',
         body: arry,
       }),

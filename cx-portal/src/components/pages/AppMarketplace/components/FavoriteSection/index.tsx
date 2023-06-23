@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CarouselBox } from 'cx-portal-shared-components'
+import { CarouselBox } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import FavoriteItem from './FavoriteItem'
@@ -29,10 +29,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { itemsSelector } from 'features/apps/favorites/slice'
 import { useEffect } from 'react'
 import { fetchItems } from 'features/apps/favorites/actions'
+import { AppDispatch } from 'features/store'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const active = useFetchActiveAppsQuery().data || []
   const favorites = useSelector(itemsSelector)
   const favoriteSectionPosition = favorites.length === 0 ? 30 : 45

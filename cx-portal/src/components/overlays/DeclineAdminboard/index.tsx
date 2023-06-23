@@ -26,7 +26,7 @@ import {
   Input,
   LoadingButton,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { store } from 'features/store'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'

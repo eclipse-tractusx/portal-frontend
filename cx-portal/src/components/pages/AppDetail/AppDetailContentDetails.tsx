@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { Typography, Button, Navigation } from 'cx-portal-shared-components'
+import {
+  Typography,
+  Button,
+  Navigation,
+} from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'

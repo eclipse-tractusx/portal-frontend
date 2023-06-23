@@ -23,7 +23,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
-import { PaginResult, PaginFetchArgs } from 'cx-portal-shared-components'
+import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 
 export interface UserAppRoles {
@@ -114,20 +114,20 @@ export const apiSlice = createApi({
     }),
     addTenantUsers: builder.mutation<void, AddUserIdp[]>({
       query: (body) => ({
-        url: `/api/administration/user/owncompany/users`,
+        url: '/api/administration/user/owncompany/users',
         method: 'POST',
         body,
       }),
     }),
     removeTenantUser: builder.mutation<void, string[]>({
       query: (body) => ({
-        url: `/api/administration/user/owncompany/users`,
+        url: '/api/administration/user/owncompany/users',
         method: 'DELETE',
         body,
       }),
     }),
     fetchUserRoles: builder.query<string[], void>({
-      query: () => `/api/registration/rolesComposite`,
+      query: () => '/api/registration/rolesComposite',
     }),
     fetchUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
       query: (fetchArgs) =>
@@ -147,10 +147,10 @@ export const apiSlice = createApi({
       query: (id) => `/api/administration/user/owncompany/users/${id}`,
     }),
     fetchOwnUserDetails: builder.query<TenantUserDetails, void>({
-      query: () => `/api/administration/user/ownUser`,
+      query: () => '/api/administration/user/ownUser',
     }),
     fetchOwnCompanyDetails: builder.query<CompanyDetails, void>({
-      query: () => `/api/administration/companydata/ownCompanyDetails`,
+      query: () => '/api/administration/companydata/ownCompanyDetails',
     }),
     deleteMyUser: builder.mutation<void, string>({
       query: (id: string) => ({

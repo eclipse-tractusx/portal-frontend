@@ -20,7 +20,11 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import StageHeader from 'components/shared/frame/StageHeader'
-import { Button, PageSnackbar, Typography } from 'cx-portal-shared-components'
+import {
+  Button,
+  PageSnackbar,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
@@ -35,11 +39,12 @@ import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAssetBase } from 'services/EnvironmentService'
+import { AppDispatch } from 'features/store'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { modelId } = useParams()
   const [showModel, setShowModel] = useState<boolean>(false)
   const [importModel, setImportModel] = useState<boolean>(false)

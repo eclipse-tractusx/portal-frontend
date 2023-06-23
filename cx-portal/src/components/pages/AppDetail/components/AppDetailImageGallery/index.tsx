@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import './AppDetailImageGallery.scss'
-import { ImageGallery, ImageType } from 'cx-portal-shared-components'
+import { ImageGallery, ImageType } from '@catena-x/portal-shared-components'
 
 export default function AppDetailImage({ images }: { images: ImageType[] }) {
   return (

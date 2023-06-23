@@ -133,7 +133,7 @@ export const apiSlice = createApi({
       },
     }),
     fetchAppFilters: builder.query<AppFiltersResponse[], void>({
-      query: () => `/api/apps/provided`,
+      query: () => '/api/apps/provided',
     }),
     fetchSubscriptionDetail: builder.query<
       SubscriptionDetailResponse,
@@ -154,7 +154,7 @@ export const apiSlice = createApi({
       SubscriptionStoreRequest
     >({
       query: (data: SubscriptionStoreRequest) => ({
-        url: `/api/Apps/autoSetup`,
+        url: '/api/Apps/autoSetup',
         method: 'POST',
         body: data,
       }),

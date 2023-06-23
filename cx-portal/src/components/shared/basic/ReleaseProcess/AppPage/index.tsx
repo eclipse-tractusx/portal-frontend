@@ -29,7 +29,7 @@ import {
   DropArea,
   DropAreaProps,
   PageSnackbar,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -733,7 +733,9 @@ export default function AppPage() {
         )}
         isValid={isValid}
         loader={loading}
-        helpUrl={`/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`}
+        helpUrl={
+          '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+        }
       />
       <PageSnackbar
         autoClose

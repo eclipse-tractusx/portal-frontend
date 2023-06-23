@@ -37,7 +37,7 @@ export class Api extends HttpClient {
   }
 
   public getItems = () =>
-    this.instance.get<string[]>(`/api/apps/favourites`, getHeaders())
+    this.instance.get<string[]>('/api/apps/favourites', getHeaders())
 
   public putItem = (id: string) =>
     this.instance.post<string[]>(

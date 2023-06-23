@@ -28,7 +28,7 @@ import {
   Typography,
   PageLoadingTable,
   PageSnackbar,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
@@ -250,7 +250,8 @@ const EdcConnector = () => {
   }, [])
 
   const onHelpButtonClicked = () => {
-    const url = `/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md`
+    const url =
+      '/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md'
     window.open(url, '_blank')
   }
 

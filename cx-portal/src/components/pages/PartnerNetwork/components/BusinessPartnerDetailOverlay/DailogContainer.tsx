@@ -22,7 +22,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Box, Grid } from '@mui/material'
 
 interface DailogContainerProps {

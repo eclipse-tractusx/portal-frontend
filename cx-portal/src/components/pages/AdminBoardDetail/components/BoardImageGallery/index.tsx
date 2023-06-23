@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import './BoardImageGallery.scss'
-import { Carousel, ImageType } from 'cx-portal-shared-components'
+import { Carousel, ImageType } from '@catena-x/portal-shared-components'
 
 export default function BoardImageGallery({ images }: { images: ImageType[] }) {
   return (

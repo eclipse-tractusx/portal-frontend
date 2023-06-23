@@ -57,11 +57,11 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchServiceProvider: builder.query<ServiceProviderAPIResponse, void>({
-      query: () => `/api/administration/subscriptionconfiguration/owncompany`,
+      query: () => '/api/administration/subscriptionconfiguration/owncompany',
     }),
     addServiceProvider: builder.mutation<void, ServiceRequest>({
       query: (data) => ({
-        url: `/api/administration/subscriptionconfiguration/owncompany`,
+        url: '/api/administration/subscriptionconfiguration/owncompany',
         method: 'PUT',
         body: data,
       }),

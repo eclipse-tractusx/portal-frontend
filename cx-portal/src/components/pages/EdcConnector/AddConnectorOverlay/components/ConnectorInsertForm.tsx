@@ -26,7 +26,7 @@ import {
   Input,
   Tooltips,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'

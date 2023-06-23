@@ -1,6 +1,6 @@
 # Catena-X Portal Frontend
 
-This repository contains the frontend code and [Shared UI Components](https://www.npmjs.com/package/cx-portal-shared-components) for the Catena-X Portal written in React and Typescript.
+This repository contains the frontend code for the Catena-X Portal written in React and Typescript.
 
 The Catena-X Portal application consists of
 

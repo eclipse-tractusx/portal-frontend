@@ -25,7 +25,7 @@ import {
   SearchInput,
   Typography,
   ViewSelector,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
@@ -41,6 +41,7 @@ import {
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import debounce from 'lodash.debounce'
 import CommonService from 'services/CommonService'
+import { AppDispatch } from 'features/store'
 
 export const label = 'AppList'
 
@@ -51,7 +52,7 @@ export default function AppListSection() {
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [cardsData, setCardsData] = useState<CardItems[]>([])
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
   const [cards, setCards] = useState<any>([])

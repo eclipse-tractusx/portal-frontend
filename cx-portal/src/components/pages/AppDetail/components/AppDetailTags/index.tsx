@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from 'cx-portal-shared-components'
+import { Chip, Typography } from '@catena-x/portal-shared-components'
 import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetailTags.scss'
 

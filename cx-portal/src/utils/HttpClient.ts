@@ -39,7 +39,7 @@ export abstract class HttpClient {
 
   protected constructor(
     baseURL: string,
-    headers: AxiosRequestHeaders = {
+    headers: Partial<AxiosRequestHeaders> = {
       'Content-Type': 'application/json',
     },
     timeout: number = 30000

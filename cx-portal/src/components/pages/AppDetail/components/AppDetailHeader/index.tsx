@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { useSelector, useDispatch } from 'react-redux'
-import { Typography, OrderStatusButton } from 'cx-portal-shared-components'
+import {
+  Typography,
+  OrderStatusButton,
+} from '@catena-x/portal-shared-components'
 import { useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'

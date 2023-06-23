@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography, StaticTable, TableType } from 'cx-portal-shared-components'
+import {
+  Typography,
+  StaticTable,
+  TableType,
+} from '@catena-x/portal-shared-components'
 import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceProvider.scss'
 

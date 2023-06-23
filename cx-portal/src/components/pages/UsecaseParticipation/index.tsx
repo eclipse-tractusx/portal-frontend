@@ -21,7 +21,11 @@ import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import { Chip, PageHeader, Typography } from 'cx-portal-shared-components'
+import {
+  Chip,
+  PageHeader,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import './UsecaseParticipation.scss'
 

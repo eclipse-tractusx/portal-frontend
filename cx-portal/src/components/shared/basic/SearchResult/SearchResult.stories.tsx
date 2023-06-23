@@ -22,10 +22,12 @@ import { ComponentStory } from '@storybook/react'
 import { SearchCategory } from 'features/info/search/types'
 import { SearchResult as Component } from '.'
 
-export default {
+const Story = {
   title: 'search/SearchResult',
   component: Component,
 }
+
+export default Story
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />

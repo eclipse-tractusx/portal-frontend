@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from 'cx-portal-shared-components'
+import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { SemanticModel } from 'features/semanticModels/types'
 
@@ -37,7 +37,7 @@ export const SemanticModelTableColumns = (
     })),
     {
       field: 'detail',
-      headerName: `Detail`,
+      headerName: 'Detail',
       flex: 1,
       align: 'center',
       headerAlign: 'center',

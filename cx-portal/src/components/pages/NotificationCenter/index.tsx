@@ -46,7 +46,7 @@ import {
   ViewSelector,
   SortOption,
   CircleProgress,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { initialNotificationState } from 'features/notification/slice'

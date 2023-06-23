@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import qs from 'querystring'
+import qs from 'qs'
 import { HttpClient } from 'utils/HttpClient'
 import {
   FilterParams,
@@ -50,7 +50,7 @@ export class Api extends HttpClient {
     )
 
   public getStaticModels = () =>
-    this.instance.get<ModelList>(`api/semanticModels/models.json`)
+    this.instance.get<ModelList>('api/semanticModels/models.json')
 
   public getModelById = (id: string) =>
     this.instance.get<SemanticModel>(`models/${id}`, getHeaders())

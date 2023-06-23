@@ -25,7 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'

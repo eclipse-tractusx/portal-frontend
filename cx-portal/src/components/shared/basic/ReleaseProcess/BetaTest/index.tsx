@@ -24,7 +24,7 @@ import {
   IconButton,
   PageNotifications,
   Typography,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -78,7 +78,7 @@ export default function BetaTest() {
           <Grid item md={8} marginLeft="20px">
             <div style={{ display: 'flex' }}>
               <Typography variant="h4">
-                {t(`content.apprelease.betaTest.technicalIntegrationTest`)}
+                {t('content.apprelease.betaTest.technicalIntegrationTest')}
               </Typography>
               <Chip
                 key={1}
@@ -92,7 +92,7 @@ export default function BetaTest() {
             </div>
             <Typography variant="body2" marginTop="16px">
               {t(
-                `content.apprelease.betaTest.technicalIntegrationTestDescription`
+                'content.apprelease.betaTest.technicalIntegrationTestDescription'
               )}
             </Typography>
             <a href="/" style={{ display: 'flex', marginTop: '28px' }}>
@@ -125,7 +125,7 @@ export default function BetaTest() {
           sx={{ mr: 1 }}
           onClick={() =>
             window.open(
-              `/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process`,
+              '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process',
               '_blank'
             )
           }

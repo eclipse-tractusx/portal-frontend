@@ -24,7 +24,7 @@ import {
   Typography,
   LogoGrayData,
   CustomAccordion,
-} from 'cx-portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'

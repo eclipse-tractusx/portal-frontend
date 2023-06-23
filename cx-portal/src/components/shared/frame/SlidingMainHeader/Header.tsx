@@ -19,7 +19,7 @@
 
 import { Box } from '@mui/material'
 import './SlidingMainHeader.scss'
-import { Button, Typography } from 'cx-portal-shared-components'
+import { Button, Typography } from '@catena-x/portal-shared-components'
 
 export interface HeaderProps {
   title?: string
@@ -50,7 +50,7 @@ export const Header = ({
       sx={{
         width: '100%',
         height: `${headerHeight}px`,
-        marginTop: `-85px`,
+        marginTop: '-85px',
         position: 'relative',
       }}
     >

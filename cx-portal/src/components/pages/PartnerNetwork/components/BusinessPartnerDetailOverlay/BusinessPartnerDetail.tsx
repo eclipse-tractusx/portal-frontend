@@ -22,9 +22,10 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getOneBusinessPartner } from 'features/partnerNetwork/actions'
 import BusinessPartnerDetailContent from './BusinessPartnerDetailContent'
+import { AppDispatch } from 'features/store'
 
 const BusinessPartnerDetail = ({ id }: { id: string }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
     dispatch(getOneBusinessPartner({ bpn: id }))

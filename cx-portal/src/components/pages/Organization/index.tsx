@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageHeader, StaticTable, TableType } from 'cx-portal-shared-components'
+import {
+  PageHeader,
+  StaticTable,
+  TableType,
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppSubscriptions from './AppSubscriptions'
 import { useDispatch } from 'react-redux'
