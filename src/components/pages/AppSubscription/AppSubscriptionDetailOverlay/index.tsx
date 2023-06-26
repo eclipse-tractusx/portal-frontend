@@ -194,7 +194,7 @@ const AppSubscriptionDetailOverlay = ({
           <div style={{ marginTop: '20px' }}>
             <StaticTable
               data={technicalDetails}
-              handleEditURL={(url) => handleSaveURL(url)}
+              handleEdit={(url) => handleSaveURL(url)}
             />
           </div>
           <div style={{ marginTop: '20px' }}>
