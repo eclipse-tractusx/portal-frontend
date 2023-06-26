@@ -33,7 +33,10 @@ import {
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { AppStatusDataState } from 'features/appManagement/types'
+import {
+  AppOverviewTypes,
+  AppStatusDataState,
+} from 'features/appManagement/types'
 import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
 
 export default function AppOverViewDetails({
@@ -203,11 +206,9 @@ export default function AppOverViewDetails({
       )}
       <div className="text-left">
         <CommonValidateAndPublish
-          type={'appOverviewDetails'}
-          stepperHeader={t('content.apprelease.validateAndPublish.headerTitle')}
-          stepperDescription={t(
-            'content.apprelease.validateAndPublish.headerDescription'
-          )}
+          type={AppOverviewTypes.APP_OVERVIEW_DETAILS}
+          stepperHeader={''}
+          stepperDescription={''}
           statusData={item}
           id={id}
           fetchDocumentById={fetchDocumentById}
@@ -235,13 +236,10 @@ export default function AppOverViewDetails({
             title: t('content.apprelease.appReleaseForm.error.title'),
             message: t('content.apprelease.appReleaseForm.error.message'),
           }}
-          helpText={t('content.apprelease.footerButtons.help')}
-          submitButton={t('content.apprelease.footerButtons.submit')}
+          helpText={''}
+          submitButton={''}
           values={defaultValues}
           rolesData={data}
-          helpUrl={
-            '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
-          }
         />
       </div>
     </>

@@ -50,7 +50,11 @@ import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
-import { AppStatusDataState, UseCaseType } from 'features/appManagement/types'
+import {
+  AppOverviewTypes,
+  AppStatusDataState,
+  UseCaseType,
+} from 'features/appManagement/types'
 import { ServiceStatusDataState } from 'features/serviceManagement/types'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
@@ -91,12 +95,12 @@ interface CommonValidateAndPublishType {
   error: { title: string; message: string }
   helpText: string
   submitButton: string
-  helpUrl: string
+  helpUrl?: string
   values: DefaultValueType | any
   type:
     | ReleaseProcessTypes.APP_RELEASE
     | ReleaseProcessTypes.SERVICE_RELEASE
-    | 'appOverviewDetails'
+    | AppOverviewTypes.APP_OVERVIEW_DETAILS
   serviceTypes?: string
   rolesData?: rolesType[]
 }
@@ -220,7 +224,7 @@ export default function CommonValidateAndPublish({
       } else {
         dispatch(serviceReleaseStepIncrement())
       }
-      showSubmitPage && showSubmitPage(true)
+      if (showSubmitPage) showSubmitPage(true)
     } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
@@ -282,7 +286,7 @@ export default function CommonValidateAndPublish({
 
   return (
     <div className="validate-and-publish">
-      {type !== 'appOverviewDetails' && (
+      {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
         <ReleaseStepHeader
           title={stepperHeader}
           description={stepperDescription}
@@ -623,7 +627,7 @@ export default function CommonValidateAndPublish({
         )}
       </div>
 
-      {type !== 'appOverviewDetails' && (
+      {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
         <Box mb={2}>
           {validatePublishNotification && (
             <Grid container xs={12} sx={{ mb: 2 }}>
