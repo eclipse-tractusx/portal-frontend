@@ -25,11 +25,11 @@ import {
   Typography,
   Checkbox,
   OrderStatusButton,
+  paletteDefinitions,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { useTheme } from '@mui/material'
 import {
   AgreementRequest,
   useAddSubscribeAppMutation,
@@ -43,7 +43,6 @@ import './AppMarketplaceRequest.scss'
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const theme = useTheme()
 
   const { data } = useFetchAppDetailsQuery(id ?? '')
   const { data: agreements } = useFetchAgreementsQuery(id ?? '')
@@ -61,19 +60,19 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
       isIcon: false,
       buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
       zIndex: 4,
-      backgroundColor: theme.palette.buttons.darkGrey ?? '',
+      backgroundColor: paletteDefinitions.buttons.darkGrey ?? '',
     },
     {
       isIcon: false,
       buttonLabel: t('content.appdetail.buttons.appDeployed'),
       zIndex: 3,
-      backgroundColor: theme.palette.buttons.lightGrey ?? '',
+      backgroundColor: paletteDefinitions.buttons.lightGrey ?? '',
     },
     {
       isIcon: false,
       buttonLabel: t('content.appdetail.buttons.activation'),
       zIndex: 2,
-      backgroundColor: theme.palette.buttons.white ?? '',
+      backgroundColor: paletteDefinitions.buttons.white ?? '',
     },
   ]
 
