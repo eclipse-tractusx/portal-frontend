@@ -103,3 +103,43 @@
     }
   }
 }
+
+.verify-validate-form-divider {
+  margin: 20px auto !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.tech-user-data {
+  padding: 0px 20px 5px 20px !important;
+}
+
+.policies-list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+  .policy-name {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto 10px 0;
+  }
+  .policy-icon {
+    font-size: 20;
+    margin-right: 5px;
+  }
+}
+
+.doc-list {
+  padding: 0 14px;
+  .document-button-link {
+    font-size: 16px;
+  }
+}
+
+.app-policies {
+  padding: 0 20px;
+}

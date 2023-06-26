@@ -23,15 +23,18 @@ import {
   LanguageSwitch,
   Typography,
   LogoGrayData,
-  CustomAccordion,
 } from '@catena-x/portal-shared-components'
 import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
-import AppInfo from './components/AppInfo'
-import AppConsent from './components/AppConsent'
-import { useCallback, useEffect, useState } from 'react'
+import {
+  ConsentStatusEnum,
+  useFetchDocumentByIdMutation,
+  useFetchRolesDataQuery,
+  useSubmitappMutation,
+} from 'features/appManagement/apiSlice'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AppStatusDataState } from 'features/appManagement/types'
+import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
 
 export default function AppOverViewDetails({
   item,
@@ -44,45 +47,41 @@ export default function AppOverViewDetails({
   const [cardImage, setCardImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardLanguage, setCardLanguage] = useState<string>('en')
+  const { data } = useFetchRolesDataQuery(id ?? '')
+  const [submitapp] = useSubmitappMutation()
 
-  const items = [
-    {
-      expanded: false,
-      id: 'panel-1',
-      title: 'App Details',
-      color: 'background.background09',
-      children: <AppInfo item={item} id={id} />,
-    },
-    {
-      expanded: false,
-      id: 'panel-2',
-      title: 'Consent',
-      color: 'background.background09',
-      children: <AppConsent agreements={item.agreements} />,
-    },
-    {
-      expanded: false,
-      id: 'panel-3',
-      title: 'Technical Integration',
-      color: 'background.background09',
-      children: (
-        <Typography variant="h5" align="left">
-          {t('global.field.toBeUpdated')}
-        </Typography>
+  const defaultValues = useMemo(() => {
+    return {
+      images: [LogoGrayData, LogoGrayData, LogoGrayData],
+      conformityDocumentsDescription: t(
+        'content.apprelease.defaultValues.conformityDocumentsDescription'
       ),
-    },
-    {
-      expanded: false,
-      id: 'panel-4',
-      title: 'Beta Test',
-      color: 'background.background09',
-      children: (
-        <Typography variant="h5" align="left">
-          {t('global.field.toBeUpdated')}
-        </Typography>
+      documentsDescription: t(
+        'content.apprelease.defaultValues.documentsDescription'
       ),
-    },
-  ]
+      providerTableData: {
+        head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
+        body: [
+          [item?.providerName],
+          [item?.providerUri],
+          [item?.contactEmail],
+          [item?.contactNumber],
+        ],
+      },
+      cxTestRuns: [
+        {
+          agreementId: 'uuid',
+          consentStatus: ConsentStatusEnum.ACTIVE,
+          name: 'Test run A - done',
+        },
+        {
+          agreementId: 'uuid',
+          consentStatus: ConsentStatusEnum.ACTIVE,
+          name: 'Test run B - done',
+        },
+      ],
+    }
+  }, [item, t])
 
   const getDescription = (item: any) =>
     item?.descriptions?.filter(
@@ -202,13 +201,48 @@ export default function AppOverViewDetails({
           </Grid>
         </Grid>
       )}
-      <div
-        style={{
-          marginTop: '50px',
-          marginBottom: '50px',
-        }}
-      >
-        <CustomAccordion items={items} />
+      <div className="text-left">
+        <CommonValidateAndPublish
+          type={'appOverviewDetails'}
+          stepperHeader={t('content.apprelease.validateAndPublish.headerTitle')}
+          stepperDescription={t(
+            'content.apprelease.validateAndPublish.headerDescription'
+          )}
+          statusData={item}
+          id={id}
+          fetchDocumentById={fetchDocumentById}
+          submitData={submitapp}
+          validateAndPublishItemText="content.apprelease.validateAndPublish"
+          detailsText={t('content.apprelease.validateAndPublish.appDetails')}
+          longDescriptionTitleEN={t(
+            'content.apprelease.validateAndPublish.longDescriptionTitleEN'
+          )}
+          longDescriptionTitleDE={t(
+            'content.apprelease.validateAndPublish.longDescriptionTitleDE'
+          )}
+          conformityDocument={t(
+            'content.apprelease.validateAndPublish.conformityDocument'
+          )}
+          documentsTitle={t('content.apprelease.validateAndPublish.documents')}
+          providerInformation={t(
+            'content.apprelease.validateAndPublish.providerInformation'
+          )}
+          consentTitle={t('content.apprelease.validateAndPublish.consent')}
+          cxTestRunsTitle={t(
+            'content.apprelease.validateAndPublish.cxTestRuns'
+          )}
+          error={{
+            title: t('content.apprelease.appReleaseForm.error.title'),
+            message: t('content.apprelease.appReleaseForm.error.message'),
+          }}
+          helpText={t('content.apprelease.footerButtons.help')}
+          submitButton={t('content.apprelease.footerButtons.submit')}
+          values={defaultValues}
+          rolesData={data}
+          helpUrl={
+            '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+          }
+        />
       </div>
     </>
   )
