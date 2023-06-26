@@ -31,9 +31,9 @@ export type useCasesItem = {
 export type appLanguagesItem = {
   languageShortName: string
   languageLongNames: {
-    de: string
-    en: string
-  }
+    language: string
+    longDescription: string
+  }[]
 }
 
 export type CreateAppStep1Item = {
