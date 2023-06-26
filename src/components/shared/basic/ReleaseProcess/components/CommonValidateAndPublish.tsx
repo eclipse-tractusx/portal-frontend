@@ -418,7 +418,7 @@ export default function CommonValidateAndPublish({
         <Divider className="verify-validate-form-divider" />
         {statusData?.privacyPolicies && (
           <>
-            <div className="appdetail-privacy" style={{ marginBottom: '0px' }}>
+            <div className="appdetail-privacy" style={{ marginBottom: '0px', paddingTop: '0px' }}>
               <div className="privacy-content">
                 <Typography variant="h4" sx={{ mb: 4 }}>
                   {t('content.appdetail.privacy.heading')}
