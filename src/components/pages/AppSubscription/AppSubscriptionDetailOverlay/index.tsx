@@ -38,6 +38,7 @@ import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useState } from 'react'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { isURL } from 'types/Patterns'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
@@ -132,10 +133,15 @@ const AppSubscriptionDetailOverlay = ({
     ],
     edit: [
       [
-        { url: '', editIcon: false },
-        {
-          url: data?.tenantUrl ?? '',
+        { 
+          editIcon: false, 
+          inputValue: ''
+        },
+        { 
           editIcon: UserService.hasRole(ROLES.APPSTORE_EDIT),
+          inputValue: data?.tenantUrl ?? '',
+          isValidate: (value: string) => isURL(value),
+          errorMessage: t('content.appSubscription.pleaseEnterValidURL')
         },
       ],
     ],
