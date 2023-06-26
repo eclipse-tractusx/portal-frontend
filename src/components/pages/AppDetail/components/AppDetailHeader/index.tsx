@@ -22,8 +22,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   Typography,
   OrderStatusButton,
+  paletteDefinitions,
 } from '@catena-x/portal-shared-components'
-import { useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { AppDetails } from 'features/apps/details/types'
 import { userSelector } from 'features/user/slice'
@@ -57,7 +57,6 @@ export interface ButtonColorType {
 
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
-  const theme = useTheme()
   const dispatch = useDispatch()
   const { appId } = useParams()
   const user = useSelector(userSelector)
@@ -80,17 +79,17 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       case SubscriptionStatus.ACTIVE:
         btnColor = {
           color: 'success',
-          background1: theme.palette.buttons.yellow ?? '',
-          background2: theme.palette.buttons.yellow ?? '',
-          background3: theme.palette.buttons.yellow ?? '',
+          background1: paletteDefinitions.buttons.yellow ?? '',
+          background2: paletteDefinitions.buttons.yellow ?? '',
+          background3: paletteDefinitions.buttons.yellow ?? '',
         }
         break
       case SubscriptionStatus.PENDING:
         btnColor = {
           color: 'warning',
-          background1: theme.palette.buttons.yellow ?? '',
-          background2: theme.palette.buttons.lightGrey ?? '',
-          background3: theme.palette.buttons.white ?? '',
+          background1: paletteDefinitions.buttons.yellow ?? '',
+          background2: paletteDefinitions.buttons.lightGrey ?? '',
+          background3: paletteDefinitions.buttons.white ?? '',
         }
         break
       default:
@@ -100,9 +99,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
               ? 'primary'
               : 'secondary',
-          background1: theme.palette.buttons.darkGrey ?? '',
-          background2: theme.palette.buttons.lightGrey ?? '',
-          background3: theme.palette.buttons.white ?? '',
+          background1: paletteDefinitions.buttons.darkGrey ?? '',
+          background2: paletteDefinitions.buttons.lightGrey ?? '',
+          background3: paletteDefinitions.buttons.white ?? '',
         }
     }
     return btnColor

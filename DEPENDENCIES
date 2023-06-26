@@ -38,7 +38,7 @@ yarn licenses v1.22.19
 │  ├─ @ampproject/remapping@2.2.1
 │  │  ├─ URL: git+https://github.com/ampproject/remapping.git
 │  │  └─ VendorName: Justin Ridgewell
-│  ├─ @catena-x/portal-shared-components@2.0.1
+│  ├─ @catena-x/portal-shared-components@2.0.2
 │  │  ├─ URL: https://github.com/eclipse-tractusx/portal-shared-components.git
 │  │  └─ VendorName: Catena-X Contributors
 │  ├─ @humanwhocodes/config-array@0.11.10
@@ -4698,4 +4698,3 @@ yarn licenses v1.22.19
    │  └─ URL: https://github.com/streamich/fs-monkey.git
    └─ memfs@3.5.3
       └─ URL: https://github.com/streamich/memfs.git
-Done in 0.46s.
