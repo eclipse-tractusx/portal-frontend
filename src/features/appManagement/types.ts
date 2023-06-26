@@ -26,6 +26,10 @@ export enum ErrorType {
   REQUIRED = 'required',
 }
 
+export enum AppOverviewTypes {
+  APP_OVERVIEW_DETAILS = 'appOverviewDetails',
+}
+
 export type SearchInputState = {
   open: boolean
   text: string

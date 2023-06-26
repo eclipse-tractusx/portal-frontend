@@ -50,7 +50,11 @@ import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
-import { AppStatusDataState, UseCaseType } from 'features/appManagement/types'
+import {
+  AppOverviewTypes,
+  AppStatusDataState,
+  UseCaseType,
+} from 'features/appManagement/types'
 import { ServiceStatusDataState } from 'features/serviceManagement/types'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
@@ -77,7 +81,7 @@ interface CommonValidateAndPublishType {
   statusData: AppStatusDataState | ServiceStatusDataState | undefined
   id: string
   fetchDocumentById: (obj: { appId: string; documentId: string }) => any
-  showSubmitPage: (val: boolean) => void
+  showSubmitPage?: (val: boolean) => void
   submitData: (id: string) => any
   validateAndPublishItemText?: string
   detailsText: string
@@ -91,9 +95,12 @@ interface CommonValidateAndPublishType {
   error: { title: string; message: string }
   helpText: string
   submitButton: string
-  helpUrl: string
+  helpUrl?: string
   values: DefaultValueType | any
-  type: ReleaseProcessTypes.APP_RELEASE | ReleaseProcessTypes.SERVICE_RELEASE
+  type:
+    | ReleaseProcessTypes.APP_RELEASE
+    | ReleaseProcessTypes.SERVICE_RELEASE
+    | AppOverviewTypes.APP_OVERVIEW_DETAILS
   serviceTypes?: string
   rolesData?: rolesType[]
 }
@@ -217,7 +224,7 @@ export default function CommonValidateAndPublish({
       } else {
         dispatch(serviceReleaseStepIncrement())
       }
-      showSubmitPage(true)
+      if (showSubmitPage) showSubmitPage(true)
     } catch (error: unknown) {
       setValidatePublishNotification(true)
     }
@@ -279,10 +286,12 @@ export default function CommonValidateAndPublish({
 
   return (
     <div className="validate-and-publish">
-      <ReleaseStepHeader
-        title={stepperHeader}
-        description={stepperDescription}
-      />
+      {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
+        <ReleaseStepHeader
+          title={stepperHeader}
+          description={stepperDescription}
+        />
+      )}
       <div className="header-description">
         {type === ReleaseProcessTypes.APP_RELEASE && (
           <Grid container sx={{ mt: 0 }}>
@@ -409,7 +418,10 @@ export default function CommonValidateAndPublish({
         <Divider className="verify-validate-form-divider" />
         {statusData?.privacyPolicies && (
           <>
-            <div className="appdetail-privacy" style={{ marginBottom: '0px' }}>
+            <div
+              className="appdetail-privacy"
+              style={{ marginBottom: '0px', paddingTop: '0px' }}
+            >
               <div className="privacy-content">
                 <Typography variant="h4" sx={{ mb: 4 }}>
                   {t('content.appdetail.privacy.heading')}
@@ -618,69 +630,70 @@ export default function CommonValidateAndPublish({
         )}
       </div>
 
-      <Box mb={2}>
-        {validatePublishNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
-              <PageNotifications
-                title={error.title}
-                description={error.message}
-                open
-                severity="error"
-                onCloseNotification={() =>
-                  setValidatePublishNotification(false)
-                }
-              />
+      {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
+        <Box mb={2}>
+          {validatePublishNotification && (
+            <Grid container xs={12} sx={{ mb: 2 }}>
+              <Grid xs={6}></Grid>
+              <Grid xs={6}>
+                <PageNotifications
+                  title={error.title}
+                  description={error.message}
+                  open
+                  severity="error"
+                  onCloseNotification={() =>
+                    setValidatePublishNotification(false)
+                  }
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        )}
-
-        <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          startIcon={<HelpOutlineIcon />}
-          variant="outlined"
-          sx={{ mr: 1 }}
-          onClick={() => window.open(helpUrl, '_blank')}
-        >
-          {helpText}
-        </Button>
-        <IconButton
-          color="secondary"
-          onClick={() =>
-            type === ReleaseProcessTypes.APP_RELEASE
-              ? dispatch(decrement())
-              : dispatch(serviceReleaseStepDecrement())
-          }
-        >
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        {loading ? (
-          <span
-            style={{
-              float: 'right',
-            }}
-          >
-            <CircleProgress
-              size={40}
-              step={1}
-              interval={0.1}
-              colorVariant={'primary'}
-              variant={'indeterminate'}
-              thickness={8}
-            />
-          </span>
-        ) : (
+          )}
+          <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
           <Button
-            onClick={handleSubmit(onValidatePublishSubmit)}
-            variant="contained"
-            disabled={!isValid}
-            sx={{ float: 'right' }}
+            startIcon={<HelpOutlineIcon />}
+            variant="outlined"
+            sx={{ mr: 1 }}
+            onClick={() => window.open(helpUrl, '_blank')}
           >
-            {submitButton}
+            {helpText}
           </Button>
-        )}
-      </Box>
+          <IconButton
+            color="secondary"
+            onClick={() =>
+              type === ReleaseProcessTypes.APP_RELEASE
+                ? dispatch(decrement())
+                : dispatch(serviceReleaseStepDecrement())
+            }
+          >
+            <KeyboardArrowLeftIcon />
+          </IconButton>
+          {loading ? (
+            <span
+              style={{
+                float: 'right',
+              }}
+            >
+              <CircleProgress
+                size={40}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            </span>
+          ) : (
+            <Button
+              onClick={handleSubmit(onValidatePublishSubmit)}
+              variant="contained"
+              disabled={!isValid}
+              sx={{ float: 'right' }}
+            >
+              {submitButton}
+            </Button>
+          )}
+        </Box>
+      )}
     </div>
   )
 }
