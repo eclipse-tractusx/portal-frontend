@@ -144,12 +144,9 @@
   padding: 0 20px;
 }
 
-.verify-app-release-card {
-  width: 290px !important;
-  padding-left: 0px !important;
-  > div:first-child {
-    height: auto !important;
-    min-height: 351.4px !important;
-    margin-bottom: 0 !important;
-  }
+.verify-validate-images {
+  width: 164px;
+  height: 164px;
+  border-radius: 16px;
+  background: #f3f3f3;
 }
