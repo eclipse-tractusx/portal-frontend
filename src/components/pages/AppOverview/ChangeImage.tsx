@@ -135,17 +135,17 @@ export default function ChangeImage() {
 
   return (
     <main className="change-image-main">
-      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
+      <PageHeader title={app?.[0]?.title} headerHeight={200} topPage={true}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
-        <Typography variant="body2" mb={3} align="center">
+        <Typography mb={3} variant="body2" align="center">
           {app?.[0]?.title}
         </Typography>
-        <Typography variant="h2" mb={3} align="center">
+        <Typography mb={3} variant="h2" align="center">
           {t('content.changeImage.headerTitle')}
         </Typography>
-        <Typography variant="body2" align="center">
+        <Typography align="center" variant="body2">
           {t('content.changeImage.description')}
         </Typography>
       </section>
