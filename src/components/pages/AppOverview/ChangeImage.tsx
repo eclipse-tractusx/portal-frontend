@@ -221,7 +221,9 @@ export default function ChangeImage() {
               <Button
                 size="small"
                 variant="contained"
-                disabled={uploadImageValue === null}
+                disabled={
+                  uploadImageValue === null || uploadImageValue === undefined
+                }
                 onClick={handleSaveClick}
               >
                 {t('global.actions.save')}
