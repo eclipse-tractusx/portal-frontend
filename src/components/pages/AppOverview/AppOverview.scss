@@ -68,7 +68,7 @@
 .deactivate-main {
   .mainContainer {
     background: #f9f9f9;
-    padding-top: 100px;
+    padding: 100px 0 60px 0;
     .mainRow {
       width: 100%;
       max-width: 1100px;
@@ -93,7 +93,7 @@
 .change-image-main {
   .main-container {
     background: #f9f9f9;
-    padding-top: 100px;
+    padding: 100px 0;
     .main-row {
       width: 100%;
       max-width: 1100px;
@@ -142,4 +142,11 @@
 
 .app-policies {
   padding: 0 20px;
+}
+
+.verify-validate-images {
+  width: 164px;
+  height: 164px;
+  border-radius: 16px;
+  background: #f3f3f3;
 }
