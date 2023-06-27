@@ -143,3 +143,13 @@
 .app-policies {
   padding: 0 20px;
 }
+
+.verify-app-release-card {
+  width: 290px !important;
+  padding-left: 0px !important;
+  > div:first-child {
+    height: auto !important;
+    min-height: 351.4px !important;
+    margin-bottom: 0 !important;
+  }
+}
