@@ -44,6 +44,8 @@
 - BugFix
   - Home - Carousel
     - Responsiveness - when switching the portal width screens get rendering issues
+- Company Role Update
+  - Change the payload data as per backend logic
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
 
