@@ -48,6 +48,7 @@ export type SubscriptionDetailResponse = {
   bpn: string
   contact: string[]
   technicalUserData: TechnicalUserData[]
+  tenantUrl: string
 }
 
 export type UserRoles = {
@@ -111,6 +112,12 @@ export type AppFiltersResponse = {
   status: string
 }
 
+export type TenantUrlRequest = {
+  appId: string
+  subscriptionId: string
+  body: { url: string }
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/appSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -159,6 +166,13 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    updateTenantUrl: builder.mutation<void, TenantUrlRequest>({
+      query: (data) => ({
+        url: `/api/apps/appchange/${data.appId}/subscription/${data.subscriptionId}/tenantUrl`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -168,4 +182,5 @@ export const {
   useFetchSubscriptionDetailQuery,
   useFetchTechnicalProfilesQuery,
   useAddUserSubscribtionMutation,
+  useUpdateTenantUrlMutation,
 } = apiSlice

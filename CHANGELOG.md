@@ -44,6 +44,8 @@
 - BugFix
   - Home - Carousel
     - Responsiveness - when switching the portal width screens get rendering issues
+- App Subscription
+  - Add and Edit Tenant URL functionality in detail overlay
 
 ## 1.5.0
 
