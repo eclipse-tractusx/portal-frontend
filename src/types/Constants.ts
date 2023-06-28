@@ -35,13 +35,10 @@ export enum PAGES {
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
   SERVICE_MARKETPLACE_DETAIL = 'servicemarketplacedetail',
-  DATASPACE_MARKETPLACE = 'dataspacemarketplace',
   APP_DETAIL = 'appdetail',
-  DATACATALOG = 'datacatalog',
   DATA_MANAGEMENT = 'datamanagement',
   DIGITALTWIN = 'digitaltwin',
   SEMANTICHUB = 'semantichub',
-  DEVELOPERHUB = 'developerhub',
   CONNECTOR = 'connector',
   ACCOUNT = 'account',
   USER_DETAILS = 'userdetails',
@@ -170,7 +167,6 @@ export enum ROLES {
   APPOVERVIEW_VIEW = 'add_apps',
   SERVICEOVERVIEW_VIEW = 'add_service_offering',
   CONNECTOR_SETUP = 'setup_connector',
-  DATACATALOG_VIEW = 'view_data_catalog',
   DIGITALTWIN_VIEW = 'view_digital_twin',
   DIGITALTWIN_ADD = 'add_digital_twin',
   DIGITALTWIN_DELETE = 'delete_digital_twin',
@@ -205,6 +201,7 @@ export enum ROLES {
   VIEW_SERVICE_RELEASE = 'add_service_offering',
   UPDATE_COMPANY_ROLE = 'update_company_role',
   USECASE_PARTICIPATION = 'add_use_case_participation',
+  SUBMITTED_APPLICATION = 'view_submitted_applications',
 }
 
 export enum HINTS {

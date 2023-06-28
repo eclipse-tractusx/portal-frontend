@@ -31,9 +31,6 @@ import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
-import DataCatalog from 'components/pages/DataCatalog'
-import DataspaceMarketplace from 'components/pages/DataspaceMarketplace'
-import DeveloperHub from 'components/pages/DeveloperHub'
 import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
 import Home from 'components/pages/Home'
@@ -136,11 +133,6 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.DATASPACE_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW_DATASPACES,
-    element: <DataspaceMarketplace />,
-  },
-  {
     name: PAGES.APP_DETAIL,
     role: ROLES.APPSTORE_VIEW,
     isRoute: true,
@@ -161,11 +153,6 @@ export const ALL_PAGES: IPage[] = [
     element: <SemanticHub />,
   },
   {
-    name: PAGES.DATACATALOG,
-    role: ROLES.DATACATALOG_VIEW,
-    element: <DataCatalog />,
-  },
-  {
     name: PAGES.DIGITALTWIN,
     role: ROLES.DIGITALTWIN_VIEW,
     element: <DigitalTwins />,
@@ -184,11 +171,6 @@ export const ALL_PAGES: IPage[] = [
         <Route path=":modelId" element={<SemanticHub />} />
       </Route>
     ),
-  },
-  {
-    name: PAGES.DEVELOPERHUB,
-    role: ROLES.DEVELOPER,
-    element: <DeveloperHub />,
   },
   {
     name: PAGES.CONNECTOR,
@@ -242,7 +224,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APPRELEASEPROCESS,
-    //role: ROLES.VIEW_APP_RELEASE,
+    role: ROLES.APPOVERVIEW_VIEW,
     element: <AppReleaseProcess />,
   },
   {
@@ -303,6 +285,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
     isRoute: true,
+    role: ROLES.APPOVERVIEW_VIEW,
     element: (
       <Route
         key={`${PAGES.APPRELEASEPROCESS}/form`}
@@ -314,6 +297,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICE_RELEASE_PROCESS_FORM,
     isRoute: true,
+    role: ROLES.VIEW_SERVICE_RELEASE,
     element: (
       <Route
         key={`${PAGES.SERVICERELEASEPROCESS}/form`}
@@ -402,7 +386,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
     name: PAGES.APPLICATION_REQUESTS,
-    role: ROLES.CX_ADMIN,
+    role: ROLES.SUBMITTED_APPLICATION,
     element: <RegistrationRequests />,
   },
   { name: PAGES.CONTACT, element: <Contact /> },
@@ -649,20 +633,11 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.APP_MARKETPLACE },
       { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
-      {
-        name: PAGES.DATASPACE_MARKETPLACE,
-        hint: HINTS.COMING_SOON,
-        disable: true,
-      },
     ],
   },
   {
     name: PAGES.DATA_MANAGEMENT,
-    children: [
-      { name: PAGES.DATACATALOG },
-      { name: PAGES.SEMANTICHUB },
-      { name: PAGES.DIGITALTWIN },
-    ],
+    children: [{ name: PAGES.SEMANTICHUB }, { name: PAGES.DIGITALTWIN }],
   },
   { name: PAGES.PARTNER_NETWORK },
   {
