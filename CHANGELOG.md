@@ -10,6 +10,7 @@
   - Add App Filter Search Functionality
 - App Release Process
   - validate and publish style updates
+  - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
 - User Account & My User Account
@@ -22,6 +23,7 @@
 - App overview
   - Enhance Sub Menu by adding 'Change Image' for active apps
   - Change Image(sub menu) functionality added for active apps
+  - App overview 'in review' style fix
 - Bugfix
   - Service Release Process
     - Service Release process not working
@@ -35,7 +37,8 @@
 - Notification
   - Show done state
   - Provide icon for marking a notification as read/unread
-- App Release Process \* App lead image load issue fix
+- App Release Process
+  - App lead image load issue fix
   - Service Marketplace
     - Subscription Button cross service highlighted
 - BugFix

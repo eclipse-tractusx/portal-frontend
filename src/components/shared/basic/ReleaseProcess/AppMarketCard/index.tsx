@@ -694,8 +694,8 @@ export default function AppMarketCard() {
                     matchFrom: 'any',
                     stringify: (option: any) =>
                       option.languageShortName +
-                      option.languageLongNames.de +
-                      option.languageLongNames.en,
+                      option.languageLongNames[0].longDescription +
+                      option.languageLongNames[1].longDescription,
                   },
                   defaultValues: defaultAppLanguageVal,
                 }}

@@ -24,6 +24,7 @@ The project maintains the following source code repositories in the GitHub organ
 
 - https://github.com/eclipse-tractusx/portal-frontend-registration
 - https://github.com/eclipse-tractusx/portal-frontend
+- https://github.com/eclipse-tractusx/portal-shared-components
 - https://github.com/eclipse-tractusx/portal-backend
 - https://github.com/eclipse-tractusx/portal-assets
 - https://github.com/eclipse-tractusx/portal-cd

@@ -52,7 +52,7 @@ export default function AppDetailsOverlay({
 
       <DialogContent
         sx={{
-          width: '60%',
+          width: '90%',
           margin: 'auto',
           textAlign: 'center',
         }}
