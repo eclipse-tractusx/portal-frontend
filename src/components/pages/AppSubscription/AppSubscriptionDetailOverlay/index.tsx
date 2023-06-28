@@ -133,15 +133,15 @@ const AppSubscriptionDetailOverlay = ({
     ],
     edit: [
       [
-        { 
-          editIcon: false, 
-          inputValue: ''
+        {
+          editIcon: false,
+          inputValue: '',
         },
-        { 
+        {
           editIcon: UserService.hasRole(ROLES.APPSTORE_EDIT),
           inputValue: data?.tenantUrl ?? '',
-          isValidate: (value: string) => isURL(value),
-          errorMessage: t('content.appSubscription.pleaseEnterValidURL')
+          isValid: (value: string) => isURL(value),
+          errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
         },
       ],
     ],
