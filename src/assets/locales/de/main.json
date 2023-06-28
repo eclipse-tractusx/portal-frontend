@@ -8,13 +8,10 @@
     "marketplace": "Marketplace",
     "appmarketplace": "App Marketplace",
     "servicemarketplace": "Service Marketplace",
-    "dataspacemarketplace": "Dataspace Marketplace",
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
-    "datacatalog": "Datenkatalog",
     "semantichub": "Semantische Modelle",
     "digitaltwin": "Digitale Zwillinge",
-    "developerhub": "Entwickler Hub",
     "connector": "Konnektor",
     "partnernetwork": "Partner Network",
     "account": "Mein CX Account",
@@ -364,12 +361,6 @@
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
-    },
-    "datacatalog": {
-      "message": "Inhalte vom Datenkatalog"
-    },
-    "developerhub": {
-      "message": "Inhalte vom Entwickler Hub"
     },
     "appoverview": {
       "headerTitle": "Meine Applikationen",
@@ -1581,10 +1572,6 @@
   },
   "servicemarketplace": {
     "title": "Service Provider Marketplace"
-  },
-  "dataspacemarketplace": {
-    "title": "Dataspace Marketplace",
-    "message": "Dataspace Marketplace Description"
   },
   "hints": {
     "coming_soon": "Coming soon",
