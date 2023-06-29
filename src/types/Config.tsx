@@ -476,7 +476,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USECASE_PARTICIPATION,
-    //role: ROLES.USECASE_PARTICIPATION,
+    role: ROLES.USECASE_PARTICIPATION,
     element: <UsecaseParticipation />,
   },
 ]

@@ -28,10 +28,14 @@ import {
 } from '@catena-x/portal-shared-components'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import './UsecaseParticipation.scss'
+import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+
+  const { data } = useFetchUsecaseQuery()
+  console.log('data', data)
 
   return (
     <main className="usecase-participation">
