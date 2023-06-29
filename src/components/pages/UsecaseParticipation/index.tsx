@@ -85,23 +85,22 @@ export default function UsecaseParticipation() {
           </div>
           <div className="usecase-list-main">
             <ul>
-              {
-                data?.map(item => {
-                  return (
-                    <div className="usecase-list">
-                      <li className="usecase-list-item">
-                        <div className="usecase-detail">
-                          <PixIcon />
-                          <div>
-                            <Typography variant="body1" className="usecase-title">
-                              {item.useCase}
-                            </Typography>
-                            <Typography variant="body2">
-                              {item.description}
-                            </Typography>
-                          </div>
+              {data?.map((item) => {
+                return (
+                  <div className="usecase-list">
+                    <li className="usecase-list-item">
+                      <div className="usecase-detail">
+                        <PixIcon />
+                        <div>
+                          <Typography variant="body1" className="usecase-title">
+                            {item.useCase}
+                          </Typography>
+                          <Typography variant="body2">
+                            {item.description}
+                          </Typography>
                         </div>
-                        <Typography variant="caption3">
+                      </div>
+                      <Typography variant="caption3">
                         <Chip
                           color="secondary"
                           label="Edit"
@@ -111,41 +110,56 @@ export default function UsecaseParticipation() {
                           withIcon={false}
                           type="plain"
                         />
-                        </Typography>
-                      </li>
-                      <ul className="credential-list">
-                        {
-                          item.verifiedCredentials.map(credential => {
-                            return (
-                              <>
-                              <hr className="seperation" />
-                              <li className="credential-list-item">
-                                <Typography variant="body3" className="firstSection">
-                                  {credential.externalDetailData.verifiedCredentialExternalTypeId}
-                                </Typography>
-                                <Typography variant="body3" className="secondSection">
-                                  Version: {credential.externalDetailData.version}
-                                </Typography>
-                                <Typography variant="body3" className="thirdSection">
-                                  Framework
-                                </Typography>
-                                <Typography variant="body3" className="forthSection">
-                                  Expiry: {credential.externalDetailData.expiry}
-                                </Typography>
-                                <Typography variant="body3" className="fifthSection">
-                                  {credential.ssiDetailData?.participationStatus}
-                                </Typography>
-                              </li>
-                              </>
-                            )
-                          })
-                        }
-                      </ul>
-                      <hr className="seperation" />
-                    </div>
-                  )
-                })
-              }
+                      </Typography>
+                    </li>
+                    <ul className="credential-list">
+                      {item.verifiedCredentials.map((credential) => {
+                        return (
+                          <>
+                            <hr className="seperation" />
+                            <li className="credential-list-item">
+                              <Typography
+                                variant="body3"
+                                className="firstSection"
+                              >
+                                {
+                                  credential.externalDetailData
+                                    .verifiedCredentialExternalTypeId
+                                }
+                              </Typography>
+                              <Typography
+                                variant="body3"
+                                className="secondSection"
+                              >
+                                Version: {credential.externalDetailData.version}
+                              </Typography>
+                              <Typography
+                                variant="body3"
+                                className="thirdSection"
+                              >
+                                Framework
+                              </Typography>
+                              <Typography
+                                variant="body3"
+                                className="forthSection"
+                              >
+                                Expiry: {credential.externalDetailData.expiry}
+                              </Typography>
+                              <Typography
+                                variant="body3"
+                                className="fifthSection"
+                              >
+                                {credential.ssiDetailData?.participationStatus}
+                              </Typography>
+                            </li>
+                          </>
+                        )
+                      })}
+                    </ul>
+                    <hr className="seperation" />
+                  </div>
+                )
+              })}
             </ul>
           </div>
         </div>

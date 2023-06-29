@@ -77,7 +77,7 @@
         border: 0;
         border-top: 1px solid #dcdcdc;
       }
-      .usecase-list{
+      .usecase-list {
         margin-bottom: 30px;
         .usecase-list-item {
           margin-bottom: 20px;
@@ -85,31 +85,31 @@
           .usecase-detail {
             display: flex;
             width: 80%;
-            svg{
+            svg {
               margin: 4px 10px 0 0;
               font-size: 22px;
               color: #888888;
             }
           }
         }
-        .credential-list{
+        .credential-list {
           list-style: none;
-          .credential-list-item{
+          .credential-list-item {
             margin-bottom: 10px;
             display: flex;
-            .firstSection{
+            .firstSection {
               width: 60%;
             }
-            .secondSection{
+            .secondSection {
               width: 30%;
             }
-            .thirdSection{
+            .thirdSection {
               width: 30%;
             }
-            .forthSection{
+            .forthSection {
               width: 35%;
             }
-            .fifthSection{
+            .fifthSection {
               width: 30%;
             }
           }
