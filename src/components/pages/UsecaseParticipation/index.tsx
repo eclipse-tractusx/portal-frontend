@@ -19,16 +19,17 @@
 
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
 import {
   Chip,
   PageHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
+import PixIcon from '@mui/icons-material/Pix'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import './UsecaseParticipation.scss'
 import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
+import './UsecaseParticipation.scss'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
@@ -82,35 +83,69 @@ export default function UsecaseParticipation() {
               {t('content.usecaseParticipation.noteDetail')}
             </Typography>
           </div>
-          <div className="usecase-list">
+          <div className="usecase-list-main">
             <ul>
-              <li>
-                <div className="usecase-detail">
-                  <Typography variant="body2">'Ise Case Title'</Typography>
-                  <Typography variant="caption3">
-                    'Use case desctption'
-                  </Typography>
-                </div>
-                <Typography variant="caption3">'Status'</Typography>
-              </li>
-              <hr className="seperation" />
-              <li>
-                <div className="usecase-detail">
-                  <Typography variant="body2">'Ise Case Title'</Typography>
-                  <Typography variant="caption3">
-                    'Use case desctption'
-                  </Typography>
-                </div>
-                <Chip
-                  color="secondary"
-                  label="Edit"
-                  onClick={() =>
-                    dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))
-                  }
-                  withIcon={false}
-                  type="plain"
-                />
-              </li>
+              {
+                data?.map(item => {
+                  return (
+                    <div className="usecase-list">
+                      <li className="usecase-list-item">
+                        <div className="usecase-detail">
+                          <PixIcon />
+                          <div>
+                            <Typography variant="body1" className="usecase-title">
+                              {item.useCase}
+                            </Typography>
+                            <Typography variant="body2">
+                              {item.description}
+                            </Typography>
+                          </div>
+                        </div>
+                        <Typography variant="caption3">
+                        <Chip
+                          color="secondary"
+                          label="Edit"
+                          onClick={() =>
+                            dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))
+                          }
+                          withIcon={false}
+                          type="plain"
+                        />
+                        </Typography>
+                      </li>
+                      <ul className="credential-list">
+                        {
+                          item.verifiedCredentials.map(credential => {
+                            return (
+                              <>
+                              <hr className="seperation" />
+                              <li className="credential-list-item">
+                                <Typography variant="body3" className="firstSection">
+                                  {credential.externalDetailData.verifiedCredentialExternalTypeId}
+                                </Typography>
+                                <Typography variant="body3" className="secondSection">
+                                  Version: {credential.externalDetailData.version}
+                                </Typography>
+                                <Typography variant="body3" className="thirdSection">
+                                  Framework
+                                </Typography>
+                                <Typography variant="body3" className="forthSection">
+                                  Expiry: {credential.externalDetailData.expiry}
+                                </Typography>
+                                <Typography variant="body3" className="fifthSection">
+                                  {credential.ssiDetailData?.participationStatus}
+                                </Typography>
+                              </li>
+                              </>
+                            )
+                          })
+                        }
+                      </ul>
+                      <hr className="seperation" />
+                    </div>
+                  )
+                })
+              }
             </ul>
           </div>
         </div>

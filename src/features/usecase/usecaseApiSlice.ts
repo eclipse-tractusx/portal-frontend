@@ -27,25 +27,25 @@ export type VerifiedCredentialsData = {
     verifiedCredentialExternalTypeId: string
     version: string
     template: string
-    validFrom: Date
-    expiry: Date
+    validFrom: string
+    expiry: string
   }
   ssiDetailData: {
     credentialId: string
     participationStatus: string
-    expiryDate: Date
+    expiryDate: string
     document: {
       documentId: string
       documentName: string
     }
-  }
+  } | null
 }
 
 export type UsecaseResponse = {
   useCase: string
   description: string
   credentialType: string
-  VerifiedCredentialsData: VerifiedCredentialsData
+  verifiedCredentials: VerifiedCredentialsData[]
 }
 
 export const apiSlice = createApi({
