@@ -38,7 +38,7 @@ export type VerifiedCredentialsData = {
       documentId: string
       documentName: string
     }
-  } | null
+  }
 }
 
 export type UsecaseResponse = {

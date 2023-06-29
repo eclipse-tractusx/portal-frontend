@@ -1397,6 +1397,9 @@
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "version": "Version: {{version}}",
+      "framework": "Framework",
+      "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {use case name}",
         "description": "To be able to participate in the data exchange of the use case {use case name} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",

@@ -30,6 +30,7 @@ import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
+import { SubscriptionStatus } from 'features/apps/apiSlice'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
@@ -37,6 +38,33 @@ export default function UsecaseParticipation() {
 
   const { data } = useFetchUsecaseQuery()
   console.log('data', data)
+
+  const renderStatus = (status: string) => {
+    console.log('status', status)
+    if (
+      status === SubscriptionStatus.PENDING ||
+      status === SubscriptionStatus.ACTIVE
+    ) {
+      return (
+        <Typography
+          variant="caption3"
+          className={status === SubscriptionStatus.PENDING ? 'grey' : 'green'}
+        >
+          {status}
+        </Typography>
+      )
+    } else {
+      return (
+        <Chip
+          color="secondary"
+          label="Edit"
+          onClick={() => dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))}
+          withIcon={false}
+          type="plain"
+        />
+      )
+    }
+  }
 
   return (
     <main className="usecase-participation">
@@ -100,17 +128,6 @@ export default function UsecaseParticipation() {
                           </Typography>
                         </div>
                       </div>
-                      <Typography variant="caption3">
-                        <Chip
-                          color="secondary"
-                          label="Edit"
-                          onClick={() =>
-                            dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))
-                          }
-                          withIcon={false}
-                          type="plain"
-                        />
-                      </Typography>
                     </li>
                     <ul className="credential-list">
                       {item.verifiedCredentials.map((credential) => {
@@ -127,29 +144,50 @@ export default function UsecaseParticipation() {
                                     .verifiedCredentialExternalTypeId
                                 }
                               </Typography>
-                              <Typography
-                                variant="body3"
-                                className="secondSection"
+                              <Trans
+                                values={{
+                                  version:
+                                    credential.externalDetailData.version,
+                                }}
                               >
-                                Version: {credential.externalDetailData.version}
-                              </Typography>
+                                <Typography
+                                  variant="body3"
+                                  className="secondSection"
+                                >
+                                  {t('content.usecaseParticipation.version')}
+                                </Typography>
+                              </Trans>
                               <Typography
                                 variant="body3"
                                 className="thirdSection"
                               >
-                                Framework
+                                {t('content.usecaseParticipation.framework')}
                               </Typography>
-                              <Typography
-                                variant="body3"
-                                className="forthSection"
+                              <Trans
+                                values={{
+                                  expiry: credential.externalDetailData.expiry
+                                    ? credential.externalDetailData.expiry.split(
+                                        'T'
+                                      )[0]
+                                    : '',
+                                }}
                               >
-                                Expiry: {credential.externalDetailData.expiry}
-                              </Typography>
+                                <Typography
+                                  variant="body3"
+                                  className="forthSection"
+                                >
+                                  {credential.externalDetailData.expiry
+                                    ? t('content.usecaseParticipation.expiry')
+                                    : 'N/A'}
+                                </Typography>
+                              </Trans>
                               <Typography
                                 variant="body3"
                                 className="fifthSection"
                               >
-                                {credential.ssiDetailData?.participationStatus}
+                                {renderStatus(
+                                  credential.ssiDetailData?.participationStatus
+                                )}
                               </Typography>
                             </li>
                           </>
