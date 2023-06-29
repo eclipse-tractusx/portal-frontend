@@ -76,6 +76,7 @@ import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
 import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
+import CertificateCredentials from 'components/pages/CertificateCredentials'
 
 /**
  * ALL_PAGES
@@ -460,8 +461,13 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USECASE_PARTICIPATION,
-    //role: ROLES.USECASE_PARTICIPATION,
+    role: ROLES.USECASE_PARTICIPATION,
     element: <UsecaseParticipation />,
+  },
+  {
+    name: PAGES.CERTIFICATE_CREDENTIAL,
+    role: ROLES.MANAGE_COMPANY_CREDENTIALS,
+    element: <CertificateCredentials />,
   },
 ]
 
@@ -680,6 +686,7 @@ export const userMenuFull = [
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
+  PAGES.CERTIFICATE_CREDENTIAL,
   PAGES.LOGOUT,
 ]
 

@@ -58,6 +58,7 @@
     "servicedetail": "Service Details",
     "company-role": "Config - Company Role",
     "usecase-participation": "Config - Use Case Participation",
+    "certificate-credential": "Config - Certificates",
     "about": "About"
   },
   "overlays": {

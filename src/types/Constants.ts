@@ -93,6 +93,7 @@ export enum PAGES {
   COMPANY_ROLE = 'company-role',
   USECASE_PARTICIPATION = 'usecase-participation',
   ABOUTPAGE = 'about',
+  CERTIFICATE_CREDENTIAL = 'certificate-credential',
 }
 
 export enum OVERLAYS {
@@ -202,6 +203,7 @@ export enum ROLES {
   UPDATE_COMPANY_ROLE = 'update_company_role',
   USECASE_PARTICIPATION = 'add_use_case_participation',
   SUBMITTED_APPLICATION = 'view_submitted_applications',
+  MANAGE_COMPANY_CREDENTIALS = 'manage_company_credentials'
 }
 
 export enum HINTS {
