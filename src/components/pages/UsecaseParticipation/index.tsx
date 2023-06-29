@@ -25,6 +25,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import PixIcon from '@mui/icons-material/Pix'
+import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
@@ -115,7 +116,7 @@ export default function UsecaseParticipation() {
             <ul>
               {data?.map((item) => {
                 return (
-                  <div className="usecase-list">
+                  <div className="usecase-list" key={uniqueId(item.useCase)}>
                     <li className="usecase-list-item">
                       <div className="usecase-detail">
                         <PixIcon />
