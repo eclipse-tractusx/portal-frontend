@@ -37,6 +37,7 @@
 - Notification
   - Show done state
   - Provide icon for marking a notification as read/unread
+  - New Header and Filter UI
 - App Release Process
   - App lead image load issue fix
   - Service Marketplace

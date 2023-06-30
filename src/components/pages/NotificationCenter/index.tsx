@@ -42,7 +42,6 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
 import {
   SearchInput,
-  ViewSelector,
   SortOption,
   CircleProgress,
 } from '@catena-x/portal-shared-components'
