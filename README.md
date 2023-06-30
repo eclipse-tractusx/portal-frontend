@@ -36,7 +36,7 @@ Note: if you'd like to run the complete frontend application, follow the 'Run fr
 
     export IMAGE=tractusx/portal-frontend:latest
     docker pull $IMAGE
-    docker run --rm -d -p 3001:8080 --name cx-portal $IMAGE
+    docker run --rm -d -p 3001:8080 --name cx-portal-frontend $IMAGE
 
 ## Notice for Docker image
 

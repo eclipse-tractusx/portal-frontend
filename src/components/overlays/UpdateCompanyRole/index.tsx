@@ -76,6 +76,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
           roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
       )
     : []
+
   const newDeselectedRoles = data
     ? data.filter((role) => roles.indexOf(role.companyRoles) === -1)
     : []
@@ -83,17 +84,12 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
 
   useEffect(() => {
-    data?.map(
-      (role: CompanyRolesResponse) =>
-        roles.indexOf(role.companyRoles) !== -1 &&
-        role.agreements.map((agreement: AgreementsData) =>
-          setAgreements((oldArray: AgreementsData[]) => [
-            ...oldArray,
-            agreement,
-          ])
-        )
+    newSelectedRoles?.map((role: CompanyRolesResponse) =>
+      role.agreements.map((agreement: AgreementsData) =>
+        setAgreements((oldArray: AgreementsData[]) => [...oldArray, agreement])
+      )
     )
-  }, [data, roles])
+  }, [])
 
   const [dataArray, setDataArray] = useState<RolesData>()
 
@@ -163,14 +159,11 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
     const filterRoles: CompanyRoleRequest[] = []
 
-    data?.map((role: CompanyRolesResponse) => {
-      return (
-        roles.indexOf(role.companyRoles) !== -1 &&
-        filterRoles.push({
-          companyRoles: role.companyRoles,
-          agreements: fetchAgreements(role.agreements),
-        })
-      )
+    newSelectedRoles?.map((role: CompanyRolesResponse) => {
+      return filterRoles.push({
+        companyRoles: role.companyRoles,
+        agreements: fetchAgreements(role.agreements),
+      })
     })
     try {
       await updateCompanyRoles(filterRoles).unwrap()
@@ -203,7 +196,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             <tbody>
               {newRolesSummary?.map((role: CompanyRolesResponse) => {
                 return (
-                  <tr key={role.companyRoles}>
+                  <tr key={uniqueId(role.companyRoles)}>
                     <td className="first-td">
                       {t('content.companyRolesUpdate.overlay.role')}
                     </td>
@@ -241,9 +234,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
               <Typography variant="h3" className="rolesAddedHeading">
                 {t('content.companyRolesUpdate.overlay.rolesAddedHeading')}
               </Typography>
-              {data?.map((role: CompanyRolesResponse) => {
+              {newSelectedRoles?.map((role: CompanyRolesResponse) => {
                 return (
-                  roles.indexOf(role.companyRoles) !== -1 &&
                   dataArray &&
                   dataArray[
                     role.companyRoles as keyof RolesData
@@ -261,9 +253,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
               <Typography variant="h3" className="rolesAddedHeading">
                 {t('content.companyRolesUpdate.overlay.rolesNoLongerHeading')}
               </Typography>
-              {data?.map((role: CompanyRolesResponse) => {
+              {newDeselectedRoles?.map((role: CompanyRolesResponse) => {
                 return (
-                  roles.indexOf(role.companyRoles) === -1 &&
                   dataArray &&
                   dataArray[
                     role.companyRoles as keyof RolesData
@@ -281,9 +272,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
               <Typography variant="h3" className="rolesAddedHeading">
                 {t('content.companyRolesUpdate.overlay.featuresAddedHeading')}
               </Typography>
-              {data?.map((role: CompanyRolesResponse) => {
+              {newSelectedRoles?.map((role: CompanyRolesResponse) => {
                 return (
-                  roles.indexOf(role.companyRoles) !== -1 &&
                   dataArray &&
                   dataArray[
                     role.companyRoles as keyof RolesData
@@ -303,9 +293,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                   'content.companyRolesUpdate.overlay.featuresNoLongerHeading'
                 )}
               </Typography>
-              {data?.map((role: CompanyRolesResponse) => {
+              {newDeselectedRoles?.map((role: CompanyRolesResponse) => {
                 return (
-                  roles.indexOf(role.companyRoles) === -1 &&
                   dataArray &&
                   dataArray[
                     role.companyRoles as keyof RolesData
@@ -324,8 +313,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             <ul className="agreement-check-list">
               {agreements?.map((agreement: AgreementsData) => {
                 return (
-                  <li key={agreement.agreementId} className="agreement-li">
+                  <li
+                    key={uniqueId(agreement.agreementId)}
+                    className="agreement-li"
+                  >
                     <Checkbox
+                      checked={
+                        checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
+                      }
                       onChange={(e) =>
                         handleCheckedAgreement(e.target.checked, agreement)
                       }

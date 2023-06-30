@@ -1132,10 +1132,13 @@
         "bpn": "BPN",
         "contact": "Contact",
         "technicalDetails": "Technical Details",
+        "appTenantUrl": "App Tenant URL",
         "technicalName": "Technical User Name",
         "technicalPermission": "Technical User Permission",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
-        "email": "xxx@xxxx.xxxx"
+        "email": "xxx@xxxx.xxxx",
+        "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
+        "tenantUrlErrorMsg": "Error! Something went wrong"
       }
     },
     "adminBoard": {
