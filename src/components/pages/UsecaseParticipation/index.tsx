@@ -38,10 +38,8 @@ export default function UsecaseParticipation() {
   const dispatch = useDispatch()
 
   const { data } = useFetchUsecaseQuery()
-  console.log('data', data)
 
   const renderStatus = (status: string) => {
-    console.log('status', status)
     if (
       status === SubscriptionStatus.PENDING ||
       status === SubscriptionStatus.ACTIVE
