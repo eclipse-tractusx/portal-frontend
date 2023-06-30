@@ -377,7 +377,8 @@
       },
       "sortOptions": {
         "deactivate": "Deactivate",
-        "changeImage": "Change Image"
+        "changeImage": "Change Image",
+        "changeDescription": "Change Description"
       },
       "addbtn": "Register your App",
       "confirmModal": {

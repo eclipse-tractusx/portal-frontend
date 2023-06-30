@@ -76,6 +76,7 @@ import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
 import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
+import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 
 /**
  * ALL_PAGES
@@ -423,15 +424,28 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.CHANGEIMAGE,
+    name: PAGES.CHANGE_IMAGE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.CHANGEIMAGE}
-        path={PAGES.CHANGEIMAGE}
+        key={PAGES.CHANGE_IMAGE}
+        path={PAGES.CHANGE_IMAGE}
         element={<ChangeImage />}
       >
         <Route path=":appId" element={<ChangeImage />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.CHANGE_DESCRIPTION,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.CHANGE_DESCRIPTION}
+        path={PAGES.CHANGE_DESCRIPTION}
+        element={<ChangeDescription />}
+      >
+        <Route path=":appId" element={<ChangeDescription />} />
       </Route>
     ),
   },
