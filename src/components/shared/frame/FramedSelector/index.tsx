@@ -22,7 +22,7 @@ import { Box } from '@mui/material'
 import React from 'react'
 import './FramedSelector.scss'
 
-export interface view {
+export interface Buttons {
   buttonText: string
   buttonValue: string
   buttonDescription: string
@@ -31,7 +31,7 @@ export interface view {
 }
 
 export interface FramedSelectorProps {
-  views: view[]
+  views: Buttons[]
   activeView: string
 }
 
