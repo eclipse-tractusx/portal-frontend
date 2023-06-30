@@ -116,15 +116,33 @@
     "new": "Newest First",
     "oldest": "Oldest First",
     "unread": "Unread First",
-    "all": "all",
-    "app": "app only",
-    "info": "info only",
-    "withaction": "action required"
+    "all": {
+      "title": "All notifications",
+      "description": "Messaged for required action from your side"
+    },
+    "info": {
+      "title": "Info notifications",
+      "description": "Changes of assigned roles or newly created tech users"
+    },
+    "app": {
+      "title": "App notifications",
+      "description": "App publish notifications, request, activations, etc."
+    },
+    "withaction": {
+      "title": "Action Required",
+      "description": "Your action is needed"
+    }
   },
   "tooltip": {
     "email": {
       "read": "Mark it as unread",
       "unread": "Mark it as read"
     }
+  },
+  "header": {
+    "title": "Notifications",
+    "subtitle": "Here you will receive relevant news about Catena-X, published apps and services and the apps and services you use. In addition, changes to your user account, e.g. B. newly assigned or revoked roles.",
+    "linkText": "Help",
+    "link": "https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F06.+Notifications"
   }
 }
