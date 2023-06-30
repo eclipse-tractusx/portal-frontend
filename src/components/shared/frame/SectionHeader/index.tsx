@@ -40,7 +40,7 @@ export const SeactionHeader = ({
   return (
     <Box className="mainWrapper">
       <Box>
-        {title && <Typography variant="h1">{title}</Typography>}
+        {title && <Typography variant="h2">{title}</Typography>}
         {subTitle && (
           <Typography className="sub" variant="body1">
             {subTitle}
