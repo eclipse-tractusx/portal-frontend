@@ -183,22 +183,26 @@
         "slider1": {
           "title": "Catena-X",
           "subtitle": "das Tor zum digitalen Automotive-Netzwerk",
-          "buttonName": "Meine Apps"
+          "buttonName": "Meine Apps",
+          "navigation": "/appmanagement"
         },
         "slider2": {
           "title": "Use Case Introduction",
           "subtitle": "Lernen Sie die unterstützten Anwendungsfälle, zugehörigen semantischen Modelle und Apps kennen, um Ihre anwendungsfallgesteuerte Onboarding-Reise zu beginnen.",
-          "buttonName": "Use Case Introduction"
+          "buttonName": "Use Case Introduction",
+          "navigation": "/usecase"
         },
         "slider3": {
           "title": "Marktplätze",
           "subtitle": "Transparenter und interoperabler Service- und Business-Applikations-Marktplatz, um neue Ideen umzusetzen und Daten optimal zu nutzen.",
-          "buttonName": "Marktplatz"
+          "buttonName": "Marktplatz",
+          "navigation": "/marketplace"
         },
         "slider4": {
           "title": "Benutzermanagement",
           "subtitle": "Verwalten Sie Benutzerzugriffe zentral, um den Verwaltungsaufwand zu reduzieren und einen transparenten Überblick über alle Benutzerrechte zu gewährleisten.",
-          "buttonName": "Benutzermanagement"
+          "buttonName": "Benutzermanagement",
+          "navigation": "/usermanagement"
         }
       },
       "searchSection": {
@@ -1426,6 +1430,9 @@
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "version": "Version: {{version}}",
+      "framework": "Framework",
+      "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {use case name}",
         "description": "To be able to participate in the data exchange of the use case {use case name} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",

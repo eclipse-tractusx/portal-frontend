@@ -19,13 +19,13 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import PageService from 'services/PageService'
-import { label as BusinessApplications } from '../BusinessApplicationsSection'
 import { getAssetBase } from 'services/EnvironmentService'
 import { SlidingMainHeader } from 'components/shared/frame/SlidingMainHeader/SlidingMainHeader'
+import { useNavigate } from 'react-router-dom'
 
 export default function StageSection() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   return (
     <div className="stage-home">
@@ -36,28 +36,32 @@ export default function StageSection() {
             subTitle: t('content.home.stage.slider1.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
             buttonText: t('content.home.stage.slider1.buttonName'),
-            handleClick: () => PageService.scrollTo(BusinessApplications),
+            handleClick: () =>
+              navigate(t('content.home.stage.slider1.navigation')),
           },
           {
             title: t('content.home.stage.slider2.title'),
             subTitle: t('content.home.stage.slider2.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
             buttonText: t('content.home.stage.slider2.buttonName'),
-            handleClick: () => PageService.scrollTo(BusinessApplications),
+            handleClick: () =>
+              navigate(t('content.home.stage.slider2.navigation')),
           },
           {
             title: t('content.home.stage.slider3.title'),
             subTitle: t('content.home.stage.slider3.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
             buttonText: t('content.home.stage.slider3.buttonName'),
-            handleClick: () => PageService.scrollTo(BusinessApplications),
+            handleClick: () =>
+              navigate(t('content.home.stage.slider3.navigation')),
           },
           {
             title: t('content.home.stage.slider4.title'),
             subTitle: t('content.home.stage.slider4.subtitle'),
             imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
             buttonText: t('content.home.stage.slider4.buttonName'),
-            handleClick: () => PageService.scrollTo(BusinessApplications),
+            handleClick: () =>
+              navigate(t('content.home.stage.slider4.navigation')),
           },
         ]}
         stageHeaderInfo={[

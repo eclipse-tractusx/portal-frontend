@@ -19,19 +19,51 @@
 
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
 import {
   Chip,
   PageHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
+import PixIcon from '@mui/icons-material/Pix'
+import uniqueId from 'lodash/uniqueId'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
+import { SubscriptionStatus } from 'features/apps/apiSlice'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+
+  const { data } = useFetchUsecaseQuery()
+
+  const renderStatus = (status: string) => {
+    if (
+      status === SubscriptionStatus.PENDING ||
+      status === SubscriptionStatus.ACTIVE
+    ) {
+      return (
+        <Typography
+          variant="caption3"
+          className={status === SubscriptionStatus.PENDING ? 'grey' : 'green'}
+        >
+          {status}
+        </Typography>
+      )
+    } else {
+      return (
+        <Chip
+          color="secondary"
+          label="Edit"
+          onClick={() => dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))}
+          withIcon={false}
+          type="plain"
+        />
+      )
+    }
+  }
 
   return (
     <main className="usecase-participation">
@@ -78,35 +110,93 @@ export default function UsecaseParticipation() {
               {t('content.usecaseParticipation.noteDetail')}
             </Typography>
           </div>
-          <div className="usecase-list">
+          <div className="usecase-list-main">
             <ul>
-              <li>
-                <div className="usecase-detail">
-                  <Typography variant="body2">'Ise Case Title'</Typography>
-                  <Typography variant="caption3">
-                    'Use case desctption'
-                  </Typography>
-                </div>
-                <Typography variant="caption3">'Status'</Typography>
-              </li>
-              <hr className="seperation" />
-              <li>
-                <div className="usecase-detail">
-                  <Typography variant="body2">'Ise Case Title'</Typography>
-                  <Typography variant="caption3">
-                    'Use case desctption'
-                  </Typography>
-                </div>
-                <Chip
-                  color="secondary"
-                  label="Edit"
-                  onClick={() =>
-                    dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))
-                  }
-                  withIcon={false}
-                  type="plain"
-                />
-              </li>
+              {data?.map((item) => {
+                return (
+                  <div className="usecase-list" key={uniqueId(item.useCase)}>
+                    <li className="usecase-list-item">
+                      <div className="usecase-detail">
+                        <PixIcon />
+                        <div>
+                          <Typography variant="body1" className="usecase-title">
+                            {item.useCase}
+                          </Typography>
+                          <Typography variant="body2">
+                            {item.description}
+                          </Typography>
+                        </div>
+                      </div>
+                    </li>
+                    <ul className="credential-list">
+                      {item.verifiedCredentials.map((credential) => {
+                        return (
+                          <>
+                            <hr className="seperation" />
+                            <li className="credential-list-item">
+                              <Typography
+                                variant="body3"
+                                className="firstSection"
+                              >
+                                {
+                                  credential.externalDetailData
+                                    .verifiedCredentialExternalTypeId
+                                }
+                              </Typography>
+                              <Trans
+                                values={{
+                                  version:
+                                    credential.externalDetailData.version,
+                                }}
+                              >
+                                <Typography
+                                  variant="body3"
+                                  className="secondSection"
+                                >
+                                  {t('content.usecaseParticipation.version')}
+                                </Typography>
+                              </Trans>
+                              <Typography
+                                variant="body3"
+                                className="thirdSection"
+                              >
+                                {t('content.usecaseParticipation.framework')}
+                              </Typography>
+                              <Trans
+                                values={{
+                                  expiry: credential.externalDetailData.expiry
+                                    ? credential.externalDetailData.expiry.split(
+                                        'T'
+                                      )[0]
+                                    : '',
+                                }}
+                              >
+                                <Typography
+                                  variant="body3"
+                                  className="forthSection"
+                                >
+                                  {credential.externalDetailData.expiry
+                                    ? t('content.usecaseParticipation.expiry')
+                                    : 'N/A'}
+                                </Typography>
+                              </Trans>
+                              <Typography
+                                variant="body3"
+                                className="fifthSection"
+                              >
+                                {renderStatus(
+                                  credential.ssiDetailData?.participationStatus
+                                )}
+                              </Typography>
+                            </li>
+                          </>
+                        )
+                      })}
+                    </ul>
+                    <hr className="seperation" />
+                  </div>
+                )
+              })}
             </ul>
           </div>
         </div>
