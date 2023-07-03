@@ -46,7 +46,7 @@ export const FramedSelector = ({ views, activeView }: FramedSelectorProps) => {
           buttonDescription,
           onButtonClick,
           count,
-          countTitle
+          countTitle,
         }) => (
           <Box
             sx={{
