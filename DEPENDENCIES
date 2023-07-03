@@ -502,7 +502,7 @@ npm/npmjs/-/json5/1.0.2, MIT, approved, CQ22351
 npm/npmjs/-/json5/2.2.3, MIT, approved, #2126
 npm/npmjs/-/jsonfile/6.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/jsonpointer/5.0.1, MIT, approved, clearlydefined
-npm/npmjs/-/jsx-ast-utils/3.3.3, MIT, approved, clearlydefined
+npm/npmjs/-/jsx-ast-utils/3.3.3, MIT, approved, #9209
 npm/npmjs/-/keycloak-js/21.1.1, Apache-2.0 AND MIT, approved, #9145
 npm/npmjs/-/kind-of/6.0.3, MIT, approved, clearlydefined
 npm/npmjs/-/kleur/3.0.3, MIT, approved, clearlydefined
@@ -597,7 +597,7 @@ npm/npmjs/-/once/1.4.0, ISC, approved, clearlydefined
 npm/npmjs/-/onetime/5.1.2, MIT, approved, clearlydefined
 npm/npmjs/-/open/8.4.2, MIT, approved, #7102
 npm/npmjs/-/optionator/0.8.3, MIT, approved, clearlydefined
-npm/npmjs/-/optionator/0.9.1, MIT, approved, clearlydefined
+npm/npmjs/-/optionator/0.9.1, MIT, approved, #9208
 npm/npmjs/-/p-limit/2.3.0, MIT, approved, clearlydefined
 npm/npmjs/-/p-limit/3.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/p-locate/3.0.0, MIT, approved, clearlydefined
