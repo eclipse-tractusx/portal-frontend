@@ -27,7 +27,8 @@ export interface Buttons {
   buttonValue: string
   buttonDescription: string
   count: string | number
-  onButtonClick?: React.MouseEventHandler
+  onButtonClick: (val: string) => void
+  countTitle: string
 }
 
 export interface FramedSelectorProps {
@@ -45,6 +46,7 @@ export const FramedSelector = ({ views, activeView }: FramedSelectorProps) => {
           buttonDescription,
           onButtonClick,
           count,
+          countTitle,
         }) => (
           <Box
             sx={{
@@ -57,15 +59,15 @@ export const FramedSelector = ({ views, activeView }: FramedSelectorProps) => {
             }}
             key={buttonText}
             className="frameButton"
-            onClick={onButtonClick}
+            onClick={() => onButtonClick(buttonValue)}
           >
             <Typography className="title" variant="h4">
               {buttonText}:
             </Typography>
             <Box className="textNumber">
-              <Typography variant="h4">{buttonDescription}</Typography>
+              <Typography variant="body2">{buttonDescription}</Typography>
               <Box className="value">
-                <Typography variant="h4">{buttonValue}</Typography>
+                <Typography variant="h4">{countTitle}</Typography>
                 <Typography variant="h2">{count}</Typography>
               </Box>
             </Box>
