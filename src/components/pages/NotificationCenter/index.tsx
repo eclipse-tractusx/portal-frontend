@@ -107,10 +107,10 @@ export default function NotificationCenter() {
   >([])
   const [paginationData, setPaginationData] =
     useState<CXNotificationPagination>()
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setFilterOption(e.currentTarget.value)
+  const setView = (val: string) => {
     setLoaded(true)
     setPage(0)
+    setFilterOption(val)
   }
 
   useEffect(() => {

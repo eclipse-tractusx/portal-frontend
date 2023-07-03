@@ -27,7 +27,7 @@ export interface Buttons {
   buttonValue: string
   buttonDescription: string
   count: string | number
-  onButtonClick?: React.MouseEventHandler
+  onButtonClick: (val: string) => void
   countTitle: string
 }
 
@@ -59,7 +59,7 @@ export const FramedSelector = ({ views, activeView }: FramedSelectorProps) => {
             }}
             key={buttonText}
             className="frameButton"
-            onClick={onButtonClick}
+            onClick={() => onButtonClick(buttonValue)}
           >
             <Typography className="title" variant="h4">
               {buttonText}:
