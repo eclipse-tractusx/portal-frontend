@@ -50,6 +50,8 @@
   - Change the payload data as per backend logic
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
+- Connectors
+  - Disable DAPS related sections
 
 ## 1.5.0
 
