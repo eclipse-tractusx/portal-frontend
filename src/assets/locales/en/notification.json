@@ -118,19 +118,23 @@
     "unread": "Unread First",
     "all": {
       "title": "All notifications",
-      "description": "Messaged for required action from your side"
+      "description": "Messaged for required action from your side",
+      "countTitle": "new"
     },
     "info": {
       "title": "Info notifications",
-      "description": "Changes of assigned roles or newly created tech users"
+      "description": "Changes of assigned roles or newly created tech users",
+      "countTitle": "new"
     },
     "app": {
       "title": "App notifications",
-      "description": "App publish notifications, request, activations, etc."
+      "description": "App publish notifications, request, activations, etc.",
+      "countTitle": "new"
     },
     "withaction": {
       "title": "Action Required",
-      "description": "Your action is needed"
+      "description": "Your action is needed",
+      "countTitle": "to do"
     }
   },
   "tooltip": {
