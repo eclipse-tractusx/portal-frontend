@@ -29,6 +29,7 @@ import { fetchImageWithToken } from 'services/ImageService'
 enum AppSubMenuItems {
   DEACTIVATE = 'deactivate',
   CHANGE_IMAGE = 'changeImage',
+  CHANGE_DESCRIPTION = 'changeDescription',
 }
 
 export const AppOverviewList = ({
@@ -54,6 +55,11 @@ export const AppOverviewList = ({
     {
       label: t('content.appoverview.sortOptions.changeImage'),
       value: AppSubMenuItems.CHANGE_IMAGE,
+      url: '',
+    },
+    {
+      label: t('content.appoverview.sortOptions.changeDescription'),
+      value: AppSubMenuItems.CHANGE_DESCRIPTION,
       url: '',
     },
   ]
@@ -83,6 +89,10 @@ export const AppOverviewList = ({
             })
           sortMenu === AppSubMenuItems.CHANGE_IMAGE &&
             navigate(`/changeimage/${id}`, {
+              state: filterItem,
+            })
+          sortMenu === AppSubMenuItems.CHANGE_DESCRIPTION &&
+            navigate(`/changedescription/${id}`, {
               state: filterItem,
             })
           return undefined
