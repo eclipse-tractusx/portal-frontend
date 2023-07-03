@@ -21,7 +21,6 @@
 import Redirect from 'components/actions/Redirect'
 import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
-import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
 import AppMarketplace from 'components/pages/AppMarketplace'
@@ -383,7 +382,6 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.INVITE_NEW_PARTNER,
     element: <InviteBusinessPartner />,
   },
-  { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
     name: PAGES.APPLICATION_REQUESTS,
     role: ROLES.SUBMITTED_APPLICATION,
