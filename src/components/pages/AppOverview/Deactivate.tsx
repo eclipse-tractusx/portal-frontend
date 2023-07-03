@@ -94,12 +94,12 @@ export default function Deactivate() {
 
   return (
     <main className="deactivate-main">
-      <PageHeader title={app[0].title} topPage={true} headerHeight={200}>
+      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
         <Typography variant="body2" mb={3} align="center">
-          {app[0].title}
+          {app?.[0]?.title}
         </Typography>
         <Typography variant="h2" mb={3} align="center">
           {t('content.deactivate.headerTitle')}
