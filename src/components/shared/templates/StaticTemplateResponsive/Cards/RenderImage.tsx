@@ -26,10 +26,12 @@ export default function RenderImage({
   url,
   height,
   additionalStyles,
+  width,
 }: {
   url: string
   additionalStyles?: any
   height?: string
+  width?: string
 }) {
   const web = useMediaQuery('(min-width:1025px)')
 
@@ -41,7 +43,7 @@ export default function RenderImage({
           text={''}
           size="custom"
           height={height ? height : '331px'}
-          width="auto"
+          width={width ? width : 'auto'}
           hover={true}
           borderRadius={true}
           shadow={false}

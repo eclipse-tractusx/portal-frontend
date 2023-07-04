@@ -47,11 +47,19 @@ export default function ImageVideoWrapper({
             </IconButton>
           )}
         </div>
-        <Trans>
-          <Typography className={'providerDescription'} variant="body1">
-            {provider.description}
-          </Typography>
-        </Trans>
+        <Typography className={'providerDescription'}>
+          <Trans
+            key={provider.description}
+            i18nKey={provider.description}
+            components={[
+              <span
+                className="providerDescriptionText"
+                key={provider.description}
+              ></span>,
+              <br key={provider.description} />,
+            ]}
+          ></Trans>
+        </Typography>
       </div>
       {children}
     </div>

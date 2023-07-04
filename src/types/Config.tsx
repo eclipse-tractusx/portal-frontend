@@ -76,6 +76,7 @@ import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
 import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
+import DataSpace from 'components/pages/DataSpace'
 
 /**
  * ALL_PAGES
@@ -475,6 +476,7 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.USECASE_PARTICIPATION,
     element: <UsecaseParticipation />,
   },
+  { name: PAGES.DATA_SPACE, element: <DataSpace /> },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -639,6 +641,9 @@ export const mainMenuFullTree = [
   {
     name: PAGES.USE_CASE,
     children: [{ name: PAGES.USE_CASE_TRACABILITY, hint: HINTS.NEW }],
+  },
+  {
+    name: PAGES.DATA_SPACE,
   },
   {
     name: PAGES.MARKETPLACE,

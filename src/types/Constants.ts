@@ -94,6 +94,7 @@ export enum PAGES {
   COMPANY_ROLE = 'company-role',
   USECASE_PARTICIPATION = 'usecase-participation',
   ABOUTPAGE = 'about',
+  DATA_SPACE = 'dataspace',
 }
 
 export enum OVERLAYS {
