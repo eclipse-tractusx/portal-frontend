@@ -17,93 +17,255 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useDispatch } from 'react-redux'
+import { useReducer, useCallback } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
+import { Grid } from '@mui/material'
+import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
 import {
-  Chip,
-  PageHeader,
   Typography,
+  SearchInput,
+  ViewSelector,
+  SortOption,
+  Button,
+  CardHorizontal
 } from '@catena-x/portal-shared-components'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import SortImage from 'components/shared/frame/SortImage'
 import './CertificateCredentials.scss'
+import { OVERLAYS } from 'types/Constants'
+
+enum FilterType {
+  UPLOADED = 'Uploaded',
+  PENDING = 'Pending',
+  ACTIVE = 'Active',
+  DECLINED = 'Declined',
+  EXPIRED = 'Expired',
+}
+
+enum SortType {
+  NEW = 'new',
+  DATEDESC = 'DateDesc',
+  TITLE = 'title',
+  NAMEASC = 'NameAsc',
+}
+
+enum ActionKind {
+  SET_SEARCH_EXPR = 'SET_SEARCH_EXPR',
+  SET_SHOW_MODAL = 'SET_SHOW_MODAL',
+  SET_SELECTED = 'SET_SELECTED',
+  SET_SORT_OPTION = 'SET_SORT_OPTION',
+  SET_SORTING_TYPE = 'SET_SORTING_TYPE',
+  SET_SORT_SHOW_MODAL = 'SET_SORT_SHOW_MODAL',
+}
+
+type State = {
+  searchExpr: string
+  showModal: boolean
+  selected: string
+  sortOption: string
+  sortingType: string
+}
+
+type Action = {
+  type: string
+  payload: any
+}
+
+const initialState: State = {
+  searchExpr: '',
+  showModal: false,
+  selected: FilterType.UPLOADED,
+  sortOption: SortType.NEW,
+  sortingType: SortType.DATEDESC,
+}
+
+function reducer(state: State, { type, payload }: Action) {
+  switch (type) {
+    case ActionKind.SET_SEARCH_EXPR:
+      return { ...state, searchExpr: payload }
+    case ActionKind.SET_SHOW_MODAL:
+      return { ...state, showModal: payload }
+    case ActionKind.SET_SELECTED:
+      return { ...state, selected: payload }
+    case ActionKind.SET_SORT_OPTION:
+      return { ...state, sortOption: payload }
+    case ActionKind.SET_SORT_SHOW_MODAL:
+      return {
+        ...state,
+        sortOption: payload.sortOption,
+        showModal: payload.showModal,
+      }
+    default:
+      return state
+  }
+}
 
 export default function CertificateCredentials() {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+
+  const [
+    {
+      searchExpr,
+      showModal,
+      selected,
+      sortOption,
+    },
+    setState,
+  ] = useReducer(reducer, initialState)
+
+  const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
+    setState({
+      type: ActionKind.SET_SORTING_TYPE,
+      payload: e.currentTarget.value,
+    })
+    setState({ type: ActionKind.SET_SELECTED, payload: e.currentTarget.value })
+  }
+
+  const sortOptions = [
+    {
+      label: t('content.certificates.sort.name'),
+      value: SortType.NEW,
+    },
+    {
+      label: t('content.certificates.sort.date'),
+      value: SortType.TITLE,
+    },
+  ]
+
+  const tabButtons: any[] = [
+    {
+      buttonText: t('content.certificates.tabs.uploadedCertificates'),
+      buttonValue: FilterType.UPLOADED,
+      onButtonClick: setBtnView,
+    },
+    {
+      buttonText: t('content.certificates.tabs.pending'),
+      buttonValue: FilterType.PENDING,
+      onButtonClick: setBtnView,
+    },
+    {
+      buttonText: t('content.certificates.tabs.active'),
+      buttonValue: FilterType.ACTIVE,
+      onButtonClick: setBtnView,
+    },
+    {
+      buttonText: t('content.certificates.tabs.declined'),
+      buttonValue: FilterType.DECLINED,
+      onButtonClick: setBtnView,
+    },
+    {
+      buttonText: t('content.certificates.tabs.expired'),
+      buttonValue: FilterType.EXPIRED,
+      onButtonClick: setBtnView,
+    },
+  ]
+
+  const handleSortOption = (value: string) => {
+    setState({
+      type: ActionKind.SET_SORT_SHOW_MODAL,
+      payload: {
+        sortOption: value,
+        showModal: false,
+      },
+    })
+  }
+
+  const handleSearch = useCallback(
+    (expr: string) => {
+      setState({ type: ActionKind.SET_SEARCH_EXPR, payload: expr })
+    },
+    []
+  )
 
   return (
-    <main className="usecase-participation">
-      <div className="usecase-main">
+    <main className="certificate-main">
+      <div className="certificate-section">
         <div className="container">
           <Typography variant="h2" className="heading">
-            {t('content.usecaseParticipation.heading')}
+            {t('content.certificates.heading')}
           </Typography>
           <Trans>
             <Typography variant="body1" className="description">
-              {t('content.usecasePagitrticipation.description')}
+              {t('content.certificates.description')}
             </Typography>
           </Trans>
-          <div>
-            <div className="step1">
-              <Typography variant="label4" className="number">
-                1
-              </Typography>
-              <Typography variant="label2" className="detail">
-                {t('content.usecaseParticipation.step1')}
-              </Typography>
+          <div className="mainContainer">
+            <div className="searchContainer">
+              <SearchInput
+                placeholder={t('content.certificates.search')}
+                value={searchExpr}
+                autoFocus={false}
+                onChange={(e) => handleSearch(e.target.value)}
+                autoComplete="off"
+              />
             </div>
-          </div>
-          <div className="step1">
-            <Typography variant="label4" className="number">
-              2
-            </Typography>
-            <Typography variant="label2" className="detail">
-              {t('content.usecaseParticipation.step2')}
-            </Typography>
-          </div>
-          <div className="notes">
-            <Typography variant="label2">
-              {t('content.usecaseParticipation.note')}
-            </Typography>
-            <Typography variant="caption2">
-              {t('content.usecaseParticipation.noteDetail')}
-            </Typography>
-          </div>
-          <div className="usecase-list">
-            <ul>
-              <li>
-                <div className="usecase-detail">
-                  <Typography variant="body2">'Ise Case Title'</Typography>
-                  <Typography variant="caption3">
-                    'Use case desctption'
-                  </Typography>
-                </div>
-                <Typography variant="caption3">'Status'</Typography>
-              </li>
-              <hr className="seperation" />
-              <li>
-                <div className="usecase-detail">
-                  <Typography variant="body2">'Ise Case Title'</Typography>
-                  <Typography variant="caption3">
-                    'Use case desctption'
-                  </Typography>
-                </div>
-                <Chip
-                  color="secondary"
-                  label="Edit"
-                  onClick={() =>
-                    dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))
-                  }
-                  withIcon={false}
-                  type="plain"
+            <div
+              className="filterSection"
+              onMouseLeave={() =>
+                setState({
+                  type: ActionKind.SET_SHOW_MODAL,
+                  payload: false,
+                })
+              }
+            >
+              <ViewSelector activeView={selected} views={tabButtons} />
+              <SortImage
+                onClick={() =>
+                  setState({
+                    type: ActionKind.SET_SHOW_MODAL,
+                    payload: true,
+                  })
+                }
+                selected={showModal}
+              />
+              <div className="sortSection">
+                <SortOption
+                  show={showModal}
+                  selectedOption={sortOption}
+                  setSortOption={handleSortOption}
+                  sortOptions={sortOptions}
                 />
-              </li>
-            </ul>
+              </div>
+            </div>
+            <div className="uploadBtn">
+              <Button
+                size="small"
+                onClick={() => dispatch(show(OVERLAYS.UPDATE_CERTIFICATE, 'userId'))}
+              >
+                {t('content.certificates.uploadCertificate')}
+              </Button>
+            </div>
+            <Grid container spacing={2} className="services-section">
+                {[0,1,2,3,4,5,6].map((service) => (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    key={service}
+                    className="services-card"
+                  >
+                    <CardHorizontal
+                      borderRadius={6}
+                      imageAlt="App Card"
+                      imagePath={'test'}
+                      label={'Label'}
+                      buttonText="Details"
+                      onBtnClick={() => console.log('click')}
+                      title={'title'}
+                      subTitle={'subtitle'}
+                      description={'description'}
+                      backgroundColor="#fff"
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+          </div>
+          
+            <div style={{ height: '66px' }}></div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
   )
 }

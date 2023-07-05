@@ -136,6 +136,7 @@ export enum OVERLAYS {
   SERVICE_DECLINE_ADMINBOARD = 'decline_service_release',
   UPDATE_COMPANY_ROLE = 'update_company_role',
   EDIT_USECASE = 'edit_usecase',
+  UPDATE_CERTIFICATE = 'update_certificate'
 }
 
 export enum ACTIONS {

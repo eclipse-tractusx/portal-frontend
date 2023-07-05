@@ -605,6 +605,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.EDIT_USECASE,
   },
+  {
+    name: OVERLAYS.UPDATE_CERTIFICATE,
+  }
 ]
 
 export const ALL_ACTIONS: IAction[] = [
