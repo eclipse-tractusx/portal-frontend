@@ -136,7 +136,7 @@ export enum OVERLAYS {
   SERVICE_DECLINE_ADMINBOARD = 'decline_service_release',
   UPDATE_COMPANY_ROLE = 'update_company_role',
   EDIT_USECASE = 'edit_usecase',
-  UPDATE_CERTIFICATE = 'update_certificate'
+  UPDATE_CERTIFICATE = 'update_certificate',
 }
 
 export enum ACTIONS {
@@ -204,7 +204,7 @@ export enum ROLES {
   UPDATE_COMPANY_ROLE = 'update_company_role',
   USECASE_PARTICIPATION = 'add_use_case_participation',
   SUBMITTED_APPLICATION = 'view_submitted_applications',
-  MANAGE_COMPANY_CREDENTIALS = 'manage_company_credentials'
+  MANAGE_COMPANY_CREDENTIALS = 'manage_company_credentials',
 }
 
 export enum HINTS {

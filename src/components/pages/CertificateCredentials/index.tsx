@@ -28,7 +28,7 @@ import {
   ViewSelector,
   SortOption,
   Button,
-  CardHorizontal
+  CardHorizontal,
 } from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './CertificateCredentials.scss'
@@ -104,15 +104,8 @@ export default function CertificateCredentials() {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const [
-    {
-      searchExpr,
-      showModal,
-      selected,
-      sortOption,
-    },
-    setState,
-  ] = useReducer(reducer, initialState)
+  const [{ searchExpr, showModal, selected, sortOption }, setState] =
+    useReducer(reducer, initialState)
 
   const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
     setState({
@@ -171,12 +164,9 @@ export default function CertificateCredentials() {
     })
   }
 
-  const handleSearch = useCallback(
-    (expr: string) => {
-      setState({ type: ActionKind.SET_SEARCH_EXPR, payload: expr })
-    },
-    []
-  )
+  const handleSearch = useCallback((expr: string) => {
+    setState({ type: ActionKind.SET_SEARCH_EXPR, payload: expr })
+  }, [])
 
   return (
     <main className="certificate-main">
@@ -231,41 +221,43 @@ export default function CertificateCredentials() {
             <div className="uploadBtn">
               <Button
                 size="small"
-                onClick={() => dispatch(show(OVERLAYS.UPDATE_CERTIFICATE, 'userId'))}
+                onClick={() =>
+                  dispatch(show(OVERLAYS.UPDATE_CERTIFICATE, 'userId'))
+                }
               >
                 {t('content.certificates.uploadCertificate')}
               </Button>
             </div>
             <Grid container spacing={2} className="services-section">
-                {[0,1,2,3,4,5,6].map((service) => (
-                  <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    md={6}
-                    key={service}
-                    className="services-card"
-                  >
-                    <CardHorizontal
-                      borderRadius={6}
-                      imageAlt="App Card"
-                      imagePath={'test'}
-                      label={'Label'}
-                      buttonText="Details"
-                      onBtnClick={() => console.log('click')}
-                      title={'title'}
-                      subTitle={'subtitle'}
-                      description={'description'}
-                      backgroundColor="#fff"
-                    />
-                  </Grid>
-                ))}
-              </Grid>
+              {[0, 1, 2, 3, 4, 5, 6].map((service) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  key={service}
+                  className="services-card"
+                >
+                  <CardHorizontal
+                    borderRadius={6}
+                    imageAlt="App Card"
+                    imagePath={'test'}
+                    label={'Label'}
+                    buttonText="Details"
+                    onBtnClick={() => console.log('click')}
+                    title={'title'}
+                    subTitle={'subtitle'}
+                    description={'description'}
+                    backgroundColor="#fff"
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </div>
-          
-            <div style={{ height: '66px' }}></div>
-          </div>
+
+          <div style={{ height: '66px' }}></div>
         </div>
-      </main>
+      </div>
+    </main>
   )
 }

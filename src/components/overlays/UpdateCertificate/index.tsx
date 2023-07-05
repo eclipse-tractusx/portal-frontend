@@ -62,200 +62,189 @@ export default function UpdateCertificate({ id }: { id: string }) {
 
   return (
     <>
-      {
-        submitClicked ?
-          <Dialog
-            open={true}
-            maxWidth='md'
-          >
-            <DialogHeader
-              {...{
-                title: t('content.certificates.successCertificate.title'),
-                intro: '',
-                closeWithIcon: true,
-                onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-              }}
-            />
+      {submitClicked ? (
+        <Dialog open={true} maxWidth="md">
+          <DialogHeader
+            {...{
+              title: t('content.certificates.successCertificate.title'),
+              intro: '',
+              closeWithIcon: true,
+              onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+            }}
+          />
 
-            <DialogContent>
-              <div className="success-certificate">
-                <Box
+          <DialogContent>
+            <div className="success-certificate">
+              <Box
+                sx={{
+                  display: 'flex',
+                  backgroundColor: '#f5f9ee',
+                  padding: '5px 20px',
+                  marginBottom: '10px',
+                }}
+              >
+                <CheckCircleOutlineIcon
                   sx={{
-                    display: 'flex',
-                    backgroundColor: '#f5f9ee',
-                    padding: '5px 20px',
-                    marginBottom: '10px'
+                    color: '#00aa55',
+                    margin: '2px 20px 0 0',
                   }}
-                >
-                  <CheckCircleOutlineIcon
-                    sx={{
-                      color: '#00aa55',
-                      margin: '2px 20px 0 0'
-                    }}
-                  />
-                  <Typography
-                    variant="body3"
-                    sx={{
-                      lineHeight: '20px',
-                      height: '18px',
-                      margin: '2px 0'
-                    }}
-                  >
-                    {t('content.certificates.successCertificate.fileUpload')}
-                  </Typography>
-                  <Chip
-                    color="success"
-                    variant="filled"
-                    label={t('content.certificates.successCertificate.completed')}
-                    size='small'
-                    withIcon={false}
-                    sx={{
-                      marginRight: '0 !important',
-                      margin: '0 auto',
-                    }}
-                  />
-                </Box>
+                />
                 <Typography
-                  variant="h5"
-                  className="nextStep"
-                >
-                  {t('content.certificates.successCertificate.nextSteps')}
-                </Typography>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    backgroundColor: '#fff7ec',
-                    padding: '5px 20px',
-                    marginBottom: '10px'
-                  }}
-                >
-                  <PendingOutlinedIcon
-                    sx={{
-                      color: '#b18258',
-                      margin: '2px 20px 0 0'
-                    }}
-                  />
-                  <Typography
-                    variant="body3"
-                    sx={{
-                      lineHeight: '20px',
-                      height: '18px',
-                      margin: '2px 0'
-                    }}
-                  >
-                    {t('content.certificates.successCertificate.verification')}
-                  </Typography>
-                  <Chip
-                    color="warning"
-                    variant="filled"
-                    label={t('content.certificates.successCertificate.pending')}
-                    size='small'
-                    withIcon={false}
-                    sx={{
-                      marginRight: '0 !important',
-                      margin: '0 auto',
-                    }}
-                  />
-                </Box>
-                <Typography
-                  variant="caption3"
-                  className="queryDescription"
-                >
-                  {t('content.certificates.successCertificate.queryDescription')}
-                </Typography>
-                <Typography
-                  variant="caption3"
+                  variant="body3"
                   sx={{
                     lineHeight: '20px',
-                    margin: '2px 0'
+                    height: '18px',
+                    margin: '2px 0',
                   }}
                 >
-                  {t('content.certificates.successCertificate.email')}
+                  {t('content.certificates.successCertificate.fileUpload')}
                 </Typography>
-              </div>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="outlined"
-                onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
+                <Chip
+                  color="success"
+                  variant="filled"
+                  label={t('content.certificates.successCertificate.completed')}
+                  size="small"
+                  withIcon={false}
+                  sx={{
+                    marginRight: '0 !important',
+                    margin: '0 auto',
+                  }}
+                />
+              </Box>
+              <Typography variant="h5" className="nextStep">
+                {t('content.certificates.successCertificate.nextSteps')}
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  backgroundColor: '#fff7ec',
+                  padding: '5px 20px',
+                  marginBottom: '10px',
+                }}
               >
-                {t('global.actions.cancel')}
-              </Button>
-            </DialogActions>
-          </Dialog>
-          :
-          <>
-            <DialogHeader
-              {...{
-                title: t('content.certificates.updateCertificate.title'),
-                intro: t('content.certificates.updateCertificate.description'),
-                closeWithIcon: true,
-                onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-              }}
-            />
-
-            <DialogContent>
-              <div className="update-certificate">
-                <SelectList
-                  defaultValue={'1'}
-                  items={[{ userId: 'test', companyName: 'test' }]}
-                  label={t('content.certificates.updateCertificate.selectLabel')}
-                  placeholder={t(
-                    'content.certificates.updateCertificate.placeholder'
-                  )}
-                  onChangeItem={(e) => console.log('e', e)}
-                  keyTitle={'fullName'}
+                <PendingOutlinedIcon
+                  sx={{
+                    color: '#b18258',
+                    margin: '2px 20px 0 0',
+                  }}
                 />
                 <Typography
-                  variant="h4"
-                  className="uploadDocumentTitle"
-                >
-                  {t('content.certificates.updateCertificate.uploadDocumentTitle')}
-                </Typography>
-                <Dropzone
-                  acceptFormat={{ 'application/pdf': [] }}
-                  maxFilesToUpload={1}
-                  onChange={([file]) => {
-                    setUploadedFile(file)
+                  variant="body3"
+                  sx={{
+                    lineHeight: '20px',
+                    height: '18px',
+                    margin: '2px 0',
                   }}
-                  errorText={'helperText'}
-                  DropStatusHeader={false}
-                  DropArea={renderDropArea}
+                >
+                  {t('content.certificates.successCertificate.verification')}
+                </Typography>
+                <Chip
+                  color="warning"
+                  variant="filled"
+                  label={t('content.certificates.successCertificate.pending')}
+                  size="small"
+                  withIcon={false}
+                  sx={{
+                    marginRight: '0 !important',
+                    margin: '0 auto',
+                  }}
                 />
-                <div className="descriptionTitle">
-                  <Typography
-                    variant="label2"
-                  >
-                    {t('content.certificates.updateCertificate.descriptionTitle')}
-                  </Typography>
-                </div>
-                <Textarea
-                  minRows={10}
-                  maxRows={10}
-                  label={t('content.certificates.updateCertificate.descriptionLabel')}
-                  value={'test'}
-                  onChange={(e) => console.log(e.target.value)}
-                  className="descriptionText"
-                />
+              </Box>
+              <Typography variant="caption3" className="queryDescription">
+                {t('content.certificates.successCertificate.queryDescription')}
+              </Typography>
+              <Typography
+                variant="caption3"
+                sx={{
+                  lineHeight: '20px',
+                  margin: '2px 0',
+                }}
+              >
+                {t('content.certificates.successCertificate.email')}
+              </Typography>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
+            >
+              {t('global.actions.cancel')}
+            </Button>
+          </DialogActions>
+        </Dialog>
+      ) : (
+        <>
+          <DialogHeader
+            {...{
+              title: t('content.certificates.updateCertificate.title'),
+              intro: t('content.certificates.updateCertificate.description'),
+              closeWithIcon: true,
+              onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+            }}
+          />
+
+          <DialogContent>
+            <div className="update-certificate">
+              <SelectList
+                defaultValue={'1'}
+                items={[{ userId: 'test', companyName: 'test' }]}
+                label={t('content.certificates.updateCertificate.selectLabel')}
+                placeholder={t(
+                  'content.certificates.updateCertificate.placeholder'
+                )}
+                onChangeItem={(e) => console.log('e', e)}
+                keyTitle={'fullName'}
+              />
+              <Typography variant="h4" className="uploadDocumentTitle">
+                {t(
+                  'content.certificates.updateCertificate.uploadDocumentTitle'
+                )}
+              </Typography>
+              <Dropzone
+                acceptFormat={{ 'application/pdf': [] }}
+                maxFilesToUpload={1}
+                onChange={([file]) => {
+                  setUploadedFile(file)
+                }}
+                errorText={'helperText'}
+                DropStatusHeader={false}
+                DropArea={renderDropArea}
+              />
+              <div className="descriptionTitle">
+                <Typography variant="label2">
+                  {t('content.certificates.updateCertificate.descriptionTitle')}
+                </Typography>
               </div>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="outlined"
-                onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
-              >
-                {t('global.actions.cancel')}
-              </Button>
-              <Button
-                variant="contained"
-                onClick={handleSubmit}
-                disabled={uploadedFile === undefined}
-              >
-                {t('global.actions.submit')}
-              </Button>
-            </DialogActions>
-          </>
-      }
+              <Textarea
+                minRows={10}
+                maxRows={10}
+                label={t(
+                  'content.certificates.updateCertificate.descriptionLabel'
+                )}
+                value={'test'}
+                onChange={(e) => console.log(e.target.value)}
+                className="descriptionText"
+              />
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
+            >
+              {t('global.actions.cancel')}
+            </Button>
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              disabled={uploadedFile === undefined}
+            >
+              {t('global.actions.submit')}
+            </Button>
+          </DialogActions>
+        </>
+      )}
     </>
   )
 }

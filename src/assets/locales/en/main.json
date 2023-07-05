@@ -1399,14 +1399,14 @@
       "heading": "Use Case Participation",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
-      "tabs" :{
+      "tabs": {
         "uploadedCertificates": "Uploaded Certificates",
         "pending": "Pending",
         "active": " Active",
         "declined": "Declined",
         "expired": "Expired"
       },
-      "sort" :{
+      "sort": {
         "name": "Name",
         "date": "Date"
       },
