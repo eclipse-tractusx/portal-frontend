@@ -47,7 +47,7 @@ export default function DataSpace() {
   window.addEventListener('scroll', onScroll)
 
   return (
-    <main className='dataSpace'>
+    <main className="dataSpace">
       {dataSpace && linkArray && (
         <>
           <StageSection

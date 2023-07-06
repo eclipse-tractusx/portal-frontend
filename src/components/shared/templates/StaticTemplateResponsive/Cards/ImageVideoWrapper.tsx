@@ -52,9 +52,7 @@ export default function ImageVideoWrapper({
             key={provider.description}
             i18nKey={provider.description}
             components={[
-              <span
-                key={provider.description}
-              ></span>,
+              <span key={provider.description}></span>,
               <br key={provider.description} />,
             ]}
           ></Trans>

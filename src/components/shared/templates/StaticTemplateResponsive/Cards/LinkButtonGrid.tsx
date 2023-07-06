@@ -47,7 +47,9 @@ export default function LinkButtonGrid({
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
               }}
-              onClick={() => {window.open(link.navigate, '_blank')}}
+              onClick={() => {
+                window.open(link.navigate, '_blank')
+              }}
             >
               <Typography variant="h5">{link.title}</Typography>
             </Box>
@@ -70,7 +72,9 @@ export default function LinkButtonGrid({
                 backgroundColor: link.background,
                 width: `${100 / grid}%`,
               }}
-              onClick={() => {window.open(link.navigate, '_blank')}}
+              onClick={() => {
+                window.open(link.navigate, '_blank')
+              }}
             >
               <Typography variant="h5">{link.title}</Typography>
             </Box>
