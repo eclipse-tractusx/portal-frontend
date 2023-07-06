@@ -194,6 +194,13 @@ const TemplateConfig = ({
           />
         </>
       )
+    //Grid layout link component
+    case TemplateNames.LinkButtonGrid:
+      return (
+        <>
+          <LinkButtonGrid provider={provider} grid={provider.grid} />
+        </>
+      )
     default:
       //Text in the left and image in the right side
       return (

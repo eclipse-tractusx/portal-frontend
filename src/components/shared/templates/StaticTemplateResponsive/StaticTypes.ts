@@ -69,4 +69,5 @@ export enum TemplateNames {
   TextCenterAlignedWithLinkButtonGrid = 'TextCenterAlignedWithLinkButtonGrid',
   TextCenterAlignedWithImagesInFlex = 'TextCenterAlignedWithImagesInFlex',
   TextCenterAlignedWithImagesInGrid = 'TextCenterAlignedWithImagesInGrid',
+  LinkButtonGrid = 'LinkButtonGrid'
 }

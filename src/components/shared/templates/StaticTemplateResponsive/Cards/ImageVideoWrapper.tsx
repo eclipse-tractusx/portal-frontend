@@ -53,7 +53,6 @@ export default function ImageVideoWrapper({
             i18nKey={provider.description}
             components={[
               <span
-                className="providerDescriptionText"
                 key={provider.description}
               ></span>,
               <br key={provider.description} />,

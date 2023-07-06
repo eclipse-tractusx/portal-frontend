@@ -69,13 +69,6 @@
     padding-top: 34px;
   }
 
-  .linkGridContainer {
-    display: flex;
-    gap: 30px;
-    place-content: center;
-    margin-top: 60px;
-  }
-
   .linkBox {
     padding: 10px 0px;
     height: 40px;
@@ -203,13 +196,6 @@
     padding-top: 30px;
   }
 
-  .linkGridContainer {
-    display: flex;
-    gap: 30px;
-    place-content: center;
-    margin-top: 60px;
-  }
-
   .linkBox {
     padding: 10px 0px;
     height: 40px;
@@ -323,13 +309,6 @@
 
   .providerDescription {
     padding-top: 20px;
-  }
-
-  .linkGridContainer {
-    display: flex;
-    gap: 30px;
-    place-content: center;
-    margin-top: 60px;
   }
 
   .linkBox {
@@ -494,11 +473,10 @@ strong:hover .tooltiptext {
   visibility: visible !important;
 }
 
-.providerDescriptionText {
-  margin: 0;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
-  color: #111111;
-  letter-spacing: 0;
+.linkGridContainer {
+  display: flex;
+  gap: 30px;
+  place-content: center;
+  margin-top: 60px;
+  cursor: pointer;
 }
