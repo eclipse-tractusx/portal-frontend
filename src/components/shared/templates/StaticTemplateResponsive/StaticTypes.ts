@@ -47,6 +47,13 @@ export type ProviderProps = {
   subTitles?: string[]
   align?: 'left' | 'center' | 'right'
   images?: string[]
+  sectionLink?: {
+    data: {
+      title: string
+      id: string
+      internal: boolean
+    }[]
+  }
 }
 
 export type linkProps = {
