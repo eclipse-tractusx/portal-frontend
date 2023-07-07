@@ -76,6 +76,7 @@ export default function ImageVideoWrapper({
               <Typography
                 className={'highlightText'}
                 onClick={() => navigate(link)}
+                key={link.title}
               >
                 {link.title}
               </Typography>
