@@ -21,6 +21,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
+export enum StatusEnum {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+}
+
 export type SSIDetailData = {
   credentialId: string
   participationStatus: string
@@ -33,8 +39,7 @@ export type SSIDetailData = {
 
 export type CertificateResponse = {
   credentialType: string
-  description: string
-  ssiDetailData: SSIDetailData[]
+  ssiDetailData: SSIDetailData[] | null
 }
 
 export const apiSlice = createApi({

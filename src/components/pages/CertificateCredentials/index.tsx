@@ -36,7 +36,7 @@ import {
   CertificateResponse,
   useFetchCertificatesQuery,
 } from 'features/certification/certificationApiSlice'
-import { Card3 } from 'components/shared/basic/Card3'
+import { Card3 } from 'components/shared/basic/Certificatecard'
 
 enum FilterType {
   UPLOADED = 'Uploaded',
@@ -237,8 +237,18 @@ export default function CertificateCredentials() {
             </div>
             <Grid container spacing={2} className="certificate-section">
               {data?.map((item: CertificateResponse) => (
-                <Grid item xs={12} sm={6} md={6} className="certificate-card">
-                  <Card3 item={item} />
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  className="certificate-card"
+                  key={item.credentialType}
+                >
+                  <Card3
+                    credentialType={item.credentialType}
+                    ssiDetailData={item.ssiDetailData}
+                  />
                 </Grid>
               ))}
             </Grid>

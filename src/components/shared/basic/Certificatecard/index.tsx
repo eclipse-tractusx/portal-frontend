@@ -26,7 +26,11 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import { LogoGrayData, Typography } from '@catena-x/portal-shared-components'
-import { CertificateResponse } from 'features/certification/certificationApiSlice'
+import {
+  CertificateResponse,
+  SSIDetailData,
+  StatusEnum,
+} from 'features/certification/certificationApiSlice'
 import './style.scss'
 
 export enum StatusVariants {
@@ -38,17 +42,25 @@ export enum StatusVariants {
   pending = 'pending',
 }
 
-export const Card3 = ({ item }: any) => {
+export interface CertificateData {
+  credentialType: string
+  ssiDetailData: SSIDetailData
+}
+
+export const Card3 = ({
+  credentialType,
+  ssiDetailData,
+}: CertificateResponse) => {
   const boxRef = useRef<HTMLDivElement>(null)
 
-  const renderStatusIcon = (item: CertificateResponse) => {
+  const renderStatusIcon = () => {
     if (
-      item.ssiDetailData?.[0].participationStatus.toLowerCase() ===
+      ssiDetailData?.[0].participationStatus.toLowerCase() ===
       StatusVariants.active
     ) {
       return <CheckCircleOutlineIcon className="statusIcon activeIcon" />
     } else if (
-      item.ssiDetailData?.[0].participationStatus.toLowerCase() ===
+      ssiDetailData?.[0].participationStatus.toLowerCase() ===
       StatusVariants.pending
     ) {
       return <AccessTimeIcon className="statusIcon waitingIcon" />
@@ -59,7 +71,7 @@ export const Card3 = ({ item }: any) => {
 
   return (
     <Box ref={boxRef} className="card3Main">
-      <div className="itemList" key={item.credentialType}>
+      <div className="itemList" key={credentialType}>
         <Box
           className="itemBg"
           sx={{
@@ -69,10 +81,10 @@ export const Card3 = ({ item }: any) => {
         />
         <Box className="detailBox">
           <Box className="statusDetail">
-            {renderStatusIcon(item)}
-            {item.ssiDetailData?.[0].participationStatus.toLowerCase() !==
+            {renderStatusIcon()}
+            {ssiDetailData?.[0].participationStatus.toLowerCase() !==
               StatusVariants.active &&
-              item.ssiDetailData?.[0].participationStatus.toLowerCase() !==
+              ssiDetailData?.[0].participationStatus.toLowerCase() !==
                 StatusVariants.pending && (
                 <DeleteOutlineIcon className="deleteIcon" />
               )}
@@ -81,20 +93,20 @@ export const Card3 = ({ item }: any) => {
             {'Type: [ISO 9001]'}
           </Typography>
           <Typography variant="h4" className="title">
-            {item.credentialType}
+            {credentialType}
           </Typography>
-          {item.ssiDetailData && (
+          {ssiDetailData && (
             <Typography variant="body3" className="expiryDate">
               {'Valid until: '}
-              {item.ssiDetailData[0].expiryDate.split('T')[0]}
+              {ssiDetailData[0].expiryDate.split('T')[0]}
             </Typography>
           )}
 
           <Typography variant="body3" className="status">
             {'Status: '}
-            {item.ssiDetailData?.[0].participationStatus ?? 'Inactive'}
+            {ssiDetailData?.[0].participationStatus ?? StatusEnum.INACTIVE}
           </Typography>
-          {item.ssiDetailData?.[0].participationStatus.toLowerCase() ===
+          {ssiDetailData?.[0].participationStatus.toLowerCase() ===
             StatusVariants.pending && (
             <>
               <Box className="fileUploadMain">
@@ -118,18 +130,18 @@ export const Card3 = ({ item }: any) => {
                 <Chip
                   color="warning"
                   variant="filled"
-                  label={item.ssiDetailData?.[0].participationStatus}
+                  label={ssiDetailData?.[0].participationStatus}
                   size="small"
                   className="verificationStatus"
                 />
               </Box>
             </>
           )}
-          {item.description && (
+          {/* {description && (
             <Typography variant="label4" className="description">
-              {item.description}
+              {description}
             </Typography>
-          )}
+          )} */}
         </Box>
       </div>
     </Box>
