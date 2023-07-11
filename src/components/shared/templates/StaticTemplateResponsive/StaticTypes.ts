@@ -29,6 +29,25 @@ export type CardDetailsProps = {
   imageShape?: string
 }
 
+export type sectionLinkType = {
+  data: {
+    title: string
+    id: string
+    internal: boolean
+  }[]
+}
+
+export type subSectionsType = {
+  title: string
+  description: string
+  imagePath: string
+  id: string
+  backgroundColor: string
+  template: string
+  align: string
+  sectionLink: sectionLinkType
+}
+
 export type ProviderProps = {
   title: string
   description: string
@@ -47,13 +66,16 @@ export type ProviderProps = {
   subTitles?: string[]
   align?: 'left' | 'center' | 'right'
   images?: string[]
-  sectionLink?: {
-    data: {
+  sectionLink?: sectionLinkType
+  subDescriptions?: {
+    title: string
+    sections: {
       title: string
-      id: string
-      internal: boolean
+      link: string
+      value: string
     }[]
   }
+  subsections?: subSectionsType[]
 }
 
 export type linkProps = {
@@ -77,4 +99,6 @@ export enum TemplateNames {
   TextCenterAlignedWithImagesInFlex = 'TextCenterAlignedWithImagesInFlex',
   TextCenterAlignedWithImagesInGrid = 'TextCenterAlignedWithImagesInGrid',
   LinkButtonGrid = 'LinkButtonGrid',
+  AlignedText = 'AlignedText',
+  TextImageSideBySideWithSections = 'TextImageSideBySideWithSections',
 }

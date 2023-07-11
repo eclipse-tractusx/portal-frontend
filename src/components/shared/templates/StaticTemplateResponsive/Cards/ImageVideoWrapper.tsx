@@ -18,71 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import { ReactElement } from 'react'
 import { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
-import { Trans } from 'react-i18next'
+import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 
 export default function ImageVideoWrapper({
   provider,
   children,
   scrollTop,
   showScroll,
+  isImagePresent,
 }: {
   provider: ProviderProps
   children: ReactElement
   scrollTop: () => void
   showScroll: boolean
+  isImagePresent?: boolean
 }) {
-  const navigate = (link: { internal: boolean; id: string }) => {
-    if (link.internal) {
-      const element = document.getElementById(link.id)
-      const top = element?.offsetTop
-      window.scrollTo({
-        top: top,
-        behavior: 'smooth',
-      })
-    } else {
-      window.open(link.id, '_blank')
-    }
-  }
-
   return (
     <div className={'imageVideoTextSideBySide'}>
-      <div className={'titleDescriptionBody'}>
-        <div className="titleWithIcon sideBySideTitle">
-          <Typography variant="h2">{provider.title}</Typography>
-          {showScroll && (
-            <IconButton onClick={scrollTop}>
-              <ArrowUpwardIcon />
-            </IconButton>
-          )}
-        </div>
-        <Typography className={'providerDescription'}>
-          <Trans
-            key={provider.description}
-            i18nKey={provider.description}
-            components={[
-              <span key={provider.description}></span>,
-              <br key={provider.description} />,
-            ]}
-          ></Trans>
-        </Typography>
-        {provider.sectionLink && (
-          <>
-            {provider.sectionLink.data.map((link) => (
-              <Typography
-                className={'highlightText'}
-                onClick={() => navigate(link)}
-                key={link.title}
-              >
-                {link.title}
-              </Typography>
-            ))}
-          </>
-        )}
+      <div
+        className={'titleDescriptionBody'}
+        style={{
+          width: !isImagePresent ? '100%' : '50%',
+        }}
+      >
+        <TitleDescriptionAndSectionlink
+          showScroll={showScroll}
+          provider={provider}
+          scrollTop={scrollTop}
+        />
       </div>
       {children}
     </div>
