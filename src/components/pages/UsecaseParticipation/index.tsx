@@ -29,7 +29,10 @@ import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
+import {
+  UsecaseResponse,
+  useFetchUsecaseQuery,
+} from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 
@@ -39,7 +42,7 @@ export default function UsecaseParticipation() {
 
   const { data } = useFetchUsecaseQuery()
 
-  const renderStatus = (status: string) => {
+  const renderStatus = (item: UsecaseResponse, status: string) => {
     if (
       status === SubscriptionStatus.PENDING ||
       status === SubscriptionStatus.ACTIVE
@@ -57,7 +60,9 @@ export default function UsecaseParticipation() {
         <Chip
           color="secondary"
           label="Edit"
-          onClick={() => dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))}
+          onClick={() =>
+            dispatch(show(OVERLAYS.EDIT_USECASE, item.credentialType))
+          }
           withIcon={false}
           type="plain"
         />
@@ -185,6 +190,7 @@ export default function UsecaseParticipation() {
                                 className="fifthSection"
                               >
                                 {renderStatus(
+                                  item,
                                   credential.ssiDetailData?.participationStatus
                                 )}
                               </Typography>

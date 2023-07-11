@@ -35,27 +35,53 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
+import {
+  UsecaseResponse,
+  useFetchUsecaseQuery,
+} from 'features/usecase/usecaseApiSlice'
 
-export default function EditUsecase({ id }: { id: string }) {
+export default function EditUsecase({ id: credentialType }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
+  const [usecaseItem, setUsecaseItem] = useState<UsecaseResponse>()
   const [uploadedFile, setUploadedFile] = useState<any>()
   const [checked, setChecked] = useState<boolean>(false)
 
+  const { data } = useFetchUsecaseQuery()
+
   useEffect(() => {
-    dispatch(fetchAny(id))
-  }, [dispatch, id])
+    const usecaseItem = data?.filter(
+      (item) => item.credentialType === credentialType
+    )
+    setUsecaseItem(usecaseItem?.[0])
+  }, [data])
+
+  useEffect(() => {
+    dispatch(fetchAny(credentialType))
+  }, [dispatch, credentialType])
 
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
+  }
+
+  const handleUpload = () => {
+    const data = {
+      verified_credential_external_type_id: 'id',
+      document: 'document file (only pdf are allowed)',
+    }
   }
 
   return (
     <>
       <DialogHeader
         {...{
-          title: t('content.usecaseParticipation.editUsecase.title'),
-          intro: t('content.usecaseParticipation.editUsecase.description'),
+          title: t('content.usecaseParticipation.editUsecase.title').replace(
+            '{usecaseName}',
+            usecaseItem?.useCase ?? ''
+          ),
+          intro: t(
+            'content.usecaseParticipation.editUsecase.description'
+          ).replace('{usecaseName}', usecaseItem?.useCase ?? ''),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
@@ -93,7 +119,7 @@ export default function EditUsecase({ id }: { id: string }) {
         </Button>
         <Button
           variant="contained"
-          // onClick={saveRoles}
+          onClick={handleUpload}
           disabled={!checked || uploadedFile === undefined}
         >
           {t('global.actions.submit')}
