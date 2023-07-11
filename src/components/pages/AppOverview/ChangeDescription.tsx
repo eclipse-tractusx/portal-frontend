@@ -136,13 +136,13 @@ export default function ChangeDescription() {
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
-        <Typography mb={3} variant="body2" align="center">
+        <Typography variant="body2" align="center" mb={3}>
           {app?.[0]?.title}
         </Typography>
-        <Typography mb={3} variant="h2" align="center">
+        <Typography variant="h2" align="center" mb={3}>
           {t('content.changeDescription.headerTitle')}
         </Typography>
-        <Typography align="center" variant="body2">
+        <Typography variant="body2" align="center">
           {t('content.changeDescription.description')}
         </Typography>
       </section>
@@ -267,14 +267,19 @@ export default function ChangeDescription() {
                           ? getValues().shortDescriptionEN?.length
                           : getValues().shortDescriptionDE?.length) + '/255'
                       }
-                      patternKey="shortDescriptionEN"
-                      patternEN={Patterns.appMarketCard.shortDescriptionEN}
                       patternDE={Patterns.appMarketCard.shortDescriptionDE}
+                      patternEN={Patterns.appMarketCard.shortDescriptionEN}
+                      patternKey="shortDescriptionEN"
                       rules={{
                         required: `${t(
                           `content.apprelease.appMarketCard.${item}`
                         )} ${t(
                           'content.apprelease.appReleaseForm.isMandatory'
+                        )}`,
+                        maxLength: `${t(
+                          'content.apprelease.appReleaseForm.maximum'
+                        )} 255 ${t(
+                          'content.apprelease.appReleaseForm.charactersAllowed'
                         )}`,
                         minLength: `${t(
                           'content.apprelease.appReleaseForm.minimum'
@@ -288,11 +293,6 @@ export default function ChangeDescription() {
                             ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
                             : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
                         }`,
-                        maxLength: `${t(
-                          'content.apprelease.appReleaseForm.maximum'
-                        )} 255 ${t(
-                          'content.apprelease.appReleaseForm.charactersAllowed'
-                        )}`,
                       }}
                     />
                   </div>
@@ -307,8 +307,8 @@ export default function ChangeDescription() {
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
           <Button
             color="secondary"
-            size="small"
             onClick={() => navigate('/appoverview')}
+            size="small"
           >
             {t('global.actions.cancel')}
           </Button>
@@ -317,17 +317,17 @@ export default function ChangeDescription() {
             {isLoading ? (
               <LoadingButton
                 size="small"
-                loading={isLoading}
                 variant="contained"
                 onButtonClick={() => {}}
-                loadIndicator="Loading..."
+                loading={isLoading}
                 label={`${t('global.actions.confirm')}`}
+                loadIndicator="Loading..."
               />
             ) : (
               <Button
+                disabled={!(isDirty && isValid)}
                 size="small"
                 variant="contained"
-                disabled={!(isDirty && isValid)}
                 onClick={handleSubmit((data) => handleSave(data))}
               >
                 {t('global.actions.save')}
