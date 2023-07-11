@@ -47,7 +47,7 @@ export interface CertificateData {
   ssiDetailData: SSIDetailData
 }
 
-export const Card3 = ({
+export const CertificateCard = ({
   credentialType,
   ssiDetailData,
 }: CertificateResponse) => {

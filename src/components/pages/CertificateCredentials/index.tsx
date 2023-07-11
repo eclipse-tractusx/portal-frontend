@@ -36,7 +36,7 @@ import {
   CertificateResponse,
   useFetchCertificatesQuery,
 } from 'features/certification/certificationApiSlice'
-import { Card3 } from 'components/shared/basic/Certificatecard'
+import { CertificateCard } from 'components/shared/basic/CertificateCard'
 
 enum FilterType {
   UPLOADED = 'Uploaded',
@@ -109,7 +109,6 @@ export default function CertificateCredentials() {
   const { t } = useTranslation()
 
   const { data } = useFetchCertificatesQuery()
-  console.log('data', data)
 
   const [{ searchExpr, showModal, selected, sortOption }, setState] =
     useReducer(reducer, initialState)
@@ -245,7 +244,7 @@ export default function CertificateCredentials() {
                   className="certificate-card"
                   key={item.credentialType}
                 >
-                  <Card3
+                  <CertificateCard
                     credentialType={item.credentialType}
                     ssiDetailData={item.ssiDetailData}
                   />
