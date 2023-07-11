@@ -1,0 +1,124 @@
+.card3Main {
+  .itemList {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 20px;
+  }
+  .itemList:hover {
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+  }
+  .itemBg {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .detailBox {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    .statusDetail {
+      display: flex;
+      .statusIcon {
+        width: 40px !important;
+        border-radius: 20px;
+        margin: 0 auto;
+        margin-right: 0;
+      }
+      .waitingIcon {
+        background-color: #ffecbd;
+        color: #aa7643;
+      }
+      .activeIcon {
+        background-color: #e2f6c7;
+        color: #64944d;
+      }
+      .cancelIcon {
+        background-color: #fee7e2;
+        color: #ff532f;
+      }
+      .deleteIcon {
+        margin-left: 20px;
+        color: #0f71cb;
+      }
+    }
+    .type {
+      line-height: 20px;
+      height: 18px;
+      color: #888888;
+    }
+    .title {
+      margin: 5px 0 0 0;
+      font-weight: 600;
+      line-height: 23px;
+      color: #111111;
+      height: 46px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .expiryDate {
+      line-height: 20px;
+      height: 18px;
+    }
+    .status {
+      line-height: 20px;
+      height: 18px;
+      margin-bottom: 10px;
+    }
+    .fileUploadMain {
+      display: flex;
+      background-color: #f5f9ee;
+      padding: 5px 20px;
+      margin-bottom: 10px;
+      .checkIcon {
+        color: #00aa55;
+        margin: 2px 20px 0 0;
+      }
+      .title {
+        line-height: 20px;
+        height: 18px;
+        margin: 2px 0;
+      }
+      .fileUploadStatus {
+        margin: 0 auto;
+        margin-right: 0 !important;
+      }
+    }
+    .verificationMain {
+      display: flex;
+      background-color: #fff7ec;
+      padding: 5px 20px;
+      margin-bottom: 10px;
+      .verificationIcon {
+        color: #b18258;
+        margin: 2px 20px 0 0;
+      }
+      .title {
+        line-height: 20px;
+        height: 18px;
+        margin: 2px 0;
+      }
+      .verificationStatus {
+        margin: 0 auto;
+        margin-right: 0 !important;
+      }
+    }
+    .description {
+      color: #888888;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 5px 0 0 0;
+      height: 45px;
+    }
+  }
+}

@@ -59,6 +59,7 @@
     "servicedetail": "Service Details",
     "company-role": "Config - Company Role",
     "usecase-participation": "Config - Use Case Participation",
+    "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space"
   },
@@ -1452,6 +1453,47 @@
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {use case name}",
         "description": "To be able to participate in the data exchange of the use case {use case name} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
         "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement"
+      }
+    },
+    "certificates": {
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "search": "Search",
+      "tabs": {
+        "uploadedCertificates": "Uploaded Certificates",
+        "pending": "Pending",
+        "active": " Active",
+        "declined": "Declined",
+        "expired": "Expired"
+      },
+      "sort": {
+        "name": "Name",
+        "date": "Date"
+      },
+      "uploadCertificate": "Upload Certificate",
+      "updateCertificate": {
+        "title": "Upload new certificate for {company name}",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "selectLabel": "Type of certificate",
+        "placeholder": "Please select",
+        "uploadDocumentTitle": "Please upload your certificate proof:",
+        "note": "Please upload only pdf files with maximum 1 MB.",
+        "descriptionLabel": "Description for verification"
+      },
+      "successCertificate": {
+        "title": "Certificate successfully uploaded.",
+        "fileUpload": "File Upload",
+        "completed": "Completed",
+        "nextSteps": "Next Steps",
+        "verification": "Verification",
+        "pending": "Pending",
+        "queryDescription": "For any queries regarding these change(s), please contact the Catena-X helpdesk:",
+        "email": "email_address@catena_support.com"
+      },
+      "certificateCard": {
+        "type": "Type: [ISO 9001]",
+        "valid": "Valid until: ",
+        "status": "Status: "
       }
     }
   },

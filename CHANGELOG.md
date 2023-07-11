@@ -52,6 +52,10 @@
   - Change the payload data as per backend logic
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
+- Certificates
+  - Created New page under User profile
+  - Fetch Certificates and connected to UI
+- Data Space
 - Static Pages
   - Data Space
   - Catena-X Participant
