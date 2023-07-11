@@ -33,6 +33,7 @@ import FlexImages from './Cards/FlexImages'
 import GridImages from './Cards/GridImages'
 import { useState } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material'
+import TextImageSideBySideWithSections from './Cards/TextImageSideBySideWithSections'
 
 const TemplateConfig = ({
   provider,
@@ -200,6 +201,16 @@ const TemplateConfig = ({
         <>
           <LinkButtonGrid provider={provider} grid={provider.grid} />
         </>
+      )
+    //Text in the left and image in the right side with sub sections
+    case TemplateNames.TextImageSideBySideWithSections:
+      return (
+        <TextImageSideBySideWithSections
+          baseUrl={baseUrl}
+          provider={provider}
+          scrollTop={scrollTop}
+          showScroll={showScroll}
+        />
       )
     default:
       //Text in the left and image in the right side

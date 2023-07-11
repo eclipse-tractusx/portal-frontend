@@ -51,7 +51,12 @@ export default function RenderImage({
           additionalStyles={additionalStyles || {}}
         />
       ) : (
-        <img className={'imageGallery'} src={url} alt="provider" />
+        <img
+          className={'imageGallery'}
+          src={url}
+          alt="provider"
+          width={width ? width : 'auto'}
+        />
       )}
     </>
   )
