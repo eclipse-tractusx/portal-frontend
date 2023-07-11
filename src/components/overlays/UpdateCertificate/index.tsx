@@ -37,7 +37,7 @@ import { Box, Dialog } from '@mui/material'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay'
+import { closeOverlay, show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import './style.scss'
@@ -165,10 +165,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
             </div>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
-            >
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
               {t('global.actions.cancel')}
             </Button>
           </DialogActions>
@@ -229,10 +226,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
             </div>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
-            >
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
               {t('global.actions.cancel')}
             </Button>
             <Button

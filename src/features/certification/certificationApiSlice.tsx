@@ -47,11 +47,9 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchCertificates: builder.query<CertificateResponse[], void>({
-      query: () => {
-        return {
-          url: 'api/administration/companydata/certificates',
-        }
-      },
+      query: () => ({
+        url: 'api/administration/companydata/certificates',
+      }),
     }),
   }),
 })

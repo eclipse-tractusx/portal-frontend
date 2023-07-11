@@ -1438,6 +1438,11 @@
         "pending": "Pending",
         "queryDescription": "For any queries regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "email_address@catena_support.com"
+      },
+      "certificateCard": {
+        "type": "Type: [ISO 9001]",
+        "valid": "Valid until: ",
+        "status": "Status: "
       }
     }
   },

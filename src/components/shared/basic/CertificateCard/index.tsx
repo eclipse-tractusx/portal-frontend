@@ -32,6 +32,7 @@ import {
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 export enum StatusVariants {
   release = 'release',
@@ -51,6 +52,7 @@ export const CertificateCard = ({
   credentialType,
   ssiDetailData,
 }: CertificateResponse) => {
+  const { t } = useTranslation()
   const boxRef = useRef<HTMLDivElement>(null)
 
   const renderStatusIcon = () => {
@@ -90,20 +92,19 @@ export const CertificateCard = ({
               )}
           </Box>
           <Typography variant="caption3" className="type">
-            {'Type: [ISO 9001]'}
+            {t('content.certificates.certificateCard.type')}
           </Typography>
           <Typography variant="h4" className="title">
             {credentialType}
           </Typography>
           {ssiDetailData && (
             <Typography variant="body3" className="expiryDate">
-              {'Valid until: '}
+              {t('content.certificates.certificateCard.valid')}
               {ssiDetailData[0].expiryDate.split('T')[0]}
             </Typography>
           )}
-
           <Typography variant="body3" className="status">
-            {'Status: '}
+            {t('content.certificates.certificateCard.status')}
             {ssiDetailData?.[0].participationStatus ?? StatusEnum.INACTIVE}
           </Typography>
           {ssiDetailData?.[0].participationStatus.toLowerCase() ===
