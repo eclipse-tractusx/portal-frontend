@@ -55,12 +55,12 @@ export default function ChangeDescription() {
 
   const defaultValues = useMemo(() => {
     return {
-      longDescriptionEN: description?.[0].longDescription,
-      longDescriptionDE: description?.[1].longDescription,
-      shortDescriptionEN: description?.[0].shortDescription,
-      shortDescriptionDE: description?.[1].shortDescription,
+      longDescriptionEN: description?.[0].longDescription || '',
+      longDescriptionDE: description?.[1].longDescription || '',
+      shortDescriptionEN: description?.[0].shortDescription || '',
+      shortDescriptionDE: description?.[1].shortDescription || '',
     }
-  }, [state, description])
+  }, [description])
 
   useEffect(() => {
     refetch()
@@ -71,7 +71,7 @@ export default function ChangeDescription() {
     handleSubmit,
     control,
     trigger,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty, isValid },
     getValues,
     reset,
   } = useForm({
@@ -82,34 +82,36 @@ export default function ChangeDescription() {
   const handleSave = async (data: any) => {
     setIsLoading(true)
 
-    const saveData = {
-      appId: appId,
-      body: [
-        {
-          languageCode: 'de',
-          longDescription: getValues().longDescriptionDE,
-          shortDescription: getValues().shortDescriptionDE,
-        },
-        {
-          languageCode: 'en',
-          longDescription: getValues().longDescriptionEN,
-          shortDescription: getValues().shortDescriptionEN,
-        },
-      ],
-    }
+    if (appId) {
+      const saveData = {
+        appId: appId,
+        body: [
+          {
+            languageCode: 'de',
+            longDescription: getValues().longDescriptionDE,
+            shortDescription: getValues().shortDescriptionDE,
+          },
+          {
+            languageCode: 'en',
+            longDescription: getValues().longDescriptionEN,
+            shortDescription: getValues().shortDescriptionEN,
+          },
+        ],
+      }
 
-    await saveDescription(saveData)
-      .unwrap()
-      .then(() => {
-        navigate('/appoverview', {
-          state: 'change-description-success',
+      await saveDescription(saveData)
+        .unwrap()
+        .then(() => {
+          navigate('/appoverview', {
+            state: 'change-description-success',
+          })
+          success(t('content.changeDescription.successMsg'))
         })
-        success(t('content.changeDescription.successMsg'))
-      })
-      .catch((err) => {
-        setIsLoading(false)
-        error(t('content.changeDescription.errorMsg'), '', err)
-      })
+        .catch((err) => {
+          setIsLoading(false)
+          error(t('content.changeDescription.errorMsg'), '', err)
+        })
+    }
   }
 
   const handleChange = (event: any, newValue: number) => {
@@ -330,7 +332,7 @@ export default function ChangeDescription() {
               <Button
                 size="small"
                 variant="contained"
-                disabled={!isDirty}
+                disabled={!(isDirty && isValid)}
                 onClick={handleSubmit((data) => handleSave(data))}
               >
                 {t('global.actions.save')}
