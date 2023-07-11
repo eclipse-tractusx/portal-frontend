@@ -58,12 +58,6 @@ export const apiSlice = createApi({
         ) {
           base += `&notificationTopicId=${fetchArgs.args.notificationTopic}`
         }
-        if (
-          fetchArgs.args.notificationTopic &&
-          fetchArgs.args.notificationTopic === NOTIFICATION_TOPIC.ACTION
-        ) {
-          base += '&onlyDueDate=true'
-        }
         return base
       },
       // configuration for an individual endpoint, overriding the api setting
