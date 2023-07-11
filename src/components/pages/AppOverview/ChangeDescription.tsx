@@ -33,11 +33,11 @@ import { error, success } from 'services/NotifyService'
 import ConnectorFormInputFieldShortAndLongDescription from 'components/shared/basic/ReleaseProcess/components/ConnectorFormInputFieldShortAndLongDescription'
 import Patterns from 'types/Patterns'
 import { useForm } from 'react-hook-form'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchDescriptionQuery,
   useSaveDescriptionMutation,
 } from 'features/appManagement/apiSlice'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined'
 
 export default function ChangeDescription() {
@@ -114,10 +114,6 @@ export default function ChangeDescription() {
     }
   }
 
-  const handleChange = (event: any, newValue: number) => {
-    setActiveTab(newValue)
-  }
-
   const patternValidation = (item: string) => {
     if (
       (item === 'longDescriptionEN' &&
@@ -154,7 +150,7 @@ export default function ChangeDescription() {
         <div className="main-row">
           <Tabs
             value={activeTab}
-            onChange={handleChange}
+            onChange={(e, newValue: number) => setActiveTab(newValue)}
             centered
             sx={{
               '.MuiTab-root': {
@@ -214,8 +210,8 @@ export default function ChangeDescription() {
                       }
                       value={
                         (item === 'longDescriptionEN'
-                          ? getValues().longDescriptionEN?.length || 0
-                          : getValues().longDescriptionDE?.length || 0) +
+                          ? getValues().longDescriptionEN?.length
+                          : getValues().longDescriptionDE?.length) +
                         `/${longDescriptionMaxLength}`
                       }
                       patternKey="longDescriptionEN"
@@ -268,9 +264,8 @@ export default function ChangeDescription() {
                       }
                       value={
                         (item === 'shortDescriptionEN'
-                          ? getValues().shortDescriptionEN?.length || 0
-                          : getValues().shortDescriptionDE?.length || 0) +
-                        '/255'
+                          ? getValues().shortDescriptionEN?.length
+                          : getValues().shortDescriptionDE?.length) + '/255'
                       }
                       patternKey="shortDescriptionEN"
                       patternEN={Patterns.appMarketCard.shortDescriptionEN}
