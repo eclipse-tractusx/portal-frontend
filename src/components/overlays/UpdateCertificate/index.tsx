@@ -25,8 +25,6 @@ import {
   DialogHeader,
   DropArea,
   DropAreaProps,
-  SelectList,
-  Textarea,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -183,16 +181,6 @@ export default function UpdateCertificate({ id }: { id: string }) {
 
           <DialogContent>
             <div className="update-certificate">
-              <SelectList
-                defaultValue={'1'}
-                items={[{ userId: 'test', companyName: 'test' }]}
-                label={t('content.certificates.updateCertificate.selectLabel')}
-                placeholder={t(
-                  'content.certificates.updateCertificate.placeholder'
-                )}
-                onChangeItem={(e) => console.log('e', e)}
-                keyTitle={'fullName'}
-              />
               <Typography variant="h4" className="uploadDocumentTitle">
                 {t(
                   'content.certificates.updateCertificate.uploadDocumentTitle'
@@ -208,21 +196,11 @@ export default function UpdateCertificate({ id }: { id: string }) {
                 DropStatusHeader={false}
                 DropArea={renderDropArea}
               />
-              <div className="descriptionTitle">
+              <div className="note">
                 <Typography variant="label2">
-                  {t('content.certificates.updateCertificate.descriptionTitle')}
+                  {t('content.certificates.updateCertificate.note')}
                 </Typography>
               </div>
-              <Textarea
-                minRows={10}
-                maxRows={10}
-                label={t(
-                  'content.certificates.updateCertificate.descriptionLabel'
-                )}
-                value={'test'}
-                onChange={(e) => console.log(e.target.value)}
-                className="descriptionText"
-              />
             </div>
           </DialogContent>
           <DialogActions>

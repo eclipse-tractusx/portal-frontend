@@ -1426,7 +1426,7 @@
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
         "uploadDocumentTitle": "Please upload your certificate proof:",
-        "descriptionTitle": "Please add description /message to support auditor during verification: (optional)",
+        "note": "Please upload only pdf files with maximum 1 MB.",
         "descriptionLabel": "Description for verification"
       },
       "successCertificate": {
