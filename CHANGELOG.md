@@ -51,8 +51,9 @@
   - Change the payload data as per backend logic
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
-- Data Space
-- Catena-X Participant
+- Static Pages
+  - Data Space
+  - Catena-X Participant
 
 ## 1.5.0
 
