@@ -365,6 +365,16 @@ export const apiSlice = createApi({
       },
       invalidatesTags: [Tags.APP],
     }),
+    fetchDescription: builder.query<any, string>({
+      query: (appId) => `/api/apps/AppChange/${appId}/appupdate/description`,
+    }),
+    saveDescription: builder.mutation<any, any>({
+      query: (data) => ({
+        url: `/api/apps/AppChange/${data.appId}/appupdate/description`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -392,4 +402,6 @@ export const {
   useFetchTechnicalUserProfilesQuery,
   useSaveTechnicalUserProfilesMutation,
   useUpdateImageDataMutation,
+  useFetchDescriptionQuery,
+  useSaveDescriptionMutation,
 } = apiSlice
