@@ -1022,7 +1022,8 @@
         },
         "dataSavedSuccessMessage": "Data saved successfully",
         "errormessage": "Error! Something went wrong",
-        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
+        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed",
+        "shouldNotStartWith": "and should not start with"
       },
       "footerButtons": {
         "help": "Help",

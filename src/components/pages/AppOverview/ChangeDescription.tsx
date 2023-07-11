@@ -55,10 +55,10 @@ export default function ChangeDescription() {
 
   const defaultValues = useMemo(() => {
     return {
-      longDescriptionEN: description?.[0].longDescription || '',
-      longDescriptionDE: description?.[1].longDescription || '',
-      shortDescriptionEN: description?.[0].shortDescription || '',
-      shortDescriptionDE: description?.[1].shortDescription || '',
+      longDescriptionEN: description?.[0].longDescription ?? '',
+      longDescriptionDE: description?.[1].longDescription ?? '',
+      shortDescriptionEN: description?.[0].shortDescription ?? '',
+      shortDescriptionDE: description?.[1].shortDescription ?? '',
     }
   }, [description])
 
@@ -122,11 +122,15 @@ export default function ChangeDescription() {
     ) {
       return `${t(
         'content.apprelease.appReleaseForm.validCharactersIncludes'
-      )} a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
+      )} a-zA-Z0-9 !?@&#'"()[]_-+=<>/*.,;:% ${t(
+        'content.apprelease.appReleaseForm.shouldNotStartWith'
+      )} @=<>*-+ #?%&_:;`
     } else {
       return `${t(
         'content.apprelease.appReleaseForm.validCharactersIncludes'
-      )} a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
+      )} a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:% ${t(
+        'content.apprelease.appReleaseForm.shouldNotStartWith'
+      )} @=<>*-+ #?%&_:;`
     }
   }
 
