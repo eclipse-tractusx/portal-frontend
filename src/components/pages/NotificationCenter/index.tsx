@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { useEffect, useRef, useState } from 'react'
-import StageHeader from 'components/shared/frame/StageHeader'
 import {
   useGetNotificationsQuery,
   useGetNotificationMetaQuery,
@@ -43,7 +42,6 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
 import {
   SearchInput,
-  ViewSelector,
   SortOption,
   CircleProgress,
 } from '@catena-x/portal-shared-components'
@@ -51,6 +49,8 @@ import { Box } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { initialNotificationState } from 'features/notification/slice'
 import SortImage from 'components/shared/frame/SortImage'
+import { SeactionHeader } from 'components/shared/frame/SectionHeader'
+import { FramedSelector } from 'components/shared/frame/FramedSelector'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -107,10 +107,10 @@ export default function NotificationCenter() {
   >([])
   const [paginationData, setPaginationData] =
     useState<CXNotificationPagination>()
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+  const setView = (val: string) => {
     setLoaded(true)
     setPage(0)
-    setFilterOption(e.currentTarget.value)
+    setFilterOption(val)
   }
 
   useEffect(() => {
@@ -158,26 +158,36 @@ export default function NotificationCenter() {
 
   const filterButtons = [
     {
-      buttonText: `${t('sortOptions.all')} (${getTotalCount(pages?.unread)})`,
+      buttonText: t('sortOptions.all.title'),
       buttonValue: NOTIFICATION_TOPIC.ALL,
+      buttonDescription: t('sortOptions.all.description'),
       onButtonClick: setView,
+      count: getTotalCount(pages?.unread),
+      countTitle: t('sortOptions.all.countTitle'),
     },
     {
-      buttonText: `${t('sortOptions.app')} (${pages?.offerUnread || 0})`,
+      buttonText: t('sortOptions.app.title'),
       buttonValue: NOTIFICATION_TOPIC.OFFER,
+      buttonDescription: t('sortOptions.app.description'),
       onButtonClick: setView,
+      count: pages?.offerUnread || 0,
+      countTitle: t('sortOptions.app.countTitle'),
     },
     {
-      buttonText: `${t('sortOptions.info')} (${pages?.infoUnread || 0})`,
+      buttonText: t('sortOptions.info.title'),
       buttonValue: NOTIFICATION_TOPIC.INFO,
+      buttonDescription: t('sortOptions.info.description'),
       onButtonClick: setView,
+      count: pages?.infoUnread || 0,
+      countTitle: t('sortOptions.info.countTitle'),
     },
     {
-      buttonText: `${t('sortOptions.withaction')} (${
-        pages?.actionRequired || 0
-      })`,
+      buttonText: t('sortOptions.withaction.title'),
       buttonValue: NOTIFICATION_TOPIC.ACTION,
+      buttonDescription: t('sortOptions.withaction.description'),
       onButtonClick: setView,
+      count: pages?.actionRequired || 0,
+      countTitle: t('sortOptions.withaction.countTitle'),
     },
   ]
 
@@ -197,7 +207,12 @@ export default function NotificationCenter() {
 
   return (
     <main className="notifications">
-      <StageHeader title={t('pages.notifications')} />
+      <SeactionHeader
+        title={t('header.title')}
+        subTitle={t('header.subtitle')}
+        linkText={t('header.linkText')}
+        link={t('header.link')}
+      />
       <section>
         <div
           className="searchContainer"
@@ -231,7 +246,7 @@ export default function NotificationCenter() {
           </div>
         </div>
         <div className="filterSection">
-          <ViewSelector activeView={filterOption} views={filterButtons} />
+          <FramedSelector activeView={filterOption} views={filterButtons} />
         </div>
         {isFetching && (
           <Box

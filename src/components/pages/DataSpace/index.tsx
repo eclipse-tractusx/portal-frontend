@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -10,7 +9,7 @@
  * https://www.apache.org/licenses/LICENSE-2.0.
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * distributed under the License is distributed on an 'AS IS' BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
@@ -18,55 +17,46 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './CompanyRoles.scss'
-import { useEffect, useState } from 'react'
+import './UseCase.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
+import { useEffect, useState } from 'react'
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
 
-export default function CompanyRoles() {
-  const [companyRoles, setCompanyRoles] = useState<any>()
+export default function DataSpace() {
+  const [dataSpace, setDataSpace] = useState<any>()
   const [linkArray, setLinkArray] = useState<any>()
-  const url = window.location.href
+  const [isTop, setIsTop] = useState<boolean>(false)
   const language = useSelector(languageSelector)
-  const [topReached, setTopReached] = useState<boolean>(false)
 
   useEffect(() => {
-    CommonService.getCompanyRoles((data: any) => {
+    CommonService.getDataSpace((data: any) => {
+      setDataSpace(data)
       setLinkArray(data.subNavigation)
-      if (url.indexOf('companyrolesappprovider') > 1) {
-        setCompanyRoles(data.appProvider)
-      } else if (url.indexOf('companyrolesserviceprovider') > 1) {
-        setCompanyRoles(data.serviceProvider)
-      } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
-        setCompanyRoles(data.confirmity)
-      } else {
-        setCompanyRoles(data.participant)
-      }
     })
-  }, [url, language])
+  }, [language])
 
-  const scrollStarted = () => {
-    setTopReached(window.scrollY > 500)
+  const onScroll = () => {
+    setIsTop(window.scrollY > 500)
   }
 
-  window.addEventListener('scroll', scrollStarted)
+  window.addEventListener('scroll', onScroll)
 
   return (
-    <main className="companyRoles">
-      {companyRoles && linkArray && (
+    <main className="dataSpace">
+      {dataSpace && linkArray && (
         <>
           <StageSection
-            title={companyRoles.title}
-            description={companyRoles.description}
+            title={dataSpace.dataSpace.title}
+            description={dataSpace.dataSpace.description}
           />
-          <StageSubNavigation fixHeader={topReached} linkArray={linkArray} />
+          <StageSubNavigation fixHeader={isTop} linkArray={linkArray} />
           <StaticTemplateResponsive
-            sectionInfo={companyRoles.sections}
+            sectionInfo={dataSpace.dataSpace.sections}
             baseUrl={getAssetBase()}
           />
         </>

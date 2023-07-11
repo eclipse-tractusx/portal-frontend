@@ -24,6 +24,7 @@
   - Enhance Sub Menu by adding 'Change Image' for active apps
   - Change Image(sub menu) functionality added for active apps
   - App overview 'in review' style fix
+  - Enhance Sub Menu by adding 'Change Description' for active apps
 - Bugfix
   - Service Release Process
     - Service Release process not working
@@ -31,12 +32,14 @@
 - Usecase Participation
   - Created New page under User profile
   - Add edit Overlay UI
+  - Fetech usecase via API
 - Service Release Process
   - Service Release process not working
   - Service details page crash issue
 - Notification
   - Show done state
   - Provide icon for marking a notification as read/unread
+  - New Header and Filter UI
 - App Release Process
   - App lead image load issue fix
   - Service Marketplace
@@ -51,6 +54,7 @@
 - Certificates
   - Created New page under User profile
   - Fetch Certificates and connected to UI
+- Data Space
 
 ## 1.5.0
 

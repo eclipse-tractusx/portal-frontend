@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,36 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
-
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
-  scrollTop,
-  showScroll,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-  scrollTop: () => void
-  showScroll: boolean
-}) {
-  return (
-    <ImageVideoWrapper
-      scrollTop={scrollTop}
-      showScroll={showScroll}
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-          width="490px"
-        />
-      }
-    />
-  )
+export default function ChangeDescription() {
+  return <>In Progress</>
 }

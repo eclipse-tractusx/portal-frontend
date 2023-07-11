@@ -67,8 +67,8 @@
     border-bottom: 1px solid #dcdcdc;
     padding: 30px;
   }
-  .usecase-list {
-    max-width: 720px;
+  .usecase-list-main {
+    max-width: 850px;
     width: 100%;
     margin: 0 auto 50px;
     ul {
@@ -77,13 +77,50 @@
         border: 0;
         border-top: 1px solid #dcdcdc;
       }
-      li {
-        margin-bottom: 20px;
-        display: flex;
-        .usecase-detail {
-          width: 80%;
+      .usecase-list {
+        margin-bottom: 30px;
+        .usecase-list-item {
+          margin-bottom: 20px;
+          display: flex;
+          .usecase-detail {
+            display: flex;
+            width: 80%;
+            svg {
+              margin: 4px 10px 0 0;
+              font-size: 22px;
+              color: #888888;
+            }
+          }
+        }
+        .credential-list {
+          list-style: none;
+          .credential-list-item {
+            margin-bottom: 10px;
+            display: flex;
+            .firstSection {
+              width: 60%;
+            }
+            .secondSection {
+              width: 30%;
+            }
+            .thirdSection {
+              width: 30%;
+            }
+            .forthSection {
+              width: 35%;
+            }
+            .fifthSection {
+              width: 30%;
+            }
+          }
         }
       }
+    }
+    .grey {
+      color: #888888;
+    }
+    .green {
+      color: #95b087;
     }
   }
 }

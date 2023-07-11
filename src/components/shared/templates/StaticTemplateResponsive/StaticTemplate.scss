@@ -69,13 +69,6 @@
     padding-top: 34px;
   }
 
-  .linkGridContainer {
-    display: flex;
-    gap: 30px;
-    place-content: center;
-    margin-top: 60px;
-  }
-
   .linkBox {
     padding: 10px 0px;
     height: 40px;
@@ -203,13 +196,6 @@
     padding-top: 30px;
   }
 
-  .linkGridContainer {
-    display: flex;
-    gap: 30px;
-    place-content: center;
-    margin-top: 60px;
-  }
-
   .linkBox {
     padding: 10px 0px;
     height: 40px;
@@ -323,13 +309,6 @@
 
   .providerDescription {
     padding-top: 20px;
-  }
-
-  .linkGridContainer {
-    display: flex;
-    gap: 30px;
-    place-content: center;
-    margin-top: 60px;
   }
 
   .linkBox {
@@ -492,4 +471,20 @@ iframe {
 
 strong:hover .tooltiptext {
   visibility: visible !important;
+}
+
+.highlightText {
+  cursor: pointer;
+}
+
+.highlightText:hover {
+  color: #0f71cb;
+}
+
+.linkGridContainer {
+  display: flex;
+  gap: 30px;
+  place-content: center;
+  margin-top: 60px;
+  cursor: pointer;
 }

@@ -59,7 +59,8 @@
     "company-role": "Config - Company Role",
     "usecase-participation": "Config - Use Case Participation",
     "certificate-credential": "Config - Certificates",
-    "about": "About"
+    "about": "About",
+    "dataspace": "Data Space"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -183,22 +184,26 @@
         "slider1": {
           "title": "Catena-X",
           "subtitle": "the gateway to the automotive digital network",
-          "buttonName": "My Apps"
+          "buttonName": "My Apps",
+          "navigation": "/appmanagement"
         },
         "slider2": {
           "title": "Use Case Introduction",
           "subtitle": "Get to know the supported use cases, related semantic models and apps to start your use case driven onboarding journey.",
-          "buttonName": "Use Case Introduction"
+          "buttonName": "Use Case Introduction",
+          "navigation": "/usecase"
         },
         "slider3": {
           "title": "Marketplaces",
           "subtitle": "Transparent and interobarble service and business application marketplace to realize new ideas and use data optimally",
-          "buttonName": "Marketplace"
+          "buttonName": "Marketplace",
+          "navigation": "/marketplace"
         },
         "slider4": {
           "title": "User Management",
           "subtitle": "Manage user access centrally to reduce administrative work and ensure a transparent overview of all user rights.",
-          "buttonName": "User Management"
+          "buttonName": "User Management",
+          "navigation": "/usermanagement"
         }
       },
       "searchSection": {
@@ -378,7 +383,8 @@
       },
       "sortOptions": {
         "deactivate": "Deactivate",
-        "changeImage": "Change Image"
+        "changeImage": "Change Image",
+        "changeDescription": "Change Description"
       },
       "addbtn": "Register your App",
       "confirmModal": {
@@ -1389,6 +1395,9 @@
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "version": "Version: {{version}}",
+      "framework": "Framework",
+      "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {use case name}",
         "description": "To be able to participate in the data exchange of the use case {use case name} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",

@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,36 +17,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
-
-export default function TextImageSideBySide({
-  provider,
-  baseUrl,
-  scrollTop,
-  showScroll,
-}: {
-  provider: ProviderProps
-  baseUrl: string
-  scrollTop: () => void
-  showScroll: boolean
-}) {
-  return (
-    <ImageVideoWrapper
-      scrollTop={scrollTop}
-      showScroll={showScroll}
-      provider={provider}
-      children={
-        <RenderImage
-          url={baseUrl + provider.imagePath || ''}
-          additionalStyles={{
-            textAlign: 'center',
-          }}
-          width="490px"
-        />
+.frameContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+  .frameButton {
+    margin: 0px 10px;
+    width: 25%;
+    padding: 20px;
+    border-radius: 16px;
+    .title {
+      margin-bottom: 10px;
+    }
+    .textNumber {
+      display: flex;
+    }
+    .value {
+      padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      h2,
+      h4 {
+        color: #0f71cb;
+        text-transform: lowercase;
       }
-    />
-  )
+      h2 {
+        font-size: 32px;
+      }
+    }
+  }
 }

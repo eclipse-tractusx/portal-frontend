@@ -21,7 +21,6 @@
 import Redirect from 'components/actions/Redirect'
 import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
-import Admin from 'components/pages/Admin'
 import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
 import AppMarketplace from 'components/pages/AppMarketplace'
@@ -77,6 +76,8 @@ import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
 import CertificateCredentials from 'components/pages/CertificateCredentials'
+import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
+import DataSpace from 'components/pages/DataSpace'
 
 /**
  * ALL_PAGES
@@ -384,7 +385,6 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.INVITE_NEW_PARTNER,
     element: <InviteBusinessPartner />,
   },
-  { name: PAGES.ADMINISTRATION, role: ROLES.CX_ADMIN, element: <Admin /> },
   {
     name: PAGES.APPLICATION_REQUESTS,
     role: ROLES.SUBMITTED_APPLICATION,
@@ -424,15 +424,28 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.CHANGEIMAGE,
+    name: PAGES.CHANGE_IMAGE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.CHANGEIMAGE}
-        path={PAGES.CHANGEIMAGE}
+        key={PAGES.CHANGE_IMAGE}
+        path={PAGES.CHANGE_IMAGE}
         element={<ChangeImage />}
       >
         <Route path=":appId" element={<ChangeImage />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.CHANGE_DESCRIPTION,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.CHANGE_DESCRIPTION}
+        path={PAGES.CHANGE_DESCRIPTION}
+        element={<ChangeDescription />}
+      >
+        <Route path=":appId" element={<ChangeDescription />} />
       </Route>
     ),
   },
@@ -469,6 +482,7 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.MANAGE_COMPANY_CREDENTIALS,
     element: <CertificateCredentials />,
   },
+  { name: PAGES.DATA_SPACE, element: <DataSpace /> },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -636,6 +650,9 @@ export const mainMenuFullTree = [
   {
     name: PAGES.USE_CASE,
     children: [{ name: PAGES.USE_CASE_TRACABILITY, hint: HINTS.NEW }],
+  },
+  {
+    name: PAGES.DATA_SPACE,
   },
   {
     name: PAGES.MARKETPLACE,
