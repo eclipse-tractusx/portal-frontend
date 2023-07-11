@@ -28,11 +28,15 @@ import {
   ViewSelector,
   SortOption,
   Button,
-  CardHorizontal,
 } from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './CertificateCredentials.scss'
 import { OVERLAYS } from 'types/Constants'
+import {
+  CertificateResponse,
+  useFetchCertificatesQuery,
+} from 'features/certification/certificationApiSlice'
+import { Card3 } from 'components/shared/basic/Card3'
 
 enum FilterType {
   UPLOADED = 'Uploaded',
@@ -103,6 +107,9 @@ function reducer(state: State, { type, payload }: Action) {
 export default function CertificateCredentials() {
   const dispatch = useDispatch()
   const { t } = useTranslation()
+
+  const { data } = useFetchCertificatesQuery()
+  console.log('data', data)
 
   const [{ searchExpr, showModal, selected, sortOption }, setState] =
     useReducer(reducer, initialState)
@@ -228,28 +235,10 @@ export default function CertificateCredentials() {
                 {t('content.certificates.uploadCertificate')}
               </Button>
             </div>
-            <Grid container spacing={2} className="services-section">
-              {[0, 1, 2, 3, 4, 5, 6].map((service) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  key={service}
-                  className="services-card"
-                >
-                  <CardHorizontal
-                    borderRadius={6}
-                    imageAlt="App Card"
-                    imagePath={'test'}
-                    label={'Label'}
-                    buttonText="Details"
-                    onBtnClick={() => console.log('click')}
-                    title={'title'}
-                    subTitle={'subtitle'}
-                    description={'description'}
-                    backgroundColor="#fff"
-                  />
+            <Grid container spacing={2} className="certificate-section">
+              {data?.map((item: CertificateResponse) => (
+                <Grid item xs={12} sm={6} md={6} className="certificate-card">
+                  <Card3 item={item} />
                 </Grid>
               ))}
             </Grid>
