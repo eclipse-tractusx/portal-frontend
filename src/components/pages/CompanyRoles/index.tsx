@@ -37,15 +37,34 @@ export default function CompanyRoles() {
 
   useEffect(() => {
     CommonService.getCompanyRoles((data: any) => {
-      setLinkArray(data.subNavigation)
       if (url.indexOf('companyrolesappprovider') > 1) {
         setCompanyRoles(data.appProvider)
+        if (data.appProvider.subNavigation) {
+          setLinkArray(data.appProvider.subNavigation)
+        } else {
+          setLinkArray(data.subNavigation)
+        }
       } else if (url.indexOf('companyrolesserviceprovider') > 1) {
         setCompanyRoles(data.serviceProvider)
+        if (data.serviceProvider.subNavigation) {
+          setLinkArray(data.serviceProvider.subNavigation)
+        } else {
+          setLinkArray(data.subNavigation)
+        }
       } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
         setCompanyRoles(data.confirmity)
+        if (data.serviceProvider.subNavigation) {
+          setLinkArray(data.serviceProvider.subNavigation)
+        } else {
+          setLinkArray(data.subNavigation)
+        }
       } else {
         setCompanyRoles(data.participant)
+        if (data.participant.subNavigation) {
+          setLinkArray(data.participant.subNavigation)
+        } else {
+          setLinkArray(data.subNavigation)
+        }
       }
     })
   }, [url, language])

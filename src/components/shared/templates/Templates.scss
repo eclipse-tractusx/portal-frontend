@@ -41,6 +41,23 @@
   height: 100px;
 }
 
+//tab layout
+@media (max-width: 1024px) {
+  .subNavigationContainer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .subNavigationContainer button {
+    padding-right: 0px;
+    margin-right: 0px;
+  }
+}
+
 //mobile layout
 @media (max-width: 480px) {
   .subNavigationContainer {

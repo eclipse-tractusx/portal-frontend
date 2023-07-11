@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,27 +17,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
-import { ReactElement } from 'react'
-import { ProviderProps } from '../StaticTypes'
+import { Typography } from '@catena-x/portal-shared-components'
+import { subSectionsType } from '../StaticTypes'
 import '../StaticTemplate.scss'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { Trans } from 'react-i18next'
 
-export default function ImageVideoWrapper({
+export default function AlignedText({
   provider,
-  children,
-  scrollTop,
-  showScroll,
-  isImagePresent,
+  align,
 }: {
-  provider: ProviderProps
-  children: ReactElement
-  scrollTop: () => void
-  showScroll: boolean
-  isImagePresent?: boolean
+  provider: subSectionsType
+  align?: string
 }) {
-  const navigate = (link: { internal: boolean; id: string }) => {
+  const goTo = (link: { internal: boolean; id: string }) => {
     if (link.internal) {
       const element = document.getElementById(link.id)
       const top = element?.offsetTop
@@ -52,37 +43,31 @@ export default function ImageVideoWrapper({
   }
 
   return (
-    <div className={'imageVideoTextSideBySide'}>
-      <div
-        className={'titleDescriptionBody'}
-        style={{
-          width: !isImagePresent ? '100%' : '50%',
-        }}
-      >
-        <div className="titleWithIcon sideBySideTitle">
-          <Typography variant="h2">{provider.title}</Typography>
-          {showScroll && (
-            <IconButton onClick={scrollTop}>
-              <ArrowUpwardIcon />
-            </IconButton>
-          )}
-        </div>
-        <Typography className={'providerDescription'}>
-          <Trans
-            key={provider.description}
-            i18nKey={provider.description}
-            components={[
-              <span key={provider.description}></span>,
-              <br key={provider.description} />,
-            ]}
-          ></Trans>
-        </Typography>
+    <div className={align === 'left' ? 'leftAligned' : 'rightAligned'}>
+      <div>
+        {provider.title && (
+          <div className="title">
+            <Typography variant={'h3'}>{provider.title}</Typography>
+          </div>
+        )}
+        {provider.description && (
+          <Typography className={'providerDescription padding-top-10'}>
+            <Trans
+              key={provider.description}
+              i18nKey={provider.description}
+              components={[
+                <span key={provider.description}></span>,
+                <br key={provider.description} />,
+              ]}
+            ></Trans>
+          </Typography>
+        )}
         {provider.sectionLink && (
           <>
             {provider.sectionLink.data.map((link) => (
               <Typography
                 className={'highlightText'}
-                onClick={() => navigate(link)}
+                onClick={() => goTo(link)}
                 key={link.title}
               >
                 {link.title}
@@ -91,7 +76,6 @@ export default function ImageVideoWrapper({
           </>
         )}
       </div>
-      {children}
     </div>
   )
 }

@@ -52,6 +52,7 @@
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
 - Data Space
+- Catena-X Participant
 
 ## 1.5.0
 

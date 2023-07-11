@@ -42,6 +42,9 @@
     padding: 20px;
     width: 48%;
   }
+  .imageVideoTextSideBySideWithSections {
+    padding-bottom: 90px;
+  }
   .video {
     border-radius: 16px;
     border: 0px;
@@ -62,7 +65,6 @@
 
   .titleDescriptionBody {
     padding: 20px;
-    width: 50%;
   }
 
   .providerDescription {
@@ -141,6 +143,21 @@
     gap: 30px;
     margin-top: 84px;
   }
+
+  .leftAligned {
+    text-align: left;
+    margin: 20px 20px 20px 100px;
+  }
+
+  .rightAligned {
+    text-align: right;
+    margin: 20px 20px 20px 100px;
+  }
+
+  .leftAligned .title,
+  .rightAligned .title {
+    margin-bottom: 20px;
+  }
 }
 
 //tab layout
@@ -169,6 +186,10 @@
     width: 48%;
   }
 
+  .imageVideoTextSideBySideWithSections {
+    padding-bottom: 20px;
+  }
+
   .video {
     border-radius: 16px;
     border: 0px;
@@ -189,7 +210,6 @@
 
   .titleDescriptionBody {
     padding: 20px;
-    width: 50%;
   }
 
   .providerDescription {
@@ -256,6 +276,21 @@
     margin-top: 84px;
     grid-template-columns: repeat(2, 1fr) !important;
   }
+
+  .leftAligned {
+    text-align: left;
+    margin: 20px 20px 20px 100px;
+  }
+
+  .rightAligned {
+    text-align: right;
+    margin: 20px 20px 20px 100px;
+  }
+
+  .leftAligned .title,
+  .rightAligned .title {
+    margin-bottom: 20px;
+  }
 }
 
 //mobile layout
@@ -283,6 +318,9 @@
     padding-top: 20px;
     width: 100%;
   }
+  .imageVideoTextSideBySideWithSections {
+    padding-bottom: 20px;
+  }
   .video {
     border-radius: 16px;
     border: 0px;
@@ -304,7 +342,6 @@
 
   .titleDescriptionBody {
     padding: 20px;
-    width: 50%;
   }
 
   .providerDescription {
@@ -370,6 +407,28 @@
     margin-top: 20px;
     grid-template-columns: repeat(1, 1fr) !important;
   }
+
+  .leftAligned {
+    text-align: left;
+    margin: 20px 20px 20px 20px;
+  }
+
+  .rightAligned {
+    text-align: right;
+    margin: 20px 20px 20px 20px;
+  }
+
+  .leftAligned .title,
+  .rightAligned .title {
+    margin-bottom: 20px;
+  }
+
+  .imageGallery {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin-top: 20px;
+  }
 }
 
 .readMoreStyle {
@@ -406,7 +465,6 @@
 }
 
 .imageGallery {
-  width: 100%;
   height: auto;
   border-radius: 16px;
   margin-top: 20px;
@@ -475,10 +533,7 @@ strong:hover .tooltiptext {
 
 .highlightText {
   cursor: pointer;
-}
-
-.highlightText:hover {
-  color: #0f71cb;
+  color: #0f71cb !important;
 }
 
 .linkGridContainer {
@@ -487,4 +542,16 @@ strong:hover .tooltiptext {
   place-content: center;
   margin-top: 60px;
   cursor: pointer;
+}
+
+.providerDescription.padding-top-10 {
+  padding-top: 10px;
+}
+
+.padding-left-30 {
+  padding: 0px 0px 0px 30px;
+}
+
+.imageVideoTextSideBySide.padding-bottom-20 {
+  padding-bottom: 20px;
 }
