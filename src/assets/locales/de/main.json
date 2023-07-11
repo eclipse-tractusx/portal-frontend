@@ -416,6 +416,18 @@
       "successMsg": "successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"
     },
+    "changeDescription": {
+      "headerTitle": "Change Descriptions",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "longDescription": "Long Description",
+      "longDescriptionEN": "Long Description - EN *",
+      "longDescriptionDE": "Long Description - DE *",
+      "shortDescription": "Short Description",
+      "shortDescriptionEN": "Short Description - EN *",
+      "shortDescriptionDE": "Short Description - DE *",
+      "successMsg": "successfully changed description",
+      "errorMsg": "Unable to change description"
+    },
     "appreleaseprocess": {
       "message": "App Release Process Message"
     },
@@ -1049,7 +1061,8 @@
         },
         "dataSavedSuccessMessage": "Data saved successfully",
         "errormessage": "Error! Something went wrong",
-        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed"
+        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed",
+        "shouldNotStartWith": "and should not start with"
       },
       "footerButtons": {
         "help": "Help",
