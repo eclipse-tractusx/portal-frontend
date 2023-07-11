@@ -189,23 +189,23 @@ export default function CertificateCredentials() {
           <div className="mainContainer">
             <div className="searchContainer">
               <SearchInput
-                placeholder={t('content.certificates.search')}
                 value={searchExpr}
-                autoFocus={false}
+                placeholder={t('content.certificates.search')}
                 onChange={(e) => handleSearch(e.target.value)}
                 autoComplete="off"
+                autoFocus={false}
               />
             </div>
             <div
-              className="filterSection"
               onMouseLeave={() =>
                 setState({
                   type: ActionKind.SET_SHOW_MODAL,
                   payload: false,
                 })
               }
+              className="filterSection"
             >
-              <ViewSelector activeView={selected} views={tabButtons} />
+              <ViewSelector views={tabButtons} activeView={selected} />
               <SortImage
                 onClick={() =>
                   setState({
@@ -218,9 +218,9 @@ export default function CertificateCredentials() {
               <div className="sortSection">
                 <SortOption
                   show={showModal}
+                  sortOptions={sortOptions}
                   selectedOption={sortOption}
                   setSortOption={handleSortOption}
-                  sortOptions={sortOptions}
                 />
               </div>
             </div>

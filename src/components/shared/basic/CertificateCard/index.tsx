@@ -138,11 +138,6 @@ export const CertificateCard = ({
               </Box>
             </>
           )}
-          {/* {description && (
-            <Typography variant="label4" className="description">
-              {description}
-            </Typography>
-          )} */}
         </Box>
       </div>
     </Box>
