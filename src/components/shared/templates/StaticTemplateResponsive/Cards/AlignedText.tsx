@@ -17,10 +17,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
 import { subSectionsType } from '../StaticTypes'
 import '../StaticTemplate.scss'
-import { Trans } from 'react-i18next'
+import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 
 export default function AlignedText({
   provider,
@@ -29,53 +28,15 @@ export default function AlignedText({
   provider: subSectionsType
   align?: string
 }) {
-  const goTo = (link: { internal: boolean; id: string }) => {
-    if (link.internal) {
-      const element = document.getElementById(link.id)
-      const top = element?.offsetTop
-      window.scrollTo({
-        top: top,
-        behavior: 'smooth',
-      })
-    } else {
-      window.open(link.id, '_blank')
-    }
-  }
-
   return (
-    <div className={align === 'left' ? 'leftAligned' : 'rightAligned'}>
-      <div>
-        {provider.title && (
-          <div className="title">
-            <Typography variant={'h3'}>{provider.title}</Typography>
-          </div>
-        )}
-        {provider.description && (
-          <Typography className={'providerDescription padding-top-10'}>
-            <Trans
-              key={provider.description}
-              i18nKey={provider.description}
-              components={[
-                <span key={provider.description}></span>,
-                <br key={provider.description} />,
-              ]}
-            ></Trans>
-          </Typography>
-        )}
-        {provider.sectionLink && (
-          <>
-            {provider.sectionLink.data.map((link) => (
-              <Typography
-                className={'highlightText'}
-                onClick={() => goTo(link)}
-                key={link.title}
-              >
-                {link.title}
-              </Typography>
-            ))}
-          </>
-        )}
-      </div>
+    <div
+      id={provider.id}
+      className={align === 'left' ? 'leftAligned' : 'rightAligned'}
+    >
+      <TitleDescriptionAndSectionlink
+        provider={provider}
+        defaultTitleVariation={false}
+      />
     </div>
   )
 }

@@ -21,9 +21,9 @@ import { ProviderProps } from '../StaticTypes'
 import RenderImage from './RenderImage'
 import '../StaticTemplate.scss'
 import AlignedText from './AlignedText'
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { Trans } from 'react-i18next'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 
 export default function TextImageSideBySideWithSections({
   provider,
@@ -36,19 +36,6 @@ export default function TextImageSideBySideWithSections({
   scrollTop: () => void
   showScroll: boolean
 }) {
-  const navigate = (link: { internal: boolean; id: string }) => {
-    if (link.internal) {
-      const element = document.getElementById(link.id)
-      const top = element?.offsetTop
-      window.scrollTo({
-        top: top,
-        behavior: 'smooth',
-      })
-    } else {
-      window.open(link.id, '_blank')
-    }
-  }
-
   return (
     <div className="imageVideoTextSideBySideWithSections">
       <div className={'imageVideoTextSideBySide padding-bottom-20'}>
@@ -58,37 +45,11 @@ export default function TextImageSideBySideWithSections({
             width: !provider.imagePath ? '100%' : '50%',
           }}
         >
-          <div className="titleWithIcon sideBySideTitle">
-            <Typography variant="h2">{provider.title}</Typography>
-            {showScroll && (
-              <IconButton onClick={scrollTop}>
-                <ArrowUpwardIcon />
-              </IconButton>
-            )}
-          </div>
-          <Typography className={'providerDescription'}>
-            <Trans
-              key={provider.description}
-              i18nKey={provider.description}
-              components={[
-                <span key={provider.description}></span>,
-                <br key={provider.description} />,
-              ]}
-            ></Trans>
-          </Typography>
-          {provider.sectionLink && (
-            <>
-              {provider.sectionLink.data.map((link) => (
-                <Typography
-                  className={'highlightText'}
-                  onClick={() => navigate(link)}
-                  key={link.title}
-                >
-                  {link.title}
-                </Typography>
-              ))}
-            </>
-          )}
+          <TitleDescriptionAndSectionlink
+            showScroll={showScroll}
+            provider={provider}
+            scrollTop={scrollTop}
+          />
           {provider.subDescriptions && (
             <>
               <Typography className={'providerDescription'}>
@@ -105,34 +66,35 @@ export default function TextImageSideBySideWithSections({
                   ]}
                 ></Trans>
               </Typography>
-              {provider.subDescriptions.sections &&
-                provider.subDescriptions.sections.map(
-                  (section: { title: string; link: string; value: string }) => (
-                    <>
-                      <Typography>
-                        <Trans
-                          key={section.title}
-                          i18nKey={section.title}
-                          components={[
-                            <span key={section.title}></span>,
-                            <br key={section.title} />,
-                            <p
-                              key={section.title}
-                              className="padding-left-30"
-                            ></p>,
-                          ]}
-                        ></Trans>
-                      </Typography>
-                      <Typography
-                        className={'padding-left-30 highlightText'}
-                        onClick={() => window.open(section.link, '_blank')}
-                        key={section.value}
-                      >
-                        {section.value}
-                      </Typography>
-                    </>
-                  )
-                )}
+              {provider?.subDescriptions?.sections.map(
+                (section: { title: string; link: string; value: string }) => (
+                  <>
+                    <Typography>
+                      <Trans
+                        key={section.title}
+                        i18nKey={section.title}
+                        components={[
+                          <span key={section.title}></span>,
+                          <br key={section.title} />,
+                          <span
+                            key={section.title}
+                            className="subDescription"
+                          ></span>,
+                        ]}
+                      ></Trans>
+                    </Typography>
+                    <Typography
+                      className={
+                        'padding-left-30 highlightText padding-bottom-20'
+                      }
+                      onClick={() => window.open(section.link, '_blank')}
+                      key={section.value}
+                    >
+                      {section.value}
+                    </Typography>
+                  </>
+                )
+              )}
             </>
           )}
         </div>
@@ -149,7 +111,7 @@ export default function TextImageSideBySideWithSections({
       {provider.subsections && (
         <>
           {provider.subsections.map((section) => (
-            <AlignedText provider={section} align="left" />
+            <AlignedText key={section.title} provider={section} align="left" />
           ))}
         </>
       )}

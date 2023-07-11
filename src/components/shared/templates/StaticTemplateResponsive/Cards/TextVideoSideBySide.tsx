@@ -37,6 +37,7 @@ export default function TextVideoSideBySide({
       scrollTop={scrollTop}
       showScroll={showScroll}
       provider={provider}
+      isImagePresent={true}
       children={
         <ReactPlayer
           className="video"
