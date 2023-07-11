@@ -36,6 +36,19 @@ export default function ImageVideoWrapper({
   scrollTop: () => void
   showScroll: boolean
 }) {
+  const navigate = (link: { internal: boolean; id: string }) => {
+    if (link.internal) {
+      const element = document.getElementById(link.id)
+      const top = element?.offsetTop
+      window.scrollTo({
+        top: top,
+        behavior: 'smooth',
+      })
+    } else {
+      window.open(link.id, '_blank')
+    }
+  }
+
   return (
     <div className={'imageVideoTextSideBySide'}>
       <div className={'titleDescriptionBody'}>
@@ -47,11 +60,29 @@ export default function ImageVideoWrapper({
             </IconButton>
           )}
         </div>
-        <Trans>
-          <Typography className={'providerDescription'} variant="body1">
-            {provider.description}
-          </Typography>
-        </Trans>
+        <Typography className={'providerDescription'}>
+          <Trans
+            key={provider.description}
+            i18nKey={provider.description}
+            components={[
+              <span key={provider.description}></span>,
+              <br key={provider.description} />,
+            ]}
+          ></Trans>
+        </Typography>
+        {provider.sectionLink && (
+          <>
+            {provider.sectionLink.data.map((link) => (
+              <Typography
+                className={'highlightText'}
+                onClick={() => navigate(link)}
+                key={link.title}
+              >
+                {link.title}
+              </Typography>
+            ))}
+          </>
+        )}
       </div>
       {children}
     </div>

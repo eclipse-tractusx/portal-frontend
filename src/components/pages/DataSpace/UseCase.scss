@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,28 +17,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { ProvisionIdentityProviderForm } from '.'
-import { MemoryRouter } from 'react-router-dom'
+@import 'src/components/styles/_colors';
 
-export default {
-  title: 'frame/ProvisionIdentityProviderForm',
-  component: ProvisionIdentityProviderForm,
-  parameters: {
-    layout: 'fullscreen',
-  },
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
-  styles: ['./components/App.css'],
-} as ComponentMeta<typeof ProvisionIdentityProviderForm>
-
-const Template: ComponentStory<typeof ProvisionIdentityProviderForm> = (
-  args
-) => <ProvisionIdentityProviderForm {...args} />
-
-export const Standard = Template.bind({})
+.dataSpace {
+  width: 100%;
+  padding: 0px;
+}

@@ -107,10 +107,10 @@ export default function NotificationCenter() {
   >([])
   const [paginationData, setPaginationData] =
     useState<CXNotificationPagination>()
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setFilterOption(e.currentTarget.value)
+  const setView = (val: string) => {
     setLoaded(true)
     setPage(0)
+    setFilterOption(val)
   }
 
   useEffect(() => {
@@ -163,6 +163,7 @@ export default function NotificationCenter() {
       buttonDescription: t('sortOptions.all.description'),
       onButtonClick: setView,
       count: getTotalCount(pages?.unread),
+      countTitle: t('sortOptions.all.countTitle'),
     },
     {
       buttonText: t('sortOptions.app.title'),
@@ -170,6 +171,7 @@ export default function NotificationCenter() {
       buttonDescription: t('sortOptions.app.description'),
       onButtonClick: setView,
       count: pages?.offerUnread || 0,
+      countTitle: t('sortOptions.app.countTitle'),
     },
     {
       buttonText: t('sortOptions.info.title'),
@@ -177,6 +179,7 @@ export default function NotificationCenter() {
       buttonDescription: t('sortOptions.info.description'),
       onButtonClick: setView,
       count: pages?.infoUnread || 0,
+      countTitle: t('sortOptions.info.countTitle'),
     },
     {
       buttonText: t('sortOptions.withaction.title'),
@@ -184,6 +187,7 @@ export default function NotificationCenter() {
       buttonDescription: t('sortOptions.withaction.description'),
       onButtonClick: setView,
       count: pages?.actionRequired || 0,
+      countTitle: t('sortOptions.withaction.countTitle'),
     },
   ]
 

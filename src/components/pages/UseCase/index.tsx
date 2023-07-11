@@ -37,28 +37,7 @@ export default function UseCase() {
   useEffect(() => {
     CommonService.getUseCases((data: any) => {
       setUseCase(data)
-      setLinkArray([
-        {
-          index: 1,
-          title: data.subNavigation.link1Label,
-          navigation: 'intro-id',
-        },
-        {
-          index: 2,
-          title: data.subNavigation.link2Label,
-          navigation: 'core-id',
-        },
-        {
-          index: 3,
-          title: data.subNavigation.link3Label,
-          navigation: 'details-id',
-        },
-        {
-          index: 4,
-          title: data.subNavigation.link4Label,
-          navigation: 'business-id',
-        },
-      ])
+      setLinkArray(data.subNavigation)
     })
   }, [language])
 

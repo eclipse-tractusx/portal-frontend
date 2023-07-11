@@ -71,7 +71,8 @@ export enum PAGES {
   APPOVERVIEW = 'appoverview',
   APPOVERVIEW_NEW = 'appoverview-new',
   DEACTIVATE = 'deactivate',
-  CHANGEIMAGE = 'changeimage',
+  CHANGE_IMAGE = 'changeimage',
+  CHANGE_DESCRIPTION = 'changedescription',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',
@@ -93,6 +94,7 @@ export enum PAGES {
   COMPANY_ROLE = 'company-role',
   USECASE_PARTICIPATION = 'usecase-participation',
   ABOUTPAGE = 'about',
+  DATA_SPACE = 'dataspace',
 }
 
 export enum OVERLAYS {

@@ -137,11 +137,22 @@ const getCompanyRoleUpdateData = (callback: any) => {
     .catch((error) => console.log('Fetching Company Roles Data Failed'))
 }
 
+const getDataSpace = (callback: any) => {
+  let url = `${getAssetBase()}/content/${i18next.language}/dataspace.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => callback(data))
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 const CommonService = {
   appToCard,
   isValidPictureId,
   getCompanyRoles,
   getUseCases,
+  getDataSpace,
   fetchLeadPictures,
   getRoleDescription,
   getCompanyRoleUpdateData,

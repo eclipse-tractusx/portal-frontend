@@ -59,7 +59,8 @@
     "servicedetail": "Service Details",
     "company-role": "Config - Company Role",
     "usecase-participation": "Config - Use Case Participation",
-    "about": "About"
+    "about": "About",
+    "dataspace": "Data Space"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -382,7 +383,8 @@
       },
       "sortOptions": {
         "deactivate": "Deactivate",
-        "changeImage": "Change Image"
+        "changeImage": "Change Image",
+        "changeDescription": "Change Description"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
