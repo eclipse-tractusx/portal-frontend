@@ -55,6 +55,9 @@
   - Created New page under User profile
   - Fetch Certificates and connected to UI
 - Data Space
+- Static Pages
+  - Data Space
+  - Catena-X Participant
 
 ## 1.5.0
 

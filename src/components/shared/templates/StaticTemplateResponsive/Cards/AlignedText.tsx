@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,33 +17,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
+import { subSectionsType } from '../StaticTypes'
 import '../StaticTemplate.scss'
-import ReactPlayer from 'react-player'
+import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 
-export default function TextVideoSideBySide({
+export default function AlignedText({
   provider,
-  scrollTop,
-  showScroll,
+  align,
 }: {
-  provider: ProviderProps
-  scrollTop: () => void
-  showScroll: boolean
+  provider: subSectionsType
+  align?: string
 }) {
   return (
-    <ImageVideoWrapper
-      scrollTop={scrollTop}
-      showScroll={showScroll}
-      provider={provider}
-      isImagePresent={true}
-      children={
-        <ReactPlayer
-          className="video"
-          url={provider.videoUrl}
-          controls={true}
-        />
-      }
-    />
+    <div
+      id={provider.id}
+      className={align === 'left' ? 'leftAligned' : 'rightAligned'}
+    >
+      <TitleDescriptionAndSectionlink
+        provider={provider}
+        defaultTitleVariation={false}
+      />
+    </div>
   )
 }
