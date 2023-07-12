@@ -17,6 +17,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import {
   Button,
   Chip,
@@ -25,12 +28,9 @@ import {
   DialogHeader,
   DropArea,
   DropAreaProps,
+  LoadingButton,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { useTranslation } from 'react-i18next'
-import { fetchAny } from 'features/admin/userOwn/actions'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { Box, Dialog } from '@mui/material'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
@@ -38,24 +38,41 @@ import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
+import { error, success } from 'services/NotifyService'
+import { useAddCertificateMutation } from 'features/certification/certificationApiSlice'
 import './style.scss'
 
 export default function UpdateCertificate({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
-  const [uploadedFile, setUploadedFile] = useState<any>()
+  const [uploadedFile, setUploadedFile] = useState<File>()
   const [submitClicked, setSubmitClicked] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  useEffect(() => {
-    dispatch(fetchAny(id))
-  }, [dispatch, id])
+  const [addCertificate] = useAddCertificateMutation()
 
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
   }
 
-  const handleSubmit = () => {
-    setSubmitClicked(true)
+  const handleSubmit = async () => {
+    setLoading(true)
+    try {
+      if (uploadedFile) {
+        const data = {
+          credentialTypeId: 'credentialType',
+          document: uploadedFile,
+        }
+        await addCertificate(data).unwrap()
+        setSubmitClicked(true)
+        setLoading(false)
+        dispatch(closeOverlay())
+        success(t('content.certificates.updateCertificate.success'))
+      }
+    } catch (err) {
+      setLoading(false)
+      error(t('content.certificates.updateCertificate.error'), '', '')
+    }
   }
 
   return (
@@ -207,13 +224,28 @@ export default function UpdateCertificate({ id }: { id: string }) {
             <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
               {t('global.actions.cancel')}
             </Button>
-            <Button
-              variant="contained"
-              onClick={handleSubmit}
-              disabled={uploadedFile === undefined}
-            >
-              {t('global.actions.submit')}
-            </Button>
+
+            {loading ? (
+              <LoadingButton
+                color="primary"
+                helperText=""
+                helperTextColor="success"
+                label=""
+                loadIndicator="Loading ..."
+                loading
+                size="medium"
+                onButtonClick={() => {}}
+                sx={{ marginLeft: '10px' }}
+              />
+            ) : (
+              <Button
+                variant="contained"
+                onClick={handleSubmit}
+                disabled={uploadedFile === undefined}
+              >
+                {t('global.actions.submit')}
+              </Button>
+            )}
           </DialogActions>
         </>
       )}

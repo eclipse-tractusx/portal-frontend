@@ -25,6 +25,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import PixIcon from '@mui/icons-material/Pix'
+import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
@@ -32,6 +33,7 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { Link } from 'react-router-dom'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
@@ -156,12 +158,19 @@ export default function UsecaseParticipation() {
                                   {t('content.usecaseParticipation.version')}
                                 </Typography>
                               </Trans>
-                              <Typography
-                                variant="body3"
+                              <Link
+                                to={credential.externalDetailData.template}
+                                target="_blank"
                                 className="thirdSection"
                               >
-                                {t('content.usecaseParticipation.framework')}
-                              </Typography>
+                                <Typography
+                                  variant="body3"
+                                  className="framework"
+                                >
+                                  <LaunchIcon />
+                                  {t('content.usecaseParticipation.framework')}
+                                </Typography>
+                              </Link>
                               <Trans
                                 values={{
                                   expiry: credential.externalDetailData.expiry

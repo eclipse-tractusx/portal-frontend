@@ -105,6 +105,15 @@
             }
             .thirdSection {
               width: 30%;
+              color: #0f71cb;
+              cursor: pointer;
+              .framework {
+                display: flex;
+              }
+              svg {
+                font-size: 15px;
+                margin-top: 3px;
+              }
             }
             .forthSection {
               width: 35%;
