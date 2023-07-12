@@ -57,12 +57,11 @@ export const CertificateCard = ({
 
   const renderStatusIcon = () => {
     if (
-      ssiDetailData?.[0].participationStatus.toLowerCase() ===
-      StatusVariants.active
+      ssiDetailData?.participationStatus.toLowerCase() === StatusVariants.active
     ) {
       return <CheckCircleOutlineIcon className="statusIcon activeIcon" />
     } else if (
-      ssiDetailData?.[0].participationStatus.toLowerCase() ===
+      ssiDetailData?.participationStatus.toLowerCase() ===
       StatusVariants.pending
     ) {
       return <AccessTimeIcon className="statusIcon waitingIcon" />
@@ -84,9 +83,9 @@ export const CertificateCard = ({
         <Box className="detailBox">
           <Box className="statusDetail">
             {renderStatusIcon()}
-            {ssiDetailData?.[0].participationStatus.toLowerCase() !==
+            {ssiDetailData?.participationStatus.toLowerCase() !==
               StatusVariants.active &&
-              ssiDetailData?.[0].participationStatus.toLowerCase() !==
+              ssiDetailData?.participationStatus.toLowerCase() !==
                 StatusVariants.pending && (
                 <DeleteOutlineIcon className="deleteIcon" />
               )}
@@ -100,14 +99,14 @@ export const CertificateCard = ({
           {ssiDetailData && (
             <Typography variant="body3" className="expiryDate">
               {t('content.certificates.certificateCard.valid')}
-              {ssiDetailData[0].expiryDate.split('T')[0]}
+              {ssiDetailData?.expiryDate.split('T')[0]}
             </Typography>
           )}
           <Typography variant="body3" className="status">
             {t('content.certificates.certificateCard.status')}
-            {ssiDetailData?.[0].participationStatus ?? StatusEnum.INACTIVE}
+            {ssiDetailData?.participationStatus ?? StatusEnum.INACTIVE}
           </Typography>
-          {ssiDetailData?.[0].participationStatus.toLowerCase() ===
+          {ssiDetailData?.participationStatus.toLowerCase() ===
             StatusVariants.pending && (
             <>
               <Box className="fileUploadMain">
@@ -131,7 +130,7 @@ export const CertificateCard = ({
                 <Chip
                   color="warning"
                   variant="filled"
-                  label={ssiDetailData?.[0].participationStatus}
+                  label={ssiDetailData?.participationStatus}
                   size="small"
                   className="verificationStatus"
                 />

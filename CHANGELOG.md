@@ -58,6 +58,7 @@
 - Certificates
   - Created New page under User profile
   - Fetch Certificates and connected to UI
+  - Upload document ovelay and connected to business logic
 - Static Pages
   - Data Space
   - Catena-X Participant
