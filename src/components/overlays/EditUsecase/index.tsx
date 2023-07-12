@@ -17,6 +17,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import {
   Button,
   Checkbox,
@@ -27,17 +30,13 @@ import {
   DropAreaProps,
   LoadingButton,
 } from '@catena-x/portal-shared-components'
-import { useTranslation } from 'react-i18next'
-import { fetchAny } from 'features/admin/userOwn/actions'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import './style.scss'
+import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
-import { error, success } from 'services/NotifyService'
+import './style.scss'
 
 export default function EditUsecase({
   id: verifiedCredentialTypeId,
@@ -53,10 +52,6 @@ export default function EditUsecase({
   const [loading, setLoading] = useState<boolean>(false)
 
   const [addUsecase] = useAddUsecaseMutation()
-
-  useEffect(() => {
-    dispatch(fetchAny(credentialType))
-  }, [dispatch, credentialType])
 
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
