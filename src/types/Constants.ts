@@ -206,7 +206,7 @@ export enum ROLES {
   UPDATE_COMPANY_ROLE = 'update_company_role',
   USECASE_PARTICIPATION = 'add_use_case_participation',
   SUBMITTED_APPLICATION = 'view_submitted_applications',
-  REQUEST_SSICREDENTIAL = 'request_ssicredential',
+  MANAGE_COMPANY_CREDENTIALS = 'manage_company_credentials',
 }
 
 export enum HINTS {

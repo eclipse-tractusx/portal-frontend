@@ -479,7 +479,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.CERTIFICATE_CREDENTIAL,
-    role: ROLES.REQUEST_SSICREDENTIAL,
+    role: ROLES.MANAGE_COMPANY_CREDENTIALS,
     element: <CertificateCredentials />,
   },
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
