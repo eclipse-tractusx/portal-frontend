@@ -26,7 +26,6 @@ import {
 } from '@catena-x/portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import LockIcon from '@mui/icons-material/Lock'
 import Box from '@mui/material/Box'
 import { ConnectorContentAPIResponse } from 'features/connector/types'
 
@@ -71,25 +70,25 @@ export const ConnectorTableColumns = (
         <Typography variant="body2">{row.location}</Typography>
       ),
     },
-    {
-      field: 'dapsRegistrationSuccessful',
-      headerName: t('content.edcconnector.columns.status'),
-      flex: 1.2,
-      sortable: false,
-      disableColumnMenu: true,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: ({ row }: { row: any }) => (
-        <Box>
-          <LockIcon
-            sx={{
-              color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6',
-              cursor: 'pointer',
-            }}
-          />
-        </Box>
-      ),
-    },
+    // {
+    //   field: 'dapsRegistrationSuccessful',
+    //   headerName: t('content.edcconnector.columns.status'),
+    //   flex: 1.2,
+    //   sortable: false,
+    //   disableColumnMenu: true,
+    //   align: 'center',
+    //   headerAlign: 'center',
+    //   renderCell: ({ row }: { row: any }) => (
+    //     <Box>
+    //       <LockIcon
+    //         sx={{
+    //           color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6',
+    //           cursor: 'pointer',
+    //         }}
+    //       />
+    //     </Box>
+    //   ),
+    // },
     {
       field: 'selfDescriptionDocumentId',
       headerName: t('content.edcconnector.columns.sdDescription'),
@@ -139,7 +138,7 @@ export const ConnectorTableColumns = (
     {
       field: 'details',
       headerName: t('content.edcconnector.columns.details'),
-      flex: 1,
+      flex: 1.2,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',

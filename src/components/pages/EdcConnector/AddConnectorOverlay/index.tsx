@@ -49,7 +49,7 @@ export type FormFieldsType = {
   ConnectorURL: string
   ConnectorBPN: string
   ConnectorLocation: string
-  ConnectorDoc: any
+  // ConnectorDoc: any TO-DO: Enable when DAPS enabled
 }
 
 const formFields = {
@@ -57,7 +57,7 @@ const formFields = {
   ConnectorURL: '',
   ConnectorBPN: '',
   ConnectorLocation: '',
-  ConnectorDoc: '',
+  // ConnectorDoc: '', TO-DO: Enable when DAPS enabled
 }
 
 const AddConnectorOverlay = ({
@@ -94,7 +94,7 @@ const AddConnectorOverlay = ({
       'ConnectorName',
       'ConnectorURL',
       'ConnectorBPN',
-      'ConnectorDoc',
+      // 'ConnectorDoc', TO-DO: Enable when DAPS enabled
     ])
     if (validateFields) {
       onFormConfirmClick(getValues() as FormFieldsType)
