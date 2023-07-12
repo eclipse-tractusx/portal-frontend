@@ -80,9 +80,12 @@ export default function EditUsecase({
     <>
       <DialogHeader
         {...{
-          title: i18next.t('content.usecaseParticipation.editUsecase.title', {usecaseName: credentialType}),
+          title: i18next.t('content.usecaseParticipation.editUsecase.title', {
+            usecaseName: credentialType,
+          }),
           intro: i18next.t(
-            'content.usecaseParticipation.editUsecase.description', {usecaseName: credentialType}
+            'content.usecaseParticipation.editUsecase.description',
+            { usecaseName: credentialType }
           ),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
