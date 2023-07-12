@@ -39,7 +39,7 @@ export default function TitleDescriptionAndSectionlink({
       const element = document.getElementById(link.id)
       const top = element && element.offsetTop - 200
       window.scrollTo({
-        top: top || 0,
+        top: top ?? 0,
         behavior: 'smooth',
       })
     } else {
