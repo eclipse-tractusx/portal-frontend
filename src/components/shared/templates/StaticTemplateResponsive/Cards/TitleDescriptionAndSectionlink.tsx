@@ -37,9 +37,9 @@ export default function TitleDescriptionAndSectionlink({
   const navigateTo = (link: { internal: boolean; id: string }) => {
     if (link.internal) {
       const element = document.getElementById(link.id)
-      const top = element?.offsetTop
+      const top = element && element.offsetTop - 200
       window.scrollTo({
-        top: top,
+        top: top || 0,
         behavior: 'smooth',
       })
     } else {
