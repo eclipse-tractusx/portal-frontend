@@ -49,6 +49,8 @@
 - BugFix
   - Home - Carousel
     - Responsiveness - when switching the portal width screens get rendering issues
+  - Notification
+    - isRead action issue fix
 - Company Role Update
   - Change the payload data as per backend logic
 - App Subscription

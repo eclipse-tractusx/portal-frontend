@@ -1480,7 +1480,9 @@
         "placeholder": "Please select",
         "uploadDocumentTitle": "Please upload your certificate proof:",
         "note": "Please upload only pdf files with maximum 1 MB.",
-        "descriptionLabel": "Description for verification"
+        "descriptionLabel": "Description for verification",
+        "error": "Something went wrong!",
+        "success": "Certificate uploaded successfully."
       },
       "successCertificate": {
         "title": "Certificate successfully uploaded.",
@@ -1496,7 +1498,8 @@
         "type": "Type: [ISO 9001]",
         "valid": "Valid until: ",
         "status": "Status: "
-      }
+      },
+      "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
     }
   },
   "navigation": {
