@@ -39,7 +39,12 @@ export type SSIDetailData = {
 
 export type CertificateResponse = {
   credentialType: string
-  ssiDetailData: SSIDetailData[] | null
+  ssiDetailData: SSIDetailData | null
+}
+
+export type CertificateRequest = {
+  credentialTypeId: string
+  document: File
 }
 
 export const apiSlice = createApi({
@@ -51,7 +56,14 @@ export const apiSlice = createApi({
         url: 'api/administration/companydata/certificates',
       }),
     }),
+    addCertificate: builder.mutation<void, CertificateRequest>({
+      query: (body) => ({
+        url: 'api/administration/companydata/ssiCertificate',
+        method: 'POST',
+        body: body,
+      }),
+    }),
   }),
 })
 
-export const { useFetchCertificatesQuery } = apiSlice
+export const { useFetchCertificatesQuery, useAddCertificateMutation } = apiSlice
