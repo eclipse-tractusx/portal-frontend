@@ -160,13 +160,13 @@ const ConnectorInsertForm = ({
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
-
-  const dropzoneProps = {
-    accept: {
-      'application/x-pem-file': [],
-      'application/x-x509-ca-cert': [],
-    },
-  }
+  //TO-DO: Enable when DAPS enabled
+  // const dropzoneProps = {
+  //   accept: {
+  //     'application/x-pem-file': [],
+  //     'application/x-x509-ca-cert': [],
+  //   },
+  // }
 
   return (
     <Box sx={{ width: '100%' }} className="connector-insert-form">
@@ -295,7 +295,8 @@ const ConnectorInsertForm = ({
                   />
                 </div>
               )}
-            <div className="form-input">
+            {/* TO-DO: Enable when DAPS enabled */}
+            {/* <div className="form-input">
               <ConnectorFormInput
                 {...{
                   control,
@@ -316,7 +317,7 @@ const ConnectorInsertForm = ({
                   ),
                 }}
               />
-            </div>
+            </div> */}
           </form>
         </Grid>
       </Grid>

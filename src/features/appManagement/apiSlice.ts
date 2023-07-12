@@ -196,6 +196,17 @@ export type technicalUserProfiles = {
   }[]
 }
 
+export type saveDescriptionTypes = {
+  appId: string
+  body: descriptionTypes[]
+}
+
+export type descriptionTypes = {
+  languageCode: string
+  longDescription: string
+  shortDescription: string
+}
+
 enum Tags {
   APP = 'App',
 }
@@ -365,6 +376,16 @@ export const apiSlice = createApi({
       },
       invalidatesTags: [Tags.APP],
     }),
+    fetchDescription: builder.query<descriptionTypes[], string>({
+      query: (appId) => `/api/apps/AppChange/${appId}/appupdate/description`,
+    }),
+    saveDescription: builder.mutation<void, saveDescriptionTypes>({
+      query: (data) => ({
+        url: `/api/apps/AppChange/${data.appId}/appupdate/description`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -392,4 +413,6 @@ export const {
   useFetchTechnicalUserProfilesQuery,
   useSaveTechnicalUserProfilesMutation,
   useUpdateImageDataMutation,
+  useFetchDescriptionQuery,
+  useSaveDescriptionMutation,
 } = apiSlice

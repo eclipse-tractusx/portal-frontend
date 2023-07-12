@@ -125,7 +125,8 @@ const EdcConnector = () => {
       !params.row.dapsRegistrationSuccessful
     ) {
       setSelectedConnector(params.row as ConnectorContentAPIResponse)
-      setCreateDapsModalOpen(true)
+      //TO-DO: Enable when DAPS enabled
+      //setCreateDapsModalOpen(true)
     }
   }
 
@@ -137,13 +138,13 @@ const EdcConnector = () => {
   }
 
   const onFormSubmit = async (data: FormFieldsType) => {
-    console.log(data.ConnectorDoc)
     const body = new FormData()
     body.append('Name', data.ConnectorName)
     body.append('ConnectorUrl', data.ConnectorURL)
     body.append('Location', data.ConnectorLocation)
     body.append('Status', ConnectorStatusType.PENDING)
-    body.append('Certificate', data.ConnectorDoc)
+    //TO-DO: Enable when DAPS enabled
+    // body.append('Certificate', data.ConnectorDoc)
     setLoading(true)
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
       await createConnector(body)

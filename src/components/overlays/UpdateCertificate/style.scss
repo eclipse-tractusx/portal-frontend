@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,33 +17,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
-import ImageVideoWrapper from './ImageVideoWrapper'
-import '../StaticTemplate.scss'
-import ReactPlayer from 'react-player'
+.update-certificate {
+  padding: 0 50px 0 50px;
+  .uploadDocumentTitle {
+    margin: 30px 0;
+    text-align: center;
+  }
+  .descriptionTitle {
+    margin-bottom: 30px;
+  }
+  .descriptionText {
+    margin-top: 10px;
+    border-radius: 20px;
+  }
+}
 
-export default function TextVideoSideBySide({
-  provider,
-  scrollTop,
-  showScroll,
-}: {
-  provider: ProviderProps
-  scrollTop: () => void
-  showScroll: boolean
-}) {
-  return (
-    <ImageVideoWrapper
-      scrollTop={scrollTop}
-      showScroll={showScroll}
-      provider={provider}
-      isImagePresent={true}
-      children={
-        <ReactPlayer
-          className="video"
-          url={provider.videoUrl}
-          controls={true}
-        />
-      }
-    />
-  )
+.success-certificate {
+  .nextStep {
+    margin: 30px 0 20px;
+  }
+  .queryDescription {
+    margin: 20px 0 0;
+    display: inherit;
+  }
 }

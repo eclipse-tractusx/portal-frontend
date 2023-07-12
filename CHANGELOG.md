@@ -25,6 +25,7 @@
   - Change Image(sub menu) functionality added for active apps
   - App overview 'in review' style fix
   - Enhance Sub Menu by adding 'Change Description' for active apps
+  - Change Description(sub menu) functionality added for active apps
 - Bugfix
   - Service Release Process
     - Service Release process not working
@@ -33,6 +34,7 @@
   - Created New page under User profile
   - Add edit Overlay UI
   - Fetech usecase via API
+  - Add Business Logic to upload document
 - Service Release Process
   - Service Release process not working
   - Service details page crash issue
@@ -51,7 +53,14 @@
   - Change the payload data as per backend logic
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
-- Data Space
+- Connectors
+  - Disable DAPS related sections
+- Certificates
+  - Created New page under User profile
+  - Fetch Certificates and connected to UI
+- Static Pages
+  - Data Space
+  - Catena-X Participant
 
 ## 1.5.0
 
