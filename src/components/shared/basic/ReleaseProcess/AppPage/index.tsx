@@ -104,6 +104,8 @@ export default function AppPage() {
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
+  const [privacyError, setPrivacyError] = useState<boolean>(false)
+
   useEffect(() => {
     deleteResponse.isSuccess && setDeleteSuccess(true)
   }, [deleteResponse])
@@ -336,6 +338,7 @@ export default function AppPage() {
   }
 
   const onAppPageSubmit = async (data: FormDataType, buttonLabel: string) => {
+    if (selectedPrivacyPolicies.length === 0) setPrivacyError(true)
     const validateFields = await trigger([
       'longDescriptionEN',
       'longDescriptionDE',
@@ -347,8 +350,9 @@ export default function AppPage() {
       'providerContactEmail',
       'providerPhoneContact',
     ])
-    if (validateFields) {
+    if (validateFields && selectedPrivacyPolicies.length > 0) {
       setLoading(true)
+      setPrivacyError(false)
       void handleSave(data, buttonLabel)
     }
   }
@@ -379,7 +383,7 @@ export default function AppPage() {
       useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
       supportedLanguageCodes: statusData.supportedLanguageCodes,
       price: statusData.price,
-      privacyPolicies: selectedPrivacyPolicies || [],
+      privacyPolicies: selectedPrivacyPolicies,
       providerUri: data.providerHomePage || '',
       contactEmail: data.providerContactEmail || '',
       contactNumber: data.providerPhoneContact || '',
@@ -413,6 +417,8 @@ export default function AppPage() {
         setSelectedPrivacyPolicies([...[], policy])
       } else {
         const isSelected = selectedPrivacyPolicies?.includes(policy)
+        if (isSelected && selectedPrivacyPolicies.length === 1)
+          setPrivacyError(true)
         if (!isSelected && select) {
           setSelectedPrivacyPolicies([...selectedPrivacyPolicies, policy])
         } else if (isSelected && !select) {
@@ -424,6 +430,7 @@ export default function AppPage() {
     } else if (type === 'radio') {
       setSelectedPrivacyPolicies([...[], policy])
     }
+    if (selectedPrivacyPolicies.length === 0) setPrivacyError(false)
   }
 
   const renderDropArea = (props: DropAreaProps) => {
@@ -661,7 +668,7 @@ export default function AppPage() {
         />
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>
-          {t('content.apprelease.appPage.privacyInformation')}
+          {t('content.apprelease.appPage.privacyInformation') + ' *'}
         </InputLabel>
         <Typography variant="body2" sx={{ marginBottom: '10px' }}>
           {t('content.apprelease.appPage.privacyInformationDescription')}
@@ -711,6 +718,11 @@ export default function AppPage() {
             </Alert>
           </Box>
         )}
+        {privacyError && (
+          <Typography variant="body2" className="file-error-msg">
+            {t('content.apprelease.appPage.privacyInformationMandatory')}
+          </Typography>
+        )}
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}
@@ -731,7 +743,7 @@ export default function AppPage() {
         onSaveAndProceed={handleSubmit((data) =>
           onAppPageSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}
-        isValid={isValid}
+        isValid={isValid && selectedPrivacyPolicies.length > 0}
         loader={loading}
         helpUrl={
           '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'

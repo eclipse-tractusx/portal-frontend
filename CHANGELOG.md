@@ -43,6 +43,7 @@
   - New Header and Filter UI
 - App Release Process
   - App lead image load issue fix
+  - Validation added for privacy policy
   - Service Marketplace
     - Subscription Button cross service highlighted
 - BugFix
