@@ -19,6 +19,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 import { useDispatch } from 'react-redux'
 import {
   Button,
@@ -79,13 +80,10 @@ export default function EditUsecase({
     <>
       <DialogHeader
         {...{
-          title: t('content.usecaseParticipation.editUsecase.title').replace(
-            '{usecaseName}',
-            credentialType
+          title: i18next.t('content.usecaseParticipation.editUsecase.title', {usecaseName: credentialType}),
+          intro: i18next.t(
+            'content.usecaseParticipation.editUsecase.description', {usecaseName: credentialType}
           ),
-          intro: t(
-            'content.usecaseParticipation.editUsecase.description'
-          ).replace('{usecaseName}', credentialType),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
