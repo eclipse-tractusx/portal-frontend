@@ -75,6 +75,7 @@ import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
 import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
+import CertificateCredentials from 'components/pages/CertificateCredentials'
 import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
 
@@ -476,6 +477,11 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.USECASE_PARTICIPATION,
     element: <UsecaseParticipation />,
   },
+  {
+    name: PAGES.CERTIFICATE_CREDENTIAL,
+    role: ROLES.MANAGE_COMPANY_CREDENTIALS,
+    element: <CertificateCredentials />,
+  },
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
 ]
 
@@ -613,6 +619,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.EDIT_USECASE,
   },
+  {
+    name: OVERLAYS.UPDATE_CERTIFICATE,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -697,6 +706,7 @@ export const userMenuFull = [
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
+  PAGES.CERTIFICATE_CREDENTIAL,
   PAGES.LOGOUT,
 ]
 

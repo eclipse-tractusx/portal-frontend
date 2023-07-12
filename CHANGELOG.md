@@ -25,6 +25,7 @@
   - Change Image(sub menu) functionality added for active apps
   - App overview 'in review' style fix
   - Enhance Sub Menu by adding 'Change Description' for active apps
+  - Change Description(sub menu) functionality added for active apps
 - Bugfix
   - Service Release Process
     - Service Release process not working
@@ -53,7 +54,12 @@
   - Add and Edit Tenant URL functionality in detail overlay
 - Connectors
   - Disable DAPS related sections
-- Data Space
+- Certificates
+  - Created New page under User profile
+  - Fetch Certificates and connected to UI
+- Static Pages
+  - Data Space
+  - Catena-X Participant
 
 ## 1.5.0
 
