@@ -25,6 +25,7 @@ import {
   DialogHeader,
   DropArea,
   DropAreaProps,
+  LoadingButton,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { fetchAny } from 'features/admin/userOwn/actions'
@@ -32,29 +33,26 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './style.scss'
 import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay'
+import { closeOverlay, show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
-import {
-  UsecaseResponse,
-  useFetchUsecaseQuery,
-} from 'features/usecase/usecaseApiSlice'
+import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
+import { error, success } from 'services/NotifyService'
 
-export default function EditUsecase({ id: credentialType }: { id: string }) {
+export default function EditUsecase({
+  id: verifiedCredentialTypeId,
+  title: credentialType,
+}: {
+  id: string
+  title: string
+}) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
-  const [usecaseItem, setUsecaseItem] = useState<UsecaseResponse>()
-  const [uploadedFile, setUploadedFile] = useState<any>()
+  const [uploadedFile, setUploadedFile] = useState<File>()
   const [checked, setChecked] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  const { data } = useFetchUsecaseQuery()
-
-  useEffect(() => {
-    const usecaseItem = data?.filter(
-      (item) => item.credentialType === credentialType
-    )
-    setUsecaseItem(usecaseItem?.[0])
-  }, [data])
+  const [addUsecase] = useAddUsecaseMutation()
 
   useEffect(() => {
     dispatch(fetchAny(credentialType))
@@ -64,10 +62,21 @@ export default function EditUsecase({ id: credentialType }: { id: string }) {
     return <DropArea {...props} size="small" />
   }
 
-  const handleUpload = () => {
-    const data = {
-      verified_credential_external_type_id: 'id',
-      document: 'document file (only pdf are allowed)',
+  const handleUpload = async () => {
+    setLoading(true)
+    try {
+      const data = {
+        verifiedCredentialTypeId: verifiedCredentialTypeId,
+        credentialType: credentialType,
+        document: uploadedFile,
+      }
+      await addUsecase(data).unwrap()
+      setLoading(false)
+      dispatch(closeOverlay())
+      success(t('content.usecaseParticipation.editUsecase.success'))
+    } catch (err) {
+      setLoading(false)
+      error(t('content.usecaseParticipation.editUsecase.error'), '', '')
     }
   }
 
@@ -77,11 +86,11 @@ export default function EditUsecase({ id: credentialType }: { id: string }) {
         {...{
           title: t('content.usecaseParticipation.editUsecase.title').replace(
             '{usecaseName}',
-            usecaseItem?.useCase ?? ''
+            credentialType
           ),
           intro: t(
             'content.usecaseParticipation.editUsecase.description'
-          ).replace('{usecaseName}', usecaseItem?.useCase ?? ''),
+          ).replace('{usecaseName}', credentialType),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
@@ -117,13 +126,27 @@ export default function EditUsecase({ id: credentialType }: { id: string }) {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          onClick={handleUpload}
-          disabled={!checked || uploadedFile === undefined}
-        >
-          {t('global.actions.submit')}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator="Loading ..."
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            onClick={handleUpload}
+            disabled={!checked || uploadedFile === undefined}
+          >
+            {t('global.actions.submit')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )

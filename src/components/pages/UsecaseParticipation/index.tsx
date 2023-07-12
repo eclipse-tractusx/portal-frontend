@@ -31,18 +31,28 @@ import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   UsecaseResponse,
+  VerifiedCredentialsData,
   useFetchUsecaseQuery,
 } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { useEffect } from 'react'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const { data } = useFetchUsecaseQuery()
+  const { data, refetch } = useFetchUsecaseQuery()
 
-  const renderStatus = (item: UsecaseResponse, status: string) => {
+  useEffect(() => {
+    refetch()
+  }, [refetch])
+
+  const renderStatus = (
+    item: UsecaseResponse,
+    credential: VerifiedCredentialsData
+  ) => {
+    const status = credential.ssiDetailData?.participationStatus
     if (
       status === SubscriptionStatus.PENDING ||
       status === SubscriptionStatus.ACTIVE
@@ -61,7 +71,13 @@ export default function UsecaseParticipation() {
           color="secondary"
           label="Edit"
           onClick={() =>
-            dispatch(show(OVERLAYS.EDIT_USECASE, item.credentialType))
+            dispatch(
+              show(
+                OVERLAYS.EDIT_USECASE,
+                credential.externalDetailData.id,
+                item.credentialType
+              )
+            )
           }
           withIcon={false}
           type="plain"
@@ -189,10 +205,7 @@ export default function UsecaseParticipation() {
                                 variant="body3"
                                 className="fifthSection"
                               >
-                                {renderStatus(
-                                  item,
-                                  credential.ssiDetailData?.participationStatus
-                                )}
+                                {renderStatus(item, credential)}
                               </Typography>
                             </li>
                           </>
