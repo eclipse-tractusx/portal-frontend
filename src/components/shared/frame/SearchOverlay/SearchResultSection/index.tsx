@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,18 +17,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.search-section {
-  max-width: 750px;
-  margin: -57px auto 0;
-  padding: 24px;
-  border-radius: 40px;
-  background-image: linear-gradient(
-    to right,
-    #ffb326,
-    #ffa524,
-    #ff9625,
-    #ff8728,
-    #ff782c
-  );
-  position: relative;
+import { useSelector } from 'react-redux'
+import {
+  searchExprSelector,
+  searchItemSelector,
+} from 'features/info/search/slice'
+import { SearchResult } from 'components/shared/basic/SearchResult'
+import './search-result-section.scss'
+
+export default function SearchResultSection() {
+  const searchExpr = useSelector(searchExprSelector)
+  const searchItems = useSelector(searchItemSelector)
+
+  return searchItems.length > 0 ? (
+    <div className="search-result-section">
+      <SearchResult expr={searchExpr} items={searchItems} />
+    </div>
+  ) : null
 }

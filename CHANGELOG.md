@@ -59,6 +59,10 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+- Search
+  - Enable search in all the pages
+  - Search input UI updates
+  - Search Result UI updates
 
 ## 1.5.0
 

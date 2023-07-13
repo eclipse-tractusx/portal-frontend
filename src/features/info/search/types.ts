@@ -38,6 +38,7 @@ export type SearchItem = {
   category: SearchCategory
   title: string
   description?: string
+  leadPictureId?: string
 }
 
 export interface SearchState extends ListState<SearchItem> {

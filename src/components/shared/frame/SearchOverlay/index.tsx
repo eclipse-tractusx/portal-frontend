@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,21 +17,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import NewSearchSection from './NewSearchSection'
+import { appearSearchSelector, setAppear } from 'features/control/appear'
 import { useSelector } from 'react-redux'
-import {
-  searchExprSelector,
-  searchItemSelector,
-} from 'features/info/search/slice'
-import { SearchResult } from 'components/shared/basic/SearchResult'
-import './search-result-section.scss'
+import SearchResultSection from './SearchResultSection'
+import './Search.scss'
+import { Dialog } from '@mui/material'
+import { useDispatch } from 'react-redux'
 
-export default function SearchResultSection() {
-  const searchExpr = useSelector(searchExprSelector)
-  const searchItems = useSelector(searchItemSelector)
+export default function MainSearchOverlay() {
+  const visible = useSelector(appearSearchSelector)
+  const dispatch = useDispatch()
 
-  return searchItems.length > 0 ? (
-    <div className="search-result-section">
-      <SearchResult expr={searchExpr} items={searchItems} />
-    </div>
-  ) : null
+  return (
+    <Dialog
+      onClose={() => dispatch(setAppear({ SEARCH: !visible }))}
+      sx={{
+        '.MuiPaper-root': {
+          borderRadius: '0px',
+          minWidth: '100vw',
+          position: 'fixed',
+          top: '0px',
+          left: '0px',
+          right: '0px',
+          margin: '0px',
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+        },
+      }}
+      open={visible}
+    >
+      <NewSearchSection />
+      <SearchResultSection />
+    </Dialog>
+  )
 }

@@ -36,6 +36,9 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
+import { useEffect, useState } from 'react'
+import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { LogoGrayData } from '@catena-x/portal-shared-components'
 
 export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {
@@ -106,6 +109,25 @@ export const SearchResultItem = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [file, setFile] = useState<string>()
+
+  const fetchImage = async (appId: string, documentId: string) => {
+    try {
+      const response = await fetchDocumentById({ appId, documentId }).unwrap()
+      const file = response.data
+      setFile(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+    }
+  }
+
+  useEffect(() => {
+    if (item.leadPictureId) {
+      fetchImage(item.id, item.leadPictureId)
+    }
+  }, [item])
+
   return (
     <ListItem
       component="div"
@@ -139,19 +161,26 @@ export const SearchResultItem = ({
         }
       }}
     >
-      <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
+      {file ? (
+        <ListItemIcon>
+          <img src={file} alt={item.category} />
+        </ListItemIcon>
+      ) : (
+        <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
+      )}
+
       <ListItemText
         primary={getHighlightedText(t(item.title), expr)}
         secondary={getHighlightedText(t(item.description!), expr)}
         primaryTypographyProps={{
           color: '#606060',
           fontWeight: 800,
-          fontSize: 12,
+          fontSize: 22,
         }}
         secondaryTypographyProps={{
           color: '#606060',
           fontWeight: 400,
-          fontSize: 11,
+          fontSize: 16,
         }}
       />
     </ListItem>
