@@ -56,16 +56,28 @@ export type UsecaseRequest = {
 export const apiSlice = createApi({
   reducerPath: 'rtk/administration/usecase',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: ['usecase'],
   endpoints: (builder) => ({
     fetchUsecase: builder.query<UsecaseResponse[], void>({
       query: () => '/api/administration/companydata/useCaseParticipation',
+      providesTags: ['usecase'],
     }),
     addUsecase: builder.mutation<void, UsecaseRequest>({
-      query: (body) => ({
-        url: 'api/administration/companydata/useCaseParticipation',
-        method: 'POST',
-        body: body,
-      }),
+      query: (body) => {
+        const formData = new FormData()
+        formData.append(
+          'VerifiedCredentialExternalTypeDetailId',
+          body.verifiedCredentialTypeId
+        )
+        formData.append('credentialType', body.credentialType)
+        formData.append('document', body.document)
+        return {
+          url: 'api/administration/companydata/useCaseParticipation',
+          method: 'POST',
+          body: formData,
+        }
+      },
+      invalidatesTags: ['usecase'],
     }),
   }),
 })
