@@ -348,7 +348,7 @@ export default function NotificationItem({
               className="padding-r-10"
               onClick={(e) => {
                 setUserRead(!userRead)
-                setRead(item.id, userRead)
+                setRead(item.id, !userRead)
                 e.stopPropagation()
               }}
             >

@@ -19,7 +19,6 @@
 
 import { useReducer, useCallback } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
-import { Grid } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import {
@@ -32,11 +31,8 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import './CertificateCredentials.scss'
 import { OVERLAYS } from 'types/Constants'
-import {
-  CertificateResponse,
-  useFetchCertificatesQuery,
-} from 'features/certification/certificationApiSlice'
-import { CertificateCard } from 'components/shared/basic/CertificateCard'
+import { useFetchCertificatesQuery } from 'features/certification/certificationApiSlice'
+import CertificateElements from './CertificateElements'
 
 enum FilterType {
   UPLOADED = 'Uploaded',
@@ -234,23 +230,7 @@ export default function CertificateCredentials() {
                 {t('content.certificates.uploadCertificate')}
               </Button>
             </div>
-            <Grid container spacing={2} className="certificate-section">
-              {data?.map((item: CertificateResponse) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  className="certificate-card"
-                  key={item.credentialType}
-                >
-                  <CertificateCard
-                    credentialType={item.credentialType}
-                    ssiDetailData={item.ssiDetailData}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+            <CertificateElements data={data} />
           </div>
 
           <div style={{ height: '66px' }}></div>
