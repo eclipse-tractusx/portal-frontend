@@ -61,7 +61,8 @@
     "usecase-participation": "Config - Use Case Participation",
     "certificate-credential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space"
+    "dataspace": "Data Space",
+    "admin-credential": "Certification Mgmt"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -1498,6 +1499,26 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+    },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "...search for certificate type",
+      "tabs": {
+        "all": "All",
+        "open": "Open",
+        "confirmed": "Confirmed",
+        "declined": "Declined"
+      },
+      "sortOptions": {
+        "name": "By Name",
+        "date": "By Date"
+      },
+      "table": {
+        "date": "Date",
+        "companyInfo": "Company Info",
+        "certificate": "Certificate",
+        "details": "Details"
+      }
     }
   },
   "navigation": {
@@ -1567,6 +1588,7 @@
     },
     "actions": {
       "cancel": "Abbrechen",
+      "decline": "Decline",
       "confirm": "Bestätigen",
       "more": "Mehr",
       "loadmore": "Mehr laden",

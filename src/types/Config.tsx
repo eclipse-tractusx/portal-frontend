@@ -78,6 +78,7 @@ import ChangeImage from 'components/pages/AppOverview/ChangeImage'
 import CertificateCredentials from 'components/pages/CertificateCredentials'
 import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
+import AdminCredential from 'components/pages/AdminCredential'
 
 /**
  * ALL_PAGES
@@ -483,6 +484,11 @@ export const ALL_PAGES: IPage[] = [
     element: <CertificateCredentials />,
   },
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
+  {
+    name: PAGES.ADMIN_CREDENTIAL,
+    role: ROLES.ADMIN_CREDENTIAL_DECISION,
+    element: <AdminCredential />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -707,6 +713,7 @@ export const userMenuFull = [
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
   PAGES.CERTIFICATE_CREDENTIAL,
+  PAGES.ADMIN_CREDENTIAL,
   PAGES.LOGOUT,
 ]
 

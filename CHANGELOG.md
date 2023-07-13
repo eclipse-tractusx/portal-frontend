@@ -62,6 +62,8 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
 
 ## 1.5.0
 
