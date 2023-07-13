@@ -34,6 +34,7 @@
   - Created New page under User profile
   - Add edit Overlay UI
   - Fetech usecase via API
+  - Add Business Logic to upload document
 - Service Release Process
   - Service Release process not working
   - Service details page crash issue
