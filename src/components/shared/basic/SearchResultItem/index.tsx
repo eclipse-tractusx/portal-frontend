@@ -38,7 +38,6 @@ import { useNavigate } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
 import { useEffect, useState } from 'react'
 import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
-import { LogoGrayData } from '@catena-x/portal-shared-components'
 
 export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {

@@ -20,7 +20,6 @@
 
 import { groupBy } from 'lodash'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
 import { SearchItem } from 'features/info/search/types'
 import { SearchResultGroup } from '../SearchResultGroup'
 
