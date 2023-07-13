@@ -33,7 +33,7 @@ export default function AppInfo({ id, title }: { id: string; title?: string }) {
     <>
       <DialogHeader
         {...{
-          title: title || '',
+          title: title || ' ',
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}

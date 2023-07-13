@@ -38,6 +38,7 @@ import { useNavigate } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
 import { useEffect, useState } from 'react'
 import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { setAppear } from 'features/control/appear'
 
 export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {
@@ -145,14 +146,17 @@ export const SearchResultItem = ({
         },
       }}
       onClick={() => {
+        console.log(item.category)
         switch (item.category) {
           case SearchCategory.PAGE:
+            dispatch(setAppear({ SEARCH: false }))
             navigate(`/${item.id}`)
             break
           case SearchCategory.OVERLAY:
             dispatch(show(item.id as OVERLAYS, ''))
             break
           case SearchCategory.ACTION:
+            dispatch(setAppear({ SEARCH: false }))
             dispatch(exec(item.id))
             break
           default:

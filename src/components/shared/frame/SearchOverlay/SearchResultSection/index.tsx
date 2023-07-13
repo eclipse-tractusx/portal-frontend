@@ -47,7 +47,7 @@ export default function SearchResultSection() {
     <>
       {canShowNow && (
         <div className="search-result-section">
-          <Typography variant="h3" className="not-found">
+          <Typography variant="body1" className="not-found">
             No search results found
           </Typography>
         </div>
