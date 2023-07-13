@@ -30,18 +30,31 @@ import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { useFetchUsecaseQuery } from 'features/usecase/usecaseApiSlice'
+import {
+  UsecaseResponse,
+  VerifiedCredentialsData,
+  useFetchUsecaseQuery,
+} from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const { data } = useFetchUsecaseQuery()
+  const { data, refetch } = useFetchUsecaseQuery()
 
-  const renderStatus = (status: string) => {
+  useEffect(() => {
+    refetch()
+  }, [refetch])
+
+  const renderStatus = (
+    item: UsecaseResponse,
+    credential: VerifiedCredentialsData
+  ) => {
+    const status = credential.ssiDetailData?.participationStatus
     if (
       status === SubscriptionStatus.PENDING ||
       status === SubscriptionStatus.ACTIVE
@@ -59,7 +72,15 @@ export default function UsecaseParticipation() {
         <Chip
           color="secondary"
           label="Edit"
-          onClick={() => dispatch(show(OVERLAYS.EDIT_USECASE, 'userId'))}
+          onClick={() =>
+            dispatch(
+              show(
+                OVERLAYS.EDIT_USECASE,
+                credential.externalDetailData.id,
+                item.credentialType
+              )
+            )
+          }
           withIcon={false}
           type="plain"
         />
@@ -193,9 +214,7 @@ export default function UsecaseParticipation() {
                                 variant="body3"
                                 className="fifthSection"
                               >
-                                {renderStatus(
-                                  credential.ssiDetailData?.participationStatus
-                                )}
+                                {renderStatus(item, credential)}
                               </Typography>
                             </li>
                           </>

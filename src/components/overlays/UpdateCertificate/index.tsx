@@ -60,7 +60,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
     try {
       if (uploadedFile) {
         const data = {
-          credentialTypeId: 'credentialType',
+          credentialType: 'DISMANTLER_CERTIFICATE', //static for now as we have only one certificate
           document: uploadedFile,
         }
         await addCertificate(data).unwrap()
