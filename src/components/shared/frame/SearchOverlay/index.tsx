@@ -19,11 +19,10 @@
 
 import NewSearchSection from './NewSearchSection'
 import { appearSearchSelector, setAppear } from 'features/control/appear'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import SearchResultSection from './SearchResultSection'
 import './Search.scss'
 import { Dialog } from '@mui/material'
-import { useDispatch } from 'react-redux'
 
 export default function MainSearchOverlay() {
   const visible = useSelector(appearSearchSelector)

@@ -17,12 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.search-result-section {
-  background-color: #ffffff;
-  margin: 0px 200px;
-  margin-top: 80px;
-}
-
 .not-found {
   margin-top: 80px !important;
   width: 100%;
@@ -59,6 +53,10 @@
 }
 
 .search-result-section {
+  background-color: #ffffff;
+  margin: 0px 200px;
+  margin-top: 80px;
+
   .MuiListItem-gutters {
     width: 100%;
     height: auto;
