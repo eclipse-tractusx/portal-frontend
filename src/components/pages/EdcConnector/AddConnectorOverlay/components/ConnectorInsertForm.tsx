@@ -30,9 +30,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
-import {
-  ConnectType,
-} from 'features/connector/connectorApiSlice'
+import { ConnectType } from 'features/connector/connectorApiSlice'
 import { Dropzone } from '../../../../shared/basic/Dropzone'
 
 const ConnectorFormInput = ({
