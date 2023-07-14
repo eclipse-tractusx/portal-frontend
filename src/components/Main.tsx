@@ -30,6 +30,7 @@ import { useEffect } from 'react'
 import { OVERLAYS } from 'types/Constants'
 import './styles/main.scss'
 import MainNotify from './MainNotify'
+import MainSearchOverlay from './shared/frame/SearchOverlay'
 
 export default function Main() {
   document.title = useTranslation().t('title')
@@ -47,6 +48,7 @@ export default function Main() {
         main={AccessService.mainMenuTree()}
         user={AccessService.userMenu()}
       />
+      <MainSearchOverlay />
       <Outlet />
       <Footer pages={AccessService.footerMenu()} />
       <MainOverlay />

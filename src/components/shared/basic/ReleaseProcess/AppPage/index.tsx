@@ -598,30 +598,6 @@ export default function AppPage() {
                 }}
                 errorText={t('content.apprelease.appReleaseForm.fileSizeError')}
               />
-              {item === 'uploadDataPrerequisits' &&
-                errors?.uploadDataPrerequisits?.type === ErrorType.REQUIRED && (
-                  <Typography variant="body2" className="file-error-msg">
-                    {t(
-                      'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-                    )}
-                  </Typography>
-                )}
-              {item === 'uploadTechnicalGuide' &&
-                errors?.uploadTechnicalGuide?.type === ErrorType.REQUIRED && (
-                  <Typography variant="body2" className="file-error-msg">
-                    {t(
-                      'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-                    )}
-                  </Typography>
-                )}
-              {item === 'uploadAppContract' &&
-                errors?.uploadAppContract?.type === ErrorType.REQUIRED && (
-                  <Typography variant="body2" className="file-error-msg">
-                    {t(
-                      'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-                    )}
-                  </Typography>
-                )}
             </div>
           </div>
         ))}

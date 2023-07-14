@@ -18,12 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogHeader,
-} from '@catena-x/portal-shared-components'
+import { DialogContent, DialogHeader } from '@catena-x/portal-shared-components'
 import { fetchAny } from 'features/admin/userOwn/actions'
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay'
@@ -42,8 +37,6 @@ export default function UserInfo({ id }: { id: string }) {
     dispatch(fetchAny(id))
   }, [dispatch, id])
 
-  const handleConfirm = () => console.log('confirm')
-
   return (
     <>
       <DialogHeader
@@ -57,18 +50,6 @@ export default function UserInfo({ id }: { id: string }) {
       <DialogContent>
         <pre>{JSON.stringify(userInfo, null, 2)}</pre>
       </DialogContent>
-
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
-        >
-          {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button variant="contained" onClick={handleConfirm}>
-          {`${t('global.actions.confirm')}`}
-        </Button>
-      </DialogActions>
     </>
   )
 }

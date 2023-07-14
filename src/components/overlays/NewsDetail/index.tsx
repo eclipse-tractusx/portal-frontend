@@ -19,9 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
   Cards,
-  DialogActions,
   DialogContent,
   DialogHeader,
 } from '@catena-x/portal-shared-components'
@@ -43,8 +41,6 @@ export default function NewsDetail({ id }: { id: string }) {
     dispatch(fetchItems())
   }, [dispatch])
 
-  const handleConfirm = () => console.log('confirm')
-
   return (
     <>
       <DialogHeader
@@ -65,18 +61,6 @@ export default function NewsDetail({ id }: { id: string }) {
           variant="text-only"
         />
       </DialogContent>
-
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
-        >
-          {`${t('global.actions.cancel')}`}
-        </Button>
-        <Button variant="contained" onClick={handleConfirm}>
-          {`${t('global.actions.confirm')}`}
-        </Button>
-      </DialogActions>
     </>
   )
 }
