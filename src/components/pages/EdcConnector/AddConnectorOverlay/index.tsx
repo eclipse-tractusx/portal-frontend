@@ -31,7 +31,11 @@ import {
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
-import { ConnectorType } from 'features/connector/connectorApiSlice'
+import {
+  ConnectorType,
+  edcSubscriptionsType,
+  useFetchOfferSubscriptionsQuery,
+} from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
 
 interface AddCollectorOverlayProps {
@@ -47,7 +51,7 @@ interface AddCollectorOverlayProps {
 export type FormFieldsType = {
   ConnectorName: string
   ConnectorURL: string
-  ConnectorBPN: string
+  ConnectorSubscription: edcSubscriptionsType
   ConnectorLocation: string
   // ConnectorDoc: any TO-DO: Enable when DAPS enabled
 }
@@ -55,7 +59,6 @@ export type FormFieldsType = {
 const formFields = {
   ConnectorName: '',
   ConnectorURL: '',
-  ConnectorBPN: '',
   ConnectorLocation: '',
   // ConnectorDoc: '', TO-DO: Enable when DAPS enabled
 }
@@ -70,7 +73,7 @@ const AddConnectorOverlay = ({
   onStepChange,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
-
+  const { data } = useFetchOfferSubscriptionsQuery()
   const {
     handleSubmit,
     getValues,
@@ -93,7 +96,7 @@ const AddConnectorOverlay = ({
     const validateFields = await trigger([
       'ConnectorName',
       'ConnectorURL',
-      'ConnectorBPN',
+      'ConnectorLocation',
       // 'ConnectorDoc', TO-DO: Enable when DAPS enabled
     ])
     if (validateFields) {
@@ -142,6 +145,7 @@ const AddConnectorOverlay = ({
           ) : (
             <>
               <ConnectorInsertForm
+                subscriptions={data}
                 selectedService={selected}
                 {...{ handleSubmit, control, errors, trigger }}
               />

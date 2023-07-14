@@ -59,6 +59,13 @@ export type ConnectorResponseBody = {
   DapsRegistrationSuccessful?: boolean
 }
 
+export interface edcSubscriptionsType {
+  connectorIds: string[]
+  customerName: string
+  offerName: string
+  subscriptionId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -72,7 +79,7 @@ export const apiSlice = createApi({
     }),
     createManagedConnector: builder.mutation({
       query: (body) => ({
-        url: '/api/administration/connectors/managed-daps',
+        url: '/api/administration/connectors/managed',
         method: 'POST',
         body,
       }),
@@ -108,6 +115,10 @@ export const apiSlice = createApi({
       query: (filters) =>
         `/api/administration/connectors/managed?page=${filters.page}&size=10`,
     }),
+    fetchOfferSubscriptions: builder.query<edcSubscriptionsType[], void>({
+      query: () =>
+        '/api/administration/Connectors/offerSubscriptions?connectorIdSet=false',
+    }),
   }),
 })
 
@@ -118,4 +129,5 @@ export const {
   useFetchConnectorsQuery,
   useTriggerDapsMutation,
   useFetchManagedConnectorsQuery,
+  useFetchOfferSubscriptionsQuery,
 } = apiSlice

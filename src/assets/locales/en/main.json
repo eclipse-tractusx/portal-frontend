@@ -518,6 +518,11 @@
             "label": "Public Authentication Key/Certificate*",
             "error": "Please use a valid type. E.g. .pem; .cert",
             "tooltipMsg": "Upload the certificate that contains your connector's public key information."
+          },
+          "subscription": {
+            "label": "Customer Link",
+            "placeholder": "Select the related subscription",
+            "tooltipMsg": "Select the related subscription"
           }
         },
         "create": {
