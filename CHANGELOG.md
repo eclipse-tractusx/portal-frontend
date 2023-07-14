@@ -44,6 +44,7 @@
   - New Header and Filter UI
 - App Release Process
   - App lead image load issue fix
+  - Fixed issue-upon upload of the conformity certificate, previous selected consents are gone
   - Service Marketplace
     - Subscription Button cross service highlighted
 - BugFix
