@@ -1,0 +1,70 @@
+/********************************************************************************
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+.search-section {
+  max-width: 750px;
+  margin: -57px auto 0;
+  padding: 24px;
+  border-radius: 40px;
+  background-image: linear-gradient(
+    to right,
+    #ffb326,
+    #ffa524,
+    #ff9625,
+    #ff8728,
+    #ff782c
+  );
+  position: relative;
+}
+
+.new-search-section {
+  width: 100%;
+  position: absolute;
+  top: 84px;
+  z-index: 9;
+}
+
+.new-search-section .MuiTextField-root {
+  border: 0px;
+}
+
+.new-search-section .MuiOutlinedInput-root {
+  border-radius: 0px;
+}
+
+.new-search-section .MuiOutlinedInput-input {
+  padding: 30px 0px;
+  background: transparent;
+  border: 0px;
+  border-radius: 0px;
+  font-size: 20px;
+}
+
+//mobile layout
+@media (max-width: 480px) {
+  .new-search-section {
+    top: 70px;
+  }
+
+  .new-search-section .MuiOutlinedInput-input {
+    padding: 15px 0px;
+    font-size: 16px;
+  }
+}

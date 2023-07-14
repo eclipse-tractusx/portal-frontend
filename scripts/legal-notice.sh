@@ -28,8 +28,8 @@ repository_anchor='REPOSITORY_PLACEHOLDER'
 ref_anchor='REF_PLACEHOLDER'
 
 # Read values from package.json using jq
-name=$(jq -r '.name' cx-portal/package.json)
-license=$(jq -r '.license' cx-portal/package.json)
+name=$(jq -r '.name' package.json)
+license=$(jq -r '.license' package.json)
 
 # Get commit id
 commit_id=$(git rev-parse HEAD)
@@ -40,7 +40,7 @@ repository=$REPOSITORY
 ref=$REF_NAME
 
 # Read legal-notice.json as reference
-legal_notice_reference=$(cat cx-portal/src/assets/notice/legal-notice.json)
+legal_notice_reference=$(cat src/assets/notice/legal-notice.json)
 
 # Function to check if placeholder substitution was successful
 check_substitution() {
@@ -76,4 +76,4 @@ check_substitution "$legal_notice_ref" "$ref_anchor"
 echo "Replaced ref name"
 
 # Write the final result to legal-notice.json
-echo "$legal_notice_ref" > cx-portal/src/assets/notice/legal-notice.json
+echo "$legal_notice_ref" > src/assets/notice/legal-notice.json
