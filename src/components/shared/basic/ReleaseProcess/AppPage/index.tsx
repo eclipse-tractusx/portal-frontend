@@ -404,29 +404,33 @@ export default function AppPage() {
     dispatch(decrement())
   }
 
+  const selectCheckboxPrivacyPolicies = (policy: string, select: boolean) => {
+    if (
+      selectedPrivacyPolicies &&
+      selectedPrivacyPolicies[0] === privacyPolicyNone
+    ) {
+      setSelectedPrivacyPolicies([...[], policy])
+    } else {
+      const isSelected = selectedPrivacyPolicies?.includes(policy)
+      if (isSelected && selectedPrivacyPolicies.length === 1)
+        setPrivacyError(true)
+      if (!isSelected && select) {
+        setSelectedPrivacyPolicies([...selectedPrivacyPolicies, policy])
+      } else if (isSelected && !select) {
+        const oldPrivacyPolicies = [...selectedPrivacyPolicies]
+        oldPrivacyPolicies.splice(oldPrivacyPolicies.indexOf(policy), 1)
+        setSelectedPrivacyPolicies([...oldPrivacyPolicies])
+      }
+    }
+  }
+  
   const selectPrivacyPolicies = (
     policy: string,
     select: boolean,
     type: string
   ) => {
     if (type === 'checkbox') {
-      if (
-        selectedPrivacyPolicies &&
-        selectedPrivacyPolicies[0] === privacyPolicyNone
-      ) {
-        setSelectedPrivacyPolicies([...[], policy])
-      } else {
-        const isSelected = selectedPrivacyPolicies?.includes(policy)
-        if (isSelected && selectedPrivacyPolicies.length === 1)
-          setPrivacyError(true)
-        if (!isSelected && select) {
-          setSelectedPrivacyPolicies([...selectedPrivacyPolicies, policy])
-        } else if (isSelected && !select) {
-          const oldPrivacyPolicies = [...selectedPrivacyPolicies]
-          oldPrivacyPolicies.splice(oldPrivacyPolicies.indexOf(policy), 1)
-          setSelectedPrivacyPolicies([...oldPrivacyPolicies])
-        }
-      }
+      selectCheckboxPrivacyPolicies(policy, select)
     } else if (type === 'radio') {
       setSelectedPrivacyPolicies([...[], policy])
     }
