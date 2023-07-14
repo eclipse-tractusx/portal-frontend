@@ -52,6 +52,13 @@
   - Add and Edit Tenant URL functionality in detail overlay
 - Connectors
   - Disable DAPS related sections
+  - Create Connectors
+    - fetch offer subscription in managed connectors
+    - create managed api end point update
+    - update created managed api body with subscriptionId
+- Certificates
+  - Created New page under User profile
+  - Fetch Certificates and connected to UI
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
 - Static Pages
