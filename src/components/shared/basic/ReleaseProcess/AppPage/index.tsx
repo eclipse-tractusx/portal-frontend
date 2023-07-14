@@ -423,7 +423,7 @@ export default function AppPage() {
       }
     }
   }
-  
+
   const selectPrivacyPolicies = (
     policy: string,
     select: boolean,
