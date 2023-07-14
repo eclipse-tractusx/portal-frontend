@@ -59,7 +59,7 @@ export type ConnectorResponseBody = {
   DapsRegistrationSuccessful?: boolean
 }
 
-export interface edcSubscriptionsType {
+export interface EdcSubscriptionsType {
   connectorIds: string[]
   customerName: string
   offerName: string
@@ -115,7 +115,7 @@ export const apiSlice = createApi({
       query: (filters) =>
         `/api/administration/connectors/managed?page=${filters.page}&size=10`,
     }),
-    fetchOfferSubscriptions: builder.query<edcSubscriptionsType[], void>({
+    fetchOfferSubscriptions: builder.query<EdcSubscriptionsType[], void>({
       query: () =>
         '/api/administration/Connectors/offerSubscriptions?connectorIdSet=false',
     }),

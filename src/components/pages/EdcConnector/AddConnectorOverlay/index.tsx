@@ -33,7 +33,7 @@ import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import {
   ConnectorType,
-  edcSubscriptionsType,
+  EdcSubscriptionsType,
   useFetchOfferSubscriptionsQuery,
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
@@ -51,7 +51,7 @@ interface AddCollectorOverlayProps {
 export type FormFieldsType = {
   ConnectorName: string
   ConnectorURL: string
-  ConnectorSubscription: edcSubscriptionsType
+  ConnectorSubscription: EdcSubscriptionsType
   ConnectorLocation: string
   // ConnectorDoc: any TO-DO: Enable when DAPS enabled
 }
