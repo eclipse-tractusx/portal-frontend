@@ -60,7 +60,8 @@
     "usecase-participation": "Config - Use Case Participation",
     "certificate-credential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space"
+    "dataspace": "Data Space",
+    "admin-credential": "Certification Mgmt"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -1412,9 +1413,11 @@
       "framework": "Framework",
       "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
-        "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {use case name}",
-        "description": "To be able to participate in the data exchange of the use case {use case name} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
-        "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement"
+        "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
+        "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
+        "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
+        "error": "Something went wrong!",
+        "success": "Usecase document upload has been done successfully."
       }
     },
     "certificates": {
@@ -1460,6 +1463,26 @@
         "status": "Status: "
       },
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above."
+    },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "...search for certificate type",
+      "tabs": {
+        "all": "All",
+        "open": "Open",
+        "confirmed": "Confirmed",
+        "declined": "Declined"
+      },
+      "sortOptions": {
+        "name": "By Name",
+        "date": "By Date"
+      },
+      "table": {
+        "date": "Date",
+        "companyInfo": "Company Info",
+        "certificate": "Certificate",
+        "details": "Details"
+      }
     }
   },
   "navigation": {
@@ -1531,6 +1554,7 @@
     },
     "actions": {
       "cancel": "Cancel",
+      "decline": "Decline",
       "confirm": "Confirm",
       "more": "More",
       "loadmore": "Load more",

@@ -34,6 +34,7 @@
   - Created New page under User profile
   - Add edit Overlay UI
   - Fetech usecase via API
+  - Add Business Logic to upload document
 - Service Release Process
   - Service Release process not working
   - Service details page crash issue
@@ -66,6 +67,10 @@
   - Enable search in all the pages
   - Search input UI updates
   - Search Result UI updates
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
+- Portal
+  - Add max width
 
 ## 1.5.0
 
