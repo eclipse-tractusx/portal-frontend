@@ -36,6 +36,20 @@
   - Show done state
   - Provide icon for marking a notification as read/unread
   - New Header and Filter UI
+- App Release Process
+  - App lead image load issue fix
+  - Fixed issue-upon upload of the conformity certificate, previous selected consents are gone
+  - Service Marketplace
+    - Subscription Button cross service highlighted
+- BugFix
+  - Home - Carousel
+    - Responsiveness - when switching the portal width screens get rendering issues
+  - Notification
+    - isRead action issue fix
+- Company Role Update
+  - Change the payload data as per backend logic
+- App Subscription
+  - Add and Edit Tenant URL functionality in detail overlay
 - Connectors
   - Disable DAPS related sections
 - App Subscription
