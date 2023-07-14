@@ -1,42 +1,37 @@
 # Changelog
 
-## unreleased
+## 1.6.0-RC1
 
-- Project Structure
-  - Moved out shared components and source folders to root level
-- App Subscription
-  - Add "Detail Data" Button and Overlay
-  - Refracting Activate Subscription Page
-  - Add App Filter Search Functionality
+### Change
+
 - App Release Process
   - validate and publish style updates
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
+
+### Feature
+
+- App Subscription
+  - Add "Detail Data" Button and Overlay
+  - Refracting Activate Subscription Page
+  - Add App Filter Search Functionality
 - User Account & My User Account
   - Add Admin Info
-- App Detail
-  - Subscribe Button - wrong state
 - Home, Use cases and Company roles
   - Mobile friendly header and stage navigation
   - Slider stage header
 - App overview
   - Enhance Sub Menu by adding 'Change Image' for active apps
   - Change Image(sub menu) functionality added for active apps
-  - App overview 'in review' style fix
+  - App overview 'in review' rendering and styling changed
   - Enhance Sub Menu by adding 'Change Description' for active apps
   - Change Description(sub menu) functionality added for active apps
-- Bugfix
-  - Service Release Process
-    - Service Release process not working
-    - Service details page crash issue
 - Usecase Participation
   - Created New page under User profile
   - Add edit Overlay UI
-  - Fetech usecase via API
-- Service Release Process
-  - Service Release process not working
-  - Service details page crash issue
+  - Fetch usecase via API
+  - Add Business Logic to upload document
 - Notification
   - Show done state
   - Provide icon for marking a notification as read/unread
@@ -57,12 +52,32 @@
   - Add and Edit Tenant URL functionality in detail overlay
 - Connectors
   - Disable DAPS related sections
-- Certificates
-  - Created New page under User profile
-  - Fetch Certificates and connected to UI
+- App Subscription
+  - Add and Edit Tenant URL functionality in detail overlay
 - Static Pages
   - Data Space
   - Catena-X Participant
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
+- Portal
+  - Add max width
+
+### Technical Support
+
+- Project Structure
+  - Moved out shared components and source folders to root level
+
+### Bugfix
+
+- App Detail
+  - Subscribe Button - wrong state
+- Service Release Process
+  - Service Release process not working
+  - Service details page crash issue
+- Home - Carousel
+  - Responsiveness - when switching the portal width screens get rendering issues
+- Service Marketplace
+  - Subscription Button cross service highlighted
 
 ## 1.5.0
 

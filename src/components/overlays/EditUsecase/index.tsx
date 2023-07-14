@@ -17,6 +17,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
+import { useDispatch } from 'react-redux'
 import {
   Button,
   Checkbox,
@@ -25,37 +29,64 @@ import {
   DialogHeader,
   DropArea,
   DropAreaProps,
+  LoadingButton,
 } from '@catena-x/portal-shared-components'
-import { useTranslation } from 'react-i18next'
-import { fetchAny } from 'features/admin/userOwn/actions'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import './style.scss'
+import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay'
+import { closeOverlay, show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
+import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
+import './style.scss'
 
-export default function EditUsecase({ id }: { id: string }) {
+export default function EditUsecase({
+  id: verifiedCredentialTypeId,
+  title: credentialType,
+}: {
+  id: string
+  title: string
+}) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
-  const [uploadedFile, setUploadedFile] = useState<any>()
+  const [uploadedFile, setUploadedFile] = useState<File>()
   const [checked, setChecked] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  useEffect(() => {
-    dispatch(fetchAny(id))
-  }, [dispatch, id])
+  const [addUsecase] = useAddUsecaseMutation()
 
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
+  }
+
+  const handleUpload = async () => {
+    setLoading(true)
+    try {
+      const data = {
+        verifiedCredentialTypeId: verifiedCredentialTypeId,
+        credentialType: credentialType,
+        document: uploadedFile,
+      }
+      await addUsecase(data).unwrap()
+      setLoading(false)
+      dispatch(closeOverlay())
+      success(t('content.usecaseParticipation.editUsecase.success'))
+    } catch (err) {
+      setLoading(false)
+      error(t('content.usecaseParticipation.editUsecase.error'), '', '')
+    }
   }
 
   return (
     <>
       <DialogHeader
         {...{
-          title: t('content.usecaseParticipation.editUsecase.title'),
-          intro: t('content.usecaseParticipation.editUsecase.description'),
+          title: i18next.t('content.usecaseParticipation.editUsecase.title', {
+            usecaseName: credentialType,
+          }),
+          intro: i18next.t(
+            'content.usecaseParticipation.editUsecase.description',
+            { usecaseName: credentialType }
+          ),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
         }}
@@ -91,13 +122,27 @@ export default function EditUsecase({ id }: { id: string }) {
         >
           {t('global.actions.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          // onClick={saveRoles}
-          disabled={!checked || uploadedFile === undefined}
-        >
-          {t('global.actions.submit')}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator="Loading ..."
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            onClick={handleUpload}
+            disabled={!checked || uploadedFile === undefined}
+          >
+            {t('global.actions.submit')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )

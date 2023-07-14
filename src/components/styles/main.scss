@@ -24,12 +24,13 @@
 @import 'stage';
 
 body {
-  margin: 0;
   min-height: 100vh;
   font-family: 'LibreFranklin', 'Libre Franklin', 'Franklin Gothic Medium',
     'Arial Narrow', Arial, sans-serif !important;
   color: color(text-primary) !important;
   font-weight: 300 !important;
+  max-width: 1800px;
+  margin: auto !important;
 }
 
 #app {

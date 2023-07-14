@@ -199,7 +199,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.UPDATE_COMPANY_ROLE:
       return <UpdateCompanyRole roles={overlay.roles ?? []} />
     case OVERLAYS.EDIT_USECASE:
-      return <EditUsecase id={overlay.id} />
+      return <EditUsecase id={overlay.id} title={overlay.title ?? ''} />
     case OVERLAYS.UPDATE_CERTIFICATE:
       return <UpdateCertificate id={overlay.id} />
     default:

@@ -43,7 +43,7 @@ export type CertificateResponse = {
 }
 
 export type CertificateRequest = {
-  credentialTypeId: string
+  credentialType: string
   document: File
 }
 
@@ -57,11 +57,16 @@ export const apiSlice = createApi({
       }),
     }),
     addCertificate: builder.mutation<void, CertificateRequest>({
-      query: (body) => ({
-        url: 'api/administration/companydata/ssiCertificate',
-        method: 'POST',
-        body: body,
-      }),
+      query: (body) => {
+        const formData = new FormData()
+        formData.append('credentialType', body.credentialType)
+        formData.append('document', body.document)
+        return {
+          url: 'api/administration/companydata/certificates',
+          method: 'POST',
+          body: formData,
+        }
+      },
     }),
   }),
 })
