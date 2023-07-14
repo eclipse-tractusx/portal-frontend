@@ -36,9 +36,10 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
-import { useEffect, useState } from 'react'
-import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { setAppear } from 'features/control/appear'
+import { Image } from '@catena-x/portal-shared-components'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {
@@ -109,24 +110,6 @@ export const SearchResultItem = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
-  const [file, setFile] = useState<string>()
-
-  const fetchImage = async (appId: string, documentId: string) => {
-    try {
-      const response = await fetchDocumentById({ appId, documentId }).unwrap()
-      const file = response.data
-      setFile(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
-
-  useEffect(() => {
-    if (item.leadPictureId) {
-      fetchImage(item.id, item.leadPictureId)
-    }
-  }, [item])
 
   return (
     <ListItem
@@ -164,9 +147,14 @@ export const SearchResultItem = ({
         }
       }}
     >
-      {file ? (
+      {item.leadPictureId ? (
         <ListItemIcon>
-          <img src={file} alt={item.category} />
+          <Image
+            src={`${getApiBase()}/api/apps/${item.id}/appDocuments/${
+              item.leadPictureId
+            }`}
+            loader={fetchImageWithToken}
+          />
         </ListItemIcon>
       ) : (
         <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
