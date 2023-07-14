@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import SearchResultSection from './components/SearchResultSection'
 import NewsSection from './components/NewsSection'
 import BusinessApplicationsSection from './components/BusinessApplicationsSection'
 import StageSection from './components/StageSection'
@@ -26,14 +25,11 @@ import AppStoreSection from './components/AppStoreSection'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './Home.scss'
-import NewSearchSection from './components/SearchSection/NewSearchSection'
 
 export default function Home() {
   return (
     <main className="home">
-      <NewSearchSection />
       <StageSection />
-      <SearchResultSection />
       <NewsSection />
       <BusinessApplicationsSection />
       <AppStoreSection />

@@ -64,6 +64,10 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+- Search
+  - Enable search in all the pages
+  - Search input UI updates
+  - Search Result UI updates
 - SSI Certificat Credential Adminboard
   - Add new page and created UI
 - Portal

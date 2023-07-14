@@ -20,7 +20,6 @@
 
 import { groupBy } from 'lodash'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
 import { SearchItem } from 'features/info/search/types'
 import { SearchResultGroup } from '../SearchResultGroup'
 
@@ -38,7 +37,7 @@ export const SearchResult = ({
   )
   return (
     <Box sx={{ display: 'flex' }}>
-      <Paper elevation={5} sx={{ width: 700, padding: 4, borderRadius: 4 }}>
+      <Box className="search-group" sx={{ borderRadius: 4 }}>
         {groupList.map((item: [string, SearchItem[]], index: number) => (
           <SearchResultGroup
             key={item[0]}
@@ -48,7 +47,7 @@ export const SearchResult = ({
             isFirst={index === 0}
           />
         ))}
-      </Paper>
+      </Box>
     </Box>
   )
 }
