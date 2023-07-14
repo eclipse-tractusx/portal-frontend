@@ -38,6 +38,7 @@
   - New Header and Filter UI
 - App Release Process
   - App lead image load issue fix
+  - Validation added for privacy policy
   - Fixed issue-upon upload of the conformity certificate, previous selected consents are gone
   - Service Marketplace
     - Subscription Button cross service highlighted
