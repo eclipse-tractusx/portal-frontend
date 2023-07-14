@@ -65,6 +65,8 @@
   - Catena-X Participant
 - SSI Certificat Credential Adminboard
   - Add new page and created UI
+- Portal
+  - Add max width
 
 ## 1.5.0
 
