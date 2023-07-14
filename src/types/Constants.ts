@@ -96,6 +96,7 @@ export enum PAGES {
   ABOUTPAGE = 'about',
   CERTIFICATE_CREDENTIAL = 'certificate-credential',
   DATA_SPACE = 'dataspace',
+  ADMIN_CREDENTIAL = 'admin-credential',
 }
 
 export enum OVERLAYS {
@@ -207,6 +208,7 @@ export enum ROLES {
   USECASE_PARTICIPATION = 'add_use_case_participation',
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
+  ADMIN_CREDENTIAL_DECISION = 'admin_credential_decision',
 }
 
 export enum HINTS {

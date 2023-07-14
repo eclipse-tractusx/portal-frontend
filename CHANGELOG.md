@@ -63,6 +63,8 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
 - Portal
   - Add max width
 

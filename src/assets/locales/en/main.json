@@ -60,7 +60,8 @@
     "usecase-participation": "Config - Use Case Participation",
     "certificate-credential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space"
+    "dataspace": "Data Space",
+    "admin-credential": "Certification Mgmt"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -1462,6 +1463,26 @@
         "status": "Status: "
       },
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above."
+    },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "...search for certificate type",
+      "tabs": {
+        "all": "All",
+        "open": "Open",
+        "confirmed": "Confirmed",
+        "declined": "Declined"
+      },
+      "sortOptions": {
+        "name": "By Name",
+        "date": "By Date"
+      },
+      "table": {
+        "date": "Date",
+        "companyInfo": "Company Info",
+        "certificate": "Certificate",
+        "details": "Details"
+      }
     }
   },
   "navigation": {
@@ -1533,6 +1554,7 @@
     },
     "actions": {
       "cancel": "Cancel",
+      "decline": "Decline",
       "confirm": "Confirm",
       "more": "More",
       "loadmore": "Load more",
