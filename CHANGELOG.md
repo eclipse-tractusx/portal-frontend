@@ -63,6 +63,8 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+- Portal
+  - Add max width
 
 ## 1.5.0
 
