@@ -9,8 +9,10 @@
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
-- SSI Credential AdminBoard
-  - Connected with API for approve/decline request
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
+  - Add Backend Logic to fetch certificates
+  - Add Confirm/Decline business logic
 
 ### Feature
 
@@ -45,10 +47,6 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
-- SSI Certificat Credential Adminboard
-  - Add new page and created UI
-  - Add Backend Logic to fetch certificates
-  - Add Confirm/Decline business logic
 - Portal
   - Add max width
 
