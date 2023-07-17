@@ -9,6 +9,8 @@
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
+- SSI Credential AdminBoard
+  - Connected with API for approve/decline request
 
 ### Feature
 
