@@ -1478,11 +1478,14 @@
         "date": "By Date"
       },
       "table": {
-        "date": "Date",
+        "crendentialType": "Type",
         "companyInfo": "Company Info",
         "certificate": "Certificate",
-        "details": "Details"
-      }
+        "document": "Document"
+      },
+      "approvedMessage": "Credential Request Accepted successfully.",
+      "declinedMessage": "Credential Request Declined successfully.",
+      "errorMessage": "Something went wrong!"
     }
   },
   "navigation": {

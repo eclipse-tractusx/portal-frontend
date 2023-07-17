@@ -99,7 +99,7 @@ export const CertificateCard = ({
           {ssiDetailData && (
             <Typography variant="body3" className="expiryDate">
               {t('content.certificates.certificateCard.valid')}
-              {ssiDetailData.expiryDate.split('T')[0]}
+              {ssiDetailData?.expiryDate?.split('T')[0]}
             </Typography>
           )}
           <Typography variant="body3" className="status">

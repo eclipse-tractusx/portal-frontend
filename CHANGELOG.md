@@ -65,6 +65,10 @@
   - Catena-X Participant
 - SSI Certificat Credential Adminboard
   - Add new page and created UI
+  - Add Backend Logic to fetch certificates
+  - Add Confirm/Decline business logic
+- Portal
+  - Add max width
 
 ## 1.5.0
 
