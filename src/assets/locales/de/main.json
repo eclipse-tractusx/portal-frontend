@@ -1464,6 +1464,29 @@
         "success": "Usecase document upload has been done successfully."
       }
     },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "...search for certificate type",
+      "tabs": {
+        "all": "All",
+        "open": "Open",
+        "confirmed": "Confirmed",
+        "declined": "Declined"
+      },
+      "sortOptions": {
+        "name": "By Name",
+        "date": "By Date"
+      },
+      "table": {
+        "crendentialType": "Type",
+        "companyInfo": "Company Info",
+        "certificate": "Certificate",
+        "document": "Document"
+      },
+      "approvedMessage": "Credential Request Accepted successfully.",
+      "declinedMessage": "Credential Request Declined successfully.",
+      "errorMessage": "Something went wrong!"
+    },
     "certificates": {
       "heading": "Company Certificates",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
@@ -1507,29 +1530,6 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
-    },
-    "adminCertificate": {
-      "headline": "Credential Request Overview",
-      "search": "...search for certificate type",
-      "tabs": {
-        "all": "All",
-        "open": "Open",
-        "confirmed": "Confirmed",
-        "declined": "Declined"
-      },
-      "sortOptions": {
-        "name": "By Name",
-        "date": "By Date"
-      },
-      "table": {
-        "crendentialType": "Type",
-        "companyInfo": "Company Info",
-        "certificate": "Certificate",
-        "document": "Document"
-      },
-      "approvedMessage": "Credential Request Accepted successfully.",
-      "declinedMessage": "Credential Request Declined successfully.",
-      "errorMessage": "Something went wrong!"
     }
   },
   "navigation": {
