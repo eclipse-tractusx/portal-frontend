@@ -65,6 +65,7 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+  - Subnavigation header style fix
 - Search
   - Enable search in all the pages
   - Search input UI updates

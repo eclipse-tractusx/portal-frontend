@@ -41,7 +41,7 @@ export const StageSubNavigation = ({
   const customStyles = fixHeader && {
     position: 'fixed',
     top: 0,
-    width: '100%',
+    width: 'auto',
     zIndex: 9,
     backgroundColor: '#F5F9FD',
     boxShadow: '0px 5px 10px rgb(80 80 80 / 30%)',
