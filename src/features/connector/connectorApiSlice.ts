@@ -72,7 +72,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     createConnector: builder.mutation({
       query: (body) => ({
-        url: '/api/administration/connectors/daps',
+        url: '/api/administration/connectors',
         method: 'POST',
         body,
       }),
