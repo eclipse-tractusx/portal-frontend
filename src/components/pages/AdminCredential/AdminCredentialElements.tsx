@@ -56,6 +56,8 @@ export default function AdminCredentialElements() {
   const { t } = useTranslation()
 
   const [group, setGroup] = useState<string>(FilterType.ALL)
+  const [expr, setExpr] = useState<string>('')
+  const [refresh, setRefresh] = useState<number>(0)
 
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
@@ -80,7 +82,10 @@ export default function AdminCredentialElements() {
     }
   }
 
-  const handleDecline = async (credentialId: string, status: StatusType) => {
+  const handleApproveDecline = async (
+    credentialId: string,
+    status: StatusType
+  ) => {
     const APIRequest =
       status === StatusType.APPROVE ? approveCredential : declineCredential
     await APIRequest(credentialId)
@@ -170,7 +175,7 @@ export default function AdminCredentialElements() {
             variant="contained"
             className="statusBtn"
             onClick={() =>
-              handleDecline(row.credentialDetailId, StatusType.APPROVE)
+              handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
             }
           >
             {t('global.actions.decline')}
@@ -181,7 +186,7 @@ export default function AdminCredentialElements() {
             variant="contained"
             className="statusBtn ml-10"
             onClick={() =>
-              handleDecline(row.credentialDetailId, StatusType.DECLINE)
+              handleApproveDecline(row.credentialDetailId, StatusType.APPROVE)
             }
           >
             {t('global.actions.confirm')}
@@ -198,11 +203,19 @@ export default function AdminCredentialElements() {
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
+        searchExpr={expr}
         searchPlaceholder={t('content.adminCertificate.search')}
+        onSearch={(expr: string) => {
+          if (expr !== '') return
+          setRefresh(Date.now())
+          setExpr(expr)
+        }}
         searchDebounce={1000}
         title=""
         loadLabel={t('global.actions.more')}
         fetchHook={useFetchCredentialsQuery}
+        fetchHookArgs={{ expr }}
+        fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.companyId}
         columns={columns}
         defaultFilter={group}
