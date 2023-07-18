@@ -25,6 +25,7 @@ import { AppDetails } from 'features/apps/details/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import './BoardHeader.scss'
+import { Grid } from '@mui/material'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -56,38 +57,32 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
     }
   }
 
+  const getAppData = (field: string) => {
+    if (field === 'language') return item?.languages.join(', ')
+    else if (field === 'useCase') return item?.useCases.join(', ')
+    else if (field === 'price') return item?.price
+  }
+
   return (
     <div className="adminboard-header">
       <div className="lead-image">
         <img src={image} alt={item.title} />
       </div>
       <div className="content">
-        <Typography variant="body2" className="provider">
-          {item.provider}
-        </Typography>
-        <Typography variant="h3" className="heading">
+        <Typography variant="caption2">{item.provider}</Typography>
+        <Typography variant="h4" sx={{ mb: 1.5, mt: 1.5 }}>
           {item.title}
         </Typography>
-        <div className="language">
-          <Typography variant="caption2" className="head">
-            {t('content.adminboardDetail.language')}:{' '}
-          </Typography>
-          {item.languages?.map((lang, index) => (
-            <span key={lang}>{(index ? ', ' : '') + lang}</span>
+        <Grid md={8}>
+          {['language', 'useCase', 'price'].map((field, index) => (
+            <div style={{ display: 'flex', marginBottom: '5px' }} key={index}>
+              <Typography variant="body2">
+                <b>{t(`content.apprelease.validateAndPublish.${field}`)}</b>
+                {getAppData(field)}
+              </Typography>
+            </div>
           ))}
-        </div>
-        <div className="usecase">
-          <Typography variant="caption2" className="head">
-            {t('content.adminboardDetail.usecase')}:{' '}
-          </Typography>
-          {item.useCases?.map((useCase) => useCase).join(', ')}
-        </div>
-        <div className="price">
-          <Typography variant="caption2" className="head">
-            {t('content.adminboardDetail.price')}:{' '}
-          </Typography>
-          {item.price}
-        </div>
+        </Grid>
       </div>
     </div>
   )

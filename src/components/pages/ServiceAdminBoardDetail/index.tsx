@@ -155,7 +155,7 @@ export default function ServiceAdminBoardDetail() {
               )
             )}
           </div>
-          <div className="adminboard-documents">
+          <>
             <Typography variant="h4">
               {t('adminboardDetail.documents.heading')}
             </Typography>
@@ -183,7 +183,7 @@ export default function ServiceAdminBoardDetail() {
                   </span>
                 </InputLabel>
               ))}
-          </div>
+          </>
 
           <div style={{ marginBottom: '60px' }}>
             <Typography variant="h4">

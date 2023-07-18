@@ -29,10 +29,12 @@
   min-height: 2000px;
 
   .product-description {
-    margin-bottom: 42px;
     p {
       margin-bottom: 12px;
     }
+  }
+  .divider-height {
+    height: 60px;
   }
   .line-border {
     border-bottom: 1px solid #dcdcdc;
@@ -49,5 +51,8 @@
       color: #0d61ae;
       text-decoration: none;
     }
+  }
+  .tech-user-data {
+    padding: 0px 20px 5px 20px !important;
   }
 }

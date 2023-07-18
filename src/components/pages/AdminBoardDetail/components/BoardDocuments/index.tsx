@@ -29,6 +29,7 @@ import {
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 export default function BoardDocuments({
   type,
@@ -42,11 +43,6 @@ export default function BoardDocuments({
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
-
-  const checkDocumentExist =
-    type === DocumentTypeText.CONFORMITY_DOCUMENT
-      ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS]?.length
-      : Object.keys(documents)?.length
 
   const handleDownloadClick = async (
     documentId: string,
@@ -65,64 +61,69 @@ export default function BoardDocuments({
     }
   }
 
+  const renderConformityDocument = () => {
+    return documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS]?.map(
+      (document: DocumentData) => (
+        <li key={document.documentId} className="document-list doc-list">
+          <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+          <button
+            onClick={() =>
+              handleDownloadClick(document.documentId, document.documentName)
+            }
+            className="document-button-link"
+          >
+            {document.documentName}
+          </button>
+        </li>
+      )
+    )
+  }
+
   const renderDocuments = () => {
-    return type === DocumentTypeText.CONFORMITY_DOCUMENT
-      ? documents[DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS].map(
-          (document: DocumentData) => (
-            <li key={document.documentId} className="document-list">
-              <ArticleOutlinedIcon className="document-icon" />
+    return documents.hasOwnProperty(DocumentTypeId.ADDITIONAL_DETAILS) ||
+      documents.hasOwnProperty(
+        DocumentTypeId.APP_TECHNICAL_INFORMATION ||
+          documents.hasOwnProperty(DocumentTypeId.APP_CONTRACT)
+      ) ? (
+      Object.keys(documents).map(
+        (document) =>
+          (document === DocumentTypeId.APP_CONTRACT ||
+            document === DocumentTypeId.ADDITIONAL_DETAILS ||
+            document === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
+            <li key={document} className="document-list doc-list">
+              <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
               <button
-                className="document-button-link"
                 onClick={() =>
                   handleDownloadClick(
-                    document.documentId,
-                    document.documentName
+                    documents[document as keyof Documents][0].documentId,
+                    documents[document as keyof Documents][0].documentName
                   )
                 }
+                className="document-button-link"
               >
-                {document.documentName}
+                {documents[document as keyof Documents][0].documentName}
               </button>
             </li>
           )
-        )
-      : Object.keys(documents).map(
-          (document) =>
-            document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
-              <li key={document} className="document-list">
-                <ArticleOutlinedIcon className="document-icon" />
-                <button
-                  className="document-button-link"
-                  onClick={() =>
-                    handleDownloadClick(
-                      documents[document as keyof Documents][0].documentId,
-                      documents[document as keyof Documents][0].documentName
-                    )
-                  }
-                >
-                  {documents[document as keyof Documents][0].documentName}
-                </button>
-              </li>
-            )
-        )
+      )
+    ) : (
+      <Typography variant="body2" className="not-available">
+        {t('global.errors.noDocumentsAvailable')}
+      </Typography>
+    )
   }
 
   return (
-    <div className="adminboard-documents">
+    <>
       <Typography variant="h4">
         {t(`content.adminboardDetail.${type}.heading`)}
       </Typography>
-      <Typography variant="body2">
+      <Typography variant="body2" sx={{ mb: 4 }}>
         {t(`content.adminboardDetail.${type}.message`)}
       </Typography>
-      <ul>
-        {checkDocumentExist ? (
-          renderDocuments()
-        ) : (
-          <Typography variant="caption2" className="not-available">
-            {t('global.errors.noDocumentsAvailable')}
-          </Typography>
-        )}
-      </ul>
-    </div>
+      {type === DocumentTypeText.CONFORMITY_DOCUMENT
+        ? renderConformityDocument()
+        : renderDocuments()}
+    </>
   )
 }

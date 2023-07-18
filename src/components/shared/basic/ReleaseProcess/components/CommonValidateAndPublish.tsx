@@ -423,7 +423,7 @@ export default function CommonValidateAndPublish({
               style={{ marginBottom: '0px', paddingTop: '0px' }}
             >
               <div className="privacy-content">
-                <Typography variant="h4" sx={{ mb: 4 }}>
+                <Typography variant="h4">
                   {t('content.appdetail.privacy.heading')}
                 </Typography>
                 <Typography variant="body2" className="form-field">
@@ -456,9 +456,7 @@ export default function CommonValidateAndPublish({
 
         {conformityDocument && (
           <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {conformityDocument}
-            </Typography>
+            <Typography variant="h4">{conformityDocument}</Typography>
             {defaultValues && (
               <Typography variant="body2" className="form-field">
                 {defaultValues.conformityDocumentsDescription}
@@ -487,9 +485,7 @@ export default function CommonValidateAndPublish({
           </>
         )}
 
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          {documentsTitle}
-        </Typography>
+        <Typography variant="h4">{documentsTitle}</Typography>
         {defaultValues && (
           <Typography variant="body2" className="form-field">
             {defaultValues.documentsDescription}
@@ -534,7 +530,7 @@ export default function CommonValidateAndPublish({
         {rolesData && (
           <>
             <Divider className="verify-validate-form-divider" />
-            <Typography variant="h4" sx={{ mb: 4 }}>
+            <Typography variant="h4">
               {t('content.adminboardDetail.roles.heading')}
             </Typography>
             <Typography variant="body2" className="form-field">
@@ -561,7 +557,7 @@ export default function CommonValidateAndPublish({
           Object.values(statusData?.technicalUserProfile) && (
             <>
               <Divider className="verify-validate-form-divider" />
-              <Typography variant="h4" sx={{ mb: 4 }}>
+              <Typography variant="h4">
                 {t('content.adminboardDetail.technicalUserSetup.heading')}
               </Typography>
               <Typography variant="body2" className="form-field">

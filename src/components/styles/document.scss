@@ -26,13 +26,9 @@
   margin-bottom: 50px;
 }
 
-.adminboard-documents {
-  margin-bottom: 60px;
-}
-
 .document-list {
   display: flex;
-  margin: 10px auto;
+  margin: 0px auto 10px;
   .document-icon {
     color: #9c9c9c;
   }
@@ -41,7 +37,7 @@
     border: none;
     text-decoration: underline;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     color: #1977cc;
     margin-left: 10px;
   }

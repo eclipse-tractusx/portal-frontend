@@ -26,6 +26,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { AppDetails } from 'features/apps/apiSlice'
 import './BoardProvider.scss'
+import { Box } from '@mui/material'
 
 export default function BoardProvider({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
@@ -44,10 +45,10 @@ export default function BoardProvider({ item }: { item: AppDetails }) {
 
   return (
     <div className="adminboard-provider">
-      <div className="provider-content">
+      <Box sx={{ mb: 4 }}>
         <Typography variant="h4">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
-      </div>
+      </Box>
       <StaticTable data={tableData} horizontal={true} />
     </div>
   )
