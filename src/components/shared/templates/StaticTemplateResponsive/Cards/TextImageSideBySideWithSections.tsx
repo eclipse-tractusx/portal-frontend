@@ -24,6 +24,7 @@ import AlignedText from './AlignedText'
 import { Typography } from '@catena-x/portal-shared-components'
 import { Trans } from 'react-i18next'
 import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 export default function TextImageSideBySideWithSections({
   provider,
@@ -36,13 +37,17 @@ export default function TextImageSideBySideWithSections({
   scrollTop: () => void
   showScroll: boolean
 }) {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
   return (
     <div className="imageVideoTextSideBySideWithSections">
       <div className={'imageVideoTextSideBySide padding-bottom-20'}>
         <div
           className={'titleDescriptionBody'}
           style={{
-            width: !provider.imagePath ? '100%' : '50%',
+            width: !provider.imagePath || isMobile ? '100%' : '50%',
           }}
         >
           <TitleDescriptionAndSectionlink
