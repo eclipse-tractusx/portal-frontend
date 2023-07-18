@@ -42,6 +42,7 @@ import {
 } from 'features/companyRoles/companyRoleApiSlice'
 import './CompanyRoleUpdate.scss'
 import {
+  cancelOverlayType,
   updateRoleErrorType,
   updateRoleSuccessType,
 } from 'features/companyRoles/slice'
@@ -57,12 +58,13 @@ export default function CompanyRoles() {
 
   const updatedSuccess = useSelector(updateRoleSuccessType)
   const updatedError = useSelector(updateRoleErrorType)
+  const cancelOverlay = useSelector(cancelOverlayType)
 
   const { data, refetch } = useFetchRolesQuery()
   useEffect(() => {
     data && setCompanyRoles(_.cloneDeep(data))
     refetch()
-  }, [data, refetch, updatedSuccess, updatedError])
+  }, [data, refetch, updatedSuccess, updatedError, cancelOverlay])
 
   const handleAgreementCheck = (isChecked: boolean, roleName: string) => {
     const roles = _.cloneDeep(companyRoles)

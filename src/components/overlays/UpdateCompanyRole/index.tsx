@@ -51,6 +51,7 @@ import './style.scss'
 import {
   setCompanyRoleError,
   setCompanyRoleSuccess,
+  setOverlayCancel,
 } from 'features/companyRoles/slice'
 
 enum AgreementStatus {
@@ -60,7 +61,10 @@ enum AgreementStatus {
 export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const close = () => dispatch(closeOverlay())
+  const close = () => {
+    dispatch(setOverlayCancel(true))
+    dispatch(closeOverlay())
+  }
 
   const [loading, setLoading] = useState(false)
   const [agreements, setAgreements] = useState<AgreementsData[]>([])
@@ -72,9 +76,9 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const newSelectedRoles = data
     ? data.filter(
-        (role) =>
-          roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
-      )
+      (role) =>
+        roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
+    )
     : []
 
   const newDeselectedRoles = data
@@ -84,6 +88,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
 
   useEffect(() => {
+    dispatch(setOverlayCancel(false))
     newSelectedRoles?.map((role: CompanyRolesResponse) =>
       role.agreements.map((agreement: AgreementsData) =>
         setAgreements((oldArray: AgreementsData[]) => [...oldArray, agreement])
@@ -306,62 +311,65 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             </div>
           )}
 
-          <div>
-            <Typography variant="h4" className="rolesAddedHeading">
-              {t('content.companyRolesUpdate.overlay.termsHeading')}
-            </Typography>
-            <ul className="agreement-check-list">
-              {agreements?.map((agreement: AgreementsData) => {
-                return (
-                  <li
-                    key={uniqueId(agreement.agreementId)}
-                    className="agreement-li"
-                  >
-                    <Checkbox
-                      checked={
-                        checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
-                      }
-                      onChange={(e) =>
-                        handleCheckedAgreement(e.target.checked, agreement)
-                      }
-                    />
-                    {agreement.documentId ? (
-                      <>
+          {
+            agreements.length > 0 &&
+            <div>
+              <Typography variant="h4" className="rolesAddedHeading">
+                {t('content.companyRolesUpdate.overlay.termsHeading')}
+              </Typography>
+              <ul className="agreement-check-list">
+                {agreements?.map((agreement: AgreementsData) => {
+                  return (
+                    <li
+                      key={uniqueId(agreement.agreementId)}
+                      className="agreement-li"
+                    >
+                      <Checkbox
+                        checked={
+                          checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
+                        }
+                        onChange={(e) =>
+                          handleCheckedAgreement(e.target.checked, agreement)
+                        }
+                      />
+                      {agreement.documentId ? (
+                        <>
+                          <Typography variant="label2">
+                            {t(
+                              'content.companyRolesUpdate.overlay.TermsAndCondSpan1'
+                            )}{' '}
+                          </Typography>
+                          <Typography
+                            variant="label2"
+                            className={
+                              agreement.documentId ? 'agreement-span' : ''
+                            }
+                            onClick={() =>
+                              handleDownloadClick(
+                                agreement.documentId,
+                                agreement.agreementName
+                              )
+                            }
+                          >
+                            {agreement.agreementName}
+                          </Typography>{' '}
+                          <Typography variant="label2">
+                            {t(
+                              'content.companyRolesUpdate.overlay.TermsAndCondSpan2'
+                            )}
+                          </Typography>
+                        </>
+                      ) : (
                         <Typography variant="label2">
-                          {t(
-                            'content.companyRolesUpdate.overlay.TermsAndCondSpan1'
-                          )}{' '}
-                        </Typography>
-                        <Typography
-                          variant="label2"
-                          className={
-                            agreement.documentId ? 'agreement-span' : ''
-                          }
-                          onClick={() =>
-                            handleDownloadClick(
-                              agreement.documentId,
-                              agreement.agreementName
-                            )
-                          }
-                        >
                           {agreement.agreementName}
-                        </Typography>{' '}
-                        <Typography variant="label2">
-                          {t(
-                            'content.companyRolesUpdate.overlay.TermsAndCondSpan2'
-                          )}
                         </Typography>
-                      </>
-                    ) : (
-                      <Typography variant="label2">
-                        {agreement.agreementName}
-                      </Typography>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          }
         </div>
       </DialogContent>
 
@@ -378,7 +386,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => { }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
