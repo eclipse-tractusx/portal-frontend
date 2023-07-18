@@ -36,13 +36,41 @@
   - Show done state
   - Provide icon for marking a notification as read/unread
   - New Header and Filter UI
+- App Release Process
+  - App lead image load issue fix
+  - Validation added for privacy policy
+  - Fixed issue-upon upload of the conformity certificate, previous selected consents are gone
+  - Service Marketplace
+    - Subscription Button cross service highlighted
+- BugFix
+  - Home - Carousel
+    - Responsiveness - when switching the portal width screens get rendering issues
+  - Notification
+    - isRead action issue fix
+- Company Role Update
+  - Change the payload data as per backend logic
+- App Subscription
+  - Add and Edit Tenant URL functionality in detail overlay
 - Connectors
   - Disable DAPS related sections
+  - Create Connectors
+    - fetch offer subscription in managed connectors
+    - create managed api end point update
+    - update created managed api body with subscriptionId
+  - Update api urls
+- Certificates
+  - Created New page under User profile
+  - Fetch Certificates and connected to UI
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
 - Static Pages
   - Data Space
   - Catena-X Participant
+  - Subnavigation header style fix
+- Search
+  - Enable search in all the pages
+  - Search input UI updates
+  - Search Result UI updates
 - SSI Certificat Credential Adminboard
   - Add new page and created UI
 - Portal

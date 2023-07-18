@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -32,4 +31,65 @@
     #ff782c
   );
   position: relative;
+}
+
+.new-search-section {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: 9;
+  overflow: hidden;
+}
+
+.new-search-section .MuiTextField-root {
+  border: 0px;
+}
+
+.new-search-section .MuiOutlinedInput-root {
+  border-radius: 0px;
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.new-search-section .MuiOutlinedInput-input {
+  padding: 30px 0px;
+  background: transparent;
+  border: 0px;
+  border-radius: 0px;
+  font-size: 20px;
+}
+
+//tab layout
+@media (max-width: 1024px) {
+  body {
+    padding-right: 0px !important;
+  }
+
+  .new-search-section .MuiOutlinedInput-root {
+    border-radius: 0px;
+    padding-left: 30px;
+    padding-right: 40px;
+  }
+}
+
+//mobile layout
+@media (max-width: 480px) {
+  .new-search-section .MuiOutlinedInput-root {
+    border-radius: 0px;
+    padding-left: 30px;
+    padding-right: 40px;
+  }
+
+  .new-search-section .MuiOutlinedInput-input {
+    padding: 15px 0px;
+    font-size: 16px;
+  }
+
+  body {
+    padding-right: 0px !important;
+  }
+}
+
+.search-overlay {
+  display: block;
 }

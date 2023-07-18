@@ -152,7 +152,9 @@ const EdcConnector = () => {
         .then(() => showOverlay(true))
         .catch(() => showOverlay(false))
     } else if (selectedService.type === ConnectType.MANAGED_CONNECTOR) {
-      body.append('providerBpn', data.ConnectorBPN)
+      // body.append('providerBpn', data.ConnectorBPN)
+      body.append('subscriptionId', data.ConnectorSubscription.subscriptionId)
+      body.append('technicalUserId', data.ConnectorSubscription.subscriptionId)
       await createManagedConnector(body)
         .unwrap()
         .then(() => showOverlay(true))
