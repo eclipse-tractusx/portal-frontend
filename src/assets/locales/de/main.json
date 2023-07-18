@@ -1465,27 +1465,27 @@
       }
     },
     "adminCertificate": {
-      "headline": "Credential Request Overview",
-      "search": "...search for certificate type",
+      "headline": "de: Credential Request Overview",
+      "search": "de: ...search for certificate type",
       "tabs": {
-        "all": "All",
-        "open": "Open",
-        "confirmed": "Confirmed",
-        "declined": "Declined"
+        "all": "de: All",
+        "open": "de: Open",
+        "confirmed": "de: Confirmed",
+        "declined": "de: Declined"
       },
       "sortOptions": {
-        "name": "By Name",
-        "date": "By Date"
+        "name": "de: By Name",
+        "date": "de: By Date"
       },
       "table": {
-        "crendentialType": "Type",
-        "companyInfo": "Company Info",
-        "certificate": "Certificate",
-        "document": "Document"
+        "crendentialType": "de: Type",
+        "companyInfo": "de: Company Info",
+        "certificate": "de: Certificate",
+        "document": "de: Document"
       },
-      "approvedMessage": "Credential Request Accepted successfully.",
-      "declinedMessage": "Credential Request Declined successfully.",
-      "errorMessage": "Something went wrong!"
+      "approvedMessage": "de: Credential Request Accepted successfully.",
+      "declinedMessage": "de: Credential Request Declined successfully.",
+      "errorMessage": "de: Something went wrong!"
     },
     "certificates": {
       "heading": "Company Certificates",

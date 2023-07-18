@@ -133,13 +133,15 @@ export default function AdminCredentialElements() {
       field: 'useCase',
       headerName: t('content.adminCertificate.table.certificate'),
       flex: 1.5,
-      renderCell: ({ row }: { row: any }) => <>{row.useCase ?? 'N/A'}</>,
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <>{row.useCase ?? 'N/A'}</>
+      ),
     },
     {
       field: 'document',
       headerName: t('content.adminCertificate.table.document'),
       flex: 2,
-      renderCell: ({ row }: { row: any }) => (
+      renderCell: ({ row }: { row: CredentialData }) => (
         <>
           <ArticleOutlinedIcon className="document-icon" />
           <button
