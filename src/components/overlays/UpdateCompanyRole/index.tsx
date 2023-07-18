@@ -76,9 +76,9 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const newSelectedRoles = data
     ? data.filter(
-      (role) =>
-        roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
-    )
+        (role) =>
+          roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
+      )
     : []
 
   const newDeselectedRoles = data
@@ -311,8 +311,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             </div>
           )}
 
-          {
-            agreements.length > 0 &&
+          {agreements.length > 0 && (
             <div>
               <Typography variant="h4" className="rolesAddedHeading">
                 {t('content.companyRolesUpdate.overlay.termsHeading')}
@@ -326,7 +325,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                     >
                       <Checkbox
                         checked={
-                          checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
+                          checkedAgreementsIds.indexOf(agreement.agreementId) >=
+                          0
                         }
                         onChange={(e) =>
                           handleCheckedAgreement(e.target.checked, agreement)
@@ -369,7 +369,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 })}
               </ul>
             </div>
-          }
+          )}
         </div>
       </DialogContent>
 
@@ -386,7 +386,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => { }}
+            onButtonClick={() => {}}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
