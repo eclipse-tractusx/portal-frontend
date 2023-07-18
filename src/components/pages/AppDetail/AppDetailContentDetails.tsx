@@ -19,12 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import {
-  Typography,
-  Button,
-  Navigation,
-} from '@catena-x/portal-shared-components'
-import { useNavigate } from 'react-router-dom'
+import { Typography, Navigation } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailImageGallery from './components/AppDetailImageGallery'
@@ -43,7 +38,6 @@ export default function AppDetailContentDetails({
   item: AppDetails
 }) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const [images, setImages] = useState<any>()
   const [selectedItem, setSelectedItem] = useState<string>('#description')
 
@@ -87,11 +81,7 @@ export default function AppDetailContentDetails({
     item && (
       <>
         <div className="appdetail-main-bg">
-          <div className="appdetail-back">
-            <Button color="secondary" size="small" onClick={() => navigate(-1)}>
-              {t('global.actions.back')}
-            </Button>
-          </div>
+          <div className="appdetail-back"></div>
           <AppDetailHeader item={item} />
         </div>
         <div className="navigation-main">
