@@ -64,6 +64,7 @@ export interface EdcSubscriptionsType {
   customerName: string
   offerName: string
   subscriptionId: string
+  name?: string
 }
 
 export const apiSlice = createApi({
@@ -116,8 +117,18 @@ export const apiSlice = createApi({
         `/api/administration/connectors/managed?page=${filters.page}&size=10`,
     }),
     fetchOfferSubscriptions: builder.query<EdcSubscriptionsType[], void>({
-      query: () =>
-        '/api/administration/Connectors/offerSubscriptions?connectorIdSet=false',
+      query: () => ({
+        url: '/api/administration/Connectors/offerSubscriptions?connectorIdSet=false',
+      }),
+      transformResponse: (response: EdcSubscriptionsType[]) => {
+        const obj = response.map((res: EdcSubscriptionsType) => {
+          return {
+            ...res,
+            name: res.customerName + ' - ' + res.offerName,
+          }
+        })
+        return obj
+      },
     }),
   }),
 })
